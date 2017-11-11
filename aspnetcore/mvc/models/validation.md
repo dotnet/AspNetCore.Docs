@@ -181,7 +181,7 @@ The second step is putting the validation code in the corresponding action metho
 
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.
 
-The `AdditionalFields` property of the `[Remote]` attribute is useful for validating combinations of fields against data on the server.  For example, if the `User` model from above had two additional properties called `FirstName` and `LastName`, you might want to verify that no existing users already have that pair of names.  You would define these new properties as shown below.
+The `AdditionalFields` property of the `[Remote]` attribute is useful for validating combinations of fields against data on the server.  For example, if the `User` model from above had two additional properties called `FirstName` and `LastName`, you might want to verify that no existing users already have that pair of names.  You define the new properties as shown in the following code:
 
 [!code-csharp[Main](validation/sample/User.cs?range=10-13)]
 
@@ -189,13 +189,17 @@ The `AdditionalFields` property of the `[Remote]` attribute is useful for valida
 
 [!code-none[Main](validation/sample/UsersController.cs?range=30-39)]
 
-Now when users enter a first and last name, JavaScript in the view makes a remote call to see if that pair of names has been taken and, if so, displays the error message. Otherwise, the user can submit the form as usual.
+Now when users enter a first and last name, JavaScript:
 
-If you need to validate two or more additional fields with the `[Remote]` attribute, then you must provide them as a comma-delimited list.  For example, if we were to add an additional `MiddleName` property to our model, then its `[Remote]` attribute would look like this:
+* Makes a remote call to see if that pair of names has been taken.
+* If the pair has been taken, an error message is displayed. 
+* If not taken, the user can submit the form.
+
+If you need to validate two or more additional fields with the `[Remote]` attribute, you provide them as a comma-delimited list.  For example, to add a  `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following code:
 
 ```cs
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
 
-`AdditionalFields`, like all attribute arguments, must be a constant expression.  Therefore, you must not use an [interpolated string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/en-us/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`.  And of course, for every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.
+`AdditionalFields`, like all attribute arguments, must be a constant expression.  Therefore, you must not use an [interpolated string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/en-us/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.
