@@ -69,7 +69,7 @@ If you get the error `No executable found matching command "dotnet-aspnet-codege
 
  * You are in the project directory. The project directory has the *Program.cs*, *Startup.cs* and *.csproj* files.
  * Your dotnet version is 1.1 or higher. Run `dotnet` to get the version.
- * You have added the `<DotNetCliToolReference>` elment to the [MvcMovie.csproj file](#prepare-the-project-for-scaffolding).
+ * You have added the `<DotNetCliToolReference>` element to the [MvcMovie.csproj file](#prepare-the-project-for-scaffolding).
  
 <!--
 > [!NOTE]
