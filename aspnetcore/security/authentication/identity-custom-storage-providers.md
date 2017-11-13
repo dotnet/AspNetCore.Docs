@@ -63,7 +63,7 @@ Registered users of your web site. The [IdentityUser](https://docs.microsoft.com
 
 ### User Claims
 
-A set of statements (or [Claims](https://docs.microsoft.com//dotnet/api/system.security.claims.claim) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
+A set of statements (or [Claims](https://docs.microsoft.com//dotnet/api/system.security.claims.claim)) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
 
 ### User Logins
 

@@ -46,7 +46,7 @@ However, you should also be aware of its limitations. SQL Server Compact does no
 
 - You can use Server Explorer in Visual Studio, which offers limited database manipulation functionality for SQL Server Compact.
 - You can use the database manipulation feature of [WebMatrix](https://www.microsoft.com/web/webmatrix/), which has more features than Server Explorer.
-- You can use relatively full-featured third-party or open source tools, such as the [SQL Server Compact Toolbox](http://sqlcetoolbox.codeplex.com/) and [SQL Compact data and schema script utility](http://exportsqlce.codeplex.com/).
+- You can use relatively full-featured third-party or open source tools, such as the [SQL Server Compact Toolbox](https://github.com/ErikEJ/SqlCeToolbox) and [SQL Compact data and schema script utility](https://github.com/ErikEJ/SqlCeToolbox).
 - You can write and run your own DDL (data definition language) scripts to manipulate the database schema.
 
 You can start with SQL Server Compact and then upgrade later as your needs evolve. Later tutorials in this series show you how to migrate from SQL Server Compact to SQL Server Express and to SQL Server. However, if you're creating a new application and expect to need SQL Server in the near future, it's probably best to start with SQL Server or SQL Server Express.

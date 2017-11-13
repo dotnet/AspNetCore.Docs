@@ -26,5 +26,16 @@ namespace MVCMovie.Controllers
 
             return Json(data: true);
         }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyName(string firstName, string lastName)
+        {
+            if (!_userRepository.VerifyName(firstName, lastName))
+            {
+                return Json(data: $"A user named {firstName} {lastName} already exists.");
+            }
+
+            return Json(data: true);
+        }
     }
 }

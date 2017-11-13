@@ -2,7 +2,7 @@
 
 The preceding code:
 
-* Defines an empty controller class. In the next sections, we'll add methods to implement the API.
+* Defines an empty controller class. In the next sections, methods are added to implement the API.
 * The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 * The constructor adds an item to the in-memory database if one doesn't exist.
 
@@ -20,22 +20,22 @@ These methods implement the two GET methods:
 Here is an example HTTP response for the `GetAll` method:
 
 ```
-HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
-   Server: Microsoft-IIS/10.0
-   Date: Thu, 18 Jun 2015 20:51:10 GMT
-   Content-Length: 82
-
-   [{"Key":"1", "Name":"Item1","IsComplete":false}]
+[
+  {
+    "id": 1,
+    "name": "Item1",
+    "isComplete": false
+  }
+]
    ```
 
-Later in the tutorial I'll show how you can view the HTTP response using [Postman](https://www.getpostman.com/) or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
+Later in the tutorial I'll show how the HTTP response can be viewed with [Postman](https://www.getpostman.com/) or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
 
 ### Routing and URL paths
 
 The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each method is constructed as follows:
 
-* Take the template string in the controller’s route attribute:
+* Take the template string in the controller’s `Route` attribute:
 
 [!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
@@ -44,14 +44,14 @@ The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each me
 
 In the `GetById` method:
 
-```csharp
-[HttpGet("{id}", Name = "GetTodo")]
-public IActionResult GetById(long id)
-```
+[!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
 `"{id}"` is a placeholder variable for the ID of the `todo` item. When `GetById` is invoked, it assigns the value of "{id}" in the URL to the method's `id` parameter.
 
-`Name = "GetTodo"` creates a named route and allows you to link to this route in an HTTP Response. I'll explain it with an example later. See [Routing to Controller Actions](xref:mvc/controllers/routing) for detailed information.
+`Name = "GetTodo"` creates a named route. Named routes:
+
+* Enable the app to create an HTTP link using the route name.
+* Are explained later in the tutorial.
 
 ### Return values
 
@@ -59,6 +59,6 @@ The `GetAll` method returns an `IEnumerable`. MVC automatically serializes the o
 
 In contrast, the `GetById` method returns the more general `IActionResult` type, which represents a wide range of return types. `GetById` has two different return types:
 
-* If no item matches the requested ID, the method returns a 404 error.  This is done by returning `NotFound`.
+* If no item matches the requested ID, the method returns a 404 error. Returning `NotFound` returns an HTTP 404 response.
 
-* Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult`
+* Otherwise, the method returns 200 with a JSON response body. Returning `ObjectResult` returns an HTTP 200 response.

@@ -18,7 +18,7 @@ ASP.NET Core Identity has some default behaviors that you can override easily in
 
 ## Passwords policy
 
-By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and an alphanumeric character. There are also some other restrictions. If you want to simplify password restrictions, you can do that in the `Startup` class of your application.
+By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. There are also some other restrictions. If you want to simplify password restrictions, you can do that in the `Startup` class of your application.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

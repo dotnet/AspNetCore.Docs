@@ -68,7 +68,21 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 [!INCLUDE[model 4windows](../../includes/RP/model4Win.md)]
 
-[!INCLUDE[model 4](../../includes/RP/model4.md)]
+[!INCLUDE[model 4](../../includes/RP/model4tbl.md)]
+
+<a name="test"></a>
+### Test the app
+
+* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
+* Test the **Create** link.
+
+ ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
+
+<a name="scaffold"></a>
+
+* Test the **Edit**, **Details**, and **Delete** links.
+
+If you get a SQL exception, verify you have run migrations and updated the database:
 
 The next tutorial explains the files created by scaffolding.
 

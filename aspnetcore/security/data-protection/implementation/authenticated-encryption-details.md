@@ -1,8 +1,8 @@
 ---
-title: Authenticated encryption details.
+title: Authenticated encryption details
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document outlines the implementation details of ASP.NET Core data protection authenticated encryption.
+keywords: ASP.NET Core,data protection,authenticated encryption
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/implementation/authenticated-encryption-details
 ---
-# Authenticated encryption details.
+# Authenticated encryption details
 
 <a name="data-protection-implementation-authenticated-encryption-details"></a>
 

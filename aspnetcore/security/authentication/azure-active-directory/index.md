@@ -1,8 +1,8 @@
 ---
 title: Azure Active Directory
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as the table of contents for the various Azure Active Directory topics related to ASP.NET Core.
+keywords: ASP.NET Core,Azure Active Directory,AAD,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 10/4/2017

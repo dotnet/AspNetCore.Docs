@@ -48,7 +48,7 @@ Web API provides media-type formatters for both JSON and XML. The framework inse
 <a id="json_media_type_formatter"></a>
 ## JSON Media-Type Formatter
 
-JSON formatting is provided by the **JsonMediaTypeFormatter** class. By default, **JsonMediaTypeFormatter** uses the [Json.NET](http://json.codeplex.com/) library to perform serialization. Json.NET is a third-party open source project.
+JSON formatting is provided by the **JsonMediaTypeFormatter** class. By default, **JsonMediaTypeFormatter** uses the [Json.NET](https://github.com/JamesNK/Newtonsoft.Json) library to perform serialization. Json.NET is a third-party open source project.
 
 If you prefer, you can configure the **JsonMediaTypeFormatter** class to use the **DataContractJsonSerializer** instead of Json.NET. To do so, set the **UseDataContractJsonSerializer** property to **true**:
 
@@ -56,7 +56,7 @@ If you prefer, you can configure the **JsonMediaTypeFormatter** class to use the
 
 ### JSON Serialization
 
-This section describes some specific behaviors of the JSON formatter, using the default [Json.NET](http://json.codeplex.com/) serializer. This is not meant to be comprehensive documentation of the Json.NET library; for more information, see the [Json.NET Documentation](http://james.newtonking.com/projects/json/help/).
+This section describes some specific behaviors of the JSON formatter, using the default [Json.NET](https://github.com/JamesNK/Newtonsoft.Json) serializer. This is not meant to be comprehensive documentation of the Json.NET library; for more information, see the [Json.NET Documentation](http://james.newtonking.com/projects/json/help/).
 
 #### What Gets Serialized?
 

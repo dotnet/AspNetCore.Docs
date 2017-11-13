@@ -1,8 +1,8 @@
 ---
 title: Authorization in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as a table of contents for the various ASP.NET Core authorization topics.
+keywords: ASP.NET Core,authorization
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/index
 ---
-# Authorization in ASP.NET Core : Simple, role, claims-based and custom
+# Authorization in ASP.NET Core: Simple, role, claims-based, and custom
 
 * [Introduction](introduction.md)
 
@@ -26,8 +26,8 @@ uid: security/authorization/index
 
 * [Dependency Injection in requirement handlers](dependencyinjection.md)
 
-* [Resource Based Authorization](resourcebased.md)
+* [Resource-based authorization](resourcebased.md)
 
-* [View Based Authorization](views.md)
+* [View-based authorization](views.md)
 
 * [Limiting identity by scheme](limitingidentitybyscheme.md)

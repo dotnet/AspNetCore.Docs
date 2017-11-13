@@ -1,8 +1,8 @@
 ---
 title: Data Protection in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as a table of contents for the various ASP.NET Core data protection topics.
+keywords: ASP.NET Core,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -52,7 +52,7 @@ uid: security/data-protection/index
 
 * [Implementation](implementation/index.md)
 
-  * [Authenticated encryption details.](implementation/authenticated-encryption-details.md)
+  * [Authenticated encryption details](implementation/authenticated-encryption-details.md)
 
   * [Subkey Derivation and Authenticated Encryption](implementation/subkeyderivation.md)
 

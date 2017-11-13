@@ -111,7 +111,7 @@ The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/h
 
   * In a browser, go to http://localhost:5000 to verify that it's running.
 
-If the app doesn't start up as expected when running in a service, a quick way to make error messages accessible is to add a logging provider such as the [Windows EventLog provider](xref:fundamentals/logging#eventlog).
+If the app doesn't start up as expected when running in a service, a quick way to make error messages accessible is to add a logging provider such as the [Windows EventLog provider](xref:fundamentals/logging/index#eventlog).
 
 ## Acknowledgments
 

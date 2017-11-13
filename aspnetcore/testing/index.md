@@ -16,5 +16,6 @@ ms.prod: asp.net-core
 - [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 - [Integration testing](xref:testing/integration-testing)
 - [Testing controllers](xref:mvc/controllers/testing)
+- [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 - [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)
 - [Snapshot debugging](https://docs.microsoft.com/azure/application-insights/app-insights-snapshot-debugger)

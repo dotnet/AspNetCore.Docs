@@ -17,7 +17,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web applications
 
-[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
+[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a new Web UI app with ASP.NET Core 2.0.
 
 * [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
 * Create a Razor Pages web app with ASP.NET Core
@@ -69,6 +69,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Publishing and deployment
 * [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
+* [Deploy an ASP.NET Core web app to Azure using the command line](publish-to-azure-webapp-using-cli.md)
 * [Publishing to an Azure Web App with Continuous Deployment](../publishing/azure-continuous-deployment.md)
 * [Deploy an ASP.NET container to a remote Docker host](https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
 * [ASP.NET Core on Nano Server](nano-server.md)

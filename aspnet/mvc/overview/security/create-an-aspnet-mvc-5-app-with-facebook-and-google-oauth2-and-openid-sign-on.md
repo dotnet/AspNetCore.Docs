@@ -117,7 +117,7 @@ To connect to authentication providers like Google and Facebook, you will need t
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300/` unless you've created other SSL projects)
     3. Set the **Authorized redirect URI** to:  
-         `https://localhost:44300/signin-google/`
+         `https://localhost:44300/signin-google`
 5. Click the OAuth Consent screen menu item, then set your email address and product name. When you have completed the form click **Save**.
 6. Click the Library menu item, search **Google+ API**, click on it then press Enable.
   

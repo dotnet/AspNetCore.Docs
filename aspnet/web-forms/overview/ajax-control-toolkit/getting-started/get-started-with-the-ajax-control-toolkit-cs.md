@@ -24,13 +24,7 @@ The AJAX Control Toolkit contains more than 30 free controls that you can use in
 
 ## Downloading the AJAX Control Toolkit
 
-The AJAX Control Toolkit is an open source project developed by the members of the ASP.NET community and the ASP.NET team. The AJAX Control Toolkit is hosted at CodePlex.com which is the Microsoft website for hosting open source projects.
-
-Navigate to the following URL to go directly to the AJAX Control Toolkit CodePlex page:
-
-[http://AjaxControlToolkit.CodePlex.com](http://AjaxControlToolkit.CodePlex.com)
-
-Click the Downloads link (see Figure 1) to see a list of different versions of the AJAX Control Toolkit. For example, you can download the version of the toolkit that contains the AJAX Control Toolkit controls. Alternatively, you can download the full version of the Toolkit that contains the controls, a sample site, and the source code for the controls.
+The [AJAX Control Toolkit](http://devexpress.com/act) is an open source project developed by the members of the ASP.NET community and the ASP.NET team. 
 
 
 [![Downloading the AJAX Control Toolkit](get-started-with-the-ajax-control-toolkit-cs/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image1.png)

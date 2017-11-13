@@ -2,7 +2,7 @@
 uid: mvc/overview/older-versions-1/nerddinner/index
 title: "NerdDinner | Microsoft Docs"
 author: rick-anderson
-description: "How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.MVC 3 version, please visit nerddinner.codeplex.com ."
+description: "How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.NET MVC 3 version, visit nerddinner on GitHub."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
@@ -15,7 +15,7 @@ msc.type: chapter
 ---
 NerdDinner
 ====================
-> How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.MVC 3 version, please visit [nerddinner.codeplex.com](http://nerddinner.codeplex.com/).
+> How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.NET MVC version, please visit [NerdDinner on GitHub](https://github.com/AspNetMVPSamples/NerdDinner).
 
 
 - [Introducing the NerdDinner Tutorial](introducing-the-nerddinner-tutorial.md)

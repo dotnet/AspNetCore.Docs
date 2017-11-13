@@ -54,7 +54,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
 
-For more information, see [Introduction to Logging](xref:fundamentals/logging).
+For more information, see [Introduction to Logging](xref:fundamentals/logging/index).
 
 ## Authentication update
 

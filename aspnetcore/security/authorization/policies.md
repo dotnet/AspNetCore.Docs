@@ -1,8 +1,8 @@
 ---
-title: Custom Policy-Based Authorization
+title: Custom policy-based authorization
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document explains how to create and use custom authorization policy handlers in an ASP.NET Core app.
+keywords: ASP.NET Core,authorization,custom policy,authorization policy
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/policies
 ---
-# Custom Policy-Based Authorization
+# Custom policy-based authorization
 
 <a name="security-authorization-policies-based"></a>
 
-Underneath the covers the [role authorization](roles.md) and [claims authorization](claims.md) make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
+Underneath the covers, the [role authorization](roles.md) and [claims authorization](claims.md) make use of a requirement, a handler for the requirement, and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
 
 An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, in `ConfigureServices` in the *Startup.cs* file.
 
@@ -53,7 +53,7 @@ public class AlcoholPurchaseRequirementsController : Controller
 
 ## Requirements
 
-An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our Minimum Age policy the requirement we have is a single parameter, the minimum age. A requirement must implement `IAuthorizationRequirement`. This is an empty, marker interface. A parameterized minimum age requirement might be implemented as follows;
+An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our Minimum Age policy, the requirement we have is a single parameter, the minimum age. A requirement must implement `IAuthorizationRequirement`. This is an empty, marker interface. A parameterized minimum age requirement might be implemented as follows;
 
 ```csharp
 public class MinimumAgeRequirement : IAuthorizationRequirement
@@ -71,7 +71,7 @@ A requirement doesn't need to have data or properties.
 
 <a name="security-authorization-policies-based-authorization-handler"></a>
 
-## Authorization Handlers
+## Authorization handlers
 
 An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
 
@@ -109,10 +109,11 @@ public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
 }
 ```
 
-In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call `context.Succeed()` passing in the requirement that has been successful as a parameter.
+In the code above, we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call `context.Succeed()` passing in the requirement that has been successful as a parameter.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
+### Handler registration
 Handlers must be registered in the services collection during configuration, for example;
 
 ```csharp
@@ -190,7 +191,7 @@ Now, assuming both handlers are [registered](xref:security/authorization/policie
 
 There may be occasions where fulfilling a policy is simple to express in code. It is possible to simply supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
 
-For example the previous `BadgeEntryHandler` could be rewritten as follows;
+For example the previous `BadgeEntryHandler` could be rewritten as follows:
 
 ```csharp
 services.AddAuthorization(options =>
@@ -206,11 +207,11 @@ services.AddAuthorization(options =>
  }
 ```
 
-## Accessing MVC Request Context In Handlers
+## Accessing MVC request context in handlers
 
 The `Handle` method you must implement in an authorization handler has two parameters, an `AuthorizationContext` and the `Requirement` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the `Resource` property on the `AuthorizationContext` to pass through extra information.
 
-For example MVC passes an instance of `Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
+For example, MVC passes an instance of `Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
 
 The use of the `Resource` property is framework specific. Using information in the `Resource` property will limit your authorization policies to particular frameworks. You should cast the `Resource` property using the `as` keyword, and then check the cast has succeed to ensure your code doesn't crash with `InvalidCastExceptions` when run on other frameworks;
 

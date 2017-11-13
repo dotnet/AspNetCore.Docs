@@ -1,8 +1,8 @@
 ---
 title: Claims-Based Authorization
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document explains how to add claims checks for authorization in an ASP.NET Core app.
+keywords: ASP.NET Core,authorization,claims
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -16,7 +16,7 @@ uid: security/authorization/claims
 
 <a name="security-authorization-claims-based"></a>
 
-When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is name value pair that represents what the subject is, not what the subject can do. For example you may have a Drivers License, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
+When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is name value pair that represents what the subject is, not what the subject can do. For example, you may have a driver's license, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
 
 The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.
 
@@ -100,7 +100,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Multiple Policy Evaluation
 
-If you apply multiple policies to a controller or action then all policies must pass before access is granted. For example:
+If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -119,4 +119,4 @@ public class SalaryController : Controller
 
 In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](policies.md#security-authorization-policies-based).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](policies.md).

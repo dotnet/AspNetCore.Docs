@@ -113,7 +113,7 @@ The middleware respects the rules of the [HTTP 1.1 Caching specification](https:
 * [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
 
 ## Troubleshooting
-If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
+If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging/index) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
 
 When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. The following tools can explicitly set request headers, and are preferred for testing caching:
 
