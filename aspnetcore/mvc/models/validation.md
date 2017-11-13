@@ -187,6 +187,7 @@ The `AdditionalFields` property of the `[Remote]` attribute is useful for valida
 
 `AdditionalFields` could have been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring.  The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
 
+
 [!code-csharp[Main](validation/sample/UsersController.cs?range=30-39)]
 
 Now when users enter a first and last name, JavaScript:
