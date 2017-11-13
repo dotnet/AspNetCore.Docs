@@ -18,7 +18,7 @@ namespace RazorPagesSampleContacts
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
-                              options.UseInMemoryDatabase("name"));
+                              options.UseInMemoryDatabase("InMemoryDb"));
             services.AddMvc();
         }
 
