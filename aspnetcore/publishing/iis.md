@@ -112,7 +112,7 @@ services.Configure<IISOptions>(options =>
 
 ### web.config
 
-The *web.config* file primarily configures the ASP.NET Core Module. It may optionally provide additional IIS configuration settings. Creating, transforming, and publishing *web.config* is handled by the .Net Core Web SDK (`Microsoft.NET.Sdk.Web`). The SDK is configured  at the top of your project file (*.csproj*), i.e. `<Project Sdk="Microsoft.NET.Sdk.Web">`. To prevent the SDK from transforming your *web.config* file, add the **\<IsTransformWebConfigDisabled>** property to your project file with a setting of `true`:
+The *web.config* file primarily configures the ASP.NET Core Module. It may optionally provide additional IIS configuration settings. Creating, transforming, and publishing *web.config* is handled by the .NET Core Web SDK (`Microsoft.NET.Sdk.Web`). The SDK is set  at the top of the project file (*.csproj*), `<Project Sdk="Microsoft.NET.Sdk.Web">`. To prevent the SDK from transforming the *web.config* file, add the **\<IsTransformWebConfigDisabled>** property to the project file with a setting of `true`:
 
 ```xml
 <PropertyGroup>
