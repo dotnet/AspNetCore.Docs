@@ -19,7 +19,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-This document provides an introduction to Razor Pages, it is not a step by step tutorial. If you find some of the sections difficult to follow, see [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).
+This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections difficult to follow, see [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).
 
 <a name="prerequisites"></a>
 
