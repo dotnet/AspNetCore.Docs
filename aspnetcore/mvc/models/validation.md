@@ -177,7 +177,7 @@ You can implement remote validation in a two step process. First, you must annot
 
 The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. It returns a `JsonResult` that the client side can use to proceed or pause and display an error if needed.
 
-[!code-none[Main](validation/sample/UsersController.cs?range=19-28)]
+[!code-csharp[Main](validation/sample/UsersController.cs?range=19-28)]
 
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.
 
@@ -187,7 +187,8 @@ The `AdditionalFields` property of the `[Remote]` attribute is useful for valida
 
 `AdditionalFields` could have been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring.  The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
 
-[!code-none[Main](validation/sample/UsersController.cs?range=30-39)]
+
+[!code-csharp[Main](validation/sample/UsersController.cs?range=30-39)]
 
 Now when users enter a first and last name, JavaScript:
 
