@@ -13,6 +13,7 @@ uid: data/ef-rp/concurrency
 ---
 
 en-us/
+?view=netcore-2.0
 
 # Handling concurrency conflicts - EF Core with Razor Pages (8 of 10)
 
@@ -87,7 +88,7 @@ Some of the options include the following:
 
 ### Detecting concurrency conflicts
 
-Concurrency conflicts can be handled by catching `DbConcurrencyException`. The DB and data model must be configured to support throwing `DbConcurrencyException`. Some options for enabling conflict detection include the following:
+Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. Some options for enabling conflict detection include the following:
 
 * Include a tracking column in the DB table that is used to determine when a row has been changed. Include the tracking column in the `Where` clause of `SQL Update` and `Delete`.
 
@@ -124,27 +125,24 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
+The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column will be included in the `Where` clause of `Update` and Delete commands sent to the DB. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it.
 
-The `Timestamp` attribute specifies that this column will be included in the `Where` clause of `Update` and Delete commands sent to the DB. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it. The .NET type for `rowversion` is a byte array.
-
-If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method (in *Data/SchoolContext.cs*) to specify the tracking property, as shown in the following example:
+The fluent API can also specify the tracking property:
 
 ```csharp
 modelBuilder.Entity<Department>()
     .Property(p => p.RowVersion).IsConcurrencyToken();
 ```
 
-By adding a property you changed the DB model, so you need to do another migration.
+Adding the `RowVersion` property changed the DB model, which requires a migration.
 
-Save your changes and build the project, and then enter the following commands in the command window:
+Build the project. Enter the following in a command window:
 
 ```console
 dotnet ef migrations add RowVersion
-```
-
-```console
 dotnet ef database update
 ```
+
 
 ## Create a Departments Razor Pages
 
