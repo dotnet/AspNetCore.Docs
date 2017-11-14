@@ -2,7 +2,7 @@
 #if MovieDateRating
 using System;
 using System.ComponentModel.DataAnnotations;
-namespace RazorPagesMovie.Models
+namespace RazorPagesSampleMovie.Models
 {
     public class Movie
     {
