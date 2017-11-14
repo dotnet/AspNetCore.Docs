@@ -40,35 +40,33 @@ namespace ContosoUniversity.Pages.Instructors
                 return Page();
             }            
 
-            var instructorToUpdate = new Instructor();
+            var newInstructor = new Instructor();
+            if (selectedCourses != null)
+            {
+                newInstructor.CourseAssignments = new List<CourseAssignment>();
+                foreach (var course in selectedCourses)
+                {
+                    var courseToAdd = new CourseAssignment
+                    {
+                        CourseID = int.Parse(course)
+                    };
+                    newInstructor.CourseAssignments.Add(courseToAdd);
+                }
+            }
 
             if (await TryUpdateModelAsync<Instructor>(
-                instructorToUpdate,
+                newInstructor,
                 "Instructor",
                 i => i.FirstMidName, i => i.LastName,
                 i => i.HireDate, i => i.OfficeAssignment))
             {
-                _context.Instructors.Add(instructorToUpdate);
-                //await _context.SaveChangesAsync();
-
-                if (selectedCourses != null)
-                {
-                    instructorToUpdate.CourseAssignments = new List<CourseAssignment>();
-                    foreach (var course in selectedCourses)
-                    {
-                        var courseToAdd = new CourseAssignment
-                        {
-                            InstructorID = instructorToUpdate.ID,
-                            CourseID = int.Parse(course)
-                        };
-                        instructorToUpdate.CourseAssignments.Add(courseToAdd);
-                    }
-                }
+                _context.Instructors.Add(newInstructor);               
                 await _context.SaveChangesAsync();
-
                 return RedirectToPage("./Index");
             }
-            PopulateAssignedCourseData(_context, instructorToUpdate);
+
+            // If TryUpdateModelAsync fails, repopulate course selections
+            PopulateAssignedCourseData(_context, newInstructor);
             return Page();
         }
     }

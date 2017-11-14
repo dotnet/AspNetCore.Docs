@@ -1,6 +1,5 @@
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,6 +18,10 @@ namespace ContosoUniversity.Pages.Instructors
         {
             var instructor = new Instructor();
             instructor.CourseAssignments = new List<CourseAssignment>();
+
+            // Provides an empty collection for the foreach loop
+            // foreach (var course in Model.AssignedCourseDataList)
+            // in the Create Razor page.
             PopulateAssignedCourseData(_context, instructor);
             return Page();
         }
@@ -33,36 +36,32 @@ namespace ContosoUniversity.Pages.Instructors
                 return Page();
             }
 
+            var newInstructor = new Instructor();
             if (selectedCourses != null)
             {
-                Instructor.CourseAssignments = new List<CourseAssignment>();
+                newInstructor.CourseAssignments = new List<CourseAssignment>();
                 foreach (var course in selectedCourses)
                 {
-                    var courseToAdd = new CourseAssignment {
-                        InstructorID = Instructor.ID, CourseID = int.Parse(course) };
-                    Instructor.CourseAssignments.Add(courseToAdd);
+                    var courseToAdd = new CourseAssignment
+                    {
+                        CourseID = int.Parse(course)
+                    };
+                    newInstructor.CourseAssignments.Add(courseToAdd);
                 }
             }
-
-            var instructorToUpdate = new Instructor();
 
             if (await TryUpdateModelAsync<Instructor>(
-                           instructorToUpdate,
-                           "Instructor",
-                           i => i.FirstMidName, i => i.LastName,
-                           i => i.HireDate, i => i.OfficeAssignment))
+                newInstructor,
+                "Instructor",
+                i => i.FirstMidName, i => i.LastName,
+                i => i.HireDate, i => i.OfficeAssignment))
             {
-                if (String.IsNullOrWhiteSpace(
-                    instructorToUpdate.OfficeAssignment?.Location))
-                {
-                    instructorToUpdate.OfficeAssignment = null;
-                }
-                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                _context.Instructors.Add(newInstructor);                
                 await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
-            PopulateAssignedCourseData(_context, instructorToUpdate);
-            return RedirectToPage("./Index");
+            PopulateAssignedCourseData(_context, newInstructor);
+            return Page();
         }
     }
 }
