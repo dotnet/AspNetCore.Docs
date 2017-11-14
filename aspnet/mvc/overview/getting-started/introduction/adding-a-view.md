@@ -14,6 +14,8 @@ Adding a View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+Source located on [GitHub](xref:mvc/overview/getting-started/introduction/sample/MvcMovie)
+
 In this section you're going to modify the `HelloWorldController` class to use view template files to cleanly encapsulate the process of generating HTML responses to a client.
 
 You'll create a view template file using the [Razor view engine](../../../../web-pages/overview/getting-started/introducing-razor-syntax-c.md). Razor-based view templates have a *.cshtml* file extension, and provide an elegant way to create HTML output using C#. Razor minimizes the number of characters and keystrokes required when writing a view template, and enables a fast, fluid coding workflow.
