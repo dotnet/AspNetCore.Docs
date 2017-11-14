@@ -28,7 +28,7 @@ namespace ContosoUniversity.Pages.Instructors
                 return NotFound();
             }
 
-            Instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.ID == id);
+            Instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
 
             if (Instructor == null)
             {

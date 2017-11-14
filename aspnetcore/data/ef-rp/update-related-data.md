@@ -25,19 +25,19 @@ The following illustrations shows some of the completed pages.
 ![Course Edit page](update-related-data/_static/course-edit.png)
 ![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
 
-Examine and test the Create and Edit course pages. Create a new course. You need to select the department by it's primary key (an integer), not it's name. Edit the new course. When you have finished testing, delete the new course.
+Examine and test the Create and Edit course pages. Create a new course. The department is selected by its primary key (an integer), not its name. Edit the new course. When you have finished testing, delete the new course.
 
 ## Create a base class to share common code
 
-The Courses/Create and Courses/Edit pages each need a list of department names. Create the following base class for the Create and Edit pages:
+The Courses/Create and Courses/Edit pages each need a list of department names. Create the *Pages/Courses/DepartmentNamePageModel.cshtml.cs* base class for the Create and Edit pages:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-The preceding code creates a [SelectList](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of deparment names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a [SelectList](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-## Customize the Courses Pages 
+## Customize the Courses Pages
 
 When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the base class for Create and Edit contains a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
@@ -53,7 +53,7 @@ The preceding code:
 * Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
 * Replaces `ViewData["DepartmentID"]` with `DepartmentNameSL` (from the base class).
 
-`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are prefered over weaky typed. For more information, see [Weakly-typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
+`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
 ### Update the Courses Create page
 
@@ -72,15 +72,15 @@ The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#th
 
 [!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
-Test the Create page. The Create page displays the deparment name rather than the department ID.
+Test the Create page. The Create page displays the department name rather than the department ID.
 
 ### Update the Courses Edit page.
 
 Update the edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,27-36,47-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-)]
 
-The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select the department specified in the drop down list.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select the department specified in the drop-down list.
 
 Update *Pages/Courses/Edit.cshtml* with the following markup:
 
@@ -88,7 +88,7 @@ Update *Pages/Courses/Edit.cshtml* with the following markup:
 
 The preceding markup makes the following changes:
 
-* Displays the course ID. Generally the Primary Key (PK) of an entity is not displayed. PKs are usually meaningless to users. In this case the PK is the course nummber.
+* Displays the course ID. Generally the Primary Key (PK) of an entity is not displayed. PKs are usually meaningless to users. In this case, the PK is the course number.
 * Changes the caption from **DepartmentID** to **Department**.
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
 * Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
@@ -96,11 +96,11 @@ The preceding markup makes the following changes:
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
 
-Test the updated code. Create, edit and delete a course.
+Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-[AsNoTracking](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)  can improve performance when tracking is not required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+[AsNoTracking](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking is not required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -122,11 +122,11 @@ Test create, edit, details, and delete.
 
 ## Update the instructor pages
 
-The following sections update the instrutor pages.
+The following sections update the instructor pages.
 
 ### Add office location
 
-When editing an instructor record, you may want to update the instructor's office assignment. The `Instructor` entity has a one-to-zero-or-one relationship with the `OfficeAssignment` entity. The instructor code code must handle:
+When editing an instructor record, you may want to update the instructor's office assignment. The `Instructor` entity has a one-to-zero-or-one relationship with the `OfficeAssignment` entity. The instructor code must handle:
 
 * If the user clears the office assignment, delete the `OfficeAssignment` entity.
 * If the user enters an office assignment and it was empty, create a new `OfficeAssignment` entity.
@@ -134,13 +134,13 @@ When editing an instructor record, you may want to update the instructor's offic
 
 Update the instructors Edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,39-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,32,39-)]
 
 The preceding code:
 
--  Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
--  Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).	
--  If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
+- Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
+- Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+- If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
 ### Update the instructor Edit page
 
@@ -152,7 +152,7 @@ Verify you can change an instructors office location.
 
 ## Add Course assignments to the instructor Edit page
 
-Instructors may teach any number of courses. In this section you add the ability to change course assignments. The following image shows the updated instructor Edit page:
+Instructors may teach any number of courses. In this section, you add the ability to change course assignments. The following image shows the updated instructor Edit page:
 
 ![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses.png)
 
@@ -160,7 +160,7 @@ Instructors may teach any number of courses. In this section you add the ability
 
 Check boxes enable changes to courses an instructor is assigned to. A check box is displayed for every course in the database. Courses that the instructor is assigned to are checked. The user can select or clear check boxes to change course assignments. If the number of courses were much greater:
 
-* You'd probably use a different user interace to display the courses.
+* You'd probably use a different user interface to display the courses.
 * The method of manipulating a join entity to create or delete relationships would not change.
 
 ### Add classes to support Create and Edit instructor pages
@@ -177,7 +177,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* base class:
 
 The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](https://docs.microsoft.com/dotnet/api/system.collections.generic.hashset-1?view=netcore-2.0) is used to create efficient lookups.
 
-### Instructors Edit page model 
+### Instructors Edit page model
 
 Update the instructor Edit page model with the following code:
 
@@ -190,12 +190,12 @@ Update the instructor Razor View:
 [!code-cshtml[Main](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
 <a id="notepad"></a>
-> [!NOTE] 
-> When you paste the code in Visual Studio, line breaks will be changed in a way that breaks the code.  Press Ctrl+Z one time to undo the automatic formatting.  This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown. With the block of new code selected, press Tab three times to line up the new code with the existing code. Vote on or review the status of this bug [with this link](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
+> [!NOTE]
+> When you paste the code in Visual Studio, line breaks are changed in a way that breaks the code. Press Ctrl+Z one time to undo the automatic formatting. Ctrl+Z fixes the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown. With the block of new code selected, press Tab three times to line up the new code with the existing code. Vote on or review the status of this bug [with this link](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
 
-The preceding code creates an HTML table that has three columns. Each column has a check box and a caption containing the course number and title. The check boxes all have the same name ("selectedCourses"). Using the same name informs the model binder to  treat them as a group. The value attribute of each check box is set to `CourseID`. When the page is posted, the model binder passes an array that consists of the `CourseID` values for only the check boxes which are selected.
+The preceding code creates an HTML table that has three columns. Each column has a check box and a caption containing the course number and title. The check boxes all have the same name ("selectedCourses"). Using the same name informs the model binder to treat them as a group. The value attribute of each check box is set to `CourseID`. When the page is posted, the model binder passes an array that consists of the `CourseID` values for only the check boxes that are selected.
 
-When the check boxes are initially rendered, those that are for courses assigned to the instructor have checked attributes.
+When the check boxes are initially rendered, courses assigned to the instructor have checked attributes.
 
 Run the app and test the updated instructors Edit page. Change some course assignments. The changes are reflected on the Index page.
 
@@ -223,7 +223,7 @@ Update the Delete page model with the following code:
 
 The preceding code makes the following changes:
 
-* Uses eager loading for the `CourseAssignments` navigation property.  `CourseAssignments` must be included or the they won't be deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
+* Uses eager loading for the `CourseAssignments` navigation property. `CourseAssignments` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 

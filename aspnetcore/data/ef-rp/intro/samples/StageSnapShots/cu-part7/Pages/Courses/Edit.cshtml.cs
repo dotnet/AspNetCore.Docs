@@ -1,7 +1,13 @@
-using ContosoUniversity.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Courses
 {
@@ -33,7 +39,7 @@ namespace ContosoUniversity.Pages.Courses
             }
 
             // Select current DepartmentID.
-            PopulateDepartmentsDropDownList(_context,Course.DepartmentID);
+            PopulateDepartmentsDropDownList(_context, Course.DepartmentID);
             return Page();
         }
 
@@ -58,6 +64,6 @@ namespace ContosoUniversity.Pages.Courses
             // Select DepartmentID if TryUpdateModelAsync fails.
             PopulateDepartmentsDropDownList(_context, courseToUpdate.DepartmentID);
             return Page();
-        }       
+        }
     }
 }
