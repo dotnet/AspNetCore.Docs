@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
-This tutorial demonstrates updating related data.
+This tutorial demonstrates updating related data. If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part7).
 
 The following illustrations shows some of the completed pages.
 
