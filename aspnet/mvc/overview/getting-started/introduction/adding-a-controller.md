@@ -17,6 +17,8 @@ Adding a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+Source located on [GitHub](xref:mvc/overview/getting-started/introduction/sample/MvcMovie)
+
 MVC stands for *model-view-controller*. MVC is a pattern for developing applications that are well architected, testable and easy to maintain. MVC-based applications contain:
 
 - **M** odels: Classes that represent the data of the application and that use validation logic to enforce business rules for that data.
@@ -24,6 +26,9 @@ MVC stands for *model-view-controller*. MVC is a pattern for developing applicat
 - **C** ontrollers: Classes that handle incoming browser requests, retrieve model data, and then specify view templates that return a response to the browser.
 
 We'll be covering all these concepts in this tutorial series and show you how to use them to build an application.
+
+> [!NOTE]
+> In the previous step the Default MVC template was selected. This creates Home, Account and Manage Controllers by default. These Controllers/Views are not required and can be removed.
 
 Let's begin by creating a controller class. In **Solution Explorer**, right-click the *Controllers* folder and then click **Add**, then **Controller**.
 
