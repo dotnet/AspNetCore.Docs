@@ -41,8 +41,6 @@ namespace ContosoUniversity.Pages.Instructors
                 return Page();
             }
 
-            DbUpdateConcurrencyException db;
-
             var newInstructor = new Instructor();
             if (selectedCourses != null)
             {

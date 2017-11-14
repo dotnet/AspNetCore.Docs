@@ -143,33 +143,65 @@ dotnet ef migrations add RowVersion
 dotnet ef database update
 ```
 
+The preceding commands:
 
-## Create a Departments Razor Pages
+* Adds the *Migrations/{time stamp}_RowVersion.cs migration file.
+* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-Scaffold a Departments controller and views as you did earlier for Students, Courses, and Instructors.
+[!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
+	
+* Runs migrations to update the DB.
 
-![Scaffold Department](concurrency/_static/add-departments-controller.png)
+<a name="scaffold"></a>
+## Scaffold the Departments model
 
+* Exit Visual Studio.
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
+
+ ```console
+dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
+ ```
+
+The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
+
+Build the project. The build generates errors like the following:
+
+`1>Pages/Departments/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
+ contain a definition for 'Department' and no extension method 'Department' accepting a first
+ argument of type 'SchoolContext' could be found (are you missing a using directive or
+ an assembly reference?)`
+
+ Globally change `_context.Department` to `_context.Departments` (that is, add an "s" to `Department`). 7 occurrences are found and updated.
+ 
+ <!--
 In the *DepartmentsController.cs* file, change all four occurrences of "FirstMidName" to "FullName" so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
 
-<!--
+-->
+
+
  
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
 
-## Update the Departments Index view
+### Update the Departments Index page
 
-The scaffolding engine created a RowVersion column in the Index view, but that field shouldn't be displayed.
+The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. 
 
-Replace the code in *Views/Departments/Index.cshtml* with the following code.
+Update the Index page:
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
+* Replace Index with Departments.
+* Remove the markup containing `RowVersion`
+* Replace FirstMidName with FullName.
 
-This changes the heading to "Departments", deletes the RowVersion column, and shows full name instead of first name for the administrator.
+The following markup shows the updated page:
 
-## `Update` the Edit methods in the Departments controller
+[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,8,44)]
+
+### `Update` the Edit methods in the Departments controller
 
 In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
+<!--
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading&highlight=2,3)]
 
 Replace the existing code for the HttpPost `Edit` method with the following code:
