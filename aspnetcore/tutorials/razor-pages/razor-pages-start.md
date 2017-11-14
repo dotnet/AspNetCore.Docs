@@ -20,7 +20,7 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 There are three versions of this tutorial:
 
 * Windows: This tutorial
-* MacOS: [Getting started with Razor Pages with Visual Studio for Mac](tutorials/razor-pages-mac/razor-pages-start)
+* MacOS: [Getting started with Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
 * macOS, Linux, and Windows: [Getting started with Razor Pages in ASP.NET Core with Visual Studio Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 
 ## Prerequisites
