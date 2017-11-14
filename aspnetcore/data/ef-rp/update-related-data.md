@@ -229,3 +229,4 @@ The preceding code makes the following changes:
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-mvc/read-related-data)
+[Next](xref:data/ef-mvc/concurrency)

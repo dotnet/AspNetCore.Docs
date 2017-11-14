@@ -76,6 +76,8 @@
 ### [Creating a complex data model](xref:data/ef-rp/complex-data-model)
 ### [Reading related data](xref:data/ef-rp/read-related-data)
 ### [Updating related data](xref:data/ef-rp/update-related-data)
+### [Handling concurrency conflicts](xref:data/ef-rp/concurrency)
+
 
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)

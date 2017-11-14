@@ -24,3 +24,4 @@ The Razor Pages EF Core series is a work in progress. We hope to complete the se
 1. [Creating a complex data model](xref:data/ef-rp/complex-data-model)
 1. [Reading related data](xref:data/ef-rp/read-related-data)
 1. [Updating related data](xref:data/ef-rp/update-related-data)
+1. [Handling concurrency conflicts](xref:data/ef-rp/concurrency)
