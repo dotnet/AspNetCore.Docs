@@ -107,7 +107,8 @@ Note the displayed URL ending in `.git`. It's used in the next step.
 
 You're ready to deploy from your local machine using Git.
 
-> [!NOTE] It's safe to ignore any warnings from Git about line endings.
+> [!NOTE]
+> It's safe to ignore any warnings from Git about line endings.
 
 # [Windows](#tab/windows)
 ```cmd
