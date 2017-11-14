@@ -1,7 +1,7 @@
 ---
 title: Razor Pages with EF Core - Read Related Data - 6 of 10
 author: tdykstra
-description: In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
+description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 keywords: ASP.NET Core,Entity Framework Core,related data,joins
 ms.author: tdykstra
 manager: wpickett
