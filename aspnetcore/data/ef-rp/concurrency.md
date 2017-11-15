@@ -176,12 +176,10 @@ Build the project. The build generates errors like the following:
  
  <!--
 In the *DepartmentsController.cs* file, change all four occurrences of "FirstMidName" to "FullName" so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
-
--->
-
-
  
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
+-->
+
 
 ### Update the Departments Index page
 

@@ -39,7 +39,11 @@ namespace ContosoUniversity.Pages.Departments
             {
                 return NotFound();
             }
-           ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FirstMidName");
+
+            // Scaffolder added ViewData, I'll remove it once code is working.
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FirstMidName");
+           ViewData["rowVersion"] = System.Text.Encoding.UTF8.GetString(Department.RowVersion);
+
             return Page();
         }
 
@@ -50,18 +54,92 @@ namespace ContosoUniversity.Pages.Departments
                 return Page();
             }
 
-            _context.Attach(Department).State = EntityState.Modified;
+            var departmentToUpdate = await _context.Departments
+                .Include(i => i.Administrator)
+                .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
-            try
+            // null means it was deleted by another user.
+            if (departmentToUpdate == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
+                Department = new Department();
+                // Fetch the posted data so we can display it with the error message.
+                await TryUpdateModelAsync(Department);
+                ModelState.AddModelError(string.Empty,
+                    "Unable to save changes. The department was deleted by another user.");
+                ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName",
+                    Department.InstructorID);
+                return Page();
             }
 
-            return RedirectToPage("./Index");
+            var orgRV = _context.Entry(departmentToUpdate)
+                .Property("RowVersion").OriginalValue;
+
+            //_context.Entry(departmentToUpdate)
+            //    .Property("RowVersion").OriginalValue = rowVersion;
+
+            if (await TryUpdateModelAsync<Department>(  
+                departmentToUpdate,
+                "Department",
+                s => s.Name, s => s.StartDate, s => s.Budget, s => s.InstructorID))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToPage("./Index");
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var exceptionEntry = ex.Entries.Single();
+                    var clientValues = (Department)exceptionEntry.Entity;
+                    var databaseEntry = exceptionEntry.GetDatabaseValues();
+                    if (databaseEntry == null)
+                    {
+                        ModelState.AddModelError(string.Empty,
+                            "Unable to save changes. The department was deleted " +
+                            "by another user.");
+                    }
+                    else
+                    {
+                        var dbValues = (Department)databaseEntry.ToObject();
+
+                        if (dbValues.Name != clientValues.Name)
+                        {
+                            ModelState.AddModelError("Name", 
+                                $"Current value: {dbValues.Name}");
+                        }
+                        if (dbValues.Budget != clientValues.Budget)
+                        {
+                            ModelState.AddModelError("Budget", 
+                                $"Current value: {dbValues.Budget:c}");
+                        }
+                        if (dbValues.StartDate != clientValues.StartDate)
+                        {
+                            ModelState.AddModelError("StartDate", 
+                                $"Current value: {dbValues.StartDate:d}");
+                        }
+                        if (dbValues.InstructorID != clientValues.InstructorID)
+                        {
+                            Instructor dbInstructor = await _context.Instructors
+                               .FirstOrDefaultAsync(i => i.ID==dbValues.InstructorID);
+                            ModelState.AddModelError("InstructorID", 
+                                $"Current value: {dbInstructor?.FullName}");
+                        }
+
+                        ModelState.AddModelError(string.Empty, 
+                "The record you attempted to edit "
+              + "was modified by another user after you got the original value. The "
+              + "edit operation was canceled and the current values in the database "
+              + "have been displayed. If you still want to edit this record, click "
+              + "the Save button again. Otherwise click the Back to List hyperlink.");
+
+                        departmentToUpdate.RowVersion = (byte[])dbValues.RowVersion;
+                        ModelState.Remove("RowVersion");
+                    }
+                }
+            }
+
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", departmentToUpdate.InstructorID);
+            return Page();
         }
     }
 }
