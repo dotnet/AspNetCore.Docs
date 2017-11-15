@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesSampleMovie.Pages.Movies
 {
     #region snippet_newProps
     public class IndexModel : PageModel
