@@ -144,6 +144,50 @@ Client-side validation prevents submission until the form is valid. The Submit b
 
 MVC determines type attribute values based on the .NET data type of a property, possibly overridden using `[DataType]` attributes. The base `[DataType]` attribute does no real server-side validation. Browsers choose their own error messages and display those errors however they wish, however the jQuery Validation Unobtrusive package can override the messages and display them consistently with others. This happens most obviously when users apply `[DataType]` subclasses such as `[EmailAddress]`.
 
+### Adding Validation to Dynamic Forms:
+
+Because jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads, dynamically generated forms will not automatically exhibit validation. Instead, you must tell jQuery Unobtrusive Validation to parse the dynamic form immediately after creating it. For example, the code below shows how you might set up client side validation on a form added via AJAX.
+
+```js
+$.get({
+    url: "https://url/that/returns/a/form",
+    dataType: "html",
+    error: function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ": Could not add form. " + errorThrown);
+    },
+    success: function(newFormHTML) {
+        var container = document.getElementById("form-container");
+        container.insertAdjacentHTML("beforeend", newFormHTML);
+        var forms = container.getElementsByTagName("form");
+        var newForm = forms[forms.length - 1];
+        $.validator.unobtrusive.parse(newForm);
+    }
+})
+```
+
+The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validate plugin so that the form exhibits the desired client side validation rules.
+
+### Adding Validation to Dynamic Controls:
+
+You can also update the validation rules on a form when individual controls, such as `<input/>`s and `<select/>`s, are dynamically generated. You cannot pass selectors for these elements to the `parse()` method directly because the surrounding form has already been parsed and will not update.  Instead, you first remove the existing validation data, then reparse the entire form, as shown below:
+
+```js
+$.get({
+    url: "https://url/that/returns/a/control",
+    dataType: "html",
+    error: function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ": Could not add form. " + errorThrown);
+    },
+    success: function(newInputHTML) {
+        var form = document.getElementById("my-form");
+        form.insertAdjacentHTML("beforeend", newInputHTML);
+        form.removeData("validator")    // Added by the raw jQuery Validate
+            .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
+        $.validator.unobtrusive.parse(form);
+    }
+})
+```
+
 ## IClientModelValidator
 
 You may create client side logic for your custom attribute, and [unobtrusive validation](http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
