@@ -182,7 +182,7 @@ Update the `ContactsController` constructor:
 
 ### Add a contact operations requirements class
 
-Add the `ContactOperationsRequirements` class to the *Authorization* folder. This class  contain the requirements our app supports:
+Add the `ContactOperations` class to the *Authorization* folder. This class  contain the requirements our app supports:
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactOperations.cs)]
 
