@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 
-namespace RazorPages
+namespace RazorPagesIntro.Pages
 {
     public class IndexModel2 : PageModel
     {

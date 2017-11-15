@@ -144,6 +144,50 @@ Thus, client-side validation prevents submission until the form is valid. The Su
 
 MVC determines type attribute values based on the .NET data type of a property, possibly overridden using `[DataType]` attributes. The base `[DataType]` attribute does no real server-side validation. Browsers choose their own error messages and display those errors however they wish, however the jQuery Validation Unobtrusive package can override the messages and display them consistently with others. This happens most obviously when users apply `[DataType]` subclasses such as `[EmailAddress]`.
 
+### Adding Validation to Dynamic Forms:
+
+Because jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads, dynamically generated forms will not automatically exhibit validation. Instead, you must tell jQuery Unobtrusive Validation to parse the dynamic form immediately after creating it. For example, the code below shows how you might set up client side validation on a form added via AJAX.
+
+```js
+$.get({
+    url: "https://url/that/returns/a/form",
+    dataType: "html",
+    error: function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ": Could not add form. " + errorThrown);
+    },
+    success: function(newFormHTML) {
+        var container = document.getElementById("form-container");
+        container.insertAdjacentHTML("beforeend", newFormHTML);
+        var forms = container.getElementsByTagName("form");
+        var newForm = forms[forms.length - 1];
+        $.validator.unobtrusive.parse(newForm);
+    }
+})
+```
+
+The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validate plugin so that the form exhibits the desired client side validation rules.
+
+### Adding Validation to Dynamic Controls:
+
+You can also update the validation rules on a form when individual controls, such as `<input/>`s and `<select/>`s, are dynamically generated. You cannot pass selectors for these elements to the `parse()` method directly because the surrounding form has already been parsed and will not update.  Instead, you first remove the existing validation data, then reparse the entire form, as shown below:
+
+```js
+$.get({
+    url: "https://url/that/returns/a/control",
+    dataType: "html",
+    error: function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ": Could not add form. " + errorThrown);
+    },
+    success: function(newInputHTML) {
+        var form = document.getElementById("my-form");
+        form.insertAdjacentHTML("beforeend", newInputHTML);
+        form.removeData("validator")    // Added by the raw jQuery Validate
+            .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
+        $.validator.unobtrusive.parse(form);
+    }
+})
+```
+
 ## IClientModelValidator
 
 You may create client side logic for your custom attribute, and [unobtrusive validation](http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
@@ -171,9 +215,9 @@ Now jQuery has the information to execute the custom JavaScript validation as we
 
 Remote validation is a great feature to use when you need to validate data on the client against data on the server. For example, your app may need to verify whether an email or user name is already in use, and it must query a large amount of data to do so. Downloading large sets of data for validating one or a few fields consumes too many resources. It may also expose sensitive information. An alternative is to make a round-trip request to validate a field.
 
-You can implement remote validation in a two step process. First, you must annotate your model with the `[Remote]` attribute. The `[Remote]` attribute accepts multiple overloads you can use to direct client side JavaScript to the appropriate code to call. The example points to the `VerifyEmail` action method of the `Users` controller.
+You can implement remote validation in a two step process. First, you must annotate your model with the `[Remote]` attribute. The `[Remote]` attribute accepts multiple overloads you can use to direct client side JavaScript to the appropriate code to call. The example below points to the `VerifyEmail` action method of the `Users` controller.
 
-[!code-csharp[Main](validation/sample/User.cs?range=5-9)]
+[!code-csharp[Main](validation/sample/User.cs?range=7-8)]
 
 The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. According to the jQuery Validate [`remote()`](https://jqueryvalidation.org/remote-method/) method documentation:
 
@@ -181,6 +225,30 @@ The second step is putting the validation code in the corresponding action metho
 
 The definition of the `VerifyEmail()` method follows these rules, as shown below. It returns a validation error message if the email is taken, or `true` if the email is free, and wraps the result in a `JsonResult` object. The client side can then use the returned value to proceed or display the error if needed.
 
-[!code-none[Main](validation/sample/UsersController.cs?range=19-28)]
+[!code-csharp[Main](validation/sample/UsersController.cs?range=19-28)]
 
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken and, if so, displays the error message. Otherwise, the user can submit the form as usual.
+
+The `AdditionalFields` property of the `[Remote]` attribute is useful for validating combinations of fields against data on the server.  For example, if the `User` model from above had two additional properties called `FirstName` and `LastName`, you might want to verify that no existing users already have that pair of names.  You define the new properties as shown in the following code:
+
+[!code-csharp[Main](validation/sample/User.cs?range=10-13)]
+
+`AdditionalFields` could have been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring.  The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
+
+
+[!code-csharp[Main](validation/sample/UsersController.cs?range=30-39)]
+
+Now when users enter a first and last name, JavaScript:
+
+* Makes a remote call to see if that pair of names has been taken.
+* If the pair has been taken, an error message is displayed. 
+* If not taken, the user can submit the form.
+
+If you need to validate two or more additional fields with the `[Remote]` attribute, you provide them as a comma-delimited list.  For example, to add a  `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following code:
+
+```cs
+[Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
+public string MiddleName { get; set; }
+```
+
+`AdditionalFields`, like all attribute arguments, must be a constant expression.  Therefore, you must not use an [interpolated string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/en-us/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie
+namespace RazorPagesSampleMovie
 {
     public class Startup
     {
