@@ -26,8 +26,8 @@ There are configuration providers for:
 * In-memory .NET objects
 * An encrypted user store
 * [Azure Key Vault](xref:security/key-vault-configuration)
-* Custom providers, which you install or create
-
+* Custom providers (installed or created)
+snapshot option1
 Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -54,118 +54,312 @@ To work with arrays in JSON-formatted configuration sources, use an array index 
 Console.Write($"{Configuration["wizards:0:Name"]}, ");
 ```
 
-Name-value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
+Name-value pairs written to the built-in `Configuration` providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
+The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. The *options pattern* is [described later in this article](xref:fundamentals/configuration#options).
 
-It's typical to have different configuration settings for different environments, for example, development, test, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
+It's typical to have different configuration settings for different environments, for example, development, testing, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
 * *appsettings.json*
 * *appsettings.\<EnvironmentName>.json*
-* environment variables
+* Environment variables
 
-See [AddJsonFile](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and higher. 
+See [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and later. 
 
-Configuration sources are read in the order they are specified. In the code above, the environment variables are read last. Any configuration values set through the environment would replace those set in the two previous providers.
+Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace those set in the two previous providers.
 
-The environment is typically set to one of `Development`, `Staging`, or `Production`. See [Working with Multiple Environments](environments.md) for more information.
+The environment is typically set to `Development`, `Staging`, or `Production`. See [Working with multiple environments](xref:fundamentals/environments) for more information.
 
 Configuration considerations:
 
-* `IOptionsSnapshot` can reload configuration data when it changes. Use `IOptionsSnapshot` if you need to reload configuration data.  See [IOptionsSnapshot](#ioptionssnapshot) for more information.
+* `IOptionsSnapshot` can reload configuration data when it changes. See [IOptionsSnapshot](#reloading-configuration-data-with-ioptionssnapshot-example-5) for more information.
 * Configuration keys are case insensitive.
-* A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [safe storage of app secrets during development](../security/app-secrets.md).
-* If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
+* Specify environment variables last so that the local environment can override settings in deployed configuration files.
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
+* If a colon (`:`) can't be used in environment variables on your system, replace the colon (`:`) with a double-underscore (`__`).
 
-<a name="options-config-objects"></a>
+## Options
 
-## Use Options and configuration objects
+The options pattern uses options classes to represent groups of related settings. When configuration settings are isolated by feature into separate options classes, the app adheres to two important software engineering principles:
 
-The options pattern uses custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
+* The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Features (classes) that depend on configuration settings depend only on the configuration settings that they use.
+* [Separation of Concerns](http://deviq.com/separation-of-concerns/): Settings for different parts of the app aren't dependent or coupled to one another.
 
-* The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/) : Classes depend only on the configuration settings they use.
-* [Separation of Concerns](http://deviq.com/separation-of-concerns/) : Settings for different parts of your app are not dependent or coupled with one another.
+### Basic options configuration (Example \#1)
 
-The options class must be non-abstract with a public parameterless constructor. For example:
+An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
 
-[!code-csharp[Main](configuration/sample/UsingOptions/Models/MyOptions.cs)]
+[!code-csharp[Main](configuration/sample/UsingOptions/Models/MyOptions.cs?name=snippet1)]
 
-<a name="options-example"></a>
+The `MyOptions` class is added to the service container with [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) and bound to configuration (*Startup.cs*):
 
-In the following code, the JSON configuration provider is enabled. The `MyOptions` class is added to the service container and bound to configuration.
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet1&highlight=16-17)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet_Example1)]
 
-[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-21)]
+<!--The following [controller](../mvc/controllers/index.md) uses [constructor Dependency Injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) on [`IOptions<TOptions>`](/dotnet/api/Microsoft.Extensions.Options.IOptions-1) to access settings (*Pages/Index.cshtml.cs*):-->
+The following page model uses [constructor dependency injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) with [IOptions&lt;TOptions&gt;](/dotnet/api/Microsoft.Extensions.Options.IOptions-1) to access the settings (*Pages/Index.cshtml.cs*):
 
-The following [controller](../mvc/controllers/index.md)  uses [constructor Dependency Injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) on [`IOptions<TOptions>`](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController.cs?name=snippet1)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=1)]
 
-[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController.cs?name=snippet1)]
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
 
-With the following *appsettings.json* file:
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=1)]
 
-[!code-json[Main](configuration/sample/UsingOptions/appsettings1.json)]
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example1)]
 
-The `HomeController.Index` method returns `option1 = value1_from_json, option2 = 2`.
-
-Typical apps won't bind the entire configuration to a single options file. Later on I'll show how to use `GetSection` to bind to a section.
-
-In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptions`.
-
-[!code-csharp[Main](configuration/sample/UsingOptions/Startup2.cs?name=snippet1&highlight=9-13)]
-
-You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
-
-Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json* -- but the value of `Option1` is overridden by the configured delegate. 
-
-When more than one configuration service is enabled, the last configuration source specified "wins" (sets the configuration value). In the preceding code, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
-
-When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. A sub-property sample is shown later in this article.
-
-In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
-
-[!code-csharp[Main](configuration/sample/UsingOptions/Startup3.cs?name=snippet1&highlight=16-17)]
-
-Note: This extension method requires the `Microsoft.Extensions.Options.ConfigurationExtensions` NuGet package.
-
-Using the following *appsettings.json* file:
+The sample's *appsettings.json* file specifies values for `option1` and `option2`:
 
 [!code-json[Main](configuration/sample/UsingOptions/appsettings.json)]
 
-The `MySubOptions` class:
+When the app is run, the page model's `OnGet` method returns a string showing the option class values:
+
+```html
+option1 = value1_from_json, option2 = -1
+```
+
+### Configuring simple options with a delegate (Example \#2)
+
+Use a delegate to set options values. The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
+
+In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig` (*Startup.cs*):
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet_Example2)]
+
+*Index.cshtml.cs*:
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=2)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=2)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example2)]
+
+You can add multiple configuration providers. Configuration providers are available in NuGet packages. They're applied in order that they're registered.
+
+Each call to [Configure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1.configure) adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.
+
+When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value. When the app is run, the page model's `OnGet` method returns a string showing the option class values:
+
+```html
+delegate_option1 = value1_configured_by_delgate, delegate_option2 = 500
+```
+<!-- HOLD
+> [!NOTE]
+> Configure the sample app to show overriding a configuration value with a delegate:
+>
+> Deactivate the `Startup` class in *Startup.cs*, *Starup3.cs*, and *Starup4.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *Startup2.cs*, which activates the `Startup` class in the *Startup2.cs* file.
+-->
+### Sub-options configuration (Example \#3)
+
+Apps should create options classes that pertain to specific feature groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
+
+When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.
+
+In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file (*Startup.cs*):
+
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Startup3.cs?name=snippet1&highlight=15-16)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet_Example3)]
+
+The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app already uses the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) metapackage, the package is automatically included.
+
+The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
+
+[!code-json[Main](configuration/sample/UsingOptions/appsettings.json?highlight=4-7)]
+
+The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the sub-option values (*Models/MySubOptions.cs*):
 
 [!code-csharp[Main](configuration/sample/UsingOptions/Models/MySubOptions.cs?name=snippet1)]
 
-With the following `Controller`:
+The page model's `OnGet` method returns a string with the sub-option values (*Pages/Index.cshtml.cs*):
 
-[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
-`subOption1 = subvalue1_from_json, subOption2 = 200` is returned.
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
 
-You can also supply options in a view model or inject `IOptions<TOptions>` directly into a view:
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=3)]
 
-[!code-html[Main](configuration/sample/UsingOptions/Views/Home/Index.cshtml?highlight=3-4,16-17,20-21)]
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example3)]
 
-<a name="in-memory-provider"></a>
+When the app is run, the `OnGet` method returns a string showing the sub-option class values:
 
-## IOptionsSnapshot
+```html
+subOption1 = subvalue1_from_json, subOption2 = 200
+```
+<!-- HOLD
+> [!NOTE]
+> Configure the sample app to demonstrate the use of a sub-options class:
+>
+> To enable the `Startup` class in *Startup3.cs*, deactivate the `Startup` classes in *Startup.cs*, *Startup2.cs*, and *Startup4.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *Startup3.cs*, which activates the `Startup` class in the *Startup3.cs* file.
+>
+> To enable the Home controller in *HomeController2.cs*, deactivate the `HomeController` class in *HomeController.cs*, *HomeController3.cs*, *HomeController4.cs*, and *HomeController5.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *HomeController2.cs*, which activates the `HomeController` class in the *HomeController2.cs* file.
+-->
+### Options provided by a view model or with direct view injection (Example \#4)
 
-*Requires ASP.NET Core 1.1 or higher.*
+Options can also be supplied in a view model or by injecting `IOptions<TOptions>` directly into a view (*Pages/Index.cshtml.cs*):
 
-`IOptionsSnapshot` supports reloading configuration data when the configuration file has changed. It has minimal overhead. Using `IOptionsSnapshot` with `reloadOnChange: true`, the options are bound to `IConfiguration` and reloaded when changed.
+<!--[!code-cshtml[Main](configuration/sample/UsingOptions/Views/Home/Index.cshtml?highlight=3-4,16-17,20-21)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=1)]
 
-The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to the server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
 
-[!code-csharp[Main](configuration/sample/IOptionsSnapshot2/Startup.cs?name=snippet1&highlight=1-9,13-18,32,33,52,53)]
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=4)]
 
-The following image shows the server output:
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example4)]
 
-![browser shows image with text that says "Last Updated: 11/22/2016 4:43 PM"](configuration/_static/first.png)
+For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:
 
-Refreshing the browser doesn't change the message value or time displayed (when *config.json* has not changed).
+[!code-cshtml[Main](configuration/sample/UsingOptions/Pages/Index.cshtml?range=1-10&highlight=5)]
 
-Change and save the  *config.json* and then refresh the browser:
+When the app is run, the option values are shown in the rendered page:
 
-![browser shows image with text that says "Last Updated to,e: 11/22/2016 4:53 PM"](configuration/_static/change.png)
+![Options values Option1: value1_from_json and Option2: -1 are loaded from the model and by injection into the view.](configuration/_static/view.png)
+<!-- HOLD
+> [!NOTE]
+> Configure the sample app to show options provided by the view model or by direct injection into the view:
+>
+> To enable the `Startup` class in *Startup.cs*, deactivate the `Startup` classes in *Startup2.cs*, *Startup3.cs*, and *Startup4.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *Startup.cs*, which activates the `Startup` class in the *Startup.cs* file.
+>
+> To enable the Home controller in *HomeController3.cs*, deactivate the `HomeController` class in *HomeController.cs*, *HomeController2.cs*, *HomeController4.cs*, and *HomeController5.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *HomeController3.cs*, which activates the `HomeController` class in the *HomeController3.cs* file.
+-->
+### Reloading configuration data with IOptionsSnapshot (Example \#5)
+
+*Requires ASP.NET Core 1.1 or later.*
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+[IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) supports reloading configuration data with minimal processing overhead when the configuration file changes. Using `IOptionsSnapshot` with `reloadOnChange: true` set for a configuration file provider, options are bound to `IConfiguration` and reloaded per request and cached for the lifetime of the request.
+
+# [ASP.NET Core 1.1](#tab/aspnetcore11)
+
+[IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) supports reloading configuration data with minimal processing overhead when the configuration file changes. Using `IOptionsSnapshot` with `reloadOnChange: true` set for a configuration file provider, options are bound to `IConfiguration` and reloaded when the configuration file is changed.
+
+---
+
+The following example demonstrates how a new `IOptionsSnapshot` is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.
+
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController4.cs?name=snippet1&highlight=5)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=4)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=5)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example5)]
+<!-- HOLD
+> [!NOTE]
+> Configure the sample app to show `IOptionsSnapshot` behavior:
+>
+> Enable the `Startup` class in *Startup.cs*. Deactivate the `Startup` classes in *Startup2.cs*, *Startup3.cs*, and *Startup4.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *Startup.cs*, which activates the `Startup` class in the *Startup.cs* file.
+>
+> To enable the Home controller in *HomeController4.cs*, deactivate the `HomeController` class in *HomeController.cs*, *HomeController2.cs*, *HomeController3.cs*, and *HomeController5.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *HomeController4.cs*, which activates the `HomeController` class in the *HomeController4.cs* file.
+-->
+The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:
+
+```html
+snapshot option1 = value1_from_json, snapshot option2 = -1
+```
+
+Change the values in the *appsettings.json* file to `value1_from_json UPDATED` and `200`. Save the *appsettings.json* file. Refresh the browser to see that the options values are updated:
+
+```html
+snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
+```
+
+### Named options support with IConfigureNamedOptions (Example \#6)
+
+*Requires ASP.NET Core 2.0 or later.*
+
+*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with the [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method (*Startup.cs*):
+
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Startup4.cs?name=snippet1&highlight=9,14-17)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Startup.cs?name=snippet_Example6)]
+
+The sample app accesses the named options with [IOptionsSnapshot&lt;TOptions&gt;.Get](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1.get) (*Pages/Index.cshtml.cs*):
+
+<!--[!code-csharp[Main](configuration/sample/UsingOptions/Controllers/HomeController5.cs?name=snippet1&highlight=8-9)]-->
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
+
+[!code-csharp[Main](configuration/sample/UsingOptions/Pages/Index.cshtml.cs?name=snippet_Example6)]
+
+Running the sample app, the named options are returned:
+
+```html
+named_options_1: option1 = value1_from_json, option2 = -1
+named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
+```
+
+`named_options_1` values are provided from configuration, which are loaded from the *appsettings.json* file. `named_options_2` values are provided by the `named_options_2` delegate in `ConfigureServices` for `Option1` and the default value for `Option2` provided by the `MyOptions` class.
+<!-- HOLD
+> [!NOTE]
+> Configure the sample app to show named options behavior:
+>
+> Enable the `Startup4` class in *Startup4.cs*. Deactivate the `Startup` classes in *Startup.cs*, *Startup2.cs*, and *Startup3.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *Startup4.cs*, which activates the `Startup` class in the *Startup4.cs* file.
+>
+> To enable the Home controller in *HomeController5.cs*, deactivate the `HomeController` class in *HomeController.cs*, *HomeController2.cs*, *HomeController3.cs*, and *HomeController4.cs* by commenting out the `#define UseMe` line with a pair of forward slashes (`//#define UseMe`). Un-comment the line `//#define UseMe` to `#define UseMe` in *HomeController5.cs*, which activates the `HomeController` class in the *HomeController5.cs* file.
+-->
+Configure all named options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all named configuration instances with a common value. Add the following code manually to the `Configure` method of *Startup.cs*:
+
+```csharp
+services.ConfigureAll<MyOptions>(myOptions => 
+{
+    myOptions.Option1 = "ConfigureAll replacement value";
+});
+```
+
+Running the sample app after adding the code produces the following result:
+
+```html
+named_options_1: option1 = ConfigureAll replacement value, option2 = -1
+named_options_2: option1 = ConfigureAll replacement value, option2 = 5
+```
+
+### Configuring options after configuration with IPostConfigureOptions
+
+*Requires ASP.NET Core 2.0 or later.*
+
+Set post configuration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1) to run after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs:
+
+```csharp
+services.PostConfigure<MyOptions>(myOptions =>
+{
+    myOptions.Option1 = "post_configured_option1_value";
+});
+```
+
+[PostConfigure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1.postconfigure) is available to post-configure named options:
+
+```csharp
+services.PostConfigure<MyOptions>("named_options_1", myOptions =>
+{
+    myOptions.Option1 = "post_configured_option1_value";
+});
+```
+
+Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) to post-configure all named configuration instances:
+
+```csharp
+services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
+{
+    myOptions.Option1 = "post_configured_option1_value";
+});
+```
+
+### Options factory, monitoring, and cache
+
+New in ASP.NET Core 2.0, [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) is responsible for creating new options instances. It has a single [Create](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1.create) method. The default implementation takes all registered `IConfigureOptions` and `IPostConfigureOptions` and runs all the configures first, followed by the post-configures. It distinguishes between `IConfigureNamedOptions` and `IConfigureOptions` and only calls the appropriate interface.
+
+[IOptionsMonitor](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) is used for notifications when `TOptions` instances change. `IOptionsMonitor` supports reloadable options, change notifications, and `IPostConfigureOptions`.
+
+New in ASP.NET Core 2.0, [IOptionsMonitorCache&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1) is used by `IOptionsMonitor` to cache `TOptions` instances. The `IOptionsMonitorCache` invalidates options instances in the monitor so that the value is recomputed ([TryRemove](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryremove)). Values can be manually introduced as well with [TryAdd](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryadd). The [Clear](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.clear) method is used when all named instances should be recreated on demand.
 
 ## In-memory provider and binding to a POCO class
 
@@ -189,7 +383,7 @@ Display the settings from the `HomeController`:
 
 ### GetValue
 
-The following sample demonstrates the [GetValue<T>](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationbinder#Microsoft_Extensions_Configuration_ConfigurationBinder_GetValue_Microsoft_Extensions_Configuration_IConfiguration_System_Type_System_String_System_Object_) extension method:
+The following sample demonstrates the [GetValue&lt;T&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationbinder#Microsoft_Extensions_Configuration_ConfigurationBinder_GetValue_Microsoft_Extensions_Configuration_IConfiguration_System_Type_System_String_System_Object_) extension method:
 
 [!code-csharp[Main](configuration/sample/InMemoryGetValue/Program.cs?highlight=27-29)]
 

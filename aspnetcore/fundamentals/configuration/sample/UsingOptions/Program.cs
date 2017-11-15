@@ -2,7 +2,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-namespace UsingOptions
+namespace UsingOptionsSample
 {
     public class Program
     {

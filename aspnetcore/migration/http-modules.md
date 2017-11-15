@@ -168,7 +168,7 @@ The new [configuration system](../fundamentals/configuration.md) gives you these
 
 * Directly inject the options into the middleware, as shown in the [next section](#loading-middleware-options-through-direct-injection).
 
-* Use the [options pattern](../fundamentals/configuration.md#options-config-objects):
+* Use the [options pattern](xref:fundamentals/configuration#options):
 
 1.  Create a class to hold your middleware options, for example:
 

@@ -1,9 +1,9 @@
 ﻿namespace UsingOptionsSample.Models
 {
     #region snippet1
-    public class MyOptions
+    public class MyOptionsWithDelegateConfig
     {
-        public MyOptions()
+        public MyOptionsWithDelegateConfig()
         {
             // Set default value.
             Option1 = "value1_from_ctor";

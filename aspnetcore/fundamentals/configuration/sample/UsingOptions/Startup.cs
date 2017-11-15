@@ -1,47 +1,84 @@
-﻿#define UseMe
-#if UseMe
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using UsingOptions.Models;
+using UsingOptionsSample.Models;
 
-namespace UsingOptions
+namespace UsingOptionsSample
 {
-    #region snippet1
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration config)
         {
-            // Set up configuration sources.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            Configuration = builder.Build();
+            // Configruation from appsettings.json has already been loaded by
+            // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
+            // the configuration into the Configuration property.
+            Configuration = config;
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adds services required for using options.
+            // Add the service required for using options.
             services.AddOptions();
 
-            // Register the IConfiguration instance which MyOptions binds against.
+            #region snippet_Example1
+            // Example #1: Simple options
+            // Register the ConfigurationBuilder instance which MyOptions binds against.
             services.Configure<MyOptions>(Configuration);
+            #endregion
 
-            // Add framework services.
+            #region snippet_Example2
+            // Example #2: Options bound and configured by a delegate
+            services.Configure<MyOptionsWithDelegateConfig>(myOptions =>
+            {
+                myOptions.Option1 = "value1_configured_by_delegate";
+                myOptions.Option2 = 500;
+            });
+            #endregion
+
+            #region snippet_Example3
+            // Example #3: Sub-options
+            // Bind options using a sub-section of the appsettings.json file.
+            services.Configure<MySubOptions>(Configuration.GetSection("subsection"));
+            #endregion
+
+            #region snippet_Example6
+            // Example #6: Named options (named_options_1)
+            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Specify that the options loaded from configuration are named
+            // "named_options_1".
+            services.Configure<MyOptions>("named_options_1", Configuration);
+
+            // Example #6: Named options (named_options_2)
+            // Specify that the options loaded from the MyOptions class are named
+            // "named_options_2".
+            // Use a delegate to configure option values.
+            services.Configure<MyOptions>("named_options_2", myOptions =>
+            {
+                myOptions.Option1 = "named_options_2_value1_from_action";
+            });
+            #endregion
+
             services.AddMvc();
         }
-        #endregion
-        // This method is called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-            app.UseMvcWithDefaultRoute();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc();
         }
     }
 }
-#endif
