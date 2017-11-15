@@ -165,7 +165,7 @@ $.get({
 })
 ```
 
-The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of any and all forms within that selector, and the values of those attributes are then passed to the jQuery Validate plugin so that the new form exhibits the desired client side validation rules.
+The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validate plugin so that the form exhibits the desired client side validation rules.
 
 ### Adding Validation to Dynamic Controls:
 
