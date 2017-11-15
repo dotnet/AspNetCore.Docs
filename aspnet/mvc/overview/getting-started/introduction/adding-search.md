@@ -17,6 +17,8 @@ Search
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 ## Adding a Search Method and Search View
 
 In this section you'll add search capability to the `Index` action method that lets you search movies by genre or name.

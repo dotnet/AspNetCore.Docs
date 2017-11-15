@@ -17,7 +17,7 @@ Adding a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-Source located on [GitHub](xref:mvc/overview/getting-started/introduction/sample/MvcMovie)
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
 
 MVC stands for *model-view-controller*. MVC is a pattern for developing applications that are well architected, testable and easy to maintain. MVC-based applications contain:
 

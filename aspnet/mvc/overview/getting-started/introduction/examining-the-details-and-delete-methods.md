@@ -17,6 +17,8 @@ Examining the Details and Delete Methods
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this part of the tutorial, you'll examine the automatically generated `Details` and `Delete` methods.
 
 ## Examining the Details and Delete Methods
