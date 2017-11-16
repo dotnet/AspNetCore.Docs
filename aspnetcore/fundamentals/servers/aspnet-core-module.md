@@ -108,6 +108,12 @@ Configuration for the ASP.NET Core Module is stored in the *Web.config* file tha
 
 IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates.
 
+## Proxy configuration uses HTTP protocol and a pairing token
+
+The proxy created between the ANCM and Kestrel uses the HTTP protocol. Using HTTP is a performance optimization where the traffic between the ANCM and Kestrel takes place on a loopback address off of the network interface. There's no risk of eavesdropping the traffic between the ANCM and Kestrel from a location off of the server.
+
+A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the ANCM. The pairing token is also set into a header (`MSAspNetCoreToken`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the ANCM and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
+
 ## Next steps
 
 For more information, see the following resources:
