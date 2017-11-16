@@ -5,7 +5,7 @@ description: Learn about the logging framework in ASP.NET Core. Discover the bui
 keywords: ASP.NET Core,logging,logging providers,Microsoft.Extensions.Logging,ILogger,ILoggerFactory,LogLevel,WithFilter,TraceSource,EventLog,EventSource,scopes
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/15/2017
 ms.topic: article
 ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
@@ -623,6 +623,17 @@ Some third-party frameworks can do [semantic logging, also known as structured l
 Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on `ILoggerFactory`. For more information, see each framework's documentation.
 
 You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.
+
+## Azure Log Streaming
+
+Azure log streaming enables you to view log activity in real time from both the application and web server, as well as failed request tracing. Navigate to the **Diagnostics Logs** page from your application's portal page, turn the **Application Logging (Filesystem)** on. 
+
+![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
+
+You can then view messages emitted your application through the `ILogger` interface by navigating to the **Log Streaming** page from your application's page in the portal. 
+
+![Azure portal application log streaming](index/_static/azure-log-streaming.png)
+
 
 ## See also
 
