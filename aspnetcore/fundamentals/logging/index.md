@@ -7,7 +7,6 @@ ms.author: tdykstra
 manager: wpickett
 ms.date: 11/15/2017
 ms.topic: article
-ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/logging/index
