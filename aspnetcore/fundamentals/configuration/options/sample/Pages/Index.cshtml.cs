@@ -6,14 +6,12 @@ namespace UsingOptionsSample.Pages
 {
     public class IndexModel : PageModel
     {
-        #region snippet1
         private readonly MyOptions _options;
         private readonly MyOptionsWithDelegateConfig _optionsWithDelegateConfig;
         private readonly MySubOptions _subOptions;
         private readonly MyOptions _snapshotOptions;
         private readonly MyOptions _named_options_1;
         private readonly MyOptions _named_options_2;
-        #endregion
 
         #region snippet2
         public IndexModel(
@@ -32,14 +30,12 @@ namespace UsingOptionsSample.Pages
         }
         #endregion
 
-        #region snippet3
         public string SimpleOptions { get; private set; }
         public string SimpleOptionsWithDelegateConfig { get; private set; }
         public string SubOptions { get; private set; }
         public MyOptions MyOptions { get; private set; }
         public string SnapshotOptions { get; private set; }
         public string NamedOptions { get; private set; }
-        #endregion
 
         public void OnGetAsync()
         {
