@@ -11,7 +11,6 @@ ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/logging/index
-ms.custom: H1Hack27Feb2017
 ---
 # Introduction to Logging in ASP.NET Core
 
@@ -624,13 +623,22 @@ Using a third-party framework is similar to using one of the built-in providers:
 
 You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.
 
-## Azure Log Streaming
+## Azure log streaming
 
-Azure log streaming enables you to view log activity in real time from both the application and web server, as well as failed request tracing. Navigate to the **Diagnostics Logs** page from your application's portal page, turn the **Application Logging (Filesystem)** on. 
+Azure log streaming enables you to view log activity in real time from: 
+
+* The application server 
+* The web server
+* Failed request tracing 
+
+To configure Azure log streaming: 
+
+* Navigate to the **Diagnostics Logs** page from your application's portal page
+* Set **Application Logging (Filesystem)** to on. 
 
 ![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
 
-You can then view messages emitted your application through the `ILogger` interface by navigating to the **Log Streaming** page from your application's page in the portal. 
+Navigate to the **Log Streaming** page to view application messages. They are logged by application through the `ILogger` interface. 
 
 ![Azure portal application log streaming](index/_static/azure-log-streaming.png)
 
