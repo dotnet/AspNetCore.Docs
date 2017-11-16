@@ -88,6 +88,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
  * To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Google`
+    Please do note that above package needs to be added only when you are running ASP.NET Core 1.x. in ASP.NET Core 2.x this package is already added in ASPNET.Core.All Meta package.  
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
