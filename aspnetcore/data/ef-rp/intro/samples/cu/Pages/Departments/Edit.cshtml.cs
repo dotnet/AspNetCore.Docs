@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Departments
 {
@@ -22,6 +20,7 @@ namespace ContosoUniversity.Pages.Departments
 
         [BindProperty]
         public Department Department { get; set; }
+        public SelectList InstructorNameSL { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -40,14 +39,16 @@ namespace ContosoUniversity.Pages.Departments
                 return NotFound();
             }
 
-            // Scaffolder added ViewData, I'll remove it once code is working.
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FirstMidName");
-           ViewData["rowVersion"] = System.Text.Encoding.UTF8.GetString(Department.RowVersion);
+            InstructorNameSL = new SelectList(_context.Instructors,
+                "ID", "FirstMidName");
 
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, 
+                "ID", "FirstMidName");
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id, byte[] rowVersion)
+        public async Task<IActionResult> OnPostAsync(int? id,
+            [ModelBinder(Name = "Department.RowVersion")] byte[] rowVersion)
         {
             if (!ModelState.IsValid)
             {
@@ -58,26 +59,23 @@ namespace ContosoUniversity.Pages.Departments
                 .Include(i => i.Administrator)
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
-            // null means it was deleted by another user.
+            // null means Department was deleted by another user.
             if (departmentToUpdate == null)
             {
-                Department = new Department();
-                // Fetch the posted data so we can display it with the error message.
-                await TryUpdateModelAsync(Department);
-                ModelState.AddModelError(string.Empty,
-                    "Unable to save changes. The department was deleted by another user.");
-                ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName",
-                    Department.InstructorID);
-                return Page();
+                return await HandleDeletedDepartment();
             }
 
-            var orgRV = _context.Entry(departmentToUpdate)
-                .Property("RowVersion").OriginalValue;
+            // OriginalValue is the current value in the DB when this entity
+            // was fetched. OriginalValue == rowVersion unless there is a 
+            // concurrency difference. rowVersion is the value when this record
+            // was fetched by OnGetAsync and can be stale at this point.
+            // Set .OriginalValue = rowVersion to detect a stale RowVersion,
+            // indicating a concurrency problem. A second postback will make 
+            // them match, unless a new concurrency issues happens.
+            _context.Entry(departmentToUpdate)
+                .Property("RowVersion").OriginalValue = rowVersion;
 
-            //_context.Entry(departmentToUpdate)
-            //    .Property("RowVersion").OriginalValue = rowVersion;
-
-            if (await TryUpdateModelAsync<Department>(  
+            if (await TryUpdateModelAsync<Department>(
                 departmentToUpdate,
                 "Department",
                 s => s.Name, s => s.StartDate, s => s.Budget, s => s.InstructorID))
@@ -94,52 +92,84 @@ namespace ContosoUniversity.Pages.Departments
                     var databaseEntry = exceptionEntry.GetDatabaseValues();
                     if (databaseEntry == null)
                     {
-                        ModelState.AddModelError(string.Empty,
-                            "Unable to save changes. The department was deleted " +
-                            "by another user.");
+                        ModelState.AddModelError(string.Empty, "Unable to save. " +
+                            "The department was deleted by another user.");
+                        return Page();
                     }
-                    else
-                    {
-                        var dbValues = (Department)databaseEntry.ToObject();
 
-                        if (dbValues.Name != clientValues.Name)
-                        {
-                            ModelState.AddModelError("Name", 
-                                $"Current value: {dbValues.Name}");
-                        }
-                        if (dbValues.Budget != clientValues.Budget)
-                        {
-                            ModelState.AddModelError("Budget", 
-                                $"Current value: {dbValues.Budget:c}");
-                        }
-                        if (dbValues.StartDate != clientValues.StartDate)
-                        {
-                            ModelState.AddModelError("StartDate", 
-                                $"Current value: {dbValues.StartDate:d}");
-                        }
-                        if (dbValues.InstructorID != clientValues.InstructorID)
-                        {
-                            Instructor dbInstructor = await _context.Instructors
-                               .FirstOrDefaultAsync(i => i.ID==dbValues.InstructorID);
-                            ModelState.AddModelError("InstructorID", 
-                                $"Current value: {dbInstructor?.FullName}");
-                        }
+                    var dbValues = (Department)databaseEntry.ToObject();
+                    await setDbErrorMessage(dbValues, clientValues, _context);
 
-                        ModelState.AddModelError(string.Empty, 
-                "The record you attempted to edit "
-              + "was modified by another user after you got the original value. The "
-              + "edit operation was canceled and the current values in the database "
-              + "have been displayed. If you still want to edit this record, click "
-              + "the Save button again. Otherwise click the Back to List hyperlink.");
-
-                        departmentToUpdate.RowVersion = (byte[])dbValues.RowVersion;
-                        ModelState.Remove("RowVersion");
-                    }
+                    // Save the current RowVersion so
+                    // it can be posted back to this method in a hidden field.
+                    Department.RowVersion = (byte[])dbValues.RowVersion;
+                    // Must clear the model error for the next postback.
+                    ModelState.Remove("Department.RowVersion");
                 }
             }
 
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", departmentToUpdate.InstructorID);
+            InstructorNameSL = new SelectList(_context.Instructors,
+                "ID", "FullName", departmentToUpdate.InstructorID);
+
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, 
+                "ID", "FullName", departmentToUpdate.InstructorID);
             return Page();
+        }
+
+        private async Task<IActionResult> HandleDeletedDepartment()
+        {
+            Department deletedDepartment = new Department();
+            // Fetch the posted data so we can display it with the error message.
+            await TryUpdateModelAsync(deletedDepartment);
+            CopyDepartment(deletedDepartment);
+            ModelState.AddModelError(string.Empty,
+                "Unable to save. The department was deleted by another user.");
+            InstructorNameSL = new SelectList(_context.Instructors, "ID", 
+                "FullName", Department.InstructorID);
+            return Page();
+        }
+
+        private void CopyDepartment(Department deletedDepartment)
+        {
+            Department.Administrator = deletedDepartment.Administrator;
+            Department.Budget = deletedDepartment.Budget;
+            Department.StartDate = deletedDepartment.StartDate;
+            Department.InstructorID = deletedDepartment.InstructorID;
+        }
+
+        private async Task setDbErrorMessage(Department dbValues,
+                Department clientValues, SchoolContext context)
+        {
+
+            if (dbValues.Name != clientValues.Name)
+            {
+                ModelState.AddModelError("Department.Name",
+                    $"Current value: {dbValues.Name}");
+            }
+            if (dbValues.Budget != clientValues.Budget)
+            {
+                ModelState.AddModelError("Department.Budget",
+                    $"Current value: {dbValues.Budget:c}");
+            }
+            if (dbValues.StartDate != clientValues.StartDate)
+            {
+                ModelState.AddModelError("Department.StartDate",
+                    $"Current value: {dbValues.StartDate:d}");
+            }
+            if (dbValues.InstructorID != clientValues.InstructorID)
+            {
+                Instructor dbInstructor = await _context.Instructors
+                   .FirstOrDefaultAsync(i => i.ID == dbValues.InstructorID);
+                ModelState.AddModelError("Department.InstructorID",
+                    $"Current value: {dbInstructor?.FullName}");
+            }
+
+            ModelState.AddModelError(string.Empty,
+                   "The record you attempted to edit "
+                 + "was modified by another user after you got the original value. The "
+                 + "edit operation was canceled and the current values in the database "
+                 + "have been displayed. If you still want to edit this record, click "
+                 + "the Save button again. Otherwise click the Back to List hyperlink.");
         }
     }
 }

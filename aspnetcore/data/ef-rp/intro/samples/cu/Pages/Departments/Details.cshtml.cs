@@ -36,6 +36,6 @@ namespace ContosoUniversity.Pages.Departments
                 return NotFound();
             }
             return Page();
-        }
+        }        
     }
 }

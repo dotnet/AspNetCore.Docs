@@ -48,6 +48,8 @@ There are several ways that EF can load related data into the navigation propert
 
 * [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core does not currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
+* The `Select` operator loads only the related data needed, and is generally faster than using `Include`. [Loading related data with Select](#select) explains this in more detail.
+
 ### Performance considerations
 
 If related data for every entity retrieved is needed:

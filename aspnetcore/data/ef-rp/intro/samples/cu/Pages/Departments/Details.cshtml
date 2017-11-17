@@ -12,6 +12,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            RowVerString
+        </dt>
+        <dd>
+            @if (Model.Department.RowVersion != null)
+            {
+                @Model.Department.RowVersion[7]
+            }
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Department.Name)
         </dt>
         <dd>
