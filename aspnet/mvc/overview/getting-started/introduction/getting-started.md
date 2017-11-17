@@ -62,7 +62,6 @@ Click F5 to start debugging. F5 causes Visual Studio to start [IIS Express](http
 Right out of the box this default template gives you Home, Contact and About pages. The image above doesn't show the **Home**, **About** and **Contact** links. Depending on the size of your browser window, you might need to click the navigation icon to see these links.
 
 ![](getting-started/_static/image6.png)  
-![](getting-started/_static/image7.png) 
 
 The application also provides support to register and log in. The next step is to change how this application works and learn a little bit about ASP.NET MVC. Close the ASP.NET MVC application and let's change some code.
 
