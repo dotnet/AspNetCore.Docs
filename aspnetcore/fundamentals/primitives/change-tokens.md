@@ -24,7 +24,7 @@ The public interface [IChangeToken](/dotnet/api/microsoft.extensions.primitives.
 
 The interface has two properties:
 
-* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. Callbacks are still guaranteed to fire, eventually. 
+* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. If `ActiveChangedCallbacks` is set to `false`, a callback is never called, and the app must poll `HasChanged` for changes. It's also possible a token will never be cancelled when `ActiveChangedCallbacks` is set to `false`.
 * [HasChanged](/dotnet/api/microsoft.extensions.primitives.ichangetoken.haschanged) gets a value that indicates if a change has occurred.
 
 The interface has one method, [RegisterChangeCallback(Action\<Object>, Object)](/dotnet/api/microsoft.extensions.primitives.ichangetoken.registerchangecallback), which registers a callback that's invoked when the token has changed. `HasChanged` must be set before the callback is invoked.
@@ -43,10 +43,10 @@ The interface has one method, [RegisterChangeCallback(Action\<Object>, Object)](
 
 ## Example uses of Change Tokens in ASP.NET Core
 
-Change Tokens are seen at work in promonent areas of ASP.NET Core monitoring changes to objects:
+Change Tokens are seen at work in prominent areas of ASP.NET Core monitoring changes to objects:
 
 * For monitoring changes to files, [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider)'s [Watch](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.watch) method creates an `IChangeToken` for the specified files or folder to watch.
-* For cache item expiration, the default [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache) implementation of [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) offers a [Set](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.set?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_Microsoft_Extensions_Primitives_IChangeToken_) overload that uses an `IChangeToken` as an `expirationToken` for the cached item.
+* `IChangeToken` tokens can be added to cache entries to trigger cache evictions on change.
 * For `TOptions` changes, the default [OptionsMonitor](/dotnet/api/microsoft.extensions.options.optionsmonitor-1) implementation of [IOptionsMonitor](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) has an overload that accepts one or more [IOptionsChangeTokenSource](/dotnet/api/microsoft.extensions.options.ioptionschangetokensource-1) instances. Each instance returns an `IChangeToken` to register a change notification callback for tracking options changes.
 
 ## Monitoring for configuration changes
@@ -82,7 +82,7 @@ Register a token consumer `Action` callback for change notifications to the conf
 
 [!code-csharp[Main](change-tokens/sample/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IHostingEnvironment`. This is useful to determine the correct *appsettings* configuration JSON file to monitor, *appsettings.\<Environment>.json*. File hashes are used to prevent the `WriteConsole` statement from running muliple times due to multiple token callbacks when the configruation file has only actually changed once.
+The `state` of the callback is used to pass in the `IHostingEnvironment`. This is useful to determine the correct *appsettings* configuration JSON file to monitor, *appsettings.\<Environment>.json*. File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only actually changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 
@@ -119,11 +119,41 @@ The Index page offers the user control over configuration monitoring. The instan
 
 The app responds on form submits when the user selects buttons in the interface to enable and disable monitoring:
 
-[!code-cshtml[Main](change-tokens/sample/Pages/Index.cshtml?range=35-36)]
+[!code-cshtml[Main](change-tokens/sample/Pages/Index.cshtml?range=35)]
 
 [!code-csharp[Main](change-tokens/sample/Pages/Index.cshtml.cs?name=snippet2)]
 
 When the user triggers the `OnPostStartMonitoring` method, monitoring is enabled and the current state is cleared. When the user triggers the `OnPostStopMonitoring` method, monitoring is disabled and the state is set to reflect that monitoring is not occurring.
+
+## Monitoring cached file changes
+
+File content is cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [Introduction to in-memory caching](xref:performance/caching/memory) topic. When an app finds cached content to return, it returns that content without regard to whether or not the source content has changed. In these cases, the content in the cache has become *stale* (outdated).
+
+Stale cached content is a common problem in apps that use caching. For example, cached file content returned on a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period isn't updated if the file is changed but requests for the cached file content continually arrive within the sliding expiration window. Each request renews the sliding expiration period, and the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly using stale content.
+
+Using change tokens in a file caching scenario avoids the possibility of recovering stale file content from the cache. The sample app demonstrates an implementation of the approach.
+
+The sample establishes a static method to return file content. The method uses a retry algorithm with exponential back-off to cover cases where a file lock is temporarily preventing a file from being read (*Utilities/Utilities.cs*):
+
+[!code-csharp[Main](change-tokens/sample/Utilities/Utilities.cs?name=snippet2)]
+
+A `FileService` is created to handle cached file lookups. The `GetFileContents` method of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+
+If cached content isn't found using the cache key, which is the file path in this example, the following actions are taken:
+
+1. The file content is obtained using `GetFileContent`.
+1. The file content is cached with a sliding expiration period.
+1. If no change token has been established for the file, a change token is created using the [IFileProviders.Watch](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.watch) method with a callback that loads the file's content and caches it using the file path as the key.
+
+[!code-csharp[Main](change-tokens/sample/Services/FileService.cs?name=snippet1)]
+
+The `FileService` is registered in the service container (*Startup.cs*):
+
+[!code-csharp[Main](change-tokens/sample/Startup.cs?name=snippet4)]
+
+The page model loads the file's content using the service (*Pages/Index.cshtml.cs*):
+
+[!code-csharp[Main](change-tokens/sample/Pages/Index.cshtml.cs?name=snippet3)]
 
 ## CompositeChangeToken class
 

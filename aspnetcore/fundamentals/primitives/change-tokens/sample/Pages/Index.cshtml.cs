@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ namespace ChangeTokenSample.Pages
     {
         private readonly IConfiguration _config;
         private readonly IConfigurationMonitor _monitor;
+        private readonly FileService _fileService;
 
         private readonly Dictionary<string, string> _styleDict = new Dictionary<string, string>() 
         {
@@ -22,10 +24,11 @@ namespace ChangeTokenSample.Pages
         };
 
         #region snippet1
-        public IndexModel(IConfiguration config, IConfigurationMonitor monitor)
+        public IndexModel(IConfiguration config, IConfigurationMonitor monitor, FileService fileService)
         {
             _config = config;
             _monitor = monitor;
+            _fileService = fileService;
         }
         #endregion
 
@@ -33,11 +36,12 @@ namespace ChangeTokenSample.Pages
         public string DefaultLogLevel { get; private set; }
         public string SystemLogLevel { get; private set; }
         public string MicrosoftLogLevel { get; private set; }
+        public string FileContents { get; private set; }
 
         [TempData]
         public string CurrentState { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
             IncludeScopes = _config["Logging:IncludeScopes"];
             DefaultLogLevel = _config["Logging:LogLevel:Default"];
@@ -49,6 +53,12 @@ namespace ChangeTokenSample.Pages
             ViewData["MicrosoftLogLevelStyle"] = _styleDict[_config["Logging:LogLevel:Microsoft"]];
 
             CurrentState = _monitor.CurrentState;
+
+            #region snippet3
+            var fileContent = await _fileService.GetFileContents("poem.txt");
+            #endregion
+
+            FileContents = fileContent.Replace("\r\n", "<br>");
         }
 
         #region snippet2

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ChangeTokenSample.Utilities
 {
@@ -50,5 +51,40 @@ namespace ChangeTokenSample.Utilities
             Console.WriteLine(consoleString);
             Console.WriteLine(new string('*', l));
         }
+
+        #region snippet2
+        public async static Task<string> GetFileContent(string filePath)
+        {
+            var runCount = 1;
+
+            while(runCount < 4)
+            {
+                try
+                {
+                    if (File.Exists(filePath))
+                    {
+                        using (var fileStreamReader = File.OpenText(filePath))
+                        {
+                            return await fileStreamReader.ReadToEndAsync();
+                        }
+                    }
+                }
+                catch (IOException ex)
+                {
+                    if (runCount == 3 || ex.HResult != -2147024864)
+                    {
+                        throw;
+                    }
+                    else
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, runCount)));
+                        runCount++;
+                    }
+                }
+            }
+
+            return null;
+        }
+        #endregion
     }
 }

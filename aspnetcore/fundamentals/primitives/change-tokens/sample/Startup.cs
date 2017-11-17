@@ -19,6 +19,12 @@ namespace ChangeTokenSample
             services.AddSingleton<IConfigurationMonitor, ConfigurationMonitor>();
             #endregion
 
+            services.AddMemoryCache();
+
+            #region snippet4
+            services.AddSingleton<FileService>();
+            #endregion
+
             services.AddMvc();
         }
         public void Configure(IApplicationBuilder app, IConfiguration config, IHostingEnvironment env)
