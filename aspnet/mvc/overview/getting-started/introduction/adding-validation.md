@@ -89,8 +89,6 @@ A real benefit is that you didn't need to change a single line of code in the `M
 
 The form data is not sent to the server until there are no client side validation errors. You can verify this by putting a break point in the HTTP Post method, by using the [fiddler tool](http://fiddler2.com/fiddler2/), or the IE [F12 developer tools](https://msdn.microsoft.com/en-us/ie/aa740478).
 
-![requiredfields](adding-validation/_static/image4.png)
-
 ## How Validation Occurs in the Create View and Create Action Method
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows what the `Create` methods in the `MovieController` class look like. They're unchanged from how you created them earlier in this tutorial.
