@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Primitives;
 using static ChangeTokenSample.Utilities.Utilities;
 
 namespace ChangeTokenSample
@@ -43,29 +42,20 @@ namespace ChangeTokenSample
 
             if (fileContent != null)
             {
+                // Obtain a change token from the file provider whose
+                // callback is triggered when the file is modified.
+                var changeToken = _fileProvider.Watch(fileName);
+
+                // Configure the cache entry options for a five minute
+                // sliding expiration and use the change token to
+                // expire the file in the cache if the file is
+                // modified.
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+                    .AddExpirationToken(changeToken);
 
                 // Put the file contents into the cache.
                 _cache.Set(filePath, fileContent, cacheEntryOptions);
-
-                // If there's no token for this file, establish a 
-                // change token on the file. If the file changes,
-                // obtain its content and set the cache.
-                if (!_tokens.Contains(filePath))
-                {
-                    _tokens.Add(filePath);
-                    
-                    ChangeToken.OnChange(
-                        () => _fileProvider.Watch(fileName),
-                        async () => 
-                        {
-                            // Update the file content in the cache.
-                            var updatedFileContent = await GetFileContent(filePath);
-                            _cache.Set(filePath, updatedFileContent);
-                        }
-                    );
-                }
 
                 return fileContent;
             }

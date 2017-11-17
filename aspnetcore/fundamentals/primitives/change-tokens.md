@@ -1,20 +1,21 @@
 ---
-title: Detect changes with Change Tokens in ASP.NET Core
+title: Detect changes with change tokens in ASP.NET Core
 author: guardrex
-description: Learn how to use Change Tokens to track changes.
-ms.author: riande
+description: Learn how to use change tokens to track changes.
 manager: wpickett
+ms.author: riande
 ms.date: 11/10/2017
-ms.topic: article
-ms.technology: aspnet
+ms.devlang: csharp
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/primitives/change-tokens
 ---
-# Detect changes with Change Tokens in ASP.NET Core
+# Detect changes with change tokens in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-A Change Token is a general-purpose, low-level building block used to track changes.
+A *change token* is a general-purpose, low-level building block used to track changes.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/primitives/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -41,9 +42,9 @@ The interface has one method, [RegisterChangeCallback(Action\<Object>, Object)](
 
 `OnChange` returns an [IDisposable](/dotnet/api/system.idisposable). Calling [Dispose](/dotnet/api/system.idisposable.dispose) stops the token from listening for further changes and releases the token's resources.
 
-## Example uses of Change Tokens in ASP.NET Core
+## Example uses of change tokens in ASP.NET Core
 
-Change Tokens are seen at work in prominent areas of ASP.NET Core monitoring changes to objects:
+Change tokens are seen at work in prominent areas of ASP.NET Core monitoring changes to objects:
 
 * For monitoring changes to files, [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider)'s [Watch](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.watch) method creates an `IChangeToken` for the specified files or folder to watch.
 * `IChangeToken` tokens can be added to cache entries to trigger cache evictions on change.
@@ -72,7 +73,7 @@ A configuration file's `FileSystemWatcher` can trigger multiple token callbacks 
 
    A retry is implemented with an exponential back-off. The re-try is present because file locking may occur that temporarily prevents computing a new hash on one of the files.
 
-### Simple startup Change Token
+### Simple startup change token
 
 Register a token consumer `Action` callback for change notifications to the configuration reload token (*Startup.cs*):
 
@@ -127,27 +128,27 @@ When the user triggers the `OnPostStartMonitoring` method, monitoring is enabled
 
 ## Monitoring cached file changes
 
-File content is cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [Introduction to in-memory caching](xref:performance/caching/memory) topic. When an app finds cached content to return, it returns that content without regard to whether or not the source content has changed. In these cases, the content in the cache has become *stale* (outdated).
+File content is cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [In-memory caching](xref:performance/caching/memory) topic. Without taking additional steps, *stale* (outdated) data is returned from a cache if the source data has changed.
 
-Stale cached content is a common problem in apps that use caching. For example, cached file content returned on a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period isn't updated if the file is changed but requests for the cached file content continually arrive within the sliding expiration window. Each request renews the sliding expiration period, and the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly using stale content.
+For example, ignoring the status of a source file for cached file data on a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period leads to stale cache data when the file is changed but the caching system isn't notified. Each request for the data renews the sliding expiration period, but the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly receiving stale content.
 
 Using change tokens in a file caching scenario avoids the possibility of recovering stale file content from the cache. The sample app demonstrates an implementation of the approach.
 
-The sample establishes a static method to return file content. The method uses a retry algorithm with exponential back-off to cover cases where a file lock is temporarily preventing a file from being read (*Utilities/Utilities.cs*):
+The sample establishes a static method, `GetFileContent`, to return file content. The method uses a retry algorithm with exponential back-off to cover cases where a file lock is temporarily preventing a file from being read (*Utilities/Utilities.cs*):
 
 [!code-csharp[Main](change-tokens/sample/Utilities/Utilities.cs?name=snippet2)]
 
-A `FileService` is created to handle cached file lookups. The `GetFileContents` method of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
 
 If cached content isn't found using the cache key, which is the file path in this example, the following actions are taken:
 
 1. The file content is obtained using `GetFileContent`.
-1. The file content is cached with a sliding expiration period.
-1. If no change token has been established for the file, a change token is created using the [IFileProviders.Watch](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.watch) method with a callback that loads the file's content and caches it using the file path as the key.
+1. A change token is obtained from the file provider with [IFileProviders.Watch](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.watch) whose callback is triggered when the file is modified.
+1. The file content is cached with a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period. The change token is attached with [MemoryCacheEntryExtensions.AddExpirationToken](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.addexpirationtoken) to evict the cache entry if the file changes while it's cached.
 
 [!code-csharp[Main](change-tokens/sample/Services/FileService.cs?name=snippet1)]
 
-The `FileService` is registered in the service container (*Startup.cs*):
+The `FileService` is registered in the service container along with the memory caching service (*Startup.cs*):
 
 [!code-csharp[Main](change-tokens/sample/Startup.cs?name=snippet4)]
 
@@ -179,3 +180,13 @@ var compositeChangeToken =
 ```
 
 `HasChanged` on the composite token reports `true` if any represented token `HasChanged` is `true`. `ActiveChangeCallbacks` on the composite token reports `true` if any represented token `ActiveChangeCallbacks` is `true`. If multiple concurrent change events occur, the composite change callback is invoked exactly one time.
+
+## See also
+
+* [In-memory caching](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Response caching](xref:performance/caching/response)
+* [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

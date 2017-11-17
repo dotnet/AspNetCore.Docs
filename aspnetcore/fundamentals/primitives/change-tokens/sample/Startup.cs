@@ -19,9 +19,8 @@ namespace ChangeTokenSample
             services.AddSingleton<IConfigurationMonitor, ConfigurationMonitor>();
             #endregion
 
-            services.AddMemoryCache();
-
             #region snippet4
+            services.AddMemoryCache();
             services.AddSingleton<FileService>();
             #endregion
 

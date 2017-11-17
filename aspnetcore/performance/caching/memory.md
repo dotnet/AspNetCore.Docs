@@ -1,19 +1,17 @@
 ---
 title: In-memory caching in ASP.NET Core
 author: rick-anderson
-description: Shows how to cache data in memory in ASP.NET Core.
-keywords: ASP.NET Core,cache,in-memory,performance
+description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 manager: wpickett
 ms.date: 12/14/2016
 ms.topic: article
-ms.assetid: 819511cf-d33e-410a-b5a9-bef7fa64d2f3
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: performance/caching/memory
 ms.custom: H1Hack27Feb2017
 ---
-# Introduction to in-memory caching in ASP.NET Core
+# In-memory caching in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
@@ -84,7 +82,7 @@ The following sample shows how to expire a cache entry if a dependent entry expi
 
 Using a `CancellationTokenSource` allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` block will inherit triggers and expiration settings.
 
-### Additional notes
+## Additional notes
 
 - When using a callback to repopulate a cache item:
 
@@ -93,7 +91,11 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 - When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child is not expired by manual removal or updating of the parent entry.
 
-### Other Resources
+## Additional resources
 
-* [Working with a Distributed Cache](distributed.md)
-* [Response caching middleware](middleware.md)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Response caching](xref:performance/caching/response)
+* [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

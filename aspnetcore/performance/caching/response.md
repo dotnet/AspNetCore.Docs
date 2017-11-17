@@ -1,13 +1,11 @@
 ---
 title: Response caching in ASP.NET Core
 author: rick-anderson
-description: Learn how to use response caching to lower bandwidth and increase performance.
-keywords: ASP.NET Core,Response caching,HTTP headers
+description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 ms.author: riande
 manager: wpickett
 ms.date: 09/20/2017
 ms.topic: article
-ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
 ms.prod: asp.net-core
 uid: performance/caching/response
 ---
@@ -174,4 +172,9 @@ Cache-Control: public,max-age=60
 
 * [Caching in HTTP from the specification](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [In-memory caching](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
