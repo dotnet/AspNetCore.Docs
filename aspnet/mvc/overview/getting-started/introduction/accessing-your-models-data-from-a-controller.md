@@ -17,6 +17,8 @@ Accessing Your Model's Data from a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this section, you'll create a new `MoviesController` class and write code that retrieves the movie data and displays it in the browser using a view template.
 
 **Build the application** before going on to the next step. If you don't build the application, you'll get an error adding a controller.
@@ -29,9 +31,9 @@ In the **Add Scaffold** dialog box, click **MVC 5 Controller with views, using E
 
 ![](accessing-your-models-data-from-a-controller/_static/image2.png)
 
-- For the Controller name enter **MoviesController**.
 - Select **Movie (MvcMovie.Models)** for the Model class.
 - Select **MovieDBContext (MvcMovie.Models)** for the Data context class.
+- For the Controller name enter **MoviesController**.
 
  The image below shows the completed dialog.  
   

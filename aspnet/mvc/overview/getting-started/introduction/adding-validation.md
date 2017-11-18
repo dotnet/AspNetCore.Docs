@@ -17,6 +17,8 @@ Adding Validation
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie using the application.
 
 ## Keeping Things DRY
@@ -86,8 +88,6 @@ Notice how the form has automatically used a red border color to highlight the t
 A real benefit is that you didn't need to change a single line of code in the `MoviesController` class or in the *Create.cshtml* view in order to enable this validation UI. The controller and views you created earlier in this tutorial automatically picked up the validation rules that you specified by using validation attributes on the properties of the `Movie` model class. Test validation using the `Edit` action method, and the same validation is applied.
 
 The form data is not sent to the server until there are no client side validation errors. You can verify this by putting a break point in the HTTP Post method, by using the [fiddler tool](http://fiddler2.com/fiddler2/), or the IE [F12 developer tools](https://msdn.microsoft.com/en-us/ie/aa740478).
-
-![requiredfields](adding-validation/_static/image4.png)
 
 ## How Validation Occurs in the Create View and Create Action Method
 

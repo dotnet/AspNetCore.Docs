@@ -17,9 +17,11 @@ Adding a Model
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this section you'll add some classes for managing movies in a database. These classes will be the &quot;model&quot; part of the ASP.NET MVC app.
 
-You'll use a .NET Framework data-access technology known as the [Entity Framework](https://msdn.microsoft.com/en-us/library/bb399572(VS.110).aspx) to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from &quot;plain-old CLR objects.&quot;) You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development. You can then follow Tom Fizmakens [ASP.NET Scaffolding](../../../../visual-studio/overview/2013/aspnet-scaffolding-overview.md) tutorial, which covers the database first approach.
+You'll use a .NET Framework data-access technology known as the [Entity Framework](https://docs.microsoft.com/ef/) to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from &quot;plain-old CLR objects.&quot;) You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development. You can then follow Tom Fizmakens [ASP.NET Scaffolding](xref:visual-studio/overview/2013/aspnet-scaffolding-overview.md) tutorial, which covers the database first approach.
 
 ## Adding Model Classes
 
@@ -47,11 +49,11 @@ In order to be able to reference `DbContext` and `DbSet`, you need to add the fo
 
 [!code-csharp[Main](adding-a-model/samples/sample3.cs)]
 
-You can do this by manually adding the using statement, or you can right click on the red squiggly lines and click `using System.Data.Entity;`
+You can do this by manually adding the using statement, or you can hover over the red squiggly lines, click `Show potential fixes` and click `using System.Data.Entity;`
 
 ![](adding-a-model/_static/image2.png)
 
-Note: Several unused `using` statements have been removed. You can do this by right clicking in the file, click **Organize Usings**, and then click **Remove Unused Usings.**
+Note: Several unused `using` statements have been removed. Visual Studio will show unused dependencies as gray. You can remove unnused dependencies by hovering over the gray dependencies, click `Show potential fixes` and click **Remove Unused Usings.**
 
 ![](adding-a-model/_static/image3.png)
 
