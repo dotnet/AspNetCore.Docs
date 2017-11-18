@@ -21,34 +21,40 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 [!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
-This tutorial demonstrates updating related data. If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part8).
-
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time).
-
-This tutorial updates the Razor pages for the `Department` entity to handle concurrency exceptions. The following illustrations show the completed Edit and Delete pages:
-
-![Department Edit page](concurrency/_static/edit-error.png)
-
-![Department Delete page](concurrency/_static/delete-error.png)
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part8).
 
 ## Concurrency conflicts
 
 A concurrency conflict occurs when:
 
-* A user navigates the edit page for an entity.
+* A user navigates to the edit page for an entity.
 * Another user updates the same entity before the first user's change is written to the DB. 
 
 If concurrency detection is not enabled, when concurrent updates occur:
 
-* The last update wins. That is, the last update is saved to the DB.
+* The last update wins. That is, the last update values are saved to the DB.
 * The firt of the current updates is lost. That's generally not what you want.
 
 ### Pessimistic concurrency (locking)
 
 DB locking, also called pessimistic concurrency, is one way to implement concurrency.
-For example, before a row is read from the db, the app can request a lock for read-only or for update access. If the row is locked for update access, other users can not lock the row either for read-only or update access. If a row for is locked for read-only access, other users can also lock it for read-only access but not for update.
+For example, before a row is read from the db, the app can request a lock for read-only or for update access. If a row is locked for update access:
 
-Managing locks has disadvantages. It can be complex to program. It requires significant DB management resources, and it can cause performance problems as the number of users of an app increases. For these reasons, not all DB management systems support pessimistic concurrency. Entity Framework Core provides no built-in support for it, and this tutorial doesn't show you how to implement it.
+* Other users can not lock the row for read-only access. That is, other users can't read the data.
+* Other users can not lock the row for update access. 
+
+If a row for is locked for read-only access:
+
+* Other users can also read the data. That is, they can lock it for read-only access.
+* Other users cannot get an update lock to update the data.
+
+Managing locks has disadvantages:
+
+* It's complex to program. 
+* It requires significant DB management resources.
+* It can cause performance problems as the number of users of an app increases. 
+
+Not all DB management systems support pessimistic concurrency. Entity Framework Core provides no built-in support for pessimistic locking. This tutorial doesn't show you how to implement pessimistic concurrency.
 
 ### Optimistic concurrency
 
@@ -70,11 +76,14 @@ Some of the options include the following:
 
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
-     In the example scenario, no data would be lost, because different properties were updated by the two users. The next time someone browses the English department, they'll see both Jane's and John's changes -- a start date of 9/1/2013 and a budget of zero dollars. This method of updating can reduce the number of conflicts that could result in data loss, but it can't avoid data loss if competing changes are made to the same property of an entity.  Whether EF works this way depends on how you implement your update code. It's often not practical in a web app, because it can require that you maintain large amounts of state in order to keep track of all original property values for an entity as well as new values. Maintaining large amounts of state can affect app performance because it either requires server resources or must be included in the web page itself (for example, in hidden fields) or in a cookie.
+     In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they'll see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
+		* Can't avoid data loss if competing changes are made to the same property. 
+		* Is generally not practical in a web app.  It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
+		* Can increase app complexity compared to concurrency detection on an entity.
 
 * You can let John's change overwrite Jane's change.
 
-     The next time someone browses the English department, they'll see 9/1/2013 and the original $350,000.00 value. This is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) As noted in the introduction to this section, if you don't do any coding for concurrency handling, this will happen automatically.
+     The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, this will happen automatically.
 
 * You can prevent John's change from being updated in the DB.
 
@@ -82,7 +91,7 @@ Some of the options include the following:
 
 		* Display an error message.
 		* Show the current state of the data.
-		* Allow the user to reapply the changes if he still wants to make them. 
+		* Allow the user to reapply the changes. 
 		
 	This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted to what's happening.
 
@@ -90,34 +99,33 @@ Some of the options include the following:
 
 Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. Some options for enabling conflict detection include the following:
 
-* Include a tracking column in the DB table that is used to determine when a row has been changed. Include the tracking column in the `Where` clause of `SQL Update` and `Delete`.
+* Include a [rowversion](https://docs.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql) tracking column in the DB table. `rowversion` is used to determine when a row has been changed. Include the `rowversion` tracking column in the `Where` clause of `SQL Update` and `Delete`. This tutorial uses the `rowversion` tracking column approach.
 
-     The data type of the tracking column is [rowversion](https://docs.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql). The `rowversion` generates a sequential number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the original value of  `rowversion`. If the row being updated has been changed:
+	The `rowversion` generates a sequential number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of  `rowversion`. If the row being updated has been changed:
 
-* `rowversion` won't match the original value.
-* The `Update` or `Delete` command can't find the row to update because of the `Where` clause includes the original `rowversion`.
+	* `rowversion` won't match the fetched value.
+	* The `Update` or `Delete` command don't find a row because the `Where` clause includes the fetched `rowversion`.
 
- When EF finds that no rows have been updated by the `Update` or `Delete` command (that is, when the number of affected rows is zero), it interprets that as a concurrency conflict.
+	In EF, when no rows have been updated by the `Update` or `Delete` command, a concurrency exception is thrown.
 
-* Configure EF to include the original values of every column in the table in the `Where` clause of `Update` and `Delete` commands.
+* Configure EF to include the fetched values of every column in the table in the `Where` clause of `Update` and `Delete` commands.
 
-     If anything in the row has changed since the row was first read:
+ If anything in the row has changed since the row was first read:
 		
-		* The `Where` clause won't return a row to update.
-		* EF interprets zero rows changed as a concurrency conflict. 
+	* The `Where` clause won't return a row to update.
+	* EF interprets zero rows changed as a concurrency conflict. 
 		
-		For DB tables that have many columns, this approach:
+	For DB tables that have many columns, this approach:
 
-		* Can result in very large `Where` clauses.
-		* Can require that you maintain large amounts of state. 
+	* Can result in very large `Where` clauses.
+	* Can require that you maintain large amounts of state. 
 		
-		Maintaining large amounts of state can affect app performance. Therefore this approach is generally not recommended. This approach isn't used in this tutorial.
+	Maintaining large amounts of state can affect app performance. Therefore this approach is generally not recommended. This approach isn't used in this tutorial.
+   
+	To implement this concurrency approach:
 
-     
-	 To implement this concurrency approach:
-
-	 * Decorate all non-primary-key properties in the entity with [ConcurrencyCheck](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0). That change enables EF to include all columns in the SQL `Where` clause of `Update` and `Delete` statements.
-	 
+	 * Decorate all non-primary-key properties in the entity with [ConcurrencyCheck](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0). 
+	 * Adding `ConcurrencyCheck` enables EF to include all columns in the SQL `Where` clause of `Update` and `Delete` statements.	 
 
 ## Add a tracking property to the Department entity
 
@@ -125,7 +133,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
-The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column will be included in the `Where` clause of `Update` and Delete commands sent to the DB. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it.
+The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column will be included in the `Where` clause of `Update` and Delete commands sent to the DB. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
 
 The fluent API can also specify the tracking property:
 
@@ -134,7 +142,7 @@ modelBuilder.Entity<Department>()
     .Property(p => p.RowVersion).IsConcurrencyToken();
 ```
 
-Adding the `RowVersion` property changed the DB model, which requires a migration.
+Adding the `RowVersion` property changes the DB model, which requires a migration.
 
 Build the project. Enter the following in a command window:
 
@@ -145,7 +153,7 @@ dotnet ef database update
 
 The preceding commands:
 
-* Adds the *Migrations/{time stamp}_RowVersion.cs migration file.
+* Adds the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
 [!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
@@ -183,19 +191,31 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 ### Update the Departments Index page
 
-The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. 
+The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. In this tutorial you display the last byte of the `RowVersion` to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last by of `RowVersion`.
 
 Update the Index page:
 
 * Replace Index with Departments.
-* Remove the markup containing `RowVersion`
+* Replace the markup containing `RowVersion` with the last byte of `RowVersion`.
 * Replace FirstMidName with FullName.
 
 The following markup shows the updated page:
 
-[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,8,44)]
+[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
-### `Update` the Edit methods in the Departments controller
+### Update the Edit page model
+
+Update *pages\departments\edit.cshtml.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu/Pages/Departments/Index.cshtml.cs?name=snippet)]
+
+Examine the `OnPostAsync` signature:
+
+[!code-csharp[](intro/samples/cu/Pages/Departments/Index.cshtml.cs?name=snippet_sig)]
+
+The `rowVersion` parameter comes from `<input type="hidden" asp-for="Department.RowVersion" />` in the Razor page. The `rowVersion` parameter is the value when this entity was fetched in `OnGetAsync`. The Db `rowVersion` my differ if this entity has been updated
+after OnGetAsync is called. 
+
 
 In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
@@ -208,13 +228,13 @@ Replace the existing code for the HttpPost `Edit` method with the following code
 
 The code begins by trying to read the department to be updated. If the `SingleOrDefaultAsync` method returns null, the department was deleted by another user. In that case the code uses the posted form values to create a department entity so that the Edit page can be redisplayed with an error message. As an alternative, you wouldn't have to re-create the department entity if you display only an error message without redisplaying the department fields.
 
-The view stores the original `RowVersion` value in a hidden field, and this method receives that value in the `rowVersion` parameter. Before you call `SaveChanges`, you have to put that original `RowVersion` property value in the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) collection for the entity.
+The view stores the fetched `RowVersion` value in a hidden field, and this method receives that value in the `rowVersion` parameter. Before you call `SaveChanges`, you have to put that fetched `RowVersion` property value in the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) collection for the entity.
 
 ```csharp
 _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVersion;
 ```
 
-Then when EF creates a SQL UPDATE command, that command will include a WHERE clause that looks for a row that has the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value),  EF throws a `DbUpdateConcurrencyException` exception.
+Then when EF creates a SQL UPDATE command, that command will include a WHERE clause that looks for a row that has the fetched `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the fetched `RowVersion` value),  EF throws a `DbUpdateConcurrencyException` exception.
 
 The code in the catch block for that exception gets the affected Department entity that has the updated values from the `Entries` property on the exception object.
 
@@ -266,7 +286,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 ## Update the Delete page
 
-For the Delete page, EF detects concurrency conflicts caused by someone else editing the department in a similar manner. When the HttpGet `Delete` method displays the confirmation view, the view includes the original `RowVersion` value in a hidden field. That value is then available to the HttpPost `Delete` method that's called when the user confirms the deletion. When EF creates the SQL DELETE command, it includes a WHERE clause with the original `RowVersion` value. If the command results in zero rows affected (meaning the row was changed after the Delete confirmation page was displayed), a concurrency exception is thrown, and the HttpGet ``Delete`` method is called with an error flag set to true in order to redisplay the confirmation page with an error message. It's also possible that zero rows were affected because the row was deleted by another user, so in that case no error message is displayed.
+For the Delete page, EF detects concurrency conflicts caused by someone else editing the department in a similar manner. When the HttpGet `Delete` method displays the confirmation view, the view includes the fetched `RowVersion` value in a hidden field. That value is then available to the HttpPost `Delete` method that's called when the user confirms the deletion. When EF creates the SQL DELETE command, it includes a WHERE clause with the fetched `RowVersion` value. If the command results in zero rows affected (meaning the row was changed after the Delete confirmation page was displayed), a concurrency exception is thrown, and the HttpGet ``Delete`` method is called with an error flag set to true in order to redisplay the confirmation page with an error message. It's also possible that zero rows were affected because the row was deleted by another user, so in that case no error message is displayed.
 
 ### Update the Delete methods in the Departments controller
 

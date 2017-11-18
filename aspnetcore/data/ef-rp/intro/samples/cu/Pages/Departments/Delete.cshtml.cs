@@ -21,8 +21,9 @@ namespace ContosoUniversity.Pages.Departments
 
         [BindProperty]
         public Department Department { get; set; }
+        public string ConcurrencyErrorMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, bool? concurrencyError)
         {
             if (id == null)
             {
@@ -30,11 +31,26 @@ namespace ContosoUniversity.Pages.Departments
             }
 
             Department = await _context.Departments
-                .Include(d => d.Administrator).FirstOrDefaultAsync(m => m.DepartmentID == id);
+                .Include(d => d.Administrator)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
             if (Department == null)
             {
+                if (concurrencyError.GetValueOrDefault())
+                {
+                    return RedirectToPage("./Index");
+                }
                 return NotFound();
+            }
+
+            if (concurrencyError.GetValueOrDefault())
+            {
+                ConcurrencyErrorMessage = "The record you attempted to delete "
+                  + "was modified by another user after you selected delete. "
+                  + "The delete operation was canceled and the current values in the "
+                  + "database have been displayed. If you still want to delete this "
+                  + "record, click the Delete button again.";
             }
             return Page();
         }
@@ -46,15 +62,41 @@ namespace ContosoUniversity.Pages.Departments
                 return NotFound();
             }
 
-            Department = await _context.Departments.FindAsync(id);
-
-            if (Department != null)
+            try
             {
-                _context.Departments.Remove(Department);
-                await _context.SaveChangesAsync();
+                if (await _context.Departments.AnyAsync(
+                    m => m.DepartmentID == Department.DepartmentID))
+                {
+                    _context.Departments.Remove(Department);
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateConcurrencyException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction("./Index",
+                    new { concurrencyError = true, id = Department.DepartmentID });
             }
 
-            return RedirectToPage("./Index");
         }
+
+        //public async Task<IActionResult> OnPostAsync(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Department = await _context.Departments.FindAsync(id);
+
+        //    if (Department != null)
+        //    {
+        //        _context.Departments.Remove(Department);
+        //        await _context.SaveChangesAsync();
+        //    }
+
+        //    return RedirectToPage("./Index");
+        //}
     }
 }

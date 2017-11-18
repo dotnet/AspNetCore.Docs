@@ -1,3 +1,4 @@
+#region snippet
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace ContosoUniversity.Pages.Departments
 
         [BindProperty]
         public Department Department { get; set; }
+        // Replace ViewData["InstructorID"] 
         public SelectList InstructorNameSL { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -30,8 +32,8 @@ namespace ContosoUniversity.Pages.Departments
             }
 
             Department = await _context.Departments
-                .Include(d => d.Administrator)
-                .AsNoTracking()
+                .Include(d => d.Administrator)  // eager loading
+                .AsNoTracking()                 // tracking not required
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
             if (Department == null)
@@ -39,16 +41,25 @@ namespace ContosoUniversity.Pages.Departments
                 return NotFound();
             }
 
+            // Use strongly typed data rather than ViewData.
             InstructorNameSL = new SelectList(_context.Instructors,
                 "ID", "FirstMidName");
 
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, 
-                "ID", "FirstMidName");
             return Page();
         }
 
+
+        // The rowVersion parameter comes from
+        // <input type="hidden" asp-for="Department.RowVersion" />
+        // In the Razor page. The rowVersion parameter is the value
+        // when this entity was fetched in OnGetAsync.
+        // Db rowVersion my differ if this entity has been updated
+        // after OnGetAsync is called. 
+        #region snippet_rv
+        #region snippet_sig
         public async Task<IActionResult> OnPostAsync(int? id,
             [ModelBinder(Name = "Department.RowVersion")] byte[] rowVersion)
+        #endregion
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +83,11 @@ namespace ContosoUniversity.Pages.Departments
             // Set .OriginalValue = rowVersion to detect a stale RowVersion,
             // indicating a concurrency problem. A second postback will make 
             // them match, unless a new concurrency issues happens.
+            #region snippet_Org
             _context.Entry(departmentToUpdate)
                 .Property("RowVersion").OriginalValue = rowVersion;
+            #endregion
+            #endregion
 
             if (await TryUpdateModelAsync<Department>(
                 departmentToUpdate,
@@ -111,8 +125,6 @@ namespace ContosoUniversity.Pages.Departments
             InstructorNameSL = new SelectList(_context.Instructors,
                 "ID", "FullName", departmentToUpdate.InstructorID);
 
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, 
-                "ID", "FullName", departmentToUpdate.InstructorID);
             return Page();
         }
 
@@ -124,7 +136,7 @@ namespace ContosoUniversity.Pages.Departments
             CopyDepartment(deletedDepartment);
             ModelState.AddModelError(string.Empty,
                 "Unable to save. The department was deleted by another user.");
-            InstructorNameSL = new SelectList(_context.Instructors, "ID", 
+            InstructorNameSL = new SelectList(_context.Instructors, "ID",
                 "FullName", Department.InstructorID);
             return Page();
         }
@@ -173,3 +185,4 @@ namespace ContosoUniversity.Pages.Departments
         }
     }
 }
+#endregion
