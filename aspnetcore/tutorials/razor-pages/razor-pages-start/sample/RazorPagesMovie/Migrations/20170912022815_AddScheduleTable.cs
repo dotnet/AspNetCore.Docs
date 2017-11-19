@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace RazorPagesSampleMovie.Migrations
+namespace RazorPagesMovie.Migrations
 {
     public partial class AddScheduleTable : Migration
     {

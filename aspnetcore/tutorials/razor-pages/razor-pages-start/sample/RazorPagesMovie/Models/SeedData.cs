@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace RazorPagesSampleMovie.Models
+namespace RazorPagesMovie.Models
 {
     public static class SeedData
     {
