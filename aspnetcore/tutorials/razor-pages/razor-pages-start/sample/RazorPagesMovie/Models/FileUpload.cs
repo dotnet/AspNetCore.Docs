@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace RazorPagesSampleMovie.Models
+namespace RazorPagesMovie.Models
 {
     public class FileUpload
     {

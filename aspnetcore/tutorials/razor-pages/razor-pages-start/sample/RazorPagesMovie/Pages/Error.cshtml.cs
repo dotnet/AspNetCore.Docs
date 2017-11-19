@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorPagesSampleMovie.Pages
+namespace RazorPagesMovie.Pages
 {
     public class ErrorModel : PageModel
     {
