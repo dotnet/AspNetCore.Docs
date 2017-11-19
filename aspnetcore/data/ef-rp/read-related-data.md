@@ -106,7 +106,7 @@ The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance beca
 
 Update *Views/Courses/Index.cshtml* with the following highlighted markup:
 
-[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 The following changes have been made to the scaffolded code:
 
@@ -200,7 +200,7 @@ The query has two includes:
 
 Update *Pages/Instructors/Index.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
 The preceding markup makes the following changes:
 
@@ -278,7 +278,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Add the following markup to the end of the *Pages/Courses/Index.cshtml* Razor Page:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-)]
 
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 
@@ -296,7 +296,7 @@ Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.c
 
 Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 
 The preceding markup displays a list of the students who are enrolled in the selected course.
 

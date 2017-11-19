@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContosoUniversity.Pages.Departments.EditModel
 @{
     ViewData["Title"] = "Edit";
@@ -15,10 +15,7 @@
 
             <div class="form-group">
                 <label>RowVersion</label>
-                @if (Model.Department.RowVersion != null)
-                {
-                    @Model.Department.RowVersion[7]
-                }
+                @Model.Department.RowVersion[7]
             </div>
             <div class="form-group">
                 <label asp-for="Department.Name" class="control-label"></label>
@@ -38,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Instructor</label>
-                <select asp-for="Department.InstructorID" class="form-control" 
+                <select asp-for="Department.InstructorID" class="form-control"
                         asp-items="@Model.InstructorNameSL"></select>
                 <span asp-validation-for="Department.InstructorID" class="text-danger">
                 </span>

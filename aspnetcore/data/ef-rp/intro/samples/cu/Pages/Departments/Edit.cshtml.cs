@@ -76,11 +76,11 @@ namespace ContosoUniversity.Pages.Departments
                 return await HandleDeletedDepartment();
             }
 
-            // OriginalValue is the current value in the DB when this entity
+            // OriginalValue is the value in the DB when this entity
             // was fetched. OriginalValue == rowVersion unless there is a 
             // concurrency difference. rowVersion is the value when this record
             // was fetched by OnGetAsync and can be stale at this point.
-            // Set .OriginalValue = rowVersion to detect a stale RowVersion,
+            // Set OriginalValue = rowVersion to detect a stale RowVersion,
             // indicating a concurrency problem. A second postback will make 
             // them match, unless a new concurrency issues happens.
             #region snippet_Org
@@ -94,6 +94,7 @@ namespace ContosoUniversity.Pages.Departments
                 "Department",
                 s => s.Name, s => s.StartDate, s => s.Budget, s => s.InstructorID))
             {
+                #region snippet_try
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -120,6 +121,7 @@ namespace ContosoUniversity.Pages.Departments
                     // Must clear the model error for the next postback.
                     ModelState.Remove("Department.RowVersion");
                 }
+                #endregion
             }
 
             InstructorNameSL = new SelectList(_context.Instructors,
@@ -149,6 +151,7 @@ namespace ContosoUniversity.Pages.Departments
             Department.InstructorID = deletedDepartment.InstructorID;
         }
 
+        #region snippet_err
         private async Task setDbErrorMessage(Department dbValues,
                 Department clientValues, SchoolContext context)
         {
@@ -177,12 +180,13 @@ namespace ContosoUniversity.Pages.Departments
             }
 
             ModelState.AddModelError(string.Empty,
-                   "The record you attempted to edit "
-                 + "was modified by another user after you got the original value. The "
-                 + "edit operation was canceled and the current values in the database "
-                 + "have been displayed. If you still want to edit this record, click "
-                 + "the Save button again. Otherwise click the Back to List hyperlink.");
+                "The record you attempted to edit "
+              + "was modified by another user after you. The "
+              + "edit operation was canceled and the current values in the database "
+              + "have been displayed. If you still want to edit this record, click "
+              + "the Save button again.");
         }
+        #endregion
     }
 }
 #endregion
