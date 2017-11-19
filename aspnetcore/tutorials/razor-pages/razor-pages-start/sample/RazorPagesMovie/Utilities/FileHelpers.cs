@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesSampleMovie.Utilities
+namespace RazorPagesMovie.Utilities
 {
     public class FileHelpers
     {
