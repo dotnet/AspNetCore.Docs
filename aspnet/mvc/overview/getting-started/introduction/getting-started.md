@@ -20,9 +20,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 [!INCLUDE[consider RP](../../../../includes/razor.md)]
 
  
- This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
+ This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2017](https://www.visualstudio.com/). Final Source for tutorial located on [GitHub](xref:mvc/overview/getting-started/introduction/sample/MvcMovie)
  
- <!-- Download the [completed project](https://github.com/Rick-Anderson/MvcMovie5). -->
  
  This tutorial was written by [Scott Guthrie](https://weblogs.asp.net/scottgu/) (twitter[@scottgu](https://twitter.com/scottgu) ), [Scott Hanselman](http://www.hanselman.com/blog/) (twitter: [@shanselman](https://twitter.com/shanselman) ), and [Rick Anderson](https://twitter.com/RickAndMSFT) ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) )
  
@@ -34,9 +33,9 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 ## Getting Started
 
-Start by installing and running [Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express) or [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
+Start by installing and running [Visual Studio 2017](https://www.visualstudio.com/).
 
-Visual Studio is an IDE, or integrated development environment. Just like you use Microsoft Word to write documents, you'll use an IDE to create applications. In Visual Studio there's a toolbar along the top showing various options available to you. There's also a menu that provides another way to perform tasks in the IDE. (For example, instead of selecting **New Project** from the **Start** page, you can use the menu and select **File** &gt; **New Project**.)
+Visual Studio is an IDE, or integrated development environment. Just like you use Microsoft Word to write documents, you'll use an IDE to create applications. In Visual Studio there's a list along the bottom showing various options available to you. There's also a menu that provides another way to perform tasks in the IDE. (For example, instead of selecting **New Project** from the **Start** page, you can use the menu and select **File** &gt; **New Project**.)
 
    
 ![](getting-started/_static/image1.png)  
@@ -44,7 +43,7 @@ Visual Studio is an IDE, or integrated development environment. Just like you us
 
 ## Creating Your First Application
 
-Click **New Project**, then select Visual C# on the left, then **Web** and then select **ASP.NET Web Application**. Name your project "MvcMovie" and then click **OK**.
+Click **New Project**, then select Visual C# on the left, then **Web** and then select **ASP.NET Web Application (.NET Framework)**. Name your project "MvcMovie" and then click **OK**.
 
 ![](getting-started/_static/image2.png)
 
@@ -63,7 +62,6 @@ Click F5 to start debugging. F5 causes Visual Studio to start [IIS Express](http
 Right out of the box this default template gives you Home, Contact and About pages. The image above doesn't show the **Home**, **About** and **Contact** links. Depending on the size of your browser window, you might need to click the navigation icon to see these links.
 
 ![](getting-started/_static/image6.png)  
-![](getting-started/_static/image7.png) 
 
 The application also provides support to register and log in. The next step is to change how this application works and learn a little bit about ASP.NET MVC. Close the ASP.NET MVC application and let's change some code.
 
@@ -73,7 +71,7 @@ For a list of current tutorials, see [MVC recommended articles](../mvc-learning-
 
 Would you like to see the finished site running as a live web app? You can deploy a complete version of the app to your Azure account by simply clicking the following button.
 
-[![](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?repository=https://github.com/Rick-Anderson/MvcMovie5&amp;WT.mc_id=deploy_azure_aspnet)
+[![](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?repository=https://github.com/aspnet/Docs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie&amp;WT.mc_id=deploy_azure_aspnet)
 
 You need an Azure account to deploy this solution to Azure. If you do not already have an account, you have the following options:
 
