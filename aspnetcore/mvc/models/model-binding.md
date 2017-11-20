@@ -65,11 +65,11 @@ When a parameter is bound, model binding stops looking for values with that name
 
 * Nullable Types: Nullable types are set to `null`. In the above example, model binding sets `id` to `null` since it is of type `int?`.
 
-* Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. You should consider using model validation or nullable types rather than relying on default values.
+* Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. Consider using model validation or nullable types rather than relying on default values.
 
 If binding fails, MVC does not throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
 
-Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors property`. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
+Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors` property. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
 
 Additionally, there are some special data types that MVC must consider when performing model binding:
 
