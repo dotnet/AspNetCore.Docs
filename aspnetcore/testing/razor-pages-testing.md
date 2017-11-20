@@ -4,6 +4,7 @@ author: guardrex
 description: Learn how to create unit and integration tests for Razor Pages apps.
 ms.author: riande
 manager: wpickett
+ms.custom: mvc
 ms.date: 11/20/2017
 ms.topic: article
 ms.technology: aspnet
@@ -34,8 +35,8 @@ The sample project is composed of two apps:
 
 | App         | Project folder                        | Description |
 | ----------- | ------------------------------------- | ----------- |
-| Message app | *src/RazorPagesTestingSample*         | Allows a user to add, delete, delete all, and analyze messages. |
-| Test app    | *tests/RazorPagesTestingSample.Tests* | Used to test the message app.<ul><li>Unit tests<ul><li>Data access layer (DAL)</li><li>Index page model</li></ul></li><li>Integration tests: Index page</li></ul>. |
+| Message app | *src/RazorPagesTestingSample*         | Allows a user to add, delete one, delete all, and analyze messages. |
+| Test app    | *tests/RazorPagesTestingSample.Tests* | Used to test the message app.<ul><li>Unit tests<ul><li>Data access layer (DAL)</li><li>Index page model</li></ul></li><li>Integration tests: Index page</li></ul> |
 
 The tests can be run using the built-in testing features of an IDE, such as [Visual Studio](https://www.visualstudio.com/vs/). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestingSample.Tests* folder:
 
@@ -174,7 +175,7 @@ Unit test Act step (*tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTest
 
 `IndexPage` page model's `OnGetAsync` method (*src/RazorPagesTestingSample/Pages/Index.cshtml.cs*):
 
-[!code-csharp[Main](razor-pages-testing/sample/src/RazorPagesTestingSample/Pages/Index.cshtml.cs?name=snippet1&highlight=2-3)]
+[!code-csharp[Main](razor-pages-testing/sample/src/RazorPagesTestingSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
 The `GetMessagesAsync` method in the DAL doesn't return the result for this method call. The mocked version of the method returns the result.
 
