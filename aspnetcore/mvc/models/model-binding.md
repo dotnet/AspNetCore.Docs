@@ -67,7 +67,7 @@ When a parameter is bound, model binding stops looking for values with that name
 
 * Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. You should consider using model validation or nullable types rather than relying on default values.
 
-If binding fails, MVC does not throw an error. You can query for model state errors by checking the `ModelState.IsValid` property.
+If binding fails, MVC does not throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
 
 Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors property`. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
 
