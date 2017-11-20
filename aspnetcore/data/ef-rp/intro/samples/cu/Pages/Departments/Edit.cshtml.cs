@@ -24,13 +24,8 @@ namespace ContosoUniversity.Pages.Departments
         // Replace ViewData["InstructorID"] 
         public SelectList InstructorNameSL { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             Department = await _context.Departments
                 .Include(d => d.Administrator)  // eager loading
                 .AsNoTracking()                 // tracking not required
@@ -49,17 +44,9 @@ namespace ContosoUniversity.Pages.Departments
         }
 
 
-        // The rowVersion parameter comes from
-        // <input type="hidden" asp-for="Department.RowVersion" />
-        // In the Razor page. The rowVersion parameter is the value
-        // when this entity was fetched in OnGetAsync.
-        // Db rowVersion my differ if this entity has been updated
-        // after OnGetAsync is called. 
+
         #region snippet_rv
-        #region snippet_sig
-        public async Task<IActionResult> OnPostAsync(int? id,
-            [ModelBinder(Name = "Department.RowVersion")] byte[] rowVersion)
-        #endregion
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -76,17 +63,14 @@ namespace ContosoUniversity.Pages.Departments
                 return await HandleDeletedDepartment();
             }
 
-            // OriginalValue is the value in the DB when this entity
-            // was fetched. OriginalValue == rowVersion unless there is a 
-            // concurrency difference. rowVersion is the value when this record
-            // was fetched by OnGetAsync and can be stale at this point.
-            // Set OriginalValue = rowVersion to detect a stale RowVersion,
-            // indicating a concurrency problem. A second postback will make 
-            // them match, unless a new concurrency issues happens.
-            #region snippet_Org
+            // Update the RowVersion to the value when this entity was
+            // fetched. If the entity has been updated after it was
+            // fetched, RowVersion won't match the DB RowVersion and
+            // a DbUpdateConcurrencyException is thrown.
+            // A second postback will make them match, unless a new 
+            // concurrency issue happens.
             _context.Entry(departmentToUpdate)
-                .Property("RowVersion").OriginalValue = rowVersion;
-            #endregion
+                .Property("RowVersion").OriginalValue = Department.RowVersion;
             #endregion
 
             if (await TryUpdateModelAsync<Department>(
@@ -115,8 +99,8 @@ namespace ContosoUniversity.Pages.Departments
                     var dbValues = (Department)databaseEntry.ToObject();
                     await setDbErrorMessage(dbValues, clientValues, _context);
 
-                    // Save the current RowVersion so
-                    // it can be posted back to this method in a hidden field.
+                    // Save the current RowVersion so next postback
+                    // matches unless an new concurrency issue happens.
                     Department.RowVersion = (byte[])dbValues.RowVersion;
                     // Must clear the model error for the next postback.
                     ModelState.Remove("Department.RowVersion");

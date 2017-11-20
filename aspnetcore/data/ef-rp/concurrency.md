@@ -17,7 +17,7 @@ en-us/
 
 # Handling concurrency conflicts - EF Core with Razor Pages (8 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
@@ -191,7 +191,7 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 ### Update the Departments Index page
 
-The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. In this tutorial you display the last byte of the `RowVersion` to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last by of `RowVersion`.
+The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. In this tutorial you display the last byte of the `RowVersion` to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
 
 Update the Index page:
 
@@ -209,24 +209,9 @@ Update *pages\departments\edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-Examine the `OnPostAsync` signature:
+To detect a concurrency issue, the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value when the entity was fetched. EF generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown. 
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_sig)]
-
-The `rowVersion` parameter comes from `<input type="hidden" asp-for="Department.RowVersion" />` in the Razor page. The `rowVersion` parameter is the value when this entity was fetched in `OnGetAsync`. The DB `rowVersion` my differ if this entity has been updated
-after OnGetAsync is called. 
-
-Examine how the `rowVersion` parameter is used:
-
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv)]
-
-`OriginalValue` is the value in the DB when this entity was fetched. `OriginalValue == rowVersion` unless there is a concurrency difference. `rowVersion` is the value when this record was fetched by `OnGetAsync` and can be stale at this point. Set `OriginalValue = rowVersion` to detect a stale `RowVersion`. A stale `RowVersion` indicates a concurrency problem. A second postback will make them match, unless a new concurrency issues happens.
-
-To detect a concurrency issue, update [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) with the `rowVersion` value when the entity was fetched.
-
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_Org)]
-
-`SaveChangesAsync` creates a SQL UPDATE command. The SQL UPDATE command includes a WHERE clause for a row containing the `RowVersion` value. If no rows match the WHERE command,  EF throws a `DbUpdateConcurrencyException` exception.
+[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-)]
 
 The following code gets the client values (the values posted to this method) and the DB values:
 
@@ -236,7 +221,7 @@ The follwing code adds a custom error message for each column that has DB values
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
 
-The following highlighted code sets the `RowVersion` value to the new value retrieved from the DB. This new `RowVersion` value will be stored in the hidden field when the Edit page is redisplayed, and the next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
+The following highlighted code sets the `RowVersion` value to the new value retrieved from the DB. The next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
 
@@ -246,14 +231,13 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=14,17-21,41-42)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,15-16,36-38)]
 
 The preceding markup:
 
-* Adds a hidden field to post `RowVersion`.
+* Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Displays the last byte of `RowVersion` for debugging purposes.
 * Replaces `ViewData` with the strongly typed `InstructorNameSL`.
-
 
 ## Test concurrency conflicts with the Edit page
 
@@ -285,62 +269,55 @@ This browser window did not intend to change the Name field. Copy and paste the 
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 
-
 ## Update the Delete page
 
-For the Delete page, EF detects concurrency conflicts caused by someone else editing the department in a similar manner. When the HttpGet `Delete` method displays the confirmation view, the view includes the fetched `RowVersion` value in a hidden field. That value is then available to the HttpPost `Delete` method that's called when the user confirms the deletion. When EF creates the SQL DELETE command, it includes a WHERE clause with the fetched `RowVersion` value. If the command results in zero rows affected (meaning the row was changed after the Delete confirmation page was displayed), a concurrency exception is thrown, and the HttpGet ``Delete`` method is called with an error flag set to true in order to redisplay the confirmation page with an error message. It's also possible that zero rows were affected because the row was deleted by another user, so in that case no error message is displayed.
+Update the Delete page model with the following code:
 
-### Update the Delete methods in the Departments controller
+[!code-csharp[](intro/samples/cu/Pages/Departments/Delete.cshtml.cs)]
 
-In *DepartmentsController.cs*, replace the HttpGet `Delete` method with the following code:
+The Delete page detects concurrency conflicts when the entity has changed after it was fetched. `Department.RowVersion` is the row version when the entity was fetched.  When EF creates the SQL DELETE command, it includes a WHERE clause with `RowVersion`. If the SQL DELETE command results in zero rows affected:
 
-<!--
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
-
-The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends an error message to the view using `ViewData`.  
-
-Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with the following code:
-
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeletePost&highlight=1,3,5-8,11-18)]
-
-In the scaffolded code that you just replaced, this method accepted only a record ID:
+* The `RowVersion` in the SQL DELETE command doesn't match `RowVersion` in the DB.
+* A DbUpdateConcurrencyException exception is thrown.
+* `OnGetAsync` is called with the `concurrencyError`.
 
 
-```csharp
-public async Task<IActionResult> DeleteConfirmed(int id)
-```
+### Update the Delete page
 
-You've changed this parameter to a Department entity instance created by the model binder. This gives EF access to the RowVersion property value in addition to the record key.
+Update *Pages/Departments/Delete.cshtml* with the following code:
 
-```csharp
-public async Task<IActionResult> Delete(Department department)
-```
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml)]
 
-You have also changed the action method name from `DeleteConfirmed` to `Delete`. The scaffolded code used the name `DeleteConfirmed` to give the HttpPost method a unique signature. (The CLR requires overloaded methods to have different method parameters.) Now that the signatures are unique, you can stick with the MVC convention and use the same name for the HttpPost and HttpGet delete methods.
 
-If the department is already deleted, the `AnyAsync` method returns false and the app just goes back to the Index method.
+The preceeding markup makes the following changes:
 
-If a concurrency error is caught, the code redisplays the Delete confirmation page and provides a flag that indicates it should display a concurrency error message.
-
-### Update the Delete view
-
-In *Views/Departments/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
-
-[!code-cshtml[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
-
-This makes the following changes:
-
-* Adds an error message between the `h2` and `h3` headings.
-
+* Adds an error message.
 * Replaces FirstMidName with FullName in the **Administrator** field.
+* Changes `RowVersion` to display the last byte.
 
-* Removes the RowVersion field.
+### Test concurrency conflicts with the Delete page
 
-* Adds a hidden field for the `RowVersion` property.
+Create a test department.
+
+Open two browsers instances of Delete on the test department:
+
+* Run the app and select Departments. 
+* Right-click the **Delete** hyperlink for the test department and select **Open in new tab**.
+* Click the **Edit** hyperlink for the test department. 
+
+The two browser tabs display the same information.
+
+Change the budget in the first browser tab and click **Save**.
+
+The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it will be displayed on the second postback in the other tab.
+
+Delete the test department from the second tab.
 
 Run the app and go to the Departments Index page. Right-click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
 
 In the first window, change one of the values, and click **Save**:
+
+<!--
 
 ![Department Edit page after change before delete](concurrency/_static/edit-after-change-for-delete.png)
 

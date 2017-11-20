@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContosoUniversity.Pages.Departments.DeleteModel
 
 @{
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.Department.RowVersion)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Department.RowVersion)
+            @Html.DisplayFor(model => model.Department.RowVersion[7])
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Department.Administrator)

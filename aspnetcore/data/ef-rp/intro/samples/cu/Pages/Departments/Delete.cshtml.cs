@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Departments
 {
@@ -23,13 +19,8 @@ namespace ContosoUniversity.Pages.Departments
         public Department Department { get; set; }
         public string ConcurrencyErrorMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id, bool? concurrencyError)
+        public async Task<IActionResult> OnGetAsync(int id, bool? concurrencyError)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             Department = await _context.Departments
                 .Include(d => d.Administrator)
                 .AsNoTracking()
@@ -37,11 +28,7 @@ namespace ContosoUniversity.Pages.Departments
 
             if (Department == null)
             {
-                if (concurrencyError.GetValueOrDefault())
-                {
-                    return RedirectToPage("./Index");
-                }
-                return NotFound();
+                 return NotFound();
             }
 
             if (concurrencyError.GetValueOrDefault())
@@ -55,48 +42,26 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             try
             {
                 if (await _context.Departments.AnyAsync(
-                    m => m.DepartmentID == Department.DepartmentID))
+                    m => m.DepartmentID == id))
                 {
+                    // Department.rowVersion value is from when the entity
+                    // was fetched. If it doesn't match the DB, a
+                    // DbUpdateConcurrencyException exception is thrown.
                     _context.Departments.Remove(Department);
                     await _context.SaveChangesAsync();
                 }
                 return RedirectToPage("./Index");
             }
-            catch (DbUpdateConcurrencyException /* ex */)
+            catch (DbUpdateConcurrencyException)
             {
-                //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("./Index",
-                    new { concurrencyError = true, id = Department.DepartmentID });
+                return RedirectToPage("./Delete",
+                    new { concurrencyError = true, id = id });
             }
-
         }
-
-        //public async Task<IActionResult> OnPostAsync(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    Department = await _context.Departments.FindAsync(id);
-
-        //    if (Department != null)
-        //    {
-        //        _context.Departments.Remove(Department);
-        //        await _context.SaveChangesAsync();
-        //    }
-
-        //    return RedirectToPage("./Index");
-        //}
     }
 }
