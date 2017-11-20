@@ -231,11 +231,12 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,15-16,36-38)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding markup:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
+* Adds a hidden row version. `RowVersion` must be added so post back will bind the value.
 * Displays the last byte of `RowVersion` for debugging purposes.
 * Replaces `ViewData` with the strongly typed `InstructorNameSL`.
 
@@ -281,7 +282,6 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A DbUpdateConcurrencyException exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-
 ### Update the Delete page
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
@@ -311,39 +311,7 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it will be displayed on the second postback in the other tab.
 
-Delete the test department from the second tab.
-
-Run the app and go to the Departments Index page. Right-click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
-
-In the first window, change one of the values, and click **Save**:
-
-<!--
-
-![Department Edit page after change before delete](concurrency/_static/edit-after-change-for-delete.png)
-
-In the second tab, click **Delete**. You see the concurrency error message, and the Department values are refreshed with what's currently in the DB.
-
-![Department Delete confirmation page with concurrency error](concurrency/_static/delete-error.png)
-
-If you click **Delete** again, you're redirected to the Index page, which shows that the department has been deleted.
-
-## Update Details and Create views
-
-You can optionally clean up scaffolded code in the Details and Create views.
-
-Replace the code in *Views/Departments/Details.cshtml* to delete the RowVersion column and show the full name of the Administrator.
-
-[!code-cshtml[Main](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
-
-Replace the code in *Views/Departments/Create.cshtml* to add a Select option to the drop-down list.
-
-[!code-cshtml[Main](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
-
-## Summary
-
-This completes the introduction to handling concurrency conflicts. For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](https://docs.microsoft.com/ef/core/saving/concurrency). The next tutorial shows how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
-
--->
+Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-mvc/update-related-data)
