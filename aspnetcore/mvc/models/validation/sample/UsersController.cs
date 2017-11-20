@@ -21,10 +21,10 @@ namespace MVCMovie.Controllers
         {
             if (!_userRepository.VerifyEmail(email))
             {
-                return Json(data: $"Email {email} is already in use.");
+                return Json($"Email {email} is already in use.");
             }
 
-            return Json(data: true);
+            return Json(true);
         }
 
         [AcceptVerbs("Get", "Post")]
