@@ -144,7 +144,7 @@ To change the default repository application-wide, register a custom `IXmlReposi
    
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-   ```chsarp
+   ```csharp
    services.AddSingleton<IXmlRepository>(new MyCustomXmlRepository());
    ```
 ---
