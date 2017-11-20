@@ -136,8 +136,6 @@ There are two built-in concrete types which implement `IXmlRepository`: `FileSys
 
 To change the default repository application-wide, register a custom `IXmlRepository` instance:
 
----
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
    ```csharp
