@@ -30,7 +30,7 @@ Each configuration value maps to a string key. There's built-in binding support 
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Simple configuration
+## JSON configuration
 
 The following console app uses the JSON configuration provider:
 
