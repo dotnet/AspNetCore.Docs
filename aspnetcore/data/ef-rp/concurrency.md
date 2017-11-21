@@ -84,7 +84,7 @@ Optimistic concurrency includes the following options:
 
      The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, this happens automatically.
 
-* You can prevent John's change from being updated in the DB.Typically, the app would:
+* You can prevent John's change from being updated in the DB. Typically, the app would:
 		* Display an error message.
 		* Show the current state of the data.
 		* Allow the user to reapply the changes. 
