@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/crud
 ---
-# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 10)
+# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

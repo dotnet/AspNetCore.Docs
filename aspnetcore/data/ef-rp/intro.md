@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: data/ef-rp/intro
 ---
 
-# Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 10)
+# Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

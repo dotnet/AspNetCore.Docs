@@ -1,9 +1,9 @@
 ---
 title: Razor Pages with EF Core - Data Model - 5 of 10
-author: tdykstra
+author: rick-anderson
 description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
 keywords: ASP.NET Core,Entity Framework Core,data annotations
-ms.author: tdykstra
+ms.author: riande
 manager: wpickett
 ms.date: 10/25/2017
 ms.topic: get-started-article
@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: data/ef-rp/complex-data-model
 ---
 
-# Creating a complex data model - EF Core with Razor Pages tutorial (5 of 10)
+# Creating a complex data model - EF Core with Razor Pages tutorial (5 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

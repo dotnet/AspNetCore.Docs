@@ -1,9 +1,9 @@
 ---
 title: Razor Pages with EF Core - Concurrency - 8 of 10
-author: tdykstra
+author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 keywords: ASP.NET Core,Entity Framework Core,concurrency
-ms.author: tdykstra
+ms.author: riande
 manager: wpickett
 ms.date: 11/15/2017
 ms.topic: get-started-article
@@ -15,7 +15,7 @@ uid: data/ef-rp/concurrency
 en-us/
 ?view=netcore-2.0
 
-# Handling concurrency conflicts - EF Core with Razor Pages (8 of 10)
+# Handling concurrency conflicts - EF Core with Razor Pages (8 of 8)
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -33,17 +33,16 @@ A concurrency conflict occurs when:
 If concurrency detection is not enabled, when concurrent updates occur:
 
 * The last update wins. That is, the last update values are saved to the DB.
-* The firt of the current updates is lost. That's generally not what you want.
+* The first of the current updates are lost. That's generally not what you want.
 
 ### Pessimistic concurrency (locking)
 
-DB locking, also called pessimistic concurrency, is one way to implement concurrency.
-For example, before a row is read from the db, the app can request a lock for read-only or for update access. If a row is locked for update access:
+DB locking, also called pessimistic concurrency, is a concurrency approach. For example, before a row is read from the db, the app can request a lock for read-only or for update access. If a row is locked for update access:
 
-* Other users can not lock the row for read-only access. That is, other users can't read the data.
-* Other users can not lock the row for update access. 
+* Other users can't lock the row for read-only access. That is, other users can't read the data.
+* Other users can't lock the row for update access. 
 
-If a row for is locked for read-only access:
+If a row is locked for read-only access:
 
 * Other users can also read the data. That is, they can lock it for read-only access.
 * Other users cannot get an update lock to update the data.
@@ -54,7 +53,7 @@ Managing locks has disadvantages:
 * It requires significant DB management resources.
 * It can cause performance problems as the number of users of an app increases. 
 
-Not all DB management systems support pessimistic concurrency. Entity Framework Core provides no built-in support for pessimistic locking. This tutorial doesn't show you how to implement pessimistic concurrency.
+Not all DB management systems support pessimistic concurrency. EF Core provides no built-in support for pessimistic locking. This tutorial doesn't show how to implement pessimistic concurrency.
 
 ### Optimistic concurrency
 
@@ -72,7 +71,7 @@ Jane clicks **Save** first and sees her change when the browser displays the Ind
 
 John clicks **Save** on an Edit page that still shows a budget of $350,000.00. What happens next is determined by how you handle concurrency conflicts.
 
-Some of the options include the following:
+Optimistic concurrency includes the following options:
 
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
@@ -83,49 +82,26 @@ Some of the options include the following:
 
 * You can let John's change overwrite Jane's change.
 
-     The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, this will happen automatically.
+     The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, this happens automatically.
 
-* You can prevent John's change from being updated in the DB.
-
-	Typically, the app would:
-
+* You can prevent John's change from being updated in the DB.Typically, the app would:
 		* Display an error message.
 		* Show the current state of the data.
 		* Allow the user to reapply the changes. 
 		
-	This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted to what's happening.
+ This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted to what's happening.
 
 ### Detecting concurrency conflicts
 
-Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. Some options for enabling conflict detection include the following:
+Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. 
 
-* Include a [rowversion](https://docs.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql) tracking column in the DB table. `rowversion` is used to determine when a row has been changed. Include the `rowversion` tracking column in the `Where` clause of `SQL Update` and `Delete`. This tutorial uses the `rowversion` tracking column approach.
+To detect concurrency conflicts, add a [rowversion](https://docs.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql) tracking column in the DB table. `rowversion` is used to determine that a enity has not been changed since it was fetched from the DB. The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
 
-	The `rowversion` generates a sequential number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of  `rowversion`. If the row being updated has been changed:
+ * `rowversion` doesn't match the fetched value.
+ * The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
+ * A `DbUpdateConcurrencyException` is thrown.
 
-	* `rowversion` won't match the fetched value.
-	* The `Update` or `Delete` command don't find a row because the `Where` clause includes the fetched `rowversion`.
-
-	In EF, when no rows have been updated by the `Update` or `Delete` command, a concurrency exception is thrown.
-
-* Configure EF to include the fetched values of every column in the table in the `Where` clause of `Update` and `Delete` commands.
-
- If anything in the row has changed since the row was first read:
-		
-	* The `Where` clause won't return a row to update.
-	* EF interprets zero rows changed as a concurrency conflict. 
-		
-	For DB tables that have many columns, this approach:
-
-	* Can result in very large `Where` clauses.
-	* Can require that you maintain large amounts of state. 
-		
-	Maintaining large amounts of state can affect app performance. Therefore this approach is generally not recommended. This approach isn't used in this tutorial.
-   
-	To implement this concurrency approach:
-
-	 * Decorate all non-primary-key properties in the entity with [ConcurrencyCheck](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0). 
-	 * Adding `ConcurrencyCheck` enables EF to include all columns in the SQL `Where` clause of `Update` and `Delete` statements.	 
+In EF, when no rows have been updated by an `Update` or `Delete` command, a concurrency exception is thrown.
 
 ## Add a tracking property to the Department entity
 
@@ -133,7 +109,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
-The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column will be included in the `Where` clause of `Update` and Delete commands sent to the DB. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
+The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
 
 The fluent API can also specify the tracking property:
 
@@ -191,7 +167,7 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 ### Update the Departments Index page
 
-The scaffolding engine created a RowVersion column for the Index page, but that field shouldn't be displayed. In this tutorial you display the last byte of the `RowVersion` to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
+The scaffolding engine created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
 
 Update the Index page:
 
@@ -209,9 +185,11 @@ Update *pages\departments\edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value when the entity was fetched. EF generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown. 
+To detect a concurrency issue, the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity was it was fetched. EF generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown. 
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-)]
+
+In the preceding code, `Department.RowVersion` is the value when the entity was fetched. `OriginalValue` is the value in the DB when `FirstOrDefaultAsync` was called in this method.
 
 The following code gets the client values (the values posted to this method) and the DB values:
 
@@ -221,7 +199,7 @@ The follwing code adds a custom error message for each column that has DB values
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
 
-The following highlighted code sets the `RowVersion` value to the new value retrieved from the DB. The next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
+The following highlighted code sets the `RowVersion` value to the new value retrieved from the DB. The next time the user clicks **Save**, only concurrency errors that happen since the last display of the Edit page will be caught.
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
 
@@ -236,9 +214,9 @@ Update *Pages/Departments/Edit.cshtml* with the following markup:
 The preceding markup:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
-* Adds a hidden row version. `RowVersion` must be added so post back will bind the value.
+* Adds a hidden row version. `RowVersion` must be added so post back binds the value.
 * Displays the last byte of `RowVersion` for debugging purposes.
-* Replaces `ViewData` with the strongly typed `InstructorNameSL`.
+* Replaces `ViewData` with the strongly-typed `InstructorNameSL`.
 
 ## Test concurrency conflicts with the Edit page
 
@@ -246,7 +224,7 @@ Open two browsers instances of Edit on the English department:
 
 * Run the app and select Departments. 
 * Right-click the **Edit** hyperlink for the English department and select **Open in new tab**.
-* Click the **Edit** hyperlink for the English department. 
+* In the first tab, click the **Edit** hyperlink for the English department. 
 
 The two browser tabs display the same information.
 
@@ -254,7 +232,7 @@ Change the name in the first browser tab and click **Save**.
 
 ![Department Edit page 1 after change](concurrency/_static/edit-after-change-1.png)
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it will be displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it is displayed on the second postback in the other tab.
 
 Change a different field in the second browser tab.
 
@@ -264,7 +242,7 @@ Click **Save**. You see error messages for all fields that don't match the DB va
 
 ![Department Edit page error message](concurrency/_static/edit-error.png)
 
-This browser window did not intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client side validation removes the error message.
+This browser window did not intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
 
 ![Department Edit page error message](concurrency/_static/cv.png)
 
@@ -286,14 +264,16 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,36,51)]
 
 
-The preceeding markup makes the following changes:
+The preceding markup makes the following changes:
 
+* Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Adds an error message.
 * Replaces FirstMidName with FullName in the **Administrator** field.
 * Changes `RowVersion` to display the last byte.
+* Adds a hidden row version. `RowVersion` must be added so post back binds the value.
 
 ### Test concurrency conflicts with the Delete page
 
@@ -309,9 +289,11 @@ The two browser tabs display the same information.
 
 Change the budget in the first browser tab and click **Save**.
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it will be displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it is displayed on the second postback in the other tab.
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
+
+See [Inheritance](xref:data/ef-mvc/inheritance) for instruction on how to inheritance in the data model. 
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-mvc/update-related-data)
