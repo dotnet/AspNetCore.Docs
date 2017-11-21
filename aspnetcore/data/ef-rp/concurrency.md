@@ -12,9 +12,6 @@ ms.prod: asp.net-core
 uid: data/ef-rp/concurrency
 ---
 
-en-us/
-?view=netcore-2.0
-
 # Handling concurrency conflicts - EF Core with Razor Pages (8 of 8)
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
@@ -93,9 +90,9 @@ Optimistic concurrency includes the following options:
 
 ### Detecting concurrency conflicts
 
-Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. 
+Concurrency conflicts can be handled by catching [DbUpdateConcurrencyException](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0). The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`. 
 
-To detect concurrency conflicts, add a [rowversion](https://docs.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql) tracking column in the DB table. `rowversion` is used to determine that a enity has not been changed since it was fetched from the DB. The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
+To detect concurrency conflicts, add a [rowversion](https://docs.microsoft.com/sql/t-sql/data-types/rowversion-transact-sql) tracking column in the DB table. `rowversion` is used to determine that a enity has not been changed since it was fetched from the DB. The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
 
  * `rowversion` doesn't match the fetched value.
  * The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
@@ -109,7 +106,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
-The [Timestamp](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=netcore-2.0) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
+The [Timestamp](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
 
 The fluent API can also specify the tracking property:
 
@@ -185,7 +182,7 @@ Update *pages\departments\edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity was it was fetched. EF generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown. 
+To detect a concurrency issue, the [OriginalValue](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity was it was fetched. EF generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown. 
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-)]
 

@@ -175,7 +175,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* base class:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](https://docs.microsoft.com/dotnet/api/system.collections.generic.hashset-1?view=netcore-2.0) is used to create efficient lookups.
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](https://docs.microsoft.com/dotnet/api/system.collections.generic.hashset-1) is used to create efficient lookups.
 
 ### Instructors Edit page model
 
