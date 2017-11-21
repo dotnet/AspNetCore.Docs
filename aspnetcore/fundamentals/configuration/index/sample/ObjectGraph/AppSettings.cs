@@ -1,4 +1,4 @@
-﻿public class AppOptions
+﻿public class AppSettings
 {
     public Window Window { get; set; }
     public Connection Connection { get; set; }

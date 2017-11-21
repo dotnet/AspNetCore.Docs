@@ -25,8 +25,10 @@ There are configuration providers for:
 * An encrypted user store
 * [Azure Key Vault](xref:security/key-vault-configuration)
 * Custom providers (installed or created)
-snapshot option1
+
 Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
+
+The options pattern uses options classes to represent groups of related settings. For more information on using the options pattern, see the [Options](xref:fundamentals/configuration/options) topic.
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -54,7 +56,7 @@ Console.Write($"{Configuration["wizards:0:Name"]}, ");
 
 Name-value pairs written to the built-in `Configuration` providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
 
-The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. The *options pattern* is [described later in this article](xref:fundamentals/configuration/options).
+The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. For more information, see the [Options](xref:fundamentals/configuration/options) topic.
 
 It's typical to have different configuration settings for different environments, for example, development, testing, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
@@ -76,34 +78,13 @@ Configuration considerations:
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
 * If a colon (`:`) can't be used in environment variables on your system, replace the colon (`:`) with a double-underscore (`__`).
 
-## Options pattern
-
-The options pattern uses options classes to represent groups of related settings. When configuration settings are isolated by feature into separate options classes, the app adheres to two important software engineering principles:
-
-* The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Features (classes) that depend on configuration settings depend only on the configuration settings that they use.
-* [Separation of Concerns](http://deviq.com/separation-of-concerns/): Settings for different parts of the app aren't dependent or coupled to one another.
-
-For more information on using the options pattern, see the [Options](xref:fundamentals/configuration/options) topic.
-
 ## In-memory provider and binding to a POCO class
 
 The following sample shows how to use the in-memory provider and bind to a class:
 
 [!code-csharp[Main](index/sample/InMemory/Program.cs)]
 
-Configuration values are returned as strings, but binding enables the construction of objects. Binding allows you to retrieve POCO objects or even entire object graphs. The following sample shows how to bind to `MyWindow` and use the options pattern with a ASP.NET Core MVC app:
-
-[!code-csharp[Main](index/sample/WebConfigBind/MyWindow.cs)]
-
-[!code-json[Main](index/sample/WebConfigBind/appsettings.json)]
-
-Bind the custom class in `ConfigureServices` when building the host:
-
-[!code-csharp[Main](index/sample/WebConfigBind/Program.cs?name=snippet1&highlight=3-4)]
-
-Display the settings from the `HomeController`:
-
-[!code-csharp[Main](index/sample/WebConfigBind/Controllers/HomeController.cs)]
+Configuration values are returned as strings, but binding enables the construction of objects. Binding allows you to retrieve POCO objects or even entire object graphs.
 
 ### GetValue
 
@@ -115,18 +96,18 @@ The ConfigurationBinder's `GetValue<T>` method allows you to specify a default v
 
 ## Bind to an object graph
 
-You can recursively bind to each object in a class. Consider the following `AppOptions` class:
+You can recursively bind to each object in a class. Consider the following `AppSettings` class:
 
-[!code-csharp[Main](index/sample/ObjectGraph/AppOptions.cs)]
+[!code-csharp[Main](index/sample/ObjectGraph/AppSettings.cs)]
 
-The following sample binds to the `AppOptions` class:
+The following sample binds to the `AppSettings` class:
 
 [!code-csharp[Main](index/sample/ObjectGraph/Program.cs?highlight=15-16)]
 
 **ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convenient than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
 
 ```csharp
-var appConfig = config.GetSection("App").Get<AppOptions>();
+var appConfig = config.GetSection("App").Get<AppSettings>();
 ```
 
 Using the following *appsettings.json* file:
@@ -152,13 +133,13 @@ public void CanBindObjectTree()
     builder.AddInMemoryCollection(dict);
     var config = builder.Build();
 
-    var options = new AppOptions();
-    config.GetSection("App").Bind(options);
+    var settings = new AppSettings();
+    config.GetSection("App").Bind(settings);
 
-    Assert.Equal("Rick", options.Profile.Machine);
-    Assert.Equal(11, options.Window.Height);
-    Assert.Equal(11, options.Window.Width);
-    Assert.Equal("connectionstring", options.Connection.Value);
+    Assert.Equal("Rick", settings.Profile.Machine);
+    Assert.Equal(11, settings.Window.Height);
+    Assert.Equal(11, settings.Window.Width);
+    Assert.Equal("connectionstring", settings.Connection.Value);
 }
 ```
 
