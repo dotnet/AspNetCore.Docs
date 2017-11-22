@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContosoUniversity.Pages.Departments.DeleteModel
 
 @{
@@ -6,6 +6,8 @@
 }
 
 <h2>Delete</h2>
+
+<p class="text-danger">@Model.ConcurrencyErrorMessage</p>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -34,19 +36,22 @@
             @Html.DisplayNameFor(model => model.Department.RowVersion)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Department.RowVersion)
+            @Html.DisplayFor(model => model.Department.RowVersion[7])
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Department.Administrator)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Department.Administrator.FirstMidName)
+            @Html.DisplayFor(model => model.Department.Administrator.FullName)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Department.DepartmentID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="hidden" asp-for="Department.RowVersion" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to List</a>
+        </div>
     </form>
 </div>

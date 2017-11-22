@@ -43,8 +43,6 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
-
-
         #region snippet_rv
         public async Task<IActionResult> OnPostAsync(int id)
         {
@@ -158,7 +156,7 @@ namespace ContosoUniversity.Pages.Departments
             if (dbValues.InstructorID != clientValues.InstructorID)
             {
                 Instructor dbInstructor = await _context.Instructors
-                   .FirstOrDefaultAsync(i => i.ID == dbValues.InstructorID);
+                   .FindAsync(dbValues.InstructorID);
                 ModelState.AddModelError("Department.InstructorID",
                     $"Current value: {dbInstructor?.FullName}");
             }
