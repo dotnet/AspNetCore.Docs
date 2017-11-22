@@ -27,7 +27,11 @@ Note: The ASP.NET Core 2.0 version is slightly different. It doesn't contain `@i
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
 
-Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**. Tap the **Contact** link and notice that it also displays **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
+Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**: 
+
+![About tab](../../tutorials/first-mvc-app/adding-view/_static/hell3.png)
+
+Tap the **Contact** link and notice that it also displays **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
 
 Examine the *Views/_ViewStart.cshtml* file:
 
