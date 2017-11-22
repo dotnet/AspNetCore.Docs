@@ -25,7 +25,7 @@ In the preceding example, an "AtLeast21" policy is created. It has a single requ
 
 Policies are applied by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseRequirementsController.cs?name=snippet_AlcoholPurchaseRequirementsControllerClass&highlight=4)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## Requirements
 
@@ -86,7 +86,7 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/BadgeEntryHandler.cs?name=snippet_BadgeEntryHandlerClass)]
 
-*HasTemporaryStickerHandler.cs*
+*TemporaryStickerHandler.cs*
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs?name=snippet_TemporaryStickerHandlerClass)]
 
