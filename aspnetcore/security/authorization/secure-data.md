@@ -317,4 +317,4 @@ Test that the app seeded the database. The seed method does not run if there are
 
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
 * [Authorization in ASP.NET Core : Simple, role, claims-based and custom](index.md)
-* [Custom Policy-Based Authorization](policies.md)
+* [Custom policy-based authorization](policies.md)

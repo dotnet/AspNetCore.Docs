@@ -22,7 +22,7 @@ uid: security/authorization/index
 
 * [Claims-Based Authorization](claims.md)
 
-* [Custom Policy-Based Authorization](policies.md)
+* [Custom policy-based authorization](policies.md)
 
 * [Dependency Injection in requirement handlers](dependencyinjection.md)
 

@@ -57,7 +57,7 @@ There are more vulnerabilities that you should be aware of. For more information
     *   [Simple Authorization](authorization/simple.md)
     *   [Role based Authorization](authorization/roles.md)
     *   [Claims-Based Authorization](authorization/claims.md)
-    *   [Custom Policy-Based Authorization](authorization/policies.md)
+    *   [Custom policy-based authorization](authorization/policies.md)
     *   [Dependency Injection in requirement handlers](authorization/dependencyinjection.md)
     *   [Resource-based authorization](authorization/resourcebased.md)
     *   [View-based authorization](authorization/views.md)
