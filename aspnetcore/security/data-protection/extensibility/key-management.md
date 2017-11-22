@@ -5,7 +5,7 @@ description: This document outlines ASP.NET Core data protection key management 
 keywords: ASP.NET Core,data protection,key management
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/22/2017
 ms.topic: article
 ms.assetid: 3606b251-8324-4485-8d52-582a2cd5cffb
 ms.technology: aspnet
@@ -147,6 +147,7 @@ To change the default repository application-wide, register a custom `IXmlReposi
    ```csharp
    services.AddSingleton<IXmlRepository>(new MyCustomXmlRepository());
    ```
+
 ---
 
 <a name="data-protection-extensibility-key-management-ixmlencryptor"></a>
@@ -165,7 +166,23 @@ There are four built-in concrete types which implement `IXmlEncryptor`:
 * `DpapiXmlEncryptor`
 * `NullXmlEncryptor`
 
-See the [key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more information. To change the default key-encryption-at-rest mechanism application-wide, register a custom singleton `IXmlEncryptor` in the service provider.
+See the [key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more information.
+
+To change the default key-encryption-at-rest mechanism application-wide, register a custom `IXmlEncryptor` instance:
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+   ```csharp
+   services.Configure<KeyManagementOptions>(options => options.XmlEncryptor = new MyCustomXmlEncryptor());
+   ```
+   
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+   ```csharp
+   services.AddSingleton<IXmlEncryptor>(new MyCustomXmlEncryptor());
+   ```
+
+---
 
 ## IXmlDecryptor
 
