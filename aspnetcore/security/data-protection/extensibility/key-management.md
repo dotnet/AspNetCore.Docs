@@ -168,7 +168,7 @@ There are four built-in concrete types which implement `IXmlEncryptor`:
 
 See the [key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more information.
 
-To change the default key-encryption-at-rest mechanism application-wide, register a custom singleton `IXmlEncryptor` instance:
+To change the default key-encryption-at-rest mechanism application-wide, register a custom `IXmlEncryptor` instance:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
