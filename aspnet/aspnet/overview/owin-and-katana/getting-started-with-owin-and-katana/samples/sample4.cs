@@ -6,7 +6,7 @@ public void Configuration(IAppBuilder app)
     app.Run(context =>
     {
         // New code: Throw an exception for this URI path.
-        if (context.Request.Path == "/fail")
+        if (context.Request.Path.Value == "/fail")
         {
             throw new Exception("Random exception");
         }
