@@ -103,7 +103,7 @@ The `movie` variable above represents a `Movie` object that contains the data fr
 
 Alternatively, this same code could be placed in the model by implementing the `Validate` method on the `IValidatableObject` interface. While custom validation attributes work well for validating individual properties, implementing `IValidatableObject` can be used to implement class-level validation as seen here.
 
-[!code-csharp[Main](validation/sample/MovieIValidatable.cs?range=33-41)]
+[!code-csharp[Main](validation/sample/MovieIValidatable.cs?range=32-40)]
 
 ## Client side validation
 
