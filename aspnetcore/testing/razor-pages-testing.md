@@ -5,7 +5,7 @@ description: Learn how to create unit and integration tests for Razor Pages apps
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 11/20/2017
+ms.date: 11/27/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -36,7 +36,7 @@ The sample project is composed of two apps:
 | App         | Project folder                        | Description |
 | ----------- | ------------------------------------- | ----------- |
 | Message app | *src/RazorPagesTestingSample*         | Allows a user to add, delete one, delete all, and analyze messages. |
-| Test app    | *tests/RazorPagesTestingSample.Tests* | Used to test the message app.<ul><li>Unit tests<ul><li>Data access layer (DAL)</li><li>Index page model</li></ul></li><li>Integration tests: Index page</li></ul> |
+| Test app    | *tests/RazorPagesTestingSample.Tests* | Used to test the message app.<ul><li>Unit tests: Data access layer (DAL), Index page model</li><li>Integration tests: Index page</li></ul> |
 
 The tests can be run using the built-in testing features of an IDE, such as [Visual Studio](https://www.visualstudio.com/vs/). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestingSample.Tests* folder:
 
@@ -48,13 +48,13 @@ dotnet test
 
 The message app is a simple Razor Pages message system with the following characteristics:
 
-* The Index page of the app (*Pages/Index.cshtml* and *Pages/Index.cshtml.cs*) provides a UI and page model methods to control the addition, deletion, and analysis of messages.
+* The Index page of the app (*Pages/Index.cshtml* and *Pages/Index.cshtml.cs*) provides a UI and page model methods to control the addition, deletion, and analysis of messages (average words per message).
 * A message is described by the `Message` class (*Data/Message.cs*) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
 * The app contains a data access layer (DAL) in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
 * In the Development environment, the message store is initialized with three messages. These *seeded messages* are also used in testing.
 
-&#8224;The EF topic, [Testing with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for testing with MSTest. This topic uses the [xUnit](https://xunit.github.io/) testing framework. The concepts are similar but not identical.
+&#8224;The EF topic, [Testing with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for testing with MSTest. This topic uses the [xUnit](https://xunit.github.io/) testing framework. Testing concepts and test implementations across different testing frameworks are similar but not identical.
 
 Although the app doesn't use the [repository pattern](http://martinfowler.com/eaaCatalog/repository.html) and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design), [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application), and [Testing controller logic](/aspnet/core/mvc/controllers/testing) (the sample implements the repository pattern).
 
@@ -81,7 +81,7 @@ The message app has a DAL with four methods contained in the `AppDbContext` clas
 | `DeleteAllMessagesAsync` | Deletes all `Message` entries from the database.                           |
 | `DeleteMessageAsync`     | Deletes a single `Message` from the database by `Id`.                      |
 
-Unit tests of the DAL require [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) when creating a new `AppDbContext` for each test. A [DbContextOptionsBuilder](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder) can be used to create the `DbContextOptions` for each test:
+Unit tests of the DAL require [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) when creating a new `AppDbContext` for each test. One approach to creating the `DbContextOptions` for each test is to use a [DbContextOptionsBuilder](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder):
 
 ```csharp
 var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
@@ -179,13 +179,13 @@ Unit test Act step (*tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTest
 
 The `GetMessagesAsync` method in the DAL doesn't return the result for this method call. The mocked version of the method returns the result.
 
-In the `Assert` step, the actual messages (`actualMessages`) are assigned from the `Messages` property of the page model. A type check is also preformed when the messages are assigned. The expected and actual messages are compared with the `MessageComparer`. The test asserts that the two `List<Message>` instances contain the same messages.
+In the `Assert` step, the actual messages (`actualMessages`) are assigned from the `Messages` property of the page model. A type check is also performed when the messages are assigned. The expected and actual messages are compared with the `MessageComparer`. The test asserts that the two `List<Message>` instances contain the same messages.
 
 [!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTests.cs?name=snippet3)]
 
 Other tests in this group create page model objects that include the `DefaultHttpContext`, the `ModelStateDictionary`, an `ActionContext` to establish the `PageContext`, a `ViewDataDictionary`, and a `PageContext`. These are useful in conducting tests. For example, the message app establishes a `ModelState` error with `AddModelError` to check that a valid `PageResult` is returned when `OnPostAddMessageAsync` is executed:
 
-[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTests.cs?name=snippet4&highlight=11,23,26,29)]
+[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTests.cs?name=snippet4&highlight=11,26,29,32)]
 
 ## Integration testing the app
 
@@ -197,7 +197,7 @@ An integration testing example from the sample checks the result of requesting t
 
 There's no Arrange step. The `GetAsync` method is called on the `HttpClient` to send a GET request to the endpoint. The test asserts that the result is a 200-OK status code.
 
-In a more complicated example, any POST request to the message app must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
+Any POST request to the message app must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
 
 1. Make a request for the page.
 1. Parse the antiforgery cookie and request validation token from the response.
@@ -231,9 +231,7 @@ The `Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong` test `Message
 * [Integration testing](xref:testing/integration-testing)
 * [Testing controllers](xref:mvc/controllers/testing)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
-* xUnit resources
-  * [xUnit.net](https://xunit.github.io/)
-  * [Getting started with xUnit.net (.NET Core/ASP.NET Core)](https://xunit.github.io/docs/getting-started-dotnet-core)
-* Moq resources
-  * [Moq](https://github.com/moq/moq4)
-  * [Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
+* [xUnit.net](https://xunit.github.io/)
+* [Getting started with xUnit.net (.NET Core/ASP.NET Core)](https://xunit.github.io/docs/getting-started-dotnet-core)
+* [Moq](https://github.com/moq/moq4)
+* [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
