@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -13,25 +12,6 @@ namespace RazorPagesTestingSample.Tests
     public static class Utilities
     {
         #region snippet1
-        public class MessageComparer : IEqualityComparer<Message>
-        {
-            public bool Equals(Message firstMessage, Message secondMessage)
-            {
-                return firstMessage.Id == secondMessage.Id && 
-                    string.Equals(firstMessage.Text, secondMessage.Text, StringComparison.Ordinal);
-            }
-
-            public int GetHashCode(Message message)
-            {
-                if (Object.ReferenceEquals(message, null)) return 0;
-                int hashMessageId = message.Id.GetHashCode();
-                int hashMessageText = message.Text == null ? 0 : message.Text.GetHashCode();
-                return hashMessageId ^ hashMessageText;
-            }
-        }
-        #endregion
-
-        #region snippet2
         public static DbContextOptions<AppDbContext> TestingDbContextOptions()
         {
             // Create a new service provider to create a new in-memory database.
@@ -50,7 +30,7 @@ namespace RazorPagesTestingSample.Tests
         }
         #endregion
 
-        #region snippet3
+        #region snippet2
         public static async Task<FormUrlEncodedContent> GetRequestContentAsync(
             HttpClient _client, string path, IDictionary<string, string> data)
         {
@@ -64,6 +44,11 @@ namespace RazorPagesTestingSample.Tests
             // Obtain the request verification token from the response.
             // Any <form> element in the response contains a token, and
             // they're all the same within a single response.
+            //
+            // This method uses Regex to parse the element and its value
+            // from the response markup. A better approach in a production
+            // app would be to use an HTML parser (for example, 
+            // HtmlAgilityPack: http://html-agility-pack.net/).
             var responseMarkup = await getResponse.Content.ReadAsStringAsync();
             var regExp_RequestVerificationToken = new Regex(
                 "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"(.*?)\" \\/>", 

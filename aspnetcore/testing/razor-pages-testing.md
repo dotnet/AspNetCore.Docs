@@ -66,7 +66,7 @@ The test app is a console app inside the *tests/RazorPagesTestingSample.Tests* f
 | ------------------ | ----------- |
 | *IntegrationTests* | <ul><li>*IndexPageTests.cs* contains the integration tests for the Index page.</li><li>*TestFixture.cs* creates the test host to test the message app.</li></ul> |
 | *UnitTests*        | <ul><li>*DataAccessLayerTests.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
-| *Utilities*        | *Utilities.cs* contains the:<ul><li>`MessageComparer` class used for performing message comparisons to determine if the expected messages are equal to the actual messages in a unit test assertion.</li><li>`TestingDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test.</li><li>`GetRequestContentAsync` method used to prepare the `HttpClient` and content for requests that are sent to the message app during integration testing.</li></ul>
+| *Utilities*        | *Utilities.cs* contains the:<ul><li>`TestingDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test.</li><li>`GetRequestContentAsync` method used to prepare the `HttpClient` and content for requests that are sent to the message app during integration testing.</li></ul>
 
 The test framework is [xUnit](https://xunit.github.io/). The object mocking framework is [Moq](https://github.com/moq/moq4). Integration tests are conducted using the [ASP.NET Core Test Host](xref:testing/integration-testing#the-test-host).
 
@@ -95,7 +95,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 
 The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestingDbContextOptions` (*tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs*):
 
-[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet2)]
+[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
 Using the `DbContextOptions` in the DAL unit tests allows each test to run atomically with a a fresh database instance:
 
@@ -135,9 +135,7 @@ Finally, the method obtains the `Messages` from the context and compares it to t
 In order to compare that the two `List<Message>` are the same:
 
 * The messages are ordered by `Id`.
-* The app has a `MessageComparer` class in its `Utilities` class (*tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs*) that compares message pairs by `Id` and `Text`.
-
-[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet1)]
+* Message pairs are compared on the `Text` property.
 
 A similar test method, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNotFound` checks the result of attempting to delete a message that doesn't exist. In this case, the expected messages in the database should be equal to the actual messages after the `DeleteMessageAsync` method is executed. There should be no change to the database's content:
 
@@ -179,7 +177,7 @@ Unit test Act step (*tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTest
 
 The `GetMessagesAsync` method in the DAL doesn't return the result for this method call. The mocked version of the method returns the result.
 
-In the `Assert` step, the actual messages (`actualMessages`) are assigned from the `Messages` property of the page model. A type check is also performed when the messages are assigned. The expected and actual messages are compared with the `MessageComparer`. The test asserts that the two `List<Message>` instances contain the same messages.
+In the `Assert` step, the actual messages (`actualMessages`) are assigned from the `Messages` property of the page model. A type check is also performed when the messages are assigned. The expected and actual messages are compared by their `Text` properties. The test asserts that the two `List<Message>` instances contain the same messages.
 
 [!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/UnitTests/IndexPageTests.cs?name=snippet3)]
 
@@ -206,7 +204,7 @@ Any POST request to the message app must satisfy the antiforgery check that's au
 The `Post_AddMessageHandler_ReturnsRedirectToRoot` test method:
 
 * Prepares a message and the `HttpClient`.
-* POSTS to the app.
+* Makes a POST request to the app.
 * Checks the response is a redirect back to the Index page.
 
 `Post_AddMessageHandler_ReturnsRedirectToRoot ` method (*tests/RazorPagesTestingSample.Tests/IntegrationTests/IndexPageTests.cs*):
@@ -215,7 +213,7 @@ The `Post_AddMessageHandler_ReturnsRedirectToRoot` test method:
 
 The `GetRequestContentAsync` utility method manages preparing the client with the antiforgery cookie and request verification token. Note how the method receives an `IDictionary` that permits the calling test method to pass in data for the request to encode along with the request verification token (*tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs*):
 
-[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet3&highlight=1-2,8-9,24)]
+[!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet2&highlight=1-2,8-9,29)]
 
 Integration tests can also pass bad data to the app to test the app's response behavior. The message app limits message length to 200 characters (*src/RazorPagesTestingSample/Data/Message.cs*):
 

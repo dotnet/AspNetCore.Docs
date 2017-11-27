@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,6 @@ using Moq;
 using Xunit;
 using RazorPagesTestingSample.Pages;
 using RazorPagesTestingSample.Data;
-using System.Linq;
 
 namespace RazorPagesTestingSample.Tests.UnitTests
 {
@@ -42,9 +42,8 @@ namespace RazorPagesTestingSample.Tests.UnitTests
             // Assert
             var actualMessages = Assert.IsAssignableFrom<List<Message>>(pageModel.Messages);
             Assert.Equal(
-                expectedMessages.OrderBy(x => x.Id), 
-                actualMessages.OrderBy(x => x.Id), 
-                new Utilities.MessageComparer());
+                expectedMessages.OrderBy(m => m.Id).Select(m => m.Text), 
+                actualMessages.OrderBy(m => m.Id).Select(m => m.Text));
             #endregion
         }
 

@@ -25,9 +25,8 @@ namespace RazorPagesTestingSample.Tests.UnitTests
                 // Assert
                 var actualMessages = Assert.IsAssignableFrom<List<Message>>(result);
                 Assert.Equal(
-                    expectedMessages.OrderBy(x => x.Id), 
-                    actualMessages.OrderBy(x => x.Id), 
-                    new Utilities.MessageComparer());
+                    expectedMessages.OrderBy(m => m.Id).Select(m => m.Text), 
+                    actualMessages.OrderBy(m => m.Id).Select(m => m.Text));
             }
         }
 
@@ -91,9 +90,8 @@ namespace RazorPagesTestingSample.Tests.UnitTests
                 // Assert
                 var actualMessages = await db.Messages.AsNoTracking().ToListAsync();
                 Assert.Equal(
-                    expectedMessages.OrderBy(x => x.Id), 
-                    actualMessages.OrderBy(x => x.Id), 
-                    new Utilities.MessageComparer());
+                    expectedMessages.OrderBy(m => m.Id).Select(m => m.Text), 
+                    actualMessages.OrderBy(m => m.Id).Select(m => m.Text));
                 #endregion
             }
         }
@@ -116,9 +114,8 @@ namespace RazorPagesTestingSample.Tests.UnitTests
                 // Assert
                 var actualMessages = await db.Messages.AsNoTracking().ToListAsync();
                 Assert.Equal(
-                    expectedMessages.OrderBy(x => x.Id), 
-                    actualMessages.OrderBy(x => x.Id), 
-                    new Utilities.MessageComparer());
+                    expectedMessages.OrderBy(m => m.Id).Select(m => m.Text), 
+                    actualMessages.OrderBy(m => m.Id).Select(m => m.Text));
             }
         }
         #endregion
