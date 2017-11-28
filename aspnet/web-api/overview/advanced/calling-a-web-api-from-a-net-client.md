@@ -89,7 +89,7 @@ The following code initializes the **HttpClient** instance:
 
 The preceding code:
 
-* Sets the base URI for HTTP requests. Change the port number to the port used in the server application. The app won't work unless port for the server app is used.
+* Sets the base URI for HTTP requests. Change the port number to the port used in the server app. The app won't work unless port for the server app is used.
 * Sets the Accept header to "application/json". Setting this header tells the server to send data in JSON format.
 
 <a id="GettingResource"></a>
@@ -157,5 +157,10 @@ Like GET, a DELETE request does not have a request body. You don't need to speci
 
 ## Testing the sample
 
-To test the client app, the server app must be running. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server ap
-[Download instructions](xref:tutorials/index#how-to-download-a-sample).
+To test the client app:
+
+1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server app. [Download instructions](xref:tutorials/index#how-to-download-a-sample).
+2.  Set the base URI for HTTP requests. Change the port number to the port used in the server app.
+	[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
+
+3. Run the client app.
