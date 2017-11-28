@@ -24,7 +24,10 @@ namespace ChangeTokenSample.Pages
         };
 
         #region snippet1
-        public IndexModel(IConfiguration config, IConfigurationMonitor monitor, FileService fileService)
+        public IndexModel(
+            IConfiguration config, 
+            IConfigurationMonitor monitor, 
+            FileService fileService)
         {
             _config = config;
             _monitor = monitor;
