@@ -25,7 +25,7 @@ The public interface [IChangeToken](/dotnet/api/microsoft.extensions.primitives.
 
 The interface has two properties:
 
-* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. If `ActiveChangedCallbacks` is set to `false`, a callback is never called, and the app must poll `HasChanged` for changes. It's also possible a token will never be cancelled when `ActiveChangedCallbacks` is set to `false`.
+* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. If `ActiveChangedCallbacks` is set to `false`, a callback is never called, and the app must poll `HasChanged` for changes. It's also possible for a token to never be cancelled if no changes occur or the underlying change listener is cleaned up.
 * [HasChanged](/dotnet/api/microsoft.extensions.primitives.ichangetoken.haschanged) gets a value that indicates if a change has occurred.
 
 The interface has one method, [RegisterChangeCallback(Action\<Object>, Object)](/dotnet/api/microsoft.extensions.primitives.ichangetoken.registerchangecallback), which registers a callback that's invoked when the token has changed. `HasChanged` must be set before the callback is invoked.
@@ -128,11 +128,11 @@ When the user triggers the `OnPostStartMonitoring` method, monitoring is enabled
 
 ## Monitoring cached file changes
 
-File content is cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [In-memory caching](xref:performance/caching/memory) topic. Without taking additional steps, *stale* (outdated) data is returned from a cache if the source data has changed.
+File content can be cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [In-memory caching](xref:performance/caching/memory) topic. Without taking additional steps, *stale* (outdated) data is returned from a cache if the source data has changed.
 
 For example, ignoring the status of a source file for cached file data on a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period leads to stale cache data when the file is changed but the caching system isn't notified. Each request for the data renews the sliding expiration period, but the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly receiving stale content.
 
-Using change tokens in a file caching scenario avoids the possibility of recovering stale file content from the cache. The sample app demonstrates an implementation of the approach.
+Using change tokens in a file caching scenario avoids the possibility of getting stale file content from the cache. The sample app demonstrates an implementation of the approach.
 
 The sample establishes a static method, `GetFileContent`, to return file content. The method uses a retry algorithm with exponential back-off to cover cases where a file lock is temporarily preventing a file from being read (*Utilities/Utilities.cs*):
 
