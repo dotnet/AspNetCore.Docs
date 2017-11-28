@@ -14,13 +14,13 @@ msc.type: authoredcontent
 ---
 Calling a Web API From a .NET Client (C#)
 ====================
-by [Mike Wasson](https://github.com/MikeWasson) and  [Rick Anderson](https://twitter.com/RickAndMSFT)
+by [Mike Wasson](https://github.com/MikeWasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Download Completed Project](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples)
 
 This tutorial shows how to call a web API from a .NET application, using [System.Net.Http.HttpClient.](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient(v=vs.110).aspx)
 
-In this tutorial, a client app is written that consumes the following web API.
+In this tutorial, a client app is written that consumes the following web API:
 
 | Action | HTTP method | Relative URI |
 | --- | --- | --- |
@@ -37,12 +37,12 @@ For simplicity, the client application in this tutorial is a Windows console app
 <a id="CreateConsoleApp"></a>
 ## Create the Console Application
 
-In Visual Studio, create a new Windows console app named **HttpClientSample** and paste in the following code.
+In Visual Studio, create a new Windows console app named **HttpClientSample** and paste in the following code:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_all)]
 
 
-`RunAsync` runs and blocks until it completes. Most **HttpClient** methods are async, because they perform network I/O. All of the async tasks will be done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should **not** block the UI thread.
+`RunAsync` runs and blocks until it completes. Most **HttpClient** methods are async, because they perform network I/O. All of the async tasks are done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should **not** block the UI thread.
 
 <a id="InstallClientLib"></a>
 ## Install the Web API Client Libraries
@@ -67,7 +67,7 @@ Examine the Product class:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
-This class matches the data model used by the web API. An app can use **HttpClient** to read a `Product` instance from an HTTP response. The app won't have to write a lot of deserialization code.
+This class matches the data model used by the web API. An app can use **HttpClient** to read a `Product` instance from an HTTP response. The app doesn't have to write much deserialization code.
 
 <a id="InitClient"></a>
 ## Create and Initialize HttpClient
@@ -76,12 +76,12 @@ Examine the static **HttpClient** property:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_HttpClient)]
 
-**HttpClient** is intended to be instantiated once and re-used throughout the life of an application. The following conditions can result in **SocketException** errors:
+**HttpClient** is intended to be instantiated once and reused throughout the life of an application. The following conditions can result in **SocketException** errors:
 
 * Creating a new **HttpClient** instance per request.
 * Server under heavy load.
 
-Creating a new **HttpClient** instance per request can  exhaust the available sockets.
+Creating a new **HttpClient** instance per request can exhaust the available sockets.
 
 The following code initializes the **HttpClient** instance:
 
@@ -89,7 +89,7 @@ The following code initializes the **HttpClient** instance:
 
 The preceding code:
 
-* Sets the base URI for HTTP requests. You **must** change the port number to the port used in the server application.
+* Sets the base URI for HTTP requests. Change the port number to the port used in the server application. The app won't work unless port for the server app is used.
 * Sets the Accept header to "application/json". Setting this header tells the server to send data in JSON format.
 
 <a id="GettingResource"></a>
@@ -108,7 +108,7 @@ The **GetAsync** method sends the HTTP GET request. The method is asynchronous, 
 
 When **ReadAsAsync** is called with no parameters, it uses a default set of *media formatters* to read the response body. The default formatters support JSON, XML, and Form-url-encoded data.
 
-Instead of using the default formatters, you can provide a list of formatters to the **ReadAsync** method, which is useful if you have a custom media-type formatter:
+Instead of using the default formatters, you can provide a list of formatters to the **ReadAsync** method.  Using a a list of formatters is useful if you have a custom media-type formatter:
 
 ```csharp
 var formatters = new List<MediaTypeFormatter>() {
@@ -130,12 +130,12 @@ The following code sends a POST request that contains a `Product` instance in JS
 The **PostAsJsonAsync** method:
 
 * Serializes an object to JSON.
-* Sends the JSON payload in a POST request. 
+* Sends the JSON payload in a POST request.
 
 If the request succeeds:
 
 * It should return a 201 (Created) response.
-* The responose should include the URL of the created resources in the Location header.
+* The response should include the URL of the created resources in the Location header.
 
 <a id="PuttingResource"></a>
 ## Sending a PUT Request to Update a Resource
