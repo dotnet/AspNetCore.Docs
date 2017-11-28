@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@using Microsoft.Extensions.Options
+@inject IOptions<InjectedOptions> OptionsAccessor
+@{
+    ViewData["Title"] = "Hosting Startup Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Injected Options</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>@@OptionsAccessor.Value.Option1:</b> 
+                    @OptionsAccessor.Value.Option1
+                </p>
+                <p>
+                    <b>@@OptionsAccessor.Value.Option2:</b> 
+                    @OptionsAccessor.Value.Option2
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

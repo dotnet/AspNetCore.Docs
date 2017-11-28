@@ -13,7 +13,7 @@ uid: fundamentals/startup
 ---
 # Application Startup in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra/)
+By [Steve Smith](https://ardalis.com), [Tom Dykstra](https://github.com/tdykstra), and [Luke Latham](https://github.com/guardrex)
 
 The `Startup` class configures services and the application's request pipeline.
 
@@ -65,7 +65,57 @@ Each `Use` extension method adds a [middleware](xref:fundamentals/middleware) co
 
 For more information about how to use `IApplicationBuilder`, see [Middleware](xref:fundamentals/middleware).
 
-Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be specified in the method signature, in which case these services will be [injected](dependency-injection.md) if they are available. 
+Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be specified in the method signature, in which case these services will be [injected](dependency-injection.md) if they are available.
+
+## Hosting startup light up feature
+
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding features to an app at startup outside of the app's `Startup` class. For example, tooling can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app on startup.
+
+The [HostingStartupSample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to configure [options](xref:fundamentals/configuration/options) in the app's service container.
+
+The sample app's `StartupInjection` class implements `IHostingStartup`. The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add an `InjectedOptions` class to the app's service container with assigned values. The [HostingStartupAttribute](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) identifies the `StartupInjection` class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost):
+
+[!code-csharp[Main](startup/sample/StartupInjection.cs?name=snippet1&highlight=1)]
+
+The sample app's Index page injects the options directly into the page for rendering:
+
+[!code-cshtml[Main](startup/sample/Pages/Index.cshtml?highlight=3-4,19-20,23-24)]
+
+When the app is run, the Index page displays the values:
+
+![Browser window showing the rendered Index page. The values of Option1 and Option2 are displayed as 'Option 1 Value' and 'Option 2 Value'.](startup/_static/index.png)
+
+## Startup filters
+
+Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to configure and control the order of middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline.
+
+`IStartupFilter` implements a single method, [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter.configure), which receives and returns an `Action<IApplicationBuilder>`. An [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) defines a class to configure an app's request pipeline. For more information, see [Creating a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware#creating-a-middleware-pipeline-with-iapplicationbuilder).
+
+Each `IStartupFilter` implements one or more middlewares in the request pipeline. The middlewares are invoked in the order that the `IStartupFilter` implementations are added to the service container.
+
+The [HostingStartupSample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates how to register a middleware with `IHostingStartup`.
+
+The sample app includes a middleware that sets an options value from a query string parameter:
+
+[!code-csharp[Main](startup/sample/RequestSetOptionsMiddleware.cs?name=snippet1)]
+
+The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
+
+[!code-csharp[Main](startup/sample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
+
+The `IStartupFilter` is registered in the service container in `ConfigureServices`:
+
+[!code-csharp[Main](startup/sample/Startup.cs?name=snippet1&highlight=5)]
+
+When the app is run and a query string parameter for `option1` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
+
+![Browser window showing the rendered Index page. The value of Option1 is rendered as 'From Middleware' based on requesting the page with the query string parameter and value of option1 set to 'From Middleware'.](startup/_static/index2.png)
+
+Middleware execution order is set by the order of `IStartupFilter` registrations:
+
+* Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
+* Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other middleware registered with `IStartupFilter` in the app. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`, position the service registration before the library is added to the service container. To invoke it afterward, position the service registration after the library is added.
+* Middleware specified with `IStartupFilter` may short-circuit requests before higher priority middleware runs. Register the `IStartupFilter` for the short-circuited middleware earlier in the service registrations to ensure that it runs before short-circuiting can occur.
 
 ## Additional Resources
 
