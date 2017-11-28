@@ -269,13 +269,13 @@ public class MyController : Controller
 
   This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed) and [In memory caching](xref:performance/caching/memory).
 
-* In the event that the session middleware fails to persist a session (for example: if the database is not available), it logs the exception and swallows it. The request will then continue normally, which obviously leads to very unpredictable behavior.
+* In the event that the session middleware fails to persist a session (for example: if the database is not available), it logs the exception and swallows it. The request will then continue normally, which leads to very unpredictable behavior.
 
-  A typical example:
+A typical example:
 
-  Someone stores a shopping basket in session. The user adds an item but the commit fails. The app doesn't know about this so it will happily report a "The item has been added" message, which obviously isn't true.
+Someone stores a shopping basket in session. The user adds an item but the commit fails. The app doesn't know about the failure so it reports the message "The item has been added", which isn't true.
 
-By the time the middleware calls CommitAsync the response has already been sent and it's too late report an error to the client. The recommended way to check for such errors is to call `await feature.Session.CommitAsync();` from app code when you're done writing to the session. Then you can do what you like with the error. It works the same way when calling `LoadAsync`.
+The recommended way to check for such errors is to call `await feature.Session.CommitAsync();` from app code when you're done writing to the session. Then you can do what you like with the error. It works the same way when calling `LoadAsync`.
 
 
 ### Additional Resources
