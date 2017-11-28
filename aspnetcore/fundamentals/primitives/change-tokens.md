@@ -25,10 +25,10 @@ A *change token* is a general-purpose, low-level building block used to track ch
 
 `IChangeToken` has two properties:
 
-* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. If `ActiveChangedCallbacks` is set to `false`, a callback is never called, and the app must poll `HasChanged` for changes. It's also possible for a token to never be cancelled if no changes occur or the underlying change listener is cleaned up.
+* [ActiveChangedCallbacks](/dotnet/api/microsoft.extensions.primitives.ichangetoken.activechangecallbacks) indicate if the token proactively raises callbacks. If `ActiveChangedCallbacks` is set to `false`, a callback is never called, and the app must poll `HasChanged` for changes. It's also possible for a token to never be cancelled if no changes occur or the underlying change listener is disposed or disabled.
 * [HasChanged](/dotnet/api/microsoft.extensions.primitives.ichangetoken.haschanged) gets a value that indicates if a change has occurred.
 
-The interface has one method, [RegisterChangeCallback(Action\<Object>, Object)](/dotnet/api/microsoft.extensions.primitives.ichangetoken.registerchangecallback), which registers a callback that's invoked when the token has changed. `HasChanged` must be set before the callback is invoked.
+The interface has one method, [RegisterChangeCallback(Action&lt;Object&gt;, Object)](/dotnet/api/microsoft.extensions.primitives.ichangetoken.registerchangecallback), which registers a callback that's invoked when the token has changed. `HasChanged` must be set before the callback is invoked.
 
 ## ChangeToken class
 
@@ -38,7 +38,7 @@ The `ChangeToken` [OnChange(Func&lt;IChangeToken&gt;, Action)](/dotnet/api/micro
 * `Func<IChangeToken>` produces the token.
 * `Action` is called when the token changes.
 
-`ChangeToken` has an [OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, TState)](/dotnet/api/microsoft.extensions.primitives.changetoken.onchange?view=aspnetcore-2.0#Microsoft_Extensions_Primitives_ChangeToken_OnChange__1_System_Func_Microsoft_Extensions_Primitives_IChangeToken__System_Action___0____0_) overload that takes an additional `TState` parameter that's passed into the token consumer `Action`.
+`ChangeToken` has an [OnChange&lt;TState&gt;(Func&lt;IChangeToken&gt;, Action&lt;TState&gt;, TState)](/dotnet/api/microsoft.extensions.primitives.changetoken.onchange?view=aspnetcore-2.0#Microsoft_Extensions_Primitives_ChangeToken_OnChange__1_System_Func_Microsoft_Extensions_Primitives_IChangeToken__System_Action___0____0_) overload that takes an additional `TState` parameter that's passed into the token consumer `Action`.
 
 `OnChange` returns an [IDisposable](/dotnet/api/system.idisposable). Calling [Dispose](/dotnet/api/system.idisposable.dispose) stops the token from listening for further changes and releases the token's resources.
 
@@ -83,7 +83,7 @@ Register a token consumer `Action` callback for change notifications to the conf
 
 [!code-csharp[Main](change-tokens/sample/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IHostingEnvironment`. This is useful to determine the correct *appsettings* configuration JSON file to monitor, *appsettings.\<Environment>.json*. File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
+The `state` of the callback is used to pass in the `IHostingEnvironment`. This is useful to determine the correct *appsettings* configuration JSON file to monitor, *appsettings.&lt;Environment&gt;.json*. File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 
