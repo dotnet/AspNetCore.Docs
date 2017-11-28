@@ -19,7 +19,7 @@ Getting Started with ASP.NET MVC 5
 
 [!INCLUDE[consider RP](../../../../includes/razor.md)]
 
-This following tutorial series covers ASP.NET MVC: Source located on [GitHub](xref:mvc/overview/getting-started/introduction/sample/MvcMovie)
+This following tutorial series covers ASP.NET MVC: Source located on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie/MvcMovie)
 
 - [Getting Started](getting-started.md)
 - [Adding a Controller](adding-a-controller.md)

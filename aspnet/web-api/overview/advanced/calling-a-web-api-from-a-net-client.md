@@ -5,9 +5,8 @@ author: MikeWasson
 description: ""
 ms.author: aspnetcontent
 manager: wpickett
-ms.date: 01/20/2014
+ms.date: 11/24/2017
 ms.topic: article
-ms.assetid: df1baeef-a737-471f-a6ae-cca54cfb26d4
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
@@ -21,7 +20,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 This tutorial shows how to call a web API from a .NET application, using [System.Net.Http.HttpClient.](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient(v=vs.110).aspx)
 
-In this tutorial, we will write an client application that consumes the following web API.
+In this tutorial, a client app is written that consumes the following web API.
 
 | Action | HTTP method | Relative URI |
 | --- | --- | --- |
