@@ -50,7 +50,9 @@ namespace UsingOptionsSample.Pages
             // Example #2: Options configured by delegate
             var delegate_config_option1 = _optionsWithDelegateConfig.Option1;
             var delegate_config_option2 = _optionsWithDelegateConfig.Option2;
-            SimpleOptionsWithDelegateConfig = $"delegate_option1 = {delegate_config_option1}, delegate_option2 = {delegate_config_option2}";
+            SimpleOptionsWithDelegateConfig = 
+                $"delegate_option1 = {delegate_config_option1}, " +
+                $"delegate_option2 = {delegate_config_option2}";
             #endregion
 
             #region snippet_Example3
@@ -69,13 +71,19 @@ namespace UsingOptionsSample.Pages
             // Example #5: Snapshot options
             var snapshotOption1 = _snapshotOptions.Option1;
             var snapshotOption2 = _snapshotOptions.Option2;
-            SnapshotOptions = $"snapshot option1 = {snapshotOption1}, snapshot option2 = {snapshotOption2}";
+            SnapshotOptions = 
+                $"snapshot option1 = {snapshotOption1}, " +
+                $"snapshot option2 = {snapshotOption2}";
             #endregion
 
             #region snippet_Example6
             // Example #6: Named options
-            var named_options_1 = $"named_options_1: option1 = {_named_options_1.Option1}, option2 = {_named_options_1.Option2}";
-            var named_options_2 = $"named_options_2: option1 = {_named_options_2.Option1}, option2 = {_named_options_2.Option2}";
+            var named_options_1 = 
+                $"named_options_1: option1 = {_named_options_1.Option1}, " +
+                $"option2 = {_named_options_1.Option2}";
+            var named_options_2 = 
+                $"named_options_2: option1 = {_named_options_2.Option1}, " +
+                $"option2 = {_named_options_2.Option2}";
             NamedOptions = $"{named_options_1} {named_options_2}";
             #endregion
         }
