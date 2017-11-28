@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HttpClientSample
 {
-#region snippet_prod
+    #region snippet_prod
     public class Product
     {
         public string Id { get; set; }
@@ -15,17 +15,20 @@ namespace HttpClientSample
         public decimal Price { get; set; }
         public string Category { get; set; }
     }
-#endregion
+    #endregion
 
     class Program
     {
+        #region snippet_HttpClient
         static HttpClient client = new HttpClient();
+        #endregion
 
         static void ShowProduct(Product product)
         {
             Console.WriteLine($"Name: {product.Name}\tPrice: {product.Price}\tCategory: {product.Category}");
         }
 
+        #region snippet_CreateProductAsync
         static async Task<Uri> CreateProductAsync(Product product)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync("api/products", product);
@@ -34,7 +37,9 @@ namespace HttpClientSample
             // return URI of the created resource.
             return response.Headers.Location;
         }
+        #endregion
 
+        #region snippet_GetProductAsync
         static async Task<Product> GetProductAsync(string path)
         {
             Product product = null;
@@ -45,7 +50,9 @@ namespace HttpClientSample
             }
             return product;
         }
+        #endregion
 
+        #region snippet_UpdateProductAsync
         static async Task<Product> UpdateProductAsync(Product product)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/products/{product.Id}", product);
@@ -55,24 +62,29 @@ namespace HttpClientSample
             product = await response.Content.ReadAsAsync<Product>();
             return product;
         }
+        #endregion
 
+        #region snippet_DeleteProductAsync
         static async Task<HttpStatusCode> DeleteProductAsync(string id)
         {
             HttpResponseMessage response = await client.DeleteAsync($"api/products/{id}");
             return response.StatusCode;
         }
+        #endregion
 
         static void Main()
         {
             RunAsync().Wait();
         }
 
+        #region snippet5
         static async Task RunAsync()
         {
             Console.WriteLine("Update port # in the following line.");
             client.BaseAddress = new Uri("http://localhost:64195/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            #endregion
 
             try
             {
