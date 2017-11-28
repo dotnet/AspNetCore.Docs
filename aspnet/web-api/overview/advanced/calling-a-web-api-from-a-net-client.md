@@ -154,3 +154,8 @@ The following code sends a DELETE request to delete a product:
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_DeleteProductAsync)]
 
 Like GET, a DELETE request does not have a request body. You don't need to specify JSON or XML format with DELETE.
+
+## Testing the sample
+
+To test the client app, the server app must be running. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server ap
+[Download instructions](xref:tutorials/index#how-to-download-a-sample).

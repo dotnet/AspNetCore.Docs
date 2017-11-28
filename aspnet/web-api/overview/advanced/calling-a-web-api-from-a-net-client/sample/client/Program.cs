@@ -25,13 +25,15 @@ namespace HttpClientSample
 
         static void ShowProduct(Product product)
         {
-            Console.WriteLine($"Name: {product.Name}\tPrice: {product.Price}\tCategory: {product.Category}");
+            Console.WriteLine($"Name: {product.Name}\tPrice: " +
+                $"{product.Price}\tCategory: {product.Category}");
         }
 
         #region snippet_CreateProductAsync
         static async Task<Uri> CreateProductAsync(Product product)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/products", product);
+            HttpResponseMessage response = await client.PostAsJsonAsync(
+                "api/products", product);
             response.EnsureSuccessStatusCode();
 
             // return URI of the created resource.
@@ -55,7 +57,8 @@ namespace HttpClientSample
         #region snippet_UpdateProductAsync
         static async Task<Product> UpdateProductAsync(Product product)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync($"api/products/{product.Id}", product);
+            HttpResponseMessage response = await client.PutAsJsonAsync(
+                $"api/products/{product.Id}", product);
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated product from the response body.
@@ -67,7 +70,8 @@ namespace HttpClientSample
         #region snippet_DeleteProductAsync
         static async Task<HttpStatusCode> DeleteProductAsync(string id)
         {
-            HttpResponseMessage response = await client.DeleteAsync($"api/products/{id}");
+            HttpResponseMessage response = await client.DeleteAsync(
+                $"api/products/{id}");
             return response.StatusCode;
         }
         #endregion
@@ -83,13 +87,15 @@ namespace HttpClientSample
             Console.WriteLine("Update port # in the following line.");
             client.BaseAddress = new Uri("http://localhost:64195/");
             client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
             #endregion
 
             try
             {
                 // Create a new product
-                Product product = new Product { Name = "Gizmo", Price = 100, Category = "Widgets" };
+                Product product = new Product { Name = "Gizmo",
+                    Price = 100, Category = "Widgets" };
 
                 var url = await CreateProductAsync(product);
                 Console.WriteLine($"Created at {url}");
@@ -119,7 +125,6 @@ namespace HttpClientSample
 
             Console.ReadLine();
         }
-
     }
 }
 #endregion
