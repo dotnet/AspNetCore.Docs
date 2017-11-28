@@ -1,3 +1,4 @@
+﻿#region snippet_all
 using System;
 using System.Net;
 using System.Net.Http;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace HttpClientSample
 {
+#region snippet_prod
     public class Product
     {
         public string Id { get; set; }
@@ -13,7 +15,8 @@ namespace HttpClientSample
         public decimal Price { get; set; }
         public string Category { get; set; }
     }
-    
+#endregion
+
     class Program
     {
         static HttpClient client = new HttpClient();
@@ -66,7 +69,8 @@ namespace HttpClientSample
 
         static async Task RunAsync()
         {
-            client.BaseAddress = new Uri("http://localhost:55268/");
+            Console.WriteLine("Update port # in the following line.");
+            client.BaseAddress = new Uri("http://localhost:64195/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -106,3 +110,4 @@ namespace HttpClientSample
 
     }
 }
+#endregion
