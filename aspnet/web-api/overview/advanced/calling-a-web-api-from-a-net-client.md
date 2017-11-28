@@ -85,7 +85,7 @@ Creating a new **HttpClient** instance per request can exhaust the available soc
 
 The following code initializes the **HttpClient** instance:
 
-[!code-csharp[Main](calling-a-[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5)]
 
 The preceding code:
 
@@ -97,7 +97,7 @@ The preceding code:
 
 The following code sends a GET request for a product:
 
-[!code-csharp[Main](calling-a-[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_GetProductAsync)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_GetProductAsync)]
 
 The **GetAsync** method sends the HTTP GET request. The method is asynchronous, because it performs network I/O. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsync** method is asynchronous because the response body can be arbitrarily large.
 
@@ -125,7 +125,7 @@ For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and
 
 The following code sends a POST request that contains a `Product` instance in JSON format:
 
-[!code-csharp[Main](calling-a-[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_CreateProductAsync)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_CreateProductAsync)]
 
 The **PostAsJsonAsync** method:
 
@@ -142,7 +142,7 @@ If the request succeeds:
 
 The following code sends a PUT request to update a product:
 
-[!code-csharp[Main](calling-a-[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_UpdateProductAsync)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_UpdateProductAsync)]
 
 The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sends a PUT request instead of POST.
 
@@ -151,6 +151,6 @@ The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sen
 
 The following code sends a DELETE request to delete a product:
 
-[!code-csharp[Main](calling-a-[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_DeleteProductAsync)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_DeleteProductAsync)]
 
 Like GET, a DELETE request does not have a request body. You don't need to specify JSON or XML format with DELETE.
