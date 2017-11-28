@@ -68,7 +68,7 @@ In addition to specifying the type for the environment dictionary, the OWIN spec
 | `"owin.RequestMethod"` | A `string` containing the HTTP request method of the request (e.g., `"GET"`, `"POST"`). |
 | `"owin.RequestPath"` | A `string` containing the request path. The path MUST be relative to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
 | `"owin.RequestPathBase"` | A `string` containing the portion of the request path corresponding to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
-| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"` HTTP/1.0 `"` or `"` HTTP/1.1 `"`). |
+| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"HTTP/1.0"` or `"HTTP/1.1"`). |
 | `"owin.RequestQueryString"` | A `string` containing the query string component of the HTTP request URI, without the leading "?" (e.g., `"foo=bar&baz=quux"`). The value may be an empty string. |
 | `"owin.RequestScheme"` | A `string` containing the URI scheme used for the request (e.g., `"http"`, `"https"`); see [URI Scheme](http://owin.org/html/owin.html#5-1-uri-scheme). |
 
