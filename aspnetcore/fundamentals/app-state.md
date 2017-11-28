@@ -82,6 +82,8 @@ The following `Startup` class code configures the session-based TempData provide
 
 ---
 
+In the preceding code sample, `UseSession` must be invoked before `UseMvcWithDefaultRoute`. An exception of type `InvalidOperationException` occurs when this ordering is incorrect.
+
 > [!IMPORTANT]
 > If targeting .NET Framework and using the session-based provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
 
