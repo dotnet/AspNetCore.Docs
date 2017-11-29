@@ -48,10 +48,6 @@ Original | Renamed
 `imageContext` | `a`
 `imageElement` | `r`
 
-## Choosing a bundling and minification strategy
-
-The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
-
 ## Impact of bundling and minification
 
 The following table outlines important differences between listing all the assets individually and using bundling and minification on a simple web page:
@@ -63,6 +59,10 @@ KB Transferred | 156 | 264.68 | 70%
 Load Time (ms) | 885 | 2360   | 167%
 
 Browsers are fairly verbose with regard to HTTP request headers, so the total bytes sent metric saw a significant reduction when bundling. The load time shows a big improvement, however this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
+
+## Choose a bundling and minification strategy
+
+The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Use bundling and minification in a project
 
