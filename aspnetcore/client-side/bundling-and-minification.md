@@ -162,7 +162,7 @@ To minify *custom.css* and bundle it with *site.css* into a single *site.min.css
 
 Build the application. Open *site.min.css* and notice the content of *custom.css* is appended to the end of the file.
 
-## Control bundling and minification
+## Configure environment-based bundling and minification
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug.
 
