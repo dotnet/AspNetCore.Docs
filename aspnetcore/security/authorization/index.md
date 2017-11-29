@@ -31,3 +31,5 @@ uid: security/authorization/index
 * [View-based authorization](views.md)
 
 * [Limiting identity by scheme](limitingidentitybyscheme.md)
+
+* [Articles based on projects created with individual user accounts](xref:
