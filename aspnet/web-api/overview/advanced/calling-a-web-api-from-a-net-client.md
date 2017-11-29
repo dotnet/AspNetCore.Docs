@@ -41,8 +41,11 @@ In Visual Studio, create a new Windows console app named **HttpClientSample** an
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_all)]
 
+The preceding code is the complete client app.
 
 `RunAsync` runs and blocks until it completes. Most **HttpClient** methods are async, because they perform network I/O. All of the async tasks are done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should **not** block the UI thread.
+
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_run)]
 
 <a id="InstallClientLib"></a>
 ## Install the Web API Client Libraries
@@ -67,7 +70,7 @@ Examine the Product class:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
-This class matches the data model used by the web API. An app can use **HttpClient** to read a `Product` instance from an HTTP response. The app doesn't have to write much deserialization code.
+This class matches the data model used by the web API. An app can use **HttpClient** to read a `Product` instance from an HTTP response. The app doesn't have to write any deserialization code.
 
 <a id="InitClient"></a>
 ## Create and Initialize HttpClient
@@ -159,7 +162,7 @@ Like GET, a DELETE request does not have a request body. You don't need to speci
 
 To test the client app:
 
-1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server app. [Download instructions](xref:tutorials/index#how-to-download-a-sample).
+1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server app. [Download instructions](xref:tutorials/index#how-to-download-a-sample). Verify the server app is working. For exaxmple,  `http://localhost:64195/api/products` should return a list of products.
 2.  Set the base URI for HTTP requests. Change the port number to the port used in the server app.
 	[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 

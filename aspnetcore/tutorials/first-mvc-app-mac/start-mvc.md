@@ -27,7 +27,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later. See [the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
+This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
 
 Install the following:
 

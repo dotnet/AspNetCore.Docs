@@ -81,6 +81,7 @@ namespace HttpClientSample
             RunAsync().Wait();
         }
 
+        #region snippet_run
         #region snippet5
         static async Task RunAsync()
         {
@@ -94,8 +95,12 @@ namespace HttpClientSample
             try
             {
                 // Create a new product
-                Product product = new Product { Name = "Gizmo",
-                    Price = 100, Category = "Widgets" };
+                Product product = new Product
+                {
+                    Name = "Gizmo",
+                    Price = 100,
+                    Category = "Widgets"
+                };
 
                 var url = await CreateProductAsync(product);
                 Console.WriteLine($"Created at {url}");
@@ -125,6 +130,7 @@ namespace HttpClientSample
 
             Console.ReadLine();
         }
+        #endregion
     }
 }
 #endregion
