@@ -9,7 +9,7 @@ ms.date: 11/30/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: security/authorization/individual
+uid: security/authentication/individual
 ---
 # Articles based on projects created with individual user accounts
 
