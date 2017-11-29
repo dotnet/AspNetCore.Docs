@@ -66,7 +66,7 @@ Json.NET is a popular high-performance JSON framework for .NET.
 <a id="AddModelClass"></a>
 ## Add a Model Class
 
-Examine the Product class:
+Examine the `Product` class:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
