@@ -16,9 +16,9 @@ uid: client-side/bundling-and-minification
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Bundling and minification are two techniques you can use in an ASP.NET Core web app to reduce page load time. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, resulting in smaller payloads. Used together, bundling and minification improve performance by reducing the number of requests to the server and reducing the size of the requested static assets.
-
 This article explains the benefits of using bundling and minification, including how these features can be used with ASP.NET Core web apps.
+
+Bundling and minification are two techniques you can use in an ASP.NET Core web app to reduce page load time. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, resulting in smaller payloads. Used together, bundling and minification improve performance by reducing the number of requests to the server and reducing the size of the requested static assets.
 
 ## Overview
 
@@ -36,24 +36,11 @@ Minification performs a variety of code optimizations to reduce the size of requ
 
 Consider the following JavaScript function:
 
-```javascript
-AddAltToImg = function (imageTagAndImageID, imageContext) {
-  ///<signature>
-  ///<summary> Adds an alt tab to the image
-  // </summary>
-  //<param name="imgElement" type="String">The image selector.</param>
-  //<param name="ContextForImage" type="String">The image context.</param>
-  ///</signature>
-  var imageElement = $(imageTagAndImageID, imageContext);
-  imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
-}
-```
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/site.js)]
 
 Minification reduces the function to the following:
 
-```javascript
-AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
-```
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/site.min.js)]
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
