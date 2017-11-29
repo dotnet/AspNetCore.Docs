@@ -117,9 +117,9 @@ Instead of using the default formatters, you can provide a list of formatters to
 var formatters = new List<MediaTypeFormatter>() {
     new MyCustomFormatter(),
     new JsonMediaTypeFormatter(),
-    new XmlMediaTypeFormatter()
-};
-resp.Content.ReadAsAsync<IEnumerable<Product>>(formatters);
+    new XmlMediaTypeFormatter() 
+}; 
+resp.Content.ReadAsAsync<IEnumerable<Product>>(formatters); 
 ```
 
 For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and-model-binding/media-formatters.md)
