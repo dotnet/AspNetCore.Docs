@@ -113,7 +113,7 @@ For more information, see [Working with Multiple Environments](xref:fundamentals
 
 ASP.NET Core uses a configuration model based on name-value pairs. The configuration model isn't based on `System.Configuration` or *web.config*. Configuration obtains settings from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and environment variables to enable environment-based configuration. You can also write your own custom configuration providers.
 
-For more information, see [Configuration](xref:fundamentals/configuration).
+For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ## Logging
 

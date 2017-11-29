@@ -82,6 +82,8 @@ The following `Startup` class code configures the session-based TempData provide
 
 ---
 
+Ordering is critical for middleware components. In the preceding example, an exception of type `InvalidOperationException` occurs when `UseSession` is invoked after `UseMvcWithDefaultRoute`. See [Middleware Ordering](xref:fundamentals/middleware#ordering) for more detail.
+
 > [!IMPORTANT]
 > If targeting .NET Framework and using the session-based provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
 
