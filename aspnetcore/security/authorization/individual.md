@@ -1,11 +1,11 @@
 ---
-title: View-based authorization in ASP.NET Core MVC
+title: Articles based on projects created with individual user accounts
 author: rick-anderson
 description: This document lists articles based on projects created with individual user accounts.
 keywords: ASP.NET Core,authorization,IAuthorizationService
 ms.author: riande
 manager: wpickett
-ms.date: 10/30/2017
+ms.date: 11/30/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
