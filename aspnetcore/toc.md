@@ -110,6 +110,8 @@
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [Request Features](fundamentals/request-features.md)
+## [Primitives](xref:fundamentals/primitives/index)
+### [Change Tokens](xref:fundamentals/primitives/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
 ## [WebSockets](fundamentals/websockets.md)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
