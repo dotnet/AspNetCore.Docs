@@ -444,7 +444,7 @@ This code refers to the `Logging` section of the *appSettings.json* file:
 
 [!code-json[](index/sample//appsettings.json)]
 
-The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](xref:fundamentals/configuration).
+The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ---
 

@@ -40,7 +40,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
 
 The *content root* determines where the host searches for content files, such as MVC view files. The default content root is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory). This results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
-See [Configuration in ASP.NET Core](xref:fundamentals/configuration) for more information on app configuration.
+See [Configuration in ASP.NET Core](xref:fundamentals/configuration/index) for more information on app configuration.
 
 > [!NOTE]
 > As an alternative to using the static `CreateDefaultBuilder` method, creating a host from [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) is a supported approach with ASP.NET Core 2.x. See the ASP.NET Core 1.x tab for more information.
@@ -398,7 +398,7 @@ var host = new WebHostBuilder()
 
 ## Overriding configuration
 
-Use [Configuration](configuration.md) to configure the host. In the following example, host configuration is optionally specified in a *hosting.json* file. Any configuration loaded from the *hosting.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with `UseConfiguration`.
+Use [Configuration](xref:fundamentals/configuration/index) to configure the host. In the following example, host configuration is optionally specified in a *hosting.json* file. Any configuration loaded from the *hosting.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with `UseConfiguration`.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

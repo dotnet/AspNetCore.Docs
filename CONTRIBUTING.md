@@ -24,10 +24,10 @@ Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/
 
 ## Folder structure conventions
 
-For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration.md), the images are in [fundamentals/configuration/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/_static) and the sample application project files are in [fundamentals/configuration/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/sample).  An image in the *fundamentals/configuration.md* file is rendered by the following Markdown.
+For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample application project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown.
 
 ```
-![description of image for alt attribute](configuration/_static/imagename.png)
+![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
 **All** images should have [alt text](https://wikipedia.org/wiki/Alt_attribute).
@@ -46,19 +46,19 @@ See [DocFX Cross Reference](http://dotnet.github.io/docfx/spec/docfx_flavored_ma
 
 Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
 
-Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) that would be used in a *configuration.md* file.
+Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) that would be used in a *configuration/index.md* file.
 
 To render an entire code file as a snippet:
 
 ```
-[!code-csharp[Main](configuration/sample/Program.cs)]
+[!code-csharp[Main](configuration/index/sample/Program.cs)]
 ```
 
 To render a portion of a file as a snippet by using line numbers:
 
 ```
-[!code-csharp[Main](configuration/sample/Program.cs?range=1-10,20,30,40-50]
-[!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
+[!code-csharp[Main](configuration/index/sample/Program.cs?range=1-10,20,30,40-50]
+[!code-html[Main](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 ```
 
 For C# snippets, you can reference a [C# region](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
@@ -66,16 +66,16 @@ For C# snippets, you can reference a [C# region](https://docs.microsoft.com/dotn
 To render a C# region named "snippet_Example":
 
 ```
-[!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example)]
+[!code-csharp[Main](configuration/index/sample/Program.cs?name=snippet_Example)]
 ```
 
 To highlight selected lines in a rendered snippet (usually renders as yellow background color):
 
 ```
-[!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
-[!code-csharp[Main](configuration/sample/Program.cs?range=10-20&highlight=1-3]
-[!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
-[!code-javascript[Main](configuration/sample/Project.json?range=10-20&highlight=1-3]
+[!code-csharp[Main](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
+[!code-csharp[Main](configuration/index/sample/Program.cs?range=10-20&highlight=1-3]
+[!code-html[Main](configuration/index/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
+[!code-javascript[Main](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3]
 ```
 
 ## Test your changes with DocFX
