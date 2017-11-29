@@ -1,7 +1,7 @@
 ---
 title: Bundling and minification in ASP.NET Core
 author: scottaddie
-description: Learn how to optimize static assets in an ASP.NET Core web application by applying techniques such as bundling and minification.
+description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -16,23 +16,21 @@ uid: client-side/bundling-and-minification
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-This article explains the benefits of using bundling and minification, including how these features can be used with ASP.NET Core web apps.
+This article explains the benefits of applying bundling and minification, including how these features can be used with ASP.NET Core web apps.
 
-Bundling and minification are two techniques you can use in an ASP.NET Core web app to reduce page load time. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, resulting in smaller payloads. Used together, bundling and minification improve performance by reducing the number of requests to the server and reducing the size of the requested static assets.
+## What is bundling and minification?
 
-## Overview
+Bundling and minification are two distinct performance optimizations you can apply in a web app. Used together, bundling and minification improve performance by reducing the number of server requests and reducing the size of the requested static assets.
 
-ASP.NET Core web apps offer multiple options for bundling and minifying client-side resources. The MVC and Razor Pages project templates provide an out-of-the-box solution using a configuration file and the [BuildBundlerMinifier NuGet package](https://www.nuget.org/packages/BuildBundlerMinifier/). Third-party tools, such as [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) are also available to accomplish the same tasks, should your processes require additional workflow or complexities. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
-
-Bundling and minification primarily improve the first page request load time. Once a web page has been requested, the browser caches the assets (JavaScript, CSS, and images). Consequently, bundling and minification don't improve performance when requesting the same page, or pages, on the same site requesting the same assets. If you don't set the expires header correctly on your assets, and if you don’t use bundling and minification, the browser's freshness heuristics mark the assets stale after a few days. Additionally, the browser requires a validation request for each asset. In this case, bundling and minification provide a performance increase even after the first page request.
+Bundling and minification primarily improve the first page request load time. Once a web page has been requested, the browser caches the static assets (JavaScript, CSS, and images). Consequently, bundling and minification don't improve performance when requesting the same page, or pages, on the same site requesting the same assets. If you don't set the expires header correctly on your assets, and if you don’t use bundling and minification, the browser's freshness heuristics mark the assets stale after a few days. Additionally, the browser requires a validation request for each asset. In this case, bundling and minification provide a performance improvement even after the first page request.
 
 ### Bundling
 
-Bundling is a feature that makes it easy to combine (or bundle) multiple files into a single file. Bundling reduces the number of server requests which are necessary to render a web asset, such as a web page. You can create bundles specifically for CSS, JavaScript, etc. Fewer files means fewer HTTP requests from your browser to the server or from the service providing your application. This results in improved first page load performance.
+Bundling combines multiple files into a single file. Bundling reduces the number of server requests which are necessary to render a web asset, such as a web page. You can create any number of individual bundles specifically for CSS, JavaScript, etc. Fewer files means fewer HTTP requests from the browser to the server or from the service providing your application. This results in improved first page load performance.
 
 ### Minification
 
-Minification performs a variety of code optimizations to reduce the size of requested assets (such as CSS, images, and JavaScript files). Common results of minification include shortening variable names to one character and removing comments and unnecessary whitespace.
+Minification removes unnecessary characters from code without altering functionality. The result is a significant size reduction in requested assets (such as CSS, images, and JavaScript files). Common side effects of minification include shortening variable names to one character and removing comments and unnecessary whitespace.
 
 Consider the following JavaScript function:
 
@@ -50,15 +48,19 @@ Original | Renamed
 `imageContext` | `a`
 `imageElement` | `r`
 
+## Choosing a bundling and minification strategy
+
+The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+
 ## Impact of bundling and minification
 
 The following table outlines important differences between listing all the assets individually and using bundling and minification on a simple web page:
 
 Action | With B/M | Without B/M | Change
 --- | :---: | :---: | :---:
-File Requests |7 | 18 | 157%
+File Requests  | 7   | 18     | 157%
 KB Transferred | 156 | 264.68 | 70%
-Load Time (MS) | 885 | 2360 | 167%
+Load Time (ms) | 885 | 2360   | 167%
 
 Browsers are fairly verbose with regard to HTTP request headers, so the total bytes sent metric saw a significant reduction when bundling. The load time shows a big improvement, however this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
 
