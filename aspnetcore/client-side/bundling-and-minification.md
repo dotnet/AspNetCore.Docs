@@ -36,11 +36,11 @@ Minification performs a variety of code optimizations to reduce the size of requ
 
 Consider the following JavaScript function:
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/site.js)]
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/js/site.js)]
 
 Minification reduces the function to the following:
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/site.min.js)]
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/js/site.min.js)]
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
