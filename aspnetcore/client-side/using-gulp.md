@@ -7,7 +7,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
 ms.topic: article
-ms.assetid: 4095d273-bf3f-46cf-bdcc-18cf6815cbad
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/using-gulp
@@ -17,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
 
-In a typical modern web application, the build process might:
+In a typical modern web app, the build process might:
 
 * Bundle and minify JavaScript and CSS files.
 * Run tools to call the bundling and minification tasks before each build.

@@ -17,6 +17,8 @@ Adding a New Field
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this section you'll use Entity Framework Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
 
 By default, when you use Entity Framework Code First to automatically create a database, as you did earlier in this tutorial, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, the Entity Framework throws an error. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
@@ -29,7 +31,7 @@ Navigate to Solution Explorer. Right click on the *Movies.mdf* file and select *
 
 Build the application to make sure there are no errors.
 
-From the **Tools** menu, click **Library Package Manager** and then **Package Manager Console**.
+From the **Tools** menu, click **NuGet Package Manager** and then **Package Manager Console**.
 
 ![Add Pack Man](adding-a-new-field/_static/image2.png)
 
@@ -47,7 +49,7 @@ Visual Studio opens the *Configuration.cs* file. Replace the `Seed` method in th
 
 [!code-csharp[Main](adding-a-new-field/samples/sample1.cs)]
 
-Right click on the red squiggly line under `Movie` and select **Resolve** and then click **using** **MvcMovie.Models;**
+Hover over the red squiggly line under `Movie` and click `Show Potential Fixes` and then click **using** **MvcMovie.Models;**
 
 ![](adding-a-new-field/_static/image5.png)
 
@@ -90,7 +92,7 @@ In the **Package Manager Console**, enter the command `update-database` to creat
 
 ![](adding-a-new-field/_static/image7.png)
 
-If you get an error that indicates a table already exists and can't be created, it is probably because you ran the application after you deleted the database and before you executed `update-database`. In that case, delete the *Movies.mdf* file again and retry the `update-database` command. If you still get an error, delete the migrations folder and contents then start with the instructions at the top of this page (that is delete the *Movies.mdf* file then proceed to Enable-Migrations).
+If you get an error that indicates a table already exists and can't be created, it is probably because you ran the application after you deleted the database and before you executed `update-database`. In that case, delete the *Movies.mdf* file again and retry the `update-database` command. If you still get an error, delete the migrations folder and contents then start with the instructions at the top of this page (that is delete the *Movies.mdf* file then proceed to Enable-Migrations). If you still get an eror, open SQL Server Object Explorer and remove the database from the list.
 
 Run the application and navigate to the */Movies* URL. The seed data is displayed.
 
@@ -137,7 +139,7 @@ You're seeing this error because the updated `Movie` model class in the applicat
 
 There are a few approaches to resolving the error:
 
-1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you *don't* want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develope an application. For more information on Entity Framework database initializers, see Tom Dykstra's fantastic [ASP.NET MVC/Entity Framework tutorial](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
+1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you *don't* want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develope an application. For more information on Entity Framework database initializers, see [ASP.NET MVC/Entity Framework tutorial](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 3. Use Code First Migrations to update the database schema.
 

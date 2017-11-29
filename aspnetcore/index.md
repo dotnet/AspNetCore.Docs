@@ -24,13 +24,13 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 ## Why use ASP.NET Core?
 
-Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.
+Millions of developers have used (and continue to use) ASP.NET to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.
 
 ASP.NET Core provides the following benefits:
 
 * A unified story for building web UI and web APIs.
 * Integration of [modern client-side frameworks](xref:client-side/index) and development workflows.
-* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration).
+* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
 * Built-in [dependency injection](xref:fundamentals/dependency-injection).
 * A lightweight, high-performance, and modular HTTP request pipeline.
 * Ability to host on IIS or self-host in your own process.

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Models;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace RazorPagesMovie
 {
@@ -20,6 +21,9 @@ namespace RazorPagesMovie
 
                 try
                 {
+                    var context = services.GetRequiredService<MovieContext>();
+                    // requires using Microsoft.EntityFrameworkCore;
+                    context.Database.Migrate();
                     // Requires using RazorPagesMovie.Models;
                     SeedData.Initialize(services);
                 }

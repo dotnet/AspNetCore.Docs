@@ -283,7 +283,7 @@ The following table demonstrates some route templates and their behavior.
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
-Tip: Enable [Logging](logging.md) to see how the built in routing implementations, such as `Route`, match requests.
+Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in routing implementations, such as `Route`, match requests.
 
 ## Route Constraint Reference
 

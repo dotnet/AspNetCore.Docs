@@ -52,7 +52,7 @@ We will later store this value with the secret-manager tool within the key `SMSA
 
 ### Provide credentials for the SMS service
 
-We'll use the [Options pattern](xref:fundamentals/configuration#options-config-objects) to access the user account and key settings. 
+We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings. 
 
    * Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the *Services/SMSoptions.cs* file.
 

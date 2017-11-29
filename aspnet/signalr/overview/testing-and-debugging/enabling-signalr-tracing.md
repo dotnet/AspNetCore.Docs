@@ -25,7 +25,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > 
 > 
 > - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
-> - .NET 4.5
+> - .NET Framework 4.5
 > - SignalR version 2
 >   
 > 

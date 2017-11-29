@@ -17,6 +17,8 @@ Examining the Edit Methods and Edit View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
+[!INCLUDE[Tutorial Note](sample/code-location.md)]
+
 In this section, you'll examine the generated `Edit` action methods and views for the movie controller. But first will take a short diversion to make the release date look better. Open the *Models\Movie.cs* file and add the highlighted lines shown below:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample1.cs?highlight=2,12-14)]
@@ -96,13 +98,13 @@ If you are using a US-English computer, you can skip this section and go to the 
 > to support jQuery validation for non-English locales that use a comma (&quot;,&quot;) for a decimal point, and non US-English date formats, you must include *globalize.js* and your specific *cultures/globalize.cultures.js* file(from [https://github.com/jquery/globalize](https://github.com/jquery/globalize) ) and JavaScript to use `Globalize.parseFloat`. You can get the jQuery non-English validation from NuGet. (Don't install Globalize if you are using a English locale.)
 
 
-1. From the **Tools** menu click **Library Package Manager**, and then click **Manage NuGet Packages for Solution**.  
+1. From the **Tools** menu click **NuGetLibrary Package Manager**, and then click **Manage NuGet Packages for Solution**.  
   
     ![](examining-the-edit-methods-and-edit-view/_static/image5.png)
-2. On the left pane, select **Online*.***(See the image below.)
-3. In the **Search Installed packages** input box, enter *Globalize.  
+2. On the left pane, select **Browse*.***(See the image below.)
+3. In the input box, enter *Globalize**.  
   
-    ![](examining-the-edit-methods-and-edit-view/_static/image6.png)*Click **Install**. The *Scripts\jquery.globalize\globalize.js* file will be added to your project. The *Scripts\jquery.globalize\cultures\* folder will contain many culture JavaScript files. Note, it can take five minutes to install this package.
+    ![](examining-the-edit-methods-and-edit-view/_static/image6.png) Choose `jQuery.Validation.Globalize`, choose `MvcMovie` and click **Install**. The *Scripts\jquery.globalize\globalize.js* file will be added to your project. The *Scripts\jquery.globalize\cultures\* folder will contain many culture JavaScript files. Note, it may take five minutes to install this package.
 
  The following code shows the modifications to the Views\Movies\Edit.cshtml file: 
 

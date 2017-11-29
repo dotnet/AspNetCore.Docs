@@ -83,7 +83,7 @@ The web root of an app is the directory in the project containing public, static
 
 ## Dependency Injection (Services)
 
-A service is a component that's intended for common consumption in an app. Services are made available through [dependency injection (DI)](xref:fundamentals/dependency-injection). ASP.NET Core includes a native **I**nversion **o**f **C**ontrol (IoC) container that supports [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) by default. You can replace the default native container if you wish. In addition to its loose coupling benefit, DI makes services available throughout your app (for example, [logging](xref:fundamentals/logging)).
+A service is a component that's intended for common consumption in an app. Services are made available through [dependency injection (DI)](xref:fundamentals/dependency-injection). ASP.NET Core includes a native **I**nversion **o**f **C**ontrol (IoC) container that supports [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) by default. You can replace the default native container if you wish. In addition to its loose coupling benefit, DI makes services available throughout your app (for example, [logging](xref:fundamentals/logging/index)).
 
 For more information, see [Dependency injection](xref:fundamentals/dependency-injection).
 
@@ -113,13 +113,13 @@ For more information, see [Working with Multiple Environments](xref:fundamentals
 
 ASP.NET Core uses a configuration model based on name-value pairs. The configuration model isn't based on `System.Configuration` or *web.config*. Configuration obtains settings from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and environment variables to enable environment-based configuration. You can also write your own custom configuration providers.
 
-For more information, see [Configuration](xref:fundamentals/configuration).
+For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ## Logging
 
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers support sending logs to one or more destinations. Third-party logging frameworks can be used.
 
-[Logging](xref:fundamentals/logging)
+[Logging](xref:fundamentals/logging/index)
 
 ## Error handling
 

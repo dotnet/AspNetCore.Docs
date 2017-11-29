@@ -19,6 +19,8 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
+This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections difficult to follow, see [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).
+
 <a name="prerequisites"></a>
 
 ## ASP.NET Core 2.0 prerequisites
@@ -313,7 +315,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
+ASP.NET Core exposes the [TempData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
 
 The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
 
@@ -409,4 +411,6 @@ services.AddMvc()
 
 ## See also
 
+* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)

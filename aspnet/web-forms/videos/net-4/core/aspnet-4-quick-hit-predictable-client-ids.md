@@ -1,6 +1,6 @@
 ---
 uid: web-forms/videos/net-4/core/aspnet-4-quick-hit-predictable-client-ids
-title: "ASP.NET 4 "Quick Hit" - Predictable Client IDs | Microsoft Docs"
+title: Predictable Client IDs | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn about the ClientIDMode property, which lets you specify more precisely how the client ID is generated for controls."
 ms.author: aspnetcontent

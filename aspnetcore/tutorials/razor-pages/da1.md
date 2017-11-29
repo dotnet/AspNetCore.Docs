@@ -60,7 +60,7 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 
 The dynamically-generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). 
 
-Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
+Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
 
 ```html
 <td>
@@ -101,7 +101,7 @@ Examine the *Pages/Movies/Edit.cshtml.cs* file:
 When an HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 
 * The `OnGetAsync` method fetches the movie from the database and returns the `Page` method. 
-* The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the the movie model available on the page.
+* The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the movie model available on the page.
 * The Edit form is displayed with the values from the movie.
 
 When the Movies/Edit page is posted:

@@ -1,6 +1,6 @@
 ---
 uid: web-forms/videos/net-4/ajax/aspnet-4-quick-hit-the-scriptloader
-title: "ASP.NET 4 "Quick Hit" - The ScriptLoader | Microsoft Docs"
+title: Visual Studio 2010 Quick Hit - The ScriptLoader | Microsoft Docs
 author: JoeStagner
 description: "In this video will learn about the ScriptLoader."
 ms.author: aspnetcontent

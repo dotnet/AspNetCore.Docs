@@ -21,12 +21,17 @@ By [Luke Latham](https://github.com/guardrex)
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
 ## When to use Response Compression Middleware
-Use server-based response compression technologies in IIS, Apache, or Nginx where the performance of the middleware probably won't match that of the server modules. Use Response Compression Middleware when you're unable to use:
-* [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
-* [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-* [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
-* [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
-* [Kestrel](xref:fundamentals/servers/kestrel)
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) and [Kestrel](xref:fundamentals/servers/kestrel) don't currently offer built-in compression support.
+
+Use Response Compression Middleware when you're:
+
+* Unable to use the following server-based compression technologies:
+  * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
+  * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
+  * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+* Hosting directly on:
+  * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
+  * [Kestrel](xref:fundamentals/servers/kestrel)
 
 ## Response compression
 Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression. Don't compress files smaller than about 150-1000 bytes (depending on the file's content and the efficiency of compression). The overhead of compressing small files may produce a compressed file larger than the uncompressed file.

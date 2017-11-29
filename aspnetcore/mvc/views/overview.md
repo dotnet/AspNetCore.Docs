@@ -18,7 +18,7 @@ By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guar
 
 In the **M**odel-**V**iew-**C**ontroller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
-In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a in a *Views* folder at the root of the app:
+In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a *Views* folder at the root of the app:
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
@@ -181,6 +181,8 @@ namespace WebApplication1.ViewModels
 
 ### Weakly-typed data (ViewData and ViewBag)
 
+Note: `ViewBag` is not available in the Razor Pages.
+
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
 
 | Passing data between a ...                        | Example                                                                        |
@@ -238,6 +240,8 @@ Work with the data in a view:
 
 **ViewBag**
 
+Note: `ViewBag` is not available in the Razor Pages.
+
 `ViewBag` is a [DynamicViewData](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
 
 ```csharp
@@ -268,6 +272,8 @@ public IActionResult SomeAction()
 ```
 
 **Using ViewData and ViewBag simultaneously**
+
+Note: `ViewBag` is not available in the Razor Pages.
 
 Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collection, you can use both `ViewData` and `ViewBag` and mix and match between them when reading and writing values.
 
@@ -307,6 +313,8 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 
 **Summary of the differences between ViewData and ViewBag**
 
+ `ViewBag` is not available in the Razor Pages.
+
 * `ViewData`
   * Derives from [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), so it has dictionary properties that can be useful, such as `ContainsKey`, `Add`, `Remove`, and `Clear`.
   * Keys in the dictionary are strings, so whitespace is allowed. Example: `ViewData["Some Key With Whitespace"]`
@@ -317,7 +325,7 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 
 **When to use ViewData or ViewBag**
 
-Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use (or both) comes down to personal preference or the preference of your organization. Though you can mix and match `ViewData` and `ViewBag` objects, the code is easier to read and maintain when you choose only one and use it consistently. Since both are dynamically resolved at runtime and thus prone to causing runtime errors, use them carefully. Some developers avoid them completely.
+Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use is based on preference. You can mix and match `ViewData` and `ViewBag` objects, however, the code is easier to read and maintain with one approach used consistently. Both approaches are dynamically resolved at runtime and thus prone to causing runtime errors. Some development teams avoid them.
 
 ### Dynamic views
 

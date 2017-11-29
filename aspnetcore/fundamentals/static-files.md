@@ -65,6 +65,8 @@ A request to `http://<app>/StaticFiles/test.png` will serve the *test.png* file.
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupAddHeader.cs?name=snippet1)]
 
+The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method is available from the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package. Add `using Microsoft.AspNetCore.Http;` to your *csharp* file if the method is unavailable.
+
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
 ## Static file authorization

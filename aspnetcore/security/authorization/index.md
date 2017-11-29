@@ -26,7 +26,7 @@ uid: security/authorization/index
 
 * [Dependency Injection in requirement handlers](dependencyinjection.md)
 
-* [Resource Based Authorization](resourcebased.md)
+* [Resource-based authorization](resourcebased.md)
 
 * [View-based authorization](views.md)
 

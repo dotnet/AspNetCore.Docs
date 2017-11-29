@@ -235,7 +235,7 @@ User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6
 Host: myservice.azurewebsites.net
 ```
 
-If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "*", meaning that any origin is allowed.:
+If the server allows the request, it sets the Access-Control-Allow-Origin header in the response. The value of this header either matches the Origin header from the request, or is the wildcard value "*", meaning that any origin is allowed:
 
 ```
 HTTP/1.1 200 OK
