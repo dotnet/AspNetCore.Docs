@@ -1,6 +1,6 @@
 ---
 uid: web-api/overview/advanced/calling-a-web-api-from-a-net-client
-title: "Calling a Web API From a .NET Client (C#) | Microsoft Docs"
+title: "Call a Web API From a .NET Client (C#) | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
@@ -12,7 +12,7 @@ ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 msc.type: authoredcontent
 ---
-Calling a Web API From a .NET Client (C#)
+Call a Web API From a .NET Client (C#)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -43,7 +43,7 @@ In Visual Studio, create a new Windows console app named **HttpClientSample** an
 
 The preceding code is the complete client app.
 
-`RunAsync` runs and blocks until it completes. Most **HttpClient** methods are async, because they perform network I/O. All of the async tasks are done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should **not** block the UI thread.
+`RunAsync` runs and blocks until it completes. Most **HttpClient** methods are async, because they perform network I/O. All of the async tasks are done inside `RunAsync`. Normally an app doesn't block the main thread, but this app doesn't allow any interaction.
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_run)]
 
@@ -96,18 +96,18 @@ The preceding code:
 * Sets the Accept header to "application/json". Setting this header tells the server to send data in JSON format.
 
 <a id="GettingResource"></a>
-## Sending a GET request to retrieve a resource
+## Send a GET request to retrieve a resource
 
 The following code sends a GET request for a product:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_GetProductAsync)]
 
-The **GetAsync** method sends the HTTP GET request. The method is asynchronous, because it performs network I/O. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsync** method is asynchronous because the response body can be arbitrarily large.
+The **GetAsync** method sends the HTTP GET request. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsync** method is asynchronous because the response body can be arbitrarily large.
 
 **HttpClient** does not throw an exception when the HTTP response contains an error code. Instead, the **IsSuccessStatusCode** property is **false** if the status is an error code. If you prefer to treat HTTP error codes as exceptions, call [HttpResponseMessage.EnsureSuccessStatusCode](https://msdn.microsoft.com/en-us/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) on the response object. `EnsureSuccessStatusCode` throws an exception if the status code falls outside the range 200&ndash;299. Note that **HttpClient** can throw exceptions for other reasons &mdash; for example, if the request times out.
 
 <a id="MediaTypeFormatters"></a>
-### Using Media-Type Formatters to Deserialize
+### Media-Type Formatters to Deserialize
 
 When **ReadAsAsync** is called with no parameters, it uses a default set of *media formatters* to read the response body. The default formatters support JSON, XML, and Form-url-encoded data.
 
@@ -158,7 +158,7 @@ The following code sends a DELETE request to delete a product:
 
 Like GET, a DELETE request does not have a request body. You don't need to specify JSON or XML format with DELETE.
 
-## Testing the sample
+## Test the sample
 
 To test the client app:
 
@@ -166,4 +166,12 @@ To test the client app:
 2.  Set the base URI for HTTP requests. Change the port number to the port used in the server app.
 	[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 
-3. Run the client app.
+3. Run the client app. The following output is produced:
+
+ ```console
+ Created at http://localhost:64195/api/products/4
+Name: Gizmo     Price: 100.0    Category: Widgets
+Updating price...
+Name: Gizmo     Price: 80.0     Category: Widgets
+Deleted (HTTP Status = 204)
+```

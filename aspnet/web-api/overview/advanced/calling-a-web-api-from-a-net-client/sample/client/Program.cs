@@ -78,14 +78,14 @@ namespace HttpClientSample
 
         static void Main()
         {
-            RunAsync().Wait();
+            RunAsync().GetAwaiter().GetResult();
         }
 
         #region snippet_run
         #region snippet5
         static async Task RunAsync()
         {
-            Console.WriteLine("Update port # in the following line.");
+            // Update port # in the following line.
             client.BaseAddress = new Uri("http://localhost:64195/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
