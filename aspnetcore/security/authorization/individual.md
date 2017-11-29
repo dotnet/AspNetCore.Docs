@@ -15,7 +15,7 @@ uid: security/authorization/individual
 
 ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
 
-When using the .NET Core CLI, add `-au Individual`:
+The authentication templates are available in .NET Core CLI with `-au Individual`:
 
 ```console
 dotnet new mvc -au Individual
