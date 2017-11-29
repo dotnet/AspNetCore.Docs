@@ -73,7 +73,7 @@ The environment is typically set to `Development`, `Staging`, or `Production`. S
 
 Configuration considerations:
 
-* `IOptionsSnapshot` can reload configuration data when it changes. See [IOptionsSnapshot](xref:fundamentals/configuration/options#reloading-configuration-data-with-ioptionssnapshot) for more information.
+* `IOptionsSnapshot` can reload configuration data when it changes. See [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot) for more information.
 * Configuration keys are case insensitive.
 * Specify environment variables last so that the local environment can override settings in deployed configuration files.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
