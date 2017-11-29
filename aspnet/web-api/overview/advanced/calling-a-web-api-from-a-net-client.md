@@ -162,7 +162,7 @@ Like GET, a DELETE request does not have a request body. You don't need to speci
 
 To test the client app:
 
-1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server app. [Download instructions](xref:tutorials/index#how-to-download-a-sample). Verify the server app is working. For exaxmple, `http://localhost:64195/api/products` should return a list of products.
+1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/samples/server) and run the server app. [Download instructions](https://docs.microsoft.com/en-us/aspnet/core/tutorials/#how-to-download-a-sample). Verify the server app is working. For exaxmple, `http://localhost:64195/api/products` should return a list of products.
 2. Set the base URI for HTTP requests. Change the port number to the port used in the server app.
 	[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 
