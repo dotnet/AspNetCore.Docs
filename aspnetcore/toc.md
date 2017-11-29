@@ -40,7 +40,7 @@
 ### [Advanced topics](data/ef-mvc/advanced.md)
 
 
-## [Data access - Razor Pages with EF Core](xref:data/index)
+## [Data access - Razor Pages with EF Core](xref:data/ef-rp/index)
 ### [Getting started](xref:data/ef-rp/intro)
 ### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
 ### [Sorting, filtering, paging, and grouping](xref:data/ef-mvc/sort-filter-page)
