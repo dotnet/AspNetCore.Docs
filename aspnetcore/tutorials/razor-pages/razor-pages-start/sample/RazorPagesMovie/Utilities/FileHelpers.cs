@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
@@ -76,9 +77,9 @@ namespace RazorPagesMovie.Utilities
                         }
                     }
                 }
-                catch (IOException ex)
+                catch (Exception ex)
                 {
-                    modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) upload failed. Please contact the Help Desk for support.");
+                    modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) upload failed. Please contact the Help Desk for support. Error: {ex.Message}");
                     // Log the exception
                 }
             }
