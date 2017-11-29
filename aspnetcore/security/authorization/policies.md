@@ -144,7 +144,7 @@ You can see in our [handler example](policies.md#security-authorization-handler-
 
 * To guarantee failure even if other handlers for a requirement succeed, call `context.Fail`.
 
-Regardless of what you call inside your handler all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if `context.Fail()` has been called in another handler.
+Regardless of what you call inside your handler, all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if `context.Fail()` has been called in another handler.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
