@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Departments
 {
@@ -21,7 +18,8 @@ namespace ContosoUniversity.Pages.Departments
 
         public IActionResult OnGet()
         {
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FirstMidName");
+            InstructorSL = new SelectList(_context.Instructors, "ID", 
+                "FirstMidName");
             Department = new Department
             {
                 Name = "Test",
@@ -34,6 +32,8 @@ namespace ContosoUniversity.Pages.Departments
 
         [BindProperty]
         public Department Department { get; set; }
+        public SelectList InstructorSL { get; set; }
+
 
         public async Task<IActionResult> OnPostAsync()
         {

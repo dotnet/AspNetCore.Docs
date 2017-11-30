@@ -20,12 +20,14 @@ namespace ContosoUniversity.Pages.Instructors
         }
 
         public InstructorIndexData Instructor { get; set; }
+        public int InstructorID { get; set; }
+        public int CourseID { get; set; }
 
-        #region snippet_OnGetAsync
+#region snippet_OnGetAsync
         public async Task OnGetAsync(int? id, int? courseID)
         {
             Instructor = new InstructorIndexData();
-            #region snippet_ThenInclude
+#region snippet_ThenInclude
             Instructor.Instructors = await _context.Instructors
                   .Include(i => i.OfficeAssignment)
                   .Include(i => i.CourseAssignments)
@@ -34,28 +36,28 @@ namespace ContosoUniversity.Pages.Instructors
                   .AsNoTracking()
                   .OrderBy(i => i.LastName)
                   .ToListAsync();
-            #endregion
+#endregion
 
-            #region snippet_ID
+#region snippet_ID
             if (id != null)
             {
-                ViewData["InstructorID"] = id.Value;
+                InstructorID = id.Value;
                 Instructor instructor = Instructor.Instructors.Where(
                     i => i.ID == id.Value).Single();
                 Instructor.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
-            #endregion
+#endregion
 
-            #region snippet_courseID
+#region snippet_courseID
             if (courseID != null)
             {
-                ViewData["CourseID"] = courseID.Value;
+                CourseID = courseID.Value;
                 Instructor.Enrollments = Instructor.Courses.Where(
                     x => x.CourseID == courseID).Single().Enrollments;
             }
-            #endregion
+#endregion
         }
-        #endregion
+#endregion
     }
 }
 #endregion

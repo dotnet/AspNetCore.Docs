@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
-In this tutorial, related data is read and displayed. Related data is data that EF loads into navigation properties.
+In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
 If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part6-related).
 
@@ -30,13 +30,18 @@ The following illustrations show the completed pages for this tutorial:
 
 ## Eager, explicit, and lazy Loading of related data
 
-There are several ways that EF can load related data into the navigation properties of an entity:
+There are several ways that EF Core can load related data into the navigation properties of an entity:
 
-* [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. Eager loading is specified with the `Include` and `ThenInclude` methods.
+* [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than was the case for some queries in EF6 where there was a single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
  ![Eager loading example](read-related-data/_static/eager-loading.png)
+ 
+ Eager loading sends multiple queries when a collection nvavigation is included:
 
- The data can be retrieved in separate queries, and EF "fixes up" the navigation properties. "fixes up" means that EF automatically populates the navigation properties. Eager loading with separate queries results in multiple queries sent to the DB.
+ * One query for the main query 
+ * One query for each collection "edge" in the load tree.
+
+* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explict loading than eager loading.
 
  ![Separate queries example](read-related-data/_static/separate-queries.png)
 
@@ -48,18 +53,7 @@ There are several ways that EF can load related data into the navigation propert
 
 * [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core does not currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
-* The `Select` operator loads only the related data needed, and is generally faster than using `Include`. [Loading related data with Select](#select) explains this in more detail.
-
-### Performance considerations
-
-If related data for every entity retrieved is needed:
-
-* Eager loading generally offers the best performance.
-* Eager loading sends a single query to the DB. A single query is typically more efficient than separate queries for each entity retrieved.
-
-For example, suppose that each department has 10 related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the DB. A separate query for courses for each department would result in 11 round trips to the DB. The extra round trips to the DB are especially expensive when latency is high. Cloud environments can have high DB access latency.
-
-In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, separate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than separate queries. As a general guideline, minimize round trips to the DB for best performance. Testing is required in order to find the optimal approach.
+* The `Select` operator loads only the related data needed.
 
 ## Create a Courses page that displays department name
 
@@ -129,7 +123,7 @@ The `OnGetAsync` method loads related data with the `Include` method:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
 
-The `Select` operator loads only the related data needed, and is generally faster than using `Include`. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections it uses another database access, but so does the .`Include` operator on collections.
+The `Select` operator loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections it uses another database access, but so does the .`Include` operator on collections.
 
 The following code loads related data with the `Select` method:
 

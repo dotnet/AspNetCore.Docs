@@ -20,6 +20,7 @@ namespace ContosoUniversity.Pages.Instructors
         }
 
         public InstructorIndexData Instructor { get; set; }
+        public int InstructorID { get; set; }
 
         public async Task OnGetAsync(int? id)
         {
@@ -36,7 +37,7 @@ namespace ContosoUniversity.Pages.Instructors
 
             if (id != null)
             {
-                ViewData["InstructorID"] = id.Value;
+                InstructorID = id.Value;
             }           
         }
     }

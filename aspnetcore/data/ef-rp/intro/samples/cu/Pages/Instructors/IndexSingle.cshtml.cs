@@ -4,6 +4,7 @@ using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;  // Add VM
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace ContosoUniversity.Pages.Instructors
         }
 
         public InstructorIndexData Instructor { get; set; }
+        public int InstructorID { get; set; }
+        public int CourseID { get; set; }
 
         #region snippet_single
         public async Task OnGetAsync(int? id, int? courseID)
@@ -40,14 +43,16 @@ namespace ContosoUniversity.Pages.Instructors
 
             if (id != null)
             {
-                ViewData["InstructorID"] = id.Value;
-                Instructor instructor = Instructor.Instructors.Single(i => i.ID == id.Value);
-                Instructor.Courses = instructor.CourseAssignments.Select(s => s.Course);
+                InstructorID = id.Value;
+                Instructor instructor = Instructor.Instructors.Single(
+                    i => i.ID == id.Value);
+                Instructor.Courses = instructor.CourseAssignments.Select(
+                    s => s.Course);
             }
 
             if (courseID != null)
             {
-                ViewData["CourseID"] = courseID.Value;
+                CourseID = courseID.Value;
                 Instructor.Enrollments = Instructor.Courses.Single(
                     x => x.CourseID == courseID).Enrollments;
             }

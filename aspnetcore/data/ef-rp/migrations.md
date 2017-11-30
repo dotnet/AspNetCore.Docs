@@ -29,7 +29,7 @@ When a new app is developed, the data model changes frequently. Each time the mo
 * EF creates a new one that matches the model.
 * The app seeds the DB with test data.
 
-This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it is usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF to update the DB schema instead of creating a new DB.
+This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it is usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
 
 Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
@@ -37,13 +37,13 @@ Rather than dropping and recreating the DB when the data model changes, migratio
 
 To work with migrations, use the **Package Manager Console** (PMC) or the command-line interface (CLI). These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. **Note:** This package must be installed by editing the *.csproj* file. The`install-package` command or the package manager GUI cannot be used to install this package. Edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
+The EF Core tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. **Note:** This package must be installed by editing the *.csproj* file. The`install-package` command or the package manager GUI cannot be used to install this package. Edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
 
-The following markup shows the updated *.csproj* file with the EF CLI tools highlighted:
+The following markup shows the updated *.csproj* file with the EF Core CLI tools highlighted:
 
 [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?highlight=12)]
   
-The version numbers in the preceding example were current when the tutorial was written. Use the same version for the EF CLI tools found in the other packages.
+The version numbers in the preceding example were current when the tutorial was written. Use the same version for the EF Core CLI tools found in the other packages.
 
 ## Change the connection string
 
@@ -95,7 +95,7 @@ If the error message "Build failed." is displayed, run the command again. If you
 
 ### Examine the Up and Down methods
 
-The EF command `migrations add` generated code to create the DB from. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
+The EF Core command `migrations add` generated code to create the DB from. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
 [!code-csharp[Main](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
 
@@ -118,7 +118,7 @@ Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolCo
 
 [!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
-Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF determines what changed by comparing the data model to the snapshot file. EF interacts with the DB only when it has to update the DB.
+Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF Core determines what changed by comparing the data model to the snapshot file. EF Core interacts with the DB only when it has to update the DB.
 
 The snapshot file must be in sync with the migrations that created it. A migration can't be removed by deleting the file named *\<timestamp>_\<migrationname>.cs*. If that file is deleted, the remaining migrations are out of sync with the DB snapshot file. To delete the last migration added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
 
@@ -193,19 +193,19 @@ Database migration should be done as part of deployment, and in a controlled way
 * Using migrations to create SQL scripts and using the SQL scripts in deployment.
 * Running `dotnet ef database update` from a controlled environment.
 
-EF uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up to date, no migration is run.
+EF Core uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up to date, no migration is run.
 
 <a id="pmc"></a>
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
-The EF tooling for managing migrations is available from:
+The EF Core tooling for managing migrations is available from:
 
 * .NET Core CLI commands.
 * The PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window.
 
 This tutorial shows how to use the CLI, some developers prefer using the PMC.
 
-The EF commands for the PMC are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
+The EF Core commands for the PMC are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
 **Important:** This is not the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 

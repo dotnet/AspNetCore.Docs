@@ -20,8 +20,10 @@ namespace ContosoUniversity.Pages.Instructors
         }
 
         public InstructorIndexData Instructor { get; set; }
+        public int InstructorID { get; set; }
+        public int CourseID { get; set; }
 
-        #region snippet_OnGetAsync
+#region snippet_OnGetAsync
         public async Task OnGetAsync(int? id, int? courseID)
         {
             Instructor = new InstructorIndexData();
@@ -41,7 +43,7 @@ namespace ContosoUniversity.Pages.Instructors
 
             if (id != null)
             {
-                ViewData["InstructorID"] = id.Value;
+                InstructorID = id.Value;
                 Instructor instructor = Instructor.Instructors.Where(
                     i => i.ID == id.Value).Single();
                 Instructor.Courses = instructor.CourseAssignments.Select(s => s.Course);
@@ -49,7 +51,7 @@ namespace ContosoUniversity.Pages.Instructors
 
             if (courseID != null)
             {
-                ViewData["CourseID"] = courseID.Value;
+                CourseID = courseID.Value;
                 var selectedCourse = Instructor.Courses.Where(x => x.CourseID == courseID).Single();
                 await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
@@ -59,7 +61,7 @@ namespace ContosoUniversity.Pages.Instructors
                 Instructor.Enrollments = selectedCourse.Enrollments;
             }
         }
-        #endregion
+#endregion
     }
 }
 #endregion
