@@ -97,7 +97,7 @@ Configure the build to run the client-side asset bundling and minification tasks
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=6)]
 
-Build the project. The *bundleconfig.json* file is considered in the build process to produce the output files based on the defined configuration. The following appears in the Output window:
+Build the project. The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears in the Output window:
 
 ```console
 1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
@@ -114,33 +114,33 @@ Build the project. The *bundleconfig.json* file is considered in the build proce
 
 Add the [BuildBundlerMinifier NuGet package](https://www.nuget.org/packages/BuildBundlerMinifier/) to your project:
 
-    ```console
-    dotnet add package BuildBundlerMinifier
-    ```
+```console
+dotnet add package BuildBundlerMinifier
+```
 
 Restore the dependencies:
 
-    ```console
-    dotnet restore
-    ```
+```console
+dotnet restore
+```
 
 Build the app:
 
-    ```console
-    dotnet build
-    ```
+```console
+dotnet build
+```
 
 The output from the build command shows the results of the minification and/or bundling according to what is configured. For example:
 
-    ```console
-    Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-    Copyright (C) Microsoft Corporation. All rights reserved.
-    
-    
-      Bundler: Begin processing bundleconfig.json
-      Bundler: Done processing bundleconfig.json
-      BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-    ```
+```console
+Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+    Bundler: Begin processing bundleconfig.json
+    Bundler: Done processing bundleconfig.json
+    BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
+```
 
 ---
 
@@ -221,7 +221,7 @@ The *gulpfile.js* file reads the *bundleconfig.json* file for the inputs, output
 
 To trigger the Gulp minification task before the project builds in Visual Studio, add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the *.csproj file:
 
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=13-15)]
+[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
 
 In this example, any tasks defined within the `MyPreCompileTarget` target run before the `Build` target. Output similar to the following appears in Visual Studio's Output window:
 
