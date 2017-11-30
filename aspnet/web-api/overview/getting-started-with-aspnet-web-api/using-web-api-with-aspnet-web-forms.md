@@ -76,6 +76,10 @@ For more information about routing tables, see [Routing in ASP.NET Web API](../w
 
 That's all you need to create a web API that clients can access. Now let's add an HTML page that uses jQuery to call the API.
 
+Make sure your master page (for example, *Site.Master*), includes a `ContentPlaceHolder` with `ID="HeadContent"` similar to the following:
+
+[!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample8.html)]
+
 Open the file Default.aspx. Replace the boilerplate text that is in the main content section, as shown:
 
 [!code-aspx[Main](using-web-api-with-aspnet-web-forms/samples/sample5.aspx)]
@@ -91,10 +95,6 @@ Note: You can easily add the script reference by dragging and dropping the file 
 Below the jQuery script tag, add the following script block:
 
 [!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample7.html)]
-
-Make sure your master page (for example, *Site.Master*), includes a `ContentPlaceHolder` with `ID="HeadContent"` similar to the following:
-
-[!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample8.html)]
 
 When the document loads, this script makes an AJAX request to &quot;api/products&quot;. The request returns a list of products in JSON format. The script adds the product information to the HTML table.
 
