@@ -76,6 +76,10 @@ For more information about routing tables, see [Routing in ASP.NET Web API](../w
 
 That's all you need to create a web API that clients can access. Now let's add an HTML page that uses jQuery to call the API.
 
+Make sure your master page (for example, *Site.Master*) includes a `ContentPlaceHolder` with `ID="HeadContent"`:
+
+[!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample8.html)]
+
 Open the file Default.aspx. Replace the boilerplate text that is in the main content section, as shown:
 
 [!code-aspx[Main](using-web-api-with-aspnet-web-forms/samples/sample5.aspx)]

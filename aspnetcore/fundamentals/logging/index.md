@@ -37,9 +37,9 @@ Then call logging methods on that logger object:
 
 [!code-csharp[](index/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-This example creates logs with the `TodoController` class as the *category*.  Categories are explained [later in this article](#log-category).
+This example creates logs with the `TodoController` class as the *category*. Categories are explained [later in this article](#log-category).
 
-ASP.NET Core does not provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If you're in a situation where that's not true, consider changing the way you log.  If your data store is slow, write the log messages to a fast store first, then move them to a slow store later. For example, log to a message queue that is read and persisted to slow storage by another process.
+ASP.NET Core does not provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If you're in a situation where that's not true, consider changing the way you log. If your data store is slow, write the log messages to a fast store first, then move them to a slow store later. For example, log to a message queue that is read and persisted to slow storage by another process.
 
 ## How to add providers
 
@@ -117,13 +117,13 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 ## Log category
 
-A *category* is included with each log that you create.  You specify the category when you create an `ILogger` object. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written.  For example: "TodoApi.Controllers.TodoController".
+A *category* is included with each log that you create. You specify the category when you create an `ILogger` object. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written. For example: "TodoApi.Controllers.TodoController".
 
 You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call `CreateLogger` on an `ILoggerFactory` instance, as shown below.
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
 
-Most of the time, it will be easier to use  `ILogger<T>`, as in the following example.
+Most of the time, it will be easier to use `ILogger<T>`, as in the following example.
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 
@@ -208,7 +208,7 @@ Each time you write a log, you can specify an *event ID*. The sample app does th
 
 An event ID is an integer value that you can use to associate a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.
 
-In logging output, the event ID may be stored in a field or included in the text message, depending on the provider.  The Debug provider doesn't show event IDs, but the console provider shows them in brackets after the category:
+In logging output, the event ID may be stored in a field or included in the text message, depending on the provider. The Debug provider doesn't show event IDs, but the console provider shows them in brackets after the category:
 
 ```console
 info: TodoApi.Controllers.TodoController[1002]
@@ -264,7 +264,7 @@ System.Exception: Item not found exception.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-You can specify a minimum log level for a specific provider and category or for all providers or all categories.  Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored. 
+You can specify a minimum log level for a specific provider and category or for all providers or all categories. Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored. 
 
 If you want to suppress all logs, you can specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
@@ -292,22 +292,22 @@ The second `AddFilter` specifies the Debug provider by using its type name. The 
 
 The configuration data and the `AddFilter` code shown in the preceding examples create the rules shown in the following table. The first six come from the configuration example and the last two come from the code example.
 
-Number|Provider|Categories that begin with|Minimum log level|
-------|--------|--------------------------|-----------------|
-1|Debug|All categories|Information|
-2|Console|Microsoft.AspNetCore.Mvc.Razor.Internal|Warning|
-3|Console|Microsoft.AspNetCore.Mvc.Razor.Razor|Debug|
-4|Console|Microsoft.AspNetCore.Mvc.Razor|Error|
-5|Console|All categories|Information|
-6|All providers|All categories|Debug
-7|All providers|System|Debug
-8|Debug|Microsoft|Trace
+| Number | Provider      | Categories that begin with ...          | Minimum log level |
+| :----: | ------------- | --------------------------------------- | ----------------- |
+| 1      | Debug         | All categories                          | Information       |
+| 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Warning           |
+| 3      | Console       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Debug             |
+| 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Error             |
+| 5      | Console       | All categories                          | Information       |
+| 6      | All providers | All categories                          | Debug             |
+| 7      | All providers | System                                  | Debug             |
+| 8      | Debug         | Microsoft                               | Trace             |
 
 When you create an `ILogger` object to write logs with, the `ILoggerFactory` object selects a single rule per provider to apply to that logger. All messages written by that `ILogger` object are filtered based on the selected rules. The most specific rule possible for each provider and category pair is selected from the available rules.
 
 The following algorithm is used for each provider when an `ILogger` is created for a given category:
 
-* Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.
+* Select all rules that match the provider or its alias. If none are found, select all rules with an empty provider.
 * From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
 * If multiple rules are selected take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
@@ -352,7 +352,7 @@ The `AddConsole` and `AddDebug` extension methods provide overloads that let you
 
 [!code-csharp[](index/sample/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
 
-The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
+The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the `SourceSwitch` and `TraceListener` it uses.
 
 You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
 
@@ -366,7 +366,7 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 ## Log scopes
 
-You can group a set of logical operations within a *scope* in order to attach the same data to each log that is created as part of that set.  For example, you might want every log created as part of processing a transaction to include the transaction ID.
+You can group a set of logical operations within a *scope* in order to attach the same data to each log that is created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
 
 A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TState>` method and lasts until it is disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
 
@@ -430,7 +430,7 @@ logging.AddConsole()
 loggerFactory.AddConsole()
 ```
 
-[AddConsole overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported.  Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels. 
+[AddConsole overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels. 
 
 If you are considering the console provider for use in production, be aware that it has a significant impact on performance.
 
@@ -582,7 +582,7 @@ The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packag
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.
+You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method. The provider is automatically available to your app when you deploy the app to Azure App Service.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -590,7 +590,7 @@ You don't have to install the provider package or call the `AddAzureWebAppDiagno
 loggerFactory.AddAzureWebAppDiagnostics();
 ```
 
-An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs) with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of the one that you provide when you call an `ILogger` method.)  
+An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs) with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of the one that you provide when you call an `ILogger` method.)
 
 ---
 
@@ -600,7 +600,7 @@ When you deploy to an App Service app, your application honors the settings in t
 
 The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs).
 
-The provider only works when your project runs in the Azure environment.  It has no effect when you run locally &mdash; it does not write to local files or local development storage for blobs.
+The provider only works when your project runs in the Azure environment. It has no effect when you run locally &mdash; it does not write to local files or local development storage for blobs.
 
 ## Third-party logging providers
 
