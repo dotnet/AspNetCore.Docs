@@ -92,7 +92,8 @@ Below the jQuery script tag, add the following script block:
 
 [!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample7.html)]
 
-Make sure, your maser pages (Ex: Site.Master), includes a ContentPlaceHolder with ID="HeadContent" similar to the following.
+Make sure your master page (for example, *Site.Master*), includes a `ContentPlaceHolder` with `ID="HeadContent"` similar to the following:
+
 [!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample8.html)]
 
 When the document loads, this script makes an AJAX request to &quot;api/products&quot;. The request returns a list of products in JSON format. The script adds the product information to the HTML table.
