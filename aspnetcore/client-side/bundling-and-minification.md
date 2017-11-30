@@ -72,15 +72,16 @@ The MVC and Razor Pages project templates provide a *bundleconfig.json* configur
 
 Bundle options include:
 
-* `outputFileName`: name of the bundle file to output. Can contain a relative path from the *bundleconfig.json* file. **required**
-* `inputFiles`: array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
-* `minify`: minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
+* `outputFileName`: The name of the bundle file to output. Can contain a relative path from the *bundleconfig.json* file. **required**
+* `inputFiles`: An array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
+* `minify`: The minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
   * Configuration options are available per output file type.
     * [CSS Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
     * [JavaScript Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/JavaScript-Minifier-settings)
     * [HTML Minifier](https://github.com/madskristensen/BundlerMinifier/wiki)
-* `includeInProject`: add generated files to project file. **optional**, *default - false*
-* `sourceMaps`: generate source maps for the bundled file. **optional**, *default - false*
+* `includeInProject`: Flag indicating whether to add generated files to project file. **optional**, *default - false*
+* `sourceMap`: Flag indicating whether to generate a source map for the bundled file. **optional**, *default - false*
+* `sourceMapRootPath`: The root path for storing the generated source map file.
 
 # [Visual Studio](#tab/visual-studio) 
 
