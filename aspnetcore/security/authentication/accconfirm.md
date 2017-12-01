@@ -5,7 +5,7 @@ description: Shows how to build an ASP.NET Core app with email confirmation and 
 keywords: ASP.NET Core,password reset,email confirmation,security
 ms.author: riande
 manager: wpickett
-ms.date: 07/19/2017
+ms.date: 12/1/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -13,7 +13,7 @@ uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette) 
 
 This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset.
 
@@ -190,6 +190,8 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 The complete method is shown with the changed line highlighted:
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=19&name=snippet_Register)]
+
+Note: The previous code will fail if you implement `IEmailSender` and send a plain text email. See [this issue](https://github.com/aspnet/Home/issues/2152) for more information and a workaround.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
