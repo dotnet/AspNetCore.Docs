@@ -6,11 +6,11 @@ using Xunit;
 
 namespace RazorPagesTestingSample.Tests.IntegrationTests
 {
-    public class IndexPageTests : IClassFixture<TestFixture<RazorPagesTestingSample.Startup>>
+    public class IndexPageTest : IClassFixture<TestFixture<RazorPagesTestingSample.Startup>>
     {
         private readonly HttpClient _client;
 
-        public IndexPageTests(TestFixture<RazorPagesTestingSample.Startup> fixture)
+        public IndexPageTest(TestFixture<RazorPagesTestingSample.Startup> fixture)
         {
             _client = fixture.Client;
         }

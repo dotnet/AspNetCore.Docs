@@ -7,7 +7,7 @@ using RazorPagesTestingSample.Data;
 
 namespace RazorPagesTestingSample.Tests.UnitTests
 {
-    public class DataAccessLayerTests
+    public class DataAccessLayerTest
     {
         [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()

@@ -17,7 +17,7 @@ using RazorPagesTestingSample.Data;
 
 namespace RazorPagesTestingSample.Tests.UnitTests
 {
-    public class IndexPageTests
+    public class IndexPageTest
     {
         [Fact]
         public async Task OnGetAsync_PopulatesThePageModel_WithAListOfMessages()
