@@ -172,13 +172,6 @@ Build the project. The build generates errors like the following:
 
  Globally change `_context.Department` to `_context.Departments` (that is, add an "s" to `Department`). 7 occurrences are found and updated.
 
- <!--
-In the *DepartmentsController.cs* file, change all four occurrences of "FirstMidName" to "FullName" so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
-
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
--->
-
-
 ### Update the Departments Index page
 
 The scaffolding engine created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
@@ -315,4 +308,4 @@ See [Inheritance](xref:data/ef-mvc/inheritance) for instruction on how to inheri
 * [Handling concurrency in EF Core](https://docs.microsoft.com/en-us/ef/core/saving/concurrency)
 
 >[!div class="step-by-step"]
-[Previous](xref:data/ef-mvc/update-related-data)
+[Previous](xref:data/ef-rp/update-related-data)

@@ -222,7 +222,7 @@ The preceding markup makes the following changes:
 
   ```html
   string selectedRow = "";
-  if (item.ID == (int?)ViewData["InstructorID"])
+  if (item.CourseID == Model.CourseID)
   {
       selectedRow = "success";
   }

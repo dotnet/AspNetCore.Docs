@@ -69,7 +69,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
-`OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that passes the name of the `OrderBy` column in a string variable.
+`OnGetAsync` could get verbose with a large number of columns.
 
 ### Add column heading hyperlinks to the Student Index view
 

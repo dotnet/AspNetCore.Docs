@@ -228,5 +228,5 @@ The preceding code makes the following changes:
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
 >[!div class="step-by-step"]
-[Previous](xref:data/ef-mvc/read-related-data)
-[Next](xref:data/ef-mvc/concurrency)
+[Previous](xref:data/ef-rp/read-related-data)
+[Next](xref:data/ef-rp/concurrency)
