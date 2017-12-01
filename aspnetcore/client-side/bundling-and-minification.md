@@ -58,7 +58,7 @@ File Requests  | 7   | 18     | 157%
 KB Transferred | 156 | 264.68 | 70%
 Load Time (ms) | 885 | 2360   | 167%
 
-Browsers are fairly verbose with regard to HTTP request headers, so the total bytes sent metric saw a significant reduction when bundling. The load time shows a big improvement, however this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
+Browsers are fairly verbose with regard to HTTP request headers. The total bytes sent metric saw a significant reduction when bundling. The load time shows a significant improvement, however this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
 
 ## Choose a bundling and minification strategy
 
@@ -122,7 +122,7 @@ Add the *BuildBundlerMinifier* package to your project:
 dotnet add package BuildBundlerMinifier
 ```
 
-If using ASP.NET Core 1.x, restore the newly-added package:
+If using ASP.NET Core 1.x, restore the newly added package:
 
 ```console
 dotnet restore
@@ -165,9 +165,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 ---
 
-## Ad-hoc execution of bundling and minification
+## Ad hoc execution of bundling and minification
 
-It's possible to run the bundling and minification tasks on an ad-hoc basis, without building the project. Add the [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) NuGet package to your project:
+It's possible to run the bundling and minification tasks on an ad hoc basis, without building the project. Add the [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) NuGet package to your project:
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
 
