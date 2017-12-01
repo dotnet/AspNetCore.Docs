@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
@@ -20,11 +21,13 @@ namespace RazorPagesMovie.Utilities
             // property associated with this IFormFile. If a display
             // name isn't found, error messages simply won't show
             // a display name.
-            MemberInfo property = typeof(FileUpload).GetProperty(formFile.Name.Substring(formFile.Name.IndexOf(".") + 1));
+            MemberInfo property = 
+                typeof(FileUpload).GetProperty(formFile.Name.Substring(formFile.Name.IndexOf(".") + 1));
 
             if (property != null)
             {
-                var displayAttribute = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                var displayAttribute = 
+                    property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
 
                 if (displayAttribute != null)
                 {
@@ -40,7 +43,8 @@ namespace RazorPagesMovie.Utilities
 
             if (formFile.ContentType.ToLower() != "text/plain")
             {
-                modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) must be a text file.");
+                modelState.AddModelError(formFile.Name, 
+                                         $"The {fieldDisplayName}file ({fileName}) must be a text file.");
             }
 
             // Check the file length and don't bother attempting to
@@ -59,7 +63,16 @@ namespace RazorPagesMovie.Utilities
                 {
                     string fileContents;
 
-                    using (var reader = new StreamReader(formFile.OpenReadStream(), new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true), detectEncodingFromByteOrderMarks: true))
+                    // The StreamReader is created to read files that are UTF-8 encoded. 
+                    // If uploads require some other encoding, provide the encoding in the 
+                    // using statement. To change to 32-bit encoding, change 
+                    // new UTF8Encoding(...) to new UTF32Encoding().
+                    using (
+                        var reader = 
+                            new StreamReader(
+                                formFile.OpenReadStream(), 
+                                new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true), 
+                                detectEncodingFromByteOrderMarks: true))
                     {
                         fileContents = await reader.ReadToEndAsync();
 
@@ -72,13 +85,16 @@ namespace RazorPagesMovie.Utilities
                         }
                         else
                         {
-                            modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) is empty.");
+                            modelState.AddModelError(formFile.Name, 
+                                                     $"The {fieldDisplayName}file ({fileName}) is empty.");
                         }
                     }
                 }
-                catch (IOException ex)
+                catch (Exception ex)
                 {
-                    modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) upload failed. Please contact the Help Desk for support.");
+                    modelState.AddModelError(formFile.Name, 
+                                             $"The {fieldDisplayName}file ({fileName}) upload failed. " +
+                                             $"Please contact the Help Desk for support. Error: {ex.Message}");
                     // Log the exception
                 }
             }

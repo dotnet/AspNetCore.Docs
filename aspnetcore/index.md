@@ -30,7 +30,7 @@ ASP.NET Core provides the following benefits:
 
 * A unified story for building web UI and web APIs.
 * Integration of [modern client-side frameworks](xref:client-side/index) and development workflows.
-* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration).
+* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
 * Built-in [dependency injection](xref:fundamentals/dependency-injection).
 * A lightweight, high-performance, and modular HTTP request pipeline.
 * Ability to host on IIS or self-host in your own process.

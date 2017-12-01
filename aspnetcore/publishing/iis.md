@@ -267,7 +267,7 @@ IIS configuration is still influenced by the `<system.webServer>` section of *we
 
 ## Configuration sections of web.config
 
-Unlike .NET Framework applications that are configured with the `<system.web>`, `<appSettings>`, `<connectionStrings>`, and `<location>` elements in *web.config*, ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration).
+Unlike .NET Framework applications that are configured with the `<system.web>`, `<appSettings>`, `<connectionStrings>`, and `<location>` elements in *web.config*, ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ## Application Pools
 

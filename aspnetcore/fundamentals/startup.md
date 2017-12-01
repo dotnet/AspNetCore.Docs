@@ -25,7 +25,7 @@ The app can define separate `Startup` classes for different environments, and th
 
 Alternatively, the app can define a fixed `Startup` class that's used regardless of the environment by calling `UseStartup<TStartup>`. This is the recommended approach.
 
-The `Startup` class constructor can accept dependencies that are provided through [dependency injection](xref:fundamentals/dependency-injection). A common approach is to use `IHostingEnvironment` to set up [configuration](xref:fundamentals/configuration) sources.
+The `Startup` class constructor can accept dependencies that are provided through [dependency injection](xref:fundamentals/dependency-injection). A common approach is to use `IHostingEnvironment` to set up [configuration](xref:fundamentals/configuration/index) sources.
 
 The `Startup` class must include a `Configure` method and can optionally include a `ConfigureServices` method. `Configure` and `ConfigureServices` are called when the app starts. The class can also include [environment-specific versions of these methods](xref:fundamentals/environments#startup-conventions). `ConfigureServices`, if present, is called before `Configure`.
 
@@ -104,4 +104,4 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 * [Working with Multiple Environments](xref:fundamentals/environments)
 * [Middleware](xref:fundamentals/middleware)
 * [Logging](xref:fundamentals/logging/index)
-* [Configuration](xref:fundamentals/configuration)
+* [Configuration](xref:fundamentals/configuration/index)
