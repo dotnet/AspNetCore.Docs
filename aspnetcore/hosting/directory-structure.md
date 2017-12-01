@@ -37,6 +37,6 @@ The contents of the *publish* directory represents the *content root path*, also
 </Target>
 ```
 
-The `<MakeDir>` element creates an empty *Logs* folder in the published output. The element uses the `PublishDir` property to determine the target location for creating the folder. Several deployment methods, such as Web Deploy, skip empty folders during deployment. The `<WriteLinesToFile>` element generates a file in the *Logs* folder, which guarantees deployment of the folder to the server.
+The `<MakeDir>` element creates an empty *Logs* folder in the published output. The element uses the `PublishDir` property to determine the target location for creating the folder. Several deployment methods, such as Web Deploy, skip empty folders during deployment. The `<WriteLinesToFile>` element generates a file in the *Logs* folder, which guarantees deployment of the folder to the server. Note that folder creation may still fail if the worker process doesn't have write access to the target folder.
 
 The deployment directory requires Read/Execute permissions, while the *Logs* directory requires Read/Write permissions. Additional directories where assets will be written require Read/Write permissions.
