@@ -122,7 +122,7 @@ Add the *BuildBundlerMinifier* package to your project:
 dotnet add package BuildBundlerMinifier
 ```
 
-Restore the newly-added NuGet dependencies:
+If using ASP.NET Core 1.x, restore the newly-added package:
 
 ```console
 dotnet restore
@@ -259,7 +259,7 @@ To trigger the Gulp minification task before the project builds in Visual Studio
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
 
-In this example, any tasks defined within the `MyPreCompileTarget` target run before the `Build` target. Output similar to the following appears in Visual Studio's Output window:
+In this example, any tasks defined within the `MyPreCompileTarget` target run before the predefined `Build` target. Output similar to the following appears in Visual Studio's Output window:
 
 ```console
 1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
