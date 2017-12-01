@@ -32,27 +32,7 @@ A concurrency conflict occurs when:
 If concurrency detection is not enabled, when concurrent updates occur:
 
 * The last update wins. That is, the last update values are saved to the DB.
-* The first of the current updates are lost. That's generally not what you want.
-
-### Pessimistic concurrency (locking)
-
-DB locking, also called pessimistic concurrency, is a concurrency approach. For example, before a row is read from the db, the app can request a lock for read-only or for update access. If a row is locked for update access:
-
-* Other users can't lock the row for read-only access. That is, other users can't read the data.
-* Other users can't lock the row for update access.
-
-If a row is locked for read-only access:
-
-* Other users can also read the data. That is, they can lock it for read-only access.
-* Other users cannot get an update lock to update the data.
-
-Managing locks has disadvantages:
-
-* It's complex to program.
-* It requires significant DB management resources.
-* It can cause performance problems as the number of users of an app increases.
-
-Not all DB management systems support pessimistic concurrency. EF Core provides no built-in support for pessimistic locking. This tutorial doesn't show how to implement pessimistic concurrency.
+* The first of the current updates are lost.
 
 ### Optimistic concurrency
 
@@ -107,7 +87,12 @@ The `[ConcurrencyCheck]` attribute is not used in this tutorial.
 
 ### Detecting concurrency conflicts on a row
 
-To detect concurrency conflicts, a [rowversion](https://docs.microsoft.com/sql/t-sql/data-types/rowversion-transact-sql) tracking column is added to the model. `rowversion` is used to determine that an entity has not been changed since it was fetched from the DB. The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
+To detect concurrency conflicts, a [rowversion](https://docs.microsoft.com/sql/t-sql/data-types/rowversion-transact-sql) tracking column is added to the model.  `rowversion` :
+
+* Is SQL Server specific. Other databases may not provide a similar feature.
+* Is used to determine that an entity has not been changed since it was fetched from the DB. 
+
+The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
 
  * `rowversion` doesn't match the fetched value.
  * The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
