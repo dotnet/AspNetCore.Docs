@@ -3,9 +3,9 @@ title: Bundling and minification in ASP.NET Core
 author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 manager: wpickett
-ms.author: riande
+ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/29/2017
+ms.date: 12/01/2017
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
@@ -50,7 +50,7 @@ Original | Renamed
 
 ## Impact of bundling and minification
 
-The following table outlines important differences between listing all the assets individually and using bundling and minification on a simple web page:
+The following table outlines differences between individually loading assets and using bundling and minification:
 
 Action | With B/M | Without B/M | Change
 --- | :---: | :---: | :---:
@@ -87,8 +87,11 @@ Bundle options include:
 
 Configure the bundling and minification tasks to run when the project builds. Choose one of the following two options:
 
-1. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project. This package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
-2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project.
+1. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project.
+2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The BuildBundlerMinifier NuGet package was added to the project.
+
+> [!NOTE]
+> The *BuildBundlerMinifier* package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
 
 Build the project. The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears in the Output window:
 
