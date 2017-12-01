@@ -64,7 +64,7 @@ Browsers are fairly verbose with regard to HTTP request headers, so the total by
 
 The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
-## Use bundling and minification in a project
+## Build-time execution of bundling and minification
 
 The MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file which defines the options for each bundle. By default, a single bundle configuration is defined for the custom JavaScript (*wwwroot/js/site.js*) and stylesheet (*wwwroot/css/site.css*) files:
 
@@ -88,9 +88,7 @@ Bundle options include:
 Configure the bundling and minification tasks to run when the project builds. Choose one of the following two options:
 
 1. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project. This package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
-2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project:
-
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=6)]
+2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project.
 
 Build the project. The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears in the Output window:
 
@@ -137,7 +135,7 @@ Build the project:
 dotnet build
 ```
 
-The following output appears:
+The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears:
 
 ```console
 Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
