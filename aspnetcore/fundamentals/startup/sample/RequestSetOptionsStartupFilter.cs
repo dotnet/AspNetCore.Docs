@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HostingStartupSample
+namespace StartupFilterSample
 {
     #region snippet1
     public class RequestSetOptionsStartupFilter : IStartupFilter

@@ -3,17 +3,18 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using StartupFilterSample.Models;
 
-namespace HostingStartupSample
+namespace StartupFilterSample
 {
     #region snippet1
     public class RequestSetOptionsMiddleware
     {
         private readonly RequestDelegate _next;
-        private IOptions<InjectedOptions> _injectedOptions;
+        private IOptions<AppOptions> _injectedOptions;
 
         public RequestSetOptionsMiddleware(
-            RequestDelegate next, IOptions<InjectedOptions> injectedOptions)
+            RequestDelegate next, IOptions<AppOptions> injectedOptions)
         {
             _next = next;
             _injectedOptions = injectedOptions;
@@ -23,11 +24,11 @@ namespace HostingStartupSample
         {
             Console.WriteLine("RequestSetOptionsMiddleware.Invoke");
 
-            var option1 = httpContext.Request.Query["option1"];
+            var option = httpContext.Request.Query["option"];
 
-            if (!string.IsNullOrWhiteSpace(option1))
+            if (!string.IsNullOrWhiteSpace(option))
             {
-                _injectedOptions.Value.Option1 = WebUtility.HtmlEncode(option1);
+                _injectedOptions.Value.Option = WebUtility.HtmlEncode(option);
             }
 
             await _next(httpContext);

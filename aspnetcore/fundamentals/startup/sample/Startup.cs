@@ -1,17 +1,14 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HostingStartupSample
+namespace StartupFilterSample
 {
     public class Startup
     {
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            Console.WriteLine("Startup.ConfigureServices");
-
             services.AddTransient<IStartupFilter, RequestSetOptionsStartupFilter>();
             services.AddMvc();
         }
@@ -19,8 +16,6 @@ namespace HostingStartupSample
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Console.WriteLine("Startup.Configure");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

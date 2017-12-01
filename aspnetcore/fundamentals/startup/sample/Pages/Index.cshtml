@@ -1,9 +1,9 @@
 ﻿@page
 @model IndexModel
 @using Microsoft.Extensions.Options
-@inject IOptions<InjectedOptions> OptionsAccessor
+@inject IOptions<AppOptions> OptionsAccessor
 @{
-    ViewData["Title"] = "Hosting Startup Sample";
+    ViewData["Title"] = "Startup Filter Sample";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -12,16 +12,12 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Injected Options</h3>
+                <h3 class="panel-title">AppOptions</h3>
             </div>
             <div class="panel-body">
                 <p>
-                    <b>@@OptionsAccessor.Value.Option1:</b> 
-                    @OptionsAccessor.Value.Option1
-                </p>
-                <p>
-                    <b>@@OptionsAccessor.Value.Option2:</b> 
-                    @OptionsAccessor.Value.Option2
+                    <b>@@OptionsAccessor.Value.Option:</b> 
+                    @OptionsAccessor.Value.Option
                 </p>
             </div>
         </div>
