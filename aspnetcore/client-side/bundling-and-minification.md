@@ -40,7 +40,7 @@ Minification reduces the function to the following:
 
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/js/site.min.js)]
 
-In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
+In addition to removing the comments and unnecessary whitespace, the following parameter and variable names were renamed as follows:
 
 Original | Renamed
 --- | :---:
