@@ -234,7 +234,7 @@ The following *environment* tag renders the bundled and minified CSS files when 
 
 ## Consume bundleconfig.json from Gulp
 
-There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp. The Visual Studio [Bundler & Minifier extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) is used for this purpose.
+There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp. The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension is used for this purpose.
 
 ### Use the Bundler & Minifier extension
 
