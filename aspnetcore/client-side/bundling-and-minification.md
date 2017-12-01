@@ -85,15 +85,10 @@ Bundle options include:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Open *bundleconfig.json* in Visual Studio. If the appropriate extension isn't installed, a prompt suggests there's one that could assist with this file type.
+Configure the bundling and minification tasks to run when the project builds. Choose one of the following two options:
 
-![BuildBundlerMinifier Extension Suggestion](../client-side/bundling-and-minification/_static/bundler-extension-suggestion.png)
-
-Click **View Extensions**, and install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension.
-
-![BuildBundlerMinifier Extension Suggestion](../client-side/bundling-and-minification/_static/view-extension.png)
-
-Configure the bundling and minification tasks to run when the project builds. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project:
+1. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project. This package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
+2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project:
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=6)]
 
@@ -110,6 +105,16 @@ Build the project. The *bundleconfig.json* file is used by the build process to 
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
 ```
 
+Clean the project. The following appears in the Output window:
+
+```console
+1>------ Clean started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
+1>
+1>Bundler: Cleaning output from bundleconfig.json
+1>Bundler: Done cleaning output file from bundleconfig.json
+========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
+```
+
 # [.NET Core CLI](#tab/netcore-cli) 
 
 Configure the bundling and minification tasks to run when the project builds. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project:
@@ -118,19 +123,21 @@ Configure the bundling and minification tasks to run when the project builds. Ad
 dotnet add package BuildBundlerMinifier
 ```
 
+This package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
+
 Restore the newly-added NuGet dependencies:
 
 ```console
 dotnet restore
 ```
 
-Build the app:
+Build the project:
 
 ```console
 dotnet build
 ```
 
-The output from the build command shows the results of the minification and/or bundling according to what is configured. For example:
+The following output appears:
 
 ```console
 Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
@@ -140,6 +147,23 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     Bundler: Begin processing bundleconfig.json
     Bundler: Done processing bundleconfig.json
     BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
+```
+
+Clean the project:
+
+```console
+dotnet clean
+```
+
+The following output appears:
+
+```console
+Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+  Bundler: Cleaning output from bundleconfig.json
+  Bundler: Done cleaning output file from bundleconfig.json
 ```
 
 ---
