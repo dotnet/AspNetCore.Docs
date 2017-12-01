@@ -237,7 +237,7 @@ There are cases in which an app's bundling and minification workflow requires ad
 
 ### Use the Bundler & Minifier extension
 
-Right-click the *bundleconfig.json* in Solution Explorer and select **Convert to Gulp...**:
+Right-click the *bundleconfig.json* file in Solution Explorer and select **Convert to Gulp...**:
 
 ![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
 
