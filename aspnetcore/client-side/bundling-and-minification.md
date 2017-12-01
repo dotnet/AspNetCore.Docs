@@ -93,7 +93,7 @@ Click **View Extensions**, and install the [Bundler & Minifier](https://marketpl
 
 ![BuildBundlerMinifier Extension Suggestion](../client-side/bundling-and-minification/_static/view-extension.png)
 
-Configure the build to run the client-side asset bundling and minification tasks. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier NuGet package](https://www.nuget.org/packages/BuildBundlerMinifier/) was added to the project:
+Configure the bundling and minification tasks to run when the project builds. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package was added to the project:
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=6)]
 
@@ -112,13 +112,13 @@ Build the project. The *bundleconfig.json* file is used by the build process to 
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
-Add the [BuildBundlerMinifier NuGet package](https://www.nuget.org/packages/BuildBundlerMinifier/) to your project:
+Configure the bundling and minification tasks to run when the project builds. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project:
 
 ```console
 dotnet add package BuildBundlerMinifier
 ```
 
-Restore the dependencies:
+Restore the newly-added NuGet dependencies:
 
 ```console
 dotnet restore
@@ -143,6 +143,21 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 ```
 
 ---
+
+## Ad-hoc execution of bundling and minification
+
+It's possible to run the bundling and minification tasks on an ad-hoc basis, without building the project. Add the [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) NuGet package to your project:
+
+[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
+
+This package extends the .NET Core CLI to include the *dotnet-bundle* tool. The following command can be executed in the Package Manager Console (PMC) window or in a command shell:
+
+```console
+dotnet bundle
+```
+
+> [!IMPORTANT]
+> NuGet Package Manager adds dependencies to the *.csproj file as `<PackageReference />` nodes. The `dotnet bundle` command is registered with the .NET Core CLI only when a `<DotNetCliToolReference />` node is used. Modify the *.csproj file accordingly.
 
 ## Add files to workflow
 
@@ -207,7 +222,7 @@ Right-click the *bundleconfig.json* in Solution Explorer and select **Convert to
 
 The *gulpfile.js* and *package.json* files are added to the project. The supporting [npm](https://www.npmjs.com/) packages listed in the *package.json* file's `devDependencies` section are installed.
 
-Run the following command in Package Manager Console to install the Gulp CLI as a global dependency:
+Run the following command in the PMC window to install the Gulp CLI as a global dependency:
 
 ```console
 npm i -g gulp-cli
