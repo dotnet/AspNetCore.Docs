@@ -205,7 +205,7 @@ Build the application. Open *site.min.css* and notice the content of *custom.css
 
 As a best practice, the bundled and minified files of your app should be used in a production environment. During development, the original files make for easier debugging of the app.
 
-Specify which files to include in your pages by using the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) in your views. The Environment Tag Helper only renders its contents when running in specific environments.
+Specify which files to include in your pages by using the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) in your views. The Environment Tag Helper only renders its contents when running in specific [environments](xref:fundamentals/environments).
 
 The following `environment` tag renders the unprocessed CSS files when running in the `Development` environment:
 
@@ -230,8 +230,6 @@ The following `environment` tag renders the bundled and minified CSS files when 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
 
 ---
-
-See [Working with Multiple Environments](xref:fundamentals/environments) for more detail.
 
 ## Consume bundleconfig.json from Gulp
 
