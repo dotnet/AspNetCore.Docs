@@ -64,7 +64,7 @@ Browsers are fairly verbose with regard to HTTP request headers, so the total by
 
 The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](xref:client-side/using-gulp) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
-## Build-time execution of bundling and minification
+## Configure bundling and minification
 
 The MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file which defines the options for each bundle. By default, a single bundle configuration is defined for the custom JavaScript (*wwwroot/js/site.js*) and stylesheet (*wwwroot/css/site.css*) files:
 
@@ -83,17 +83,18 @@ Bundle options include:
 * `sourceMap`: Flag indicating whether to generate a source map for the bundled file. **optional**, *default - false*
 * `sourceMapRootPath`: The root path for storing the generated source map file.
 
+## Build-time execution of bundling and minification
+
+The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package enables the execution of bundling and minification at build time. The package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time. The *bundleconfig.json* file is analyzed by the build process to produce the output files based on the defined configuration.
+
 # [Visual Studio](#tab/visual-studio) 
 
-Configure the bundling and minification tasks to run when the project builds. Choose one of the following two options:
+Choose one of the following two options:
 
-1. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project.
-2. Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The BuildBundlerMinifier NuGet package was added to the project.
+- Add the *BuildBundlerMinifier* package to your project.
+- Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The *BuildBundlerMinifier* package was added to the project.
 
-> [!NOTE]
-> The *BuildBundlerMinifier* package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
-
-Build the project. The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears in the Output window:
+Build the project. The following appears in the Output window:
 
 ```console
 1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
@@ -118,13 +119,11 @@ Clean the project. The following appears in the Output window:
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
-Configure the bundling and minification tasks to run when the project builds. Add the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package to your project:
+Add the *BuildBundlerMinifier* package to your project:
 
 ```console
 dotnet add package BuildBundlerMinifier
 ```
-
-This package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time.
 
 Restore the newly-added NuGet dependencies:
 
@@ -138,7 +137,7 @@ Build the project:
 dotnet build
 ```
 
-The *bundleconfig.json* file is used by the build process to produce the output files based on the defined configuration. The following appears:
+The following appears:
 
 ```console
 Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
@@ -205,13 +204,13 @@ To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file,
 
 Build the application. Open *site.min.css* and notice the content of *custom.css* is appended to the end of the file.
 
-## Configure environment-based bundling and minification
+## Environment-based bundling and minification
 
-In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug.
+As a best practice, the bundled and minified files of your app should be used in a production environment. During development, the original files make for easier debugging of the app.
 
-Specify which scripts and CSS files to include in your pages by using the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) in your views. The Environment Tag Helper only renders its contents when running in specific environments. See [Working with Multiple Environments](xref:fundamentals/environments) for details on specifying the current environment.
+Specify which files to include in your pages by using the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) in your views. The Environment Tag Helper only renders its contents when running in specific environments.
 
-The following *environment* tag renders the unprocessed CSS files when running in the `Development` environment:
+The following `environment` tag renders the unprocessed CSS files when running in the `Development` environment:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -223,7 +222,7 @@ The following *environment* tag renders the unprocessed CSS files when running i
 
 ---
 
-The following *environment* tag renders the bundled and minified CSS files when running in an environment other than `Development`. For example, running in `Production` or `Staging` triggers the rendering of these stylesheets:
+The following `environment` tag renders the bundled and minified CSS files when running in an environment other than `Development`. For example, running in `Production` or `Staging` triggers the rendering of these stylesheets:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -234,6 +233,8 @@ The following *environment* tag renders the bundled and minified CSS files when 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
 
 ---
+
+See [Working with Multiple Environments](xref:fundamentals/environments) for more detail.
 
 ## Consume bundleconfig.json from Gulp
 
