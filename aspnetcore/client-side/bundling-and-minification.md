@@ -165,7 +165,7 @@ Consider an example in which an additional *custom.css* file is added resembling
 
 [!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
 
-To minify *custom.css* and bundle it with *site.css* into a single *site.min.css* file, add the relative path to *bundleconfig.json*:
+To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file, add the relative path to *bundleconfig.json*:
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig2.json?highlight=6)]
 
