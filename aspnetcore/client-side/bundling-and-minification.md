@@ -89,10 +89,7 @@ The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/)
 
 # [Visual Studio](#tab/visual-studio) 
 
-Choose one of the following two options:
-
-- Add the *BuildBundlerMinifier* package to your project.
-- Install the [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension. Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Enable bundle on build...**. The *BuildBundlerMinifier* package was added to the project.
+Add the *BuildBundlerMinifier* package to your project.
 
 Build the project. The following appears in the Output window:
 
