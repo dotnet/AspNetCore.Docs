@@ -233,11 +233,13 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ## Consume bundleconfig.json from Gulp
 
-There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp. The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension is used for this purpose.
+There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp.
 
 ### Use the Bundler & Minifier extension
 
-Right-click the *bundleconfig.json* file in Solution Explorer and select **Convert to Gulp...**:
+The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension handles the conversion to Gulp.
+
+Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Convert To Gulp...**:
 
 ![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
 
@@ -251,7 +253,31 @@ npm i -g gulp-cli
 
 The *gulpfile.js* file reads the *bundleconfig.json* file for the inputs, outputs, and settings.
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?highlight=10)]
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-12&highlight=10)]
+
+### Convert manually
+
+If Visual Studio and/or the Bundler & Minifier extension aren't available, convert manually.
+
+Add a *package.json* file, with the following `devDependencies`, to the project root:
+
+[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
+
+Install the dependencies by running the following command at the same level as *package.json*:
+
+```console
+npm i
+```
+
+Install the Gulp CLI as a global dependency:
+
+```console
+npm i -g gulp-cli
+```
+
+Copy the *gulpfile.js* file below to the project root:
+
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js)]
 
 ### Run Gulp tasks
 
