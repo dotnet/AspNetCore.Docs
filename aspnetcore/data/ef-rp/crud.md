@@ -1,5 +1,5 @@
 ---
-title: Razor Pages with EF Core - CRUD - 2 of 10
+title: Razor Pages with EF Core - CRUD - 2 of 8
 author: rick-anderson
 description: Shows how to create,read,update,delete with EF Core
 keywords: ASP.NET Core,Entity Framework Core,CRUD,create,read,update,delete
@@ -11,15 +11,15 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/crud
 ---
-# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 10)
+# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-Note: To minimize complexity and keep these tutorials focused on EF, EF code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
+Note: To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
 In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are modified.
 
@@ -32,15 +32,31 @@ The Index and Details pages get and display the requested data with the HTTP GET
 
 ## Replace SingleOrDefaultAsync with FirstOrDefaultAsync
 
-The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)  to fetch the requested entity. [FirstOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) is more efficient at fetching one entity:
+The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)  to fetch the requested entity. [FirstOrDefaultAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) is more efficient at fetching one entity:
 
 * Unless the code needs to verify that there is not more than one entity returned from the query. 
 * `SingleOrDefaultAsync` fetches more data and does unnecessary work.
+* `SingleOrDefaultAsync` throws an exception if there is more than one entity that fits the filter part.
+*  `FirstOrDefaultAsync` doesn't throw if there is more than one entity that fits the filter part.
 
 Globally replace `SingleOrDefaultAsync` with `FirstOrDefaultAsync`. `SingleOrDefaultAsync` is used in 5 places:
 
 * `OnGetAsync` in the Details page.
 * `OnGetAsync` and `OnPostAsync` in the Edit and Delete pages.
+
+<a name="FindAsync"></a>
+### FindAsync
+
+In much of the scaffolded code, [FindAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) can be used in place of `FirstOrDefaultAsync` or `SingleOrDefaultAsync`. 
+
+`FindAsync`:
+
+* Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it is returned without a request to the DB.
+* Is simple and concise.
+* Is optimized to look up a single entity.
+* Can have perf benefits in some situations, but they rarely come into play for normal web scenarios.
+* Implicitly uses [FirstAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) instead of [SingleAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
+But if you want to Include other entities, then Find is no longer appropriate. This means that you may need to abandon Find and move to a query as your app progresses.
 
 ## Customize the Details page
 
@@ -146,14 +162,15 @@ In Razor Pages, the `PageModel` derived class is the view model.
 
 ## Update the Edit page
 
-Update the `OnPostAsync` method in the Edit page code-behind file:
+Update the Edit page code-behind file:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync&highlight=20,36)]
 
 The code changes are similar to the Create page with a few exceptions:
 
 * `OnPostAsync` has an optional `id` parameter.
 * The current student is fetched from the DB, rather than creating an empty student.
+* `FirstOrDefaultAsync` has been replaced with [FindAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1.findasync?view=efcore-2.0). `FindAsync` is a good choice when selecting an entity from the primary key. See [FindAsync](#FindAsync) for more information.
 
 ### Test the Edit and Create pages
 

@@ -1,9 +1,9 @@
 ---
-title: Razor Pages with EF Core - Data Model - 5 of 10
-author: tdykstra
+title: Razor Pages with EF Core - Data Model - 5 of 8
+author: rick-anderson
 description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
 keywords: ASP.NET Core,Entity Framework Core,data annotations
-ms.author: tdykstra
+ms.author: riande
 manager: wpickett
 ms.date: 10/25/2017
 ms.topic: get-started-article
@@ -12,11 +12,11 @@ ms.prod: asp.net-core
 uid: data/ef-rp/complex-data-model
 ---
 
-# Creating a complex data model - EF Core with Razor Pages tutorial (5 of 10)
+# Creating a complex data model - EF Core with Razor Pages tutorial (5 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -96,7 +96,7 @@ In **SQL Server Object Explorer** (SSOX), open the Student table designer by dou
 
 ![Students table in SSOX before migrations](complex-data-model/_static/ssox-before-migration.png)
 
-The preceding image shows the schema for the `Student` table.
+The preceding image shows the schema for the `Student` table. The name fields have type `nvarchar(MAX)` because migrations has not been run on the DB. When migrations are run later in this tutorial, the name fields become `nvarchar(50)`.
 
 ### The Column attribute
 
@@ -212,7 +212,7 @@ Navigation property types include:
 *  `List<T>`
 *  `HashSet<T>`
 
-If `ICollection<T>` is specified, EF creates a `HashSet<T>` collection by default.
+If `ICollection<T>` is specified, EF Core creates a `HashSet<T>` collection by default.
 
 The `CourseAssignment` entity is explained in the section on many-to-many relationships.
 
@@ -234,7 +234,7 @@ Create *Models/OfficeAssignment.cs* with the following code:
 
 The `[Key]` attribute is used to identify a property as the primary key (PK) when the property name is something other than classnameID or ID.
 
-There's a one-to-zero-or-one relationship between the `Instructor` and `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to. The `OfficeAssignment` PK is also its foreign key (FK) to the `Instructor` entity. EF can't automatically recognize `InstructorID` as the PK of `OfficeAssignment` because:
+There's a one-to-zero-or-one relationship between the `Instructor` and `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to. The `OfficeAssignment` PK is also its foreign key (FK) to the `Instructor` entity. EF Core can't automatically recognize `InstructorID` as the PK of `OfficeAssignment` because:
 
 * `InstructorID` doesn't follow the ID or classnameID naming convention.
 
@@ -245,7 +245,7 @@ Therefore, the `Key` attribute is used to identify `InstructorID` as the PK:
 public int InstructorID { get; set; }
 ```
 
-By default, EF treats the key as non-database-generated because the column is for an identifying relationship.
+By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship.
 
 ### The Instructor navigation property
 
@@ -281,9 +281,9 @@ Update *Models/Course.cs* with the following code:
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
-EF doesn't require a FK property for a data model when the model has a navigation property for a related entity.
+EF Core doesn't require a FK property for a data model when the model has a navigation property for a related entity.
 
-EF automatically creates FKs in the database wherever they are needed. EF creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
+EF Core automatically creates FKs in the database wherever they are needed. EF Core creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
 
 * The `Department` entity is null if it's not explicitly loaded.
 * To update the course entity, the `Department` entity must first be fetched.
@@ -301,7 +301,7 @@ The `[DatabaseGenerated(DatabaseGeneratedOption.None)]` attribute specifies that
 public int CourseID { get; set; }
 ```
 
-By default, EF assumes that PK values are generated by the DB. DB generated PK values is generally the best approach. For `Course` entities, the user specifies the PK. For example, a course number such as a 1000 series for the math department, a 2000 series for the English department.
+By default, EF Core assumes that PK values are generated by the DB. DB generated PK values is generally the best approach. For `Course` entities, the user specifies the PK. For example, a course number such as a 1000 series for the math department, a 2000 series for the English department.
 
 The `DatabaseGenerated` attribute can also be used to generate default values. For example, the DB can automatically generate a date field to record the date a row was created or updated. For more information, see [Generated Properties](https://docs.microsoft.com/ef/core/modeling/generated-properties).
 
@@ -347,7 +347,7 @@ Previously the `Column` attribute was used to change column name mapping. In the
 public decimal Budget { get; set; }
 ```
 
-Column mapping is generally not required. EF generally chooses the appropriate SQL Server data type based on the CLR type for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. `Budget` is for currency, and the money data type is more appropriate for currency.
+Column mapping is generally not required. EF Core generally chooses the appropriate SQL Server data type based on the CLR type for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. `Budget` is for currency, and the money data type is more appropriate for currency.
 
 ### Foreign key and navigation properties
 
@@ -371,11 +371,11 @@ A department may have many courses, so there's a Courses navigation property:
 public ICollection<Course> Courses { get; set; }
 ```
 
-Note: By convention, EF enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
+Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
 
 For example, if the `Department.InstructorID` property was not defined as nullable:
 
-* EF configures a cascade delete rule to delete the instructor when the department is deleted.
+* EF Core configures a cascade delete rule to delete the instructor when the department is deleted.
 * Deleting the instructor when the department is deleted is not the intended behavior.
 
 If business rules required the `InstructorID` property be non-nullable, use the following fluent API statement:
@@ -456,7 +456,7 @@ Data models start out simple and grow. No-payload joins (PJTs) frequently evolve
 
 ### Composite key
 
-FKs are not nullable. The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF is with the *fluent API*. The next section shows how to configure the composite PK.
+FKs are not nullable. The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF Core is with the *fluent API*. The next section shows how to configure the composite PK.
 
 The composite key ensures:
 
@@ -479,7 +479,7 @@ The preceding code adds the new entities and configures the `CourseAssignment` e
 
 ## Fluent API alternative to attributes
 
-The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration) is an example of the fluent API:
+The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration) is an example of the fluent API:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -502,8 +502,8 @@ Some developers prefer to use the fluent API exclusively so that they can keep t
 Some of the attributes used in the this tutorial are used for:
 
 * Validation only (for example, `MinimumLength`).
-* EF configuration only (for example, `HasKey`).
-* Validation and EF configuration (for example, `[StringLength(50)]`).
+* EF Core configuration only (for example, `HasKey`).
+* Validation and EF Core configuration (for example, `[StringLength(50)]`).
 
 For more information about attributes vs. fluent API, see [Methods of configuration](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration).
 
@@ -530,7 +530,7 @@ The preceding code provides seed data for the new entities. Most of this code cr
 * `Enrollments`
 * `CourseAssignment`
 
-Note: [EF 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
+Note: [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
 
 ## Add a migration
 
@@ -560,7 +560,7 @@ When migrations are run with existing data, there may be FK constraints that are
 
 ## Change the connection string and update the DB
 
-The code in the updated `DbInitializer` adds seed data for the new entities. To force EF to create a new empty DB:
+The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new empty DB:
 
 * Change the DB connection string name in *appsettings.json* to ContosoUniversity3. The new name must be a name that hasn't been used on the computer.
 
@@ -646,6 +646,4 @@ The next tutorial covers related data.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/migrations)
-<!--
 [Next](xref:data/ef-rp/read-related-data)
--->

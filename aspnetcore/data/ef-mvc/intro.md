@@ -16,6 +16,8 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+Note: A Razor Pages version of this tutorial is available [here](xref:data/ef-rp/intro). The Razor Pages version is easier to follow and covers more EF features.
+
 The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
