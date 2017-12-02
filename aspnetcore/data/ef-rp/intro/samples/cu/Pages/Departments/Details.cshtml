@@ -1,0 +1,58 @@
+@page
+@model ContosoUniversity.Pages.Departments.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            RowVerString
+        </dt>
+        <dd>
+            @if (Model.Department.RowVersion != null)
+            {
+                @Model.Department.RowVersion[7]
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Budget)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Budget)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.StartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.StartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.RowVersion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.RowVersion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Administrator)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Administrator.FirstMidName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Department.DepartmentID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

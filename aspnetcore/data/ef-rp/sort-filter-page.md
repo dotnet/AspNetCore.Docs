@@ -1,9 +1,9 @@
 ---
-title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 10
-author: tdykstra
+title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 8
+author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
-ms.author: tdykstra
+ms.author: riande
 ms.date: 10/22/2017
 ms.topic: get-started-article
 ms.technology: aspnet
@@ -11,11 +11,11 @@ ms.prod: asp.net-core
 uid: data/ef-rp/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 10)
+# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, sorting, filtering, grouping, and paging, functionality is added.
 
@@ -69,13 +69,13 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
-`OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that passes the name of the `OrderBy` column in a string variable.
+`OnGetAsync` could get verbose with a large number of columns.
 
 ### Add column heading hyperlinks to the Student Index view
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
+[!code-cshtml[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
@@ -114,13 +114,13 @@ The preceding code:
 * Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that is added in the next section.
 * Added to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
-Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
+Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
 For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
-The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` can have a significant performance penality:
+The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` from a repository can have a significant performance penality:
 
 1. All the rows are returned from the DB server.
 1. The filter is applied to all the returned rows in the application.
@@ -131,7 +131,7 @@ There is a performance penalty for calling `ToUpper`. The `ToUpper` code adds a 
 
 In *Views/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
-[!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
+[!code-cshtml[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
 The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
 
@@ -209,15 +209,15 @@ The two question marks in `PaginatedList.CreateAsync` represent the [null-coales
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-)]
+[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=28-31)]
+[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?range=28-31)]
 
 The paging buttons are displayed by tag helpers:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=72-)]
+[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?range=72-)]
 
 Run the app and navigate to the students page.
 
@@ -263,7 +263,7 @@ Note: The LINQ `group` command isn't currently supported by EF Core. In the prec
 
 Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
-[!code-html[](intro/samples/cu/Pages/About.cshtml)]
+[!code-cshtml[](intro/samples/cu/Pages/About.cshtml)]
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
