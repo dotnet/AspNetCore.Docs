@@ -184,7 +184,7 @@ Update the Index page:
 
 The following markup shows the updated page:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### Update the Edit page model
 
@@ -216,7 +216,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding markup:
 
@@ -271,7 +271,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,36,51)]
+[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,36,51)]
 
 
 The preceding markup makes the following changes:
