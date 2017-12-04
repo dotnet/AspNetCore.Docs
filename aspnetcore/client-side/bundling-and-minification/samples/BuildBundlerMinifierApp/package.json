@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "del": "^2.2.2",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-cssmin": "^0.1.7",
+    "gulp-cssmin": "^0.2.0",
     "gulp-htmlmin": "^3.0.0",
-    "gulp-uglify": "^2.0.1",
+    "gulp-uglify": "^3.0.0",
     "merge-stream": "^1.0.1"
   }
 }
