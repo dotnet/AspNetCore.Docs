@@ -241,7 +241,7 @@ The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/item
 
 Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Convert To Gulp...**:
 
-![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
+![Convert To Gulp context menu item](../client-side/bundling-and-minification/_static/convert-to-gulp.png)
 
 The *gulpfile.js* and *package.json* files are added to the project. The supporting [npm](https://www.npmjs.com/) packages listed in the *package.json* file's `devDependencies` section are installed.
 
