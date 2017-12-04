@@ -67,11 +67,11 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
+[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
-[!code-cshtml[](intro/samples/cu/Pages/Index.cshtml)]
+[!code-html[](intro/samples/cu/Pages/Index.cshtml)]
 
 Press CTRL+F5 to run the project. The home page is displayed with tabs created in the following tutorials:
 
