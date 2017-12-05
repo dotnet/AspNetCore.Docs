@@ -9,6 +9,8 @@ var gulp = require("gulp"),
     del = require("del"),
     bundleconfig = require("./bundleconfig.json");
 
+// Code omitted for brevity
+
 var regex = {
     css: /\.css$/,
     html: /\.(html|htm)$/,

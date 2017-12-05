@@ -75,7 +75,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
+[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
@@ -131,7 +131,7 @@ There is a performance penalty for calling `ToUpper`. The `ToUpper` code adds a 
 
 In *Views/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
+[!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
 The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
 
@@ -209,15 +209,15 @@ The two question marks in `PaginatedList.CreateAsync` represent the [null-coales
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-)]
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?range=28-31)]
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=28-31)]
 
 The paging buttons are displayed by tag helpers:
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Index.cshtml?range=72-)]
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=72-)]
 
 Run the app and navigate to the students page.
 
@@ -263,7 +263,7 @@ Note: The LINQ `group` command isn't currently supported by EF Core. In the prec
 
 Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
-[!code-cshtml[](intro/samples/cu/Pages/About.cshtml)]
+[!code-html[](intro/samples/cu/Pages/About.cshtml)]
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
