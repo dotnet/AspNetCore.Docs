@@ -27,6 +27,11 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ## Add sorting to the Index page
 
+Add strings to the *Students/Index.cshtml.cs* `PageModel` to contain the sorting paramaters:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
+
+
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly)]
@@ -38,17 +43,15 @@ The `sortOrder` parameter is either "Name" or "Date." The `sortOrder` parameter 
 
 When the Index page is requested from the **Students** link, there's no query string. The students are displayed in ascending order by last name. Ascending order by last name is the default (fall-through case) in the `switch` statement. When the user clicks a column heading link, the appropriate `sortOrder` value is provided in the query string value.
 
-The two `ViewData` elements (`NameSort` and `DateSort`) are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:
+`NameSort` and `DateSort` are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
-
-`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. `ViewData` provides a convenient way to pass data from a Razor Page to a code-behind file, and from a code-behind file to a Razor Page. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB) and [ViewData](xref:mvc/views/overview#VD).
 
 The following code contains the C# [?: operator](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/conditional-operator):
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_Ternary)]
 
- The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
+The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
 
 The `?: operator` is also known as the ternary operator.
 
@@ -80,7 +83,7 @@ Replace the code in *Students/Index.cshtml*, with the following highlighted code
 The preceding code:
 
 * Adds hyperlinks to the `LastName` and `EnrollmentDate` column headings.
-* Uses the information in `ViewData` dictionary to set up hyperlinks with the current sort order values.
+* Uses the information in `NameSort` and `DateSort` to set up hyperlinks with the current sort order values.
 
 To verify that sorting works:
 
@@ -91,7 +94,7 @@ To verify that sorting works:
 To get a better understanding of the code:
 
 * In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
-* Add a watch for `ViewData["NameSort"]` and `ViewData["DateSort"]`.
+* Add a watch for `NameSort` and `DateSort`.
 * In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
@@ -185,9 +188,9 @@ All the parameters are null when:
 
 When a paging link is clicked, the page index variable contains the page number to display.
 
-`ViewData["CurrentSort"]` provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
+`CurrentSort` provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
 
-`ViewData["CurrentFilter"]` provides the Razor Page with the current filter string. The `ViewData["CurrentFilter"]` value:
+`CurrentFilter` provides the Razor Page with the current filter string. The `CurrentFilter` value:
 
 * Must be included in the paging links in order to maintain the filter settings during paging.
 * Must be restored to the text box when the page is redisplayed.
@@ -229,7 +232,7 @@ Run the app and navigate to the students page.
 To get a better understanding of the code:
 
 * In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
-* Add a watch for `ViewData["NameSort"]`, `ViewData["DateSort"]`, ViewData["CurrentSort"], and `Model.Student.PageIndex`.
+* Add a watch for `NameSort`, `DateSort`, `CurrentSort`, and `Model.Student.PageIndex`.
 * In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
