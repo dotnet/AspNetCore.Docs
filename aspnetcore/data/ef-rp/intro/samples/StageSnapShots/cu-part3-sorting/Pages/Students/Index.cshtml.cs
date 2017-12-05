@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
@@ -20,13 +17,17 @@ namespace ContosoUniversity.Pages.Students
         }
 
         public PaginatedList<Student> Student { get; set; }
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
         public async Task OnGetAsync(string sortOrder,
     string currentFilter, string searchString, int? pageIndex)
         {
-            ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -36,7 +37,7 @@ namespace ContosoUniversity.Pages.Students
                 searchString = currentFilter;
             }
 
-            ViewData["CurrentFilter"] = searchString;
+            CurrentFilter = searchString;
 
             IQueryable<Student> studentIQ = from s in _context.Students
                                             select s;
