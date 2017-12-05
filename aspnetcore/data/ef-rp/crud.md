@@ -198,7 +198,9 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 ## Update the Delete page
 
-In this section, code is added to implement a custom error message when the call to `SaveChanges` fails.
+In this section, code is added to implement a custom error message when the call to `SaveChanges` fails. Add a string to contain possile error messages:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet1&highlight=12)]
 
 Replace the `OnGetAsync` method with the following code:
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
+    #region snippet1
     public class DeleteModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -18,6 +19,7 @@ namespace ContosoUniversity.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
         public string ErrorMessage { get; set; }
+        #endregion
 
         #region snippet_OnGetAsync
         public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
@@ -29,7 +31,7 @@ namespace ContosoUniversity.Pages.Students
 
             Student = await _context.Students
                 .AsNoTracking()
-                .FirstOrDefaultAsync (m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {
@@ -55,7 +57,7 @@ namespace ContosoUniversity.Pages.Students
 
             var student = await _context.Students
                             .AsNoTracking()
-                            .FirstOrDefaultAsync (m => m.ID == id);
+                            .FirstOrDefaultAsync(m => m.ID == id);
 
             if (student == null)
             {
@@ -71,7 +73,7 @@ namespace ContosoUniversity.Pages.Students
             catch (DbUpdateException /* ex */)
             {
                 //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("./Delete", 
+                return RedirectToAction("./Delete",
                                      new { id = id, saveChangesError = true });
             }
         }
