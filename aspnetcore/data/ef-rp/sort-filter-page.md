@@ -27,6 +27,11 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ## Add sorting to the Index page
 
+Add strings to the `PageModel` to contain the sorting paramaters:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
+
+
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly)]

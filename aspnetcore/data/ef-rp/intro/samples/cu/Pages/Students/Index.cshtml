@@ -14,7 +14,7 @@
 <form sp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            Find by name: <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-page="./Index">Back to full List</a>
         </p>
@@ -25,8 +25,8 @@
     <thead>
         <tr>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@ViewData["NameSort"]"
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                       asp-route-currentFilter="@Model.CurrentFilter">
                         @Html.DisplayNameFor(model => model.Student[0].LastName)
                     </a>
                         </th>
@@ -34,8 +34,8 @@
                     @Html.DisplayNameFor(model => model.Student[0].FirstMidName)
                 </th>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@ViewData["DateSort"]"
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort"
+                       asp-route-currentFilter="@Model.CurrentFilter">
                         @Html.DisplayNameFor(model => model.Student[0].EnrollmentDate)
                     </a>
 </th>
@@ -70,16 +70,16 @@
 }
 
 <a asp-page="./Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.Student.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
 <a asp-page="./Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.Student.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-default @nextDisabled">
     Next
 </a>

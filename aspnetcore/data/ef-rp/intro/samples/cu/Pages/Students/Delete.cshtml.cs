@@ -17,6 +17,7 @@ namespace ContosoUniversity.Pages.Students
 
         [BindProperty]
         public Student Student { get; set; }
+        public string ErrorMessage { get; set; }
 
         #region snippet_OnGetAsync
         public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
@@ -37,7 +38,7 @@ namespace ContosoUniversity.Pages.Students
 
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewData["ErrorMessage"] = "Delete failed. Try again";
+                ErrorMessage = "Delete failed. Try again";
             }
 
             return Page();

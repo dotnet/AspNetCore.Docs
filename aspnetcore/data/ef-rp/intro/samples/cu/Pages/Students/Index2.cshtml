@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@ViewData["NameSort"]">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
                     @Html.DisplayNameFor(model => model.Student[0].LastName)
                 </a>
             </th>
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Student[0].FirstMidName)
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@ViewData["DateSort"]">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
                     @Html.DisplayNameFor(model => model.Student[0].EnrollmentDate)
                 </a>
             </th>
