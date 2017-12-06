@@ -91,7 +91,7 @@ To test the `catch` block:
 * In another browser window, select the **Delete** link for the same movie, and then delete the movie.
 * In the previous browser window, post changes to the movie.
 
-Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handling concurrency conflicts](xref:data/ef-mvc/concurrency) for more information.
+Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handling concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
 
 ### Posting and binding review
 
