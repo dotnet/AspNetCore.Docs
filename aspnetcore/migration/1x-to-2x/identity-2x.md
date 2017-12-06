@@ -372,7 +372,7 @@ The synchronous method `GetExternalAuthenticationSchemes` was removed in favor o
 
 This method appears in *Login.cshtml* too:
 
-[!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?range=62,75-84)]
+[!code-html[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?range=62,75-84)]
 
 In 2.0 projects, use the `GetExternalAuthenticationSchemesAsync` method:
 
@@ -380,7 +380,7 @@ In 2.0 projects, use the `GetExternalAuthenticationSchemesAsync` method:
 
 In *Login.cshtml*, the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`:
 
-[!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Views/Account/Login.cshtml?range=62,75-84)]
+[!code-html[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Views/Account/Login.cshtml?range=62,75-84)]
 
 <a name="property-change"></a>
 

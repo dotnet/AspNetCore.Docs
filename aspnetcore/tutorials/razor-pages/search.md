@@ -56,7 +56,7 @@ However, you can't expect users to modify the URL to search for a movie. In this
 
 Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted in the following code:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
+[!code-html[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page. Save the changes and test the filter.
 
@@ -98,7 +98,7 @@ Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
 Update *Index.cshtml* as follows:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
+[!code-html[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
 

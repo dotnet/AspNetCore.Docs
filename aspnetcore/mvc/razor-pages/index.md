@@ -65,13 +65,13 @@ Razor Pages is enabled in *Startup.cs*:
 Consider a basic page:
 <a name="OnGet"></a>
 
-[!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
 The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
 
 A similar page, using a `PageModel` class, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
-[!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 The *Pages/Index2.cshtml.cs* "code-behind" file:
 
@@ -111,7 +111,7 @@ The db context:
 
 The *Pages/Create.cshtml* view file:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
 The *Pages/Create.cshtml.cs* code-behind file for the view:
 
@@ -151,7 +151,7 @@ Razor Pages, by default, bind properties only with non-GET verbs. Binding to pro
 
 The home page (*Index.cshtml*):
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
 The code behind *Index.cshtml.cs* file:
 
@@ -159,13 +159,13 @@ The code behind *Index.cshtml.cs* file:
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
 The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
 The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
 
@@ -175,7 +175,7 @@ The *Pages/Edit.cshtml.cs* file:
 
 The *Index.cshtml* file also contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
 
 When the delete button is rendered in HTML, its `formaction` includes parameters for:
 
@@ -216,7 +216,7 @@ Let's declutter this page by taking advantage of some of those features.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
 The [Layout](xref:mvc/views/layout):
 
@@ -227,7 +227,7 @@ See [layout page](xref:mvc/views/layout) for more information.
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
 **Note:** The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 
@@ -237,7 +237,7 @@ View search from a Razor Page includes the *Pages* folder. The layouts, template
 
 Add a *Pages/_ViewImports.cshtml* file:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
 `@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.
 
@@ -245,7 +245,7 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 When the `@namespace` directive is used explicitly on a page:
 
-[!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
 The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
@@ -257,7 +257,7 @@ For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly se
 
 The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive for the code behind file.
 
@@ -265,11 +265,11 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 
 The original *Pages/Create.cshtml* view file:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
 
 The updated *Pages/Create.cshtml* view file:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
@@ -343,7 +343,7 @@ See [TempData](xref:fundamentals/app-state#temp) for more information.
 
 The following page generates markup for two page handlers using the `asp-page-handler` Tag Helper:
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
 <!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there is no `asp-` attribute   -->
 
@@ -355,7 +355,7 @@ The code-behind file:
 
 The preceding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. With *OnPost* and *Async* removed, the handler names are `JoinList` and `JoinListUC`.
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
 
@@ -363,7 +363,7 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 If you don't like the query string `?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in double quotes after the `@page` directive.
 
-[!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
 The preceding route puts the handler name in the URL path instead of the query string. The `?` following `handler` means the route parameter is optional.
 

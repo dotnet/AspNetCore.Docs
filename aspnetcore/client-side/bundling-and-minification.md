@@ -211,11 +211,11 @@ The following `environment` tag renders the unprocessed CSS files when running i
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=21-24)]
+[!code-html[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=21-24)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=9-12)]
+[!code-html[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=9-12)]
 
 ---
 
@@ -223,11 +223,11 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=5&range=25-30)]
+[!code-html[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=5&range=25-30)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
+[!code-html[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
 
 ---
 

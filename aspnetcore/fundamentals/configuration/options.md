@@ -132,7 +132,7 @@ Options can be supplied in a view model or by injecting `IOptions<TOptions>` dir
 
 For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:
 
-[!code-cshtml[Main](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
+[!code-html[Main](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
 
 When the app is run, the option values are shown in the rendered page:
 

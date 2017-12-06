@@ -85,7 +85,7 @@ Any content within the `@()` parenthesis is evaluated and rendered to the output
 
 Implicit expressions, described in the previous section, generally can't contain spaces. In the following code, one week isn't subtracted from the current time:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact.cshtml?range=17)]
+[!code-html[Main](razor/sample/Views/Home/Contact.cshtml?range=17)]
 
 The code renders the following HTML:
 
@@ -368,7 +368,7 @@ Scope-level actions can be performed with [Tag Helpers](xref:mvc/views/tag-helpe
 
 Exception handling is similar to C#:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact7.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact7.cshtml)]
 
 ### @lock
 
@@ -441,7 +441,7 @@ Later in this article, the section [Viewing the Razor C# class generated for a v
 
 The `@using` directive adds the C# `using` directive to the generated view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact9.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact9.cshtml)]
 
 ### @model
 
@@ -485,7 +485,7 @@ The following code is a custom Razor page type:
 
 The `CustomText` is displayed in a view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact10.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact10.cshtml)]
 
 The code renders the following HTML:
 
@@ -495,11 +495,11 @@ The code renders the following HTML:
 
  `@model` and `@inherits` can be used in the same view.  `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
 
-[!code-cshtml[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
+[!code-html[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
 
 The following code is an example of a strongly-typed view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Login1.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Login1.cshtml)]
 
 If "rick@contoso.com" is passed in the model, the view generates the following HTML markup:
 
@@ -523,7 +523,7 @@ The `@functions` directive enables a Razor Page to add function-level content to
 
 For example:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact6.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact6.cshtml)]
 
 The code generates the following HTML markup:
 

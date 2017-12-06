@@ -416,7 +416,7 @@ The HTTP POST `Index` method displays the selection:
 
 The `Index` view:
 
-[!code-cshtml[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
+[!code-html[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
 
 Which generates the following HTML (with "CA" selected):
 
