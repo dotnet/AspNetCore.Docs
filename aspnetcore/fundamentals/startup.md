@@ -19,18 +19,24 @@ The `Startup` class configures services and the app's request pipeline.
 
 ## The Startup class
 
-ASP.NET Core apps require a `Startup` class, which is named `Startup` by convention. Specify the startup class with the [WebHostBuilderExtensions](/dotnet/api/Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions) [UseStartup<TStartup>](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method.
+ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention. The `Startup` class:
 
-The `Startup` class:
-
-* Must include a [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method to create the app's request processing pipeline.
 * Can optionally include a [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method to configure the app's services.
+* Must include a [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method to create the app's request processing pipeline.
 
-`Configure` and `ConfigureServices` are called when the app starts. These methods are described in more detail later in this topic.
+`ConfigureServices` and `Configure` are called by the runtime when the app starts:
 
-The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment` and `StartupProduction`), and the appropriate startup class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. See [Working with multiple environments](xref:fundamentals/environments#startup-conventions) for more information.
+[!code-csharp[Main](startup/snapshot_sample/Startup1.cs)]
 
-The `Startup` class constructor can accept dependencies that are provided through [dependency injection (DI)](xref:fundamentals/dependency-injection). A common use of DI with the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment) to set up [configuration sources](xref:fundamentals/configuration/index). See [Hosting: IHostingEnvironment interface](xref:fundamentals/hosting?tabs=aspnetcore2x#ihostingenvironment-interface) for an example.
+Specify the startup class with the [WebHostBuilderExtensions](/dotnet/api/Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions) [UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method:
+
+[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
+
+The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime by convention. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. See [Working with multiple environments](xref:fundamentals/environments#startup-conventions) for more information.
+
+The `Startup` class constructor can accept dependencies that are provided through [dependency injection (DI)](xref:fundamentals/dependency-injection). A common use of DI with the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment). This approach can be used to configure services as an alternative to the convention-based approach described above:
+
+[!code-csharp[Main](startup/snapshot_sample/Startup2.cs)]
 
 To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hosting) topic. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
@@ -56,9 +62,9 @@ Some of the services typically requested by `Startup` methods:
 
 The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware) components to an [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) instance that's provided by [dependency injection](xref:fundamentals/dependency-injection).
 
-A typical web app configures the pipeline with support for [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, ASP.NET MVC, and Identity:
+A typical web app configures the pipeline with support for a developer exception page, [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, and ASP.NET MVC:
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Startup.cs?range=28-48&highlight=5,6,10,13,15)]
 
 Each `Use` extension method adds a middleware component to the request pipeline. For instance, the `UseMvc` extension method adds the [routing middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
 
