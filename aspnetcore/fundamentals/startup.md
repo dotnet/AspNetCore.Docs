@@ -72,6 +72,12 @@ Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, may als
 
 For more information on how to use `IApplicationBuilder`, see [Middleware](xref:fundamentals/middleware).
 
+## Convenience methods
+
+When setting up a host, [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder.configureservices) and [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure) convenience methods can be used instead of specifying a `Startup` class. Multiple calls to `ConfigureServices` append to one another. Multiple calls to `Configure` use the last method call.
+
+[!code-csharp[Main](startup/snapshot_sample/Program.cs?highlight=16,20)]
+
 ## Startup filters
 
 Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to configure middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline.
