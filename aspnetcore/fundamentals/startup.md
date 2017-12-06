@@ -34,7 +34,7 @@ Specify the startup class with the [WebHostBuilderExtensions](/dotnet/api/Micros
 
 The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime by convention. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. See [Working with multiple environments](xref:fundamentals/environments#startup-conventions) for more information.
 
-The `Startup` class constructor can accept dependencies that are provided through [dependency injection (DI)](xref:fundamentals/dependency-injection). A common use of DI with the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment). This approach can be used to configure services as an alternative to the convention-based approach described above:
+The `Startup` class constructor can accept dependencies defined by the host. A common use of DI with the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment). This approach can be used to configure services as an alternative to the convention-based approach described above:
 
 [!code-csharp[Main](startup/snapshot_sample/Startup2.cs)]
 
@@ -42,7 +42,7 @@ To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hostin
 
 ## The ConfigureServices method
 
-The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method, which is optional, is called by the web host before the `Configure` method to configure the app's services. The web host may configure some services before `Startup` methods are called (details are provided in the [Hosting](xref:fundamentals/hosting) topic). By convention, [Configuration options](xref:fundamentals/configuration/index) are set in the `ConfigureServices` method. Adding services to the service container makes them available within the app via [dependency injection](xref:fundamentals/dependency-injection).
+The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method, which is optional, is called by the web host before the `Configure` method to configure the app's services. The web host may configure some services before `Startup` methods are called (details are provided in the [Hosting](xref:fundamentals/hosting) topic). By convention, [Configuration options](xref:fundamentals/configuration/index) are set in the `ConfigureServices` method. Adding services to the service container makes them available within the app and in the `Configure` method resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
 
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
@@ -50,7 +50,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 
 ## Services available in Startup
 
-ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) provides services during an app's startup. These services are requested by including the appropriate interface as a parameter on the `Startup` class's constructor or its `Configure` method. The `ConfigureServices` method only takes an `IServiceCollection` parameter. Any registered service can be retrieved from this collection, so additional parameters aren't necessary.
+The web host provides some services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the application.
 
 Some of the services typically requested by `Startup` methods:
 
@@ -78,7 +78,7 @@ Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to
 
 `IStartupFilter` implements a single method, [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter.configure), which receives and returns an `Action<IApplicationBuilder>`. An [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) defines a class to configure an app's request pipeline. For more information, see [Creating a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware#creating-a-middleware-pipeline-with-iapplicationbuilder).
 
-Each `IStartupFilter` implements one or more middlewares in the request pipeline. The middlewares are invoked in the order that the `IStartupFilter` implementations are added to the service container.
+Each `IStartupFilter` implements one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates how to register a middleware with `IStartupFilter`. The sample app includes a middleware that sets an options value from a query string parameter:
 
@@ -100,7 +100,6 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 
 * Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
 * Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`, position the service registration before the library is added to the service container. To invoke it afterward, position the service registration after the library is added.
-* Middleware specified with `IStartupFilter` may short-circuit requests before higher priority middleware runs. Register the `IStartupFilter` for the short-circuited middleware earlier in the service registrations to ensure that it runs before short-circuiting can occur.
 
 ## Additional Resources
 
