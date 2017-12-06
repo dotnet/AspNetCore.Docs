@@ -9,10 +9,10 @@
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
 
-    <!-- <sample_EnableBuildServerSideRenderer> -->
+    <!-- <snippet_EnableBuildServerSideRenderer> -->
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>true</BuildServerSideRenderer>
-    <!-- </sample_EnableBuildServerSideRenderer> -->
+    <!-- </snippet_EnableBuildServerSideRenderer> -->
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFrameworkOverride)' == ''">

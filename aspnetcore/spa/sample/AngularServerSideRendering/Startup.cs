@@ -49,7 +49,7 @@ namespace AngularServerSideRendering
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-#region Call_UseSpa
+#region snippet_Call_UseSpa
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

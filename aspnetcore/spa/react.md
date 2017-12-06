@@ -50,17 +50,15 @@ Run `dotnet run` to start the app.
 
 ---
 
-## Features
-
 The project template creates an ASP.NET Core app and a React app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The React app, residing in the *ClientApp* subdirectory, is intended to be used for all UI concerns.
 
-### Add pages, images, styles, modules, etc.
+## Add pages, images, styles, modules, etc.
 
 The *ClientApp* directory is a standard CRA React app. See the official [CRA documentation](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) for more information.
 
 There are slight differences between the React app created by this template and the one created by CRA itself; however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
-### Install npm packages
+## Install npm packages
 
 To install third-party npm packages, use a command prompt in the *ClientApp* subdirectory. For example:
 
@@ -69,7 +67,7 @@ cd ClientApp
 npm install --save <package_name>
 ```
 
-### Publish and deploy
+## Publish and deploy
 
 In development, the app runs in a mode optimized for developer convenience. For example, JavaScript bundles include source maps (so that when debugging, you can see your original source code). The app watches JavaScript, HTML, and CSS file changes on disk and automatically recompiles and reloads when it sees those files change.
 
@@ -77,7 +75,7 @@ In production, serve a version of your app that is optimized for performance. Th
 
 You can use standard [ASP.NET Core publish and deployment methods](xref:publishing/index).
 
-### Run the CRA server independently
+## Run the CRA server independently
 
 The project is configured to start its own instance of the CRA development server in the background when the ASP.NET Core app starts in development mode. This is convenient because it means you don't have to run a separate server manually.
 
@@ -90,7 +88,7 @@ There is a drawback to this default setup. Each time you modify your C# code and
     npm start
     ```
 
-2. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup.cs* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
+2. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
 
     ```csharp
     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
