@@ -27,7 +27,7 @@ These value(s) are compared to the current value returned from the ASP.NET Core 
 
 An example of a valid `environment` tag helper is:
 
-```cshtml
+html
 <environment names="Staging,Production">
   <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
@@ -41,7 +41,7 @@ ASP.NET Core 2.x adds the `include` & `exclude` attributes. These attributes con
 
 The `include` property has a similar behavior of the `names` attribute in ASP.NET Core 1.0.
 
-```cshtml
+html
 <environment include="Staging,Production">
   <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
@@ -51,7 +51,7 @@ The `include` property has a similar behavior of the `names` attribute in ASP.NE
 
 In contrast, the `exclude` property lets the `EnvironmentTagHelper` render the enclosed content for all hosting environment names except the one(s) that you specified.
 
-```cshtml
+html
 <environment exclude="Development">
   <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>

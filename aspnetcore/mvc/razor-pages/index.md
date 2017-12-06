@@ -325,7 +325,7 @@ The following code sets the value of `Message` using `TempData`:
 
 The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
 
-```cshtml
+html
 <h3>Msg: @Model.Message</h3>
 ```
 

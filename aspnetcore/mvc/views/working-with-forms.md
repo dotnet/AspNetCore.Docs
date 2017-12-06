@@ -58,7 +58,7 @@ The `asp-route` Tag Helper attribute can also generate markup for the HTML `acti
 
 Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual User Accounts*) contain the [asp-route-returnurl](https://docs.microsoft.com/aspnet/core/mvc/views/working-with-forms) attribute:
 
-```cshtml
+html
 <form asp-controller="Account" asp-action="Login"
      asp-route-returnurl="@ViewData["ReturnUrl"]"
      method="post" class="form-horizontal" role="form">

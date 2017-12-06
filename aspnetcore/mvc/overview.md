@@ -150,7 +150,7 @@ ASP.NET Core has built-in support for [dependency injection (DI)](../fundamental
 
 Your app can also use [dependency injection in view files](views/dependency-injection.md), using the `@inject` directive:
 
-```cshtml
+html
 @inject SomeService ServiceName
 <!DOCTYPE html>
 <html lang="en">
@@ -210,7 +210,7 @@ Razor views in MVC can be strongly typed based on your model. Controllers can pa
 
 For example, the following view defines a model of type `IEnumerable<Product>`:
 
-```cshtml
+html
 @model IEnumerable<Product>
 <ul>
     @foreach (Product p in Model)
@@ -226,7 +226,7 @@ For example, the following view defines a model of type `IEnumerable<Product>`:
 
 There are many built-in Tag Helpers for common tasks - such as creating forms, links, loading assets and more - and even more available in public GitHub repositories and as NuGet packages. Tag Helpers are authored in C#, and they target HTML elements based on element name, attribute name, or parent tag. For example, the built-in LinkTagHelper can be used to create a link to the `Login` action of the `AccountsController`:
 
-```cshtml
+html
 <p>
     Thank you for confirming your email.
     Please <a asp-controller="Account" asp-action="Login">Click here to Log in</a>.
@@ -235,7 +235,7 @@ There are many built-in Tag Helpers for common tasks - such as creating forms, l
 
 The `EnvironmentTagHelper` can be used to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staging, or Production:
 
-```cshtml
+html
 <environment names="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </environment>

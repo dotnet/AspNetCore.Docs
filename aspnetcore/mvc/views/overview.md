@@ -126,7 +126,7 @@ Using a viewmodel to pass data to a view allows the view to take advantage of *s
 
 Specify a model using the `@model` directive. Use the model with `@Model`:
 
-```cshtml
+html
 @model WebApplication1.ViewModels.Address
 
 <h2>Contact</h2>
@@ -223,7 +223,7 @@ public IActionResult SomeAction()
 
 Work with the data in a view:
 
-```cshtml
+html
 @{
     // Since Address isn't a string, it requires a cast.
     var address = ViewData["Address"] as Address;
@@ -261,7 +261,7 @@ public IActionResult SomeAction()
 }
 ```
 
-```cshtml
+html
 @ViewBag.Greeting World!
 
 <address>
@@ -279,7 +279,7 @@ Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collectio
 
 Set the title using `ViewBag` and the description using `ViewData` at the top of an *About.cshtml* view:
 
-```cshtml
+html
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "About Contoso";
@@ -289,7 +289,7 @@ Set the title using `ViewBag` and the description using `ViewData` at the top of
 
 Read the properties but reverse the use of `ViewData` and `ViewBag`. In the *_Layout.cshtml* file, obtain the title using `ViewData` and obtain the description using `ViewBag`:
 
-```cshtml
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,7 +331,7 @@ Both `ViewData` and `ViewBag` are equally valid approaches for passing small amo
 
 Views that don't declare a model type using `@model` but that have a model instance passed to them (for example, `return View(Address);`) can reference the instance's properties dynamically:
 
-```cshtml
+html
 <address>
     @Model.Street<br>
     @Model.City, @Model.State @Model.PostalCode<br>

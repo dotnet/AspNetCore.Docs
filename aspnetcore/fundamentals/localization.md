@@ -67,7 +67,7 @@ The `IViewLocalizer` service provides localized strings for a [view](https://doc
 
 The default implementation of `IViewLocalizer` finds the resource file based on the view's file name. There is no option to use a global shared resource file. `ViewLocalizer` implements the localizer using `IHtmlLocalizer`, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and `IViewLocalizer` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
-```cshtml
+html
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
 ```
 

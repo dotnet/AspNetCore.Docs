@@ -38,7 +38,7 @@ The `@page` Razor directive makes the file into an MVC action &mdash; which mean
 
 Examine the lambda expression used in the following HTML Helper:
 
-```cshtml
+html
 @Html.DisplayNameFor(model => model.Movie[0].Title))
 ```
 
@@ -86,12 +86,12 @@ Change the `<title>` element in the *Pages/_Layout.cshtml* file to use a shorter
 
 Find the following anchor element in the *Pages/_Layout.cshtml* file.
 
-```cshtml
+html
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
 ```
 Replace the preceding element with the following markup.
 
-```cshtml
+html
 <a asp-page="/Movies/Index" class="navbar-brand">RpMovie</a>
 ```
 

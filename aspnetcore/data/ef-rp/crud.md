@@ -71,7 +71,7 @@ Update the Edit, Details, and Delete Razor Pages to use the `"{id:int}"` route t
 
 A request to the page with the "{id:int}" route template that does **not** include a integer route value returns an HTTP 404 (not found) error. For example, `http://localhost:5000/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
- ```cshtml
+ html
 @page "{id:int?}"
 ```
 
@@ -233,7 +233,7 @@ Student/Home or other links don't work:
 
 Verify the Razor Page contains the correct `@page` directive. For example, The Student/Home Razor Page should **not** contain a route template:
 
-```cshtml
+html
 @page "{id:int}"
 ```
 

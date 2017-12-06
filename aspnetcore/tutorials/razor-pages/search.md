@@ -44,7 +44,7 @@ Navigate to the Movies page and append a query string such as `?searchString=Gho
 
 If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, `http://localhost:5000/Movies/ghost`).
 
-```cshtml
+html
 @page "{searchString?}"
 ```
 

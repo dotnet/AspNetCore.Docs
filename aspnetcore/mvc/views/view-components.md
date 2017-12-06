@@ -84,7 +84,7 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 To use the view component, call the following inside a view:
 
-```cshtml
+html
 @Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)
 ```
 
@@ -100,7 +100,7 @@ For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helpe
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [lower kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
-```cshtml
+html
 <vc:[view-component-name]
   parameter1="parameter1 value"
   parameter2="parameter2 value">
@@ -109,7 +109,7 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 
 Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp", add the following directive to the `_ViewImports.cshtml` file:
 
-```cshtml
+html
 @addTagHelper *, MyWebApp
 ```
 

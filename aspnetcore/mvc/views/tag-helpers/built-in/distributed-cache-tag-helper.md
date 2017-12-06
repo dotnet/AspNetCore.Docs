@@ -44,7 +44,7 @@ The required `name` attribute is used as a key to that cache stored for each ins
 
 Usage Example:
 
-```cshtml
+html
 <distributed-cache name="my-distributed-cache-unique-key-101">
     Time Inside Cache Tag Helper: @DateTime.Now
 </distributed-cache>

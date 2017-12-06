@@ -146,7 +146,7 @@ var supportedCultures = new List<CultureInfo>
 
 Edit the *Views/Home/About.cshtml* file to render localized, plural strings for several cardinalities:
 
-```cshtml
+html
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
 <p>@Localizer.Plural(2, "There is one item.", "There are {0} items.")</p>
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
