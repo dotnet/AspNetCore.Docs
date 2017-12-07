@@ -31,7 +31,7 @@ When specified along with a `src` attribute, the Image Tag Helper is invoked.
 
 An example of a valid `img` tag helper is:
 
-```cshtml
+html
 <img src="~/images/asplogo.png" 
     asp-append-version="true"  />
 ```

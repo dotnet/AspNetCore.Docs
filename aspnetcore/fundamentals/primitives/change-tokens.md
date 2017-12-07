@@ -126,7 +126,7 @@ The Index page offers the user control over configuration monitoring. The instan
 
 A button enables and disables monitoring:
 
-[!code-cshtml[Main](change-tokens/sample/Pages/Index.cshtml?range=35)]
+[!code-html[Main](change-tokens/sample/Pages/Index.cshtml?range=35)]
 
 [!code-csharp[Main](change-tokens/sample/Pages/Index.cshtml.cs?name=snippet2)]
 

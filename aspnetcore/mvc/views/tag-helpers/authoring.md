@@ -208,7 +208,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
     
     * The `$` (dollar sign) in the following line uses an [interpolated string](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/interpolated-strings):
     
-    ```cshtml
+    html
     $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
     ```
 
@@ -240,7 +240,7 @@ The condition tag helper renders output when passed a true value.
 
 2.  Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
-    ```cshtml
+    html
     @using AuthoringTagHelpers.Models
     @model WebsiteContext
     

@@ -63,11 +63,11 @@ Some developers use the `Startup` class to contain global or shared strings. In 
 
 The `IViewLocalizer` service provides localized strings for a [view](https://docs.microsoft.com/aspnet/core). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
-[!code-cshtml[Main](localization/sample/Localization/Views/Home/About.cshtml)]
+[!code-html[Main](localization/sample/Localization/Views/Home/About.cshtml)]
 
 The default implementation of `IViewLocalizer` finds the resource file based on the view's file name. There is no option to use a global shared resource file. `ViewLocalizer` implements the localizer using `IHtmlLocalizer`, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and `IViewLocalizer` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
-```cshtml
+html
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
 ```
 
@@ -83,7 +83,7 @@ The rendered view would contain the HTML markup from the resource file.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
-[!code-cshtml[Main](../fundamentals/localization/sample/Localization/Views/Test/About.cshtml?highlight=5,12)]
+[!code-html[Main](../fundamentals/localization/sample/Localization/Views/Test/About.cshtml?highlight=5,12)]
 
 ## DataAnnotations localization
 
@@ -282,11 +282,11 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
-[!code-cshtml[Main](localization/sample/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
+[!code-html[Main](localization/sample/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
 
-[!code-cshtml[Main](localization/sample/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
+[!code-html[Main](localization/sample/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
 The `SetLanguage` method sets the culture cookie.
 

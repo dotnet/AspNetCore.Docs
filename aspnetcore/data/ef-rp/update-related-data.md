@@ -59,7 +59,7 @@ The preceding code:
 
 Update *Pages/Courses/Create.cshtml* with the following markup:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?highlight=29-34)]
+[!code-html[Main](intro/samples/cu/Pages/Courses/Create.cshtml?highlight=29-34)]
 
 The preceding markup makes the following changes:
 
@@ -70,7 +70,7 @@ The preceding markup makes the following changes:
 
 The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
+[!code-html[Main](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
 Test the Create page. The Create page displays the department name rather than the department ID.
 
@@ -84,7 +84,7 @@ The changes are similar to those made in the Create page model. In the preceding
 
 Update *Pages/Courses/Edit.cshtml* with the following markup:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
+[!code-html[Main](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
 The preceding markup makes the following changes:
 
@@ -112,7 +112,7 @@ Update the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file:
 
 Update the Delete Razor page with the following markup:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
+[!code-html[Main](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
 Make the same changes to the Details page.
 
@@ -146,7 +146,7 @@ The preceding code:
 
 Update *Pages/Instructors/Edit.cshtml* with the office location:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml?highlight=29-33)]
+[!code-html[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml?highlight=29-33)]
 
 Verify you can change an instructors office location.
 
@@ -187,7 +187,7 @@ The preceding code handles office assignment changes.
 
 Update the instructor Razor View:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
+[!code-html[Main](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
 <a id="notepad"></a>
 > [!NOTE]
@@ -211,7 +211,7 @@ The preceding code is similar to the *Pages/Instructors/Edit.cshtml.cs* code.
 
 Update the instructor Create Razor page with the following markup:
 
-[!code-cshtml[Main](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
+[!code-html[Main](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 
 Test the instructor Create page.
 

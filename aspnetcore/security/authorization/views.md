@@ -16,7 +16,7 @@ uid: security/authorization/views
 
 A developer often wants to show, hide, or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection). To inject the authorization service into a Razor view, use the `@inject` directive:
 
-```cshtml
+html
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 ```
@@ -27,7 +27,7 @@ Use the injected authorization service to invoke `AuthorizeAsync` in exactly the
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-```cshtml
+html
 @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyName")).Succeeded)
 {
     <p>This paragraph is displayed because you fulfilled PolicyName.</p>
@@ -36,7 +36,7 @@ Use the injected authorization service to invoke `AuthorizeAsync` in exactly the
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```cshtml
+html
 @if (await AuthorizationService.AuthorizeAsync(User, "PolicyName"))
 {
     <p>This paragraph is displayed because you fulfilled PolicyName.</p>
@@ -49,7 +49,7 @@ In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-```cshtml
+html
 @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
 {
     <p><a class="btn btn-default" role="button"
@@ -59,7 +59,7 @@ In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```cshtml
+html
 @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
 {
     <p><a class="btn btn-default" role="button"

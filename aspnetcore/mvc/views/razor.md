@@ -29,7 +29,7 @@ When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-key
 
 To escape an `@` symbol in Razor markup, use a second `@` symbol:
 
-```cshtml
+html
 <p>@@Username</p>
 ```
 
@@ -41,7 +41,7 @@ The code is rendered in HTML with a single `@` symbol:
 
 HTML attributes and content containing email addresses don't treat the `@` symbol as a transition character. The email addresses in the following example are untouched by Razor parsing:
 
-```cshtml
+html
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
 ```
 
@@ -49,20 +49,20 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 
 Implicit Razor expressions start with `@` followed by C# code:
 
-```cshtml
+html
 <p>@DateTime.Now</p>
 <p>@DateTime.IsLeapYear(2016)</p>
 ```
 
 With the exception of the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, spaces can be intermingled:
 
-```cshtml
+html
 <p>@await DoSomething("hello", "world")</p>
 ```
 
 Implicit expressions **cannot** contain C# generics, as the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following code is **not** valid:
 
-```cshtml
+html
 <p>@GenericMethod<int>()</p>
 ```
 
@@ -77,7 +77,7 @@ Generic method calls must be wrapped in an [explicit Razor expression](#explicit
 
 Explicit Razor expressions consist of an `@` symbol with balanced parenthesis. To render last week's time, the following Razor markup is used:
 
-```cshtml
+html
 <p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
 ```
 
@@ -85,7 +85,7 @@ Any content within the `@()` parenthesis is evaluated and rendered to the output
 
 Implicit expressions, described in the previous section, generally can't contain spaces. In the following code, one week isn't subtracted from the current time:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact.cshtml?range=17)]
+[!code-html[Main](razor/sample/Views/Home/Contact.cshtml?range=17)]
 
 The code renders the following HTML:
 
@@ -95,7 +95,7 @@ The code renders the following HTML:
 
 Explicit expressions can be used to concatenate text with an expression result:
 
-```cshtml
+html
 @{
     var joe = new Person("Joe", 33);
 }
@@ -108,7 +108,7 @@ Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email add
 
 Explicit expressions can be used to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following markup is **not** valid Razor:
 
-```cshtml
+html
 <p>@GenericMethod<int>()</p>
 ```
 
@@ -119,7 +119,7 @@ The preceding code generates a compiler error similar to one of the following:
  
  The following markup shows the correct way write this code.  The code is written as an explicit expression:
 
-```cshtml
+html
 <p>@(GenericMethod<int>())</p>
 ```
 
@@ -129,7 +129,7 @@ Note: this restriction doesn't apply to *.vbhtml* Razor files.  With *.vbhtml* R
 
 C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to `IHtmlContent` are rendered directly through `IHtmlContent.WriteTo`. C# expressions that don't evaluate to `IHtmlContent` are converted to a string by `ToString` and encoded before they're rendered.
 
-```cshtml
+html
 @("<span>Hello World</span>")
 ```
 
@@ -150,7 +150,7 @@ The HTML is shown in the browser as:
 > [!WARNING]
 > Using `HtmlHelper.Raw` on unsanitized user input is a security risk. User input might contain malicious JavaScript or other exploits. Sanitizing user input is difficult. Avoid using `HtmlHelper.Raw` with user input.
 
-```cshtml
+html
 @Html.Raw("<span>Hello World</span>")
 ```
 
@@ -164,7 +164,7 @@ The code renders the following HTML:
 
 Razor code blocks start with `@` and are enclosed by `{}`. Unlike expressions, C# code inside code blocks isn't rendered. Code blocks and expressions in a view share the same scope and are defined in order:
 
-```cshtml
+html
 @{
     var quote = "The future depends on what you do today. - Mahatma Gandhi";
 }
@@ -189,7 +189,7 @@ The code renders the following HTML:
 
 The default language in a code block is C#, but the Razor Page can transition back to HTML:
 
-```cshtml
+html
 @{
     var inCSharp = true;
     <p>Now in HTML, was in C# @inCSharp</p>
@@ -200,7 +200,7 @@ The default language in a code block is C#, but the Razor Page can transition ba
 
 To define a subsection of a code block that should render HTML, surround the characters for rendering with the Razor **\<text>** tag:
 
-```cshtml
+html
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
@@ -219,7 +219,7 @@ The **\<text>** tag is useful to control whitespace when rendering content:
 
 To render the rest of an entire line as HTML inside a code block, use the `@:` syntax:
 
-```cshtml
+html
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
@@ -239,7 +239,7 @@ Control structures are an extension of code blocks. All aspects of code blocks (
 
 `@if` controls when code runs:
 
-```cshtml
+html
 @if (value % 2 == 0)
 {
     <p>The value was even.</p>
@@ -248,7 +248,7 @@ Control structures are an extension of code blocks. All aspects of code blocks (
 
 `else` and `else if` don't require the `@` symbol:
 
-```cshtml
+html
 @if (value % 2 == 0)
 {
     <p>The value was even.</p>
@@ -265,7 +265,7 @@ else
 
 The following markup shows how to use a switch statement:
 
-```cshtml
+html
 @switch (value)
 {
     case 1:
@@ -284,7 +284,7 @@ The following markup shows how to use a switch statement:
 
 Templated HTML can be rendered with looping control statements.  To render a list of people:
 
-```cshtml
+html
 @{
     var people = new Person[]
     {
@@ -299,7 +299,7 @@ The following looping statements are supported:
 
 `@for`
 
-```cshtml
+html
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
@@ -310,7 +310,7 @@ The following looping statements are supported:
 
 `@foreach`
 
-```cshtml
+html
 @foreach (var person in people)
 {
     <p>Name: @person.Name</p>
@@ -320,7 +320,7 @@ The following looping statements are supported:
 
 `@while`
 
-```cshtml
+html
 @{ var i = 0; }
 @while (i < people.Length)
 {
@@ -334,7 +334,7 @@ The following looping statements are supported:
 
 `@do while`
 
-```cshtml
+html
 @{ var i = 0; }
 @do
 {
@@ -351,7 +351,7 @@ The following looping statements are supported:
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
 
 
-```cshtml
+html
 @using (Html.BeginForm())
 {
     <div>
@@ -368,13 +368,13 @@ Scope-level actions can be performed with [Tag Helpers](xref:mvc/views/tag-helpe
 
 Exception handling is similar to C#:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact7.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact7.cshtml)]
 
 ### @lock
 
 Razor has the capability to protect critical sections with lock statements:
 
-```cshtml
+html
 @lock (SomeLock)
 {
     // Do critical section work
@@ -385,7 +385,7 @@ Razor has the capability to protect critical sections with lock statements:
 
 Razor supports C# and HTML comments:
 
-```cshtml
+html
 @{
     /* C# comment */
     // Another C# comment
@@ -401,7 +401,7 @@ The code renders the following HTML:
 
 Razor comments are removed by the server before the webpage is rendered. Razor uses `@*  *@` to delimit comments. The following code is commented out, so the server doesn't render any markup:
 
-```cshtml
+html
 @*
     @{
         /* C# comment */
@@ -441,19 +441,19 @@ Later in this article, the section [Viewing the Razor C# class generated for a v
 
 The `@using` directive adds the C# `using` directive to the generated view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact9.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact9.cshtml)]
 
 ### @model
 
 The `@model` directive specifies the type of the model passed to a view:
 
-```cshtml
+html
 @model TypeNameOfModel
 ```
 
 In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
 
-```cshtml
+html
 @model LoginViewModel
 ```
 
@@ -465,7 +465,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 
 Razor exposes a `Model` property for accessing the model passed to the view:
 
-```cshtml
+html
 <div>The Login Email: @Model.Email</div>
 ```
 
@@ -475,7 +475,7 @@ The `@model` directive specifies the type of this property. The directive specif
 
 The `@inherits` directive provides  full control of the class the view inherits:
 
-```cshtml
+html
 @inherits TypeNameOfClassToInheritFrom
 ```
 
@@ -485,7 +485,7 @@ The following code is a custom Razor page type:
 
 The `CustomText` is displayed in a view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact10.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact10.cshtml)]
 
 The code renders the following HTML:
 
@@ -495,11 +495,11 @@ The code renders the following HTML:
 
  `@model` and `@inherits` can be used in the same view.  `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
 
-[!code-cshtml[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
+[!code-html[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
 
 The following code is an example of a strongly-typed view:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Login1.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Login1.cshtml)]
 
 If "rick@contoso.com" is passed in the model, the view generates the following HTML markup:
 
@@ -517,13 +517,13 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 The `@functions` directive enables a Razor Page to add function-level content to a view:
 
-```cshtml
+html
 @functions { // C# Code }
 ```
 
 For example:
 
-[!code-cshtml[Main](razor/sample/Views/Home/Contact6.cshtml)]
+[!code-html[Main](razor/sample/Views/Home/Contact6.cshtml)]
 
 The code generates the following HTML markup:
 

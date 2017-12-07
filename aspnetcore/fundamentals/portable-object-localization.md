@@ -84,7 +84,7 @@ Add the required middleware to the `Configure` method of *Startup.cs*:
 
 Add the following code to your Razor view of choice. *About.cshtml* is used in this example.
 
-[!code-cshtml[Main](localization/sample/POLocalization/Views/Home/About.cshtml)]
+[!code-html[Main](localization/sample/POLocalization/Views/Home/About.cshtml)]
 
 An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
@@ -146,7 +146,7 @@ var supportedCultures = new List<CultureInfo>
 
 Edit the *Views/Home/About.cshtml* file to render localized, plural strings for several cardinalities:
 
-```cshtml
+html
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
 <p>@Localizer.Plural(2, "There is one item.", "There are {0} items.")</p>
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>

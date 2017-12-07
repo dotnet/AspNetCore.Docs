@@ -58,7 +58,7 @@ The `asp-route` Tag Helper attribute can also generate markup for the HTML `acti
 
 Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual User Accounts*) contain the [asp-route-returnurl](https://docs.microsoft.com/aspnet/core/mvc/views/working-with-forms) attribute:
 
-```cshtml
+html
 <form asp-controller="Account" asp-action="Login"
      asp-route-returnurl="@ViewData["ReturnUrl"]"
      method="post" class="form-horizontal" role="form">
@@ -416,7 +416,7 @@ The HTTP POST `Index` method displays the selection:
 
 The `Index` view:
 
-[!code-cshtml[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
+[!code-html[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
 
 Which generates the following HTML (with "CA" selected):
 

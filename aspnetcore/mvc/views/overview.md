@@ -43,7 +43,7 @@ Views help to establish a [**S**eparation **o**f **C**oncerns (SoC) design](http
 
 Views that are specific to a controller are created in the *Views/[ControllerName]* folder. Views that are shared among controllers are placed in the *Views/Shared* folder. To create a view, add a new file and give it the same name as its associated controller action with the *.cshtml* file extension. To create a view that corresponds with the *About* action in the *Home* controller, create an *About.cshtml* file in the *Views/Home* folder:
 
-[!code-cshtml[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
+[!code-html[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
 *Razor* markup starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown above. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements above.
 
@@ -126,7 +126,7 @@ Using a viewmodel to pass data to a view allows the view to take advantage of *s
 
 Specify a model using the `@model` directive. Use the model with `@Model`:
 
-```cshtml
+html
 @model WebApplication1.ViewModels.Address
 
 <h2>Contact</h2>
@@ -223,7 +223,7 @@ public IActionResult SomeAction()
 
 Work with the data in a view:
 
-```cshtml
+html
 @{
     // Since Address isn't a string, it requires a cast.
     var address = ViewData["Address"] as Address;
@@ -261,7 +261,7 @@ public IActionResult SomeAction()
 }
 ```
 
-```cshtml
+html
 @ViewBag.Greeting World!
 
 <address>
@@ -279,7 +279,7 @@ Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collectio
 
 Set the title using `ViewBag` and the description using `ViewData` at the top of an *About.cshtml* view:
 
-```cshtml
+html
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "About Contoso";
@@ -289,7 +289,7 @@ Set the title using `ViewBag` and the description using `ViewData` at the top of
 
 Read the properties but reverse the use of `ViewData` and `ViewBag`. In the *_Layout.cshtml* file, obtain the title using `ViewData` and obtain the description using `ViewBag`:
 
-```cshtml
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,7 +331,7 @@ Both `ViewData` and `ViewBag` are equally valid approaches for passing small amo
 
 Views that don't declare a model type using `@model` but that have a model instance passed to them (for example, `return View(Address);`) can reference the instance's properties dynamically:
 
-```cshtml
+html
 <address>
     @Model.Street<br>
     @Model.City, @Model.State @Model.PostalCode<br>

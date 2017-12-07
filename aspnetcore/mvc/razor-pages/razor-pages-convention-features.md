@@ -114,7 +114,7 @@ The Contact page can also be reached at `/Contact` via its default route.
 
 The sample app's custom route to the Contact page allows for an optional `text` route segment (`{text?}`). The page also includes this optional segment in its `@page` directive in case the visitor accesses the page at its `/Contact` route:
 
-[!code-cshtml[Main](razor-pages-convention-features/sample/Pages/Contact.cshtml?highlight=1)]
+[!code-html[Main](razor-pages-convention-features/sample/Pages/Contact.cshtml?highlight=1)]
 
 Note that the URL generated for the **Contact** link in the rendered page reflects the updated route:
 
@@ -269,7 +269,7 @@ Note that `Async` is optional between `DeleteAllMessages` and `DeleteMessageAsyn
 
 Note the handler names provided in *Index.cshtml* match the `DeleteAllMessages` and `DeleteMessageAsync` handler methods:
 
-[!code-cshtml[Main](razor-pages-convention-features/sample/Pages/Index.cshtml?range=29-60&highlight=7-8,24-25)]
+[!code-html[Main](razor-pages-convention-features/sample/Pages/Index.cshtml?range=29-60&highlight=7-8,24-25)]
 
 `Async` in the handler method name `DeleteMessageAsync` is factored out by the `TryParseHandlerMethod` for handler matching of POST request to method. The `asp-page-handler` name of `DeleteMessage` is matched to the handler method `DeleteMessageAsync`.
 

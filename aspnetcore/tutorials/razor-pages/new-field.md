@@ -29,7 +29,7 @@ Build the app (Ctrl+Shift+B).
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
+[!code-html[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
 
 Add the `Rating` field to the Delete and Details pages.
 
@@ -39,7 +39,7 @@ Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous `<
 
 The following code shows *Create.cshtml* with a `Rating` field:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
+[!code-html[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
 
 Add the `Rating` field to the Edit Page.
 

@@ -34,7 +34,7 @@ The speaker controller below is used in samples in this document.
 
 `asp-controller` is used to associate which controller will be used to generate the URL. The controllers specified must exist in the current project. The following code lists all speakers: 
 
-```cshtml
+html
 <a asp-controller="Speaker" asp-action="Index">All Speakers</a>
 ```
 
@@ -105,7 +105,7 @@ app.UseMvc(routes =>
 
 The **cshtml** file that contains the Anchor Tag Helper necessary to use the **speaker** model parameter passed in from the controller to the view is as follows:
 
-```cshtml
+html
 @model SpeakerData
 <!DOCTYPE html>
 <html><body>
@@ -121,7 +121,7 @@ The generated HTML will then be as follows because **id** was found in the defau
 
 If the route prefix is not part of the routing template found, which is the case with the following **cshtml** file:
 
-```cshtml
+html
 @model SpeakerData
 <!DOCTYPE html>
 <html><body>
@@ -154,7 +154,7 @@ If either `asp-controller` or `asp-action` are not specified, then the same defa
 
 As the example below shows, an inline dictionary is created and the data is passed to the razor view. As an alternative, the data could also be passed in with your model.
 
-```cshtml
+html
 @{
     var dict =
         new Dictionary<string, string>
@@ -179,7 +179,7 @@ If any keys in the dictionary match route parameters, those values will be subst
 
 `asp-fragment` defines a URL fragment to append to the URL. The Anchor Tag Helper will add the hash character (#). If you create a tag:
 
-```cshtml
+html
 <a asp-action="Evaluations" asp-controller="Speaker"  
    asp-fragment="SpeakerEvaluations">About Speaker Evals</a>
 ```
@@ -220,7 +220,7 @@ Hash tags are useful when building client-side applications. They can be used fo
         
 Specifying an area tag that is valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the Anchor Tag Helper.
 
-```cshtml
+html
 <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>
 ```
 
