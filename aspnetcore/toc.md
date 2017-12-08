@@ -144,7 +144,7 @@
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
-# [Client-Side Development](xref:client-side/index)
+# [Client-side development](xref:client-side/index)
 ## [Using Gulp](xref:client-side/using-gulp)
 ## [Using Grunt](xref:client-side/using-grunt)
 ## [Manage client-side packages with Bower](xref:client-side/bower)

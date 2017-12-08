@@ -1,8 +1,8 @@
 ---
-title: Client-Side Development in ASP.NET Core
+title: Client-side development in ASP.NET Core
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/index
 ---
-# Client-Side development in ASP.NET Core
+# Client-side development in ASP.NET Core
 
 - [Using Gulp](using-gulp.md)
 - [Using Grunt](using-grunt.md)
@@ -26,3 +26,7 @@ uid: client-side/index
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
 - [Building Projects with Yeoman](yeoman.md)
 - [Using Browser Link](using-browserlink.md)
+- [Using the SPA project templates (preview)](xref:spa/index)
+    - [The Angular project template](xref:spa/angular)
+    - [The React project template](xref:spa/react)
+    - [The React with Redux project template](xref:spa/react-with-redux)
