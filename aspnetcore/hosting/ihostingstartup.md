@@ -27,7 +27,7 @@ An `IHostingStartup` feature is deployed as an assembly based on a console app w
 
 [!code-xml[Main](ihostingstartup/snapshot_sample/StartupFeature.csproj)]
 
-A [HostingStartupAttribute](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupFeature`, and the class is `StartupFeatureHostingStartup`:
+A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupFeature`, and the class is `StartupFeatureHostingStartup`:
 
 [!code-csharp[Main](ihostingstartup/snapshot_sample/StartupFeature.cs?name=snippet1)]
 
@@ -85,7 +85,7 @@ For global use, place the file in the `additonalDeps` folder of the .NET Core in
 <DRIVE>\Program Files\dotnet\additionalDeps\<FEATURE_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
 ```
 
-Note the version, `2.0.0`, reflects the version of the shared runtime that the target app uses. The shared runtime listed in *\*.runtimeconfig.json*. In the sample app, the shared runtime is specified in the *HostingStartupSample.runtimeconfig.json* file.
+Note the version, `2.0.0`, reflects the version of the shared runtime that the target app uses. The shared runtime is shown in the *\*.runtimeconfig.json* file. In the sample app, the shared runtime is specified in the *HostingStartupSample.runtimeconfig.json* file.
 
 **Set environment variables**
 
