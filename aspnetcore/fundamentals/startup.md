@@ -42,7 +42,15 @@ To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hostin
 
 ## The ConfigureServices method
 
-The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method, which is optional, is called by the web host before the `Configure` method to configure the app's services. The web host may configure some services before `Startup` methods are called (details are provided in the [Hosting](xref:fundamentals/hosting) topic). By convention, [Configuration options](xref:fundamentals/configuration/index) are set in the `ConfigureServices` method. Adding services to the service container makes them available within the app and in the `Configure` method resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
+The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method is:
+
+* Optional.
+* Called by the web host before the `Configure` method to configure the app's services.
+* Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
+
+Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
+
+The web host may configure some services before `Startup` methods are called. Details are available in the [Hosting](xref:fundamentals/hosting) topic. 
 
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
@@ -52,17 +60,11 @@ For features that require substantial setup, there are `Add[Service]` extension 
 
 The web host provides some services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the application.
 
-Some of the services typically requested by `Startup` methods:
-
-* In the constructor: `IHostingEnvironment`, `ILogger<Startup>`
-* In `ConfigureServices`: `IServiceCollection`
-* In `Configure`: `IApplicationBuilder`, `IHostingEnvironment`, `ILoggerFactory`
-
 ## The Configure method
 
 The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware) components to an [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) instance that's provided by [dependency injection](xref:fundamentals/dependency-injection). `IApplicationBuilder` is available to the `Configure` method, but it isn't registered in the service container. Hosting creates an `IApplicationBuilder` and passes it directly to `Configure` ([reference source](https://github.com/aspnet/Hosting/blob/release/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L179-L192)).
 
-A typical web app configures the pipeline with support for a developer exception page, [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, and ASP.NET MVC:
+The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for a developer exception page, [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, and ASP.NET MVC:
 
 [!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Startup.cs?range=28-48&highlight=5,6,10,13,15)]
 
@@ -74,7 +76,7 @@ For more information on how to use `IApplicationBuilder`, see [Middleware](xref:
 
 ## Convenience methods
 
-When setting up a host, [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder.configureservices) and [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure) convenience methods can be used instead of specifying a `Startup` class. Multiple calls to `ConfigureServices` append to one another. Multiple calls to `Configure` use the last method call.
+[ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder.configureservices) and [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure) convenience methods can be used instead of specifying a `Startup` class. Multiple calls to `ConfigureServices` append to one another. Multiple calls to `Configure` use the last method call.
 
 [!code-csharp[Main](startup/snapshot_sample/Program.cs?highlight=16,20)]
 
@@ -98,7 +100,7 @@ The `IStartupFilter` is registered in the service container in `ConfigureService
 
 [!code-csharp[Main](startup/sample/Startup.cs?name=snippet1&highlight=3)]
 
-When the app is run and a query string parameter for `option` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
+When a query string parameter for `option` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
 
 ![Browser window showing the rendered Index page. The value of Option is rendered as 'From Middleware' based on requesting the page with the query string parameter and value of option set to 'From Middleware'.](startup/_static/index.png)
 
