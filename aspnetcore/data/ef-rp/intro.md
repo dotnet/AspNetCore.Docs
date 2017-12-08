@@ -69,7 +69,7 @@ The changes are highlighted.
 
 [!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
 
-In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
+In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
 [!code-html[](intro/samples/cu/Pages/Index.cshtml)]
 
