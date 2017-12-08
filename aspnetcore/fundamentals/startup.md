@@ -32,11 +32,11 @@ Specify the startup class with the [WebHostBuilderExtensions](/dotnet/api/Micros
 
 [!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
 
-The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime by convention. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information see [Working with multiple environments](xref:fundamentals/environments#startup-conventions).
-
-The `Startup` class constructor accepts dependencies defined by the host. A common use of DI with the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment). This approach can be used to configure services as an alternative to the convention-based approach described above:
+The `Startup` class constructor accepts dependencies defined by the host. A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment) to configure services by environment:
 
 [!code-csharp[Main](startup/snapshot_sample/Startup2.cs)]
+
+An alternative to injecting `IHostingStartup` is to use a conventions-based approach. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information see [Working with multiple environments](xref:fundamentals/environments#startup-conventions).
 
 To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hosting) topic. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
