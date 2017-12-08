@@ -144,7 +144,7 @@
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
-# [Client-Side Development](xref:client-side/index)
+# [Client-side development](xref:client-side/index)
 ## [Using Gulp](xref:client-side/using-gulp)
 ## [Using Grunt](xref:client-side/using-grunt)
 ## [Manage client-side packages with Bower](xref:client-side/bower)
@@ -156,6 +156,10 @@
 ## [Bundling and minification](xref:client-side/bundling-and-minification)
 ## [Building Projects with Yeoman](xref:client-side/yeoman)
 ## [Using Browser Link](xref:client-side/using-browserlink)
+## [Using the SPA project templates (preview)](xref:spa/index)
+### [The Angular project template](xref:spa/angular)
+### [The React project template](xref:spa/react)
+### [The React with Redux project template](xref:spa/react-with-redux)
 
 # [Mobile](xref:mobile/index)
 ## [Creating Backend Services for Native Mobile Applications](xref:mobile/native-mobile-backend)
