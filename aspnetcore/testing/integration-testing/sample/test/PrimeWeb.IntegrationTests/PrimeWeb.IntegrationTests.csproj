@@ -5,6 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+   
+  <!-- https://github.com/NuGet/Home/issues/4412 -->
+  <Target Name="CopyDepsFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+    <ItemGroup>
+      <DepsFilePaths Include="$([System.IO.Path]::ChangeExtension('%(_ResolvedProjectReferencePaths.FullPath)', '.deps.json'))" />
+    </ItemGroup>
+
+    <Copy SourceFiles="%(DepsFilePaths.FullPath)" DestinationFolder="$(OutputPath)" Condition="Exists('%(DepsFilePaths.FullPath)')" />
+  </Target>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\PrimeWeb\PrimeWeb.csproj" />
   </ItemGroup>
 
