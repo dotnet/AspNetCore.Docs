@@ -2,10 +2,10 @@
 title: Application startup in ASP.NET Core
 author: ardalis
 description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline. 
-keywords: ASP.NET Core,Startup,Configure method,ConfigureServices method
 ms.author: tdykstra
 manager: wpickett
-ms.date: 12/05/2017
+ms.custom: mvc
+ms.date: 12/08/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -28,7 +28,7 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 [!code-csharp[Main](startup/snapshot_sample/Startup1.cs)]
 
-Specify the startup class with the [WebHostBuilderExtensions](/dotnet/api/Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions) [UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method:
+Specify the `Startup` class with the [WebHostBuilderExtensions](/dotnet/api/Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions) [UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method:
 
 [!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
 
@@ -109,7 +109,7 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 * Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
 * Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`, position the service registration before the library is added to the service container. To invoke it afterward, position the service registration after the library is added.
 
-## Additional Resources
+## Additional resources
 
 * [Hosting](xref:fundamentals/hosting)
 * [Working with Multiple Environments](xref:fundamentals/environments)
