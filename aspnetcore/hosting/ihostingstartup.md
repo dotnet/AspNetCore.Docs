@@ -47,7 +47,7 @@ In order for the feature to activate for an app, the `runtime` location in the *
 
 [!code-json[Main](ihostingstartup/snapshot_sample/StartupFeature2.deps.json?range=2-13&highlight=8)]
 
-In the sample app, modification of the *\*.deps.json* file is performed by a [PowerShell](/powershell/scripting/powershell-scripting) script, which is automatically triggered by a build target in the project file.
+In the sample app, modification of the *\*.deps.json* file is performed by a [PowerShell](/powershell/scripting/powershell-scripting) script. The PowerShell script is automatically triggered by a build target in the project file.
 
 ### Feature activation
 
@@ -85,7 +85,7 @@ For global use, place the file in the `additonalDeps` folder of the .NET Core in
 <DRIVE>\Program Files\dotnet\additionalDeps\<FEATURE_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
 ```
 
-Note that the version, `2.0.0`, reflects the version of the shared runtime that the target app uses (the shared runtime listed in *\*.runtimeconfig.json*). In the sample app, the shared runtime is specified in the *HostingStartupSample.runtimeconfig.json* file.
+Note the version, `2.0.0`, reflects the version of the shared runtime that the target app uses. The shared runtime listed in *\*.runtimeconfig.json*. In the sample app, the shared runtime is specified in the *HostingStartupSample.runtimeconfig.json* file.
 
 **Set environment variables**
 
