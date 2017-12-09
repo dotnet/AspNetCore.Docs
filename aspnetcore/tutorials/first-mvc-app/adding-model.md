@@ -32,7 +32,7 @@ In **Solution Explorer**, right-click the *Controllers* folder **> Add > Control
 
 If the **Add MVC Dependencies** dialog appears:
 
-* [Update Visual Studio to the latest version](https://www.visualstudio.com/downloads/). Visual Studio version prior to 15.5 show this dialog.
+* [Update Visual Studio to the latest version](https://www.visualstudio.com/downloads/). Visual Studio versions prior to 15.5 show this dialog.
 * If you can't update, select **ADD**, and then follow the add controller steps again.
 
 In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
