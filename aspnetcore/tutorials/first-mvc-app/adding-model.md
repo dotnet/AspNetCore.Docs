@@ -5,9 +5,8 @@ description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 03/30/2017
+ms.date: 12/8/2017
 ms.topic: get-started-article
-ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/adding-model
@@ -17,9 +16,7 @@ uid: tutorials/first-mvc-app/adding-model
 
 Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
 
-In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-
-Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
+Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
@@ -33,15 +30,10 @@ In **Solution Explorer**, right-click the *Controllers* folder **> Add > Control
 
 ![view of above step](adding-model/_static/add_controller.png)
 
-In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and select **Add**.
+If the **Add MVC Dependencies** dialog appears:
 
-![view of above step](adding-model/_static/add_depend.png)
-
-Visual Studio adds the dependencies needed to scaffold a controller, but the controller itself is not created. The next invoke of **> Add > Controller** creates the controller. 
-
-In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
-
-![view of above step](adding-model/_static/add_controller.png)
+* [Update Visual Studio to the latest version](https://www.visualstudio.com/downloads/). Visual Studio versions prior to 15.5 show this dialog.
+* If you can't update, select **ADD**, and then follow the add controller steps again.
 
 In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
@@ -64,11 +56,11 @@ Visual Studio creates:
 
 * An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/&ast;.cshtml*)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/&ast;.cshtml*)
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
+If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
 
 ```
 An unhandled exception occurred while processing the request.
