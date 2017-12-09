@@ -239,15 +239,10 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
 * Right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 
-* In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and select **Add**.
+If the **Add MVC Dependencies** dialog appears:
 
-  ![Add dependencies](intro/_static/add-depend.png)
-
-  Visual Studio adds the dependencies needed to scaffold a controller. The only change in the project file is the addition of the `Microsoft.VisualStudio.Web.CodeGeneration.Design` package.
-
-  A *ScaffoldingReadMe.txt* file is created which you can delete.
-
-* Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
+* [Update Visual Studio to the latest version](https://www.visualstudio.com/downloads/). Visual Studio versions prior to 15.5 show this dialog.
+* If you can't update, select **ADD**, and then follow the add controller steps again.
 
 * In the **Add Scaffold** dialog box:
 
