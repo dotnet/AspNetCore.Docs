@@ -5,7 +5,7 @@ description: Shows how to set up two-factor authentication (2FA) with ASP.NET Co
 keywords: ASP.NET Core,SMS,authentication,2FA,two-factor authentication,two factor authentication
 ms.author: riande
 manager: wpickett
-ms.date: 08/15/2017
+ms.date: 11/15/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -15,7 +15,28 @@ uid: security/authentication/2fa
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
-This tutorial applies to ASP.NET Core 1.x only. See [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The ASP.NET Core 2.x templates do not support two-factor authentication (2FA) with SMS. We recommend ASP.NET Core 2.x use QR codes for 2FA. See [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+
+To use SMS 2FA with ASP.NET Core 2.x apps:
+
+* Create an ASP.NET Core 1.x app with individual user accounts.
+* Copy the SMS/2FA files from the 1.x project into the ASP.NET Core 2.x project. The SMS/2FA files:
+
+	* *Controllers\AccountController.cs* and *Controllers\ManageController.cs*
+	* All the files and folders under *Data*
+	* All the files and folders under *Models*
+	* All the files and folders under *Services* 
+	* All the files under *Views/Account*
+	* All the files under *Views/Manage*	
+	* 
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+The remainder of this tutorial applies to ASP.NET Core 1.x.
+
+------
 
 This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
