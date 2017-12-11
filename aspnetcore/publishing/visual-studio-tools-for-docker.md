@@ -128,6 +128,6 @@ microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours 
 ```
 
 > [!NOTE]
-> The `docker images` command returns intermediary images with repository names and tags identified as *<none>*. These can be ignored.
+> The `docker images` command returns intermediary images with repository names and tags identified as *\<none>*. These can be ignored.
 
 There may be an expectation for the production or release image to be smaller in size by comparison to the **dev** image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The **latest** image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
