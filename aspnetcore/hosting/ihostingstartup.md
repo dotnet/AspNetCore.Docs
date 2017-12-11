@@ -95,6 +95,8 @@ ASPNETCORE\_HOSTINGSTARTUPASSEMBLIES
 
 Only hosting startup assemblies are scanned for the `HostingStartupAttribute`. The assembly name of the implementation is provided in this environment variable. The sample app sets this value to `StartupDiagnostics`.
 
+The value can also be set using the [Hosting Startup Assemblies](xref:fundamentals/hosting#hosting-startup-assemblies) host configuration setting.
+
 DOTNET\_ADDITIONAL\_DEPS
 
 The location of the implementation's *\*.deps.json* file.
@@ -118,6 +120,17 @@ The sample app sets this value to:
 ```
 
 For examples of how to set environment variables for various operating systems, see [Working with multiple environments](xref:fundamentals/environments).
+
+## Disable automatic loading of hosting startup assemblies
+
+There are two ways to disable the automatic loading of hosting startup assemblies:
+
+* Set the [Prevent Hosting Startup](xref:fundamentals/hosting#prevent-hosting-startup) host configuration setting.
+* Set the `ASPNETCORE_preventHostingStartup` environment variable.
+
+When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
+
+It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app.
 
 ## Sample app
 
