@@ -57,11 +57,11 @@ The Visual Studio Tools for Docker add a *docker-compose* project to the solutio
 - *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build/run`.
 - *docker-compose.override.yml*: An optional file, read by Docker Compose, containing configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
-A *Dockerfile*, the recipe for creating a Docker image, is added to the project root. It's based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image:
+A *Dockerfile*, the recipe for creating a final Docker image, is added to the project root. Refer to [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) for an understanding of the commands within it. This particular *Dockerfile* uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) containing four distinct, named build stages:
 
-[!code-text[](visual-studio-tools-for-docker/samples/HelloDockerTools/HelloDockerTools/Dockerfile?highlight=1)]
+[!code-text[](visual-studio-tools-for-docker/samples/HelloDockerTools/HelloDockerTools/Dockerfile?highlight=1,5,14,17)]
 
-The base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
+The *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image. This base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
 
 The *docker-compose.yml* file contains the name of the image that is created when the project runs:
 
@@ -128,6 +128,6 @@ microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours 
 ```
 
 > [!NOTE]
-> The `docker images` command returns intermediary images with repository names and tags identified as *\<none>*. These can be ignored.
+> The `docker images` command returns intermediary images with repository names and tags identified as *\<none>* (not listed above). These unnamed images are produced by the [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile*. They improve the efficiency of building the final image&mdash;only the necessary layers are rebuilt when changes occur. When you no longer need the intermediary images, delete them using the [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/) command.
 
 There may be an expectation for the production or release image to be smaller in size by comparison to the **dev** image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The **latest** image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
