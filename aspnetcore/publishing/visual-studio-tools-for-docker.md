@@ -25,7 +25,7 @@ uid: publishing/vs-tools-for-docker
 
 For Docker installation, review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) and install [Docker For Windows](https://docs.docker.com/docker-for-windows/install/).
 
-A required configuration is to setup **[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows. The setting is required for the volume mapping and debugging support.
+**[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging.
 
 Right-click the System Tray's Docker icon, click **Settings...**, and select **Shared Drives**. Select the drive where Docker stores your files, and click **Apply**.
 
