@@ -41,9 +41,11 @@ When creating a new app with the **ASP.NET Core Web Application** project templa
 
 ![Enable Docker Support checkbox](./visual-studio-tools-for-docker/_static/enable-docker-support-checkbox.png)
 
+If your target framework is .NET Core, the **OS** drop-down allows for the selection of a container type.
+
 ### Existing app
 
-With the app open in Visual Studio, there are two options for adding Docker support:
+The Visual Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework. For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 - Select **Docker Support** from the **Project** menu.
 - Right-click the project in Solution Explorer and select **Add** > **Docker Support**.
@@ -52,8 +54,8 @@ With the app open in Visual Studio, there are two options for adding Docker supp
 
 The Visual Studio Tools for Docker add a *docker-compose* project to the solution. It contains the following:
 - *.dockerignore*: Contains a list of file and directory patterns to exclude when generating a build context.
-- *docker-compose.yml*: The base Docker Compose file used to define the collection of images to be built and run with `docker-compose build/run`.
-- *docker-compose.override.yml*: An optional file, read by Compose, containing configuration overrides for services. Visual Studio calls `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these together.
+- *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build/run`.
+- *docker-compose.override.yml*: An optional file, read by Docker Compose, containing configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
 A *Dockerfile*, the recipe for creating a Docker image, is added to the project root. It's based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image:
 
@@ -76,11 +78,11 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 - The *microsoft/aspnetcore* runtime image is acquired (if not already in your cache).
 - The *microsoft/aspnetcore-build* compile/publish image is acquired (if not already in your cache).
 - The *ASPNETCORE_ENVIRONMENT* environment variable is set to `Development` within the container.
-- Port 80 is exposed and mapped to a dynamically-assigned port for localhost. The port is determined by the Docker host and can be queried with `docker ps`.
+- Port 80 is exposed and mapped to a dynamically-assigned port for localhost. The port is determined by the Docker host and can be queried with the `docker ps` command.
 - Your app is copied to the container.
 - The default browser is launched with the debugger attached to the container, using the dynamically-assigned port. 
 
-The resulting Docker image is the *dev* image of your app, with the *microsoft/aspnetcore* images as the base image. Running the `docker images` command displays the images on your machine:
+The resulting Docker image is the *dev* image of your app, with the *microsoft/aspnetcore* images as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on your machine are displayed:
 
 ```console
 REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
@@ -93,7 +95,7 @@ microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours 
 > [!NOTE]
 > The dev image lacks your app contents, as **Debug** configurations use volume mounting to provide the iterative experience. To push an image, use the **Release** configuration.
 
-Running the `docker ps` command confirms the app is running using the container:
+Run the `docker ps` command in PMC. Notice the app is running using the container:
 
 ```console
 CONTAINER ID        IMAGE                  COMMAND                   CREATED             STATUS              PORTS                   NAMES
@@ -104,7 +106,7 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   21 seconds 
 
 Changes to static files and Razor views are automatically updated without the need for a compilation step. Make the change, save, and refresh the browser to view the update.  
 
-Modifications to code files requires compiling and a restart of Kestrel within the container. After making the change, use CTRL + F5 to perform the process and start the app within the container. The Docker container is not rebuilt or stopped. Using `docker ps` in the command line, notice the original container is still running as of 10 minutes ago:
+Modifications to code files requires compiling and a restart of Kestrel within the container. After making the change, use CTRL + F5 to perform the process and start the app within the container. The Docker container is not rebuilt or stopped. Run the `docker ps` command in PMC. Notice the original container is still running as of 10 minutes ago:
 
 ```console
 CONTAINER ID        IMAGE                  COMMAND                   CREATED             STATUS              PORTS                   NAMES
@@ -115,7 +117,7 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   10 minutes 
 
 Once you have completed the develop and debug cycle of your app, the Visual Studio Tools for Docker help you create the production image of your app. Change the configuration drop-down to **Release** and build the app. The tooling produces the image with the `:latest` tag, which you can push to your private registry or Docker Hub. 
 
-Run the `docker images` command to see the list of images:
+Run the `docker images` command in PMC to see the list of images:
 
 ```console
 REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
@@ -126,6 +128,6 @@ microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours 
 ```
 
 > [!NOTE]
-> The `docker images` command may return intermediary images with repository names and tags identified as *<none>*. These can be ignored.
+> The `docker images` command returns intermediary images with repository names and tags identified as *<none>*. These can be ignored.
 
 There may be an expectation for the production or release image to be smaller in size by comparison to the **dev** image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The **latest** image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
