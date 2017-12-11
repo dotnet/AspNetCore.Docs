@@ -120,11 +120,12 @@ Run the `docker images` command to see the list of images:
 ```console
 REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
 hellodockertools             latest                4cb1fca533f0        19 seconds ago      391MB
-<none>                       <none>                2773b18d8256        22 seconds ago      1.87GB
-<none>                       <none>                f8f9d6c923e2        About an hour ago   391MB
 hellodockertools             dev                   85c5ffee5258        About an hour ago   389MB
 microsoft/aspnetcore-build   2.0-nanoserver-1709   d7cce94e3eb0        16 hours ago        1.86GB
 microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours ago        389MB
 ```
+
+> [!NOTE]
+> The `docker images` command may return intermediary images with repository names and tags identified as *<none>*. These can be ignored.
 
 There may be an expectation for the production or release image to be smaller in size by comparison to the **dev** image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The **latest** image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
