@@ -152,7 +152,7 @@ The convention is added as an option in Startup.
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
 
 > [!TIP]
-> You can add conventions to your [middleware](xref:fundamentals/middleware) by accessing `MvcOptions` using `services.Configure<MvcOptions>(c => c.Conventions.Add(YOURCONVENTION));`
+> You can add conventions to your [middleware](xref:fundamentals/middleware/index) by accessing `MvcOptions` using `services.Configure<MvcOptions>(c => c.Conventions.Add(YOURCONVENTION));`
 
 This sample applies this convention to routes that are not using attribute routing where the controller has  "Namespace" in its name. The following controller demonstrates this convention:
 

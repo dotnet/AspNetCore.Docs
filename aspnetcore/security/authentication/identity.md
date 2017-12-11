@@ -60,7 +60,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
-    Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+    Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
     
     [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
     
@@ -70,7 +70,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
-    Identity is enabled for the application by calling `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+    Identity is enabled for the application by calling `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
         
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configure&highlight=21)]
     

@@ -134,7 +134,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 ## Additional resources
 
 * [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [In-memory caching](xref:performance/caching/memory)
 * [Working with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)

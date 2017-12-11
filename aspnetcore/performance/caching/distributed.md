@@ -61,7 +61,7 @@ To use the `IDistributedCache` interface:
 
    2. Configure the specific implementation of `IDistributedCache` in your `Startup` class's `ConfigureServices` method, and add it to the container there.
 
-   3. From the app's [Middleware](../../fundamentals/middleware.md) or MVC controller classes, request an instance of `IDistributedCache` from the constructor. The instance will be provided by [Dependency Injection](../../fundamentals/dependency-injection.md) (DI).
+   3. From the app's [Middleware](xref:fundamentals/middleware/index) or MVC controller classes, request an instance of `IDistributedCache` from the constructor. The instance will be provided by [Dependency Injection](../../fundamentals/dependency-injection.md) (DI).
 
 > [!NOTE]
 > There's no need to use a Singleton or Scoped lifetime for `IDistributedCache` instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using [Dependency Injection](../../fundamentals/dependency-injection.md)), but this can make your code harder to test, and violates the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/).

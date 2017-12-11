@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Middleware Extensibility Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Instructions</h2>
+            </div>
+            <div class="panel-body">
+                <p>
+                    To demonstrate the middleware implementation activated by 
+                    the middleware factory, add a <code>culture</code> query 
+                    string pamameter to the request.
+                </p>
+                <h3>Examples</h3>
+                <ul>
+                    <li><code>http://localhost:5000/?culture=ja</code></li>
+                    <li><code>http://localhost:5000/?culture=sw</code></li>
+                    <li><code>http://localhost:5000/?culture=en-au</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Culture Information</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Current Requent Culture:</b> @Model.CurrentCultureSetting
+                </p>
+                @if (Model.CultureRequests.Count > 0)
+                {
+                    <b>Previous Requests:</b>
+                    <ul>
+                        @foreach (var request in Model.CultureRequests)
+                        {
+                            <li>@request.DT UTC: @request.Culture</li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
