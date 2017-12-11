@@ -57,7 +57,7 @@ The Visual Studio Tools for Docker add a *docker-compose* project to the solutio
 
 A *Dockerfile*, the recipe for creating a Docker image, is added to the project root. It's based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image:
 
-[!code-yaml[](visual-studio-tools-for-docker/samples/HelloDockerTools/HelloDockerTools/Dockerfile?highlight=1)]
+[!code-text[](visual-studio-tools-for-docker/samples/HelloDockerTools/HelloDockerTools/Dockerfile?highlight=1)]
 
 The base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
 
