@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: publishing/vs-tools-for-docker
 ---
-# Visual Studio Tools for Docker
+# Visual Studio Tools for Docker with ASP.NET Core
 
 [Visual Studio 2017](https://www.visualstudio.com/) with [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) supports building, debugging, and running .NET Framework and .NET Core web and console apps using Windows and Linux containers.
 
@@ -25,13 +25,13 @@ uid: publishing/vs-tools-for-docker
 
 For Docker installation, review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) and install [Docker For Windows](https://docs.docker.com/docker-for-windows/install/).
 
-**[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging.
-
-Right-click the System Tray's Docker icon, click **Settings...**, and select **Shared Drives**. Select the drive where Docker stores your files, and click **Apply**.
+**[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging. Right-click the System Tray's Docker icon, click **Settings...**, and select **Shared Drives**. Select the drive where Docker stores your files, and click **Apply**.
 
 ![Shared Drives](./visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
 ## Add Docker support to an app
+
+The ASP.NET Core project's target framework determines the supported container types. Projects targeting .NET Core support both Linux and Windows containers. Projects targeting .NET Framework only support Windows containers.
 
 When adding Docker support to your project, choose either a Windows or a Linux container. The Docker host must be running the same container type. To change the container type in the running Docker instance, right-click the System Tray's Docker icon and choose **Switch to Windows containers...** or **Switch to Linux containers...**.
 
