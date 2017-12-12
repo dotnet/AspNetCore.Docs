@@ -30,6 +30,9 @@ For Docker installation, review the information at [Docker for Windows: What to 
 
 ![Shared Drives](./visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
+> [!TIP]
+> Visual Studio 2017 versions 15.6 and later prompt you when **Shared Drives** aren't configured.
+
 ## Add Docker support to an app
 
 The ASP.NET Core project's target framework determines the supported container types. Projects targeting .NET Core support both Linux and Windows containers. Projects targeting .NET Framework only support Windows containers.
@@ -46,14 +49,14 @@ If your target framework is .NET Core, the **OS** drop-down allows for the selec
 
 ### Existing app
 
-The Visual Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework. For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
+The Visual Studio Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework. For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 - Select **Docker Support** from the **Project** menu.
 - Right-click the project in Solution Explorer and select **Add** > **Docker Support**.
 
 ## Docker assets overview
 
-The Visual Studio Tools for Docker add a *docker-compose* project to the solution. It contains the following:
+The Visual Studio Tools for Docker add a *docker-compose* project to the solution, containing the following:
 - *.dockerignore*: Contains a list of file and directory patterns to exclude when generating a build context.
 - *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
 - *docker-compose.override.yml*: An optional file, read by Docker Compose, containing configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
@@ -116,7 +119,7 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   10 minutes 
 
 ## Publish Docker images
 
-Once you have completed the develop and debug cycle of your app, the Visual Studio Tools for Docker help you create the production image of your app. Change the configuration drop-down to **Release** and build the app. The tooling produces the image with the `:latest` tag, which you can push to your private registry or Docker Hub. 
+Once you have completed the develop and debug cycle of your app, the Visual Studio Tools for Docker help you create the production image of your app. Change the configuration drop-down to **Release** and build the app. The tooling produces the image with the *latest* tag, which you can push to your private registry or Docker Hub. 
 
 Run the `docker images` command in PMC to see the list of images:
 
@@ -131,4 +134,4 @@ microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours 
 > [!NOTE]
 > The `docker images` command returns intermediary images with repository names and tags identified as *\<none>* (not listed above). These unnamed images are produced by the [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile*. They improve the efficiency of building the final image&mdash;only the necessary layers are rebuilt when changes occur. When you no longer need the intermediary images, delete them using the [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/) command.
 
-There may be an expectation for the production or release image to be smaller in size by comparison to the **dev** image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The **latest** image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
+There may be an expectation for the production or release image to be smaller in size by comparison to the *dev* image. Because of the volume mapping, the debugger and app were running from your local machine and not within the container. The *latest* image has packaged the necessary app code to run the app on a host machine. Therefore, the delta is the size of your app code.
