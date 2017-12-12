@@ -69,7 +69,7 @@ The *docker-compose.yml* file contains the name of the image that is created whe
 
 In the preceding example, `image: hellodockertools` generates the image `hellodockertools:dev` when the app runs in **Debug** mode. The `hellodockertools:latest` image is generated when the app runs in **Release** mode.
 
-Prefix the image name with your [Docker Hub](https://hub.docker.com/) username (for example, `spboyer/hellodockertools`) if you plan to push the image to the registry. Alternatively, change the image name to include your private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on your configuration.
+Prefix the image name with your [Docker Hub](https://hub.docker.com/) username (for example, `dockerhubusername/hellodockertools`) if you plan to push the image to the registry. Alternatively, change the image name to include your private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on your configuration.
 
 ## Debug
 
