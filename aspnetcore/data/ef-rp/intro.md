@@ -275,7 +275,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* DB files are in the *C:\Users\<yourusername>* folder.
+The *.mdf* and *.ldf* DB files are in the *C:\Users\\<yourusername>* folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 
