@@ -22,7 +22,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 *  Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
-* Tap the **Create App** button in the upper right corner to create a new App ID.
+* Tap the **Add a New App** button in the upper right corner to create a new App ID.
 
    ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
@@ -30,12 +30,10 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
    ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* When presented with **Select a product** prompt, Click **Set Up** on the **Facebook Login** card.
+* On the **Select a product** page, click **Set Up** on the **Facebook Login** card.
 
    ![Product Setup page](index/_static/FBProductSetup.png)
-
-* Select the **WWW** platform for the app.
-   
+  
 * The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu on the left:
 
    ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
