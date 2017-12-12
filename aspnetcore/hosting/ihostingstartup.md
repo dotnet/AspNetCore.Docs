@@ -36,7 +36,7 @@ There are two ways to disable the automatic loading of hosting startup assemblie
 
 When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
 
-It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app.
+Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app. It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. A future release will offer the ability to selectively disable hosting startup assemblies (see [GitHub issue aspnet/Hosting #1243](https://github.com/aspnet/Hosting/pull/1243)).
 
 ## Implement IHostingStartup features
 
