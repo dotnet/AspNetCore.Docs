@@ -37,3 +37,24 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Loaded Hosting Startup Assemblies</h3>
+            </div>
+            <div class="panel-body">
+                <h2>Assemblies</h2>
+                <ul>
+                    @foreach (var assembly in Model.LoadedHostingStartupAssemblies)
+                    {
+                        <li>@assembly</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
