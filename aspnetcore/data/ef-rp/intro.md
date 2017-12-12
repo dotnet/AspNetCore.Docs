@@ -67,7 +67,7 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
+[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47&range=1-50)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
@@ -275,7 +275,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* DB files are in the *C:\Users\<yourusername>* folder.
+The *.mdf* and *.ldf* DB files are in the *C:\Users\\<yourusername>* folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 
