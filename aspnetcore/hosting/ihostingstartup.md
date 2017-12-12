@@ -19,6 +19,25 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+## Discover loaded hosting startup assemblies
+
+To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are also logged. Loaded hosting startup assemblies are logged at the Debug level, and errors are always logged.
+
+It's also possible to read the value of the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey). The sample app reads the key into a `string` array and displays the result in the app's Index page:
+
+[!code-csharp[Main](ihostingstartup/sample/HostingStartupSample/Pages/Index.cshtml.cs?name=snippet1&highlight=14-16)]
+
+## Disable automatic loading of hosting startup assemblies
+
+There are two ways to disable the automatic loading of hosting startup assemblies:
+
+* Set the [Prevent Hosting Startup](xref:fundamentals/hosting#prevent-hosting-startup) host configuration setting.
+* Set the `ASPNETCORE_preventHostingStartup` environment variable.
+
+When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
+
+It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app.
+
 ## Implement IHostingStartup features
 
 ### Create the assembly
@@ -120,23 +139,6 @@ The sample app sets this value to:
 ```
 
 For examples of how to set environment variables for various operating systems, see [Working with multiple environments](xref:fundamentals/environments).
-
-## Discover loaded hosting startup assemblies
-
-To discover hosting startup assemblies loaded by the app or libraries added to the app, read the value of the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey). The sample app reads the key into a `string` array and displays the result in the app's Index page:
-
-[!code-csharp[Main](ihostingstartup/sample/HostingStartupSample/Pages/Index.cshtml.cs?name=snippet1&highlight=14-16)]
-
-## Disable automatic loading of hosting startup assemblies
-
-There are two ways to disable the automatic loading of hosting startup assemblies:
-
-* Set the [Prevent Hosting Startup](xref:fundamentals/hosting#prevent-hosting-startup) host configuration setting.
-* Set the `ASPNETCORE_preventHostingStartup` environment variable.
-
-When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
-
-It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app.
 
 ## Sample app
 
