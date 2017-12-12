@@ -249,7 +249,7 @@ This feature is unavailable in ASP.NET Core 1.x.
 
 ### Prevent Hosting Startup
 
-Prevents the automatic loading of hosting startup assemblies, including the app's assembly.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly.
 
 **Key**: preventHostingStartup  
 **Type**: *bool* (`true` or `1`)  
