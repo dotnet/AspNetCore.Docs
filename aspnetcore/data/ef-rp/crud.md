@@ -98,7 +98,7 @@ The `AsNoTracking` method improves performance in scenarios when the entities re
 Open *Pages/Students/Details.cshtml*. Add the following highlighted code to display a list of enrollments:
 
  <!--2do ricka. if doesn't change, remove dup -->
-[!code-cshtml[Main](intro/samples/cu/Pages/Students/Details1.cshtml?highlight=35-53)]
+[!code-cshtml[Main](intro/samples/cu/Pages/Students/Details1.cshtml?highlight=32-53)]
 
 If code indentation is wrong after the code is pasted, press CTRL-K-D to correct it.
 
