@@ -13,7 +13,6 @@ The following table lists the files and folders in the project. For this tutoria
 | wwwroot | Contains static files. See [Working with static files](xref:fundamentals/static-files). |
 | Pages | Folder for [Razor Pages](xref:mvc/razor-pages/index). | 
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
-| *bower.json* | Client-side package management. See [Bower](xref:client-side/bower).|
 | *Program.cs* | [Hosts](xref:fundamentals/hosting) the ASP.NET Core app.|
 | *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup).|
 
