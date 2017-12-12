@@ -26,15 +26,32 @@ In your configure method, use the CookieAuthenticationOptions to set up the data
 
 If you're using identity:
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+app.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Cookies.ApplicationCookie.AuthenticationScheme = "ApplicationCookie";
+    options.Cookies.ApplicationCookie.DataProtectionProvider = 
+        DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"));
+});
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 ```csharp
 app.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Cookies.ApplicationCookie.AuthenticationScheme = "ApplicationCookie";
     var protectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"));
     options.Cookies.ApplicationCookie.DataProtectionProvider = protectionProvider;
-    options.Cookies.ApplicationCookie.TicketDataFormat = new TicketDataFormat(protectionProvider.CreateProtector("Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", "Cookies", "v2"));
+    options.Cookies.ApplicationCookie.TicketDataFormat = 
+        new TicketDataFormat(protectionProvider.CreateProtector(
+            "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", "Cookies", "v2"));
 });
 ```
+
+---
 
 If you're using cookies directly:
 
