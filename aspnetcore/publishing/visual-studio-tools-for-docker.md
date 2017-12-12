@@ -15,11 +15,11 @@ uid: publishing/vs-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core
 
-[Visual Studio 2017](https://www.visualstudio.com/) with [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) supports building, debugging, and running ASP.NET Core apps targeting either .NET Framework or .NET Core. Both Windows and Linux containers are supported.
+[Visual Studio 2017](https://www.visualstudio.com/) supports building, debugging, and running ASP.NET Core apps targeting either .NET Framework or .NET Core. Both Windows and Linux containers are supported.
 
 ## Prerequisites
 
-- [Visual Studio 2017](https://www.visualstudio.com/) with .NET Core workload
+- [Visual Studio 2017](https://www.visualstudio.com/) with the **.NET Core cross-platform development** workload
 - [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
 
 ## Installation and setup
