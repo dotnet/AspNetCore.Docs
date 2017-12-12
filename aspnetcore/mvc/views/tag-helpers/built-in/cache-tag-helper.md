@@ -87,7 +87,7 @@ Sets the length of time from the first request time to cache the contents.
 Example:
 
 ```cshtml
-<Cache expires-on="@TimeSpan.FromSeconds(120)">
+<Cache expires-after="@TimeSpan.FromSeconds(120)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
 ```
