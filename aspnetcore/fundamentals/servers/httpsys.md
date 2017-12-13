@@ -19,7 +19,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.co
 > [!NOTE]
 > This topic applies only to ASP.NET Core 2.0 and later. In earlier versions of ASP.NET Core, HTTP.sys is named [WebListener](xref:fundamentals/servers/weblistener).
 
-HTTP.sys is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). HTTP.sys is an alternative to [Kestrel](kestrel.md) that offers some features that Kestel doesn't. **HTTP.sys can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
+HTTP.sys is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). HTTP.sys is an alternative to [Kestrel](kestrel.md) that offers some features that Kestel doesn't. **HTTP.sys can't be used with IIS or IIS Express, as it's incompatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
 HTTP.sys supports the following features:
 

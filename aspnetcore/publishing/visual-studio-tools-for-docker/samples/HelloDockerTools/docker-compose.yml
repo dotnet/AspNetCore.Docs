@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  hellodockertools:
+    image: hellodockertools
+    build:
+      context: .
+      dockerfile: HelloDockerTools\Dockerfile

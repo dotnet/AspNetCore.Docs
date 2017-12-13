@@ -13,7 +13,7 @@ For more information on how the sample works, see the [Azure Key Vault configura
       * `SecretName`: `secret_value_1`
       * `Section--SecretName`: `secret_value_2`
   * Register the sample app with Azure Active Directory.
-  * Authorize the app to access the key vault. When you use the `Set-AzureRmKeyVaultAccessPolicy` PowerShell cmdlet to authorize the app to access the key vault, provide `List` and `Get` access to secrets with `-PermissionsToKeys list,get`.
+  * Authorize the app to access the key vault. When you use the `Set-AzureRmKeyVaultAccessPolicy` PowerShell cmdlet to authorize the app to access the key vault, provide `List` and `Get` access to secrets with `-PermissionsToSecrets list,get`.
 2. Update the app's *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
 3. Run the sample app, which obtains its configuration values from `IConfigurationRoot` with the same name as the secret name.
   * Non-hierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.

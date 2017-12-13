@@ -67,7 +67,7 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
+[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47&range=1-50)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
@@ -247,6 +247,14 @@ The system cannot find the file specified.
 
 Run the command again and leave a comment at the bottom of the page.
 
+If you get the error:
+  ```
+No executable found matching command "dotnet-aspnet-codegenerator"
+  ```
+
+Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+
+
 Build the project. The build generates errors like the following:
 
  `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
@@ -275,7 +283,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* DB files are in the *C:\Users\<yourusername>* folder.
+The *.mdf* and *.ldf* DB files are in the *C:\Users\\<yourusername>* folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 
