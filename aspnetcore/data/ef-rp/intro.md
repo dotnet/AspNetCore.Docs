@@ -247,6 +247,14 @@ The system cannot find the file specified.
 
 Run the command again and leave a comment at the bottom of the page.
 
+If you get the error:
+  ```
+No executable found matching command "dotnet-aspnet-codegenerator"
+  ```
+
+Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+
+
 Build the project. The build generates errors like the following:
 
  `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`

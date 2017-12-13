@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <Target Name="CopyTarget" AfterTargets="Build">
+    <Message Importance="High" Text="Creating directory for assembly if it doesn't exist ..." />
+    <MakeDir Directories="$(USERPROFILE)\.dotnet\store\x64\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\" 
+             Condition="!Exists('$(USERPROFILE)\.dotnet\store\x64\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\')" />
+
+    <Message Importance="High" Text="Moving IHostingStartup implementation assembly ..." />
+    <!-- Move the assembly to the user profile's runtime store -->
+    <Copy SourceFiles="$(OutputPath)StartupDiagnostics.dll" DestinationFolder="$(USERPROFILE)\.dotnet\store\x64\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\" />
+    <!-- To deploy the assembly to the app's bin folder, comment the line above and uncomment the next line. -->
+    <!--<Copy SourceFiles="$(OutputPath)StartupDiagnostics.dll" DestinationFolder="$(ProjectDir)\..\HostingStartupSample\bin\Debug\netcoreapp2.0\" />-->
+
+    <Message Importance="High" Text="Creating directory for symbols if it doesn't exist ..." />
+    <MakeDir Directories="$(USERPROFILE)\.dotnet\store\symbols\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\" 
+             Condition="!Exists('$(USERPROFILE)\.dotnet\store\symbols\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\')" />
+
+    <Message Importance="High" Text="Moving IHostingStartup implementation symbols ..." />
+    <!-- Move the symbols to the user profile's runtime store -->
+    <!-- If deploying to the app's bin folder, comment out the next line. -->
+    <Copy SourceFiles="$(OutputPath)StartupDiagnostics.pdb" DestinationFolder="$(USERPROFILE)\.dotnet\store\symbols\netcoreapp2.0\StartupDiagnostics\1.0.0\lib\netcoreapp2.0\" />
+
+    <Message Importance="High" Text="Modifying deps.json file ..." />
+    <Exec Command="powershell.exe -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;.\modify_deps_json.ps1&apos; &apos;$(Configuration)&apos;} &quot;" />
+
+    <Message Importance="High" Text="Creating directory for deps.json file if it doesn't exist ..." />
+    <MakeDir Directories="$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\2.0.0\" 
+             Condition="!Exists('$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\2.0.0\')" />
+
+    <Message Importance="High" Text="Moving deps.json file ..." />
+    <Copy SourceFiles="$(OutputPath)StartupDiagnostics.deps.json" DestinationFolder="$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\2.0.0\" />
+  </Target>
+
+</Project>

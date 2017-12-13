@@ -14,7 +14,7 @@ ms.prod: asp.net-core
 
 # Building Web APIs
 
-* [Building your first Web API with ASP.NET Core MVC using Visual Studio](../../tutorials/first-web-api.md)
+* [Building your first Web API with ASP.NET Core using Visual Studio](../../tutorials/first-web-api.md)
 * [ASP.NET Core Web API Help Pages using Swagger](../../tutorials/web-api-help-pages-using-swagger.md)
 * [Creating backend services for native mobile applications](../../mobile/native-mobile-backend.md)
 * [Formatting response data](../models/formatting.md)
