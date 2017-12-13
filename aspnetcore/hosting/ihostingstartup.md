@@ -21,9 +21,9 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 ## Discover loaded hosting startup assemblies
 
-To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are also logged. Loaded hosting startup assemblies are logged at the Debug level, and errors are always logged.
+To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are logged. Loaded hosting startup assemblies are logged at the Debug level, and all errors are logged.
 
-It's also possible to read the value of the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey). The sample app reads the key into a `string` array and displays the result in the app's Index page:
+The sample app reads the the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey) into a `string` array and displays the result in the app's Index page:
 
 [!code-csharp[Main](ihostingstartup/sample/HostingStartupSample/Pages/Index.cshtml.cs?name=snippet1&highlight=14-16)]
 
@@ -62,7 +62,7 @@ Only part of the file is shown. The assembly name in the example is `StartupFeat
 
 ### Update the dependencies file
 
-In order for the feature to activate for an app, the `runtime` location in the *\*.deps.json* file must be changed to reflect the location of the feature's runtime assembly in the runtime store. Prefix the `runtime` location with `lib/netcoreapp2.0/`:
+The runtime location is specified in the *\*.deps.json* file. To active the feature, the `runtime` element must specify the location of the feature's runtime assembly. Prefix the `runtime` location with `lib/netcoreapp2.0/`:
 
 [!code-json[Main](ihostingstartup/snapshot_sample/StartupFeature2.deps.json?range=2-13&highlight=8)]
 
