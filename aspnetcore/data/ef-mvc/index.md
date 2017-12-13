@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/index
 ---
-# Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
+# Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
 
 Note: A Razor Pages version of this tutorial is available [here](xref:data/ef-rp/intro). The Razor Pages version is easier to follow and covers more EF features.
 
