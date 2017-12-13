@@ -165,6 +165,7 @@
 #### [Building Docker Images](https://docs.microsoft.com/dotnet/articles/core/docker/building-net-docker-images)
 #### [Visual Studio Tools for Docker](xref:publishing/vs-tools-for-docker)
 #### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
+### [Add app features from an external assembly using IHostingStartup](xref:hosting/ihostingstartup)
 ## [Deployment](xref:tutorials/publish-to-azure-webapp-using-vs)
 ### [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
 ### [Publish to Azure with CLI tools](xref:tutorials/publish-to-azure-webapp-using-cli)
