@@ -1,11 +1,11 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: Using Identity with an ASP.NET Core app
+description: Use Identity with an ASP.NET Core app
 keywords: ASP.NET Core,Identity,authorization,security
 ms.author: riande
 manager: wpickett
-ms.date: 07/07/2017
+ms.date: 12/15/2017
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
 ms.technology: aspnet
@@ -18,7 +18,7 @@ By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.c
 
 ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login provider such as Facebook, Google, Microsoft Account, Twitter or others.
 
-You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
+You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example, an Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
 
 ## Overview of Identity
 
@@ -34,9 +34,9 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     ![New Project dialog](identity/_static/01-mvc_2.png)
     
     # [.NET Core CLI](#tab/netcore-cli)
-    If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same Identity template code Visual Studio creates.
+    If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This command creates a new project with the same Identity template code Visual Studio creates.
  
-    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
+    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which persists the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
     
     ---
  
