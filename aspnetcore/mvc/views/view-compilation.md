@@ -50,7 +50,7 @@ Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Mi
 
 ---
 
-Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/index#framework-dependent-deployments-fdd) by running a command such as the following:
+Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) by running a command such as the following:
 
 ```console
 dotnet publish -c Release
