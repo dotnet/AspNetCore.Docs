@@ -18,7 +18,7 @@ ms.custom: H1Hack27Feb2017
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/), and [Scott Addie](https://scottaddie.com) 
 
 > [!IMPORTANT]
-> While Bower is maintained, we recommend using a different solution. Yarn with Webpack is one popular alternative for which [migration instructions](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) are available.
+> While Bower is maintained, they recommend using a different solution. Yarn with Webpack is one popular alternative for which [migration instructions](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) are available.
 
 [Bower](https://bower.io/) calls itself "A package manager for the web." Within the .NET ecosystem, it fills the void left by NuGet’s inability to deliver static content files. For ASP.NET Core projects, these static files are inherent to client-side libraries like [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/). For .NET libraries, you still use [NuGet](https://www.nuget.org/) package manager.
 
