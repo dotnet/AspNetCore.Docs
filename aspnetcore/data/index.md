@@ -24,7 +24,7 @@ uid: data/index
    * [Updating related data](xref:data/ef-rp/update-related-data)
    * [Handling concurrency conflicts](xref:data/ef-rp/concurrency)
 
-*   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
+*   [Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio](ef-mvc/index.md)
     *   [Getting started](ef-mvc/intro.md)
     *   [Create, Read, Update, and Delete operations](xref:data/ef-mvc/crud)
     *   [Sorting, filtering, paging, and grouping](xref:data/ef-mvc/sort-filter-page)
