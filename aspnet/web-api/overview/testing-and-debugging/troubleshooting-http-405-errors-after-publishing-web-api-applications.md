@@ -39,7 +39,7 @@ As a brief review, here are several of the most-used HTTP methods as defined in 
 | **GET** | This method is used to retrieve data from a URI, and it probably the most-used HTTP method. |
 | **HEAD** | This method is much like the GET method, except that it doesn't actually retrieve the data from the request URI - it simply retrieves the HTTP status. |
 | **POST** | This method is typically used to send new data to the URI; POST is often used to submit form data. |
-| **PUT** | This method is typically used to raw data to the URI; PUT is often used to submit JSON or XML data to Web API applications. |
+| **PUT** | This method is typically used to send raw data to the URI; PUT is often used to submit JSON or XML data to Web API applications. |
 | **DELETE** | This method is used to remove data from a URI. |
 | **OPTIONS** | This method is typically used to retrieve the list of HTTP methods that are supported for a URI. |
 | **COPY MOVE** | These two methods are used with WebDAV, and their purpose is self-explanatory. |
