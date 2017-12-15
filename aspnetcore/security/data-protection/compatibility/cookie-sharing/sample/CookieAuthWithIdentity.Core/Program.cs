@@ -13,7 +13,6 @@ namespace CookieAuthWithIdentityCore
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseEnvironment("Development")
                 .UseUrls("http://localhost:5002")
                 .Build();
     }

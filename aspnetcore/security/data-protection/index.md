@@ -72,6 +72,6 @@ uid: security/data-protection/index
 
 * [Compatibility](compatibility/index.md)
 
-  * [Sharing cookies between applications](compatibility/cookie-sharing.md)
+  * [Sharing cookies among applications](compatibility/cookie-sharing.md)
 
   * [Replacing <machineKey> in ASP.NET](compatibility/replacing-machinekey.md)

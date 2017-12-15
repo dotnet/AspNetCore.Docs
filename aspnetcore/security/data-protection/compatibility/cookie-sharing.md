@@ -1,5 +1,5 @@
 ---
-title: Sharing cookies between applications
+title: Sharing cookies among applications
 author: rick-anderson
 description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
 ms.author: riande
@@ -11,25 +11,33 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/compatibility/cookie-sharing
 ---
-# Sharing cookies between applications
+# Sharing cookies among applications
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
-Websites often consist of individual web apps, working together to meet the needs of visitors. To provide a single sign-on (SSO) experience, the web apps within the site must share authentication tickets. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
+Websites often consist of individual web apps working together. To provide a single sign-on (SSO) experience, the web apps within the site must share authentication tickets. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 The sample illustrates cookie sharing across three apps that use cookie authentication:
 
-* ASP.NET Core 2.0 Razor Pages app without using ASP.NET Core Identity
+* ASP.NET Core 2.0 Razor Pages app without using [ASP.NET Core Identity](xref:security/authentication/identity)
 * ASP.NET Core 2.0 MVC app with ASP.NET Core Identity
 * ASP.NET Framework 4.6.1 MVC app with ASP.NET Identity
 
-## Sharing authentication cookies between apps
+In the examples that follow:
 
-To share authentication cookies between two ASP.NET Core apps, configure each app that should share cookies as follows.
+* The cookie name is set to a common value of `.AspNet.SharedCookie`.
+* The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
+* [CookieAuthenticationDefaults.AuthenticationScheme](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationdefaults.authenticationscheme) is used as the authentication scheme. The constant resolves to a value of `Cookies`.
+* The cookie authentication middleware uses an implementation of [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider). `DataProtectionProvider` provides data protection services for the encryption and decryption of cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
+  * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used. Using a common set of data protection keys allows each app to encrypt and decrypt the same cookie payload data. [DataProtectionProvider.Create(System.IO.DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create?view=aspnetcore-2.0#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_) accepts a [DirectoryInfo](/dotnet/api/system.io.directoryinfo) for use with authentication cookies. 
+  * [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package, which is available when referencing the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.All/)).
+  * The sample apps locate a folder named *KeyRing* at the root of the solution and provide the path to `DirectoryInfo`.
 
-If you're using identity:
+## Share authentication cookies among ASP.NET Core apps
+
+When using ASP.NET Core Identity:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -37,11 +45,13 @@ In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/
 
 [!code-csharp[Main](cookie-sharing/sample/CookieAuthWithIdentity.Core/Startup.cs?name=snippet1)]
 
+See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 In the `Configure` method, use the [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions) to set up:
 
-* The data protection service for cookies
+* The data protection service for cookies.
 * The `AuthenticationScheme` to match ASP.NET 4.x.
 
 ```csharp
@@ -67,11 +77,13 @@ app.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
 ---
 
-If you're using cookies directly:
+When using cookies directly:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
+
+See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -85,10 +97,6 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 ```
 
 ---
-
-[DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package.
-
-[DirectoryInfo](/dotnet/api/system.io.directoryinfo) is provided a key storage location set aside for use with authentication cookies. The cookie authentication middleware uses the provided implementation of `DataProtectionProvider`. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
 
 ## Encrypting data protection keys at rest
 
@@ -122,20 +130,22 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 ASP.NET 4.x apps which use Katana cookie authentication middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core cookie authentication middleware. This allows upgrading a large site's individual apps piecemeal while providing a smooth SSO experience across the site.
 
 > [!TIP]
-> You can tell if your existing app uses Katana cookie authentication middleware by the existence of a call to `UseCookieAuthentication` in your project's *Startup.Auth.cs* file. ASP.NET 4.x web app projects created with Visual Studio 2013 and later use the Katana cookie authentication middleware by default.
+> When an app uses Katana cookie authentication middleware, it calls `UseCookieAuthentication` in the project's *Startup.Auth.cs* file. ASP.NET 4.x web app projects created with Visual Studio 2013 and later use the Katana cookie authentication middleware by default.
 
 > [!NOTE]
-> Your ASP.NET 4.x app must target .NET Framework 4.5.1 or higher. Otherwise, the necessary NuGet packages fail to install.
+> An ASP.NET 4.x app must target .NET Framework 4.5.1 or higher. Otherwise, the necessary NuGet packages fail to install.
 
-To share authentication cookies among your ASP.NET 4.x apps and your ASP.NET Core apps, configure the ASP.NET Core app as stated above, then configure your ASP.NET 4.x apps by following the steps below.
+To share authentication cookies among ASP.NET 4.x apps and ASP.NET Core apps, configure the ASP.NET Core app as stated above, then configure the ASP.NET 4.x apps by following the steps below.
 
 1. Install the package [Microsoft.Owin.Security.Interop](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) into each ASP.NET 4.x app.
 
-2. In *Startup.Auth.cs*, locate the call to `UseCookieAuthentication` and modify it as follows. Change the cookie name to match the name used by the ASP.NET Core cookie authentication middleware. Provide an instance of a `DataProtectionProvider` that has been initialized to a key storage location.
+2. In *Startup.Auth.cs*, locate the call to `UseCookieAuthentication` and modify it as follows. Change the cookie name to match the name used by the ASP.NET Core cookie authentication middleware. Provide an instance of a `DataProtectionProvider` initialized to the common data protection key storage location.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](cookie-sharing/sample/CookieAuthWithIdentity.NETFramework/CookieAuthWithIdentity.NETFramework/App_Start/Startup.Auth.cs?name=snippet1)]
+
+See the *CookieAuthWithIdentity.NETFramework* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -164,4 +174,4 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 ---
 
 > [!NOTE]
-> Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it tries to match the information in the authentication cookie against the information in its database.
+> Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.

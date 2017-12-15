@@ -14,6 +14,6 @@ uid: security/data-protection/compatibility/index
 ---
 # Compatibility in ASP.NET Core
 
-* [Sharing cookies between applications](cookie-sharing.md)
+* [Sharing cookies among applications](cookie-sharing.md)
 
 * [Replacing \<machineKey> in ASP.NET](replacing-machinekey.md)

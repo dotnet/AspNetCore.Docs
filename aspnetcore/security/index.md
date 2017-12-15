@@ -92,7 +92,7 @@ There are more vulnerabilities that you should be aware of. For more information
         *   [Key Storage Format](data-protection/implementation/key-storage-format.md)
         *   [Ephemeral data protection providers](data-protection/implementation/key-storage-ephemeral.md)
     *   [Compatibility](data-protection/compatibility/index.md)
-        *   [Sharing cookies between applications](data-protection/compatibility/cookie-sharing.md)
+        *   [Sharing cookies among applications](data-protection/compatibility/cookie-sharing.md)
         *   [Replacing <machineKey> in ASP.NET](data-protection/compatibility/replacing-machinekey.md)
 *   [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
 *   [Safe storage of app secrets during development](app-secrets.md)
