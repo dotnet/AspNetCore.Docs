@@ -5,13 +5,13 @@ description: Learn about the logging framework in ASP.NET Core. Discover the bui
 keywords: ASP.NET Core,logging,logging providers,Microsoft.Extensions.Logging,ILogger,ILoggerFactory,LogLevel,WithFilter,TraceSource,EventLog,EventSource,scopes
 ms.author: tdykstra
 manager: wpickett
-ms.date: 11/15/2017
+ms.date: 12/15/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/logging/index
 ---
-# Introduction to Logging in ASP.NET Core
+# Introduction to logging in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -582,7 +582,13 @@ The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packag
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method. The provider is automatically available to your app when you deploy the app to Azure App Service.
+If targeting .NET Core, you don't have to install the provider package or explicitly call `AddAzureWebAppDiagnostics`. The provider is automatically available to your app when you deploy the app to Azure App Service.
+
+If targeting .NET Framework, add the provider package to your project and invoke `AddAzureWebAppDiagnostics`:
+
+```csharp
+logging.AddAzureWebAppDiagnostics();
+```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
