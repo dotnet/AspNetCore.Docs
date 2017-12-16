@@ -123,9 +123,9 @@ Visual Studio returns to the **Create App Service** dialog.
 
 ![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
 
-Visual Studio publishes the app to Azure. This step can take a few minutes.
+Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes.
 
-When publish completes, select **Settings**:
+When deployment completes, select **Settings**:
 
 ![Configure SQL Server dialog](publish-to-azure-webapp-using-vs/_static/set.png)
 
@@ -138,7 +138,7 @@ On the **Settings** page of the **Publish** dialog:
 
 ![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
-Click **Publish**. Visual Studio publishs your app to Azure and launch the cloud app in your browser.
+Click **Publish**. Visual Studio publishs your app to Azure. When the depoyment completes, the app is opened in a browser.
 
 ### Test your app in Azure
 
