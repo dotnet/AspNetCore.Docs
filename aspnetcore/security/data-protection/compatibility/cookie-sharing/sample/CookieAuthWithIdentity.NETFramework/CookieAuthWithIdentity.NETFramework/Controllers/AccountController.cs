@@ -391,7 +391,7 @@ namespace CookieAuthWithIdentity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut("Identity.Application");
+            AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

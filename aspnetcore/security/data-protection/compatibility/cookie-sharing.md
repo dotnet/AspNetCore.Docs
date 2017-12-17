@@ -5,7 +5,7 @@ description: Learn how to share authentication cookies among ASP.NET 4.x and ASP
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 12/15/2017
+ms.date: 12/18/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -15,7 +15,7 @@ uid: security/data-protection/compatibility/cookie-sharing
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
-Websites often consist of individual web apps working together. To provide a single sign-on (SSO) experience, the web apps within the site must share authentication tickets. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
+Websites often consist of individual web apps working together. To provide a single sign-on (SSO) experience, web apps within a site must share authentication cookies. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -27,13 +27,13 @@ The sample illustrates cookie sharing across three apps that use cookie authenti
 
 In the examples that follow:
 
-* The cookie name is set to a common value of `.AspNet.SharedCookie`.
+* The authentication cookie name is set to a common value of `.AspNet.SharedCookie`.
 * The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
 * [CookieAuthenticationDefaults.AuthenticationScheme](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationdefaults.authenticationscheme) is used as the authentication scheme. The constant resolves to a value of `Cookies`.
-* The cookie authentication middleware uses an implementation of [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider). `DataProtectionProvider` provides data protection services for the encryption and decryption of cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
-  * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used. Using a common set of data protection keys allows each app to encrypt and decrypt the same cookie payload data. [DataProtectionProvider.Create(System.IO.DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create?view=aspnetcore-2.0#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_) accepts a [DirectoryInfo](/dotnet/api/system.io.directoryinfo) for use with authentication cookies. 
-  * [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package, which is available when referencing the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.All/)).
-  * The sample apps locate a folder named *KeyRing* at the root of the solution and provide the path to `DirectoryInfo`.
+* The cookie authentication middleware uses an implementation of [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider). `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
+  * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used. The sample app uses a folder named *KeyRing* at the root of the solution to hold the data protection keys.
+  * [DataProtectionProvider.Create(System.IO.DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create?view=aspnetcore-2.0#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_) accepts a [DirectoryInfo](/dotnet/api/system.io.directoryinfo) for use with authentication cookies. The sample app provides the path of the *KeyRing* folder to `DirectoryInfo`.
+  * [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package. The package is available to ASP.NET Core 2.0 apps when referencing the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.All/)).
 
 ## Share authentication cookies among ASP.NET Core apps
 
@@ -147,6 +147,12 @@ To share authentication cookies among ASP.NET 4.x apps and ASP.NET Core apps, co
 
 See the *CookieAuthWithIdentity.NETFramework* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
+When generating a user identity, the authentication type must match the type defined in `AuthenticationType` set with `UseCookieAuthentication`.
+
+*Models/IdentityModels.cs*:
+
+[!code-csharp[Main](cookie-sharing/sample/CookieAuthWithIdentity.NETFramework/CookieAuthWithIdentity.NETFramework/Models/IdentityModels.cs?name=snippet1)]
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Set the `CookieManager` to interop `ChunkingCookieManager` so the chunking format is compatible.
@@ -173,5 +179,6 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 
 ---
 
-> [!NOTE]
-> Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
+## Use a common user database
+
+Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.

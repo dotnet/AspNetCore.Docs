@@ -247,7 +247,6 @@ namespace CookieAuthWithIdentityCore.Controllers
         public async Task<IActionResult> LinkLogin(string provider)
         {
             // Clear the existing external cookie to ensure a clean login process
-            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             await HttpContext.SignOutAsync();
 
             // Request a redirect to the external login provider to link a login for the current user
@@ -278,7 +277,6 @@ namespace CookieAuthWithIdentityCore.Controllers
             }
 
             // Clear the existing external cookie to ensure a clean login process
-            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             await HttpContext.SignOutAsync();
 
             StatusMessage = "The external login was added.";

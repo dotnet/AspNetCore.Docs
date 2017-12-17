@@ -41,7 +41,6 @@ namespace CookieAuthWithIdentityCore.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             await HttpContext.SignOutAsync();
 
             ViewData["ReturnUrl"] = returnUrl;
@@ -244,7 +243,6 @@ namespace CookieAuthWithIdentityCore.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
