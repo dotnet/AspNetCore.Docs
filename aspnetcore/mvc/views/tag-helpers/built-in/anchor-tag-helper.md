@@ -178,17 +178,17 @@ Hash tags are useful when building client-side applications. They can be used fo
 `asp-area` sets the area name that ASP.NET Core uses to set the appropriate route. Below are examples of how the area attribute causes a remapping of routes. Setting `asp-area` to Blogs prefixes the directory `Areas/Blogs` to the routes of the associated controllers and views for this anchor tag.
 
 * Project name
-  * *wwwroot*
-  * *Areas*
-    * *Blogs*
-      * *Controllers*
-        * *HomeController.cs*
-      * *Views*
-        * *Home*
-          * *Index.cshtml*
-          * *AboutBlog.cshtml*
-  * *Controllers*
-        
+  * wwwroot
+  * Areas
+    * Blogs
+      * Controllers
+        * HomeController.cs
+      * Views
+        * Home
+          * Index.cshtml
+          * AboutBlog.cshtml
+  * Controllers
+
 Specifying an area tag that is valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the Anchor Tag Helper.
 
 ```cshtml
