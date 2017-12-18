@@ -5,9 +5,8 @@ description:
 keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
-ms.date: 10/05/2017
+ms.date: 12/14/2017
 ms.topic: get-started-article
-ms.assetid: 78571e4a-a143-452d-9cf2-0860f85972e6
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/publish-to-azure-webapp-using-vs
@@ -31,9 +30,7 @@ In the Visual Studio Start Page, select **File > New > Project...**
 Complete the **New Project** dialog:
 
 * In the left pane, select **.NET Core**.
-
 * In the center pane, select **ASP.NET Core Web Application**.
-
 * Select **OK**.
 
 ![New Project dialog](publish-to-azure-webapp-using-vs/_static/new_prj.png)
@@ -41,7 +38,6 @@ Complete the **New Project** dialog:
 In the **New ASP.NET Core Web Application** dialog:
 
 * Select **Web Application**.
-
 * Select **Change Authentication**.
 
 ![New Project dialog](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
@@ -49,22 +45,20 @@ In the **New ASP.NET Core Web Application** dialog:
 The **Change Authentication** dialog appears. 
 
 * Select **Individual User Accounts**.
-
 * Select **OK** to return to the **New ASP.NET Core Web Application**, then select **OK** again.
 
 ![New ASP.NET Core Web authentication dialog](publish-to-azure-webapp-using-vs/_static/new_prj_auth.png) 
 
 Visual Studio creates the solution.
 
-## Run the app locally
+## Run the app
 
-* Choose **Debug** then **Start Without Debugging** to run the app locally.
-
-* Click the **About** and **Contact** links to verify the web application works.
+* Press **Ctrl-F5** to run without debugging.
+* Click the **About** and **Contact** links to test the app.
 
 ![Web application open in Microsoft Edge on localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
-* Select **Register** and register a new user. You can use a fictitious email address. When you submit, the page displays the following error:
+* Select **Log In** and then select **Register as a new user**. You can use a fictitious email address. When you submit, the page displays the following error:
 
     *"Internal Server Error: A database operation failed while processing the request. SQL exception: Cannot open the database. Applying existing migrations for Application DB context may resolve this issue."*
 
@@ -78,13 +72,11 @@ The app displays the email used to register the new user and a **Log out** link.
 
 ## Deploy the app to Azure
 
-Close the web page, return to Visual Studio, and select **Stop Debugging** from the **Debug** menu.
-
-Right-click on the project in Solution Explorer and select **Publish...**.
+Right-click on the project in Solution Explorer and select **Publish**.
 
 ![Contextual menu open with Publish link highlighted](publish-to-azure-webapp-using-vs/_static/pub.png)
 
-In the **Publish** dialog, select **Microsoft Azure App Service** and click **Publish**.
+In the **Publish** dialog, select Microsoft Azure App Service, and click **Publish**.
 
 ![Publish dialog](publish-to-azure-webapp-using-vs/_static/maas1.png)
 
@@ -141,7 +133,7 @@ On the **Settings** page of the **Publish** dialog:
 
 ![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
-Click **Publish**. Visual Studio will publish your app to Azure and launch the cloud app in your browser.
+Click **Publish**. Visual Studio publishes your app to Azure and launch the cloud app in your browser.
 
 ### Test your app in Azure
 
