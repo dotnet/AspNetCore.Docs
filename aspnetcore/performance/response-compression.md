@@ -178,7 +178,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 [!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet1)]
 
-## Middlware issue when behind an Nginx reverse-proxy
+## Middleware issue when behind an Nginx reverse-proxy
 When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
