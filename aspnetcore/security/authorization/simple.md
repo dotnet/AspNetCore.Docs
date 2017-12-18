@@ -1,7 +1,7 @@
 ---
 title: Simple Authorization
 author: rick-anderson
-description: This document explains how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
+description: Learn how ASP.NET Core uses file providers to abstract access to file systems
 keywords: ASP.NET Core,authorization,AuthorizeAttribute
 ms.author: riande
 manager: wpickett
