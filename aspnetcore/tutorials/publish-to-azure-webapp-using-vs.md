@@ -108,7 +108,7 @@ The **Create App Service** dialog appears:
 
 The **Configure SQL Server** dialog appears.
 
-* Enter an administrator user name and password, and then select **OK**. Don't forget the user name and password you create in this step. You can keep the default **Server Name**. 
+* Enter an administrator user name and password, and then select **OK**. You can keep the default **Server Name**. 
 
 > [!NOTE]
 > "admin" is not allowed as the administrator user name.
