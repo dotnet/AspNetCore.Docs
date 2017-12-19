@@ -116,4 +116,4 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 * [Middleware](xref:fundamentals/middleware)
 * [Logging](xref:fundamentals/logging/index)
 * [Configuration](xref:fundamentals/configuration/index)
-* [StartupLoader class: FindStartupType method (reference source)](https://github.com/aspnet/Hosting/blob/rel/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs#L66-L116))
+* [StartupLoader class: FindStartupType method (reference source)](https://github.com/aspnet/Hosting/blob/rel/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs#L66-L116)
