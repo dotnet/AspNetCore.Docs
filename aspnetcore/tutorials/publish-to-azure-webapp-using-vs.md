@@ -123,7 +123,7 @@ Visual Studio returns to the **Create App Service** dialog.
 
 ![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
 
-Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes.
+Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes. For information on the resources created, see [Additonal resources](#additonal-resources).
 
 When deployment completes, select **Settings**:
 
@@ -180,6 +180,8 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 * [Continuous Deployment to Azure with Visual Studio and Git](../publishing/azure-continuous-deployment.md)
 
 
-## Additonal Resources
+## Additonal resources
 
-* [Azure App Service}(https://docs.microsoft.com/en-us/azure/app-service/app-service-web-overview)
+* [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-overview)
+* [Azure resource groups](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups)
+* [Azure SQL Database](https://docs.microsoft.com/en-us/azure/sql-database/)
