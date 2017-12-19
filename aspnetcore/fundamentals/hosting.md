@@ -120,7 +120,8 @@ This setting determines where ASP.NET Core begins searching for content files, s
 **Key**: contentRoot  
 **Type**: *string*  
 **Default**: Defaults to the folder where the app assembly resides.  
-**Set using**: `UseContentRoot`
+**Set using**: `UseContentRoot`  
+**Environment variable**: `ASPNETCORE_CONTENTROOT`
 
 The content root is also used as the base path for the [Web Root setting](#web-root). If the path doesn't exist, the host fails to start.
 
@@ -149,7 +150,8 @@ Determines if detailed errors should be captured.
 **Key**: detailedErrors  
 **Type**: *bool* (`true` or `1`)  
 **Default**: false  
-**Set using**: `UseSetting`
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_DETAILEDERRORS`
 
 When enabled (or when the <a href="#environment">Environment</a> is set to `Development`), the app captures detailed exceptions.
 
@@ -178,7 +180,8 @@ Sets the app's environment.
 **Key**: environment  
 **Type**: *string*  
 **Default**: Production  
-**Set using**: `UseEnvironment`
+**Set using**: `UseEnvironment`  
+**Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
 You can set the *Environment* to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://www.visualstudio.com/), environment variables may be set in the *launchSettings.json* file. For more information, see [Working with Multiple Environments](xref:fundamentals/environments).
 
@@ -207,7 +210,8 @@ Sets the app's hosting startup assemblies.
 **Key**: hostingStartupAssemblies  
 **Type**: *string*  
 **Default**: Empty string  
-**Set using**: `UseSetting`
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
 
 A semicolon-delimited string of hosting startup assemblies to load on startup. This feature is new in ASP.NET Core 2.0.
 
@@ -234,7 +238,8 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
 **Default**: true  
-**Set using**: `PreferHostingUrls`
+**Set using**: `PreferHostingUrls`  
+**Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 This feature is new in ASP.NET Core 2.0.
 
@@ -259,7 +264,8 @@ Prevents the automatic loading of hosting startup assemblies, including hosting 
 **Key**: preventHostingStartup  
 **Type**: *bool* (`true` or `1`)  
 **Default**: false  
-**Set using**: `UseSetting`
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_PREVENTHOSTINGSTARTUP`
 
 This feature is new in ASP.NET Core 2.0.
 
@@ -284,7 +290,8 @@ Indicates the IP addresses or host addresses with ports and protocols that the s
 **Key**: urls  
 **Type**: *string*  
 **Default**: http://localhost:5000  
-**Set using**: `UseUrls`
+**Set using**: `UseUrls`  
+**Environment variable**: `ASPNETCORE_URLS`
 
 Set to a semicolon-separated (;) list of URL prefixes to which the server should respond. For example, `http://localhost:123`. Use "\*" to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, `http://*:5000`). The protocol (`http://` or `https://`) must be included with each URL. Supported formats vary between servers.
 
@@ -315,7 +322,8 @@ Specifies the amount of time to wait for the web host to shutdown.
 **Key**: shutdownTimeoutSeconds  
 **Type**: *int*  
 **Default**: 5  
-**Set using**: `UseShutdownTimeout`
+**Set using**: `UseShutdownTimeout`  
+**Environment variable**: `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 
 Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the `UseShutdownTimeout` extension method takes a `TimeSpan`. This feature is new in ASP.NET Core 2.0.
 
@@ -340,7 +348,8 @@ Determines the assembly to search for the `Startup` class.
 **Key**: startupAssembly  
 **Type**: *string*  
 **Default**: The app's assembly  
-**Set using**: `UseStartup`
+**Set using**: `UseStartup`  
+**Environment variable**: `ASPNETCORE_STARTUPASSEMBLY`
 
 You can reference the assembly by name (`string`) or type (`TStartup`). If multiple `UseStartup` methods are called, the last one takes precedence.
 
@@ -381,7 +390,8 @@ Sets the relative path to the app's static assets.
 **Key**: webroot  
 **Type**: *string*  
 **Default**: If not specified, the default is "(Content Root)/wwwroot", if the path exists. If the path doesn't exist, then a no-op file provider is used.  
-**Set using**: `UseWebRoot`
+**Set using**: `UseWebRoot`  
+**Environment variable**: `ASPNETCORE_WEBROOT`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
