@@ -15,7 +15,7 @@ uid: fundamentals/hosting
 
 By [Luke Latham](https://github.com/guardrex)
 
-ASP.NET Core apps configure and launch a *host*. The *host* is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline.
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline.
 
 ## Setting up a host
 
@@ -38,7 +38,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
 * When running behind IIS, enables [IIS integration](xref:publishing/iis) by configuring the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse-proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [the IIS options section of Host ASP.NET Core on Windows with IIS](xref:publishing/iis#iis-options).
 
-The *content root* determines where the host searches for content files, such as MVC view files. <!-- TODO  shorten long sentence-->The default content root is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory). The default content root (`Directory.GetCurrentDirectory`) results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The *content root* determines where the host searches for content files, such as MVC view files. The default content root is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory). The default content root (`Directory.GetCurrentDirectory`) results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
 For more information on app configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
@@ -53,7 +53,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
 
 `WebHostBuilder` requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HTTP.sys](servers/httpsys.md) (prior to the release of ASP.NET Core 2.0, HTTP.sys was called [WebListener](xref:fundamentals/servers/weblistener)). In this example, the [UseKestrel extension method](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1) specifies the Kestrel server.
 
-The *content root* determines where the host searches for content files, such as MVC view files. The default content root supplied to `UseContentRoot` is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory?view=netcore-1.1).<!-- TODO  shorten long sentence--> This results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The *content root* determines where the host searches for content files, such as MVC view files. The default content root supplied to `UseContentRoot` is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory?view=netcore-1.1). This results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
 To use IIS as a reverse proxy, call [UseIISIntegration](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions) as part of building the host. `UseIISIntegration` doesn't configure a *server*, like [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1) does. `UseIISIntegration` configures the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to create a reverse-proxy between Kestrel and IIS. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. `UseIISIntegration` only activates when running behind IIS or IIS Express. For more information, see [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module).
 
@@ -79,9 +79,9 @@ When setting up a host, you can provide [Configure](/dotnet/api/microsoft.aspnet
 
 [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) provides the following approaches for setting most of the available configuration values for the host:
 
+* Environment variables with the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_DETAILEDERRORS`.
 * Explicit methods, such as `CaptureStartupErrors`.
 * [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting) and the associated key. When setting a value with `UseSetting`, the value is set as a string regardless of the type.
-* Environment variables with the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_DETAILEDERRORS`.
 
 ### Capture Startup Errors
 
@@ -509,7 +509,7 @@ dotnet run --urls "http://*:8080"
 ## Ordering importance
 
 Some of the `WebHostBuilder` settings are first read from environment variables, if set. These environment variables use the format `ASPNETCORE_{configurationKey}`. To set the URLs that the server listens on by default, you set `ASPNETCORE_URLS`.
-<!-- TODO  shorten long sentence-->
+
 You can override any of these environment variable values by specifying configuration (using `UseConfiguration`) or by setting the value explicitly (using `UseSetting` or one of the explicit extension methods, such as `UseUrls`). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL. See [Overriding configuration](#overriding-configuration).
 
 ## Starting the host
@@ -828,8 +828,8 @@ The [IApplicationLifetime interface](/aspnet/core/api/microsoft.aspnetcore.hosti
 | Cancellation Token    | Triggered when&#8230; |
 | --------------------- | --------------------- |
 | `ApplicationStarted`  | The host has fully started. |
-| `ApplicationStopping` | The host is performing a graceful shutdown. Requests may still be processing. Shut down blocks until this event completes. |
-| `ApplicationStopped`  | The host is completing a graceful shutdown. All requests should be processed. Shut down blocks until this event completes. |
+| `ApplicationStopping` | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
+| `ApplicationStopped`  | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
 
 | Method            | Action                                           |
 | ----------------- | ------------------------------------------------ |
