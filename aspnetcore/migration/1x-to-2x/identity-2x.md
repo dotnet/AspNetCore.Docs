@@ -330,7 +330,9 @@ public virtual ICollection<IdentityUserClaim<int>> Claims { get; } = new List<Id
 public virtual ICollection<IdentityUserLogin<int>> Logins { get; } = new List<IdentityUserLogin<int>>();
 ```
 
-To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call):
+To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call).
+
+Be sure that you declare the mapping for every entity that uses a foreign key (see the more complete example below).
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder builder)
@@ -356,6 +358,52 @@ protected override void OnModelCreating(ModelBuilder builder)
 
     builder.Entity<ApplicationUser>()
         .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+}
+```
+
+A more complete example is when you use an `int` primary key value for `IdentityUser`, `IdentityRole`, `IdentityUserRole`, `IdentityUserToken`, `IdentityUserLogin` (as in first example but for all tables), then you would have to declare all this mapping for `ApplicationUser` and `ApplicationRole`:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder builder)
+{
+    base.OnModelCreating(builder);
+    // Customize the ASP.NET Identity model and override the defaults if needed.
+    // For example, you can rename the ASP.NET Identity table names and more.
+    // Add your customizations after calling base.OnModelCreating(builder);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.RoleId)
+        .IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationRole>()
+        .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.RoleId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Logins)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Tokens)
         .WithOne()
         .HasForeignKey(e => e.UserId)
         .IsRequired()
