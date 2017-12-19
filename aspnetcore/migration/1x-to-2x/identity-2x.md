@@ -330,7 +330,7 @@ public virtual ICollection<IdentityUserClaim<int>> Claims { get; } = new List<Id
 public virtual ICollection<IdentityUserLogin<int>> Logins { get; } = new List<IdentityUserLogin<int>>();
 ```
 
-To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call).
+To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder builder)
@@ -363,9 +363,7 @@ protected override void OnModelCreating(ModelBuilder builder)
 }
 ```
 
-Be sure that you declare the mapping for every entity that uses a foreign key (see the more complete example below).
-
-A more complete example is when you use an `int` primary key value for `IdentityUser`, `IdentityRole`, `IdentityUserRole`, `IdentityUserToken`, `IdentityUserLogin` (as in first example but for all tables), then you would have to declare all this mapping for `ApplicationUser` and `ApplicationRole`:
+Be sure that you declare the mapping for every entity that uses a foreign key: a more complete example is when you use an `int` primary key value for `IdentityUser`, `IdentityRole`, `IdentityUserRole`, `IdentityUserToken`, `IdentityUserLogin` (as in first example but for all tables), then you would have to declare all this mapping for `ApplicationUser` and `ApplicationRole`:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder builder)
