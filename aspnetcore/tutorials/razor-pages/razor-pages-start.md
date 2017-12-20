@@ -37,7 +37,7 @@ There are three versions of this tutorial:
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
 
 > [!NOTE]
-> If you want to use ASP.NET Core on the .NET Framework, then you must first select **.NET Framework** from the leftmost dropdown in the dialog, then you can select the ASP.NET Core version for the project.
+> If you want to use ASP.NET Core on the .NET Framework, you must first select **.NET Framework** from the leftmost dropdown in the dialog, then you can select the desired ASP.NET Core version.
 
   ![Web Application (Razor Pages)](razor-pages-start/_static/np2.png)
 
