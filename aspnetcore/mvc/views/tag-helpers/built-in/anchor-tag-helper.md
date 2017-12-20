@@ -67,7 +67,7 @@ If the attribute `asp-action` is `Index`, then no action is appended to the URL,
 
 ### asp-page
 
-Use the `asp-page` attribute in an anchor tag to set its URL to point to a specific page. Prefixing the page name with a forward slash "/" creates a relative URL. The URL in the sample below points to the "Speaker" page in the current directory.
+Use the `asp-page` attribute in an anchor tag to set its URL to point to a specific page. Prefixing the page name with a forward slash "/" creates the URL. The URL in the sample below points to the "Speaker" page in the current directory.
 
 ```cshtml
 <a asp-page="/Speakers">All Speakers</a>
