@@ -126,14 +126,7 @@ If you don't have a *web.config* file in the project when you publish with *dotn
 
 1. On the target IIS system, create a folder to contain the app's published folders and files, which are described in [Directory Structure](xref:hosting/directory-structure).
 
-2. Within the folder you created, create a *logs* folder to hold stdout logs (if you plan to enable logging to troubleshoot start-up issues). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step. There's an [open issue to create the folder automatically](https://github.com/aspnet/AspNetCoreModule/issues/30). If you would like MSBuild to create the *log* folder for you, add the following `Target` to your project file:
-
-   ```xml
-   <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
-     <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
-     <MakeDir Directories="$(PublishUrl)logs" Condition="!Exists('$(PublishUrl)logs')" />
-   </Target>
-   ```
+2. Within the folder, create a *logs* folder to hold stdout logs when stdout logging is enabled. If the app is deployed with a *logs* folder in the payload, skip this step. For instructions on making MSBuild create the *logs* folder, see the [Directory structure](xref:hosting/directory-structure) topic.
 
 3. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the app's deployment folder that you created. Provide the **Binding** configuration and create the website.
 
