@@ -112,6 +112,7 @@ Here's a sample `aspNetCore` element that configures `stdout` logging. The `stdo
     stdoutLogFile="\\?\%home%\LogFiles\stdout">
 </aspNetCore>
 ```
+See [Configuration via web.config](#configuration-via-webconfig) for an example of the `aspNetCore` element in the *web.config* file.
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
