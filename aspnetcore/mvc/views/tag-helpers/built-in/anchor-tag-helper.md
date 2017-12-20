@@ -5,7 +5,7 @@ description: Shows how to work with Anchor Tag Helper
 keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
-ms.date: 02/14/2017
+ms.date: 12/20/2017
 ms.topic: article
 ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a011
 ms.technology: aspnet
@@ -43,7 +43,6 @@ The generated markup will be:
 
 If the `asp-controller` is specified and `asp-action` is not, the default `asp-action` will be the default controller method of the currently executing view. That is, in the above example, if `asp-action` is left out, and this Anchor Tag Helper is generated from *HomeController*'s `Index` view (**/Home**), the generated markup will be:
 
-
 ```html
 <a href="/Home">All Speakers</a>
 ```
@@ -65,6 +64,33 @@ The generated markup will be:
 If no `asp-controller` attribute is specified, the default controller calling the view executing the current view will be used.  
  
 If the attribute `asp-action` is `Index`, then no action is appended to the URL, leading to the default `Index` method being called. The action specified (or defaulted), must exist in the controller referenced in `asp-controller`.
+
+### asp-page
+
+Use the `asp-page` attribute in an anchor tag to set its URL to point to a specific page. Prefixing the page name with a forward slash "/" creates the URL. The URL in the sample below points to the "Speaker" page in the current directory.
+
+```cshtml
+<a asp-page="/Speakers">All Speakers</a>
+```
+
+The `asp-page` attribute in the previous code sample renders HTML output in the view that is similar to the following snippet:
+
+```html
+<a href="/items?page=%2FSpeakers">Speakers</a>
+``
+
+The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following code sample demonstrates:
+
+```
+cshtml<a asp-page="/Speaker" asp-route-id="@speaker.Id">View Speaker</a>
+```
+
+The `asp-route-id` produces the following output:
+
+```html
+https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
+```
+
 
 ### asp-route-{value}
 
