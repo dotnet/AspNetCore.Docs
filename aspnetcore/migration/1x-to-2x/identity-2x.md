@@ -384,7 +384,8 @@ protected override void OnModelCreating(ModelBuilder builder)
         .HasMany(e => e.Roles)
         .WithOne()
         .HasForeignKey(e => e.RoleId)
-        .IsRequired().OnDelete(DeleteBehavior.Cascade);
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
 
     builder.Entity<ApplicationRole>()
         .HasMany(e => e.Roles)
