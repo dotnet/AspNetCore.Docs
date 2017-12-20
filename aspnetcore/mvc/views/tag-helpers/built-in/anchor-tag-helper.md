@@ -79,7 +79,18 @@ The `asp-page` attribute in the previous code sample renders HTML output in the 
 <a href="/items?page=%2FSpeakers">Speakers</a>
 ``
 
-If you use `asp-page`, you may not use the `asp-route`, `asp-controller`, or `asp-action` attributes.
+The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following code sample demonstrates:
+
+```
+cshtml<a asp-page="/Speaker" asp-route-id="@speaker.Id">View Speaker</a>
+```
+
+The `asp-route-id` produces the following output:
+
+```html
+https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
+```
+
 
 ### asp-route-{value}
 
