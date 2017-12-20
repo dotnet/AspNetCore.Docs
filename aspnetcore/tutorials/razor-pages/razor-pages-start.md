@@ -5,13 +5,13 @@ description: Getting started with Razor Pages in ASP.NET Core
 keywords: ASP.NET Core,Razor Pages,Razor,MVC
 ms.author: riande
 manager: wpickett
-ms.date: 08/27/2017
+ms.date: 12/22/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/razor-pages/razor-pages-start
 ---
-# Getting started with Razor Pages in ASP.NET Core
+# Get started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -35,7 +35,11 @@ There are three versions of this tutorial:
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
   ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
-  ![Web Application (Razor Pages)](../../mvc/razor-pages/index/_static/np2.png)
+
+> [!NOTE]
+> If you want to use ASP.NET Core on the .NET Framework, you must first select **.NET Framework** from the leftmost dropdown in the dialog, then you can select the desired ASP.NET Core version.
+
+  ![Web Application (Razor Pages)](razor-pages-start/_static/np2.png)
 
 The Visual Studio template creates a starter project:
 
