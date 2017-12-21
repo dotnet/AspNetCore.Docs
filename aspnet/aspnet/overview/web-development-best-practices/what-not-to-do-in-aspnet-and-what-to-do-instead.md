@@ -201,7 +201,7 @@ Recommendation: Do not use these events with managed modules. Instead, write a n
 
 You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestheaders.aspx) and [PreSendRequestContext](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestcontent.aspx) events with native IIS modules.
 > [!WARNING]
-> Do not use them with managed modules that implement IHttpModule. Setting these properties can cause issues with asynchronous requests. We have seen instances where the combination of Application Requested Routing(ARR) and websockets lead to access violation exceptions (iiscore!W3_CONTEXT_BASE::GetIsLastNotification+68 in iiscore.dll has caused an access violation exception (0xC0000005)) that lead to w3wp crash.
+> Do not use `PreSendRequestHeaders` and PreSendRequestContext` with managed modules that implement `IHttpModule`. Setting these properties can cause issues with asynchronous requests. We have seen instances where the combination of Application Requested Routing(ARR) and websockets lead to access violation exceptions (iiscore!W3_CONTEXT_BASE::GetIsLastNotification+68 in iiscore.dll has caused an access violation exception (0xC0000005)) that lead to w3wp crashing.
 
 <a id="asyncevents"></a>
 
