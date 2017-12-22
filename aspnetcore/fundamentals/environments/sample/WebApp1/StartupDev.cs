@@ -6,10 +6,10 @@ using System;
 
 namespace WebApp1
 {
-    #region snippet_all
-    public class Startup
+    #region snippet
+    public class StartupDevelopment
     {
-        public Startup(IConfiguration configuration)
+        public StartupDevelopment(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -21,13 +21,7 @@ namespace WebApp1
             services.AddMvc();
         }
 
-        public void ConfigureStagingServices(IServiceCollection services)
-        {
-            // Configure staging services.
-            services.AddMvc();
-        }
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,24 +30,11 @@ namespace WebApp1
                 app.UseBrowserLink();
             }
 
-            if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+            if (env.IsProduction() || env.IsStaging())
             {
-                app.UseExceptionHandler("/Error");
+                throw new Exception("Not development.");
             }
 
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-        }
-        #endregion
-
-        public void ConfigureStaging(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (!env.IsStaging())
-            {
-                throw new Exception("Not staging.");
-            }
-
-            app.UseExceptionHandler("/Error");
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
