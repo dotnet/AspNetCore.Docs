@@ -44,7 +44,7 @@ This topic contains the following sections:
     - [UrlPathEncode](#urlpathencode)
 - [Reliability and Performance](#performance)
 
-    - [PreSendRequestHeaders and PreSendRequestContext](#presend)
+    - [PreSendRequestHeaders and PreSendRequestContent](#presend)
     - [Asynchronous Page Events with Web Forms](#asyncevents)
     - [Fire-and-Forget Work](#fire)
     - [Request Entity Body](#requestentity)
@@ -195,13 +195,13 @@ The following example shows how to pass an encoded URL as a query string paramet
 
 <a id="presend"></a>
 
-### PreSendRequestHeaders and PreSendRequestContext
+### PreSendRequestHeaders and PreSendRequestContent
 
 Recommendation: Do not use these events with managed modules. Instead, write a native IIS module to perform the required task. See [Creating Native-Code HTTP Modules](https://msdn.microsoft.com/en-us/library/ms693629.aspx).
 
-You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestheaders.aspx) and [PreSendRequestContext](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestcontent.aspx) events with native IIS modules.
+You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestheaders.aspx) and [PreSendRequestContent](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestcontent.aspx) events with native IIS modules.
 > [!WARNING]
-> Do not use `PreSendRequestHeaders` and PreSendRequestContext` with managed modules that implement `IHttpModule`. Setting these properties can cause issues with asynchronous requests. We have seen instances where the combination of Application Requested Routing(ARR) and websockets lead to access violation exceptions (iiscore!W3_CONTEXT_BASE::GetIsLastNotification+68 in iiscore.dll has caused an access violation exception (0xC0000005)) that lead to w3wp crashing.
+> Do not use `PreSendRequestHeaders` and `PreSendRequestContent` with managed modules that implement `IHttpModule`. Setting these properties can cause issues with asynchronous requests. We have seen instances where the combination of Application Requested Routing(ARR) and websockets lead to access violation exceptions (iiscore!W3_CONTEXT_BASE::GetIsLastNotification+68 in iiscore.dll has caused an access violation exception (0xC0000005)) that lead to w3wp crashing.
 
 <a id="asyncevents"></a>
 
