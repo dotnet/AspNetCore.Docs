@@ -176,7 +176,7 @@ Note: Calling `WebHostBuilder.UseStartup<TStartup>()` overrides configuration se
 
 `Configure` and `ConfigureServices` support environment specific versions  of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
 
-[!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet_all)]
+[!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,38)]
 
 ## Additional Resources
 
