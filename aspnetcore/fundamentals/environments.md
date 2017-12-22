@@ -87,8 +87,15 @@ It's best to avoid scattering environment checks in many parts of your applicati
 
 The method for setting the environment depends on the operating system.
 
+### Azure
+
+For Azure app service:
+
+* Select the **Application settings** blade.
+* Add the key and value in **App settings**.
+
 <!--
-Why would you ever do this? Anyone who needed to do this knows how to set the env variable so I'm removing it.
+Why would you ever do this?  Testing maybe? Anyone who needed to do this knows how to set the env variable so I'm removing it.
 
 ### Windows
 To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using `dotnet run`, the following commands are used
