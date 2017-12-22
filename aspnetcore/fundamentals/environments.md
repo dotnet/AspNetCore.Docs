@@ -54,13 +54,13 @@ When the application is launched with `dotnet run`, the first profile with `"com
 
 * IIS Express
 * IIS
-* Project (which launches  Kestrel)
+* Project (which launches Kestrel)
 
 The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json* file:
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
-Changes made to project profiles may not take effect until the web server used is restarted. Kestrel must be restarted before it will detect changes made to its environment.
+Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it will detect changes made to its environment.
 
 >[!WARNING]
 > *launchSettings.json* should not store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
@@ -91,7 +91,7 @@ For Azure app service:
 * Add the key and value in **App settings**.
 
 <!--
-Why would you ever do this?  Testing maybe? Anyone who needed to do this knows how to set the env variable so I'm removing it.
+Why would you ever do this? Testing maybe? Anyone who needed to do this knows how to set the env variable so I'm removing it.
 
 ### Windows
 To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using `dotnet run`, the following commands are used
@@ -135,7 +135,7 @@ or using `export` to set it prior to running the app.
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
 ```
-Machine level environment variables are set in the *.bashrc*  or *.bash_profile* file. Edit the file using any text editor and add the following statment.
+Machine level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor and add the following statment.
 
 ```
 export ASPNETCORE_ENVIRONMENT=Development
@@ -176,7 +176,7 @@ When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) 
 
 Note: Calling [WebHostBuilder.UseStartup<TStartup>](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
 
-[Configure](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_StartupBase_Configure_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [ConfigureServices](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices?view=aspnetcore-2.0) support environment specific versions  of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
+[Configure](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_StartupBase_Configure_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [ConfigureServices](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices?view=aspnetcore-2.0) support environment specific versions of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
 
 [!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,38)]
 
