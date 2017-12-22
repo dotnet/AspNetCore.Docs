@@ -21,7 +21,7 @@ ASP.NET Core provides support for setting application behavior at runtime with e
 
 ## Environments
 
-ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values are supported by the framework](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0): `Development`, `Staging`, and `Production`.
+ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values are supported by the framework](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0): [Development](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development?view=aspnetcore-2.0), [Staging](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname.staging?view=aspnetcore-2.0), and [Production](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname.production?view=aspnetcore-2.0).
 
 [!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet)]
 
@@ -37,10 +37,6 @@ The preceding code:
 The [Environment Tag Helper ](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
 [!code-html[Main](environments/sample/WebApp1/Pages/About.cshtml)]
-
-The `PageModel` for the preceding Razor page sets the `Message` property with the value of `ASPNETCORE_ENVIRONMENT`:
-
-[!code-csharp[Main](environments/sample/WebApp1/Pages/About.cshtml.cs)]
 
 Note: On Windows and macOS, environment variables and values are insensitive. Linux environment variables and values are **case sensitive** by default.
 

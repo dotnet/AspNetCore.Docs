@@ -1,4 +1,5 @@
 ﻿@page
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
 @model AboutModel
 @{
     ViewData["Title"] = "About";
@@ -6,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p> ASPNETCORE_ENVIRONMENT = @hostingEnv.EnvironmentName</p>
 
 <environment include="Development">
     <div>&lt;environment include="Development"&gt;</div>
