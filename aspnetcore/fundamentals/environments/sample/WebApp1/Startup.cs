@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Env
+namespace WebApp1
 {
     public class Startup
     {
@@ -33,7 +33,7 @@ namespace Env
             {
                 app.UseExceptionHandler("/Error");
             }
-            
+
             app.UseStaticFiles();
 
             app.UseMvcWithDefaultRoute();

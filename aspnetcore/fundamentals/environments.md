@@ -19,11 +19,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core provides support for setting application behavior at runtime with environment variables. 
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Environments
 
 ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values are supported by the framework](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0): `Development`, `Staging`, and `Production`. 
 
-[!code-csharp[Main](environments/sample/Startup.cs?name=snippet)]
+[!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet)]
 
 The preceding code:
 
@@ -36,13 +38,23 @@ The preceding code:
 
 The [Environment Tag Helper ](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
-[!code-html[Main](environments/sample/About.cshtml)]
+[!code-html[Main](environments/sample/WebApp1/Pages/About.cshtml)]
+
+The `PageModel` for the preceding Razor page sets the `Message` property with the value of `ASPNETCORE_ENVIRONMENT`:
+
+[!code-csharp[Main](environments/sample/WebApp1/Pages/About.cshtml.cs)]
 
 Note: On Windows and macOS, environment variables and values are insensitive. Linux environment variables and values are **case sensitive** by default. 
 
 ### Development
 
-The development environment is used for development to enable features should not be exposed in production. For example, the ASP.NET Core templates enable the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page) in the development environment.
+The development environment can enable features should not be exposed in production. For example, the ASP.NET Core templates enable the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page) in the development environment.
+
+The environment for local machine development is typically set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
+
+The following XML shows two profiles from a *launchSettings.json* file:
+
+[!code-xml[Main](environments/sample/WebApp1/Properties/launchSettings.json)]
 
 If you're using Visual Studio, the environment can be configured in your project's debug profiles. Debug profiles specify the [server](xref:fundamentals/servers/index) to use when launching the application and any environment variables to be set. Your project can have multiple debug profiles that set environment variables differently. You manage these profiles by using the **Debug** tab of your web application project's **Properties** menu. The values you set in project properties are persisted in the *launchSettings.json* file, and you can also configure profiles by editing that file directly.
 
@@ -58,9 +70,6 @@ Changes made to project profiles may not take effect until the web server used i
 >[!WARNING]
 > Environment variables stored in *launchSettings.json* are not secured in any way and will be part of the source code repository for your project, if you use one. **Never store credentials or other secret data in this file.** If you need a place to store such data, use the *Secret Manager* tool described in [Safe storage of app secrets during development](xref:security/app-secrets).
 
-### Staging
-
-By convention, a `Staging` environment is a pre-production environment used for final testing before deployment to production. Ideally, its physical characteristics should mirror that of production, so that any issues that may arise in production occur first in the staging environment, where they can be addressed without impact to users.
 
 ### Production
 
