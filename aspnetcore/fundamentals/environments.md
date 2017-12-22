@@ -1,11 +1,11 @@
 ---
 title: Working with multiple environments in ASP.NET Core
-author: ardalis
+author: rick-anderson
 description: Learn how ASP.NET Core provides support for controlling app behavior across multiple environments.
 keywords: ASP.NET Core,Environment settings,ASPNETCORE_ENVIRONMENT
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 12/25/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -13,24 +13,22 @@ uid: fundamentals/environments
 ---
 # Working with multiple environments
 
-en-us/
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core provides support for setting application behavior at runtime with environment variables. 
+ASP.NET Core provides support for setting application behavior at runtime with environment variables.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Environments
 
-ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values are supported by the framework](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0): `Development`, `Staging`, and `Production`. 
+ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values are supported by the framework](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0): `Development`, `Staging`, and `Production`.
 
 [!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet)]
 
 The preceding code:
 
-* Calls [UseDeveloperExceptionPage](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_DeveloperExceptionPageExtensions_UseDeveloperExceptionPage_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseBrowserLink](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.browserlinkextensions.usebrowserlink?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_BrowserLinkExtensions_UseBrowserLink_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
-* Calls [UseExceptionHandler](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_ExceptionHandlerExtensions_UseExceptionHandler_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
+* Calls [UseDeveloperExceptionPage](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_DeveloperExceptionPageExtensions_UseDeveloperExceptionPage_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseBrowserLink](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.browserlinkextensions.usebrowserlink?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_BrowserLinkExtensions_UseBrowserLink_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
+* Calls [UseExceptionHandler](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_ExceptionHandlerExtensions_UseExceptionHandler_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
 
     * `Staging`
     * `Production`
@@ -44,7 +42,7 @@ The `PageModel` for the preceding Razor page sets the `Message` property with th
 
 [!code-csharp[Main](environments/sample/WebApp1/Pages/About.cshtml.cs)]
 
-Note: On Windows and macOS, environment variables and values are insensitive. Linux environment variables and values are **case sensitive** by default. 
+Note: On Windows and macOS, environment variables and values are insensitive. Linux environment variables and values are **case sensitive** by default.
 
 ### Development
 
@@ -64,6 +62,8 @@ When the application is launched with `dotnet run`, the first profile with `"com
 
 The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json* file:
 
+![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
+
 Changes made to project profiles may not take effect until the web server used is restarted. Kestrel must be restarted before it will detect changes made to its environment.
 
 >[!WARNING]
@@ -77,9 +77,9 @@ The production environment should be configured to maximize security, performanc
 * Client-side resources are bundled, minified, and potentially served from a CDN.
 * Diagnostic error pages disabled.
 * Friendly error pages enabled.
-* Production logging and monitoring enabled. For example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/)).
+* Production logging and monitoring enabled. For example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/).
 
-<!-- FALSE - what about the 
+<!-- FALSE - what about the
 It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's `Startup` class(es) wherever possible
 -->
 
@@ -108,7 +108,7 @@ These commands take effect only for the current window. When the window is close
 
 Ha, Steve is setting a user env variable, not a system one. That won't do much good on a server.
 
-![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png) 
+![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png)
 
 -->
 
@@ -118,7 +118,7 @@ See the *Setting environment variables* section of the [ASP.NET Core Module conf
 
 **Per IIS Application Pool**
 
-If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
+To set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic.
 
 <!--
 ### macOS
@@ -131,12 +131,12 @@ or using `export` to set it prior to running the app.
 
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
-``` 
+```
 Machine level environment variables are set in the *.bashrc*  or *.bash_profile* file. Edit the file using any text editor and add the following statment.
 
 ```
 export ASPNETCORE_ENVIRONMENT=Development
-```  
+```
 
 ### Linux
 For Linux distros, use the `export` command at the command line for session based variable settings and *bash_profile* file for machine level environment settings.
@@ -182,5 +182,5 @@ Note: Calling `WebHostBuilder.UseStartup<TStartup>()` overrides configuration se
 
 * [Application startup](xref:fundamentals/startup)
 * [Configuration](xref:fundamentals/configuration/index)
-* [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName)
-* 
+* [IHostingEnvironment.EnvironmentName](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName)
+*
