@@ -165,7 +165,7 @@ You may need to determine which content to send to the client at runtime, depend
 To get started with using tag helpers in your application see [Introduction to Tag Helpers](../mvc/views/tag-helpers/intro.md).
 
 -->
-
+<a name="startup-conventions"></a>
 ## Environment based Startup class and methods
 
 When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. If a class `Startup{EnvironmentName}` exists, that class will be called for that `EnvironmentName`:
