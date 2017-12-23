@@ -48,6 +48,8 @@ namespace WebApp1
 
         public void ConfigureStaging(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var myConfig = Configuration["MyConfig"];
+
             if (!env.IsStaging())
             {
                 throw new Exception("Not staging.");
