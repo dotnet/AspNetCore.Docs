@@ -169,6 +169,11 @@ You may need to determine which content to send to the client at runtime, depend
 To get started with using tag helpers in your application see [Introduction to Tag Helpers](../mvc/views/tag-helpers/intro.md).
 
 -->
+
+### Configuration by environment
+
+See [Configuration by environment](xref:fundamentals/configuration/index#configuration-by-environment) for more information.
+
 <a name="startup-conventions"></a>
 ## Environment based Startup class and methods
 

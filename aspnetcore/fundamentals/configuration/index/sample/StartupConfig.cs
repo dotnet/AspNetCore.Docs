@@ -1,4 +1,4 @@
-//#define First
+#define First
 #if First
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,21 +23,18 @@ namespace WebApp1
             services.AddMvc();
         }
 
-        public void ConfigureStagingServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
-
         #region snippet
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var myConfig = Configuration["MyConfig"];
+            // use myConfig
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
 
-            if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+            if (env.IsProduction() || env.IsStaging())
             {
                 app.UseExceptionHandler("/Error");
             }
@@ -46,18 +43,6 @@ namespace WebApp1
             app.UseMvcWithDefaultRoute();
         }
         #endregion
-
-        public void ConfigureStaging(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (!env.IsStaging())
-            {
-                throw new Exception("Not staging.");
-            }
-
-            app.UseExceptionHandler("/Error");
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-        }
     }
     #endregion
 }
