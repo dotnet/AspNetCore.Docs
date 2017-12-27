@@ -81,8 +81,8 @@ The `asp-page` attribute in the previous code sample renders HTML output in the 
 
 The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following code sample demonstrates:
 
-```
-cshtml<a asp-page="/Speaker" asp-route-id="@speaker.Id">View Speaker</a>
+```cshtml
+<a asp-page="/Speaker" asp-route-id="@speaker.Id">View Speaker</a>
 ```
 
 The `asp-route-id` produces the following output:
@@ -91,6 +91,8 @@ The `asp-route-id` produces the following output:
 https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
 ```
 
+> [!NOTE]
+> To use the `asp-page` attribute in Razor Pages, the URLs must be a relative path, for example `"./Speaker"`. Relative paths in the `asp-page` attribute are not available in MVC views. Use the "/" syntax for MVC views instead.
 
 ### asp-route-{value}
 
