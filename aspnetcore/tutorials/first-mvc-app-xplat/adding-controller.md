@@ -19,7 +19,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[adding-controller](../../includes/mvc-intro/adding-controller1.md)]
 
-* In **VS Code**, select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name it the new file HelloWorldController.cs.
+* In **VS Code**, select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file HelloWorldController.cs.
 
  ![Contextual menu](adding-controller/_static/new_file.png)
 
