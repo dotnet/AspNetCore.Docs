@@ -77,7 +77,7 @@ Consider the following *appsettings.Staging.json* file:
 
 When the environment is set to `Staging`, the following `Configure` method reads the value of `MyConfig`:
 
-[!code-csharp[Main](index/sample/StartupConfig.cs?name=snippet?highlight=3,4)]
+[!code-csharp[Main](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 
 The environment is typically set to `Development`, `Staging`, or `Production`. See [Working with multiple environments](xref:fundamentals/environments) for more information.
 
