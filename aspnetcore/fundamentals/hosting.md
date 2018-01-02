@@ -77,11 +77,14 @@ When setting up a host, [Configure](/dotnet/api/microsoft.aspnetcore.hosting.web
 
 ## Host configuration values
 
-[WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) provides the following approaches for setting most of the available configuration values for the host:
+[WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) relies on the following approaches to set the host configuration values:
 
-* Environment variables with the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_DETAILEDERRORS`.
+* Environment variables with the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_URLS`.
+* [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration).
 * Explicit methods, such as `CaptureStartupErrors`.
 * [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting) and the associated key. When setting a value with `UseSetting`, the value is set as a string regardless of the type.
+
+The host uses whichever option sets a value last. For more information, see [Overriding configuration](#overriding-configuration) in the next section.
 
 ### Capture Startup Errors
 
@@ -505,17 +508,6 @@ To specify the host run on a particular URL, the desired value can be passed in 
 ```console
 dotnet run --urls "http://*:8080"
 ```
-
-## Ordering importance
-
-Some of the `WebHostBuilder` settings are first read from environment variables, if set. These environment variables use the format `ASPNETCORE_{configurationKey}`. To set the URLs that the server listens on by default, set `ASPNETCORE_URLS`.
-
-Override environment variable values using either of these two approaches:
-
-* Specify configuration with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration).
-* Set the value explicitly with `UseSetting` or one of the explicit extension methods, such as `UseUrls`.
-
-The host uses whichever option sets the value last. To programmatically set the default URL to one value but allow it to be overridden with configuration, use command-line configuration after setting the URL. See [Overriding configuration](#overriding-configuration).
 
 ## Starting the host
 
