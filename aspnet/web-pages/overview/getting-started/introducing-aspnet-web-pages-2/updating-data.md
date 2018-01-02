@@ -5,7 +5,7 @@ author: tfitzmac
 description: "This tutorial shows you how to update (change) an existing database entry when you use ASP.NET Web Pages (Razor). It assumes you have completed the series th..."
 ms.author: aspnetcontent
 manager: wpickett
-ms.date: 05/28/2015
+ms.date: 01/02/2018
 ms.topic: article
 ms.assetid: ac86ec9c-6b69-485b-b9e0-8b9127b13e6b
 ms.technology: dotnet-webpages
@@ -17,7 +17,7 @@ Introducing ASP.NET Web Pages - Updating Database Data
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This tutorial shows you how to update (change) an existing database entry when you use ASP.NET Web Pages (Razor). It assumes you have completed the series through [Entering Data by Using Forms Using ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=251582).
+> This tutorial shows you how to update (change) an existing database entry when you use ASP.NET Web Pages (Razor). It assumes you have completed the series through [Entering Data by Using Forms Using ASP.NET Web Pages](entering-data.md).
 > 
 > What you'll learn:
 > 
@@ -138,7 +138,7 @@ Create a page named *EditMovie.cshtml* and replace what's in the file with the f
 
 This markup and code is similar to what you have in the *AddMovie* page. There's a small difference in the text for the submit button. As with the *AddMovie* page, there's an `Html.ValidationSummary` call that will display validation errors if there are any. This time we're leaving out calls to `Validation.Message`, since errors will be displayed in the validation summary. As noted in the previous tutorial, you can use the validation summary and the individual error messages in various combinations.
 
-Notice again that the `method` attribute of the `<form>` element is set to `post`. As with the *AddMovie.cshtml* page, this page makes changes to the database. Therefore, this form should perform a `POST` operation. (For more about the difference between `GET` and `POST` operations, see the [GET, POST, and HTTP Verb Safety](https://go.microsoft.com/fwlink/?LinkId=251581#GET,_POST,_and_HTTP_Verb_Safety) sidebar in the tutorial on HTML forms.)
+Notice again that the `method` attribute of the `<form>` element is set to `post`. As with the *AddMovie.cshtml* page, this page makes changes to the database. Therefore, this form should perform a `POST` operation. (For more about the difference between `GET` and `POST` operations, see the [GET, POST, and HTTP Verb Safety](form-basics.md#GET,_POST,_and_HTTP_Verb_Safety) sidebar in the tutorial on HTML forms.)
 
 As you saw in an earlier tutorial, the `value` attributes of the text boxes are being set with Razor code in order to preload them. This time, though, you're using variables like `title` and `genre` for that task instead of `Request.Form["title"]`:
 
@@ -219,7 +219,7 @@ After the code uses `db.Execute` to run the `Update` statement, it redirects bac
 > 
 > Of course, the `Query` method might return only one database row. However, ASP.NET always treats the results of the `Query` method as a collection. Even if the method returns just one row, you have to extract that single row from the collection. Therefore, in situations where you *know* you'll get back only one row, it's a bit more convenient to use `QuerySingle`.
 > 
-> There are a few other methods that perform specific types of database operations. You can find a listing of database methods in the [ASP.NET Web Pages API Quick Reference](https://go.microsoft.com/fwlink/?LinkID=202907#Data).
+> There are a few other methods that perform specific types of database operations. You can find a listing of database methods in the [ASP.NET Web Pages API Quick Reference](../../api-reference/asp-net-web-pages-api-reference.md#Data).
 
 
 ## Making Validation for the ID More Robust
@@ -303,7 +303,7 @@ In the next tutorial, you'll see how to delete a movie record.
 
 ## Additional Resources
 
-- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
+- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](introducing-razor-syntax-c.md)
 - [SQL UPDATE Statement](http://www.w3schools.com/sql/sql_update.asp) on the W3Schools site
 
 >[!div class="step-by-step"]
