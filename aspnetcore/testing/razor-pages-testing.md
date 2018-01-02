@@ -52,7 +52,7 @@ The message app is a simple Razor Pages message system with the following charac
 * A message is described by the `Message` class (*Data/Message.cs*) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
 * The app contains a data access layer (DAL) in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
-* In the Development environment, the message store is initialized with three messages. These *seeded messages* are also used in testing.
+* If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in testing.
 
 &#8224;The EF topic, [Testing with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for testing with MSTest. This topic uses the [xUnit](https://xunit.github.io/) testing framework. Testing concepts and test implementations across different testing frameworks are similar but not identical.
 
