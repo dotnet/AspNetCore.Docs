@@ -223,7 +223,7 @@ See Visual Studio Code.
 
 ---
 
-* Remember that enabling XML comments will give a notice when debugging in case not all of your methods are documented: __Missing XML comment for publicly visible type or member__
+Enabling XML comments provides debug information for undocumented public methods: __Missing XML comment for publicly visible type or member__
 
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case sensitive. For example, a *ToDoApi.XML* file would be found on Windows but not CentOS.
 
