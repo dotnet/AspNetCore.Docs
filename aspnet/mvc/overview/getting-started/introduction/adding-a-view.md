@@ -104,7 +104,7 @@ Also notice how the content in the *Index.cshtml* view template was merged with 
 
 ![](adding-a-view/_static/image9.png)
 
-Our little bit of &quot;data&quot; (in this case the &quot;Hello from our View Template!&quot; message) is hard-coded, though. The MVC application has a &quot;V&quot; (view) and you've got a &quot;C&quot; (controller), but no &quot;M&quot; (model) yet. Shortly, we'll walk through how create a database and retrieve model data from it.
+Our little bit of &quot;data&quot; (in this case the &quot;Hello from our View Template!&quot; message) is hard-coded, though. The MVC application has a &quot;V&quot; (view) and you've got a &quot;C&quot; (controller), but no &quot;M&quot; (model) yet. Shortly, we'll walk through how to create a database and retrieve model data from it.
 
 ## Passing Data from the Controller to the View
 
