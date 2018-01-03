@@ -4,6 +4,7 @@ using System;
 
 namespace FileUploadSample.Filters
 {
+    #region snippet1    
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter
     {
@@ -17,5 +18,6 @@ namespace FileUploadSample.Filters
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
         }
-    }
+    }    
+    #endregion
 }
