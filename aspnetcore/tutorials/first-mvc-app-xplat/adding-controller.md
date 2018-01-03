@@ -13,13 +13,13 @@ ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/adding-controller
 ---
 
-# Adding a controller to a ASP.NET Core MVC app with Visual Studio Code
+# Adding a controller to an ASP.NET Core MVC app with Visual Studio Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[adding-controller](../../includes/mvc-intro/adding-controller1.md)]
 
-* In **VS Code**, select the **EXPLORER** icon and then  control-click (right-click) **Controllers > New File**
+* In **VS Code**, select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file HelloWorldController.cs.
 
  ![Contextual menu](adding-controller/_static/new_file.png)
 
