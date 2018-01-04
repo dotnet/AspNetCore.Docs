@@ -1,7 +1,7 @@
 ---
 title: Use the Angular project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) preview project template for Angular and the Angular CLI.
+description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for Angular and the Angular CLI.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
@@ -12,10 +12,10 @@ ms.technology: aspnet
 ms.topic: article
 uid: spa/angular
 ---
-# Use the Angular project template (preview)
+# Use the Angular project template (release candidate)
 
 > [!NOTE]
-> This documentation is not about the released Angular project template. **This documentation is about the preview version of the Angular template.** We hope to ship the released version in early 2018.
+> This documentation is not about the released Angular project template. **This documentation is about the release candidate of the Angular template.** We hope to ship the released version in early 2018.
 
 The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular 5 and the Angular CLI to implement a rich, client-side user interface (UI).
 
