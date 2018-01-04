@@ -158,7 +158,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     }
     ```
     
-    # [Visual Studio](#tab/visualstudio)     
+    # [Visual Studio](#tab/visual-studio)
 
     Run the project using **Ctrl** + **F5** and navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
 
