@@ -70,7 +70,6 @@
 ### [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Error handling](fundamentals/error-handling.md)
 ## [File Providers](fundamentals/file-providers.md)
-## [Working with static files](fundamentals/static-files.md)
 ## [Hosting](fundamentals/hosting.md)
 ## [Session and application state](fundamentals/app-state.md)
 ## [Servers](fundamentals/servers/index.md)
