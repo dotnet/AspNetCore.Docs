@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/razor-pages/search
 ---
-# Adding search to an ASP.NET Core MVC app
+# Adding search to a Razor Pages app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -24,8 +24,8 @@ Update the Index page's `OnGetAsync` method with the following code:
 The first line of the `OnGetAsync` method creates a [LINQ](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
 ```csharp
- var movies = from m in _context.Movie
-              select m;
+var movies = from m in _context.Movie
+             select m;
 ```
 
 The query is *only* defined at this point, it has **not** been run against the database.
