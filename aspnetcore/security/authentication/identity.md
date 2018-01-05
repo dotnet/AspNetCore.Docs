@@ -27,28 +27,29 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 1.  Create an ASP.NET Core Web Application project with Individual User Accounts.
 
     # [Visual Studio](#tab/visual-studio)
-    In Visual Studio, select **File** -> **New** -> **Project**. Select **ASP.NET Core Web Application** and click **OK**. 
+
+    In Visual Studio, select **File** -> **New** -> **Project**. Select **ASP.NET Core Web Application** and click **OK**.
 
     ![New Project dialog](identity/_static/01-new-project.png)
 
-    Select an ASP.NET Core **Web Application (Model-View-Controller)** for ASP.NET Core 2.x, then select **Change Authentication**. 
+    Select an ASP.NET Core **Web Application (Model-View-Controller)** for ASP.NET Core 2.x, then select **Change Authentication**.
 
     ![New Project dialog](identity/_static/02-new-project.png)
 
     A dialog appears offering authentication choices. Select **Individual User Accounts** and click **OK** to return to the previous dialog.
 
     ![New Project dialog](identity/_static/03-new-project-auth.png)
-    
+
     Selecting **Individual User Accounts** directs Visual Studio to create Models, ViewModels, Views, Controllers, and other assets required for authentication as part of the project template.
- 
-    
+
     # [.NET Core CLI](#tab/netcore-cli)
+
     If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This command creates a new project with the same Identity template code Visual Studio creates.
- 
+
     The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which persists the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
-    
+
     ---
- 
+
 2.  Configure Identity services and add middleware in `Startup`.
 
     The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
@@ -157,7 +158,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     }
     ```
     
-    # [Visual Studio](#tab/visualstudio)     
+    # [Visual Studio](#tab/visual-studio)
 
     Run the project using **Ctrl** + **F5** and navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
 

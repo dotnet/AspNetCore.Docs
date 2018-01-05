@@ -23,7 +23,7 @@ uid: client-side/index
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
 - [Using Browser Link](xref:client-side/using-browserlink)
 - [Using JavaScriptServices for SPAs](xref:client-side/spa-services)
-- [Using the SPA project templates (preview)](xref:spa/index)
+- [Using the SPA project templates (RC)](xref:spa/index)
     - [Angular project template](xref:spa/angular)
     - [React project template](xref:spa/react)
     - [React with Redux project template](xref:spa/react-with-redux)
