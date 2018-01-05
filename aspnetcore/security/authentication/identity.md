@@ -20,6 +20,8 @@ ASP.NET Core Identity is a membership system which allows you to add login funct
 
 You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example, an Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
 
+[View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/index#how-to-download-a-sample)
+
 ## Overview of Identity
 
 In this topic, you'll learn how to use ASP.NET Core Identity to add functionality to register, log in, and log out a user. For more detailed instructions about creating apps using ASP.NET Core Identity, see the Next Steps section at the end of this article.
@@ -28,7 +30,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [Visual Studio](#tab/visual-studio)
 
-    In Visual Studio, select **File** -> **New** -> **Project**. Select **ASP.NET Core Web Application** and click **OK**.
+    In Visual Studio, select **File** > **New** > **Project**. Select **ASP.NET Core Web Application** and click **OK**.
 
     ![New Project dialog](identity/_static/01-new-project.png)
 
@@ -139,7 +141,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
 7.  View the database.
 
-    If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** -> **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching **aspnet-<*name of your project*>-<*date string*>** is displayed.
+    If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** > **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching **aspnet-<*name of your project*>-<*date string*>** is displayed.
 
     ![Contextual menu on AspNetUsers database table](identity/_static/04-db.png)
     
