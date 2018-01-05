@@ -67,7 +67,7 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 * Add menu entries for **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Contact** menu entry.
 
-The changes are highlighted.
+The changes are highlighted. (All the markup is *not* displayed.)
 
 [!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47&range=1-50)]
 

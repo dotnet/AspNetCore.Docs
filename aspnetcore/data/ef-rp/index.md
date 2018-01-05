@@ -13,7 +13,7 @@ uid: data/ef-rp/index
 ---
 # Getting started with Razor Pages and Entity Framework Core using Visual Studio
 
-This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2017.
+This series of tutorials teaches you how to create ASP.NET Core Razor Pages web apps that use Entity Framework (EF) Core for data access. The tutorials require Visual Studio 2017.
 
 1. [Getting started](xref:data/ef-rp/intro)
 1. [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
