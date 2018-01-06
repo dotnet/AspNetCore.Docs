@@ -2,24 +2,22 @@
 title: Host in a Windows Service
 author: tdykstra
 description: Learn how to host an ASP.NET Core application in a Windows Service.
-keywords: ASP.NET Core,Windows service,hosting
 ms.author: tdykstra
 manager: wpickett
+ms.custom: mvc
 ms.date: 03/30/2017
 ms.topic: article
-ms.assetid: d9a65066-d7cb-47df-b046-64629c4d2c6f
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: hosting/windows-service
+uid: host-and-deploy/windows-service
 ---
-
 # Host an ASP.NET Core app in a Windows Service
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
-The recommended way to host an ASP.NET Core app on Windows when you don't use IIS is to run it in a [Windows Service](https://docs.microsoft.com/dotnet/framework/windows-services/introduction-to-windows-service-applications). That way it can automatically start after reboots and crashes, without waiting for someone to log in.
+The recommended way to host an ASP.NET Core app on Windows without using IIS is to run it in a [Windows Service](https://docs.microsoft.com/dotnet/framework/windows-services/introduction-to-windows-service-applications). That way it can automatically start after reboots and crashes, without waiting for someone to log in.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next Steps](#next-steps) section for instructions on how to run it.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next Steps](#next-steps) section for instructions on how to run it.
 
 ## Prerequisites
 
@@ -29,7 +27,7 @@ The recommended way to host an ASP.NET Core app on Windows when you don't use II
 
   When creating a project in Visual Studio, use the **ASP.NET Core Application (.NET Framework)** template.
 
-* If the app will get requests from the internet (not just from an internal network), it must use the [WebListener](xref:fundamentals/servers/weblistener) web server rather than [Kestrel](xref:fundamentals/servers/kestrel).  Kestrel must be used with IIS for edge deployments.  For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+* If the app receives requests from the Internet (not just from an internal network), it must use the [WebListener](xref:fundamentals/servers/weblistener) web server rather than [Kestrel](xref:fundamentals/servers/kestrel).  Kestrel must be used with IIS for edge deployments.  For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
 ## Getting started
 
@@ -41,48 +39,49 @@ This section explains the minimum changes required to set up an existing ASP.NET
   
   * Call `host.RunAsService` instead of `host.Run`.
   
-  * If your code calls `UseContentRoot`, use a path to the publish location instead of `Directory.GetCurrentDirectory()` 
+  * If the code calls `UseContentRoot`, use a path to the publish location instead of `Directory.GetCurrentDirectory()` 
   
   [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=3-4,8,14)]
 
 * Publish the application to a folder.
 
-  Use [dotnet publish](https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:publishing/web-publishing-vs) that publishes to a folder.
+  Use [dotnet publish](https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
 
 * Test by creating and starting the service.
 
   Open an administrator command prompt window to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service.  
   
-  If you name your service MyService, you publish your app to `c:\svc`, and the app itself is named AspNetCoreService, the commands would look like this:
+  If the service is named MyService, publish the app to `c:\svc`, and the app itself is named AspNetCoreService, the commands would look like this:
 
   ```console
   sc create MyService binPath="C:\Svc\AspNetCoreService.exe"
   sc start MyService
   ```
-  The `binPath` value is the path to your app's executable, including the executable filename itself.
+
+  The `binPath` value is the path to the app's executable, including the executable filename itself.
 
   ![Console window create and start example](windows-service/_static/create-start.png)
 
-  When these commands finish, you can browse to the same path as when you run as a console app (by default, `http://localhost:5000`)
+  When these commands finish, browse to the same path as when running as a console app (by default, `http://localhost:5000`)
 
   ![Running in a service](windows-service/_static/running-in-service.png)
 
 
 ## Provide a way to run outside of a service
 
-It's easier to test and debug when you're running outside of a service, so it's customary to add code that calls `host.RunAsService` only under certain conditions.  For example, you could run as a console app if you get a `--console` command-line argument or if the debugger is attached.
+It's easier to test and debug when running outside of a service, so it's customary to add code that calls `host.RunAsService` only under certain conditions.  For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached.
 
 [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOrConsole)]
 
 ## Handle stopping and starting events
 
-If you want to handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following additional changes:
+To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following additional changes:
 
 * Create a class that derives from `WebHostService`.
 
   [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=NoLogging)]
 
-* Create an extension method for `IWebHost` that passes your custom `WebHostService` to `ServiceBase.Run`.
+* Create an extension method for `IWebHost` that passes the custom `WebHostService` to `ServiceBase.Run`.
 
   [!code-csharp[](windows-service/sample/WebHostServiceExtensions.cs?name=ExtensionsClass)]
 
@@ -90,13 +89,13 @@ If you want to handle `OnStarting`, `OnStarted`, and `OnStopping` events, make t
 
   [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=26)]
 
-If your custom `WebHostService` code needs to get a service from dependency injection (such as a logger), you can get it from the `Services` property of `IWebHost`.
+If the custom `WebHostService` code needs to get a service from dependency injection (such as a logger), get it from the `Services` property of `IWebHost`.
 
 [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]
 
 ## Next steps
 
-The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  To run it in a service, do the following steps:
+The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  To run it in a service, do the following steps:
 
 * Publish to *c:\svc*.
 
