@@ -300,7 +300,7 @@ The browser shows the Index page with the changed value and updated rowVersion i
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
 
-See [Inheritance](xref:data/ef-mvc/inheritance) for instruction on how to inheritance in the data model.
+See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 ### Additional resources
 
