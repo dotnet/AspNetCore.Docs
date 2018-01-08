@@ -1,5 +1,3 @@
-//#define First
-#if First
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -61,4 +59,3 @@ namespace WebApp1
     }
     #endregion
 }
-#endif
