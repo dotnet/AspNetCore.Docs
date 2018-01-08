@@ -869,7 +869,17 @@ public class Startup
 
 **Applies to ASP.NET Core 2.0 Only**
 
-If the host is built by injecting `IStartup` directly into the dependency injection container rather than calling `UseStartup` or `Configure`, the following error may occur: `Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided`.
+A host may be built by injecting `IStartup` directly into the dependency injection container rather than calling `UseStartup` or `Configure`:
+
+```csharp
+services.AddSingleton<IStartup, Startup>();
+```
+
+If the host is built this way, the following error may occur:
+
+```
+Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided.
+```
 
 This occurs because the [applicationName(ApplicationKey)](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostdefaults#Microsoft_AspNetCore_Hosting_WebHostDefaults_ApplicationKey) (the current assembly) is required to scan for `HostingStartupAttributes`. If the app manually injects `IStartup` into the dependency injection container, add the following call to `WebHostBuilder` with the assembly name specified:
 
