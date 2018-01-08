@@ -303,7 +303,7 @@ In the next tutorial, you'll see how to delete a movie record.
 
 ## Additional Resources
 
-- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](introducing-razor-syntax-c.md)
+- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../introducing-razor-syntax-c.md)
 - [SQL UPDATE Statement](http://www.w3schools.com/sql/sql_update.asp) on the W3Schools site
 
 >[!div class="step-by-step"]
