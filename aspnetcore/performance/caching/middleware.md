@@ -1,13 +1,11 @@
 ---
 title: Response Caching Middleware in ASP.NET Core
 author: guardrex
-description: Configuration and use of Response Caching Middleware in ASP.NET Core applications.
-keywords: ASP.NET Core,response caching,caching,ResponseCache,ResponseCaching,Cache-Control,VaryByQueryKeys,middleware
+description: Learn how to configure and use Response Caching Middleware in ASP.NET Core apps.
 ms.author: riande
 manager: wpickett
 ms.date: 08/22/2017
 ms.topic: article
-ms.assetid: f9267eab-2762-42ac-1638-4a25d2c9d67c
 ms.prod: asp.net-core
 uid: performance/caching/middleware
 ---
@@ -107,13 +105,13 @@ The middleware respects the rules of the [HTTP 1.1 Caching specification](https:
 
 [Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96) will permit configuring the middleware for caching scenarios where the request `Cache-Control` header should be ignored when deciding to serve a cached response. If you seek more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
-* [Introduction to in-memory caching in ASP.NET Core](xref:performance/caching/memory)
+* [In-memory caching](xref:performance/caching/memory)
 * [Working with a distributed cache](xref:performance/caching/distributed)
 * [Cache Tag Helper in ASP.NET Core MVC](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
 * [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
 
 ## Troubleshooting
-If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
+If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging/index) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
 
 When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. The following tools can explicitly set request headers, and are preferred for testing caching:
 
@@ -143,3 +141,9 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware)
+* [In-memory caching](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Response caching](xref:performance/caching/response)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

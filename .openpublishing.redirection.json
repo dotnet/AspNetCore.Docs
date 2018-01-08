@@ -99,6 +99,31 @@
         "source_path": "aspnetcore/security/https.md",
         "redirect_url": "/aspnet/core/security/enforcing-ssl",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/logging.md",
+        "redirect_url": "/aspnet/core/fundamentals/logging/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/configuration.md",
+        "redirect_url": "/aspnet/core/fundamentals/configuration/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/client-side/angular.md",
+        "redirect_url": "/aspnet/core/client-side/spa/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/client-side/knockout.md",
+        "redirect_url": "/aspnet/core/client-side/spa/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/client-side/yeoman.md",
+        "redirect_url": "/dotnet/core/tools/dotnet-new",
+        "redirect_document_id": false
     }
   ] 
 }

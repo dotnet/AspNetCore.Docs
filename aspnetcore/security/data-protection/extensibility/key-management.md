@@ -5,7 +5,7 @@ description: This document outlines ASP.NET Core data protection key management 
 keywords: ASP.NET Core,data protection,key management
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/22/2017
 ms.topic: article
 ms.assetid: 3606b251-8324-4485-8d52-582a2cd5cffb
 ms.technology: aspnet
@@ -62,7 +62,7 @@ The `IKeyManager` interface represents an object responsible for general key sto
 
 ## XmlKeyManager
 
-The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview).
+The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
 
 `XmlKeyManager` depends on several other components in the course of fulfilling its tasks:
 
@@ -132,7 +132,23 @@ The `IXmlRepository` interface represents a type that can persist XML to and ret
 
 Implementations of `IXmlRepository` don't need to parse the XML passing through them. They should treat the XML documents as opaque and let higher layers worry about generating and parsing the documents.
 
-There are two built-in concrete types which implement `IXmlRepository`: `FileSystemXmlRepository` and `RegistryXmlRepository`. See the [key storage providers document](../implementation/key-storage-providers.md#data-protection-implementation-key-storage-providers) for more information. Registering a custom `IXmlRepository` would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage. To change the default repository application-wide, register a custom singleton `IXmlRepository` in the service provider.
+There are two built-in concrete types which implement `IXmlRepository`: `FileSystemXmlRepository` and `RegistryXmlRepository`. See the [key storage providers document](../implementation/key-storage-providers.md#data-protection-implementation-key-storage-providers) for more information. Registering a custom `IXmlRepository` would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage.
+
+To change the default repository application-wide, register a custom `IXmlRepository` instance:
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+   ```csharp
+   services.Configure<KeyManagementOptions>(options => options.XmlRepository = new MyCustomXmlRepository());
+   ```
+   
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+   ```csharp
+   services.AddSingleton<IXmlRepository>(new MyCustomXmlRepository());
+   ```
+
+---
 
 <a name="data-protection-extensibility-key-management-ixmlencryptor"></a>
 
@@ -150,7 +166,23 @@ There are four built-in concrete types which implement `IXmlEncryptor`:
 * `DpapiXmlEncryptor`
 * `NullXmlEncryptor`
 
-See the [key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more information. To change the default key-encryption-at-rest mechanism application-wide, register a custom singleton `IXmlEncryptor` in the service provider.
+See the [key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more information.
+
+To change the default key-encryption-at-rest mechanism application-wide, register a custom `IXmlEncryptor` instance:
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+   ```csharp
+   services.Configure<KeyManagementOptions>(options => options.XmlEncryptor = new MyCustomXmlEncryptor());
+   ```
+   
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+   ```csharp
+   services.AddSingleton<IXmlEncryptor>(new MyCustomXmlEncryptor());
+   ```
+
+---
 
 ## IXmlDecryptor
 

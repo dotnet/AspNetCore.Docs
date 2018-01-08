@@ -154,6 +154,6 @@ ASP.NET Core provides a number of features and conventions that allow developers
 
 ## Additional Resources
 
-* [Configuration](configuration.md)
+* [Configuration](xref:fundamentals/configuration/index)
 
 * [Introduction to Tag Helpers](../mvc/views/tag-helpers/intro.md)

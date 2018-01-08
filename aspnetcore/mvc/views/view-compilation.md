@@ -5,7 +5,7 @@ description: A reference document explaining how to enable MVC Razor view compil
 keywords: ASP.NET Core,Razor view compilation,Razor pre-compilation,Razor precompilation
 ms.author: riande
 manager: wpickett
-ms.date: 08/16/2017
+ms.date: 12/13/2017
 ms.topic: article
 ms.assetid: ab4705b7-1638-1638-bc97-ea7f292fe92a
 ms.technology: aspnet
@@ -16,9 +16,9 @@ uid: mvc/views/view-compilation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app &mdash; a process known as precompilation. The ASP.NET Core 2.x project templates enable precompilation by default.
+Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app&mdash;a process known as precompilation. The ASP.NET Core 2.x project templates enable precompilation by default.
 
-> [!NOTE]
+> [!IMPORTANT]
 > Razor view precompilation is currently unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0. The feature will be available for SCDs when 2.1 releases. For more information, see [View compilation fails when cross-compiling for Linux on Windows](https://github.com/aspnet/MvcPrecompilation/issues/102).
 
 Precompilation considerations:
@@ -30,7 +30,7 @@ To deploy precompiled views:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If your project targets .NET Framework, include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`:
+If your project targets .NET Framework, include a package reference to [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/):
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.0.0" PrivateAssets="All" />
@@ -49,3 +49,13 @@ Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Mi
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 
 ---
+
+Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) by executing a command such as the following at the project root:
+
+```console
+dotnet publish -c Release
+```
+
+A *<project_name>.PrecompiledViews.dll* file, containing the compiled Razor views, is produced when precompilation succeeds. For example, the screenshot below depicts the contents of *Index.cshtml* inside of *WebApplication1.PrecompiledViews.dll*:
+
+![Razor views inside DLL](view-compilation/_static/razor-views-in-dll.png)

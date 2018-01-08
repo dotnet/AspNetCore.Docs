@@ -27,7 +27,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later. See [the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
+This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
 
 Install the following:
 
@@ -50,7 +50,7 @@ Name the project **MvcMovie**, and then select **Create**.
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview), launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/index#kestrel), launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 ![Browser with new project](start-mvc/b1.png)
 

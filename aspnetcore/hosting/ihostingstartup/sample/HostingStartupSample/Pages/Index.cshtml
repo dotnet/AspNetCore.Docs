@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Hosting Startup Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Startup Diagnostics Instructions</h3>
+            </div>
+            <div class="panel-body">
+                <h2>Services</h2>
+                <p>
+                    When the <code>IHostingStartup</code> implementation's <code>Configure</code> method executes, a factory is registered that implements a method to obtain the app's service collection descriptors. An implementation of <code>IStartupFilter</code> branches the request pipeline for the path <code>/services</code>, which executes a terminal middleware delegate. The delegate produces a webpage showing the app's services using the factory's <code>GetServices</code> method.
+                </p>
+                <p>
+                    To see the services in the service collection of the app, request the <code>/services</code> endpoint from the running app.
+                </p>
+                <h2>Connection Information</h2>
+                <p>
+                    The implementation of <code>IStartupFilter</code> also registers a middleware, <code>DiagnosticMiddleware</code>, that outputs diagonistic information on the:
+                    <ul>
+                        <li>Request</li>
+                        <li>Connection</li>
+                        <li>Headers</li>
+                        <li>Environment variables</li>
+                    </ul>
+                </p>
+                <p>
+                    To see the diagnostic information from the app, request the <code>/diag</code> endpoint from the running app.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Loaded Hosting Startup Assemblies</h3>
+            </div>
+            <div class="panel-body">
+                <h2>Assemblies</h2>
+                <ul>
+                    @foreach (var assembly in Model.LoadedHostingStartupAssemblies)
+                    {
+                        <li>@assembly</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+

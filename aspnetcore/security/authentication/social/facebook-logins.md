@@ -20,9 +20,9 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ## Create the app in Facebook
 
-*  Navigate to the [Facebook for Developers](https://developers.facebook.com) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
+*  Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
-* Tap the **Create App** button in the upper right corner to create a new App ID.
+* Tap the **Add a New App** button in the upper right corner to create a new App ID.
 
    ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
@@ -30,10 +30,10 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
    ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* When presented with **Select a product** prompt, Click **Set Up** on the **Facebook Login** card.
+* On the **Select a product** page, click **Set Up** on the **Facebook Login** card.
 
    ![Product Setup page](index/_static/FBProductSetup.png)
-
+  
 * The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu on the left:
 
    ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
@@ -67,13 +67,6 @@ dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 
 ## Configure Facebook Authentication
 
-The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
-
-* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with .NET Core CLI, execute the following in your project directory:
-
-   `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
@@ -93,6 +86,13 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 [!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package.
+
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with .NET Core CLI, execute the following in your project directory:
+
+   `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
 
 Add the Facebook middleware in the `Configure` method in *Startup.cs* file:
 

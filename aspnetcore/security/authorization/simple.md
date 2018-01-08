@@ -34,21 +34,21 @@ public class AccountController : Controller
 }
 ```
 
-If you want to apply authorization to an action rather than the controller simply apply the `AuthorizeAttribute` attribute to the action itself:
+If you want to apply authorization to an action rather than the controller, apply the `AuthorizeAttribute` attribute to the action itself:
 
 ```csharp
 public class AccountController : Controller
+{
+   public ActionResult Login()
    {
-       public ActionResult Login()
-       {
-       }
-
-       [Authorize]
-       public ActionResult Logout()
-       {
-       }
    }
-   ```
+
+   [Authorize]
+   public ActionResult Logout()
+   {
+   }
+}
+```
 
 Now only authenticated users can access the `Logout` function.
 

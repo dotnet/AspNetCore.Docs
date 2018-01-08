@@ -40,8 +40,6 @@ Copy the ASP.NET Core app to the server using whatever tool (SCP, FTP, etc.) int
  - From the command line, run `dotnet yourapp.dll`
  - In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux. 
  
-**Note:** Use [Yeoman](xref:client-side/yeoman) to create a new ASP.NET Core app for a new project.
-
 ## Configure a reverse proxy server
 
 A reverse proxy is a common setup for serving dynamic web applications. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core application.
@@ -118,7 +116,7 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection keep-alive;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         proxy_cache_bypass $http_upgrade;
     }
 }
@@ -153,7 +151,8 @@ Restart=always
 RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
 SyslogIdentifier=dotnet-example
 User=www-data
-Environment=ASPNETCORE_ENVIRONMENT=Production 
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
 [Install]
 WantedBy=multi-user.target

@@ -60,7 +60,7 @@ A model is an object that represents the data in the app. In this case, the only
 
 Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Note: The model classes go anywhere in in the project. The *Models* folder is used by convention for model classes.
+Note: The model classes go anywhere in the project. The *Models* folder is used by convention for model classes.
 
 Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoItem` and select **Add**.
 

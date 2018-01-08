@@ -57,9 +57,19 @@ so that the form fields remain filled with the user's input for their convenienc
 
 In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.
 
-When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. If binding fails, MVC does not throw an error. You can query for model state errors by checking the `ModelState.IsValid` property.
+When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. Otherwise, the default model binding behavior sets parameters to their default values depending on their type:
 
-Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors property`. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
+* `T[]`: With the exception of arrays of type `byte[]`, binding sets parameters of type `T[]` to `Array.Empty<T>()`. Arrays of type `byte[]` are set to `null`.
+
+* Reference Types: Binding creates an instance of a class with the default constructor without setting properties. However, model binding sets `string` parameters to `null`.
+
+* Nullable Types: Nullable types are set to `null`. In the above example, model binding sets `id` to `null` since it is of type `int?`.
+
+* Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. Consider using model validation or nullable types rather than relying on default values.
+
+If binding fails, MVC does not throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
+
+Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors` property. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
 
 Additionally, there are some special data types that MVC must consider when performing model binding:
 

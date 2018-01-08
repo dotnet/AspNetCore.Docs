@@ -1,0 +1,14 @@
+{
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "StartupFeature/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/StartupFeature.dll": {}
+        }
+      }
+    }
+  }
+}

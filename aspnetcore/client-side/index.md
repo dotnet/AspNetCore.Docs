@@ -1,8 +1,8 @@
 ---
-title: Client-Side Development in ASP.NET Core
+title: Client-side development in ASP.NET Core
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,17 +12,18 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/index
 ---
-# Client-Side development in ASP.NET Core
+# Client-side development in ASP.NET Core
 
-- [Using Gulp](using-gulp.md)
-- [Using Grunt](using-grunt.md)
-- [Manage client-side packages with Bower](bower.md)
-- [Building beautiful, responsive sites with Bootstrap](bootstrap.md)
-- [Knockout.js MVVM Framework](knockout.md)
-- [Using AngularJS for Single Page Apps (SPAs)](angular.md)
-- [Using JavaScriptServices for Single Page Apps (SPAs)](spa-services.md)
-- [Styling applications with Less, Sass, and Font Awesome](less-sass-fa.md)
-- [Bundling and minification](bundling-and-minification.md)
+- [Using Gulp](xref:client-side/using-gulp)
+- [Using Grunt](xref:client-side/using-grunt)
+- [Manage client-side packages with Bower](xref:client-side/bower)
+- [Building beautiful, responsive sites with Bootstrap](xref:client-side/bootstrap)
+- [Styling applications with Less, Sass, and Font Awesome](xref:client-side/less-sass-fa)
+- [Bundling and minification](xref:client-side/bundling-and-minification)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
-- [Building Projects with Yeoman](yeoman.md)
-- [Using Browser Link](using-browserlink.md)
+- [Using Browser Link](xref:client-side/using-browserlink)
+- [Using JavaScriptServices for SPAs](xref:client-side/spa-services)
+- [Using the SPA project templates (RC)](xref:spa/index)
+    - [Angular project template](xref:spa/angular)
+    - [React project template](xref:spa/react)
+    - [React with Redux project template](xref:spa/react-with-redux)

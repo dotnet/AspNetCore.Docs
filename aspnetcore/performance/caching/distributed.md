@@ -1,18 +1,16 @@
 ---
-title: Working with a Distributed Cache
+title: Working with a distributed cache in ASP.NET Core
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Learn how to use distributed caching to improve the performance and scalability of ASP.NET Core apps, especially when hosted in a cloud or server farm environment.
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
 ms.topic: article
-ms.assetid: 870f082d-6d43-453d-b311-45f3aeb4d2c5
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: performance/caching/distributed
 ---
-# Working with a distributed cache
+# Working with a distributed cache in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -20,7 +18,7 @@ Distributed caches can improve the performance and scalability of ASP.NET Core a
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/distributed/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## What is a Distributed Cache
+## What is a distributed cache
 
 A distributed cache is shared by multiple app servers (see [Caching Basics](memory.md#caching-basics)). The information in the cache is not stored in the memory of individual web servers, and the cached data is available to all of the app's servers. This provides several advantages:
 
@@ -81,7 +79,7 @@ The following code from *Startup.cs* shows the value being set:
 > [!NOTE]
 > Since `IDistributedCache` is configured in the `ConfigureServices` method, it is available to the `Configure` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
 
-## Using a Redis Distributed Cache
+## Using a Redis distributed cache
 
 [Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for your Azure-hosted ASP.NET Core apps. Your ASP.NET Core app configures the cache implementation using a `RedisDistributedCache` instance.
 
@@ -94,7 +92,7 @@ In the sample code, a `RedisCache` implementation is used when the server is con
 > [!NOTE]
 > To install Redis on your local machine, install the chocolatey package [https://chocolatey.org/packages/redis-64/](https://chocolatey.org/packages/redis-64/) and run `redis-server` from a command prompt.
 
-## Using a SQL Server Distributed Cache
+## Using a SQL Server distributed cache
 
 The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. To create SQL Server table you can use sql-cache tool, the tool creates a table with the name and schema you specify.
 
@@ -131,8 +129,13 @@ Like all cache implementations, your app should get and set cache values using a
 
 When deciding which implementation of `IDistributedCache` is right for your app, choose between Redis and SQL Server based on your existing infrastructure and environment, your performance requirements, and your team's experience. If your team is more comfortable working with Redis, it's an excellent choice. If your team prefers SQL Server, you can be confident in that implementation as well. Note that A traditional caching solution stores data in-memory which allows for fast retrieval of data. You should store commonly used data in a cache and store the entire data in a backend persistent store such as SQL Server or Azure Storage. Redis Cache is a caching solution which gives you high throughput and low latency as compared to SQL Cache.
 
-Additional resources:
+## Additional resources
 
-* [In memory caching](memory.md)
 * [Redis Cache on Azure](https://azure.microsoft.com/documentation/services/redis-cache/)
 * [SQL Database on Azure](https://azure.microsoft.com/documentation/services/sql-database/)
+* [In-memory caching](xref:performance/caching/memory)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Response caching](xref:performance/caching/response)
+* [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

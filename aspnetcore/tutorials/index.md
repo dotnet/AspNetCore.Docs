@@ -17,7 +17,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web applications
 
-[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
+[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a new Web UI app with ASP.NET Core 2.0.
 
 * [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
 * Create a Razor Pages web app with ASP.NET Core
@@ -33,7 +33,6 @@ The following step-by-step guides for developing ASP.NET Core applications are a
    * [Web app with Visual Studio Code on Mac or Linux](first-mvc-app-xplat/index.md)
 
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
 * [Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)

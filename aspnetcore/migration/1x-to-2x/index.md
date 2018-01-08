@@ -118,7 +118,7 @@ To remove the default providers added by `WebHostBuilder.CreateDefaultBuilder`, 
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration).
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 <a name="db-init-code"></a>
 

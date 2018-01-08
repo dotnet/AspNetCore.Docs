@@ -5,14 +5,16 @@ description:
 keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/15/2017
+ms.date: 10/15/2017
 ms.topic: get-started-article
 ms.assetid: 9918be4c-2096-404f-9b2a-ed5cde90042a
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/index
 ---
-# Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
+# Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
+
+Note: A Razor Pages version of this tutorial is available [here](xref:data/ef-rp/intro). The Razor Pages version is easier to follow and covers more EF features.
 
 This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2017.
 
