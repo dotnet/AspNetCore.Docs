@@ -18,9 +18,9 @@ Microsoft ASP.NET WebHooks is part of the Microsoft ASP.NET family of modules an
 
 This online documentation which you are reading now is also hosted as [Open Source on GitHub](http://docs.asp.net/en/latest/contribute/style-guide.html#style-guide) and also accepts contributions.
 
-## Nuget Packages
+## NuGet packages
 
-The [Nuget packages](https://nuget.org/packages?q=Microsoft.AspNet.WebHooks) are devided into three parts:
+The [NuGet packages](https://nuget.org/packages?q=Microsoft.AspNet.WebHooks) are divided into three parts:
 
 * [Common](https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Common): A common package that is shared between senders and receivers.
 
