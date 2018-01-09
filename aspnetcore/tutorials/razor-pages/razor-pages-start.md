@@ -36,10 +36,7 @@ There are three versions of this tutorial:
   ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
 
-> [!NOTE]
-> If you want to use ASP.NET Core on the .NET Framework, you must first select **.NET Framework** from the leftmost dropdown in the dialog, then you can select the desired ASP.NET Core version.
-
-  ![Web Application (Razor Pages)](razor-pages-start/_static/np2.png)
+  [!INCLUDE[install 2.0](../../includes/dotnetcore-on-dotnetfx-vs.md)]
 
 The Visual Studio template creates a starter project:
 
@@ -53,6 +50,9 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 [!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
+
+>[!div class="step-by-step"]
+[Next: Adding a model](xref:tutorials/razor-pages/model)
 
 >[!div class="step-by-step"]
 [Next: Adding a model](xref:tutorials/razor-pages/model)
