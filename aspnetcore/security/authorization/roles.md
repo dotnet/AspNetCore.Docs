@@ -20,9 +20,9 @@ When an identity is created it may belong to one or more roles. For example, Tra
 
 ## Adding role checks
 
-Role based authorization checks are declarative&mdash;the developer embeds them within their code, against a controller or an action within a controller, specifying roles which the current user must be a member of to access the requested resource.
+Role-based authorization checks are declarative&mdash;the developer embeds them within their code, against a controller or an action within a controller, specifying roles which the current user must be a member of to access the requested resource.
 
-For example, the following code would limit access to any actions on the `AdministrationController` to users who are a member of the `Administrator` group.
+For example, the following code limits access to any actions on the `AdministrationController` to users who are a member of the `Administrator` role:
 
 ```csharp
 [Authorize(Roles = "Administrator")]
