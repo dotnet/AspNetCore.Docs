@@ -16,14 +16,11 @@ namespace AspNetCoreService
             var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
             var pathToContentRoot = Path.GetDirectoryName(pathToExe);
 
-            var host = new WebHostBuilder()
-            .UseKestrel()
-            .UseContentRoot(pathToContentRoot)
-            .UseIISIntegration()
-            .UseStartup<Startup>()
-            .UseApplicationInsights()
-            .Build();
-
+            var host = WebHost.CreateDefaultBuilder(args)
+                              .UseContentRoot(pathToContentRoot)
+                              .UseStartup<Startup>()
+                              .UseApplicationInsights()
+                              .Build();
             host.RunAsService();
         }
         #endregion
@@ -45,13 +42,11 @@ namespace AspNetCoreService
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
             }
 
-            var host = new WebHostBuilder()
-            .UseKestrel()
-            .UseContentRoot(pathToContentRoot)
-            .UseIISIntegration()
-            .UseStartup<Startup>()
-            .UseApplicationInsights()
-            .Build();
+           var host = WebHost.CreateDefaultBuilder(args)
+                              .UseContentRoot(pathToContentRoot)
+                              .UseStartup<Startup>()
+                              .UseApplicationInsights()
+                              .Build();
 
             if (isService)
             {
