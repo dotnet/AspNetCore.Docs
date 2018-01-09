@@ -115,7 +115,7 @@ Original Request using `AddRedirectToHttpsPermanent`: `/secure`
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 ### URL rewrite
-Use `AddRewrite` to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
+Use `AddRewrite` to create a rule for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
