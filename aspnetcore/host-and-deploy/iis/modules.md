@@ -15,7 +15,7 @@ uid: host-and-deploy/iis/modules
 
 By [Luke Latham](https://github.com/guardrex)
 
-ASP.NET Core applications are hosted by IIS in a reverse-proxy configuration. Some of the native IIS modules and all of the IIS managed modules aren't available to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the features of IIS native and managed modules.
+ASP.NET Core applications are hosted by IIS in a reverse proxy configuration. Some of the native IIS modules and all of the IIS managed modules aren't available to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the features of IIS native and managed modules.
 
 ## Native Modules
 

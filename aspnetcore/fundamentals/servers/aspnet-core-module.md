@@ -102,7 +102,7 @@ In ASP.NET Core 1.0, if you call `UseUrls`, call it **before** you call `UseIISI
 
 ### Configure ANCM options in Web.config
 
-Configuration for the ASP.NET Core Module is stored in the *Web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample Web.config code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module).
+Configuration for the ASP.NET Core Module is stored in the *web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample *web.config* code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module).
 
 ### Run with IIS Express in development
 
