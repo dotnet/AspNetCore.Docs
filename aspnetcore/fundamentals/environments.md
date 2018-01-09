@@ -56,7 +56,10 @@ When the application is launched with `dotnet run`, the first profile with `"com
 * IIS
 * Project (which launches Kestrel)
 
-When an app is launched with `dotnet run`, the hosting environment is displayed.
+When an app is launched with `dotnet run`:
+
+* *launchSettings.json* is read if available. `environmentVariables` settings in *launchSettings.json* override environment variables.
+* The hosting environment is displayed.
 
 The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json* file:
 
