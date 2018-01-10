@@ -24,6 +24,8 @@ The options pattern uses options classes to represent groups of related settings
 
 ## Basic options configuration
 
+Options configuration need to be registered with dependency injection by calling the `AddOptions()` method on an instance of type `IServiceCollection`, typically `services.AddOptions()`. The method `AddOptions()` is in the namespace `Microsoft.Extensions.DependencyInjection`.
+
 Basic options configuration is demonstrated as Example &num;1 in the [sample app](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
 
 An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
