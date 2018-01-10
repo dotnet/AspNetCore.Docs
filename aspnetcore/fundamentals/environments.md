@@ -91,7 +91,7 @@ These commands take effect only for the current window. When the window is close
 
 **web.config**
 
-See the *Setting environment variables* section of the [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module#setting-environment-variables) topic.
+See the *Setting environment variables* section of the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) topic.
 
 **Per IIS Application Pool**
 

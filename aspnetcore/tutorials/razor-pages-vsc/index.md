@@ -15,7 +15,7 @@ uid: tutorials/razor-pages-vsc/index
 
 # Create a Razor Pages web app with ASP.NET Core and Visual Studio Code
 
-This is a work in progress. We hope to have the series complete within two weeks.
+This is a work in progress.
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core using Visual Studio Code.
 

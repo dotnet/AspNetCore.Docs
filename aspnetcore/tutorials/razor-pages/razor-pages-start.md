@@ -5,13 +5,13 @@ description: Getting started with Razor Pages in ASP.NET Core
 keywords: ASP.NET Core,Razor Pages,Razor,MVC
 ms.author: riande
 manager: wpickett
-ms.date: 08/27/2017
+ms.date: 12/22/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/razor-pages/razor-pages-start
 ---
-# Getting started with Razor Pages in ASP.NET Core
+# Get started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -23,6 +23,8 @@ There are three versions of this tutorial:
 * MacOS: [Getting started with Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
 * macOS, Linux, and Windows: [Getting started with Razor Pages in ASP.NET Core with Visual Studio Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Prerequisites
 
 [!INCLUDE[install 2.0](../../includes/install2.0.md)]
@@ -33,7 +35,8 @@ There are three versions of this tutorial:
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
   ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
-  ![Web Application (Razor Pages)](../../mvc/razor-pages/index/_static/np2.png)
+
+  [!INCLUDE[install 2.0](../../includes/dotnetcore-on-dotnetfx-vs.md)]
 
 The Visual Studio template creates a starter project:
 
@@ -47,6 +50,9 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 [!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
+
+>[!div class="step-by-step"]
+[Next: Adding a model](xref:tutorials/razor-pages/model)
 
 >[!div class="step-by-step"]
 [Next: Adding a model](xref:tutorials/razor-pages/model)

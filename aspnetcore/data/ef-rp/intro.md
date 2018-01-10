@@ -26,6 +26,8 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
+Familiarity with [Razor Pages](xref:mvc/razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
+
 ## Troubleshooting
 
 If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots) or [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](xref:data/ef-mvc/advanced#common-errors). If you don't find what you need there, you can post a question to StackOverflow.com for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
@@ -65,9 +67,9 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 * Add menu entries for **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Contact** menu entry.
 
-The changes are highlighted.
+The changes are highlighted. (All the markup is *not* displayed.)
 
-[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-39,47&range=1-50)]
+[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47&range=1-50)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
@@ -247,6 +249,14 @@ The system cannot find the file specified.
 
 Run the command again and leave a comment at the bottom of the page.
 
+If you get the error:
+  ```
+No executable found matching command "dotnet-aspnet-codegenerator"
+  ```
+
+Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+
+
 Build the project. The build generates errors like the following:
 
  `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
@@ -275,7 +285,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* DB files are in the *C:\Users\<yourusername>* folder.
+The *.mdf* and *.ldf* DB files are in the *C:\Users\\<yourusername>* folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 

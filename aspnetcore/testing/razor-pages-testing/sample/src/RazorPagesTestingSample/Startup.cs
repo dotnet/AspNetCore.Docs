@@ -1,9 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using RazorPagesTestingSample.Data;
 
 namespace RazorPagesTestingSample
@@ -16,21 +14,12 @@ namespace RazorPagesTestingSample
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AppDbContext db, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AppDbContext db)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-
-                try
-                {
-                    db.Initialize();
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "An error occurred seeding the database.");
-                }
             }
             else
             {

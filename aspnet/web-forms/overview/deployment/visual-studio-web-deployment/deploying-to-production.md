@@ -37,7 +37,7 @@ If you don't already have an Azure account, you can create a free trial account 
 ## Create a staging environment
 
 > [!NOTE]
-> Since this tutorial was written, Azure App Service added a new feature to automate many of the processes around having staging and production environments. See [Set up staging environments for web apps in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/).
+> Since this tutorial was written, Azure App Service added a new feature to automate many of the processes for creating staging and production environments. See [Set up staging environments for web apps in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-staged-publishing/).
 
 
 As explained in the [Deploy to the Test Environment tutorial](deploying-to-iis.md), the most reliable test environment is a web site at the hosting provider that's just like the production web site. At many hosting providers you would have to weigh the benefits of this against significant additional cost, but in Azure you can create an additional free web app as your staging app. You also need a database, and the additional expense for that over the expense of your production database will be either none or minimal. In Azure you pay for the amount of database storage you use rather than for each database, and the amount of additional storage you'll use in staging will be minimal.

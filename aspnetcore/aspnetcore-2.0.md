@@ -139,7 +139,7 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 ## Other documentation updates for 2.0
 
-* [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs)
+* [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
 * [Key Management](xref:security/data-protection/implementation/key-management)
 * [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
 * [Configuring Twitter authentication](xref:security/authentication/twitter-logins)

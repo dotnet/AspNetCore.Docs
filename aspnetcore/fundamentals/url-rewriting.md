@@ -115,7 +115,7 @@ Original Request using `AddRedirectToHttpsPermanent`: `/secure`
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 ### URL rewrite
-Use `AddRewrite` to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
+Use `AddRewrite` to create a rule for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -240,7 +240,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:hosting/iis-modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
 #### Unsupported features
 

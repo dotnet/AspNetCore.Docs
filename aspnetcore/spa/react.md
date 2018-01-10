@@ -1,7 +1,7 @@
 ---
 title: Use the React project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) preview project template for React and create-react-app.
+description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for React and create-react-app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
@@ -12,10 +12,10 @@ ms.technology: aspnet
 ms.topic: article
 uid: spa/react
 ---
-# Use the React project template (preview)
+# Use the React project template (release candidate)
 
 > [!NOTE]
-> This documentation is not about the released React project template. **This documentation is about the preview version of the React template.** We hope to ship the released version in early 2018.
+> This documentation is not about the released React project template. **This documentation is about the release candidate of the React template.** We hope to ship the released version in early 2018.
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -73,7 +73,7 @@ In development, the app runs in a mode optimized for developer convenience. For 
 
 In production, serve a version of your app that is optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, transpiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
 
-You can use standard [ASP.NET Core publish and deployment methods](xref:publishing/index).
+You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
 ## Run the CRA server independently
 

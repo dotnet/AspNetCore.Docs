@@ -53,6 +53,6 @@ namespace MvcApplication1.Models
     public interface IProductService
     {
         bool CreateProduct(Product productToCreate);
-        System.Collections.Generic.IEnumerable<Product> ListProducts();
+        IEnumerable<Product> ListProducts();
     }
 }
