@@ -43,7 +43,7 @@ ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. This al
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
-ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#building-web-apis) and [web apps](xref:tutorials/index#building-web-applications):
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#build-web-apis) and [web apps](xref:tutorials/index#build-web-apps):
 
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](testing/index.md).
 * [Razor Pages](xref:mvc/razor-pages/index) (new in ASP.NET Core 2.0) is a page-based programming model that makes building web UI easier and more productive.
