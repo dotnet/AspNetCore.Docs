@@ -5,7 +5,7 @@ description: Learn how to optimize static resources in an ASP.NET Core web appli
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/01/2017
+ms.date: 01/10/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
@@ -70,7 +70,7 @@ The MVC and Razor Pages project templates provide a *bundleconfig.json* configur
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
 
-Bundle options include:
+Configuration options include:
 
 * `outputFileName`: The name of the bundle file to output. Can contain a relative path from the *bundleconfig.json* file. **required**
 * `inputFiles`: An array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
@@ -86,6 +86,9 @@ Bundle options include:
 ## Build-time execution of bundling and minification
 
 The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package enables the execution of bundling and minification at build time. The package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time. The *bundleconfig.json* file is analyzed by the build process to produce the output files based on the defined configuration.
+
+> [!NOTE]
+> BuildBundlerMinifier is a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues). 
 
 # [Visual Studio](#tab/visual-studio) 
 
