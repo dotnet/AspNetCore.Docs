@@ -16,6 +16,8 @@ uid: security/authorization/index
 
 * [Introduction](introduction.md)
 
+* [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
+
 * [Simple authorization](simple.md)
 
 * [Role-based authorization](roles.md)
