@@ -5,7 +5,7 @@ description: Learn how to activate middleware with nonconforming containers in A
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 12/18/2017
+ms.date: 01/09/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -17,14 +17,12 @@ By [Luke Latham](https://github.com/guardrex)
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation with nonconforming containers.
 
-This approach creates a middleware instance that's created and released via a middleware factory. The factory is registered as a scoped service with the app's container.
-
-`UseMiddleware` extension methods check if the middleware's registered type implements `IMiddleware`. If it does, it automatically uses the `IMiddlewareFactory` to resolve the `IMiddleware` instead of using the convention-based middleware activation logic. 
+`UseMiddleware` extension methods check if the middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The factory is registered as a scoped service with the app's service container.
 
 Benefits:
 
 * Automatic middleware activation with nonconforming containers
-* Strong middleware typing as `IMiddleware`
+* Strong typing of middleware
 * Activation per request (injection of scoped services)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -51,7 +49,7 @@ Note that it isn't possible to pass objects with `UseMiddleware` as it is with c
 public static IApplicationBuilder UseRequestCulture(
     this IApplicationBuilder builder, bool option)
 {
-    // Passing option as an argument won't work and throws a
+    // Passing 'option' as an argument won't work and throws a
     // NotSupportedException at runtime.
     return builder.UseMiddleware<RequestCultureMiddleware>(option);
 }
