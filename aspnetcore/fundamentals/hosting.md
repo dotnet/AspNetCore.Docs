@@ -36,7 +36,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
   * Environment variables.
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
-* When running behind IIS, enables [IIS integration](xref:publishing/iis). Configures the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse-proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [the IIS options section of Host ASP.NET Core on Windows with IIS](xref:publishing/iis#iis-options).
+* When running behind IIS, enables [IIS integration](xref:host-and-deploy/iis/index). Configures the base path and port the server listens on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [the IIS options section of Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index#iis-options).
 
 The *content root* determines where the host searches for content files, such as MVC view files. When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
@@ -55,7 +55,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
 
 The *content root* determines where the host searches for content files, such as MVC view files. The default content root is obtained for `UseContentRoot` by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory?view=netcore-1.1). When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
-To use IIS as a reverse proxy, call [UseIISIntegration](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions) as part of building the host. `UseIISIntegration` doesn't configure a *server*, like [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1) does. `UseIISIntegration` configures the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to create a reverse-proxy between Kestrel and IIS. To use IIS with ASP.NET Core, `UseKestrel` and `UseIISIntegration` must be specified. `UseIISIntegration` only activates when running behind IIS or IIS Express. For more information, see [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module).
+To use IIS as a reverse proxy, call [UseIISIntegration](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions) as part of building the host. `UseIISIntegration` doesn't configure a *server*, like [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1) does. `UseIISIntegration` configures the base path and port the server listens on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to create a reverse proxy between Kestrel and IIS. To use IIS with ASP.NET Core, `UseKestrel` and `UseIISIntegration` must be specified. `UseIISIntegration` only activates when running behind IIS or IIS Express. For more information, see [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module).
 
 A minimal implementation that configures a host (and an ASP.NET Core app) includes specifying a server and configuration of the app's request pipeline:
 
@@ -261,7 +261,7 @@ This feature is unavailable in ASP.NET Core 1.x.
 
 ### Prevent Hosting Startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Add app features from an external assembly using IHostingStartup](xref:hosting/ihostingstartup) for more information.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Add app features from an external assembly using IHostingStartup](xref:host-and-deploy/ihostingstartup) for more information.
 
 **Key**: preventHostingStartup  
 **Type**: *bool* (`true` or `1`)  
@@ -903,7 +903,7 @@ For more information, see [Announcements: Microsoft.Extensions.PlatformAbstracti
 
 ## Additional resources
 
-* [Publish to Windows using IIS](../publishing/iis.md)
-* [Publish to Linux using Nginx](../publishing/linuxproduction.md)
-* [Publish to Linux using Apache](../publishing/apache-proxy.md)
-* [Host in a Windows Service](xref:hosting/windows-service)
+* [Host on Windows with IIS](xref:host-and-deploy/iis/index)
+* [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
+* [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
+* [Host in a Windows Service](xref:host-and-deploy/windows-service)

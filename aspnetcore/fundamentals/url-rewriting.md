@@ -240,7 +240,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:hosting/iis-modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
 #### Unsupported features
 

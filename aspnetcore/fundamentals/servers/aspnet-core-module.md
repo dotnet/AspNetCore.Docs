@@ -49,7 +49,7 @@ ANCM has a few other functions as well:
 
 ## How to use ANCM in ASP.NET Core apps
 
-This section provides an overview of the process for setting up an IIS server and ASP.NET Core application. For detailed instructions, see [Publishing to IIS](../../publishing/iis.md).
+This section provides an overview of the process for setting up an IIS server and ASP.NET Core application. For detailed instructions, see [Host on Windows with IIS](xref:host-and-deploy/iis/index).
 
 ### Install ANCM
 
@@ -102,7 +102,7 @@ In ASP.NET Core 1.0, if you call `UseUrls`, call it **before** you call `UseIISI
 
 ### Configure ANCM options in Web.config
 
-Configuration for the ASP.NET Core Module is stored in the *Web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample Web.config code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md).
+Configuration for the ASP.NET Core Module is stored in the *web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample *web.config* code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module).
 
 ### Run with IIS Express in development
 
@@ -120,5 +120,5 @@ For more information, see the following resources:
 
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
 * [ASP.NET Core Module source code](https://github.com/aspnet/AspNetCoreModule)
-* [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md)
-* [Publishing to IIS](../../publishing/iis.md)
+* [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module)
+* [Host on Windows with IIS](xref:host-and-deploy/iis/index)
