@@ -88,7 +88,7 @@ Configuration options include:
 The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package enables the execution of bundling and minification at build time. The package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time. The *bundleconfig.json* file is analyzed by the build process to produce the output files based on the defined configuration.
 
 > [!NOTE]
-> BuildBundlerMinifier is a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues). 
+> BuildBundlerMinifier belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
 
 # [Visual Studio](#tab/visual-studio) 
 
@@ -174,6 +174,9 @@ It's possible to run the bundling and minification tasks on an ad hoc basis, wit
 
 [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
 
+> [!NOTE]
+> BundlerMinifier.Core belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
+
 This package extends the .NET Core CLI to include the *dotnet-bundle* tool. The following command can be executed in the Package Manager Console (PMC) window or in a command shell:
 
 ```console
@@ -241,6 +244,9 @@ There are cases in which an app's bundling and minification workflow requires ad
 ### Use the Bundler & Minifier extension
 
 The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension handles the conversion to Gulp.
+
+> [!NOTE]
+> The Bundler & Minifier extension belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
 
 Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Convert To Gulp...**:
 
