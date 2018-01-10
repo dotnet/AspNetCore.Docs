@@ -18,28 +18,28 @@ uid: security/authentication/index
 
 * [Introduction to Identity](identity.md)
 
-* [Enabling authentication using Facebook, Google and other external providers](social/index.md)
+* [Enable authentication using Facebook, Google, and other external providers](social/index.md)
 
-* [Enabling QR Code generation in ASP.NET identity](identity-enable-qrcodes.md)
+* [Enable QR code generation in Identity](identity-enable-qrcodes.md)
 
 * [Configure Windows Authentication](windowsauth.md)
 
-* [Account Confirmation and Password Recovery](accconfirm.md)
+* [Account confirmation and password recovery](accconfirm.md)
 
 * [Two-factor authentication with SMS](2fa.md)
 
-* [Using Cookie Authentication without ASP.NET Core Identity](cookie.md)
+* [Use cookie authentication without Identity](cookie.md)
 
 * [Azure Active Directory](azure-active-directory/index.md)
 
-  * [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
+  * [Integrate Azure AD into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
 
-  * [Calling an ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+  * [Call an ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 
-  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
+  * [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 
-* [Securing ASP.NET Core apps with IdentityServer4](http://docs.identityserver.io/en/release/)
+* [Secure ASP.NET Core apps with IdentityServer4](http://docs.identityserver.io/en/release/)
 
-* [Securing ASP.NET Core apps with Azure App Service Authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
+* [Secure ASP.NET Core apps with Azure App Service Authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
 
 * [Articles based on projects created with individual user accounts](xref:security/authentication/individual)

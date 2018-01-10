@@ -16,15 +16,15 @@ uid: security/authorization/index
 
 * [Introduction](introduction.md)
 
-* [Simple Authorization](simple.md)
+* [Simple authorization](simple.md)
 
-* [Role based Authorization](roles.md)
+* [Role-based authorization](roles.md)
 
-* [Claims-Based Authorization](claims.md)
+* [Claims-based authorization](claims.md)
 
-* [Custom policy-based authorization](policies.md)
+* [Policy-based authorization](policies.md)
 
-* [Dependency Injection in requirement handlers](dependencyinjection.md)
+* [Dependency injection in requirement handlers](dependencyinjection.md)
 
 * [Resource-based authorization](resourcebased.md)
 
