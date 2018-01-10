@@ -29,7 +29,7 @@ namespace MvcMovie.Controllers
             var movies = from m in db.Movies
                          select m;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }

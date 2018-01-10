@@ -16,15 +16,17 @@ uid: security/authorization/index
 
 * [Introduction](introduction.md)
 
-* [Simple Authorization](simple.md)
+* [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
 
-* [Role based Authorization](roles.md)
+* [Simple authorization](simple.md)
 
-* [Claims-Based Authorization](claims.md)
+* [Role-based authorization](roles.md)
 
-* [Custom policy-based authorization](policies.md)
+* [Claims-based authorization](claims.md)
 
-* [Dependency Injection in requirement handlers](dependencyinjection.md)
+* [Policy-based authorization](policies.md)
+
+* [Dependency injection in requirement handlers](dependencyinjection.md)
 
 * [Resource-based authorization](resourcebased.md)
 

@@ -77,7 +77,7 @@ namespace ChangeTokenSample.Utilities
                     }
                     else
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, runCount)));
+                        await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, runCount)));
                         runCount++;
                     }
                 }
