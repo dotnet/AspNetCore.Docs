@@ -17,14 +17,14 @@ namespace MvcMovie.Controllers
         // GET: Movies
         public ActionResult Index(string movieGenre, string searchString)
         {
-            var GenreLst = new List<string>();
+            var genreLst = new List<string>();
 
-            var GenreQry = from d in db.Movies
+            var genreQry = from d in db.Movies
                            orderby d.Genre
                            select d.Genre;
 
-            GenreLst.AddRange(GenreQry.Distinct());
-            ViewBag.movieGenre = new SelectList(GenreLst);
+            genreLst.AddRange(genreQry.Distinct());
+            ViewBag.MovieGenre = new SelectList(genreLst);
 
             var movies = from m in db.Movies
                          select m;
