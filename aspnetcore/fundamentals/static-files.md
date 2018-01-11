@@ -23,7 +23,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within your project's web root directory. The default directory is (*\<content_root>/wwwroot*). See [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) for more information.
+Static files are stored within your project's web root directory. The default directory is (*\<content_root>/wwwroot*). See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
@@ -35,7 +35,7 @@ The `WebHost.CreateDefaultBuilder` method sets the content root to the current d
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Set the content root to the current directory by invoking `UseContentRoot` inside of `Program.Main`:
+Set the content root to the current directory by invoking [UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseContentRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) inside of `Program.Main`:
 
 [!code-csharp[](static-files/samples/1x/Program.cs?name=snippet_ProgramClass&highlight=7)]
 
@@ -64,7 +64,7 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 The parameterless `UseStaticFiles` method overload marks the files in web root as servable.
 
 > [!NOTE]
-> The web root directory can be changed via the[UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method.
+> The web root directory can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method.
 
 ### Serve files outside of web root
 
@@ -85,7 +85,7 @@ A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.pn
 
 ### Set HTTP response headers
 
-The `StaticFileOptions` object can be used to set HTTP response headers. In addition to configuring static file serving from the web root, the following code sets the `Cache-Control` header:
+A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) object can be used to set HTTP response headers. In addition to configuring static file serving from the web root, the following code sets the `Cache-Control` header:
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet1)]
 
@@ -104,11 +104,11 @@ The static file module doesn't provide authorization checks. Any files served by
 
 ## Enable directory browsing
 
-Directory browsing allows users of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the `UseDirectoryBrowser` method in `Startup.Configure`:
+Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) method in `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet1)]
 
-Add required services by invoking the `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
+Add required services by invoking the [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_) method from `Startup.ConfigureServices`:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet2)]
 
@@ -118,18 +118,18 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `UseStaticFiles` calls. The first one is required to serve the CSS, images, and JavaScript in the *wwwroot* folder. The second call is required for directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
+Note the two `UseStaticFiles` calls. The first call is required to serve the CSS, images, and JavaScript in the *wwwroot* folder. The second call is required for directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?highlight=3,5&name=snippet1)]
 
 ## Serve a default document
 
-Setting a default home page gives site visitors a place to start when visiting your site. In order for your web app to serve a default page without the user having to fully qualify the URI, call the `UseDefaultFiles` extension method from `Startup.Configure` as follows:
+Setting a default home page provides visitors a logical place to start when visiting your site. To serve a default page without the user having to fully qualify the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?highlight=3&name=snippet1)]
 
 > [!NOTE]
-> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
+> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable the static file middleware via `UseStaticFiles` to serve the file.
 
 With `UseDefaultFiles`, requests to a folder search for:
 
