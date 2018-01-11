@@ -23,7 +23,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within the web root (*\<content-root>/wwwroot*) folder. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information. Set the content root as the current directory so that your project's web root is accessible during development.
+Static files are stored within the web root (*\<content-root>/wwwroot*) folder. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information. Set the content root to the current directory so that your project's web root is accessible during development.
 
 [!code-csharp[](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 
@@ -56,7 +56,7 @@ A request can access the *test.png* file by configuring the static files middlew
 
 A request to `http://<app>/StaticFiles/test.png` serves the *test.png* file.
 
-`StaticFileOptions()` can set response headers. For example, the code below sets up static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
+`StaticFileOptions()` can set response headers. For example, the following code configures static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
 
 [!code-csharp[](../fundamentals/static-files/sample/StartupAddHeader.cs?name=snippet1)]
 
@@ -149,7 +149,7 @@ If `enableDirectoryBrowsing` is set to `true`, you are required to invoke the `A
 
 [!code-csharp[](static-files/sample/StartupUseFileServer.cs?name=snippet2)]
 
-Using the file hierarchy and code above:
+Using the file hierarchy and preceding code:
 
 | URI            |                             Response  |
 | ------- | ------|
@@ -182,7 +182,7 @@ The following code enables serving unknown types and renders the unknown file as
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 
 > [!WARNING]
-> Enabling `ServeUnknownFileTypes` is a security risk. Using it is discouraged. `FileExtensionContentTypeProvider` (explained above) provides a safer alternative to serving files with non-standard extensions.
+> Enabling `ServeUnknownFileTypes` is a security risk. Consequently, using it is discouraged. [FileExtensionContentTypeProvider](#FileExtensionContentTypeProvider) provides a safer alternative to serving files with non-standard extensions.
 
 ### Considerations
 
@@ -201,7 +201,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module (ANCM) isn't correctly configured (for example, if *web.config* wasn't deployed), static files are served.
 
-* Code files (including C# and Razor) should be placed outside of the app project's web root (*wwwroot* by default). A clean separation is therefore created between the app's client-side content and server-based code, which prevents server-side code from being leaked.
+* Place code files (including *.cs* and *.cshtml*) outside of the app project's web root. A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
 ## Additional resources
 
