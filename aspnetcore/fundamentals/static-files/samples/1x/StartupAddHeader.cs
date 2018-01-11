@@ -19,6 +19,8 @@ namespace StaticFiles
             {
                 OnPrepareResponse = ctx =>
                 {
+                    // Requires the following import:
+                    // using Microsoft.AspNetCore.Http;
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=600");
                 }
             });

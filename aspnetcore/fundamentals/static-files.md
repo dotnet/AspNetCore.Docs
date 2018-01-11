@@ -85,11 +85,13 @@ A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.pn
 
 ### Set HTTP response headers
 
-The `StaticFileOptions` object can be used to set HTTP response headers. For example, the following code configures static file serving from the *wwwroot* folder. It also sets the `Cache-Control` header to make the files publicly cacheable for 10 minutes (600 seconds):
+The `StaticFileOptions` object can be used to set HTTP response headers. In addition to configuring static file serving from the web root, the following code sets the `Cache-Control` header:
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet1)]
 
-The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method is available from the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package. Add `using Microsoft.AspNetCore.Http;` to your C# file if the method is unavailable.
+The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
+
+The files have been made publicly cacheable for 10 minutes (600 seconds):
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
@@ -98,7 +100,6 @@ The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.he
 The static file module doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. To serve files based on authorization:
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
-
 * Serve them through a controller action, returning a `FileResult` where authorization is applied
 
 ## Enable directory browsing
