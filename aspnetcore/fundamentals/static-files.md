@@ -43,14 +43,30 @@ Set the content root to the current directory by invoking `UseContentRoot` insid
 
 Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder, including *css*, *images*, and *js*. The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
-Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files. Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project, and invoke the `UseStaticFiles` method within `Startup.Configure`:
+Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project.
+
+---
+
+### Serve files inside of web root
+
+Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method within `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
-The `UseStaticFiles` method call marks the files in web root as servable. Later, I'll show how to make other directory contents servable with `UseStaticFiles`.
+The parameterless `UseStaticFiles` method overload marks the files in web root as servable. Later, I'll show how to make other directory contents servable with `UseStaticFiles`.
 
 > [!NOTE]
-> The web root directory can be changed via `UseWebRoot`.
+> The web root directory can be changed via the[UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method.
+
+### Serve files outside of web root
 
 Consider a project hierarchy in which the static files to be served reside outside of the web root:
 
@@ -66,6 +82,8 @@ A request can access the *test.png* file by configuring the static files middlew
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?highlight=5,6,7,8,9,10&name=snippet1)]
 
 A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.png* file.
+
+### Set HTTP response headers
 
 The `StaticFileOptions` object can be used to set HTTP response headers. For example, the following code configures static file serving from the *wwwroot* folder. It also sets the `Cache-Control` header to make the files publicly cacheable for 10 minutes (600 seconds):
 
