@@ -1,7 +1,7 @@
 ---
 title: Work with static files in ASP.NET Core
 author: rick-anderson
-description: Learn how to serve static files and configure static file hosting behaviors in an ASP.NET Core web app.
+description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 manager: wpickett
 ms.author: riande
@@ -15,9 +15,9 @@ uid: fundamentals/static-files
 ---
 # Work with static files in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients.
+Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients. Some configuration is required to enable to serving of these files.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -61,14 +61,14 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
-The parameterless `UseStaticFiles` method overload marks the files in web root as servable. Later, I'll show how to make other directory contents servable with `UseStaticFiles`.
+The parameterless `UseStaticFiles` method overload marks the files in web root as servable.
 
 > [!NOTE]
 > The web root directory can be changed via the[UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method.
 
 ### Serve files outside of web root
 
-Consider a project hierarchy in which the static files to be served reside outside of the web root:
+Consider a directory hierarchy in which the static files to be served reside outside of the web root:
 
 * **wwwroot**
   * **css**
@@ -77,7 +77,7 @@ Consider a project hierarchy in which the static files to be served reside outsi
 * **MyStaticFiles**
   * *test.png*
 
-A request can access the *test.png* file by configuring the static files middleware as follows:
+A request can access the *test.png* file by configuring the static file middleware as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?highlight=5,6,7,8,9,10&name=snippet1)]
 
