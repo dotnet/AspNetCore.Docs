@@ -43,7 +43,7 @@ Set the content root to the current directory by invoking `UseContentRoot` insid
 
 Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder, including *css*, *images*, and *js*. The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
-To serve static files, configure the [middleware](xref:fundamentals/middleware) which adds static files to the pipeline. Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project, and invoke the `UseStaticFiles` method within `Startup.Configure`:
+Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files. Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project, and invoke the `UseStaticFiles` method within `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
@@ -67,7 +67,7 @@ A request can access the *test.png* file by configuring the static files middlew
 
 A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.png* file.
 
-`StaticFileOptions()` can set response headers. For example, the following code configures static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
+The `StaticFileOptions` object can be used to set HTTP response headers. For example, the following code configures static file serving from the *wwwroot* folder. It also sets the `Cache-Control` header to make the files publicly cacheable for 10 minutes (600 seconds):
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet1)]
 
