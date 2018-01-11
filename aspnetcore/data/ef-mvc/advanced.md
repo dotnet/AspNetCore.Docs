@@ -188,7 +188,7 @@ This completes this series of tutorials on using the Entity Framework Core in an
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
-For information about how to deploy your web application after you've built it, see [Publishing and deployment](../../publishing/index.md).
+For information on how to deploy a web app, see [Host and deploy](xref:host-and-deploy/index).
 
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.microsoft.com/aspnet/core/).
 

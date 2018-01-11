@@ -15,7 +15,7 @@ uid: performance/index
 # Performance
 
 *   [Caching](caching/index.md)
-    *   [In Memory Caching](caching/memory.md)
-    *   [Working with a Distributed Cache](caching/distributed.md)
-    *   [Response Caching](caching/response.md)
-*   [Response Compression Middleware](response-compression.md)
+    *   [In-memory caching](caching/memory.md)
+    *   [Work with a distributed cache](caching/distributed.md)
+    *   [Response caching](caching/response.md)
+*   [Response compression middleware](response-compression.md)

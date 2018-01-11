@@ -32,7 +32,7 @@ There are three easy ways for you to try out Nano Server. When you sign in with 
 
 In this tutorial, we will be using the 2nd option, the pre-built Nano Server VHD from Windows Server 2016.
 
-Before proceeding with this tutorial, you will need the [published output](xref:hosting/directory-structure) of an existing ASP.NET Core application. Ensure your application is built to run in a **64-bit** process.
+Before proceeding with this tutorial, you will need the [published output](xref:host-and-deploy/directory-structure) of an existing ASP.NET Core application. Ensure your application is built to run in a **64-bit** process.
 
 ## Setting up the Nano Server instance
 
@@ -186,7 +186,7 @@ Example of how a *web.config* might look if *dotnet.exe* is **not** on the PATH:
 </configuration>
 ```
 
-Run the following commands in the remote session to create a new site in IIS for the published app on a different port than the default website. You also need to open that port to access the web. This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](xref:publishing/iis#application-pools).
+Run the following commands in the remote session to create a new site in IIS for the published app on a different port than the default website. You also need to open that port to access the web. This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](xref:host-and-deploy/iis/index#application-pools).
 
 ```PowerShell
 Import-module IISAdministration
@@ -200,4 +200,4 @@ New-NetFirewallRule -Name "AspNetCore Port 81 IIS" -DisplayName "Allow HTTP on T
 
 ## Running the application
 
-The published web app is accessible in a browser at `http://192.168.1.10:8000`. If you've set up logging as described in [Log creation and redirection](xref:hosting/aspnet-core-module#log-creation-and-redirection), you can view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+The published web app is accessible in a browser at `http://192.168.1.10:8000`. If you've set up logging as described in [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection), you can view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.

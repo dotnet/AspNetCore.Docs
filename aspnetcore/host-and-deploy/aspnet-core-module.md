@@ -2,15 +2,14 @@
 title: ASP.NET Core Module configuration reference
 author: guardrex
 description: How to configure the ASP.NET Core Module for hosting ASP.NET Core applications.
-keywords: ASP.NET Core,ancm,core module,iis,stdout logging,environment variable,env var,subapplication,subapp,appoffline,app_offline,502,schema
 ms.author: riande
 manager: wpickett
+ms.custom: mvc
 ms.date: 03/07/2017
 ms.topic: article
-ms.assetid: 5de0c8f7-50ce-4e2c-b3d4-a1bd9fdfcff5
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: hosting/aspnet-core-module
+uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
 
@@ -37,7 +36,7 @@ The ASP.NET Core Module is configured via a site or application *web.config* fil
 </configuration>
 ```
 
-The *web.config* example below is for a [self-contained deployment](https://docs.microsoft.com/dotnet/articles/core/deploying/#self-contained-deployments-scd) to the [Azure App Service](https://azure.microsoft.com/services/app-service/). For more information, see [Publishing to IIS](xref:publishing/iis). See [Configuration of sub-applications](xref:publishing/iis#configuration-of-sub-applications) for an important note pertaining to the configuration of *web.config* files in sub-applications.
+The *web.config* example below is for a [self-contained deployment](https://docs.microsoft.com/dotnet/articles/core/deploying/#self-contained-deployments-scd) to the [Azure App Service](https://azure.microsoft.com/services/app-service/). For more information, see [Host on Windows with IIS](xref:host-and-deploy/iis/index). See [Configuration of sub-applications](xref:host-and-deploy/iis/index#configuration-of-sub-applications) for an important note pertaining to the configuration of *web.config* files in sub-applications.
 
 ```xml
 <configuration>

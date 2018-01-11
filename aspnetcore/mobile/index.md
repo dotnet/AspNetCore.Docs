@@ -14,4 +14,4 @@ uid: mobile/index
 ---
 # Mobile
 
-*   [Creating Backend Services for Native Mobile Applications](native-mobile-backend.md)
+*   [Create backend services for native mobile apps](native-mobile-backend.md)

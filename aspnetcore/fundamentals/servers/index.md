@@ -74,11 +74,11 @@ When you use IIS or IIS Express as a reverse proxy for ASP.NET Core, the ASP.NET
 
 ### Nginx with Kestrel
 
-For information about how to use Nginx on Linux as a reverse proxy server for Kestrel, see [Publish to a Linux Production Environment](../../publishing/linuxproduction.md).
+For information about how to use Nginx on Linux as a reverse proxy server for Kestrel, see [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx).
 
 ### Apache with Kestrel
 
-For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
+For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Host on Linux with Apache](xref:host-and-deploy/linux-apache).
 
 ## HTTP.sys
 
@@ -126,16 +126,16 @@ For more information, see the following resources:
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
-- [Kestrel with Nginx](../../publishing/linuxproduction.md)
-- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
+- [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
 - [HTTP.sys](httpsys.md)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
-- [Kestrel with Nginx](../../publishing/linuxproduction.md)
-- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
+- [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
 - [WebListener](weblistener.md)
 
 ---

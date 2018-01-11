@@ -4,12 +4,12 @@ author: guardrex
 description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 ms.author: riande
 manager: wpickett
+ms.custom: mvc
 ms.date: 12/07/2017
 ms.topic: article
-ms.custom: mvc
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: hosting/ihostingstartup
+uid: host-and-deploy/ihostingstartup
 ---
 # Add app features from an external assembly using IHostingStartup in ASP.NET Core
 
@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding features to an app at startup from outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Discover loaded hosting startup assemblies
 
@@ -142,7 +142,7 @@ For examples of how to set environment variables for various operating systems, 
 
 ## Sample app
 
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
+The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
 
 * Registered services
 * Address: scheme, host, path base, path, query string
