@@ -1,11 +1,9 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace StaticFiles
 {
@@ -37,7 +35,7 @@ namespace StaticFiles
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
                 RequestPath = new PathString("/MyImages"),
                 ContentTypeProvider = provider
             });
@@ -45,7 +43,7 @@ namespace StaticFiles
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
                 RequestPath = new PathString("/MyImages")
             });
         }
