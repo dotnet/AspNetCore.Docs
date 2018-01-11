@@ -118,7 +118,7 @@ The following code changes the default file name to *mydefault.html*:
 
 `UseFileServer` combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
 
-The following code enables both static files and the default file to be served, but does not allow directory browsing:
+The following code enables both static files and the default file to be served. It doesn't allow directory browsing.
 
 ```csharp
 app.UseFileServer();
