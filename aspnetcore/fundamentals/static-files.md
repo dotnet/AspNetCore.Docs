@@ -59,7 +59,7 @@ Configure the [middleware](xref:fundamentals/middleware) which enables the servi
 
 Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method within `Startup.Configure`:
 
-[!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
 The parameterless `UseStaticFiles` method overload marks the files in web root as servable.
 
@@ -76,7 +76,7 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the *test.png* file by configuring the static file middleware as follows:
 
-[!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?highlight=5,6,7,8,9,10&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
 A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.png* file.
 
@@ -84,7 +84,7 @@ A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.pn
 
 A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) object can be used to set HTTP response headers. In addition to configuring static file serving from the web root, the following code sets the `Cache-Control` header:
 
-[!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet_ConfigureMethod)]
 
 The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
@@ -105,11 +105,11 @@ The static file middleware doesn't provide authorization checks. Any files serve
 
 Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) method in `Startup.Configure`:
 
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 
 Add required services by invoking the [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_) method from `Startup.ConfigureServices`:
 
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet2)]
+[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
 
 The preceding code allows directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*, with links to each file and folder:
 
@@ -119,13 +119,13 @@ See [Considerations](#considerations) on the security risks when enabling browsi
 
 Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
 
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?highlight=3,5&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=3,5)]
 
 ## Serve a default document
 
 Setting a default home page provides visitors a logical starting location when visiting your site. To serve a default page without the user having to fully qualify the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
 
-[!code-csharp[](static-files/samples/1x/StartupEmpty.cs?highlight=3&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
 
 > [!IMPORTANT]
 > `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable the static file middleware via `UseStaticFiles` to serve the file.
@@ -141,7 +141,7 @@ The first file found from the list is served as though the request were the full
 
 The following code changes the default file name to *mydefault.html*:
 
-[!code-csharp[](static-files/samples/1x/StartupDefault.cs?name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupDefault.cs?name=snippet_ConfigureMethod)]
 
 ## UseFileServer
 
@@ -172,11 +172,11 @@ See [Considerations](#considerations) on the security risks when enabling browsi
 
 To enable static files, default files, and directory browsing of `MyStaticFiles`, instantiate a `FileServerOptions` object as follows:
 
-[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?highlight=5,6,7,8,9,10,11&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureMethod&highlight=5-11)]
 
 When the `EnableDirectoryBrowsing` property value is `true`, you're required to invoke the `AddDirectoryBrowser` method in `Startup.ConfigureServices`:
 
-[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet2)]
+[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureServicesMethod)]
 
 Using the file hierarchy and preceding code, URLs resolve as follows:
 
@@ -196,7 +196,7 @@ If no default-named file exists in the *MyStaticFiles* directory, *http://\<serv
 
 The [FileExtensionContentTypeProvider](/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider) class contains a `Mappings` property serving as a mapping of file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed.
 
-[!code-csharp[](static-files/samples/1x/StartupFileExtensionContentTypeProvider.cs?highlight=3,4,5,6,7,8,9,10,11,12,19&name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
 See [MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml).
 
@@ -206,7 +206,7 @@ The static file middleware understands almost 400 known file content types. If t
 
 The following code enables serving unknown types and renders the unknown file as an image:
 
-[!code-csharp[](static-files/samples/1x/StartupServeUnknownFileTypes.cs?name=snippet1)]
+[!code-csharp[](static-files/samples/1x/StartupServeUnknownFileTypes.cs?name=snippet_ConfigureMethod)]
 
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 

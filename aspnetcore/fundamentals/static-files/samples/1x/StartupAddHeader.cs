@@ -12,7 +12,7 @@ namespace StaticFiles
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles(new StaticFileOptions()

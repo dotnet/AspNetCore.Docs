@@ -8,7 +8,7 @@ namespace StaticFiles
     public class StartupUseFileServer
     {
         // This method gets called by the runtime. Use this method to add services to the container.
-        #region snippet2
+        #region snippet_ConfigureServicesMethod
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDirectoryBrowser();
@@ -16,7 +16,7 @@ namespace StaticFiles
         #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles(); // For the wwwroot folder
