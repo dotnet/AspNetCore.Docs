@@ -67,13 +67,13 @@ ASP.NET Core 1.x apps need to call `AddJsonFile` and [AddEnvironmentVariables](h
 
 See [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and later.
 
-Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace configuration values set in the two previous providers. Reading environment variables last is considered a best practice. Production apps typically set configuration values with environment variables.
+Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace configuration values set in the two previous providers. Reading environment variables last is considered a best practice. Production apps frequently set configuration values with environment variables.
 
-The environment is typically set to `Development`, `Staging`, or `Production`. For more information see [Working with multiple environments](xref:fundamentals/environments).
+The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Working with multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
-* `IOptionsSnapshot` can reload configuration data when it changes. See [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot) for more information.
+* `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
 * If a colon (`:`) can't be used in environment variables on your system, replace the colon (`:`) with a double-underscore (`__`).
@@ -241,7 +241,7 @@ For *appsettings* files where:
 * Contain the same setting in the command-line arguments and an *appsettings* file.
 * The *appsettings* file containing the matching command-line argument is changed after the app starts.
 
-If all the preceding condions are true, the command-line arguments are overridden.
+If all the preceding conditions are true, the command-line arguments are overridden.
 
 ASP.NET Core 2.x app can use WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of ``CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
 
@@ -255,7 +255,7 @@ Create a [ConfigurationBuilder](/api/microsoft.extensions.configuration.configur
 
 ### Arguments
 
-Arguments passed on the command line must conform to one of two formats shown in the following table.
+Arguments passed on the command line must conform to one of two formats shown in the following table:
 
 | Argument format                                                     | Example        |
 | ------------------------------------------------------------------- | :------------: |
@@ -352,7 +352,7 @@ MachineName: DahliaPC
 Left: 1984
 ```
 
-After the switch mappings dictionary is created, it contains the data shown in the following table.
+After the switch mappings dictionary is created, it contains the data shown in the following table:
 
 | Key            | Value                 |
 | -------------- | --------------------- |
@@ -383,7 +383,7 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 * `IConfiguration` has two specializations:
   * `IConfigurationRoot` Used for the root node. Can trigger a reload.
   * `IConfigurationSection` Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
-  * Use [IConfigurationRoot](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.iconfigurationroot ) when reloading configuration or need access to each provider. Neither of these situations are common.
+  * Use [IConfigurationRoot](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.iconfigurationroot) when reloading configuration or need access to each provider. Neither of these situations are common.
 
 ## Additional resources
 
