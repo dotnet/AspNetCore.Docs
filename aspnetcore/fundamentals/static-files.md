@@ -31,7 +31,7 @@ The app's web host must be made aware of the content root directory.
 
 The `WebHost.CreateDefaultBuilder` method sets the content root to the current directory:
 
-[!code-csharp[](static-files/samples/2x/Sample2x/Program.cs?name=snippet_ProgramClass&highlight=9)]
+[!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=9)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
