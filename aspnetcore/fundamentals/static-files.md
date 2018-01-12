@@ -23,7 +23,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
+Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
@@ -62,9 +62,6 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
 The parameterless `UseStaticFiles` method overload marks the files in web root as servable.
-
-> [!NOTE]
-> The web root directory can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method.
 
 ### Serve files outside of web root
 
