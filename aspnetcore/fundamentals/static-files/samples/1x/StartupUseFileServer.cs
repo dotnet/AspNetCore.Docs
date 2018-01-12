@@ -21,7 +21,7 @@ namespace StaticFiles
         {
             app.UseStaticFiles(); // For the wwwroot folder
 
-            app.UseFileServer(new FileServerOptions()
+            app.UseFileServer(new FileServerOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
