@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace sample.Controllers
 {
@@ -19,6 +21,17 @@ namespace sample.Controllers
 
             return View();
         }
+
+        #region snippet_BannerImageAction
+        [Authorize]
+        public IActionResult BannerImage()
+        {
+            var file = Path.Combine(Directory.GetCurrentDirectory(), 
+                                    "MyStaticFiles", "images", "banner1.svg");
+
+            return new PhysicalFileResult(file, "image/svg+xml");
+        }
+        #endregion
 
         public IActionResult Error() => View();
     }
