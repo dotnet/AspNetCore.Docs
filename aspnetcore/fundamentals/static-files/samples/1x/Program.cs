@@ -13,7 +13,7 @@ namespace sample
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<StartupAddHeader>()
+                .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
 
