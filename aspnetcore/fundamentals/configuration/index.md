@@ -11,10 +11,6 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/configuration/index
 ---
-
-en-us/
-?view=aspnetcore-2.0
-
 # Configure an ASP.NET Core App
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
@@ -57,28 +53,28 @@ To work with arrays in JSON-formatted configuration sources, use an array index 
 Console.Write($"{Configuration["wizards:0:Name"]}, ");
 ```
 
-Name-value pairs written to the built-in [Configuration](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration?view=aspnetcore-2.0) providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
+Name-value pairs written to the built-in [Configuration](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration) providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. For more information, see the [Options](xref:fundamentals/configuration/options) topic.
 
-It's typical to have different configuration settings for different environments, for example, development, testing, and production. The [CreateDefaultBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder?view=aspnetcore-2.0#Microsoft_AspNetCore_WebHost_CreateDefaultBuilder_System_String___) method adds configuration providers for reading JSON files and system configuration sources:
+It's typical to have different configuration settings for different environments, for example, development, testing, and production. The [CreateDefaultBuilder](https://docs.microsoft.com/ dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder #Microsoft_AspNetCore_WebHost_CreateDefaultBuilder_System_String___) method adds configuration providers for reading JSON files and system configuration sources:
 
 * *appsettings.json*
 * *appsettings.\<EnvironmentName>.json*
 * Environment variables
 
-ASP.NET Core 1.x apps need to call `AddJsonFile` and [AddEnvironmentVariables](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables?view=aspnetcore-2.0#Microsoft_Extensions_Configuration_EnvironmentVariablesExtensions_AddEnvironmentVariables_Microsoft_Extensions_Configuration_IConfigurationBuilder_System_String_).
+ASP.NET Core 1.x apps need to call `AddJsonFile` and [AddEnvironmentVariables](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables #Microsoft_Extensions_Configuration_EnvironmentVariablesExtensions_AddEnvironmentVariables_Microsoft_Extensions_Configuration_IConfigurationBuilder_System_String_).
 
 See [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and later.
 
-Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace those set in the two previous providers. Reading environment variables last is considered a best practice. Production apps typically set configuration values with environment variables.
+Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace configuration values set in the two previous providers. Reading environment variables last is considered a best practice. Production apps typically set configuration values with environment variables.
 
-The environment is typically set to `Development`, `Staging`, or `Production`. See [Working with multiple environments](xref:fundamentals/environments) for more information.
+The environment is typically set to `Development`, `Staging`, or `Production`.  For more information see [Working with multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
 * `IOptionsSnapshot` can reload configuration data when it changes. See [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot) for more information.
-* Configuration keys are **not** case sensitive.
+* Configuration keys are **not** case-sensitive.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
 * If a colon (`:`) can't be used in environment variables on your system, replace the colon (`:`) with a double-underscore (`__`).
 
@@ -108,7 +104,7 @@ The following sample binds to the `AppSettings` class:
 
 [!code-csharp[Main](index/sample/ObjectGraph/Program.cs?highlight=15-16)]
 
-**ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convenient than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
+**ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding sample:
 
 ```csharp
 var appConfig = config.GetSection("App").Get<AppSettings>();
@@ -161,7 +157,7 @@ Add a `ConfigurationContext` to store and access the configured values:
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/ConfigurationContext.cs?name=snippet1)]
 
-Create an class that implements [IConfigurationSource](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
+Create a class that implements [IConfigurationSource](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs?highlight=7)]
 
@@ -185,7 +181,7 @@ Using the following *appsettings.json* file:
 
 [!code-json[Main](index/sample/CustomConfigurationProvider/appsettings.json)]
 
-The following is displayed:
+The following output is displayed:
 
 ```console
 key1=value_from_ef_1
@@ -239,10 +235,15 @@ Typical ASP.NET Core 2.x apps use the static convenience method `CreateDefaultBu
 
 `CreateDefaultBuilder` loads optional configuration from *appsettings.json*, *appsettings.{Environment}.json*, [user secrets](xref:security/app-secrets) (in the `Development` environment), environment variables, and command-line arguments. The CommandLine configuration provider is called last. Calling the provider last allows the command-line arguments passed at runtime to override configuration set by the other configuration providers called earlier.
 
-Note that for *appsettings* files that `reloadOnChange` is enabled. Command-line arguments are overridden if a matching configuration value in an *appsettings* file is changed after the app starts.
+For *appsettings* files where:
 
-> [!NOTE]
-> As an alternative to using the `CreateDefaultBuilder` method, creating a host using [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) and manually building configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder) is supported in ASP.NET Core 2.x. See the ASP.NET Core 1.x tab for more information.
+* `reloadOnChange` is enabled.
+* Contain the same setting in the command-line arguments and an *appsettings* file.
+* The *appsettings* file containing the matching command-line argument is changed after the app starts.
+
+If all the preceding condions are true, the command-line arguments are overridden.
+
+ASP.NET Core 2.x app can use WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of ``CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -382,6 +383,7 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 * `IConfiguration` has two specializations:
   * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
   * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
+  * Use [IConfigurationRoot](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.iconfigurationroot ) when reloading configuration or need access to each provider. Neither of these situations are common.
 
 ## Additional resources
 
