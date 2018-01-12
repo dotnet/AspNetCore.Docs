@@ -97,7 +97,7 @@ The files have been made publicly cacheable for 10 minutes (600 seconds):
 The static file middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
-* Serve them via an action method. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) object where authorization is applied:
+* Serve them via an action method to which authorization is applied. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) object:
 
 [!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
 
