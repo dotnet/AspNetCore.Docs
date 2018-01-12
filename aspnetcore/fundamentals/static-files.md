@@ -23,7 +23,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within your project's web root directory. The default directory is (*\<content_root>/wwwroot*). See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
+Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
