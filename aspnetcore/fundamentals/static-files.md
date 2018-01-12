@@ -100,7 +100,7 @@ The files have been made publicly cacheable for 10 minutes (600 seconds):
 The static file middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
-* Serve them via a Razor Pages handler method (2.x only) or an MVC controller action. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) where authorization is applied.
+* Serve them via a Razor Pages handler (2.x only) or an MVC action. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) where authorization is applied.
 
 ## Enable directory browsing
 
@@ -148,13 +148,13 @@ The following code changes the default file name to *mydefault.html*:
 
 [UseFileServer](/dotnet/api/microsoft.aspnetcore.builder.fileserverextensions.usefileserver#Microsoft_AspNetCore_Builder_FileServerExtensions_UseFileServer_Microsoft_AspNetCore_Builder_IApplicationBuilder_) combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
 
-The following code enables both static files and the default file to be served. It doesn't allow directory browsing.
+The following code enables the serving of static files and the default file. Directory browsing isn't enabled.
 
 ```csharp
 app.UseFileServer();
 ```
 
-The following method overload enables static files, default files, and directory browsing:
+The following code builds upon the parameterless overload by enabling directory browsing:
 
 ```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
@@ -171,15 +171,15 @@ See [Considerations](#considerations) on the security risks when enabling browsi
   * *test.png*
   * *default.html*
 
-To enable static files, default files, and browsing for the `MyStaticFiles` directory, call `FileServerOptions` as follows:
+To enable static files, default files, and directory browsing of `MyStaticFiles`, instantiate a `FileServerOptions` object as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?highlight=5,6,7,8,9,10,11&name=snippet1)]
 
-If `enableDirectoryBrowsing` is set to `true`, you are required to invoke the `AddDirectoryBrowser` method in `Startup.ConfigureServices`:
+When the `EnableDirectoryBrowsing` property value is `true`, you're required to invoke the `AddDirectoryBrowser` method in `Startup.ConfigureServices`:
 
 [!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet2)]
 
-Using the file hierarchy and preceding code:
+Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |                             Response  |
 | ------- | ------|
@@ -191,11 +191,11 @@ If no default-named file exists in the *MyStaticFiles* directory, *http://\<serv
 ![Static files list](static-files/_static/db2.png)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` take the URL *http://\<server_address>/StaticFiles* without the trailing slash and cause a client-side redirect to *http://\<server_address>/StaticFiles/* (adding the trailing slash). Relative URLs within the documents are incorrect without a trailing slash.
+> `UseDefaultFiles` and `UseDirectoryBrowser` use the URL *http://\<server_address>/StaticFiles* without the trailing slash to trigger a client-side redirect to *http://\<server_address>/StaticFiles/*. Notice the addition of the trailing slash. Relative URLs within the documents are deemed invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 
-The `FileExtensionContentTypeProvider` class contains a collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types. The *.rtf* file extension is replaced, and *.mp4* is removed.
+The [FileExtensionContentTypeProvider](/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider) class contains a `Mappings` property serving as a mapping of file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed.
 
 [!code-csharp[](static-files/samples/1x/StartupFileExtensionContentTypeProvider.cs?highlight=3,4,5,6,7,8,9,10,11,12,19&name=snippet1)]
 
@@ -212,24 +212,24 @@ The following code enables serving unknown types and renders the unknown file as
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 
 > [!WARNING]
-> Enabling `ServeUnknownFileTypes` is a security risk. Consequently, using it is discouraged. [FileExtensionContentTypeProvider](#fileextensioncontenttypeprovider) provides a safer alternative to serving files with non-standard extensions.
+> Enabling [ServeUnknownFileTypes](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions.serveunknownfiletypes#Microsoft_AspNetCore_Builder_StaticFileOptions_ServeUnknownFileTypes) is a security risk. It's disabled by default, and its use is discouraged. [FileExtensionContentTypeProvider](#fileextensioncontenttypeprovider) provides a safer alternative to serving files with non-standard extensions.
 
 ### Considerations
 
 > [!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. We recommend that you **not** enable directory browsing in production. Be careful about which directories you enable with `UseStaticFiles` or `UseDirectoryBrowser`, as the entire directory and all sub-directories become accessible. We recommend keeping public content in its own directory such as *\<content_root>/wwwroot*, away from app views, configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as *\<content_root>/wwwroot*. Separate these files from MVC views, Razor Pages (2.x only), configuration files, etc.
 
-* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of their underlying file system. For example, Windows is case insensitive&mdash;Mac and Linux aren't.
+* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;Mac and Linux aren't.
 
-* ASP.NET Core apps hosted in IIS use the ASP.NET Core Module to forward all requests to the app, including static file requests. The IIS static file handler isn't used because it doesn't get a chance to handle requests before they are handled by the ASP.NET Core Module.
+* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module (ANCM)](xref:fundamentals/servers/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the ANCM.
 
-* To remove the IIS static file handler (at the server or website level):
-     1. Navigate to the **Modules** feature
-     1. Select **StaticFileModule** in the list
-     1. Tap **Remove** in the **Actions** sidebar
+* Complete the following steps in IIS Manager to remove the IIS static file handler at the server or website level:
+    1. Navigate to the **Modules** feature.
+    1. Select **StaticFileModule** in the list.
+    1. Click **Remove** in the **Actions** sidebar.
 
 > [!WARNING]
-> If the IIS static file handler is enabled **and** the ASP.NET Core Module (ANCM) isn't correctly configured (for example, if *web.config* wasn't deployed), static files are served.
+> If the IIS static file handler is enabled **and** the ANCM is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
 * Place code files (including *.cs* and *.cshtml*) outside of the app project's web root. A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
