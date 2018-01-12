@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using StaticFiles;
 using System.IO;
 
 namespace sample
