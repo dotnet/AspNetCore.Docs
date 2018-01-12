@@ -29,7 +29,7 @@ namespace StaticFiles
             // Remove MP4 videos.
             provider.Mappings.Remove(".mp4");
 
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
@@ -37,7 +37,7 @@ namespace StaticFiles
                 ContentTypeProvider = provider
             });
 
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),

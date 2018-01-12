@@ -14,7 +14,7 @@ namespace StaticFiles
         #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 ServeUnknownFileTypes = true,
                 DefaultContentType = "image/png"
