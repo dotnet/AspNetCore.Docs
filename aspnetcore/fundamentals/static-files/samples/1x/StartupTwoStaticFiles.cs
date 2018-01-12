@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
@@ -23,7 +22,7 @@ namespace StaticFiles
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
-                RequestPath = new PathString("/StaticFiles")
+                RequestPath = "/StaticFiles"
             });
         }
         #endregion

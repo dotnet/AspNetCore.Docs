@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -15,13 +14,12 @@ namespace StaticFiles
         {
             services.AddDirectoryBrowser();
         }
-        // <Services
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippet1
         public void Configure(IApplicationBuilder app)
         {
-            // Set up custom content types -associating file extension to MIME type
+            // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();
             // Add new mappings
             provider.Mappings[".myapp"] = "application/x-msdownload";
@@ -36,7 +34,7 @@ namespace StaticFiles
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
-                RequestPath = new PathString("/MyImages"),
+                RequestPath = "/MyImages",
                 ContentTypeProvider = provider
             });
 
@@ -44,7 +42,7 @@ namespace StaticFiles
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
-                RequestPath = new PathString("/MyImages")
+                RequestPath = "/MyImages"
             });
         }
         #endregion

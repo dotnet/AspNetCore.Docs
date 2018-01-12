@@ -6,7 +6,7 @@ keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2018
+ms.date: 01/12/2018
 ms.devlang: csharp
 ms.prod: asp.net-core
 ms.technology: aspnet
