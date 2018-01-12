@@ -61,6 +61,17 @@ When an app is launched with `dotnet run`:
 * *launchSettings.json* is read if available. `environmentVariables` settings in *launchSettings.json* override environment variables.
 * The hosting environment is displayed.
 
+
+The following output shows an app started with `dotnet run`:
+```bash
+PS C:\Webs\WebApp1> dotnet run
+Using launch settings from C:\Webs\WebApp1\Properties\launchSettings.json...
+Hosting environment: Staging
+Content root path: C:\Webs\WebApp1
+Now listening on: http://localhost:54340
+Application started. Press Ctrl+C to shut down.
+```
+
 The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json* file:
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
@@ -86,6 +97,8 @@ It's best to avoid scattering environment checks in many parts of your applicati
 
 ## Setting the environment
 
+It's often useful to set a specific environment for testing. If the environment is not set, it will default to `Production` which disables most debugging features.
+
 The method for setting the environment depends on the operating system.
 
 ### Azure
@@ -95,8 +108,6 @@ For Azure app service:
 * Select the **Application settings** blade.
 * Add the key and value in **App settings**.
 
-<!--
-Why would you ever do this? Testing maybe? Anyone who needed to do this knows how to set the env variable so I'm removing it.
 
 ### Windows
 To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using `dotnet run`, the following commands are used
@@ -114,11 +125,8 @@ These commands take effect only for the current window. When the window is close
 
 ![System Advanced Properties](environments/_static/systemsetting_environment.png)
 
-Ha, Steve is setting a user env variable, not a system one. That won't do much good on a server.
-
 ![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png)
 
--->
 
 **web.config**
 
