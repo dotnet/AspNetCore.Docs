@@ -69,7 +69,7 @@ See [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurati
 
 Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace configuration values set in the two previous providers. Reading environment variables last is considered a best practice. Production apps typically set configuration values with environment variables.
 
-The environment is typically set to `Development`, `Staging`, or `Production`.  For more information see [Working with multiple environments](xref:fundamentals/environments).
+The environment is typically set to `Development`, `Staging`, or `Production`. For more information see [Working with multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
@@ -104,7 +104,7 @@ The following sample binds to the `AppSettings` class:
 
 [!code-csharp[Main](index/sample/ObjectGraph/Program.cs?highlight=15-16)]
 
-**ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding sample:
+**ASP.NET Core 1.1** and higher can use `Get<T>`, which works with entire sections. `Get<T>` can be more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding sample:
 
 ```csharp
 var appConfig = config.GetSection("App").Get<AppSettings>();
@@ -161,7 +161,7 @@ Create a class that implements [IConfigurationSource](https://docs.microsoft.com
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs?highlight=7)]
 
-Create the custom configuration provider by inheriting from [ConfigurationProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationprovider).  The configuration provider initializes the database when it's empty:
+Create the custom configuration provider by inheriting from [ConfigurationProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationprovider). The configuration provider initializes the database when it's empty:
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18-31,38-39)]
 
@@ -381,8 +381,8 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 * Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
 * The configuration system is not DI aware.
 * `IConfiguration` has two specializations:
-  * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
-  * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
+  * `IConfigurationRoot` Used for the root node. Can trigger a reload.
+  * `IConfigurationSection` Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
   * Use [IConfigurationRoot](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.iconfigurationroot ) when reloading configuration or need access to each provider. Neither of these situations are common.
 
 ## Additional resources
