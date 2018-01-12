@@ -43,17 +43,17 @@ Set the content root to the current directory by invoking [UseContentRoot](/dotn
 
 Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder, including *css*, *images*, and *js*. The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
-Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files.
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project.
+If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) already includes this package.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project.
 
 ---
+
+Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files.
 
 ### Serve files inside of web root
 
