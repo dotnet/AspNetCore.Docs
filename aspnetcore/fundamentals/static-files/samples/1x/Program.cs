@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using StaticFiles;
 using System.IO;
 
 namespace sample
@@ -12,7 +13,7 @@ namespace sample
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
+                .UseStartup<StartupAddHeader>()
                 .UseApplicationInsights()
                 .Build();
 
