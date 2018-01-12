@@ -91,10 +91,6 @@ The production environment should be configured to maximize security, performanc
 * Friendly error pages enabled.
 * Production logging and monitoring enabled. For example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/).
 
-<!-- FALSE - what about the
-It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's `Startup` class(es) wherever possible
--->
-
 ## Setting the environment
 
 It's often useful to set a specific environment for testing. If the environment is not set, it will default to `Production` which disables most debugging features.
@@ -136,7 +132,6 @@ See the *Setting environment variables* section of the [ASP.NET Core Module conf
 
 To set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic.
 
-<!--
 ### macOS
 Setting the current environment for macOS can be done in-line when running the application;
 
@@ -156,30 +151,6 @@ export ASPNETCORE_ENVIRONMENT=Development
 
 ### Linux
 For Linux distros, use the `export` command at the command line for session based variable settings and *bash_profile* file for machine level environment settings.
-
--->
-
-<!--
-This is all covered at the beginning of the article
-
-## Determining the environment at runtime
-
-The `IHostingEnvironment` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and can be injected into your startup logic via [Dependency Injection](dependency-injection.md). The ASP.NET Core web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling `EnvironmentName` or
-`IsEnvironment` on the instance of `IHostingEnvironment` passed into the appropriate method.
-
-> [!NOTE]
-> If you need to check whether the application is running in a particular environment, use `env.IsEnvironment("environmentname")` since it will correctly ignore case (instead of checking if `env.EnvironmentName == "Development"` for example).
-
-For example, you can use the following code in your Configure method to setup environment specific error handling:
-
-
-If the app is running in a `Development` environment, then it enables the runtime support necessary to use the "BrowserLink" feature in Visual Studio, development-specific error pages (which typically should not be run in production) and special database error pages (which provide a way to apply migrations and should therefore only be used in development). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
-
-You may need to determine which content to send to the client at runtime, depending on the current environment. For example, in a development environment you generally serve non-minimized scripts and style sheets, which makes debugging easier. Production and test environments should serve the minified versions and generally from a CDN. You can do this using the Environment [tag helper](../mvc/views/tag-helpers/intro.md). The Environment tag helper will only render its contents if the current environment matches one of the environments specified using the `names` attribute.
-
-To get started with using tag helpers in your application see [Introduction to Tag Helpers](../mvc/views/tag-helpers/intro.md).
-
--->
 
 ### Configuration by environment
 
