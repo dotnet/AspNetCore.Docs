@@ -29,7 +29,7 @@ namespace sample.Controllers
             var file = Path.Combine(Directory.GetCurrentDirectory(), 
                                     "MyStaticFiles", "images", "banner1.svg");
 
-            return new PhysicalFileResult(file, "image/svg+xml");
+            return PhysicalFile(file, "image/svg+xml");
         }
         #endregion
 
