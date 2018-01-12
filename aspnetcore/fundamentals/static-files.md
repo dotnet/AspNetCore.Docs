@@ -97,10 +97,10 @@ The files have been made publicly cacheable for 10 minutes (600 seconds):
 
 ## Static file authorization
 
-The static file module doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. To serve files based on authorization:
+The static file middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
-* Serve them through a controller action, returning a `FileResult` where authorization is applied
+* Serve them via a Razor Pages handler method (2.x only) or an MVC controller action. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) where authorization is applied.
 
 ## Enable directory browsing
 
@@ -118,17 +118,17 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `UseStaticFiles` calls. The first call is required to serve the CSS, images, and JavaScript in the *wwwroot* folder. The second call is required for directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
+Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?highlight=3,5&name=snippet1)]
 
 ## Serve a default document
 
-Setting a default home page provides visitors a logical place to start when visiting your site. To serve a default page without the user having to fully qualify the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
+Setting a default home page provides visitors a logical starting location when visiting your site. To serve a default page without the user having to fully qualify the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?highlight=3&name=snippet1)]
 
-> [!NOTE]
+> [!IMPORTANT]
 > `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable the static file middleware via `UseStaticFiles` to serve the file.
 
 With `UseDefaultFiles`, requests to a folder search for:
@@ -138,7 +138,7 @@ With `UseDefaultFiles`, requests to a folder search for:
 * *index.htm*
 * *index.html*
 
-The first file found from the list is served as though the request were the fully qualified URI (although the browser URL continues to show the URI requested).
+The first file found from the list is served as though the request were the fully qualified URI. The browser URL continues to reflect the URI requested.
 
 The following code changes the default file name to *mydefault.html*:
 
@@ -146,7 +146,7 @@ The following code changes the default file name to *mydefault.html*:
 
 ## UseFileServer
 
-`UseFileServer` combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
+[UseFileServer](/dotnet/api/microsoft.aspnetcore.builder.fileserverextensions.usefileserver#Microsoft_AspNetCore_Builder_FileServerExtensions_UseFileServer_Microsoft_AspNetCore_Builder_IApplicationBuilder_) combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
 
 The following code enables both static files and the default file to be served. It doesn't allow directory browsing.
 
@@ -154,7 +154,7 @@ The following code enables both static files and the default file to be served. 
 app.UseFileServer();
 ```
 
-The following code enables static files, default files, and directory browsing:
+The following method overload enables static files, default files, and directory browsing:
 
 ```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
