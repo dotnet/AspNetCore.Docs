@@ -125,7 +125,7 @@ Any controller methods that do not have a route attribute use convention-based r
 
 Web API also selects actions based on the HTTP method of the request (GET, POST, etc). By default, Web API looks for a case-insensitive match with the start of the controller method name. For example, a controller method named `PutCustomers` matches an HTTP PUT request.
 
-You can override this convention by decorating the mathod with any the following attributes:
+You can override this convention by decorating the method with any the following attributes:
 
 - **[HttpDelete]**
 - **[HttpGet]**
