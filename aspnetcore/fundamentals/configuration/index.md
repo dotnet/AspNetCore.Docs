@@ -47,12 +47,14 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 
 ```csharp
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
+// Output: option1 = subvalue1_from_json
 ```
 
 To work with arrays in JSON-formatted configuration sources, use an array index as part of the colon-separated string. The following example gets the name of the first item in the preceding `wizards` array:
 
 ```csharp
-Console.Write($"{Configuration["wizards:0:Name"]}, ");
+Console.Write($"{Configuration["wizards:0:Name"]}");
+// Output: Gandalf
 ```
 
 Name-value pairs written to the built-in `Configuration` providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
