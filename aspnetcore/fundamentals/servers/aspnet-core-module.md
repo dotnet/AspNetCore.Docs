@@ -49,11 +49,12 @@ ANCM has a few other functions as well:
 
 ## How to use ANCM in ASP.NET Core apps
 
-This section provides an overview of the process for setting up an IIS server and ASP.NET Core application. For detailed instructions, see [Publishing to IIS](../../publishing/iis.md).
+This section provides an overview of the process for setting up an IIS server and ASP.NET Core application. For detailed instructions, see [Host on Windows with IIS](xref:host-and-deploy/iis/index).
 
 ### Install ANCM
 
-The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore.2.0.0-windowshosting). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
+
+The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
 
 ### Install the IISIntegration NuGet package
 
@@ -101,11 +102,17 @@ In ASP.NET Core 1.0, if you call `UseUrls`, call it **before** you call `UseIISI
 
 ### Configure ANCM options in Web.config
 
-Configuration for the ASP.NET Core Module is stored in the *Web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample Web.config code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md).
+Configuration for the ASP.NET Core Module is stored in the *web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample *web.config* code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module).
 
 ### Run with IIS Express in development
 
 IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates.
+
+## Proxy configuration uses HTTP protocol and a pairing token
+
+The proxy created between the ANCM and Kestrel uses the HTTP protocol. Using HTTP is a performance optimization where the traffic between the ANCM and Kestrel takes place on a loopback address off of the network interface. There's no risk of eavesdropping the traffic between the ANCM and Kestrel from a location off of the server.
+
+A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the ANCM. The pairing token is also set into a header (`MSAspNetCoreToken`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the ANCM and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
 
 ## Next steps
 
@@ -113,5 +120,5 @@ For more information, see the following resources:
 
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
 * [ASP.NET Core Module source code](https://github.com/aspnet/AspNetCoreModule)
-* [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md)
-* [Publishing to IIS](../../publishing/iis.md)
+* [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module)
+* [Host on Windows with IIS](xref:host-and-deploy/iis/index)

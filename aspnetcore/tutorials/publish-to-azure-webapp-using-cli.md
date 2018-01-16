@@ -1,6 +1,6 @@
 ---
 title: Publish an ASP.NET Core app to Azure using using command line tools | Microsoft Docs 
-description: Learn to build and deploy a Microsoft Azure App using ASP.NET Core and the Git command line client.
+description: Learn how to publish an ASP.NET Core app to Azure App Service using the Git command line client.
 services: multiple
 keywords: ASP.NET Core, Azure, App Service, Git, command line
 author: camsoper
@@ -107,7 +107,8 @@ Note the displayed URL ending in `.git`. It's used in the next step.
 
 You're ready to deploy from your local machine using Git.
 
-> [!NOTE] It's safe to ignore any warnings from Git about line endings.
+> [!NOTE]
+> It's safe to ignore any warnings from Git about line endings.
 
 # [Windows](#tab/windows)
 ```cmd

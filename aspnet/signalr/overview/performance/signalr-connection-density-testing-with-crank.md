@@ -61,6 +61,6 @@ Available options for the Crank tool include:
 
 ### Example
 
-The following command will test a site called `pfsignalr` on Azure that hosts an application on port 8080 with a hub named "MyHub", using 100 connections.
+The following command will test a site called `pfsignalr` on Azure that hosts an application on port 8080 with a hub named "ControllerHub", using 100 connections.
 
 `crank /Connections:100 /Url:http://pfsignalr.cloudapp.net:8080/signalr`

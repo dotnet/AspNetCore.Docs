@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Models
 {
-    public class ProductService : MvcApplication1.Models.IProductService
+    public class ProductService : IProductService
     {
 
         private ModelStateDictionary _modelState;

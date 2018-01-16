@@ -68,7 +68,7 @@ In addition to specifying the type for the environment dictionary, the OWIN spec
 | `"owin.RequestMethod"` | A `string` containing the HTTP request method of the request (e.g., `"GET"`, `"POST"`). |
 | `"owin.RequestPath"` | A `string` containing the request path. The path MUST be relative to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
 | `"owin.RequestPathBase"` | A `string` containing the portion of the request path corresponding to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
-| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"` HTTP/1.0 `"` or `"` HTTP/1.1 `"`). |
+| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"HTTP/1.0"` or `"HTTP/1.1"`). |
 | `"owin.RequestQueryString"` | A `string` containing the query string component of the HTTP request URI, without the leading "?" (e.g., `"foo=bar&baz=quux"`). The value may be an empty string. |
 | `"owin.RequestScheme"` | A `string` containing the URI scheme used for the request (e.g., `"http"`, `"https"`); see [URI Scheme](http://owin.org/html/owin.html#5-1-uri-scheme). |
 
@@ -203,7 +203,7 @@ Like many current libraries and frameworks, the Katana project components are de
 
 [![](an-overview-of-project-katana/_static/image6.png)](an-overview-of-project-katana/_static/image5.png)
 
-Nearly every package in the Katana project depends, directly or indirectly, on the Owin package. You may remember that this is the package that contains the IAppBuilder interface, which provides a concrete implementation of the application startup sequence described in section 4 of the OWIN specification. Additionally, many of the packages depend on Microsoft.Owin, which provides a set of helper types for working with HTTP requests and responses. The remainder of the package can be classified as either hosting infrastructure packages (servers or hosts) or middleware. Packages dependencies that are external to the Katana project are displayed in orange.
+Nearly every package in the Katana project depends, directly or indirectly, on the Owin package. You may remember that this is the package that contains the IAppBuilder interface, which provides a concrete implementation of the application startup sequence described in section 4 of the OWIN specification. Additionally, many of the packages depend on Microsoft.Owin, which provides a set of helper types for working with HTTP requests and responses. The remainder of the package can be classified as either hosting infrastructure packages (servers or hosts) or middleware. Packages and dependencies that are external to the Katana project are displayed in orange.
 
 The hosting infrastructure for Katana 2.0 includes both the SystemWeb and HttpListener-based servers, the OwinHost package for running OWIN applications using OwinHost.exe, and the Microsoft.Owin.Hosting package for self-hosting OWIN applications in a custom host (e.g. console application, Windows service, etc.)
 

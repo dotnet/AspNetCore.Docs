@@ -1,11 +1,11 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: Using Identity with an ASP.NET Core app
+description: Use Identity with an ASP.NET Core app
 keywords: ASP.NET Core,Identity,authorization,security
 ms.author: riande
 manager: wpickett
-ms.date: 07/07/2017
+ms.date: 01/02/2018
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
 ms.technology: aspnet
@@ -18,7 +18,9 @@ By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.c
 
 ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login provider such as Facebook, Google, Microsoft Account, Twitter or others.
 
-You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
+You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example, an Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
+
+[View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/index#how-to-download-a-sample)
 
 ## Overview of Identity
 
@@ -27,19 +29,29 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 1.  Create an ASP.NET Core Web Application project with Individual User Accounts.
 
     # [Visual Studio](#tab/visual-studio)
-    In Visual Studio, select **File** -> **New** -> **Project**. Select the **ASP.NET Web Application** from the **New Project** dialog box. Selecting an ASP.NET Core **Web Application** with **Individual User Accounts** as the authentication method.
 
-    Note: You must select **Individual User Accounts**.
- 
-    ![New Project dialog](identity/_static/01-mvc.png)
-    
+    In Visual Studio, select **File** > **New** > **Project**. Select **ASP.NET Core Web Application** and click **OK**.
+
+    ![New Project dialog](identity/_static/01-new-project.png)
+
+    Select an ASP.NET Core **Web Application (Model-View-Controller)** for ASP.NET Core 2.x, then select **Change Authentication**.
+
+    ![New Project dialog](identity/_static/02-new-project.png)
+
+    A dialog appears offering authentication choices. Select **Individual User Accounts** and click **OK** to return to the previous dialog.
+
+    ![New Project dialog](identity/_static/03-new-project-auth.png)
+
+    Selecting **Individual User Accounts** directs Visual Studio to create Models, ViewModels, Views, Controllers, and other assets required for authentication as part of the project template.
+
     # [.NET Core CLI](#tab/netcore-cli)
-    If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same Identity template code Visual Studio creates.
- 
-    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
-    
+
+    If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This command creates a new project with the same Identity template code Visual Studio creates.
+
+    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which persists the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
+
     ---
- 
+
 2.  Configure Identity services and add middleware in `Startup`.
 
     The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
@@ -72,7 +84,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     Launch the application and then click on the **Register** link.
 
-    If this is the first time you're performing this action, you may be required to run migrations. The application prompts you to **Apply Migrations**:
+    If this is the first time you're performing this action, you may be required to run migrations. The application prompts you to **Apply Migrations**. Refresh the page if needed.
     
     ![Apply Migrations Web Page](identity/_static/apply-migrations.png)
     
@@ -95,9 +107,9 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
     Users can sign in by clicking the **Log in** link at the top of the site, or they may be navigated to the Login page if they attempt to access a part of the site that requires authorization. When the user submits the form on the Login page, the ``AccountController`` ``Login`` action is called.
 
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
- 
     The ``Login`` action calls ``PasswordSignInAsync`` on the ``_signInManager`` object (provided to ``AccountController`` by dependency injection).
+
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
  
     The base ``Controller`` class exposes a ``User`` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
  
@@ -129,11 +141,40 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
 7.  View the database.
 
-    If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** -> **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching **aspnet-<*name of your project*>-<*date string*>** is displayed.
+    If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** > **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching **aspnet-<*name of your project*>-<*date string*>** is displayed.
 
     ![Contextual menu on AspNetUsers database table](identity/_static/04-db.png)
     
     Expand the database and its **Tables**, then right-click the **dbo.AspNetUsers** table and select **View Data**.
+
+8. Verify Identity works
+
+    The default *ASP.NET Core Web Application* project template allows users to access any action in the application without having to login. To verify that ASP.NET Identity works, add an`[Authorize]` attribute to the `About` action of the `Home` Controller.
+ 
+    ```cs
+    [Authorize]
+    public IActionResult About()
+    {
+        ViewData["Message"] = "Your application description page.";
+        return View();
+    }
+    ```
+    
+    # [Visual Studio](#tab/visual-studio)
+
+    Run the project using **Ctrl** + **F5** and navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
+
+    # [.NET Core CLI](#tab/netcore-cli)
+
+    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the `dotnet run` command to run the app:
+
+    ```cs
+    dotnet run 
+    ```
+
+    Browse the URL specified in the output from the `dotnet run` command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
+
+    ---
 
 ## Identity Components
 

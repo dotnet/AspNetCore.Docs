@@ -18,7 +18,7 @@ Tap the menu links (**MvcMovie**, **Home**, **About**). Each page shows the same
 
 ## Change the title and menu link in the layout file
 
-Change the contents of the title element. Change the anchor text in the layout template to "Movie App" and the controller from `Home` to `Movies` as highlighted below:
+In the title element, change `MvcMovie` to `Movie App`. Change the anchor text in the layout template from `MvcMovie` to `Mvc Movie` and the controller from `Home` to `Movies` as highlighted below:
 
 Note: The ASP.NET Core 2.0 version is slightly different. It doesn't contain `@inject ApplicationInsights` and `@Html.Raw(JavaScriptSnippet.FullScript)`.
 
@@ -27,7 +27,11 @@ Note: The ASP.NET Core 2.0 version is slightly different. It doesn't contain `@i
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
 
-Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**. Tap the **Contact** link and notice that it also displays **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
+Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**: 
+
+![About tab](../../tutorials/first-mvc-app/adding-view/_static/about2.png)
+
+Tap the **Contact** link and notice that the title and anchor text also display **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
 
 Examine the *Views/_ViewStart.cshtml* file:
 
@@ -101,7 +105,7 @@ Save your changes and browse to the following URL:
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding) . The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![About view showing a Welcome label and the phrase Hello Rick shown four times](../../tutorials/first-mvc-app/adding-view/_static/rick.png)
+![About view showing a Welcome label and the phrase Hello Rick shown four times](../../tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
 In the sample above, we used the `ViewData` dictionary to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [ViewModel vs ViewData vs ViewBag vs TempData vs Session in MVC](http://www.mytecbits.com/microsoft/dot-net/viewmodel-viewdata-viewbag-tempdata-mvc) for more information.
 

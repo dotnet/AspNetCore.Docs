@@ -1,9 +1,9 @@
 ---
-title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 10
-author: tdykstra
+title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 8
+author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
-ms.author: tdykstra
+ms.author: riande
 ms.date: 10/22/2017
 ms.topic: get-started-article
 ms.technology: aspnet
@@ -11,11 +11,11 @@ ms.prod: asp.net-core
 uid: data/ef-rp/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 10)
+# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 8)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, sorting, filtering, grouping, and paging, functionality is added.
 
@@ -26,6 +26,11 @@ The following illustration shows a completed page. The column headings are click
 If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
 ## Add sorting to the Index page
+
+Add strings to the *Students/Index.cshtml.cs* `PageModel` to contain the sorting paramaters:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
+
 
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
@@ -38,17 +43,15 @@ The `sortOrder` parameter is either "Name" or "Date." The `sortOrder` parameter 
 
 When the Index page is requested from the **Students** link, there's no query string. The students are displayed in ascending order by last name. Ascending order by last name is the default (fall-through case) in the `switch` statement. When the user clicks a column heading link, the appropriate `sortOrder` value is provided in the query string value.
 
-The two `ViewData` elements (`NameSort` and `DateSort`) are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:
+`NameSort` and `DateSort` are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
-
-`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. `ViewData` provides a convenient way to pass data from a Razor Page to a code-behind file, and from a code-behind file to a Razor Page. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB) and [ViewData](xref:mvc/views/overview#VD).
 
 The following code contains the C# [?: operator](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/conditional-operator):
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_Ternary)]
 
- The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
+The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
 
 The `?: operator` is also known as the ternary operator.
 
@@ -69,7 +72,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
-`OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that passes the name of the `OrderBy` column in a string variable.
+`OnGetAsync` could get verbose with a large number of columns.
 
 ### Add column heading hyperlinks to the Student Index view
 
@@ -80,7 +83,7 @@ Replace the code in *Students/Index.cshtml*, with the following highlighted code
 The preceding code:
 
 * Adds hyperlinks to the `LastName` and `EnrollmentDate` column headings.
-* Uses the information in `ViewData` dictionary to set up hyperlinks with the current sort order values.
+* Uses the information in `NameSort` and `DateSort` to set up hyperlinks with the current sort order values.
 
 To verify that sorting works:
 
@@ -91,7 +94,7 @@ To verify that sorting works:
 To get a better understanding of the code:
 
 * In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
-* Add a watch for `ViewData["NameSort"]` and `ViewData["DateSort"]`.
+* Add a watch for `NameSort` and `DateSort`.
 * In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
@@ -114,13 +117,13 @@ The preceding code:
 * Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that is added in the next section.
 * Added to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
-Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
+Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
 For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
-The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` can have a significant performance penality:
+The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` from a repository can have a significant performance penality:
 
 1. All the rows are returned from the DB server.
 1. The filter is applied to all the returned rows in the application.
@@ -185,9 +188,9 @@ All the parameters are null when:
 
 When a paging link is clicked, the page index variable contains the page number to display.
 
-`ViewData["CurrentSort"]` provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
+`CurrentSort` provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
 
-`ViewData["CurrentFilter"]` provides the Razor Page with the current filter string. The `ViewData["CurrentFilter"]` value:
+`CurrentFilter` provides the Razor Page with the current filter string. The `CurrentFilter` value:
 
 * Must be included in the paging links in order to maintain the filter settings during paging.
 * Must be restored to the text box when the page is redisplayed.
@@ -229,7 +232,7 @@ Run the app and navigate to the students page.
 To get a better understanding of the code:
 
 * In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
-* Add a watch for `ViewData["NameSort"]`, `ViewData["DateSort"]`, ViewData["CurrentSort"], and `Model.Student.PageIndex`.
+* Add a watch for `NameSort`, `DateSort`, `CurrentSort`, and `Model.Student.PageIndex`.
 * In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.

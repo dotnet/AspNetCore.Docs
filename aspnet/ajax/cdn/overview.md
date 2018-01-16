@@ -15,7 +15,7 @@ msc.type: content
 ---
 Microsoft Ajax Content Delivery Network
 ====================
-**Note: The Microsoft Ajax CDN is not intended for production scenarios.**
+Note: The Microsoft Ajax CDN has no SLA above and beyond using an Azure CDN.
 
 ## Table of Contents
 

@@ -15,7 +15,7 @@
     <div class="form-actions no-color">
         <p>
             Find by name: 
-            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-page="./Index">Back to full List</a>
         </p>
@@ -26,7 +26,7 @@
     <thead>
         <tr>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@ViewData["NameSort"]">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
                     @Html.DisplayNameFor(model => model.Student[0].LastName)
                 </a>
             </th>
@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.Student[0].FirstMidName)
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@ViewData["DateSort"]">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
                     @Html.DisplayNameFor(model => model.Student[0].EnrollmentDate)
                 </a>
             </th>

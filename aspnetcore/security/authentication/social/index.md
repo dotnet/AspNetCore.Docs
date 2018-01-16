@@ -43,6 +43,13 @@ Note: Packages presented here abstract a great deal of complexity of the OAuth a
 
 Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.
 
+## Apply migrations
+
+* Run the app and select the **Log in** link.
+* Select the **Register as a new user** link.
+* Enter the email and password for the new account, and then select **Register**.
+* Follow the instructions to apply migrations.
+
 ## Require SSL
 
 OAuth 2.0 requires the use of SSL for authentication over the HTTPS protocol.

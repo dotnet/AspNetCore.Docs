@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
+    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -18,6 +19,12 @@ namespace ContosoUniversity.Pages.Students
         {
             _context = context;
         }
+
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }        
+        #endregion
 
 #if SortFilterPage
         #region snippet_SortFilterPageType
@@ -41,8 +48,8 @@ namespace ContosoUniversity.Pages.Students
         public async Task OnGetAsync(string sortOrder)
         {
         #region snippet_Ternary
-            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
         #endregion
 
             IQueryable<Student> studentIQ = from s in _context.Students
@@ -74,9 +81,9 @@ namespace ContosoUniversity.Pages.Students
         #region snippet_SortFilter
         public async Task OnGetAsync(string sortOrder, string searchString)
         {
-            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewData["CurrentFilter"] = searchString;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            CurrentFilter = searchString;
 
             IQueryable<Student> studentIQ = from s in _context.Students
                                             select s;
@@ -113,9 +120,9 @@ namespace ContosoUniversity.Pages.Students
             string currentFilter, string searchString, int? pageIndex)
         #endregion
         {
-            ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             #region snippet_SortFilterPage3
             if (searchString != null)
             {
@@ -127,7 +134,7 @@ namespace ContosoUniversity.Pages.Students
             }
             #endregion
 
-            ViewData["CurrentFilter"] = searchString;
+            CurrentFilter = searchString;
 
             IQueryable<Student> studentIQ = from s in _context.Students
                                             select s;

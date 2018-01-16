@@ -5,9 +5,8 @@ description: Learn how views handle the app's data presentation and user interac
 keywords: ASP.NET Core,view,MVC,razor,viewmodel,viewdata,viewbag
 ms.author: riande
 manager: wpickett
-ms.date: 09/26/2017
+ms.date: 12/12/2017
 ms.topic: article
-ms.assetid: 668c320d-c050-45e3-8161-2f460dc93b2f
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/views/overview
@@ -16,9 +15,11 @@ uid: mvc/views/overview
 
 By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
 
+This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:mvc/razor-pages/index).
+
 In the **M**odel-**V**iew-**C**ontroller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
-In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a in a *Views* folder at the root of the app:
+In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a *Views* folder at the root of the app:
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
@@ -181,6 +182,8 @@ namespace WebApplication1.ViewModels
 
 ### Weakly-typed data (ViewData and ViewBag)
 
+Note: `ViewBag` is not available in the Razor Pages.
+
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
 
 | Passing data between a ...                        | Example                                                                        |
@@ -238,6 +241,8 @@ Work with the data in a view:
 
 **ViewBag**
 
+Note: `ViewBag` is not available in the Razor Pages.
+
 `ViewBag` is a [DynamicViewData](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
 
 ```csharp
@@ -268,6 +273,8 @@ public IActionResult SomeAction()
 ```
 
 **Using ViewData and ViewBag simultaneously**
+
+Note: `ViewBag` is not available in the Razor Pages.
 
 Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collection, you can use both `ViewData` and `ViewBag` and mix and match between them when reading and writing values.
 
@@ -306,6 +313,8 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 ```
 
 **Summary of the differences between ViewData and ViewBag**
+
+ `ViewBag` is not available in the Razor Pages.
 
 * `ViewData`
   * Derives from [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), so it has dictionary properties that can be useful, such as `ContainsKey`, `Add`, `Remove`, and `Clear`.

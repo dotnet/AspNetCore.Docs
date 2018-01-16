@@ -23,7 +23,7 @@ namespace ContosoUniversity.Pages.Students
             {
                 EnrollmentDate = DateTime.Now,
                 FirstMidName = "Joe",
-                LastName = "Smith"
+                LastName = "1 Smith"
             };
 
             return Page();

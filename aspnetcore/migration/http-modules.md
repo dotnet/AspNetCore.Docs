@@ -164,11 +164,11 @@ Middleware added to the pipeline before the branch will be invoked on all reques
 
 Some modules and handlers have configuration options that are stored in *Web.config*. However, in ASP.NET Core a new configuration model is used in place of *Web.config*.
 
-The new [configuration system](../fundamentals/configuration.md) gives you these options to solve this:
+The new [configuration system](xref:fundamentals/configuration/index) gives you these options to solve this:
 
 * Directly inject the options into the middleware, as shown in the [next section](#loading-middleware-options-through-direct-injection).
 
-* Use the [options pattern](../fundamentals/configuration.md#options-config-objects):
+* Use the [options pattern](xref:fundamentals/configuration/options):
 
 1.  Create a class to hold your middleware options, for example:
 
@@ -379,7 +379,7 @@ The `SetCookies` callback method would look like the following:
 
 * [HTTP Handlers and HTTP Modules Overview](https://docs.microsoft.com/iis/configuration/system.webserver/)
 
-* [Configuration](../fundamentals/configuration.md)
+* [Configuration](xref:fundamentals/configuration/index)
 
 * [Application Startup](../fundamentals/startup.md)
 
