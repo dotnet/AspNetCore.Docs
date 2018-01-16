@@ -159,6 +159,7 @@ WantedBy=multi-user.target
 ```
 
 **Note:** If the user *www-data* is not used by the configuration, the user defined here must be created first and given proper ownership for files.
+**Note:** Linux has a case-sensitive file system. Setting ASPNETCORE_ENVIRONMENT to "Production" results in searching for the configuration file *appsettings.Production.json*, not *appsettings.production.json*.
 
 Save the file and enable the service.
 
