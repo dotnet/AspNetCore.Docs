@@ -57,7 +57,10 @@ Name-value pairs written to the built-in [Configuration](https://docs.microsoft.
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. For more information, see the [Options](xref:fundamentals/configuration/options) topic.
 
-It's typical to have different configuration settings for different environments, for example, development, testing, and production. The [CreateDefaultBuilder](https://docs.microsoft.com/ dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder #Microsoft_AspNetCore_WebHost_CreateDefaultBuilder_System_String___) method adds configuration providers for reading JSON files and system configuration sources:
+
+## Configuration by environment
+
+It's typical to have different configuration settings for different environments, for example, development, testing, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
 * *appsettings.json*
 * *appsettings.\<EnvironmentName>.json*
@@ -67,7 +70,16 @@ ASP.NET Core 1.x apps need to call `AddJsonFile` and [AddEnvironmentVariables](h
 
 See [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and later.
 
-Configuration sources are read in the order that they're specified. In the code above, the environment variables are read last. Any configuration values set through the environment replace configuration values set in the two previous providers. Reading environment variables last is considered a best practice. Production apps frequently set configuration values with environment variables.
+Configuration sources are read in the order that they're specified. In the preceding code, the environment variables are read last. Any configuration values set through the environment replace those set in the two previous providers.
+
+Consider the following *appsettings.Staging.json* file:
+
+[!code-json[Main](index/sample/appsettings.Staging.json)]
+
+When the environment is set to `Staging`, the following `Configure` method reads the value of `MyConfig`:
+
+[!code-csharp[Main](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
+
 
 The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Working with multiple environments](xref:fundamentals/environments).
 
