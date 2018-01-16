@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 public class Program
 {
-    public static IConfigurationRoot Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static Dictionary<string, string> GetSwitchMappings(
         IReadOnlyDictionary<string, string> configurationStrings)
