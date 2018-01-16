@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 keywords: ASP.NET Core,Middleware,pipeline,delegate
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2017
+ms.date: 01/16/2018
 ms.topic: article
 ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
 ms.technology: aspnet
@@ -20,7 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## What is middleware
+## What is middleware?
 
 Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:
 
@@ -188,17 +188,17 @@ app.Map("/level1/level2", HandleMultiSeg);
 
 ## Built-in middleware
 
-ASP.NET Core ships with the following middleware components:
+ASP.NET Core ships with the following middleware components, as well as a description of the order in which they run:
 
-| Middleware | Description |
-| ----- | ------- |
-| [Authentication](xref:security/authentication/identity) | Provides authentication support. |
-| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. |
-| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
+| Middleware | Description | Ordering |
+| ----- | ------- | ------- |
+| [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that want caching |
+| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that want to use compression |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |  |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |  |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches files |
 | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
 
 <a name="middleware-writing-middleware"></a>
