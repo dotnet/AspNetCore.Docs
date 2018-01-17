@@ -21,7 +21,7 @@ This tutorial examines the Razor Pages created by scaffolding in the previous tu
 
 ## The Create, Delete, Details, and Edit pages.
 
-Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
+Examine the *Pages/Movies/Index.cshtml.cs* (not *Pages/Movies/Index.cshtml*) Page Model:
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern. See [Asynchronous code](xref:data/ef-rp/intro#asynchronous-code) for more information on asynchronous programing with Entity Framework.
