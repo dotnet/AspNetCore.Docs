@@ -66,9 +66,11 @@ Configure the [middleware](xref:fundamentals/middleware) which enables the servi
 
 Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method within `Startup.Configure`:
 
-[!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3 "Startup.cs")]
+[!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
-The parameterless `UseStaticFiles` method overload marks the files in web root as servable.
+The parameterless `UseStaticFiles` method overload marks the files in web root as servable. An example of the markup to reference *wwwroot/images/banner1.svg* is:
+
+[!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
 ### Serve files outside of web root
 
@@ -80,13 +82,17 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *test.png*
+      * *banner1.svg*
 
-A request can access the *test.png* file by configuring the static file middleware as follows:
+A request can access the *banner1.svg* file by configuring the static file middleware as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to *http://\<server_address>/StaticFiles/images/test.png* serves the *test.png* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to *http://\<server_address>/StaticFiles/images/banner1.svg* serves the *banner1.svg* file.
+
+An example of the markup to reference *MyStaticFiles/images/banner1.svg* is:
+
+[!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_outside)]
 
 ### Set HTTP response headers
 
@@ -167,7 +173,7 @@ The following code builds upon the parameterless overload by enabling directory 
 app.UseFileServer(enableDirectoryBrowsing: true);
 ```
 
-See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, consider the following directory hierarchy in your web app:
+See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the web root, instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, consider the following directory hierarchy in your web app:
 
 * **wwwroot**
   * **css**
@@ -175,7 +181,7 @@ See [Considerations](#considerations) on the security risks when enabling browsi
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *test.png*
+      * *banner1.svg*
   * *default.html*
 
 To enable static files, default files, and directory browsing of `MyStaticFiles`, instantiate a `FileServerOptions` object as follows:
@@ -190,7 +196,7 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |                             Response  |
 | ------- | ------|
-| *http://\<server_address>/StaticFiles/images/test.png*    |      MyStaticFiles/images/test.png |
+| *http://\<server_address>/StaticFiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
 | *http://\<server_address>/StaticFiles*             |     MyStaticFiles/default.html |
 
 If no default-named file exists in the *MyStaticFiles* directory, *http://\<server_address>/StaticFiles* returns the directory listing with clickable links:
