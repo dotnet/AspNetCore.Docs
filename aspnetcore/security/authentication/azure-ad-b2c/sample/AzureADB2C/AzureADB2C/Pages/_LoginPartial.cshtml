@@ -1,0 +1,25 @@
+@using System.Security.Principal
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.Extensions.Options
+@inject IOptions<AzureAdB2COptions> AzureAdB2COptions
+
+@if (User.Identity.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        @if (!string.IsNullOrEmpty(AzureAdB2COptions.Value.EditProfilePolicyId))
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="EditProfile">Hello @User.Identity.Name!</a></li>
+        }
+        else
+        {
+            <li class="navbar-text">Hello @User.Identity.Name!</li>
+        }
+        <li><a asp-area="" asp-controller="Account" asp-action="SignOut">Sign out</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Account" asp-action="Signin">Sign in</a></li>
+    </ul>
+}
