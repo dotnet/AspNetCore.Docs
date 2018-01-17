@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+// Requires NuGet package
+// Microsoft.Extensions.Configuration.Json
 using Microsoft.Extensions.Configuration;
 
 public class Program
 {
-    public static IConfigurationRoot Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static void Main(string[] args = null)
     {
@@ -14,7 +16,7 @@ public class Program
 
         Configuration = builder.Build();
 
-        Console.WriteLine($"option1 = {Configuration["option1"]}");
+        Console.WriteLine($"option1 = {Configuration["Option1"]}");
         Console.WriteLine($"option2 = {Configuration["option2"]}");
         Console.WriteLine(
             $"suboption1 = {Configuration["subsection:suboption1"]}");
