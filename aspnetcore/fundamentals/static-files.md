@@ -72,13 +72,14 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **images**
   * **...**
 * **MyStaticFiles**
-  * *test.png*
+  * **images**
+      * *test.png*
 
 A request can access the *test.png* file by configuring the static file middleware as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-A request to *http://\<server_address>/StaticFiles/test.png* serves the *test.png* file.
+In the preceding code, the *MyStaticFiles* directory tree is exposed publicly via the *StaticFiles* path in the URL. A request to *http://\<server_address>/StaticFiles/images/test.png* serves the *test.png* file.
 
 ### Set HTTP response headers
 
