@@ -63,7 +63,19 @@ The app failed to start the process with the command `dotnet .\troubleshoo.dll`.
 
 The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Compare the error message information from the app event log to the common errors listed in the topic and follow the troubleshooting advice provided.
 
-An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using [Kudu](https://github.com/projectkudu/kudu/wiki):
+An alternative to using the **Diagnose and solve problems** blade is to run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
+
+1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
+1. Open the folders to the path **site** > **wwwroot**.
+1. In the console, run the app by executing the app's assembly with *dotnet.exe*. In the command below, substitute the name of the app's assembly for `<assembly_name>`:
+   ```console
+   dotnet .\<assembly_name>.dll
+   ```
+1. The console output from the app, showing any errors, is piped to the Kudu console. Example: If the assembly name is `troubleshoot`, the app is run with the command `dotnet .\troubleshoot.dll`. The output shows a `NotSupportedException` on startup:
+   ![Kudu console the app's output](troubleshoot/_static/kudu-console-output.png)
+
+Another alternative is to examine the Application Event Log file directly using Kudu:
 
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
