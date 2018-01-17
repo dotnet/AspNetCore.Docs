@@ -76,7 +76,34 @@ The middlewares are registered in the request processing pipeline in *Startup.cs
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory is registered in the nonconforming container as a scoped service.
 
-The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with its `BasicMiddlewareFactory`:
+The default `IMiddlewareFactory` implementation is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package:
+
+```csharp
+public class MiddlewareFactory : IMiddlewareFactory
+{
+    // The default middleware factory is just an IServiceProvider proxy.
+    // This should be registered as a scoped service so that the middleware instances
+    // don't end up being singletons.
+    private readonly IServiceProvider _serviceProvider;
+
+    public MiddlewareFactory(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    public IMiddleware Create(Type middlewareType)
+    {
+        return _serviceProvider.GetRequiredService(middlewareType) as IMiddleware;
+    }
+
+    public void Release(IMiddleware middleware)
+    {
+        // The container owns the lifetime of the service
+    }
+}
+```
+
+The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with its custom `BasicMiddlewareFactory`:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareFactory.cs?name=snippet1)]
 
