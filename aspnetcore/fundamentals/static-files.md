@@ -41,7 +41,14 @@ Set the content root to the current directory by invoking [UseContentRoot](/dotn
 
 ---
 
-Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder, including *css*, *images*, and *js*. The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
+Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder:
+
+* **wwwroot**
+  * **css**
+  * **images**
+  * **js**
+
+The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -70,7 +77,7 @@ Consider a directory hierarchy in which the static files to be served reside out
 * **wwwroot**
   * **css**
   * **images**
-  * **...**
+  * **js**
 * **MyStaticFiles**
   * **images**
       * *test.png*
@@ -79,7 +86,7 @@ A request can access the *test.png* file by configuring the static file middlewa
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-In the preceding code, the *MyStaticFiles* directory tree is exposed publicly via the *StaticFiles* path in the URL. A request to *http://\<server_address>/StaticFiles/images/test.png* serves the *test.png* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to *http://\<server_address>/StaticFiles/images/test.png* serves the *test.png* file.
 
 ### Set HTTP response headers
 
@@ -165,10 +172,10 @@ See [Considerations](#considerations) on the security risks when enabling browsi
 * **wwwroot**
   * **css**
   * **images**
-  * **...**
-
+  * **js**
 * **MyStaticFiles**
-  * *test.png*
+  * **images**
+      * *test.png*
   * *default.html*
 
 To enable static files, default files, and directory browsing of `MyStaticFiles`, instantiate a `FileServerOptions` object as follows:
@@ -183,8 +190,8 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |                             Response  |
 | ------- | ------|
-| *http://\<server_address>/StaticFiles/test.png*    |      MyStaticFiles/test.png |
-| *http://\<server_address>/StaticFiles*              |     MyStaticFiles/default.html |
+| *http://\<server_address>/StaticFiles/images/test.png*    |      MyStaticFiles/images/test.png |
+| *http://\<server_address>/StaticFiles*             |     MyStaticFiles/default.html |
 
 If no default-named file exists in the *MyStaticFiles* directory, *http://\<server_address>/StaticFiles* returns the directory listing with clickable links:
 
