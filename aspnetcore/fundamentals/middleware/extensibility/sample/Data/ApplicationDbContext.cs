@@ -10,6 +10,6 @@ namespace MiddlewareExtensibilitySample.Data
         {
         }
 
-        public DbSet<CultureRequest> CultureRequests { get; set; }
+        public DbSet<Request> Requests { get; set; }
     }
 }

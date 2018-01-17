@@ -5,7 +5,7 @@ description: Learn how to activate middleware with nonconforming containers in A
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 01/09/2018
+ms.date: 01/17/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -17,57 +17,74 @@ By [Luke Latham](https://github.com/guardrex)
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation with nonconforming containers.
 
-`UseMiddleware` extension methods check if the middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The factory is registered as a scoped service with the app's service container.
+`UseMiddleware` extension methods check if a middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance registered in the nonconforming container is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The factory is registered as a scoped service with the app's noncomforming service container.
 
 Benefits:
 
+* Activation per request (injection of scoped services)
 * Automatic middleware activation with nonconforming containers
 * Strong typing of middleware
-* Activation per request (injection of scoped services)
+
+Because conventional middleware is constructed at app startup, not per-request, scoped lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. `IMiddleware` implementations are activated per-request by the factory, so scoped lifetime services *are shared* with other dependency-injected types during each request.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
+The sample app demonstrates:
+
+* Conventionally-activated middleware.
+* Middleware activated by an `IMiddlewareFactory` registered in an [Ninject](http://www.ninject.org/) container.
+
+The middlewares function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
 
 ## IMiddleware
 
 [IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) defines middleware for the app's request pipeline. The [InvokeAsync(HttpContext, RequestDelegate)](/dotnet/api/microsoft.aspnetcore.http.imiddleware.invokeasync#Microsoft_AspNetCore_Http_IMiddleware_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_) method handles requests and returns a `Task` that represents the execution of the middleware.
 
-The sample app registers a middleware that sets the culture from a query string parameter. The middleware also uses an injected database context (a scoped service) to record the query string value in a database:
+Conventionally-activated middleware:
 
-[!code-csharp[Main](extensibility/sample/Middleware/RequestCultureMiddleware.cs?name=snippet1)]
+[!code-csharp[Main](extensibility/sample/Middleware/MiddlewareViaConventionalActivation.cs?name=snippet1)]
 
-An extension is created for the middleware:
+`IMiddlewareFactory`-activated middleware:
+
+[!code-csharp[Main](extensibility/sample/Middleware/MiddlewareViaIMiddlewareFactoryActivation.cs?name=snippet1)]
+
+Extensions are created for the middlewares:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
-
-The middleware is registered in the request processing pipeline in *Startup.cs*:
-
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=12)]
 
 Note that it isn't possible to pass objects with `UseMiddleware` as it is with convention-based middleware activation:
 
 ```csharp
-public static IApplicationBuilder UseRequestCulture(
+public static IApplicationBuilder UseMiddlewareViaIMiddlewareFactoryActivation(
     this IApplicationBuilder builder, bool option)
 {
-    // Passing 'option' as an argument won't work and throws a
-    // NotSupportedException at runtime.
-    return builder.UseMiddleware<RequestCultureMiddleware>(option);
+    // Passing 'option' as an argument won't work and throws a NotSupportedException 
+    // at runtime.
+    return builder.UseMiddleware<MiddlewareViaIMiddlewareFactoryActivation>(option);
 }
 ```
 
+The middlewares are added to the built-in container in *Startup.cs*:
+
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet1&highlight=6-7)]
+
+The middlewares are registered in the request processing pipeline in *Startup.cs*:
+
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=15-16)]
+
 ## IMiddlewareFactory
 
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory must be registered in the container.
+[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory is registered in the nonconforming container as a scoped service.
 
-The sample app activates the `RequestCultureMiddleware` with its `BasicMiddlewareFactory`:
+The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with its `BasicMiddlewareFactory`:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareFactory.cs?name=snippet1)]
 
 Note the injection of the database context, which is passed as an argument to `Activator.CreateInstance`. This permits the middleware to to obtain the database context via [dependency injection](xref:fundamentals/dependency-injection).
 
-The middleware factory is registered in the service container in *Startup.cs*:
+The middleware factory is registered in the nonconforming service container in *Startup.cs*:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet1&highlight=5)]
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet3&highlight=12)]
 
 ## Additional resources
 

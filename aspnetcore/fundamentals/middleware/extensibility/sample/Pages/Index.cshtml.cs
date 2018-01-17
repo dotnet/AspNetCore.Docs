@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -17,15 +16,11 @@ namespace MiddlewareExtensibilitySample.Pages
             _db = db;
         }
 
-        public string CurrentCultureSetting { get; private set; }
-
-        public List<CultureRequest> CultureRequests { get; private set; }
+        public List<Request> Requests { get; private set; }
 
         public async Task OnGetAsync()
         {
-            CurrentCultureSetting = $"{CultureInfo.CurrentCulture.TwoLetterISOLanguageName}/{CultureInfo.CurrentCulture.ThreeLetterISOLanguageName} {CultureInfo.CurrentCulture.DisplayName}";
-
-            CultureRequests = await _db.CultureRequests.ToListAsync();
+            Requests = await _db.Requests.ToListAsync();
         }
     }
 }
