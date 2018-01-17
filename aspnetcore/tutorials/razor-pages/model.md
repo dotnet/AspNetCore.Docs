@@ -55,7 +55,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, enter the following commands:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
 Add-Migration Initial
 Update-Database
 ```
