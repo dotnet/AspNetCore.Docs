@@ -1,25 +1,28 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
-keywords: ASP.NET Core,MVC,authorization,roles,security,administrator
+keywords: ASP.NET Core,MVC,authorization,roles,security,administrator,Razor Pages,secure
 ms.author: riande
 manager: wpickett
-ms.date: 05/22/2017
+ms.date: 02/22/2018
 ms.topic: article
-ms.assetid: abeb2f8e-dfbf-4398-a04c-338a613a65bc
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/secure-data
 ---
 
+en-us/
+
+?view=aspnetcore-2.0
+
 # Create an ASP.NET Core app with user data protected by authorization
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that authenticated (registered) users have created. There are three security groups:
+This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
 * Registered users can view all the approved contact data.
-* Registered users can edit/delete their own data. 
+* Registered users can edit/delete their own data.
 * Managers can approve or reject contact data. Only approved contacts are visible to users.
 * Administrators can approve/reject and edit/delete any data.
 
@@ -27,52 +30,46 @@ In the following image, user Rick (`rick@example.com`) is signed in. User Rick c
 
 ![image described above](secure-data/_static/rick.png)
 
-In the following image, `manager@contoso.com` is signed in and in the managers role. 
+In the following image, `manager@contoso.com` is signed in and in the managers role.
 
 ![image described above](secure-data/_static/manager1.png)
 
-The following image shows the  managers details view of a contact.
+The following image shows the managers details view of a contact.
 
 ![image described above](secure-data/_static/manager.png)
 
 Only managers and administrators have the approve and reject buttons.
 
-In the following image, `admin@contoso.com` is signed in and in the administrator’s role. 
+In the following image, `admin@contoso.com` is signed in and in the administrator’s role.
 
 ![image described above](secure-data/_static/admin.png)
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller)  the following `Contact` model:
+The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller) the following `Contact` model:
 
 [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
 
-A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that a user can only edit their data. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler` authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
+The sample contains the following authorization handlers:
+
+* `ContactIsOwnerAuthorizationHandler`: Ensures that a user can only edit their data. 
+* `ContactManagerAuthorizationHandler`: Allows managers to approve or reject contacts. 
+* `ContactAdministratorsAuthorizationHandler`: Allows administrators to approve or reject contacts and to edit/delete contacts.
 
 ## Prerequisites
 
 This is not a beginning tutorial. You should be familiar with:
 
-* [ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc)
+* [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## The starter and completed app
 
-[Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
+[Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 ### The starter app
 
-It's helpful to compare your code with the completed sample.
-
-[Download](xref:tutorials/index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter) app. 
-
-See [Create the starter app](#create-the-starter-app) if you'd like to create it from scratch.
-
-Update the database:
-
-```none
-   dotnet ef database update
-```
+[Download](xref:tutorials/index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
@@ -84,11 +81,11 @@ The following sections have all the major steps to create the secure user data a
 
 ### Tie the contact data to the user
 
-Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model:
+Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` and `ContactStatus` to the `Contact` model:
 
-[!code-csharp[Main](secure-data/samples/final/Models/Contact.cs?name=snippet1&highlight=5-6,16-)]
+[!code-csharp[Main](secure-data/samples/final2/Models/Contact.cs?name=snippet1&highlight=5-6,16-)]
 
-`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users. 
+`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
 
 Scaffold a new migration and update the database:
 
@@ -99,27 +96,31 @@ dotnet ef database update
 
 ### Require SSL and authenticated users
 
+Add [IHostingEnvironment](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment?view=aspnetcore-2.0) to `Startup`:
+
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_env)]
+
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=1)]
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=19-29)]
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
-- Set `"LocalTest:skipSSL": true` in the *appsettings.json* file.
+Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is safer than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
+Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication. Default authentication required is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_defaultPolicy)]
 
-Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
+Add [AllowAnonymous](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute?view=aspnetcore-2.0) to the home controller so anonymous users can get information about the site before they register.
 
 [!code-csharp[Main](secure-data/samples/final/Controllers/HomeController.cs?name=snippet1&highlight=2,6)]
 
 ### Configure the test account
 
-The `SeedData` class creates two accounts,  administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
+The `SeedData` class creates two accounts, administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
 
 ```console
 dotnet user-secrets set SeedUserPW <PW>
@@ -135,7 +136,7 @@ Add the administrator user ID and `Status = ContactStatus.Approved` to the conta
 
 ## Create owner, manager, and administrator authorization handlers
 
-Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` will verify the user acting on the resource owns the resource.
+Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` will verify the user acting on the resource owns the resource.
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
@@ -145,13 +146,13 @@ We allow contact owners to edit/delete their own data, so we don't need to check
 
 ### Create a manager authorization handler
 
-Create a `ContactManagerAuthorizationHandler` class in the  *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
+Create a `ContactManagerAuthorizationHandler` class in the *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactManagerAuthorizationHandler.cs)]
 
 ### Create an administrator authorization handler
 
-Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
+Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
 
@@ -175,14 +176,14 @@ In this section, you update the controller and views and add an operations requi
 
 Update the `ContactsController` constructor:
 
-* Add the `IAuthorizationService` service to  access to the authorization handlers. 
+* Add the `IAuthorizationService` service to access to the authorization handlers.
 * Add the `Identity` `UserManager` service:
 
 [!code-csharp[Main](secure-data/samples/final/Controllers/ContactsController.cs?name=snippet_ContactsControllerCtor)]
 
 ### Add a contact operations requirements class
 
-Add the `ContactOperations` class to the *Authorization* folder. This class  contain the requirements our app supports:
+Add the `ContactOperations` class to the *Authorization* folder. This class contain the requirements our app supports:
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactOperations.cs)]
 
@@ -223,7 +224,7 @@ Update the `Edit` and `Delete` links so they are only rendered for users with pe
 
 [!code-html[Main](secure-data/samples/final/Views/Contacts/Index.cshtml?range=63-84)]
 
-Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
+Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The controller must repeat the access checks to be secure.
 
 ### Update the Details view
 
@@ -244,53 +245,17 @@ Register a user to browse the contacts.
 An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. Sign in to each browser with a different user. Verify the following:
 
 * Registered users can view all the approved contact data.
-* Registered users can edit/delete their own data. 
-* Managers can approve or reject contact data. The `Details` view shows **Approve** and **Reject** buttons. 
+* Registered users can edit/delete their own data.
+* Managers can approve or reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
 * Administrators can approve/reject and edit/delete any data.
 
 | User| Options |
 | ------------ | ---------|
 | test@example.com | Can edit/delete own data |
-| manager@contoso.com | Can approve/reject and edit/delete own data  |
+| manager@contoso.com | Can approve/reject and edit/delete own data |
 | admin@contoso.com | Can edit/delete and approve/reject all data|
 
 Create a contact in the administrators browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user cannot perform these operations.
-
-## Create the starter app
-
-Follow these instructions to create the starter app.
-
-* Create an **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/) named "ContactManager"
-
-  * Create the app with **Individual User Accounts**.
-  * Name it "ContactManager" so your namespace will match the namespace use in the sample.
-
-* Add the following `Contact` model:
-
-  [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
-
-* Scaffold the `Contact` model using Entity Framework Core and the `ApplicationDbContext` data context. Accept all the scaffolding defaults. Using `ApplicationDbContext` for the data context class  puts the contact table in the [Identity](xref:security/authentication/identity) database. See [Adding a model](xref:tutorials/first-mvc-app/adding-model) for more information.
-
-* Update the **ContactManager** anchor in the *Views/Shared/_Layout.cshtml* file from `asp-controller="Home"` to `asp-controller="Contacts"` so tapping the **ContactManager** link will invoke the Contacts controller. The original markup:
-
-```html
-   <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ContactManager</a>
-   ```
-
-The updated markup:
-
-```html
-   <a asp-area="" asp-controller="Contacts" asp-action="Index" class="navbar-brand">ContactManager</a>
-   ```
-
-* Scaffold the initial migration and update the database
-
-```none
-   dotnet ef migrations add initial
-   dotnet ef database update
-   ```
-
-* Test the app by creating, editing and deleting a contact
 
 ### Seed the database
 
