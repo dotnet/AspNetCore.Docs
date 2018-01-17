@@ -61,7 +61,7 @@ The error message states:
 
 The app failed to start the process with the command `dotnet .\troubleshoo.dll`. The assembly name is incorrect and should be *troubleshoot.dll*.
 
-The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Compare the error message information from the app event log to the common errors listed in the topic and follow the troubleshooting advice provided.
+The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Compare the error message information from the app event log to the common errors listed in the topic and follow the troubleshooting advice provided. If several of the errors in the topic match based on the Application Event log alone, continue troubleshooting with this topic to enable ASP.NET Core Module stdout logging. Using the stdout log usually provides additional information that can be helpful when diagnosing startup errors. Enabling stdout logging is described later in the topic.
 
 An alternative to using the **Diagnose and solve problems** blade is to run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
@@ -131,6 +131,16 @@ To use the remote debugging features of [Visual Studio](https://www.visualstudio
 
 Monitoring blades provide an alternative experience to using the **Diagnose and solve problems** blade and accessing the stdout log files directly. These blades can be used to diagnose 500-series errors.
 
+Confirm that the ASP.NET Core Extensions are installed. If the extensions aren't installed, install them manually:
+
+1. In the **DEVELOPMENT TOOLS** blade section, select the **Extensions** blade.
+1. The **ASP.NET Core Extensions** should appear in the list.
+1. If the extensions aren't installed, select the **Add** button.
+1. Choose the **ASP.NET Core Extensions** from the list.
+1. Select **OK** to accept the legal terms.
+1. Select **OK** on the **Add extension** blade.
+1. An informational pop-up message indicates when the extensions are successfully installed.
+
 If stdout logging isn't already enabled, follow these steps:
 
 1. In the Azure portal, select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
@@ -165,7 +175,7 @@ To view the failed request tracing logs (FREB logs):
 1. Navigate to the **Diagnose and solve problems** blade in the Azure portal.
 1. Select **Failed Request Tracing Logs** from the **SUPPORT TOOLS** area of the sidebar.
 
-For more information on failed request tracing, see the [Failed request traces section of the Enable diagnostics logging for web apps in Azure App Service topic](/azure/app-service/web-sites-enable-diagnostic-log#failed-request-traces) and the [Application performance FAQs for Web Apps in Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq#how-do-i-turned-on-failed-request-tracing) in the Azure documentation.
+For more information on failed request tracing, see the [Failed request traces section of the Enable diagnostics logging for web apps in Azure App Service topic](/azure/app-service/web-sites-enable-diagnostic-log#failed-request-traces) and the [Application performance FAQs for Web Apps in Azure: How do I turn on failed request tracing?](/azure/app-service/app-service-web-availability-performance-application-issues-faq#how-do-i-turn-on-failed-request-tracing) in the Azure documentation.
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app failure. The log files have no limit on size. The number of log files created is unlimited. If stdout logging remains enabled, the disk storage space dedicated to the app might become exhausted causing the app instance to fail.
