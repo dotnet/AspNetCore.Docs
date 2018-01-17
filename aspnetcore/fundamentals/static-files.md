@@ -6,7 +6,7 @@ keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2018
+ms.date: 01/17/2018
 ms.devlang: csharp
 ms.prod: asp.net-core
 ms.technology: aspnet
@@ -123,7 +123,7 @@ Note the two `UseStaticFiles` calls in the following example. The first call ena
 
 ## Serve a default document
 
-Setting a default home page provides visitors a logical starting location when visiting your site. To serve a default page without the user having to fully qualify the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
+Setting a default home page provides visitors a logical starting point when visiting your site. To serve a default page without the user fully qualifying the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure` as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
 
