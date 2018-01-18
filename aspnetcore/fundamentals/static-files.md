@@ -6,7 +6,7 @@ keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/17/2018
+ms.date: 01/18/2018
 ms.devlang: csharp
 ms.prod: asp.net-core
 ms.technology: aspnet
@@ -41,7 +41,7 @@ Set the content root to the current directory by invoking [UseContentRoot](/dotn
 
 ---
 
-Static files are accessible via a path relative to the web root. For example, the Visual Studio Web Application project template contains several folders within the *wwwroot* folder:
+Static files are accessible via a path relative to the web root. For example, the **Web Application** project template contains several folders within the *wwwroot* folder:
 
 * **wwwroot**
   * **css**
@@ -52,7 +52,7 @@ The URI format to access a file in the *images* subfolder is *http://\<server_ad
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) already includes this package.
+If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) includes this package.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -68,7 +68,7 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
-The parameterless `UseStaticFiles` method overload marks the files in web root as servable. An example of the markup to reference *wwwroot/images/banner1.svg* is:
+The parameterless `UseStaticFiles` method overload marks the files in web root as servable. The following markup references *wwwroot/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
@@ -90,7 +90,7 @@ A request can access the *banner1.svg* file by configuring the static file middl
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to *http://\<server_address>/StaticFiles/images/banner1.svg* serves the *banner1.svg* file.
 
-An example of the markup to reference *MyStaticFiles/images/banner1.svg* is:
+The following markup references *MyStaticFiles/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_outside)]
 
@@ -173,7 +173,7 @@ The following code builds upon the parameterless overload by enabling directory 
 app.UseFileServer(enableDirectoryBrowsing: true);
 ```
 
-See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the web root, instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, consider the following directory hierarchy in your web app:
+Consider the following directory hierarchy:
 
 * **wwwroot**
   * **css**
@@ -184,11 +184,11 @@ See [Considerations](#considerations) on the security risks when enabling browsi
       * *banner1.svg*
   * *default.html*
 
-To enable static files, default files, and directory browsing of `MyStaticFiles`, instantiate a `FileServerOptions` object as follows:
+The following code enables static files, default files, and directory browsing of `MyStaticFiles`:
 
 [!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureMethod&highlight=5-11)]
 
-When the `EnableDirectoryBrowsing` property value is `true`, you're required to invoke the `AddDirectoryBrowser` method in `Startup.ConfigureServices`:
+`AddDirectoryBrowser` must be called when the `EnableDirectoryBrowsing` property value is `true`:
 
 [!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureServicesMethod)]
 
