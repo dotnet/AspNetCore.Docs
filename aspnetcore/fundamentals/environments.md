@@ -38,7 +38,7 @@ The [Environment Tag Helper ](xref:mvc/views/tag-helpers/builtin-th/environment-
 
 [!code-html[Main](environments/sample/WebApp1/Pages/About.cshtml)]
 
-Note: On Windows and macOS, environment variables and values are insensitive. Linux environment variables and values are **case sensitive** by default.
+Note: On Windows and macOS, environment variables and values are not case sensitive. Linux environment variables and values are **case sensitive** by default.
 
 ### Development
 
