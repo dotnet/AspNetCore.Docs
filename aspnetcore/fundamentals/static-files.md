@@ -82,7 +82,7 @@ Directory browsing allows the user of your web app to see a list of directories 
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
-Then add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
+Add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet2)]
 
