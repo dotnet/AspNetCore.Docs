@@ -56,7 +56,7 @@ Use the following values:
 
 After the app is registered, the list of apps in the tenant is displayed. Select the app that was just registered. Select the **Copy** icon to the right of the **Application ID** field to copy the Application ID to the clipboard.
 
-Nothing more can be configured in the Azure AD B2C tenant at this time, but leave the browser window open. There will be more configuration after the ASP.NET Core app is created.
+Nothing more can be configured in the Azure AD B2C tenant at this time, but leave the browser window open. There is more configuration after the ASP.NET Core app is created.
 
 ## Create an ASP.NET Core app in Visual Studio 2017
 
