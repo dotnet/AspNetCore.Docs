@@ -30,7 +30,7 @@ This page demonstrates using Azure AD B2C with ASP.NET Core in Visual Studio 201
 The following are required for this walkthrough:
 
 * A [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio). 
-* [Visual Studio 2017](https://www.visualstudio.com/vs/) (any edition).
+* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition).
 
 ## Create the Azure Active Directory B2C tenant
 
