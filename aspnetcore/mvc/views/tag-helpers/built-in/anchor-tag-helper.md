@@ -77,7 +77,7 @@ The `asp-page` attribute in the previous code sample renders HTML output in the 
 
 ```html
 <a href="/items?page=%2FSpeakers">Speakers</a>
-``
+```
 
 The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following code sample demonstrates:
 

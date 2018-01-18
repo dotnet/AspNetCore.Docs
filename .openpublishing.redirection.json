@@ -42,7 +42,7 @@
     }, 
     {   
         "source_path": "aspnetcore/hosting/dataprotection.md", 
-        "redirect_url": "/aspnet/core/publishing/iis", 
+        "redirect_url": "/aspnet/core/host-and-deploy/iis/index", 
         "redirect_document_id": false 
     }, 
     {   
@@ -52,7 +52,7 @@
     }, 
     {   
         "source_path": "aspnetcore/hosting/index.md", 
-        "redirect_url": "/aspnet/core/publishing/", 
+        "redirect_url": "/aspnet/core/host-and-deploy/index", 
         "redirect_document_id": false 
     }, 
     {   
@@ -123,6 +123,76 @@
     {
         "source_path": "aspnetcore/client-side/yeoman.md",
         "redirect_url": "/dotnet/core/tools/dotnet-new",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/apache-proxy.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/linux-apache",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/azure-continuous-deployment.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/development-time-iis-support.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/iis/development-time-iis-support",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/docker.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/docker/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/iis.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/iis/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/index.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/linuxproduction.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/linux-nginx",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/visual-studio-tools-for-docker.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/docker/visual-studio-tools-for-docker",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/publishing/web-publishing-vs.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/visual-studio-publish-profiles",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/hosting/aspnet-core-module.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/aspnet-core-module",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/hosting/directory-structure.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/directory-structure",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/hosting/ihostingstartup.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/ihostingstartup",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/hosting/iis-modules.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/iis/modules",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/hosting/windows-service.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/windows-service",
         "redirect_document_id": false
     }
   ] 

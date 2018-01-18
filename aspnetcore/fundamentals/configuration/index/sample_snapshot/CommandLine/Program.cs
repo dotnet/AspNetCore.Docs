@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 public class Program
 {
-    public static IConfigurationRoot Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static void Main(string[] args = null)
     {

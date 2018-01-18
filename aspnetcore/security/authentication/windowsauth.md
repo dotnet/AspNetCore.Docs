@@ -75,7 +75,7 @@ Using Visual Studio or the .NET Core CLI, publish the app to the destination fol
 
 ![Visual Studio Publish Dialog](windowsauth/_static/vs-publish-app.png)
 
-Learn more about [publishing to IIS](xref:publishing/iis).
+Learn more about [publishing to IIS](xref:host-and-deploy/iis/index).
 
 Launch the app to verify Windows authentication is working.
 

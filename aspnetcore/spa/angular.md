@@ -93,7 +93,7 @@ In development, the app runs in a mode optimized for developer convenience. For 
 
 In production, serve a version of your app that is optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled [server-side prerendering](#server-side-rendering)).
 
-You can use standard [ASP.NET Core publish and deployment methods](xref:publishing/index).
+You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
 ## Run "ng serve" independently
 
