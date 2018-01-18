@@ -17,12 +17,12 @@ By [Cam Soper](https://twitter.com/camsoper)
 
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for your web and mobile apps. The service provides global, scalable, cloud-based authentication to web apps and APIs using individual accounts, social network accounts, and federated enterprise accounts for apps hosted in the cloud and on-premises. Additionally, Azure AD B2C can provide multifactor authentication with very little configuration.
 
-This page demonstrates using Azure AD B2C with ASP.NET Core in Visual Studio 2017.  In this tutorial, you will learn how to:
+In this tutorial, you will learn how to:
 
 > [!div class="checklist"]
 > * Create an Azure Active Directory B2C tenant
 > * Register an app in Azure AD B2C
-> * Create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
+> * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
 > * Configure policies controlling the behavior of the Azure AD B2C tenant
 
 ## Prerequisites
@@ -122,7 +122,7 @@ In this tutorial, you will learned how to:
 > [!div class="checklist"]
 > * Create an Azure Active Directory B2C tenant
 > * Register an app in Azure AD B2C
-> * Create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
+> * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
 > * Configure policies controlling the behavior of the Azure AD B2C tenant
 
 Now that the ASP.NET Core app is configured to use Azure Active Directory B2C for authentication, the [Authorize attribute](xref:security/authorization/simple) can be used to secure your app.  Continue developing your app by learning to:
