@@ -112,6 +112,9 @@ The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startu
 1. Inspect the **Modified** column and select the pencil icon to edit the stdout log with the latest modification date.
 1. When the log file opens, the error is displayed. For example:
    ![Browser window of the Azure portal open to the stdout log file in Kudu](troubleshoot/_static/stdout-log-error.png)
+
+**Important** Be sure to disable stdout logging when troubleshooting is complete:
+
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
@@ -168,6 +171,9 @@ Proceed to activate diagnostic logging:
 1. Select the **Log stream** blade, which is listed immediately under the **Diagnostics logs** blade in the portal.
 1. Make a request to the app.
 1. Within the log stream data the cause of the error is indicated.
+
+**Important** Be sure to disable stdout logging when troubleshooting is complete:
+
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
