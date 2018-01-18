@@ -1,17 +1,16 @@
 ---
-title: Working with static files in ASP.NET Core
+title: Work with static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to work with static files in ASP.NET Core.
 keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 ms.author: riande
 manager: wpickett
-ms.date: 4/07/2017
+ms.date: 01/16/2018
 ms.topic: article
 ms.assetid: e32245c7-4eee-4831-bd2e-915dbf9f5f70
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/static-files
-ms.custom: H1Hack27Feb2017
 ---
 
 # Working with static files in ASP.NET Core
@@ -24,9 +23,9 @@ Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.N
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Serving static files
+## Serve static files
 
-Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
+Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information. You generally set the content root to be the current directory so that your project's `web root` is found while in development.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 
@@ -39,7 +38,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
-`app.UseStaticFiles();` makes the files in `web root` (*wwwroot* by default) servable. Later I'll show how to make other directory contents servable with `UseStaticFiles`.
+`app.UseStaticFiles();` makes the files in `web root` (*wwwroot* by default) servable. 
 
 You must include the NuGet package "Microsoft.AspNetCore.StaticFiles".
 
@@ -77,13 +76,13 @@ The static file module provides **no** authorization checks. Any files served by
 
 * Serve them through a controller action, returning a `FileResult` where authorization is applied
 
-## Enabling directory browsing
+## Enable directory browsing
 
 Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the `UseDirectoryBrowser` extension method from  `Startup.Configure`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
-And add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
+Add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet2)]
 
@@ -93,11 +92,11 @@ The code above allows directory browsing of the *wwwroot/images* folder using th
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call for directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages:
+Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call is for directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?highlight=3,5&name=snippet1)]
 
-## Serving a default document
+## Serve a default document
 
 Setting a default home page gives site visitors a place to start when visiting your site. In order for your Web app to serve a default page without the user having to fully qualify the URI, call the `UseDefaultFiles` extension method from `Startup.Configure` as follows.
 
@@ -113,7 +112,7 @@ With `UseDefaultFiles`, requests to a folder will search for:
 * index.htm
 * index.html
 
-The first file found from the list will be served as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).
+The first file found from the list will be served as if the request was the fully qualified URI, although the browser URL will continue to show the URI requested.
 
 The following code shows how to change the default file name to *mydefault.html*.
 
@@ -179,7 +178,7 @@ The `FileExtensionContentTypeProvider` class contains a  collection that maps fi
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupFileExtensionContentTypeProvider.cs?highlight=3,4,5,6,7,8,9,10,11,12,19&name=snippet1)]
 
-See   [MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml).
+See [MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml).
 
 ## Non-standard content types
 
