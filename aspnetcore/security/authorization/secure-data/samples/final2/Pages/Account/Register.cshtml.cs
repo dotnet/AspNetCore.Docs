@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ContactManager.Data;
 using ContactManager.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContactManager.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

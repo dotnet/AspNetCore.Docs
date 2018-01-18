@@ -104,6 +104,8 @@ In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttp
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-29)]
 
+If you're using Visual Studio, enable SSL.
+
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
 Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
@@ -114,9 +116,9 @@ Set the default authentication policy to require users to be authenticated. You 
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_defaultPolicy)]
 
-Add [AllowAnonymous](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute?view=aspnetcore-2.0) to the home controller so anonymous users can get information about the site before they register.
+Add [AllowAnonymous](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute?view=aspnetcore-2.0) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
 
-[!code-csharp[Main](secure-data/samples/final/Controllers/HomeController.cs?name=snippet1&highlight=2,6)]
+[!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
 
 ### Configure the test account
 
@@ -236,9 +238,12 @@ Update the details view so managers can approve or reject contacts:
 
 If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
-- Set `"LocalTest:skipSSL": true` in the *appsettings.json* file.
+- Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file to skip the SSL requirement. Do this only on a development machine.
 
-If you have run the app and have contacts, delete all the records in the `Contact` table and restart the app to seed the database. If you are using Visual Studio, you need to exit and restart IIS Express to seed the database.
+If the app has contacts:
+
+* Delete all the records in the `Contact` table.
+* Restart the app to seed the database. 
 
 Register a user to browse the contacts.
 

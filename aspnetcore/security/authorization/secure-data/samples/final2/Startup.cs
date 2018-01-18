@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ContactManager
 {
@@ -87,7 +88,7 @@ namespace ContactManager
         }
         #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        #region Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -106,7 +107,31 @@ namespace ContactManager
             app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
+
+            // Set password with the Secret Manager tool.
+            // dotnet user-secrets set SeedUserPW <pw>
+            var testUserPw = Configuration["SeedUserPW"];
+
+            if (String.IsNullOrEmpty(testUserPw))
+            {
+                throw new System.Exception("Use secrets manager to set SeedUserPW \n" +
+                                           "dotnet user-secrets set SeedUserPW <pw>");
+            }
+
+            try
+            {
+                SeedData.Initialize(app.ApplicationServices, testUserPw).Wait();
+            }
+            catch
+            {
+                throw new System.Exception("You need to update the DB "
+                    + "\nPM > Update-Database " + "\n or \n" +
+                      "> dotnet ef database update"
+                      + "\nIf that doesn't work, comment out SeedData and "
+                      + "register a new user");
+            }
         }
+        #endregion
     }
-    #endregion
+    #endregion  // end of Startup
 }
