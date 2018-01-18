@@ -1,17 +1,14 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace StaticFiles
 {
     public class StartupBrowse
     {
         // This method gets called by the runtime. Use this method to add services to the container.
-        #region snippet2
+        #region snippet_ConfigureServicesMethod
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDirectoryBrowser();
@@ -19,23 +16,23 @@ namespace StaticFiles
         #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles(); // For the wwwroot folder
 
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
-                RequestPath = new PathString("/MyImages")
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages"
             });
 
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
-                RequestPath = new PathString("/MyImages")
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages"
             });
         }
         #endregion

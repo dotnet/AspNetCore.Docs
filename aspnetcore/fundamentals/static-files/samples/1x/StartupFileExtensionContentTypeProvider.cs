@@ -1,29 +1,24 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace StaticFiles
 {
     public class StartupFileExtensionContentTypeProvider
     {
         // This method gets called by the runtime. Use this method to add services to the container.
-        // >Services
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDirectoryBrowser();
         }
-        // <Services
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
-            // Set up custom content types -associating file extension to MIME type
+            // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();
             // Add new mappings
             provider.Mappings[".myapp"] = "application/x-msdownload";
@@ -34,19 +29,19 @@ namespace StaticFiles
             // Remove MP4 videos.
             provider.Mappings.Remove(".mp4");
 
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
-                RequestPath = new PathString("/MyImages"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages",
                 ContentTypeProvider = provider
             });
 
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
-                RequestPath = new PathString("/MyImages")
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages"
             });
         }
         #endregion
