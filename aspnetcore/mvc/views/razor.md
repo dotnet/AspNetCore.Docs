@@ -71,7 +71,7 @@ The preceding code generates a compiler error similar to one of the following:
  * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
  *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
-Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks). This restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
+Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
 
 ## Explicit Razor expressions
 
@@ -122,8 +122,6 @@ The preceding code generates a compiler error similar to one of the following:
 ```cshtml
 <p>@(GenericMethod<int>())</p>
 ```
-
-Note: this restriction doesn't apply to *.vbhtml* Razor files.  With *.vbhtml* Razor files, Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
 ## Expression encoding
 
