@@ -43,6 +43,8 @@ When a 500-series error occurs after the app starts but before a response is ret
 
 ## Troubleshoot app startup errors
 
+### Application Event Log
+
 Use the **Diagnose and solve problems** blade in the Azure portal to access the Application Event Log:
 
 1. In the Azure portal, open the app's blade in the **App Services** blade.
@@ -60,8 +62,6 @@ The error message states:
 > Application 'MACHINE/WEBROOT/APPHOST/TROUBLESHOOT' with physical root 'D:\home\site\wwwroot\' failed to start process with commandline 'dotnet .\troubleshoo.dll', ErrorCode = '0x80004005 : 80008081.
 
 The app failed to start the process with the command `dotnet .\troubleshoo.dll`. The assembly name is incorrect and should be *troubleshoot.dll*.
-
-The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Compare the error message information from the app event log to the common errors listed in the topic and follow the troubleshooting advice provided. If several of the errors in the topic match based on the Application Event log alone, continue troubleshooting with this topic to enable ASP.NET Core Module stdout logging. Using the stdout log usually provides additional information that can be helpful when diagnosing startup errors. Enabling stdout logging is described later in the topic.
 
 An alternative to using the **Diagnose and solve problems** blade is to run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
@@ -84,7 +84,9 @@ Another alternative is to examine the Application Event Log file directly using 
 1. Examine the log. Scroll to the bottom of the log to see the most recent events.
    ![Browser window of the Application Events Log in Kudu showing an event that indicates the app's process started normally.](troubleshoot/_static/kudu-app-event-log.png)
 
-Internal Server Errors often don't produce useful information in the Application Event Log. As far as the proxy server is concerned, the app started normally:
+### ASP.NET Core Module stdout log
+
+Many startup errors where the process fails to start or where the app fails with an Internal Server Error don't produce useful information in the Application Event Log. For many of these types of errors as far as the proxy server is concerned, the app started normally:
 
 ![Browser window of the Application Events Log showing an informational message from the IIS AspNetCoreModule](troubleshoot/_static/app-event-log-information.png)
 
@@ -94,7 +96,7 @@ The informational message associated with this event states:
 
 However, the app is clearly in an unhealthy state if it doesn't respond normally to requests.
 
-ASP.NET Core Module *stdout logging* is helpful in diagnosing startup failures when an error occurs after the host is built. To diagnose these types of errors, perform the following steps:
+The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startup failures. To enable and view stdout logs, perform the following steps:
 
 1. Navigate to the **Diagnose and solve problems** blade in the Azure portal.
 1. Under **SELECT PROBLEM CATEGORY**, select the **Web App Down** button.
@@ -113,6 +115,14 @@ ASP.NET Core Module *stdout logging* is helpful in diagnosing startup failures w
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
+
+The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Collect the following information:
+
+* Browser behavior
+* Application Event Log entries
+* ASP.NET Core Module stdout log entries
+
+Compare the browser behavior and log entries to the common errors listed in the topic and follow the troubleshooting advice provided.
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app failure. The log files have no limit on size. The number of log files created is unlimited. If stdout logging remains enabled, the disk storage space dedicated to the app might become exhausted causing the app instance to fail.
