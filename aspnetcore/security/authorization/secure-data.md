@@ -98,11 +98,11 @@ dotnet ef database update
 
 Add [IHostingEnvironment](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment?view=aspnetcore-2.0) to `Startup`:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_env)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_env)]
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=19-29)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-29)]
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
@@ -256,6 +256,42 @@ An easy way to test the completed app is to launch three different browsers (or 
 | admin@contoso.com | Can edit/delete and approve/reject all data|
 
 Create a contact in the administrators browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user cannot perform these operations.
+
+## Create the starter app
+
+* Create a Razor Pages app named "ContactManager"
+
+  * Create the app with **Individual User Accounts**.
+  * Name it "ContactManager" so your namespace will match the namespace use in the sample.
+  
+  ```console
+  dotnet new razor -o ContactManager -au Individual -uld
+  ```
+  
+  * `-uld` specifies LocalDB instead of SQLite
+  
+* Add the following `Contact` model:
+
+  [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
+
+* Scaffold the `Contact` model:
+
+    `dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries`
+
+* Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file: 
+
+```html
+ <a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
+   ```
+
+* Scaffold the initial migration and update the database
+
+```none
+   dotnet ef migrations add initial
+   dotnet ef database update
+   ```
+
+* Test the app by creating, editing and deleting a contact
 
 ### Seed the database
 
