@@ -2,7 +2,6 @@
 title: Razor Pages with EF Core - Data Model - 5 of 8
 author: rick-anderson
 description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
-keywords: ASP.NET Core,Entity Framework Core,data annotations
 ms.author: riande
 manager: wpickett
 ms.date: 10/25/2017
@@ -81,7 +80,7 @@ Update the `Student` model with the following code:
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
 ```
 
 Run the app:

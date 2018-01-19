@@ -2,12 +2,10 @@
 title: Error handling in ASP.NET Core
 author: ardalis
 description: Discover how to handle errors in ASP.NET Core applications.
-keywords: ASP.NET Core,error handling,exception handling
 ms.author: tdykstra
 manager: wpickett
 ms.date: 11/30/2016
 ms.topic: article
-ms.assetid: 4db51023-c8a6-4119-bbbe-3917e272c260
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/error-handling

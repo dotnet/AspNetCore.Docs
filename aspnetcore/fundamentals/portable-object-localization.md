@@ -2,7 +2,6 @@
 title: Configure portable object localization
 author: sebastienros
 description: This article introduces Portable Object files and outlines steps for using them in an ASP.NET Core application with the Orchard Core framework.
-keywords: ASP.NET Core,localization,culture,language,portable object
 ms.author: scaddie
 manager: wpickett
 ms.date: 09/26/2017

@@ -2,12 +2,10 @@
 title: ASP.NET Core on Nano Server
 author: shirhatti
 description: Learn how to take an existing ASP.NET Core app and deploy it to a Nano Server instance running IIS.
-keywords: ASP.NET Core,nano server
 ms.author: riande
 manager: wpickett
 ms.date: 11/04/2016
 ms.topic: article
-ms.assetid: 50922cf1-ca58-4006-9236-99b7ff2dd0cf
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/nano-server

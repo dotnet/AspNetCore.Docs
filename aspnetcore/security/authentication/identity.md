@@ -2,12 +2,10 @@
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
 description: Use Identity with an ASP.NET Core app
-keywords: ASP.NET Core,Identity,authorization,security
 ms.author: riande
 manager: wpickett
 ms.date: 01/02/2018
 ms.topic: article
-ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/identity
@@ -95,7 +93,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
         options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
     ```
     
-    When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the  `_userManager` object (provided to ``AccountController`` by dependency injection):
+    When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to ``AccountController`` by dependency injection):
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
 

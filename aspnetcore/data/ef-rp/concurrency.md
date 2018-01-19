@@ -2,7 +2,6 @@
 title: Razor Pages with EF Core - Concurrency - 8 of 8
 author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
-keywords: ASP.NET Core,Entity Framework Core,concurrency
 ms.author: riande
 manager: wpickett
 ms.date: 11/15/2017

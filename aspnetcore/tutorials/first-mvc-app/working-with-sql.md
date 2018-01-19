@@ -2,12 +2,10 @@
 title: Working with SQL Server LocalDB
 author: rick-anderson
 description: Using SQL Server LocalDB with a simple MVC app
-keywords: ASP.NET Core,SQL Server LocalDB,SQL Server,LocalDB
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
 ms.topic: get-started-article
-ms.assetid: ff8fd9b8-7c98-424d-8641-7524e23bf541
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/working-with-sql

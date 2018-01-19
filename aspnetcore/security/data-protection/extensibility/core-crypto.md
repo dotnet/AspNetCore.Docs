@@ -2,7 +2,6 @@
 title: Core cryptography extensibility
 author: rick-anderson
 description: Explains IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer, and the top-level factory.
-keywords: ASP.NET Core,IAuthenticatedEncryptor,IAuthenticatedEncryptorDescriptor,IAuthenticatedEncryptorDescriptorDeserializer
 ms.author: riande
 manager: wpickett
 ms.date: 8/11/2017

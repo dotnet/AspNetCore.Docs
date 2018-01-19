@@ -2,12 +2,10 @@
 title: Key Management
 author: rick-anderson
 description: This document outlines the implementation details of the ASP.NET Core data protection key management APIs.
-keywords: ASP.NET Core,data protection,key management
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: fb9b807a-d143-4861-9ddb-005d8796afa3
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-management

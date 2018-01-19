@@ -2,12 +2,10 @@
 title: Introduction to Data Protection
 author: rick-anderson
 description: This document introduces the concept of data protection and outlines the design principles of the associated ASP.NET Core APIs.
-keywords: ASP.NET Core,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 4542cd37-b47c-454c-be19-d1b5810d67fe
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/introduction

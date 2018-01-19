@@ -2,12 +2,10 @@
 title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 author: tdykstra
 description: 
-keywords: ASP.NET Core,Entity Framework Core,CRUD,create,read,update,delete
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
 ms.topic: get-started-article
-ms.assetid: 6e1cd570-40f1-4b24-8b6e-7d2d27758f18
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/crud
