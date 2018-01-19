@@ -1,6 +1,6 @@
 ---
-title: Host ASP.NET Core on Linux with nginx
-description: Describes how to setup nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel. 
+title: Host ASP.NET Core on Linux with Nginx
+description: Describes how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel. 
 author: rick-anderson
 ms.author: riande
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: host-and-deploy/linux-nginx
 ---
-# Host ASP.NET Core on Linux with nginx
+# Host ASP.NET Core on Linux with Nginx
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
@@ -46,9 +46,9 @@ A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy 
 
 ### Why use a reverse proxy server?
 
-Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as servers like IIS, Apache, or nginx. A reverse proxy server can offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as servers like IIS, Apache, or Nginx. A reverse proxy server can offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
-For the purposes of this guide, a single instance of nginx is used. It runs on the same server, alongside the HTTP server. Based on requirements, a different setup may be choosen.
+For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on requirements, a different setup may be choosen.
 
 Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware updates `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
@@ -87,28 +87,28 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 ---
 
-### Install nginx
+### Install Nginx
 
 ```bash
 sudo apt-get install nginx
 ```
 
 > [!NOTE]
-> If optional nginx modules will be installed, building nginx from source might be required.
+> If optional Nginx modules will be installed, building Nginx from source might be required.
 
-Use `apt-get` to install nginx. The installer creates a System V init script that runs nginx as daemon on system startup. Since nginx was installed for the first time, explicitly start it by running:
+Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
 sudo service nginx start
 ```
 
-Verify a browser displays the default landing page for nginx.
+Verify a browser displays the default landing page for Nginx.
 
-### Configure nginx
+### Configure Nginx
 
-To configure nginx as a reverse proxy to forward requests to our ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following:
+To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following:
 
-```nginx
+```
 server {
     listen 80;
     location / {
@@ -122,13 +122,13 @@ server {
 }
 ```
 
-This nginx configuration file forwards incoming public traffic from port `80` to port `5000`.
+This Nginx configuration file forwards incoming public traffic from port `80` to port `5000`.
 
-Once the nginx configuration is established, run `sudo nginx -t` to verify the syntax of the configuration files. If the configuration file test is successful, force nginx to pick up the changes by running `sudo nginx -s reload`.
+Once the Nginx configuration is established, run `sudo nginx -t` to verify the syntax of the configuration files. If the configuration file test is successful, force Nginx to pick up the changes by running `sudo nginx -s reload`.
 
 ## Monitoring the app
 
-The server is setup to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, nginx is not set up to manage the Kestrel process. *systemd* can be used to create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
+The server is setup to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx is not set up to manage the Kestrel process. *systemd* can be used to create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
 
 ### Create the service file
 
@@ -224,9 +224,9 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 ```
 
-### Securing nginx
+### Securing Nginx
 
-The default distribution of nginx doesn't enable SSL. To enable additional security features, build from source.
+The default distribution of Nginx doesn't enable SSL. To enable additional security features, build from source.
 
 #### Download the source and install the build dependencies
 
@@ -235,12 +235,12 @@ The default distribution of nginx doesn't enable SSL. To enable additional secur
 sudo apt-get update
 sudo apt-get install build-essential zlib1g-dev libpcre3-dev libssl-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev
 
-# Download nginx 1.10.0 or latest
+# Download Nginx 1.10.0 or latest
 wget http://www.nginx.org/download/nginx-1.10.0.tar.gz
 tar zxf nginx-1.10.0.tar.gz
 ```
 
-#### Change the nginx response name
+#### Change the Nginx response name
 
 Edit *src/http/ngx_http_header_filter_module.c*:
 
@@ -282,7 +282,7 @@ Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `
 
 [!code-nginx[Main](linux-nginx/nginx.conf?highlight=2)]
 
-#### Secure nginx from clickjacking
+#### Secure Nginx from clickjacking
 Clickjacking is a malicious technique to collect an infected user's clicks. Clickjacking tricks the victim (visitor) into clicking on an infected site. Use X-FRAME-OPTIONS to secure the site.
 
 Edit the *nginx.conf* file:
@@ -291,7 +291,7 @@ Edit the *nginx.conf* file:
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart nginx.
+Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
 
 #### MIME-type sniffing
 
@@ -303,4 +303,4 @@ Edit the *nginx.conf* file:
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart nginx.
+Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
