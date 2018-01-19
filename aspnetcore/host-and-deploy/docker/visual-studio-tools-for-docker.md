@@ -66,7 +66,7 @@ A *Dockerfile*, the recipe for creating a final Docker image, is added to the pr
 
 The *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image. This base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
 
-The *docker-compose.yml* file contains the name of the image that is created when the project runs:
+The *docker-compose.yml* file contains the name of the image that's created when the project runs:
 
 [!code-yaml[](visual-studio-tools-for-docker/samples/HelloDockerTools/docker-compose.yml?highlight=5)]
 

@@ -27,7 +27,7 @@ The [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) CLI command com
 
 The *publish* folder contains *.exe* and *.dll* files for the app, its dependencies, and optionally the .NET runtime.
 
-A .NET Core app can be published as *self-contained* or *framework-dependent* app. If the app is self-contained, the *.dll* files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that is installed on the server. The default deployment model is framework-dependent. For more information, see [.NET Core application deployment](/dotnet/articles/core/deploying/index).
+A .NET Core app can be published as *self-contained* or *framework-dependent* app. If the app is self-contained, the *.dll* files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that's installed on the server. The default deployment model is framework-dependent. For more information, see [.NET Core application deployment](/dotnet/articles/core/deploying/index).
 
 In addition to *.exe* and *.dll* files, the *publish* folder for an ASP.NET Core app typically contains configuration files, static assets, and MVC views. For more information, see [Directory structure](xref:host-and-deploy/directory-structure).
 

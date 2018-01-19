@@ -27,7 +27,7 @@ Integration tests verify that different parts of an application work correctly t
 Integration tests, because they exercise larger segments of code and because they rely on infrastructure elements, tend to be orders of magnitude slower than unit tests. Thus, it's a good idea to limit how many integration tests you write, especially if you can test the same behavior with a unit test.
 
 > [!NOTE]
-> If some behavior can be tested using either a unit test or an integration test, prefer the unit test, since it will be almost always be faster. You might have dozens or hundreds of unit tests with many different inputs but just a handful of integration tests covering the most important scenarios.
+> If some behavior can be tested using either a unit test or an integration test, prefer the unit test, since it'll be almost always be faster. You might have dozens or hundreds of unit tests with many different inputs but just a handful of integration tests covering the most important scenarios.
 
 Testing the logic within your own methods is usually the domain of unit tests. Testing how your application works within its framework, for example with ASP.NET Core, or with a database is where integration tests come into play. It doesn't take too many integration tests to confirm that you're able to write a row to the database and read it back. You don't need to test every possible permutation of your data access code - you only need to test enough to give you confidence that your application is working properly.
 
@@ -73,13 +73,13 @@ Test projects that contain Razor views require `<PreserveCompilationContext>` be
 Projects missing this element will generate an error similar to the following:
 ```
 Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: 'One or more compilation failures occurred:
-ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that is not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
+ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that's not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
 ```
 
 
 ## Refactoring to use middleware
 
-Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
+Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there's a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -133,7 +133,7 @@ You want to allow the path the middleware uses to be specified as a parameter, s
 
 [!code-csharp[Main](../testing/integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs?highlight=39-63)]
 
-Since this middleware acts as an endpoint in the request delegate chain when its path matches, there is no call to `_next.Invoke` when this middleware handles the request.
+Since this middleware acts as an endpoint in the request delegate chain when its path matches, there's no call to `_next.Invoke` when this middleware handles the request.
 
 With this middleware in place and some helpful extension methods created to make configuring it easier, the refactored `Configure` method looks like this:
 

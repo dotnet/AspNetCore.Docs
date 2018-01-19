@@ -14,13 +14,13 @@ uid: security/preventing-open-redirects
 ---
 # Preventing Open Redirect Attacks in an ASP.NET Core app
 
-A web app that redirects to a URL that is specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
+A web app that redirects to a URL that's specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
 
 Whenever your application logic redirects to a specified URL, you must verify that the redirection URL hasn't been tampered with. ASP.NET Core has built-in functionality to help protect apps from open redirect (also known as open redirection) attacks.
 
 ## What is an open redirect attack?
 
-Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they are redirected to the URL they had originally requested.
+Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they've successfully logged in. After the user authenticates, they're redirected to the URL they had originally requested.
 
 Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
 
@@ -37,7 +37,7 @@ The user will likely believe their first attempt to log in failed, and their sec
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, ``/Home/Redirect``. An attacker could create, for example, a link in an email that goes to ``[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login``. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
+In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, ``/Home/Redirect``. An attacker could create, for example, a link in an email that goes to ``[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login``. A typical user will look at the URL and see it begins with your site name. Trusting that, they'll click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
 
 ## Protecting against open redirect attacks
 

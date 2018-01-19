@@ -123,7 +123,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
 6.  Configuration.
 
-    Identity has some default behaviors that you can override in your application's startup class. You do not need to configure ``IdentityOptions`` if you are using the default behaviors.
+    Identity has some default behaviors that you can override in your application's startup class. You don't need to configure ``IdentityOptions`` if you are using the default behaviors.
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     

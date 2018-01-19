@@ -51,7 +51,7 @@ A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that a user
 
 ## Prerequisites
 
-This is not a beginning tutorial. You should be familiar with:
+This isn't a beginning tutorial. You should be familiar with:
 
 * [ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -157,11 +157,11 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorizatio
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they'll be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=AuthorizationHandlers)]
 
-`ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They are singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
+`ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
 The complete `ConfigureServices`:
 
@@ -211,7 +211,7 @@ Update both `Delete` methods to use the authorization handler to verify the user
 
 Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization handler to the views.
 
-Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
+Inject the authorization service in the *Views/_ViewImports.cshtml* file so it'll be available to all views:
 
 [!code-html[Main](secure-data/samples/final/Views/_ViewImports.cshtml)]
 
@@ -219,11 +219,11 @@ Update the *Views/Contacts/Index.cshtml* Razor view to only display the edit and
 
 Add `@using ContactManager.Authorization;`
 
-Update the `Edit` and `Delete` links so they are only rendered for users with permission to edit and delete the contact.
+Update the `Edit` and `Delete` links so they're only rendered for users with permission to edit and delete the contact.
 
 [!code-html[Main](secure-data/samples/final/Views/Contacts/Index.cshtml?range=63-84)]
 
-Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
+Warning: Hiding links from users that don't have permission to edit or delete data doesn't secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
 
 ### Update the Details view
 
@@ -302,7 +302,7 @@ Add the highlighted code to the end of the `Configure` method in the *Startup.cs
 
 [!code-csharp[Main](secure-data/samples/starter/Startup.cs?name=Configure&highlight=28-)]
 
-Test that the app seeded the database. The seed method does not run if there are any rows in the contact DB.
+Test that the app seeded the database. The seed method doesn't run if there are any rows in the contact DB.
 
 ### Create a class used in the tutorial
 

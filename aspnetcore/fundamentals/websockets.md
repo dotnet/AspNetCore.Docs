@@ -17,14 +17,14 @@ uid: fundamentals/websockets
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
-This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) is a protocol that enables two-way persistent communication channels over TCP connections. It is used for applications such as chat, stock tickers, games, anywhere you want real-time functionality in a web application.
+This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) is a protocol that enables two-way persistent communication channels over TCP connections. It's used for applications such as chat, stock tickers, games, anywhere you want real-time functionality in a web application.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/websockets/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next Steps](#next-steps) section for more information.
 
 
 ## Prerequisites
 
-* ASP.NET Core 1.1 (does not run on 1.0)
+* ASP.NET Core 1.1 (doesn't run on 1.0)
 * Any OS that ASP.NET Core runs on:
   
   * Windows 7 / Windows Server 2008 and later
@@ -90,7 +90,7 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 [!code-csharp[](websockets/sample/Startup.cs?name=Echo)]
 
-When you accept the WebSocket before beginning this loop, the middleware pipeline ends.  Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when you accept a WebSocket, just as it would when you hit an MVC action, for example.  But when you finish this loop and close the socket, the request proceeds back up the pipeline.
+When you accept the WebSocket before beginning this loop, the middleware pipeline ends.  Upon closing the socket, the pipeline unwinds. That's, the request stops moving forward in the pipeline when you accept a WebSocket, just as it would when you hit an MVC action, for example.  But when you finish this loop and close the socket, the request proceeds back up the pipeline.
 
 ## Next steps
 

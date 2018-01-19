@@ -14,7 +14,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that's, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
@@ -30,7 +30,7 @@ You can also pass in the `id` with a query string as follows:
 
 `http://localhost:1234/movies/details?id=1`
 
-The `id` parameter is defined as a [nullable type](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value is not provided.
+The `id` parameter is defined as a [nullable type](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.
 
 A [lambda expression](https://docs.microsoft.com/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `SingleOrDefaultAsync` to select movie entities that match the route data or query string value.
 

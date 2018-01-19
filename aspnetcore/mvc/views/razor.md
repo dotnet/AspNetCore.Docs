@@ -68,7 +68,7 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ * The "int" element wasn't closed.  All elements must be either self-closing or have a matching end tag.
  *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
@@ -114,7 +114,7 @@ Explicit expressions can be used to render output from generic methods in *.csht
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ * The "int" element wasn't closed.  All elements must be either self-closing or have a matching end tag.
  *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
  The following markup shows the correct way write this code.  The code is written as an explicit expression:
@@ -206,7 +206,7 @@ To define a subsection of a code block that should render HTML, surround the cha
 }
 ```
 
-Use this approach to render HTML that isn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
+Use this approach to render HTML that'sn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
 
 The **\<text>** tag is useful to control whitespace when rendering content:
 

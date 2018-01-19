@@ -23,7 +23,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 * Splitting request processing across different apps or across areas of one app
 * Removing, adding, or reorganizing URL segments on incoming requests
 * Optimizing public URLs for Search Engine Optimization (SEO)
-* Permitting the use of friendly public URLs to help people predict the content they will find by following a link
+* Permitting the use of friendly public URLs to help people predict the content they'll find by following a link
 * Redirecting insecure requests to secure endpoints
 * Preventing image hotlinking
 

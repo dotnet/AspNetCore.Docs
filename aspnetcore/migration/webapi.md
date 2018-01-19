@@ -65,7 +65,7 @@ ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders.
 
 [!code-none[Main](../migration/webapi/sample/ProductsCore/Startup.cs?highlight=40)]
 
-Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that is included in the Web API starter project:
+Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that's included in the Web API starter project:
 
 [!code-csharp[Main](../migration/webapi/sample/ProductsCore/Controllers/ValuesController.cs?highlight=9,13,20,27,33,39)]
 
@@ -94,11 +94,11 @@ At this point, routing is configured correctly; however, we can't yet test it. A
 
 The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy *Controllers/ProductsController.cs* from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (*ProductsCore*).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:
 
-* *ApiController* does not exist
+* *ApiController* doesn't exist
 
-* *System.Web.Http* namespace does not exist
+* *System.Web.Http* namespace doesn't exist
 
-* *IHttpActionResult* does not exist
+* *IHttpActionResult* doesn't exist
 
 Fortunately, these are all very easy to correct:
 

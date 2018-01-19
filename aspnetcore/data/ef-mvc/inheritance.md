@@ -33,13 +33,13 @@ Suppose you want to eliminate the redundant code for the properties that are sha
 
 ![Student and Instructor classes deriving from Person class](inheritance/_static/inheritance.png)
 
-There are several ways this inheritance structure could be represented in the database. You could have a Person table that includes information about both students and instructors in a single table. Some of the columns could apply only to instructors (HireDate), some only to students (EnrollmentDate), some to both (LastName, FirstName). Typically, you'd have a discriminator column to indicate which type each row represents. For example, the discriminator column might have "Instructor" for instructors and "Student" for students.
+There are several ways this inheritance structure could be represented in the database. You could've a Person table that includes information about both students and instructors in a single table. Some of the columns could apply only to instructors (HireDate), some only to students (EnrollmentDate), some to both (LastName, FirstName). Typically, you'd have a discriminator column to indicate which type each row represents. For example, the discriminator column might have "Instructor" for instructors and "Student" for students.
 
 ![Table-per-hierarchy example](inheritance/_static/tph.png)
 
 This pattern of generating an entity inheritance structure from a single database table is called table-per-hierarchy (TPH) inheritance.
 
-An alternative is to make the database look more like the inheritance structure. For example, you could have only the name fields in the Person table and have separate Instructor and Student tables with the date fields.
+An alternative is to make the database look more like the inheritance structure. For example, you could've only the name fields in the Person table and have separate Instructor and Student tables with the date fields.
 
 ![Table-per-type inheritance](inheritance/_static/tpt.png)
 
@@ -52,7 +52,7 @@ TPC and TPH inheritance patterns generally deliver better performance than TPT i
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
 
 > [!TIP] 
-> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
+> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it'll be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
 
 ## Create the Person class
 
@@ -76,7 +76,7 @@ Add the Person entity type to *SchoolContext.cs*. The new lines are highlighted.
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
-This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a Person table in place of the Student and Instructor tables.
+This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it'll have a Person table in place of the Student and Instructor tables.
 
 ## Create and customize migration code
 
@@ -86,7 +86,7 @@ Save your changes and build the project. Then open the command window in the pro
 dotnet ef migrations add Inheritance
 ```
 
-Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
+Don't run the `database update` command yet. That command will result in lost data because it'll drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
 Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
@@ -112,7 +112,7 @@ This code takes care of the following database update tasks:
 
 * Re-creates foreign key constraints and indexes, now pointing them to the Person table.
 
-(If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could have been omitted.)
+(If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could've been omitted.)
 
 Run the `database update` command:
 
@@ -123,7 +123,7 @@ dotnet ef database update
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
 > [!NOTE] 
-> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
+> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
 
 ## Test with inheritance implemented
 

@@ -134,7 +134,7 @@ When one or more schedules are uploaded, the **Loaded Schedules** section render
 
 ![Table of loaded schedules, showing each schedule's title, uploaded date in UTC, public version file size, and private version file size](uploading-files/_static/browser4.png)
 
-The user can click the **Delete** link from there to reach the delete confirmation view, where they have an opportunity to confirm or cancel the delete operation.
+The user can click the **Delete** link from there to reach the delete confirmation view, where they've an opportunity to confirm or cancel the delete operation.
 
 ## Troubleshooting
 

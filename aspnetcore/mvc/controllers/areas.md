@@ -36,7 +36,7 @@ Area features:
 
 * Allows you to organize large MVC projects into multiple high-level components that can be worked on independently
 
-* Supports multiple controllers with the same name - as long as they have different *areas*
+* Supports multiple controllers with the same name - as long as they've different *areas*
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
@@ -96,7 +96,7 @@ services.Configure<RazorViewEngineOptions>(options =>
    });
    ```
 
-One thing to note is that the structure of the *Views* folder is the only one which is considered important here and the content of the rest of the folders like *Controllers* and *Models* does **not** matter. For example, you need not have a *Controllers* and *Models* folder at all. This works because the content of *Controllers* and *Models* is just code which gets compiled into a .dll where as the content of the *Views* is not until a request to that view has been made.
+One thing to note is that the structure of the *Views* folder is the only one which is considered important here and the content of the rest of the folders like *Controllers* and *Models* does **not** matter. For example, you need not have a *Controllers* and *Models* folder at all. This works because the content of *Controllers* and *Models* is just code which gets compiled into a .dll where as the content of the *Views* isn't until a request to that view has been made.
 
 Once you've defined the folder hierarchy, you need to tell MVC that each controller is associated with an area. You do that by decorating the controller name with the `[Area]` attribute.
 
@@ -150,7 +150,7 @@ Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeC
 
   TagHelper syntax: `<a asp-action="Index">Go to Product's Home Page</a>`
 
-  Note that we need not supply the 'area' and 'controller' values here as they are already available in the context of the current request. These kind of values are called `ambient` values.
+  Note that we need not supply the 'area' and 'controller' values here as they're already available in the context of the current request. These kind of values are called `ambient` values.
 
 * Generating links from an action within an area based controller to another action on a different controller
 
