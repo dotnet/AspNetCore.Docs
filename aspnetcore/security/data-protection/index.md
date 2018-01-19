@@ -70,6 +70,6 @@ uid: security/data-protection/index
 
 * [Compatibility](compatibility/index.md)
 
-  * [Sharing cookies among applications](compatibility/cookie-sharing.md)
+  * [Sharing cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 
-  * [Replacing <machineKey> in ASP.NET](compatibility/replacing-machinekey.md)
+  * [Replacing <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)

@@ -1,17 +1,17 @@
 ---
-title: Sharing cookies among applications
+title: Sharing cookies among apps
 author: rick-anderson
 description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 12/18/2017
+ms.date: 01/19/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/compatibility/cookie-sharing
 ---
-# Sharing cookies among applications
+# Sharing cookies among apps
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
@@ -33,7 +33,7 @@ In the examples that follow:
 * The cookie authentication middleware uses an implementation of [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider). `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
   * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used. The sample app uses a folder named *KeyRing* at the root of the solution to hold the data protection keys.
   * [DataProtectionProvider.Create(System.IO.DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create?view=aspnetcore-2.0#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_) accepts a [DirectoryInfo](/dotnet/api/system.io.directoryinfo) for use with authentication cookies. The sample app provides the path of the *KeyRing* folder to `DirectoryInfo`.
-  * [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package. The package is available to ASP.NET Core 2.0 apps when referencing the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.All/)).
+  * [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider) requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package. To obtain this package for ASP.NET Core 2.0 and later apps, reference the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage. When targeting .NET Framework, add a package reference to `Microsoft.AspNetCore.DataProtection.Extensions`.
 
 ## Share authentication cookies among ASP.NET Core apps
 
