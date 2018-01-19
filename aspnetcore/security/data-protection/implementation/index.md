@@ -2,12 +2,10 @@
 title: Implementation
 author: rick-anderson
 description: This document serves as the table of contents for the various ASP.NET Core data protection implementation topics.
-keywords: ASP.NET Core,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 706a11bb-bf6e-4e91-930b-e3f4e71d04a0
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/implementation/index

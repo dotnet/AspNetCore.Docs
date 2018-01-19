@@ -2,12 +2,10 @@
 title: Partial Views
 author: ardalis
 description: Using partial views in ASP.NET Core MVC
-keywords: ASP.NET Core,Partial Views,partial
 ms.author: riande
 manager: wpickett
 ms.date: 03/14/2017
 ms.topic: article
-ms.assetid: 4be1b12c-b74e-44ff-826b-99ce86e8d464
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/views/partial

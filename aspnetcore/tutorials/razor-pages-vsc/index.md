@@ -2,7 +2,6 @@
 title: Create a Razor Pages web app with ASP.NET Core and Visual Studio Code
 author: rick-anderson
 description: Create a Razor Pages web app with ASP.NET Core and EF Core.
-keywords: ASP.NET Core,Razor Pages,scaffolding,Entity Framework Core,EF,EF Core,database,Code,Visual Studio Code
 ms.author: riande
 manager: wpickett
 ms.date: 08/26/2017
