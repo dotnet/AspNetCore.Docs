@@ -2,12 +2,10 @@
 title: Getting Started with ASP.NET Core 1.1
 author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core 1.1.
-keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
 ms.topic: get-started-article
-ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: getting-started-1.1

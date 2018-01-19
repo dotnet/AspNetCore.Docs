@@ -2,12 +2,10 @@
 title: Authorize with a specific scheme - ASP.NET Core
 author: rick-anderson
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
-keywords: ASP.NET Core,identity,authentication scheme
 ms.author: riande
 manager: wpickett
 ms.date: 10/12/2017
 ms.topic: article
-ms.assetid: d3d6ca1b-b4b5-4bf7-898e-dcd90ec1bf8c
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/limitingidentitybyscheme

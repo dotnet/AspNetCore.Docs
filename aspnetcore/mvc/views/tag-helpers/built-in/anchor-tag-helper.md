@@ -2,12 +2,10 @@
 title: Anchor Tag Helper | Microsoft Docs
 author: pkellner
 description: Shows how to work with Anchor Tag Helper
-keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
 ms.date: 12/20/2017
 ms.topic: article
-ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a011
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
@@ -77,7 +75,7 @@ The `asp-page` attribute in the previous code sample renders HTML output in the 
 
 ```html
 <a href="/items?page=%2FSpeakers">Speakers</a>
-``
+```
 
 The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following code sample demonstrates:
 

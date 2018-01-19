@@ -2,12 +2,10 @@
 title: Advanced topics for ASP.NET Core MVC
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 01/05/2016
 ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2ef
 ms.technology: aspnet
 ms.prod: asp.net-core
 ---

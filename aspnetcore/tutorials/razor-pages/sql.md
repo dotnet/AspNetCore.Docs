@@ -2,7 +2,6 @@
 title: Working with SQL Server LocalDB and ASP.NET Core
 author: rick-anderson
 description: Explains working with SQL Server LocalDB and ASP.NET Core.
-keywords: ASP.NET Core,Razor Pages,Razor,MVC,SQL,LocalDB
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
@@ -17,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://tw
 
 The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=7-8)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 

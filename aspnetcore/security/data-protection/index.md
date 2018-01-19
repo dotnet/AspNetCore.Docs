@@ -2,12 +2,10 @@
 title: Data Protection in ASP.NET Core
 author: rick-anderson
 description: This document serves as a table of contents for the various ASP.NET Core data protection topics.
-keywords: ASP.NET Core,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 1f402da8-1052-4970-9835-9f9f16a02dbc
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/index

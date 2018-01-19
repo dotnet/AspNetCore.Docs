@@ -2,7 +2,6 @@
 title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
-keywords: ASP.NET Core,view,MVC,razor,viewmodel,viewdata,viewbag
 ms.author: riande
 manager: wpickett
 ms.date: 12/12/2017

@@ -24,12 +24,12 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
         #endregion
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         [Required]
         [StringLength(30)]
         public string Genre { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         [StringLength(5)]
         [Required]
         public string Rating { get; set; }

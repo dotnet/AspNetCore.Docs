@@ -2,12 +2,10 @@
 title: Migrating From ASP.NET to ASP.NET Core 2.0
 author: isaac2004
 description: This reference document provides guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
-keywords: ASP.NET Core,MVC,migrating
 ms.author: scaddie
 manager: wpickett
 ms.date: 08/27/2017
 ms.topic: article
-ms.assetid: 3155cc9e-d0c9-424b-886c-35c0ec6f9f4e
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: migration/mvc2
@@ -137,7 +135,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[Main](../../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
+[!code-csharp[Main](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 **Note:** If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
 

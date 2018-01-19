@@ -2,7 +2,6 @@
 title: Getting started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio
-keywords: ASP.NET Core,MVC,Visual Studio for Mac,Entity Framework
 ms.author: riande
 manager: wpickett
 ms.date: 8/23/2017

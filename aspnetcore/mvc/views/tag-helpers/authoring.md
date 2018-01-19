@@ -2,24 +2,22 @@
 title: Authoring Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
-keywords: ASP.NET Core,tag helpers
 ms.author: riande
 manager: wpickett
-ms.date: 06/14/2017
+ms.date: 01/19/2018
 ms.topic: article
-ms.assetid: 4f16d978-5695-4abf-a785-fdaabf3bbcb9
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/views/tag-helpers/authoring
 ms.custom: H1Hack27Feb2017
 ---
-# Authoring Tag Helpers in ASP.NET Core, a walkthrough with samples
+# Author Tag Helpers in ASP.NET Core, a walkthrough with samples
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Getting started with Tag Helpers
+## Get started with Tag Helpers
 
 This tutorial provides an introduction to programming Tag Helpers. [Introduction to Tag Helpers](intro.md) describes the benefits that Tag Helpers provide.
 
@@ -41,7 +39,7 @@ The server will use our email tag helper to convert that markup into the followi
 
 ```html
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
-   ```
+```
 
 That is, an anchor tag that makes this an email link. You might want to do this if you are writing a blog engine and need it to send email for marketing, support, and other contacts, all to the same domain.
 
@@ -55,7 +53,7 @@ That is, an anchor tag that makes this an email link. You might want to do this 
     
     * The `EmailTagHelper` class derives from `TagHelper`. The `TagHelper` class provides methods and properties for writing Tag Helpers.
     
-    * The  overridden `Process` method controls what the tag helper does when executed. The `TagHelper` class also provides an asynchronous version (`ProcessAsync`) with the same parameters.
+    * The overridden `Process` method controls what the tag helper does when executed. The `TagHelper` class also provides an asynchronous version (`ProcessAsync`) with the same parameters.
     
     * The context parameter to `Process` (and `ProcessAsync`) contains information associated with the execution of the current HTML tag.
     
@@ -153,7 +151,7 @@ In this section, we'll write an asynchronous email helper.
 
     **Notes:**
     
-    * The `[HtmlTargetElement]` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the `Process` override method in the class will run. In our sample, the `Process`  method removes the "bold" attribute and surrounds the containing markup with `<strong></strong>`.
+    * The `[HtmlTargetElement]` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the `Process` override method in the class will run. In our sample, the `Process` method removes the "bold" attribute and surrounds the containing markup with `<strong></strong>`.
     
     * Because you don't want to replace the existing tag content, you must write the opening `<strong>` tag with the `PreContent.SetHtmlContent` method and the closing `</strong>` tag with the `PostContent.SetHtmlContent` method.
     
@@ -185,7 +183,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
 [HtmlTargetElement("MyBold")]
    ```
 
-## Passing a model to a Tag Helper
+## Pass a model to a Tag Helper
 
 1.  Add a *Models* folder.
 
@@ -282,7 +280,7 @@ The condition tag helper renders output when passed a true value.
 >
 >The [nameof](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/nameof) operator will protect the code should it ever be refactored (we might want to change the name to `RedCondition`).
 
-### Avoiding Tag Helper conflicts
+### Avoid Tag Helper conflicts
 
 In this section, you write a pair of auto-linking tag helpers. The first will replace markup containing a URL starting with HTTP to an HTML anchor tag containing the same URL (and thus yielding a link to the URL). The second will do the same for a URL starting with WWW.
 
@@ -324,9 +322,9 @@ Because these two helpers are closely related and you may refactor them in the f
 
     [!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs?highlight=5,6,7,8&range=8-15)]
     
-    The above code will guarantee that the HTTP tag helper runs before the WWW tag helper. Change `Order` to `MaxValue` and verify that the markup generated for the  WWW tag is incorrect.
+    The above code will guarantee that the HTTP tag helper runs before the WWW tag helper. Change `Order` to `MaxValue` and verify that the markup generated for the WWW tag is incorrect.
 
-## Inspecting and retrieving child content
+## Inspect and retrieve child content
 
 The tag helpers provide several properties to retrieve content.
 
@@ -336,4 +334,4 @@ The tag helpers provide several properties to retrieve content.
 
 [!code-csharp[Main](../../views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10&range=8-21)]
 
--  Multiple calls to `GetChildContentAsync` will return the same value and will not re-execute the `TagHelper` body unless you pass in a false parameter indicating  not use the cached result.
+-  Multiple calls to `GetChildContentAsync` will return the same value and will not re-execute the `TagHelper` body unless you pass in a false parameter indicating not use the cached result.

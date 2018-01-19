@@ -2,7 +2,6 @@
 title: Environment Tag Helper in ASP.NET Core
 author: pkellner
 description: ASP.NET Core Environment Tag Helper defined including all properties
-keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
 ms.date: 07/14/2017

@@ -156,7 +156,7 @@ Build the solution, and then open the **Package Manager Console** window and ent
 
 The `add-migration` command tells the migration framework to examine the current movie model with the current movie DB schema and create the necessary code to migrate the DB to the new model. The name *Rating* is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step.
 
-When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` derived class, and in the `Up` method you can see the code that creates the new column.
+When this command finishes, Visual Studio opens the class file that defines the new `DbMigration` derived class, and in the `Up` method you can see the code that creates the new column.
 
 [!code-csharp[Main](adding-a-new-field/samples/sample11.cs)]
 

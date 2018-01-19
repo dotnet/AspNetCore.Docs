@@ -2,7 +2,6 @@
 title: Razor Pages with EF Core - CRUD - 2 of 8
 author: rick-anderson
 description: Shows how to create,read,update,delete with EF Core
-keywords: ASP.NET Core,Entity Framework Core,CRUD,create,read,update,delete
 ms.author: riande
 manager: wpickett
 ms.date: 10/15/2017
@@ -198,7 +197,7 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 ## Update the Delete page
 
-In this section, code is added to implement a custom error message when the call to `SaveChanges` fails. Add a string to contain possile error messages:
+In this section, code is added to implement a custom error message when the call to `SaveChanges` fails. Add a string to contain possible error messages:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet1&highlight=12)]
 

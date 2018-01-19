@@ -2,7 +2,6 @@
 title: Using Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
-keywords: ASP.NET Core,Gulp
 ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
@@ -244,7 +243,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
     gulp.task("series", ["series:first", "series:second"], function () {});
     ```
  
-    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run.  As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
+    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
 
 2.  Save *gulpfile.js*.
 
@@ -323,7 +322,7 @@ For more information related to environments in ASP.NET Core, see [Working with 
 
 ## Task and module details
 
-A Gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
+A Gulp task is registered with a function name. You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
 
 |Gulp Function|Syntax|Description|
 |---   |--- |--- |

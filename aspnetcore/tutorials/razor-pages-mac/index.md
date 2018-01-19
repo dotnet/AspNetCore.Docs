@@ -2,7 +2,6 @@
 title: Create a Razor Pages web app with ASP.NET Core on Mac
 author: rick-anderson
 description: Create a Razor Pages web app with ASP.NET Core and EF Core.
-keywords: ASP.NET Core,Razor Pages,scaffolding,Entity Framework Core,EF,EF Core,database,mac,macOS,Visual Studio for Mac
 ms.author: riande
 manager: wpickett
 ms.date: 07/26/2017

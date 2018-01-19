@@ -2,12 +2,10 @@
 title: Data Protection key management and lifetime in ASP.NET Core
 author: rick-anderson
 description: Learn about Data Protection key management and lifetime in ASP.NET Core.
-keywords: ASP.NET Core,key management,DPAPI,data protection,key lifetime
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: ef7dad2a-7029-4ae5-8f06-1fbebedccaa4
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/configuration/default-settings
