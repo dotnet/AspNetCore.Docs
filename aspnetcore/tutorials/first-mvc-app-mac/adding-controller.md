@@ -2,12 +2,10 @@
 title: Adding a controller to an ASP.NET Core MVC app
 author: rick-anderson 
 description: How to add a controller to a basic ASP.NET Core MVC app using Visual Studio of Mac
-keywords: ASP.NET Core,MVC,controller
 ms.author: riande
 manager: wpickett
 ms.date: 06/28/2017
 ms.topic: article
-ms.assetid: e04b6666-d0de-4d99-b78f-d6a0c4634a87
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-mac/adding-controller

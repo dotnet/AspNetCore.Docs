@@ -8,11 +8,9 @@ ms.topic: get-started-article
 
 #ROBOTS:
 ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 ms.prod: asp.net-core
 #ms.devlang: 
 manager: wpickett
-ms.assetid: 8dc28498-eeee-4666-b903-b593059e9f39
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
 

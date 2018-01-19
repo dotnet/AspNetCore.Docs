@@ -2,7 +2,6 @@
 title: Migration to ASP.NET Core
 author: rick-anderson
 description: Describes how to migrate from ASP.NET to ASP.NET Core, including ASP.NET 4.x and ASP.NET Core 2
-keywords: ASP.NET Core, migrate, migration, ASP.NET 4.6, ASP.NET 4.7, ASP.NET 4.x
 ms.author: riande
 manager: wpickett
 ms.date: 07/27/2017

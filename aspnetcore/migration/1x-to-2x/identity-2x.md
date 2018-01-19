@@ -2,7 +2,6 @@
 title: Migrating Auth and Identity to ASP.NET Core 2.0
 author: scottaddie
 description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
-keywords: ASP.NET Core,Identity,authentication
 ms.author: scaddie
 manager: wpickett
 ms.date: 10/26/2017

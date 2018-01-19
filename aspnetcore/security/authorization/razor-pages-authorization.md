@@ -6,7 +6,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 10/27/2017
 ms.topic: article
-ms.assetid: f65ad22d-9472-478a-856c-c59c8681fa71
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/razor-pages-authorization

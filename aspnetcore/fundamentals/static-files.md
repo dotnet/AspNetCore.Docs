@@ -2,7 +2,6 @@
 title: Work with static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 manager: wpickett
 ms.author: riande
 ms.custom: mvc

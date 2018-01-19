@@ -2,12 +2,10 @@
 title: Sharing cookies between applications
 author: rick-anderson
 description: This document explains how the data protection stack supports sharing of authentication cookies between ASP.NET 4.x and ASP.NET Core apps.
-keywords: ASP.NET Core,ASP.NET,cookies,Interop,cookie sharing
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 9a7aae45-8e21-4c54-950c-3c29df6c1082
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/compatibility/cookie-sharing

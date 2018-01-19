@@ -2,12 +2,10 @@
 title: Consumer APIs
 author: rick-anderson
 description: This document serves as a table of contents for the various ASP.NET Core consumer API data protection topics.
-keywords: ASP.NET Core,consumer API,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: dff0cde2-6612-4b32-bafc-c00bf6d370f2
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/consumer-apis/index

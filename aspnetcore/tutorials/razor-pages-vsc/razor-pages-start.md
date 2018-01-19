@@ -2,7 +2,6 @@
 title: Getting started with Razor Pages in ASP.NET Core with Visual Studio Code
 author: rick-anderson
 description: Getting started with Razor Pages in ASP.NET Core using Visual Studio Code
-keywords: ASP.NET Core,Razor Pages,scaffolding,Entity Framework Core,EF,EF Core,database,mac,macOS,Visual Studio Code,Code
 ms.author: riande
 manager: wpickett
 ms.date: 08/27/2017

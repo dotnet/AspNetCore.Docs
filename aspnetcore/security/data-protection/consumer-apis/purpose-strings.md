@@ -2,12 +2,10 @@
 title: Purpose Strings
 author: rick-anderson
 description: This document details how purpose strings are used in the ASP.NET Core data protection APIs.
-keywords: ASP.NET Core,data protection,purpose strings
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: c96ed361-c382-4980-8933-800e740cfc38
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/consumer-apis/purpose-strings
