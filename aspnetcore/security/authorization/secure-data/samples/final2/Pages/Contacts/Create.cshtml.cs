@@ -1,23 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using ContactManager.Authorization;
 using ContactManager.Data;
 using ContactManager.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
+    #region snippetCtor
     public class CreateModel : PageModel
     {
-        private readonly ContactManager.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IAuthorizationService _authorizationService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CreateModel(ContactManager.Data.ApplicationDbContext context)
+        public CreateModel(
+            ApplicationDbContext context,
+            IAuthorizationService authorizationService,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            _authorizationService = authorizationService;
         }
+#endregion
 
         public IActionResult OnGet()
         {
@@ -33,6 +41,7 @@ namespace ContactManager.Pages.Contacts
             return Page();
         }
 
+        #region snippet_Create
         [BindProperty]
         public Contact Contact { get; set; }
 
@@ -43,10 +52,21 @@ namespace ContactManager.Pages.Contacts
                 return Page();
             }
 
+            Contact.OwnerID = _userManager.GetUserId(User);
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                        User, Contact,
+                                                        ContactOperations.Create);
+            if (!isAuthorized.Succeeded)
+            {
+                return new ChallengeResult();
+            }
+
             _context.Contact.Add(Contact);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
 }

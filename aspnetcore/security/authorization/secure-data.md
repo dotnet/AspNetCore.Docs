@@ -120,6 +120,8 @@ Add [AllowAnonymous](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspne
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
 
+Add `[AllowAnonymous]` to `LoginModel` and `RegisterModel`.
+
 ### Configure the test account
 
 The `SeedData` class creates two accounts, administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
@@ -128,9 +130,9 @@ The `SeedData` class creates two accounts, administrator and manager. Use the [S
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
-Update `Configure` to use the test password:
+Update `Main` to use the test password:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=Configure&highlight=19-21)]
+[!code-csharp[Main](secure-data/samples/final2/Program.cs?name=snippet)]
 
 Add the administrator user ID and `Status = ContactStatus.Approved` to the contacts. Only one contact is shown, add the user ID to all contacts:
 
@@ -140,39 +142,39 @@ Add the administrator user ID and `Status = ContactStatus.Approved` to the conta
 
 Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` will verify the user acting on the resource owns the resource.
 
-[!code-csharp[Main](secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
+[!code-csharp[Main](secure-data/samples/final2/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. Authorization handlers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return `context.Fail()`.
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed?view=aspnetcore-2.0#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail?view=aspnetcore-2.0).
 
-We allow contact owners to edit/delete their own data, so we don't need to check the operation passed in the requirement parameter.
+The app allows contact owners to edit/delete their own data, so it doesn't need to check the operation passed in the requirement parameter.
 
 ### Create a manager authorization handler
 
 Create a `ContactManagerAuthorizationHandler` class in the *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
 
-[!code-csharp[Main](secure-data/samples/final/Authorization/ContactManagerAuthorizationHandler.cs)]
+[!code-csharp[Main](secure-data/samples/final2/Authorization/ContactManagerAuthorizationHandler.cs)]
 
 ### Create an administrator authorization handler
 
 Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
 
-[!code-csharp[Main](secure-data/samples/final/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
+[!code-csharp[Main](secure-data/samples/final2/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
 
 ## Register the authorization handlers
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=AuthorizationHandlers)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=AuthorizationHandlers)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They are singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
 The complete `ConfigureServices`:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=ConfigureServices)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=ConfigureServices)]
 
 ## Update the code to support authorization
 
-In this section, you update the controller and views and add an operations requirements class.
+In this section, you update the Razor Pages and add an operations requirements class.
 
 ### Update the Contacts controller
 
@@ -191,24 +193,27 @@ Add the `ContactOperations` class to the *Authorization* folder. This class cont
 
 ### Update Create
 
-Update the `HTTP POST Create` method to:
+Update the `CreateModel OnPostAsync` method to:
 
 * Add the user ID to the `Contact` model.
 * Call the authorization handler to verify the user owns the contact.
 
-[!code-csharp[Main](secure-data/samples/final/Controllers/ContactsController.cs?name=snippet_Create)]
+
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
 
 ### Update Edit
 
-Update both `Edit` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the `[Authorize]` attribute. We don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
+Update the Edit `PageModel`. Add the authorization handler to verify the user owns the contact. Because resource authorization is being validated we the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in the `PageModel`, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
 
-[!code-csharp[Main](secure-data/samples/final/Controllers/ContactsController.cs?name=snippet_Edit)]
 
-### Update the Delete method
 
-Update both `Delete` methods to use the authorization handler to verify the user owns the contact.
+[!code-csharp[Main](secure-data/samples/final2\Pages\Contacts\Edit.cshtml.cs?name=snippet)]
 
-[!code-csharp[Main](secure-data/samples/final/Controllers/ContactsController.cs?name=snippet_Delete)]
+### Update Delete
+
+Update the Delete `PageModel` to use the authorization handler to verify the user owns the contact.
+
+[!code-csharp[Main](secure-data/samples/final2\Pages\Contacts\Delete.cshtml.cs?name=snippet)]
 
 ## Inject the authorization service into the views
 
@@ -216,15 +221,17 @@ Currently the UI shows edit and delete links for data the user cannot modify. We
 
 Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
 
-[!code-html[Main](secure-data/samples/final/Views/_ViewImports.cshtml)]
+[!code-html[Main](secure-data/samples/final2\Pages\_ViewImports.cshtml?highlight=6-9)]
 
-Update the *Views/Contacts/Index.cshtml* Razor view to only display the edit and delete links for users who can edit/delete the contact.
+The preceding markup adds several `using` statements.
+
+Update the *Pages/Contacts/Index.cshtml* Razor view to only display the edit and delete links for users who can edit/delete the contact.
 
 Add `@using ContactManager.Authorization;`
 
 Update the `Edit` and `Delete` links so they are only rendered for users with permission to edit and delete the contact.
 
-[!code-html[Main](secure-data/samples/final/Views/Contacts/Index.cshtml?range=63-84)]
+[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?range=41-77)]
 
 Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The controller must repeat the access checks to be secure.
 

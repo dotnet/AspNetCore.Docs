@@ -21,14 +21,9 @@ namespace ContactManager.Pages.Contacts
 
         public Contact Contact { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            Contact = await _context.Contact.FirstOrDefaultAsync(m => m.ContactId == id);
 
             if (Contact == null)
             {

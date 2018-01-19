@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContactManager.Pages.Contacts.DetailsModel
 
 @{
@@ -49,7 +49,31 @@
         </dd>
     </dl>
 </div>
+<form asp-page="/.Delete" asp-route-id="@Model.Contact.ContactId" style="display:inline;">
+    <input type="hidden" name="status" value="@ContactStatus.Approved" />
+    <button type="submit" class="btn btn-xs btn-success">Approve</button>
+</form>
+
+@if (Model.Contact.Status != ContactStatus.Approved)
+{
+    @if ((await AuthorizationService.AuthorizeAsync(
+        User, Model, ContactOperations.Approve)).Succeeded)
+    {
+        <form asp-page="/.Delete" style="display:inline;">
+            <input type="hidden" name="id" value="@Model.Contact.ContactId" />
+            <input type="hidden" name="status" value="@ContactStatus.Approved" />
+            <button type="submit" class="btn btn-xs btn-success">Approve</button>
+        </form>
+    }
+}
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Contact.ContactId">Edit</a> |
+    @if ((await AuthorizationService.AuthorizeAsync(
+            User, Model.Contact,
+            ContactOperations.Update)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Contact.ContactId">Edit</a>
+
+        < text > | </ text >
+    }
     <a asp-page="./Index">Back to List</a>
 </div>

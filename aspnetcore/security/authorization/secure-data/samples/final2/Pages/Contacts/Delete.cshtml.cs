@@ -1,59 +1,82 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContactManager.Authorization;
+using ContactManager.Data;
+using ContactManager.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ContactManager.Data;
-using ContactManager.Models;
+using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
+    #region snippet
     public class DeleteModel : PageModel
     {
-        private readonly ContactManager.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IAuthorizationService _authorizationService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DeleteModel(ContactManager.Data.ApplicationDbContext context)
+        public DeleteModel(
+            ApplicationDbContext context,
+            IAuthorizationService authorizationService,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            _authorizationService = authorizationService;
         }
 
         [BindProperty]
         public Contact Contact { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            Contact = await _context.Contact.FirstOrDefaultAsync(
+                                                 m => m.ContactId == id);
 
             if (Contact == null)
             {
                 return NotFound();
             }
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                     User, Contact,
+                                                     ContactOperations.Delete);
+            if (!isAuthorized.Succeeded)
+            {
+                return new ChallengeResult();
+            }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null)
+            Contact = await _context.Contact.FindAsync(id);
+
+            var contact = await _context
+                .Contact.AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ContactId == id);
+
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            Contact = await _context.Contact.FindAsync(id);
-
-            if (Contact != null)
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                     User, contact,
+                                                     ContactOperations.Delete);
+            if (!isAuthorized.Succeeded)
             {
-                _context.Contact.Remove(Contact);
-                await _context.SaveChangesAsync();
+                return new ChallengeResult();
             }
+
+            _context.Contact.Remove(Contact);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
     }
+    #endregion
 }

@@ -1,68 +1,103 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using ContactManager.Authorization;
 using ContactManager.Data;
 using ContactManager.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
+    #region snippet
     public class EditModel : PageModel
     {
-        private readonly ContactManager.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IAuthorizationService _authorizationService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EditModel(ContactManager.Data.ApplicationDbContext context)
+        public EditModel(
+            ApplicationDbContext context,
+            IAuthorizationService authorizationService,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            _authorizationService = authorizationService;
         }
 
         [BindProperty]
         public Contact Contact { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            Contact = await _context.Contact.FirstOrDefaultAsync(
+                                                 m => m.ContactId == id);
 
             if (Contact == null)
             {
                 return NotFound();
             }
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                      User, Contact,
+                                                      ContactOperations.Update);
+            if (!isAuthorized.Succeeded)
+            {
+                return new ChallengeResult();
+            }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            // Fetch Contact from DB to get OwnerID.
+            var contact = await _context
+                .Contact.AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ContactId == id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                     User, contact,
+                                                     ContactOperations.Update);
+            if (!isAuthorized.Succeeded)
+            {
+                return new ChallengeResult();
+            }
+
+            Contact.OwnerID = contact.OwnerID;
+
             _context.Attach(Contact).State = EntityState.Modified;
 
-            try
+            if (contact.Status == ContactStatus.Approved)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ContactExists(Contact.ContactId))
+                // If the contact is updated after approval, 
+                // and the user cannot approve,
+                // set the status back to submitted so the update can be
+                // checked and approved.
+                var canApprove = await _authorizationService.AuthorizeAsync(User,
+                                        contact,
+                                        ContactOperations.Approve);
+
+                if (!canApprove.Succeeded)
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
+                    contact.Status = ContactStatus.Submitted;
                 }
             }
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
@@ -72,4 +107,5 @@ namespace ContactManager.Pages.Contacts
             return _context.Contact.Any(e => e.ContactId == id);
         }
     }
+    #endregion
 }

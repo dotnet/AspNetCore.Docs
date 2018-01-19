@@ -9,6 +9,7 @@ using System;
 
 namespace ContactManager
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -47,4 +48,5 @@ namespace ContactManager
                 .UseStartup<Startup>()
                 .Build();
     }
+    #endregion
 }

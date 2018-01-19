@@ -1,3 +1,4 @@
+using ContactManager.Authorization;
 using ContactManager.Data;
 using ContactManager.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -9,11 +10,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace ContactManager
 {
-    #region snippet_startup
     #region snippet_env
     public class Startup
     {
@@ -70,11 +69,11 @@ namespace ContactManager
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
-            #endregion           
+            #endregion
 
             #region AuthorizationHandlers
             // Authorization handlers.
-            /*
+
             services.AddScoped<IAuthorizationHandler,
                                   ContactIsOwnerAuthorizationHandler>();
 
@@ -83,12 +82,11 @@ namespace ContactManager
 
             services.AddSingleton<IAuthorizationHandler,
                                   ContactManagerAuthorizationHandler>();
-                                  */
+
             #endregion
         }
         #endregion
 
-        #region Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -106,32 +104,7 @@ namespace ContactManager
 
             app.UseAuthentication();
 
-            app.UseMvcWithDefaultRoute();
-
-            // Set password with the Secret Manager tool.
-            // dotnet user-secrets set SeedUserPW <pw>
-            var testUserPw = Configuration["SeedUserPW"];
-
-            if (String.IsNullOrEmpty(testUserPw))
-            {
-                throw new System.Exception("Use secrets manager to set SeedUserPW \n" +
-                                           "dotnet user-secrets set SeedUserPW <pw>");
-            }
-
-            try
-            {
-                SeedData.Initialize(app.ApplicationServices, testUserPw).Wait();
-            }
-            catch
-            {
-                throw new System.Exception("You need to update the DB "
-                    + "\nPM > Update-Database " + "\n or \n" +
-                      "> dotnet ef database update"
-                      + "\nIf that doesn't work, comment out SeedData and "
-                      + "register a new user");
-            }
+            app.UseMvcWithDefaultRoute();           
         }
-        #endregion
     }
-    #endregion  // end of Startup
 }
