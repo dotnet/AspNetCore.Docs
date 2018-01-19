@@ -130,6 +130,7 @@
 ## [Test controllers](xref:mvc/controllers/testing)
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
+## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 
 # [Data access and storage](data/index.md)
 ## [Get started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/intro)
