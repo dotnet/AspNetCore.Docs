@@ -6,7 +6,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 10/28/2017
 ms.topic: article
-ms.assetid: ea6e1c6a-732a-4028-9863-75d6b5d31fcf
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/primitives/index

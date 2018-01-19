@@ -11,7 +11,6 @@ helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Serv
 
 #ROBOTS: 
 ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,mac,macOS,HTTP,Service,HTTP Service
 #ms.devlang: [LANGUAGES]
 manager: wpickett
 ---

@@ -2,12 +2,10 @@
 title: Model validation in ASP.NET Core MVC
 author: rachelappel
 description: Learn about model validation in ASP.NET Core MVC.
-keywords: ASP.NET Core,MVC,validation
 ms.author: riande
 manager: wpickett
 ms.date: 12/18/2016
 ms.topic: article
-ms.assetid: 3a8676dd-7ed8-4a05-bca2-44e288ab99ee
 ms.technology: aspnet
 ms.prod: asp.net-core 
 uid: mvc/models/validation

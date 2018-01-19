@@ -2,12 +2,10 @@
 title: Non-DI aware scenarios for Data Protection in ASP.NET Core
 author: rick-anderson
 description: Learn how to support data protection scenarios where you can't or don't want to use a service provided by dependency injection.
-keywords: ASP.NET Core,data protection,dependency injection,DataProtectionProvider
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: a7d8a962-80ff-48e3-96f6-8472b7ba2df9
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/configuration/non-di-scenarios

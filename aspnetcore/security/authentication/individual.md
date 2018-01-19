@@ -2,7 +2,6 @@
 title: Articles based on projects created with individual user accounts
 author: rick-anderson
 description: This document lists articles based on projects created with individual user accounts.
-keywords: ASP.NET Core,authorization,IAuthorizationService
 ms.author: riande
 manager: wpickett
 ms.date: 11/30/2017

@@ -2,12 +2,10 @@
 title: ASP.NET Core MVC with EF Core - tutorial series
 author: tdykstra
 description: 
-keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/15/2017
 ms.topic: get-started-article
-ms.assetid: 9918be4c-2096-404f-9b2a-ed5cde90042a
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/index

@@ -2,12 +2,10 @@
 title: Using JavaScriptServices for Creating Single Page Applications
 author: scottaddie
 description: Learn about the benefits of using JavaScriptServices to create a Single Page Application (SPA) backed by ASP.NET Core.
-keywords: ASP.NET Core,Angular,SPA,JavaScriptServices,SpaServices
 ms.author: scaddie
 manager: wpickett
 ms.date: 08/02/2017
 ms.topic: article
-ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/spa-services

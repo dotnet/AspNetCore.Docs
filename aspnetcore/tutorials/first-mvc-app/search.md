@@ -2,12 +2,10 @@
 title: Adding Search
 author: rick-anderson
 description: Shows how to add search to simple ASP.NET Core MVC app
-keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
 ms.topic: get-started-article
-ms.assetid: d69e5529-8ef6-4628-855d-200206d962b9
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/search

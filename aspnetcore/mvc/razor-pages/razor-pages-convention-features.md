@@ -2,12 +2,10 @@
 title: Razor Pages route and app convention features in ASP.NET Core
 author: guardrex
 description: Discover how route and app model provider convention features help you control page routing, discovery, and processing.
-keywords: ASP.NET Core,Razor Pages,conventions,AddFolderRouteModelConvention,AddPageRouteModelConvention,AddPageRoute,AddFolderApplicationModelConvention,AddPageApplicationModelConvention,ConfigureFilter,filters
 ms.author: riande
 manager: wpickett
 ms.date: 10/23/2017
 ms.topic: article
-ms.assetid: 6b60514c-81ad-485b-bb22-9b71416dff08
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/razor-pages/razor-pages-convention-features

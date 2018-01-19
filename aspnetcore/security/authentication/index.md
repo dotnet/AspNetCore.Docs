@@ -2,12 +2,10 @@
 title: Authentication
 author: rick-anderson
 description: This document serves as a table of content for the various ASP.NET Core authentication topics.
-keywords: ASP.NET Core,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 981852c9-78f9-4590-aaee-9d50a2838dfe
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/index

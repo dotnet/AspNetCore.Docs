@@ -2,12 +2,10 @@
 title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10
 author: tdykstra
 description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
-keywords: ASP.NET Core,Entity Framework Core,data annotations
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
 ms.topic: get-started-article
-ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/complex-data-model

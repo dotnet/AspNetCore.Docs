@@ -2,12 +2,10 @@
 title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
 author: tdykstra
 description: 
-keywords: ASP.NET Core,Entity Framework Core,tutorial
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
 ms.topic: get-started-article
-ms.assetid: b67c3d4a-f2bf-4132-a48b-4b0d599d7981
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-mvc/intro
