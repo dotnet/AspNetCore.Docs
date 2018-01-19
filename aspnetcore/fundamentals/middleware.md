@@ -196,10 +196,14 @@ ASP.NET Core ships with the following middleware components, as well as a descri
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that want caching |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that want to use compression |
-| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |  |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |  |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that want to use Session. |
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches files |
-| [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
+| [URL Rewriting ](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
+| [Diagnostics](xref:security/) | Configure diagnostics. |  |
+| [HttpOverrides/ForwardedHeaders](xref:security/) | x. |  |
+| [RequestLocalization](xref:security/) | Provides localization support. |  |
+| [WebSockets](xref:security/) | Enables the WebSockets protocol. |  |
 
 <a name="middleware-writing-middleware"></a>
 
