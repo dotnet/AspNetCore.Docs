@@ -13,13 +13,13 @@ uid: mvc/views/razor
 ---
 # Razor syntax for ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex),  [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension.
 
 ## Rendering HTML
 
-The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file.  HTML markup in *.cshtml* Razor files is rendered by the server unchanged.
+The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. HTML markup in *.cshtml* Razor files is rendered by the server unchanged.
 
 ## Razor syntax
 
@@ -68,8 +68,8 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
+ * The "int" element was not closed. All elements must be either self-closing or have a matching end tag.
+ * Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
 
@@ -114,10 +114,10 @@ Explicit expressions can be used to render output from generic methods in *.csht
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
+ * The "int" element was not closed. All elements must be either self-closing or have a matching end tag.
+ * Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
- The following markup shows the correct way write this code.  The code is written as an explicit expression:
+ The following markup shows the correct way write this code. The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -225,9 +225,9 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 }
 ```
 
-Without the `@:` in the code,  a Razor runtime error is generated.
+Without the `@:` in the code, a Razor runtime error is generated.
 
-Warning: Extra `@` characters in a Razor file can cause  cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error.  This error is common after combining multiple implicit/explicit expressions into a single code block.
+Warning: Extra `@` characters in a Razor file can cause cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
 ## Control Structures
 
@@ -280,7 +280,7 @@ The following markup shows how to use a switch statement:
 
 ### Looping @for, @foreach, @while, and @do while
 
-Templated HTML can be rendered with looping control statements.  To render a list of people:
+Templated HTML can be rendered with looping control statements. To render a list of people:
 
 ```cshtml
 @{
@@ -467,11 +467,11 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If  the `@model` directive iisn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive iisn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
 
 ### @inherits
 
-The `@inherits` directive provides  full control of the class the view inherits:
+The `@inherits` directive provides full control of the class the view inherits:
 
 ```cshtml
 @inherits TypeNameOfClassToInheritFrom
@@ -491,7 +491,7 @@ The code renders the following HTML:
 <div>Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping a slop bucket on the street below.</div>
 ```
 
- `@model` and `@inherits` can be used in the same view.  `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
+ `@model` and `@inherits` can be used in the same view. `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
 
 [!code-cshtml[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
 
