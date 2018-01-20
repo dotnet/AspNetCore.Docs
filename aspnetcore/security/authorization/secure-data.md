@@ -1,7 +1,6 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
-keywords: ASP.NET Core,MVC,authorization,roles,security,administrator,Razor Pages,secure
 ms.author: riande
 manager: wpickett
 ms.date: 02/22/2018
