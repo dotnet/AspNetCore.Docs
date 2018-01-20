@@ -10,10 +10,6 @@ ms.prod: aspnet-core
 uid: security/authorization/secure-data
 ---
 
-en-us/
-
-?view=aspnetcore-2.0
-
 # Create an ASP.NET Core app with user data protected by authorization
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
@@ -96,7 +92,7 @@ dotnet ef database update
 
 ### Require SSL and authenticated users
 
-Add [IHostingEnvironment](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment?view=aspnetcore-2.0) to `Startup`:
+Add [IHostingEnvironment](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) to `Startup`:
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_env)]
 
@@ -116,7 +112,7 @@ Set the default authentication policy to require users to be authenticated. You 
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy)]
 
-Add [AllowAnonymous](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute?view=aspnetcore-2.0) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
+Add [AllowAnonymous](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
 
@@ -144,12 +140,12 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed?view=aspnetcore-2.0#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Return `context.Succeed` when the requirements are met. 
 * Return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. 
 
-If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail?view=aspnetcore-2.0).
+If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
 The app allows contact owners to edit/delete/create their own data, so `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
