@@ -1,14 +1,11 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace StaticFiles
 {
-    public class StartupStaticFiles
+    public class StartupTwoStaticFiles
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -16,10 +13,17 @@ namespace StaticFiles
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // For the wwwroot folder
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                RequestPath = "/StaticFiles"
+            });
         }
         #endregion
     }

@@ -1,16 +1,15 @@
 <a name="scaffold"></a>
 ### Scaffold the Movie model
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+* Run the following from the command line (in the project directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files):
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
-  
+
 If you get the error:
   ```
 No executable found matching command "dotnet-aspnet-codegenerator"
   ```
 
-Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).

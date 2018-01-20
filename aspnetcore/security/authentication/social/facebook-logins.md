@@ -2,12 +2,10 @@
 title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
-keywords: ASP.NET Core,Facebook,login,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 08/01/2017
 ms.topic: article
-ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/facebook-logins

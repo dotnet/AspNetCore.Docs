@@ -8,7 +8,7 @@ namespace ContosoUniversity.Models
       [Key]
       public int PersonID { get; set; }
 
-      [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
+      [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
       [StringLength(50, MinimumLength = 1)]
       [Display(Name = "Last Name")]
       public string LastName { get; set; }

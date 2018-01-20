@@ -2,7 +2,6 @@
 title: Adding Validation
 author: rick-anderson
 description: How to add validation to an ASP.NET Core app.
-keywords: ASP.NET Core,validation,DataAnnotations
 ms.author: riande
 manager: wpickett
 ms.date: 04/13/2017

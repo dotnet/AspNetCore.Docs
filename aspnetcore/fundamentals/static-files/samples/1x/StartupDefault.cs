@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace StaticFiles
 {
-    public class StartupEmpty
+    public class StartupDefault
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -11,10 +11,14 @@ namespace StaticFiles
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet1
+        #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app)
         {
-            app.UseDefaultFiles();
+            // Serve my app-specific default file, if present.
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("mydefault.html");
+            app.UseDefaultFiles(options);
             app.UseStaticFiles();
         }
         #endregion

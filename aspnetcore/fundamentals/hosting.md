@@ -2,7 +2,6 @@
 title: Hosting in ASP.NET Core
 author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
-keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder,IHostingEnvironment,IApplicationLifetime
 ms.author: riande
 manager: wpickett
 ms.date: 09/21/2017
