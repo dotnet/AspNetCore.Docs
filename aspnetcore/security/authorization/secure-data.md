@@ -1,5 +1,6 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
+description: Shows how to create a Razor Pages app user data protected by authorization. Includes SSL, authentication, security, ASP.NET Core Identity.
 author: rick-anderson
 ms.author: riande
 manager: wpickett
