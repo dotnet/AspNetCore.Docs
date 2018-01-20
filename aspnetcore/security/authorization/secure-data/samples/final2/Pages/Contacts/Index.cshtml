@@ -40,48 +40,48 @@
     <tbody>
         @foreach (var item in Model.Contact)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @if ((await AuthorizationService.AuthorizeAsync(
-                   User, item,
-                   ContactOperations.Update)).Succeeded)
-        {
-            <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a>
-            <text> | </text>
-}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                      User, item,
+                      ContactOperations.Update)).Succeeded)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a>
+                        <text> | </text>
+                    }
 
-                <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a>
+                    <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a>
 
-                @if ((await AuthorizationService.AuthorizeAsync(
-                   User, item,
-                   ContactOperations.Delete)).Succeeded)
-        {
-            <text> | </text>
-            <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
-}
-            </td>
-        </tr>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                      User, item,
+                      ContactOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>

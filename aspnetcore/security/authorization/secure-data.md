@@ -20,12 +20,12 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://tw
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
-* Registered users can view all the approved contact data.
+* Registered users can view all the approved data.
 * Registered users can edit/delete their own data.
 * Managers can approve or reject contact data. Only approved contacts are visible to users.
 * Administrators can approve/reject and edit/delete any data.
 
-In the following image, user Rick (`rick@example.com`) is signed in. User Rick can only view approved contacts and edit/delete his contacts. Only the last record, created by Rick, displays edit and delete links
+In the following image, user Rick (`rick@example.com`) is signed in. User Rick can only view approved contacts and edit/delete/create his contacts. Only the last record, created by Rick, displays edit and delete links. Other users will not see the last record until a manager or administrator changes the status to `Approved`.
 
 ![image described preceding](secure-data/_static/rick.png)
 
@@ -75,8 +75,6 @@ This tutorial is advanced. You should be familiar with:
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
-This tutorial has all the major steps to create the secure user data app. You may find it helpful to refer to the completed project.
-
 ## Secure user data
 
 The following sections have all the major steps to create the secure user data app. You may find it helpful to refer to the completed project.
@@ -89,7 +87,7 @@ Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ens
 
 `OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
 
-Scaffold a new migration and update the database:
+Create a new migration and update the database:
 
 ```console
 dotnet ef migrations add userID_Status
@@ -110,11 +108,11 @@ If you're using Visual Studio, enable SSL.
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
-Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
+    Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added automatically require authentication. Default authentication required is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
+Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added automatically require authentication. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy)]
 
@@ -142,13 +140,18 @@ Add the administrator user ID and `Status = ContactStatus.Approved` to the conta
 
 ## Create owner, manager, and administrator authorization handlers
 
-Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies the user acting on the resource owns the resource.
+Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies the user acting on the resource, owns the resource.
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed?view=aspnetcore-2.0#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail?view=aspnetcore-2.0).
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed?view=aspnetcore-2.0#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
-The app allows contact owners to edit/delete their own data, so it doesn't need to check the operation passed in the requirement parameter.
+* Return `context.Succeed` when the requirements are met. 
+* Return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. 
+
+If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail?view=aspnetcore-2.0).
+
+The app allows contact owners to edit/delete/create their own data, so `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
 ### Create a manager authorization handler
 
@@ -166,13 +169,9 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they are available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=AuthorizationHandlers)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=ConfigureServices&highlight=43-)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They are singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
-
-The complete `ConfigureServices`:
-
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=ConfigureServices)]
 
 ## Support authorization
 
@@ -224,11 +223,9 @@ The preceding markup adds several `using` statements.
 
 Update the *Pages/Contacts/Index.cshtml* Razor view to only display the edit and delete links for users who can edit/delete the contact.
 
-Add `@using ContactManager.Authorization;`
-
 Update the `Edit` and `Delete` links so they are only rendered for users with permission to edit and delete the contact.
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?range=41-77)]
+[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?range=59-)]
 
 Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The controller must repeat the access checks to be secure.
 

@@ -70,8 +70,6 @@ namespace ContactManager
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
             #endregion
-
-            #region AuthorizationHandlers
             // Authorization handlers.
 
             services.AddScoped<IAuthorizationHandler,
@@ -82,8 +80,6 @@ namespace ContactManager
 
             services.AddSingleton<IAuthorizationHandler,
                                   ContactManagerAuthorizationHandler>();
-
-            #endregion
         }
         #endregion
 
