@@ -1,7 +1,7 @@
 ---
 title: Cloud authentication with Azure Active Directory B2C
 author: camsoper
-description: Shows how to set up Azure Active Directory B2C with ASP.NET Core.
+description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: casoper
 manager: wpickett
 ms.date: 01/12/2018
@@ -15,22 +15,22 @@ custom: mvc
 
 By [Cam Soper](https://twitter.com/camsoper)
 
-[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for your web and mobile apps. The service provides global, scalable, cloud-based authentication to web apps and APIs using individual accounts, social network accounts, and federated enterprise accounts for apps hosted in the cloud and on-premises. Additionally, Azure AD B2C can provide multifactor authentication with very little configuration.
+[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for your web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include include individual accounts, social network accounts, and federated enterprise accounts.  Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
-In this tutorial, you will learn how to:
+In this tutorial, learn how to:
 
 > [!div class="checklist"]
 > * Create an Azure Active Directory B2C tenant
 > * Register an app in Azure AD B2C
-> * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
+> * Use Visual Studio to create an ASP.NET Core web app configured to use the Azure AD B2C tenant for authentication
 > * Configure policies controlling the behavior of the Azure AD B2C tenant
 
 ## Prerequisites
 
 The following are required for this walkthrough:
 
-* A [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio). 
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition).
+* [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio). 
+* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
 
 ## Create the Azure Active Directory B2C tenant
 
@@ -85,11 +85,11 @@ In Visual Studio:
     | **Reset password policy**     | `B2C_1_SSPR`                                      |
     | **Edit profile policy**       | *\<leave blank\>*                                 |
 
-    Select the **Copy** link next to **Reply URI** to copy the Reply URI to the clipboard. Select **OK** to close the **Change Authentication** dialog, and then select **OK** to create the web app.
+    Select the **Copy** link next to **Reply URI** to copy the Reply URI to the clipboard. Select **OK** to close the **Change Authentication** dialog. Select **OK** to create the web app.
 
 ## Finish the B2C app registration
 
-Return to the browser window with the B2C app properties still open. Change the temporary **Reply URL** specified earlier to the value copied from Visual Studio, and then select **Save** at the top of the window.
+Return to the browser window with the B2C app properties still open. Change the temporary **Reply URL** specified earlier to the value copied from Visual Studio. Select **Save** at the top of the window.
 
 > [!TIP]
 > If you didn't copy the Reply URL, use the SSL address from the Debug tab in the web project properties, and append the **CallbackPath** value from *appsettings.json*.
@@ -125,10 +125,10 @@ In this tutorial, you will learned how to:
 > * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
 > * Configure policies controlling the behavior of the Azure AD B2C tenant
 
-Now that the ASP.NET Core app is configured to use Azure Active Directory B2C for authentication, the [Authorize attribute](xref:security/authorization/simple) can be used to secure your app.  Continue developing your app by learning to:
+Now that the ASP.NET Core app is configured to use Azure AD B2C for authentication, the [Authorize attribute](xref:security/authorization/simple) can be used to secure your app. Continue developing your app by learning to:
 
-* [Customize the Azure AD B2C user interface](/azure/active-directory-b2c/active-directory-b2c-reference-ui-customization)
-* [Configure password complexity requirements](/azure/active-directory-b2c/active-directory-b2c-reference-password-complexity)
-* [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa)
-* Configure additional identity providers, such as [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app), and others
-* [Use the Azure AD Graph API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) to retrieve additional user information, such as group membership, from the Azure AD B2C tenant
+* [Customize the Azure AD B2C user interface](/azure/active-directory-b2c/active-directory-b2c-reference-ui-customization).
+* [Configure password complexity requirements](/azure/active-directory-b2c/active-directory-b2c-reference-password-complexity).
+* [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).
+* Configure additional identity providers, such as [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app), and others.
+* [Use the Azure AD Graph API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) to retrieve additional user information, such as group membership, from the Azure AD B2C tenant.
