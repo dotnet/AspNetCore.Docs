@@ -1,6 +1,4 @@
-﻿using ContactManager.Authorization;
-using ContactManager.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using ContactManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

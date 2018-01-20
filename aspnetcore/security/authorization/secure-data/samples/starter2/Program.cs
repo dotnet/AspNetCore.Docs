@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
 namespace ContactManager
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -21,14 +21,9 @@ namespace ContactManager
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 context.Database.Migrate();
 
-                var config = host.Services.GetRequiredService<IConfiguration>();
-                // Set password with the Secret Manager tool.
-                // dotnet user-secrets set SeedUserPW <pw>
-
-                var testUserPw = config["SeedUserPW"];
-
-                try { 
-                SeedData.Initialize(services, testUserPw).Wait();
+                try
+                {
+                    SeedData.Initialize(services, "").Wait();
                 }
                 catch (Exception ex)
                 {
@@ -46,4 +41,5 @@ namespace ContactManager
                 .UseStartup<Startup>()
                 .Build();
     }
+    #endregion
 }
