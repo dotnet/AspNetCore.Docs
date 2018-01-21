@@ -92,11 +92,11 @@ At this point, routing is configured correctly; however, we can't yet test it. A
 
 The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy *Controllers/ProductsController.cs* from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (*ProductsCore*).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:
 
-* *ApiController* doesn't exist
+* *ApiController* does not exist
 
-* *System.Web.Http* namespace doesn't exist
+* *System.Web.Http* namespace does not exist
 
-* *IHttpActionResult* doesn't exist
+* *IHttpActionResult* does not exist
 
 Fortunately, these are all very easy to correct:
 

@@ -135,7 +135,7 @@ The **IAuthenticatedEncryptorDescriptorDeserializer** interface represents a typ
 
 The ImportFromXml method takes the XElement that was returned by [IAuthenticatedEncryptorDescriptor.ExportToXml](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-exporttoxml) and creates an equivalent of the original IAuthenticatedEncryptorDescriptor.
 
-Types which implement IAuthenticatedEncryptorDescriptorDeserializer should've one of the following two public constructors:
+Types which implement IAuthenticatedEncryptorDescriptorDeserializer should have one of the following two public constructors:
 
 * .ctor(IServiceProvider)
 

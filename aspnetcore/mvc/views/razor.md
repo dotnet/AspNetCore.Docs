@@ -205,7 +205,7 @@ To define a subsection of a code block that should render HTML, surround the cha
 }
 ```
 
-Use this approach to render HTML that'sn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
+Use this approach to render HTML that isn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
 
 The **\<text>** tag is useful to control whitespace when rendering content:
 

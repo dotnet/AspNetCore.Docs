@@ -190,7 +190,7 @@ The `IXmlDecryptor` interface represents a type that knows how to decrypt an `XE
 
 The `Decrypt` method undoes the encryption performed by `IXmlEncryptor.Encrypt`. Generally, each concrete `IXmlEncryptor` implementation will have a corresponding concrete `IXmlDecryptor` implementation.
 
-Types which implement `IXmlDecryptor` should've one of the following two public constructors:
+Types which implement `IXmlDecryptor` should have one of the following two public constructors:
 
 * .ctor(IServiceProvider)
 * .ctor()

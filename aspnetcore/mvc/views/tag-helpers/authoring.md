@@ -41,7 +41,7 @@ The server will use our email tag helper to convert that markup into the followi
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
 ```
 
-That's, an anchor tag that makes this an email link. You might want to do this if you are writing a blog engine and need it to send email for marketing, support, and other contacts, all to the same domain.
+That is, an anchor tag that makes this an email link. You might want to do this if you are writing a blog engine and need it to send email for marketing, support, and other contacts, all to the same domain.
 
 1.  Add the following `EmailTagHelper` class to the *TagHelpers* folder.
 
@@ -163,7 +163,7 @@ In this section, we'll write an asynchronous email helper.
 
     The `[HtmlTargetElement]` attribute above only targets HTML markup that provides an attribute name of "bold". The `<bold>` element wasn't modified by the tag helper.
 
-4. Comment out the `[HtmlTargetElement]` attribute line and it will default to targeting `<bold>` tags, that's, HTML markup of the form `<bold>`. Remember, the default naming convention will match the class name **Bold**TagHelper to `<bold>` tags.
+4. Comment out the `[HtmlTargetElement]` attribute line and it will default to targeting `<bold>` tags, that is, HTML markup of the form `<bold>`. Remember, the default naming convention will match the class name **Bold**TagHelper to `<bold>` tags.
 
 5. Run the app and verify that the `<bold>` tag is processed by the tag helper.
 
@@ -312,7 +312,7 @@ Because these two helpers are closely related and you may refactor them in the f
     >
     >[!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs?range=12)]
     >
-    >That's, you call `GetChildContentAsync` using the `TagHelperOutput` passed into the `ProcessAsync` method. As mentioned previously, because the output is cached, the last tag helper to run wins. You fixed that problem with the following code:
+    >That is, you call `GetChildContentAsync` using the `TagHelperOutput` passed into the `ProcessAsync` method. As mentioned previously, because the output is cached, the last tag helper to run wins. You fixed that problem with the following code:
     >
     >[!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs?range=34-35)]
     >

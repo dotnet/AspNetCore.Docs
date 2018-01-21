@@ -88,7 +88,7 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 [!code-csharp[](websockets/sample/Startup.cs?name=Echo)]
 
-When you accept the WebSocket before beginning this loop, the middleware pipeline ends.  Upon closing the socket, the pipeline unwinds. That's, the request stops moving forward in the pipeline when you accept a WebSocket, just as it would when you hit an MVC action, for example.  But when you finish this loop and close the socket, the request proceeds back up the pipeline.
+When you accept the WebSocket before beginning this loop, the middleware pipeline ends.  Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when you accept a WebSocket, just as it would when you hit an MVC action, for example.  But when you finish this loop and close the socket, the request proceeds back up the pipeline.
 
 ## Next steps
 

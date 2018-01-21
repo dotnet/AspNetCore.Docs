@@ -43,7 +43,7 @@ Troubleshooting:
 
 * **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\{PATH}\' failed to start process with commandline '"C:\\{PATH}{assembly}.{exe|dll}" ', ErrorCode = '0x80004005 : ff.
 
-* **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Couldn't load file or assembly '{assembly}.dll'. An attempt was made to load a program with an incorrect format.
+* **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly '{assembly}.dll'. An attempt was made to load a program with an incorrect format.
 
 Troubleshooting:
 
@@ -133,7 +133,7 @@ Troubleshooting:
 
 * **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\\{PATH}\' failed to start process with commandline '"dotnet" .\{assembly}.dll', ErrorCode = '0x80004005 : 80008081.
 
-* **ASP.NET Core Module Log:** The application to execute doesn't exist: 'PATH\{assembly}.dll'
+* **ASP.NET Core Module Log:** The application to execute does not exist: 'PATH\{assembly}.dll'
 
 Troubleshooting:
 
@@ -171,7 +171,7 @@ Troubleshooting
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\\{PATH}\' created process with commandline '"C:\\{PATH}\{assembly}.{exe|dll}" ' but either crashed or didn't reponse or didn't listen on the given port '{PORT}', ErrorCode = '0x800705b4'
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\\{PATH}\' created process with commandline '"C:\\{PATH}\{assembly}.{exe|dll}" ' but either crashed or did not reponse or did not listen on the given port '{PORT}', ErrorCode = '0x800705b4'
 
 * **ASP.NET Core Module Log:** Log file created and shows normal operation.
 
@@ -201,7 +201,7 @@ Troubleshooting
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\\{PATH}\' created process with commandline '"C:\\{PATH}\{assembly}.{exe|dll}" ' but either crashed or didn't reponse or didn't listen on the given port '{PORT}', ErrorCode = '0x800705b4'
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\\{PATH}\' created process with commandline '"C:\\{PATH}\{assembly}.{exe|dll}" ' but either crashed or did not reponse or did not listen on the given port '{PORT}', ErrorCode = '0x800705b4'
 
 * **ASP.NET Core Module Log:** Log file created but empty
 

@@ -31,13 +31,13 @@ Suppose you want to eliminate the redundant code for the properties that are sha
 
 ![Student and Instructor classes deriving from Person class](inheritance/_static/inheritance.png)
 
-There are several ways this inheritance structure could be represented in the database. You could've a Person table that includes information about both students and instructors in a single table. Some of the columns could apply only to instructors (HireDate), some only to students (EnrollmentDate), some to both (LastName, FirstName). Typically, you'd have a discriminator column to indicate which type each row represents. For example, the discriminator column might have "Instructor" for instructors and "Student" for students.
+There are several ways this inheritance structure could be represented in the database. You could have a Person table that includes information about both students and instructors in a single table. Some of the columns could apply only to instructors (HireDate), some only to students (EnrollmentDate), some to both (LastName, FirstName). Typically, you'd have a discriminator column to indicate which type each row represents. For example, the discriminator column might have "Instructor" for instructors and "Student" for students.
 
 ![Table-per-hierarchy example](inheritance/_static/tph.png)
 
 This pattern of generating an entity inheritance structure from a single database table is called table-per-hierarchy (TPH) inheritance.
 
-An alternative is to make the database look more like the inheritance structure. For example, you could've only the name fields in the Person table and have separate Instructor and Student tables with the date fields.
+An alternative is to make the database look more like the inheritance structure. For example, you could have only the name fields in the Person table and have separate Instructor and Student tables with the date fields.
 
 ![Table-per-type inheritance](inheritance/_static/tpt.png)
 
@@ -110,7 +110,7 @@ This code takes care of the following database update tasks:
 
 * Re-creates foreign key constraints and indexes, now pointing them to the Person table.
 
-(If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could've been omitted.)
+(If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could have been omitted.)
 
 Run the `database update` command:
 

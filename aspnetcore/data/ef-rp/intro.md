@@ -240,7 +240,7 @@ If the following error is generated:
 
 ```text
 Unhandled Exception: System.IO.FileNotFoundException: 
-Couldn't load file or assembly 
+Could not load file or assembly 
 'Microsoft.VisualStudio.Web.CodeGeneration.Utils, 
 Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'.
 The system cannot find the file specified.
@@ -258,9 +258,9 @@ Open a command window in the project directory (The directory that contains the 
 
 Build the project. The build generates errors like the following:
 
- `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' doesn't contain a definition for 'Student'`
+ `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
 
- Globally change `_context.Student` to `_context.Students` (that's, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633) in the next release.
+ Globally change `_context.Student` to `_context.Students` (that is, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633) in the next release.
 
 [!INCLUDE[model4tbl](../../includes/RP/model4tbl.md)]
 

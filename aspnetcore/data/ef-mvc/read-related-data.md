@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
-In the previous tutorial, you completed the School data model. In this tutorial, you'll read and display related data -- that's, data that the Entity Framework loads into navigation properties.
+In the previous tutorial, you completed the School data model. In this tutorial, you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 
 The following illustrations show the pages that you'll work with.
 
@@ -33,7 +33,7 @@ There are several ways that Object-Relational Mapping (ORM) software such as Ent
 
   ![Eager loading example](read-related-data/_static/eager-loading.png)
 
-  You can retrieve some of the data in separate queries, and EF "fixes up" the navigation properties.  That's, EF automatically adds the separately retrieved entities where they belong in navigation properties of previously retrieved entities. For the query that retrieves related data, you can use the `Load` method instead of a method that returns a list or object, such as `ToList` or `Single`.
+  You can retrieve some of the data in separate queries, and EF "fixes up" the navigation properties.  That is, EF automatically adds the separately retrieved entities where they belong in navigation properties of previously retrieved entities. For the query that retrieves related data, you can use the `Load` method instead of a method that returns a list or object, such as `ToList` or `Single`.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 

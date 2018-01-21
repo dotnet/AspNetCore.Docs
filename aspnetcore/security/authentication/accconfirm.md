@@ -84,9 +84,9 @@ See [Enforcing SSL](xref:security/enforcing-ssl).
 <a name="prevent-login-at-registration"></a>
 ## Require email confirmation
 
-It's a best practice to confirm the email of a new user registration to verify they're not impersonating someone else (that's, they'ven't registered with someone else's email). Suppose you had a discussion forum, and you wanted to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they're not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, and you wanted to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
-You generally want to prevent new users from posting any data to your web site before they've a confirmed email. 
+You generally want to prevent new users from posting any data to your web site before they have a confirmed email. 
 
 Update `ConfigureServices` to require a confirmed email:
 

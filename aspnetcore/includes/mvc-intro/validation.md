@@ -55,7 +55,7 @@ The following image shows how to disable JavaScript in the FireFox browser.
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
-![Google Chrome: In the Javascript section of Content settings, select Don't allow any site to run JavaScript.](../../tutorials/first-mvc-app/validation/_static/chrome.png)
+![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](../../tutorials/first-mvc-app/validation/_static/chrome.png)
 
 After you disable JavaScript, post invalid data and step through the debugger.
 

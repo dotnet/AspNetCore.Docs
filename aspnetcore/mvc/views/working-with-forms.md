@@ -95,7 +95,7 @@ this request. Please review the following specific error details and modify
 your source code appropriately.
 
 Type expected
- 'RegisterViewModel' doesn't contain a definition for 'Email' and no
+ 'RegisterViewModel' does not contain a definition for 'Email' and no
  extension method 'Email' accepting a first argument of type 'RegisterViewModel'
  could be found (are you missing a using directive or an assembly reference?)
 ```
@@ -138,7 +138,7 @@ The code above generates the following HTML:
   <form method="post" action="/Demo/RegisterInput">
        Email:
        <input type="email" data-val="true"
-              data-val-email="The Email Address field isn't a valid e-mail address."
+              data-val-email="The Email Address field is not a valid e-mail address."
               data-val-required="The Email Address field is required."
               id="Email" name="Email" value="" /> <br>
        Password:
@@ -377,7 +377,7 @@ The generated HTML (when the model is valid):
   <ul><li style="display:none"></li></ul></div>
   Email:  <input name="Email" id="Email" type="email" value=""
    data-val-required="The Email field is required."
-   data-val-email="The Email field isn't a valid e-mail address."
+   data-val-email="The Email field is not a valid e-mail address."
    data-val="true"> <br>
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Email"></span><br>

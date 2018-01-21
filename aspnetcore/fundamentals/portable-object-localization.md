@@ -112,7 +112,7 @@ The Orchard Localization package provides an API to invoke these different plura
 Add the following content to the previously mentioned *fr.po* file:
 
 ```text
-msgid "There's one item."
+msgid "There is one item."
 msgid_plural "There are {0} items."
 msgstr[0] "Il y a un élément."
 msgstr[1] "Il y a {0} éléments."
@@ -146,9 +146,9 @@ var supportedCultures = new List<CultureInfo>
 Edit the *Views/Home/About.cshtml* file to render localized, plural strings for several cardinalities:
 
 ```cshtml
-<p>@Localizer.Plural(1, "There's one item.", "There are {0} items.")</p>
-<p>@Localizer.Plural(2, "There's one item.", "There are {0} items.")</p>
-<p>@Localizer.Plural(5, "There's one item.", "There are {0} items.")</p>
+<p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
+<p>@Localizer.Plural(2, "There is one item.", "There are {0} items.")</p>
+<p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
 ```
 
 **Note:** In a real world scenario, a variable would be used to represent the count. Here, we repeat the same code with three different values to expose a very specific case.
@@ -158,7 +158,7 @@ Upon switching cultures, you see the following:
 For `/Home/About`:
 
 ```html
-There's one item.
+There is one item.
 There are 2 items.
 There are 5 items.
 ```

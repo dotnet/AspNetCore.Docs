@@ -80,12 +80,12 @@ The preceding command scaffolds the `Course` model. Open the project in Visual S
 
 Build the project. The build generates errors like the following:
 
-`1>Pages/Courses/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' doesn't
+`1>Pages/Courses/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
  contain a definition for 'Course' and no extension method 'Course' accepting a first
  argument of type 'SchoolContext' could be found (are you missing a using directive or
  an assembly reference?)`
 
- Globally change `_context.Course` to `_context.Courses` (that's, add an "s" to `Course`). 7 occurrences are found and updated.
+ Globally change `_context.Course` to `_context.Courses` (that is, add an "s" to `Course`). 7 occurrences are found and updated.
 
 Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
@@ -169,7 +169,7 @@ The preceding command scaffolds the `Instructor` model. Open the project in Visu
 
 Build the project. The build generates errors.
 
-Globally change `_context.Instructor` to `_context.Instructors` (that's, add an "s" to `Instructor`). 7 occurrences are found and updated.
+Globally change `_context.Instructor` to `_context.Instructors` (that is, add an "s" to `Instructor`). 7 occurrences are found and updated.
 
 Run the app and navigate to the instructors page.
 

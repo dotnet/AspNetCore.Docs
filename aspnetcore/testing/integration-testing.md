@@ -71,7 +71,7 @@ Test projects that contain Razor views require `<PreserveCompilationContext>` be
 Projects missing this element will generate an error similar to the following:
 ```
 Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: 'One or more compilation failures occurred:
-ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that's not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
+ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that is not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
 ```
 
 

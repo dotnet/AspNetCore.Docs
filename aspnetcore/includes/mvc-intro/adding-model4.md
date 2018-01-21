@@ -14,7 +14,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that's, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 

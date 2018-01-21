@@ -30,7 +30,7 @@ A concurrency conflict occurs when:
 
 If concurrency detection isn't enabled, when concurrent updates occur:
 
-* The last update wins. That's, the last update values are saved to the DB.
+* The last update wins. That is, the last update values are saved to the DB.
 * The first of the current updates are lost.
 
 ### Optimistic concurrency
@@ -164,12 +164,12 @@ The preceding command scaffolds the `Department` model. Open the project in Visu
 
 Build the project. The build generates errors like the following:
 
-`1>Pages/Departments/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' doesn't
+`1>Pages/Departments/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
  contain a definition for 'Department' and no extension method 'Department' accepting a first
  argument of type 'SchoolContext' could be found (are you missing a using directive or
  an assembly reference?)`
 
- Globally change `_context.Department` to `_context.Departments` (that's, add an "s" to `Department`). 7 occurrences are found and updated.
+ Globally change `_context.Department` to `_context.Departments` (that is, add an "s" to `Department`). 7 occurrences are found and updated.
 
 ### Update the Departments Index page
 

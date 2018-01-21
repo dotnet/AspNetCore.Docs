@@ -82,7 +82,7 @@ info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-If the migration fails with the message "*cannot access the file ... ContosoUniversity.dll because it's being used by another process.*" is displayed:
+If the migration fails with the message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" is displayed:
 
 * Stop IIS Express.
 
