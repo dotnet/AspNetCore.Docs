@@ -20,7 +20,7 @@ Browser security prevents a web page from making AJAX requests to another domain
 
 ## What is "same origin"?
 
-Two URLs have the same origin if they've identical schemes, hosts, and ports. ([RFC 6454](http://tools.ietf.org/html/rfc6454))
+Two URLs have the same origin if they have identical schemes, hosts, and ports. ([RFC 6454](http://tools.ietf.org/html/rfc6454))
 
 These two URLs have the same origin:
 

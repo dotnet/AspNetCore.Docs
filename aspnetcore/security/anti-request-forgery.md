@@ -56,7 +56,7 @@ CSRF attacks are possible against web sites that use cookies for authentication,
 Note: In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [session middleware](xref:fundamentals/app-state).
 
 Users can guard against CSRF vulnerabilities by:
-* Logging off of web sites when they've finished using them.
+* Logging off of web sites when they have finished using them.
 * Clearing their browser's cookies periodically.
 
 However, CSRF vulnerabilities are fundamentally a problem with the web app, not the end user.
@@ -341,7 +341,7 @@ CSRF attacks rely on the default browser behavior of sending cookies associated 
 
 ### Cookie-based authentication
 
-Once a user has authenticated using their username and password, they're issued a token that can be used to identify them and validate that they've been authenticated. The token is stored as a cookie that accompanies every request the client makes. Generating and validating this cookie is done by the cookie authentication middleware. ASP.NET Core provides cookie [middleware](../fundamentals/middleware.md) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`.
+Once a user has authenticated using their username and password, they're issued a token that can be used to identify them and validate that they have been authenticated. The token is stored as a cookie that accompanies every request the client makes. Generating and validating this cookie is done by the cookie authentication middleware. ASP.NET Core provides cookie [middleware](../fundamentals/middleware.md) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`.
 
 When a cookie is used, The authentication cookie is just a container for the forms authentication ticket. The ticket is passed as the value of the forms authentication cookie with each request and is used by forms authentication, on the server, to identify an authenticated user.
 

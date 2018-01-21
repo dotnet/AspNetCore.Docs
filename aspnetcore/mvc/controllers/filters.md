@@ -218,7 +218,7 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 
 ## Authorization filters
 
-*Authorization filters* control access to action methods and are the first filters to be executed within the filter pipeline. They've only a before method, unlike most filters that support before and after methods. You should only write a custom authorization filter if you are writing your own authorization framework. Prefer configuring your authorization policies or writing a custom authorization policy over writing a custom filter. The built-in filter implementation is just responsible for calling the authorization system.
+*Authorization filters* control access to action methods and are the first filters to be executed within the filter pipeline. They have only a before method, unlike most filters that support before and after methods. You should only write a custom authorization filter if you are writing your own authorization framework. Prefer configuring your authorization policies or writing a custom authorization policy over writing a custom filter. The built-in filter implementation is just responsible for calling the authorization system.
 
 Note that you shouldn't throw exceptions within authorization filters, since nothing will handle the exception (exception filters won't handle them). Instead, issue a challenge or find another way.
 
@@ -304,7 +304,7 @@ The framework provides an abstract `ResultFilterAttribute` that you can subclass
 
 ## Using middleware in the filter pipeline
 
-Resource filters work like [middleware](../../fundamentals/middleware.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of MVC, which means that they've access to MVC context and constructs.
+Resource filters work like [middleware](../../fundamentals/middleware.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of MVC, which means that they have access to MVC context and constructs.
 
 In ASP.NET Core 1.1, you can use middleware in the filter pipeline. You might want to do that if you have a middleware component that needs access to MVC route data, or one that should run only for certain controllers or actions.
 
