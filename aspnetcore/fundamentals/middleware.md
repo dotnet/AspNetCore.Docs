@@ -195,7 +195,7 @@ ASP.NET Core ships with the following middleware components, as well as a descri
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
-| [ForwardedHeaders/HttpOverrides](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: Scheme, Host, ClientIP, Method). |
+| [ForwardedHeaders/HttpOverrides](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: Scheme, Host, ClientIP, Method). |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [RequestLocalization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
