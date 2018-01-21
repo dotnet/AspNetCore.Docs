@@ -155,7 +155,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorizatio
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they'll be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=AuthorizationHandlers)]
 
@@ -209,7 +209,7 @@ Update both `Delete` methods to use the authorization handler to verify the user
 
 Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization handler to the views.
 
-Inject the authorization service in the *Views/_ViewImports.cshtml* file so it'll be available to all views:
+Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
 
 [!code-html[Main](secure-data/samples/final/Views/_ViewImports.cshtml)]
 

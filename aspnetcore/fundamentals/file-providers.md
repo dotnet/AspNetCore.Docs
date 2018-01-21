@@ -70,7 +70,7 @@ You can use [globbing patterns](#globbing-patterns) when specifying files to emb
 > [!NOTE]
 > It's unlikely you would ever want to actually embed every .js file in your project in its assembly; the above sample is for demo purposes only.
 
-When creating an `EmbeddedFileProvider`, pass the assembly it'll read to its constructor.
+When creating an `EmbeddedFileProvider`, pass the assembly it will read to its constructor.
 
 ```csharp
 var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());

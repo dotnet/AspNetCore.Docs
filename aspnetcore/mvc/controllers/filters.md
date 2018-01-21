@@ -172,7 +172,7 @@ In the following code, both the `ShortCircuitingResourceFilter` and the `AddHead
 
 ## Dependency injection
 
-Filters can be added by type or by instance. If you add an instance, that instance will be used for every request. If you add a type, it'll be type-activated, meaning an instance will be created for each request and any constructor dependencies will be populated by [dependency injection](../../fundamentals/dependency-injection.md) (DI). Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
+Filters can be added by type or by instance. If you add an instance, that instance will be used for every request. If you add a type, it will be type-activated, meaning an instance will be created for each request and any constructor dependencies will be populated by [dependency injection](../../fundamentals/dependency-injection.md) (DI). Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
 
 Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](../../fundamentals/dependency-injection.md) (DI). This is because attributes must have their constructor parameters supplied where they're applied. This is a limitation of how attributes work.
 
@@ -206,7 +206,7 @@ System.InvalidOperationException: No service for type
 
 `TypeFilterAttribute` is very similar to `ServiceFilterAttribute` (and also implements `IFilterFactory`), but its type isn't resolved directly from the DI container. Instead, it instantiates the type by using `Microsoft.Extensions.DependencyInjection.ObjectFactory`.
 
-Because of this difference, types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first (but they'll still have their dependencies fulfilled by the container). Also, `TypeFilterAttribute` can optionally accept constructor arguments for the type in question. The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
+Because of this difference, types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first (but they will still have their dependencies fulfilled by the container). Also, `TypeFilterAttribute` can optionally accept constructor arguments for the type in question. The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
 
 [!code-csharp[Main](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
 

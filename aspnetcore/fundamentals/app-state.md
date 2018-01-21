@@ -136,7 +136,7 @@ You can reference Session from `HttpContext` once it's installed and configured.
 
 If you try to access `Session` before `UseSession` has been called, the exception `InvalidOperationException: Session has not been configured for this application or request` is thrown.
 
-If you try to create a new `Session` (that's, no session cookie has been created) after you have already begun writing to the `Response` stream, the exception `InvalidOperationException: The session cannot be established after the response has started` is thrown. The exception can be found in the web server log; it'll not be displayed in the browser.
+If you try to create a new `Session` (that's, no session cookie has been created) after you have already begun writing to the `Response` stream, the exception `InvalidOperationException: The session cannot be established after the response has started` is thrown. The exception can be found in the web server log; it will not be displayed in the browser.
 
 ### Loading Session asynchronously 
 

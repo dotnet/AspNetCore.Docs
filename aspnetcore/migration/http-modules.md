@@ -340,7 +340,7 @@ Serving up a file is discussed [here](../fundamentals/request-features.md#middle
 
 **HttpContext.Response.Headers**
 
-Sending response headers is complicated by the fact that if you set them after anything has been written to the response body, they'll not be sent.
+Sending response headers is complicated by the fact that if you set them after anything has been written to the response body, they will not be sent.
 
 The solution is to set a callback method that will be called right before writing to the response starts. This is best done at the start of the `Invoke` method in your middleware. It's this callback method that sets your response headers.
 

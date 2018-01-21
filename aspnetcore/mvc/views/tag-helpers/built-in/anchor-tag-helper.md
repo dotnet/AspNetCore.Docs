@@ -94,7 +94,7 @@ https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
 
 ### asp-route-{value}
 
-`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route isn't found, this route prefix will be appended to the generated href as a request parameter and value. Otherwise it'll be substituted in the route template.
+`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route isn't found, this route prefix will be appended to the generated href as a request parameter and value. Otherwise it will be substituted in the route template.
 
 Assuming you have a controller method defined as follows:
 

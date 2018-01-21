@@ -79,7 +79,7 @@ You can have different partial views with the same name in different view folder
 Partial views can be *chained*. That's, a partial view can call another partial view (as long as you don't create a loop). Within each view or partial view, relative paths are always relative to that view, not the root or parent view.
 
 > [!NOTE]
-> If you declare a [Razor](razor.md) `section` in a partial view, it'll not be visible to its parent(s); it'll be limited to the partial view.
+> If you declare a [Razor](razor.md) `section` in a partial view, it will not be visible to its parent(s); it will be limited to the partial view.
 
 ## Accessing Data From Partial Views
 

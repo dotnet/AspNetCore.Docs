@@ -93,7 +93,7 @@ Note: Like HTML tags and attributes, tags, class names and attributes in Razor, 
 
 ## SetAttribute and SetContent
 
-In this section, we'll update the `EmailTagHelper` so that it'll create a valid anchor tag for email. We'll update it to take information from a Razor view (in the form of a `mail-to` attribute) and use that in generating the anchor.
+In this section, we'll update the `EmailTagHelper` so that it will create a valid anchor tag for email. We'll update it to take information from a Razor view (in the form of a `mail-to` attribute) and use that in generating the anchor.
 
 Update the `EmailTagHelper` class with the following:
 
@@ -163,7 +163,7 @@ In this section, we'll write an asynchronous email helper.
 
     The `[HtmlTargetElement]` attribute above only targets HTML markup that provides an attribute name of "bold". The `<bold>` element wasn't modified by the tag helper.
 
-4. Comment out the `[HtmlTargetElement]` attribute line and it'll default to targeting `<bold>` tags, that's, HTML markup of the form `<bold>`. Remember, the default naming convention will match the class name **Bold**TagHelper to `<bold>` tags.
+4. Comment out the `[HtmlTargetElement]` attribute line and it will default to targeting `<bold>` tags, that's, HTML markup of the form `<bold>`. Remember, the default naming convention will match the class name **Bold**TagHelper to `<bold>` tags.
 
 5. Run the app and verify that the `<bold>` tag is processed by the tag helper.
 

@@ -53,14 +53,14 @@ Optimistic concurrency includes the following options:
 
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
- In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they'll see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
+ In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they will see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
 		* Can't avoid data loss if competing changes are made to the same property.
 		* Is generally not practical in a web app. It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
 		* Can increase app complexity compared to concurrency detection on an entity.
 
 * You can let John's change overwrite Jane's change.
 
- The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
+ The next time someone browses the English department, they will see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
 
 * You can prevent John's change from being updated in the DB. Typically, the app would:
 		* Display an error message.

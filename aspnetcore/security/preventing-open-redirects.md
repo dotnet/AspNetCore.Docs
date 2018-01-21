@@ -31,11 +31,11 @@ A malicious user could develop an attack intended to allow the malicious user ac
 3. The user is redirected (by the site) to ``http://nerddiner.com/Account/LogOn`` (malicious site that looks like real site).
 4. The user logs in again (giving malicious site their credentials) and is redirected back to the real site.
 
-The user will likely believe their first attempt to log in failed, and their second one was successful. They'll most likely remain unaware their credentials have been compromised.
+The user will likely believe their first attempt to log in failed, and their second one was successful. They will most likely remain unaware their credentials have been compromised.
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, ``/Home/Redirect``. An attacker could create, for example, a link in an email that goes to ``[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login``. A typical user will look at the URL and see it begins with your site name. Trusting that, they'll click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
+In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, ``/Home/Redirect``. An attacker could create, for example, a link in an email that goes to ``[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login``. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
 
 ## Protecting against open redirect attacks
 

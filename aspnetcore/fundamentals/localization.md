@@ -283,7 +283,7 @@ This sample **Localization.StarterWeb** project on [GitHub](https://github.com/a
 
 [!code-cshtml[Main](localization/sample/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
-The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it'll be available to all views:
+The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
 
 [!code-cshtml[Main](localization/sample/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 

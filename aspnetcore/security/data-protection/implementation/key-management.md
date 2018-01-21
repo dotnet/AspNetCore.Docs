@@ -31,7 +31,7 @@ Created, active, and expired keys may all be used to unprotect incoming payloads
 
 ## Default key selection
 
-When the data protection system reads the key ring from the backing repository, it'll attempt to locate a "default" key from the key ring. The default key is used for new Protect operations.
+When the data protection system reads the key ring from the backing repository, it will attempt to locate a "default" key from the key ring. The default key is used for new Protect operations.
 
 The general heuristic is that the data protection system chooses the key with the most recent activation date as the default key. (There's a small fudge factor to allow for server-to-server clock skew.) If the key is expired or revoked, and if the application has not disabled automatic key generation, then a new key will be generated with immediate activation per the [key expiration and rolling](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management-expiration) policy below.
 

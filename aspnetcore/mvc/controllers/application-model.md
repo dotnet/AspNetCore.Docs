@@ -128,7 +128,7 @@ The attribute may be applied to any action parameter:
 
 ### Sample: Modifying the ActionModel Name
 
-The following convention modifies the `ActionModel` to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it'll affect the route used to reach this action method.
+The following convention modifies the `ActionModel` to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it will affect the route used to reach this action method.
 
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Conventions/CustomActionNameAttribute.cs)]
 

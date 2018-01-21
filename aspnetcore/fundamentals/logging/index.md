@@ -122,7 +122,7 @@ You can specify the category as a string or use an extension method that derives
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
 
-Most of the time, it'll be easier to use `ILogger<T>`, as in the following example.
+Most of the time, it will be easier to use `ILogger<T>`, as in the following example.
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 

@@ -50,7 +50,7 @@ TPC and TPH inheritance patterns generally deliver better performance than TPT i
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
 
 > [!TIP] 
-> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it'll be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
+> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
 
 ## Create the Person class
 
@@ -74,7 +74,7 @@ Add the Person entity type to *SchoolContext.cs*. The new lines are highlighted.
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
-This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it'll have a Person table in place of the Student and Instructor tables.
+This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a Person table in place of the Student and Instructor tables.
 
 ## Create and customize migration code
 
@@ -84,7 +84,7 @@ Save your changes and build the project. Then open the command window in the pro
 dotnet ef migrations add Inheritance
 ```
 
-Don't run the `database update` command yet. That command will result in lost data because it'll drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
+Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
 Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
@@ -102,7 +102,7 @@ This code takes care of the following database update tasks:
 
 * Makes HireDate nullable since student rows won't have hire dates.
 
-* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they'll get new primary key values.
+* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they will get new primary key values.
 
 * Copies data from the Student table into the Person table. This causes students to get assigned new primary key values.
 
