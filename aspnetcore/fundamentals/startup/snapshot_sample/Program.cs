@@ -1,6 +1,7 @@
 public class Program
 {
-    public static IHostingEnvironment HostingEnvironment { get; set; }
+    public static IHostingEnvironment HostingEnvironment { get; }
+    public static IConfiguration Configuration { get; }
 
     public static void Main(string[] args)
     {
@@ -12,6 +13,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 HostingEnvironment = hostingContext.HostingEnvironment;
+                Configuration = config.Build();
             })
             .ConfigureServices(services =>
             {
@@ -27,6 +29,10 @@ public class Program
                 {
                     app.UseExceptionHandler("/Error");
                 }
+
+                // Configuration is available during startup. Examples:
+                // Configuration["key"]
+                // Configuration["subsection:suboption1"]
 
                 app.UseMvcWithDefaultRoute();
                 app.UseStaticFiles();

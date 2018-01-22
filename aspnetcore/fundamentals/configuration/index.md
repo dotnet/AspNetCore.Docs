@@ -389,6 +389,10 @@ Left: 1988
 
 A *web.config* file is required when hosting the app in IIS or IIS Express. Settings in *web.config* enable the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to launch the app and configure other IIS settings and modules. If the *web.config* file isn't present and the project file includes `<Project Sdk="Microsoft.NET.Sdk.Web">`, publishing the project creates a *web.config* file in the published output (the *publish* folder). For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index#webconfig).
 
+## Accessing configuration during startup
+
+To access configuration within `ConfigureServices` or `Configure` during startup, see the examples in the [Application startup](xref:fundamentals/startup) topic.
+
 ## Additional notes
 
 * Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
@@ -396,7 +400,7 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 * `IConfiguration` has two specializations:
   * `IConfigurationRoot` Used for the root node. Can trigger a reload.
   * `IConfigurationSection` Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
-  * Use [IConfigurationRoot](https://docs.microsoft.com/ dotnet/api/microsoft.extensions.configuration.iconfigurationroot) when reloading configuration or need access to each provider. Neither of these situations are common.
+  * Use [IConfigurationRoot](/dotnet/api/microsoft.extensions.configuration.iconfigurationroot) when reloading configuration or need access to each provider. Neither of these situations are common.
 
 ## Additional resources
 
