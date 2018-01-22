@@ -180,12 +180,21 @@ Add the `ContactOperations` class to the *Authorization* folder. This class cont
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactOperations.cs)]
 
+### Create a base class for the Razor Pages
+
+Create a base class that contains the services used in the contacts Razor Pages. The base class puts that initialization code in one location:
+
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/DI_BasePageModel.cshtml.cs)]
+
+The preceding code:
+
+* Adds the `IAuthorizationService` service to access to the authorization handlers.
+* Adds the `Identity` `UserManager` service.
+* Add the `ApplicationDbContext`.
+
 ### Update Create
 
-Update the create `PageModel` constructor:
-
-* Add the `IAuthorizationService` service to access to the authorization handlers.
-* Add the `Identity` `UserManager` service to access user data;
+Update the create `PageModel` constructor to use the `DI_BasePageModel` base class:
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
 
