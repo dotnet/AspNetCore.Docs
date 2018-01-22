@@ -131,7 +131,7 @@ Update `Main` to use the test password:
 
 [!code-csharp[Main](secure-data/samples/final2/Program.cs?name=snippet)]
 
-Add the administrator user ID and `Status = ContactStatus.Approved` to the contacts. Only one contact is shown, add the user ID to all contacts:
+Add the administrator user ID and `ContactStatus` to the contacts. Make one of the contacts `Submitted` and one `Rejected`. Only one contact is shown, add the user ID to all contacts:
 
 [!code-csharp[Main](secure-data/samples/final2/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 

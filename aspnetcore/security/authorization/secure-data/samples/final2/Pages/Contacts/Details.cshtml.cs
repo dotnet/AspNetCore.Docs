@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
-    public class DetailsModel : CtorBasePageModel
+    public class DetailsModel : DI_BasePageModel
     {
         public DetailsModel(
             ApplicationDbContext context,

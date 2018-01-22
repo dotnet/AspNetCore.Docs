@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ContactManager.Pages.Contacts
 {
-    public class CtorBasePageModel : PageModel
+    public class DI_BasePageModel : PageModel
     {
         protected ApplicationDbContext Context { get; }
         protected IAuthorizationService AuthorizationService { get; }
         protected UserManager<ApplicationUser> UserManager { get; }
 
-        public CtorBasePageModel(
+        public DI_BasePageModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<ApplicationUser> userManager) : base()

@@ -11,20 +11,14 @@ using System.Threading.Tasks;
 namespace ContactManager.Pages.Contacts
 {
     #region snippet
-    public class DeleteModel : PageModel
+    public class DeleteModel : DI_BasePageModel
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IAuthorizationService _authorizationService;
-        private readonly UserManager<ApplicationUser> _userManager;
-
         public DeleteModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<ApplicationUser> userManager)
+            : base(context, authorizationService, userManager)
         {
-            _context = context;
-            _userManager = userManager;
-            _authorizationService = authorizationService;
         }
 
         [BindProperty]
@@ -32,7 +26,7 @@ namespace ContactManager.Pages.Contacts
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Contact = await _context.Contact.FirstOrDefaultAsync(
+            Contact = await Context.Contact.FirstOrDefaultAsync(
                                                  m => m.ContactId == id);
 
             if (Contact == null)
@@ -40,7 +34,7 @@ namespace ContactManager.Pages.Contacts
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                      User, Contact,
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
@@ -53,9 +47,9 @@ namespace ContactManager.Pages.Contacts
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            Contact = await _context.Contact.FindAsync(id);
+            Contact = await Context.Contact.FindAsync(id);
 
-            var contact = await _context
+            var contact = await Context
                 .Contact.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ContactId == id);
 
@@ -64,7 +58,7 @@ namespace ContactManager.Pages.Contacts
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                      User, contact,
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
@@ -72,8 +66,8 @@ namespace ContactManager.Pages.Contacts
                 return new ChallengeResult();
             }
 
-            _context.Contact.Remove(Contact);
-            await _context.SaveChangesAsync();
+            Context.Contact.Remove(Contact);
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

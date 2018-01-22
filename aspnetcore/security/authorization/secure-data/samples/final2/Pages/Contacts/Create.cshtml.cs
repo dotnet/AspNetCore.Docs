@@ -10,22 +10,16 @@ using System.Threading.Tasks;
 namespace ContactManager.Pages.Contacts
 {
     #region snippetCtor
-    public class CreateModel : PageModel
+    public class CreateModel : DI_BasePageModel
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IAuthorizationService _authorizationService;
-        private readonly UserManager<ApplicationUser> _userManager;
-
         public CreateModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<ApplicationUser> userManager)
+            : base(context, authorizationService, userManager)
         {
-            _context = context;
-            _userManager = userManager;
-            _authorizationService = authorizationService;
         }
-#endregion
+        #endregion
 
         public IActionResult OnGet()
         {
@@ -52,9 +46,9 @@ namespace ContactManager.Pages.Contacts
                 return Page();
             }
 
-            Contact.OwnerID = _userManager.GetUserId(User);
+            Contact.OwnerID = UserManager.GetUserId(User);
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                         User, Contact,
                                                         ContactOperations.Create);
             if (!isAuthorized.Succeeded)
@@ -62,8 +56,8 @@ namespace ContactManager.Pages.Contacts
                 return new ChallengeResult();
             }
 
-            _context.Contact.Add(Contact);
-            await _context.SaveChangesAsync();
+            Context.Contact.Add(Contact);
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
