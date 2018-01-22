@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about ASP.NET Core middleware and the request pipeline.
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2017
+ms.date: 01/22/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## What is middleware
+## What is middleware?
 
 Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:
 
@@ -186,18 +186,22 @@ app.Map("/level1/level2", HandleMultiSeg);
 
 ## Built-in middleware
 
-ASP.NET Core ships with the following middleware components:
+ASP.NET Core ships with the following middleware components, as well as a description of the order in which they should be added:
 
-| Middleware | Description |
-| ----- | ------- |
-| [Authentication](xref:security/authentication/identity) | Provides authentication support. |
-| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. |
-| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
-| [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
+| Middleware | Description | Order |
+| ---------- | ----------- | ----- |
+| [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
+| [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
+| [ForwardedHeaders/HttpOverrides](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: Scheme, Host, ClientIP, Method). |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
+| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
+| [RequestLocalization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches files. |
+| [URL Rewriting ](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
 
 <a name="middleware-writing-middleware"></a>
 
