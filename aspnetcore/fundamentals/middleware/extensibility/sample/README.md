@@ -1,3 +1,3 @@
 # ASP.NET Hosting Startup Sample
 
-This sample illustrates the use of [IMiddleware](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.imiddleware) and [IMiddlewareFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory). This sample demonstrates the features described in [Middleware activation with nonconforming containers in ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/middleware/middleware-extensibility).
+This sample illustrates the use of [IMiddleware](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.imiddleware) and [IMiddlewareFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory). This sample demonstrates the features described in [Factory-based middleware activation in ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/middleware/middleware-extensibility).

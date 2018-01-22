@@ -1,7 +1,7 @@
 ---
-title: Middleware activation with nonconforming containers in ASP.NET Core
+title: Factory-based middleware activation in ASP.NET Core
 author: guardrex
-description: Learn how to activate middleware with nonconforming containers in ASP.NET Core.
+description: Learn how to activate strongly-typed middleware with a factory-based implementation in ASP.NET Core.
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
@@ -11,21 +11,20 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/middleware/extensibility
 ---
-# Middleware activation with nonconforming containers in ASP.NET Core
+# Factory-based middleware activation in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation with nonconforming containers.
+[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
 
-`UseMiddleware` extension methods check if a middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance registered in the nonconforming container is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The factory is registered as a scoped service with the app's noncomforming service container.
+`UseMiddleware` extension methods check if a middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance registered in the container is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The factory is registered as a scoped service with the app's service container.
 
 Benefits:
 
 * Activation per request (injection of scoped services)
-* Automatic middleware activation with nonconforming containers
 * Strong typing of middleware
 
-Because conventional middleware is constructed at app startup, not per-request, scoped lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. `IMiddleware` implementations are activated per-request by the factory, so scoped lifetime services *are shared* with other dependency-injected types during each request.
+`IMiddleware` is activated per request, so scoped services can be injected into the constructor.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -74,7 +73,7 @@ The middlewares are registered in the request processing pipeline in *Startup.cs
 
 ## IMiddlewareFactory
 
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory is registered in the nonconforming container as a scoped service.
+[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory is registered in the container as a scoped service.
 
 The default `IMiddlewareFactory` implementation is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package:
 
@@ -109,7 +108,7 @@ The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with it
 
 Note the injection of the database context, which is passed as an argument to `Activator.CreateInstance`. This permits the middleware to to obtain the database context via [dependency injection](xref:fundamentals/dependency-injection).
 
-The middleware factory is registered in the nonconforming service container in *Startup.cs*:
+The middleware factory is registered in the service container in *Startup.cs*:
 
 [!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet3&highlight=12)]
 

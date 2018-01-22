@@ -101,7 +101,7 @@
 ## [Dependency injection (services)](fundamentals/dependency-injection.md)
 ## [Middleware](xref:fundamentals/middleware/index)
 ### [Middleware](xref:fundamentals/middleware/index)
-### [Middleware with nonconforming containers](xref:fundamentals/middleware/extensibility)
+### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
 ## [Work with static files](fundamentals/static-files.md)
 ## [Routing](fundamentals/routing.md)
 ## [URL rewriting middleware](fundamentals/url-rewriting.md)
