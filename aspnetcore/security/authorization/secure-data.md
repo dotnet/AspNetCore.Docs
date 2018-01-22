@@ -184,7 +184,7 @@ Add the `ContactOperations` class to the *Authorization* folder. This class cont
 
 Create a base class that contains the services used in the contacts Razor Pages. The base class puts that initialization code in one location:
 
-[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/DI_BasePageModel.cshtml.cs)]
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/DI_BasePageModel.cs)]
 
 The preceding code:
 
