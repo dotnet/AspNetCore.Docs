@@ -20,6 +20,24 @@ The [Razor Pages Movie sample app](https://github.com/aspnet/Docs/tree/master/as
 
 In the steps below, you add a movie schedule file upload feature to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
 
+## Security considerations
+
+Great caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some of the security steps that must be taken to reduce the likelihood that an attack will succeed are:
+
+* Upload files to a dedicated file upload area on the system, which makes it easier to impose security measures on uploaded content. When permitting file uploads, make sure that execute permissions are disabled on the upload location.
+* Use a safe filename determined by the app, not from user input or the filename of the uploaded file.
+* Only allow a specific set of approved file extensions.
+* Make sure that any client-side checks are also made by the app. It's easy for attackers to circumvent client-side checks, so never trust checks made in JavaScript on the client.
+* Check the size of the upload and prevent larger uploads than expected.
+* Run a virus/malware scanner on uploaded content.
+
+> [!WARNING]
+> Uploading malicious code to a system is frequently the first step to executing code that can:
+> * Completely takeover a system.
+> * Overload a system with the result that the system completely fails.
+> * Compromise user or system data.
+> * Apply graffiti to a public interface.
+
 ## Add a FileUpload class
 
 Below, you create a Razor page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
@@ -33,6 +51,23 @@ The class has a property for the schedule's title and a property for each of the
 To avoid code duplication for processing uploaded schedule files, add a static helper method first. Create a *Utilities* folder in the app and add a *FileHelpers.cs* file with the following content. The helper method, `ProcessFormFile`, takes an [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [ModelStateDictionary](/api/microsoft.aspnetcore.mvc.modelbinding.modelstatedictionary) and returns a string containing the file's size and content. The content type and length are checked. If the file doesn't pass a validation check, an error is added to the `ModelState`.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Utilities/FileHelpers.cs)]
+
+### Save the file to disk
+
+The sample app saves the file's content into a database field. To save the file's content to disk, use a [FileStream](/dotnet/api/system.io.filestream):
+
+```csharp
+using (var fileStream = new FileStream(filePath, FileMode.Create))
+{
+    await formFile.CopyToAsync(fileStream);
+}
+```
+
+The worker process must have write permissions to the location specified by `filePath`.
+
+### Save the file to Azure Blob Storage
+
+To upload file content to Azure Blob Storage, see [Get started with Azure Blob storage using .NET](/azure/storage/blobs/storage-dotnet-how-to-use-blobs). The topic demonstrates how to use [UploadFromStream](/dotnet/api/microsoft.windowsazure.storage.file.cloudfile.uploadfromstreamasync) to save a [FileStream](/dotnet/api/system.io.filestream) to blob storage.
 
 ## Add the Schedule class
 
