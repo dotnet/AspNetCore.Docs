@@ -62,6 +62,8 @@ This tutorial is advanced. You should be familiar with:
 * [Authorization ](xref:security/authorization/index)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
+The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2)
+
 ## The starter and completed app
 
 [Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
