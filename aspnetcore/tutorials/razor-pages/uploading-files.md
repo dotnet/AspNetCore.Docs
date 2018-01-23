@@ -18,7 +18,7 @@ In this section, uploading files with a Razor Page is demonstrated.
 
 The [Razor Pages Movie sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) in this tutorial uses simple model binding to upload files, which works well for uploading small files. For information on streaming large files, see [Uploading large files with streaming](xref:mvc/models/file-uploads#uploading-large-files-with-streaming).
 
-In the steps below, you add a movie schedule file upload feature to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
+In the steps below, a movie schedule file upload feature is added to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
 
 ## Security considerations
 
@@ -40,7 +40,7 @@ Caution must be taken when providing users with the ability to upload files to a
 
 ## Add a FileUpload class
 
-Below, you create a Razor Page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
+Below, create a Razor Page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/FileUpload.cs)]
 
@@ -136,7 +136,7 @@ Open *_Layout.cshtml* and add a link to the navigation bar to reach the file upl
 
 ## Add a page to confirm schedule deletion
 
-When the user clicks to delete a schedule, you want them to have a chance to cancel the operation. Add a delete confirmation page (*Delete.cshtml*) to the *Schedules* folder:
+When the user clicks to delete a schedule, a chance to cancel the operation is provided. Add a delete confirmation page (*Delete.cshtml*) to the *Schedules* folder:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Schedules/Delete.cshtml)]
 
@@ -174,7 +174,7 @@ The user can click the **Delete** link from there to reach the delete confirmati
 
 For troubleshooting information with `IFormFile` uploading, see the [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).
 
-Thanks for completing this introduction to Razor Pages. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to Razor Pages. We appreciate any comments left. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 
