@@ -56,9 +56,4 @@ namespace MiddlewareExtensibilitySample
 
         private sealed class Scope : DisposableObject { }
     }
-
-    public static class BindingHelpers
-    {
-        public static void BindToMethod<T>(this IKernelConfiguration config, Func<T> method) => config.Bind<T>().ToMethod(c => method());
-    }
 }

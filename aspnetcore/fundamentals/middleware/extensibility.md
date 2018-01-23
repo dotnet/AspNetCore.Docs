@@ -1,11 +1,11 @@
 ---
 title: Factory-based middleware activation in ASP.NET Core
 author: guardrex
-description: Learn how to activate strongly-typed middleware with a factory-based implementation in ASP.NET Core.
+description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 01/17/2018
+ms.date: 01/23/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -57,8 +57,7 @@ Note that it isn't possible to pass objects with `UseMiddleware` as it is with c
 public static IApplicationBuilder UseMiddlewareViaIMiddlewareFactoryActivation(
     this IApplicationBuilder builder, bool option)
 {
-    // Passing 'option' as an argument won't work and throws a NotSupportedException 
-    // at runtime.
+    // Passing 'option' as an argument throws a NotSupportedException at runtime.
     return builder.UseMiddleware<MiddlewareViaIMiddlewareFactoryActivation>(option);
 }
 ```
@@ -75,32 +74,7 @@ The middlewares are registered in the request processing pipeline in *Startup.cs
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory is registered in the container as a scoped service.
 
-The default `IMiddlewareFactory` implementation is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package:
-
-```csharp
-public class MiddlewareFactory : IMiddlewareFactory
-{
-    // The default middleware factory is just an IServiceProvider proxy.
-    // This should be registered as a scoped service so that the middleware instances
-    // don't end up being singletons.
-    private readonly IServiceProvider _serviceProvider;
-
-    public MiddlewareFactory(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
-
-    public IMiddleware Create(Type middlewareType)
-    {
-        return _serviceProvider.GetRequiredService(middlewareType) as IMiddleware;
-    }
-
-    public void Release(IMiddleware middleware)
-    {
-        // The container owns the lifetime of the service
-    }
-}
-```
+The default `IMiddlewareFactory` implementation is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package ([reference source](https://github.com/aspnet/HttpAbstractions/blob/release/2.0/src/Microsoft.AspNetCore.Http/MiddlewareFactory.cs)).
 
 The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with its custom `BasicMiddlewareFactory`:
 
@@ -110,7 +84,7 @@ Note the injection of the database context, which is passed as an argument to `A
 
 The middleware factory is registered in the service container in *Startup.cs*:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet3&highlight=12)]
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=4)]
 
 ## Additional resources
 
