@@ -123,7 +123,7 @@ The snapshot file must be in sync with the migrations that created it. A migrati
 
 ## Remove EnsureCreated
 
-For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limatitions:
+For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limitations:
 
 * Bypasses migrations and creates the DB and schema.
 * Does not create a migrations table.
