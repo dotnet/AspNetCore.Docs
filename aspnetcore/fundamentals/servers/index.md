@@ -64,7 +64,7 @@ For information about when to use Kestrel with a reverse proxy, see [Introductio
 
 ---
 
-You can't use IIS, Nginx, or Apache without Kestrel or a [custom server implementation](#custom-servers). ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would've to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be essentially the same no matter where you deploy.
+You can't use IIS, Nginx, or Apache without Kestrel or a [custom server implementation](#custom-servers). ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be essentially the same no matter where you deploy.
 
 ### IIS with Kestrel
 

@@ -650,7 +650,7 @@ The `AreaAttribute` is what denotes a controller as part of an area, we say that
 [!code-csharp[Main](routing/sample/AreasRouting/Controllers/UsersController.cs)]
 
 > [!NOTE]
-> The namespace of each controller is shown here for completeness - otherwise the controllers would've a naming conflict and generate a compiler error. Class namespaces have no effect on MVC's routing.
+> The namespace of each controller is shown here for completeness - otherwise the controllers would have a naming conflict and generate a compiler error. Class namespaces have no effect on MVC's routing.
 
 The first two controllers are members of areas, and only match when their respective area name is provided by the `area` route value. The third controller isn't a member of any area, and can only match when no value for `area` is provided by routing.
 

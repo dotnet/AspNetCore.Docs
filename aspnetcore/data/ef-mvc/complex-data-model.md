@@ -227,7 +227,7 @@ In *Models/Course.cs*, replace the code you added earlier with the following cod
 
 The course entity has a foreign key property `DepartmentID` which points to the related Department entity and it has a `Department` navigation property.
 
-The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity.  EF automatically creates foreign keys in the database wherever they're needed and creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for them. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the  Department entity is null if you don't load it, so when you update the course entity, you would've to first fetch the Department entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the Department entity before you update.
+The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity.  EF automatically creates foreign keys in the database wherever they're needed and creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for them. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the  Department entity is null if you don't load it, so when you update the course entity, you would have to first fetch the Department entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the Department entity before you update.
 
 ### The DatabaseGenerated attribute
 
@@ -304,7 +304,7 @@ public ICollection<Course> Courses { get; set; }
 ```
 
 > [!NOTE]
-> By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the Department.InstructorID property as nullable, EF would configure a cascade delete rule to delete the instructor when you delete the department, which isn't what you want to have happen. If your business rules required the `InstructorID` property to be non-nullable, you would've to use the following fluent API statement to disable cascade delete on the relationship:
+> By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the Department.InstructorID property as nullable, EF would configure a cascade delete rule to delete the instructor when you delete the department, which isn't what you want to have happen. If your business rules required the `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship:
 > ```csharp
 > modelBuilder.Entity<Department>()
 >    .HasOne(d => d.Administrator)
@@ -362,7 +362,7 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 ### Join entity names
 
-A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and it has to be represented by an entity set. It's common to name a join entity `EntityName1EntityName2`, which in this case would be `CourseInstructor`. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later. Ideally, the join entity would've its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked through Ratings. For this relationship, `CourseAssignment` is a better choice than `CourseInstructor`.
+A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and it has to be represented by an entity set. It's common to name a join entity `EntityName1EntityName2`, which in this case would be `CourseInstructor`. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked through Ratings. For this relationship, `CourseAssignment` is a better choice than `CourseInstructor`.
 
 ### Composite key
 
