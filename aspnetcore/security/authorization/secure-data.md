@@ -143,7 +143,7 @@ Add the administrator user ID and `ContactStatus` to the contacts. Make one of t
 
 ## Create owner, manager, and administrator authorization handlers
 
-Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies the user acting on the resource, owns the resource.
+Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies the user acting on a resource, owns the resource.
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
