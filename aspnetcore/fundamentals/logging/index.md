@@ -174,9 +174,9 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
 dbug: Microsoft.AspNetCore.Routing.Tree.TreeRouter[1]
       Request successfully matched the route with name 'GetTodo' and template 'api/Todo/{id}'.
 dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
-      Action 'TodoApi.Controllers.TodoController.Update (TodoApi)' with id '089d59b6-92ec-472d-b552-cc613dfd625d' didn't match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+      Action 'TodoApi.Controllers.TodoController.Update (TodoApi)' with id '089d59b6-92ec-472d-b552-cc613dfd625d' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
 dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
-      Action 'TodoApi.Controllers.TodoController.Delete (TodoApi)' with id 'f3476abe-4bd9-4ad3-9261-3ead09607366' didn't match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+      Action 'TodoApi.Controllers.TodoController.Delete (TodoApi)' with id 'f3476abe-4bd9-4ad3-9261-3ead09607366' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
 dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
       Executing action TodoApi.Controllers.TodoController.GetById (TodoApi)
 info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
