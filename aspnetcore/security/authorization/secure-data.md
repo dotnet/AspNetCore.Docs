@@ -115,7 +115,7 @@ Set the default authentication policy to require users to be authenticated. You 
 
 Add [AllowAnonymous](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
 
-[!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
+[!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=2)]
 
 Add `[AllowAnonymous]` to the [LoginModel and RegisterModel](https://github.com/aspnet/templating/issues/238).
 
@@ -241,7 +241,7 @@ The preceding markup adds several `using` statements.
 
 Update the `Edit` and `Delete` links in *Pages/Contacts/Index.cshtml* so they are only rendered for users with the appropriate permissions:
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,62-)]
+[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,64-)]
 
 Warning: Hiding links from users that do not have permission to change data does not secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
 
@@ -249,11 +249,11 @@ Warning: Hiding links from users that do not have permission to change data does
 
 Update the details view so managers can approve or reject contacts:
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=51-)]
+[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=48-)]
 
 Update the Details `PageModel`:
 
-[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml.cs)]
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
 ## Test the completed app
 

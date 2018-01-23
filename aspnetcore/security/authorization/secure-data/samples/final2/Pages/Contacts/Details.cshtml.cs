@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
+    #region snippet
     public class DetailsModel : DI_BasePageModel
     {
         public DetailsModel(
@@ -34,15 +35,17 @@ namespace ContactManager.Pages.Contacts
 
         public async Task<IActionResult> OnPostAsync(int id, ContactStatus status)
         {
-             var contact = await Context.Contact.FirstOrDefaultAsync(m => m.ContactId == id);
+             var contact = await Context.Contact.FirstOrDefaultAsync(
+                                                       m => m.ContactId == id);
 
             if (contact == null)
             {
                 return NotFound();
             }
 
-            var contactOperation = (status == ContactStatus.Approved) ? ContactOperations.Approve
-                                                                     : ContactOperations.Reject;
+            var contactOperation = (status == ContactStatus.Approved) 
+                                                       ? ContactOperations.Approve
+                                                       : ContactOperations.Reject;
 
             var isAuthorized = await AuthorizationService.AuthorizeAsync(User, contact,
                                         contactOperation);
@@ -57,4 +60,5 @@ namespace ContactManager.Pages.Contacts
             return RedirectToPage("./Index");
         }
     }
+    #endregion
 }
