@@ -24,7 +24,6 @@ namespace MiddlewareExtensibilitySample
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDB"));
 
-            services.AddScoped<MiddlewareViaConventionalActivation>();
             services.AddScoped<MiddlewareViaIMiddlewareFactoryActivation>();
 
             services.AddMvc();
