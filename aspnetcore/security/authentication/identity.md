@@ -193,7 +193,7 @@ For additional information and guidance on migrating your existing Identity stor
 
 ## Setting password strength
 
-See [this section](#pw) for a sample that sets the minimum password requirements.
+See [Configuration](#pw) for a sample that sets the minimum password requirements.
 
 ## Next Steps
 
