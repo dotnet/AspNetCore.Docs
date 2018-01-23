@@ -256,7 +256,9 @@ services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
 
 ## Accessing options during startup
 
-Options can't be accessed during startup without building a service provider, which is an anti-pattern because it requires loading the `IOptions` service in code. Since options are typically loaded from configuration, use configuration in startup whenever possible. For examples of using configuration within `ConfigureServices` or `Configure` during startup, see the [Application startup](xref:fundamentals/startup) topic.
+`IOptions` can be used in `Configure`, since services are built before the `Configure` method executes. If a service provider is built in `ConfigureServices` to access options, it wouldn't contain any options configurations provided after the service provider is built. Therefore, an inconsistent options state may exist due to the ordering of service registrations.
+
+Since options are typically loaded from configuration, configuration can be used in startup in both `Configure` and `ConfigureServices`. For examples of using configuration during startup, see the [Application startup](xref:fundamentals/startup) topic.
 
 ## See also
 
