@@ -335,7 +335,7 @@ Some things to be aware of when writing asynchronous code that uses EF Core:
 
 * Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
-* An EF Core context isn't threaded safe: don't try to do multiple operations in parallel. 
+* An EF Core context isn't thread safe: don't try to do multiple operations in parallel. 
 
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 

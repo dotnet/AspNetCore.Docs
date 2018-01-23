@@ -639,7 +639,7 @@ With the preceding changes, existing `Course` rows will be related to the "Temp"
 A production app would:
 
 * Include code or scripts to add `Department` rows and related `Course` rows to the new `Department` rows.
-* Wouldn't use the "Temp" department or the default value for `Course.DepartmentID `.
+* Not use the "Temp" department or the default value for `Course.DepartmentID`.
 
 The next tutorial covers related data.
 
