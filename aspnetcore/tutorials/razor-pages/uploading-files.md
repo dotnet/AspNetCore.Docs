@@ -22,12 +22,12 @@ In the steps below, you add a movie schedule file upload feature to the sample a
 
 ## Security considerations
 
-Caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some of the security steps that must be taken to reduce the likelihood that an attack will succeed are:
+Caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some security steps that reduce the likelihood of a successful attack are:
 
 * Upload files to a dedicated file upload area on the system, which makes it easier to impose security measures on uploaded content. When permitting file uploads, make sure that execute permissions are disabled on the upload location.
-* Use a safe filename determined by the app, not from user input or the filename of the uploaded file.
+* Use a safe file name determined by the app, not from user input or the file name of the uploaded file.
 * Only allow a specific set of approved file extensions.
-* Verify client-side checks are also performed on the server. Client side checks are easy to circumvent.
+* Verify client-side checks are performed on the server. Client side checks are easy to circumvent.
 * Check the size of the upload and prevent larger uploads than expected.
 * Run a virus/malware scanner on uploaded content.
 
@@ -40,7 +40,7 @@ Caution must be taken when providing users with the ability to upload files to a
 
 ## Add a FileUpload class
 
-Below, you create a Razor page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
+Below, you create a Razor Page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/FileUpload.cs)]
 
