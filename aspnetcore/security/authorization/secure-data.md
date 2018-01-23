@@ -211,6 +211,12 @@ Update the `CreateModel OnPostAsync` method to:
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
 
+### Update the IndexModel
+
+Update the `OnGetAsync` method so only approved contacts are shown to general users:
+
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml.cs?name=snippet)]
+
 ### Update the Edit PageModel
 
 Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the `PageModel`, or by loading it within the handler itself. Frequently you access the resource by passing in the resource key.
@@ -239,11 +245,15 @@ Update the `Edit` and `Delete` links in *Pages/Contacts/Index.cshtml* so they ar
 
 Warning: Hiding links from users that do not have permission to change data does not secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
 
-### Update the Details view
+### Update Details
 
 Update the details view so managers can approve or reject contacts:
 
 [!code-html[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=51-)]
+
+Update the Details `PageModel`:
+
+[!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml.cs)]
 
 ## Test the completed app
 

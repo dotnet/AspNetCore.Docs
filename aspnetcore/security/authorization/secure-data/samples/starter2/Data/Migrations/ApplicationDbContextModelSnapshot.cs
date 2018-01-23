@@ -85,11 +85,7 @@ namespace ContactManager.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("OwnerID");
-
                     b.Property<string>("State");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("Zip");
 
