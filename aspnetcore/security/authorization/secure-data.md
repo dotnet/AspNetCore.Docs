@@ -4,7 +4,7 @@ description: Shows how to create a Razor Pages app user data protected by author
 author: rick-anderson
 ms.author: riande
 manager: wpickett
-ms.date: 02/22/2018
+ms.date: 02/29/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: aspnet-core
@@ -34,7 +34,7 @@ The following image shows the managers details view of a contact.
 
 ![image described preceding](secure-data/_static/manager.png)
 
-Only managers and administrators have the approve and reject buttons.
+The approve and reject buttons are only displayed for managers and administrators.
 
 In the following image, `admin@contoso.com` is signed in and in the administrator’s role.
 
@@ -48,8 +48,8 @@ The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-m
 
 The sample contains the following authorization handlers:
 
-* `ContactIsOwnerAuthorizationHandler`: Ensures that a user can only edit their data. 
-* `ContactManagerAuthorizationHandler`: Allows managers to approve or reject contacts. 
+* `ContactIsOwnerAuthorizationHandler`: Ensures that a user can only edit their data.
+* `ContactManagerAuthorizationHandler`: Allows managers to approve or reject contacts.
 * `ContactAdministratorsAuthorizationHandler`: Allows administrators to approve or reject contacts and to edit/delete contacts.
 
 ## Prerequisites
@@ -99,25 +99,25 @@ Add [IHostingEnvironment](https://docs.microsoft.com/dotnet/api/microsoft.aspnet
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-29)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-)]
 
 If you're using Visual Studio, enable SSL.
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
-    Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
+  Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added automatically require authentication. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
+Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=31-)]
 
-Add [AllowAnonymous](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
+Add [AllowAnonymous](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
 
-Add `[AllowAnonymous]` to `LoginModel` and `RegisterModel`.
+Add `[AllowAnonymous]` to the [LoginModel and RegisterModel](https://github.com/aspnet/templating/issues/238).
 
 ### Configure the test account
 
@@ -131,7 +131,13 @@ Update `Main` to use the test password:
 
 [!code-csharp[Main](secure-data/samples/final2/Program.cs?name=snippet)]
 
-Add the administrator user ID and `ContactStatus` to the contacts. Make one of the contacts `Submitted` and one `Rejected`. Only one contact is shown, add the user ID to all contacts:
+### Create the test accounts and update the contacts
+
+Update the `Initialize` method in the `SeedData` class to create the test accounts:
+
+[!code-csharp[Main](secure-data/samples/final2/Data/SeedData.cs?name=snippet_Initialize)]
+
+Add the administrator user ID and `ContactStatus` to the contacts. Make one of the contacts `Submitted` and one `Rejected`. Add the user ID and status to all the contacts. Only one contact is shown:
 
 [!code-csharp[Main](secure-data/samples/final2/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
@@ -143,8 +149,8 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
-* Return `context.Succeed` when the requirements are met. 
-* Return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. 
+* Return `context.Succeed` when the requirements are met.
+* Return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run.
 
 If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -166,7 +172,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they are available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=ConfigureServices&highlight=43-)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=ConfigureServices&highlight=41-)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They are singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
@@ -174,9 +180,9 @@ Services using Entity Framework Core must be registered for [dependency injectio
 
 In this section, you update the Razor Pages and add an operations requirements class.
 
-### Add a contact operations requirements class
+### Review the contact operations requirements class
 
-Add the `ContactOperations` class to the *Authorization* folder. This class contains the requirements the app supports:
+Review the `ContactOperations` class. This class contains the requirements the app supports:
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactOperations.cs)]
 
@@ -205,15 +211,15 @@ Update the `CreateModel OnPostAsync` method to:
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
 
-### Update Edit
+### Update the Edit PageModel
 
-Update the Edit `PageModel`. Add the authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the `PageModel`, or by loading it within the handler itself. Frequently you access the resource by passing in the resource key.
+Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the `PageModel`, or by loading it within the handler itself. Frequently you access the resource by passing in the resource key.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
 
 ### Update Delete
 
-Update the Delete `PageModel` to use the authorization handler to verify the user owns the contact.
+Update the Delete `PageModel` to use the authorization handler to verify the user has delete permission on the contact.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
 
@@ -227,13 +233,11 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it i
 
 The preceding markup adds several `using` statements.
 
-Update the *Pages/Contacts/Index.cshtml* Razor view to only display the edit and delete links for users who can edit/delete the contact.
+Update the `Edit` and `Delete` links in *Pages/Contacts/Index.cshtml* so they are only rendered for users with the appropriate permissions:
 
-Update the `Edit` and `Delete` links so they are only rendered for users with permission to edit and delete the contact.
+[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,62-)]
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?range=59-)]
-
-Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The controller must repeat the access checks to be secure.
+Warning: Hiding links from users that do not have permission to change data does not secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
 
 ### Update the Details view
 
@@ -250,7 +254,7 @@ If you are using Visual Studio Code or testing on local platform that doesn't in
 If the app has contacts:
 
 * Delete all the records in the `Contact` table.
-* Restart the app to seed the database. 
+* Restart the app to seed the database.
 
 Register a user for browsing the contacts.
 
@@ -275,13 +279,13 @@ Create a contact in the administrators browser. Copy the URL for delete and edit
 
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace matches the namespace use in the sample.
-  
+
   ```console
   dotnet new razor -o ContactManager -au Individual -uld
   ```
-  
+
   * `-uld` specifies LocalDB instead of SQLite
-  
+
 * Add the following `Contact` model:
 
   [!code-csharp[Main](secure-data/samples/starter2/Models/Contact.cs?name=snippet1)]
@@ -290,7 +294,7 @@ Create a contact in the administrators browser. Copy the URL for delete and edit
 
     `dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries`
 
-* Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file: 
+* Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file:
 
 ```html
  <a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>

@@ -33,10 +33,7 @@ namespace ContactManager.Data
                 SeedDB(context, adminID);
             }
         }
-        #endregion
-
-        #region snippet_CreateRoles        
-
+      
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
                                                     string testUserPw, string UserName)
         {

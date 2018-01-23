@@ -35,9 +35,9 @@ namespace ContactManager.Pages.Contacts
             return Page();
         }
 
-        #region snippet_Create
         [BindProperty]
         public Contact Contact { get; set; }
+        #region snippet_Create
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -48,6 +48,7 @@ namespace ContactManager.Pages.Contacts
 
             Contact.OwnerID = UserManager.GetUserId(User);
 
+            // requires using ContactManager.Authorization;
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                         User, Contact,
                                                         ContactOperations.Create);

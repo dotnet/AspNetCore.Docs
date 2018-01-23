@@ -27,6 +27,7 @@ namespace ContactManager
         #endregion
 
         #region ConfigureServices
+        #region snippet_defaultPolicy
         #region snippet_SSL 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -59,7 +60,6 @@ namespace ContactManager
             });
             #endregion
 
-            #region snippet_defaultPolicy
             // requires: using Microsoft.AspNetCore.Authorization;
             //           using Microsoft.AspNetCore.Mvc.Authorization;
             services.AddMvc(config =>
@@ -70,8 +70,8 @@ namespace ContactManager
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
             #endregion
-            // Authorization handlers.
 
+            // Authorization handlers.
             services.AddScoped<IAuthorizationHandler,
                                   ContactIsOwnerAuthorizationHandler>();
 
