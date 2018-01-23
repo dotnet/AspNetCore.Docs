@@ -1,13 +1,14 @@
 ---
 title: Model Binding
-author: rick-anderson
-description: 
-ms.author: riande
+author: rachelappel
+description: Information about model binding in ASP.NET Core MVC
+ms.author: rachelap
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 01/22/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
+ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 uid: mvc/models/model-binding
 ---
 # Model Binding
@@ -36,7 +37,7 @@ MVC will try to bind request data to the action parameters by name. MVC will loo
 
 1. `Form values`: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
 
-2. `Route values`: The set of route values provided by [Routing](../../fundamentals/routing.md)
+2. `Route values`: The set of route values provided by [Routing](xref:fundamentals/routing)
 
 3. `Query strings`: The query string part of the URI.
 
@@ -97,7 +98,7 @@ MVC contains several attributes that you can use to direct its default model bin
 
 Attributes are very helpful tools when you need to override the default behavior of model binding.
 
-## Binding formatted data from the request body
+## Bind formatted data from the request body
 
 Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a `JsonInputFormatter` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.
 
