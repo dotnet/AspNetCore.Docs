@@ -22,12 +22,12 @@ In the steps below, you add a movie schedule file upload feature to the sample a
 
 ## Security considerations
 
-Great caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some of the security steps that must be taken to reduce the likelihood that an attack will succeed are:
+Caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some of the security steps that must be taken to reduce the likelihood that an attack will succeed are:
 
 * Upload files to a dedicated file upload area on the system, which makes it easier to impose security measures on uploaded content. When permitting file uploads, make sure that execute permissions are disabled on the upload location.
 * Use a safe filename determined by the app, not from user input or the filename of the uploaded file.
 * Only allow a specific set of approved file extensions.
-* Make sure that any client-side checks are also made by the app. It's easy for attackers to circumvent client-side checks, so never trust checks made in JavaScript on the client.
+* Verify client-side checks are also performed on the server. Client side checks are easy to circumvent.
 * Check the size of the upload and prevent larger uploads than expected.
 * Run a virus/malware scanner on uploaded content.
 
