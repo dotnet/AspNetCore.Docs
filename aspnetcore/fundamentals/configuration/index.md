@@ -88,7 +88,7 @@ Configuration considerations:
 
 * `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
 * If a colon (`:`) can't be used in environment variables on a system, replace the colon (`:`) with a double-underscore (`__`).
 
 ## In-memory provider and binding to a POCO class
@@ -97,7 +97,7 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](index/sample/InMemory/Program.cs)]
 
-Configuration values are returned as strings, but binding enables the construction of objects. Binding allows the retrievial pf POCO objects or even entire object graphs.
+Configuration values are returned as strings, but binding enables the construction of objects. Binding allows the retrievial of POCO objects or even entire object graphs.
 
 ### GetValue
 
@@ -105,7 +105,7 @@ The following sample demonstrates the [GetValue&lt;T&gt;](/dotnet/api/microsoft.
 
 [!code-csharp[Main](index/sample/InMemoryGetValue/Program.cs?highlight=31)]
 
-The ConfigurationBinder's `GetValue<T>` method allows specification of a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder's `GetValue<T>` method allows the specification of a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
 ## Bind to an object graph
 
@@ -180,7 +180,7 @@ Create the custom configuration provider by inheriting from [ConfigurationProvid
 
 The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") are displayed when the sample is run.
 
-An `EFConfigSource` extension method for adding the configuration source can be added:
+An `EFConfigSource` extension method for adding the configuration source can be used:
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/EntityFrameworkExtensions.cs?highlight=12)]
 
@@ -326,7 +326,7 @@ If duplicate keys are provided, the last key-value pair is used.
 
 ### Switch mappings
 
-When manually building configuration with `ConfigurationBuilder`, a switch mappings dictionary can be added to the `AddCommandLine` method. Switch mappings allow for key name replacement logic.
+When manually building configuration with `ConfigurationBuilder`, a switch mappings dictionary can be added to the `AddCommandLine` method. Switch mappings allow key name replacement logic.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value (the key replacement) is passed back to set the configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
