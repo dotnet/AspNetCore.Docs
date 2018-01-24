@@ -226,7 +226,7 @@ To configure Data Protection under IIS, use **one** of the following approaches:
 
 Data Protection keys used by ASP.NET apps are stored in registry hives external to the apps. To persist the keys for a given app, create a registry hive for the app pool.
 
-For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a special registry key in the HKLM registry that is ACLed only to the worker process account. Keys are encrypted at rest using DPAPI with a machine-wide key.
+For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a special registry key in the HKLM registry that's ACLed only to the worker process account. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
 In web farm scenarios, an app can be configured to use a UNC path to store its data protection keyring. By default, the data protection keys are not encrypted. Ensure that the file permissions for such a share are limited to the Windows account the app runs as. In addition, an X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configuring Data Protection](xref:security/data-protection/configuration/overview) for details.
 

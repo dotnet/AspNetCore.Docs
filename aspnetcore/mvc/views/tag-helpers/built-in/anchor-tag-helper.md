@@ -39,7 +39,7 @@ The generated markup will be:
 <a href="/Speaker">All Speakers</a>
 ```
 
-If the `asp-controller` is specified and `asp-action` is not, the default `asp-action` will be the default controller method of the currently executing view. That is, in the above example, if `asp-action` is left out, and this Anchor Tag Helper is generated from *HomeController*'s `Index` view (**/Home**), the generated markup will be:
+If the `asp-controller` is specified and `asp-action` isn't, the default `asp-action` will be the default controller method of the currently executing view. That is, in the above example, if `asp-action` is left out, and this Anchor Tag Helper is generated from *HomeController*'s `Index` view (**/Home**), the generated markup will be:
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -71,7 +71,7 @@ Use the `asp-page` attribute in an anchor tag to set its URL to point to a speci
 <a asp-page="/Speakers">All Speakers</a>
 ```
 
-The `asp-page` attribute in the previous code sample renders HTML output in the view that is similar to the following snippet:
+The `asp-page` attribute in the previous code sample renders HTML output in the view that's similar to the following snippet:
 
 ```html
 <a href="/items?page=%2FSpeakers">Speakers</a>
@@ -94,7 +94,7 @@ https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
 
 ### asp-route-{value}
 
-`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route is not found, this route prefix will be appended to the generated href as a request parameter and value. Otherwise it will be substituted in the route template.
+`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route isn't found, this route prefix will be appended to the generated href as a request parameter and value. Otherwise it will be substituted in the route template.
 
 Assuming you have a controller method defined as follows:
 
@@ -137,7 +137,7 @@ The generated HTML will then be as follows because **id** was found in the defau
 <a href='/Speaker/Detail/12'>SpeakerId: 12</a>
 ```
 
-If the route prefix is not part of the routing template found, which is the case with the following **cshtml** file:
+If the route prefix isn't part of the routing template found, which is the case with the following **cshtml** file:
 
 ```cshtml
 @model SpeakerData
@@ -147,7 +147,7 @@ If the route prefix is not part of the routing template found, which is the case
 <body></html>
 ```
 
-The generated HTML will then be as follows because **speakerid** was not found in the route matched:
+The generated HTML will then be as follows because **speakerid** wasn't found in the route matched:
 
 ```html
 <a href='/Speaker/Detail?speakerid=12'>SpeakerId: 12</a>
@@ -159,7 +159,7 @@ If either `asp-controller` or `asp-action` are not specified, then the same defa
 
 `asp-route` provides a way to create a URL that links directly to a named route. Using routing attributes, a route can be named as shown in the `SpeakerController` and used in its `Evaluations` method.
 
-`Name = "speakerevals"` tells the Anchor Tag Helper to generate a route directly to that controller method using the URL `/Speaker/Evaluations`. If `asp-controller` or `asp-action` is specified in addition to `asp-route`, the route generated may not be what you expect. `asp-route` should not be used with either of the attributes `asp-controller` or `asp-action` to avoid a route conflict.
+`Name = "speakerevals"` tells the Anchor Tag Helper to generate a route directly to that controller method using the URL `/Speaker/Evaluations`. If `asp-controller` or `asp-action` is specified in addition to `asp-route`, the route generated may not be what you expect. `asp-route` shouldn't be used with either of the attributes `asp-controller` or `asp-action` to avoid a route conflict.
 
 ### asp-all-route-data
 
@@ -182,7 +182,7 @@ asp-all-route-data="dict">SpeakerEvals</a>
 
 The code above generates the following URL: http://localhost/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true
 
-When the link is clicked, the controller method `EvaluationsCurrent` is called. It is called because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
+When the link is clicked, the controller method `EvaluationsCurrent` is called. It's called because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
 
 If any keys in the dictionary match route parameters, those values will be substituted in the route as appropriate and the other non-matching values will be generated as request parameters.
 
@@ -215,7 +215,7 @@ Hash tags are useful when building client-side applications. They can be used fo
           * AboutBlog.cshtml
   * Controllers
 
-Specifying an area tag that is valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the Anchor Tag Helper.
+Specifying an area tag that's valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the Anchor Tag Helper.
 
 ```cshtml
 <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>

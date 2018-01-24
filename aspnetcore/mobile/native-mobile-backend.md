@@ -28,7 +28,7 @@ This tutorial demonstrates how to create backend services using ASP.NET Core MVC
 
 The ToDoRest app supports listing, adding, deleting, and updating To-Do items. Each item has an ID, a Name, Notes, and a property indicating whether it's been Done yet.
 
-The main view of the items, as shown above, lists each item's name and indicates if it is done with a checkmark.
+The main view of the items, as shown above, lists each item's name and indicates if it's done with a checkmark.
 
 Tapping the `+` icon opens an add item dialog:
 
@@ -108,7 +108,7 @@ You can test your new API method using a variety of tools, such as [Postman](htt
 
 By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it, and accepts a `ToDoItem` instance. Since the `item` argument will be passed in the body of the POST, this parameter is decorated with the `[FromBody]` attribute.
 
-Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it is added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
+Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 
 [!code-csharp[Main](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=25-46)]
 

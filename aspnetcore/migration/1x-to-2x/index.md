@@ -137,7 +137,7 @@ In 2.0 projects, move the `SeedData.Initialize` call to the `Main` method of *Pr
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
-As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that is about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
+As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that's about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
 
 <a name="view-compilation"></a>
 

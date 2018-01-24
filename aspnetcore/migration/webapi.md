@@ -63,7 +63,7 @@ ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders.
 
 [!code-none[Main](../migration/webapi/sample/ProductsCore/Startup.cs?highlight=40)]
 
-Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that is included in the Web API starter project:
+Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that's included in the Web API starter project:
 
 [!code-csharp[Main](../migration/webapi/sample/ProductsCore/Controllers/ValuesController.cs?highlight=9,13,20,27,33,39)]
 

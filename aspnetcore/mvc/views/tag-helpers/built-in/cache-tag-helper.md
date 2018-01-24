@@ -273,7 +273,7 @@ Example:
 </cache>
 ```
 
-The `priority` attribute does not guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` does not guarantee that the cache will always be retained. See [Additional Resources](#additional-resources) for more information.
+The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that the cache will always be retained. See [Additional Resources](#additional-resources) for more information.
 
 The Cache Tag Helper is dependent on the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it has not been added.
 

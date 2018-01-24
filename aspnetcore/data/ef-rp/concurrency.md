@@ -28,7 +28,7 @@ A concurrency conflict occurs when:
 * A user navigates to the edit page for an entity.
 * Another user updates the same entity before the first user's change is written to the DB.
 
-If concurrency detection is not enabled, when concurrent updates occur:
+If concurrency detection isn't enabled, when concurrent updates occur:
 
 * The last update wins. That is, the last update values are saved to the DB.
 * The first of the current updates are lost.
@@ -53,14 +53,14 @@ Optimistic concurrency includes the following options:
 
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
- In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they'll see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
+ In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they will see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
 		* Can't avoid data loss if competing changes are made to the same property.
 		* Is generally not practical in a web app. It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
 		* Can increase app complexity compared to concurrency detection on an entity.
 
 * You can let John's change overwrite Jane's change.
 
- The next time someone browses the English department, they'll see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
+ The next time someone browses the English department, they will see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
 
 * You can prevent John's change from being updated in the DB. Typically, the app would:
 		* Display an error message.
@@ -82,7 +82,7 @@ The DB and data model must be configured to support throwing `DbUpdateConcurrenc
 
 Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](https://docs.microsoft.com/ef/core/modeling/concurrency#data-annotations).
 
-The `[ConcurrencyCheck]` attribute is not used in this tutorial.
+The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
 
 ### Detecting concurrency conflicts on a row
 
@@ -173,7 +173,7 @@ Build the project. The build generates errors like the following:
 
 ### Update the Departments Index page
 
-The scaffolding engine created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help understand concurrency. The last byte is not guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
+The scaffolding engine created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help understand concurrency. The last byte isn't guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
 
 Update the Index page:
 
@@ -238,7 +238,7 @@ Change the name in the first browser tab and click **Save**.
 
 ![Department Edit page 1 after change](concurrency/_static/edit-after-change-1.png)
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it is displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
 Change a different field in the second browser tab.
 
@@ -248,7 +248,7 @@ Click **Save**. You see error messages for all fields that don't match the DB va
 
 ![Department Edit page error message](concurrency/_static/edit-error.png)
 
-This browser window did not intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
+This browser window didn't intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
 
 ![Department Edit page error message](concurrency/_static/cv.png)
 
@@ -295,7 +295,7 @@ The two browser tabs display the same information.
 
 Change the budget in the first browser tab and click **Save**.
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it is displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
 

@@ -92,4 +92,4 @@ In this case, only the specified key is revoked. If the key id is "*", however, 
 </revocation>
 ```
 
-The \<reason> element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.
+The \<reason> element is never read by the system. It's simply a convenient place to store a human-readable reason for revocation.

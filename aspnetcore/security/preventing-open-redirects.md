@@ -12,13 +12,13 @@ uid: security/preventing-open-redirects
 ---
 # Preventing Open Redirect Attacks in an ASP.NET Core app
 
-A web app that redirects to a URL that is specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
+A web app that redirects to a URL that's specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
 
 Whenever your application logic redirects to a specified URL, you must verify that the redirection URL hasn't been tampered with. ASP.NET Core has built-in functionality to help protect apps from open redirect (also known as open redirection) attacks.
 
 ## What is an open redirect attack?
 
-Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they are redirected to the URL they had originally requested.
+Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they're redirected to the URL they had originally requested.
 
 Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
 
@@ -31,7 +31,7 @@ A malicious user could develop an attack intended to allow the malicious user ac
 3. The user is redirected (by the site) to ``http://nerddiner.com/Account/LogOn`` (malicious site that looks like real site).
 4. The user logs in again (giving malicious site their credentials) and is redirected back to the real site.
 
-The user will likely believe their first attempt to log in failed, and their second one was successful. They'll most likely remain unaware their credentials have been compromised.
+The user will likely believe their first attempt to log in failed, and their second one was successful. They will most likely remain unaware their credentials have been compromised.
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 

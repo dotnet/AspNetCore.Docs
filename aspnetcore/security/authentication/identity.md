@@ -122,7 +122,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 <a name="pw"></a>
 6.  Configuration.
 
-    Identity has some default behaviors that you can override in your application's startup class. You do not need to configure ``IdentityOptions`` if you are using the default behaviors. The following code sets several password strength options:
+    Identity has some default behaviors that can be overridden in the app's startup class. `IdentityOptions` don't need to be configured when using the default behaviors. The following code sets several password strength options:
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     

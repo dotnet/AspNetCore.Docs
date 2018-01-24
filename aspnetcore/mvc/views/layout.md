@@ -28,7 +28,7 @@ By convention, the default layout for an ASP.NET app is named `_Layout.cshtml`. 
 
 ![views folder in solutions explorer](layout/_static/web-project-views.png)
 
-This layout defines a top level template for views in the app. Apps do not require a layout, and apps can define more than one layout, with different views specifying different layouts.
+This layout defines a top level template for views in the app. Apps don't require a layout, and apps can define more than one layout, with different views specifying different layouts.
 
 An example `_Layout.cshtml`:
 
@@ -48,7 +48,7 @@ By default, every layout must call `RenderBody`. Wherever the call to `RenderBod
 
 ### Sections
 
-A layout can optionally reference one or more *sections*, by calling `RenderSection`. Sections provide a way to organize where certain page elements should be placed. Each call to `RenderSection` can specify whether that section is required or optional. If a required section is not found, an exception will be thrown. Individual views specify the content to be rendered within a section using the `@section` Razor syntax. If a view defines a section, it must be rendered (or an error will occur).
+A layout can optionally reference one or more *sections*, by calling `RenderSection`. Sections provide a way to organize where certain page elements should be placed. Each call to `RenderSection` can specify whether that section is required or optional. If a required section isn't found, an exception will be thrown. Individual views specify the content to be rendered within a section using the `@section` Razor syntax. If a view defines a section, it must be rendered (or an error will occur).
 
 An example `@section` definition in a view:
 
@@ -90,7 +90,7 @@ Views can use Razor directives to do many things, such as importing namespaces o
 
 * `@inject`
 
-The file does not support other Razor features, such as functions and section definitions.
+The file doesn't support other Razor features, such as functions and section definitions.
 
 A sample `_ViewImports.cshtml` file:
 

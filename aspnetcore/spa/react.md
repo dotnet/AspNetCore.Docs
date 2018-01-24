@@ -15,7 +15,7 @@ uid: spa/react
 # Use the React project template (release candidate)
 
 > [!NOTE]
-> This documentation is not about the released React project template. **This documentation is about the release candidate of the React template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the released React project template. **This documentation is about the release candidate of the React template.** We hope to ship the released version in early 2018.
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -71,7 +71,7 @@ npm install --save <package_name>
 
 In development, the app runs in a mode optimized for developer convenience. For example, JavaScript bundles include source maps (so that when debugging, you can see your original source code). The app watches JavaScript, HTML, and CSS file changes on disk and automatically recompiles and reloads when it sees those files change.
 
-In production, serve a version of your app that is optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, transpiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
+In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, transpiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
 
 You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
@@ -79,7 +79,7 @@ You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and
 
 The project is configured to start its own instance of the CRA development server in the background when the ASP.NET Core app starts in development mode. This is convenient because it means you don't have to run a separate server manually.
 
-There is a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
+There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
 
 1. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
 
