@@ -109,4 +109,4 @@ This example shows how to create a map based on coordinates. This example shows 
 ## Additional Resources
 
 
-[Microsoft.Maps API Reference](https://msdn.microsoft.com/en-us/library/gg427611.aspx)
+[Microsoft.Maps API Reference](https://msdn.microsoft.com/library/gg427611.aspx)

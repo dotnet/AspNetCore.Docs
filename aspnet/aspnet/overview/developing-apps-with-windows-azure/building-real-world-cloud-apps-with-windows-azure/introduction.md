@@ -150,7 +150,7 @@ If a machine goes down, Azure automatically pulls it from the rotation, spins up
 
 All of this takes place automatically. All you need to do is create a web site and deploy your application to it, using Windows PowerShell, Visual Studio, or the Azure management portal.
 
-For a quick and easy step-by-step tutorial that shows how to create a web application in Visual Studio and deploy it to a Azure Web Site, see [Get started with Azure and ASP.NET](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/).
+For a quick and easy step-by-step tutorial that shows how to create a web application in Visual Studio and deploy it to a Azure Web Site, see [Get started with Azure and ASP.NET](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
 <a id="summary"></a>
 ## Summary
@@ -163,13 +163,13 @@ For more information about the topics covered in this chapter, see the following
 
 Documentation:
 
-- [Web Apps in Azure App Service](https://azure.microsoft.com/en-us/services/app-service/web/). Portal page for Azure documentation about Web Apps.
-- [Web Apps, Cloud Services, and VMs: When to use which?](https://azure.microsoft.com/en-us/documentation/articles/choose-web-site-cloud-service-vm/) WAWS as shown in this chapter is just one of three ways you can run web apps in Azure. This article explains the differences between the three ways and gives guidance on how to choose which one is right for your scenario. Like Web Sites, Cloud Services is a PaaS feature of Azure. VMs are an IaaS feature. For an explanation of PaaS versus IaaS, see the [Data Options](data-storage-options.md#paasiaas) chapter.
+- [Web Apps in Azure App Service](https://azure.microsoft.com/services/app-service/web/). Portal page for Azure documentation about Web Apps.
+- [Web Apps, Cloud Services, and VMs: When to use which?](https://azure.microsoft.com/documentation/articles/choose-web-site-cloud-service-vm/) WAWS as shown in this chapter is just one of three ways you can run web apps in Azure. This article explains the differences between the three ways and gives guidance on how to choose which one is right for your scenario. Like Web Sites, Cloud Services is a PaaS feature of Azure. VMs are an IaaS feature. For an explanation of PaaS versus IaaS, see the [Data Options](data-storage-options.md#paasiaas) chapter.
 
 Videos:
 
-- [Scott Guthrie starts at Step 0 - What is the Azure Cloud OS?](https://azure.microsoft.com/en-us/documentation/videos/what-is-the-cloud-os-scottgu/)
-- [Web Sites Architecture - with Stefan Schackow](https://azure.microsoft.com/en-us/documentation/videos/why-azure-web-sites-plus-architecture/).
+- [Scott Guthrie starts at Step 0 - What is the Azure Cloud OS?](https://azure.microsoft.com/documentation/videos/what-is-the-cloud-os-scottgu/)
+- [Web Sites Architecture - with Stefan Schackow](https://azure.microsoft.com/documentation/videos/why-azure-web-sites-plus-architecture/).
 - [Azure Web Sites Internals with Nir Mashkowski](https://channel9.msdn.com/Shows/Web+Camps+TV/Windows-Azure-Web-Sites-Internals-with-Nir-Mashkowski).
 
 >[!div class="step-by-step"]

@@ -21,13 +21,13 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > 
 > [Open Web Interface for .NET](http://owin.org/) (OWIN) defines an abstraction between .NET web servers and web applications. OWIN decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS–for example, inside an Azure worker role.
 > 
-> In this tutorial, you'll learn how to self-host an OWIN applications inside a Microsoft Azure worker role. To learn more about worker roles, see [Azure Execution Models](https://azure.microsoft.com/en-us/documentation/articles/fundamentals-application-models/#CloudServices).
+> In this tutorial, you'll learn how to self-host an OWIN applications inside a Microsoft Azure worker role. To learn more about worker roles, see [Azure Execution Models](https://azure.microsoft.com/documentation/articles/fundamentals-application-models/#CloudServices).
 > 
 > ## Software versions used in the tutorial
 > 
 > 
 > - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
-> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/en-us/downloads/)
+> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/downloads/)
 > - [Microsoft.Owin.Selfhost 2.1.0](http://www.nuget.org/packages/Microsoft.Owin.SelfHost/2.1.0)
 
 
@@ -120,7 +120,7 @@ Find the IP address under Service Deployments, deployment [id], Service Details.
 
 ## Deploy to Azure
 
-For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A261C142F).
+For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
 
 In Solution Explorer, right-click the AzureApp project. Select **Publish**.
 

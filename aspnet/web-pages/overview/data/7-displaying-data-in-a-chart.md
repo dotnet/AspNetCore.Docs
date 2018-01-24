@@ -291,4 +291,4 @@ Finally, you can save a chart as an XML file on the server. An advantage of usin
 
 - [Introduction to Working with a Database in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=202893)
 - [Using Caching in ASP.NET Web Pages Sites to Improve Performance](https://go.microsoft.com/fwlink/?LinkId=202903)
-- [Chart Class](https://msdn.microsoft.com/en-us/library/system.web.helpers.chart(v=vs.99)) (ASP.NET Web Pages API reference on MSDN)
+- [Chart Class](https://msdn.microsoft.com/library/system.web.helpers.chart(v=vs.99)) (ASP.NET Web Pages API reference on MSDN)

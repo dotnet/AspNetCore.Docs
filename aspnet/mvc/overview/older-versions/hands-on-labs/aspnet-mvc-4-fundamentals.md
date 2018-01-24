@@ -27,7 +27,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > > This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
 > 
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/en-us/download/29843](https://www.microsoft.com/en-us/download/29843).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/download/29843](https://www.microsoft.com/download/29843).
 
 
 <a id="The_Music_Store_application"></a>
@@ -314,7 +314,7 @@ In this task, you will use the **querystring** to send parameters to the **Brows
     > [!NOTE]
     > You are using the **HttpUtility.HtmlEncode** utility method to prevents users from injecting Javascript into the View with a link like **/Store/Browse?Genre=&lt;script&gt;window.location='[http://hackersite.com](http://hackersite.com)'&lt;/script&gt;**.
     > 
-    > For further explanation, please visit [this msdn article](https://msdn.microsoft.com/en-us/library/a2a4yykt(v=VS.80).aspx).
+    > For further explanation, please visit [this msdn article](https://msdn.microsoft.com/library/a2a4yykt(v=VS.80).aspx).
 
 <a id="Ex3Task2"></a>
 
@@ -963,7 +963,7 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 project
         *SimpleMembership Included in the solution*
 
         > [!NOTE]
-        > Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/en-us/library/jj158393(v=vs.111).aspx) in MSDN.
+        > Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/library/jj158393(v=vs.111).aspx) in MSDN.
 
 > [!NOTE]
 > Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).

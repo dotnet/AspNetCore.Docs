@@ -129,13 +129,13 @@ Figure 5 shows the `ManageUsers.aspx` page when viewed through a browser.
 > Usernames may start with any character, including numbers and punctuation. In order to view these accounts, the administrator will have to use the All LinkButton option. Alternatively, you could add a LinkButton to return all user accounts that start with a number. I leave this as an exercise for the reader.
 
 
-Clicking any of the filtering LinkButtons causes a postback and raises the Repeater's `ItemCommand` event, but there's no change in the grid because we've yet to write any code to filter the results. The `Membership` class includes a [`FindUsersByName` method](https://technet.microsoft.com/en-us/library/system.web.security.membership.findusersbyname.aspx) that returns those user accounts whose username matches a specified search pattern. We can use this method to retrieve just those user accounts whose usernames start with the letter specified by the `CommandName` of the filtered LinkButton that was clicked.
+Clicking any of the filtering LinkButtons causes a postback and raises the Repeater's `ItemCommand` event, but there's no change in the grid because we've yet to write any code to filter the results. The `Membership` class includes a [`FindUsersByName` method](https://technet.microsoft.com/library/system.web.security.membership.findusersbyname.aspx) that returns those user accounts whose username matches a specified search pattern. We can use this method to retrieve just those user accounts whose usernames start with the letter specified by the `CommandName` of the filtered LinkButton that was clicked.
 
 Start by updating the `ManageUser.aspx` page's code-behind class so that it includes a property named `UsernameToMatch` This property persists the username filter string across postbacks:
 
 [!code-vb[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample8.vb)]
 
-The `UsernameToMatch` property stores its value it is assigned into the `ViewState` collection using the key �UsernameToMatch�. When this property's value is read, it checks to see if a value exists in the `ViewState` collection; if not, it returns the default value, an empty string. The `UsernameToMatch` property exhibits a common pattern, namely persisting a value to view state so that any changes to the property are persisted across postbacks. For more information on this pattern, read [Understanding ASP.NET View State](https://msdn.microsoft.com/en-us/library/ms972976.aspx).
+The `UsernameToMatch` property stores its value it is assigned into the `ViewState` collection using the key �UsernameToMatch�. When this property's value is read, it checks to see if a value exists in the `ViewState` collection; if not, it returns the default value, an empty string. The `UsernameToMatch` property exhibits a common pattern, namely persisting a value to view state so that any changes to the property are persisted across postbacks. For more information on this pattern, read [Understanding ASP.NET View State](https://msdn.microsoftn-us/library/ms972976.aspx).
 
 Next, update the `BindUserAccounts` method so that instead of calling `Membership.GetAllUsers`, it calls `Membership.FindUsersByName`, passing in the value of the `UsernameToMatch` property appended with the SQL wildcard character, %.
 
@@ -172,7 +172,7 @@ The performance difference between default and custom paging can be quite substa
 
 To implement custom paging we first need some mechanism by which to retrieve the precise subset of records being displayed by the GridView. The good news is that the `Membership` class's `FindUsersByName` method has an overload that allows us to specify the page index and page size, and returns only those user accounts that fall within that range of records.
 
-In particular, this overload has the following signature: [`FindUsersByName(usernameToMatch, pageIndex, pageSize, totalRecords)`](https://msdn.microsoft.com/en-us/library/fa5st8b2.aspx).
+In particular, this overload has the following signature: [`FindUsersByName(usernameToMatch, pageIndex, pageSize, totalRecords)`](https://msdn.microsoft.com/library/fa5st8b2.aspx).
 
 The *pageIndex* parameter specifies the page of user accounts to return; *pageSize* indicates how many records to display per page. The *totalRecords* parameter is a `ByRef` parameter that returns the number of total user accounts in the user store.
 

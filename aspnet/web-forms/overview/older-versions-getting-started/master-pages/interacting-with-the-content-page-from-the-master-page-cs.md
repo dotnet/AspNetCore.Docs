@@ -153,7 +153,7 @@ A class subscribes to an event by creating an *event handler*, which is a method
 The second parameter passed to an event handler can include additional information about the event. While the base `EventArgs` class does not pass along any information, the .NET Framework includes a number of classes that extend `EventArgs` and encompass additional properties. For example, a `CommandEventArgs` instance is passed to event handlers that respond to the `Command` event, and includes two informational properties: `CommandArgument` and `CommandName`.
 
 > [!NOTE]
-> For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
+> For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
 
 
 To define an event use the following syntax:
@@ -246,7 +246,7 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Accessing and Updating Data in ASP.NET](http://aspnet.4guysfromrolla.com/articles/011106-1.aspx)
-- [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx)
+- [Events and Delegates](https://msdn.microsoft.com/library/17sde2xt.aspx)
 - [Passing Information Between Content and Master Pages](http://aspnet.4guysfromrolla.com/articles/013107-1.aspx)
 - [Working with Data in ASP.NET Tutorials](../../data-access/index.md)
 

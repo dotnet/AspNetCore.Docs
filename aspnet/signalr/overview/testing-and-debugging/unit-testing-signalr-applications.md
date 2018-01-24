@@ -36,7 +36,7 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 <a id="unit"></a>
 ## Unit testing SignalR applications
 
-You can use the unit test features in SignalR 2 to create unit tests for your SignalR application. SignalR 2 includes the [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) interface, which can be used to create a mock object to simulate your hub methods for testing.
+You can use the unit test features in SignalR 2 to create unit tests for your SignalR application. SignalR 2 includes the [IHubCallerConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) interface, which can be used to create a mock object to simulate your hub methods for testing.
 
 In this section, you'll add unit tests for the application created in the [Getting Started tutorial](../getting-started/tutorial-getting-started-with-signalr.md) using [XUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/Moq/moq4).
 
@@ -77,7 +77,7 @@ In this section, you'll add a unit test for the application created in the [Gett
 
     [!code-csharp[Main](unit-testing-signalr-applications/samples/sample1.cs)]
 
-    In the code above, a test client is created using the `Mock` object from the [Moq](https://github.com/Moq/moq4) library, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client. The `broadcastMessage` function is then defined for the mock client so that it can be called by the `ChatHub` class. The test engine then calls the `Send` method of the `ChatHub` class, which in turn calls the mocked `broadcastMessage` function.
+    In the code above, a test client is created using the `Mock` object from the [Moq](https://github.com/Moq/moq4) library, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client. The `broadcastMessage` function is then defined for the mock client so that it can be called by the `ChatHub` class. The test engine then calls the `Send` method of the `ChatHub` class, which in turn calls the mocked `broadcastMessage` function.
 9. Build the solution by pressing **F6**.
 10. Run the unit test. In Visual Studio, select **Test**, **Windows**, **Test Explorer**. In the Test Explorer window, right-click **HubsAreMockableViaDynamic** and select **Run Selected Tests**.
 
@@ -96,7 +96,7 @@ In this section, you'll add a test for the application created in the [Getting S
 
     [!code-csharp[Main](unit-testing-signalr-applications/samples/sample2.cs)]
 
-    In the code above, an interface is created defining the signature of the `broadcastMessage` method for which the test engine will create a mock client. A mock client is then created using the `Mock` object, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client.
+    In the code above, an interface is created defining the signature of the `broadcastMessage` method for which the test engine will create a mock client. A mock client is then created using the `Mock` object, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client.
 
     The test then creates an instance of `ChatHub`, and then creates a mock version of the `broadcastMessage` method, which in turn is invoked by calling the `Send` method on the hub.
 3. Build the solution by pressing **F6**.

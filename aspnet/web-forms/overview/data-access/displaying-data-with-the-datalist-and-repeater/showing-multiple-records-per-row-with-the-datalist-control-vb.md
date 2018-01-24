@@ -62,7 +62,7 @@ Take a moment to visit your page in a browser. As Figure 2 shows, the DataList r
 
 ## Step 2: Changing the DataList s Layout Direction
 
-While the default behavior for the DataList is to lay out its items vertically in a single-column, multi-row table, this behavior can easily be changed through the DataList s [`RepeatDirection` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.datalist.repeatdirection.aspx). The `RepeatDirection` property can accept one of two possible values: `Horizontal` or `Vertical` (the default).
+While the default behavior for the DataList is to lay out its items vertically in a single-column, multi-row table, this behavior can easily be changed through the DataList s [`RepeatDirection` property](https://msdn.microsoft.com/system.web.ui.webcontrols.datalist.repeatdirection.aspx). The `RepeatDirection` property can accept one of two possible values: `Horizontal` or `Vertical` (the default).
 
 By changing the `RepeatDirection` property from `Vertical` to `Horizontal`, the DataList renders its records in a single row, creating one column per data source item. To illustrate this effect, click on the DataList in the Designer and then, from the Properties window, change the `RepeatDirection` property from `Vertical` to `Horiztonal`. Immediately upon doing so, the Designer adjusts the DataList s layout, creating a single-row, multi-column interface (see Figure 3).
 
@@ -82,7 +82,7 @@ When displaying small amounts of data, a single-row, multi-column table might be
 
 ## Step 3: Displaying Data in a Multi-Column, Multi-Row Table
 
-To create a multi-column, multi-row DataList, we need to set the [`RepeatColumns` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.datalist.repeatcolumns.aspx) to the number of columns to display. By default, the `RepeatColumns` property is set to 0, which will cause the DataList to display all of its items in a single row or a column (depending on the value of the `RepeatDirection` property).
+To create a multi-column, multi-row DataList, we need to set the [`RepeatColumns` property](https://msdn.microsoft.com/system.web.ui.webcontrols.datalist.repeatcolumns.aspx) to the number of columns to display. By default, the `RepeatColumns` property is set to 0, which will cause the DataList to display all of its items in a single row or a column (depending on the value of the `RepeatDirection` property).
 
 For our example, let s display three products per table row. Therefore, set the `RepeatColumns` property to 3. After making this change, take a moment to view the results in a browser. As Figure 5 shows, the products are now listed in a three-column, multi-row table.
 

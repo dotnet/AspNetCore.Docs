@@ -33,7 +33,7 @@ During this walkthrough, you will learn how to:
 
 In order to complete this walkthrough, you will need:
 
-- [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/en-us/downloads#vs) or [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/en-us/downloads#express-web). The .NET Framework is installed automatically. 
+- [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) or [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). The .NET Framework is installed automatically. 
 
     > [!NOTE] 
     > 
@@ -127,8 +127,8 @@ In this part of the walkthrough, you will write some simple code, and then extra
 ### To extract a method in a C# page
 
 1. Switch to **Design** view.
-2. In the **Toolbox**, from the **Standard** tab, drag a [Button](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.button.aspx) control onto the page.
-3. Double-click the **Button** control to create a handler for its [Click](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.button.click.aspx) event, and then add the following highlighted code:
+2. In the **Toolbox**, from the **Standard** tab, drag a [Button](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.aspx) control onto the page.
+3. Double-click the **Button** control to create a handler for its [Click](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.click.aspx) event, and then add the following highlighted code:
 
     [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample2.cs?highlight=3-16)]
 
@@ -180,13 +180,13 @@ When you work with variables, as well as objects, you might want to rename them 
 
 Because there are many coding tasks that Web Forms developers frequently need to perform, the code editor provides a library of snippets, or blocks of prewritten code. You can insert these snippets into your page.
 
-Each language that you use in Visual Studio has slight differences in the way you insert code snippets. For information about inserting snippets, see [Visual Basic IntelliSense Code Snippets](https://msdn.microsoft.com/en-us/library/18yz4be4.aspx). For information about inserting snippets in Visual C#, see [Visual C# Code Snippets](https://msdn.microsoft.com/en-us/library/z41h7fat.aspx).
+Each language that you use in Visual Studio has slight differences in the way you insert code snippets. For information about inserting snippets, see [Visual Basic IntelliSense Code Snippets](https://msdn.microsoft.com/library/18yz4be4.aspx). For information about inserting snippets in Visual C#, see [Visual C# Code Snippets](https://msdn.microsoft.com/library/z41h7fat.aspx).
 
 ## Next Steps
 
 This walkthrough has illustrated the basic features of the Visual Studio 2010 code editor for correcting errors in your code, refactoring code, renaming variables, and inserting code snippets into your code. Additional features in the editor can make application development fast and easy. For example, you might want to:
 
-- Learn more about the features of IntelliSense, such as modifying IntelliSense options, managing code snippets, and searching for code snippets online. For more information, see [Using IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx).
-- Learn how to create your own code snippets. For more information, see [Creating and Using IntelliSense Code Snippets](https://msdn.microsoft.com/en-us/library/ms165392.aspx)
-- Learn more about the Visual Basic-specific features of IntelliSense code snippets, such as customizing the snippets and troubleshooting. For more information, see [Visual Basic IntelliSense Code Snippets](https://msdn.microsoft.com/en-us/library/18yz4be4.aspx)
-- Learn more about the C#-specific features of IntelliSense, such as refactoring and code snippets. For more information, see [Visual C# IntelliSense](https://msdn.microsoft.com/en-us/library/43f44291.aspx).
+- Learn more about the features of IntelliSense, such as modifying IntelliSense options, managing code snippets, and searching for code snippets online. For more information, see [Using IntelliSense](https://msdn.microsoft.com/library/hcw1s69b.aspx).
+- Learn how to create your own code snippets. For more information, see [Creating and Using IntelliSense Code Snippets](https://msdn.microsoft.com/library/ms165392.aspx)
+- Learn more about the Visual Basic-specific features of IntelliSense code snippets, such as customizing the snippets and troubleshooting. For more information, see [Visual Basic IntelliSense Code Snippets](https://msdn.microsoft.com/library/18yz4be4.aspx)
+- Learn more about the C#-specific features of IntelliSense, such as refactoring and code snippets. For more information, see [Visual C# IntelliSense](https://msdn.microsoft.com/library/43f44291.aspx).

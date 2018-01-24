@@ -1291,7 +1291,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// Support: IE8, Opera 11-12.16
 			// Nothing should be selected when empty strings follow ^= or $= or *=
 			// The test attribute must be unknown in Opera but "safe" for WinRT
-			// https://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
+			// https://msdn.microsoft.com/library/ie/hh465388.aspx#attribute_section
 			if ( el.querySelectorAll("[msallowcapture^='']").length ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
 			}
@@ -2744,7 +2744,7 @@ support.sortDetached = assert(function( el ) {
 
 // Support: IE<8
 // Prevent attribute/property "interpolation"
-// https://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+// https://msdn.microsoft.com/library/ms536429%28VS.85%29.aspx
 if ( !assert(function( el ) {
 	el.innerHTML = "<a href='#'></a>";
 	return el.firstChild.getAttribute("href") === "#" ;
@@ -6240,7 +6240,7 @@ var
 
 	// Swappable if display is none or starts with table
 	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	// See here for display values: https://developer.mozilla.org/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rcustomProp = /^--/,
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },

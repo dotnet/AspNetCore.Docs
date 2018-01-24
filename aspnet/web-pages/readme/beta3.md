@@ -260,7 +260,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > [!code-xml[Main](beta3/samples/sample5.xml)]
 > 
-> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
+> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) on the MSDN Web site.
 
 
 #### Issue: "Microsoft.Web.Infrastructure.dll cannot be loaded" error
@@ -548,4 +548,4 @@ For more information about WebMatrix Beta 3, see the following websites:
 
 * * *
 
-© 2010 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.com/en-us/cc300389.aspx).
+© 2010 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.cos/cc300389.aspx).

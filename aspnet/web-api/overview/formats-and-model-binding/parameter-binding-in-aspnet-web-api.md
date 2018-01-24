@@ -21,7 +21,7 @@ When Web API calls a method on a controller, it must set values for the paramete
 
 By default, Web API uses the following rules to bind parameters:
 
-- If the parameter is a "simple" type, Web API tries to get the value from the URI. Simple types include the .NET [primitive types](https://msdn.microsoft.com/en-us/library/system.type.isprimitive.aspx) (**int**, **bool**, **double**, and so forth), plus **TimeSpan**, **DateTime**, **Guid**, **decimal**, and **string**, *plus* any type with a type converter that can convert from a string. (More about type converters later.)
+- If the parameter is a "simple" type, Web API tries to get the value from the URI. Simple types include the .NET [primitive types](https://msdn.microsoft.com/library/system.type.isprimitive.aspx) (**int**, **bool**, **double**, and so forth), plus **TimeSpan**, **DateTime**, **Guid**, **decimal**, and **string**, *plus* any type with a type converter that can convert from a string. (More about type converters later.)
 - For complex types, Web API tries to read the value from the message body, using a [media-type formatter](media-formatters.md).
 
 For example, here is a typical Web API controller method:
@@ -116,7 +116,7 @@ You can also add a **[ModelBinder]** attribute to the type. Web API will use the
 
 [!code-csharp[Main](parameter-binding-in-aspnet-web-api/samples/sample11.cs)]
 
-Finally, you can add a model-binder provider to the **HttpConfiguration**. A model-binder provider is simply a factory class that creates a model binder. You can create a provider by deriving from the [ModelBinderProvider](https://msdn.microsoft.com/en-us/library/system.web.http.modelbinding.modelbinderprovider.aspx) class. However, if your model binder handles a single type, it's easier to use the built-in **SimpleModelBinderProvider**, which is designed for this purpose. The following code shows how to do this.
+Finally, you can add a model-binder provider to the **HttpConfiguration**. A model-binder provider is simply a factory class that creates a model binder. You can create a provider by deriving from the [ModelBinderProvider](https://msdn.microsoft.com/library/system.web.http.modelbinding.modelbinderprovider.aspx) class. However, if your model binder handles a single type, it's easier to use the built-in **SimpleModelBinderProvider**, which is designed for this purpose. The following code shows how to do this.
 
 [!code-csharp[Main](parameter-binding-in-aspnet-web-api/samples/sample12.cs)]
 

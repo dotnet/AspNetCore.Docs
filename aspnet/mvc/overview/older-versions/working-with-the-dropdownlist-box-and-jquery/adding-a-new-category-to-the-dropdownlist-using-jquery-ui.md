@@ -85,7 +85,7 @@ The `var createGenreForm` is selected from the `createGenreForm` ID. The `create
 
 [!code-cshtml[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample7.cshtml)]
 
-The [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd492714.aspx) helper overload used in the *Views\Genre\\_CreateGenre.cshtml* file generates HTML with an action attribute containing the URL to submit the form. You can see this by displaying the create album page in a browser and selecting show source in the browser. The following markup shows the generated HTML containing the form tag.
+The [Html.BeginForm](https://msdn.microsoft.com/library/dd492714.aspx) helper overload used in the *Views\Genre\\_CreateGenre.cshtml* file generates HTML with an action attribute containing the URL to submit the form. You can see this by displaying the create album page in a browser and selecting show source in the browser. The following markup shows the generated HTML containing the form tag.
 
 [!code-html[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample8.html)]
 

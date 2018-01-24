@@ -240,7 +240,7 @@ The new Recipes feature enables Visual Studio to generate solution-specific code
 
 You can now write asynchronous action methods as single methods that return an object of type *Task* or *Task&lt;ActionResult&gt;*.
 
-For example, if you're using Visual C# 5 (or using the [Async CTP](https://msdn.microsoft.com/en-us/vstudio/async.aspx)), you can create an asynchronous action method that looks like the following:
+For example, if you're using Visual C# 5 (or using the [Async CTP](https://msdn.microsoft.com/vstudio/async.aspx)), you can create an asynchronous action method that looks like the following:
 
 [!code-csharp[Main](mvc4-beta-release-notes/samples/sample8.cs)]
 

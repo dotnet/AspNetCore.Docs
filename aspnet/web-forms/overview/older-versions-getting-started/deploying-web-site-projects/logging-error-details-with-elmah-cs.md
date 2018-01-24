@@ -249,7 +249,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [ELMAH Project Page](https://code.google.com/p/elmah/) (source code, samples, wiki)
 - [Plugging ELMAH Into a Web Application to Catch Unhandled Exceptions](http://screencastaday.com/ScreenCasts/43_Plugging_Elmah_into_Web_Application_to_Catch_Unhandled_Exceptions.aspx) (video)
 - [Security Error Log Pages](https://code.google.com/p/elmah/wiki/SecuringErrorLogPages)
-- [Using HTTP Modules and Handlers to Create Pluggable ASP.NET Components](https://msdn.microsoft.com/en-us/library/aa479332.aspx)
+- [Using HTTP Modules and Handlers to Create Pluggable ASP.NET Components](https://msdn.microsoft.com/library/aa479332.aspx)
 - [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 
 >[!div class="step-by-step"]

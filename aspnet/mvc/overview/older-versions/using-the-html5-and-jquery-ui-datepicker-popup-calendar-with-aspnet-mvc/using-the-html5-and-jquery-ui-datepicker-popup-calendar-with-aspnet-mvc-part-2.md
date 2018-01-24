@@ -22,15 +22,15 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 ## Adding an Automatic DateTime Template
 
-In the first part of this tutorial, you saw how you can add attributes to the model to explicitly specify formatting, and how you can explicitly specify the template that's used to render the model. For example, the [DisplayFormat](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute in the following code explicity specifies the formatting for the `ReleaseDate` property.
+In the first part of this tutorial, you saw how you can add attributes to the model to explicitly specify formatting, and how you can explicitly specify the template that's used to render the model. For example, the [DisplayFormat](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute in the following code explicity specifies the formatting for the `ReleaseDate` property.
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample1.cs)]
 
-In the following example, the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration, specifies that the date template should be used to render the model. If there's no date template in your project, the built-in date template is used.
+In the following example, the [DataType](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration, specifies that the date template should be used to render the model. If there's no date template in your project, the built-in date template is used.
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample2.cs)]
 
-However, ASP.MVC can perform type matching using convention-over-configuration, by looking for a template that matches the name of a type. This lets you create a template that automatically formats data without using any attributes or code at all. For this part of the tutorial, you'll create a template that's automatically applied to model properties of type [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). You won't need to use an attribute or other configuration to specify that the template should be used to render all model properties of type [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx).
+However, ASP.MVC can perform type matching using convention-over-configuration, by looking for a template that matches the name of a type. This lets you create a template that automatically formats data without using any attributes or code at all. For this part of the tutorial, you'll create a template that's automatically applied to model properties of type [DateTime](https://msdn.microsoft.com/library/system.datetime.aspx). You won't need to use an attribute or other configuration to specify that the template should be used to render all model properties of type [DateTime](https://msdn.microsoft.com/library/system.datetime.aspx).
 
 You'll also learn a way to customize the display of individual properties or even individual fields.
 
@@ -78,7 +78,7 @@ The following image shows the *Views* folder in **Solution Explorer** after the 
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/_static/image3.png)
 
-Open the *Views\Shared\DisplayTemplates\DateTime.cshtml* file and add the following markup, which uses the [String.Format](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) method to format the property as a date without the time. (The `{0:d}` format specifies short date format.)
+Open the *Views\Shared\DisplayTemplates\DateTime.cshtml* file and add the following markup, which uses the [String.Format](https://msdn.microsoft.com/library/system.string.format.aspx) method to format the property as a date without the time. (The `{0:d}` format specifies short date format.)
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample5.cs)]
 
@@ -108,7 +108,7 @@ To review: at this point, the `ReleaseDate` field is being displayed using the *
 
 ### Using UIHint to Specify a Display Template
 
-If your web application has many `DateTime` fields and by default you want to display all or most of them in date-only format, the *DateTime.cshtml* template is a good approach. But what if you have a few dates where you want to display the full date and time? No problem. You can create an additional template and use the [UIHint](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute to specify formatting for the full date and time. You can then selectively apply that template. You can use the [UIHint](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute at the model level or you can specify the template inside a view. In this section, you'll see how to use the `UIHint` attribute to selectively change the formatting for some instances of date-time fields.
+If your web application has many `DateTime` fields and by default you want to display all or most of them in date-only format, the *DateTime.cshtml* template is a good approach. But what if you have a few dates where you want to display the full date and time? No problem. You can create an additional template and use the [UIHint](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute to specify formatting for the full date and time. You can then selectively apply that template. You can use the [UIHint](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute at the model level or you can specify the template inside a view. In this section, you'll see how to use the `UIHint` attribute to selectively change the formatting for some instances of date-time fields.
 
 Open the *Views\Movies\DisplayTemplates\LoudDateTime.cshtml* file and replace the existing code with the following:
 
@@ -116,7 +116,7 @@ Open the *Views\Movies\DisplayTemplates\LoudDateTime.cshtml* file and replace th
 
 This causes the full date and time to be displayed and adds the CSS class that makes the text green and large.
 
-Open the *Movie.cs* file and add the [UIHint](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute to the `ReleaseDate` property, as shown in the following example:
+Open the *Movie.cs* file and add the [UIHint](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute to the `ReleaseDate` property, as shown in the following example:
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample8.cs)]
 
@@ -128,7 +128,7 @@ Notice that the `ReleaseDate` property now displays the date and time in a large
 
 Return to the `UIHint` attribute in the *Movie.cs* file and comment it out so the *LoudDateTime.cshtml* template won't be used. Run the application again. The release date is not displayed large and green. This verifies that the *Views\Shared\DisplayTemplates\DateTime.cshtml* template is used in the Index and Details views.
 
-As mentioned earlier, you can also apply a template in a view, which lets you apply the template to an individual instance of some data. Open the *Views\Movies\Details.cshtml* view. Add `"LoudDateTime"` as the second parameter of the [Html.DisplayFor](https://msdn.microsoft.com/en-us/library/ee407420.aspx) call for the `ReleaseDate` field. The completed code looks like this:
+As mentioned earlier, you can also apply a template in a view, which lets you apply the template to an individual instance of some data. Open the *Views\Movies\Details.cshtml* view. Add `"LoudDateTime"` as the second parameter of the [Html.DisplayFor](https://msdn.microsoft.com/library/ee407420.aspx) call for the `ReleaseDate` field. The completed code looks like this:
 
 [!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample9.cshtml)]
 

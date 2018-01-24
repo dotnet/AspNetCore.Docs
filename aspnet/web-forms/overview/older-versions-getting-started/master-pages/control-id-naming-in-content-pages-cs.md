@@ -29,7 +29,7 @@ All ASP.NET server controls include an `ID` property that uniquely identifies th
 To handle such scenarios, ASP.NET allows certain controls to be denoted as naming containers. A naming container serves as a new `ID` namespace. Any server controls that appear within the naming container have their rendered `id` value prefixed with the `ID` of the naming container control. For example, the `GridView` and `GridViewRow` classes are both naming containers. Consequently, a Label control defined in a GridView TemplateField with `ID` ProductName is given a rendered `id` value of `GridViewID_GridViewRowID_ProductName`. Because *GridViewRowID* is unique for each GridView row, the resulting `id` values are unique.
 
 > [!NOTE]
-> The [`INamingContainer` interface](https://msdn.microsoft.com/en-us/library/system.web.ui.inamingcontainer.aspx) is used to indicate that a particular ASP.NET server control should function as a naming container. The `INamingContainer` interface does not spell out any methods that the server control must implement; rather, it's used as a marker. In generating the rendered markup, if a control implements this interface then the ASP.NET engine automatically prefixes its `ID` value to its descendents' rendered `id` attribute values. This process is discussed in more detail in Step 2.
+> The [`INamingContainer` interface](https://msdn.microsoft.com/library/system.web.ui.inamingcontainer.aspx) is used to indicate that a particular ASP.NET server control should function as a naming container. The `INamingContainer` interface does not spell out any methods that the server control must implement; rather, it's used as a marker. In generating the rendered markup, if a control implements this interface then the ASP.NET engine automatically prefixes its `ID` value to its descendents' rendered `id` attribute values. This process is discussed in more detail in Step 2.
 
 
 Naming containers not only change the rendered `id` attribute value, but also affect how the control may be programmatically referenced from the ASP.NET page's code-behind class. The `FindControl("controlID")` method is commonly used to programmatically reference a Web control. However, `FindControl` does not penetrate through naming containers. Consequently, you cannot directly use the `Page.FindControl` method to reference controls within a GridView or other naming container.
@@ -116,7 +116,7 @@ Note that the `id` attribute includes both the master page's `ID` value (`ctl00`
 
 Every ASP.NET server control includes a `FindControl("controlID")` method that searches the control's descendents for a control named *controlID*. If such a control is found, it is returned; if no matching control is found, `FindControl` returns `null`.
 
-`FindControl` is useful in scenarios where you need to access a control but you don't have a direct reference to it. When working with data Web controls like the GridView, for example, the controls within the GridView's fields are defined once in the declarative syntax, but at runtime an instance of the control is created for each GridView row. Consequently, the controls generated at runtime exist, but we do not have a direct reference available from the code-behind class. As a result we need to use `FindControl` to programmatically work with a specific control within the GridView's fields. (For more information on using `FindControl` to access the controls within a data Web control's templates, see [Custom Formatting Based Upon Data](../../data-access/custom-formatting/custom-formatting-based-upon-data-cs.md).) This same scenario occurs when dynamically adding Web controls to a Web Form, a topic discussed in [Creating Dynamic Data Entry User Interfaces](https://msdn.microsoft.com/en-us/library/aa479330.aspx).
+`FindControl` is useful in scenarios where you need to access a control but you don't have a direct reference to it. When working with data Web controls like the GridView, for example, the controls within the GridView's fields are defined once in the declarative syntax, but at runtime an instance of the control is created for each GridView row. Consequently, the controls generated at runtime exist, but we do not have a direct reference available from the code-behind class. As a result we need to use `FindControl` to programmatically work with a specific control within the GridView's fields. (For more information on using `FindControl` to access the controls within a data Web control's templates, see [Custom Formatting Based Upon Data](../../data-access/custom-formatting/custom-formatting-based-upon-data-cs.md).) This same scenario occurs when dynamically adding Web controls to a Web Form, a topic discussed in [Creating Dynamic Data Entry User Interfaces](https://msdn.microsoft.com/library/aa479330.aspx).
 
 To illustrate using the `FindControl` method to search for controls within a content page, create an event handler for the `SubmitButton`'s `Click` event. In the event handler, add the following code, which programmatically references the `Age` TextBox and `Results` Label using the `FindControl` method and then displays a message in `Results` based on the user's input.
 
@@ -223,7 +223,7 @@ Recall that in ASP.NET pages that do not include a naming container, the rendere
 
 The problem with this approach is that when using master pages (or other naming container controls), the rendered HTML `id` is not synonymous with the Web control's `ID` property. Your first inclination may be to visit the page through a browser and view the source to determine the actual `id` attribute. Once you know the rendered `id` value, you can paste it into the call to `getElementById` to access the HTML element you need to work with through client-side script. This approach is less than ideal because certain changes to the page's control hierarchy or changes to the `ID` properties of the naming controls will alter the resulting `id` attribute, thereby breaking your JavaScript code.
 
-The good news is that the `id` attribute value that is rendered is accessible in server-side code through the Web control's [`ClientID` property](https://msdn.microsoft.com/en-us/library/system.web.ui.control.clientid.aspx). You should use this property to determine the `id` attribute value used in client-side script. For example, to add a JavaScript function to the page that, when called, displays the value of the `Age` TextBox in a modal message box, add the following code to the `Page_Load` event handler:
+The good news is that the `id` attribute value that is rendered is accessible in server-side code through the Web control's [`ClientID` property](https://msdn.microsoft.com/library/system.web.ui.control.clientid.aspx). You should use this property to determine the `id` attribute value used in client-side script. For example, to add a JavaScript function to the page that, when called, displays the value of the `Age` TextBox in a modal message box, add the following code to the `Page_Load` event handler:
 
 
 [!code-javascript[Main](control-id-naming-in-content-pages-cs/samples/sample15.js)]
@@ -236,7 +236,7 @@ The above code injects the value of the `Age` TextBox's ClientID property into t
 Notice how the correct `id` attribute value, `ctl00_MainContent_Age`, appears within the call to `getElementById`. Because this value is calculated at runtime, it works regardless of later changes to the page control hierarchy.
 
 > [!NOTE]
-> This JavaScript example merely shows how to add a JavaScript function that correctly references the HTML element rendered by a server control. To use this function you would need to author additional JavaScript to call the function when the document loads or when some specific user action transpires. For more information on these and related topics, read [Working with Client-Side Script](https://msdn.microsoft.com/en-us/library/aa479302.aspx).
+> This JavaScript example merely shows how to add a JavaScript function that correctly references the HTML element rendered by a server control. To use this function you would need to author additional JavaScript to call the function when the document loads or when some specific user action transpires. For more information on these and related topics, read [Working with Client-Side Script](https://msdn.microsoft.com/library/aa479302.aspx).
 
 
 ## Summary
@@ -252,11 +252,11 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [ASP.NET Master Pages and `FindControl`](http://www.west-wind.com/WebLog/posts/5127.aspx)
-- [Creating Dynamic Data Entry User Interfaces](https://msdn.microsoft.com/en-us/library/aa479330.aspx)
+- [Creating Dynamic Data Entry User Interfaces](https://msdn.microsoft.com/library/aa479330.aspx)
 - [Extending Base Type Functionality with Extension Methods](http://aspnet.4guysfromrolla.com/articles/120507-1.aspx)
-- [How To: Reference ASP.NET Master Page Content](https://msdn.microsoft.com/en-us/library/xxwa0ff0.aspx)
+- [How To: Reference ASP.NET Master Page Content](https://msdn.microsoft.com/library/xxwa0ff0.aspx)
 - [Mater Pages: Tips, Tricks, and Traps](http://www.odetocode.com/articles/450.aspx)
-- [Working with Client-Side Script](https://msdn.microsoft.com/en-us/library/aa479302.aspx)
+- [Working with Client-Side Script](https://msdn.microsoft.com/library/aa479302.aspx)
 
 ### About the Author
 

@@ -185,7 +185,7 @@ When you create ASP.NET MVC projects with Visual Studio 2012 on Windows 8.1 or W
 
 ![configuration error](aspnet-and-web-tools-20131-for-visual-studio-2012/_static/image2.png)
 
-You see this error because Visual Studio 2012 does not enable the ASP.NET 4.5 feature when it is installed on those releases of Windows. To enable ASP.NET 4.5, perform the steps described in [Turn Windows features on or off](https://windows.microsoft.com/en-us/windows-8/turn-windows-features-on-off).
+You see this error because Visual Studio 2012 does not enable the ASP.NET 4.5 feature when it is installed on those releases of Windows. To enable ASP.NET 4.5, perform the steps described in [Turn Windows features on or off](https://windows.microsoft.com/windows-8/turn-windows-features-on-off).
 
 ![turn on or off Windows features](aspnet-and-web-tools-20131-for-visual-studio-2012/_static/image3.png)
 

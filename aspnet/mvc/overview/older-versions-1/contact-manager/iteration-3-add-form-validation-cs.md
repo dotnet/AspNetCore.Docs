@@ -58,7 +58,7 @@ In this iteration, we add the validation logic directly to the controller action
 
 In this iteration, to keep things simple, we write all of the validation code by hand. Instead of writing the validation code ourselves, we could take advantage of a validation framework. For example, you can use the Microsoft Enterprise Library Validation Application Block (VAB) to implement the validation logic for your ASP.NET MVC application. To learn more about the Validation Application Block, see:
 
-[*http://msdn.microsoft.com/en-us/library/dd203099.aspx*](https://msdn.microsoft.com/en-us/library/dd203099.aspx)
+[*http://msdn.microsoft.com/library/dd203099.aspx*](https://msdn.microsoft.com/library/dd203099.aspx)
 
 ## Adding Validation to the Create View
 

@@ -230,7 +230,7 @@ The `AdditionalFields` property of the `[Remote]` attribute is useful for valida
 
 [!code-csharp[Main](validation/sample/User.cs?range=10-13)]
 
-`AdditionalFields` could have been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring. The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
+`AdditionalFields` could have been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring. The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
 
 
 [!code-csharp[Main](validation/sample/UsersController.cs?range=30-39)]
@@ -248,4 +248,4 @@ If you need to validate two or more additional fields with the `[Remote]` attrib
 public string MiddleName { get; set; }
 ```
 
-`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, you must not use an [interpolated string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/en-us/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.
+`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, you must not use an [interpolated string](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.

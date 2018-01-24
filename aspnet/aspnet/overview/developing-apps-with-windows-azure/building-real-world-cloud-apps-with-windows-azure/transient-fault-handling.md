@@ -34,11 +34,11 @@ Instead of throwing an exception and displaying a not available or error page to
 
 There are several ways you can implement smart retry logic.
 
-- The Microsoft Patterns &amp; Practices group has a [Transient Fault Handling Application Block](https://msdn.microsoft.com/en-us/library/dn440719(v=pandp.60).aspx) that does everything for you if you're using ADO.NET for SQL Database access (not through Entity Framework). You just set a policy for retries – how many times to retry a query or command and how long to wait between tries – and wrap your SQL code in a *using* block.
+- The Microsoft Patterns &amp; Practices group has a [Transient Fault Handling Application Block](https://msdn.microsoft.com/library/dn440719(v=pandp.60).aspx) that does everything for you if you're using ADO.NET for SQL Database access (not through Entity Framework). You just set a policy for retries – how many times to retry a query or command and how long to wait between tries – and wrap your SQL code in a *using* block.
 
     [!code-csharp[Main](transient-fault-handling/samples/sample1.cs)]
 
-    TFH also supports [Azure In-Role Cache](https://msdn.microsoft.com/en-us/library/windowsazure/dn386103.aspx) and [Service Bus](https://azure.microsoft.com/services/service-bus/).
+    TFH also supports [Azure In-Role Cache](https://msdn.microsoft.com/library/windowsazure/dn386103.aspx) and [Service Bus](https://azure.microsoft.com/services/service-bus/).
 - When you use the Entity Framework you typically aren't working directly with SQL connections, so you can't use this Patterns and Practices package, but Entity Framework 6 builds this kind of retry logic right into the framework. In a similar way you specify the retry strategy, and then EF uses that strategy whenever it accesses the database.
 
     To use this feature in the Fix It app, all we have to do is add a class that derives from *DbConfiguration* and turn on the retry logic.
@@ -83,11 +83,11 @@ For more information, see the following resources:
 
 Documentation
 
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy. Similar to the Failsafe series but goes into more how-to details. See the Telemetry and Diagnostics section.
-- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/en-us/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Retry pattern, Scheduler Agent Supervisor pattern.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy. Similar to the Failsafe series but goes into more how-to details. See the Telemetry and Diagnostics section.
+- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Retry pattern, Scheduler Agent Supervisor pattern.
 - [Fault-tolerance in Azure SQL Database](https://blogs.msdn.com/b/windowsazure/archive/2012/07/30/fault-tolerance-in-windows-azure-sql-database.aspx). Blog post by Tony Petrossian.
-- [Entity Framework - Connection Resiliency / Retry Logic](https://msdn.microsoft.com/en-us/data/dn456835). How to use and customize the transient fault handling feature of Entity Framework 6.
+- [Entity Framework - Connection Resiliency / Retry Logic](https://msdn.microsoft.com/data/dn456835). How to use and customize the transient fault handling feature of Entity Framework 6.
 - [Connection Resiliency and Command Interception with the Entity Framework in an ASP.NET MVC Application](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md). Fourth in a nine-part tutorial series, shows how to set up the EF 6 connection resilience feature for SQL Database.
 
 Videos

@@ -158,7 +158,7 @@ In addition to the `ItemTemplate`, the DataList supports six other optional temp
 
 - `HeaderTemplate` if provided, adds a header row to the output and is used to render this row
 - `AlternatingItemTemplate` used to render alternating items
-- `SelectedItemTemplate` used to render the selected item; the selected item is the item whose index corresponds to the DataList s [`SelectedIndex` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.datalist.selectedindex.aspx)
+- `SelectedItemTemplate` used to render the selected item; the selected item is the item whose index corresponds to the DataList s [`SelectedIndex` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.selectedindex.aspx)
 - `EditItemTemplate` used to render the item being edited
 - `SeparatorTemplate` if provided, adds a separator between each item and is used to render this separator
 - `FooterTemplate` - if provided, adds a footer row to the output and is used to render this row
@@ -217,7 +217,7 @@ In ASP.NET 1.x, the Repeater control was commonly used to display a bulleted lis
 - In `SectionLevelTutorialListing.ascx`, a Repeater was used to display a bulleted list of the children sections of the current site map section
 
 > [!NOTE]
-> ASP.NET 2.0 introduces the new [BulletedList control](https://msdn.microsoft.com/en-us/library/ms228101.aspx), which can be bound to a data source control in order to display a simple bulleted list. With the BulletedList control we do not need to specify any of the list-related HTML; instead, we simply indicate the data field to display as the text for each list item.
+> ASP.NET 2.0 introduces the new [BulletedList control](https://msdn.microsoft.com/library/ms228101.aspx), which can be bound to a data source control in order to display a simple bulleted list. With the BulletedList control we do not need to specify any of the list-related HTML; instead, we simply indicate the data field to display as the text for each list item.
 
 
 The Repeater serves as a catch all data Web control. If there is not an existing control that generates the needed markup, the Repeater control can be used. To illustrate using the Repeater, let s have the list of categories displayed above the Product Information DataList created in Step 2. In particular, let s have the categories displayed in a single-row HTML `<table>` with each category displayed as a column in the table.

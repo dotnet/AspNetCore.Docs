@@ -72,7 +72,7 @@ To deploy the Contact Manager solution to a developer test environment, the deve
 
 
 > [!NOTE]
-> The **/fl** switch (short for **/fileLogger**) logs the build output to a file named *msbuild.log* in the current directory. For more information, see the [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
+> The **/fl** switch (short for **/fileLogger**) logs the build output to a file named *msbuild.log* in the current directory. For more information, see the [MSBuild Command Line Reference](https://msdn.microsoft.com/library/ms164311.aspx).
 
 
 At this point, MSBuild starts running, loads the *Publish.proj* file, and starts processing the instructions within it. The first instruction tells MSBuild to import the project file that the **TargetEnvPropsFile** parameter specifies.
@@ -173,7 +173,7 @@ The items are not used within this target&#x2014;this target simply builds the i
 The **DbPublishPackages** item will contain a single value, the path to the *ContactManager.Database.deploymanifest* file.
 
 > [!NOTE]
-> A .deploymanifest file is generated when you build a database project, and it uses the same schema as an MSBuild project file. It contains all the information required to deploy a database, including the location of the database schema (.dbschema) and details of any pre-deployment and post-deployment scripts. For more information, see [An Overview of Database Build and Deployment](https://msdn.microsoft.com/en-us/library/aa833165.aspx).
+> A .deploymanifest file is generated when you build a database project, and it uses the same schema as an MSBuild project file. It contains all the information required to deploy a database, including the location of the database schema (.dbschema) and details of any pre-deployment and post-deployment scripts. For more information, see [An Overview of Database Build and Deployment](https://msdn.microsoft.com/library/aa833165.aspx).
 
 
 You'll learn more about how deployment packages and database deployment manifests are created and used in [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md) and [Deploying Database Projects](deploying-database-projects.md).
@@ -194,7 +194,7 @@ This is an example of *target batching*. In MSBuild project files, batching is a
 - Execute the target once per batch.
 
 > [!NOTE]
-> **Identity** is one of the [built-in metadata values](https://msdn.microsoft.com/en-us/library/ms164313.aspx) that is assigned to every item on creation. It refers to the value of the **Include** attribute in the **Item** element&#x2014;in other words, the path and filename of the item.
+> **Identity** is one of the [built-in metadata values](https://msdn.microsoft.com/library/ms164313.aspx) that is assigned to every item on creation. It refers to the value of the **Include** attribute in the **Item** element&#x2014;in other words, the path and filename of the item.
 
 
 In this case, because there should never be more than one item with the same path and filename, we're essentially working with batch sizes of one. The target is executed once for every database package.
@@ -214,7 +214,7 @@ In this case, **%(DbPublishPackages.DatabaseConnectionString)**, **%(DbPublishPa
 As a result of this notation, the **Exec** task will create batches based on unique combinations of the **DatabaseConnectionString**, **TargetDatabase**, and **FullPath** metadata values, and the task will execute once for each batch. This is an example of *task batching*. However, because the target-level batching has already divided our item collection into single-item batches, the **Exec** task will run once and only once for each iteration of the target. In other words, this task invokes the VSDBCMD utility once for each database package in the solution.
 
 > [!NOTE]
-> For more information on target and task batching, see MSBuild [Batching](https://msdn.microsoft.com/en-us/library/ms171473.aspx), [Item Metadata in Target Batching](https://msdn.microsoft.com/en-US/library/ms228229.aspx), and [Item Metadata in Task Batching](https://msdn.microsoft.com/en-us/library/ms171474.aspx).
+> For more information on target and task batching, see MSBuild [Batching](https://msdn.microsoft.com/library/ms171473.aspx), [Item Metadata in Target Batching](https://msdn.microsoft.com/library/ms228229.aspx), and [Item Metadata in Task Batching](https://msdn.microsoft.com/library/ms171474.aspx).
 
 
 ### The PublishWebPackages Target
