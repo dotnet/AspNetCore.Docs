@@ -66,7 +66,7 @@ The remainder of this section provides more guidance on how to complete each of 
     ![](setting-up-the-contact-manager-solution/_static/image1.png)
 
 > [!NOTE]
-> For more information on the aspnet\_regsql utility, see [ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe)](https://msdn.microsoft.com/en-us/library/ms229862(v=vs.100).aspx).
+> For more information on the aspnet\_regsql utility, see [ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe)](https://msdn.microsoft.com/library/ms229862(v=vs.100).aspx).
 
 
 The next step is to make sure that the connection strings in the Contact Manager solution point to your local instance of SQL Server Express.

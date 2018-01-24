@@ -65,13 +65,13 @@ You must specify either a **/T** flag or a **/Y** flag, to indicate whether you 
 | **/U** | Specifies the user name. This applies only if you're using basic authentication. |
 | **/P** | Specifies the password. This applies only if you're using basic authentication. |
 | **/L** | Indicates that the package should be deployed to the local IIS Express instance. |
-| **/G** | Specifies that the package is deployed using the [tempAgent provider setting](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx). If you omit the **/G** flag, the value defaults to **false**. |
+| **/G** | Specifies that the package is deployed using the [tempAgent provider setting](https://technet.microsoft.com/library/ee517345(WS.10).aspx). If you omit the **/G** flag, the value defaults to **false**. |
 
 > [!NOTE]
 > Every time the build process creates a web package, it also creates a file named *[project name].deploy-readme.txt* that explains these deployment options.
 
 
-In addition to these flags, you can specify Web Deploy operation settings as additional *.deploy.cmd* parameters. Any additional settings you specify are simply passed through to the underlying MSDeploy.exe command. For more information on these settings, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
+In addition to these flags, you can specify Web Deploy operation settings as additional *.deploy.cmd* parameters. Any additional settings you specify are simply passed through to the underlying MSDeploy.exe command. For more information on these settings, see [Web Deploy Operation Settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx).
 
 Suppose you want to deploy the ContactManager.Mvc web application project to a test environment by running the *.deploy.cmd* file. Your test environment is configured to use the Web Deploy Remote Agent service, as described in [Configure a Web Server for Web Deploy Publishing (Remote Agent)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-remote-agent.md). To deploy the web application, you need to complete the next steps.
 
@@ -96,7 +96,7 @@ To illustrate how using the *.deploy.cmd* file simplifies the deployment process
 [!code-console[Main](deploying-web-packages/samples/sample3.cmd)]
 
 
-For more information on using the *.deploy.cmd* file to deploy a web package, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx).
+For more information on using the *.deploy.cmd* file to deploy a web package, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/library/ff356104.aspx).
 
 ## Using MSDeploy.exe
 
@@ -110,21 +110,21 @@ When you use MSDeploy.exe, you need to provide three key pieces of information:
 
 - A **–source** parameter that indicates where your data is coming from.
 - A **–dest** parameter that indicates where your data is going to.
-- A **–verb** parameter that indicates the [operation](https://technet.microsoft.com/en-us/library/dd568989(WS.10).aspx) you want to perform.
+- A **–verb** parameter that indicates the [operation](https://technet.microsoft.com/library/dd568989(WS.10).aspx) you want to perform.
 
-MSDeploy.exe relies on [Web Deploy providers](https://technet.microsoft.com/en-us/library/dd569040(WS.10).aspx) to process source and destination data. Web Deploy includes a lot of providers that represent the range of applications and data sources it can work with&#x2014;for example, there are providers for SQL Server databases, IIS web servers, certificates, global assembly cache (GAC) assemblies, various different configuration files, and lots of other types of data. Both the **–source** parameter and the **–dest** parameter must specify a provider, in the form **–source**:[*providerName*]=[*location*]. When you're deploying a web package to an IIS website, you should use these values:
+MSDeploy.exe relies on [Web Deploy providers](https://technet.microsoft.com/library/dd569040(WS.10).aspx) to process source and destination data. Web Deploy includes a lot of providers that represent the range of applications and data sources it can work with&#x2014;for example, there are providers for SQL Server databases, IIS web servers, certificates, global assembly cache (GAC) assemblies, various different configuration files, and lots of other types of data. Both the **–source** parameter and the **–dest** parameter must specify a provider, in the form **–source**:[*providerName*]=[*location*]. When you're deploying a web package to an IIS website, you should use these values:
 
-- The **–source** provider is always [package](https://technet.microsoft.com/en-us/library/dd569019(WS.10).aspx). For example:
+- The **–source** provider is always [package](https://technet.microsoft.com/library/dd569019(WS.10).aspx). For example:
 
     [!code-console[Main](deploying-web-packages/samples/sample4.cmd)]
-- The **–dest** provider is always [auto](https://technet.microsoft.com/en-us/library/dd569016(WS.10).aspx). For example:
+- The **–dest** provider is always [auto](https://technet.microsoft.com/library/dd569016(WS.10).aspx). For example:
 
     [!code-console[Main](deploying-web-packages/samples/sample5.cmd)]
 - The **–verb** is always **sync**.
 
     [!code-console[Main](deploying-web-packages/samples/sample6.cmd)]
 
-In addition, you'll need to specify various other [provider-specific settings](https://technet.microsoft.com/en-us/library/dd569001(WS.10).aspx) and general [operation settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx). For example, suppose you want to deploy the ContactManager.Mvc web application to a staging environment. The deployment will target the Web Deploy Handler and must use basic authentication. To deploy the web application, you need to complete the next steps.
+In addition, you'll need to specify various other [provider-specific settings](https://technet.microsoft.com/library/dd569001(WS.10).aspx) and general [operation settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx). For example, suppose you want to deploy the ContactManager.Mvc web application to a staging environment. The deployment will target the Web Deploy Handler and must use basic authentication. To deploy the web application, you need to complete the next steps.
 
 **To deploy a web application using MSDeploy.exe**
 
@@ -140,7 +140,7 @@ In this example:
 - The **–source** parameter specifies the **package** provider and indicates the location of the web package.
 - The **–dest** parameter specifies the **auto** provider. The **computerName** setting provides the service URL of the Web Deploy Handler on the destination server. The **authtype** setting indicates that you want to use basic authentication, and as such you need to provide a **username** and a **password**. Finally, the **includeAcls="False"** setting indicates that you don't want to copy the access control lists (ACLs) of the files in your source web application to the destination server.
 - The **–verb:sync** argument indicates that you want to replicate the source content on the destination server.
-- The **–disableLink** arguments indicate that you don't want to replicate application pools, virtual directory configuration, or Secure Sockets Layer (SSL) certificates on the destination server. For more information, see [Web Deploy Link Extensions](https://technet.microsoft.com/en-us/library/dd569028(WS.10).aspx).
+- The **–disableLink** arguments indicate that you don't want to replicate application pools, virtual directory configuration, or Secure Sockets Layer (SSL) certificates on the destination server. For more information, see [Web Deploy Link Extensions](https://technet.microsoft.com/library/dd569028(WS.10).aspx).
 - The **–setParamFile** parameter provides the location of the *SetParameters.xml* file.
 - The **–allowUntrusted** switch indicates that Web Deploy should accept SSL certificates that were not issued by a trusted certification authority. If you're deploying to the Web Deploy Handler, and you've used a self-signed certificate to secure the service URL, you need to include this switch.
 

@@ -97,7 +97,7 @@ Once the user has successfully logged in, subsequent HTTP requests include the f
 **Figure 2**: The Forms Authentication Workflow
 
 
-We will dig into forms authentication in much greater detail in the next two tutorials,[An Overview of Forms Authentication](an-overview-of-forms-authentication-cs.md) and [Forms Authentication Configuration and Advanced Topics](forms-authentication-configuration-and-advanced-topics-cs.md). For more on ASP.NET's authentication options, see [ASP.NET Authentication](https://msdn.microsoft.com/en-us/library/eeyk640h.aspx).
+We will dig into forms authentication in much greater detail in the next two tutorials,[An Overview of Forms Authentication](an-overview-of-forms-authentication-cs.md) and [Forms Authentication Configuration and Advanced Topics](forms-authentication-configuration-and-advanced-topics-cs.md). For more on ASP.NET's authentication options, see [ASP.NET Authentication](https://msdn.microsoft.com/library/eeyk640h.aspx).
 
 ## Limiting Access to Web Pages, Directories, and Page Functionality
 
@@ -108,9 +108,9 @@ ASP.NET includes two ways to determine whether a particular user has authority t
 
 File authorization and URL authorization define authorization rules for accessing a particular ASP.NET page or for all ASP.NET pages in a particular directory. Using these techniques we can instruct ASP.NET to deny requests to a particular page for a particular user, or allow access to a set of users and deny access to everyone else. What about scenarios where all of the users can access the page, but the page's functionality depends on the user? For example, many sites that support user accounts have pages that display different content or data for authenticated users versus anonymous users. An anonymous user might see a link to log in to the site, whereas an authenticated user would instead see a message like, Welcome back, *Username* along with a link to log out. Another example: when viewing an item at an auction site you see different information depending on whether you are a bidder or the one auctioning the item.
 
-Such page-level adjustments can be accomplished declaratively or programmatically. To show different content for anonymous than authenticated users, simply drag a [LoginView control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.loginview.aspx) onto your page and enter the appropriate content into its AnonymousTemplate and LoggedInTemplate templates. Alternatively, you can programmatically determine whether the current request is authenticated, who the user is, and what roles they belong to (if any). You can use this information to then show or hide columns in a grid or Panels on the page.
+Such page-level adjustments can be accomplished declaratively or programmatically. To show different content for anonymous than authenticated users, simply drag a [LoginView control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.loginview.aspx) onto your page and enter the appropriate content into its AnonymousTemplate and LoggedInTemplate templates. Alternatively, you can programmatically determine whether the current request is authenticated, who the user is, and what roles they belong to (if any). You can use this information to then show or hide columns in a grid or Panels on the page.
 
-This series includes three tutorials that focus on authorization. ***User-Based Authorization***examines how to limit access to a page or pages in a directory for specific user accounts; ***Role-Based Authorization*** looks at supplying authorization rules at the role level; lastly, the ***Displaying Content Based on the Currently Logged In User*** tutorial explores modifying a particular page's content and functionality based on the user visiting the page. For more on ASP.NET's authorization options, see [ASP.NET Authorization](https://msdn.microsoft.com/en-us/library/wce3kxhd.aspx).
+This series includes three tutorials that focus on authorization. ***User-Based Authorization***examines how to limit access to a page or pages in a directory for specific user accounts; ***Role-Based Authorization*** looks at supplying authorization rules at the role level; lastly, the ***Displaying Content Based on the Currently Logged In User*** tutorial explores modifying a particular page's content and functionality based on the user visiting the page. For more on ASP.NET's authorization options, see [ASP.NET Authorization](https://msdn.microsoft.com/library/wce3kxhd.aspx).
 
 
 ## User Accounts and Roles
@@ -119,7 +119,7 @@ ASP.NET's forms authentication provides an infrastructure for users to log in to
 
 Prior to ASP.NET 2.0, developers were responsible for creating their own user and role stores. They were also on the hook for designing the user interfaces and writing the code for essential user account-related pages like the login page and the page to create a new account, among others. Without any built-in user account framework in ASP.NET, each developer implementing user accounts had to arrive at his own design decisions on questions like, How do I store passwords or other sensitive information? and What guidelines should I impose regarding password length and strength?
 
-Today, implementing user accounts in an ASP.NET application is much simpler thanks to the *Membership framework* and the built-in Login Web controls. The Membership framework is a handful of classes in the [System.Web.Security namespace](https://msdn.microsoft.com/en-us/library/system.web.security.aspx) that provide functionality for performing essential user account-related tasks. The key class in the Membership framework is the [Membership class](https://msdn.microsoft.com/en-us/library/system.web.security.membership.aspx), which has methods like:
+Today, implementing user accounts in an ASP.NET application is much simpler thanks to the *Membership framework* and the built-in Login Web controls. The Membership framework is a handful of classes in the [System.Web.Security namespace](https://msdn.microsoft.com/library/system.web.security.aspx) that provide functionality for performing essential user account-related tasks. The key class in the Membership framework is the [Membership class](https://msdn.microsoft.com/library/system.web.security.membership.aspx), which has methods like:
 
 - CreateUser
 - DeleteUser
@@ -132,8 +132,8 @@ The Membership framework uses the [provider model](http://aspnet.4guysfromrolla.
 
 Microsoft ships two Membership provider classes in the .NET Framework:
 
-- [ActiveDirectoryMembershipProvider](https://msdn.microsoft.com/en-us/library/system.web.security.activedirectorymembershipprovider.aspx) - implements the Membership API in Active Directory and Active Directory Application Mode (ADAM) servers.
-- [SqlMembershipProvider](https://msdn.microsoft.com/en-us/library/system.web.security.sqlmembershipprovider.aspx) - implements the Membership API in a SQL Server database.
+- [ActiveDirectoryMembershipProvider](https://msdn.microsoft.com/library/system.web.security.activedirectorymembershipprovider.aspx) - implements the Membership API in Active Directory and Active Directory Application Mode (ADAM) servers.
+- [SqlMembershipProvider](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx) - implements the Membership API in a SQL Server database.
 
 This tutorial series focuses exclusively on the SqlMembershipProvider.
 
@@ -143,17 +143,17 @@ This tutorial series focuses exclusively on the SqlMembershipProvider.
 **Figure 03**: The Provider Model Enables Different Implementations to be Seamlessly Plugged Into the Framework ([Click to view full-size image](security-basics-and-asp-net-support-cs/_static/image5.png))
 
 
-The benefit of the provider model is that alternative implementations can be developed by Microsoft, third-party vendors, or individual developers and seamlessly plugged into the Membership framework. For example, Microsoft has released [a Membership provider for Microsoft Access databases](https://download.microsoft.com/download/5/5/b/55bc291f-4316-4fd7-9269-dbf9edbaada8/sampleaccessproviders.vsi). For more information on the Membership providers, refer to the [Provider Toolkit](https://msdn.microsoft.com/en-us/asp.net/aa336558.aspx), which includes a walkthrough of the Membership providers, sample custom providers, over 100 pages of documentation on the provider model, and the complete source code for the built-in Membership providers (namely, ActiveDirectoryMembershipProvider and SqlMembershipProvider).
+The benefit of the provider model is that alternative implementations can be developed by Microsoft, third-party vendors, or individual developers and seamlessly plugged into the Membership framework. For example, Microsoft has released [a Membership provider for Microsoft Access databases](https://download.microsoft.com/download/5/5/b/55bc291f-4316-4fd7-9269-dbf9edbaada8/sampleaccessproviders.vsi). For more information on the Membership providers, refer to the [Provider Toolkit](https://msdn.microsoft.com/asp.net/aa336558.aspx), which includes a walkthrough of the Membership providers, sample custom providers, over 100 pages of documentation on the provider model, and the complete source code for the built-in Membership providers (namely, ActiveDirectoryMembershipProvider and SqlMembershipProvider).
 
-ASP.NET 2.0 also introduced the Roles framework. Like the Membership framework, the Roles framework is built atop the provider model. Its API is exposed via the [Roles class](https://msdn.microsoft.com/en-us/library/system.web.security.roles.aspx) and the .NET Framework ships with three provider classes:
+ASP.NET 2.0 also introduced the Roles framework. Like the Membership framework, the Roles framework is built atop the provider model. Its API is exposed via the [Roles class](https://msdn.microsoft.com/library/system.web.security.roles.aspx) and the .NET Framework ships with three provider classes:
 
-- [AuthorizationStoreRoleProvider](https://msdn.microsoft.com/en-us/library/system.web.security.authorizationstoreroleprovider.aspx) - manages role information in an authorization-manager policy store, such as Active Directory or ADAM.
-- [SqlRoleProvider](https://msdn.microsoft.com/en-us/library/system.web.security.sqlroleprovider.aspx) - implements roles in a SQL Server database.
-- [WindowsTokenRoleProvider](https://msdn.microsoft.com/en-us/library/system.web.security.windowstokenroleprovider.aspx) - associates role information based on the visitor's Windows group. This method is typically used with Windows authentication.
+- [AuthorizationStoreRoleProvider](https://msdn.microsoft.com/library/system.web.security.authorizationstoreroleprovider.aspx) - manages role information in an authorization-manager policy store, such as Active Directory or ADAM.
+- [SqlRoleProvider](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx) - implements roles in a SQL Server database.
+- [WindowsTokenRoleProvider](https://msdn.microsoft.com/library/system.web.security.windowstokenroleprovider.aspx) - associates role information based on the visitor's Windows group. This method is typically used with Windows authentication.
 
 This tutorial series focuses exclusively on the SqlRoleProvider.
 
-Since the provider model includes a single forward-facing API (the Membership and Roles classes), it is possible to build functionality around that API without having to worry about the implementation details - those are handled by the providers selected by the page developer. This unified API allows for Microsoft and third-party vendors to build Web controls that interface with the Membership and Roles frameworks. ASP.NET ships with a number of [Login Web controls](https://msdn.microsoft.com/en-us/library/ms178329.aspx) for implementing common user account user interfaces. For example, the [Login control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.aspx) prompts a user for their credentials, validates them, and then logs them in via forms authentication. The [LoginView control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.loginview.aspx) offers templates for displaying different markup to anonymous users versus authenticated users, or different markup based on the user's role. And the [CreateUserWizard control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.aspx) provides a step-by-step user interface for creating a new user account.
+Since the provider model includes a single forward-facing API (the Membership and Roles classes), it is possible to build functionality around that API without having to worry about the implementation details - those are handled by the providers selected by the page developer. This unified API allows for Microsoft and third-party vendors to build Web controls that interface with the Membership and Roles frameworks. ASP.NET ships with a number of [Login Web controls](https://msdn.microsoft.com/library/ms178329.aspx) for implementing common user account user interfaces. For example, the [Login control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.login.aspx) prompts a user for their credentials, validates them, and then logs them in via forms authentication. The [LoginView control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.loginview.aspx) offers templates for displaying different markup to anonymous users versus authenticated users, or different markup based on the user's role. And the [CreateUserWizard control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.createuserwizard.aspx) provides a step-by-step user interface for creating a new user account.
 
 Underneath the covers the various Login controls interact with the Membership and Roles frameworks. Most Login controls can be implemented without having to write a single line of code. We will examine these controls in greater detail in future tutorials, including techniques for extending and customizing their functionality.
 
@@ -170,16 +170,16 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [ASP.NET 2.0 Membership, Roles, Forms Authentication, and Security Resources](https://weblogs.asp.net/scottgu/ASP.NET-2.0-Membership_2C00_-Roles_2C00_-Forms-Authentication_2C00_-and-Security-Resources-)
-- [ASP.NET 2.0 Security Guidelines](https://msdn.microsoft.com/en-us/library/ms998258.aspx)
-- [ASP.NET Authentication](https://msdn.microsoft.com/en-us/library/eeyk640h.aspx)
-- [ASP.NET Authorization](https://msdn.microsoft.com/en-us/library/wce3kxhd.aspx)
-- [ASP.NET Login Controls Overview](https://msdn.microsoft.com/en-us/library/ms178329.aspx)
+- [ASP.NET 2.0 Security Guidelines](https://msdn.microsoft.com/library/ms998258.aspx)
+- [ASP.NET Authentication](https://msdn.microsoft.com/library/eeyk640h.aspx)
+- [ASP.NET Authorization](https://msdn.microsoft.com/library/wce3kxhd.aspx)
+- [ASP.NET Login Controls Overview](https://msdn.microsoft.com/library/ms178329.aspx)
 - [Examining ASP.NET 2.0's Membership, Roles, and Profile](http://aspnet.4guysfromrolla.com/articles/120705-1.aspx)
 - [How Do I: Secure My Site Using Membership and Roles?](https://asp.net/learn/videos/video-45.aspx) (Video)
-- [Introduction to Membership](https://msdn.microsoft.com/en-us/library/yh26yfzy.aspx)
-- [MSDN Security Developer Center](https://msdn.microsoft.com/en-us/security/default.aspx)
+- [Introduction to Membership](https://msdn.microsoft.com/library/yh26yfzy.aspx)
+- [MSDN Security Developer Center](https://msdn.microsoft.com/security/default.aspx)
 - [Professional ASP.NET 2.0 Security, Membership, and Role Management](http://www.wrox.com/WileyCDA/WroxTitle/productCd-0764596985.html) (ISBN: 978-0-7645-9698-8)
-- [Provider Toolkit](https://msdn.microsoft.com/en-us/asp.net/aa336558.aspx)
+- [Provider Toolkit](https://msdn.microsoft.com/asp.net/aa336558.aspx)
 
 ## About the Author
 

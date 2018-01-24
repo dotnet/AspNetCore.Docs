@@ -44,7 +44,7 @@ The test environment needs to support single-step or automated deployment from a
 - Configure the test web server to support deployment using the Web Deploy handler.
 
 > [!NOTE]
-> You could also use [Web Deploy On Demand](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx) (the "temp agent"). This is similar to the remote agent approach in terms of requirements and constraints.
+> You could also use [Web Deploy On Demand](https://technet.microsoft.com/library/ee517345(WS.10).aspx) (the "temp agent"). This is similar to the remote agent approach in terms of requirements and constraints.
 
 
 In this case, the developers have administrator privileges on the destination servers, and the test environment is not subject to strict security constraints, so the logical choice is to configure the test web server to support deployment using the remote agent. This is less complex and requires less initial configuration than the Web Deploy Handler approach. You'll also need to configure your database server to support remote access and deployment.

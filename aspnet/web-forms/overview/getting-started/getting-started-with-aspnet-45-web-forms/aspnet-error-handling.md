@@ -330,7 +330,7 @@ Learn more about deploying your web application to Microsoft Azure, see [Deploy 
 
 I would like to thank the following people who made significant contributions to the content of this tutorial series:
 
-- [Alberto Poblacion, MVP &amp; MCT, Spain](https://mvp.microsoft.com/en-us/mvp/Alberto%20Poblacion%20Bolano-36772)
+- [Alberto Poblacion, MVP &amp; MCT, Spain](https://mvp.microsoft.com/mvp/Alberto%20Poblacion%20Bolano-36772)
 - [Alex Thissen, Netherlands](http://blog.alexthissen.nl/) (twitter: [@alexthissen](http://twitter.com/alexthissen))
 - [Andre Tournier, USA](http://andret503.wordpress.com/)
 - Apurva Joshi, Microsoft

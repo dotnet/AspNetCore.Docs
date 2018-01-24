@@ -48,7 +48,7 @@ Sections:
 Prerequisites:
 
 - Visual Studio 2010 SP1, Visual Studio 2012, or Visual Studio 2012 Express. If you do not have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2012 Express Development Tool.
-- For Visual Studio 2010, install [ASP.NET MVC 4](https://www.microsoft.com/en-us/download/details.aspx?id=30683).
+- For Visual Studio 2010, install [ASP.NET MVC 4](https://www.microsoft.com/download/details.aspx?id=30683).
 
 This section shows how to create an ASP.NET MVC 4 application, add the SignalR library, and create the chat application.
 

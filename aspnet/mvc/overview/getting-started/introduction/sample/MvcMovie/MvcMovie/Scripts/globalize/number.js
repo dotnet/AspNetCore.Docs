@@ -701,7 +701,7 @@ var numberTruncate = function( value ) {
  *   - round( "round" )( 123.45, 0.1 ): 123.5;
  *   - round( "round" )( 123.45, 10 ): 120;
  *
- *   Based on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+ *   Based on https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Math/round
  *   Ref: #376
  */
 var numberRound = function( method ) {

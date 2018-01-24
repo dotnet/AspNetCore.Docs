@@ -134,5 +134,5 @@ You can also send files that are attached to email messages. In this procedure, 
 
 
 - [ASP.NET Web Pages (Razor) Troubleshooting Guide](https://go.microsoft.com/fwlink/?LinkId=253001)
-- [Simple Mail Transfer Protocol](https://msdn.microsoft.com/en-us/library/aa480435.aspx)
+- [Simple Mail Transfer Protocol](https://msdn.microsoft.com/library/aa480435.aspx)
 - [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=202906)

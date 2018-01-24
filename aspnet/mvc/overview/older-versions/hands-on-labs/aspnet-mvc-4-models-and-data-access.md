@@ -22,7 +22,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > This lab walks you through the enhancements and new features previously described by applying minor changes to a sample Web application provided in the Source folder.
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/en-us/download/29843](https://www.microsoft.com/en-us/download/29843).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/download/29843](https://www.microsoft.com/download/29843).
 
 
 In **ASP.NET MVC Fundamentals** Hands-on Lab, you have been passing hard-coded data from the Controllers to the View templates. But, in order to build a real Web application, you might want to use a real database.
@@ -230,7 +230,7 @@ In this task, you will update the StoreController class so that, instead of usin
     > [!NOTE]
     > You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
     > 
-    > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/en-us/library/bb397926&amp;#040;v=vs.110&amp;#041;.aspx).
+    > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/library/bb397926&amp;#040;v=vs.110&amp;#041;.aspx).
 3. Update **Index** action method to retrieve all the genres.
 
     (Code Snippet - *Models And Data Access - Ex1 Store Index*)
@@ -346,7 +346,7 @@ Now that you have already configured the connection to the database, you will li
     > [!NOTE]
     > To work with Code First conventions, the class Genre must have a primary key property that will be automatically detected.
     > 
-    > You can read more about Code First Conventions in this [msdn article](https://msdn.microsoft.com/en-us/library/hh161541&amp;#040;v=vs.103&amp;#041;.aspx).
+    > You can read more about Code First Conventions in this [msdn article](https://msdn.microsoft.com/library/hh161541&amp;#040;v=vs.103&amp;#041;.aspx).
 2. Now, open the POCO model class **Album** from **Models** project folder and include the foreign keys, create properties with the names **GenreId** and **ArtistId**. This class already have the **GenreId** for the primary key.
 
     (Code Snippet - *Models And Data Access - Ex2 Code First Album*)
@@ -380,7 +380,7 @@ Now that you have already configured the connection to the database, you will li
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample12.cs)]
 
     > [!NOTE]
-    > With Entity Framework **DbContext** and **DBSet** you will be able to query the POCO class Genre. By extending **OnModelCreating** method, you are specifying in the **code** how Genre will be mapped to a database table. You can find more information about DBContext and DBSet in this msdn article: [link](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext(v=vs.103).aspx)
+    > With Entity Framework **DbContext** and **DBSet** you will be able to query the POCO class Genre. By extending **OnModelCreating** method, you are specifying in the **code** how Genre will be mapped to a database table. You can find more information about DBContext and DBSet in this msdn article: [link](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=vs.103).aspx)
 
 <a id="Ex2Task4"></a>
 
@@ -411,7 +411,7 @@ In this task, you will update the StoreController class so that, instead of usin
     > [!NOTE]
     > You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
     > 
-    > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/en-us/library/bb397926(v=vs.110).aspx).
+    > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/library/bb397926(v=vs.110).aspx).
 3. Update **Index** action method to retrieve all the genres.
 
     (Code Snippet - *Models And Data Access - Ex2 Store Index*)
@@ -452,7 +452,7 @@ In this task, you will check that the Store Index page will now display the Genr
 In this exercise, you will learn how to query the database using parameters, and how to use Query Result Shaping, a feature that reduces the number database accesses retrieving data in a more efficient way.
 
 > [!NOTE]
-> For further information on Query Result Shaping, visit the following [msdn article](https://msdn.microsoft.com/en-us/library/bb896272&amp;#040;v=vs.100&amp;#041;.aspx).
+> For further information on Query Result Shaping, visit the following [msdn article](https://msdn.microsoft.com/library/bb896272&amp;#040;v=vs.100&amp;#041;.aspx).
 
 
 <a id="Ex3Task1"></a>

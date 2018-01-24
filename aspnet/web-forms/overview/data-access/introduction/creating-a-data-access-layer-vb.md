@@ -84,7 +84,7 @@ For example, the DataReader and the DataSet (by default) are loosely-typed objec
 To return strongly-typed objects, developers can either create their own custom business objects or use Typed DataSets. A business object is implemented by the developer as a class whose properties typically reflect the columns of the underlying database table the business object represents. A Typed DataSet is a class generated for you by Visual Studio based on a database schema and whose members are strongly-typed according to this schema. The Typed DataSet itself consists of classes that extend the ADO.NET DataSet, DataTable, and DataRow classes. In addition to strongly-typed DataTables, Typed DataSets now also include TableAdapters, which are classes with methods for populating the DataSet's DataTables and propagating modifications within the DataTables back to the database.
 
 > [!NOTE]
-> For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx).
+> For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/library/ms978496.aspx).
 
 
 We'll use strongly-typed DataSets for these tutorials' architecture. Figure 3 illustrates the workflow between the different layers of an application that uses Typed DataSets.
@@ -288,7 +288,7 @@ There are two patterns commonly used for inserting, updating, and deleting data.
 **Figure 21**: Each Insert, Update, and Delete Request is Sent to the Database Immediately ([Click to view full-size image](creating-a-data-access-layer-vb/_static/image57.png))
 
 
-The other pattern, which I'll refer to as the batch update pattern, is to update an entire DataSet, DataTable, or collection of DataRows in one method call. With this pattern a developer deletes, inserts, and modifies the DataRows in a DataTable and then passes those DataRows or DataTable into an update method. This method then enumerates the DataRows passed in, determines whether or not they've been modified, added, or deleted (via the DataRow's [RowState property](https://msdn.microsoft.com/en-us/library/system.data.datarow.rowstate.aspx) value), and issues the appropriate database request for each record.
+The other pattern, which I'll refer to as the batch update pattern, is to update an entire DataSet, DataTable, or collection of DataRows in one method call. With this pattern a developer deletes, inserts, and modifies the DataRows in a DataTable and then passes those DataRows or DataTable into an update method. This method then enumerates the DataRows passed in, determines whether or not they've been modified, added, or deleted (via the DataRow's [RowState property](https://msdn.microsoft.com/library/system.data.datarow.rowstate.aspx) value), and issues the appropriate database request for each record.
 
 
 [![All Changes are Synchronized with the Database When the Update Method is Invoked](creating-a-data-access-layer-vb/_static/image59.png)](creating-a-data-access-layer-vb/_static/image58.png)
@@ -334,7 +334,7 @@ To create such a custom method, return to the DataSet Designer. Right-click on t
 **Figure 25**: Create a Method to Add a New Row to the `Products` Table ([Click to view full-size image](creating-a-data-access-layer-vb/_static/image69.png))
 
 
-On the next screen the `InsertCommand`'s `CommandText` appears. Augment this query by adding `SELECT SCOPE_IDENTITY()` at the end of the query, which will return the last identity value inserted into an `IDENTITY` column in the same scope. (See the [technical documentation](https://msdn.microsoft.com/en-us/library/ms190315.aspx) for more information about `SCOPE_IDENTITY()` and why you probably want to [use SCOPE\_IDENTITY() in lieu of @@IDENTITY](http://weblogs.sqlteam.com/travisl/archive/2003/10/29/405.aspx).) Make sure that you end the `INSERT` statement with a semi-colon before adding the `SELECT` statement.
+On the next screen the `InsertCommand`'s `CommandText` appears. Augment this query by adding `SELECT SCOPE_IDENTITY()` at the end of the query, which will return the last identity value inserted into an `IDENTITY` column in the same scope. (See the [technical documentation](https://msdn.microsoft.com/library/ms190315.aspx) for more information about `SCOPE_IDENTITY()` and why you probably want to [use SCOPE\_IDENTITY() in lieu of @@IDENTITY](http://weblogs.sqlteam.com/travisl/archive/2003/10/29/405.aspx).) Make sure that you end the `INSERT` statement with a semi-colon before adding the `SELECT` statement.
 
 
 [![Augment the Query to Return the SCOPE_IDENTITY() Value](creating-a-data-access-layer-vb/_static/image71.png)](creating-a-data-access-layer-vb/_static/image70.png)
@@ -515,11 +515,11 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Building a DAL using Strongly Typed TableAdapters and DataTables in VS 2005 and ASP.NET 2.0](https://weblogs.asp.net/scottgu/435498)
-- [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx)
+- [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/library/ms978496.aspx)
 - [Build a Data Access Layer with the Visual Studio 2005 DataSet Designer](http://www.theserverside.net/articles/showarticle.tss?id=DataSetDesigner)
 - [Encrypting Configuration Information in ASP.NET 2.0 Applications](http://aspnet.4guysfromrolla.com/articles/021506-1.aspx)
-- [TableAdapter Overview](https://msdn.microsoft.com/en-us/library/bz9tthwx.aspx)
-- [Working with a Typed DataSet](https://msdn.microsoft.com/en-us/library/esbykkzb.aspx)
+- [TableAdapter Overview](https://msdn.microsoft.com/library/bz9tthwx.aspx)
+- [Working with a Typed DataSet](https://msdn.microsoft.com/library/esbykkzb.aspx)
 - [Using Strongly-Typed Data Access in Visual Studio 2005 and ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/020806-1.aspx)
 - [How to Extend TableAdapter Methods](https://blogs.msdn.com/vbteam/archive/2005/05/04/ExtendingTableAdapters.aspx)
 - [Retrieving Scalar Data from a Stored Procedure](http://aspnet.4guysfromrolla.com/articles/062905-1.aspx)

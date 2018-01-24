@@ -18,7 +18,7 @@ by [Mike Wasson](https://github.com/MikeWasson) and [Rick Anderson](https://twit
 
 [Download Completed Project](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample)
 
-This tutorial shows how to call a web API from a .NET application, using [System.Net.Http.HttpClient.](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient(v=vs.110).aspx)
+This tutorial shows how to call a web API from a .NET application, using [System.Net.Http.HttpClient.](https://msdn.microsoft.com/library/system.net.http.httpclient(v=vs.110).aspx)
 
 In this tutorial, a client app is written that consumes the following web API:
 
@@ -104,7 +104,7 @@ The following code sends a GET request for a product:
 
 The **GetAsync** method sends the HTTP GET request. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsAsync** method is asynchronous because the response body can be arbitrarily large.
 
-**HttpClient** does not throw an exception when the HTTP response contains an error code. Instead, the **IsSuccessStatusCode** property is **false** if the status is an error code. If you prefer to treat HTTP error codes as exceptions, call [HttpResponseMessage.EnsureSuccessStatusCode](https://msdn.microsoft.com/en-us/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) on the response object. `EnsureSuccessStatusCode` throws an exception if the status code falls outside the range 200&ndash;299. Note that **HttpClient** can throw exceptions for other reasons &mdash; for example, if the request times out.
+**HttpClient** does not throw an exception when the HTTP response contains an error code. Instead, the **IsSuccessStatusCode** property is **false** if the status is an error code. If you prefer to treat HTTP error codes as exceptions, call [HttpResponseMessage.EnsureSuccessStatusCode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) on the response object. `EnsureSuccessStatusCode` throws an exception if the status code falls outside the range 200&ndash;299. Note that **HttpClient** can throw exceptions for other reasons &mdash; for example, if the request times out.
 
 <a id="MediaTypeFormatters"></a>
 ### Media-Type Formatters to Deserialize
@@ -162,7 +162,7 @@ Like GET, a DELETE request does not have a request body. You don't need to speci
 
 To test the client app:
 
-1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server) and run the server app. [Download instructions](https://docs.microsoft.com/en-us/aspnet/core/tutorials/#how-to-download-a-sample). Verify the server app is working. For exaxmple, `http://localhost:64195/api/products` should return a list of products.
+1. [Download](https://github.com/aspnet/Docs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server) and run the server app. [Download instructions](https://docs.microsoft.com/aspnet/core/tutorials/#how-to-download-a-sample). Verify the server app is working. For exaxmple, `http://localhost:64195/api/products` should return a list of products.
 2. Set the base URI for HTTP requests. Change the port number to the port used in the server app.
 	[!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 
