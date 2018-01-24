@@ -213,7 +213,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > [!code-xml[Main](overview/samples/sample2.xml)]
 > 
-> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
+> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) on the MSDN Web site.
 
 
 #### Issue: Uninstalling the .NET Framework version 4 disables ASP.NET Web Pages with Razor Syntax
@@ -558,4 +558,4 @@ For more information about WebMatrix 1.0, see the following websites:
 - [ASP.NET](https://asp.net/webmatrix)
 - [Microsoft.com/web](https://www.microsoft.com/web)
 
-© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.com/en-us/cc300389.aspx).
+© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.cos/cc300389.aspx).

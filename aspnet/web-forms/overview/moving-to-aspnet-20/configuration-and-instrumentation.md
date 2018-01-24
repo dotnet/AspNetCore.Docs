@@ -73,13 +73,13 @@ Many configuration classes and methods are similar to each other. The following 
 
 | **Configuration class or namespace** | **Description** |
 | --- | --- |
-| [System.Configuration](https://msdn.microsoft.com/en-us/library/system.configuration.aspx) namespace | Contains the main configuration classes for all .NET Framework applications. Section handler classes are used to obtain configuration data for a section from methods, such as GetSection and GetSectionGroup. These two methods are non-static. |
+| [System.Configuration](https://msdn.microsoft.com/library/system.configuration.aspx) namespace | Contains the main configuration classes for all .NET Framework applications. Section handler classes are used to obtain configuration data for a section from methods, such as GetSection and GetSectionGroup. These two methods are non-static. |
 | System.Configuration.Configuration class | Represents a set of configuration data for a computer, application, Web directory, or other resource. This class contains useful methods, such as GetSection and GetSectionGroup, for updating configuration settings and obtaining references to sections and section groups. This class is used as a return type for methods that obtain design-time configuration data, such as the methods of the WebConfigurationManager and ConfigurationManager classes. |
-| System.Web.Configuration namespace | Contains the section handler classes for the ASP.NET configuration sections defined at [ASP.NET Configuration Settings](https://msdn.microsoft.com/en-us/library/b5ysx397.aspx). Section handler classes are used to obtain configuration data for a section from methods, such as GetSection and GetSectionGroup. |
+| System.Web.Configuration namespace | Contains the section handler classes for the ASP.NET configuration sections defined at [ASP.NET Configuration Settings](https://msdn.microsoft.com/library/b5ysx397.aspx). Section handler classes are used to obtain configuration data for a section from methods, such as GetSection and GetSectionGroup. |
 | System.Web.Configuration.WebConfigurationManager class | Provides useful methods for obtaining references to run-time and design-time configuration settings. These methods use the System.Configuration.Configuration class as a return type. You can use the static GetSection method of this class or the non-static GetSection method of the System.Configuration.ConfigurationManager class interchangeably. For Web application configurations, the System.Web.Configuration.WebConfigurationManager class is recommended instead of the System.Configuration.ConfigurationManager class. |
-| [System.Configuration.Provider](https://msdn.microsoft.com/en-us/library/system.configuration.provider.aspx) namespace | Provides a way to customize and extend the configuration provider. This is the base class for all provider classes in the configuration system. |
-| [System.Web.Management](https://msdn.microsoft.com/en-us/library/system.web.management.aspx) namespace | Contains classes and interfaces for managing and monitoring the health of Web applications. Strictly speaking, this namespace is not considered part of the configuration API. For example, tracing and event firing is accomplished by the classes in this namespace. |
-| [System.Management.Instrumentation](https://msdn.microsoft.com/en-us/library/system.management.instrumentation.aspx) namespace | Provides the classes necessary for the instrumentation of applications to expose their management information and events through Windows Management Instrumentation (WMI) to potential consumers. ASP.NET health monitoring uses WMI to deliver events. Strictly speaking, this namespace is not considered part of the configuration API. |
+| [System.Configuration.Provider](https://msdn.microsoft.com/library/system.configuration.provider.aspx) namespace | Provides a way to customize and extend the configuration provider. This is the base class for all provider classes in the configuration system. |
+| [System.Web.Management](https://msdn.microsoft.com/library/system.web.management.aspx) namespace | Contains classes and interfaces for managing and monitoring the health of Web applications. Strictly speaking, this namespace is not considered part of the configuration API. For example, tracing and event firing is accomplished by the classes in this namespace. |
+| [System.Management.Instrumentation](https://msdn.microsoft.com/library/system.management.instrumentation.aspx) namespace | Provides the classes necessary for the instrumentation of applications to expose their management information and events through Windows Management Instrumentation (WMI) to potential consumers. ASP.NET health monitoring uses WMI to deliver events. Strictly speaking, this namespace is not considered part of the configuration API. |
 
 ## Reading from ASP.NET Configuration Files
 
@@ -254,11 +254,11 @@ You can set several types of options using the ASP.NET SQL Server Registration t
 
 Several ASP.NET application services rely on a provider to manage storing and retrieving data from a data source. Each provider is specific to the data source. ASP.NET includes a SQL Server provider for the following ASP.NET features:
 
-- Membership (the [SqlMembershipProvider](https://msdn.microsoft.com/en-us/library/system.web.security.sqlmembershipprovider.aspx) class).
-- Role Management (the [SqlRoleProvider](https://msdn.microsoft.com/en-us/library/system.web.security.sqlroleprovider.aspx) class).
-- Profile (the [SqlProfileProvider](https://msdn.microsoft.com/en-us/library/system.web.profile.sqlprofileprovider.aspx) class).
-- Web Parts Personalization (the [SqlPersonalizationProvider](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx) class).
-- Web Events (the [SqlWebEventProvider](https://msdn.microsoft.com/en-us/library/system.web.management.sqlwebeventprovider.aspx) class).
+- Membership (the [SqlMembershipProvider](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx) class).
+- Role Management (the [SqlRoleProvider](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx) class).
+- Profile (the [SqlProfileProvider](https://msdn.microsoft.com/library/system.web.profile.sqlprofileprovider.aspx) class).
+- Web Parts Personalization (the [SqlPersonalizationProvider](https://msdn.microsoft.com/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx) class).
+- Web Events (the [SqlWebEventProvider](https://msdn.microsoft.com/library/system.web.management.sqlwebeventprovider.aspx) class).
 
 When you install ASP.NET, the Machine.config file for your server includes configuration elements that specify SQL Server providers for each of the ASP.NET features that rely on a provider. These providers are configured, by default, to connect to a local user instance of SQL Server Express 2005. If you change the default connection string used by the providers, then before you can use any of the ASP.NET features configured in the machine configuration, you must install the SQL Server database and the database elements for your chosen feature using Aspnet\_regsql.exe. If the database that you specify with the SQL registration tool does not already exist (aspnetdb will be the default database if one is not specified on the command line), then the current user must have rights to create databases in SQL Server as well as to create schema elements within a database.
 
@@ -296,7 +296,7 @@ The following options are available when running aspnet\_regbrowser.exe:
 
 The ASP.NET Compilation tool can be used in two general ways: for in-place compilation and compilation for deployment, where a target output directory is specified.
 
-### [Compiling an Application in Place](https://msdn.microsoft.com/en-us/library/ms229863.aspx)
+### [Compiling an Application in Place](https://msdn.microsoft.com/library/ms229863.aspx)
 
 The ASP.NET Compilation tool can compile an application in place, that is, it mimics the behavior of making multiple requests to the application, thus causing regular compilation. Users of a pre-compiled site will not experience a delay caused by compiling the page on first request.
 
@@ -312,7 +312,7 @@ You can also recompile an application in place after adding new source files to 
 > Compilation of an application that contains a nested application does not compile the nested application. The nested application must be compiled separately.
 
 
-### [Compiling an Application for Deployment](https://msdn.microsoft.com/en-us/library/ms229863.aspx)
+### [Compiling an Application for Deployment](https://msdn.microsoft.com/library/ms229863.aspx)
 
 You compile an application for deployment (compilation to a target location) by specifying the targetDir parameter. The targetDir can be the final location for the Web application, or the compiled application can be further deployed. Using the **-u** option compiles the application in such a way that you can make changes to certain files in the compiled application without recompiling it. Aspnet\_compiler.exe makes a distinction between static and dynamic file types, and handles them differently when creating the resulting application.
 
@@ -344,18 +344,18 @@ The following table describes how the ASP.NET Compilation tool handles different
 | .cs, .vb, .jsl, .cpp (not including code-behind files for the file types listed earlier) | Source code that is referenced by the assemblies generated from .ascx, .ashx, or .aspx files is compiled into assemblies and placed in the Bin directory. No source files are copied. |
 | Custom file types | These files are compiled like dynamic files. Depending on the type of file they are based on, the compiler can place mapping files in the output directories. |
 | Files in the App\_Code subdirectory | Source code files in this subdirectory are compiled into assemblies and placed in the Bin directory. |
-| Files in the App\_GlobalResources subdirectory | These files are compiled into assemblies and placed in the Bin directory. No App\_GlobalResources subdirectory is created under the main output directory. If the configuration file specifies appliesTo="All", .resx and .resources files are copied to the output directories. They are not copied if they are referenced by a [BuildProvider](https://msdn.microsoft.com/en-us/library/system.web.configuration.buildprovider.aspx). |
+| Files in the App\_GlobalResources subdirectory | These files are compiled into assemblies and placed in the Bin directory. No App\_GlobalResources subdirectory is created under the main output directory. If the configuration file specifies appliesTo="All", .resx and .resources files are copied to the output directories. They are not copied if they are referenced by a [BuildProvider](https://msdn.microsoft.com/library/system.web.configuration.buildprovider.aspx). |
 | .resx and .resource files in the App\_LocalResources subdirectory | These files are compiled into assemblies with unique names and placed in the Bin directory. No .resx or .resource files are copied to the output directories. |
 | .skin files in the App\_Themes subdirectory | Themes are compiled into assemblies and placed in the Bin directory. Stub files are created for .skin files and placed in the corresponding output directory. Static files (such as .css) are copied to the output directories. |
 | .browser Web.config Static file types Assemblies already present in the Bin directory | These files are copied as is to the output directory. |
 
-### [Fixed Assembly Names](https://msdn.microsoft.com/en-us/library/ms229863.aspx##)
+### [Fixed Assembly Names](https://msdn.microsoft.com/library/ms229863.aspx##)
 
 Some scenarios, such as deploying a Web application using the MSI Windows Installer, require the use of consistent file names and contents, as well as consistent directory structures to identify assemblies or configuration settings for updates. In those cases, you can use the **-fixednames** option to specify that the ASP.NET Compilation tool should compile an assembly for each source file instead of using the where multiple pages are compiled into assemblies. This can lead to a large number of assemblies, so if you are concerned with scalability you should use this option with caution.
 
-### [Strong-Name Compilation](https://msdn.microsoft.com/en-us/library/ms229863.aspx##)
+### [Strong-Name Compilation](https://msdn.microsoft.com/library/ms229863.aspx##)
 
-The **-aptca**, **-delaysign**, **-keycontainer** and **-keyfile** options are provided so that you can use Aspnet\_compiler.exe to create strongly named assemblies without using the [Strong Name Tool (Sn.exe)](https://msdn.microsoft.com/en-us/library/k5b5tt23.aspx) separately. These options correspond, respectively, to **AllowPartiallyTrustedCallersAttribute**, **AssemblyDelaySignAttribute**, **AssemblyKeyNameAttribute**, and **AssemblyKeyFileAttribute**.
+The **-aptca**, **-delaysign**, **-keycontainer** and **-keyfile** options are provided so that you can use Aspnet\_compiler.exe to create strongly named assemblies without using the [Strong Name Tool (Sn.exe)](https://msdn.microsoft.com/library/k5b5tt23.aspx) separately. These options correspond, respectively, to **AllowPartiallyTrustedCallersAttribute**, **AssemblyDelaySignAttribute**, **AssemblyKeyNameAttribute**, and **AssemblyKeyFileAttribute**.
 
 Discussion of these attributes is outside of the scope of this course.
 
@@ -442,4 +442,4 @@ In this lab, you will create code that will allow you to toggle the logging of a
 
 ## More Information:
 
-ASP.NET 2.0's Provider model allows you to create your own providers for not only application instrumentation, but for many other uses as well such as Membership, Profiles, etc. For detailed information on writing a custom provider to log application events to a text file, visit [this link](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnaspp/html/ASPNETProvMod_Prt6.asp).
+ASP.NET 2.0's Provider model allows you to create your own providers for not only application instrumentation, but for many other uses as well such as Membership, Profiles, etc. For detailed information on writing a custom provider to log application events to a text file, visit [this link](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/ASPNETProvMod_Prt6.asp).

@@ -187,9 +187,9 @@ Let's examine both approaches.
 
 ### Using the Loosely-Typed`Page.Master`Property
 
-All ASP.NET web pages must derive from the `Page` class, which is located in the `System.Web.UI` namespace. The `Page` class includes a [`Master` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.master.aspx) that returns a reference to the page's master page. If the page does not have a master page `Master` returns `Nothing`.
+All ASP.NET web pages must derive from the `Page` class, which is located in the `System.Web.UI` namespace. The `Page` class includes a [`Master` property](https://msdn.microsoft.com/library/system.web.ui.page.master.aspx) that returns a reference to the page's master page. If the page does not have a master page `Master` returns `Nothing`.
 
-The `Master` property returns an object of type [`MasterPage`](https://msdn.microsoft.com/en-us/library/system.web.ui.masterpage.aspx) (also located in the `System.Web.UI` namespace) which is the base type from which all master pages derive from. Therefore, to use public properties or methods defined in our website's master page we must cast the `MasterPage` object returned from the `Master` property to the appropriate type. Because we named our master page file `Site.master`, the code-behind class was named `Site`. Therefore, the following code casts the `Page.Master` property to an instance of the `Site` class.
+The `Master` property returns an object of type [`MasterPage`](https://msdn.microsoft.com/library/system.web.ui.masterpage.aspx) (also located in the `System.Web.UI` namespace) which is the base type from which all master pages derive from. Therefore, to use public properties or methods defined in our website's master page we must cast the `MasterPage` object returned from the `Master` property to the appropriate type. Because we named our master page file `Site.master`, the code-behind class was named `Site`. Therefore, the following code casts the `Page.Master` property to an instance of the `Site` class.
 
 
 [!code-vb[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample8.vb)]
@@ -212,7 +212,7 @@ If you look closely you can see that an ASP.NET page's code-behind class is a pa
 
 The automatic code generation that occurs whenever an ASP.NET page is visited paves the way for some rather interesting and useful possibilities. In the case of master pages, if we tell the ASP.NET engine what master page is being used by our content page it generates a strongly-typed `Master` property for us.
 
-Use the [`@MasterType` directive](https://msdn.microsoft.com/en-us/library/ms228274.aspx) to inform the ASP.NET engine of the content page's master page type. The `@MasterType` directive can accept either the type name of the master page or its file path. To specify that the `AddProduct.aspx` page uses `Site.master` as its master page, add the following directive to the top of `AddProduct.aspx`:
+Use the [`@MasterType` directive](https://msdn.microsoft.com/library/ms228274.aspx) to inform the ASP.NET engine of the content page's master page type. The `@MasterType` directive can accept either the type name of the master page or its file path. To specify that the `AddProduct.aspx` page uses `Site.master` as its master page, add the following directive to the top of `AddProduct.aspx`:
 
 
 [!code-aspx[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample9.aspx)]

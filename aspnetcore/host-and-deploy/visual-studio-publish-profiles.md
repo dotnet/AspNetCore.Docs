@@ -325,7 +325,7 @@ The following `<MsDeploySkipRules>` element markup exludes all files from the *w
 <ItemGroup>
   <MsDeploySkipRules Include="CustomSkipFolder">
     <ObjectName>dirPath</ObjectName>
-    <AbsolutePath>wwwroot\content</AbsolutePath>
+    <AbsolutePath>wwwroot\\content</AbsolutePath>
   </MsDeploySkipRules>
 </ItemGroup>
 ```

@@ -316,7 +316,7 @@ The shopping cart supports adding, deleting, and updating items that the user ha
 
 ## Addition Information
 
-[ASP.NET Session State Overview](https://msdn.microsoft.com/en-us/library/ms178581.aspx)
+[ASP.NET Session State Overview](https://msdn.microsoft.com/library/ms178581.aspx)
 
 >[!div class="step-by-step"]
 [Previous](display_data_items_and_details.md)

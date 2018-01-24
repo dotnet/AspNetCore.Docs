@@ -132,9 +132,9 @@ You can use any source control environment to implement the DevOps branching str
 
 [Git](http://git-scm.com/) is a DVCS that is has become very popular. When you use Git for source control, you have a complete copy of the repository with all of its history on your local computer. Many people prefer that because it's easier to continue working when you're not connected to the network -- you can continue to do commits and rollbacks, create and switch branches, and so forth. Even when you're connected to the network, it's easier and quicker to create branches and switch branches when everything is local. You can also do local commits and rollbacks without having an impact on other developers. And you can batch commits before sending them to the server.
 
-[Microsoft Visual Studio Online](https://www.visualstudio.com/)(VSO), formerly known as Team Foundation Service, offers both Git and [Team Foundation Version Control](https://msdn.microsoft.com/en-us/library/ms181237(v=vs.120).aspx) (TFVC; centralized source control). Here at Microsoft in the Azure group some teams use centralized source control, some use distributed, and some use a mix (centralized for some projects and distributed for other projects). The VSO service is free for up to 5 users. You can sign up for a free plan [here](https://go.microsoft.com/fwlink/?LinkId=307137).
+[Microsoft Visual Studio Online](https://www.visualstudio.com/)(VSO), formerly known as Team Foundation Service, offers both Git and [Team Foundation Version Control](https://msdn.microsoft.com/library/ms181237(v=vs.120).aspx) (TFVC; centralized source control). Here at Microsoft in the Azure group some teams use centralized source control, some use distributed, and some use a mix (centralized for some projects and distributed for other projects). The VSO service is free for up to 5 users. You can sign up for a free plan [here](https://go.microsoft.com/fwlink/?LinkId=307137).
 
-Visual Studio 2013 includes built-in first-class [Git support](https://msdn.microsoft.com/en-us/library/hh850437.aspx); here's a quick demo of how that works.
+Visual Studio 2013 includes built-in first-class [Git support](https://msdn.microsoft.com/library/hh850437.aspx); here's a quick demo of how that works.
 
 With a project open in Visual Studio 2013, right-click the solution in **Solution Explorer**, and choose **Add Solution to Source Control**.
 
@@ -182,7 +182,7 @@ If you switch back to the master branch, the contents of the *\_Layout.cshtml* f
 
 This a simple example of how you can quickly create a branch and flip back and forth between branches. This feature enables a highly agile workflow using the branch structure and automation scripts presented in the [Automate Everything](automate-everything.md) chapter. For example, you can be working in the Development branch, create a hot fix branch off of master, switch to the new branch, make your changes there and commit them, and then switch back to the Development branch and continue what you were doing.
 
-What you've seen here is how you work with a local Git repository in Visual Studio. In a team environment you typically also push changes up to a common repository. The Visual Studio tools also enable you to point to a remote Git repository. You can use GitHub.com for that purpose, or you can use [Git in Visual Studio Online](https://msdn.microsoft.com/en-us/library/hh850437.aspx) integrated with all the other Visual Studio Online capabilities such as work item and bug tracking.
+What you've seen here is how you work with a local Git repository in Visual Studio. In a team environment you typically also push changes up to a common repository. The Visual Studio tools also enable you to point to a remote Git repository. You can use GitHub.com for that purpose, or you can use [Git in Visual Studio Online](https://msdn.microsoft.com/library/hh850437.aspx) integrated with all the other Visual Studio Online capabilities such as work item and bug tracking.
 
 This isn't the only way you can implement an agile branching strategy, of course. You can enable the same agile workflow using a centralized source control repository.
 
@@ -197,14 +197,14 @@ The [Visual Studio Online](https://www.visualstudio.com/) portal provides docume
 
 For more information about TFVC (centralized version control) and Git (distributed version control), see the following resources:
 
-- [Which version control system should I use: TFVC or Git?](https://msdn.microsoft.com/en-us/library/vstudio/ms181368.aspx#tfvc_or_git_summary) MSDN documentation, includes a table summarizing the differences between TFVC and Git.
+- [Which version control system should I use: TFVC or Git?](https://msdn.microsoft.com/library/vstudio/ms181368.aspx#tfvc_or_git_summary) MSDN documentation, includes a table summarizing the differences between TFVC and Git.
 - [Well, I like Team Foundation Server and I like Git, but which is better?](https://blogs.msdn.com/b/visualstudiouk/archive/2013/08/05/well-i-like-team-foundation-server-and-i-like-git-but-which-is-better.aspx) Comparison of Git and TFVC.
 
 For more information about branching strategies, see the following resources:
 
-- [Building a Release Pipeline with Team Foundation Server 2012](https://msdn.microsoft.com/en-us/library/dn449957.aspx). Microsoft Patterns and Practices documentation. See chapter 6 for a discussion of branching strategies. Advocates feature toggles over feature branches, and if branches for features are used, advocates keeping them short-lived (hours or days at most).
+- [Building a Release Pipeline with Team Foundation Server 2012](https://msdn.microsoft.com/library/dn449957.aspx). Microsoft Patterns and Practices documentation. See chapter 6 for a discussion of branching strategies. Advocates feature toggles over feature branches, and if branches for features are used, advocates keeping them short-lived (hours or days at most).
 - [Version Control Guide](https://aka.ms/vsarsolutions). Guide to branching strategies by the ALM Rangers. See Branching Strategies.pdf on the Downloads tab.
-- [Software Development with Feature Toggles](https://msdn.microsoft.com/en-us/magazine/dn683796.aspx). MSDN Magazine article.
+- [Software Development with Feature Toggles](https://msdn.microsoft.com/magazine/dn683796.aspx). MSDN Magazine article.
 - [Feature Toggle](http://martinfowler.com/bliki/FeatureToggle.html). Introduction to feature toggles / feature flags on Martin Fowler's blog.
 - [Feature Toggles vs Feature Branches](http://geekswithblogs.net/Optikal/archive/2013/02/10/152069.aspx). Another blog post about feature toggles, by Dylan Smith.
 

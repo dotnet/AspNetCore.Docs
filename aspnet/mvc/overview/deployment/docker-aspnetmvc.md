@@ -45,9 +45,9 @@ The [finished application](https://github.com/dotnet/docs/tree/master/samples/fr
 
 The development machine must be running
 
-- [Windows 10 Anniversary Update](https://www.microsoft.com/en-us/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/en-us/cloud-platform/windows-server) (or higher).
+- [Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (or higher).
 - [Docker for Windows](https://docs.docker.com/docker-for-windows/) - version Stable 1.13.0 or 1.12 Beta 26 (or newer versions)
-- [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx).
+- [Visual Studio 2017](https://www.visualstudio.com/visual-studio-homepage-vs.aspx).
 
 > [!IMPORTANT]
 > If you are using Windows Server 2016, follow the

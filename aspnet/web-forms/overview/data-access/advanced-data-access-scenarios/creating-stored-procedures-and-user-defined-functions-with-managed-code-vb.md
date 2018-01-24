@@ -28,12 +28,12 @@ Databases like Microsoft s SQL Server 2005 use the [Transact-Structured Query La
 
 At its core, SQL is designed for working with sets of data. The `SELECT`, `UPDATE`, and `DELETE` statements inherently apply to all records in the corresponding table and are only limited by their `WHERE` clauses. Yet there are many language features designed for working with one record at a time and for manipulating scalar data. [`CURSOR` s](http://www.sqlteam.com/item.asp?ItemID=553) allow for a set of records to be looped through one at a time. String manipulation functions like `LEFT`, `CHARINDEX`, and `PATINDEX` work with scalar data. SQL also includes control flow statements like `IF` and `WHILE`.
 
-Prior to Microsoft SQL Server 2005, stored procedures and UDFs could only be defined as a collection of T-SQL statements. SQL Server 2005, however, was designed to provide integration with the [Common Language Runtime (CLR)](https://msdn.microsoft.com/en-us/netframework/aa497266.aspx), which is the runtime used by all .NET assemblies. Consequently, the stored procedures and UDFs in a SQL Server 2005 database can be created using managed code. That is, you can create a stored procedure or UDF as a method in a Visual Basic class. This enables these stored procedures and UDFs to utilize functionality in the .NET Framework and from your own custom classes.
+Prior to Microsoft SQL Server 2005, stored procedures and UDFs could only be defined as a collection of T-SQL statements. SQL Server 2005, however, was designed to provide integration with the [Common Language Runtime (CLR)](https://msdn.microsoft.com/netframework/aa497266.aspx), which is the runtime used by all .NET assemblies. Consequently, the stored procedures and UDFs in a SQL Server 2005 database can be created using managed code. That is, you can create a stored procedure or UDF as a method in a Visual Basic class. This enables these stored procedures and UDFs to utilize functionality in the .NET Framework and from your own custom classes.
 
 In this tutorial we will examine how to create managed stored procedures and User-Defined Functions and how to integrate them into our Northwind database. Let s get started!
 
 > [!NOTE]
-> Managed database objects offer some advantages over their SQL counterparts. Language richness and familiarity and the ability to reuse existing code and logic are the main advantages. But managed database objects are likely to be less efficient when working with sets of data that do not involve much procedural logic. For a more thorough discussion on the advantages of using managed code versus T-SQL, check out the [Advantages of Using Managed Code to Create Database Objects](https://msdn.microsoft.com/en-us/library/k2e1fb36(VS.80).aspx).
+> Managed database objects offer some advantages over their SQL counterparts. Language richness and familiarity and the ability to reuse existing code and logic are the main advantages. But managed database objects are likely to be less efficient when working with sets of data that do not involve much procedural logic. For a more thorough discussion on the advantages of using managed code versus T-SQL, check out the [Advantages of Using Managed Code to Create Database Objects](https://msdn.microsoft.com/library/k2e1fb36(VS.80).aspx).
 
 
 ## Step 1: Moving the Northwind Database Out of`App_Data`
@@ -76,7 +76,7 @@ Click the OK button to attach the database. The Attach Databases dialog box will
 
 ## Step 2: Creating a New Solution and SQL Server Project in Visual Studio
 
-To create managed stored procedures or UDFs in SQL Server 2005 we will write the stored procedure and UDF logic as Visual Basic code in a class. Once the code has been written, we will need to compile this class into an assembly (a `.dll` file), register the assembly with the SQL Server database, and then create a stored procedure or UDF object in the database that points to the corresponding method in the assembly. These steps can all be performed manually. We can create the code in any text editor, compile it from the command line using the Visual Basic compiler (`vbc.exe`), register it with the database using the [`CREATE ASSEMBLY`](https://msdn.microsoft.com/en-us/library/ms189524.aspx) command or from Management Studio, and add the stored procedure or UDF object through similar means. Fortunately, the Professional and Team Systems versions of Visual Studio include a SQL Server Project type that automates these tasks. In this tutorial we will walk through using the SQL Server Project type to create a managed stored procedure and UDF.
+To create managed stored procedures or UDFs in SQL Server 2005 we will write the stored procedure and UDF logic as Visual Basic code in a class. Once the code has been written, we will need to compile this class into an assembly (a `.dll` file), register the assembly with the SQL Server database, and then create a stored procedure or UDF object in the database that points to the corresponding method in the assembly. These steps can all be performed manually. We can create the code in any text editor, compile it from the command line using the Visual Basic compiler (`vbc.exe`), register it with the database using the [`CREATE ASSEMBLY`](https://msdn.microsoft.com/library/ms189524.aspx) command or from Management Studio, and add the stored procedure or UDF object through similar means. Fortunately, the Professional and Team Systems versions of Visual Studio include a SQL Server Project type that automates these tasks. In this tutorial we will walk through using the SQL Server Project type to create a managed stored procedure and UDF.
 
 > [!NOTE]
 > If you are using Visual Web Developer or the Standard edition of Visual Studio, then you will have to use the manual approach instead. Step 13 provides detailed instructions for performing these steps manually. I encourage you to read Steps 2 through 12 before reading Step 13 since these steps include important SQL Server configuration instructions that must be applied regardless of what version of Visual Studio you are using.
@@ -144,14 +144,14 @@ This will create a new Visual Basic class file with the following content:
 
 [!code-vb[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample2.vb)]
 
-Note that the stored procedure is implemented as a `Shared` method within a `Partial` class file named `StoredProcedures`. Moreover, the `GetDiscontinuedProducts` method is decorated with the [`SqlProcedure` attribute](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlprocedureattribute.aspx), which marks the method as a stored procedure.
+Note that the stored procedure is implemented as a `Shared` method within a `Partial` class file named `StoredProcedures`. Moreover, the `GetDiscontinuedProducts` method is decorated with the [`SqlProcedure` attribute](https://msdn.microsoft.com/library/microsoft.sqlserver.server.sqlprocedureattribute.aspx), which marks the method as a stored procedure.
 
 The following code creates a `SqlCommand` object and sets its `CommandText` to a `SELECT` query that returns all of the columns from the `Products` table for products whose `Discontinued` field equals 1. It then executes the command and sends the results back to the client application. Add this code to the `GetDiscontinuedProducts` method.
 
 
 [!code-vb[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample3.vb)]
 
-All managed database objects have access to a [`SqlContext` object](https://msdn.microsoft.com/en-us/library/ms131108.aspx) that represents the context of the caller. The `SqlContext` provides access to a [`SqlPipe` object](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.aspx) via its [`Pipe` property](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlcontext.pipe.aspx). This `SqlPipe` object is used to ferry information between the SQL Server database and the calling application. As its name implies, the [`ExecuteAndSend` method](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.executeandsend.aspx) executes a passed-in `SqlCommand` object and sends the results back to the client application.
+All managed database objects have access to a [`SqlContext` object](https://msdn.microsoft.com/library/ms131108.aspx) that represents the context of the caller. The `SqlContext` provides access to a [`SqlPipe` object](https://msdn.microsoft.com/library/microsoft.sqlserver.server.sqlpipe.aspx) via its [`Pipe` property](https://msdn.microsoft.com/library/microsoft.sqlserver.server.sqlcontext.pipe.aspx). This `SqlPipe` object is used to ferry information between the SQL Server database and the calling application. As its name implies, the [`ExecuteAndSend` method](https://msdn.microsoft.com/library/microsoft.sqlserver.server.sqlpipe.executeandsend.aspx) executes a passed-in `SqlCommand` object and sends the results back to the client application.
 
 > [!NOTE]
 > Managed database objects are best suited for stored procedures and UDFs that use procedural logic rather than set-based logic. Procedural logic involves working with sets of data on a row-by-row basis or working with scalar data. The `GetDiscontinuedProducts` method we just created, however, involves no procedural logic. Therefore, it would ideally be implemented as a T-SQL stored procedure. It is implemented as a managed stored procedure to demonstrate the steps necessary for creating and deploying managed stored procedures.
@@ -209,7 +209,7 @@ Note that each configuration setting in Figure 12 has four values listed with it
 
 [!code-sql[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample5.sql)]
 
-If you re-run the `exec sp_configure` you will see that the above statement updated the clr enabled setting s config value to 1, but that the run value is still set to 0. For this configuration change to take affect we need to execute the [`RECONFIGURE` command](https://msdn.microsoft.com/en-us/library/ms176069.aspx), which will set the run value to the current config value. Simply enter `RECONFIGURE` in the query window and click the Execute icon in the Toolbar. If you run `exec sp_configure` now you should see a value of 1 for the clr enabled setting s config and run values.
+If you re-run the `exec sp_configure` you will see that the above statement updated the clr enabled setting s config value to 1, but that the run value is still set to 0. For this configuration change to take affect we need to execute the [`RECONFIGURE` command](https://msdn.microsoft.com/library/ms176069.aspx), which will set the run value to the current config value. Simply enter `RECONFIGURE` in the query window and click the Execute icon in the Toolbar. If you run `exec sp_configure` now you should see a value of 1 for the clr enabled setting s config and run values.
 
 With the clr enabled configuration complete, we are ready to run the managed `GetDiscontinuedProducts` stored procedure. In the query window enter and execute the command `exec` `GetDiscontinuedProducts`. Invoking the stored procedure causes the corresponding managed code in the `GetDiscontinuedProducts` method to execute. This code issues a `SELECT` query to return all products that are discontinued and returns this data to the calling application, which is SQL Server Management Studio in this instance. Management Studio receives these results and displays them in the Results window.
 
@@ -227,7 +227,7 @@ To create a managed stored procedure that accepts input parameters, simply speci
 
 To add a new stored procedure to the project, right-click on the `ManagedDatabaseConstructs` project name and choose to add a new stored procedure. Name the file `GetProductsWithPriceLessThan.vb`. As we saw in Step 3, this will create a new Visual Basic class file with a method named `GetProductsWithPriceLessThan` placed within the `Partial` class `StoredProcedures`.
 
-Update the `GetProductsWithPriceLessThan` method s definition so that it accepts a [`SqlMoney`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlmoney.aspx) input parameter named `price` and write the code to execute and return the query results:
+Update the `GetProductsWithPriceLessThan` method s definition so that it accepts a [`SqlMoney`](https://msdn.microsoft.com/library/system.data.sqltypes.sqlmoney.aspx) input parameter named `price` and write the code to execute and return the query results:
 
 
 [!code-vb[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample6.vb)]
@@ -395,19 +395,19 @@ To add a managed UDF to the `ManagedDatabaseConstructs` project, right-click on 
 **Figure 25**: Add a New Managed UDF to the `ManagedDatabaseConstructs` Project ([Click to view full-size image](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/_static/image61.png))
 
 
-The User-Defined Function template creates a `Partial` class named `UserDefinedFunctions` with a method whose name is the same as the class file s name (`udf_ComputeInventoryValue_Managed`, in this instance). This method is decorated using the [`SqlFunction` attribute](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlfunctionattribute.aspx), which flags the method as a managed UDF.
+The User-Defined Function template creates a `Partial` class named `UserDefinedFunctions` with a method whose name is the same as the class file s name (`udf_ComputeInventoryValue_Managed`, in this instance). This method is decorated using the [`SqlFunction` attribute](https://msdn.microsoft.com/library/microsoft.sqlserver.server.sqlfunctionattribute.aspx), which flags the method as a managed UDF.
 
 
 [!code-vb[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample13.vb)]
 
-The `udf_ComputeInventoryValue` method currently returns a [`SqlString` object](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlstring.aspx) and does not accept any input parameters. We need to update the method definition so that it accepts three input parameters - `UnitPrice`, `UnitsInStock`, and `Discontinued` - and returns a `SqlMoney` object. The logic for calculating the inventory value is identical to that in the T-SQL `udf_ComputeInventoryValue` UDF.
+The `udf_ComputeInventoryValue` method currently returns a [`SqlString` object](https://msdn.microsoft.com/library/system.data.sqltypes.sqlstring.aspx) and does not accept any input parameters. We need to update the method definition so that it accepts three input parameters - `UnitPrice`, `UnitsInStock`, and `Discontinued` - and returns a `SqlMoney` object. The logic for calculating the inventory value is identical to that in the T-SQL `udf_ComputeInventoryValue` UDF.
 
 
 [!code-vb[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb/samples/sample14.vb)]
 
-Note that the UDF method s input parameters are of their corresponding SQL types: `SqlMoney` for the `UnitPrice` field, [`SqlInt16`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlint16.aspx) for `UnitsInStock`, and [`SqlBoolean`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlboolean.aspx) for `Discontinued`. These data types reflect the types defined in the `Products` table: the `UnitPrice` column is of type `money`, the `UnitsInStock` column of type `smallint`, and the `Discontinued` column of type `bit`.
+Note that the UDF method s input parameters are of their corresponding SQL types: `SqlMoney` for the `UnitPrice` field, [`SqlInt16`](https://msdn.microsoft.com/library/system.data.sqltypes.sqlint16.aspx) for `UnitsInStock`, and [`SqlBoolean`](https://msdn.microsoft.com/library/system.data.sqltypes.sqlboolean.aspx) for `Discontinued`. These data types reflect the types defined in the `Products` table: the `UnitPrice` column is of type `money`, the `UnitsInStock` column of type `smallint`, and the `Discontinued` column of type `bit`.
 
-The code starts by creating a `SqlMoney` instance named `inventoryValue` that is assigned a value of 0. The `Products` table allows for database `NULL` values in the `UnitsInPrice` and `UnitsInStock` columns. Therefore, we need to first check to see if these values contain `NULL` s, which we do through the `SqlMoney` object s [`IsNull` property](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlmoney.isnull.aspx). If both `UnitPrice` and `UnitsInStock` contain non-`NULL` values, then we compute the `inventoryValue` to be the product of the two. Then, if `Discontinued` is true, then we halve the value.
+The code starts by creating a `SqlMoney` instance named `inventoryValue` that is assigned a value of 0. The `Products` table allows for database `NULL` values in the `UnitsInPrice` and `UnitsInStock` columns. Therefore, we need to first check to see if these values contain `NULL` s, which we do through the `SqlMoney` object s [`IsNull` property](https://msdn.microsoft.com/library/system.data.sqltypes.sqlmoney.isnull.aspx). If both `UnitPrice` and `UnitsInStock` contain non-`NULL` values, then we compute the `inventoryValue` to be the product of the two. Then, if `Discontinued` is true, then we halve the value.
 
 > [!NOTE]
 > The `SqlMoney` object only allows two `SqlMoney` instances to be multiplied together. It does not allow a `SqlMoney` instance to be multiplied by a literal floating-point number. Therefore, to halve `inventoryValue` we multiply it by a new `SqlMoney` instance that has the value 0.5.
@@ -554,13 +554,13 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Advantages and Drawbacks of User-Defined Functions](http://www.samspublishing.com/articles/article.asp?p=31724&amp;rl=1)
 - [Creating SQL Server 2005 Objects in Managed Code](https://channel9.msdn.com/Showpost.aspx?postid=142413)
 - [Creating Triggers Using Managed Code in SQL Server 2005](http://www.15seconds.com/issue/041006.htm)
-- [How To: Create and Run a CLR SQL Server Stored Procedure](https://msdn.microsoft.com/en-us/library/5czye81z(VS.80).aspx)
-- [How To: Create and Run a CLR SQL Server User-Defined Function](https://msdn.microsoft.com/en-us/library/w2kae45k(VS.80).aspx)
-- [How To: Edit the `Test.sql` Script to Run SQL Objects](https://msdn.microsoft.com/en-us/library/ms233682(VS.80).aspx)
+- [How To: Create and Run a CLR SQL Server Stored Procedure](https://msdn.microsoft.com/library/5czye81z(VS.80).aspx)
+- [How To: Create and Run a CLR SQL Server User-Defined Function](https://msdn.microsoft.com/library/w2kae45k(VS.80).aspx)
+- [How To: Edit the `Test.sql` Script to Run SQL Objects](https://msdn.microsoft.com/library/ms233682(VS.80).aspx)
 - [Intro to User Defined Functions](http://www.sqlteam.com/item.asp?ItemID=1955)
 - [Managed Code and SQL Server 2005 (Video)](https://channel9.msdn.com/Showpost.aspx?postid=142413)
-- [Transact-SQL Reference](https://msdn.microsoft.com/en-us/library/aa299742(SQL.80).aspx)
-- [Walkthrough: Creating a Stored Procedure in Managed Code](https://msdn.microsoft.com/en-us/library/zxsa8hkf(VS.80).aspx)
+- [Transact-SQL Reference](https://msdn.microsoft.com/library/aa299742(SQL.80).aspx)
+- [Walkthrough: Creating a Stored Procedure in Managed Code](https://msdn.microsoft.com/library/zxsa8hkf(VS.80).aspx)
 
 ## About the Author
 

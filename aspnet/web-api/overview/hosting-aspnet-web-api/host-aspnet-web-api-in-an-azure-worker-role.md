@@ -28,7 +28,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > 
 > - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
 > - Web API 2
-> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/en-us/downloads/)
+> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/downloads/)
 
 
 ## Create a Microsoft Azure Project
@@ -132,7 +132,7 @@ Find the IP address under Service Deployments, deployment [id], Service Details.
 
 ## Deploy to Azure
 
-For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A261C142F).
+For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
 
 In Solution Explorer, right-click the AzureApp project. Select **Publish**.
 

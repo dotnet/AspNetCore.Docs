@@ -595,6 +595,6 @@ If your code didn't handle the exception, you would see an error page like the p
 **Reference Documentation**
 
 
-[ASP.NET](https://msdn.microsoft.com/en-us/library/ee532866.aspx)
+[ASP.NET](https://msdn.microsoft.com/library/ee532866.aspx)
 
-[C# Language](https://msdn.microsoft.com/en-us/library/kx37x362.aspx)
+[C# Language](https://msdn.microsoft.com/library/kx37x362.aspx)

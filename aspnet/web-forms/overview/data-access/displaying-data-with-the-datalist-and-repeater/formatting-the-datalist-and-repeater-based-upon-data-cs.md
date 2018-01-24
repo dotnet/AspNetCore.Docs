@@ -35,25 +35,25 @@ Both of these formatting techniques are available with the DataList and Repeater
 
 ## Using the`ItemDataBound`Event Handler
 
-When data is bound to a DataList, either from a data source control or through programmatically assigning data to the control s `DataSource` property and calling its `DataBind()` method, the DataList s `DataBinding` event fires, the data source enumerated, and each data record is bound to the DataList. For each record in the data source, the DataList creates a [`DataListItem`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistitem.aspx) object that is then bound to the current record. During this process, the DataList raises two events:
+When data is bound to a DataList, either from a data source control or through programmatically assigning data to the control s `DataSource` property and calling its `DataBind()` method, the DataList s `DataBinding` event fires, the data source enumerated, and each data record is bound to the DataList. For each record in the data source, the DataList creates a [`DataListItem`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalistitem.aspx) object that is then bound to the current record. During this process, the DataList raises two events:
 
 - **`ItemCreated`** fires after the `DataListItem` has been created
 - **`ItemDataBound`** fires after the current record has been bound to the `DataListItem`
 
 The following steps outline the data binding process for the DataList control.
 
-1. The DataList s [`DataBinding` event](https://msdn.microsoft.com/en-us/library/system.web.ui.control.databinding.aspx) fires
+1. The DataList s [`DataBinding` event](https://msdn.microsoft.com/library/system.web.ui.control.databinding.aspx) fires
 2. The data is bound to the DataList  
   
  For each record in the data source 
 
     1. Create a `DataListItem` object
-    2. Fire the [`ItemCreated` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.itemcreated.aspx)
+    2. Fire the [`ItemCreated` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.itemcreated.aspx)
     3. Bind the record to the `DataListItem`
-    4. Fire the [`ItemDataBound` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.itemdatabound.aspx)
+    4. Fire the [`ItemDataBound` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.itemdatabound.aspx)
     5. Add the `DataListItem` to the `Items` collection
 
-When binding data to the Repeater control, it progresses through the exact same sequence of steps. The only difference is that instead of `DataListItem` instances being created, the Repeater uses [`RepeaterItem`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.repeateritem(VS.80).aspx)s.
+When binding data to the Repeater control, it progresses through the exact same sequence of steps. The only difference is that instead of `DataListItem` instances being created, the Repeater uses [`RepeaterItem`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.repeateritem(VS.80).aspx)s.
 
 > [!NOTE]
 > The astute reader may have noticed a slight anomaly between the sequence of steps that transpire when the DataList and Repeater are bound to data versus when the GridView is bound to data. At the tail end of the data binding process, the GridView raises the `DataBound` event; however, neither the DataList nor Repeater control have such an event. This is because the DataList and Repeater controls were created back in the ASP.NET 1.x timeframe, before the pre- and post-level event handler pattern had become common.
@@ -88,7 +88,7 @@ Create an `ItemDataBound` event for the DataList and add the following code:
 
 [!code-csharp[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample1.cs)]
 
-While the concept and semantics behind the DataList s `ItemDataBound` event handler are the same as those used by the GridView s `RowDataBound` event handler in the *Custom Formatting Based Upon Data* tutorial, the syntax differs slightly. When the `ItemDataBound` event fires, the `DataListItem` just bound to data is passed into corresponding event handler via `e.Item` (instead of `e.Row`, as with the GridView s `RowDataBound` event handler). The DataList s `ItemDataBound` event handler fires for *each* row added to the DataList, including header rows, footer rows, and separator rows. However, the product information is only bound to the data rows. Therefore, when using the `ItemDataBound` event to inspect the data bound to the DataList, we need to first ensure that we re working with a data item. This can be accomplished by checking the `DataListItem` s [`ItemType` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistitem.itemtype.aspx), which can have one of [the following eight values](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.listitemtype.aspx):
+While the concept and semantics behind the DataList s `ItemDataBound` event handler are the same as those used by the GridView s `RowDataBound` event handler in the *Custom Formatting Based Upon Data* tutorial, the syntax differs slightly. When the `ItemDataBound` event fires, the `DataListItem` just bound to data is passed into corresponding event handler via `e.Item` (instead of `e.Row`, as with the GridView s `RowDataBound` event handler). The DataList s `ItemDataBound` event handler fires for *each* row added to the DataList, including header rows, footer rows, and separator rows. However, the product information is only bound to the data rows. Therefore, when using the `ItemDataBound` event to inspect the data bound to the DataList, we need to first ensure that we re working with a data item. This can be accomplished by checking the `DataListItem` s [`ItemType` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalistitem.itemtype.aspx), which can have one of [the following eight values](https://msdn.microsoft.com/library/system.web.ui.webcontrols.listitemtype.aspx):
 
 - `AlternatingItem`
 - `EditItem`
@@ -99,7 +99,7 @@ While the concept and semantics behind the DataList s `ItemDataBound` event hand
 - `SelectedItem`
 - `Separator`
 
-Both `Item` and `AlternatingItem``DataListItem` s makeup the DataList s data items. Assuming we re working with an `Item` or `AlternatingItem`, we access the actual `ProductsRow` instance that was bound to the current `DataListItem`. The `DataListItem` s [`DataItem` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.datalistitem.dataitem.aspx) contains a reference to the `DataRowView` object, whose `Row` property provides a reference to the actual `ProductsRow` object.
+Both `Item` and `AlternatingItem``DataListItem` s makeup the DataList s data items. Assuming we re working with an `Item` or `AlternatingItem`, we access the actual `ProductsRow` instance that was bound to the current `DataListItem`. The `DataListItem` s [`DataItem` property](https://msdn.microsoft.com/system.web.ui.webcontrols.datalistitem.dataitem.aspx) contains a reference to the `DataRowView` object, whose `Row` property provides a reference to the actual `ProductsRow` object.
 
 Next, we check the `ProductsRow` instance s `UnitPrice` property. Since the Products table s `UnitPrice` field allows `NULL` values, before attempting to access the `UnitPrice` property we should first check to see if it has a `NULL` value using the `IsUnitPriceNull()` method. If the `UnitPrice` value is not `NULL`, we then check to see if it s less than $20.00. If it is indeed under $20.00, we then need to apply the custom formatting.
 
