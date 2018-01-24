@@ -185,7 +185,7 @@ The following sample shows how to set and get a serializable object:
 
 The `HttpContext` abstraction provides support for a dictionary collection of type `IDictionary<object, object>`, called `Items`. This collection is available from the start of an *HttpRequest* and is discarded at the end of each request. You can access it by  assigning a value to a keyed entry, or by requesting the value for a particular key.
 
-In the sample below, [Middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection.
+In the following sample, [Middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection.
 
 ```csharp
 app.Use(async (context, next) =>

@@ -89,7 +89,7 @@ For more information, see [Dependency injection](xref:fundamentals/dependency-in
 
 In ASP.NET Core, you compose your request pipeline using [middleware](xref:fundamentals/middleware/index). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking an `UseXYZ` extension method in the `Configure` method.
 
-ASP.NET Core comes with a rich set of built-in middleware:
+ASP.NET Core includes a rich set of built-in middleware:
 
 * [Static files](xref:fundamentals/static-files)
 * [Routing](xref:fundamentals/routing)

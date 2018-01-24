@@ -31,7 +31,7 @@ Benefits:
 The sample app demonstrates:
 
 * Conventionally-activated middleware.
-* Middleware activated by an `IMiddlewareFactory` registered in an [Ninject](http://www.ninject.org/) container.
+* Middleware activated by an `IMiddlewareFactory` registered in a [Ninject](http://www.ninject.org/) container.
 
 The middlewares function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
 
@@ -80,7 +80,7 @@ The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with it
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareFactory.cs?name=snippet1)]
 
-Note the injection of the database context, which is passed as an argument to `Activator.CreateInstance`. This permits the middleware to to obtain the database context via [dependency injection](xref:fundamentals/dependency-injection).
+Note the injection of the database context, which is passed as an argument to `Activator.CreateInstance`. This permits the middleware to obtain the database context via [dependency injection](xref:fundamentals/dependency-injection).
 
 The middleware factory is registered in the service container in *Startup.cs*:
 

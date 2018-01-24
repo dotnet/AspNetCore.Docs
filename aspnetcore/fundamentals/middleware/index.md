@@ -33,13 +33,13 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using [Run](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.runextensions), [Map](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions), and [Use](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.useextensions) extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, or *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline, or short-circuiting the chain if appropriate.
 
-[Migrating HTTP Modules to Middleware](xref:migration/http-modules) explains the difference between request pipelines in ASP.NET Core and the previous versions and provides more middleware samples.
+[Migrating HTTP Modules to Middleware](xref:migration/http-modules) explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides more middleware samples.
 
 ## Creating a middleware pipeline with IApplicationBuilder
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other, as this diagram shows (the thread of execution follows the black arrows):
 
-![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, it's handed back through the prior two middlewares for additional processing after the next() statements each in turn before leaving the application as a response to the client.](index/_static/request-delegate-pipeline.png)
+![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the application as a response to the client.](index/_static/request-delegate-pipeline.png)
 
 Each delegate can perform operations before and after the next delegate. A delegate can also decide to not pass a request to the next delegate, which is called short-circuiting the request pipeline. Short-circuiting is often desirable because it avoids unnecessary work. For example, the static file middleware can return a request for a static file and short-circuit the rest of the pipeline. Exception-handling delegates need to be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
 
