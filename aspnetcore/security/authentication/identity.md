@@ -1,7 +1,7 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: Use Identity with an ASP.NET Core app. Includes: Setting password requirements (RequireDigit,RequiredLength,RequiredUniqueChars and more).
+description: Use Identity with an ASP.NET Core app. Includes, Setting password requirements (RequireDigit,RequiredLength,RequiredUniqueChars and more).
 ms.author: riande
 manager: wpickett
 ms.date: 01/24/2018
