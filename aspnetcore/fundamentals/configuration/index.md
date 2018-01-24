@@ -97,7 +97,7 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](index/sample/InMemory/Program.cs)]
 
-Configuration values are returned as strings, but binding enables the construction of objects. Binding allows the retrievial of POCO objects or even entire object graphs.
+Configuration values are returned as strings, but binding enables the construction of objects. Binding allows the retrieval of POCO objects or even entire object graphs.
 
 ### GetValue
 
@@ -105,7 +105,7 @@ The following sample demonstrates the [GetValue&lt;T&gt;](/dotnet/api/microsoft.
 
 [!code-csharp[Main](index/sample/InMemoryGetValue/Program.cs?highlight=31)]
 
-The ConfigurationBinder's `GetValue<T>` method allows the specification of a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder's `GetValue<T>` method allows the specification of a default value (80 in the sample). `GetValue<T>` is for simple scenarios and doesn't bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
 ## Bind to an object graph
 
