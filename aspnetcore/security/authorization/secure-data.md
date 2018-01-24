@@ -201,7 +201,7 @@ The preceding code:
 
 ### Update Create
 
-Update the create Page Model constructor to use the `DI_BasePageModel` base class:
+Update the create page model constructor to use the `DI_BasePageModel` base class:
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
 
@@ -218,15 +218,15 @@ Update the `OnGetAsync` method so only approved contacts are shown to general us
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml.cs?name=snippet)]
 
-### Update the Edit Page Model
+### Update the edit page model
 
-Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the Page Model or by loading it within the handler itself. You frequently access the resource by passing in the resource key.
+Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the page model or by loading it within the handler itself. You frequently access the resource by passing in the resource key.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
 
 ### Update Delete
 
-Update the Delete Page Model to use the authorization handler to verify the user has delete permission on the contact.
+Update the delete page model to use the authorization handler to verify the user has delete permission on the contact.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
 
@@ -253,7 +253,7 @@ Update the details view so managers can approve or reject contacts:
 
 [!code-html[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=48-)]
 
-Update the Details Page Model:
+Update the details page model:
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
