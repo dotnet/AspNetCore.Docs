@@ -30,7 +30,7 @@ Lots of organizations use staging environments to preview updates to web applica
 - Changes to applications are deployed on a frequent basis, so the environment needs to support single-step or automated deployment.
 
 > [!NOTE]
-> Scaling out a database deployment across multiple servers is beyond the scope of this tutorial. For more information on this area, please consult [SQL Server Books Online](https://technet.microsoft.com/en-us/library/ms130214.aspx).
+> Scaling out a database deployment across multiple servers is beyond the scope of this tutorial. For more information on this area, please consult [SQL Server Books Online](https://technet.microsoft.com/library/ms130214.aspx).
 
 
 For example, in our [tutorial scenario](../deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview.md), Team Foundation Server (TFS) manages the Contact Manager solution. The TFS administrator, Rob Walters, has created a build definition that lets developers trigger a deployment to the staging environment as required.

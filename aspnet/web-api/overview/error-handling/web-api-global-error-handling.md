@@ -41,7 +41,7 @@ In addition to [exception filters](exception-handling.md), [message handlers](..
 1. We support registering multiple exception loggers but only a single exception handler.
 2. Exception loggers always get called, even if we're about to abort the connection. Exception handlers only get called when we're still able to choose which response message to send.
 
-Both services provide access to an exception context containing relevant information from the point where the exception was detected, particularly the [HttpRequestMessage](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessage(v=vs.110).aspx), the [HttpRequestContext](https://msdn.microsoft.com/en-us/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), the thrown exception and the exception source (details below).
+Both services provide access to an exception context containing relevant information from the point where the exception was detected, particularly the [HttpRequestMessage](https://msdn.microsoft.com/library/system.net.http.httprequestmessage(v=vs.110).aspx), the [HttpRequestContext](https://msdn.microsoft.com/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), the thrown exception and the exception source (details below).
 
 ### Design Principles
 
@@ -92,7 +92,7 @@ In additional to the `ExceptionContext`, a handler gets one more property it can
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample5.cs)]
 
-An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
+An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
 
 For exceptions at the top of the call stack, we took an extra step to ensure the response is appropriate for API callers. If the exception propagates up to the host, the caller would see the yellow screen of death or some other host provided response which is typically HTML and not usually an appropriate API error response. In these cases, the Result starts out non-null, and only if a custom exception handler explicitly sets it back to `null` (unhandled) will the exception propagate to the host. Setting `Result` to `null` in such cases can be useful for two scenarios:
 

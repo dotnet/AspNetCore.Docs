@@ -28,14 +28,14 @@ This topic describes how to configure ASP.NET Web API.
 <a id="settings"></a>
 ## Configuration Settings
 
-Web API configuration setttings are defined in the [HttpConfiguration](https://msdn.microsoft.com/en-us/library/system.web.http.httpconfiguration.aspx) class.
+Web API configuration setttings are defined in the [HttpConfiguration](https://msdn.microsoft.com/library/system.web.http.httpconfiguration.aspx) class.
 
 | Member | Description |
 | --- | --- |
 | **DependencyResolver** | Enables dependency injection for controllers. See [Using the Web API Dependency Resolver](dependency-injection.md). |
 | **Filters** | Action filters. |
 | **Formatters** | [Media-type formatters](../formats-and-model-binding/media-formatters.md). |
-| **IncludeErrorDetailPolicy** | Specifies whether the server should include error details, such as exception messages and stack traces, in HTTP response messages. See [IncludeErrorDetailPolicy](https://msdn.microsoft.com/en-us/library/system.web.http.includeerrordetailpolicy(v=vs.108)). |
+| **IncludeErrorDetailPolicy** | Specifies whether the server should include error details, such as exception messages and stack traces, in HTTP response messages. See [IncludeErrorDetailPolicy](https://msdn.microsoft.com/library/system.web.http.includeerrordetailpolicy(v=vs.108)). |
 | **Initializer** | A function that performs final initialization of the **HttpConfiguration**. |
 | **MessageHandlers** | [HTTP message handlers](http-message-handlers.md). |
 | **ParameterBindingRules** | A collection of rules for binding parameters on controller actions. |
@@ -51,7 +51,7 @@ Web API configuration setttings are defined in the [HttpConfiguration](https://m
 <a id="webhost"></a>
 ## Configuring Web API with ASP.NET Hosting
 
-In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Configure](https://msdn.microsoft.com/en-us/library/system.web.http.globalconfiguration.configure.aspx) in the **Application\_Start** method. The **Configure** method takes a delegate with a single parameter of type **HttpConfiguration**. Perform all of your configuation inside the delegate.
+In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Configure](https://msdn.microsoft.com/library/system.web.http.globalconfiguration.configure.aspx) in the **Application\_Start** method. The **Configure** method takes a delegate with a single parameter of type **HttpConfiguration**. Perform all of your configuation inside the delegate.
 
 Here is an example using an anonymous delegate:
 

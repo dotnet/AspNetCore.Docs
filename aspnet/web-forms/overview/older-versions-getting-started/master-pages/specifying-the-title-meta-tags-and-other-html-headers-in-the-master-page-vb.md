@@ -37,7 +37,7 @@ The default master page file created by Visual Studio 2008 contains the followin
 
 [!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample1.aspx)]
 
-Notice that the `<head>` element contains a `runat="server"` attribute, which indicates that it is a server control (rather than static HTML). All ASP.NET pages derive from the [`Page` class](https://msdn.microsoft.com/en-us/library/system.web.ui.page.aspx), which is located in the `System.Web.UI` namespace. This class contains a [`Header` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.header.aspx) that provides access to the page's `<head>` region. Using the `Header` property we can set an ASP.NET page's title or add additional markup to the rendered `<head>` section. It is possible, then, to customize a content page's `<head>` element by writing a bit of code in the page's `Page_Load` event handler. We examine how to programmatically set the page's title in Step 1.
+Notice that the `<head>` element contains a `runat="server"` attribute, which indicates that it is a server control (rather than static HTML). All ASP.NET pages derive from the [`Page` class](https://msdn.microsoft.com/library/system.web.ui.page.aspx), which is located in the `System.Web.UI` namespace. This class contains a [`Header` property](https://msdn.microsoft.com/library/system.web.ui.page.header.aspx) that provides access to the page's `<head>` region. Using the `Header` property we can set an ASP.NET page's title or add additional markup to the rendered `<head>` section. It is possible, then, to customize a content page's `<head>` element by writing a bit of code in the page's `Page_Load` event handler. We examine how to programmatically set the page's title in Step 1.
 
 The markup shown in the `<head>` element above also includes a ContentPlaceHolder control named `head`. This ContentPlaceHolder control is not necessary, as content pages can add custom content to the `<head>` element programmatically. It's useful, however, in situations where a content page needs to add static markup to the `<head>` element as the static markup can be added declaratively to the corresponding Content control rather than programmatically.
 
@@ -64,7 +64,7 @@ Content pages don't have a `<title>` element, as it's defined in the master page
 
 ### Setting the Page's Title Declaratively
 
-A content page's title can be set declaratively through the `Title` attribute of the [`<%@ Page %>` directive](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx). This property can be set by directly modifying the `<%@ Page %>` directive or through the Properties window. Let's look at both approaches.
+A content page's title can be set declaratively through the `Title` attribute of the [`<%@ Page %>` directive](https://msdn.microsoft.com/library/ydy4x04a.aspx). This property can be set by directly modifying the `<%@ Page %>` directive or through the Properties window. Let's look at both approaches.
 
 From the Source view, locate the `<%@ Page %>` directive, which is at the top of the page's declarative markup. The `<%@ Page %>` directive for `Default.aspx` follows:
 
@@ -91,7 +91,7 @@ The page's title may also be set from the Properties window. From the Properties
 
 ### Setting the Page's Title Programmatically
 
-The master page's `<head runat="server">` markup is translated into an [`HtmlHead` class](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmlhead.aspx) instance when the page is rendered by the ASP.NET engine. The `HtmlHead` class has a [`Title` property](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmlhead.title.aspx) whose value is reflected in the rendered `<title>` element. This property is accessible from an ASP.NET page's code-behind class via `Page.Header.Title`; this same property can also be accessed via `Page.Title`.
+The master page's `<head runat="server">` markup is translated into an [`HtmlHead` class](https://msdn.microsoft.com/library/system.web.ui.htmlcontrols.htmlhead.aspx) instance when the page is rendered by the ASP.NET engine. The `HtmlHead` class has a [`Title` property](https://msdn.microsoft.com/library/system.web.ui.htmlcontrols.htmlhead.title.aspx) whose value is reflected in the rendered `<title>` element. This property is accessible from an ASP.NET page's code-behind class via `Page.Header.Title`; this same property can also be accessed via `Page.Title`.
 
 To practice setting the page's title programmatically, navigate to the `About.aspx` page's code-behind class and create an event handler for the page's `Load` event. Next, set the page's title to "Master Page Tutorials :: About :: *date*", where *date* is the current date. After adding this code your `Page_Load` event handler should look similar to the following:
 
@@ -184,7 +184,7 @@ The site map structure can also be accessed programmatically from an ASP.NET pag
 
 ### Creating the Site Map
 
-The site map system is built atop the [provider model](http://aspnet.4guysfromrolla.com/articles/101905-1.aspx), which decouples the site map API from the logic that serializes site map information between memory and a persistent store. The .NET Framework ships with the [`XmlSiteMapProvider` class](https://msdn.microsoft.com/en-us/library/system.web.xmlsitemapprovider.aspx), which is the default site map provider. As its name implies, `XmlSiteMapProvider` uses an XML file as its site map store. Let's use this provider for defining our site map.
+The site map system is built atop the [provider model](http://aspnet.4guysfromrolla.com/articles/101905-1.aspx), which decouples the site map API from the logic that serializes site map information between memory and a persistent store. The .NET Framework ships with the [`XmlSiteMapProvider` class](https://msdn.microsoft.com/library/system.web.xmlsitemapprovider.aspx), which is the default site map provider. As its name implies, `XmlSiteMapProvider` uses an XML file as its site map store. Let's use this provider for defining our site map.
 
 Start by creating a site map file in the website's root folder named `Web.sitemap`. To accomplish this, right-click on the website name in Solution Explorer, choose Add New Item, and select the Site Map template. Ensure that the file is named `Web.sitemap` and click Add.
 
@@ -242,7 +242,7 @@ After configuring the ListView's templates, visit the website. As Figure 9 shows
 **Figure 09**: The Lessons Section Contains a Single List Item  ([Click to view full-size image](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/_static/image17.png))
 
 
-To display multiple levels we could nest multiple ListViews within the `ItemTemplate`. This technique was examined in the [*Master Pages and Site Navigation* tutorial](../../data-access/introduction/master-pages-and-site-navigation-vb.md) of my [Working with Data tutorial series](../../data-access/index.md). However, for this tutorial series our site map will contain just a two levels: Home (the top level); and each lesson as a child of Home. Rather than crafting a nested ListView, we can instead instruct the SiteMapDataSource to not return the starting node by setting its [`ShowStartingNode` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sitemapdatasource.showstartingnode.aspx) to `False`. The net effect is that the SiteMapDataSource starts by returning the second tier of site map nodes.
+To display multiple levels we could nest multiple ListViews within the `ItemTemplate`. This technique was examined in the [*Master Pages and Site Navigation* tutorial](../../data-access/introduction/master-pages-and-site-navigation-vb.md) of my [Working with Data tutorial series](../../data-access/index.md). However, for this tutorial series our site map will contain just a two levels: Home (the top level); and each lesson as a child of Home. Rather than crafting a nested ListView, we can instead instruct the SiteMapDataSource to not return the starting node by setting its [`ShowStartingNode` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sitemapdatasource.showstartingnode.aspx) to `False`. The net effect is that the SiteMapDataSource starts by returning the second tier of site map nodes.
 
 With this change, the ListView displays bullet items for the About and Using Multiple ContentPlaceHolder Controls lessons, but omits a bullet item for Home. To remedy this, we can explicitly add a bullet item for Home in the `LayoutTemplate`:
 
@@ -274,7 +274,7 @@ Update the `BasePage` class's `OnLoadComplete` method to include the following c
 
 As before, the `OnLoadComplete` method starts by determining whether the page's title has been explicitly set. If `Page.Title` is `Nothing`, an empty string, or is assigned the value "Untitled Page" then the code automatically assigns a value to `Page.Title`.
 
-To determine the title to use, the code starts by referencing the [`SiteMap` class](https://msdn.microsoft.com/en-us/library/system.web.sitemap.aspx)'s [`CurrentNode` property](https://msdn.microsoft.com/en-us/library/system.web.sitemap.currentnode.aspx). `CurrentNode` returns the [`SiteMapNode`](https://msdn.microsoft.com/en-us/library/system.web.sitemapnode.aspx) instance in the site map that corresponds to the currently requested page. Assuming the currently requested page is found within the site map, the `SiteMapNode`'s `Title` property is assigned to the page's title. If the currently requested page is not in the site map, `CurrentNode` returns `Nothing` and the requested page's filename is used as the title (as was done in Step 2).
+To determine the title to use, the code starts by referencing the [`SiteMap` class](https://msdn.microsoft.com/library/system.web.sitemap.aspx)'s [`CurrentNode` property](https://msdn.microsoft.com/library/system.web.sitemap.currentnode.aspx). `CurrentNode` returns the [`SiteMapNode`](https://msdn.microsoft.com/library/system.web.sitemapnode.aspx) instance in the site map that corresponds to the currently requested page. Assuming the currently requested page is found within the site map, the `SiteMapNode`'s `Title` property is assigned to the page's title. If the currently requested page is not in the site map, `CurrentNode` returns `Nothing` and the requested page's filename is used as the title (as was done in Step 2).
 
 Figure 12 shows the `MultipleContentPlaceHolders.aspx` page when viewed through a browser. Because this page's title is not explicitly set, its corresponding site map node's title is used instead.
 
@@ -315,10 +315,10 @@ Being able to programmatically add content to the `<head>` region is useful when
 
 [!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample15.vb)]
 
-The above code adds the `<meta>` keywords element to the `<head>` region, which provides a comma-delimited list of keywords that describe the page. Note that to add a `<meta>` tag you create an [`HtmlMeta`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmlmeta.aspx) instance, set its `Name` and `Content` properties, and then add it to the `Header`'s `Controls` collection. Similarly, to programmatically add a `<link>` element, create an [`HtmlLink`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmllink.aspx) object, set its properties, and then add it to the `Header`'s `Controls` collection.
+The above code adds the `<meta>` keywords element to the `<head>` region, which provides a comma-delimited list of keywords that describe the page. Note that to add a `<meta>` tag you create an [`HtmlMeta`](https://msdn.microsoft.com/library/system.web.ui.htmlcontrols.htmlmeta.aspx) instance, set its `Name` and `Content` properties, and then add it to the `Header`'s `Controls` collection. Similarly, to programmatically add a `<link>` element, create an [`HtmlLink`](https://msdn.microsoft.com/library/system.web.ui.htmlcontrols.htmllink.aspx) object, set its properties, and then add it to the `Header`'s `Controls` collection.
 
 > [!NOTE]
-> To add arbitrary markup, create a [`LiteralControl`](https://msdn.microsoft.com/en-us/library/system.web.ui.literalcontrol.aspx) instance, set its `Text` property, and then add it to the `Header`'s `Controls` collection.
+> To add arbitrary markup, create a [`LiteralControl`](https://msdn.microsoft.com/library/system.web.ui.literalcontrol.aspx) instance, set its `Text` property, and then add it to the `Header`'s `Controls` collection.
 
 
 ## Summary

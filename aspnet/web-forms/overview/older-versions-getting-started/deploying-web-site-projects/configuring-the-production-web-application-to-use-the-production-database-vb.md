@@ -32,7 +32,7 @@ It is not uncommon for configuration information to differ between the developme
 
 ## Examining the Connection String Information
 
-The connection string used by the Book Reviews web application is stored in the application s configuration file, `Web.config`. `Web.config` includes a special section for storing connection strings, aptly named [&lt;connectionStrings&gt;](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx). The `Web.config` file for the Book Reviews website has one connection string defined in this section named `ReviewsConnectionString`:
+The connection string used by the Book Reviews web application is stored in the application s configuration file, `Web.config`. `Web.config` includes a special section for storing connection strings, aptly named [&lt;connectionStrings&gt;](https://msdn.microsoft.com/library/bf7sd233.aspx). The `Web.config` file for the Book Reviews website has one connection string defined in this section named `ReviewsConnectionString`:
 
 [!code-xml[Main](configuring-the-production-web-application-to-use-the-production-database-vb/samples/sample1.xml)]
 
@@ -41,7 +41,7 @@ The connection string - Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory
 - `Data Source` - specifies the location of the database server and the database server instance name (if any). The value, `.\SQLEXPRESS`, is an example where there is a database server and an instance name. The period specifies that the database server is on the same computer as the application; the instance name is `SQLEXPRESS`.
 - `AttachDbFilename` - specifies the location of the database file. The value contains the placeholder `|DataDirectory|`, which is resolved to the full path of the application s `App_Data` folder at runtime.
 - `Integrated Security` - a Boolean value that indicates whether to use a specified username/password when connecting to the database (false) or the current Windows account credentials (true).
-- `User Instance` - a configuration option specific to the SQL Server Express Editions that indicates whether to allow non-Administrative users on the local computer attach and connect to a SQL Server Express Edition database. See [SQL Server Express User Instances](https://msdn.microsoft.com/en-us/library/ms254504.aspx) for more information on this setting.
+- `User Instance` - a configuration option specific to the SQL Server Express Editions that indicates whether to allow non-Administrative users on the local computer attach and connect to a SQL Server Express Edition database. See [SQL Server Express User Instances](https://msdn.microsoft.com/library/ms254504.aspx) for more information on this setting.
   
 
 The allowable connection string options depend on the database you are connecting to and the [ADO.NET](http://ADO.NET) database provider being used. For example, the connection string for connecting to a Microsoft SQL Server database differs from that used to connect to an Oracle database. Likewise, connecting to a Microsoft SQL Server database using the SqlClient provider uses a different connection string than when using the OLE-DB provider.
@@ -142,10 +142,10 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Connection Strings and Configuration Files](https://msdn.microsoft.com/en-us/library/ms254494.aspx)
+- [Connection Strings and Configuration Files](https://msdn.microsoft.com/library/ms254494.aspx)
 - [Database Configuration Strings Information @ ConnectionStrings.com](http://www.connectionstrings.com/)
 - [Move Settings Out of the Web.config File](http://www.asp101.com/tips/index.asp?id=154)
-- [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx)
+- [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/library/bf7sd233.aspx)
 
 >[!div class="step-by-step"]
 [Previous](deploying-a-database-vb.md)

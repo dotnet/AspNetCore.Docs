@@ -246,7 +246,7 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 In this exercise, you will deploy the **Geek Quiz** application to the staging environment of your web app using Git source control. To do this, you will create the web app and provision the required components at the management portal, configure a **Git** repository and push the application source code from your local computer to the staging slot. You will also update your production database with the **Code First Migrations** you created in the previous exercise. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it is working according to your expectations, you will promote the application to production.
 
 > [!NOTE]
-> To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/).
+> To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/).
 
 
 <a id="Ex2Task1"></a>
@@ -690,7 +690,7 @@ In this task, you will configure the **GeekQuiz** solution to consume the image 
     [!code-xml[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample17.xml)]
 
     > [!NOTE]
-    > URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/en-us/library/ms972974.aspx).
+    > URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/library/ms972974.aspx).
 3. Press **CTRL + S** to save the changes.
 4. Open a new **Git Bash** console to deploy the updated application to Azure App Service.
 5. Execute the following commands to push the changes to Azure. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution. You will be prompted for your deployment password.
@@ -905,7 +905,7 @@ You will now execute the load test you created in the previous task and see how 
     > 
     > - Increase the duration of the load test (e.g. to **10 minutes**)
     > - Reduce the maximum and minimum values of the **Target CPU** range in the Autoscale configuration of your web app
-    > - Run the load test in the cloud with **Visual Studio Online**. More information [here](https://www.visualstudio.com/en-us/get-started/load-test-your-app-vs.aspx)
+    > - Run the load test in the cloud with **Visual Studio Online**. More information [here](https://www.visualstudio.com/get-started/load-test-your-app-vs.aspx)
 
 * * *
 

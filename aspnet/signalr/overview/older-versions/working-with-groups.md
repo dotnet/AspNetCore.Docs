@@ -42,7 +42,7 @@ This topic includes the following sections:
 
 ## Adding and removing users
 
-To add or remove users from a group, you call the [Add](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.igroupmanager.add(v=vs.111).aspx) or [Remove](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.igroupmanager.remove(v=vs.111).aspx) methods, and pass in the user's connection id and group's name as parameters. You do not need to manually remove a user from a group when the connection ends.
+To add or remove users from a group, you call the [Add](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.igroupmanager.add(v=vs.111).aspx) or [Remove](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.igroupmanager.remove(v=vs.111).aspx) methods, and pass in the user's connection id and group's name as parameters. You do not need to manually remove a user from a group when the connection ends.
 
 The following example shows the `Groups.Add` and `Groups.Remove` methods used in Hub methods.
 

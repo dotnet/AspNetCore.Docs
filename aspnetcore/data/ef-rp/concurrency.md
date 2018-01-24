@@ -71,16 +71,16 @@ Optimistic concurrency includes the following options:
 
 ## Handling concurrency 
 
-When a property is configured as a [concurrency token](https://docs.microsoft.com/en-us/ef/core/modeling/concurrency):
+When a property is configured as a [concurrency token](https://docs.microsoft.com/ef/core/modeling/concurrency):
 
-* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
+* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
 * If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0) is thrown. 
 
 The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`.
 
 ### Detecting concurrency conflicts on a property
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](https://docs.microsoft.com/en-us/ef/core/modeling/concurrency#data-annotations).
+Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](https://docs.microsoft.com/ef/core/modeling/concurrency#data-annotations).
 
 The `[ConcurrencyCheck]` attribute is not used in this tutorial.
 
@@ -125,7 +125,7 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 [!code-sql[](intro/samples/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT](https://docs.microsoft.com/en-us/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
+[@@ROWCOUNT](https://docs.microsoft.com/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
 
 You can see the T-SQL EF Core generates in the output window of Visual Studio.
 
@@ -303,8 +303,8 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 ### Additional resources
 
-* [Concurrency Tokens in EF Core](https://docs.microsoft.com/en-us/ef/core/modeling/concurrency)
-* [Handling concurrency in EF Core](https://docs.microsoft.com/en-us/ef/core/saving/concurrency)
+* [Concurrency Tokens in EF Core](https://docs.microsoft.com/ef/core/modeling/concurrency)
+* [Handling concurrency in EF Core](https://docs.microsoft.com/ef/core/saving/concurrency)
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/update-related-data)

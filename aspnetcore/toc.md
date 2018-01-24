@@ -252,7 +252,7 @@
 #### [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 #### [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
 ### [Compatibility](xref:security/data-protection/compatibility/index)
-#### [Share cookies between apps](xref:security/data-protection/compatibility/cookie-sharing)
+#### [Share cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 #### [Replace &lt;machineKey&gt; in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Enforce SSL](xref:security/enforcing-ssl)
 ## [Safe storage of app secrets during development](xref:security/app-secrets)

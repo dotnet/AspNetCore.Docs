@@ -67,7 +67,7 @@ The **SslNegotiateCert** flag means IIS will accept a certificate from the clien
 
 ### Creating a Client Certificate for Testing
 
-For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/en-US/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
+For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
 
 [!code-console[Main](working-with-ssl-in-web-api/samples/sample4.cmd)]
 
@@ -90,6 +90,6 @@ Now create a client certificate that is signed by the first certificate:
 
 ### Using Client Certificates in Web API
 
-On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
+On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
 
 [!code-csharp[Main](working-with-ssl-in-web-api/samples/sample6.cs)]

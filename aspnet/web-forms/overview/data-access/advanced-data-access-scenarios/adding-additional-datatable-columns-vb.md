@@ -85,12 +85,12 @@ Next we are prompted for the `SELECT` query. Enter the following query into the 
 
 [!code-sql[Main](adding-additional-datatable-columns-vb/samples/sample1.sql)]
 
-The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.microsoft.com/en-us/library/ms175126.aspx) to divide the results into four groups where the groups are determined by the `UnitPrice` values sorted in descending order.
+The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.microsoft.com/library/ms175126.aspx) to divide the results into four groups where the groups are determined by the `UnitPrice` values sorted in descending order.
 
 Unfortunately, the Query Builder does not know how to parse the `OVER` keyword and will display an error when parsing the above query. Therefore, enter the above query directly in the textbox in the wizard without using the Query Builder.
 
 > [!NOTE]
-> For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/en-us/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/en-us/library/ms189798.aspx).
+> For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/library/ms189798.aspx).
 
 
 After entering the `SELECT` query and clicking Next, the wizard asks us to provide a name for the stored procedure it will create. Name the new stored procedure `Products_SelectWithPriceQuartile` and click Next.

@@ -19,7 +19,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 [Download Completed Project](https://github.com/MikeWasson/BookService)
 
-In this section, you will use [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) in EF to seed the database with test data.
+In this section, you will use [Code First Migrations](https://msdn.microsoft.com/data/jj591621) in EF to seed the database with test data.
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
@@ -41,7 +41,7 @@ In the Package Manager Console window, type the following commands:
 
 [!code-console[Main](part-3/samples/sample4.cmd)]
 
-The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/en-us/library/hh510202.aspx).
+The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/library/hh510202.aspx).
 
 ![](part-3/_static/image2.png)
 

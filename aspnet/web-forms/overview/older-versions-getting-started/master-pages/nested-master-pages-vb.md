@@ -347,7 +347,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Nested ASP.NET Master Pages](https://msdn.microsoft.com/en-us/library/x2b3ktt7.aspx)
+- [Nested ASP.NET Master Pages](https://msdn.microsoft.com/library/x2b3ktt7.aspx)
 - [Tips for Nested Master Pages and VS 2005 Design-Time](https://weblogs.asp.net/scottgu/archive/2005/11/11/430382.aspx)
 - [VS 2008 Nested Master Page Support](https://weblogs.asp.net/scottgu/archive/2007/07/09/vs-2008-nested-master-page-support.aspx)
 

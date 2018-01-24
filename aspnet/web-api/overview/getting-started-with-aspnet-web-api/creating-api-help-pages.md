@@ -71,7 +71,7 @@ Also, make sure to register areas. In the Global.asax file, add the following co
 
 ## Adding API Documentation
 
-By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/en-us/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
+By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
 
 [!code-csharp[Main](creating-api-help-pages/samples/sample3.cs)]
 

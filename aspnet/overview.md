@@ -109,9 +109,9 @@ Create Deployment TOC based on https://www.asp.net/aspnet/overview/deployment
 Copy deployment content map to MVC, WebForms, Web Pages, Web API sections.
 Copy Web Deployment in Enterprise from WebForms to MVC
 Move under ASP.NET Best practices
-	What not to do in ASP​.NET, and what to do instead https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
+	What not to do in ASP​.NET, and what to do instead https://review.docs.microsoft.cus/aspnet/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
 	Async and await https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/async-and-await
-	Building Real World Cloud Apps with Azure https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
-	Hands on Lab: Maintainable Azure Websites: Managing Change and Scale https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
+	Building Real World Cloud Apps with Azure https://review.docs.microsoft.com/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
+	Hands on Lab: Maintainable Azure Websites: Managing Change and Scale https://review.docs.microsoft.com/aspnet/aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 
 -->

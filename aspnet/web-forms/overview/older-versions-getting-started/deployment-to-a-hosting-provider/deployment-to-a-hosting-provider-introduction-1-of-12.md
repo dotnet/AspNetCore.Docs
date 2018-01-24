@@ -58,7 +58,7 @@ The hosting provider used for this tutorial, Cytanium.com, is one of many that a
 
 ## Deploying Web Site Projects
 
-Contoso University is a Visual Studio web application project. Most of the deployment methods and tools demonstrated in this tutorial do not apply to [Web Site Projects](https://msdn.microsoft.com/en-us/library/dd547590.aspx). For information about how to deploy web site projects, see [ASP.NET Deployment Content Map](https://msdn.microsoft.com/en-us/library/bb386521.aspx#deployment_for_web_site_projects).
+Contoso University is a Visual Studio web application project. Most of the deployment methods and tools demonstrated in this tutorial do not apply to [Web Site Projects](https://msdn.microsoft.com/library/dd547590.aspx). For information about how to deploy web site projects, see [ASP.NET Deployment Content Map](https://msdn.microsoft.com/library/bb386521.aspx#deployment_for_web_site_projects).
 
 ## Deploying ASP.NET MVC Projects
 

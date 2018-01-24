@@ -139,7 +139,7 @@ As you might expect, when re-deploying a web application you only need to copy n
 > One thing to keep in mind when using explicit compilation is that anytime you add a new ASP.NET page to the project or make any code-related changes, you need to rebuild your project, which updates the assembly in the `Bin` folder. Consequently, you'll need to copy this updated assembly to production when updating a web application on production (along with the other new and updated content).
 
 
-Also understand that any changes to the `Web.config` or the files in the `Bin` directory stops and restarts the website's Application Pool. If your session state is stored using the `InProc` mode (the default) then your site's visitors will lose their session state whenever these key files are modified. To avoid this pitfall, consider storing session using the `StateServer` or `SQLServer` modes. For more information on this topic read [Session-State Modes](https://msdn.microsoft.com/en-us/library/ms178586.aspx).
+Also understand that any changes to the `Web.config` or the files in the `Bin` directory stops and restarts the website's Application Pool. If your session state is stored using the `InProc` mode (the default) then your site's visitors will lose their session state whenever these key files are modified. To avoid this pitfall, consider storing session using the `StateServer` or `SQLServer` modes. For more information on this topic read [Session-State Modes](https://msdn.microsoft.com/library/ms178586.aspx).
 
 Finally, keep in mind that re-deploying an application can take anywhere from a few seconds to several minutes, depending on the number and size of files that need to be copied to the production environment. During this time users visiting your site may experience errors or odd behavior. You can "turn off" your entire application by adding a page named `App_Offline.htm` to your application's root directory that explains to your users that the site is down for maintenance (or whatever) and will be back up shortly. When the `App_Offline.htm` file is present, the ASP.NET runtime redirects all incoming requests to that page.
 
@@ -154,7 +154,7 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [App\_Offline.htm and Working Around the "IE Friendly Errors" Feature](https://weblogs.asp.net/scottgu/App_5F00_Offline.htm-and-working-around-the-_2200_IE-Friendly-Errors_2200_-feature)
-- [Session-State Modes](https://msdn.microsoft.com/en-us/library/ms178586.aspx)
+- [Session-State Modes](https://msdn.microsoft.com/library/ms178586.aspx)
 
 >[!div class="step-by-step"]
 [Previous](determining-what-files-need-to-be-deployed-vb.md)

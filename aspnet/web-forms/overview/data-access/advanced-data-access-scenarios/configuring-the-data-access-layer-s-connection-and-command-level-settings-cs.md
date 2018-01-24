@@ -32,7 +32,7 @@ In this tutorial we will examine how to access the database connection- and comm
 
 ## Working with Data Using ADO.NET
 
-The Microsoft .NET Framework contains a plethora of classes designed specifically to work with data. These classes, found within the [`System.Data` namespace](https://msdn.microsoft.com/en-us/library/system.data.aspx), are referred to as the *ADO.NET* classes. Some of the classes under the ADO.NET umbrella are tied to a particular *data provider*. You can think of a data provider as a communication channel that allows information to flow between the ADO.NET classes and the underlying data store. There are generalized providers, like OleDb and ODBC, as well as providers that are specially designed for a particular database system. For example, while it is possible to connect to a Microsoft SQL Server database using the OleDb provider, the SqlClient provider is much more efficient as it was designed and optimized specifically for SQL Server.
+The Microsoft .NET Framework contains a plethora of classes designed specifically to work with data. These classes, found within the [`System.Data` namespace](https://msdn.microsoft.com/library/system.data.aspx), are referred to as the *ADO.NET* classes. Some of the classes under the ADO.NET umbrella are tied to a particular *data provider*. You can think of a data provider as a communication channel that allows information to flow between the ADO.NET classes and the underlying data store. There are generalized providers, like OleDb and ODBC, as well as providers that are specially designed for a particular database system. For example, while it is possible to connect to a Microsoft SQL Server database using the OleDb provider, the SqlClient provider is much more efficient as it was designed and optimized specifically for SQL Server.
 
 When programmatically accessing data, the following pattern is commonly used:
 
@@ -40,7 +40,7 @@ When programmatically accessing data, the following pattern is commonly used:
 - Issue a command.
 - For `SELECT` queries, work with the resulting records.
 
-There are separate ADO.NET classes for performing each of these steps. To connect to a database using the SqlClient provider, for example, use the [`SqlConnection` class](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection(VS.80).aspx). To issue an `INSERT`, `UPDATE`, `DELETE`, or `SELECT` command to the database, use the [`SqlCommand` class](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlcommand.aspx).
+There are separate ADO.NET classes for performing each of these steps. To connect to a database using the SqlClient provider, for example, use the [`SqlConnection` class](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnection(VS.80).aspx). To issue an `INSERT`, `UPDATE`, `DELETE`, or `SELECT` command to the database, use the [`SqlCommand` class](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.aspx).
 
 Except for the [Wrapping Database Modifications within a Transaction](../working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs.md) tutorial, we have not had to write any low-level ADO.NET code ourselves because the TableAdapters auto-generated code includes the functionality needed to connect to the database, issue commands, retrieve data, and populate that data into DataTables. However, there may be times when we need to customize these low-level settings. Over the next few steps we will examine how to tap into the ADO.NET objects used internally by the TableAdapters.
 
@@ -116,7 +116,7 @@ Save the DataSet and then return to the `ProductsBLL` class. As before, go to on
 
 ## Step 3: Examining the Command-Related Properties
 
-A TableAdapter consists of a main query that, by default, has auto-generated `INSERT`, `UPDATE`, and `DELETE` statements. This main query s `INSERT`, `UPDATE`, and `DELETE` statements are implemented in the TableAdapter s code as an ADO.NET data adapter object via the `Adapter` property. Like with its `Connection` property, the `Adapter` property s data type is determined by the data provider used. Since these tutorials use the SqlClient provider, the `Adapter` property is of type [`SqlDataAdapter`](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter(VS.80).aspx).
+A TableAdapter consists of a main query that, by default, has auto-generated `INSERT`, `UPDATE`, and `DELETE` statements. This main query s `INSERT`, `UPDATE`, and `DELETE` statements are implemented in the TableAdapter s code as an ADO.NET data adapter object via the `Adapter` property. Like with its `Connection` property, the `Adapter` property s data type is determined by the data provider used. Since these tutorials use the SqlClient provider, the `Adapter` property is of type [`SqlDataAdapter`](https://msdn.microsoft.com/library/system.data.sqlclient.sqldataadapter(VS.80).aspx).
 
 The TableAdapter s `Adapter` property has three properties of type `SqlCommand` that it uses to issue the `INSERT`, `UPDATE`, and `DELETE` statements:
 
@@ -124,7 +124,7 @@ The TableAdapter s `Adapter` property has three properties of type `SqlCommand` 
 - `UpdateCommand`
 - `DeleteCommand`
 
-A `SqlCommand` object is responsible for sending a particular query to the database and has properties like: [`CommandText`](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlcommand.commandtext.aspx), which contains the ad-hoc SQL statement or stored procedure to execute; and [`Parameters`](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlcommand.parameters.aspx), which is a collection of `SqlParameter` objects. As we saw back in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-cs.md) tutorial, these command objects can be customized through the Properties window.
+A `SqlCommand` object is responsible for sending a particular query to the database and has properties like: [`CommandText`](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.commandtext.aspx), which contains the ad-hoc SQL statement or stored procedure to execute; and [`Parameters`](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.parameters.aspx), which is a collection of `SqlParameter` objects. As we saw back in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-cs.md) tutorial, these command objects can be customized through the Properties window.
 
 In addition to its main query, the TableAdapter can include a variable number of methods that, when invoked, dispatch a specified command to the database. The main query s command object and the command objects for all additional methods are stored in the TableAdapter s `CommandCollection` property.
 
@@ -141,7 +141,7 @@ Ideally, the command-level information should remain encapsulated within the Dat
 
 Since the TableAdapter only has a single `Connection` property, the code for exposing connection-level settings is fairly straightforward. Things are a bit more complicated when modifying command-level settings because the TableAdapter can have multiple command objects - an `InsertCommand`, `UpdateCommand`, and `DeleteCommand`, along with a variable number of command objects in the `CommandCollection` property. When updating command-level settings, these settings will need to be propagated to all of the command objects.
 
-For example, imagine that there were certain queries in the TableAdapter that took an extraordinary long time to execute. When using the TableAdapter to execute one of those queries, we might want to increase the command object s [`CommandTimeout` property](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlcommand.commandtimeout.aspx). This property specifies the number of seconds to wait for the command to execute and defaults to 30.
+For example, imagine that there were certain queries in the TableAdapter that took an extraordinary long time to execute. When using the TableAdapter to execute one of those queries, we might want to increase the command object s [`CommandTimeout` property](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.commandtimeout.aspx). This property specifies the number of seconds to wait for the command to execute and defaults to 30.
 
 To allow the `CommandTimeout` property to be adjusted by the BLL, add the following `public` method to the `ProductsDataTable` using the partial class file created in Step 2 (`ProductsTableAdapter.ConnectionAndCommandSettings.cs`):
 

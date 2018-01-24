@@ -249,13 +249,13 @@ The procedure earlier in this article relies on using the **Starter Site** templ
 
 The basic process is described in the blog post [THE most basic way to implement ASP.NET Razor security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2240). Most of the work is done using the following methods and properties of the `WebSecurity` helper:
 
-- [WebSecurty.UserExists](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.userexists(v=vs.99).aspx), [WebSecurity.CreateUserAndAccount](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.createuserandaccount(v=vs.99).aspx). These methods let you determine whether someone is already registered and to register them.
-- [WebSecurty.IsAuthenticated](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.isauthenticated(v=vs.99).aspx). This property lets you determine whether the current user is logged in. This is useful to redirect users to a login page if they have not already logged in.
-- [WebSecurity.Login](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.login(v=vs.99).aspx), [WebSecurity.Logout](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.logout(v=vs.99).aspx). These methods log a user in or out.
-- [WebSecurity.CurrentUserName](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.currentusername(v=vs.99).aspx). This property is useful for displaying the current user's logged-in name (if the user is logged in).
-- [WebSecurity.ConfirmAccount](https://msdn.microsoft.com/en-us/library/gg569286(v=vs.99).aspx). This method is useful if you set up email confirmation for registration. (Details are described in the blog post [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267).)
+- [WebSecurty.UserExists](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.userexists(v=vs.99).aspx), [WebSecurity.CreateUserAndAccount](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.createuserandaccount(v=vs.99).aspx). These methods let you determine whether someone is already registered and to register them.
+- [WebSecurty.IsAuthenticated](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.isauthenticated(v=vs.99).aspx). This property lets you determine whether the current user is logged in. This is useful to redirect users to a login page if they have not already logged in.
+- [WebSecurity.Login](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.login(v=vs.99).aspx), [WebSecurity.Logout](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.logout(v=vs.99).aspx). These methods log a user in or out.
+- [WebSecurity.CurrentUserName](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.currentusername(v=vs.99).aspx). This property is useful for displaying the current user's logged-in name (if the user is logged in).
+- [WebSecurity.ConfirmAccount](https://msdn.microsoft.com/library/gg569286(v=vs.99).aspx). This method is useful if you set up email confirmation for registration. (Details are described in the blog post [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267).)
 
-To manage roles, you can use the [Roles](https://msdn.microsoft.com/en-us/library/gg538398(v=vs.99).aspx) and [Membership](https://msdn.microsoft.com/en-us/library/gg569035(v=vs.99).aspx) classes, as described in the blog entry.
+To manage roles, you can use the [Roles](https://msdn.microsoft.com/library/gg538398(v=vs.99).aspx) and [Membership](https://msdn.microsoft.com/library/gg569035(v=vs.99).aspx) classes, as described in the blog entry.
 
 ## Additional Resources
 
@@ -263,6 +263,6 @@ To manage roles, you can use the [Roles](https://msdn.microsoft.com/en-us/librar
 - [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660)
 - [THE most basic way to implement ASP.NET Razor security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2240) and [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267). These are blog posts that describe how to implement ASP.NET membership features without using the **Starter Site** template.
 - [Enabling Login from External Sites in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=251969)
-- [WebSecurity Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99)) (MSDN)
-- [SimpleRoleProvider Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.simpleroleprovider(v=vs.99)) (MSDN)
-- [SimpleMembershipProvider Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.simplemembershipprovider(v=vs.99)) (MSDN)
+- [WebSecurity Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity(v=vs.99)) (MSDN)
+- [SimpleRoleProvider Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.simpleroleprovider(v=vs.99)) (MSDN)
+- [SimpleMembershipProvider Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.simplemembershipprovider(v=vs.99)) (MSDN)
