@@ -76,7 +76,7 @@ Use the following topics to configure your application to use the respective pro
 
 ## Optionally set password
 
-When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
+When you register with an external login provider, you don't have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
 
 To create a password and sign in using your email that you set during the sign in process with external providers:
 

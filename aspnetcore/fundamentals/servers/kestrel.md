@@ -15,7 +15,7 @@ ms.custom: H1Hack27Feb2017
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-Kestrel is a cross-platform [web server for ASP.NET Core](index.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core project templates. 
+Kestrel is a cross-platform [web server for ASP.NET Core](index.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that's included by default in ASP.NET Core project templates. 
 
 Kestrel supports the following features:
 
@@ -139,7 +139,7 @@ An exception is thrown if you try to configure the limit on a request after the 
 
 **Minimum request body data rate**
 
-Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
+Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
 
 The default minimum rate is 240 bytes/second, with a 5 second grace period.
 
@@ -218,7 +218,7 @@ If you call `UseUrls` or use the `urls` command-line argument or ASPNETCORE_URLS
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configure URL bindings by using `UseUrls`.
+Only HTTP URL prefixes are valid; Kestrel doesn't support SSL when you configure URL bindings by using `UseUrls`.
 
 * IPv4 address with port number
 
@@ -245,7 +245,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://*:80/
   ```
 
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HTTP.sys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, *, and +, are not special. Anything that's not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HTTP.sys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 
 * "Localhost" name with port number or loopback IP with port number
 
@@ -255,7 +255,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://[::1]:5000/
   ```
 
-  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
+  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -298,7 +298,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://[::1]:5000/
   ```
 
-  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
+  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning. 
 
 * Unix socket
 

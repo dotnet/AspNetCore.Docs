@@ -102,7 +102,7 @@ This code takes care of the following database update tasks:
 
 * Makes HireDate nullable since student rows won't have hire dates.
 
-* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they'll get new primary key values.
+* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they will get new primary key values.
 
 * Copies data from the Student table into the Person table. This causes students to get assigned new primary key values.
 
@@ -121,7 +121,7 @@ dotnet ef database update
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
 > [!NOTE] 
-> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
+> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
 
 ## Test with inheritance implemented
 

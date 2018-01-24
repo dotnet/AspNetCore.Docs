@@ -34,7 +34,7 @@ ASP.NET Core ships two server implementations:
 
 ## Kestrel
 
-Kestrel is the web server that is included by default in ASP.NET Core new-project templates. 
+Kestrel is the web server that's included by default in ASP.NET Core new-project templates. 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

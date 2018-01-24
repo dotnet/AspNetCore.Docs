@@ -33,10 +33,10 @@ The Index and Details pages get and display the requested data with the HTTP GET
 
 The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)  to fetch the requested entity. [FirstOrDefaultAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) is more efficient at fetching one entity:
 
-* Unless the code needs to verify that there is not more than one entity returned from the query. 
+* Unless the code needs to verify that there's not more than one entity returned from the query. 
 * `SingleOrDefaultAsync` fetches more data and does unnecessary work.
-* `SingleOrDefaultAsync` throws an exception if there is more than one entity that fits the filter part.
-*  `FirstOrDefaultAsync` doesn't throw if there is more than one entity that fits the filter part.
+* `SingleOrDefaultAsync` throws an exception if there's more than one entity that fits the filter part.
+*  `FirstOrDefaultAsync` doesn't throw if there's more than one entity that fits the filter part.
 
 Globally replace `SingleOrDefaultAsync` with `FirstOrDefaultAsync`. `SingleOrDefaultAsync` is used in 5 places:
 
@@ -50,7 +50,7 @@ In much of the scaffolded code, [FindAsync](https://docs.microsoft.com/dotnet/ap
 
 `FindAsync`:
 
-* Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it is returned without a request to the DB.
+* Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it's returned without a request to the DB.
 * Is simple and concise.
 * Is optimized to look up a single entity.
 * Can have perf benefits in some situations, but they rarely come into play for normal web scenarios.
@@ -82,7 +82,7 @@ Don't globally change `@page` to `@page "{id:int}"`, doing so breaks the links t
 
 ### Add related data
 
-The scaffolded code for the Students Index page does not include the `Enrollments` property. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
+The scaffolded code for the Students Index page doesn't include the `Enrollments` property. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
 
 The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
 
@@ -128,7 +128,7 @@ In the preceding sample:
 <a id="overpost"></a>
 ### Overposting
 
-Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page should not update or add:
+Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
@@ -181,9 +181,9 @@ The DB context keeps track of whether entities in memory are in sync with their 
 
 An entity may be in one of the following states:
 
-* `Added`: The entity does not yet exist in the DB. The `SaveChanges` method issues an INSERT statement.
+* `Added`: The entity doesn't yet exist in the DB. The `SaveChanges` method issues an INSERT statement.
 
-* `Unchanged`: No changes need to be saved with this entity. An entity has this status when it is read from the DB.
+* `Unchanged`: No changes need to be saved with this entity. An entity has this status when it's read from the DB.
 
 * `Modified`: Some or all of the entity's property values have been modified. The `SaveChanges` method issues an UPDATE statement.
 

@@ -40,14 +40,14 @@ Update *Models/Student.cs* with the following highlighted code:
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-The [DataType](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that is more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
 
-The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes do not provide validation.
+The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes don't provide validation.
 
-`DataType.Date` does not specify the format of the date that is displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](https://docs.microsoft.com/aspnet/core/fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
+`DataType.Date` doesn't specify the format of the date that's displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](https://docs.microsoft.com/aspnet/core/fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
@@ -55,7 +55,7 @@ The `DisplayFormat` attribute is used to explicitly specify the date format:
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields should not use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
+The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields shouldn't use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
 
 The `DisplayFormat` attribute can be used by itself. It's generally a good idea to use the `DataType` attribute with the `DisplayFormat` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available in `DisplayFormat`:
 
@@ -156,7 +156,7 @@ Update *Models/Student.cs* with the following code:
 
 ### The Required attribute
 
-The `Required` attribute makes the name properties required fields. The `Required` attribute is not needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
+The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
 
 The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
 
@@ -282,12 +282,12 @@ The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentI
 
 EF Core doesn't require a FK property for a data model when the model has a navigation property for a related entity.
 
-EF Core automatically creates FKs in the database wherever they are needed. EF Core creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
+EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
 
 * The `Department` entity is null if it's not explicitly loaded.
 * To update the course entity, the `Department` entity must first be fetched.
 
-When the FK property `DepartmentID` is included in the data model, there is no need to
+When the FK property `DepartmentID` is included in the data model, there's no need to
 fetch the `Department` entity before an update.
 
 ### The DatabaseGenerated attribute
@@ -372,10 +372,10 @@ public ICollection<Course> Courses { get; set; }
 
 Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property was not defined as nullable:
+For example, if the `Department.InstructorID` property wasn't defined as nullable:
 
 * EF Core configures a cascade delete rule to delete the instructor when the department is deleted.
-* Deleting the instructor when the department is deleted is not the intended behavior.
+* Deleting the instructor when the department is deleted isn't the intended behavior.
 
 If business rules required the `InstructorID` property be non-nullable, use the following fluent API statement:
 
@@ -430,7 +430,7 @@ If the `Enrollment` table didn't include grade information, it would only need t
 
 The `Instructor` and `Course` entities have a many-to-many relationship using a pure join table.
 
-Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
+Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## The CourseAssignment entity
 
@@ -461,7 +461,7 @@ The composite key ensures:
 
 * Multiple rows are allowed for one course.
 * Multiple rows are allowed for one instructor.
-* Multiple rows for the same instructor and course is not allowed.
+* Multiple rows for the same instructor and course isn't allowed.
 
 The `Enrollment` join entity defines its own PK, so duplicates of this sort are possible. To prevent such duplicates:
 
@@ -639,7 +639,7 @@ With the preceding changes, existing `Course` rows will be related to the "Temp"
 A production app would:
 
 * Include code or scripts to add `Department` rows and related `Course` rows to the new `Department` rows.
-* Would not use the "Temp" department or the default value for `Course.DepartmentID `.
+* Not use the "Temp" department or the default value for `Course.DepartmentID`.
 
 The next tutorial covers related data.
 

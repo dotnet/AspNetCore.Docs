@@ -40,7 +40,7 @@ In this tutorial, we'll add support for [Font Awesome](http://fontawesome.io). B
 
 ### Manual installation in bower.json
 
-Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSense shows the available packages. When a package is selected, the available versions are displayed. The images below are older and will not match what you see.
+Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSense shows the available packages. When a package is selected, the available versions are displayed. The images below are older and won't match what you see.
 
 ![IntelliSense of bower package explorer](bower/_static/add-package.png)
 

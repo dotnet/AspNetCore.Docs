@@ -74,12 +74,12 @@ These are samples to illustrate simple caching code; caching has not been implem
 
 ## Azure caching services
 
-Azure offers the following caching services: [Azure Redis Cache](https://msdn.microsoft.com/en-us/library/dn690523.aspx) and [Azure Managed Cache](https://msdn.microsoft.com/en-us/library/dn386094.aspx). Azure Redis cache is based on the popular [open source Redis Cache](http://redis.io/) and is the first choice for most caching scenarios.
+Azure offers the following caching services: [Azure Redis Cache](https://msdn.microsoft.com/library/dn690523.aspx) and [Azure Managed Cache](https://msdn.microsoft.com/library/dn386094.aspx). Azure Redis cache is based on the popular [open source Redis Cache](http://redis.io/) and is the first choice for most caching scenarios.
 
 <a id="sessionstate"></a>
 ## ASP.NET session state using a cache provider
 
-As mentioned in the [web development best practices chapter](web-development-best-practices.md), a best practice is to avoid using session state. If your application requires session state, the next best practice is to avoid the default in-memory provider because that doesn't enable scale out (multiple instances of the web server). The ASP.NET SQL Server session state provider enables a site that runs on multiple web servers to use session state, but it incurs a high latency cost compared to an in-memory provider. The best solution if you have to use session state is to use a cache provider, such as the [Session State Provider for Azure Cache](https://msdn.microsoft.com/en-us/library/windowsazure/gg185668.aspx).
+As mentioned in the [web development best practices chapter](web-development-best-practices.md), a best practice is to avoid using session state. If your application requires session state, the next best practice is to avoid the default in-memory provider because that doesn't enable scale out (multiple instances of the web server). The ASP.NET SQL Server session state provider enables a site that runs on multiple web servers to use session state, but it incurs a high latency cost compared to an in-memory provider. The best solution if you have to use session state is to use a cache provider, such as the [Session State Provider for Azure Cache](https://msdn.microsoft.com/library/windowsazure/gg185668.aspx).
 
 ## Summary
 
@@ -91,11 +91,11 @@ For more information about caching, see the following resources.
 
 Documentation
 
-- [Azure Cache](https://msdn.microsoft.com/en-us/library/gg278356.aspx). Official MSDN documentation on caching in Azure.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Caching guidance and Cache-Aside pattern.
-- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/en-us/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. See the section on Caching.
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). W. White paper by Mark Simms and Michael Thomassy. See the section on distributed caching.
-- [Distributed Caching On The Path To Scalability](https://msdn.microsoft.com/en-us/magazine/dd942840.aspx). An older (2009) MSDN Magazine article, but a clearly written introduction to distributed caching in general; goes into more depth than the caching sections of the FailSafe and Best Practices white papers.
+- [Azure Cache](https://msdn.microsoft.com/library/gg278356.aspx). Official MSDN documentation on caching in Azure.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Caching guidance and Cache-Aside pattern.
+- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. See the section on Caching.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). W. White paper by Mark Simms and Michael Thomassy. See the section on distributed caching.
+- [Distributed Caching On The Path To Scalability](https://msdn.microsoft.com/magazine/dd942840.aspx). An older (2009) MSDN Magazine article, but a clearly written introduction to distributed caching in general; goes into more depth than the caching sections of the FailSafe and Best Practices white papers.
 
 Videos
 

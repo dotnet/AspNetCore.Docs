@@ -38,7 +38,7 @@ In the **Templates** pane, select **Installed Templates** and expand the **Visua
 
 ## Set the Target Framework (Visual Studio 2010)
 
-If you are using Visual Studio 2010, change the target framework to .NET Framework 4.0. (By default, the project template targets the [.Net Framework Client Profile](https://msdn.microsoft.com/en-us/library/cc656912.aspx#features_not_included_in_the_net_framework_client_profile).)
+If you are using Visual Studio 2010, change the target framework to .NET Framework 4.0. (By default, the project template targets the [.Net Framework Client Profile](https://msdn.microsoft.com/library/cc656912.aspx#features_not_included_in_the_net_framework_client_profile).)
 
 In Solution Explorer, right-click the project and select **Properties**. In the **Target framework** dropdown list, change the target framework to .NET Framework 4.0. When prompted to apply the change, click **Yes**.
 

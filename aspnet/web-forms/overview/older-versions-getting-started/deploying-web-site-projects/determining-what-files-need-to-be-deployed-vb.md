@@ -38,7 +38,7 @@ Consider an ASP.NET page named `Clock.aspx` that contains a Label control whose 
 
 In order for the ASP.NET engine to service a request for this page, the page's code portion (the *`WebPage`*`.aspx.vb` file) must first be compiled. This compilation can happen explicitly or automatically.
 
-If the compilation happens explicitly then the entire application's source code is compiled into one or more assemblies (`.dll` files) located in the application's `Bin` directory. If the compilation happens automatically then the resulting auto-generated assembly is, by default, placed in the `Temporary ASP.NET Files` folder, which can be found at `%WINDOWS%\Microsoft.NET\Framework\<version>`, although this location is configurable via the [&lt;compilation&gt; element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx) in `Web.config`. With explicit compilation you must take some action to compile the ASP.NET application's code into an assembly, and this step occurs prior to deployment. With automatic compilation the compilation process occurs on the web server when the resource is first accessed.
+If the compilation happens explicitly then the entire application's source code is compiled into one or more assemblies (`.dll` files) located in the application's `Bin` directory. If the compilation happens automatically then the resulting auto-generated assembly is, by default, placed in the `Temporary ASP.NET Files` folder, which can be found at `%WINDOWS%\Microsoft.NET\Framework\<version>`, although this location is configurable via the [&lt;compilation&gt; element](https://msdn.microsoft.com/library/s10awwz0.aspx) in `Web.config`. With explicit compilation you must take some action to compile the ASP.NET application's code into an assembly, and this step occurs prior to deployment. With automatic compilation the compilation process occurs on the web server when the resource is first accessed.
 
 Regardless of what compilation model you use, the markup portion of all ASP.NET pages (the `WebPage.aspx` files) need to be copied to the production environment. With explicit compilation you need to copy up the assemblies in the `Bin` folder, but you do not need to copy up the ASP.NET pages' code portions (the `WebPage.aspx.vb` files). With automatic compilation you need to copy up the code portion files so that the code is present and can be compiled automatically when the page is visited. The markup portion of each ASP.NET web page includes a `@Page` directive with attributes that indicate whether the page's associated code was already explicitly compiled or whether it needs to be automatically compiled. As a result, the production environment can work with either compilation model seamlessly and you do not need to apply any special configuration settings to indicate that explicit or automatic compilation is used.
 
@@ -64,7 +64,7 @@ When Microsoft released Visual Studio 2005 they dropped support for the Web Appl
 - Building a project in Visual Studio does not create an assembly in the `Bin` directory. Instead, building a Web Site Project reports any compile-time errors.
 - Support for automatic compilation. Web Site Projects are typically deployed by copying the markup and source code to the production environment, although the code can be precompiled (explicit compilation).
 
-Microsoft revived the Web Application Project model when it released Visual Studio 2005 Service Pack 1. However, Visual Web Developer continued to only support the Web Site Project model. The good news is that this limitation was dropped with Visual Web Developer 2008 Service Pack 1. Today you can create ASP.NET applications in Visual Studio (and Visual Web Developer) using either the Web Application Project model or the Web Site Project model. Both models have their pros and cons. Refer to [Introduction to Web Application Projects: Comparing Web Site Projects and Web Application Projects](https://msdn.microsoft.com/en-us/library/aa730880.aspx#wapp_topic5) for a comparison of the two models and to help decide what project model works best for your situation.
+Microsoft revived the Web Application Project model when it released Visual Studio 2005 Service Pack 1. However, Visual Web Developer continued to only support the Web Site Project model. The good news is that this limitation was dropped with Visual Web Developer 2008 Service Pack 1. Today you can create ASP.NET applications in Visual Studio (and Visual Web Developer) using either the Web Application Project model or the Web Site Project model. Both models have their pros and cons. Refer to [Introduction to Web Application Projects: Comparing Web Site Projects and Web Application Projects](https://msdn.microsoft.com/library/aa730880.aspx#wapp_topic5) for a comparison of the two models and to help decide what project model works best for your situation.
 
 ## Exploring the Sample Web Application
 
@@ -174,15 +174,15 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET Compilation Overview](https://msdn.microsoft.com/en-us/library/ms178466.aspx)
-- [ASP.NET User Controls](https://msdn.microsoft.com/en-us/library/y6wb1a0e.aspx)
+- [ASP.NET Compilation Overview](https://msdn.microsoft.com/library/ms178466.aspx)
+- [ASP.NET User Controls](https://msdn.microsoft.com/library/y6wb1a0e.aspx)
 - [Examining ASP.NET's Site Navigation](http://aspnet.4guysfromrolla.com/articles/111605-1.aspx)
-- [Introduction to Web Application Projects](https://msdn.microsoft.com/en-us/library/aa730880.aspx)
+- [Introduction to Web Application Projects](https://msdn.microsoft.com/library/aa730880.aspx)
 - [Master Page Tutorials](../master-pages/creating-a-site-wide-layout-using-master-pages-cs.md)
 - [Sharing Code Between Pages](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/pages/code.aspx)
 - [Using a Custom Base Class For Your ASP.NET Pages' Code-Behind Classes](http://aspnet.4guysfromrolla.com/articles/041305-1.aspx)
 - [Visual Studio 2005's Web Site Project System: What Is It and Why Did We Do It?](https://weblogs.asp.net/scottgu/archive/2005/08/21/423201.aspx)
-- [Walkthrough: Converting a Web Site Project to a Web Application Project in Visual Studio](https://msdn.microsoft.com/en-us/library/aa983476.aspx)
+- [Walkthrough: Converting a Web Site Project to a Web Application Project in Visual Studio](https://msdn.microsoft.com/library/aa983476.aspx)
 
 >[!div class="step-by-step"]
 [Previous](asp-net-hosting-options-vb.md)

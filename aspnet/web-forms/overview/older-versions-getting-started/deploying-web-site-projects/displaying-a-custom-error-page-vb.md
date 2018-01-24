@@ -26,7 +26,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 In a perfect world there would be no run-time errors. Programmers would write code with nary a bug and with robust user input validation, and external resources like database servers and e-mail servers would never go offline. Of course, in reality errors are inevitable. The classes in the .NET Framework signal an error by throwing an exception. For example, calling a SqlConnection object's Open method establishes a connection to the database specified by a connection string. However, if the database is down or if the credentials in the connection string are invalid then the Open method throws a `SqlException`. Exceptions can be handled by the use of `Try/Catch/Finally` blocks. If code within a `Try` block throws an exception, control is transferred to the appropriate catch block where the developer can attempt to recover from the error. If there is no matching catch block, or if the code that threw the exception is not in a try block, the exception percolates up the call stack in search of `Try/Catch/Finally` blocks.
 
-If the exception bubbles all the way up to the ASP.NET runtime without being handled, the [`HttpApplication` class](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.aspx)'s [`Error` event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.error.aspx) is raised and the configured *error page* is displayed. By default, ASP.NET displays an error page that is affectionately referred to as the [Yellow Screen of Death](http://en.wikipedia.org/wiki/Yellow_Screen_of_Death#Yellow) (YSOD). There are two versions of the YSOD: one shows the exception details, a stack trace, and other information helpful to developers debugging the application (see **Figure 1**); the other simply states that there was a run-time error (see **Figure 2**).
+If the exception bubbles all the way up to the ASP.NET runtime without being handled, the [`HttpApplication` class](https://msdn.microsoft.com/library/system.web.httpapplication.aspx)'s [`Error` event](https://msdn.microsoft.com/library/system.web.httpapplication.error.aspx) is raised and the configured *error page* is displayed. By default, ASP.NET displays an error page that is affectionately referred to as the [Yellow Screen of Death](http://en.wikipedia.org/wiki/Yellow_Screen_of_Death#Yellow) (YSOD). There are two versions of the YSOD: one shows the exception details, a stack trace, and other information helpful to developers debugging the application (see **Figure 1**); the other simply states that there was a run-time error (see **Figure 2**).
 
 The exception details YSOD is quite helpful for developers debugging the application, but showing a YSOD to end users is tacky and unprofessional. Instead, end users should be taken to an error page that maintains the site's look and feel with more user-friendly prose describing the situation. The good news is that creating such a custom error page is quite easy. This tutorial starts with a look at ASP.NET's different error pages. It then shows how to configure the web application to show users a custom error page in the face of an error.
 
@@ -82,7 +82,7 @@ Which of the three possible error pages is displayed is based on two variables:
 - The configuration information in the `<customErrors>` section, and
 - Whether the user is visiting the site locally or remotely.
 
-The [`<customErrors>` section](https://msdn.microsoft.com/en-us/library/h0hfz6fc.aspx) in `Web.config` has two attributes that affect what error page is shown: `defaultRedirect` and `mode`. The `defaultRedirect` attribute is optional. If provided, it specifies the URL of the custom error page and indicates that the custom error page should be shown instead of the Runtime Error YSOD. The `mode` attribute is required and accepts one of three values: `On`, `Off`, or `RemoteOnly`. These values have the following behavior:
+The [`<customErrors>` section](https://msdn.microsoft.com/library/h0hfz6fc.aspx) in `Web.config` has two attributes that affect what error page is shown: `defaultRedirect` and `mode`. The `defaultRedirect` attribute is optional. If provided, it specifies the URL of the custom error page and indicates that the custom error page should be shown instead of the Runtime Error YSOD. The `mode` attribute is required and accepts one of three values: `On`, `Off`, or `RemoteOnly`. These values have the following behavior:
 
 - `On` - indicates that the custom error page or the Runtime Error YSOD is shown to all visitors, regardless of whether they are local or remote.
 - `Off` - specifies that the Exception Details YSOD is displayed to all visitors, regardless of whether they are local or remote.
@@ -162,9 +162,9 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Error Pages, One More Time](http://www.smashingmagazine.com/2009/01/29/404-error-pages-one-more-time/)
-- [Design Guidelines for Exceptions](https://msdn.microsoft.com/en-us/library/ms229014.aspx)
+- [Design Guidelines for Exceptions](https://msdn.microsoft.com/library/ms229014.aspx)
 - [User-Friendly Error Pages](http://aspnet.4guysfromrolla.com/articles/090606-1.aspx)
-- [Handling and Throwing Exceptions](https://msdn.microsoft.com/en-us/library/5b2yeyab.aspx)
+- [Handling and Throwing Exceptions](https://msdn.microsoft.com/library/5b2yeyab.aspx)
 - [Properly Using Custom Error Pages in ASP.NET](http://professionalaspnet.com/archive/2007/09/30/Properly-Using-Custom-Error-Pages-in-ASP.NET.aspx)
 
 >[!div class="step-by-step"]

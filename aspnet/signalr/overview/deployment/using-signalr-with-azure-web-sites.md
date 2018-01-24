@@ -31,7 +31,7 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 > 
 > ## Questions and comments
 > 
-> Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR), [StackOverflow.com](http://stackoverflow.com/), or the [Microsoft Azure forums](https://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?category=windowsazureplatform).
+> Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR), [StackOverflow.com](http://stackoverflow.com/), or the [Microsoft Azure forums](https://social.msdn.microsoft.com/Forums/windowsazure/home?category=windowsazureplatform).
 
 
 ## Table of Contents
@@ -56,7 +56,7 @@ SignalR doesn't add any particular complications to deploying an application to 
 
 - Visual Studio 2013. If you don't have Visual Studio, Visual Studio 2013 Express for Web is included in the install of the Azure SDK.
 - [Azure SDK 2.3 for Visual Studio 2013](https://go.microsoft.com/fwlink/?linkid=324322&clcid=0x409) or [Azure SDK 2.3 for Visual Studio 2012](https://go.microsoft.com/fwlink/p/?linkid=323511).
-- To complete this tutorial, you will need an Azure subscription. You can [activate your MSDN subscriber benefits](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/), or [sign up for a trial subscription](https://azure.microsoft.com/en-us/pricing/free-trial/).
+- To complete this tutorial, you will need an Azure subscription. You can [activate your MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), or [sign up for a trial subscription](https://azure.microsoft.com/pricing/free-trial/).
 
 ### Deploying a SignalR web app to Azure
 
@@ -110,4 +110,4 @@ If you use multiple instances for your web app, and the users of those instances
 <a id="nextsteps"></a>
 ## Next Steps
 
-For more information on Web Apps in Azure App Service, see [Web Apps overview](https://azure.microsoft.com/en-us/documentation/articles/app-service-web-overview/).
+For more information on Web Apps in Azure App Service, see [Web Apps overview](https://azure.microsoft.com/documentation/articles/app-service-web-overview/).

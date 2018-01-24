@@ -181,7 +181,7 @@ namespace WebApplication1.ViewModels
 
 ### Weakly-typed data (ViewData and ViewBag)
 
-Note: `ViewBag` is not available in the Razor Pages.
+Note: `ViewBag` isn't available in the Razor Pages.
 
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
 
@@ -240,7 +240,7 @@ Work with the data in a view:
 
 **ViewBag**
 
-Note: `ViewBag` is not available in the Razor Pages.
+Note: `ViewBag` isn't available in the Razor Pages.
 
 `ViewBag` is a [DynamicViewData](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
 
@@ -273,7 +273,7 @@ public IActionResult SomeAction()
 
 **Using ViewData and ViewBag simultaneously**
 
-Note: `ViewBag` is not available in the Razor Pages.
+Note: `ViewBag` isn't available in the Razor Pages.
 
 Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collection, you can use both `ViewData` and `ViewBag` and mix and match between them when reading and writing values.
 
@@ -313,7 +313,7 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 
 **Summary of the differences between ViewData and ViewBag**
 
- `ViewBag` is not available in the Razor Pages.
+ `ViewBag` isn't available in the Razor Pages.
 
 * `ViewData`
   * Derives from [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), so it has dictionary properties that can be useful, such as `ContainsKey`, `Add`, `Remove`, and `Clear`.

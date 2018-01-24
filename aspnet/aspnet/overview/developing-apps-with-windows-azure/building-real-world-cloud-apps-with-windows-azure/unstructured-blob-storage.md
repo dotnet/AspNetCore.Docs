@@ -28,7 +28,7 @@ In the previous chapter we looked at partitioning schemes and explained how the 
 
 The Azure Storage Blob service provides a way to store files in the cloud. The Blob service has a number of advantages over storing files in a local network file system:
 
-- It's highly scalable. A single Storage account can store [hundreds of terabytes](https://msdn.microsoft.com/en-us/library/windowsazure/dn249410.aspx), and you can have multiple Storage accounts. Some of the biggest Azure customers store hundreds of petabytes. Microsoft SkyDrive uses blob storage.
+- It's highly scalable. A single Storage account can store [hundreds of terabytes](https://msdn.microsoft.com/library/windowsazure/dn249410.aspx), and you can have multiple Storage accounts. Some of the biggest Azure customers store hundreds of petabytes. Microsoft SkyDrive uses blob storage.
 - It's durable. Every file you store in the Blob service is automatically backed up.
 - It provides high availability. The [SLA for Storage](https://go.microsoft.com/fwlink/p/?linkid=159705&amp;clcid=0x409) promises 99.9% or 99.99% uptime, depending on which geo-redundancy option you choose.
 - It's a platform-as-a-service (PaaS) feature of Azure, which means you just store and retrieve files, paying only for the actual amount of storage you use, and Azure automatically takes care of setting up and managing all of the VMs and disk drives required for the service.
@@ -141,7 +141,7 @@ For more information see the following resources:
 - [An Introduction to Azure BLOB Storage](https://www.simple-talk.com/cloud/cloud-data/an-introduction-to-windows-azure-blob-storage-/). Blog by Mike Wood.
 - [How to use the Azure Blob Storage Service in .NET](https://docs.microsoft.com/azure/storage/blobs/storage-dotnet-how-to-use-blobs). Official documentation on the MicrosoftAzure.com site. A brief introduction to blob storage followed by code examples showing how to connect to blob storage, create containers, upload and download blobs, etc.
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For a discussion of Azure Storage service and blobs, see episode 5 starting at 35:13.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Valet Key pattern.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Valet Key pattern.
 
 >[!div class="step-by-step"]
 [Previous](data-partitioning-strategies.md)

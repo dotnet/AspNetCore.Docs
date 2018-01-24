@@ -20,7 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ## What is middleware?
 
-Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:
+Middleware is software that's assembled into an application pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
 * Can perform work before and after the next component in the pipeline is invoked. 
@@ -50,7 +50,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 [!code-csharp[Main](middleware/sample/Chain/Startup.cs?name=snippet1)]
 
 >[!WARNING]
-> Do not call `next.Invoke` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
+> Don't call `next.Invoke` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
 > - May cause a protocol violation. For example, writing more than the stated `content-length`.
 > - May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
@@ -58,7 +58,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 
 ## Ordering
 
-The order that middleware components are added in the `Configure` method defines the order in which they are invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.
+The order that middleware components are added in the `Configure` method defines the order in which they're invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.
 
 The Configure method (shown below) adds the following middleware components:
 
@@ -111,11 +111,11 @@ The static file middleware is called early in the pipeline so it can handle requ
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 
-If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseAuthentication`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific Razor Page or controller and action.
+If the request isn't handled by the static file middleware, it's passed on to the Identity middleware (`app.UseAuthentication`), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific Razor Page or controller and action.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.
+If the request isn't handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.
 
 -----------
 
@@ -135,7 +135,7 @@ public void Configure(IApplicationBuilder app)
 
 ### Use, Run, and Map
 
-You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method can short-circuit the pipeline (that is, if it does not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
+You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method can short-circuit the pipeline (that is, if it doesn't call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
 
 `Map*` extensions are used as a convention for branching the pipeline. [Map](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions) branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 

@@ -28,7 +28,7 @@ The caching techniques examined in the [Caching Data with the ObjectDataSource](
 
 When caching database data, a time-based expiry is often chosen for its ease of use but is frequently an inadequate solution. Ideally, the database data would remain cached until the underlying data has been modified in the database; only then would the cache be evicted. This approach maximizes the performance benefits of caching and minimizes the duration of stale data. However, in order to enjoy these benefits there must be some system in place that knows when the underlying database data has been modified and evicts the corresponding items from the cache. Prior to ASP.NET 2.0, page developers were responsible for implementing this system.
 
-ASP.NET 2.0 provides a [`SqlCacheDependency` class](https://msdn.microsoft.com/en-us/library/system.web.caching.sqlcachedependency.aspx) and the necessary infrastructure to determine when a change has occurred in the database so that the corresponding cached items can be evicted. There are two techniques for determining when the underlying data has changed: notification and polling. After discussing the differences between notification and polling, we'll create the infrastructure necessary to support polling and then explore how to use the `SqlCacheDependency` class in declarative and programmatically scenarios.
+ASP.NET 2.0 provides a [`SqlCacheDependency` class](https://msdn.microsoft.com/library/system.web.caching.sqlcachedependency.aspx) and the necessary infrastructure to determine when a change has occurred in the database so that the corresponding cached items can be evicted. There are two techniques for determining when the underlying data has changed: notification and polling. After discussing the differences between notification and polling, we'll create the infrastructure necessary to support polling and then explore how to use the `SqlCacheDependency` class in declarative and programmatically scenarios.
 
 ## Understanding Notification and Polling
 
@@ -50,7 +50,7 @@ With the polling approach the database must be setup to contain the infrastructu
 [!code-console[Main](using-sql-cache-dependencies-cs/samples/sample1.cmd)]
 
 > [!NOTE]
-> To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/en-us/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/en-us/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
+> To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
 
 
 For example, to add the infrastructure for polling to a Microsoft SQL Server database named `pubs` on a database server named `ScottsServer` using Windows Authentication, navigate to the appropriate directory and, from the command line, enter:
@@ -72,7 +72,7 @@ For this tutorial add the triggers to the `Products`, `Categories`, and `Supplie
 
 ## Step 2: Referencing a Microsoft SQL Server 2005 Express Edition Database in`App_Data`
 
-The `aspnet_regsql.exe` command line program requires the database and server name in order to add the necessary polling infrastructure. But what is the database and server name for a Microsoft SQL Server 2005 Express database that resides in the `App_Data` folder? Rather than having to discover what the database and server names are, I ve found that the simplest approach is to attach the database to the `localhost\SQLExpress` database instance and rename the data using [SQL Server Management Studio](https://msdn.microsoft.com/en-us/library/ms174173.aspx). If you have one of the full versions of SQL Server 2005 installed on your machine, then you likely already have SQL Server Management Studio installed on your computer. If you only have the Express edition, you can download the free [Microsoft SQL Server Management Studio Express Edition](https://www.microsoft.com/downloads/details.aspx?displaylang=en&amp;FamilyID=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796).
+The `aspnet_regsql.exe` command line program requires the database and server name in order to add the necessary polling infrastructure. But what is the database and server name for a Microsoft SQL Server 2005 Express database that resides in the `App_Data` folder? Rather than having to discover what the database and server names are, I ve found that the simplest approach is to attach the database to the `localhost\SQLExpress` database instance and rename the data using [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx). If you have one of the full versions of SQL Server 2005 installed on your machine, then you likely already have SQL Server Management Studio installed on your computer. If you only have the Express edition, you can download the free [Microsoft SQL Server Management Studio Express Edition](https://www.microsoft.com/downloads/details.aspx?displaylang=en&amp;FamilyID=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796).
 
 Start by closing Visual Studio. Next, open SQL Server Management Studio and choose to connect to the `localhost\SQLExpress` server using Windows Authentication.
 
@@ -181,7 +181,7 @@ Now, visit this page through a browser. Since we ve yet to implement any caching
 **Figure 8**: The ObjectDataSource s `Selecting` Event Fires Each Time the GridView is Paged, Edited, or Sorted ([Click to view full-size image](using-sql-cache-dependencies-cs/_static/image10.png))
 
 
-As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-objectdatasource-cs.md) tutorial, setting the `EnableCaching` property to `true` causes the ObjectDataSource to cache its data for the duration specified by its `CacheDuration` property. The ObjectDataSource also has a [`SqlCacheDependency` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.objectdatasource.sqlcachedependency.aspx), which adds one or more SQL cache dependencies to the cached data using the pattern:
+As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-objectdatasource-cs.md) tutorial, setting the `EnableCaching` property to `true` causes the ObjectDataSource to cache its data for the duration specified by its `CacheDuration` property. The ObjectDataSource also has a [`SqlCacheDependency` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.objectdatasource.sqlcachedependency.aspx), which adds one or more SQL cache dependencies to the cached data using the pattern:
 
 
 [!code-css[Main](using-sql-cache-dependencies-cs/samples/sample9.css)]
@@ -277,7 +277,7 @@ Recall that the `MasterCacheKeyArray` cache dependency is used to ensure that *a
 
 Furthermore, when working with SQL cache dependencies we may need to associate multiple database tables as dependencies. For example, the `ProductsDataTable` cached in the `ProductsCL` class contains the category and supplier names for each product, but the `AddCacheItem` method only uses a dependency on `Products`. In this situation, if the user updates the name of a category or supplier, the cached product data will remain in the cache and be out of date. Therefore, we want to make the cached product data dependent on not only the `Products` table, but on the `Categories` and `Suppliers` tables as well.
 
-The [`AggregateCacheDependency` class](https://msdn.microsoft.com/en-us/library/system.web.caching.aggregatecachedependency.aspx) provides a means for associating multiple dependencies with a cache item. Start by creating an `AggregateCacheDependency` instance. Next, add the set of dependencies using the `AggregateCacheDependency` s `Add` method. When inserting the item into the data cache thereafter, pass in the `AggregateCacheDependency` instance. When *any* of the `AggregateCacheDependency` instance s dependencies change, the cached item will be evicted.
+The [`AggregateCacheDependency` class](https://msdn.microsoft.com/library/system.web.caching.aggregatecachedependency.aspx) provides a means for associating multiple dependencies with a cache item. Start by creating an `AggregateCacheDependency` instance. Next, add the set of dependencies using the `AggregateCacheDependency` s `Add` method. When inserting the item into the data cache thereafter, pass in the `AggregateCacheDependency` instance. When *any* of the `AggregateCacheDependency` instance s dependencies change, the cached item will be evicted.
 
 The following shows the updated code for the `ProductsCL` class s `AddCacheItem` method. The method creates the `MasterCacheKeyArray` cache dependency along with `SqlCacheDependency` objects for the `Products`, `Categories`, and `Suppliers` tables. These are all combined into one `AggregateCacheDependency` object named `aggregateDependencies`, which is then passed into the `Insert` method.
 
@@ -287,7 +287,7 @@ The following shows the updated code for the `ProductsCL` class s `AddCacheItem`
 Test this new code out. Now changes to the `Products`, `Categories`, or `Suppliers` tables cause the cached data to be evicted. Moreover, the `ProductsCL` class s `UpdateProduct` method, which is called when editing a product through the GridView, evicts the `MasterCacheKeyArray` cache dependency, which causes the cached `ProductsDataTable` to be evicted and the data to be re-retrieved on the next request.
 
 > [!NOTE]
-> SQL cache dependencies can also be used with [output caching](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/caching/output.aspx). For a demonstration of this functionality, see: [Using ASP.NET Output Caching with SQL Server](https://msdn.microsoft.com/en-us/library/e3w8402y(VS.80).aspx).
+> SQL cache dependencies can also be used with [output caching](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/caching/output.aspx). For a demonstration of this functionality, see: [Using ASP.NET Output Caching with SQL Server](https://msdn.microsoft.com/library/e3w8402y(VS.80).aspx).
 
 
 ## Summary
@@ -300,10 +300,10 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Using Query Notifications in Microsoft SQL Server 2005](https://msdn.microsoft.com/en-us/library/ms175110.aspx)
-- [Creating a Query Notification](https://msdn.microsoft.com/en-us/library/ms188669.aspx)
-- [Caching in ASP.NET with the `SqlCacheDependency` Class](https://msdn.microsoft.com/en-us/library/ms178604(VS.80).aspx)
-- [ASP.NET SQL Server Registration Tool (`aspnet_regsql.exe`)](https://msdn.microsoft.com/en-us/library/ms229862(vs.80).aspx)
+- [Using Query Notifications in Microsoft SQL Server 2005](https://msdn.microsoft.com/library/ms175110.aspx)
+- [Creating a Query Notification](https://msdn.microsoft.com/library/ms188669.aspx)
+- [Caching in ASP.NET with the `SqlCacheDependency` Class](https://msdn.microsoft.com/library/ms178604(VS.80).aspx)
+- [ASP.NET SQL Server Registration Tool (`aspnet_regsql.exe`)](https://msdn.microsoft.com/library/ms229862(vs.80).aspx)
 - [Overview of `SqlCacheDependency`](http://www.aspnetresources.com/blog/sql_cache_depedency_overview.aspx)
 
 ## About the Author

@@ -48,7 +48,7 @@ The tutorials are aimed at ASP.NET developers who work in environments where:
 Deployment from [source control](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md) using a [continuous delivery](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) process is not covered in these tutorials except for one tutorial that shows how to deploy from the command line. For information about continuous delivery, see the following resources:
 
 - [Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Windows Azure)](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md)
-- [Deploy a web app in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-deploy/)
+- [Deploy a web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-deploy/)
 - [Deploying Web Applications in Enterprise Scenarios](../deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md) (An older set of tutorials written for Visual Studio 2010, which still has useful information for enterprise environments.)
 
 ## Using a third-party hosting provider
@@ -125,7 +125,7 @@ If you're using Visual Studio 2010 SP1, install the following software:
 
 - [Azure SDK for Visual Studio 2010](https://go.microsoft.com/fwlink/?LinkID=254269)
 - [SQL Server Express LocalDB](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=SQLLocalDBOnly_11_0)
-- [SQL Server Data Tools](https://msdn.microsoft.com/en-us/library/hh500335.aspx).
+- [SQL Server Data Tools](https://msdn.microsoft.com/library/hh500335.aspx).
 
 Depending on how many of the SDK dependencies you already have on your machine, installing the Azure SDK could take a long time, from several minutes to a half hour or more. You need the Azure SDK even if you plan to publish to a third-party hosting provider instead of to Azure, because the SDK includes the latest updates to Visual Studio web publish features.
 

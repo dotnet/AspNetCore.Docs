@@ -66,7 +66,7 @@ With the `SupplierListMaster.aspx` and `ProductsForSupplierDetails.aspx` pages c
 
 We need to include a link titled View Products in each GridView row that, when clicked, takes the user to `ProductsForSupplierDetails.aspx` passing in the selected row's `SupplierID` value through the querystring. For example, if user clicks on the View Products link for the Tokyo Traders supplier (which has a `SupplierID` value of 4), they should be sent to `ProductsForSupplierDetails.aspx?SupplierID=4`.
 
-To accomplish this, add a [HyperLinkField](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.hyperlinkfield.aspx) to the GridView, which adds a hyperlink to each GridView row. Start by clicking the Edit Columns link from the GridView's smart tag. Next, select the HyperLinkField from the list in the upper left and click Add to include the HyperLinkField in the GridView's field list.
+To accomplish this, add a [HyperLinkField](https://msdn.microsoft.com/library/system.web.ui.webcontrols.hyperlinkfield.aspx) to the GridView, which adds a hyperlink to each GridView row. Start by clicking the Edit Columns link from the GridView's smart tag. Next, select the HyperLinkField from the list in the upper left and click Add to include the HyperLinkField in the GridView's field list.
 
 
 [![Add a HyperLinkField to the GridView](master-detail-filtering-across-two-pages-vb/_static/image9.png)](master-detail-filtering-across-two-pages-vb/_static/image8.png)

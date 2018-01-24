@@ -64,7 +64,7 @@ When I clicked the **Refresh** button, the change appeared in both browser windo
 
 **Notes**
 
-- To enable Browser Link, set `debug=true` in the [&lt;compilation&gt;](https://msdn.microsoft.com/en-us/library/s10awwz0(v=vs.85).aspx) element in the project's Web.config file.
+- To enable Browser Link, set `debug=true` in the [&lt;compilation&gt;](https://msdn.microsoft.com/library/s10awwz0(v=vs.85).aspx) element in the project's Web.config file.
 - The application must be running on localhost.
 - The application must target .NET 4.0 or later.
 

@@ -15,7 +15,7 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) is not created.
+This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
 
 There are 3 versions of this tutorial:
 

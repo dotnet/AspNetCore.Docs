@@ -83,7 +83,7 @@ In addition to parameterizing the endpoint URL in the deployment package, the WP
 
 If you install the deployment package manually, IIS Manager will prompt you for the service endpoint address alongside the properties that were parameterized automatically. If you install the deployment package by running the *.deploy.cmd* file, you can edit the *SetParameters.xml* file to provide a value for the service endpoint address together with values for the properties that were parameterized automatically.
 
-For full details on how to create a *parameters.xml* file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/en-us/library/ff398068.aspx). The procedure named **To use deployment parameters for Web.config file settings** provides step-by-step instructions.
+For full details on how to create a *parameters.xml* file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/library/ff398068.aspx). The procedure named **To use deployment parameters for Web.config file settings** provides step-by-step instructions.
 
 ## Modifying the SetParameters.xml File
 
@@ -139,7 +139,7 @@ The next topic, [Deploying Web Packages](deploying-web-packages.md), describes h
 
 ## Further Reading
 
-For information on how to create web packages, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md). For guidance on how to actually deploy a web package, see [Deploying Web Packages](deploying-web-packages.md). For a step-by-step walkthrough on how to create a *parameters.xml* file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/en-us/library/ff398068.aspx).
+For information on how to create web packages, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md). For guidance on how to actually deploy a web package, see [Deploying Web Packages](deploying-web-packages.md). For a step-by-step walkthrough on how to create a *parameters.xml* file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/library/ff398068.aspx).
 
 For more general information on parameterization in Web Deploy, see [Web Deploy Parameterization in Action](https://go.microsoft.com/?linkid=9805119) (blog post).
 
