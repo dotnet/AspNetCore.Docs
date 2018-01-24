@@ -29,7 +29,7 @@ Katana is Microsoft's implementation of [OWIN](http://owin.org/), the Open Web I
 Katana currently provides two servers, both of which support Windows Integrated Authentication:
 
 - **Microsoft.Owin.Host.SystemWeb**. Uses IIS with the ASP.NET pipeline.
-- **Microsoft.Owin.Host.HttpListener**. Uses [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). This server is currently the default option when self-hosting Katana.
+- **Microsoft.Owin.Host.HttpListener**. Uses [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx). This server is currently the default option when self-hosting Katana.
 
 > [!NOTE]
 > Katana does not currently provide OWIN middleware for Windows Authentication, because this functionality is already available in the servers.
@@ -95,6 +95,6 @@ You can send a request in Fiddler to confirm that the application is using Windo
 
 [An Overview of Project Katana](an-overview-of-project-katana.md)
 
-[System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx)
+[System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx)
 
 [Understanding OWIN Forms Authentication in MVC 5](https://blogs.msdn.com/b/webdev/archive/2013/07/03/understanding-owin-forms-authentication-in-mvc-5.aspx)

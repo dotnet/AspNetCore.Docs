@@ -46,7 +46,7 @@ For this tutorial, we will take a web application template (Web Forms) created u
 
 ### Migrating to Visual Studio 2013
 
-1. Install Visual Studio Express 2013 for Web or Visual Studio 2013 along with the [latest updates](https://www.microsoft.com/en-us/download/details.aspx?id=44921).
+1. Install Visual Studio Express 2013 for Web or Visual Studio 2013 along with the [latest updates](https://www.microsoft.com/download/details.aspx?id=44921).
 2. Open the above project in your installed version of Visual Studio. If SQL Server Express is not installed on the machine, a prompt is displayed when you open the project, since the connection string uses SQL Express. You can either choose to install SQL Express or as work around change the connection string to LocalDb. For this article we'll change it to LocalDb.
 3. Open web.config and change the connection string from .SQLExpess to (LocalDb)v11.0. Remove 'User Instance=true' from the connection string.
 
@@ -95,7 +95,7 @@ For ASP.NET Identity classes to work out of the box with the data of existing us
 | LockoutEndDate | DateTime |  |  |  |  |
 | AccessFailedCount | int |  |  |  |  |
 
-We need to have tables for each of these models with columns corresponding to the properties. The mapping between classes and tables is defined in the `OnModelCreating` method of the `IdentityDBContext`. This is known as the fluent API method of configuration and more information can be found [here](https://msdn.microsoft.com/en-us/data/jj591617.aspx). The configuration for the classes is as mentioned below
+We need to have tables for each of these models with columns corresponding to the properties. The mapping between classes and tables is defined in the `OnModelCreating` method of the `IdentityDBContext`. This is known as the fluent API method of configuration and more information can be found [here](https://msdn.microsoft.com/data/jj591617.aspx). The configuration for the classes is as mentioned below
 
 | **Class** | **Table** | **Primary key** | **Foreign key** |
 | --- | --- | --- | --- |
@@ -117,7 +117,7 @@ The SQL membership user information had other properties in addition to the ones
 
 [!code-sql[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample1.sql)]
 
-Next we need to copy the existing information from the SQL membership database to the newly added tables for Identity. This can be done through SQL by copying data directly from one table to another. To add data into the rows of table, we use the `INSERT INTO [Table]` construct. To copy from another table we can use the `INSERT INTO` statement along with the `SELECT` statement. To get all the user information we need to query the *aspnet\_Users* and *aspnet\_Membership* tables and copy the data to the *AspNetUsers* table. We use the `INSERT INTO` and `SELECT` along with `JOIN` and `LEFT OUTER JOIN` statements. For more information about querying and copying data between tables, refer to [this](https://technet.microsoft.com/en-us/library/ms190750%28v=sql.105%29.aspx) link. Additionally the AspnetUserLogins and AspnetUserClaims tables are empty to begin with since there is no information in SQL membership that maps to this by default. The only information copied is for users and roles. For the project created in the previous steps, the SQL query to copy information to the users table would be
+Next we need to copy the existing information from the SQL membership database to the newly added tables for Identity. This can be done through SQL by copying data directly from one table to another. To add data into the rows of table, we use the `INSERT INTO [Table]` construct. To copy from another table we can use the `INSERT INTO` statement along with the `SELECT` statement. To get all the user information we need to query the *aspnet\_Users* and *aspnet\_Membership* tables and copy the data to the *AspNetUsers* table. We use the `INSERT INTO` and `SELECT` along with `JOIN` and `LEFT OUTER JOIN` statements. For more information about querying and copying data between tables, refer to [this](https://technet.microsoft.com/library/ms190750%28v=sql.105%29.aspx) link. Additionally the AspnetUserLogins and AspnetUserClaims tables are empty to begin with since there is no information in SQL membership that maps to this by default. The only information copied is for users and roles. For the project created in the previous steps, the SQL query to copy information to the users table would be
 
 [!code-sql[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample2.sql)]
 

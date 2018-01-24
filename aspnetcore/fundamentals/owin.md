@@ -23,7 +23,7 @@ OWIN provides a decoupling layer that allows two frameworks with disparate objec
 
 This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host, or for other OWIN compatible components to be run on top of ASP.NET Core.
 
-Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components should not use the Owin package or adapters.
+Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components shouldn't use the Owin package or adapters.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 

@@ -171,7 +171,7 @@ If a user uploads an incorrect file type, we need to cancel the insert and displ
 
 ## Step 6: Saving the Uploaded Brochure to the Web Server s File System
 
-When the user enters the values for a new category and clicks the Insert button, a postback occurs and the inserting workflow unfolds. First, the DetailsView s [`ItemInserting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.detailsview.iteminserting.aspx) fires. Next, the ObjectDataSource s `Insert()` method is invoked, which results in a new record being added to the `Categories` table. After that, the DetailsView s [`ItemInserted` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.detailsview.iteminserted.aspx) fires.
+When the user enters the values for a new category and clicks the Insert button, a postback occurs and the inserting workflow unfolds. First, the DetailsView s [`ItemInserting` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.detailsview.iteminserting.aspx) fires. Next, the ObjectDataSource s `Insert()` method is invoked, which results in a new record being added to the `Categories` table. After that, the DetailsView s [`ItemInserted` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.detailsview.iteminserted.aspx) fires.
 
 Before the ObjectDataSource s `Insert()` method is invoked, we must first ensure that the appropriate file types were uploaded by the user and then save the brochure PDF to the web server s file system. Create an event handler for the DetailsView s `ItemInserting` event and add the following code:
 
@@ -186,7 +186,7 @@ The event handler starts by referencing the `BrochureUpload` FileUpload control 
 
 As discussed in the [Uploading Files](uploading-files-vb.md) tutorial, care must be taken when saving files to the file system so that one user s upload does not overwrite another s. For this tutorial we will attempt to use the same name as the uploaded file. If there already exists a file in the `~/Brochures` directory with that same file name, however, we'll append a number at the end until a unique name is found. For example, if the user uploads a brochure file named `Meats.pdf`, but there is already a file named `Meats.pdf` in the `~/Brochures` folder, we'll change the saved file name to `Meats-1.pdf`. If that exists, we'll try `Meats-2.pdf`, and so on, until a unique file name is found.
 
-The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/en-us/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
+The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
 
 
 [!code-vb[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample7.vb)]

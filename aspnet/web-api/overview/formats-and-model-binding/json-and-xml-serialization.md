@@ -84,7 +84,7 @@ By default, Json.NET preserves the time zone. You can override this by setting t
 
 [!code-csharp[Main](json-and-xml-serialization/samples/sample5.cs)]
 
-If you prefer to use [Microsoft JSON date format](https://msdn.microsoft.com/en-us/library/bb299886.aspx#intro_to_json_sidebarb) (`"\/Date(ticks)\/"`) instead of ISO 8601, set the **DateFormatHandling** property on the serializer settings:
+If you prefer to use [Microsoft JSON date format](https://msdn.microsoft.com/library/bb299886.aspx#intro_to_json_sidebarb) (`"\/Date(ticks)\/"`) instead of ISO 8601, set the **DateFormatHandling** property on the serializer settings:
 
 [!code-csharp[Main](json-and-xml-serialization/samples/sample6.cs)]
 

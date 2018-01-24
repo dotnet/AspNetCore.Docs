@@ -112,14 +112,14 @@ For more information, see later chapters in this e-book and the following resour
 
 Documentation:
 
-- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/en-us/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
-- [Azure Business Continuity Technical Guidance](https://msdn.microsoft.com/en-us/library/windowsazure/hh873027.aspx). White paper by Patrick Wickline and Jason Roth.
-- [Disaster Recovery and High Availability for Azure Applications](https://msdn.microsoft.com/en-us/library/windowsazure/dn251004.aspx). White paper by Michael McKeown, Hanu Kommalapati, and Jason Roth.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Multi Data Center Deployment guidance, Circuit breaker pattern.
+- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
+- [Azure Business Continuity Technical Guidance](https://msdn.microsoft.com/library/windowsazure/hh873027.aspx). White paper by Patrick Wickline and Jason Roth.
+- [Disaster Recovery and High Availability for Azure Applications](https://msdn.microsoft.com/library/windowsazure/dn251004.aspx). White paper by Michael McKeown, Hanu Kommalapati, and Jason Roth.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Multi Data Center Deployment guidance, Circuit breaker pattern.
 - [Azure Support - Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
-- [Business Continuity in Azure SQL Database](https://msdn.microsoft.com/en-us/library/windowsazure/hh852669.aspx). Documentation about SQL Database high availability and disaster recovery features.
-- [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](https://msdn.microsoft.com/en-us/library/windowsazure/jj870962.aspx).
+- [Business Continuity in Azure SQL Database](https://msdn.microsoft.com/library/windowsazure/hh852669.aspx). Documentation about SQL Database high availability and disaster recovery features.
+- [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](https://msdn.microsoft.com/library/windowsazure/jj870962.aspx).
 
 Videos:
 

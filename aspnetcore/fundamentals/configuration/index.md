@@ -105,7 +105,7 @@ The following sample demonstrates the [GetValue&lt;T&gt;](/dotnet/api/microsoft.
 
 [!code-csharp[Main](index/sample/InMemoryGetValue/Program.cs?highlight=31)]
 
-The ConfigurationBinder's `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder's `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and doesn't bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
 ## Bind to an object graph
 
@@ -391,8 +391,8 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 
 ## Additional notes
 
-* Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
-* The configuration system is not DI aware.
+* Dependency Injection (DI) isn't set up until after `ConfigureServices` is invoked.
+* The configuration system isn't DI aware.
 * `IConfiguration` has two specializations:
   * `IConfigurationRoot` Used for the root node. Can trigger a reload.
   * `IConfigurationSection` Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.

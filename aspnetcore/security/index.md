@@ -20,7 +20,7 @@ ASP.NET Core provides many tools and libraries to secure your apps including bui
 
 ## Authentication vs. Authorization
 
-Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they are authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do. 
+Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they're authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do. 
 
 Another way to think of authentication is to consider it as a way to enter a space, such as a server, database, app or resource, while authorization is which actions the user can perform to which objects inside that space (server, database, or app).
 

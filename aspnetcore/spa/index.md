@@ -15,7 +15,7 @@ uid: spa/index
 # Use the Single-Page Application templates (release candidate)
 
 > [!NOTE]
-> The released .NET Core 2.0.x SDK includes project templates for Angular, React, and React with Redux. **This documentation is not about those released project templates.** This documentation is for the next version of the Angular, React, and React with Redux templates, which we hope to ship in early 2018.
+> The released .NET Core 2.0.x SDK includes project templates for Angular, React, and React with Redux. **This documentation isn't about those released project templates.** This documentation is for the next version of the Angular, React, and React with Redux templates, which we hope to ship in early 2018.
 
 ## Prerequisites
 

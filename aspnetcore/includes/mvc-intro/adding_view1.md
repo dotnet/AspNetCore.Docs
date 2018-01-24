@@ -6,7 +6,7 @@ In this section you modify the `HelloWorldController` class to use Razor view te
 
 You create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension. They provide an elegant way to create HTML output using C#.
 
-Currently the `Index` method returns a string with a message that is hard-coded in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
+Currently the `Index` method returns a string with a message that's hard-coded in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 

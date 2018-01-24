@@ -18,14 +18,14 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Introducing view components
 
-New to ASP.NET Core MVC, view components are similar to partial views, but they are much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
+New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
 
 * Renders a chunk rather than a whole response
 * Includes the same separation-of-concerns and testability benefits found between a controller and view
 * Can have parameters and business logic
 * Is typically invoked from a layout page
 
-View components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as:
+View components are intended anywhere you have reusable rendering logic that's too complex for a partial view, such as:
 
 * Dynamic navigation menus
 * Tag cloud (where it queries the database)
@@ -55,7 +55,7 @@ A view component class:
 
 * Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
 
-* Does not take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
+* Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 ### View component methods
 
@@ -63,8 +63,8 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 * Define an `InvokeAsync` method that returns an `IViewComponentResult`
 * Typically initializes a model and passes it to a view by calling the `ViewComponent` `View` method
-* Parameters come from the calling method, not HTTP, there is no model binding
-* Are not reachable directly as an HTTP endpoint, they are invoked from your code (usually in a view). A view component never handles a request
+* Parameters come from the calling method, not HTTP, there's no model binding
+* Are not reachable directly as an HTTP endpoint, they're invoked from your code (usually in a view). A view component never handles a request
 * Are overloaded on the signature rather than any details from the current HTTP request
 
 ### View search path
@@ -125,7 +125,7 @@ In the sample above, the `PriorityList` view component becomes `priority-list`. 
 
 ### Invoking a view component directly from a controller
 
-View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
+View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components don't define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
 
 In this example, the view component is called directly from the controller:
 
@@ -147,7 +147,7 @@ Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
 * Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime will use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
-* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could have named the class `XYZ` and applied the `ViewComponent` attribute:
+* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could've named the class `XYZ` and applied the `ViewComponent` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
@@ -208,17 +208,17 @@ Run the app and verify PVC view.
 
 ![Priority View Component](view-components/_static/pvc.png)
 
-If the PVC view is not rendered, verify you are calling the view component with a priority of 4 or higher.
+If the PVC view isn't rendered, verify you are calling the view component with a priority of 4 or higher.
 
 ### Examine the view path
 
-* Change the priority parameter to three or less so the priority view is not returned.
+* Change the priority parameter to three or less so the priority view isn't returned.
 * Temporarily rename the *Views/Todo/Components/PriorityList/Default.cshtml* to *1Default.cshtml*.
 * Test the app, you'll get the following error:
 
    ```
    An unhandled exception occurred while processing the request.
-   InvalidOperationException: The view 'Components/PriorityList/Default' was not found. The following locations were searched:
+   InvalidOperationException: The view 'Components/PriorityList/Default' wasn't found. The following locations were searched:
    /Views/ToDo/Components/PriorityList/Default.cshtml
    /Views/Shared/Components/PriorityList/Default.cshtml
    EnsureSuccessful

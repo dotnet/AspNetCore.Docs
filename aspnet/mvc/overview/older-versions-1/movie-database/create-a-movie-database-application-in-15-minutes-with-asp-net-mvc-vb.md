@@ -54,7 +54,7 @@ You'll need either Visual Studio 2008 or Visual Web Developer 2008 Express to bu
 
 If you don't own Visual Studio 2008, then you can download a 90 day trial version of Visual Studio 2008 from this website:
 
-[https://msdn.microsoft.com/en-us/vs2008/products/cc268305.aspx](https://msdn.microsoft.com/en-us/vs2008/products/cc268305.aspx)
+[https://msdn.microsoft.com/vs2008/products/cc268305.aspx](https://msdn.microsoft.com/vs2008/products/cc268305.aspx)
 
 Alternatively, you can create ASP.NET MVC applications with Visual Web Developer Express 2008. If you decide to use Visual Web Developer Express then you must have Service Pack 1 installed. You can download Visual Web Developer 2008 Express with Service Pack 1 from this website:
 

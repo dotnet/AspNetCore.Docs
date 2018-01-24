@@ -113,7 +113,7 @@ ASP.NET Web Forms and MVC developers can immediately discover important characte
 - Request.Browser.SupportsXmlHttp
 - …and many others
 
-Behind the scenes, the ASP.NET platform matches the incoming *User-Agent* (UA) HTTP header against regular expressions in a set of Browser Definition XML files. By default the platform includes definitions for many common mobile devices, and you can add custom Browser Definition files for others you wish to recognize. For more details, see the MSDN page [ASP.NET Web Server Controls and Browser Capabilities](https://msdn.microsoft.com/en-us/library/x3k2ssx2.aspx).
+Behind the scenes, the ASP.NET platform matches the incoming *User-Agent* (UA) HTTP header against regular expressions in a set of Browser Definition XML files. By default the platform includes definitions for many common mobile devices, and you can add custom Browser Definition files for others you wish to recognize. For more details, see the MSDN page [ASP.NET Web Server Controls and Browser Capabilities](https://msdn.microsoft.com/library/x3k2ssx2.aspx).
 
 ### Using the WURFL device database via 51Degrees.mobi Foundation
 

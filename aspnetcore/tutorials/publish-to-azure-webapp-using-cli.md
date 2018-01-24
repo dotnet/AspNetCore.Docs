@@ -146,7 +146,7 @@ git push azure master
 ```
 ---
 
-Git will prompt for the deployment credentials that were set earlier.  After authenticating, the application will be pushed to the remote location, built, and deployed.
+Git prompts for the deployment credentials that were set earlier. After authenticating, the application will be pushed to the remote location, built, and deployed.
 
 ![Git deployment output](publish-to-azure-webapp-using-cli/_static/post_deploy.png)
 

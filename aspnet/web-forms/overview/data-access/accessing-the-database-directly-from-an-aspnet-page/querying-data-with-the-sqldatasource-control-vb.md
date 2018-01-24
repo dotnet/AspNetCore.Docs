@@ -28,7 +28,7 @@ All of the tutorials we ve examined so far have used a tiered architecture consi
 
 While all of the tutorials so far have used the architecture to work with data, it is also possible to access, insert, update, and delete database data directly from an ASP.NET page, bypassing the architecture. Doing so places the specific database queries and business logic directly in the web page. For sufficiently large or complex applications, designing, implementing, and using a tiered architecture is vitally important for the success, updatability, and maintainability of the application. Developing a robust architecture, however, may be unnecessary when creating exceedingly simple, one-off applications.
 
-ASP.NET 2.0 provides five built-in data source controls [SqlDataSource](https://msdn.microsoft.com/en-us/library/dz12d98w%28vs.80%29.aspx), [AccessDataSource](https://msdn.microsoft.com/en-us/library/8e5545e1.aspx), [ObjectDataSource](https://msdn.microsoft.com/en-us/library/9a4kyhcx.aspx), [XmlDataSource](https://msdn.microsoft.com/en-us/library/e8d8587a%28en-US,VS.80%29.aspx), and [SiteMapDataSource](https://msdn.microsoft.com/en-us/library/5ex9t96x%28en-US,VS.80%29.aspx). The SqlDataSource can be used to access and modify data directly from a relational database, including Microsoft SQL Server, Microsoft Access, Oracle, MySQL, and others. In this tutorial and the next three, we'll examine how to work with the SqlDataSource control, exploring how to query and filter database data, as well as how to use the SqlDataSource to insert, update, and delete data.
+ASP.NET 2.0 provides five built-in data source controls [SqlDataSource](https://msdn.microsoft.com/library/dz12d98w%28vs.80%29.aspx), [AccessDataSource](https://msdn.microsoft.com/library/8e5545e1.aspx), [ObjectDataSource](https://msdn.microsoft.com/library/9a4kyhcx.aspx), [XmlDataSource](https://msdn.microsoft.com/library/e8d8587a%28en-US,VS.80%29.aspx), and [SiteMapDataSource](https://msdn.microsoft.com/library/5ex9t96x%28en-US,VS.80%29.aspx). The SqlDataSource can be used to access and modify data directly from a relational database, including Microsoft SQL Server, Microsoft Access, Oracle, MySQL, and others. In this tutorial and the next three, we'll examine how to work with the SqlDataSource control, exploring how to query and filter database data, as well as how to use the SqlDataSource to insert, update, and delete data.
 
 
 ![ASP.NET 2.0 Includes Five Built-In Data Source Controls](querying-data-with-the-sqldatasource-control-vb/_static/image1.gif)
@@ -139,12 +139,12 @@ Once you have configured the wizard to return the `ProductID`, `ProductName`, an
 
 To complete the wizard, click Finish.
 
-Like with the ObjectDataSource, the SqlDataSource s wizard merely assigns values to the control s properties, namely the [`ConnectionString`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.connectionstring.aspx) and [`SelectCommand`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.selectcommand.aspx) properties. After completing the wizard, your SqlDataSource control s declarative markup should look similar to the following:
+Like with the ObjectDataSource, the SqlDataSource s wizard merely assigns values to the control s properties, namely the [`ConnectionString`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.connectionstring.aspx) and [`SelectCommand`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.selectcommand.aspx) properties. After completing the wizard, your SqlDataSource control s declarative markup should look similar to the following:
 
 
 [!code-aspx[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample2.aspx)]
 
-The `ConnectionString` property provides information on how to connect to the database. This property can be assigned a complete, hard-coded connection string value or can point to a connection string in `Web.config`. To reference a connection string value in Web.config, use the syntax `<%$ expressionPrefix:expressionValue %>`. Typically, *expressionPrefix* is ConnectionStrings and *expressionValue* is the name of the connect string in the `Web.config` [`<connectionStrings>` section](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx). However, the syntax can be used to reference `<appSettings>` elements or content from resource files. See [ASP.NET Expressions Overview](https://msdn.microsoft.com/en-us/library/d5bd1tad.aspx) for more on this syntax.
+The `ConnectionString` property provides information on how to connect to the database. This property can be assigned a complete, hard-coded connection string value or can point to a connection string in `Web.config`. To reference a connection string value in Web.config, use the syntax `<%$ expressionPrefix:expressionValue %>`. Typically, *expressionPrefix* is ConnectionStrings and *expressionValue* is the name of the connect string in the `Web.config` [`<connectionStrings>` section](https://msdn.microsoft.com/library/bf7sd233.aspx). However, the syntax can be used to reference `<appSettings>` elements or content from resource files. See [ASP.NET Expressions Overview](https://msdn.microsoft.com/library/d5bd1tad.aspx) for more on this syntax.
 
 The `SelectCommand` property specifies the ad-hoc SQL statement or stored procedure to execute to return the data.
 
@@ -185,7 +185,7 @@ Another subtlety with paging and sorting arises with the SqlDataSource. By defau
 
 Sorting and paging works because the SqlDataSource retrieves the database data into a loosely-typed DataSet. The total number of records returned by the query an essential aspect to implementing paging can be ascertained from the DataSet. Additionally, the DataSet s results can be sorted through a DataView. These capabilities are automatically used by the SqlDataSource when the GridView requests paged or sorted data.
 
-The SqlDataSource can be configured to return a DataReader instead of a DataSet by changing its [`DataSourceMode` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.datasourcemode.aspx) from `DataSet` (the default) to `DataReader`. Using a DataReader might be preferred in situations when passing the SqlDataSource s results to existing code that expects a DataReader. Furthermore, since DataReaders are considerably simpler objects than DataSets, they offer better performance. If you make this change, however, the data Web control can neither sort nor page since the SqlDataSource cannot ascertain how many records are returned by the query, nor does the DataReader offer any techniques for sorting the returned data.
+The SqlDataSource can be configured to return a DataReader instead of a DataSet by changing its [`DataSourceMode` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.datasourcemode.aspx) from `DataSet` (the default) to `DataReader`. Using a DataReader might be preferred in situations when passing the SqlDataSource s results to existing code that expects a DataReader. Furthermore, since DataReaders are considerably simpler objects than DataSets, they offer better performance. If you make this change, however, the data Web control can neither sort nor page since the SqlDataSource cannot ascertain how many records are returned by the query, nor does the DataReader offer any techniques for sorting the returned data.
 
 ## Step 4: Using a Custom SQL Statement or Stored Procedure
 
@@ -244,9 +244,9 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Accessing Relational Database Data](http://aspnet.4guysfromrolla.com/articles/022206-1.aspx)
-- [SqlDataSource Control Overview](https://msdn.microsoft.com/en-us/library/dz12d98w.aspx)
+- [SqlDataSource Control Overview](https://msdn.microsoft.com/library/dz12d98w.aspx)
 - [ASP.NET Quickstart Tutorials: The SqlDataSource Control](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/ctrlref/data/sqldatasource.aspx)
-- [The Web.config `<connectionStrings>` Element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx)
+- [The Web.config `<connectionStrings>` Element](https://msdn.microsoft.com/library/bf7sd233.aspx)
 - [Database Connection String Reference](http://www.connectionstrings.com/)
 
 ## About the Author

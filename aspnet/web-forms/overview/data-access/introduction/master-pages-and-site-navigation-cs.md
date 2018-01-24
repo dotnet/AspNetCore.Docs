@@ -162,11 +162,11 @@ The site map defines the website's navigational structure, which is a hierarchy 
 **Figure 10**: The Site Map Represents a Hierarchical Navigational Structure ([Click to view full-size image](master-pages-and-site-navigation-cs/_static/image26.png))
 
 
-ASP.NET exposes the site map's structure through the .NET Framework's [SiteMap class](https://msdn.microsoft.com/en-us/library/system.web.sitemap.aspx). This class has a `CurrentNode` property, which returns information about the section the user is currently visiting; the `RootNode` property returns the root of the site map (Home, in our site map). Both the `CurrentNode` and `RootNode` properties return [SiteMapNode](https://msdn.microsoft.com/en-us/library/system.web.sitemapnode.aspx) instances, which have properties like `ParentNode`, `ChildNodes`, `NextSibling`, `PreviousSibling`, and so on, that allow for the site map hierarchy to be walked.
+ASP.NET exposes the site map's structure through the .NET Framework's [SiteMap class](https://msdn.microsoft.com/library/system.web.sitemap.aspx). This class has a `CurrentNode` property, which returns information about the section the user is currently visiting; the `RootNode` property returns the root of the site map (Home, in our site map). Both the `CurrentNode` and `RootNode` properties return [SiteMapNode](https://msdn.microsoft.com/library/system.web.sitemapnode.aspx) instances, which have properties like `ParentNode`, `ChildNodes`, `NextSibling`, `PreviousSibling`, and so on, that allow for the site map hierarchy to be walked.
 
 ## Step 3: Displaying a Menu Based on the Site Map
 
-Accessing data in ASP.NET 2.0 can be accomplished programmatically, like in ASP.NET 1.x, or declaratively, through the new [data source controls](https://msdn.microsoft.com/en-us/library/ms227679.aspx). There are several built-in data source controls such as the SqlDataSource control, for accessing relational database data, the ObjectDataSource control, for accessing data from classes, and others. You can even create your own [custom data source controls](https://msdn.microsoft.com/asp.net/reference/data/default.aspx?pull=/library/en-us/dnvs05/html/DataSourceCon1.asp).
+Accessing data in ASP.NET 2.0 can be accomplished programmatically, like in ASP.NET 1.x, or declaratively, through the new [data source controls](https://msdn.microsoft.com/library/ms227679.aspx). There are several built-in data source controls such as the SqlDataSource control, for accessing relational database data, the ObjectDataSource control, for accessing data from classes, and others. You can even create your own [custom data source controls](https://msdn.microsoft.com/asp.net/reference/data/default.aspx?pull=/library/dnvs05/html/DataSourceCon1.asp).
 
 The data source controls serve as a proxy between your ASP.NET page and the underlying data. In order to display a data source control's retrieved data, we'll typically add another Web control to the page and bind it to the data source control. To bind a Web control to a data source control, simply set the Web control's `DataSourceID` property to the value of the data source control's `ID` property.
 
@@ -213,7 +213,7 @@ This menu is in the master page and bound to the site map defined in `Web.sitema
 
 All ASP.NET controls can optionally persist their state to the [view state](https://msdn.microsoft.com/msdnmag/issues/03/02/CuttingEdge/), which is serialized as a hidden form field in the rendered HTML. View state is used by controls to remember their programmatically-changed state across postbacks, such as the data bound to a data Web control. While view state permits information to be remembered across postbacks, it increases the size of the markup that must be sent to the client and can lead to severe page bloat if not closely monitored. Data Web controls especially the GridView are particularly notorious for adding dozens of extra kilobytes of markup to a page. While such an increase may be negligible for broadband or intranet users, view state can add several seconds to the round trip for dial-up users.
 
-To see the impact of view state, visit a page in a browser and then view the source sent by the web page (in Internet Explorer, go to the View menu and choose the Source option). You can also turn on [page tracing](https://msdn.microsoft.com/en-us/library/sfbfw58f.aspx) to see the view state allocation used by each of the controls on the page. The view state information is serialized in a hidden form field named `__VIEWSTATE`, located in a `<div>` element immediately after the opening `<form>` tag. View state is only persisted when there is a Web Form being used; if your ASP.NET page does not include a `<form runat="server">` in its declarative syntax there won't be a `__VIEWSTATE` hidden form field in the rendered markup.
+To see the impact of view state, visit a page in a browser and then view the source sent by the web page (in Internet Explorer, go to the View menu and choose the Source option). You can also turn on [page tracing](https://msdn.microsoft.com/library/sfbfw58f.aspx) to see the view state allocation used by each of the controls on the page. The view state information is serialized in a hidden form field named `__VIEWSTATE`, located in a `<div>` element immediately after the opening `<form>` tag. View state is only persisted when there is a Web Form being used; if your ASP.NET page does not include a `<form runat="server">` in its declarative syntax there won't be a `__VIEWSTATE` hidden form field in the rendered markup.
 
 The `__VIEWSTATE` form field generated by the master page adds roughly 1,800 bytes to the page's generated markup. This extra bloat is due primarily to the Repeater control, as the contents of the SiteMapDataSource control are persisted to view state. While an extra 1,800 bytes may not seem like much to get excited about, when using a GridView with many fields and records, the view state can easily swell by a factor of 10 or more.
 
@@ -247,7 +247,7 @@ The breadcrumb shows the current page the user is visiting in the site map hiera
 
 The tutorials in our site are broken down into different categories Basic Reporting, Filtering, Custom Formatting, and so on with a folder for each category and the corresponding tutorials as ASP.NET pages within that folder. Additionally, each folder contains a `Default.aspx` page. For this default page, let's display all of the tutorials for the current section. That is, for the `Default.aspx` in the `BasicReporting` folder we'd have links to `SimpleDisplay.aspx`, `DeclarativeParams.aspx`, and `ProgrammaticParams.aspx`. Here, again, we can use the `SiteMap` class and a data Web control to display this information based upon the site map defined in `Web.sitemap`.
 
-Let's display an unordered list using a Repeater again, but this time we'll display the title and description of the tutorials. Since the markup and code to accomplish this will need to be repeated for each `Default.aspx` page, we can encapsulate this UI logic in a [User Control](https://msdn.microsoft.com/en-us/library/y6wb1a0e.aspx). Create a folder in the website called `UserControls` and add to that a new item of type Web User Control named `SectionLevelTutorialListing.ascx`, and add the following markup:
+Let's display an unordered list using a Repeater again, but this time we'll display the title and description of the tutorials. Since the markup and code to accomplish this will need to be repeated for each `Default.aspx` page, we can encapsulate this UI logic in a [User Control](https://msdn.microsoft.com/library/y6wb1a0e.aspx). Create a folder in the website called `UserControls` and add to that a new item of type Web User Control named `SectionLevelTutorialListing.ascx`, and add the following markup:
 
 
 [![Add a New Web User Control to the UserControls Folder](master-pages-and-site-navigation-cs/_static/image30.png)](master-pages-and-site-navigation-cs/_static/image29.png)
@@ -292,15 +292,15 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET Master Pages Overview](https://msdn.microsoft.com/en-us/library/wtxbf3hh.aspx)
+- [ASP.NET Master Pages Overview](https://msdn.microsoft.com/library/wtxbf3hh.aspx)
 - [Master Pages in ASP.NET 2.0](http://odetocode.com/Articles/419.aspx)
 - [ASP.NET 2.0 Design Templates](https://msdn.microsoft.com/asp.net/reference/design/templates/default.aspx)
-- [ASP.NET Site Navigation Overview](https://msdn.microsoft.com/en-us/library/e468hxky.aspx)
+- [ASP.NET Site Navigation Overview](https://msdn.microsoft.com/library/e468hxky.aspx)
 - [Examining ASP.NET 2.0's Site Navigation](http://aspnet.4guysfromrolla.com/articles/111605-1.aspx)
 - [ASP.NET 2.0 Site Navigation Features](https://weblogs.asp.net/scottgu/archive/2005/11/20/431019.aspx)
-- [Understanding ASP.NET View State](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnaspp/html/viewstate.asp)
-- [How to: Enable Tracing for an ASP.NET Page](https://msdn.microsoft.com/en-us/library/94c55d08%28VS.80%29.aspx)
-- [ASP.NET User Controls](https://msdn.microsoft.com/en-us/library/y6wb1a0e.aspx)
+- [Understanding ASP.NET View State](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/viewstate.asp)
+- [How to: Enable Tracing for an ASP.NET Page](https://msdn.microsoft.com/library/94c55d08%28VS.80%29.aspx)
+- [ASP.NET User Controls](https://msdn.microsoft.com/library/y6wb1a0e.aspx)
 
 ## About the Author
 

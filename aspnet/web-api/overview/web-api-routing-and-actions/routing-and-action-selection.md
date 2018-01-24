@@ -116,7 +116,7 @@ The default implementation is provided by the **ApiControllerActionSelector** cl
 
 Before looking at the selection algorithm, we need to understand some things about controller actions.
 
-**Which methods on the controller are considered "actions"?** When selecting an action, the framework only looks at public instance methods on the controller. Also, it excludes ["special name"](https://msdn.microsoft.com/en-us/library/system.reflection.methodbase.isspecialname) methods (constructors, events, operator overloads, and so forth), and methods inherited from the **ApiController** class.
+**Which methods on the controller are considered "actions"?** When selecting an action, the framework only looks at public instance methods on the controller. Also, it excludes ["special name"](https://msdn.microsoft.com/library/system.reflection.methodbase.isspecialname) methods (constructors, events, operator overloads, and so forth), and methods inherited from the **ApiController** class.
 
 **HTTP Methods.** The framework only chooses actions that match the HTTP method of the request, determined as follows:
 
@@ -129,7 +129,7 @@ Before looking at the selection algorithm, we need to understand some things abo
 - Simple types are taken from the URI.
 - Complex types are taken from the request body.
 
-Simple types include all of the [.NET Framework primitive types](https://msdn.microsoft.com/en-us/library/system.type.isprimitive), plus **DateTime**, **Decimal**, **Guid**, **String**, and **TimeSpan**. For each action, at most one parameter can read the request body.
+Simple types include all of the [.NET Framework primitive types](https://msdn.microsoft.com/library/system.type.isprimitive), plus **DateTime**, **Decimal**, **Guid**, **String**, and **TimeSpan**. For each action, at most one parameter can read the request body.
 
 > [!NOTE]
 > It is possible to override the default binding rules. See [WebAPI Parameter binding under the hood](https://blogs.msdn.com/b/jmstall/archive/2012/05/11/webapi-parameter-binding-under-the-hood.aspx).

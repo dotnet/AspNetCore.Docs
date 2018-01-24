@@ -8,5 +8,5 @@ Register the DB context with the service container using the built-in support fo
 
 The preceding code:
 
-* Removes the code that is not used.
+* Removes the code that's not used.
 * Specifies an in-memory database is injected into the service container.

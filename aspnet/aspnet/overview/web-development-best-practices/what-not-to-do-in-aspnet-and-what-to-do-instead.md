@@ -89,7 +89,7 @@ The next example shows how to dynamically apply the CSS class.
 
 Recommendation: Stop using page and control callbacks, and instead use any of the following: AJAX, UpdatePanel, MVC action methods, Web API, or SignalR.
 
-In earlier versions of ASP.NET, Page and Control callback methods enabled you to update part of the web page without refreshing an entire page. You can now accomplish partial-page updates through [AJAX](../../../ajax/index.md), [UpdatePanel](https://msdn.microsoft.com/en-US/library/bb386454.aspx), [MVC](../../../mvc/index.md), [Web API](../../../web-api/index.md) or [SignalR](../../../signalr/index.md). You should stop using callback methods because they can cause issues with friendly URLs and routing. By default, controls do not enable callback methods, but if you enabled this feature in a control, you should disable it.
+In earlier versions of ASP.NET, Page and Control callback methods enabled you to update part of the web page without refreshing an entire page. You can now accomplish partial-page updates through [AJAX](../../../ajax/index.md), [UpdatePanel](https://msdn.microsoft.com/library/bb386454.aspx), [MVC](../../../mvc/index.md), [Web API](../../../web-api/index.md) or [SignalR](../../../signalr/index.md). You should stop using callback methods because they can cause issues with friendly URLs and routing. By default, controls do not enable callback methods, but if you enabled this feature in a control, you should disable it.
 
 <a id="browsercap"></a>
 
@@ -133,7 +133,7 @@ The next example shows how to HTML encode a value in code-behind.
 
 [!code-csharp[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample7.cs)]
 
-To safely encode a value for SQL commands, use command parameters such as the [SqlParameter](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlparameter.aspx). <a id="cookieless"></a>
+To safely encode a value for SQL commands, use command parameters such as the [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx). <a id="cookieless"></a>
 
 ### Cookieless Forms Authentication and Session
 
@@ -175,15 +175,15 @@ Recommendation: Do not disable security settings in &lt;appSettings&gt; element.
 
 The appSettings element contains many values which are required for security updates. You should not change or disable these values. If you must disable these values when deploying an update, immediately re-enable after completing deployment.
 
-For details, see [ASP.NET appSettings Element](https://msdn.microsoft.com/en-us/library/hh975440.aspx).
+For details, see [ASP.NET appSettings Element](https://msdn.microsoft.com/library/hh975440.aspx).
 
 <a id="urlpathencode"></a>
 
 ### UrlPathEncode
 
-Recommendation: Use [UrlEncode](https://msdn.microsoft.com/en-us/library/zttxte6w.aspx) instead.
+Recommendation: Use [UrlEncode](https://msdn.microsoft.com/library/zttxte6w.aspx) instead.
 
-The UrlPathEncode method was added to the .NET Framework to resolve a very specific browser compatibility problem. It does not adequately encode a URL, and does not protect your application from cross-site scripting. You should never use it in your application. Instead, use [UrlEncode](https://msdn.microsoft.com/en-us/library/zttxte6w.aspx).
+The UrlPathEncode method was added to the .NET Framework to resolve a very specific browser compatibility problem. It does not adequately encode a URL, and does not protect your application from cross-site scripting. You should never use it in your application. Instead, use [UrlEncode](https://msdn.microsoft.com/library/zttxte6w.aspx).
 
 The following example shows how to pass an encoded URL as a query string parameter for a hyperlink control.
 
@@ -197,9 +197,9 @@ The following example shows how to pass an encoded URL as a query string paramet
 
 ### PreSendRequestHeaders and PreSendRequestContent
 
-Recommendation: Do not use these events with managed modules. Instead, write a native IIS module to perform the required task. See [Creating Native-Code HTTP Modules](https://msdn.microsoft.com/en-us/library/ms693629.aspx).
+Recommendation: Do not use these events with managed modules. Instead, write a native IIS module to perform the required task. See [Creating Native-Code HTTP Modules](https://msdn.microsoft.com/library/ms693629.aspx).
 
-You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestheaders.aspx) and [PreSendRequestContent](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.presendrequestcontent.aspx) events with native IIS modules.
+You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/library/system.web.httpapplication.presendrequestheaders.aspx) and [PreSendRequestContent](https://msdn.microsoft.com/library/system.web.httpapplication.presendrequestcontent.aspx) events with native IIS modules.
 > [!WARNING]
 > Do not use `PreSendRequestHeaders` and `PreSendRequestContent` with managed modules that implement `IHttpModule`. Setting these properties can cause issues with asynchronous requests. The combination of Application Requested Routing (ARR) and websockets might lead to access violation exceptions that can cause w3wp to crash. For example, iiscore!W3_CONTEXT_BASE::GetIsLastNotification+68 in iiscore.dll has caused an access violation exception (0xC0000005).
 
@@ -207,7 +207,7 @@ You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/en-us/library
 
 ### Asynchronous Page Events with Web Forms
 
-Recommendation: In Web Forms, avoid writing async void methods for Page lifecycle events, and instead use [Page.RegisterAsyncTask](https://msdn.microsoft.com/en-us/library/system.web.ui.page.registerasynctask.aspx) for asynchronous code.
+Recommendation: In Web Forms, avoid writing async void methods for Page lifecycle events, and instead use [Page.RegisterAsyncTask](https://msdn.microsoft.com/library/system.web.ui.page.registerasynctask.aspx) for asynchronous code.
 
 When you mark a page event with **async** and **void**, you cannot determine when the asynchronous code has finished. Instead, use Page.RegisterAsyncTask to run the asynchronous code in a way that enables you to track its completion.
 
@@ -239,15 +239,15 @@ Recommendation: Avoid reading Request.Form or Request.InputStream before the han
 
 The earliest you should read from Request.Form or Request.InputStream is during the handler's execute event. In MVC, the Controller is the handler and the execute event is when the action method runs. In Web Forms, the Page is the handler and the execute event is when the Page.Init event fires. If you read the request entity body earlier than the execute event, you interfere with the processing of the request.
 
-If you need to read the request entity body before the execute event, use either [Request.GetBufferlessInputStream](https://msdn.microsoft.com/en-us/library/ff406798.aspx) or [Request.GetBufferedInputStream](https://msdn.microsoft.com/en-us/library/system.web.httprequest.getbufferedinputstream.aspx). When you use GetBufferlessInputStream, you get the raw stream from the request, and assume responsibility for processing the entire request. After calling GetBufferlessInputStream, Request.Form and Request.InputStream are not available because they have not been populated by ASP.NET. When you use GetBufferedInputStream, you get a copy of the stream from the request. Request.Form and Request.InputStream are still available later in the request because ASP.NET populates the other copy.
+If you need to read the request entity body before the execute event, use either [Request.GetBufferlessInputStream](https://msdn.microsoft.com/library/ff406798.aspx) or [Request.GetBufferedInputStream](https://msdn.microsoft.com/library/system.web.httprequest.getbufferedinputstream.aspx). When you use GetBufferlessInputStream, you get the raw stream from the request, and assume responsibility for processing the entire request. After calling GetBufferlessInputStream, Request.Form and Request.InputStream are not available because they have not been populated by ASP.NET. When you use GetBufferedInputStream, you get a copy of the stream from the request. Request.Form and Request.InputStream are still available later in the request because ASP.NET populates the other copy.
 
 <a id="redirect"></a>
 
 ### Response.Redirect and Response.End
 
-Recommendation: Be aware of differences in how thread is handled after calling [Response.Redirect(String)](https://msdn.microsoft.com/en-us/library/t9dwyts4.aspx).
+Recommendation: Be aware of differences in how thread is handled after calling [Response.Redirect(String)](https://msdn.microsoft.com/library/t9dwyts4.aspx).
 
-The [Response.Redirect(String)](https://msdn.microsoft.com/en-us/library/t9dwyts4.aspx) method calls the Response.End method. In a synchronous process, calling Request.Redirect causes the current thread to immediately abort. However, in an asynchronous process, calling Response.Redirect does not abort the current thread, so code execution continues for the request. In an asynchronous process, you must return the Task from the method to stop the code execution.
+The [Response.Redirect(String)](https://msdn.microsoft.com/library/t9dwyts4.aspx) method calls the Response.End method. In a synchronous process, calling Request.Redirect causes the current thread to immediately abort. However, in an asynchronous process, calling Response.Redirect does not abort the current thread, so code execution continues for the request. In an asynchronous process, you must return the Task from the method to stop the code execution.
 
 In an MVC project, you should not call Response.Redirect. Instead, return a RedirectResult.
 
@@ -281,7 +281,7 @@ For more information, see [Introducing ASP.NET Universal Providers](http://www.h
 
 ### Long-running Requests (>110 seconds)
 
-Recommendation: Use [WebSockets](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) or [SignalR](../../../signalr/index.md) for connected clients, and use asynchronous I/O operations.
+Recommendation: Use [WebSockets](https://msdn.microsoft.com/library/system.net.websockets.websocket.aspx) or [SignalR](../../../signalr/index.md) for connected clients, and use asynchronous I/O operations.
 
 Long-running requests can cause unpredictable results and poor performance in your web application. The default timeout setting for a request is 110 seconds. If you are using session state with a long-running request, ASP.NET will release the lock on the Session object after 110 seconds. However, your application might be in the middle of an operation on the Session object when the lock is released, and the operation might not complete successfully. If a second request from the user is blocked while the first request is running, the second request might access the Session object in an inconsistent state.
 

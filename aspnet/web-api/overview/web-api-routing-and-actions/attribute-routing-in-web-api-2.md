@@ -256,7 +256,7 @@ Here is how the total ordering is determined:
     3. Route parameters without constraints.
     4. Wildcard parameter segments with constraints.
     5. Wildcard parameter segments without constraints.
-3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/en-us/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
+3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
 
 Here is an example. Suppose you define the following controller:
 

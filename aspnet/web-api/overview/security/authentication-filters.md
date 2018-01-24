@@ -42,7 +42,7 @@ To apply the filter to all Web API controllers, add it to **GlobalConfiguration.
 
 ## Implementing a Web API Authentication Filter
 
-In Web API, authentication filters implement the [System.Web.Http.Filters.IAuthenticationFilter](https://msdn.microsoft.com/en-us/library/system.web.http.filters.iauthenticationfilter.aspx) interface. They should also inherit from **System.Attribute**, in order to be applied as attributes.
+In Web API, authentication filters implement the [System.Web.Http.Filters.IAuthenticationFilter](https://msdn.microsoft.com/library/system.web.http.filters.iauthenticationfilter.aspx) interface. They should also inherit from **System.Attribute**, in order to be applied as attributes.
 
 The **IAuthenticationFilter** interface has two methods:
 
@@ -163,4 +163,4 @@ To disable host-level authentication inside the Web API pipeline, call `config.S
 
 ## Additional Resources
 
-[ASP.NET Web API Security Filters](https://msdn.microsoft.com/en-us/magazine/dn781361.aspx) (MSDN Magazine)
+[ASP.NET Web API Security Filters](https://msdn.microsoft.com/magazine/dn781361.aspx) (MSDN Magazine)
