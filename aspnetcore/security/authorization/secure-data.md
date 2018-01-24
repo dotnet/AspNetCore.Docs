@@ -240,7 +240,7 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it's
 
 The preceding markup adds several `using` statements.
 
-Update the `Edit` and `Delete` links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
+Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
 
 [!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,64-)]
 
