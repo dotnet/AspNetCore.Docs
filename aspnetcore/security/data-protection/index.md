@@ -2,12 +2,10 @@
 title: Data Protection in ASP.NET Core
 author: rick-anderson
 description: This document serves as a table of contents for the various ASP.NET Core data protection topics.
-keywords: ASP.NET Core,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 1f402da8-1052-4970-9835-9f9f16a02dbc
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/index
@@ -72,6 +70,6 @@ uid: security/data-protection/index
 
 * [Compatibility](compatibility/index.md)
 
-  * [Sharing cookies between apps](compatibility/cookie-sharing.md)
+  * [Sharing cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 
-  * [Replacing <machineKey> in ASP.NET](compatibility/replacing-machinekey.md)
+  * [Replacing <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)

@@ -55,10 +55,10 @@ ASP.NET 2.0 includes a protected configuration system for encrypting and decrypt
 
 The .NET Framework ships with two protected configuration providers:
 
-- [`RSAProtectedConfigurationProvider`](https://msdn.microsoft.com/en-us/library/system.configuration.rsaprotectedconfigurationprovider.aspx) - uses the asymmetric [RSA algorithm](http://en.wikipedia.org/wiki/Rsa) for encryption and decryption.
-- [`DPAPIProtectedConfigurationProvider`](https://msdn.microsoft.com/en-us/system.configuration.dpapiprotectedconfigurationprovider.aspx) - uses the Windows [Data Protection API (DPAPI)](https://msdn.microsoft.com/en-us/library/ms995355.aspx) for encryption and decryption.
+- [`RSAProtectedConfigurationProvider`](https://msdn.microsoft.com/library/system.configuration.rsaprotectedconfigurationprovider.aspx) - uses the asymmetric [RSA algorithm](http://en.wikipedia.org/wiki/Rsa) for encryption and decryption.
+- [`DPAPIProtectedConfigurationProvider`](https://msdn.microsoft.com/system.configuration.dpapiprotectedconfigurationprovider.aspx) - uses the Windows [Data Protection API (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx) for encryption and decryption.
 
-Since the protected configuration system implements the provider design pattern, it is possible to create your own protected configuration provider and plug it into your application. See [Implementing a Protected Configuration Provider](https://msdn.microsoft.com/en-us/library/wfc2t3az(VS.80).aspx) for more information on this process.
+Since the protected configuration system implements the provider design pattern, it is possible to create your own protected configuration provider and plug it into your application. See [Implementing a Protected Configuration Provider](https://msdn.microsoft.com/library/wfc2t3az(VS.80).aspx) for more information on this process.
 
 The RSA and DPAPI providers use keys for their encryption and decryption routines, and these keys can be stored at the machine- or user-level. Machine-level keys are ideal for scenarios where the web application runs on its own dedicated server or if there are multiple applications on a server that need to share encrypted information. User-level keys are a more secure option in shared hosting environments where other applications on the same server should not be able to decrypt your application s protected configuration sections.
 
@@ -91,20 +91,20 @@ Next, we need to write code that loads and displays the contents of `Web.config`
 
 [!code-csharp[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample1.cs)]
 
-The `DisplayWebConfig` method uses the [`File` class](https://msdn.microsoft.com/en-us/library/system.io.file.aspx) to open the application s `Web.config` file, the [`StreamReader` class](https://msdn.microsoft.com/en-us/library/system.io.streamreader.aspx) to read its contents into a string, and the [`Path` class](https://msdn.microsoft.com/en-us/library/system.io.path.aspx) to generate the physical path to the `Web.config` file. These three classes are all found in the [`System.IO` namespace](https://msdn.microsoft.com/en-us/library/system.io.aspx). Consequently, you will need to add a `using` `System.IO` statement to the top of the code-behind class or, alternatively, prefix these class names with `System.IO.` .
+The `DisplayWebConfig` method uses the [`File` class](https://msdn.microsoft.com/library/system.io.file.aspx) to open the application s `Web.config` file, the [`StreamReader` class](https://msdn.microsoft.com/library/system.io.streamreader.aspx) to read its contents into a string, and the [`Path` class](https://msdn.microsoft.com/library/system.io.path.aspx) to generate the physical path to the `Web.config` file. These three classes are all found in the [`System.IO` namespace](https://msdn.microsoft.com/library/system.io.aspx). Consequently, you will need to add a `using` `System.IO` statement to the top of the code-behind class or, alternatively, prefix these class names with `System.IO.` .
 
 Next, we need to add event handlers for the two Button controls `Click` events and add the necessary code to encrypt and decrypt the `<connectionStrings>` section using a machine-level key with the DPAPI provider. From the Designer, double-click each of the Buttons to add a `Click` event handler in the code-behind class and then add the following code:
 
 
 [!code-csharp[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample2.cs)]
 
-The code used in the two event handlers is nearly identical. They both start by getting information about the current application s `Web.config` file via the [`WebConfigurationManager` class](https://msdn.microsoft.com/en-us/library/system.web.configuration.webconfigurationmanager.aspx) s [`OpenWebConfiguration` method](https://msdn.microsoft.com/en-us/library/system.web.configuration.webconfigurationmanager.openwebconfiguration.aspx). This method returns the web configuration file for the specified virtual path. Next, the `Web.config` file s `<connectionStrings>` section is accessed via the [`Configuration` class](https://msdn.microsoft.com/en-us/library/system.configuration.configuration.aspx) s [`GetSection(sectionName)` method](https://msdn.microsoft.com/en-us/library/system.configuration.configuration.getsection.aspx), which returns a [`ConfigurationSection`](https://msdn.microsoft.com/en-us/library/system.configuration.configurationsection.aspx) object.
+The code used in the two event handlers is nearly identical. They both start by getting information about the current application s `Web.config` file via the [`WebConfigurationManager` class](https://msdn.microsoft.com/library/system.web.configuration.webconfigurationmanager.aspx) s [`OpenWebConfiguration` method](https://msdn.microsoft.com/library/system.web.configuration.webconfigurationmanager.openwebconfiguration.aspx). This method returns the web configuration file for the specified virtual path. Next, the `Web.config` file s `<connectionStrings>` section is accessed via the [`Configuration` class](https://msdn.microsoft.com/library/system.configuration.configuration.aspx) s [`GetSection(sectionName)` method](https://msdn.microsoft.com/library/system.configuration.configuration.getsection.aspx), which returns a [`ConfigurationSection`](https://msdn.microsoft.com/library/system.configuration.configurationsection.aspx) object.
 
-The `ConfigurationSection` object includes a [`SectionInformation` property](https://msdn.microsoft.com/en-us/library/system.configuration.configurationsection.sectioninformation.aspx) that provides additional information and functionality regarding the configuration section. As the code above shows, we can determine whether the configuration section is encrypted by checking the `SectionInformation` property s `IsProtected` property. Moreover, the section can be encrypted or decrypted via the `SectionInformation` property s `ProtectSection(provider)` and `UnprotectSection` methods.
+The `ConfigurationSection` object includes a [`SectionInformation` property](https://msdn.microsoft.com/library/system.configuration.configurationsection.sectioninformation.aspx) that provides additional information and functionality regarding the configuration section. As the code above shows, we can determine whether the configuration section is encrypted by checking the `SectionInformation` property s `IsProtected` property. Moreover, the section can be encrypted or decrypted via the `SectionInformation` property s `ProtectSection(provider)` and `UnprotectSection` methods.
 
 The `ProtectSection(provider)` method accepts as input a string specifying the name of the protected configuration provider to use when encrypting. In the `EncryptConnString` Button s event handler we pass DataProtectionConfigurationProvider into the `ProtectSection(provider)` method so that the DPAPI provider is used. The `UnprotectSection` method can determine the provider that was used to encrypt the configuration section and therefore does not require any input parameters.
 
-After calling the `ProtectSection(provider)` or `UnprotectSection` method, you must call the `Configuration` object s [`Save` method](https://msdn.microsoft.com/en-us/library/system.configuration.configuration.save.aspx) to persist the changes. Once the configuration information has been encrypted or decrypted and the changes saved, we call `DisplayWebConfig` to load the updated `Web.config` contents into the TextBox control.
+After calling the `ProtectSection(provider)` or `UnprotectSection` method, you must call the `Configuration` object s [`Save` method](https://msdn.microsoft.com/library/system.configuration.configuration.save.aspx) to persist the changes. Once the configuration information has been encrypted or decrypted and the changes saved, we call `DisplayWebConfig` to load the updated `Web.config` contents into the TextBox control.
 
 Once you have entered the above code, test it by visiting the `EncryptingConfigSections.aspx` page through a browser. You should initially see a page that lists the contents of `Web.config` with the `<connectionStrings>` section displayed in plain-text (see Figure 3).
 
@@ -150,7 +150,7 @@ To revert the `<connectionStrings>` section back to its plain-text representatio
 
 ## Step 3: Encrypting Configuration Sections Using`aspnet_regiis.exe`
 
-The .NET Framework includes a variety of command line tools in the `$WINDOWS$\Microsoft.NET\Framework\version\` folder. In the [Using SQL Cache Dependencies](../caching-data/using-sql-cache-dependencies-cs.md) tutorial, for instance, we looked at using the `aspnet_regsql.exe` command line tool to add the infrastructure necessary for SQL cache dependencies. Another useful command line tool in this folder is the [ASP.NET IIS Registration tool (`aspnet_regiis.exe`)](https://msdn.microsoft.com/en-us/library/k6h9cz8h(VS.80).aspx). As its name implies, the ASP.NET IIS Registration tool is primarily used to register an ASP.NET 2.0 application with Microsoft s professional-grade Web server, IIS. In addition to its IIS-related features, the ASP.NET IIS Registration tool can also be used to encrypt or decrypt specified configuration sections in `Web.config`.
+The .NET Framework includes a variety of command line tools in the `$WINDOWS$\Microsoft.NET\Framework\version\` folder. In the [Using SQL Cache Dependencies](../caching-data/using-sql-cache-dependencies-cs.md) tutorial, for instance, we looked at using the `aspnet_regsql.exe` command line tool to add the infrastructure necessary for SQL cache dependencies. Another useful command line tool in this folder is the [ASP.NET IIS Registration tool (`aspnet_regiis.exe`)](https://msdn.microsoft.com/library/k6h9cz8h(VS.80).aspx). As its name implies, the ASP.NET IIS Registration tool is primarily used to register an ASP.NET 2.0 application with Microsoft s professional-grade Web server, IIS. In addition to its IIS-related features, the ASP.NET IIS Registration tool can also be used to encrypt or decrypt specified configuration sections in `Web.config`.
 
 The following statement shows the general syntax used to encrypt a configuration section with the `aspnet_regiis.exe` command line tool:
 
@@ -198,7 +198,7 @@ The following example shows a connection string that uses SQL authentication. No
 Imagine that an attacker is able to view your application s `Web.config` file. If you use SQL authentication to connect to a database that is accessible over the Internet, the attacker can use this connection string to connect to your database through SQL Management Studio or from ASP.NET pages on their own website. To help mitigate this threat, encrypt the connection string information in `Web.config` using the protected configuration system.
 
 > [!NOTE]
-> For more information on the different types of authentication available in SQL Server, see [Building Secure ASP.NET Applications: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/en-us/library/aa302392.aspx). For further connection string examples illustrating the differences between Windows and SQL authentication syntax, refer to [ConnectionStrings.com](http://www.connectionstrings.com/).
+> For more information on the different types of authentication available in SQL Server, see [Building Secure ASP.NET Applications: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/library/aa302392.aspx). For further connection string examples illustrating the differences between Windows and SQL authentication syntax, refer to [ConnectionStrings.com](http://www.connectionstrings.com/).
 
 
 ## Summary
@@ -213,13 +213,13 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Building Secure ASP.NET Application: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/en-us/library/aa302392.aspx)
+- [Building Secure ASP.NET Application: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/library/aa302392.aspx)
 - [Encrypting Configuration Information in ASP.NET 2.0 Applications](http://aspnet.4guysfromrolla.com/articles/021506-1.aspx)
 - [Encrypting `Web.config` Values in ASP.NET 2.0](https://weblogs.asp.net/scottgu/archive/2006/01/09/434893.aspx)
-- [How To: Encrypt Configuration Sections in ASP.NET 2.0 Using DPAPI](https://msdn.microsoft.com/en-us/library/ms998280.aspx)
-- [How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA](https://msdn.microsoft.com/en-us/library/ms998283.aspx)
+- [How To: Encrypt Configuration Sections in ASP.NET 2.0 Using DPAPI](https://msdn.microsoft.com/library/ms998280.aspx)
+- [How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA](https://msdn.microsoft.com/library/ms998283.aspx)
 - [The Configuration API in .NET 2.0](http://www.odetocode.com/Articles/418.aspx)
-- [Windows Data Protection](https://msdn.microsoft.com/en-us/library/ms995355.aspx)
+- [Windows Data Protection](https://msdn.microsoft.com/library/ms995355.aspx)
 
 ## About the Author
 

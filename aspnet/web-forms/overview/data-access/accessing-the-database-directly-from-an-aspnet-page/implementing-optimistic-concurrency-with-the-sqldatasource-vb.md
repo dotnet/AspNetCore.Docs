@@ -111,8 +111,8 @@ Similarly, the `DeleteCommand` property and `DeleteParameters` collection should
 
 In addition to augmenting the `WHERE` clauses of the `UpdateCommand` and `DeleteCommand` properties (and adding the additional parameters to the respective parameter collections), selecting the Use optimistic concurrency option adjusts two other properties:
 
-- Changes the [`ConflictDetection` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.sqldatasource.conflictdetection.aspx) from `OverwriteChanges` (the default) to `CompareAllValues`
-- Changes the [`OldValuesParameterFormatString` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.oldvaluesparameterformatstring.aspx) from {0} (the default) to original\_{0} .
+- Changes the [`ConflictDetection` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.conflictdetection.aspx) from `OverwriteChanges` (the default) to `CompareAllValues`
+- Changes the [`OldValuesParameterFormatString` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.oldvaluesparameterformatstring.aspx) from {0} (the default) to original\_{0} .
 
 When the data Web control invokes the SqlDataSource s `Update()` or `Delete()` method, it passes in the original values. If the SqlDataSource s `ConflictDetection` property is set to `CompareAllValues`, these original values are added to the command. The `OldValuesParameterFormatString` property provides the naming pattern used for these original value parameters. The Configure Data Source wizard uses original\_{0} and names each original parameter in the `UpdateCommand` and `DeleteCommand` properties and `UpdateParameters` and `DeleteParameters` collections accordingly.
 

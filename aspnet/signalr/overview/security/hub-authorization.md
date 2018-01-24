@@ -56,7 +56,7 @@ This topic contains the following sections:
 
 ## Authorize attribute
 
-SignalR provides the [Authorize](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.authorizeattribute(v=vs.111).aspx) attribute to specify which users or roles have access to a hub or method. This attribute is located in the `Microsoft.AspNet.SignalR` namespace. You apply the `Authorize` attribute to either a hub or particular methods in a hub. When you apply the `Authorize` attribute to a hub class, the specified authorization requirement is applied to all of the methods in the hub. This topic provides examples of the different types of authorization requirements that you can apply. Without the `Authorize` attribute, a connected client can access any public method on the hub.
+SignalR provides the [Authorize](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.authorizeattribute(v=vs.111).aspx) attribute to specify which users or roles have access to a hub or method. This attribute is located in the `Microsoft.AspNet.SignalR` namespace. You apply the `Authorize` attribute to either a hub or particular methods in a hub. When you apply the `Authorize` attribute to a hub class, the specified authorization requirement is applied to all of the methods in the hub. This topic provides examples of the different types of authorization requirements that you can apply. Without the `Authorize` attribute, a connected client can access any public method on the hub.
 
 If you have defined a role named "Admin" in your web application, you could specify that only users in that role can access a hub with the following code.
 
@@ -77,7 +77,7 @@ The following examples address different authorization scenarios:
 
 ## Require authentication for all hubs
 
-You can require authentication for all hubs and hub methods in your application by calling the [RequireAuthentication](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubpipelineextensions.requireauthentication(v=vs.111).aspx) method when the application starts. You might use this method when you have multiple hubs and want to enforce an authentication requirement for all of them. With this method, you cannot specify requirements for role, user, or outgoing authorization. You can only specify that access to the hub methods is restricted to authenticated users. However, you can still apply the Authorize attribute to hubs or methods to specify additional requirements. Any requirement you specify in an attribute is added to the basic requirement of authentication.
+You can require authentication for all hubs and hub methods in your application by calling the [RequireAuthentication](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubpipelineextensions.requireauthentication(v=vs.111).aspx) method when the application starts. You might use this method when you have multiple hubs and want to enforce an authentication requirement for all of them. With this method, you cannot specify requirements for role, user, or outgoing authorization. You can only specify that access to the hub methods is restricted to authenticated users. However, you can still apply the Authorize attribute to hubs or methods to specify additional requirements. Any requirement you specify in an attribute is added to the basic requirement of authentication.
 
 The following example shows a Startup file which restricts all hub methods to authenticated users.
 
@@ -89,7 +89,7 @@ If you call the `RequireAuthentication()` method after a SignalR request has bee
 
 ## Customized authorization
 
-If you need to customize how authorization is determined, you can create a class that derives from `AuthorizeAttribute` and override the [UserAuthorized](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.authorizeattribute.userauthorized(v=vs.111).aspx) method. For each request, SignalR invokes this method to determine whether the user is authorized to complete the request. In the overridden method, you provide the necessary logic for your authorization scenario. The following example shows how to enforce authorization through claims-based identity.
+If you need to customize how authorization is determined, you can create a class that derives from `AuthorizeAttribute` and override the [UserAuthorized](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.authorizeattribute.userauthorized(v=vs.111).aspx) method. For each request, SignalR invokes this method to determine whether the user is authorized to complete the request. In the overridden method, you provide the necessary logic for your authorization scenario. The following example shows how to enforce authorization through claims-based identity.
 
 [!code-csharp[Main](hub-authorization/samples/sample4.cs)]
 
@@ -117,7 +117,7 @@ When you have a .NET client, such as a console app, which interacts with a hub t
 
 ### Cookie
 
-When your .NET client interacts with a hub that uses ASP.NET Forms Authentication, you will need to manually set the authentication cookie on the connection. You add the cookie to the `CookieContainer` property on the [HubConnection](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.client.hubs.hubconnection(v=vs.111).aspx) object. The following example shows a console app that retrieves an authentication cookie from a web page and adds that cookie to the connection.
+When your .NET client interacts with a hub that uses ASP.NET Forms Authentication, you will need to manually set the authentication cookie on the connection. You add the cookie to the `CookieContainer` property on the [HubConnection](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.client.hubs.hubconnection(v=vs.111).aspx) object. The following example shows a console app that retrieves an authentication cookie from a web page and adds that cookie to the connection.
 
 [!code-csharp[Main](hub-authorization/samples/sample7.cs)]
 
@@ -129,7 +129,7 @@ The console app posts the credentials to **www.contoso.com/RemoteLogin** which c
 
 ### Windows authentication
 
-When using Windows authentication, you can pass the current user's credentials by using the [DefaultCredentials](https://msdn.microsoft.com/en-us/library/system.net.credentialcache.defaultcredentials.aspx) property. You set the credentials for the connection to the value of the DefaultCredentials.
+When using Windows authentication, you can pass the current user's credentials by using the [DefaultCredentials](https://msdn.microsoft.com/library/system.net.credentialcache.defaultcredentials.aspx) property. You set the credentials for the connection to the value of the DefaultCredentials.
 
 [!code-csharp[Main](hub-authorization/samples/sample9.cs?highlight=6)]
 
@@ -147,6 +147,6 @@ Then, in the hub, you would verify the user's token.
 
 ### Certificate
 
-You can pass a client certificate to verify the user. You add the certificate when creating the connection. The following example shows only how to add a client certificate to the connection; it does not show the full console app. It uses the [X509Certificate](https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate.aspx) class which provides several different ways to create the certificate.
+You can pass a client certificate to verify the user. You add the certificate when creating the connection. The following example shows only how to add a client certificate to the connection; it does not show the full console app. It uses the [X509Certificate](https://msdn.microsoft.com/library/system.security.cryptography.x509certificates.x509certificate.aspx) class which provides several different ways to create the certificate.
 
 [!code-csharp[Main](hub-authorization/samples/sample11.cs?highlight=6)]

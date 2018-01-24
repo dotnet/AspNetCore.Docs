@@ -2,12 +2,10 @@
 title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
-keywords: ASP.NET Core,Facebook,login,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 08/01/2017
 ms.topic: article
-ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/facebook-logins
@@ -133,7 +131,7 @@ You are now logged in using your Facebook credentials:
 
 ## Troubleshooting
 
-* **ASP.NET Core 2.x only:** If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

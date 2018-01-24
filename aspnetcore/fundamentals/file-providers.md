@@ -2,12 +2,10 @@
 title: File Providers in ASP.NET Core
 author: ardalis
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
-keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
 ms.topic: article
-ms.assetid: 1e35d362-0005-4f84-a187-274ca203a787
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/file-providers
@@ -85,7 +83,7 @@ Updating the sample app to use an `EmbeddedFileProvider` results in the followin
 ![File provider sample application listing embedded files](file-providers/_static/embedded-directory-listing.png)
 
 > [!NOTE]
-> Embedded resources do not expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators.
+> Embedded resources don't expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators.
 
 > [!TIP]
 > The `EmbeddedFileProvider` constructor accepts an optional `baseNamespace` parameter. Specifying this will scope calls to `GetDirectoryContents` to those resources under the provided namespace.
@@ -102,7 +100,7 @@ Updating the sample app to use a `CompositeFileProvider` that includes both the 
 
 ## Watching for changes
 
-The `IFileProvider` `Watch` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use [globbing patterns](#globbing-patterns) to specify multiple files, and returns an `IChangeToken`. This token exposes a `HasChanged` property that can be inspected, and a `RegisterChangeCallback` method that is called when changes are detected to the specified path string. Note that each change token only calls its associated callback in response to a single change. To enable constant monitoring, you can use a `TaskCompletionSource` as shown below, or re-create `IChangeToken` instances in response to changes.
+The `IFileProvider` `Watch` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use [globbing patterns](#globbing-patterns) to specify multiple files, and returns an `IChangeToken`. This token exposes a `HasChanged` property that can be inspected, and a `RegisterChangeCallback` method that's called when changes are detected to the specified path string. Note that each change token only calls its associated callback in response to a single change. To enable constant monitoring, you can use a `TaskCompletionSource` as shown below, or re-create `IChangeToken` instances in response to changes.
 
 In this article's sample, a console application is configured to display a message whenever a text file is modified:
 

@@ -2,7 +2,6 @@
 title: Using Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
-keywords: ASP.NET Core,Gulp
 ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
@@ -27,7 +26,7 @@ A *task runner* is a tool which automates these routine development tasks and mo
 
 ## Gulp
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
 
 A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
@@ -184,7 +183,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
     ![Task Runner Explorer clean task](using-gulp/_static/04-TaskRunner-clean.png)
 
-    **Task Runner Explorer** will create a new tab named **clean** and execute the clean task as it is defined in *gulpfile.js*.
+    **Task Runner Explorer** will create a new tab named **clean** and execute the clean task as it's defined in *gulpfile.js*.
 
 5.  Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
@@ -244,11 +243,11 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
     gulp.task("series", ["series:first", "series:second"], function () {});
     ```
  
-    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run.  As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
+    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
 
 2.  Save *gulpfile.js*.
 
-3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn’t already open.
+3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn't already open.
 
 4.  In **Task Runner Explorer**, right-click **series** and select **Run**.
 
@@ -323,7 +322,7 @@ For more information related to environments in ASP.NET Core, see [Working with 
 
 ## Task and module details
 
-A Gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
+A Gulp task is registered with a function name. You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
 
 |Gulp Function|Syntax|Description|
 |---   |--- |--- |

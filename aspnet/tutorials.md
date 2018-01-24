@@ -17,7 +17,7 @@ uid: aspnet/tutorials
 The following step-by-step guides for developing ASP.NET applications are available.
 
 > [!NOTE]
-> Looking for ASP.NET Core tutorials?  Find them [here](https://docs.microsoft.com/en-us/aspnet/core/tutorials/).
+> Looking for ASP.NET Core tutorials?  Find them [here](https://docs.microsoft.com/aspnet/core/tutorials/).
 
 ## Web Forms
 

@@ -2,13 +2,11 @@
 title: Custom policy-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to create and use custom authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
-keywords: ASP.NET Core,authorization,custom policy,authorization policy
 ms.author: riande
 ms.custom: mvc
 manager: wpickett
 ms.date: 11/21/2017
 ms.topic: article
-ms.assetid: e422a1b2-dc4a-4bcc-b8d9-7ee62009b6a3
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/policies
@@ -66,7 +64,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 
 * A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
 
-* A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.
+* A handler doesn't need to handle failures generally, as other handlers for the same requirement may succeed.
 
 * To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
 

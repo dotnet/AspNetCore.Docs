@@ -215,7 +215,7 @@ If you put all these elements together, you get the following code:
 > 
 > **Important!** Using placeholders (like `@0`) to pass values to a SQL command is *extremely important* for security. The way you see it here, with placeholders for variable data, is the only way you should construct SQL commands.
 > 
-> Never construct a SQL statement by putting together (concatenating) literal text and values you get from the user. Concatenating user input into a SQL statement opens your site to a *SQL injection attack* where a malicious user submits values to your page that hack your database. (You can read more in the article [SQL Injection](https://msdn.microsoft.com/en-us/library/ms161953.aspx) the MSDN website.)
+> Never construct a SQL statement by putting together (concatenating) literal text and values you get from the user. Concatenating user input into a SQL statement opens your site to a *SQL injection attack* where a malicious user submits values to your page that hack your database. (You can read more in the article [SQL Injection](https://msdn.microsoft.com/library/ms161953.aspx) the MSDN website.)
 
 
 ## Updating the Movies Page with Search Code

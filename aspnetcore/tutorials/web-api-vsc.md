@@ -9,10 +9,8 @@ ms.prod: asp.net-core
 
 #ROBOTS:
 ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 #ms.devlang: 
 manager: wpickett
-ms.assetid: 830b4bf5-dd14-423e-9f59-764a6f13a8f6
 uid: tutorials/web-api-vsc
 ---
 
@@ -66,7 +64,7 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
-Creating a new project in .NET Core 2.0 adds the 'Microsoft.AspNetCore.All' provider in the *TodoApi.csproj* file. There is no need to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
+Creating a new project in .NET Core 2.0 adds the 'Microsoft.AspNetCore.All' provider in the *TodoApi.csproj* file. There's no need to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 [!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 

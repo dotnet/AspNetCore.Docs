@@ -2,12 +2,10 @@
 title: Error handling in ASP.NET Core
 author: ardalis
 description: Discover how to handle errors in ASP.NET Core applications.
-keywords: ASP.NET Core,error handling,exception handling
 ms.author: tdykstra
 manager: wpickett
 ms.date: 11/30/2016
 ms.topic: article
-ms.assetid: 4db51023-c8a6-4119-bbbe-3917e272c260
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/error-handling
@@ -46,7 +44,7 @@ This request didn't have any cookies, but if it did, they would appear on the **
 
 ## Configuring a custom exception handling page
 
-It's a good idea to configure an exception handler page to use when the app is not running in the `Development` environment.
+It's a good idea to configure an exception handler page to use when the app isn't running in the `Development` environment.
 
 [!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
 
@@ -62,7 +60,7 @@ public IActionResult Index()
 
 ## Configuring status code pages
 
-By default, your app will not provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` by adding a line to the `Configure` method:
+By default, your app won't provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` by adding a line to the `Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
@@ -127,7 +125,7 @@ Exception filters can be configured globally or on a per-controller or per-actio
 
 ### Handling Model State Errors
 
-[Model validation](../mvc/models/validation.md) occurs prior to each controller action being invoked, and it is the action method’s responsibility to inspect `ModelState.IsValid` and react appropriately.
+[Model validation](../mvc/models/validation.md) occurs prior to each controller action being invoked, and it's the action method’s responsibility to inspect `ModelState.IsValid` and react appropriately.
 
 Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a [filter](../mvc/controllers/filters.md) may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. Learn more in [Testing controller logic](../mvc/controllers/testing.md).
 

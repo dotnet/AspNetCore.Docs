@@ -153,7 +153,7 @@ To complete this first step, remove the `LastName` BoundField and rename the `Fi
 
 ## Step 3: Using the Calendar Control to Display the`HiredDate`Field
 
-Displaying a data field value as text in a GridView is as simple as using a BoundField. For certain scenarios, however, the data is best expressed using a particular Web control instead of just text. Such customization of the display of data is possible with TemplateFields. For example, rather than display the employee's hire date as text, we could show a calendar (using [the Calendar control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar(VS.80).aspx)) with their hire date highlighted.
+Displaying a data field value as text in a GridView is as simple as using a BoundField. For certain scenarios, however, the data is best expressed using a particular Web control instead of just text. Such customization of the display of data is possible with TemplateFields. For example, rather than display the employee's hire date as text, we could show a calendar (using [the Calendar control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar(VS.80).aspx)) with their hire date highlighted.
 
 To accomplish this, start by converting the `HiredDate` BoundField into a TemplateField. Simply go to the GridView's smart tag and click the Edit Columns link, bringing up the Fields dialog box. Select the `HiredDate` BoundField and click "Convert this field into a TemplateField."
 
@@ -173,7 +173,7 @@ To replace the text with a Calendar control, edit the template by removing the L
 **Figure 12**: Add a Calendar Control to the `HireDate` TemplateField's `ItemTemplate` ([Click to view full-size image](using-templatefields-in-the-gridview-control-vb/_static/image36.png))
 
 
-At this point each row in the GridView will contain a Calendar control in its `HiredDate` TemplateField. However, the employee's actual `HiredDate` value is not set anywhere in the Calendar control, causing each Calendar control to default to showing the current month and date. To remedy this, we need to assign each employee's `HiredDate` to the Calendar control's [SelectedDate](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar.selecteddate(VS.80).aspx) and [VisibleDate](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar.visibledate(VS.80).aspx) properties.
+At this point each row in the GridView will contain a Calendar control in its `HiredDate` TemplateField. However, the employee's actual `HiredDate` value is not set anywhere in the Calendar control, causing each Calendar control to default to showing the current month and date. To remedy this, we need to assign each employee's `HiredDate` to the Calendar control's [SelectedDate](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selecteddate(VS.80).aspx) and [VisibleDate](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.visibledate(VS.80).aspx) properties.
 
 From the Calendar control's smart tag, choose Edit DataBindings. Next, bind both `SelectedDate` and `VisibleDate` properties to the `HiredDate` data field.
 

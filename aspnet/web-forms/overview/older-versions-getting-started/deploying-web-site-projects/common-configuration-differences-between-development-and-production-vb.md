@@ -33,7 +33,7 @@ When deploying a web application it is important that the correct configuration 
 
 The `Web.config` file includes an assortment of configuration information for an ASP.NET application. Some of this configuration information is the same regardless of the environment. For instance, the authentication settings and URL authorization rules spelled out in the `Web.config` file's `<authentication>` and `<authorization>` elements are usually the same regardless of the environment. But other configuration information - such as information about external resources - typically differs depending on the environment.
 
-Database connections strings are a prime example of configuration information that differs based on the environment. When a web application communicates with a database server it must first establish a connection, and that is achieved through a [connection string](http://www.connectionstrings.com/Articles/Show/what-is-a-connection-string). While it is possible to hard-code the database connection string directly in the web pages or the code that connects to the database, it is best to place it `Web.config`'s [`<connectionStrings>` element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx) so that the connection string information is in a single, centralized location. Oftentimes a different database is used during development than is used in production; consequently, the connection string information must be unique for each environment.
+Database connections strings are a prime example of configuration information that differs based on the environment. When a web application communicates with a database server it must first establish a connection, and that is achieved through a [connection string](http://www.connectionstrings.com/Articles/Show/what-is-a-connection-string). While it is possible to hard-code the database connection string directly in the web pages or the code that connects to the database, it is best to place it `Web.config`'s [`<connectionStrings>` element](https://msdn.microsoft.com/library/bf7sd233.aspx) so that the connection string information is in a single, centralized location. Oftentimes a different database is used during development than is used in production; consequently, the connection string information must be unique for each environment.
 
 > [!NOTE]
 > Future tutorials explore deploying data-driven applications, at which point we'll dive into the specifics of how database connection strings are stored in the configuration file.
@@ -43,7 +43,7 @@ The intended behavior of the development and production environments differs sub
 
 ### Configuration Settings That Impact Performance
 
-When an ASP.NET page is visited for the first time (or the first time after it has changed), its declarative markup must be converted into a class and this class must be compiled. If the web application uses automatic compilation then the page's code-behind class needs to be compiled, too. You can configure an assortment of compilation options via the `Web.config` file's [`<compilation>` element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx).
+When an ASP.NET page is visited for the first time (or the first time after it has changed), its declarative markup must be converted into a class and this class must be compiled. If the web application uses automatic compilation then the page's code-behind class needs to be compiled, too. You can configure an assortment of compilation options via the `Web.config` file's [`<compilation>` element](https://msdn.microsoft.com/library/s10awwz0.aspx).
 
 The debug attribute is one of the most important attributes in the `<compilation>` element. If the `debug` attribute is set to "true" then the compiled assemblies include debug symbols, which are needed when debugging an application in Visual Studio. But debug symbols increase the size of the assembly and impose additional memory requirements when running the code. Furthermore, when the `debug` attribute is set to "true" any content returned by `WebResource.axd` is not cached, meaning that each time a user visits a page they will need to re-download the static content returned by `WebResource.axd`.
 
@@ -63,7 +63,7 @@ When an unhandled exception occurs in an ASP.NET application it bubbles up to th
 - An exception details message is displayed, which includes information on the exception that was just thrown.
 - A custom error page is displayed, which is an ASP.NET page that you create that displays any message you desire.
 
-What happens in the face of an unhandled exception depends on the `Web.config` file's [`<customErrors>` section](https://msdn.microsoft.com/en-us/library/h0hfz6fc.aspx).
+What happens in the face of an unhandled exception depends on the `Web.config` file's [`<customErrors>` section](https://msdn.microsoft.com/library/h0hfz6fc.aspx).
 
 When developing and testing an application it helps to see details of any exception in the browser. However, showing exception details in an application on production is a potential security risk. Moreover, it's unflattering and makes your website look unprofessional. Ideally, in the event of an unhandled exception a web application in the development environment will show the exception's details while the same application in production will show a custom error page.
 
@@ -71,7 +71,7 @@ When developing and testing an application it helps to see details of any except
 > The default `<customErrors>` section setting shows the exception details message only when the page is being visited through localhost, and shows the generic runtime error page otherwise. This isn't ideal, but it's assuring to know that the default behavior doesn't reveal exception details to non-local visitors. A future tutorial examines the `<customErrors>` section in more detail and shows how to have a custom error page shown when an error occurs in production.
 
 
-Another ASP.NET feature that is useful during development is tracing. Tracing, if enabled, records information about each incoming request and provides a special web page, `Trace.axd`, for viewing recent request details. You can turn on and configure tracing via the [`<trace>` element](https://msdn.microsoft.com/en-us/library/6915t83k.aspx) in `Web.config`.
+Another ASP.NET feature that is useful during development is tracing. Tracing, if enabled, records information about each incoming request and provides a special web page, `Trace.axd`, for viewing recent request details. You can turn on and configure tracing via the [`<trace>` element](https://msdn.microsoft.com/library/6915t83k.aspx) in `Web.config`.
 
 If you enable tracing make sure that it is disabled in production. Because the trace information includes cookies, session data, and other potentially sensitive information, it is important to disable tracing in production. The good news is that, by default, tracing is disabled and the `Trace.axd` file is only accessible through localhost. If you change these default settings in development make sure that they are turned back off in production.
 
@@ -105,7 +105,7 @@ configuration information that gets copied to this directory in the following wa
 
 To deploy the web application build the Web Deployment Project and then copy the files from the project's output folder to the production environment.
 
-To learn more about using the Web Deployment Project check out [this Web Deployment Projects article](https://msdn.microsoft.com/en-us/magazine/cc163448.aspx) from the April 2007 issue of [MSDN Magazine](https://msdn.microsoft.com/en-us/magazine/default.aspx), or consult the links in the Further Reading section at the end of this tutorial.
+To learn more about using the Web Deployment Project check out [this Web Deployment Projects article](https://msdn.microsoft.com/magazine/cc163448.aspx) from the April 2007 issue of [MSDN Magazine](https://msdn.microsoft.com/magazine/default.aspx), or consult the links in the Further Reading section at the end of this tutorial.
 
 > [!NOTE]
 > You cannot use the Web Deployment Project with Visual Web Developer because the Web Deployment Project is implemented as a Visual Studio Add-In and the Visual Studio Express Editions (including Visual Web Developer) do not support Add-Ins.
@@ -129,7 +129,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Key Configuration Settings When Deploying a Database](http://aspnet.4guysfromrolla.com/articles/121008-1.aspx)
 - [Visual Studio 2008 Web Deployment Projects Download](https://www.microsoft.com/downloads/details.aspx?FamilyId=0AA30AE8-C73B-4BDD-BB1B-FE697256C459&amp;displaylang=en) | [Visual Studio 2005 Web Deployment Projects Download](https://download.microsoft.com/download/9/4/9/9496adc4-574e-4043-bb70-bc841e27f13c/WebDeploymentSetup.msi)
 - [VS 2008 Web Deployment Projects](https://weblogs.asp.net/scottgu/archive/2005/11/06/429723.aspx) | [VS 2008 Web Deployment Project Support Released](https://weblogs.asp.net/scottgu/archive/2008/01/28/vs-2008-web-deployment-project-support-released.aspx)
-- [Web Deployment Projects](https://msdn.microsoft.com/en-us/magazine/cc163448.aspx)
+- [Web Deployment Projects](https://msdn.microsoft.com/magazine/cc163448.aspx)
 
 >[!div class="step-by-step"]
 [Previous](deploying-your-site-using-visual-studio-vb.md)

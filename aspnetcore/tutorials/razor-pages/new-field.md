@@ -2,7 +2,6 @@
 title: Adding a New Field to a Razor Page
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
-keywords: ASP.NET Core,Entity Framework Core,migrations
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
@@ -98,7 +97,7 @@ If you delete all the records in the DB, the initializer will seed the DB and in
   Update-Database
   ```
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database is not seeded, stop IIS Express, and then run the app.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
 
 >[!div class="step-by-step"]
 [Previous: Adding Search](xref:tutorials/razor-pages/search)

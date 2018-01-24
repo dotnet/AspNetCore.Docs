@@ -17,7 +17,7 @@
   * Stop trimming value inside required method
   * Use :disabled selector to match disabled elements
   * Exclude some keyboard keys to prevent revalidating the field
-  * Do not search the whole DOM for radio/checkbox elements
+  * Don't search the whole DOM for radio/checkbox elements
   * Throw better errors for bad rule methods
   * Fixed number validation error
   * Fix reference to whatwg spec
@@ -170,7 +170,7 @@
   * Fix typos
   * Fix jQuery loader to use path of itself. Fixes nested demos.
   * Update grunt-contrib-qunit to make use of PhantomJS 1.8, when installed through node module 'phantomjs'
-  * Make valid() return a boolean instead of 0 or 1. Fixes #109 - valid() does not return boolean value
+  * Make valid() return a boolean instead of 0 or 1. Fixes #109 - valid() doesn't return boolean value
 
 1.11.0 / 2013-02-04
 ==================
@@ -279,7 +279,7 @@
 * Added Thai (TH) localization, fixes #85
 * Added Vietnamese (VI) localization, thanks Ngoc
 * Fixed issue #78. Error/Valid styling applies to all radio buttons of same group for required validation.
-* Don't use form.elements as that isn't supported in jQuery 1.6 anymore. Its buggy as hell anyway (IE6-8: form.elements === form).
+* Don't use form.elements as that'sn't supported in jQuery 1.6 anymore. Its buggy as hell anyway (IE6-8: form.elements === form).
 
 1.8.0
 ---
@@ -411,7 +411,7 @@
 * Fixed #2473, ignoring all rules with an explicit parameter of boolean-false, eg. required:false is the same as not specifying required at all (it was handled as required:true so far)
 * Fixed #2424, with a modified patch from #2473: Methods returning a dependency-mismatch don't stop other rules from being evaluated anymore; still, success isn't applied for optional fields
 * Fixed url and email validation to not use trimmed values
-* Fixed creditcard validation to accept only digits and dashes ("asdf" is not a valid creditcard number)
+* Fixed creditcard validation to accept only digits and dashes ("asdf" isn't a valid creditcard number)
 * Allow both button and input elements for cancel buttons (via class="cancel")
 * Fixed #2215: Fixed message display to call unhighlight as part of showing and hiding messages, no more visual side-effects while checking an element and extracted validator.checkForm to validate a form without UI sideeffects
 * Rewrote custom selectors (:blank, :filled, :unchecked) with functions for compatibility with AIR
@@ -423,7 +423,7 @@
 * Improved remote validation to include parts from the ajaxQueue plugin for proper synchronization (no additional plugin necessary)
 * Fixed stopRequest to prevent pendingRequest < 0
 * Added jQuery.validator.autoCreateRanges property, defaults to false, enable to convert min/max to range and minlength/maxlength to rangelength; this basically fixes the issue introduced by automatically creating ranges in 1.2
-* Fixed optional-methods to not highlight anything at all if the field is blank, that is, don't trigger success
+* Fixed optional-methods to not highlight anything at all if the field is blank, that's, don't trigger success
 * Allow false/null for highlight/unhighlight options instead of forcing a do-nothing-callback even when nothing needs to be highlighted
 * Fixed validate() call with no elements selected, returning undefined instead of throwing an error
 * Improved demo, replacing metadata with classes/attributes for specifying rules
@@ -500,7 +500,7 @@
 * Fixed exclusion of elements without rules from successList
 * Fixed custom-method-demo, replaced the alert with message displaying the number of errors
 * Fixed form-submit-prevention when using submitHandler
-* Completely removed dependency on element IDs, though they are still used (when present) to link error labels to inputs. Achieved by using
+* Completely removed dependency on element IDs, though they're still used (when present) to link error labels to inputs. Achieved by using
   an array with {name, message, element} instead of an object with id:message pairs for the internal errorList.
 * Added support for specifying simple rules as simple strings, eg. "required" is equivalent to {required: true}
 * Added feature: Add errorClass to invalid field�s parent element, making it easy to style the label/field container or the label for the field.
@@ -527,7 +527,7 @@
 * Modified validation methods to accept empty fields as valid (exception: of course �required� and also �equalTo� methods)
 * Renamed "min" to "minLength", "max" to "maxLength", "length" to "rangeLength"
 * Added "minValue", "maxValue" and "rangeValue"
-* Streamlined API for support of different events. The default, submit, can be disabled. If any event is specified, that is applied to each element (instead of the entire form). Combining keyup-validation with submit-validation is now extremely easy to setup
+* Streamlined API for support of different events. The default, submit, can be disabled. If any event is specified, that's applied to each element (instead of the entire form). Combining keyup-validation with submit-validation is now extremely easy to setup
 * Added support for one-message-per-rule when defining messages via plugin settings
 * Added support to wrap metadata in some parent element. Useful when metadata is used for other plugins, too.
 * Refactored tests and demos: Less files, better demos

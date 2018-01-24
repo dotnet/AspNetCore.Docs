@@ -143,7 +143,7 @@ If you only want to enable external authentication, you are done. However, you c
 
 As you noticed in the previous sections, you do not need to retrieve any additional information for the built-in account registration to work. However, most external providers pass back additional information about the user. The following sections show how to retain that information and save it to a database. Specifically, you will retain values for the user's full name, the URI of the user's personal web page, and a value that indicates whether Facebook has verified the account.
 
-You will use [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) to add a table for storing additional user information. You are adding the table to an existing database, so you will first need to create a snapshot of the current database. By creating a snapshot of the current database, you can later create a migration that contains only the new table. To create a snapshot of the current database:
+You will use [Code First Migrations](https://msdn.microsoft.com/data/jj591621) to add a table for storing additional user information. You are adding the table to an existing database, so you will first need to create a snapshot of the current database. By creating a snapshot of the current database, you can later create a migration that contains only the new table. To create a snapshot of the current database:
 
 1. Open the **Package Manager Console**
 2. Run the command **enable-migrations**

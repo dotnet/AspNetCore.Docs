@@ -2,12 +2,10 @@
 title: Key Encryption At Rest
 author: rick-anderson
 description: This document outlines the implementation details of ASP.NET Core data protection key encryption at rest.
-keywords: ASP.NET Core,data protection,key encryption
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: f2bbbf4e-0945-43ce-be59-8bf19e448798
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-encryption-at-rest
@@ -29,7 +27,7 @@ The data protection system ships with three in-box key encryption mechanisms.
 
 *This mechanism is available only on Windows.*
 
-When Windows DPAPI is used, key material will be encrypted via [CryptProtectData](https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that will never be read outside of the current machine (though it is possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). For example to configure DPAPI key-at-rest encryption.
+When Windows DPAPI is used, key material will be encrypted via [CryptProtectData](https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that will never be read outside of the current machine (though it's possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). For example to configure DPAPI key-at-rest encryption.
 
 ```csharp
 sc.AddDataProtection()
@@ -47,7 +45,7 @@ sc.AddDataProtection()
 
 ## X.509 certificate
 
-*This mechanism is not available on `.NET Core 1.0` or `1.1`.*
+*This mechanism isn't available on `.NET Core 1.0` or `1.1`.*
 
 If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.
 
@@ -80,7 +78,7 @@ sc.AddDataProtection()
     flags: DpapiNGProtectionDescriptorFlags.None);
 ```
 
-There is also a parameterless overload of `ProtectKeysWithDpapiNG`. This is a convenience method for specifying the rule "SID=mine", where mine is the SID of the current Windows user account.
+There's also a parameterless overload of `ProtectKeysWithDpapiNG`. This is a convenience method for specifying the rule "SID=mine", where mine is the SID of the current Windows user account.
 
 ```csharp
 sc.AddDataProtection()

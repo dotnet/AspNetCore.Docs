@@ -6,7 +6,6 @@ ms.author: rachelap
 manager: wpickett
 ms.date: 11/01/2017
 ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe012345
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/index
@@ -21,7 +20,7 @@ ASP.NET Core provides many tools and libraries to secure your apps including bui
 
 ## Authentication vs. Authorization
 
-Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they are authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do. 
+Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they're authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do. 
 
 Another way to think of authentication is to consider it as a way to enter a space, such as a server, database, app or resource, while authorization is which actions the user can perform to which objects inside that space (server, database, or app).
 
@@ -92,7 +91,7 @@ There are more vulnerabilities that you should be aware of. For more information
         *   [Key storage format](data-protection/implementation/key-storage-format.md)
         *   [Ephemeral data protection providers](data-protection/implementation/key-storage-ephemeral.md)
     *   [Compatibility](data-protection/compatibility/index.md)
-        *   [Share cookies between apps](data-protection/compatibility/cookie-sharing.md)
+        *   [Share cookies among apps](data-protection/compatibility/cookie-sharing.md)
         *   [Replace <machineKey> in ASP.NET](data-protection/compatibility/replacing-machinekey.md)
 *   [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
 *   [Safe storage of app secrets during development](app-secrets.md)

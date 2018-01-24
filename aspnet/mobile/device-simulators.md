@@ -21,7 +21,7 @@ Simulate Popular Mobile Devices for Testing
 | Device or Browser | Emulator / Simulator |
 | --- | --- |
 | BrowserStack Hosted Browser Virtualization ![BrowserStack Hosted Browser Virtualization](device-simulators/_static/image1.png) | [BrowserStack Hosted Browser Virtualization](http://browserstack.com) Test your local or production environment in any browser on any platform. You can create a tunnel between your machine and the BrowserStack network in your own hosted virtual machine. Make sure to get the [BrowserStack Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/2dfa32b1-3c47-439d-b1c5-9e28be18b81c) for an even more seamless experience. |
-| Windows Phone | [Windows Phone SDK Downloads](https://dev.windowsphone.com/en-us/downloadsdk) The Windows Phone Software Development Kit (SDK) includes all of the tools that you need to develop apps and games for Windows Phone |
+| Windows Phone | [Windows Phone SDK Downloads](https://dev.windowsphone.com/downloadsdk) The Windows Phone Software Development Kit (SDK) includes all of the tools that you need to develop apps and games for Windows Phone |
 | iPhone / iPod / iPad | [Electric Plum](http://www.electricplum.com/studio.aspx) iPhone and iPad Simulators for Windows, as well as a Responsive design tool. Can integrate with VS 2012 "Browse With.." option. |
 | Android | [Android SDK homepage](https://developer.android.com/sdk) |
 | Opera Mobile / Opera Mini | Latest versions: [Opera Developer Tools home](http://www.opera.com/developer/tools/) Opera Mini 4.2: [Online Java-based simulator](http://www.opera.com/mobile/demo/?ver=4) |

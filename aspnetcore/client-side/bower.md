@@ -2,12 +2,10 @@
 title: Using Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
-keywords: ASP.NET Core,bower
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
 ms.topic: article
-ms.assetid: df7c43da-280e-4df6-86cb-eecec8f12bfc
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/bower
@@ -42,7 +40,7 @@ In this tutorial, we'll add support for [Font Awesome](http://fontawesome.io). B
 
 ### Manual installation in bower.json
 
-Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSense shows the available packages. When a package is selected, the available versions are displayed. The images below are older and will not match what you see.
+Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSense shows the available packages. When a package is selected, the available versions are displayed. The images below are older and won't match what you see.
 
 ![IntelliSense of bower package explorer](bower/_static/add-package.png)
 

@@ -28,9 +28,9 @@ Module | .NET Core Active | ASP.NET Core Option
 **Configuration Validation**<br>`ConfigurationValidationModule` | Yes | 
 **HTTP Errors**<br>`CustomErrorModule` | No | [Status Code Pages Middleware](xref:fundamentals/error-handling#configuring-status-code-pages)
 **Custom Logging**<br>`CustomLoggingModule` | Yes | 
-**Default Document**<br>`DefaultDocumentModule` | No | [Default Files Middleware](xref:fundamentals/static-files#serving-a-default-document)
+**Default Document**<br>`DefaultDocumentModule` | No | [Default Files Middleware](xref:fundamentals/static-files#serve-a-default-document)
 **Digest Authentication**<br>`DigestAuthenticationModule` | Yes | 
-**Directory Browsing**<br>`DirectoryListingModule` | No | [Directory Browsing Middleware](xref:fundamentals/static-files#enabling-directory-browsing)
+**Directory Browsing**<br>`DirectoryListingModule` | No | [Directory Browsing Middleware](xref:fundamentals/static-files#enable-directory-browsing)
 **Dynamic Compression**<br>`DynamicCompressionModule` | Yes | [Response Compression Middleware](xref:performance/response-compression)
 **Tracing**<br>`FailedRequestsTracingModule` | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#the-tracesource-provider)
 **File Caching**<br>`FileCacheModule` | No | [Response Caching Middleware](xref:performance/caching/middleware)

@@ -2,12 +2,10 @@
 title: Request Features in ASP.NET Core
 author: ardalis
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: d1fbd23c-2ff9-4216-b908-0201ff3afb7c
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/request-features
@@ -62,7 +60,7 @@ ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCor
    Defines methods for working with TLS token binding parameters.
 
 > [!NOTE]
-> `ISessionFeature` is not a server feature, but is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
+> `ISessionFeature` isn't a server feature, but is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
 
 ## Feature collections
 
@@ -70,7 +68,7 @@ The `Features` property of `HttpContext` provides an interface for getting and s
 
 ## Middleware and request features
 
-While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware` accesses the `IHttpSendFileFeature` feature. If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the `IHttpSendFileFeature` allows the operating
+While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware` accesses the `IHttpSendFileFeature` feature. If the feature exists, it's used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the `IHttpSendFileFeature` allows the operating
 system to open the file and perform a direct kernel mode copy to the network card.
 
 Additionally, middleware can add to the feature collection established by the server. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.

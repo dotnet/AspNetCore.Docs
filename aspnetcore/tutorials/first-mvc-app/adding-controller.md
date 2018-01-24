@@ -2,12 +2,10 @@
 title: Adding a controller
 author: rick-anderson 
 description: How to add a controller to a simple ASP.NET Core MVC app
-keywords: ASP.NET Core,MVC
 ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
 ms.topic: get-started-article
-ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/adding-controller

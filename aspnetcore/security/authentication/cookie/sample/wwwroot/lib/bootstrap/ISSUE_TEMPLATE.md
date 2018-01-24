@@ -7,7 +7,7 @@ Before opening an issue:
 
 When asking general "how to" questions:
 
-- Please do not open an issue here
+- Please don't open an issue here
 - Instead, ask for help on [StackOverflow, IRC, or Slack](https://github.com/twbs/bootstrap/blob/master/README.md#community)
 
 When reporting a bug, include:

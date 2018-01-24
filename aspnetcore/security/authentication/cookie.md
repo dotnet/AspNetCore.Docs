@@ -2,12 +2,10 @@
 title: Using Cookie Authentication without ASP.NET Core Identity
 author: rick-anderson
 description: An explanation of using cookie authentication without ASP.NET Core Identity
-keywords: ASP.NET Core,cookies
 ms.author: riande
 manager: wpickett
 ms.date: 10/11/2017
 ms.topic: article
-ms.assetid: 2bdcbf95-8d9d-4537-a4a0-a5ee439dcb62
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/cookie
@@ -220,7 +218,7 @@ Once a cookie is created, it becomes the single source of identity. Even if you 
 
 The [ValidatePrincipal](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationevents.validateprincipal) event in ASP.NET Core 2.x or the [ValidateAsync](/dotnet/api/microsoft.aspnetcore.identity.isecuritystampvalidator.validateasync?view=aspnetcore-1.1) method in ASP.NET Core 1.x can be used to intercept and override validation of the cookie identity. This approach mitigates the risk of revoked users accessing the app.
 
-One approach to cookie validation is based on keeping track of when the user database has been changed. If the database hasn't been changed since the user's cookie was issued, there is no need to re-authenticate the user if their cookie is still valid. To implement this scenario, the database, which is implemented in `IUserRepository` for this example, stores a `LastChanged` value. When any user is updated in the database, the `LastChanged` value is set to the current time.
+One approach to cookie validation is based on keeping track of when the user database has been changed. If the database hasn't been changed since the user's cookie was issued, there's no need to re-authenticate the user if their cookie is still valid. To implement this scenario, the database, which is implemented in `IUserRepository` for this example, stores a `LastChanged` value. When any user is updated in the database, the `LastChanged` value is set to the current time.
 
 In order to invalidate a cookie when the database changes based on the `LastChanged` value, create the cookie with a `LastChanged` claim containing the current `LastChanged` value from the database:
 

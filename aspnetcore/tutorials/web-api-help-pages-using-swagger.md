@@ -2,12 +2,10 @@
 title: ASP.NET Core Web API Help Pages using Swagger
 author: spboyer
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API application.
-keywords: ASP.NET Core,Swagger,Swashbuckle,help pages,Web API
 ms.author: spboyer
 manager: wpickett
 ms.date: 09/01/2017
 ms.topic: article
-ms.assetid: 54bb961d-29d9-4dee-8e2c-a93fc33c16f2
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/web-api-help-pages-using-swagger
@@ -360,4 +358,4 @@ Browse to the *index.html* page at `http://localhost:<random_port>/swagger/ui/in
 
 ![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
 
-There is much more you can do with the page. See the full capabilities for the UI resources at the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui).
+There's much more you can do with the page. See the full capabilities for the UI resources at the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui).

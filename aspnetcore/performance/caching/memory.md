@@ -31,7 +31,7 @@ The in-memory cache can store any object; the distributed cache interface is lim
 
 ## Using IMemoryCache
 
-In-memory caching is a *service* that is referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
+In-memory caching is a *service* that's referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
 
 [!code-csharp[Main](memory/sample/WebCache/Startup.cs?highlight=8)] 
 
@@ -41,7 +41,7 @@ Request the `IMemoryCache` instance in the constructor:
 
 `IMemoryCache` requires NuGet package "Microsoft.Extensions.Caching.Memory".
 
-The following code uses [TryGetValue](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache#Microsoft_Extensions_Caching_Memory_IMemoryCache_TryGetValue_System_Object_System_Object__) to check if the current time is in the cache. If the item is not cached, a new entry is created and added to the cache with [Set](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_).
+The following code uses [TryGetValue](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache#Microsoft_Extensions_Caching_Memory_IMemoryCache_TryGetValue_System_Object_System_Object__) to check if the current time is in the cache. If the item isn't cached, a new entry is created and added to the cache with [Set](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_).
 
 [!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet1)]
 
@@ -89,7 +89,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
   - Multiple requests can find the cached key value empty because the callback hasn't completed. 
   - This can result in several threads repopulating the cached item.
 
-- When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child is not expired by manual removal or updating of the parent entry.
+- When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
 
 ## Additional resources
 

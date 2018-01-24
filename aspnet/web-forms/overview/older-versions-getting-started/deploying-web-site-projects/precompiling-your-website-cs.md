@@ -61,12 +61,12 @@ It is possible to use explicit compilation with the WSP model. You can explicitl
 
 ## Precompilation Options
 
-The .NET Framework ships with an [ASP.NET compilation tool (`aspnet_compiler.exe`)](https://msdn.microsoft.com/en-us/library/ms229863.aspx) that enables you to compile the source code (and even the content) of an ASP.NET application built using the WSP model. This tool was released with the .NET Framework version 2.0 and is located in the `%WINDIR%\Microsoft.NET\Framework\v2.0.50727` folder; it can be used from the command line or launched from within Visual Studio via the Build menu's Publish Web Site option.
+The .NET Framework ships with an [ASP.NET compilation tool (`aspnet_compiler.exe`)](https://msdn.microsoft.com/library/ms229863.aspx) that enables you to compile the source code (and even the content) of an ASP.NET application built using the WSP model. This tool was released with the .NET Framework version 2.0 and is located in the `%WINDIR%\Microsoft.NET\Framework\v2.0.50727` folder; it can be used from the command line or launched from within Visual Studio via the Build menu's Publish Web Site option.
 
 The compilation tool provides two general forms of compilation: in-place precompilation and precompilation for deployment. With in-place precompilation you run the `aspnet_compiler.exe` tool from the command-line and specify the path to the virtual directory or physical path of a website that resides on your computer. The compilation tool then compiles each ASP.NET page in the project, storing the compiled version in the `%WINDIR%\Microsoft.NET\Framework\v2.0.50727\Temporary ASP.NET Files` folder just like if the pages had each been visited for the first time from a browser. In-place precompilation can speed up the first request made to newly deployed ASP.NET pages on your site because it alleviates the runtime from needing to perform this step. However, in-place precompilation is not useful for the majority of hosted websites because it requires that you are able to run programs from the web server's command-line. In shared hosting environments this level of access is not permitted.
 
 > [!NOTE]
-> For more information on in-place precompilation, check out [How To: Precompile ASP.NET Web Sites](https://msdn.microsoft.com/en-us/library/ms227972.aspx) and [Precompilation in ASP.NET 2.0](http://www.odetocode.com/Articles/417.aspx).
+> For more information on in-place precompilation, check out [How To: Precompile ASP.NET Web Sites](https://msdn.microsoft.com/library/ms227972.aspx) and [Precompilation in ASP.NET 2.0](http://www.odetocode.com/Articles/417.aspx).
 
 
 Instead of compiling the pages in the website to the `Temporary ASP.NET Files` folder, precompilation for deployment compiles the pages to a directory of your choosing and in a format that can be deployed to the production environment.
@@ -102,10 +102,10 @@ After precompiling the website, navigate to the target location you entered in t
 **Figure 3**: The Target Location Folder Includes the Files for Deployment  
  ([Click to view full-size image](precompiling-your-website-cs/_static/image9.png))
 
-Unlike explicit compilation in WAPs, the precompilation for deployment process does not create one assembly for the entire site. Instead, it batches together several pages into each assembly. It also compiles the `Global.asax` file (if present) into its own assembly, as well as any classes in the `App_Code` folder. The files that hold the declarative markup for ASP.NET web pages, User Controls, and master pages (`.aspx`, `.ascx`, and `.master` files, respectively) are copied as-is to the target location directory. Likewise, the `Web.config` file is copied straight over, along with any static files, such as images, CSS classes, and PDF files. For a more formal description of how the compilation tool handles various file types, refer to [File Handling During ASP.NET Precompilation](https://msdn.microsoft.com/en-us/library/e22s60h9.aspx).
+Unlike explicit compilation in WAPs, the precompilation for deployment process does not create one assembly for the entire site. Instead, it batches together several pages into each assembly. It also compiles the `Global.asax` file (if present) into its own assembly, as well as any classes in the `App_Code` folder. The files that hold the declarative markup for ASP.NET web pages, User Controls, and master pages (`.aspx`, `.ascx`, and `.master` files, respectively) are copied as-is to the target location directory. Likewise, the `Web.config` file is copied straight over, along with any static files, such as images, CSS classes, and PDF files. For a more formal description of how the compilation tool handles various file types, refer to [File Handling During ASP.NET Precompilation](https://msdn.microsoft.com/library/e22s60h9.aspx).
 
 > [!NOTE]
-> You can instruct the compilation tool to create one assembly per ASP.NET page, User Control, or master page by checking the "Used fixed naming and single page assemblies" checkbox from the Publish Web Site dialog box. Having each ASP.NET page compiled into its own assembly allows for more fine-grained control over deployment. For example, if you updated a single ASP.NET web page and needed to deploy that change, you need only deploy that page's `.aspx` file and associated assembly to the production environment. Consult [How To: Generate Fixed Names with the ASP.NET Compilation Tool](https://msdn.microsoft.com/en-us/library/ms228040.aspx) for more information.
+> You can instruct the compilation tool to create one assembly per ASP.NET page, User Control, or master page by checking the "Used fixed naming and single page assemblies" checkbox from the Publish Web Site dialog box. Having each ASP.NET page compiled into its own assembly allows for more fine-grained control over deployment. For example, if you updated a single ASP.NET web page and needed to deploy that change, you need only deploy that page's `.aspx` file and associated assembly to the production environment. Consult [How To: Generate Fixed Names with the ASP.NET Compilation Tool](https://msdn.microsoft.com/library/ms228040.aspx) for more information.
 
 
 The target location directory also contains a file that was not part of the precompiled web project, namely `PrecompiledApp.config`. This file informs the ASP.NET runtime that the application was precompiled and whether it was precompiled with an updatable or noon-updatable UI.
@@ -180,8 +180,8 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET Web Site Precompilation](https://msdn.microsoft.com/en-us/library/ms228015.aspx)
-- [Codebehind and Compilation in ASP.NET 2.0](https://msdn.microsoft.com/en-us/magazine/cc163675.aspx)
+- [ASP.NET Web Site Precompilation](https://msdn.microsoft.com/library/ms228015.aspx)
+- [Codebehind and Compilation in ASP.NET 2.0](https://msdn.microsoft.com/magazine/cc163675.aspx)
 - [Precompilation in ASP.NET](http://www.odetocode.com/Articles/417.aspx)
 - [Precompiled Site Options in ASP.NET](http://www.dotnetperls.com/precompiled)
 

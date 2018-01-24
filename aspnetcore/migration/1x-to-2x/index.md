@@ -2,7 +2,6 @@
 title: Migrating from ASP.NET Core 1.x to 2.0
 author: scottaddie
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
-keywords: ASP.NET Core,migrating
 ms.author: scaddie
 manager: wpickett
 ms.date: 10/03/2017
@@ -138,7 +137,7 @@ In 2.0 projects, move the `SeedData.Initialize` call to the `Main` method of *Pr
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
-As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that is about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
+As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that's about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
 
 <a name="view-compilation"></a>
 

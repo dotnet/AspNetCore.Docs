@@ -1,15 +1,14 @@
 ---
 title: Model Binding
-author: rick-anderson
-description: 
-keywords: ASP.NET Core,
-ms.author: riande
+author: rachelappel
+description: Information about model binding in ASP.NET Core MVC
+ms.author: rachelap
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 01/22/2018
 ms.topic: article
-ms.assetid: b355a48e-a15c-4d58-b69c-899763613a97
 ms.technology: aspnet
 ms.prod: asp.net-core
+ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 uid: mvc/models/model-binding
 ---
 # Model Binding
@@ -38,7 +37,7 @@ MVC will try to bind request data to the action parameters by name. MVC will loo
 
 1. `Form values`: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
 
-2. `Route values`: The set of route values provided by [Routing](../../fundamentals/routing.md)
+2. `Route values`: The set of route values provided by [Routing](xref:fundamentals/routing)
 
 3. `Query strings`: The query string part of the URI.
 
@@ -50,10 +49,10 @@ The link works but generates an error when building with DocFX
 
 Note: Form values, route data, and query strings are all stored as name-value pairs.
 
-Since model binding asked for a key named `id` and there is nothing named `id` in the form values, it moved on to the route values looking for that key. In our example, it's a match. Binding happens, and the value is converted to the integer 2. The same request using Edit(string id) would convert to the string "2".
+Since model binding asked for a key named `id` and there's nothing named `id` in the form values, it moved on to the route values looking for that key. In our example, it's a match. Binding happens, and the value is converted to the integer 2. The same request using Edit(string id) would convert to the string "2".
 
 So far the example uses simple types. In MVC simple types are any .NET primitive type or type with a string type converter. If the action method's parameter were a class such as the `Movie` type, which contains both simple and complex types as properties, MVC's model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern *parameter_name.property_name* to bind values to properties. If it doesn't find matching values of this form, it will attempt to bind using just the property name. For those types such as `Collection` types, model binding looks for matches to *parameter_name[index]* or just *[index]*. Model binding treats  `Dictionary` types similarly, asking for *parameter_name[key]* or just *[key]*, as long as the keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values
-so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit did not pass validation.
+so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit didn't pass validation.
 
 In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.
 
@@ -63,11 +62,11 @@ When a parameter is bound, model binding stops looking for values with that name
 
 * Reference Types: Binding creates an instance of a class with the default constructor without setting properties. However, model binding sets `string` parameters to `null`.
 
-* Nullable Types: Nullable types are set to `null`. In the above example, model binding sets `id` to `null` since it is of type `int?`.
+* Nullable Types: Nullable types are set to `null`. In the above example, model binding sets `id` to `null` since it's of type `int?`.
 
 * Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. Consider using model validation or nullable types rather than relying on default values.
 
-If binding fails, MVC does not throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
+If binding fails, MVC doesn't throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
 
 Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors` property. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
 
@@ -79,7 +78,7 @@ Additionally, there are some special data types that MVC must consider when perf
 
 These types can be bound to action parameters or to properties on a class type.
 
-Once model binding is complete, [Validation](validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
+Once model binding is complete, [Validation](validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It's also extensible so if you have unique needs you can customize the built-in behavior.
 
 ## Customize model binding behavior with attributes
 
@@ -99,7 +98,7 @@ MVC contains several attributes that you can use to direct its default model bin
 
 Attributes are very helpful tools when you need to override the default behavior of model binding.
 
-## Binding formatted data from the request body
+## Bind formatted data from the request body
 
 Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a `JsonInputFormatter` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.
 
@@ -109,7 +108,7 @@ Request data can come in a variety of formats including JSON, XML and many other
 > [!NOTE]
 > The `JsonInputFormatter` is the default formatter and is based on [Json.NET](https://www.newtonsoft.com/json).
 
-ASP.NET selects input formatters based on the [Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the *Startup.cs* file, but you may first have to obtain a reference to `Microsoft.AspNetCore.Mvc.Formatters.Xml` using NuGet. Your startup code should look something like this:
+ASP.NET selects input formatters based on the [Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) header and the type of the parameter, unless there's an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the *Startup.cs* file, but you may first have to obtain a reference to `Microsoft.AspNetCore.Mvc.Formatters.Xml` using NuGet. Your startup code should look something like this:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

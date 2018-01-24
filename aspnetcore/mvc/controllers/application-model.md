@@ -2,12 +2,10 @@
 title: Working with the Application Model
 author: ardalis
 description: 
-keywords: ASP.NET Core,ASP.NET Core MVC,application model
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 4eb7e52f-5665-41a4-a3e3-e348d07337f2
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/controllers/application-model
@@ -32,7 +30,7 @@ The ASP.NET Core MVC Application Model has the following structure:
 Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy. The properties are persisted to the `ActionDescriptor.Properties` when the actions are created. Then when a request is being handled, any properties a convention added or modified can be accessed through `ActionContext.ActionDescriptor.Properties`. Using properties is a great way to configure your filters, model binders, etc. on a per-action basis.
 
 > [!NOTE]
-> The `ActionDescriptor.Properties` collection is not thread safe (for writes) once app startup has finished. Conventions are the best way to safely add data to this collection.
+> The `ActionDescriptor.Properties` collection isn't thread safe (for writes) once app startup has finished. Conventions are the best way to safely add data to this collection.
 
 ### IApplicationModelProvider
 
@@ -50,7 +48,7 @@ Then (`Order=-990`):
 * [`CorsApplicationModelProvider`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.cors.internal.corsapplicationmodelprovider)
 
 > [!NOTE]
-> The order in which two providers with the same value for `Order` are called is undefined, and therefore should not be relied upon.
+> The order in which two providers with the same value for `Order` are called is undefined, and therefore shouldn't be relied upon.
 
 > [!NOTE]
 > `IApplicationModelProvider` is an advanced concept for framework authors to extend. In general, apps should use conventions and frameworks should use providers. The key distinction is that providers always run before conventions.
@@ -130,7 +128,7 @@ The attribute may be applied to any action parameter:
 
 ### Sample: Modifying the ActionModel Name
 
-The following convention modifies the `ActionModel` to update the *name* of the action to which it is applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it will affect the route used to reach this action method.
+The following convention modifies the `ActionModel` to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it will affect the route used to reach this action method.
 
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Conventions/CustomActionNameAttribute.cs)]
 
@@ -182,7 +180,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 
 ### Action Conventions
 
-The `UseWebApiActionConventionsAttribute` is used to map the HTTP method to actions based on their name (for instance, `Get` would map to `HttpGet`). It only applies to actions that do not use attribute routing.
+The `UseWebApiActionConventionsAttribute` is used to map the HTTP method to actions based on their name (for instance, `Get` would map to `HttpGet`). It only applies to actions that don't use attribute routing.
 
 ### Overloading
 

@@ -2,7 +2,6 @@
 title: Enforcing SSL in an ASP.NET Core app
 author: rick-anderson
 description: Shows how to require SSL in a ASP.NET Core web app
-keywords: ASP.NET Core,SSL,HTTPS,RequireHttpsAttribute,IIS Express
 ms.author: riande
 manager: wpickett
 ms.date: 07/19/2017
@@ -35,4 +34,4 @@ The highlighted code above requires all requests use `HTTPS`, therefore HTTP req
 See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
 
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the 
-`[RequireHttps]` attribute to all controller is not considered as secure as requiring HTTPS globally. You can't guarantee new controllers added to your app will remember to apply the `[RequireHttps]` attribute.
+`[RequireHttps]` attribute to all controller isn't considered as secure as requiring HTTPS globally. You can't guarantee new controllers added to your app will remember to apply the `[RequireHttps]` attribute.
