@@ -68,7 +68,7 @@ The `View` helper method has several overloads. You can optionally specify:
   ```csharp
   return View("Orders");
   ```
-* A [model](xref:mvc/models/model-binding) to pass to the the view:
+* A [model](xref:mvc/models/model-binding) to pass to the view:
 
   ```csharp
   return View(Orders);
