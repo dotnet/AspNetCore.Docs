@@ -30,20 +30,20 @@ Benefits:
 
 The sample app demonstrates:
 
-* Conventionally-activated middleware.
-* Middleware activated by `IMiddlewareFactory` using [Simple Injector](https://github.com/simpleinjector/SimpleInjector)
+* Middleware activated by convention. For more information, see [Middleware](xref:fundamentals/middleware/index).
+* Middleware activated by `IMiddlewareFactory` using [Simple Injector](https://github.com/simpleinjector/SimpleInjector).
 
-The middlewares function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
+The two middleware implementations function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
 
 ## IMiddleware
 
 [IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) defines middleware for the app's request pipeline. The [InvokeAsync(HttpContext, RequestDelegate)](/dotnet/api/microsoft.aspnetcore.http.imiddleware.invokeasync#Microsoft_AspNetCore_Http_IMiddleware_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_) method handles requests and returns a `Task` that represents the execution of the middleware.
 
-Conventionally-activated middleware:
+Middleware activated by convention:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareViaConventionalActivation.cs?name=snippet1)]
 
-`IMiddlewareFactory`-activated middleware:
+Middleware activated by `IMiddlewareFactory`:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareViaIMiddlewareFactoryActivation.cs?name=snippet1)]
 
@@ -66,13 +66,9 @@ The factory-activated middleware is added to the built-in container in *Startup.
 
 [!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
 
-The factory-activated middleware is added to the Simple Injector container in `Configure`:
+The factory-activated middleware is added to the Simple Injector container in `Configure`. Both middlewares are registered in the request processing pipeline:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=5)]
-
-The middlewares are registered in the request processing pipeline:
-
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=18-19)]
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=5,18-19)]
 
 ## IMiddlewareFactory
 
