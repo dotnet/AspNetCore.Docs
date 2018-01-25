@@ -56,10 +56,6 @@ Open a terminal window in the project folder and run the following commands:
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
-
-> [!NOTE]
-> If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
-
 The scaffolding engine creates the following:
 
 * A movies controller (*Controllers/MoviesController.cs*)

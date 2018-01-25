@@ -15,7 +15,7 @@ uid: fundamentals/configuration/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
-The Configuration API provides a way to configure an ASP.NET Core web app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. You can group these name-value pairs into a multi-level hierarchy.
+The Configuration API provides a way to configure an ASP.NET Core web app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. Name-value pairs can be grouped into a multi-level hierarchy.
 
 There are configuration providers for:
 
@@ -54,7 +54,7 @@ Console.Write($"{Configuration["wizards:0:Name"]}");
 // Output: Gandalf
 ```
 
-Name-value pairs written to the built-in [Configuration](/dotnet/api/microsoft.extensions.configuration) providers are **not** persisted. However, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
+Name-value pairs written to the built-in [Configuration](/dotnet/api/microsoft.extensions.configuration) providers are **not** persisted. However, a custom provider that saves values can be created. See [custom configuration provider](xref:fundamentals/configuration/index#custom-config-providers).
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. For more information, see the [Options](xref:fundamentals/configuration/options) topic.
 
@@ -88,8 +88,8 @@ Configuration considerations:
 
 * `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to your repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
-* If a colon (`:`) can't be used in environment variables on your system, replace the colon (`:`) with a double-underscore (`__`).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
+* If a colon (`:`) can't be used in environment variables on a system, replace the colon (`:`) with a double-underscore (`__`).
 
 ## In-memory provider and binding to a POCO class
 
@@ -97,7 +97,7 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](index/sample/InMemory/Program.cs)]
 
-Configuration values are returned as strings, but binding enables the construction of objects. Binding allows you to retrieve POCO objects or even entire object graphs.
+Configuration values are returned as strings, but binding enables the construction of objects. Binding allows the retrieval of POCO objects or even entire object graphs.
 
 ### GetValue
 
@@ -105,11 +105,11 @@ The following sample demonstrates the [GetValue&lt;T&gt;](/dotnet/api/microsoft.
 
 [!code-csharp[Main](index/sample/InMemoryGetValue/Program.cs?highlight=31)]
 
-The ConfigurationBinder's `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and doesn't bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder's `GetValue<T>` method allows the specification of a default value (80 in the sample). `GetValue<T>` is for simple scenarios and doesn't bind to entire sections. `GetValue<T>` obtains scalar values from `GetSection(key).Value` converted to a specific type.
 
 ## Bind to an object graph
 
-You can recursively bind to each object in a class. Consider the following `AppSettings` class:
+Each object in a class can be recursively bound. Consider the following `AppSettings` class:
 
 [!code-csharp[Main](index/sample/ObjectGraph/AppSettings.cs)]
 
@@ -180,7 +180,7 @@ Create the custom configuration provider by inheriting from [ConfigurationProvid
 
 The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") are displayed when the sample is run.
 
-You can add an `EFConfigSource` extension method for adding the configuration source:
+An `EFConfigSource` extension method for adding the configuration source can be used:
 
 [!code-csharp[Main](index/sample/CustomConfigurationProvider/EntityFrameworkExtensions.cs?highlight=12)]
 
@@ -326,7 +326,7 @@ If duplicate keys are provided, the last key-value pair is used.
 
 ### Switch mappings
 
-When manually building configuration with `ConfigurationBuilder`, you can optionally provide a switch mappings dictionary to the `AddCommandLine` method. Switch mappings allow you to provide key name replacement logic.
+When manually building configuration with `ConfigurationBuilder`, a switch mappings dictionary can be added to the `AddCommandLine` method. Switch mappings allow key name replacement logic.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value (the key replacement) is passed back to set the configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
@@ -335,7 +335,7 @@ Switch mappings dictionary key rules:
 * Switches must start with a dash (`-`) or double-dash (`--`).
 * The switch mappings dictionary must not contain duplicate keys.
 
-In the following example, the `GetSwitchMappings` method allows your command-line arguments to use a single dash (`-`) key prefix and avoid leading subkey prefixes.
+In the following example, the `GetSwitchMappings` method allows command-line arguments to use a single dash (`-`) key prefix and avoid leading subkey prefixes.
 
 [!code-csharp[Main](index/sample/CommandLine/Program.cs?highlight=10-19,32)]
 
@@ -389,6 +389,10 @@ Left: 1988
 
 A *web.config* file is required when hosting the app in IIS or IIS Express. Settings in *web.config* enable the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to launch the app and configure other IIS settings and modules. If the *web.config* file isn't present and the project file includes `<Project Sdk="Microsoft.NET.Sdk.Web">`, publishing the project creates a *web.config* file in the published output (the *publish* folder). For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index#webconfig).
 
+## Accessing configuration during startup
+
+To access configuration within `ConfigureServices` or `Configure` during startup, see the examples in the [Application startup](xref:fundamentals/startup) topic.
+
 ## Additional notes
 
 * Dependency Injection (DI) isn't set up until after `ConfigureServices` is invoked.
@@ -396,7 +400,7 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 * `IConfiguration` has two specializations:
   * `IConfigurationRoot` Used for the root node. Can trigger a reload.
   * `IConfigurationSection` Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
-  * Use [IConfigurationRoot](/dotnet/api/microsoft.extensions.configuration.iconfigurationroot) when reloading configuration or need access to each provider. Neither of these situations are common.
+  * Use [IConfigurationRoot](/dotnet/api/microsoft.extensions.configuration.iconfigurationroot) when reloading configuration or for access to each provider. Neither of these situations are common.
 
 ## Additional resources
 
