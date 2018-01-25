@@ -236,13 +236,13 @@ Currently, the UI shows edit and delete links for data the user can't modify. Th
 
 Inject the authorization service in the *Views/_ViewImports.cshtml* file so it's available to all views:
 
-[!code-html[Main](secure-data/samples/final2/Pages/_ViewImports.cshtml?highlight=6-9)]
+[!code-cshtml[Main](secure-data/samples/final2/Pages/_ViewImports.cshtml?highlight=6-9)]
 
 The preceding markup adds several `using` statements.
 
 Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,64-)]
+[!code-cshtml[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,64-)]
 
 > [!WARNING]
 > Hiding links from users that don't have permission to change data doesn't secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
@@ -251,7 +251,7 @@ Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so the
 
 Update the details view so managers can approve or reject contacts:
 
-[!code-html[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=48-)]
+[!code-cshtml[Main](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=48-)]
 
 Update the details page model:
 
