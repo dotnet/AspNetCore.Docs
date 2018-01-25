@@ -64,7 +64,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 
 * A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
 
-* A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.
+* A handler doesn't need to handle failures generally, as other handlers for the same requirement may succeed.
 
 * To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
 

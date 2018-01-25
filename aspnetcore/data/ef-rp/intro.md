@@ -175,7 +175,7 @@ The preceding connection string uses `ConnectRetryCount=0` to prevent [SQLClient
 
 ### SQL Server Express LocalDB
 
-The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
+The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
 ## Add code to initialize the DB with test data
 
@@ -267,7 +267,7 @@ Build the project. The build generates errors like the following:
  <a name="test"></a>
 ### Test the app
 
-Run the app and select the **Students** link. Depending on the browser width, the **Students** link appears at the top of the page. If the **Students** link is not visible, click the navigation icon in the upper right corner.
+Run the app and select the **Students** link. Depending on the browser width, the **Students** link appears at the top of the page. If the **Students** link isn't visible, click the navigation icon in the upper right corner.
 
 ![Contoso University home page narrow](intro/_static/home-page-narrow.png)
 
@@ -323,19 +323,19 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 * The `async` keyword tells the compiler to:
 
   * Generate callbacks for parts of the method body.
-  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that is returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 
-* The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.
+* The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
 
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
 Some things to be aware of when writing asynchronous code that uses EF Core:
 
-* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It does not include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
-* An EF Core context is not threaded safe: don't try to do multiple operations in parallel. 
+* An EF Core context isn't thread safe: don't try to do multiple operations in parallel. 
 
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 

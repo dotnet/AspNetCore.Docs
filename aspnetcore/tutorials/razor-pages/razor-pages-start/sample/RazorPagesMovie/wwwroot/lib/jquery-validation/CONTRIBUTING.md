@@ -4,7 +4,7 @@
 
 1. Make sure the problem you're addressing is reproducible.
 2. Use http://jsbin.com or http://jsfiddle.net to provide a test page.
-3. Indicate what browsers the issue can be reproduced in. **Note: IE Compatibilty mode issues will not be addressed. Make sure you test in a real browser!**
+3. Indicate what browsers the issue can be reproduced in. **Note: IE Compatibilty mode issues won't be addressed. Make sure you test in a real browser!**
 4. What version of the plug-in is the issue reproducible in. Is it reproducible after updating to the latest version.
 
 Documentation issues are also tracked at the [jQuery Validation](https://github.com/jzaefferer/jquery-validation/issues) issue tracker.

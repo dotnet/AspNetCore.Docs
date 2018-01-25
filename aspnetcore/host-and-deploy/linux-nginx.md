@@ -128,7 +128,7 @@ Once the Nginx configuration is established, run `sudo nginx -t` to verify the s
 
 ## Monitoring the app
 
-The server is setup to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx is not set up to manage the Kestrel process. *systemd* can be used to create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
+The server is setup to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. *systemd* can be used to create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
 
 ### Create the service file
 
@@ -158,7 +158,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-**Note:** If the user *www-data* is not used by the configuration, the user defined here must be created first and given proper ownership for files.
+**Note:** If the user *www-data* isn't used by the configuration, the user defined here must be created first and given proper ownership for files.
 **Note:** Linux has a case-sensitive file system. Setting ASPNETCORE_ENVIRONMENT to "Production" results in searching for the configuration file *appsettings.Production.json*, not *appsettings.production.json*.
 
 Save the file and enable the service.
@@ -167,7 +167,7 @@ Save the file and enable the service.
 systemctl enable kestrel-hellomvc.service
 ```
 
-Start the service and verify that it is running.
+Start the service and verify that it's running.
 
 ```
 systemctl start kestrel-hellomvc.service
@@ -181,7 +181,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
-With the reverse proxy configured and Kestrel managed through systemd, the web app is fully configured and can be accessed from a browser on the local machine at `http://localhost`. It is also accessible from a remote machine, barring any firewall that might be blocking. Inspecting the response headers, the `Server` header shows the ASP.NET Core app being served by Kestrel.
+With the reverse proxy configured and Kestrel managed through systemd, the web app is fully configured and can be accessed from a browser on the local machine at `http://localhost`. It's also accessible from a remote machine, barring any firewall that might be blocking. Inspecting the response headers, the `Server` header shows the ASP.NET Core app being served by Kestrel.
 
 ```text
 HTTP/1.1 200 OK
@@ -210,7 +210,7 @@ sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-
 
 ### Enable AppArmor
 
-Linux Security Modules (LSM) is a framework that is part of the Linux kernel since Linux 2.6. LSM supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
+Linux Security Modules (LSM) is a framework that's part of the Linux kernel since Linux 2.6. LSM supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
 
 ### Configuring the firewall
 
@@ -272,7 +272,7 @@ Consider using a web app firewall like *ModSecurity* to harden the app.
 
 * Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS only.
 
-* Do not add the Strict-Transport-Security header or chose an appropriate `max-age` if SSL will be disabled in the future.
+* Don't add the Strict-Transport-Security header or chose an appropriate `max-age` if SSL will be disabled in the future.
 
 Add the */etc/nginx/proxy.conf* configuration file:
 

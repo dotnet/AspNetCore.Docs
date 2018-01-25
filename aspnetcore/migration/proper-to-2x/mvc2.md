@@ -34,11 +34,11 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 </ItemGroup>
 ```
 
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they are precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
 
 ## Project structure differences
 The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
-- Explicit inclusion of files is not necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
+- Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
@@ -49,13 +49,13 @@ ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry poin
 
 [!code-csharp[Main](samples/globalasax-sample.cs)]
 
-This approach couples the application and the server to which it's deployed in a way that interferes with the implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. OWIN provides a pipeline to add only the modules needed. The hosting environment takes a [Startup](xref:fundamentals/startup) function to configure services and the app's request pipeline. `Startup` registers a set of middleware with the application. For each request, the application calls each of the the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware component can add one or more handlers to the request handling pipeline. This is accomplished by returning a reference to the handler that is the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. With ASP.NET Core, the entry point to an application is `Startup`, and you no longer have a dependency on *Global.asax*. When using OWIN with .NET Framework, use something like the following as a pipeline:
+This approach couples the application and the server to which it's deployed in a way that interferes with the implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. OWIN provides a pipeline to add only the modules needed. The hosting environment takes a [Startup](xref:fundamentals/startup) function to configure services and the app's request pipeline. `Startup` registers a set of middleware with the application. For each request, the application calls each of the the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware component can add one or more handlers to the request handling pipeline. This is accomplished by returning a reference to the handler that's the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. With ASP.NET Core, the entry point to an application is `Startup`, and you no longer have a dependency on *Global.asax*. When using OWIN with .NET Framework, use something like the following as a pipeline:
 
 [!code-csharp[Main](samples/webapi-owin.cs)]
 
 This configures your default routes, and defaults to XmlSerialization over Json. Add other Middleware to this pipeline as needed (loading services, configuration settings, static files, etc.).
 
-ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the entry. Instead, that is done through the *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
+ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the entry. Instead, that's done through the *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
 
 [!code-csharp[Main](samples/program.cs)]
 
@@ -104,7 +104,7 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
 **Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Native Dependency Injection
-An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it is a native component of ASP.NET Core.
+An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
 In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices. 
 

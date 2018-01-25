@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-// Requires NuGet package
-// Microsoft.Extensions.Configuration.Json
 using Microsoft.Extensions.Configuration;
 
 public class Program

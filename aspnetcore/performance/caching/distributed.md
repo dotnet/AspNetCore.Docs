@@ -20,7 +20,7 @@ Distributed caches can improve the performance and scalability of ASP.NET Core a
 
 ## What is a distributed cache
 
-A distributed cache is shared by multiple app servers (see [Caching Basics](memory.md#caching-basics)). The information in the cache is not stored in the memory of individual web servers, and the cached data is available to all of the app's servers. This provides several advantages:
+A distributed cache is shared by multiple app servers (see [Caching Basics](memory.md#caching-basics)). The information in the cache isn't stored in the memory of individual web servers, and the cached data is available to all of the app's servers. This provides several advantages:
 
 1. Cached data is coherent on all web servers. Users don't see different results depending on which web server handles their request
 
@@ -64,7 +64,7 @@ To use the `IDistributedCache` interface:
    3. From the app's [Middleware](../../fundamentals/middleware.md) or MVC controller classes, request an instance of `IDistributedCache` from the constructor. The instance will be provided by [Dependency Injection](../../fundamentals/dependency-injection.md) (DI).
 
 > [!NOTE]
-> There is no need to use a Singleton or Scoped lifetime for `IDistributedCache` instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using [Dependency Injection](../../fundamentals/dependency-injection.md)), but this can make your code harder to test, and violates the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/).
+> There's no need to use a Singleton or Scoped lifetime for `IDistributedCache` instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using [Dependency Injection](../../fundamentals/dependency-injection.md)), but this can make your code harder to test, and violates the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/).
 
 The following example shows how to use an instance of `IDistributedCache` in a simple middleware component:
 
@@ -77,7 +77,7 @@ The following code from *Startup.cs* shows the value being set:
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/Startup.cs?highlight=2,4,5,6&range=58-66)]
 
 > [!NOTE]
-> Since `IDistributedCache` is configured in the `ConfigureServices` method, it is available to the `Configure` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
+> Since `IDistributedCache` is configured in the `ConfigureServices` method, it's available to the `Configure` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
 
 ## Using a Redis distributed cache
 
@@ -118,7 +118,7 @@ The created table has the following schema:
 
 ![SqlServer Cache Table](distributed/_static/SqlServerCacheTable.png)
 
-Like all cache implementations, your app should get and set cache values using an instance of `IDistributedCache`, not a `SqlServerCache`. The sample implements `SqlServerCache` in the `Production` environment (so it is configured in `ConfigureProductionServices`).
+Like all cache implementations, your app should get and set cache values using an instance of `IDistributedCache`, not a `SqlServerCache`. The sample implements `SqlServerCache` in the `Production` environment (so it's configured in `ConfigureProductionServices`).
 
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/Startup.cs?highlight=7,8,9,10,11,12&range=42-56)]
 

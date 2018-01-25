@@ -77,7 +77,7 @@ ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly
 
 ## Refactoring to use middleware
 
-Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
+Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there's a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -131,7 +131,7 @@ You want to allow the path the middleware uses to be specified as a parameter, s
 
 [!code-csharp[Main](../testing/integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs?highlight=39-63)]
 
-Since this middleware acts as an endpoint in the request delegate chain when its path matches, there is no call to `_next.Invoke` when this middleware handles the request.
+Since this middleware acts as an endpoint in the request delegate chain when its path matches, there's no call to `_next.Invoke` when this middleware handles the request.
 
 With this middleware in place and some helpful extension methods created to make configuring it easier, the refactored `Configure` method looks like this:
 

@@ -213,7 +213,7 @@ In the preceeding samples, **don't** pass `deployonbuild` to `dotnet publish`.
 
 For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
-`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it is supported by websdk for cross plat publish to Azure.
+`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it's supported by websdk for cross plat publish to Azure.
 
 Add a publish profile to *Properties/PublishProfiles* folder with the following content:
 
@@ -325,7 +325,7 @@ The following `<MsDeploySkipRules>` element markup exludes all files from the *w
 <ItemGroup>
   <MsDeploySkipRules Include="CustomSkipFolder">
     <ObjectName>dirPath</ObjectName>
-    <AbsolutePath>wwwroot\content</AbsolutePath>
+    <AbsolutePath>wwwroot\\content</AbsolutePath>
   </MsDeploySkipRules>
 </ItemGroup>
 ```
@@ -357,7 +357,7 @@ If the following `<MsDeploySkipRules>` markup is added, those files wouldn't be 
 </ItemGroup>
 ```
 
-The `<MsDeploySkipRules>` markup shown above prevents the *skipped* files from being depoyed but won't delete those files once they are deployed.
+The `<MsDeploySkipRules>` markup shown above prevents the *skipped* files from being depoyed but won't delete those files once they're deployed.
 
 The following `<Content>` markup deletes the targeted files at the deployment site:
 

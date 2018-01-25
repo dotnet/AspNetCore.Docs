@@ -39,7 +39,7 @@ These URLs have different origins than the previous two:
 * `http://example.com:9000/foo.html` - Different port
 
 > [!NOTE]
-> Internet Explorer does not consider the port when comparing origins.
+> Internet Explorer doesn't consider the port when comparing origins.
 
 ## Setting up CORS
 
@@ -73,7 +73,7 @@ This example adds a CORS policy named "AllowSpecificOrigin". To select the polic
 
 ## Enabling CORS in MVC
 
-You can alternatively use MVC to apply specific CORS per action, per controller, or globally for all controllers. When using MVC to enable CORS the same CORS services are used, but the CORS middleware is not.
+You can alternatively use MVC to apply specific CORS per action, per controller, or globally for all controllers. When using MVC to enable CORS the same CORS services are used, but the CORS middleware isn't.
 
 ### Per action
 
@@ -155,7 +155,7 @@ Browsers are not entirely consistent in how they set Access-Control-Request-Head
 
 ### Set the exposed response headers
 
-By default, the browser does not expose all of the response headers to the application. (See [http://www.w3.org/TR/cors/#simple-response-header](http://www.w3.org/TR/cors/#simple-response-header).) The response headers that are available by default are:
+By default, the browser doesn't expose all of the response headers to the application. (See [http://www.w3.org/TR/cors/#simple-response-header](http://www.w3.org/TR/cors/#simple-response-header).) The response headers that are available by default are:
 
 * Cache-Control
 
@@ -175,7 +175,7 @@ The CORS spec calls these *simple response headers*. To make other headers avail
 
 ### Credentials in cross-origin requests
 
-Credentials require special handling in a CORS request. By default, the browser does not send any credentials with a cross-origin request. Credentials include cookies as well as HTTP authentication schemes. To send credentials with a cross-origin request, the client must set XMLHttpRequest.withCredentials to true.
+Credentials require special handling in a CORS request. By default, the browser doesn't send any credentials with a cross-origin request. Credentials include cookies as well as HTTP authentication schemes. To send credentials with a cross-origin request, the client must set XMLHttpRequest.withCredentials to true.
 
 Using XMLHttpRequest directly:
 
@@ -202,7 +202,7 @@ In addition, the server must allow the credentials. To allow cross-origin creden
 
 Now the HTTP response will include an Access-Control-Allow-Credentials header, which tells the browser that the server allows credentials for a cross-origin request.
 
-If the browser sends credentials, but the response does not include a valid Access-Control-Allow-Credentials header, the browser will not expose the response to the application, and the AJAX request fails.
+If the browser sends credentials, but the response doesn't include a valid Access-Control-Allow-Credentials header, the browser won't expose the response to the application, and the AJAX request fails.
 
 Be very careful about allowing cross-origin credentials, because it means a website at another domain can send a logged-in user’s credentials to your app on the user’s behalf, without the user being aware. The CORS spec also states that setting origins to "*" (all origins) is invalid if the Access-Control-Allow-Credentials header is present.
 
@@ -220,7 +220,7 @@ This section describes what happens in a CORS request, at the level of the HTTP 
 
 The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code.
 
-Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that is making the request:
+Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that's making the request:
 
 ```
 GET http://myservice.azurewebsites.net/api/test HTTP/1.1
@@ -247,7 +247,7 @@ Content-Length: 12
 Test message
 ```
 
-If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.
+If the response doesn't include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client application.
 
 ### Preflight Requests
 
@@ -255,7 +255,7 @@ For some CORS requests, the browser sends an additional request, called a "prefl
 
 * The request method is GET, HEAD, or POST, and
 
-* The application does not set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, and
+* The application doesn't set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, and
 
 * The Content-Type header (if set) is one of the following:
 
@@ -265,7 +265,7 @@ For some CORS requests, the browser sends an additional request, called a "prefl
 
   * text/plain
 
-The rule about request headers applies to headers that the application sets by calling setRequestHeader on the XMLHttpRequest object. (The CORS specification calls these "author request headers".) The rule does not apply to headers the browser can set, such as User-Agent, Host, or Content-Length.
+The rule about request headers applies to headers that the application sets by calling setRequestHeader on the XMLHttpRequest object. (The CORS specification calls these "author request headers".) The rule doesn't apply to headers the browser can set, such as User-Agent, Host, or Content-Length.
 
 Here is an example of a preflight request:
 
@@ -285,7 +285,7 @@ The pre-flight request uses the HTTP OPTIONS method. It includes two special hea
 
 * Access-Control-Request-Method: The HTTP method that will be used for the actual request.
 
-* Access-Control-Request-Headers: A list of request headers that the application set on the actual request. (Again, this does not include headers that the browser sets.)
+* Access-Control-Request-Headers: A list of request headers that the application set on the actual request. (Again, this doesn't include headers that the browser sets.)
 
 Here is an example response, assuming that the server allows the request:
 

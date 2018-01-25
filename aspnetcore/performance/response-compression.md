@@ -91,7 +91,7 @@ The following code shows how to enable the Response Compression Middleware with 
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
 
-![Fiddler window showing result of a request without the Accept-Encoding header. The response is not compressed.](response-compression/_static/request-uncompressed.png)
+![Fiddler window showing result of a request without the Accept-Encoding header. The response isn't compressed.](response-compression/_static/request-uncompressed.png)
 
 Submit a request to the sample app with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
@@ -105,7 +105,7 @@ The gzip compression provider defaults to the fastest compression level (`Compre
 
 | Compression Level                | Description                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed. |
+| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
 | `CompressionLevel.NoCompression` | No compression should be performed.                                                                           |
 | `CompressionLevel.Optimal`       | Responses should be optimally compressed, even if the compression takes more time to complete.                |
 

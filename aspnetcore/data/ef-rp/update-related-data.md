@@ -65,7 +65,7 @@ The preceding markup makes the following changes:
 * Changes the caption from **DepartmentID** to **Department**.
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
 * Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
-* Adds a validation message when the department is not selected.
+* Adds a validation message when the department isn't selected.
 
 The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
@@ -87,11 +87,11 @@ Update *Pages/Courses/Edit.cshtml* with the following markup:
 
 The preceding markup makes the following changes:
 
-* Displays the course ID. Generally the Primary Key (PK) of an entity is not displayed. PKs are usually meaningless to users. In this case, the PK is the course number.
+* Displays the course ID. Generally the Primary Key (PK) of an entity isn't displayed. PKs are usually meaningless to users. In this case, the PK is the course number.
 * Changes the caption from **DepartmentID** to **Department**.
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
 * Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
-* Adds a validation message when the department is not selected.
+* Adds a validation message when the department isn't selected.
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
 
@@ -99,7 +99,7 @@ Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-[AsNoTracking](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking is not required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+[AsNoTracking](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -160,7 +160,7 @@ Instructors may teach any number of courses. In this section, you add the abilit
 Check boxes enable changes to courses an instructor is assigned to. A check box is displayed for every course in the database. Courses that the instructor is assigned to are checked. The user can select or clear check boxes to change course assignments. If the number of courses were much greater:
 
 * You'd probably use a different user interface to display the courses.
-* The method of manipulating a join entity to create or delete relationships would not change.
+* The method of manipulating a join entity to create or delete relationships wouldn't change.
 
 ### Add classes to support Create and Edit instructor pages
 
@@ -198,7 +198,7 @@ When the check boxes are initially rendered, courses assigned to the instructor 
 
 Run the app and test the updated instructors Edit page. Change some course assignments. The changes are reflected on the Index page.
 
-Note: The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be more useable and efficient.
+Note: The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be more useable and efficient.
 
 ### Update the instructors Create page
 

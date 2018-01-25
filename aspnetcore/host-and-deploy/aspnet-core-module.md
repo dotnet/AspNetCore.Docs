@@ -55,7 +55,7 @@ The *web.config* example below is for a [self-contained deployment](https://docs
 
 | Attribute | Description |
 | --- | --- |
-| processPath | <p>Required string attribute.</p><p>Path to the executable that will launch a process listening for HTTP requests. Relative paths are supported. If the path begins with '.', the path is considered to be relative to the site root.</p><p>There is no default value.</p> |
+| processPath | <p>Required string attribute.</p><p>Path to the executable that will launch a process listening for HTTP requests. Relative paths are supported. If the path begins with '.', the path is considered to be relative to the site root.</p><p>There's no default value.</p> |
 | arguments | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p><p>The default value is an empty string.</p> |
 | startupTimeLimit | <p>Optional integer attribute.</p><p>Duration in seconds that the module will wait for the executable to start a process listening on the port. If this time limit is exceeded, the module will kill the process. The module will attempt to launch the process again when it receives a new request and will continue to attempt to restart the process on subsequent incoming requests unless the application fails to start **rapidFailsPerMinute** number of times in the last rolling minute.</p><p>The default value is 120.</p> |
 | shutdownTimeLimit | <p>Optional integer attribute.</p><p>Duration in seconds for which the module will wait for the executable to gracefully shutdown when the *app_offline.htm* file is detected.</p><p>The default value is 10.</p> |
@@ -63,7 +63,7 @@ The *web.config* example below is for a [self-contained deployment](https://docs
 | requestTimeout | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module will wait for a response from the process listening on %ASPNETCORE_PORT%.</p><p>The default value is "00:02:00".</p><p>The `requestTimeout` must be specified in whole minutes only, otherwise it defaults to 2 minutes.</p> |
 | stdoutLogEnabled | <p>Optional Boolean attribute.</p><p>If true, **stdout** and **stderr** for the process specified in **processPath** will be redirected to the file specified in **stdoutLogFile**.</p><p>The default value is false.</p> |
 | stdoutLogFile | <p>Optional string attribute.</p><p>Specifies the relative or absolute file path for which **stdout** and **stderr** from the process specified in **processPath** will be logged. Relative paths are relative to the root of the site. Any path starting with '.' will be relative to the site root and all other paths will be treated as absolute paths. Any folders provided in the path must exist in order for the module to create the log file. The process ID, timestamp (*yyyyMdhms*), and file extension (*.log*) with underscore delimiters are added to the last segment of the **stdoutLogFile** provided.</p><p>The default value is `aspnetcore-stdout`.</p> |
-| forwardWindowsAuthToken | true or false.</p><p>If true, the token will be forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It is the responsibility of that process to call CloseHandle on this token per request.</p><p>The default value is true.</p> |
+| forwardWindowsAuthToken | true or false.</p><p>If true, the token will be forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It's the responsibility of that process to call CloseHandle on this token per request.</p><p>The default value is true.</p> |
 | disableStartUpErrorPage | true or false.</p><p>If true, the **502.5 - Process Failure** page will be suppressed, and the 502 status code page configured in your *web.config* will take precedence.</p><p>The default value is false.</p> |
 
 ### Setting environment variables
@@ -98,7 +98,7 @@ If the ASP.NET Core Module fails to launch the backend process or the backend pr
 
 ## Log creation and redirection
 
-The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated, unless process recycling/restart occurs. It is the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
+The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
 
 The log file name is composed by appending the process ID (PID), timestamp (*yyyyMdhms*), and file extension (*.log*) to the last segment of the `stdoutLogFile` path (typically *stdout*) delimited by underscores. For example if the `stdoutLogFile` path ends with *stdout*, a log for an app with a PID of 10652 created on 8/10/2017 at 12:05:02 has the file name *stdout_10652_20178101252.log*.
 
@@ -115,7 +115,7 @@ See [Configuration via web.config](#configuration-via-webconfig) for an example 
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
-The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** account. Because the local system account does not have modify permission for the share path which is used by the IIS Shared Configuration, the installer will hit an access denied error when attempting to configure the module settings in *applicationHost.config* on the share.
+The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** account. Because the local system account doesn't have modify permission for the share path which is used by the IIS Shared Configuration, the installer will hit an access denied error when attempting to configure the module settings in *applicationHost.config* on the share.
 
 The unsupported workaround is to disable the IIS Shared Configuration, run the installer, export the updated *applicationHost.config* file to the share, and re-enable the IIS Shared Configuration.
 

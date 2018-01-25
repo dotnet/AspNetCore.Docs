@@ -254,6 +254,12 @@ services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
 
 [IOptionsMonitorCache&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1) (ASP.NET Core 2.0 or later) is used by `IOptionsMonitor` to cache `TOptions` instances. The `IOptionsMonitorCache` invalidates options instances in the monitor so that the value is recomputed ([TryRemove](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryremove)). Values can be manually introduced as well with [TryAdd](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryadd). The [Clear](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.clear) method is used when all named instances should be recreated on demand.
 
+## Accessing options during startup
+
+`IOptions` can be used in `Configure`, since services are built before the `Configure` method executes. If a service provider is built in `ConfigureServices` to access options, it wouldn't contain any options configurations provided after the service provider is built. Therefore, an inconsistent options state may exist due to the ordering of service registrations.
+
+Since options are typically loaded from configuration, configuration can be used in startup in both `Configure` and `ConfigureServices`. For examples of using configuration during startup, see the [Application startup](xref:fundamentals/startup) topic.
+
 ## See also
 
 * [Configuration](xref:fundamentals/configuration/index)

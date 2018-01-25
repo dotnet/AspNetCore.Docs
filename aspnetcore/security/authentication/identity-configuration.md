@@ -99,8 +99,8 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 | Property                | Description                       | Default |
 | ----------------------- | --------------------------------- | ------- |
 | `Cookie.Name`  | The name of the cookie.  | .AspNetCore.Cookies.  |
-| `Cookie.HttpOnly`  | When true, the cookie is not accessible from client-side scripts.  |  true |
-| `ExpireTimeSpan`  | Controls how much time the authentication ticket stored in the cookie will remain valid from the point it is created.  | 14 days  |
+| `Cookie.HttpOnly`  | When true, the cookie isn't accessible from client-side scripts.  |  true |
+| `ExpireTimeSpan`  | Controls how much time the authentication ticket stored in the cookie will remain valid from the point it's created.  | 14 days  |
 | `LoginPath`  | When a user is unauthorized, they will be redirected to this path to login. | /Account/Login  |
 | `LogoutPath`  | When a user is logged out, they will be redirected to this path.  | /Account/Logout  |
 | `AccessDeniedPath`  | When a user fails an authorization check, they will be redirected to this path.  |   |

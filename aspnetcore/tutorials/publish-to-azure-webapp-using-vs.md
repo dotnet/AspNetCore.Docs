@@ -20,7 +20,7 @@ See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publi
 
 ## Set up
 
-* Open a [free Azure account](https://aka.ms/K5y5yh) if you do not have one. 
+* Open a [free Azure account](https://aka.ms/K5y5yh) if you don't have one. 
 
 ## Create a web app
 
@@ -110,7 +110,7 @@ The **Configure SQL Server** dialog appears.
 * Enter an administrator user name and password, and then select **OK**. You can keep the default **Server Name**. 
 
 > [!NOTE]
-> "admin" is not allowed as the administrator user name.
+> "admin" isn't allowed as the administrator user name.
 
 ![Configure SQL Server dialog](publish-to-azure-webapp-using-vs/_static/conf_servername.png)
 
