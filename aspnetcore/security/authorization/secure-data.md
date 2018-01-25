@@ -35,7 +35,7 @@ The following image shows the managers details view of a contact:
 
 The **Approve** and **Reject** buttons are only displayed for managers and administrators.
 
-In the following image, `admin@contoso.com` is signed in and in the administrator’s role:
+In the following image, `admin@contoso.com` is signed in and in the administrators role:
 
 ![image described preceding](secure-data/_static/admin.png)
 
@@ -61,7 +61,7 @@ This tutorial is advanced. You should be familiar with:
 * [Authorization](xref:security/authorization/index)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
-The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2)
+The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 
 ## The starter and completed app
 
@@ -94,7 +94,7 @@ dotnet ef database update
 
 ### Require SSL and authenticated users
 
-Add [IHostingEnvironment](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) to `Startup`:
+Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) to `Startup`:
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_env)]
 
@@ -114,7 +114,7 @@ Set the default authentication policy to require users to be authenticated. You 
 
 [!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=31-)]
 
-Add [AllowAnonymous](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
+Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=2)]
 
@@ -148,12 +148,12 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[Main](secure-data/samples/final2/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Return `context.Succeed` when the requirements are met.
 * Return `Task.FromResult(0)` when requirements aren't met. `Task.FromResult(0)` is neither success or failure&mdash;it allows other authorization handlers to run.
 
-If you need to explicitly fail, return [context.Fail](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
+If you need to explicitly fail, return [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
