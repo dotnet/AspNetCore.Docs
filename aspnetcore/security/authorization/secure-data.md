@@ -304,7 +304,9 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 
 * Scaffold the `Contact` model:
 
-    `dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries`
+```console
+dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
+```
 
 * Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file:
 
