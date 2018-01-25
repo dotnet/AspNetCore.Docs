@@ -57,6 +57,7 @@
 ### [Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-mac/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
