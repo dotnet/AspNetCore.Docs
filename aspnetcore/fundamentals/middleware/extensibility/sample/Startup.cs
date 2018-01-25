@@ -1,40 +1,44 @@
-using System;
-using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Ninject;
-using Ninject.Activation;
-using Ninject.Infrastructure.Disposal;
 using MiddlewareExtensibilitySample.Data;
 using MiddlewareExtensibilitySample.Middleware;
+using SimpleInjector;
+using SimpleInjector.Lifestyles;
 
 namespace MiddlewareExtensibilitySample
 {
     public class Startup
     {
-        private readonly AsyncLocal<Scope> scopeProvider = new AsyncLocal<Scope>();
-        private object RequestScope(IContext context) => scopeProvider.Value;
+        private Container container = new Container();
 
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseInMemoryDatabase("InMemoryDB"));
+                options.UseInMemoryDatabase("InMemoryDb"));
 
             services.AddScoped<MiddlewareViaIMiddlewareFactoryActivation>();
 
             services.AddMvc();
+
+            IntegrateSimpleInjector(services);
+        }
+
+        private void IntegrateSimpleInjector(IServiceCollection services) {
+            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
         }
         #endregion
 
         #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            IKernelConfiguration config = new KernelConfiguration();
-            config.Bind<IMiddlewareFactory>().To<BasicMiddlewareFactory>().InScope(RequestScope);
+            InitializeContainer(app);
+
+            container.Register<MiddlewareViaIMiddlewareFactoryActivation>();
+
+            container.Verify();
 
             if (env.IsDevelopment())
             {
@@ -51,8 +55,15 @@ namespace MiddlewareExtensibilitySample
             app.UseStaticFiles();
             app.UseMvc();
         }
-        #endregion
 
-        private sealed class Scope : DisposableObject { }
+        private void InitializeContainer(IApplicationBuilder app) {
+            // Add application services.
+            container.Register<AppDbContext>(() => {
+                var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
+                optionsBuilder.UseInMemoryDatabase("InMemoryDb");
+                return new AppDbContext(optionsBuilder.Options);
+            }, Lifestyle.Scoped);
+        }
+        #endregion
     }
 }

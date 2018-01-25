@@ -5,7 +5,7 @@ description: Learn how to use strongly-typed middleware with a factory-based act
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 01/23/2018
+ms.date: 01/25/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -31,7 +31,7 @@ Benefits:
 The sample app demonstrates:
 
 * Conventionally-activated middleware.
-* Middleware activated by an `IMiddlewareFactory` registered in a [Ninject](http://www.ninject.org/) container.
+* Middleware activated by `IMiddlewareFactory` using [Simple Injector](https://github.com/simpleinjector/SimpleInjector)
 
 The middlewares function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
 
@@ -51,7 +51,7 @@ Extensions are created for the middlewares:
 
 [!code-csharp[Main](extensibility/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
-Note that it isn't possible to pass objects with `UseMiddleware` as it is with convention-based middleware activation:
+Note that it isn't possible to pass objects to the factory-activated middleware with `UseMiddleware`:
 
 ```csharp
 public static IApplicationBuilder UseMiddlewareViaIMiddlewareFactoryActivation(
@@ -66,9 +66,13 @@ The factory-activated middleware is added to the built-in container in *Startup.
 
 [!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
 
-The middlewares are registered in the request processing pipeline in *Startup.cs*:
+The factory-activated middleware is added to the Simple Injector container in `Configure`:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=15-16)]
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=5)]
+
+The middlewares are registered in the request processing pipeline:
+
+[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=18-19)]
 
 ## IMiddlewareFactory
 
@@ -76,16 +80,7 @@ The middlewares are registered in the request processing pipeline in *Startup.cs
 
 The default `IMiddlewareFactory` implementation is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package ([reference source](https://github.com/aspnet/HttpAbstractions/blob/release/2.0/src/Microsoft.AspNetCore.Http/MiddlewareFactory.cs)).
 
-The sample app activates the `MiddlewareViaIMiddlewareFactoryActivation` with its custom `BasicMiddlewareFactory`:
-
-[!code-csharp[Main](extensibility/sample/Middleware/MiddlewareFactory.cs?name=snippet1)]
-
-Note the injection of the database context, which is passed as an argument to `Activator.CreateInstance`. This permits the middleware to obtain the database context via [dependency injection](xref:fundamentals/dependency-injection).
-
-The middleware factory is registered in the service container in *Startup.cs*:
-
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=4)]
-
 ## Additional resources
 
 * [Middleware](xref:fundamentals/middleware/index)
+* [Simple Injector documentation](https://simpleinjector.readthedocs.io/en/latest/index.html)
