@@ -256,7 +256,7 @@ For *appsettings* files where:
 
 If all the preceding conditions are true, the command-line arguments are overridden.
 
-ASP.NET Core 2.x app can use WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of ``CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
+ASP.NET Core 2.x app can use [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of `CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
