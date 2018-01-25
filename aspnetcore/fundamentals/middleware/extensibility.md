@@ -24,7 +24,7 @@ Benefits:
 * Activation per request (injection of scoped services)
 * Strong typing of middleware
 
-`IMiddleware` is activated per request, so scoped services can be injected into the constructor.
+`IMiddleware` is activated per request, so scoped services can be injected into the middleware's constructor.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
