@@ -4,7 +4,7 @@ author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: casoper
 manager: wpickett
-ms.date: 01/12/2018
+ms.date: 01/25/2018
 ms.topic: tutorial
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -44,7 +44,7 @@ Use the following values:
 
 | Setting                       | Value                     | Notes                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                      | *\<app name\>*            | Enter a **Name** for the app that describes your app to consumers.                                                                                                                                 |
+| **Name**                      | *&lt;app name&gt;*        | Enter a **Name** for the app that describes your app to consumers.                                                                                                                                 |
 | **Include web app / web API** | Yes                       |                                                                                                                                                                                                    |
 | **Allow implicit flow**       | Yes                       |                                                                                                                                                                                                    |
 | **Reply URL**                 | `https://localhost:44300` | Reply URLs are endpoints where Azure AD B2C returns any tokens that your app requests. Visual Studio provides the Reply URL to use. For now, enter `https://localhost:44300` to complete the form. |
@@ -76,15 +76,15 @@ In Visual Studio:
 
 5. Complete the form with the following values:
     
-    | Setting                       | Value                                             |
-    |-------------------------------|---------------------------------------------------|
-    | **Domain Name**               | *\<the domain name of your B2C tenant\>*          |
-    | **Application ID**            | *\<paste the Application ID from the clipboard\>* |
-    | **Callback Path**             | *\<use the default value\>*                       |
-    | **Sign-up or sign-in policy** | `B2C_1_SiUpIn`                                    |
-    | **Reset password policy**     | `B2C_1_SSPR`                                      |
-    | **Edit profile policy**       | *\<leave blank\>*                                 |
-
+    | Setting                       | Value                                                 |
+    |-------------------------------|-------------------------------------------------------|
+    | **Domain Name**               | *&lt;the domain name of your B2C tenant&gt;*          |
+    | **Application ID**            | *&lt;paste the Application ID from the clipboard&gt;* |
+    | **Callback Path**             | *&lt;use the default value&gt;*                       |
+    | **Sign-up or sign-in policy** | `B2C_1_SiUpIn`                                        |
+    | **Reset password policy**     | `B2C_1_SSPR`                                          |
+    | **Edit profile policy**       | *&lt;leave blank&gt;*                                 |
+    
     Select the **Copy** link next to **Reply URI** to copy the Reply URI to the clipboard. Select **OK** to close the **Change Authentication** dialog. Select **OK** to create the web app.
 
 ## Finish the B2C app registration
@@ -117,7 +117,7 @@ After successfully signing in, the browser redirects to the web app.
 
 ## Next steps
 
-In this tutorial, you will learned how to:
+In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create an Azure Active Directory B2C tenant
@@ -132,3 +132,5 @@ Now that the ASP.NET Core app is configured to use Azure AD B2C for authenticati
 * [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).
 * Configure additional identity providers, such as [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app), and others.
 * [Use the Azure AD Graph API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) to retrieve additional user information, such as group membership, from the Azure AD B2C tenant.
+* [Secure an ASP.NET Core web API using Azure AD B2C](xref:security/authentication/azure-ad-b2c-api)
+* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet)
