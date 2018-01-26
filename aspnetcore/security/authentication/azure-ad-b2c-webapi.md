@@ -9,7 +9,7 @@ ms.topic: tutorial
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/azure-ad-b2c-webapi
-custom: mvc
+ms.custom: mvc
 ---
 # Cloud authentication in web APIs with Azure Active Directory B2C
 
@@ -122,7 +122,7 @@ The newly-registered web app needs permission to access the web API on the user'
 4. In the **Select Scopes** dropdown, ensure all scopes are selected.
 5. Select **Ok**.
 
-Note the Postman app's Application ID, as it is required.
+Note the Postman app's Application ID, as it is required to obtain a bearer token.
 
 ### Create a Postman request
 
@@ -153,7 +153,7 @@ To verify that the web API requires authentication, first make a request with no
 
 ### Obtain a bearer token
 
-To make an authenticated request to the web API, a bearer token is required. Postman makes it easy to sign-in to the Azure AD B2C tenant and obtain a token.
+To make an authenticated request to the web API, a bearer token is required. Postman makes it easy to sign in to the Azure AD B2C tenant and obtain a token.
 
 1. On the **Authorization** tab, in the **TYPE** dropdown, select **OAuth 2.0**. In the **Add authorization data to** dropdown, select **Request Headers**. Select **Get New Access Token**.
     
@@ -167,7 +167,7 @@ To make an authenticated request to the web API, a bearer token is required. Pos
     | **Grant Type**            | Implicit                                                                                      |                                                                                                        |
     | **Callback URL**          | `https://getpostman.com/postman`                                                              |                                                                                                        |
     | **Auth URL**              | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` | Be sure to replace *&lt;tenant domain name&gt;* with the tenant's domain name with no angle brackets.  |
-    | **Client ID**             | *&lt;enter the Postman app's **Application ID**&gt;*                                          |                                                                                                        |
+    | **Client ID**             | *&lt;enter the Postman app's <b>Application ID</b>&gt;*                                          |                                                                                                        |
     | **Client Secret**         | *&lt;leave blank&gt;*                                                                         |                                                                                                        |
     | **Scope**                 | `https://<tenant domain name>/api/user_impersonation openid offline_access`                   | Be sure to replace *&lt;tenant domain name&gt;* with the tenant's domain name with no angle brackets.  |
     | **Client Authentication** | Send client credentials in body                                                               |                                                                                                        |
@@ -182,7 +182,7 @@ To make an authenticated request to the web API, a bearer token is required. Pos
 
 ### Test the web API with authentication
 
-Select the **Send** button to send the request again. This time, the response status is *200 Success* and the JSON payload is visible on the response **Body** tab.
+Select the **Send** button to send the request again. This time, the response status is *200 OK* and the JSON payload is visible on the response **Body** tab.
     
 ![Payload and success status](./azure-ad-b2c-webapi/postman-success.png)
 
@@ -199,8 +199,8 @@ In this tutorial, you learned how to:
 
 Continue developing your API by learning to:
 
-* [Secure an ASP.NET Core web app using Azure AD B2C](xref:security/authentication/azure-ad-b2c)
-* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet)
+* [Secure an ASP.NET Core web app using Azure AD B2C](xref:security/authentication/azure-ad-b2c).
+* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet).
 * [Customize the Azure AD B2C user interface](/azure/active-directory-b2c/active-directory-b2c-reference-ui-customization).
 * [Configure password complexity requirements](/azure/active-directory-b2c/active-directory-b2c-reference-password-complexity).
 * [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).

@@ -9,7 +9,7 @@ ms.topic: tutorial
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/azure-ad-b2c
-custom: mvc
+ms.custom: mvc
 ---
 # Cloud authentication with Azure Active Directory B2C
 
@@ -132,5 +132,5 @@ Now that the ASP.NET Core app is configured to use Azure AD B2C for authenticati
 * [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).
 * Configure additional identity providers, such as [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app), and others.
 * [Use the Azure AD Graph API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) to retrieve additional user information, such as group membership, from the Azure AD B2C tenant.
-* [Secure an ASP.NET Core web API using Azure AD B2C](xref:security/authentication/azure-ad-b2c-api)
-* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet)
+* [Secure an ASP.NET Core web API using Azure AD B2C](xref:security/authentication/azure-ad-b2c-api).
+* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet).
