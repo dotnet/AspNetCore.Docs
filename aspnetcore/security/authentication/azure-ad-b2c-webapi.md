@@ -32,7 +32,7 @@ In this tutorial, learn how to:
 
 The following are required for this walkthrough:
 
-* [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio). 
+* [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
 * [Postman](https://www.getpostman.com/postman)
 
@@ -46,7 +46,7 @@ Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in 
 
 ## Register the API in Azure AD B2C
 
-In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) under the **Register a web API** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this part of tutorial. 
+In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) under the **Register a web API** section.
 
 Use the following values:
 
@@ -91,13 +91,13 @@ Visual Studio creates the web API with a controller named *ValuesController.cs* 
 
 ## Run the web API
 
-In Visual Studio, press *F5* to run the API. Visual Studio launches a browser pointed at the APIs root URL. Note the URL in the address bar, and leave the API running in the background.
+In Visual Studio, press **F5** to run the API. Visual Studio launches a browser pointed at the APIs root URL. Note the URL in the address bar, and leave the API running in the background.
 
 > [!NOTE] Since there is no controller defined for the root URL, the browser displays a 404 (page not found) error. This is expected behavior.
 
 ## Use Postman to get a token and test the API
 
-[Postman](https://getpostman.com/postman) is a tool for testing APIs. For this tutorial, Postman will simulate a web app that accesses the web API on the user's behalf.
+[Postman](https://getpostman.com/postman) is a tool for testing web APIs. For this tutorial, Postman will simulate a web app that accesses the web API on the user's behalf.
 
 ### Register Postman as a web app
 
