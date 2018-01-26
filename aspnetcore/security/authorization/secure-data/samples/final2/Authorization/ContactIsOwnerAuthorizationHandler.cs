@@ -25,7 +25,9 @@ namespace ContactManager.Authorization
         {
             if (context.User == null || resource == null)
             {
-                return Task.FromResult(0);
+                // Return Task.FromResult(0) if targeting a version of
+                // .NET Framework older than 4.6:
+                return Task.CompletedTask;
             }
 
             // If we're not asking for CRUD permission, return.
@@ -35,7 +37,7 @@ namespace ContactManager.Authorization
                 requirement.Name != Constants.UpdateOperationName &&
                 requirement.Name != Constants.DeleteOperationName )
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             if (resource.OwnerID == _userManager.GetUserId(context.User))
@@ -43,7 +45,7 @@ namespace ContactManager.Authorization
                 context.Succeed(requirement);
             }
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }

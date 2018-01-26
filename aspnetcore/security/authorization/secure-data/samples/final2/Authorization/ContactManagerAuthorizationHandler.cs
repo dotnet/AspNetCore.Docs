@@ -16,14 +16,14 @@ namespace ContactManager.Authorization
         {
             if (context.User == null || resource == null)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             // If not asking for approval/reject, return.
             if (requirement.Name != Constants.ApproveOperationName &&
                 requirement.Name != Constants.RejectOperationName)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             // Managers can approve or reject.
@@ -32,7 +32,7 @@ namespace ContactManager.Authorization
                 context.Succeed(requirement);
             }
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ContactManager.Authorization
         {
             if (context.User == null)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             // Administrators can do anything.
@@ -24,7 +24,7 @@ namespace ContactManager.Authorization
                 context.Succeed(requirement);
             }
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }
