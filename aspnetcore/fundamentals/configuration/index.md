@@ -212,7 +212,7 @@ The [CommandLine configuration provider](/aspnet/core/api/microsoft.extensions.c
 
 # [Basic Configuration](#tab/basicconfiguration)
 
-To activate command-line configuration, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder):
+To activate command-line configuration, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
 
 [!code-csharp[Main](index/sample_snapshot//CommandLine/Program.cs?highlight=18,21)]
 
