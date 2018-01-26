@@ -199,7 +199,7 @@ The preceding code:
 * Adds the Identity `UserManager` service.
 * Add the `ApplicationDbContext`.
 
-### Update Create
+### Update the CreateModel
 
 Update the create page model constructor to use the `DI_BasePageModel` base class:
 
@@ -218,13 +218,13 @@ Update the `OnGetAsync` method so only approved contacts are shown to general us
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Index.cshtml.cs?name=snippet)]
 
-### Update the edit page model
+### Update the EditModel
 
 Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the page model or by loading it within the handler itself. You frequently access the resource by passing in the resource key.
 
 [!code-csharp[Main](secure-data/samples/final2/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
 
-### Update Delete
+### Update the DeleteModel
 
 Update the delete page model to use the authorization handler to verify the user has delete permission on the contact.
 

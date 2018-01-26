@@ -37,8 +37,8 @@ namespace ContactManager.Pages.Contacts
 
         [BindProperty]
         public Contact Contact { get; set; }
-        #region snippet_Create
 
+        #region snippet_Create
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
