@@ -11,7 +11,7 @@ ms.prod: aspnet-core
 uid: tutorials/razor-pages-vsc/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
+# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio Code
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
