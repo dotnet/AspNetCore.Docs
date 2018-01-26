@@ -11,7 +11,7 @@ ms.prod: aspnet-core
 uid: tutorials/razor-pages-vsc/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
+# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio Code
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
@@ -37,7 +37,7 @@ Edit the *RazorPagesMovie.csproj* file:
 * Select **File** > **Open File**, and then select the *RazorPagesMovie.csproj* file.
 * Add tool reference for `Microsoft.EntityFrameworkCore.Tools.DotNet` to the second **\<ItemGroup>**:
 
-[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?range=12-16&highlight=4)]
+[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
 
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 

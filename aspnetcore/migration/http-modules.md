@@ -46,7 +46,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
-   2. For the same event, the order in which they are configured in *Web.config*.
+   2. For the same event, the order in which they're configured in *Web.config*.
 
 In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
 
@@ -72,7 +72,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 **Middleware and modules are processed in a different order:**
 
-   * Order of middleware is based on the order in which they are inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
+   * Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
@@ -100,11 +100,11 @@ The *MyMiddlewareExtensions* helper class makes it easier to configure your midd
 
 <a name="http-modules-shortcircuiting-middleware"></a>
 
-Your module might terminate a request, for example if the user is not authorized:
+Your module might terminate a request, for example if the user isn't authorized:
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs?highlight=9,10,11,12,13&name=snippet_Terminate)]
 
-A middleware handles this by not calling `Invoke` on the next middleware in the pipeline. Keep in mind that this does not fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
+A middleware handles this by not calling `Invoke` on the next middleware in the pipeline. Keep in mind that this doesn't fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
@@ -122,7 +122,7 @@ Convert this by [adding your new middleware](../fundamentals/middleware.md#creat
 
 The exact spot in the pipeline where you insert your new middleware depends on the event that it handled as a module (`BeginRequest`, `EndRequest`, etc.) and its order in your list of modules in *Web.config*.
 
-As previously stated, there is no application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more challenging.
+As previously stated, there's no application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more challenging.
 
 If ordering becomes a problem, you could split your module into multiple middleware components that can be ordered independently.
 
@@ -136,7 +136,7 @@ In your ASP.NET Core project, you would translate this to a middleware similar t
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
 
-This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there is no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
+This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there's no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
 
 ## Migrating handler insertion into the request pipeline
 
@@ -204,11 +204,11 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
   The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
 
-  This is not limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
+  This isn't limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
 
 ## Loading middleware options through direct injection
 
-The options pattern has the advantage that it creates loose coupling between options values and their consumers. Once you've associated an options class with the actual options values, any other class can get access to the options through the dependency injection framework. There is no need to pass around options values.
+The options pattern has the advantage that it creates loose coupling between options values and their consumers. Once you've associated an options class with the actual options values, any other class can get access to the options through the dependency injection framework. There's no need to pass around options values.
 
 This breaks down though if you want to use the same middleware twice, with different options. For example an authorization middleware used in different branches allowing different roles. You can't associate two different options objects with the one options class.
 
@@ -314,7 +314,7 @@ Gives you a unique id for each request. Very useful to include in your logs.
 >
 >You can read the raw body as shown above only once per request. Middleware trying to read the body after the first read will read an empty body.
 >
->This does not apply to reading a form as shown earlier, because that is done from a buffer.
+>This doesn't apply to reading a form as shown earlier, because that's done from a buffer.
 
 ### HttpContext.Response
 
@@ -342,7 +342,7 @@ Serving up a file is discussed [here](../fundamentals/request-features.md#middle
 
 Sending response headers is complicated by the fact that if you set them after anything has been written to the response body, they will not be sent.
 
-The solution is to set a callback method that will be called right before writing to the response starts. This is best done at the start of the `Invoke` method in your middleware. It is this callback method that sets your response headers.
+The solution is to set a callback method that will be called right before writing to the response starts. This is best done at the start of the `Invoke` method in your middleware. It's this callback method that sets your response headers.
 
 The following code sets a callback method called `SetHeaders`:
 

@@ -25,7 +25,7 @@ The app attempts to detect its operational environment and handle key configurat
 
 1. If the user profile is available, keys are persisted to the *%LOCALAPPDATA%\ASP.NET\DataProtection-Keys* folder. If the operating system is Windows, the keys are encrypted at rest using DPAPI.
 
-1. If the app is hosted in IIS, keys are persisted to the HKLM registry in a special registry key that is ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
+1. If the app is hosted in IIS, keys are persisted to the HKLM registry in a special registry key that's ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
 
 1. If none of these conditions match, keys aren't persisted outside of the current process. When the process shuts down, all generated keys are lost.
 

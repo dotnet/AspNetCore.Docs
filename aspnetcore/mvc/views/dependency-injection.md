@@ -37,7 +37,7 @@ The `StatisticsService` performs some calculations on the set of `ToDoItem` inst
 
 [!code-csharp[Main](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs?highlight=15,20,26)]
 
-The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.
+The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) isn't recommended for large, remotely accessed data sets.
 
 The sample displays data from the model bound to the view and the service injected into the view:
 

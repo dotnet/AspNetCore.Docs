@@ -28,7 +28,7 @@ When a new app is developed, the data model changes frequently. Each time the mo
 * EF creates a new one that matches the model.
 * The app seeds the DB with test data.
 
-This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it is usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
+This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it's usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
 
 Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
@@ -50,7 +50,7 @@ In the *appsettings.json* file, change the name of the DB in the connection stri
 
 [!code-json[Main](intro/samples/cu/appsettings2.json?range=1-4)]
 
-Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name does not exist. Changing the connection string isn't required for getting started with migrations.
+Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name doesn't exist. Changing the connection string isn't required for getting started with migrations.
 
 An alternative to changing the DB name is deleting the DB. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 
@@ -126,7 +126,7 @@ The snapshot file must be in sync with the migrations that created it. A migrati
 For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limitations:
 
 * Bypasses migrations and creates the DB and schema.
-* Does not create a migrations table.
+* Doesn't create a migrations table.
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
@@ -185,7 +185,7 @@ Run the app and verify that everything works.
 
 ## Appling migrations in production
 
-We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` should not be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
+We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -206,7 +206,7 @@ This tutorial shows how to use the CLI, some developers prefer using the PMC.
 
 The EF Core commands for the PMC are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
-**Important:** This is not the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
+**Important:** This isn't the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet).
 

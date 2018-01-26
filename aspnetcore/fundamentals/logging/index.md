@@ -38,7 +38,7 @@ Then call logging methods on that logger object:
 
 This example creates logs with the `TodoController` class as the *category*. Categories are explained [later in this article](#log-category).
 
-ASP.NET Core does not provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If you're in a situation where that's not true, consider changing the way you log. If your data store is slow, write the log messages to a fast store first, then move them to a slow store later. For example, log to a message queue that is read and persisted to slow storage by another process.
+ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If you're in a situation where that's not true, consider changing the way you log. If your data store is slow, write the log messages to a fast store first, then move them to a slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
 ## How to add providers
 
@@ -142,11 +142,11 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
 * Trace = 0
 
-  For information that is valuable only to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
+  For information that's valuable only to a developer debugging an issue. These messages may contain sensitive application data and so shouldn't be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
 
 * Debug = 1
 
-  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.` You typically would not enable `Debug` level logs in production unless you are troubleshooting, due to the high volume of logs.
+  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.` You typically wouldn't enable `Debug` level logs in production unless you are troubleshooting, due to the high volume of logs.
 
 * Information = 2
 
@@ -154,7 +154,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
 * Warning = 3
 
-  For abnormal or unexpected events in the application flow. These may include errors or other conditions that do not cause the application to stop, but which may need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
+  For abnormal or unexpected events in the application flow. These may include errors or other conditions that don't cause the application to stop, but which may need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
 
 * Error = 4
 
@@ -320,7 +320,7 @@ When you create logs with an `ILogger` for category "Microsoft.AspNetCore.Mvc.Ra
 
 **Provider aliases**
 
-You can use the type name to specify a provider in configuration, but each provider defines a shorter *alias* that is easier to use. For the built-in providers, use the following aliases:
+You can use the type name to specify a provider in configuration, but each provider defines a shorter *alias* that's easier to use. For the built-in providers, use the following aliases:
 
 - Console
 - Debug
@@ -331,7 +331,7 @@ You can use the type name to specify a provider in configuration, but each provi
 
 **Default minimum level**
 
-There is a minimum level setting that takes effect only if no rules from configuration or code apply for a given provider and category. The following example shows how to set the minimum level:
+There's a minimum level setting that takes effect only if no rules from configuration or code apply for a given provider and category. The following example shows how to set the minimum level:
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_MinLevel&highlight=3)]
 
@@ -339,7 +339,7 @@ If you don't explicitly set the minimum level, the default value is `Information
 
 **Filter functions**
 
-You can write code in a filter function to apply filtering rules. A filter function is invoked for all providers and categories that do not have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level to decide whether or not a message should be logged. For example:
+You can write code in a filter function to apply filtering rules. A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level to decide whether or not a message should be logged. For example:
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
@@ -351,7 +351,7 @@ The `AddConsole` and `AddDebug` extension methods provide overloads that let you
 
 [!code-csharp[](index/sample/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
 
-The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the `SourceSwitch` and `TraceListener` it uses.
+The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider doesn't provide any of those overloads, since its logging level and other parameters are based on the `SourceSwitch` and `TraceListener` it uses.
 
 You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
 
@@ -359,15 +359,15 @@ You can set filtering rules for all providers that are registered with an `ILogg
 
 If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
-The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It does not affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
+The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It doesn't affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
 
 ---
 
 ## Log scopes
 
-You can group a set of logical operations within a *scope* in order to attach the same data to each log that is created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
+You can group a set of logical operations within a *scope* in order to attach the same data to each log that's created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
 
-A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TState>` method and lasts until it is disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
+A scope is an `IDisposable` type that's returned by the `ILogger.BeginScope<TState>` method and lasts until it's disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
@@ -605,7 +605,7 @@ When you deploy to an App Service app, your application honors the settings in t
 
 The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs).
 
-The provider only works when your project runs in the Azure environment. It has no effect when you run locally &mdash; it does not write to local files or local development storage for blobs.
+The provider only works when your project runs in the Azure environment. It has no effect when you run locally &mdash; it doesn't write to local files or local development storage for blobs.
 
 ## Third-party logging providers
 
@@ -642,7 +642,7 @@ To configure Azure log streaming:
 
 ![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
 
-Navigate to the **Log Streaming** page to view application messages. They are logged by application through the `ILogger` interface. 
+Navigate to the **Log Streaming** page to view application messages. They're logged by application through the `ILogger` interface. 
 
 ![Azure portal application log streaming](index/_static/azure-log-streaming.png)
 

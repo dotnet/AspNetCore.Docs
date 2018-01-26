@@ -116,7 +116,7 @@ By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefi
 
 [!code-csharp[](httpsys/sample/Program.cs?name=snippet_Main&highlight=17)]
 
-An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HTTP.sys.
+An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that's formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HTTP.sys.
 
 If you use both `UseUrls` (or `urls` or ASPNETCORE_URLS) and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](xref:fundamentals/hosting).
 
@@ -135,7 +135,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 ## Preregister URL prefixes and configure SSL
 
-Both IIS and HTTP.sys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, you need to configure Http.Sys yourself. The built-in tool for doing that is *netsh.exe*. 
+Both IIS and HTTP.sys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, you need to configure Http.Sys yourself. The built-in tool for doing that's *netsh.exe*. 
 
 With *netsh.exe* you can reserve URL prefixes and assign SSL certificates. The tool requires administrative privileges.
 
