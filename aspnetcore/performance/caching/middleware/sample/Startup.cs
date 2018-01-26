@@ -1,13 +1,11 @@
 using System;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
-namespace ResponseCachingSample
+namespace ResponseCachingMiddleware
 {
     public class Startup
     {
@@ -15,15 +13,16 @@ namespace ResponseCachingSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddResponseCaching();
+            services.AddMvc();
         }
         #endregion
 
         #region snippet2
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseResponseCaching();
-            
-            app.Run(async (context) =>
+
+            app.Use(async (context, next) =>
             {
                 context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
                 {
@@ -32,25 +31,17 @@ namespace ResponseCachingSample
                 };
                 context.Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
 
-                await context.Response.WriteAsync($"Hello World! {DateTime.UtcNow}");
+                await next();
             });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseStaticFiles();
+            app.UseMvc();
         }
         #endregion
-
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .ConfigureLogging(factory =>
-                {
-                    factory.AddConsole(LogLevel.Debug);
-                })
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseKestrel()
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
-        }
     }
 }
