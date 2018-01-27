@@ -58,9 +58,12 @@
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-mac/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
+#### [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
+#### [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
 
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)

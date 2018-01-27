@@ -8,7 +8,7 @@ ms.date: 1/27/2018
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: tutorials/razor-pages-mac/page
+uid: tutorials/razor-pages-vsc/page
 ---
 
 [!INCLUDE[model1](../../includes/RP/page1.md)]
@@ -18,5 +18,5 @@ uid: tutorials/razor-pages-mac/page
 The next tutorial explains SQLite and seeding the database.
 
 >[!div class="step-by-step"]
-[Previous: Adding a model](xref:tutorials/razor-pages-mac/model)
-[Next: SQLite](xref:tutorials/razor-pages-mac/sql)
+[Previous: Adding a model](xref:tutorials/razor-pages-vsc/model)
+[Next: SQLite](xref:tutorials/razor-pages-vsc/sql)
