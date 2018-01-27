@@ -73,7 +73,7 @@ Owin middleware components (OMC) can be configured to run at the following OWIN 
 [!code-csharp[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample8.cs)]
 
 1. By default, OMCs run at the last event (`PreHandlerExecute`). That's why our first example code displayed "PreExecuteRequestHandler".
-2. You can use the a `pp.UseStageMarker` method to register a OMC to run earlier, at any stage of the OWIN pipeline listed in the `PipelineStage` enum.
+2. You can use the a `app.UseStageMarker` method to register a OMC to run earlier, at any stage of the OWIN pipeline listed in the `PipelineStage` enum.
 3. The OWIN pipeline and the IIS pipeline is ordered, therefore calls to `app.UseStageMarker` must be in order. You cannot set the event handler to an event that precedes the last event registered with to `app.UseStageMarker`. For example, *after* calling:
 
     [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample9.cmd)]
