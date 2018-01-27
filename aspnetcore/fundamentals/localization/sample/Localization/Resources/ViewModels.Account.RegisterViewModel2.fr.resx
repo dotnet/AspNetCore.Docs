@@ -126,8 +126,8 @@
   <data name="Password" xml:space="preserve">
     <value>Mot de passe PW .</value>
   </data>
-  <data name="The Email field is not a valid e-mail address." xml:space="preserve">
-    <value>Le champ email est pas une adresse e-mail valide. dot vers of email not valid</value>
+  <data name="The Email field is not a valid email address." xml:space="preserve">
+    <value>Le champ email est pas une adresse email valide. dot vers of email not valid</value>
   </data>
   <data name="The Email field is required." xml:space="preserve">
     <value>Le champ Email est requis. (dot version required)</value>
