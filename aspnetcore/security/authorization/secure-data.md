@@ -100,7 +100,7 @@ Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvir
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-99)]
 
 If you're using Visual Studio, enable SSL.
 
