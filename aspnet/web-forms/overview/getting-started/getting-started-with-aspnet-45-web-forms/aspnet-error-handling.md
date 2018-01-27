@@ -268,7 +268,7 @@ ELMAH (Error Logging Modules and Handlers) is an error logging facility that you
 - Logging of unhandled exceptions.
 - A web page to view the entire log of recoded unhandled exceptions.
 - A web page to view the full details of each logged exception.
-- An e-mail notification of each error at the time it occurs.
+- An email notification of each error at the time it occurs.
 - An RSS feed of the last 15 errors from the log.
 
 Before you can work with the ELMAH, you must install it. This is easy using the *NuGet* package installer. As mentioned earlier in this tutorial series, NuGet is a Visual Studio extension that makes it easy to install and update open source libraries and tools in Visual Studio.

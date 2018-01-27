@@ -129,7 +129,7 @@ We'll start by updating the form code to use Html.EditorForModel(), followed by 
 
 ## Defining validation rules for the Order
 
-Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's e-mail address.
+Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's email address.
 
 [!code-csharp[Main](mvc-music-store-part-9/samples/sample11.cs)]
 

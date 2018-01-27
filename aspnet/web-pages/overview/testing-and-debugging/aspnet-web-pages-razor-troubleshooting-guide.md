@@ -142,7 +142,7 @@ Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some o
 - *Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain*
 
     This message can indicate that the `From` address is not correct or is missing.
-- *The specified string is not in the form required for an e-mail address.*
+- *The specified string is not in the form required for an email address.*
 
     This error might indicate that the value of the `To` or `From` properties are not recognized as email addresses. (ASP.NET cannot check that the email address is valid, only that it's in the correct format, like *name@domain.com*.)
 
