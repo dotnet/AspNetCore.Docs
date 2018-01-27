@@ -19,4 +19,4 @@ The next tutorial explains SQLite and seeding the database.
 
 >[!div class="step-by-step"]
 [Previous: Adding a model](xref:tutorials/razor-pages-mac/model)
-[Next: SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+[Next: SQL Server LocalDB](xref:tutorials/razor-pages-mac/sql)
