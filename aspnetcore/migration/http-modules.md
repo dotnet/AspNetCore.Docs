@@ -373,12 +373,9 @@ The `SetCookies` callback method would look like the following:
 
 [!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
-## Additional Resources
+## Additional resources
 
-* [HTTP Handlers and HTTP Modules Overview](https://docs.microsoft.com/iis/configuration/system.webserver/)
-
+* [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)
-
-* [Application Startup](../fundamentals/startup.md)
-
-* [Middleware](../fundamentals/middleware.md)
+* [Application Startup](xref:fundamentals/startup)
+* [Middleware](xref:fundamentals/middleware)

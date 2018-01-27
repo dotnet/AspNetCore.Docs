@@ -1,7 +1,7 @@
 ---
 title: Migrating from ASP.NET to ASP.NET Core 2.0
 author: isaac2004
-description: This reference document provides guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
+description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core 2.0.
 ms.author: scaddie
 manager: wpickett
 ms.date: 08/27/2017
@@ -21,7 +21,7 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 
 * [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
 
-## Target Frameworks
+## Target frameworks
 ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
@@ -73,7 +73,7 @@ The host and application have been decoupled, which provides the flexibility of 
 
 **Note:** For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
 
-## Storing Configurations
+## Storing configurations
 ASP.NET supports storing settings. These setting are used, for example, to support the environment to which the applications were deployed. A common practice was to store all custom key-value pairs in the `<appSettings>` section of the *Web.config* file:
 
 [!code-xml[Main](samples/webconfig-sample.xml)]
@@ -103,7 +103,7 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
 
 **Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
-## Native Dependency Injection
+## Native dependency injection
 An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
 In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices. 
@@ -128,7 +128,7 @@ The repository can be injected anywhere, as was true with Unity.
 
 **Note:** For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
 
-## Serving Static Files
+## Serving static files
 An important part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript, and images. These files need to be saved in the published location of the app (or CDN) and referenced so they can be loaded by a request. This process has changed in ASP.NET Core.
 
 In ASP.NET, static files are stored in various directories and referenced in the views.
@@ -143,5 +143,6 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 
 **Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Introduction to working with static files in ASP.NET Core](xref:fundamentals/static-files).
 
-## Additional Resources
-* [Porting Libraries to .NET Core](https://docs.microsoft.com/dotnet/core/porting/libraries)
+## Additional resources
+
+* [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)

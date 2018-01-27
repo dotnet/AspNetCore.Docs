@@ -144,7 +144,7 @@ The default session provider in ASP.NET Core loads the session record from the u
 
 To have applications enforce this pattern, wrap the [DistributedSessionStore](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw an exception if the `LoadAsync` method isn't called before `TryGetValue`, `Set`, or `Remove`. Register the wrapped versions in the services container.
 
-### Implementation Details
+### Implementation details
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named ".AspNet.Session", and it uses a path of "/". Because the cookie default doesn't specify a domain, it's not made available to the client-side script on the page (because `CookieHttpOnly` defaults to `true`).
 
@@ -277,9 +277,7 @@ Someone stores a shopping basket in session. The user adds an item but the commi
 
 The recommended way to check for such errors is to call `await feature.Session.CommitAsync();` from app code when you're done writing to the session. Then you can do what you like with the error. It works the same way when calling `LoadAsync`.
 
-
-### Additional Resources
-
+### Additional resources
 
 * [ASP.NET Core 1.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
 * [ASP.NET Core 2.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App)

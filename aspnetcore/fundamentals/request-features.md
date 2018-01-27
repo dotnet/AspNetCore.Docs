@@ -79,10 +79,8 @@ By combining custom server implementations and specific middleware enhancements,
 
 Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
 
-## Additional Resources
+## Additional resources
 
-* [Servers](servers/index.md)
-
-* [Middleware](middleware.md)
-
-* [Open Web Interface for .NET (OWIN)](owin.md)
+* [Servers](xref:fundamentals/servers/index)
+* [Middleware](xref:fundamentals/middleware)
+* [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)

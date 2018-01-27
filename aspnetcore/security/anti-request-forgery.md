@@ -356,6 +356,6 @@ Token-based authentication doesn’t store session on the server. Instead, when 
 Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there's an implicit trust relationship between all hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login CSRF attacks. Shared hosting environments are vunerable to session hijacking, login CSRF, and other attacks.
 
 
-### Additional Resources
+### Additional resources
 
 * [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) on [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP).
