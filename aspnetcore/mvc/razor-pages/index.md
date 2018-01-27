@@ -72,7 +72,7 @@ A similar page, using a `PageModel` class, is shown in the following two files. 
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-The *Pages/Index2.cshtml.cs* "code-behind" file:
+The *Pages/Index2.cshtml.cs* page model:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -112,7 +112,7 @@ The *Pages/Create.cshtml* view file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
-The *Pages/Create.cshtml.cs* code-behind file for the view:
+The *Pages/Create.cshtml.cs* page model:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
@@ -328,7 +328,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 <h3>Msg: @Model.Message</h3>
 ```
 
-The *Pages/Customers/Index.cshtml.cs* code-behind file applies the `[TempData]` attribute to the `Message` property.
+The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
 ```cs
 [TempData]
@@ -348,7 +348,7 @@ The following page generates markup for two page handlers using the `asp-page-ha
 
 The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page`. `asp-page-handler` generates URLs that submit to each of the handler methods defined by a page. `asp-page` isn't specified because the sample is linking to the current page.
 
-The code-behind file:
+The page model:
 
 [!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 

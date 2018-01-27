@@ -103,7 +103,7 @@ Step through the debugger.
 To add filtering to the Students Index page:
 
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
-* The code-behind file is updated to use the text box value.
+* The page model is updated to use the text box value.
 
 ### Add filtering functionality to the Index method
 
@@ -241,7 +241,7 @@ Step through the debugger.
 In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
-* Modify the About Razor Page and code-behind file.
+* Modify the About Razor Page and page model.
 
 ### Create the view model
 
@@ -251,7 +251,7 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Update the About code-behind page
+### Update the About page model
 
 Update the *Pages/About.cshtml.cs* file with the following code:
 
