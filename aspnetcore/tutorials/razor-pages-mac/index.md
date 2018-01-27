@@ -21,7 +21,7 @@ This series explains the basics of building a Razor Pages web app with ASP.NET C
 1. [Getting started with Razor Pages on Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
 1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages-mac/model)
 1. [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
-1. [Working with SQL Server LocalDB](xref:tutorials/razor-pages-mac/sql)
+1. [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
 
 
 Until the next section is complete, follow the Visual Studio for Windows version.
