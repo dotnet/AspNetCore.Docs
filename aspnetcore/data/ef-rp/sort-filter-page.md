@@ -273,7 +273,7 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Additional Resources
+## Additional resources
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 

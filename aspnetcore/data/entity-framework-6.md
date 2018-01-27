@@ -86,6 +86,6 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 This article has provided basic guidance for using Entity Framework 6 in an ASP.NET Core application.
 
-## Additional Resources
+## Additional resources
 
 * [Entity Framework - Code-Based Configuration](https://msdn.microsoft.com/data/jj680699.aspx)

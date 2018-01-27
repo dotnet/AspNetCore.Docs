@@ -240,6 +240,6 @@ Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
 [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
 
-## Additional Resources
+## Additional resources
 
-* [Dependency injection into views](dependency-injection.md)
+* [Dependency injection into views](xref:mvc/views/dependency-injection)

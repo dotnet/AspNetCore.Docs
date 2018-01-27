@@ -141,7 +141,7 @@ As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and c
 
 <a name="view-compilation"></a>
 
-## Review your Razor View Compilation setting
+## Review Razor view compilation setting
 Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0.
 
 Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
@@ -152,7 +152,7 @@ When targeting .NET Framework, you still need to explicitly reference the [Micro
 
 <a name="app-insights"></a>
 
-## Rely on Application Insights "Light-Up" features
+## Rely on Application Insights "light-up" features
 Effortless setup of application performance instrumentation is important. You can now rely on the new [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) "light-up" features available in the Visual Studio 2017 tooling.
 
 ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, follow these steps:
@@ -173,8 +173,9 @@ If you are using the Application Insights SDK directly, continue to do so. The 2
 
 <a name="auth-and-identity"></a>
 
-## Adopt Authentication / Identity Improvements
+## Adopt authentication/Identity improvements
 ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
 
-## Additional Resources
-- [Breaking Changes in ASP.NET Core 2.0](https://github.com/aspnet/announcements/issues?page=1&q=is%3Aissue+is%3Aopen+label%3A2.0.0+label%3A%22Breaking+change%22&utf8=%E2%9C%93)
+## Additional resources
+
+* [Breaking Changes in ASP.NET Core 2.0](https://github.com/aspnet/announcements/issues?page=1&q=is%3Aissue+is%3Aopen+label%3A2.0.0+label%3A%22Breaking+change%22&utf8=%E2%9C%93)

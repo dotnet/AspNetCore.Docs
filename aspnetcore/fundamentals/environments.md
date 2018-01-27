@@ -168,7 +168,7 @@ Note: Calling [WebHostBuilder.UseStartup<TStartup>](https://docs.microsoft.com/d
 
 [!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,37)]
 
-## Additional Resources
+## Additional resources
 
 * [Application startup](xref:fundamentals/startup)
 * [Configuration](xref:fundamentals/configuration/index)

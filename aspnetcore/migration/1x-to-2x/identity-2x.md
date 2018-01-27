@@ -19,7 +19,7 @@ ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security
 
 <a name="auth-middleware"></a>
 
-## Authentication Middleware and Services
+## Authentication Middleware and services
 In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.
 
 The following 1.x example configures Facebook authentication with Identity in *Startup.cs*:
@@ -70,7 +70,7 @@ The `UseAuthentication` method adds a single authentication middleware component
 
 Below are 2.0 migration instructions for each major authentication scheme.
 
-### Cookie-based Authentication
+### Cookie-based authentication
 Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
 1. Use cookies with Identity
@@ -132,7 +132,7 @@ Make the following changes in *Startup.cs*:
 
     This code snippet doesn't use Identity, so the default scheme should be set by passing `JwtBearerDefaults.AuthenticationScheme` to the `AddAuthentication` method.
 
-### OpenID Connect (OIDC) Authentication
+### OpenID Connect (OIDC) authentication
 Make the following changes in *Startup.cs*:
 
 - Replace the `UseOpenIdConnectAuthentication` method call in the `Configure` method with `UseAuthentication`:
@@ -157,7 +157,7 @@ Make the following changes in *Startup.cs*:
     });
     ```
 
-### Facebook Authentication
+### Facebook authentication
 Make the following changes in *Startup.cs*:
 - Replace the `UseFacebookAuthentication` method call in the `Configure` method with `UseAuthentication`:
  
@@ -176,7 +176,7 @@ Make the following changes in *Startup.cs*:
             });
     ```
 
-### Google Authentication
+### Google authentication
 Make the following changes in *Startup.cs*:
 - Replace the `UseGoogleAuthentication` method call in the `Configure` method with `UseAuthentication`:
  
@@ -195,7 +195,7 @@ Make the following changes in *Startup.cs*:
             });    
     ```
 
-### Microsoft Account Authentication
+### Microsoft Account authentication
 Make the following changes in *Startup.cs*:
 - Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
@@ -214,7 +214,7 @@ Make the following changes in *Startup.cs*:
             });
     ``` 
 
-### Twitter Authentication
+### Twitter authentication
 Make the following changes in *Startup.cs*:
 - Replace the `UseTwitterAuthentication` method call in the `Configure` method with `UseAuthentication`:
  
@@ -233,7 +233,7 @@ Make the following changes in *Startup.cs*:
             });
     ```
 
-### Setting Default Authentication Schemes
+### Setting default authentication schemes
 In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the [AuthenticationOptions](https://docs.microsoft.com/dotnet/api/Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1) base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
 In 2.0, these two properties have been removed as properties on the individual `AuthenticationOptions` instance. They can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
@@ -262,7 +262,7 @@ An exception to this rule is the `AddIdentity` method. This method adds cookies 
 
 <a name="obsolete-interface"></a>
 
-## Use HttpContext Authentication Extensions
+## Use HttpContext authentication extensions
 The `IAuthenticationManager` interface is the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
 
 For example, 1.x projects reference an `Authentication` property:
@@ -292,7 +292,7 @@ Failure to set the default scheme accordingly prevents the authorize request to 
 
 <a name="identity-cookie-options"></a>
 
-## IdentityCookieOptions Instances
+## IdentityCookieOptions instances
 A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
 For example, 1.x projects use [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to pass an `IdentityCookieOptions` parameter into *AccountController.cs*. The external cookie authentication scheme is accessed from the provided instance:
@@ -309,7 +309,7 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 
 <a name="navigation-properties"></a>
 
-## Add IdentityUser POCO Navigation Properties
+## Add IdentityUser POCO navigation properties
 The Entity Framework (EF) Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
@@ -383,7 +383,7 @@ In *Login.cshtml*, the `AuthenticationScheme` property accessed in the `foreach`
 
 <a name="property-change"></a>
 
-## ManageLoginsViewModel Property Change
+## ManageLoginsViewModel property change
 A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x projects, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
@@ -394,5 +394,5 @@ In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This 
 
 <a name="additional-resources"></a>
 
-## Additional Resources
+## Additional resources
 For additional details and discussion, see the [Discussion for Auth 2.0](https://github.com/aspnet/Security/issues/1338) issue on GitHub.

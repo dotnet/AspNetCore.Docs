@@ -1,5 +1,5 @@
 ---
-title: Dependency Injection in ASP.NET Core
+title: Dependency injection in ASP.NET Core
 author: ardalis
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
@@ -11,7 +11,7 @@ ms.prod: asp.net-core
 uid: fundamentals/dependency-injection
 ms.custom: H1Hack27Feb2017
 ---
-# Introduction to Dependency Injection in ASP.NET Core
+# Dependency injection in ASP.NET Core
 
 <a name="fundamentals-dependency-injection"></a>
 
@@ -21,7 +21,7 @@ ASP.NET Core is designed from the ground up to support and leverage dependency i
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## What is Dependency Injection?
+## What is dependency injection?
 
 Dependency injection (DI) is a technique for achieving loose coupling between objects and their collaborators, or dependencies. Rather than directly instantiating collaborators, or using static references, the objects a class needs in order to perform its actions are provided to the class in some fashion. Most often, classes will declare their dependencies via their constructor, allowing them to follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). This approach is known as "constructor injection".
 
@@ -37,7 +37,7 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 > [!NOTE]
 > This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in [Dependency Injection and Controllers](../mvc/controllers/dependency-injection.md).
 
-### Constructor Injection Behavior
+### Constructor injection behavior
 
 Constructor injection requires that the constructor in question be *public*. Otherwise, your app will throw an `InvalidOperationException`:
 
@@ -66,7 +66,7 @@ public CharactersController(ICharacterRepository characterRepository, string tit
 }
 ```
 
-## Using Framework-Provided Services
+## Using framework-provided services
 
 The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/hosting)):
 
@@ -96,7 +96,7 @@ The features and middleware provided by ASP.NET, such as MVC, follow a conventio
 >[!TIP]
 > You can request certain framework-provided services within `Startup` methods through their parameter lists - see [Application Startup](startup.md) for more details.
 
-## Registering Your Own Services
+## Registering services
 
 You can register your own application services as follows. The first generic type represents the type (typically an interface) that will be requested from the container. The second generic type represents the concrete type that will be instantiated by the container and used to fulfill such requests.
 
@@ -138,7 +138,7 @@ Entity Framework contexts should be added to the services container using the `S
 
 Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using [configuration](xref:fundamentals/configuration/index) and the [options pattern](xref:fundamentals/configuration/options).
 
-## Service Lifetimes and Registration Options
+## Service lifetimes and registration options
 
 ASP.NET services can be configured with the following lifetimes:
 
@@ -201,7 +201,7 @@ Generally, you shouldn't use these properties directly, preferring instead to re
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
 
-## Designing Your Services For Dependency Injection
+## Designing services for dependency injection
 
 You should design your services to use dependency injection to get their collaborators. This means avoiding the use of stateful static method calls (which result in a code smell known as [static cling](http://deviq.com/static-cling/)) and the direct instantiation of dependent classes within your services. It may help to remember the phrase, [New is Glue](https://ardalis.com/new-is-glue), when choosing whether to instantiate a type or to request it via dependency injection. By following the [SOLID Principles of Object Oriented Design](http://deviq.com/solid/), your classes will naturally tend to be small, well-factored, and easily tested.
 
@@ -307,16 +307,11 @@ When working with dependency injection, keep the following recommendations in mi
 
 Remember, dependency injection is an *alternative* to static/global object access patterns. You won't be able to realize the benefits of DI if you mix it with static object access.
 
-## Additional Resources
+## Additional resources
 
-* [Application Startup](startup.md)
-
-* [Testing](../testing/index.md)
-
+* [Application Startup](xref:fundamentals/startup)
+* [Testing](xref:testing/index)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
-
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
-
 * [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/)
-
 * [Inversion of Control Containers and the Dependency Injection Pattern](https://www.martinfowler.com/articles/injection.html) (Fowler)

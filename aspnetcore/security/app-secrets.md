@@ -120,6 +120,6 @@ The value of `userSecretsId` comes from the value specified in *.csproj* file.
 
 You shouldn't write code that depends on the location or format of the data saved with the Secret Manager tool, as these implementation details might change. For example, the secret values are currently *not* encrypted today, but could be someday.
 
-## Additional Resources
+## Additional resources
 
 * [Configuration](xref:fundamentals/configuration/index)

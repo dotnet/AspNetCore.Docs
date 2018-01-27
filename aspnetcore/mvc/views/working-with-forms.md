@@ -565,18 +565,12 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
  </form>
  ```
 
-## Additional Resources
+## Additional resources
 
-* [Tag Helpers](tag-helpers/intro.md)
-
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [HTML Form element](https://www.w3.org/TR/html401/interact/forms.html)
-
-* [Request Verification Token](https://docs.microsoft.com/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages)
-
-* [Model Binding](../models/model-binding.md)
-
-* [Model Validation](../models/validation.md)
-
-* [data annotations](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter)
-
-* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/forms/sample).
+* [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages)
+* [Model Binding](xref:mvc/models/model-binding)
+* [Model Validation](xref:mvc/models/validation)
+* [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
+* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/forms/sample)
