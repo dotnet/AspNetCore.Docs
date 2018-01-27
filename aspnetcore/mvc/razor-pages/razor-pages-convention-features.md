@@ -257,7 +257,7 @@ Register the `CustomPageApplicationModelProvider` in the `Startup` class:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet10)]
 
-The code-behind file *Index.cshtml.cs* shows how the ordinary handler method naming conventions are changed for pages in the app. The ordinary "On" prefix naming used with Razor Pages is removed. The method that initializes the page state is now named `Get`. You can see this convention used throughout the app if you open any code-behind file for any of the pages.
+The page model in *Index.cshtml.cs* shows how the ordinary handler method naming conventions are changed for pages in the app. The ordinary "On" prefix naming used with Razor Pages is removed. The method that initializes the page state is now named `Get`. You can see this convention used throughout the app if you open any page model for any of the pages.
 
 Each of the other methods start with the HTTP verb that describes its processing. The two methods that start with `Delete` would normally be treated as DELETE HTTP verbs, but the logic in `TryParseHandlerMethod` explicitly sets the verb to POST for both handlers.
 
@@ -281,7 +281,7 @@ The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipag
 
 This filter checks for a `globalTemplate` route value of "TriggerValue" and swaps in "ReplacementValue".
 
-The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel` in code-behind:
+The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel`:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=10-12&highlight=1)]
 

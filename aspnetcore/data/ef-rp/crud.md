@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-Note: To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
+Note: To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the Razor Pages page models. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
 In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are modified.
 
@@ -143,7 +143,7 @@ The value "OverPost" is successfully added to the `Secret` property of the inser
 <a name="vm"></a>
 ### View model
 
-A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages code-behind class and the browser. Consider the following `Student` view model:
+A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages page model class and the browser. Consider the following `Student` view model:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentVM.cs)]
 
@@ -161,7 +161,7 @@ In Razor Pages, the `PageModel` derived class is the view model.
 
 ## Update the Edit page
 
-Update the Edit page code-behind file:
+Update the page model for the Edit page:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync&highlight=20,36)]
 
