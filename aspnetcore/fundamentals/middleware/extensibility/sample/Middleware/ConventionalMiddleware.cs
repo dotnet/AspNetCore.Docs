@@ -7,11 +7,11 @@ using MiddlewareExtensibilitySample.Models;
 namespace MiddlewareExtensibilitySample.Middleware
 {
     #region snippet1
-    public class MiddlewareViaConventionalActivation
+    public class ConventionalMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public MiddlewareViaConventionalActivation(RequestDelegate next)
+        public ConventionalMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -25,7 +25,7 @@ namespace MiddlewareExtensibilitySample.Middleware
                 db.Add(new Request()
                     {
                         DT = DateTime.UtcNow, 
-                        MiddlewareActivation = "Conventional", 
+                        MiddlewareActivation = "ConventionalMiddleware", 
                         Value = keyValue
                     });
 

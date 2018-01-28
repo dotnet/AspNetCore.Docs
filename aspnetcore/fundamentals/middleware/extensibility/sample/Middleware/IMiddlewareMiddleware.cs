@@ -7,11 +7,11 @@ using MiddlewareExtensibilitySample.Models;
 namespace MiddlewareExtensibilitySample.Middleware
 {
     #region snippet1
-    public class MiddlewareViaIMiddlewareFactoryActivation : IMiddleware
+    public class IMiddlewareMiddleware : IMiddleware
     {
         private readonly AppDbContext _db;
 
-        public MiddlewareViaIMiddlewareFactoryActivation(AppDbContext db)
+        public IMiddlewareMiddleware(AppDbContext db)
         {
             _db = db;
         }
@@ -25,7 +25,7 @@ namespace MiddlewareExtensibilitySample.Middleware
                 _db.Add(new Request()
                     {
                         DT = DateTime.UtcNow, 
-                        MiddlewareActivation = "IMiddlewareFactory", 
+                        MiddlewareActivation = "IMiddlewareMiddleware", 
                         Value = keyValue
                     });
 
