@@ -2,7 +2,7 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/publishing/vsts-continuous-deployment.md", 
-        "redirect_url": "https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure", 
+        "redirect_url": "/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp?tabs=vsts", 
         "redirect_document_id": false 
     }, 
     {   
@@ -47,7 +47,7 @@
     }, 
     {   
         "source_path": "aspnetcore/hosting/servicing.md", 
-        "redirect_url": "https://docs.microsoft.com/dotnet/articles/core/versions/servicing", 
+        "redirect_url": "/dotnet/core/versions/", 
         "redirect_document_id": false 
     }, 
     {   
@@ -193,6 +193,121 @@
     {
         "source_path": "aspnetcore/hosting/windows-service.md",
         "redirect_url": "/aspnet/core/host-and-deploy/windows-service",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/conceptual-overview/aspnet.md",
+        "redirect_url": "/aspnet/core",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/conceptual-overview/index.md",
+        "redirect_url": "/aspnet/core",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/conceptual-overview/choosing-the-right-dotnet.md",
+        "redirect_url": "/dotnet/standard/choosing-core-framework-server",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/choosing-the-right-dotnet.md",
+        "redirect_url": "/dotnet/standard/choosing-core-framework-server",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started/index.md",
+        "redirect_url": "/aspnet/core/getting-started",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started/installing-on-linux.md",
+        "redirect_url": "/aspnet/core/getting-started",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started/installing-on-mac.md",
+        "redirect_url": "/aspnet/core/getting-started",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started/installing-on-windows.md",
+        "redirect_url": "/aspnet/core/getting-started",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/intro/index.md",
+        "redirect_url": "/aspnet/core",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/migration/rc1-to-rtm.md",
+        "redirect_url": "/aspnet/core/migration/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/migration/rc2-to-rtm.md",
+        "redirect_url": "/aspnet/core/migration/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/controllers/index.md",
+        "redirect_url": "/aspnet/core/mvc/controllers/actions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/index.md",
+        "redirect_url": "/aspnet/core/mvc/overview",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/models/index.md",
+        "redirect_url": "/aspnet/core/mvc/models/model-binding",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/index.md",
+        "redirect_url": "/aspnet/core/mvc/views/overview",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/index.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/intro",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/facebook-logins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/facebook-logins",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/google-logins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/google-logins",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/microsoft-logins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/microsoft-logins",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/other-logins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/other-logins",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/sociallogins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/authentication/twitter-logins.md",
+        "redirect_url": "/aspnet/core/security/authentication/social/twitter-logins",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/tutorials/your-first-aspnet-application.md",
+        "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
         "redirect_document_id": false
     }
   ] 
