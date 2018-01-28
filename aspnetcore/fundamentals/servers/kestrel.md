@@ -2,14 +2,14 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: tdykstra
 description: Introduces Kestrel, the cross-platform web server for ASP.NET Core based on libuv.
-ms.author: tdykstra
 manager: wpickett
-ms.date: 08/02/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/servers/kestrel
+ms.author: tdykstra
 ms.custom: H1Hack27Feb2017
+ms.date: 08/02/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/servers/kestrel
 ---
 # Introduction to Kestrel web server implementation in ASP.NET Core
 

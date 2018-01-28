@@ -2,12 +2,12 @@
 title: What's new in ASP.NET Core 1.1
 author: rick-anderson
 description: What's new in ASP.NET Core 1.1
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: aspnetcore-1.1
 ---
 

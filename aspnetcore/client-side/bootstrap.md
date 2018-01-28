@@ -2,12 +2,12 @@
 title: Building beautiful, responsive sites with Bootstrap
 author: ardalis
 description: 
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: client-side/bootstrap
 ---
 # Building beautiful, responsive sites with Bootstrap

@@ -2,12 +2,12 @@
 title: View components
 author: rick-anderson
 description: View Components are intended anywhere you have reusable rendering logic.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/view-components
 ---
 # View components

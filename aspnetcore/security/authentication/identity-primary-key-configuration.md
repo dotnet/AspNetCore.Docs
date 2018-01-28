@@ -2,12 +2,12 @@
 title: Configure Identity primary key data type
 author: AdrienTorris
 description: This article outlines the steps for configuring the desired data type used for the ASP.NET Core Identity primary key.
-ms.author: scaddie
 manager: wpickett
+ms.author: scaddie
 ms.date: 09/28/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/identity-primary-key-configuration
 ---
 # Configure the ASP.NET Core Identity primary key data type

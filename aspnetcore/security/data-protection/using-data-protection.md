@@ -2,12 +2,12 @@
 title: Getting Started with the Data Protection APIs
 author: rick-anderson
 description: This document explains how to use the ASP.NET Core data protection APIs for protecting and unprotecting data in an app.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/using-data-protection
 ---
 # Getting Started with the Data Protection APIs

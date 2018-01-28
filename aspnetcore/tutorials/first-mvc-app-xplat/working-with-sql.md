@@ -2,12 +2,12 @@
 title: Working with SQLite
 author: rick-anderson
 description: Using SQLite with a simple MVC app
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 04/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/working-with-sql
 ---
 [!INCLUDE[adding-model](../../includes/mvc-intro/sql.md)]

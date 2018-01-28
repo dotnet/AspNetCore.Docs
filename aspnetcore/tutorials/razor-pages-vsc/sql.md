@@ -1,13 +1,13 @@
 ---
-title: Working with SQLite and and Razor Pages 
+title: Working with SQLite and and Razor Pages
 author: rick-anderson
 description: Using SQLite with Razor Pages
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 1/27/2018
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/sql
 ---
 

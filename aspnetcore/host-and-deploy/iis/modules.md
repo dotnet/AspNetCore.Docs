@@ -2,13 +2,13 @@
 title: Using IIS modules with ASP.NET Core
 author: guardrex
 description: Reference document describing active and inactive IIS modules for ASP.NET Core applications.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/08/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/iis/modules
 ---
 # Using IIS Modules with ASP.NET Core

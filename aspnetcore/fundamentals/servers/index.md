@@ -2,12 +2,12 @@
 title: Web server implementations in ASP.NET Core
 author: tdykstra
 description: Introduces web servers Kestrel and WebListener for ASP.NET Core. Provides guidance on how to choose one and when to use one with a reverse proxy server.
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 08/03/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core

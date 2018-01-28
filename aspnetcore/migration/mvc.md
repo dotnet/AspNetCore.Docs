@@ -2,12 +2,12 @@
 title: Migrating from ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: Learn how to get started migrating an ASP.NET MVC project to ASP.NET Core MVC.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 03/07/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: migration/mvc
 ---
 # Migrating from ASP.NET MVC to ASP.NET Core MVC

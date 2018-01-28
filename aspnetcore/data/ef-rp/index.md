@@ -2,12 +2,12 @@
 title: ASP.NET Core Razor Pages with EF Core - tutorial series
 author: rick-anderson
 description: 
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 03/15/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/index
 ---
 # Getting started with Razor Pages and Entity Framework Core using Visual Studio

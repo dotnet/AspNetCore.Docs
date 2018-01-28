@@ -1,13 +1,13 @@
 ---
-title: Distributed Cache Tag Helper | Microsoft Docs
+title: Distributed Cache Tag Helper in ASP.NET Core
 author: pkellner
 description: Shows how to work with Cache Tag Helper
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
 # Distributed Cache Tag Helper

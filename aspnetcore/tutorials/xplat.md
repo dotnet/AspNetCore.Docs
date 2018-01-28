@@ -2,12 +2,12 @@
 title: ASP.NET Core tutorials
 author: rick-anderson
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/xplat
 ---
 # ASP.NET Core cross platform tutorials

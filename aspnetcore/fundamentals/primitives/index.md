@@ -2,12 +2,12 @@
 title: Primitives in ASP.NET Core
 author: guardrex
 description: Discover articles on ASP.NET Core building blocks shared by framework extensions that you can use in your own code.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/28/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/primitives/index
 ---
 # Primitives in ASP.NET Core
