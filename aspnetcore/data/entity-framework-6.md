@@ -32,7 +32,7 @@ Your ASP.NET Core project needs to reference .NET framework and EF6. For example
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]
 
-If you’re creating a new project, use the **ASP.NET Core Web Application (.NET Framework)** template.
+When creating a new project, use the **ASP.NET Core Web Application (.NET Framework)** template.
 
 ## Handle connection strings
 

@@ -33,4 +33,4 @@ ASP.NET Core 1.1 has more features than 1.0. In general, we recommend you use th
 ## Additional Information
 
 - [ASP.NET Core 1.1.0 Release Notes](https://github.com/aspnet/Home/releases/tag/1.1.0)
-- If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).
+- To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).

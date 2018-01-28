@@ -54,13 +54,13 @@ paths.concatCssDest = paths.webroot + "css/site.min.css";
 
 The above code specifies which Node modules are required. The `require` function imports each module so that the dependent tasks can utilize their features. Each of the imported modules is assigned to a variable. The modules can be located either by name or path. In this example, the modules named `gulp`, `rimraf`, `gulp-concat`, `gulp-cssmin`, and `gulp-uglify` are retrieved by name. Additionally, a series of paths are created so that the locations of CSS and JavaScript files can be reused and referenced within the tasks. The following table provides descriptions of the modules included in *gulpfile.js*.
 
-|Module Name|Description|
-|---|---|
-|gulp|The Gulp streaming build system. For more information, see [gulp](https://www.npmjs.com/package/gulp).|
-|rimraf|A Node deletion module. For more information, see [rimraf](https://www.npmjs.com/package/rimraf).|
-|gulp-concat|A module that concatenates files based on the operating system’s newline character. For more information, see [gulp-concat](https://www.npmjs.com/package/gulp-concat).|
-|gulp-cssmin|A module that minifies CSS files. For more information, see [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin).|
-|gulp-uglify|A module that minifies *.js* files. For more information, see [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).|
+| Module Name | Description |
+| ----------- | ----------- |
+| gulp        | The Gulp streaming build system. For more information, see [gulp](https://www.npmjs.com/package/gulp). |
+| rimraf      | A Node deletion module. For more information, see [rimraf](https://www.npmjs.com/package/rimraf). |
+| gulp-concat | A module that concatenates files based on the operating system's newline character. For more information, see [gulp-concat](https://www.npmjs.com/package/gulp-concat). |
+| gulp-cssmin | A module that minifies CSS files. For more information, see [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin). |
+| gulp-uglify | A module that minifies *.js* files. For more information, see [gulp-uglify](https://www.npmjs.com/package/gulp-uglify). |
 
 Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
@@ -105,7 +105,7 @@ The following table provides an explanation of the tasks specified in the code a
 
 ## Running default tasks
 
-If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
+If you haven't already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
 1.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
 

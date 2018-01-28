@@ -286,7 +286,7 @@ At runtime, Autofac will be used to resolve types and inject dependencies. [Lear
 
 ### Thread safety
 
-Singleton services need to be thread safe. If a singleton service has a dependency on a transient service, the transient service may also need to be thread safe depending how it’s used by the singleton.
+Singleton services need to be thread safe. If a singleton service has a dependency on a transient service, the transient service may also need to be thread safe depending how it's used by the singleton.
 
 ## Recommendations
 

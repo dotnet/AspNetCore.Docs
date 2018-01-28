@@ -1,6 +1,6 @@
 ---
 uid: whitepapers/what-is-new-in-aspnet-mvc
-title: "What’s New in ASP.NET MVC 2 | Microsoft Docs"
+title: "What's New in ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes new features and improvements introduced in ASP.NET MVC 2. This document is also available for download."
 ms.author: aspnetcontent
@@ -13,7 +13,7 @@ ms.prod: .net-framework
 msc.legacyurl: /whitepapers/what-is-new-in-aspnet-mvc
 msc.type: content
 ---
-What’s New in ASP.NET MVC 2
+What's New in ASP.NET MVC 2
 ====================
 > This document describes new features and improvements introduced in ASP.NET MVC 2. This document is also available for [Download](https://download.microsoft.com/download/F/1/6/F16F9AF9-8EF4-4845-BC97-639791D5699C/WhatIsNewInMVC_2.pdf)
 
