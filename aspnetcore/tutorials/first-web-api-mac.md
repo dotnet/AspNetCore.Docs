@@ -19,7 +19,7 @@ manager: wpickett
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
+In this tutorial, build a web API for managing a list of "to-do" items. The UI isn't constructed.
 
 There are 3 versions of this tutorial:
 

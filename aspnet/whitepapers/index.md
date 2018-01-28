@@ -22,7 +22,7 @@ Whitepapers
     - [ASP.NET 4 Breaking Changes](aspnet4/breaking-changes.md)
 - [Upgrading an ASP.NET MVC 1.0 Application to ASP.NET MVC 2](aspnet-mvc2-upgrade-notes.md)
 - [ASP.NET Denied Access to IIS Directories](denied-access-to-iis-directories.md)
-- [What’s New in ASP.NET MVC 2](what-is-new-in-aspnet-mvc.md)
+- [What's New in ASP.NET MVC 2](what-is-new-in-aspnet-mvc.md)
 - [ASP.NET MVC 3](mvc3-release-notes.md)
 - [ASP.NET MVC 4](mvc4-beta-release-notes.md)
 - [Running ASP.NET 1.1 with IIS 6.0](aspnet-and-iis6.md)

@@ -35,7 +35,7 @@ Later in the tutorial I'll show how the HTTP response can be viewed with [Postma
 
 The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each method is constructed as follows:
 
-* Take the template string in the controller’s `Route` attribute:
+* Take the template string in the controller's `Route` attribute:
 
 [!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 

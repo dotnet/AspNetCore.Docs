@@ -154,9 +154,9 @@ Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeC
 
   Let's say the current request's path is like `/Products/Home/Create`
 
-  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products’  Home Page", "Index", "Manage")`
+  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products Home Page", "Index", "Manage")`
 
-  TagHelper syntax: `<a asp-controller="Manage" asp-action="Index">Go to Manage Products’  Home Page</a>`
+  TagHelper syntax: `<a asp-controller="Manage" asp-action="Index">Go to Manage Products Home Page</a>`
 
   Note that here the ambient value of an 'area' is used but the 'controller' value is specified explicitly above.
 
@@ -164,17 +164,17 @@ Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeC
 
   Let's say the current request's path is like `/Products/Home/Create`
 
-  HtmlHelper syntax: `@Html.ActionLink("Go to Services’ Home Page", "Index", "Home", new { area = "Services" })`
+  HtmlHelper syntax: `@Html.ActionLink("Go to Services Home Page", "Index", "Home", new { area = "Services" })`
 
-  TagHelper syntax: `<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services’ Home Page</a>`
+  TagHelper syntax: `<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services Home Page</a>`
 
   Note that here no ambient values are used.
 
 * Generating links from an action within an area based controller to another action on a different controller and **not** in an area.
 
-  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products’  Home Page", "Index", "Home", new { area = "" })`
+  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products  Home Page", "Index", "Home", new { area = "" })`
 
-  TagHelper syntax: `<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products’  Home Page</a>`
+  TagHelper syntax: `<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products Home Page</a>`
 
   Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 

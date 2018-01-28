@@ -20,9 +20,9 @@ A WebHook request can be processed by one or more handlers. Handlers are called 
 
 ![WebHook Handler Order Property Diagram](_static/Handlers.png)
 
-A handler can optionally set the *Response* property on the WebHookHandlerContext which will lead the processing to stop and the response to be sent back as the HTTP response to the WebHook. In the case above, Handler C won’t get called because it has a higher order than B and B sets the response.
+A handler can optionally set the *Response* property on the WebHookHandlerContext which will lead the processing to stop and the response to be sent back as the HTTP response to the WebHook. In the case above, Handler C won't get called because it has a higher order than B and B sets the response.
 
-Setting the response is typically only relevant for WebHooks where the response can carry information back to the originating API. This is for example the case with Slack WebHooks where the response is posted back to the channel where the WebHook came from. Handlers can set the Receiver property if they only want to receive WebHooks from that particular receiver. If they don’t set the receiver they are called for all of them.
+Setting the response is typically only relevant for WebHooks where the response can carry information back to the originating API. This is for example the case with Slack WebHooks where the response is posted back to the channel where the WebHook came from. Handlers can set the Receiver property if they only want to receive WebHooks from that particular receiver. If they don't set the receiver they are called for all of them.
 
 One other common use of a response is to use a *410 Gone* response to indicate that the WebHook no longer is active and no further requests should be submitted.
 

@@ -18,12 +18,12 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Introducing view components
 
-New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
+New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. A view component:
 
-* Renders a chunk rather than a whole response
-* Includes the same separation-of-concerns and testability benefits found between a controller and view
-* Can have parameters and business logic
-* Is typically invoked from a layout page
+* Renders a chunk rather than a whole response.
+* Includes the same separation-of-concerns and testability benefits found between a controller and view.
+* Can have parameters and business logic.
+* Is typically invoked from a layout page.
 
 View components are intended anywhere you have reusable rendering logic that's too complex for a partial view, such as:
 
