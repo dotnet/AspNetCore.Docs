@@ -275,7 +275,7 @@ The preceding markup generates the following HTML:
 
 The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x. It's intended for linking to specific page handlers in Razor Pages apps.
 
-Consider the following *Index.cshtml.cs* file:
+Consider the following *Index* page model:
 
 ```csharp
 public class IndexModel : PageModel
@@ -309,7 +309,7 @@ public class IndexModel : PageModel
 }
 ```
 
-The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the attribute value.
+The page model's associated markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the attribute value.
 
 ```cshtml
 <form method="post">
