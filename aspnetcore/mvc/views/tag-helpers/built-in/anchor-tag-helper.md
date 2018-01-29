@@ -15,15 +15,15 @@ uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 
 By [Peter Kellner](http://peterkellner.net)
 
-The Anchor Tag Helper enhances the HTML anchor (`<a ... ></a>`) tag by adding new attributes. The link generated (as seen in the `href` attribute) is created using the new attributes. That URL can include an optional protocol such as "https".
+The Anchor Tag Helper enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered element's `href` attribute value is determined by the values of the `asp-` attributes.
 
 *SpeakerController.cs* is used in samples throughout this document:
 
 [!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs?name=snippet_SpeakerController)]
 
-## Anchor Tag Helper attributes
+An inventory of the `asp-` attributes follows.
 
-### asp-controller
+## asp-controller
 
 The `asp-controller` attribute assigns the controller used for generating the URL. The controller must exist in the current project. The following markup lists all speakers:
 
@@ -38,13 +38,13 @@ The generated HTML is:
 <a href="/Speaker">All Speakers</a>
 ```
 
-If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. If `asp-action` is omitted from the preceding markup, and this Anchor Tag Helper is generated from *HomeController*'s *Index* view (*/Home*), the generated HTML is:`
+If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. If `asp-action` is omitted from the preceding markup, and this Anchor Tag Helper is generated from *HomeController*'s *Index* view (*/Home*), the generated HTML is:
 
 ```html
 <a href="/Home">All Speakers</a>
 ```
 
-### asp-action
+## asp-action
 
 The `asp-action` attribute value represents the name of the controller action included in the generated `href` attribute. The following markup sets the generated `href` attribute value to the speaker detail page:
 
@@ -63,7 +63,7 @@ If no `asp-controller` attribute is specified, the default controller calling th
 
 If the `asp-action` attribute value is `Index`, then no action is appended to the URL, leading to the invocation of the default `Index` action. The action specified (or defaulted), must exist in the controller referenced in `asp-controller`.
 
-### asp-page
+## asp-page
 
 Use the `asp-page` attribute in an anchor tag to set its URL to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the "Speakers" page of the current directory.
 
@@ -93,7 +93,7 @@ https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
 > [!NOTE]
 > To use an `asp-page` attribute in Razor Pages, the URL must be a relative path (for example, `"./Speaker"`). Relative paths in the `asp-page` attribute are unavailable in MVC views. Use the "/" syntax for MVC views instead.
 
-### asp-route-{value}
+## asp-route-{value}
 
 The `asp-route-` attribute is a wildcard route prefix. Any value after the trailing dash is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
 
@@ -102,7 +102,7 @@ Consider the following controller action:
 ```csharp
 public IActionResult AnchorTagHelper(string id)
 {
-    var speaker = new SpeakerData()
+    var speaker = new SpeakerData
     {
         SpeakerId = 12
     };
@@ -157,13 +157,13 @@ The following HTML is generated because `speakerid` wasn't found in the matching
 
 If either `asp-controller` or `asp-action` aren't specified, then the same default processing is followed as is in the `asp-route` attribute.
 
-### asp-route
+## asp-route
 
 The `asp-route` attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#attribute-routing), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action.
 
 The [route name](xref:mvc/controllers/routing#route-name) `Name = "speakerevals"` tells the Anchor Tag Helper to generate a route directly to that controller action using the URL */Speaker/Evaluations*. If `asp-controller` or `asp-action` is specified in addition to `asp-route`, the route generated may not be what you expect. To avoid a route conflict, `asp-route` shouldn't be used with the `asp-controller` and `asp-action` attributes.
 
-### asp-all-route-data
+## asp-all-route-data
 
 The `asp-all-route-data` attribute supports the creation of a dictionary of key-value pairs. The key is the parameter name, and the value is the parameter value.
 
@@ -189,7 +189,7 @@ When the link is clicked, the controller's `EvaluationsCurrent` action is called
 
 If any keys in the dictionary match route parameters, those values are substituted in the route as appropriate. The other non-matching values are generated as request parameters.
 
-### asp-fragment
+## asp-fragment
 
 The `asp-fragment` attribute defines a URL fragment to append to the URL. The Anchor Tag Helper adds the hash character (#). Consider the following markup:
 
@@ -203,7 +203,7 @@ The generated URL is http://localhost/Speaker/Evaluations#SpeakerEvaluations.
 
 Hash tags are useful when building client-side apps. They can be used for easy marking and searching in JavaScript, for example.
 
-### asp-area
+## asp-area
 
 The `asp-area` attribute sets the area name used to set the appropriate route. The following example depicts how the area attribute causes a remapping of routes. Setting `asp-area` to "Blogs" prefixes the directory *Areas/Blogs* to the routes of the associated controllers and views for this anchor tag.
 
@@ -236,7 +236,7 @@ The generated HTML includes the areas segment:
 > [!TIP]
 > For MVC areas to work in a web app, the route template must include a reference to the area, if it exists. That template, which is the second parameter of the `routes.MapRoute` method call, appears as `template: '"{area:exists}/{controller=Home}/{action=Index}"'`.
 
-### asp-protocol
+## asp-protocol
 
 The `asp-protocol` attribute is for specifying a protocol (such as `https`) in your URL. For example:
 

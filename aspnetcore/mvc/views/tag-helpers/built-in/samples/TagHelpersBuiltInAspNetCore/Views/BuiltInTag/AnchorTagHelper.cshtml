@@ -1,10 +1,16 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "AnchorTagHelper";
+    ViewBag["Title"] = "AnchorTagHelper";
 }
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.js" type="text/javascript"></script>
+<h2>AnchorTagHelper</h2>
+
+@section Scripts
+{
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.js" type="text/javascript"></script>
+}
+
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" type="text/css">
 
 <style type="text/css">
@@ -84,7 +90,7 @@
     });
 </script>
 
-    @*<pretty replacement-text="Speakers" >@Html.Raw("<a asp-protocol='https' asp-action='Index' asp-controller='Speaker'>Speakers</a>")</pretty>*@
+    @*<pretty replacement-text="Speakers">@Html.Raw("<a asp-protocol='https' asp-action='Index' asp-controller='Speaker'>Speakers</a>")</pretty>*@
 
 
 
