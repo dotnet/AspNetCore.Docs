@@ -1,11 +1,11 @@
 ---
 title: Anchor Tag Helper
 author: pkellner
-description: Learn how to work with the ASP.NET Core Anchor Tag Helper
+description: Learn how to work with the ASP.NET Core built-in Anchor Tag Helper.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/26/2018
+ms.date: 01/29/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -17,9 +17,9 @@ By [Peter Kellner](http://peterkellner.net)
 
 The Anchor Tag Helper enhances the HTML anchor (`<a ... ></a>`) tag by adding new attributes. The link generated (as seen in the `href` attribute) is created using the new attributes. That URL can include an optional protocol such as "https".
 
-The following controller, *SpeakerController.cs*, is used in samples throughout this document:
+*SpeakerController.cs* is used in samples throughout this document:
 
-[!code-csharp[SpeakerController](sample/TagHelpersBuiltInAspNetCore/src/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs)]
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs?name=snippet_SpeakerController)]
 
 ## Anchor Tag Helper attributes
 
@@ -38,7 +38,7 @@ The generated HTML is:
 <a href="/Speaker">All Speakers</a>
 ```
 
-If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. In the preceding example, if `asp-action` is omitted, and this Anchor Tag Helper is generated from *HomeController*'s *Index* view (*/Home*), the generated HTML is:
+If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. If `asp-action` is omitted from the preceding markup, and this Anchor Tag Helper is generated from *HomeController*'s *Index* view (*/Home*), the generated HTML is:`
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -106,20 +106,14 @@ public IActionResult AnchorTagHelper(string id)
     {
         SpeakerId = 12
     };
+
     return View(viewName, speaker);
 }
 ```
 
-With a default route template defined in *Startup.cs*:
+With a default route template defined in *Startup.Configure*:
 
-```csharp
-app.UseMvc(routes =>
-{
-   routes.MapRoute(
-    name: "default",
-    template: "{controller=Home}/{action=Index}/{id?}");
-});
-```
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Startup.cs?name=snippet_UseMvc&highlight=8-10)]
 
 The MVC view uses the `speaker` model parameter, provided by the `AnchorTagHelper` action, as follows:
 
@@ -141,7 +135,7 @@ The default route's `{id?}` placeholder was matched. The generated HTML is:
 <a href='/Speaker/Detail/12'>SpeakerId: 12</a>
 ```
 
-If the route prefix isn't part of the routing template found, which is the case with the following MVC view:
+Assume the route prefix isn't part of the matching routing template, as with the following MVC view:
 
 ```cshtml
 @model SpeakerData
