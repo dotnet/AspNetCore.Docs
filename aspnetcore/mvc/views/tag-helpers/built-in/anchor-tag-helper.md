@@ -15,7 +15,7 @@ uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 
 By [Peter Kellner](http://peterkellner.net)
 
-The Anchor Tag Helper enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered element's `href` attribute value is determined by the values of the `asp-` attributes.
+The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) element by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered element's `href` attribute value is determined by the values of the `asp-` attributes.
 
 *SpeakerController.cs* is used in samples throughout this document:
 
@@ -25,7 +25,7 @@ An inventory of the `asp-` attributes follows.
 
 ## asp-controller
 
-The `asp-controller` attribute assigns the controller used for generating the URL. The controller must exist in the current project. The following markup lists all speakers:
+The [asp-controller](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.controller) attribute assigns the controller used for generating the URL. The controller must exist in the current project. The following markup lists all speakers:
 
 ```cshtml
 <a asp-controller="Speaker" 
@@ -46,7 +46,7 @@ If the `asp-controller` attribute is specified and `asp-action` isn't, the defau
 
 ## asp-action
 
-The `asp-action` attribute value represents the name of the controller action included in the generated `href` attribute. The following markup sets the generated `href` attribute value to the speaker detail page:
+The [asp-action](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.action) attribute value represents the name of the controller action included in the generated `href` attribute. The following markup sets the generated `href` attribute value to the speaker detail page:
 
 ```cshtml
 <a asp-controller="Speaker" 
@@ -65,7 +65,7 @@ If the `asp-action` attribute value is `Index`, then no action is appended to th
 
 ## asp-page
 
-Use the `asp-page` attribute in an anchor tag to set its URL to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the "Speakers" page of the current directory.
+The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x. Use it in an anchor tag to set its URL to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the "Speakers" page of the current directory.
 
 ```cshtml
 <a asp-page="/Speakers">All Speakers</a>
@@ -95,7 +95,7 @@ https://localhost:44399/Speakers/Index/2?page=%2FSpeaker
 
 ## asp-route-{value}
 
-The `asp-route-` attribute is a wildcard route prefix. Any value after the trailing dash is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
+The [asp-route-](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.routevalues) attribute is a wildcard route prefix. Any value after the trailing dash is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
 
 Consider the following controller action:
 
@@ -159,13 +159,13 @@ If either `asp-controller` or `asp-action` aren't specified, then the same defau
 
 ## asp-route
 
-The `asp-route` attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#attribute-routing), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action.
+The [asp-route](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.route) attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#attribute-routing), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action.
 
 The [route name](xref:mvc/controllers/routing#route-name) `Name = "speakerevals"` tells the Anchor Tag Helper to generate a route directly to that controller action using the URL */Speaker/Evaluations*. If `asp-controller` or `asp-action` is specified in addition to `asp-route`, the route generated may not be what you expect. To avoid a route conflict, `asp-route` shouldn't be used with the `asp-controller` and `asp-action` attributes.
 
 ## asp-all-route-data
 
-The `asp-all-route-data` attribute supports the creation of a dictionary of key-value pairs. The key is the parameter name, and the value is the parameter value.
+The [asp-all-route-data](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.routevalues) attribute supports the creation of a dictionary of key-value pairs. The key is the parameter name, and the value is the parameter value.
 
 In the following example, a dictionary is created inline and passed to a Razor view. Alternatively, the data could be passed in with your model.
 
@@ -191,7 +191,7 @@ If any keys in the dictionary match route parameters, those values are substitut
 
 ## asp-fragment
 
-The `asp-fragment` attribute defines a URL fragment to append to the URL. The Anchor Tag Helper adds the hash character (#). Consider the following markup:
+The [asp-fragment](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.fragment) attribute defines a URL fragment to append to the URL. The Anchor Tag Helper adds the hash character (#). Consider the following markup:
 
 ```cshtml
 <a asp-action="Evaluations" 
@@ -205,7 +205,7 @@ Hash tags are useful when building client-side apps. They can be used for easy m
 
 ## asp-area
 
-The `asp-area` attribute sets the area name used to set the appropriate route. The following example depicts how the area attribute causes a remapping of routes. Setting `asp-area` to "Blogs" prefixes the directory *Areas/Blogs* to the routes of the associated controllers and views for this anchor tag.
+The [asp-area](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.area) attribute sets the area name used to set the appropriate route. The following example depicts how the area attribute causes a remapping of routes. Setting `asp-area` to "Blogs" prefixes the directory *Areas/Blogs* to the routes of the associated controllers and views for this anchor tag.
 
 * **<Project name\>**
   * **wwwroot**
@@ -238,7 +238,7 @@ The generated HTML includes the areas segment:
 
 ## asp-protocol
 
-The `asp-protocol` attribute is for specifying a protocol (such as `https`) in your URL. For example:
+The [asp-protocol](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.protocol) attribute is for specifying a protocol (such as `https`) in your URL. For example:
 
 ```cshtml
 <a asp-protocol="https" 
@@ -252,7 +252,28 @@ The preceding markup generates the following HTML:
 <a href="https://localhost/Home/About">About</a>
 ```
 
-The domain in the example is localhost, but the Anchor Tag Helper uses the website's public domain when generating the URL.
+The host name in the example is localhost, but the Anchor Tag Helper uses the website's public domain when generating the URL.
+
+## asp-host
+
+The [asp-host](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.host) attribute is for specifying a host name in your URL. For example:
+
+```cshtml
+<a asp-protocol="https" 
+   asp-action="About"
+   asp-controller="Home"
+   asp-host="microsoft.com">About</a>
+```
+
+The preceding markup generates the following HTML:
+
+```html
+<a href="https://microsoft.com/Home/About">About</a>
+```
+
+## asp-page-handler
+
+The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x. 
 
 ## Additional resources
 
