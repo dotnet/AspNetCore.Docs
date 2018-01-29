@@ -34,6 +34,8 @@ uid: security/authentication/index
 
   * [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](azure-ad-b2c.md)
 
+  * [Integrate Azure AD B2C into an ASP.NET Core web API](azure-ad-b2c-webapi.md)
+
   * [Call an ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 
   * [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)

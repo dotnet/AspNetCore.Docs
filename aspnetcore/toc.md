@@ -247,6 +247,7 @@
 ### [Azure Active Directory](xref:security/authentication/azure-active-directory/index)
 #### [Integrate Azure AD Into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
 #### [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](xref:security/authentication/azure-ad-b2c)
+#### [Integrate Azure AD B2C into an ASP.NET Core web API](xref:security/authentication/azure-ad-b2c-webapi)
 #### [Call a ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 #### [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 ### [Secure ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/)
