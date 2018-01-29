@@ -2,13 +2,13 @@
 title: Visual Studio publish profiles for ASP.NET Core app deployment
 author: rick-anderson
 description: Discover how to create publish profiles for ASP.NET Core apps in Visual Studio.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 09/26/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment

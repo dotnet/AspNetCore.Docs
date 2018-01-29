@@ -2,12 +2,12 @@
 title: Request Features in ASP.NET Core
 author: ardalis
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core
@@ -79,10 +79,8 @@ By combining custom server implementations and specific middleware enhancements,
 
 Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
 
-## Additional Resources
+## Additional resources
 
-* [Servers](servers/index.md)
-
-* [Middleware](middleware.md)
-
-* [Open Web Interface for .NET (OWIN)](owin.md)
+* [Servers](xref:fundamentals/servers/index)
+* [Middleware](xref:fundamentals/middleware)
+* [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)

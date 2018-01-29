@@ -2,12 +2,12 @@
 title: Using Grunt in ASP.NET Core
 author: rick-anderson
 description: 
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: client-side/using-grunt
 ---
 # Using Grunt in ASP.NET Core 
@@ -46,7 +46,7 @@ To begin, set up a new empty web application and add TypeScript example files. T
 
 4.  Add a new folder named `TypeScript` to your project directory.
 
-5.  Before adding any files, let’s make sure that Visual Studio has the option 'compile on save' for TypeScript files checked. *Tools > Options > Text Editor > Typescript > Project*
+5.  Before adding any files, make sure that Visual Studio has the option 'compile on save' for TypeScript files checked. Navigate to **Tools** > **Options** > **Text Editor** > **Typescript** > **Project**:
 
     ![options setting auto compliation of TypeScript files](using-grunt/_static/typescript-options.png)
 
@@ -231,7 +231,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     
     ![task runner explorer run each task](using-grunt/_static/task-runner-explorer-run-each-task.png)
     
-    The concat task creates a new *combined.js* file and places it into the temp directory. The jshint task simply runs and doesn’t produce output. The uglify task creates a new *combined.min.js* file and places it into wwwroot/lib. On completion, the solution should look something like the screenshot below:
+    The concat task creates a new *combined.js* file and places it into the temp directory. The jshint task simply runs and doesn't produce output. The uglify task creates a new *combined.min.js* file and places it into wwwroot/lib. On completion, the solution should look something like the screenshot below:
     
     ![solution explorer after all tasks](using-grunt/_static/solution-explorer-after-all-tasks.png)
     

@@ -2,12 +2,12 @@
 title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/12/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
@@ -68,7 +68,7 @@ The `View` helper method has several overloads. You can optionally specify:
   ```csharp
   return View("Orders");
   ```
-* A [model](xref:mvc/models/model-binding) to pass to the the view:
+* A [model](xref:mvc/models/model-binding) to pass to the view:
 
   ```csharp
   return View(Orders);

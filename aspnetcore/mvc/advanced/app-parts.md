@@ -2,12 +2,12 @@
 title: Application Parts in ASP.NET Core
 author: ardalis
 description: Learn how to use application parts, which are abstrations over the resources of an app, to configure your app to discover or avoid loading features from an assembly.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 01/04/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/extensibility/app-parts
 ---
 # Application Parts in ASP.NET Core

@@ -2,12 +2,12 @@
 title: View-based authorization in ASP.NET Core MVC
 author: rick-anderson
 description: This document demonstrates how to inject and utilize the authorization service inside of an ASP.NET Core Razor view.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/30/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/views
 ---
 # View-based authorization

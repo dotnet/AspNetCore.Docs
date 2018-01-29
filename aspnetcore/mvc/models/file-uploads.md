@@ -2,12 +2,12 @@
 title: File uploads in ASP.NET Core
 author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/05/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/models/file-uploads
 ---
 # File uploads in ASP.NET Core

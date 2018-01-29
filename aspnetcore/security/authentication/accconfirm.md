@@ -2,12 +2,12 @@
 title: Account Confirmation and Password Recovery in ASP.NET Core
 author: rick-anderson
 description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/1/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery in ASP.NET Core

@@ -1,6 +1,6 @@
 ---
 uid: whitepapers/what-is-new-in-aspnet-mvc
-title: "What’s New in ASP.NET MVC 2 | Microsoft Docs"
+title: "What's New in ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes new features and improvements introduced in ASP.NET MVC 2. This document is also available for download."
 ms.author: aspnetcontent
@@ -13,7 +13,7 @@ ms.prod: .net-framework
 msc.legacyurl: /whitepapers/what-is-new-in-aspnet-mvc
 msc.type: content
 ---
-What’s New in ASP.NET MVC 2
+What's New in ASP.NET MVC 2
 ====================
 > This document describes new features and improvements introduced in ASP.NET MVC 2. This document is also available for [Download](https://download.microsoft.com/download/F/1/6/F16F9AF9-8EF4-4845-BC97-639791D5699C/WhatIsNewInMVC_2.pdf)
 
@@ -296,7 +296,7 @@ Complying with all applicable copyright laws is the responsibility of the user. 
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
 
-Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
+Unless otherwise noted, the example companies, organizations, products, domain names, email addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
 
 © 2010 Microsoft Corporation. All rights reserved.
 

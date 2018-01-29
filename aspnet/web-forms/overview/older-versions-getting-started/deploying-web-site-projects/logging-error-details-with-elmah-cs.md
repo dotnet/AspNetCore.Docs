@@ -24,7 +24,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 ## Introduction
 
-The [preceding tutorial](logging-error-details-with-asp-net-health-monitoring-cs.md) examined ASP.NET's health monitoring system, which offers an out of the box library for recording a wide array of Web events. Many developers use health monitoring to log and e-mail the details of unhandled exceptions. However, there are a few pain points with this system. First and foremost is the lack any sort of user interface for viewing information about the logged events. If you want to see a summary of the 10 last errors, or view the details of an error that happened last week, you must either poke through the database, scan through your e-mail Inbox, or build a web page that displays information from the `aspnet_WebEvent_Events` table.
+The [preceding tutorial](logging-error-details-with-asp-net-health-monitoring-cs.md) examined ASP.NET's health monitoring system, which offers an out of the box library for recording a wide array of Web events. Many developers use health monitoring to log and email the details of unhandled exceptions. However, there are a few pain points with this system. First and foremost is the lack any sort of user interface for viewing information about the logged events. If you want to see a summary of the 10 last errors, or view the details of an error that happened last week, you must either poke through the database, scan through your email Inbox, or build a web page that displays information from the `aspnet_WebEvent_Events` table.
 
 Another pain point centers around health monitoring's complexity. Because health monitoring can be used to record a plethora of different events, and because there are a variety of options for instructing how and when events are logged, correctly configuring the health monitoring system can be an onerous task. Finally, there are compatibility issues. Because health monitoring was first added to the .NET Framework in version 2.0, it is not available for older web applications built using ASP.NET version 1.x. Moreover, the `SqlWebEventProvider` class, which we used in the preceding tutorial to logs error details to a database, only works with Microsoft SQL Server databases. You will need to create a custom log provider class should you need to log errors to an alternate data store, such as an XML file or Oracle database.
 
@@ -66,7 +66,7 @@ The `Elmah.dll` assembly includes the classes used by the ELMAH system. These cl
 - **HTTP Modules** - an HTTP Module is a class that defines event handlers for `HttpApplication` events, such as the `Error` event. ELMAH includes multiple HTTP Modules, the three most germane ones being: 
 
     - `ErrorLogModule` - logs unhandled exceptions to a log source.
-    - `ErrorMailModule` - sends the details of an unhandled exception in an e-mail message.
+    - `ErrorMailModule` - sends the details of an unhandled exception in an email message.
     - `ErrorFilterModule` - applies developer-specified filters to determine what exceptions are logged and what ones are ignored.
 - **HTTP Handlers** - an HTTP Handler is a class that is responsible for generating the markup for a particular type of request. ELMAH includes HTTP Handlers that render error details as a web page, as an RSS feed, or as a comma-delimited file (CSV).
 - **Error Log Sources** - out of the box ELMAH can log errors to memory, to a Microsoft SQL Server database, to a Microsoft Access database, to an Oracle database, to an XML file, to a SQLite database, or to a Vista DB database. Like the health monitoring system, ELMAH's architecture was built using the provider model, meaning that you can create and seamlessly integrate your own custom log source providers, if needed.
@@ -194,27 +194,27 @@ The error log on the production environment can now be viewed by remote users; r
 
 ELMAH's `ErrorLogModule` HTTP Module automatically logs unhandled exceptions to the specified log source. Alternatively, you can log an error without having to raise an unhandled exception by using the `ErrorSignal` class and its `Raise` method. The `Raise` method is passed an `Exception` object and logs it as if that exception had been thrown and had reached the ASP.NET runtime without being handled. The difference, however, is that the request continues executing normally after the `Raise` method has been called, whereas a thrown, unhandled exception interrupts the request's normal execution and causes the ASP.NET runtime to display the configured error page.
 
-The `ErrorSignal` class is useful in situations where there is some action that may fail, but its failure is not catastrophic to the overall operation being performed. For instance, a website may contain a form that takes the user's input, stores it in a database, and then sends the user an e-mail informing them that they information was processed. What should happen if the information is saved to the database successfully, but there is an error when sending the e-mail message? One option would be to throw an exception and send the user to the error page. However, this might confuse the user into thinking that the information they entered was not saved. Another approach would be to log the e-mail-related error, but not alter the user's experience in any way. This is where the `ErrorSignal` class is useful.
+The `ErrorSignal` class is useful in situations where there is some action that may fail, but its failure is not catastrophic to the overall operation being performed. For instance, a website may contain a form that takes the user's input, stores it in a database, and then sends the user an email informing them that they information was processed. What should happen if the information is saved to the database successfully, but there is an error when sending the email message? One option would be to throw an exception and send the user to the error page. However, this might confuse the user into thinking that the information they entered was not saved. Another approach would be to log the email-related error, but not alter the user's experience in any way. This is where the `ErrorSignal` class is useful.
 
 [!code-csharp[Main](logging-error-details-with-elmah-cs/samples/sample6.cs)]
 
-## Error Notification Via E-Mail
+## Error Notification Via Email
 
-Along with logging errors to a database, ELMAH can also be configured to e-mail error details to a specified recipient. This functionality is provided by the `ErrorMailModule` HTTP Module; therefore, you must register this HTTP Module in `Web.config` in order to send error details via e-mail.
+Along with logging errors to a database, ELMAH can also be configured to email error details to a specified recipient. This functionality is provided by the `ErrorMailModule` HTTP Module; therefore, you must register this HTTP Module in `Web.config` in order to send error details via email.
 
 [!code-xml[Main](logging-error-details-with-elmah-cs/samples/sample7.xml)]
 
-Next, specify information about the error e-mail in the `<elmah>` element's `<errorMail>` section, indicating the e-mail's sender and recipient, the subject, and whether the e-mail is sent asynchronously.
+Next, specify information about the error email in the `<elmah>` element's `<errorMail>` section, indicating the email's sender and recipient, the subject, and whether the email is sent asynchronously.
 
 [!code-xml[Main](logging-error-details-with-elmah-cs/samples/sample8.xml)]
 
-With the above settings in place, whenever a runtime error occurs ELMAH sends an e-mail to support@example.com with the error details. ELMAH's error e-mail includes the same information shown in the error details web page, namely the error message, the stack trace, and the server variables (refer back to **Figures 4** and **5**). The error e-mail also includes the Exception Details Yellow Screen of Death content as an attachment (`YSOD.html`).
+With the above settings in place, whenever a runtime error occurs ELMAH sends an email to support@example.com with the error details. ELMAH's error email includes the same information shown in the error details web page, namely the error message, the stack trace, and the server variables (refer back to **Figures 4** and **5**). The error email also includes the Exception Details Yellow Screen of Death content as an attachment (`YSOD.html`).
 
-**Figure 8** shows ELMAH's error e-mail generated by visiting `Genre.aspx?ID=foo`. While **Figure 8** shows only the error message and stack trace, the server variables are included further down in the e-mail's body.
+**Figure 8** shows ELMAH's error email generated by visiting `Genre.aspx?ID=foo`. While **Figure 8** shows only the error message and stack trace, the server variables are included further down in the email's body.
 
 [![](logging-error-details-with-elmah-cs/_static/image21.png)](logging-error-details-with-elmah-cs/_static/image20.png)
 
-**Figure 8**: You Can Configure ELMAH To Send Error Details Via E-Mail  
+**Figure 8**: You Can Configure ELMAH To Send Error Details Via Email  
 ([Click to view full-size image](logging-error-details-with-elmah-cs/_static/image22.png))
 
 ## Only Logging Errors Of Interest
@@ -235,7 +235,7 @@ For more information on ELMAH's error filtering capabilities, refer to the [Erro
 
 ## Summary
 
-ELMAH provides a simple, yet powerful mechanism for logging errors in an ASP.NET web application. Like Microsoft's health monitoring system, ELMAH can log errors to a database and can send the error details to a developer via e-mail. Unlike the health monitoring system, ELMAH includes out of the box support for a wider range of error log data stores, including: Microsoft SQL Server, Microsoft Access, Oracle, XML files, and several others. Moreover, ELMAH offers a built-in mechanism for viewing the error log and details about a specific error from a web page, `elmah.axd`. The `elmah.axd` page can also render error information as an RSS feed or as a comma-separated value file (CSV), which you can read using Microsoft Excel. You can also instruct ELMAH to filter errors from the log using declarative or programmatic assertions. And ELMAH can be used with ASP.NET version 1.x applications.
+ELMAH provides a simple, yet powerful mechanism for logging errors in an ASP.NET web application. Like Microsoft's health monitoring system, ELMAH can log errors to a database and can send the error details to a developer via email. Unlike the health monitoring system, ELMAH includes out of the box support for a wider range of error log data stores, including: Microsoft SQL Server, Microsoft Access, Oracle, XML files, and several others. Moreover, ELMAH offers a built-in mechanism for viewing the error log and details about a specific error from a web page, `elmah.axd`. The `elmah.axd` page can also render error information as an RSS feed or as a comma-separated value file (CSV), which you can read using Microsoft Excel. You can also instruct ELMAH to filter errors from the log using declarative or programmatic assertions. And ELMAH can be used with ASP.NET version 1.x applications.
 
 Every deployed application should have some mechanism for automatically logging unhandled exceptions and sending notification to the development team. Whether this is accomplished using health monitoring or ELMAH is secondary. In other words, it doesn't really matter much whether you use health monitoring or ELMAH; evaluate both systems and then choose the one that best fits your needs. What is fundamentally important is that some mechanism be put in place to log unhandled exceptions in the production environment.
 

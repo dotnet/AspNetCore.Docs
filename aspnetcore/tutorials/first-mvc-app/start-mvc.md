@@ -2,12 +2,12 @@
 title: Getting started with ASP.NET Core MVC and Visual Studio
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Getting started with ASP.NET Core MVC and Visual Studio
