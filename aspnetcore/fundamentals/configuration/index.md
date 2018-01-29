@@ -6,9 +6,9 @@ manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2018
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/configuration/index
 ---
 # Configure an ASP.NET Core App

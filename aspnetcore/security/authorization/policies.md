@@ -2,13 +2,13 @@
 title: Custom policy-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to create and use custom authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
+manager: wpickett
 ms.author: riande
 ms.custom: mvc
-manager: wpickett
 ms.date: 11/21/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/policies
 ---
 # Custom policy-based authorization

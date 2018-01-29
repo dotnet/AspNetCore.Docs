@@ -2,12 +2,12 @@
 title: Subkey Derivation and Authenticated Encryption
 author: rick-anderson
 description: This document explains the implementation details of ASP.NET Core data protection subkey derivation and authenticated encryption.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/implementation/subkeyderivation
 ---
 # Subkey Derivation and Authenticated Encryption

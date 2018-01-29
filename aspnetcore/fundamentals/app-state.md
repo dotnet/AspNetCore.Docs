@@ -2,14 +2,14 @@
 title: Session and application state in ASP.NET Core
 author: rick-anderson
 description: Approaches to preserving application and user (session) state between requests.
-ms.author: riande
 manager: wpickett
-ms.date: 11/27/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/app-state
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 11/27/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/app-state
 ---
 
 # Introduction to session and application state in ASP.NET Core

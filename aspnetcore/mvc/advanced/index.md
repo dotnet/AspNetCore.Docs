@@ -1,13 +1,14 @@
 ---
 title: Advanced topics for ASP.NET Core MVC
 author: rick-anderson
-description: 
-ms.author: riande
+description: Discover advanced topics for ASP.NET Core MVC development.
 manager: wpickett
+ms.author: riande
 ms.date: 01/05/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: mvc/advanced/index
 ---
 
 # Advanced topics for ASP.NET Core MVC

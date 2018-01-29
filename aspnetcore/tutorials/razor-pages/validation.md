@@ -2,12 +2,12 @@
 title: Adding Validation
 author: rick-anderson
 description: Explains how to add validation to a Razor Page.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/validation
 ---
 # Adding validation to a Razor Page

@@ -2,12 +2,12 @@
 title: High-performance logging with LoggerMessage in ASP.NET Core
 author: guardrex
 description: Learn how to use LoggerMessage features to create cacheable delegates that require fewer object allocations than logger extension methods for high-performance logging scenarios.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/03/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/logging/loggermessage
 ---
 # High-performance logging with LoggerMessage in ASP.NET Core

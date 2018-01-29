@@ -2,12 +2,12 @@
 title: Getting Started with ASP.NET Core and Entity Framework 6
 author: tdykstra
 description: This article shows how to use Entity Framework 6 in an ASP.NET Core application.
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 02/24/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: data/entity-framework-6
 ---
 # Getting started with ASP.NET Core and Entity Framework 6

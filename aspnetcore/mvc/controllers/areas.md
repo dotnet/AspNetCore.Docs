@@ -2,12 +2,12 @@
 title: Areas
 author: rick-anderson
 description: Shows how to work with areas.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/controllers/areas
 ---
 # Areas

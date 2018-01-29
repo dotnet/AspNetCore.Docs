@@ -2,12 +2,12 @@
 title: Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio Code on Mac, Linux, and Windows
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/start-mvc
 ---
 # Getting started with ASP.NET Core MVC  on Mac, Linux, or Windows

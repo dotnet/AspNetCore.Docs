@@ -2,12 +2,12 @@
 title: Role based Authorization
 author: rick-anderson
 description: This document demonstrates how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/roles
 ---
 # Role based Authorization

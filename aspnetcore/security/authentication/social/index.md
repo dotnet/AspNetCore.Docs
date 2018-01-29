@@ -2,12 +2,12 @@
 title: Enabling authentication using Facebook, Google, and other external providers
 author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/01/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/social/index
 ---
 

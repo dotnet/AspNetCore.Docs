@@ -2,12 +2,12 @@
 title: Safe storage of app secrets during development in ASP.NET Core
 author: rick-anderson
 description: Shows how to safely store secrets during development
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 09/15/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/app-secrets
 ---
 # Safe storage of app secrets during development in ASP.NET Core

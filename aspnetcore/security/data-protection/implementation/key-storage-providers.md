@@ -1,13 +1,13 @@
 ---
 title: Key storage providers
 author: rick-anderson
-description:  Key storage providers
-ms.author: riande
+description: Key storage providers
 manager: wpickett
+ms.author: riande
 ms.date: 01/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers

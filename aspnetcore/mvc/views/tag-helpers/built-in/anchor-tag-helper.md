@@ -1,13 +1,13 @@
 ---
-title: Anchor Tag Helper | Microsoft Docs
+title: Anchor Tag Helper in ASP.NET Core
 author: pkellner
 description: Shows how to work with Anchor Tag Helper
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/20/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper

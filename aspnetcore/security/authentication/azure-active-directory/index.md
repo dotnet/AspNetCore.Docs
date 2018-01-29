@@ -2,12 +2,12 @@
 title: Azure Active Directory
 author: rick-anderson
 description: This document serves as the table of contents for the various Azure Active Directory topics related to ASP.NET Core.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/4/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/azure-active-directory/index
 ---
 # Azure Active Directory

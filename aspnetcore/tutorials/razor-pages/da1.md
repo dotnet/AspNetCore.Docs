@@ -2,12 +2,12 @@
 title: Updating the generated pages
 author: rick-anderson
 description: Updating the generated pages with better display.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/da1
 ---
 # Updating the generated pages

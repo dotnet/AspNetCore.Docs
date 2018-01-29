@@ -2,12 +2,12 @@
 title: Enforcing SSL in an ASP.NET Core app
 author: rick-anderson
 description: Shows how to require SSL in a ASP.NET Core web app
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/19/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/enforcing-ssl
 ---
 # Enforcing SSL in an ASP.NET Core app

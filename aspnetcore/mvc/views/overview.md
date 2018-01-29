@@ -2,12 +2,12 @@
 title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/12/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
