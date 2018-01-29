@@ -309,15 +309,16 @@ public class IndexModel : PageModel
 }
 ```
 
-The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler:
+The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name don't need to be specified.
 
 ```cshtml
 <form method="post">
     <a asp-page-handler="Delete" 
-       asp-route-id="@contact.Id">Delete</button>
+       asp-route-id="@contact.Id">Delete</a>
 </form>
 ```
 
 ## Additional resources
 
 * [Areas](xref:mvc/controllers/areas)
+* [Intro to Razor Pages](xref:mvc/razor-pages/index)
