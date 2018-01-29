@@ -14,7 +14,7 @@ uid: performance/caching/response
 By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Luke Latham](https://github.com/guardrex)
 
 > [!NOTE]
-> Response caching is [not supported in Razor Pages with ASP.NET Core 2.0](https://github.com/aspnet/Mvc/issues/6437). This feature will be supported in the [ASP.NET Core 2.1 release](https://github.com/aspnet/Home/wiki/Roadmap).
+> Response caching [is'nt supported in Razor Pages with ASP.NET Core 2.0](https://github.com/aspnet/Mvc/issues/6437). This feature will be supported in the [ASP.NET Core 2.1 release](https://github.com/aspnet/Home/wiki/Roadmap).
   
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
