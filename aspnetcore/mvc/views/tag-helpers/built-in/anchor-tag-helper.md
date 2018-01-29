@@ -1,9 +1,9 @@
 ---
 title: Anchor Tag Helper
 author: pkellner
-description: Learn how to work with the ASP.NET Core built-in Anchor Tag Helper.
+description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
 manager: wpickett
-ms.author: riande
+ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/29/2018
 ms.prod: aspnet-core
@@ -15,7 +15,7 @@ uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 
 By [Peter Kellner](http://peterkellner.net)
 
-The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) element by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered element's `href` attribute value is determined by the values of the `asp-` attributes.
+The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered DOM element's `href` attribute value is determined by the values of the `asp-` attributes.
 
 *SpeakerController.cs* is used in samples throughout this document:
 
@@ -273,7 +273,50 @@ The preceding markup generates the following HTML:
 
 ## asp-page-handler
 
-The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x. 
+The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x. It's intended for linking to specific page handlers in Razor Pages apps.
+
+Consider the following *Index.cshtml.cs* file:
+
+```csharp
+public class IndexModel : PageModel
+{
+    private readonly AppDbContext _db;
+
+    public IndexModel(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    public IList<Customer> Customers { get; private set; }
+
+    public async Task OnGetAsync()
+    {
+        Customers = await _db.Customers.AsNoTracking().ToListAsync();
+    }
+
+    public async Task<IActionResult> OnPostDeleteAsync(int id)
+    {
+        var contact = await _db.Customers.FindAsync(id);
+
+        if (contact != null)
+        {
+            _db.Customers.Remove(contact);
+            await _db.SaveChangesAsync();
+        }
+
+        return RedirectToPage();
+    }
+}
+```
+
+The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler:
+
+```cshtml
+<form method="post">
+    <a asp-page-handler="Delete" 
+       asp-route-id="@contact.Id">Delete</button>
+</form>
+```
 
 ## Additional resources
 
