@@ -309,7 +309,7 @@ public class IndexModel : PageModel
 }
 ```
 
-The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name don't need to be specified.
+The following *Index.cshtml* file markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the attribute value.
 
 ```cshtml
 <form method="post">
