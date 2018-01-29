@@ -65,7 +65,7 @@ If the `asp-action` attribute value is `Index`, then no action is appended to th
 
 ## asp-page
 
-The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x. Use it in an anchor tag to set its URL to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the "Speakers" page of the current directory.
+The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the "Speakers" page of the current directory.
 
 ```cshtml
 <a asp-page="/Speakers">All Speakers</a>
