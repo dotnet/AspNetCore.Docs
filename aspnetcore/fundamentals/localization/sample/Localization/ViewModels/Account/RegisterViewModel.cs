@@ -9,7 +9,7 @@ namespace Localization.StarterWeb.ViewModels.Account
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "The Email field is required.")]
-        [EmailAddress(ErrorMessage = "The Email field is not a valid e-mail address.")]
+        [EmailAddress(ErrorMessage = "The Email field is not a valid email address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

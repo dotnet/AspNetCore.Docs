@@ -2,12 +2,12 @@
 title: Filters
 author: ardalis
 description: Learn how *Filters* work and how to use them in ASP.NET Core MVC.
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 12/12/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/controllers/filters
 ---
 

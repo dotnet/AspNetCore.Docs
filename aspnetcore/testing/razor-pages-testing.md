@@ -2,13 +2,13 @@
 title: Razor Pages unit and integration testing in ASP.NET Core
 author: guardrex
 description: Learn how to create unit and integration tests for Razor Pages apps.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 11/27/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: testing/razor-pages-testing
 ---
 # Razor Pages unit and integration testing in ASP.NET Core

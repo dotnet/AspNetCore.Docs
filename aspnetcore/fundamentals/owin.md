@@ -2,14 +2,14 @@
 title: Open Web Interface for .NET (OWIN)
 author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
-ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/owin
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 10/14/2016
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/owin
 ---
 # Introduction to Open Web Interface for .NET (OWIN)
 
@@ -230,7 +230,7 @@ You can construct a OWIN environment using the `HttpContext`.
 
 OWIN depends on an `IDictionary<string,object>` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the [primary specification, extensions](http://owin.org/#spec), and [OWIN Key Guidelines and Common Keys](http://owin.org/spec/spec/CommonKeys.html).
 
-### Request Data (OWIN v1.0.0)
+### Request data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -243,13 +243,13 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.RequestHeaders | `IDictionary<string,string[]>`  | |
 | owin.RequestBody | `Stream`  | |
 
-### Request Data (OWIN v1.1.0)
+### Request data (OWIN v1.1.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | owin.RequestId | `String` | Optional |
 
-### Response Data (OWIN v1.0.0)
+### Response data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -259,7 +259,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.ResponseBody | `Stream`  | |
 
 
-### Other Data (OWIN v1.0.0)
+### Other data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -267,7 +267,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.Version  | `String` | |   
 
 
-### Common Keys
+### Common keys
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -313,9 +313,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | websocket.ClientCloseStatus | `int` | Optional |
 | websocket.ClientCloseDescription | `String` | Optional |
 
+## Additional resources
 
-## Additional Resources
-
-* [Middleware](middleware.md)
-
-* [Servers](servers/index.md)
+* [Middleware](xref:fundamentals/middleware)
+* [Servers](xref:fundamentals/servers/index)

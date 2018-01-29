@@ -2,12 +2,12 @@
 title: Model validation in ASP.NET Core MVC
 author: rachelappel
 description: Learn about model validation in ASP.NET Core MVC.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/18/2016
-ms.topic: article
+ms.prod: asp.net-core
 ms.technology: aspnet
-ms.prod: asp.net-core 
+ms.topic: article
 uid: mvc/models/validation
 ---
 # Introduction to model validation in ASP.NET Core MVC
@@ -76,7 +76,7 @@ MVC will continue validating fields until reaches the maximum number of errors (
 
 ## Handling Model State Errors
 
-Model validation occurs prior to each controller action being invoked, and it's the action method’s responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
+Model validation occurs prior to each controller action being invoked, and it's the action method's responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
 
 Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a filter may be an appropriate place to implement such a policy. You should test how your actions behave with valid and invalid model states.
 

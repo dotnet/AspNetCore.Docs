@@ -2,12 +2,12 @@
 title: Authentication
 author: rick-anderson
 description: This document serves as a table of content for the various ASP.NET Core authentication topics.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/index
 ---
 # Authentication
@@ -33,6 +33,8 @@ uid: security/authentication/index
   * [Integrate Azure AD into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
 
   * [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](azure-ad-b2c.md)
+
+  * [Integrate Azure AD B2C into an ASP.NET Core web API](azure-ad-b2c-webapi.md)
 
   * [Call an ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 

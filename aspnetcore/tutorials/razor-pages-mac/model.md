@@ -2,12 +2,12 @@
 title: Adding a model to a Razor Pages app with Visual Studio for Mac
 author: rick-anderson
 description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/27/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/model
 ---
 
@@ -71,4 +71,4 @@ The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)

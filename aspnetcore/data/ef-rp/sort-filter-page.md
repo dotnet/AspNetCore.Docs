@@ -4,9 +4,9 @@ author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 ms.author: riande
 ms.date: 10/22/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/sort-filter-page
 ---
 
@@ -103,7 +103,7 @@ Step through the debugger.
 To add filtering to the Students Index page:
 
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
-* The code-behind file is updated to use the text box value.
+* The page model is updated to use the text box value.
 
 ### Add filtering functionality to the Index method
 
@@ -241,7 +241,7 @@ Step through the debugger.
 In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
-* Modify the About Razor Page and code-behind file.
+* Modify the About Razor Page and page model.
 
 ### Create the view model
 
@@ -251,7 +251,7 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Update the About code-behind page
+### Update the About page model
 
 Update the *Pages/About.cshtml.cs* file with the following code:
 
@@ -273,7 +273,7 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Additional Resources
+## Additional resources
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 

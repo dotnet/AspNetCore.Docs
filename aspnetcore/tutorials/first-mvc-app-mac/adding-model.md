@@ -2,13 +2,13 @@
 title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
+manager: wpickett
 ms.author: riande
-manager: wpickett  
-ms.devlang: csharp 
 ms.date: 09/22/2017
-ms.topic: get-started-article
-ms.technology: aspnet
+ms.devlang: csharp
 ms.prod: .net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-mac/adding-model
 ---
 

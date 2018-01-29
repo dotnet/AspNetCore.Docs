@@ -2,12 +2,12 @@
 title: Migrating HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 description: 
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 12/07/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: migration/http-modules
 ---
 # Migrating HTTP handlers and modules to ASP.NET Core middleware 
@@ -373,12 +373,9 @@ The `SetCookies` callback method would look like the following:
 
 [!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
-## Additional Resources
+## Additional resources
 
-* [HTTP Handlers and HTTP Modules Overview](https://docs.microsoft.com/iis/configuration/system.webserver/)
-
+* [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)
-
-* [Application Startup](../fundamentals/startup.md)
-
-* [Middleware](../fundamentals/middleware.md)
+* [Application Startup](xref:fundamentals/startup)
+* [Middleware](xref:fundamentals/middleware)

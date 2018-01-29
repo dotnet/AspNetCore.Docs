@@ -1,16 +1,16 @@
 ---
-title: Migrating From ASP.NET MVC to ASP.NET Core MVC
+title: Migrating from ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
-description: 
-ms.author: riande
+description: Learn how to get started migrating an ASP.NET MVC project to ASP.NET Core MVC.
 manager: wpickett
+ms.author: riande
 ms.date: 03/07/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: migration/mvc
 ---
-# Migrating From ASP.NET MVC to ASP.NET Core MVC
+# Migrating from ASP.NET MVC to ASP.NET Core MVC
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](https://ardalis.com/), and [Scott Addie](https://scottaddie.com)
 
@@ -188,7 +188,7 @@ View the site in the browser. It should now load correctly, with the expected st
 
 * *Optional:* You might want to try using the new layout file. For this project you can copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../mvc/views/tag-helpers/index.md) and has other improvements.
 
-## Configure Bundling & Minification
+## Configure bundling and minification
 
 For information about how to configure bundling and minification, see [Bundling and Minification](../client-side/bundling-and-minification.md).
 
@@ -217,8 +217,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 
 See **Using the Developer Exception Page** in [Error Handling](../fundamentals/error-handling.md) for more information.
 
-## Additional Resources
+## Additional resources
 
-* [Client-Side Development](../client-side/index.md)
-
-* [Tag Helpers](../mvc/views/tag-helpers/index.md)
+* [Client-Side Development](xref:client-side/index)
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro)

@@ -6,7 +6,7 @@ When running the sample, a response will be served that shows the rewritten or r
 
 ## Examples in this sample
 
-* `AddRedirect("redirect-rule/(.*)", "$1")`
+* `AddRedirect("redirect-rule/(.*)", "redirected/$1")`
   - Success status code: 302 (Found)
   - Example (redirect): **/redirect-rule/{capture_group}** to **/redirected/{capture_group}**
 * `AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2", skipRemainingRules: true)`

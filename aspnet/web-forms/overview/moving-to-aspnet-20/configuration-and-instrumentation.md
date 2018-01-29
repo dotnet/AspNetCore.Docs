@@ -129,11 +129,11 @@ Logging is accomplished by defining a rule that associates events with a provide
 | **WebRequestEvent** | The base class for all informational request events. |
 | **WebBaseErrorEvent** | The base class for all events indicating error conditions. |
 
-The types of providers available allow you to send event output to Event Viewer, SQL Server, Windows Management Instrumentation (WMI), and e-mail. The pre-configured providers and event mappings reduce the amount of work necessary to get event output logged.
+The types of providers available allow you to send event output to Event Viewer, SQL Server, Windows Management Instrumentation (WMI), and email. The pre-configured providers and event mappings reduce the amount of work necessary to get event output logged.
 
 ASP.NET 2.0 uses the Event Log provider out-of-the-box to log events based on application domains starting and stopping, as well as logging any unhandled exceptions. This helps to cover some of the basic scenarios. For example, let's say that your application throws an exception, but the user doesn't save the error and you can't reproduce it. With the default Event Log rule, you would be able to gather the exception and stack information to get a better idea of what kind of error occurred. Another example applies if your application is losing session state. In that case, you can look in the Event Log to determine whether the application domain is recycling, and why the application domain stopped in the first place.
 
-Also, the health monitoring system is extensible. For example, you can define custom Web events, fire them within your application, and then define a rule to send the event information to a provider such as your e-mail. This allows you to easily tie your instrumentation to the health monitoring providers. As another example, you could fire an event each time an order is processed and set up a rule that sends each event to the SQL Server database. You could also fire an event when a user fails to log on multiple times in a row, and set up the event to use the e-mail-based providers.
+Also, the health monitoring system is extensible. For example, you can define custom Web events, fire them within your application, and then define a rule to send the event information to a provider such as your email. This allows you to easily tie your instrumentation to the health monitoring providers. As another example, you could fire an event each time an order is processed and set up a rule that sends each event to the SQL Server database. You could also fire an event when a user fails to log on multiple times in a row, and set up the event to use the email-based providers.
 
 The configuration for the default providers and events is stored in the global Web.config file. The global Web.config file stores all the Web-based settings that were stored in the Machine.config file in ASP.NET 1x. The global Web.config file is located in the following directory:
 
@@ -145,9 +145,9 @@ The &lt;healthMonitoring&gt; section of the global Web.config file contains the 
 
 | **providers** | Contains providers set up for the Event Viewer, WMI, and SQL Server. |
 | --- | --- |
-| **eventMappings** | Contains mappings for the various WebBase classes. You can extend this list if you generate your own event class. Generating your own event class gives you finer granularity over the providers you send information to. For example, you could configure unhandled exceptions to be sent to SQL Server, while sending your own custom events to e-mail. |
+| **eventMappings** | Contains mappings for the various WebBase classes. You can extend this list if you generate your own event class. Generating your own event class gives you finer granularity over the providers you send information to. For example, you could configure unhandled exceptions to be sent to SQL Server, while sending your own custom events to email. |
 | **rules** | Links the eventMappings to the provider. |
-| **buffering** | Used with SQL Server and e-mail providers to determine how often to flush the events to the provider. |
+| **buffering** | Used with SQL Server and email providers to determine how often to flush the events to the provider. |
 
 Below is a code example from the global Web.config file.
 
@@ -191,19 +191,19 @@ You will need to add a rule to associate an eventMapping to the provider, and al
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample10.xml)]
 
-## How to forward events to e-mail
+## How to forward events to email
 
-You can also forward events to e-mail. Be careful about which event rules you map to your e-mail provider, as you can unintentionally send yourself a lot of information that may be better suited for SQL Server or the Event Log. There are two e-mail providers; SimpleMailWebEventProvider and TemplatedMailWebEventProvider. Each has the same configuration attributes, with the exception of the "template" and "detailedTemplateErrors" attributes, both of which are only available on the TemplatedMailWebEventProvider.
+You can also forward events to email. Be careful about which event rules you map to your email provider, as you can unintentionally send yourself a lot of information that may be better suited for SQL Server or the Event Log. There are two email providers; SimpleMailWebEventProvider and TemplatedMailWebEventProvider. Each has the same configuration attributes, with the exception of the "template" and "detailedTemplateErrors" attributes, both of which are only available on the TemplatedMailWebEventProvider.
 
 > [!NOTE]
-> Neither of these e-mail providers is configured for you. You'll need to add them to your Web.config file.
+> Neither of these email providers is configured for you. You'll need to add them to your Web.config file.
 
 
-The main difference between these two e-mail providers is that SimpleMailWebEventProvider sends e-mails in a generic template that cannot be modified. The sample Web.config file adds this e-mail provider to the list of configured providers by using the following rule:
+The main difference between these two email providers is that SimpleMailWebEventProvider sends emails in a generic template that cannot be modified. The sample Web.config file adds this email provider to the list of configured providers by using the following rule:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample11.xml)]
 
-The following rule is also added to tie the e-mail provider to the **All Events** event map:
+The following rule is also added to tie the email provider to the **All Events** event map:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample12.xml)]
 

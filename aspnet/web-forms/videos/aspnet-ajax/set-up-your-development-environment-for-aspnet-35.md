@@ -2,7 +2,7 @@
 uid: web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-35
 title: "Set Up Your Development Environment for ASP.NET 3.5 | Microsoft Docs"
 author: JoeStagner
-description: "In this video you’ll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 3.5."
+description: "In this video you'll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 3.5."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/13/2009

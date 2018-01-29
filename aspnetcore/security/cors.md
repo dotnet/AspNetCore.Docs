@@ -2,12 +2,12 @@
 title: Enabling Cross-Origin Requests (CORS)
 author: rick-anderson
 description: This document introduces CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 05/17/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/cors
 ---
 # Enabling Cross-Origin Requests (CORS)
@@ -204,7 +204,7 @@ Now the HTTP response will include an Access-Control-Allow-Credentials header, w
 
 If the browser sends credentials, but the response doesn't include a valid Access-Control-Allow-Credentials header, the browser won't expose the response to the application, and the AJAX request fails.
 
-Be very careful about allowing cross-origin credentials, because it means a website at another domain can send a logged-in user’s credentials to your app on the user’s behalf, without the user being aware. The CORS spec also states that setting origins to "*" (all origins) is invalid if the Access-Control-Allow-Credentials header is present.
+Be careful when allowing cross-origin credentials. A website at another domain can send a logged-in user's credentials to the app on the user's behalf without the user's knowledge. The CORS specification also states that setting origins to "*" (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
 
 ### Set the preflight expiration time
 
@@ -216,11 +216,11 @@ The Access-Control-Max-Age header specifies how long the response to the preflig
 
 ## How CORS works
 
-This section describes what happens in a CORS request, at the level of the HTTP messages. It’s important to understand how CORS works, so that you can configure your CORS policy correctly, and troubleshoot if things don’t work as you expect.
+This section describes what happens in a CORS request at the level of the HTTP messages. It's important to understand how CORS works so that the CORS policy can be configured correctly and troubleshooted when unexpected behaviors occur.
 
-The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code.
+The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that's making the request:
+Here is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request:
 
 ```
 GET http://myservice.azurewebsites.net/api/test HTTP/1.1

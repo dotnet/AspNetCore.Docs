@@ -2,14 +2,14 @@
 title: Using Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
-ms.author: riande
 manager: wpickett
-ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: client-side/bower
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 02/14/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: client-side/bower
 ---
 # Manage client-side packages with Bower in ASP.NET Core
 
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://blog.fa
 > [!IMPORTANT]
 > While Bower is maintained, they recommend using a different solution. Yarn with Webpack is one popular alternative for which [migration instructions](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) are available.
 
-[Bower](https://bower.io/) calls itself "A package manager for the web". Within the .NET ecosystem, it fills the void left by NuGet’s inability to deliver static content files. For ASP.NET Core projects, these static files are inherent to client-side libraries like [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/). For .NET libraries, you still use [NuGet](https://www.nuget.org/) package manager.
+[Bower](https://bower.io/) calls itself "A package manager for the web". Within the .NET ecosystem, it fills the void left by NuGet's inability to deliver static content files. For ASP.NET Core projects, these static files are inherent to client-side libraries like [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/). For .NET libraries, you still use [NuGet](https://www.nuget.org/) package manager.
 
 New projects created with the ASP.NET Core project templates set up the client-side build process. [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/) are installed, and Bower is supported.
 

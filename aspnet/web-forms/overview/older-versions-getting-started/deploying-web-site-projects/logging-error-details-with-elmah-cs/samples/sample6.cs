@@ -1,13 +1,13 @@
 // ... Save user's information to the database ...
 ...
 
-// Attempt to send the user a confirmation e-mail
+// Attempt to send the user a confirmation email
 try
 {
-	// ... Send an e-mail ...
+	// ... Send an email ...
 }
 catch (Exception e)
 {
-	// Error in sending e-mail. Log it!
+	// Error in sending email. Log it!
 	ErrorSignal.FromCurrentContext().Raise(e);
 }

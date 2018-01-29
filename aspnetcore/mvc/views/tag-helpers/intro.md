@@ -2,14 +2,14 @@
 title: Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn what tag helpers are and how to use them in ASP.NET Core.
-ms.author: riande
 manager: wpickett
-ms.date: 7/14/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: mvc/views/tag-helpers/intro
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 7/14/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: mvc/views/tag-helpers/intro
 ---
 # Introduction to Tag Helpers in ASP.NET Core 
 
@@ -250,12 +250,9 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 ![image](intro/_static/fontoptions2.png)
 
-## Additional Resources
+## Additional resources
 
-* [Authoring Tag Helpers](authoring.md)
-* [Working with Forms ](../working-with-forms.md)
-* [TagHelperSamples on GitHub](https://github.com/dpaquette/TagHelperSamples) contains Tag Helper samples for working with [Bootstrap](http://getbootstrap.com/).
-
-<!--
+* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Working with Forms ](xref:mvc/views/working-with-forms)
--->
+* [TagHelperSamples on GitHub](https://github.com/dpaquette/TagHelperSamples) contains Tag Helper samples for working with [Bootstrap](http://getbootstrap.com/).
+* [Working with Forms ](xref:mvc/views/working-with-forms)
