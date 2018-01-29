@@ -132,7 +132,7 @@ The MVC view uses the `speaker` model parameter, provided by the `AnchorTagHelpe
 The default route's `{id?}` placeholder was matched. The generated HTML is:
 
 ```html
-<a href='/Speaker/Detail/12'>SpeakerId: 12</a>
+<a href="/Speaker/Detail/12">SpeakerId: 12</a>
 ```
 
 Assume the route prefix isn't part of the matching routing template, as with the following MVC view:
@@ -152,7 +152,7 @@ Assume the route prefix isn't part of the matching routing template, as with the
 The following HTML is generated because `speakerid` wasn't found in the matching route:
 
 ```html
-<a href='/Speaker/Detail?speakerid=12'>SpeakerId: 12</a>
+<a href="/Speaker/Detail?speakerid=12">SpeakerId: 12</a>
 ```
 
 If either `asp-controller` or `asp-action` aren't specified, then the same default processing is followed as is in the `asp-route` attribute.
