@@ -38,7 +38,7 @@ The generated HTML is:
 <a href="/Speaker">All Speakers</a>
 ```
 
-If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. If `asp-action` is omitted from the preceding markup, and this Anchor Tag Helper is generated from *HomeController*'s *Index* view (*/Home*), the generated HTML is:
+If the `asp-controller` attribute is specified and `asp-action` isn't, the default `asp-action` value is the controller action associated with the currently executing view. If `asp-action` is omitted from the preceding markup, and the Anchor Tag Helper is used in *HomeController*'s *Index* view (*/Home*), the generated HTML is:
 
 ```html
 <a href="/Home">All Speakers</a>
