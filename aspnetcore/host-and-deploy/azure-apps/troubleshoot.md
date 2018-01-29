@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with ASP.NET Core Azure App Service 
 ms.author: riande
 manager: wpickett
 ms.custom: mvc
-ms.date: 01/15/2018
+ms.date: 01/29/2018
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -21,23 +21,21 @@ This article provides instructions on how to diagnose an ASP.NET Core app startu
 
 Typical app startup errors include:
 
-**500 Internal Server Error**  
-An error prevents the server from fulfilling the request. Usually, the error is thrown from app code.
-
-**502 Bad Gateway**  
-[Internet Information Services (IIS)](https://www.iis.net/)/[ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) receives an invalid response from the app.
-
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
-**503 Service Unavailable**  
-The app doesn't respond to requests proxied by the IIS/ASP.NET Core Module.
+This common startup error occurs when the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) attempts to start the worker process to host the app but it fails to start. For example, this error occurs when the app's assembly is misnamed in the *web.config* file. If an app's assembly is named *trobleshoot.dll* but the *web.config* calls for `arguments="troubleshoo.dll"` (missing the last "t"), the worker process can't be started given the incorrect assembly file name. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained later in this topic.
 
-For example, the dreaded *502.5 Process Failure* error page is returned when a misconfigured app causes the worker process to fail:
+The *502.5 Process Failure* error page is returned when a misconfigured app causes the worker process to fail:
 
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
 
-When a 500-series error occurs after the app starts but before a response is returned, it's usually caused by an error within the app. These errors often appear as a *500 Internal Server Error* or a *503 Service Unavailable* response. When the app is in its Production environment, the browser displays a friendly error page:
+**500 Internal Server Error**  
+An error prevents the server from fulfilling the request.
+
+When an error occurs within the app's code during startup or creating a response, the app may produce an invalid response (for example, a blank page) or a *500 Internal Server Error* message in the browser. The Application Event Log usually states that the app started normally and is listening on a given port. From the server's perspective that's correct. It's the app itself which is unhealthy. Running the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) console on the server or enabling the ASP.NET Core Module stdout log usually helps troubleshoot the problem. Running the app in the Kudu console and accessing the stdout log is described later in this topic.
+
+When the app is in its Production environment, the browser displays a friendly error page for 500-series errors:
 
 ![Browser window showing the 500 Internal Server Error page. The page presents the friendly error message 'An error occurred while starting the application.'](troubleshoot/_static/internal-server-error.png)
 
@@ -61,9 +59,30 @@ The error message states:
 
 > Application 'MACHINE/WEBROOT/APPHOST/TROUBLESHOOT' with physical root 'D:\home\site\wwwroot\' failed to start process with commandline 'dotnet .\troubleshoo.dll', ErrorCode = '0x80004005 : 80008081.
 
-The app failed to start the process with the command `dotnet .\troubleshoo.dll`. The assembly name is incorrect and should be *troubleshoot.dll*.
+This error message means that the ASP.NET Core Module couldn't start the app by attempting to execute the command `dotnet .\troubleshoo.dll`. The assembly name is incorrect (the last "t" is missing) and should be *troubleshoot.dll*.
 
-An alternative to using the **Diagnose and solve problems** blade is to run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
+An alternative is to examine the Application Event Log file directly using Kudu:
+
+1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
+1. Open the **LogFiles** folder.
+1. Select the pencil icon next to the *eventlog.xml* file.
+1. Examine the log. Scroll to the bottom of the log to see the most recent events.
+   ![Browser window of the Application Events Log in Kudu showing an event that indicates the app's process started normally.](troubleshoot/_static/kudu-app-event-log.png)
+
+### Run the app in the Kudu console
+
+Many startup errors where the process fails to start or where the app fails with an Internal Server Error don't produce useful information in the Application Event Log. For many errors as far as the proxy server is concerned, the app started normally:
+
+![Browser window of the Application Events Log showing an informational message from the IIS AspNetCoreModule](troubleshoot/_static/app-event-log-information.png)
+
+The informational message associated with this event states:
+
+> Application 'MACHINE/WEBROOT/APPHOST/TROUBLESHOOT' started process '7012' successfully and is listening on port '9489'.
+
+However, the app is clearly in an unhealthy state if it doesn't respond normally to requests.
+
+Run the app in the Kudu Remote Execution Console to discover the error:
 
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
@@ -75,26 +94,7 @@ An alternative to using the **Diagnose and solve problems** blade is to run the 
 1. The console output from the app, showing any errors, is piped to the Kudu console. Example: If the assembly name is `troubleshoot`, the app is run with the command `dotnet .\troubleshoot.dll`. The output shows a `NotSupportedException` on startup:
    ![Kudu console the app's output](troubleshoot/_static/kudu-console-output.png)
 
-Another alternative is to examine the Application Event Log file directly using Kudu:
-
-1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the *eventlog.xml* file.
-1. Examine the log. Scroll to the bottom of the log to see the most recent events.
-   ![Browser window of the Application Events Log in Kudu showing an event that indicates the app's process started normally.](troubleshoot/_static/kudu-app-event-log.png)
-
 ### ASP.NET Core Module stdout log
-
-Many startup errors where the process fails to start or where the app fails with an Internal Server Error don't produce useful information in the Application Event Log. For many of these types of errors as far as the proxy server is concerned, the app started normally:
-
-![Browser window of the Application Events Log showing an informational message from the IIS AspNetCoreModule](troubleshoot/_static/app-event-log-information.png)
-
-The informational message associated with this event states:
-
-> Application 'MACHINE/WEBROOT/APPHOST/TROUBLESHOOT' started process '7012' successfully and is listening on port '9489'.
-
-However, the app is clearly in an unhealthy state if it doesn't respond normally to requests.
 
 The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startup failures. To enable and view stdout logs, perform the following steps:
 
@@ -119,11 +119,13 @@ The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startu
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
 
+## Common errors during startup
+
 The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Collect the following information:
 
 * Browser behavior
 * Application Event Log entries
-* ASP.NET Core Module stdout log entries
+* Kudu console run errors or ASP.NET Core Module stdout log entries
 
 Compare the browser behavior and log entries to the common errors listed in the topic and follow the troubleshooting advice provided.
 
@@ -142,7 +144,7 @@ To use the remote debugging features of [Visual Studio](https://www.visualstudio
 
 ## Monitoring blades
 
-Monitoring blades provide an alternative experience to using the **Diagnose and solve problems** blade and accessing the stdout log files directly. These blades can be used to diagnose 500-series errors.
+Monitoring blades provide an alternative troubleshooting experience to the methods described earlier in the topic. These blades can be used to diagnose all 500-series errors.
 
 Confirm that the ASP.NET Core Extensions are installed. If the extensions aren't installed, install them manually:
 
