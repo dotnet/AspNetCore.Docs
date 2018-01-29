@@ -234,7 +234,8 @@ The generated HTML includes the areas segment:
 ```
 
 > [!TIP]
-> For MVC areas to work in a web app, the route template must include a reference to the area, if it exists. That template is represented by the second parameter of the `routes.MapRoute` method call in *Startup.Configure*: `template: "{area:exists}/{controller=Home}/{action=Index}"`.
+> For areas to work in an MVC app, the route template must include a reference to the area, if it exists. That template is represented by the second parameter of the `routes.MapRoute` method call in *Startup.Configure*:
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
 ## asp-protocol
 
