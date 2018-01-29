@@ -215,8 +215,9 @@ The [asp-area](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.a
         * *HomeController.cs*
       * **Views**
         * **Home**
-          * *Index.cshtml*
           * *AboutBlog.cshtml*
+          * *Index.cshtml*
+        * *_ViewStart.cshtml*
   * **Controllers**
 
 Given the preceding directory hierarchy, the markup to reference the *AboutBlog.cshtml* file is:
