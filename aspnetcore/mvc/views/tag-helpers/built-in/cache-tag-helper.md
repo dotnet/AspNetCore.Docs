@@ -2,12 +2,12 @@
 title: Cache Tag Helper in ASP.NET Core MVC
 author: pkellner
 description: Shows how to work with Cache Tag Helper
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
@@ -279,5 +279,5 @@ The Cache Tag Helper is dependent on the [memory cache service](xref:performance
 
 ## Additional resources
 
-* <xref:performance/caching/memory>
-* <xref:security/authentication/identity>
+* [In-memory caching](xref:performance/caching/memory)
+* [Introduction to Identity](xref:security/authentication/identity)

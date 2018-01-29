@@ -445,7 +445,7 @@ description:
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that’s right for you.</p>
+                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that's right for you.</p>
                                 </div>
                             </li>
                             <li>

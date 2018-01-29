@@ -2,7 +2,7 @@
 uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1
 title: "Intro to ASP.NET MVC | Microsoft Docs"
 author: shanselman
-description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. You’ll create a simple web application that reads and writes from a database."
+description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/14/2010

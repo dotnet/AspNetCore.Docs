@@ -2,12 +2,12 @@
 title: ASP.NET Core built-in Tag Helpers
 author: pkellner
 description: ASP.NET Core built-in Tag Helpers
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 09/13/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
 

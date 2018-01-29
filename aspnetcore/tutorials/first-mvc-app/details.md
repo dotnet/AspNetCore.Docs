@@ -2,12 +2,12 @@
 title: Examining the Details and Delete methods
 author: rick-anderson
 description: The Details controller method and view in a basic ASP.NET Core MVC app.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 03/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app/details
 ---
 # Examining the Details and Delete methods

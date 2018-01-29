@@ -2,13 +2,13 @@
 title: Add app features from an external assembly using IHostingStartup in ASP.NET Core
 author: guardrex
 description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 12/07/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/ihostingstartup
 ---
 # Add app features from an external assembly using IHostingStartup in ASP.NET Core

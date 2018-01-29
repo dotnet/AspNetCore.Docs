@@ -2,12 +2,12 @@
 title: View components
 author: rick-anderson
 description: View Components are intended anywhere you have reusable rendering logic.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/view-components
 ---
 # View components
@@ -18,12 +18,12 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Introducing view components
 
-New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
+New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. A view component:
 
-* Renders a chunk rather than a whole response
-* Includes the same separation-of-concerns and testability benefits found between a controller and view
-* Can have parameters and business logic
-* Is typically invoked from a layout page
+* Renders a chunk rather than a whole response.
+* Includes the same separation-of-concerns and testability benefits found between a controller and view.
+* Can have parameters and business logic.
+* Is typically invoked from a layout page.
 
 View components are intended anywhere you have reusable rendering logic that's too complex for a partial view, such as:
 
@@ -240,6 +240,6 @@ Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
 [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
 
-## Additional Resources
+## Additional resources
 
-* [Dependency injection into views](dependency-injection.md)
+* [Dependency injection into views](xref:mvc/views/dependency-injection)

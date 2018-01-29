@@ -2,12 +2,12 @@
 title: Working with multiple environments in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core provides support for controlling app behavior across multiple environments.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/25/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/environments
 ---
 # Working with multiple environments
@@ -168,7 +168,7 @@ Note: Calling [WebHostBuilder.UseStartup<TStartup>](https://docs.microsoft.com/d
 
 [!code-csharp[Main](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,37)]
 
-## Additional Resources
+## Additional resources
 
 * [Application startup](xref:fundamentals/startup)
 * [Configuration](xref:fundamentals/configuration/index)

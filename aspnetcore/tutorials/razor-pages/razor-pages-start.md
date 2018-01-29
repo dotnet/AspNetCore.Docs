@@ -2,12 +2,12 @@
 title: Getting started with Razor Pages in ASP.NET Core
 author: rick-anderson
 description: Getting started with Razor Pages in ASP.NET Core
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/22/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/razor-pages-start
 ---
 # Get started with Razor Pages in ASP.NET Core

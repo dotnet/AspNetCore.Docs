@@ -2,12 +2,12 @@
 title: Migrating Authentication and Identity
 author: ardalis
 description: 
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: migration/identity
 ---
 # Migrating Authentication and Identity

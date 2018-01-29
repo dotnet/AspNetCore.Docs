@@ -19,7 +19,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 [Download Code](http://download.microsoft.com/download/1/0/C/10CC829F-A808-4302-97D3-59989B8F9C01/ASPNET_Hosting_Tutorial_13_VB.zip) or [Download PDF](http://download.microsoft.com/download/5/C/5/5C57DB8C-5DEA-4B3A-92CA-4405544D313B/aspnet_tutorial13_HealthMonitoring_vb.pdf)
 
-> Microsoft's health monitoring system provides an easy and customizable way to log various web events, including unhandled exceptions. This tutorial walks through setting up the health monitoring system to log unhandled exceptions to a database and to notify developers via an e-mail message.
+> Microsoft's health monitoring system provides an easy and customizable way to log various web events, including unhandled exceptions. This tutorial walks through setting up the health monitoring system to log unhandled exceptions to a database and to notify developers via an email message.
 
 
 ## Introduction
@@ -32,9 +32,9 @@ The health monitoring system was introduced in ASP.NET 2.0 and is designed to mo
 - Security events, including failed login attempts and failed URL authorization requests
 - Application errors, including unhandled exceptions, view state parsing exceptions, request validation exceptions, and compilation errors, among other types of errors.
 
-When a health monitoring event is raised it can be logged to any number of specified *log sources*. The health monitoring system ships with log sources that log Web events to a Microsoft SQL Server database, to the Windows Event Log, or via an e-mail message, among others. You can also create your own log sources.
+When a health monitoring event is raised it can be logged to any number of specified *log sources*. The health monitoring system ships with log sources that log Web events to a Microsoft SQL Server database, to the Windows Event Log, or via an email message, among others. You can also create your own log sources.
 
-The events the health monitoring system logs, along with the log sources used, are defined in `Web.config`. With a few lines of configuration markup you can use health monitoring to log all unhandled exceptions to a database and to notify you of the exception via e-mail.
+The events the health monitoring system logs, along with the log sources used, are defined in `Web.config`. With a few lines of configuration markup you can use health monitoring to log all unhandled exceptions to a database and to notify you of the exception via email.
 
 ## Exploring the Health Monitoring System's Configuration
 
@@ -91,7 +91,7 @@ To see the health monitoring system in action, visit the website and generate a 
 
 ### Displaying the Error Log In a Web Page
 
-With the website's current configuration, the health monitoring system logs all unhandled exceptions to the database. However, health monitoring does not provide any mechanism to view the error log through a web page. However, you could build an ASP.NET page that displays this information from the database. (As we'll see momentarily, you can opt to have the error details sent to you in an e-mail message.)
+With the website's current configuration, the health monitoring system logs all unhandled exceptions to the database. However, health monitoring does not provide any mechanism to view the error log through a web page. However, you could build an ASP.NET page that displays this information from the database. (As we'll see momentarily, you can opt to have the error details sent to you in an email message.)
 
 If you create such a page, make sure you take steps to allow only authorized users to view the error details. If your site already employs user accounts then you can use URL authorization rules to restrict access to the page to certain users or roles. For more information on how to grant or restrict access to web pages based on the logged in user, refer to my [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md).
 
@@ -99,40 +99,40 @@ If you create such a page, make sure you take steps to allow only authorized use
 > The subsequent tutorial explores an alternative error logging and notification system named ELMAH. ELMAH includes a built-in mechanism to view the error log from both a web page and as an RSS feed.
 
 
-## Logging Events to E-Mail
+## Logging Events to Email
 
-The health monitoring system includes a log source provider that "logs" an event to an e-mail message. The log source includes the same information that is logged to the database in the e-mail message body. You can use this log source to notify a developer when a certain health monitoring event occurs.
+The health monitoring system includes a log source provider that "logs" an event to an email message. The log source includes the same information that is logged to the database in the email message body. You can use this log source to notify a developer when a certain health monitoring event occurs.
 
-Let's update the Book Reviews website's configuration so that we receive an e-mail whenever an exception occurs. To accomplish this we need to perform three tasks:
+Let's update the Book Reviews website's configuration so that we receive an email whenever an exception occurs. To accomplish this we need to perform three tasks:
 
-1. Configure the ASP.NET web application to send e-mail. This is accomplished by specifying how e-mail messages are sent via the `<system.net>` configuration element. For more information on sending e-mail messages in an ASP.NET application refer to [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx) and the [System.Net.Mail FAQ](http://systemnetmail.com/).
-2. Register the e-mail log source provider in the `<providers>` element, and
+1. Configure the ASP.NET web application to send email. This is accomplished by specifying how email messages are sent via the `<system.net>` configuration element. For more information on sending email messages in an ASP.NET application refer to [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx) and the [System.Net.Mail FAQ](http://systemnetmail.com/).
+2. Register the email log source provider in the `<providers>` element, and
 3. Add an entry to the `<rules>` element that maps the "All Errors" event to the log source provider added in step (2).
 
-The health monitoring system includes two e-mail log source provider classes: `SimpleMailWebEventProvider` and `TemplatedMailWebEventProvider`. The [`SimpleMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.simplemailwebeventprovider.aspx) sends a plain-text e-mail message that includes the event details and provides little customization of the e-mail body. With the [`TemplatedMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.templatedmailwebeventprovider.aspx) you specify an ASP.NET page whose rendered markup is used as the body for the e-mail message. The [`TemplatedMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.templatedmailwebeventprovider.aspx) gives you much greater control over the contents and format of the e-mail message, but requires a bit more upfront work as you have to create the ASP.NET page that generates the e-mail message's body. This tutorial focuses on using the `SimpleMailWebEventProvider` class.
+The health monitoring system includes two email log source provider classes: `SimpleMailWebEventProvider` and `TemplatedMailWebEventProvider`. The [`SimpleMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.simplemailwebeventprovider.aspx) sends a plain-text email message that includes the event details and provides little customization of the email body. With the [`TemplatedMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.templatedmailwebeventprovider.aspx) you specify an ASP.NET page whose rendered markup is used as the body for the email message. The [`TemplatedMailWebEventProvider` class](https://msdn.microsoft.com/library/system.web.management.templatedmailwebeventprovider.aspx) gives you much greater control over the contents and format of the email message, but requires a bit more upfront work as you have to create the ASP.NET page that generates the email message's body. This tutorial focuses on using the `SimpleMailWebEventProvider` class.
 
 Update the health monitoring system's `<providers>` element in the `Web.config` file to include a log source for the `SimpleMailWebEventProvider` class:
 
 [!code-xml[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample3.xml)]
 
-The above markup uses the `SimpleMailWebEventProvider` class as the log source provider, and assigns it the friendly name "EmailWebEventProvider". Moreover, the `<add>` attribute includes additional configuration options, such as the To and From addresses of the e-mail message.
+The above markup uses the `SimpleMailWebEventProvider` class as the log source provider, and assigns it the friendly name "EmailWebEventProvider". Moreover, the `<add>` attribute includes additional configuration options, such as the To and From addresses of the email message.
 
-With the e-mail log source defined, all that remains is to instruct the health monitoring system to use this source to "log" unhandled exceptions. This is accomplished by adding a new rule in the `<rules>` section:
+With the email log source defined, all that remains is to instruct the health monitoring system to use this source to "log" unhandled exceptions. This is accomplished by adding a new rule in the `<rules>` section:
 
 [!code-xml[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample4.xml)]
 
-The `<rules>` section now includes two rules. The first one, named "All Errors To E-Mail", sends all unhandled exceptions to the "EmailWebEventProvider" log source. This rule has the effect of sending details about errors on the website to the specified To address. The "All Errors To Database" rule logs the error details to the site's database. Consequently, whenever an unhandled exception occurs on the site its details are both logged to the database and sent to specified e-mail address.
+The `<rules>` section now includes two rules. The first one, named "All Errors To Email", sends all unhandled exceptions to the "EmailWebEventProvider" log source. This rule has the effect of sending details about errors on the website to the specified To address. The "All Errors To Database" rule logs the error details to the site's database. Consequently, whenever an unhandled exception occurs on the site its details are both logged to the database and sent to specified email address.
 
-**Figure 2** shows the e-mail generated by the `SimpleMailWebEventProvider` class when visiting `Genre.aspx?ID=foo`.
+**Figure 2** shows the email generated by the `SimpleMailWebEventProvider` class when visiting `Genre.aspx?ID=foo`.
 
 [![](logging-error-details-with-asp-net-health-monitoring-vb/_static/image5.png)](logging-error-details-with-asp-net-health-monitoring-vb/_static/image4.png)
 
-**Figure 2**: The Error Details are Sent in an E-Mail Message  
+**Figure 2**: The Error Details are Sent in an Email Message  
 ([Click to view full-size image](logging-error-details-with-asp-net-health-monitoring-vb/_static/image6.png))
 
 ## Summary
 
-The ASP.NET health monitoring system is designed to allow administrators to monitor the health of a deployed web application. Health monitoring events are raised when certain actions unfold, such as when the application stops, when a user successfully logs onto the site, or when an unhandled exception occurs. These events can be logged to any number of log sources. This tutorial showed how to log the details of unhandled exceptions to a database and through an e-mail message.
+The ASP.NET health monitoring system is designed to allow administrators to monitor the health of a deployed web application. Health monitoring events are raised when certain actions unfold, such as when the application stops, when a user successfully logs onto the site, or when an unhandled exception occurs. These events can be logged to any number of log sources. This tutorial showed how to log the details of unhandled exceptions to a database and through an email message.
 
 This tutorial focused on using health monitoring to log unhandled exceptions, but keep in mind that health monitoring is designed to measure the overall health of a deployed ASP.NET application and includes a wealth of health monitoring events and log sources not explored here. What's more, you can create your own health monitoring events and log sources, should the need arise. If you are interested in learning more about health monitoring, a good first step is to read through [Erik Reitan](https://blogs.msdn.com/erikreitan/archive/2006/05/22/603586.aspx)'s [health monitoring FAQ](https://blogs.msdn.com/erikreitan/archive/2006/05/22/603586.aspx). Following that, consult [How To: Use Health Monitoring in ASP.NET 2.0](https://msdn.microsoft.com/library/ms998306.aspx).
 

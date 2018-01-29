@@ -2,13 +2,13 @@
 title: Model Binding
 author: rachelappel
 description: Information about model binding in ASP.NET Core MVC
-ms.author: rachelap
 manager: wpickett
-ms.date: 01/22/2018
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
+ms.author: rachelap
+ms.date: 01/22/2018
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/models/model-binding
 ---
 # Model Binding

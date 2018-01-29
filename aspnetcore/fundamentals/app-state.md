@@ -2,14 +2,14 @@
 title: Session and application state in ASP.NET Core
 author: rick-anderson
 description: Approaches to preserving application and user (session) state between requests.
-ms.author: riande
 manager: wpickett
-ms.date: 11/27/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/app-state
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 11/27/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/app-state
 ---
 
 # Introduction to session and application state in ASP.NET Core
@@ -24,7 +24,7 @@ Session state is a feature in ASP.NET Core that you can use to save and store us
 
 ASP.NET Core maintains session state by giving the client a cookie that contains the session ID, which is sent to the server with each request. The server uses the session ID to fetch the session data. Because the session cookie is specific to the browser, you cannot share sessions across browsers. Session cookies are deleted only when the browser session ends. If a cookie is received for an expired session, a new session that uses the same session cookie  is created. 
 
-The server retains a session for a limited time after the last request. You can either set the session timeout or use the default value of 20 minutes. Session state is ideal for storing user data that's specific to a particular session but doesn’t need to be persisted permanently. Data is deleted from the backing store either when you call `Session.Clear` or when the session expires in the data store. The server doesn't know when the browser is closed or when the session cookie is deleted.
+The server retains a session for a limited time after the last request. Either set the session timeout or use the default value of 20 minutes. Session state is ideal for storing user data that's specific to a particular session but doesn't need to be persisted permanently. Data is deleted from the backing store either when calling `Session.Clear` or when the session expires in the data store. The server doesn't know when the browser is closed or when the session cookie is deleted.
 
 > [!WARNING]
 > Don't store sensitive data in session. The client might not close the browser and clear the session cookie (and some browsers keep session cookies alive across windows). Also, a session might not be restricted to a single user; the next user might continue with the same session.
@@ -87,7 +87,7 @@ Ordering is critical for middleware components. In the preceding example, an exc
 
 ## Query strings
 
-You can pass a limited amount of data from one request to another by adding it to the new request’s query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason, you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on CSRF attacks, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md).
+You can pass a limited amount of data from one request to another by adding it to the new request's query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason, you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on CSRF attacks, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Post data and hidden fields
 
@@ -144,7 +144,7 @@ The default session provider in ASP.NET Core loads the session record from the u
 
 To have applications enforce this pattern, wrap the [DistributedSessionStore](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw an exception if the `LoadAsync` method isn't called before `TryGetValue`, `Set`, or `Remove`. Register the wrapped versions in the services container.
 
-### Implementation Details
+### Implementation details
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named ".AspNet.Session", and it uses a path of "/". Because the cookie default doesn't specify a domain, it's not made available to the client-side script on the page (because `CookieHttpOnly` defaults to `true`).
 
@@ -277,9 +277,7 @@ Someone stores a shopping basket in session. The user adds an item but the commi
 
 The recommended way to check for such errors is to call `await feature.Session.CommitAsync();` from app code when you're done writing to the session. Then you can do what you like with the error. It works the same way when calling `LoadAsync`.
 
-
-### Additional Resources
-
+### Additional resources
 
 * [ASP.NET Core 1.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
 * [ASP.NET Core 2.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App)

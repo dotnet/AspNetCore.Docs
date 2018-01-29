@@ -2,12 +2,12 @@
 title: Adding a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Adding a model to a Razor Pages app in ASP.NET Core
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/27/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/model
 ---
 # Adding a model to a Razor Pages app

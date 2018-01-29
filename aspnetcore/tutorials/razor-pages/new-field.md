@@ -2,12 +2,12 @@
 title: Adding a New Field to a Razor Page
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/new-field
 ---
 # Adding a new field to a Razor Page
