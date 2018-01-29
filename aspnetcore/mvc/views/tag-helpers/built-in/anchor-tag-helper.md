@@ -282,27 +282,15 @@ Consider the following *Index* page model:
 ```csharp
 public class IndexModel : PageModel
 {
-    private readonly AppDbContext _db;
-
-    public IndexModel(AppDbContext db)
-    {
-        _db = db;
-    }
-
-    public IList<Customer> Customers { get; private set; }
-
-    public async Task OnGetAsync()
-    {
-        Customers = await _db.Customers.AsNoTracking().ToListAsync();
-    }
+    // code omitted for brevity
 
     public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
-        var contact = await _db.Customers.FindAsync(id);
+        var speaker = await _db.Speakers.FindAsync(id);
 
-        if (contact != null)
+        if (speaker != null)
         {
-            _db.Customers.Remove(contact);
+            _db.Speakers.Remove(speaker);
             await _db.SaveChangesAsync();
         }
 
@@ -315,8 +303,10 @@ The page model's associated markup links to the `OnPostDeleteAsync` page handler
 
 ```cshtml
 <form method="post">
+    @* markup omitted for brevity *@
+
     <a asp-page-handler="Delete" 
-       asp-route-id="@contact.Id">Delete</a>
+       asp-route-id="@speaker.Id">Delete</a>
 </form>
 ```
 
