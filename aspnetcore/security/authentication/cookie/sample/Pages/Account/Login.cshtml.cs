@@ -49,7 +49,10 @@ namespace CookieSample.Pages.Account
             }
 
             // Clear the existing external cookie
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            #region snippet2
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
+            #endregion
 
             ReturnUrl = returnUrl;
         }
@@ -75,6 +78,7 @@ namespace CookieSample.Pages.Account
                     return Page();
                 }
 
+                #region snippet1
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
@@ -111,7 +115,9 @@ namespace CookieSample.Pages.Account
 
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme, 
-                    new ClaimsPrincipal(claimsIdentity), authProperties);
+                    new ClaimsPrincipal(claimsIdentity), 
+                    authProperties);
+                #endregion
 
                 _logger.LogInformation($"User {user.Email} logged in at {DateTime.UtcNow}.");
 
