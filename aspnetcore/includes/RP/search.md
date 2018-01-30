@@ -1,4 +1,3 @@
-
 # Adding search to a Razor Pages app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
