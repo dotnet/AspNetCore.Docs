@@ -41,7 +41,7 @@
 #### [Adding Validation](xref:tutorials/first-mvc-app-mac/validation)
 #### [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)
 
-### [Web app with Visual Studio Code on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index)
+### [MVC web app with Visual Studio Code on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index)
 #### [Getting started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-xplat/adding-view.md)
@@ -53,17 +53,20 @@
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-
 ### [Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-mac/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
+#### [Update the pages](xref:tutorials/razor-pages-mac/da1)
+
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
+#### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
+
 
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
