@@ -19,8 +19,6 @@ This article provides instructions on how to diagnose an ASP.NET Core app startu
 
 ## App startup errors
 
-Typical app startup errors include:
-
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
@@ -31,9 +29,9 @@ The *502.5 Process Failure* error page is returned when a misconfigured app caus
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
 
 **500 Internal Server Error**  
-An error prevents the server from fulfilling the request.
+The app starts, but an error prevents the server from fulfilling the request.
 
-When an error occurs within the app's code during startup or creating a response, the app may produce an invalid response (for example, a blank page) or a *500 Internal Server Error* message in the browser. The Application Event Log usually states that the app started normally and is listening on a given port. From the server's perspective that's correct. It's the app itself which is unhealthy. Running the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) console on the server or enabling the ASP.NET Core Module stdout log usually helps troubleshoot the problem. Running the app in the Kudu console and accessing the stdout log is described later in this topic.
+When an error occurs within the app's code during startup or creating a response, the app may produce an invalid response (for example, the response contains no content) or a *500 Internal Server Error* message in the browser. The Application Event Log usually states that the app started normally and is listening on a given port. From the server's perspective that's correct. It's the app itself which is unhealthy. Running the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) console on the server or enabling the ASP.NET Core Module stdout log usually helps troubleshoot the problem. Running the app in the Kudu console and accessing the stdout log is described later in this topic.
 
 When the app is in its Production environment, the browser displays a friendly error page for 500-series errors:
 
@@ -61,7 +59,7 @@ The error message states:
 
 This error message means that the ASP.NET Core Module couldn't start the app by attempting to execute the command `dotnet .\troubleshoo.dll`. The assembly name is incorrect (the last "t" is missing) and should be *troubleshoot.dll*.
 
-An alternative is to examine the Application Event Log file directly using Kudu:
+An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using Kudu:
 
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
@@ -127,7 +125,7 @@ The most common errors that occur when starting an ASP.NET Core app are describe
 * Application Event Log entries
 * Kudu console run errors or ASP.NET Core Module stdout log entries
 
-Compare the browser behavior and log entries to the common errors listed in the topic and follow the troubleshooting advice provided.
+Compare the browser behavior and log entries to the common errors listed in the topic and follow the troubleshooting advice provided. Not every general app error that prevents an app from responding is listed. However, most of the common problems that prevent app startup are covered.
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app failure. The log files have no limit on size. The number of log files created is unlimited. If stdout logging remains enabled, the disk storage space dedicated to the app might become exhausted causing the app instance to fail.
