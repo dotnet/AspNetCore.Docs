@@ -142,7 +142,7 @@ To use the remote debugging features of [Visual Studio](https://www.visualstudio
 
 ## Application Insights
 
-[Application Insights](https://azure.microsoft.com/services/application-insights/) provides telemetry from apps hosted in the Azure App Service, including error logging and reporting features. Application Insights can only report on errors that occur after the app starts when the logging components become available. For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
+[Application Insights](https://azure.microsoft.com/services/application-insights/) provides telemetry from apps hosted in the Azure App Service, including error logging and reporting features. Application Insights can only report on errors that occur after the app starts when the logging features become available. For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
 
 ## Monitoring blades
 
