@@ -74,7 +74,7 @@ The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.p
 The generated HTML is:
 
 ```html
-<a href="/items?page=%2FSpeakers">Speakers</a>
+<a href="/items?page=%2FSpeakers">All Speakers</a>
 ```
 
 The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following markup demonstrates:

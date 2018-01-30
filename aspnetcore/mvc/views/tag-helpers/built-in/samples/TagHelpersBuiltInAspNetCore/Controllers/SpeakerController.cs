@@ -1,9 +1,9 @@
 ﻿namespace TagHelpersBuiltInAspNetCore.Controllers
 {
     #region snippet_SpeakerController
+    using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
-    using Microsoft.AspNetCore.Mvc;
 
     public class SpeakerController : Controller
     {
