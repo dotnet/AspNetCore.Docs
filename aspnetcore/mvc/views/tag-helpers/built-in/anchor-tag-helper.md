@@ -59,31 +59,6 @@ If no `asp-controller` attribute is specified, the default controller calling th
 
 If the `asp-action` attribute value is `Index`, then no action is appended to the URL, leading to the invocation of the default `Index` action. The action specified (or defaulted), must exist in the controller referenced in `asp-controller`.
 
-## asp-page
-
-The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The URL in the following sample points to the speakers page of the current directory.
-
-[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPage)]
-
-The generated HTML is:
-
-```html
-<a href="/?page=%2FSpeaker">All Speakers</a>
-```
-
-The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-id` to control routing, as the following markup demonstrates:
-
-[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPageAspRouteId)]
-
-The generated HTML is:
-
-```html
-<a href="/Home/Index/10?page=%2FSpeaker">View Speaker</a>
-```
-
-> [!IMPORTANT]
-> To use an `asp-page` attribute in Razor Pages, the URL must be a relative path (for example, `"./Speaker"`). Relative paths in the `asp-page` attribute are unavailable in MVC views. Use the "/" syntax for MVC views instead.
-
 ## asp-route-{value}
 
 The [asp-route-](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.routevalues) attribute is a wildcard route prefix. Any value after the trailing dash is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
@@ -247,9 +222,37 @@ The generated HTML is:
 <a href="https://microsoft.com/Home/About">About</a>
 ```
 
+## asp-page
+
+> [!NOTE]
+> The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x and only supports Razor Pages.
+
+Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The following sample points to the speaker Razor Page:
+
+[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPage)]
+
+The generated HTML is:
+
+```html
+<a href="/Speaker">All Speakers</a>
+```
+
+The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-{value}` to control routing, as the following markup demonstrates:
+
+[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPageAspRouteId)]
+
+The generated HTML is:
+
+```html
+<a href="/Attendee?attendeeid=10">View Attendee</a>
+```
+
 ## asp-page-handler
 
-The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x. It's intended for linking to specific page handlers in Razor Pages apps.
+> [!NOTE]
+> The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x and only supports Razor Pages.
+
+It's intended for linking to specific page handlers.
 
 Consider the following *Index* page model:
 
