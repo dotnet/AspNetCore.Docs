@@ -1,7 +1,7 @@
 ---
 title: Performance
 author: ardalis
-description: 
+description: Caching and Response compression middleware.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
