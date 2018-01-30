@@ -75,7 +75,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
+ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware/index) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
 
 Install the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) NuGet package in your project. This package contains the cookie middleware.
 
@@ -164,13 +164,9 @@ To create a cookie holding user information, you must construct a [ClaimsPrincip
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
+Create a [ClaimsIdentity](/dotnet/api/system.security.claims.claimsidentity) with any required [Claim](/dotnet/api/system.security.claims.claim)s and call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
 
-```csharp
-await HttpContext.SignInAsync(
-    CookieAuthenticationDefaults.AuthenticationScheme, 
-    new ClaimsPrincipal(claimsIdentity));
-```
+[!code-csharp[Main](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -194,10 +190,7 @@ Under the covers, the encryption used is ASP.NET Core's [Data Protection](xref:s
 
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signoutasync?view=aspnetcore-2.0):
 
-```csharp
-await HttpContext.SignOutAsync(
-    CookieAuthenticationDefaults.AuthenticationScheme);
-```
+[!code-csharp[Main](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

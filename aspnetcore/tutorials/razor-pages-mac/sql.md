@@ -16,4 +16,4 @@ uid: tutorials/razor-pages-mac/sql
 
 >[!div class="step-by-step"]
 [Previous: Adding a model](xref:tutorials/razor-pages-mac/model)
-[Next: Updating the pages](xref:tutorials/razor-pages/da1)
+[Next: Update the pages](xref:tutorials/razor-pages-mac/da1)

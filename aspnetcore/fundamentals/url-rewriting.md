@@ -372,7 +372,7 @@ Original Request: `/image.jpg`
 
 ## Additional resources
 * [Application Startup](startup.md)
-* [Middleware](middleware.md)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)
 * [Regular expression language - quick reference](/dotnet/articles/standard/base-types/quick-ref)
 * [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)

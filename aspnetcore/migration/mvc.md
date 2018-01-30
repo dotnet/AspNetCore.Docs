@@ -89,7 +89,7 @@ Run the app.
 
 ![Web application open in Microsoft Edge](mvc/_static/hello-world.png)
 
-See [Controllers](../mvc/controllers/index.md) and [Views](../mvc/views/index.md) for more information.
+See [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview) for more information.
 
 Now that we have a minimal working ASP.NET Core project, we can start migrating functionality from the ASP.NET MVC project. We will need to move the following:
 
@@ -151,7 +151,7 @@ See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more i
 
 * Create a *Views/Shared* folder.
 
-* *Optional:* Copy *_ViewImports.cshtml* from the *FullAspNetCore* MVC project's *Views* folder into the ASP.NET Core project's *Views* folder. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](../mvc/views/tag-helpers/index.md). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
+* *Optional:* Copy *_ViewImports.cshtml* from the *FullAspNetCore* MVC project's *Views* folder into the ASP.NET Core project's *Views* folder. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
 
 * Copy the *_Layout.cshtml* file from the old ASP.NET MVC project's *Views/Shared* folder into the ASP.NET Core project's *Views/Shared* folder.
 
@@ -186,7 +186,7 @@ The updated *_Layout.cshtml* file is shown below:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-* *Optional:* You might want to try using the new layout file. For this project you can copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../mvc/views/tag-helpers/index.md) and has other improvements.
+* *Optional:* You might want to try using the new layout file. For this project you can copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](xref:mvc/views/tag-helpers/intro) and has other improvements.
 
 ## Configure bundling and minification
 

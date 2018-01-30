@@ -191,7 +191,7 @@ Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getf
 
 ## Additional resources
 * [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
 * [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)

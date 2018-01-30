@@ -45,9 +45,9 @@ The development environment can enable features that shouldn't be exposed in pro
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
 
-The following XML shows three profiles from a *launchSettings.json* file:
+The following JSON shows three profiles from a *launchSettings.json* file:
 
-[!code-xml[Main](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
+[!code-json[Main](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
 
 When the application is launched with `dotnet run`, the first profile with `"commandName": "Project"` will be used. The value of `commandName` specifies the web server to launch. `commandName` can be one of :
 
@@ -88,7 +88,7 @@ The production environment should be configured to maximize security, performanc
 * Client-side resources are bundled, minified, and potentially served from a CDN.
 * Diagnostic error pages disabled.
 * Friendly error pages enabled.
-* Production logging and monitoring enabled. For example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/).
+* Production logging and monitoring enabled. For example, [Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
 ## Setting the environment
 
@@ -144,7 +144,7 @@ export ASPNETCORE_ENVIRONMENT=Development
 ```
 Machine level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor and add the following statment.
 
-```
+```bash
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 

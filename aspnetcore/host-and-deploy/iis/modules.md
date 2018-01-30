@@ -39,8 +39,8 @@ Module | .NET Core Active | ASP.NET Core Option
 **HTTP Redirection**<br>`HttpRedirectionModule` | Yes | [URL Rewriting Middleware](xref:fundamentals/url-rewriting)
 **IIS Client Certificate Mapping Authentication**<br>`IISCertificateMappingAuthenticationModule` | Yes | 
 **IP and Domain Restrictions**<br>`IpRestrictionModule` | Yes | 
-**ISAPI Filters**<br>`IsapiFilterModule` | Yes | [Middleware](xref:fundamentals/middleware)
-**ISAPI**<br>`IsapiModule` | Yes | [Middleware](xref:fundamentals/middleware)
+**ISAPI Filters**<br>`IsapiFilterModule` | Yes | [Middleware](xref:fundamentals/middleware/index)
+**ISAPI**<br>`IsapiModule` | Yes | [Middleware](xref:fundamentals/middleware/index)
 **Protocol Support**<br>`ProtocolSupportModule` | Yes | 
 **Request Filtering**<br>`RequestFilteringModule` | Yes | [URL Rewriting Middleware `IRule`](xref:fundamentals/url-rewriting#irule-based-rule)
 **Request Monitor**<br>`RequestMonitorModule` | Yes | 
