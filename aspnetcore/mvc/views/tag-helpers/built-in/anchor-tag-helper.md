@@ -90,26 +90,16 @@ The [asp-route-](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper
 
 Consider the following controller action:
 
-```csharp
-public IActionResult AnchorTagHelper(string id)
-{
-    var speaker = new SpeakerData
-    {
-        SpeakerId = 12
-    };
-
-    return View(viewName, speaker);
-}
-```
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Controllers/BuiltInTagController.cs?name=snippet_AnchorTagHelperAction)]
 
 With a default route template defined in *Startup.Configure*:
 
 [!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Startup.cs?name=snippet_UseMvc&highlight=8-10)]
 
-The MVC view uses the `speaker` model parameter, provided by the `AnchorTagHelper` action, as follows:
+The MVC view uses the model, provided by the action, as follows:
 
 ```cshtml
-@model SpeakerData
+@model Speaker
 <!DOCTYPE html>
 <html>
 <body>

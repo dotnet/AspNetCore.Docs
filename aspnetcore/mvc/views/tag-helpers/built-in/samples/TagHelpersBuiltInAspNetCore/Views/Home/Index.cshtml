@@ -36,10 +36,10 @@
                 <!-- <snippet_AspAllRouteData> -->
                 @{
                 var parms = new Dictionary<string, string>
-                                    {
-                                        { "speakerId", "11" },
-                                        { "currentYear", "true" }
-                                    };
+                            {
+                                { "speakerId", "11" },
+                                { "currentYear", "true" }
+                            };
                 }
 
                 <a asp-route="speakerevalscurrent"
@@ -149,7 +149,7 @@
             </td>
         </tr>
         <tr>
-            <td>asp-route-id</td>
+            <td>asp-route-<em>{value}</em></td>
             <td>
                 <code>
                     @Html.Raw(Html.Encode(@"<a asp-page=""/Speaker"" asp-route-id=""10"">View Speaker</a>"))

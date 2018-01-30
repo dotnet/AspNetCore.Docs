@@ -7,12 +7,12 @@
 
     public class SpeakerController : Controller
     {
-        private List<ModelData> Speakers =
-            new List<ModelData>
+        private List<Speaker> Speakers =
+            new List<Speaker>
             {
-                new ModelData {SpeakerId = 10},
-                new ModelData {SpeakerId = 11},
-                new ModelData {SpeakerId = 12}
+                new Speaker {SpeakerId = 10},
+                new Speaker {SpeakerId = 11},
+                new Speaker {SpeakerId = 12}
             };
 
         [Route("Speaker/{id:int}")]
@@ -32,7 +32,7 @@
         public IActionResult Index() => View(Speakers);
     }
 
-    public class ModelData
+    public class Speaker
     {
         public int SpeakerId { get; set; }
     }

@@ -6,6 +6,16 @@ namespace TagHelpersBuiltInAspNetCore.Controllers
     {
         public IActionResult Index() => View();
 
-        public IActionResult AnchorTagHelper() => View();
+        #region snippet_AnchorTagHelperAction
+        public IActionResult AnchorTagHelper(int id)
+        {
+            var speaker = new Speaker
+            {
+                SpeakerId = id
+            };
+
+            return View(speaker);
+        }
+        #endregion
     }
 }
