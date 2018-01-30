@@ -10,9 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/middleware/index
 ---
-# ASP.NET Core Middleware Fundamentals
-
-<a name="fundamentals-middleware"></a>
+# ASP.NET Core Middleware
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 

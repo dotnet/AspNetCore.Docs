@@ -30,10 +30,10 @@ Benefits:
 
 The sample app demonstrates middleware activated by:
 
-* Convention (`ConventionalMiddleware`). For more information on conventional middleware activation, see [Middleware](xref:fundamentals/middleware/index).
-* An `IMiddlewareFactory` implementation (`IMiddlewareMiddleware`). The default [MiddlewareFactory class](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory) activates the middleware.
+* Convention (`ConventionalMiddleware`). For more information on conventional middleware activation, see the [Middleware](xref:fundamentals/middleware/index) topic.
+* An [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) implementation (`IMiddlewareMiddleware`). The default [MiddlewareFactory class](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory) activates the middleware.
 
-The two middleware implementations function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
+The middleware implementations function identically and record the value provided by a query string parameter (`key`). The middlewares use an injected database context (a scoped service) to record the query string value in an in-memory database.
 
 ## IMiddleware
 
