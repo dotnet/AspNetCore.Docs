@@ -61,7 +61,7 @@ If the `asp-action` attribute value is `Index`, then no action is appended to th
 
 ## asp-route-{value}
 
-The [asp-route-](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.routevalues) attribute is a wildcard route prefix. Any value after the trailing dash is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
+The [asp-route-{value}](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.routevalues) attribute enables a wildcard route prefix. Any value occupying the `{value}` placeholder is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
 
 Consider the following controller action:
 
@@ -94,7 +94,7 @@ The default route's `{id?}` placeholder was matched. The generated HTML is:
 Assume the route prefix isn't part of the matching routing template, as with the following MVC view:
 
 ```cshtml
-@model SpeakerData
+@model Speaker
 <!DOCTYPE html>
 <html>
 <body>
@@ -252,31 +252,24 @@ The generated HTML is:
 > [!NOTE]
 > The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x and only supports Razor Pages.
 
-It's intended for linking to specific page handlers.
-
-Consider the following *Index* page model:
+It's intended for linking to specific page handlers. Consider the following page handler:
 
 ```csharp
-public class IndexModel : PageModel
+public async Task<IActionResult> OnPostDeleteAsync(int id)
 {
-    // code omitted for brevity
+    var speaker = await _db.Speakers.FindAsync(id);
 
-    public async Task<IActionResult> OnPostDeleteAsync(int id)
+    if (speaker != null)
     {
-        var speaker = await _db.Speakers.FindAsync(id);
-
-        if (speaker != null)
-        {
-            _db.Speakers.Remove(speaker);
-            await _db.SaveChangesAsync();
-        }
-
-        return RedirectToPage();
+        _db.Speakers.Remove(speaker);
+        await _db.SaveChangesAsync();
     }
+
+    return RedirectToPage();
 }
 ```
 
-The page model's associated markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the attribute value.
+The page model's associated markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the `asp-page-handler` attribute value.
 
 ```cshtml
 <form method="post">
