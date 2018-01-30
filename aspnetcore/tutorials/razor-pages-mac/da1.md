@@ -1,7 +1,7 @@
 ---
-title: Updating the generated pages
+title: Update the generated pages
 author: rick-anderson
-description: Updating the generated pages with better display.
+description: Update the generated pages with better display.
 manager: wpickett
 ms.author: riande
 ms.date: 08/07/2017

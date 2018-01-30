@@ -1,4 +1,4 @@
-# Updating the generated pages
+# Update the generated pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

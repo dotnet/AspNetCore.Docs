@@ -1,7 +1,7 @@
 ---
-title: Updating the generated pages
+title: Update the generated pages
 author: rick-anderson
-description: Updating the generated pages with better display.
+description: Update the generated pages with better display.
 manager: wpickett
 ms.author: riande
 ms.date: 08/07/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/da1
 ---
-# Updating the generated pages
+# Update the generated pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
