@@ -2,14 +2,12 @@
 title: URL Rewriting Middleware in ASP.NET Core
 author: guardrex
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
-keywords: ASP.NET Core,URL rewriting,URL rewrite,URL redirecting,URL redirect,middleware,apache_mod
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/17/2017
-ms.topic: article
-ms.assetid: e6130638-c410-4161-9921-b658ce988bd1
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
@@ -35,7 +33,9 @@ You can define rules for changing the URL in several ways, including regex, Apac
 ## URL redirect and URL rewrite
 The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
 
-A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client appears in the browser's address bar when the client makes a new request for the resource. If `/resource` is *redirected* to `/different-resource`, the client requests `/resource`, and the server responds that the client should obtain the resource at `/different-resource` with a status code indicating that the redirect is either temporary or permanent. The client executes a new request for the resource at the redirect URL.
+A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server. The redirect URL returned to the client appears in the browser's address bar when the client makes a new request for the resource. 
+
+If `/resource` is *redirected* to `/different-resource`, the client requests `/resource`. The server responds that the client should obtain the resource at `/different-resource` with a status code indicating that the redirect is either temporary or permanent. The client executes a new request for the resource at the redirect URL.
 
 ![A WebAPI service endpoint has been temporarily changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The server sends back a 302 (Found) response with the new, temporary path for the service at version 2 /v2/api. The client makes a second request to the service at the redirect URL. The server responds with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
 
@@ -366,7 +366,7 @@ Original Request: `/image.jpg`
 | Rewrite path into querystring | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Strip trailing slash | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
 | Enforce trailing slash | `(.*[^/])$`<br>`/path` | `$1/`<br>`/path/` |
-| Avoid rewriting specific requests | `(.*[^(\.axd)])$`<br>Yes: `/resource.htm`<br>No: `/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
+| Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: `/resource.htm`<br>No: `/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>`path/1/2/3` | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 

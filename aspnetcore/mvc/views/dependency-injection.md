@@ -2,14 +2,12 @@
 title: Dependency injection into views
 author: ardalis
 description: 
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 80fb9e43-e4db-4af2-b2a8-e1364a712f69
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/dependency-injection
 ---
 # Dependency injection into views
@@ -39,7 +37,7 @@ The `StatisticsService` performs some calculations on the set of `ToDoItem` inst
 
 [!code-csharp[Main](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs?highlight=15,20,26)]
 
-The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.
+The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) isn't recommended for large, remotely accessed data sets.
 
 The sample displays data from the model bound to the view and the service injected into the view:
 

@@ -2,14 +2,12 @@
 title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
 author: tdykstra
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
-keywords: ASP.NET Core,Entity Framework Core,related data,joins
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 03/15/2017
-ms.topic: get-started-article
-ms.assetid: 67bd162b-bfb7-4750-9e7f-705228b5288c
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-mvc/update-related-data
 ---
 
@@ -47,11 +45,11 @@ After the `Edit` HttpPost method, create a new method that loads department info
 
 The `PopulateDepartmentsDropDownList` method gets a list of all departments sorted by name, creates a `SelectList` collection for a drop-down list, and passes the collection to the view in `ViewBag`. The method accepts the optional `selectedDepartment` parameter that allows the calling code to specify the item that will be selected when the drop-down list is rendered. The view will pass the name "DepartmentID" to the `<select>` tag helper, and the helper then knows to look in the `ViewBag` object for a `SelectList` named "DepartmentID".
 
-The HttpGet `Create` method calls the `PopulateDepartmentsDropDownList` method without setting the selected item, because for a new course the department is not established yet:
+The HttpGet `Create` method calls the `PopulateDepartmentsDropDownList` method without setting the selected item, because for a new course the department isn't established yet:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=3&name=snippet_CreateGet)]
 
-The HttpGet `Edit` method sets the selected item, based on the ID of the department that is already assigned to the course being edited:
+The HttpGet `Edit` method sets the selected item, based on the ID of the department that's already assigned to the course being edited:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=15&name=snippet_EditGet)]
 
@@ -127,7 +125,7 @@ The code does the following:
 
 -  Updates the retrieved Instructor entity with values from the model binder. The `TryUpdateModel` overload enables you to whitelist the properties you want to include. This prevents over-posting, as explained in the [second tutorial](crud.md).
 
-    <!-- Snippets do not play well with <ul> [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
+    <!-- Snippets don't play well with <ul> [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
     ```csharp
     if (await TryUpdateModelAsync<Instructor>(
@@ -138,7 +136,7 @@ The code does the following:
 	
 -   If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
-    <!-- Snippets do not play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
+    <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
     ```csharp
     if (String.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
@@ -219,7 +217,7 @@ In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of che
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
-This code creates an HTML table that has three columns. In each column is a check box followed by a caption that consists of the course number and title. The check boxes all have the same name ("selectedCourses"), which informs the model binder that they are to be treated as a group. The value attribute of each check box is set to the value of `CourseID`. When the page is posted, the model binder passes an array to the controller that consists of the `CourseID` values for only the check boxes which are selected.
+This code creates an HTML table that has three columns. In each column is a check box followed by a caption that consists of the course number and title. The check boxes all have the same name ("selectedCourses"), which informs the model binder that they're to be treated as a group. The value attribute of each check box is set to the value of `CourseID`. When the page is posted, the model binder passes an array to the controller that consists of the `CourseID` values for only the check boxes which are selected.
 
 When the check boxes are initially rendered, those that are for courses assigned to the instructor have checked attributes, which selects them (displays them checked).
 
@@ -230,7 +228,7 @@ Run the app, select the **Instructors** tab, and click **Edit** on an instructor
 Change some course assignments and click Save. The changes you make are reflected on the Index page.
 
 > [!NOTE] 
-> The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
+> The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
 
 ## Update the Delete page
 

@@ -246,7 +246,7 @@ The dialog box you use to create new ASP.NET MVC 3 projects includes multiple im
 
 The Project Template list includes a new Intranet Application template. This template contains settings for building a web application using Windows authentication instead of forms authentication. Because an intranet application requires some IIS settings that can't be encapsulated in a project template, the template includes a readme file with instructions for how to make the project template work in IIS. Documentation for the a new Intranet Application template is available on the MSDN website at the following URL:
 
-[https://msdn.microsoft.com/en-us/library/gg703322(VS.98).aspx](https://msdn.microsoft.com/en-us/library/gg703322(VS.98).aspx)
+[https://msdn.microsoft.com/library/gg703322(VS.98).aspx](https://msdn.microsoft.com/library/gg703322(VS.98).aspx)
 
 #### Project templates are now HTML5 enabled
 
@@ -514,7 +514,7 @@ The list of project templates that is displayed in the dialog box is specified i
 <a id="_Toc276711788"></a>
 ### Sessionless Controllers
 
-The new *ControllerSessionStateAttribute* gives you more control over session-state behavior for controllers by specifying a [System.Web.SessionState.SessionStateBehavior](https://msdn.microsoft.com/en-us/library/system.web.sessionstate.sessionstatebehavior.aspx) enumeration value.
+The new *ControllerSessionStateAttribute* gives you more control over session-state behavior for controllers by specifying a [System.Web.SessionState.SessionStateBehavior](https://msdn.microsoft.com/library/system.web.sessionstate.sessionstatebehavior.aspx) enumeration value.
 
 The following example shows how to turn off session state for all requests to a controller.
 

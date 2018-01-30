@@ -1,15 +1,13 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: Use Identity with an ASP.NET Core app
-keywords: ASP.NET Core,Identity,authorization,security
-ms.author: riande
+description: Use Identity with an ASP.NET Core app. Includes, Setting password requirements (RequireDigit,RequiredLength,RequiredUniqueChars and more).
 manager: wpickett
-ms.date: 01/02/2018
-ms.topic: article
-ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
-ms.technology: aspnet
+ms.author: riande
+ms.date: 01/24/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -20,7 +18,7 @@ ASP.NET Core Identity is a membership system which allows you to add login funct
 
 You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example, an Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
 
-[View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/index#how-to-download-a-sample)
+[View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](https://docs.microsoft.com/aspnet/core/tutorials/index#how-to-download-a-sample)
 
 ## Overview of Identity
 
@@ -95,7 +93,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
         options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
     ```
     
-    When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the  `_userManager` object (provided to ``AccountController`` by dependency injection):
+    When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to ``AccountController`` by dependency injection):
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
 
@@ -121,9 +119,10 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
     The preceding code above calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
  
+<a name="pw"></a>
 6.  Configuration.
 
-    Identity has some default behaviors that you can override in your application's startup class. You do not need to configure ``IdentityOptions`` if you are using the default behaviors.
+    Identity has some default behaviors that can be overridden in the app's startup class. `IdentityOptions` don't need to be configured when using the default behaviors. The following code sets several password strength options:
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
@@ -191,6 +190,10 @@ These dependencies are needed to use the Identity system in ASP.NET Core applica
 ## Migrating to ASP.NET Core Identity
 
 For additional information and guidance on migrating your existing Identity store see [Migrating Authentication and Identity](xref:migration/identity).
+
+## Setting password strength
+
+See [Configuration](#pw) for a sample that sets the minimum password requirements.
 
 ## Next Steps
 

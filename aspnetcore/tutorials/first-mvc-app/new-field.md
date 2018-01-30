@@ -2,14 +2,12 @@
 title: Adding a New Field
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: get-started-article
-ms.assetid: 16efbacf-fe7b-4b41-84b0-06a1574b95c2
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app/new-field
 ---
 # Adding a New Field

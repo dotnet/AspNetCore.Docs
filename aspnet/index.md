@@ -62,7 +62,7 @@ description:
                                 </a>
                             </li>
                             <li>
-                                <a href="https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-2.0">
+                                <a href="https://docs.microsoft.com/dotnet/api/?view=aspnetcore-2.0">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -141,7 +141,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
-                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
+                                    <p><a href="https://docs.microsoft.com/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -276,7 +276,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
-                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
+                                    <p><a href="https://docs.microsoft.com/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -445,7 +445,7 @@ description:
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that’s right for you.</p>
+                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that's right for you.</p>
                                 </div>
                             </li>
                             <li>

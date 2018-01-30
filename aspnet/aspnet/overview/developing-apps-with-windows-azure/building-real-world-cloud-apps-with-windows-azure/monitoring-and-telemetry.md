@@ -36,7 +36,7 @@ One of the things that's great about the cloud environment is that it's really e
 - [AppDynamics](http://www.appdynamics.com/)
 - [Dynatrace](https://datamarket.azure.com/application/b4011de2-1212-4375-9211-e882766121ff)
 
-As of March 2015, [Microsoft Application Insights for Visual Studio Online](https://azure.microsoft.com/en-us/documentation/articles/app-insights-get-started/) is not released yet but is available in preview to try out. [Microsoft System Center](http://www.petri.co.il/microsoft-system-center-introduction.htm#) also includes monitoring features.
+As of March 2015, [Microsoft Application Insights for Visual Studio Online](https://azure.microsoft.com/documentation/articles/app-insights-get-started/) is not released yet but is available in preview to try out. [Microsoft System Center](http://www.petri.co.il/microsoft-system-center-introduction.htm#) also includes monitoring features.
 
 We'll quickly walk through setting up New Relic to show how easy it can be to use a telemetry system.
 
@@ -151,13 +151,13 @@ We highly recommend that you write a log every time your app calls out to a serv
 
 What we recommend doing when you create a production application is to create a simple *ILogger* interface and stick some methods in it. This makes it easy to change the logging implementation later and not have to go through all your code to do it. We could be using the `System.Diagnostics.Trace` class throughout the Fix It app, but instead we're using it under the covers in a logging class that implements *ILogger*, and we make *ILogger* method calls throughout the app.
 
-That way, if you ever want to make your logging richer, you can replace [`System.Diagnostics.Trace`](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio#apptracelogs) with whatever logging mechanism you want. For example, as your app grows you might decide that you want to use a more comprehensive logging package such as [NLog](http://nlog-project.org/) or [Enterprise Library Logging Application Block](https://msdn.microsoft.com/en-us/library/dn440731(v=pandp.60).aspx). ([Log4Net](http://logging.apache.org/log4net/) is another popular logging framework but it doesn't do asynchronous logging.)
+That way, if you ever want to make your logging richer, you can replace [`System.Diagnostics.Trace`](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio#apptracelogs) with whatever logging mechanism you want. For example, as your app grows you might decide that you want to use a more comprehensive logging package such as [NLog](http://nlog-project.org/) or [Enterprise Library Logging Application Block](https://msdn.microsoft.com/library/dn440731(v=pandp.60).aspx). ([Log4Net](http://logging.apache.org/log4net/) is another popular logging framework but it doesn't do asynchronous logging.)
 
 One possible reason for using a framework such as NLog is to facilitate dividing up logging output into separate high-volume and high-value data stores. That helps you to efficiently store large volumes of INFORM data that you don't need to execute fast queries against, while maintaining quick access to ACT data.
 
 ### Semantic Logging
 
-For a relatively new way to do logging that can produce more useful diagnostic information, see [Enterprise Library Semantic Logging Application Block (SLAB)](http://convective.wordpress.com/2013/08/12/semantic-logging-application-block-slab/). SLAB uses [Event Tracing for Windows](https://msdn.microsoft.com/en-us/library/windows/desktop/bb968803.aspx) (ETW) and [EventSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventsource.aspx) support in .NET 4.5 to enable you to create more structured and queryable logs. You define a different method for each type of event that you log, which enables you to customize the information you write. For example, to log a SQL Database error you might call a `LogSQLDatabaseError` method. For that kind of exception, you know a key piece of information is the error number, so you could include an error number parameter in the method signature and record the error number as a separate field in the log record you write. Because the number is in a separate field you can more easily and reliably get reports based on SQL error numbers than you could if you were just concatenating the error number into a message string.
+For a relatively new way to do logging that can produce more useful diagnostic information, see [Enterprise Library Semantic Logging Application Block (SLAB)](http://convective.wordpress.com/2013/08/12/semantic-logging-application-block-slab/). SLAB uses [Event Tracing for Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) and [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) support in .NET 4.5 to enable you to create more structured and queryable logs. You define a different method for each type of event that you log, which enables you to customize the information you write. For example, to log a SQL Database error you might call a `LogSQLDatabaseError` method. For that kind of exception, you know a key piece of information is the error number, so you could include an error number parameter in the method signature and record the error number as a separate field in the log record you write. Because the number is in a separate field you can more easily and reliably get reports based on SQL error numbers than you could if you were just concatenating the error number into a message string.
 
 ## Logging in the Fix It app
 
@@ -239,13 +239,13 @@ The Fix It app uses System.Diagnostics tracing. All you need to do to enable Sys
 
 After you enable logging in Azure, you can see logs in the Visual Studio Output window as they are created.
 
-![Streaming logs menu](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-viewlogsmenu.png)
+![Streaming logs menu](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-viewlogsmenu.png)
 
-![Streaming logs menu](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-nologsyet.png)
+![Streaming logs menu](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-nologsyet.png)
 
 You can also have logs written to your storage account and view them with any tool that can access the Azure Storage Table service, such as **Server Explorer** in Visual Studio or [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/).
 
-![Logs in Server Explorer](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-storagelogs.png)
+![Logs in Server Explorer](http://wacomdpsstorage.blob.core.windows.net/articlesmedia/content-ppe.windowsazure.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/20140115062810/tws-storagelogs.png)
 
 ## Summary
 
@@ -259,10 +259,10 @@ For more information, see the following resources.
 
 Documentation mainly about telemetry:
 
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Instrumentation and Telemetry guidance, Service Metering  guidance, Health Endpoint Monitoring pattern, and Runtime Reconfiguration pattern.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Instrumentation and Telemetry guidance, Service Metering  guidance, Health Endpoint Monitoring pattern, and Runtime Reconfiguration pattern.
 - [Penny Pinching in the Cloud: Enabling New Relic Performance Monitoring on Azure Websites](http://www.hanselman.com/blog/PennyPinchingInTheCloudEnablingNewRelicPerformanceMonitoringOnWindowsAzureWebsites.aspx).
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy. See the Telemetry and Diagnostics section.
-- [Next-Generation Development with Application Insights](https://msdn.microsoft.com/en-us/magazine/dn683794.aspx). MSDN Magazine article.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy. See the Telemetry and Diagnostics section.
+- [Next-Generation Development with Application Insights](https://msdn.microsoft.com/magazine/dn683794.aspx). MSDN Magazine article.
 
 Documentation mainly about logging:
 

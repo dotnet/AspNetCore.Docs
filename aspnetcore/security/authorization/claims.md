@@ -2,14 +2,12 @@
 title: Claims-Based Authorization
 author: rick-anderson
 description: This document explains how to add claims checks for authorization in an ASP.NET Core app.
-keywords: ASP.NET Core,authorization,claims
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 737be5cd-3511-4f1c-b0ce-65403fb5eed3
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/claims
 ---
 # Claims-Based Authorization
@@ -26,7 +24,7 @@ An identity can contain multiple claims with multiple values and can contain mul
 
 Claim based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
 
-The simplest type of claim policy looks for the presence of a claim and does not check the value.
+The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
 First you need to build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your *Startup.cs* file.
 
@@ -66,7 +64,7 @@ public class VacationController : Controller
 }
 ```
 
-If you have a controller that is protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
+If you have a controller that's protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]

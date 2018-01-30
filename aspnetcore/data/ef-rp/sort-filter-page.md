@@ -2,12 +2,11 @@
 title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 8
 author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
-keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
 ms.author: riande
 ms.date: 10/22/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/sort-filter-page
 ---
 
@@ -68,7 +67,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-)]
 
- When an`IQueryable` is created or modified, no query is sent to the database. The query is not executed until the `IQueryable` object is converted into a collection. `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that is not executed until the following statement:
+ When an`IQueryable` is created or modified, no query is sent to the database. The query isn't executed until the `IQueryable` object is converted into a collection. `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that's not executed until the following statement:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
@@ -104,7 +103,7 @@ Step through the debugger.
 To add filtering to the Students Index page:
 
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
-* The code-behind file is updated to use the text box value.
+* The page model is updated to use the text box value.
 
 ### Add filtering functionality to the Index method
 
@@ -114,7 +113,7 @@ Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
 The preceding code:
 
-* Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that is added in the next section.
+* Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that's added in the next section.
 * Added to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
 Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
@@ -128,7 +127,7 @@ The preceding code would ensure that results are case-insensitive if the code ch
 1. All the rows are returned from the DB server.
 1. The filter is applied to all the returned rows in the application.
 
-There is a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
+There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
 ### Add a Search Box to the Student Index View
 
@@ -136,7 +135,7 @@ In *Views/Student/Index.cshtml*, add the following highlighted code to create a 
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
-The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
+The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action doesn't result in an update.
 
 Test the app:
 
@@ -198,7 +197,7 @@ When a paging link is clicked, the page index variable contains the page number 
 If the search string is changed while paging, the page is reset to 1. The page has to be reset to 1 because the new filter can result in different data to display. When a search value is entered and **Submit** is selected:
 
 * The search string is changed.
-* The `searchString` parameter is not null.
+* The `searchString` parameter isn't null.
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage3)]
 
@@ -242,7 +241,7 @@ Step through the debugger.
 In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
-* Modify the About Razor Page and code-behind file.
+* Modify the About Razor Page and page model.
 
 ### Create the view model
 
@@ -252,7 +251,7 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Update the About code-behind page
+### Update the About page model
 
 Update the *Pages/About.cshtml.cs* file with the following code:
 
@@ -274,7 +273,7 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Additional Resources
+## Additional resources
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 

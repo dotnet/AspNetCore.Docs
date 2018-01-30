@@ -2,14 +2,12 @@
 title: Dependency injection into controllers
 author: ardalis
 description: 
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: bc8b4ba3-e9ba-48fd-b1eb-cd48ff6bc7a1
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers
@@ -84,7 +82,7 @@ Sometimes you don't need a service for more than one action within your controll
 
 ## Accessing Settings from a Controller
 
-Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in [configuration](xref:fundamentals/configuration/index). You generally should not request settings directly from your controller using dependency injection. A better approach is to request an `IOptions<T>` instance, where `T` is the configuration class you need.
+Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in [configuration](xref:fundamentals/configuration/index). You generally shouldn't request settings directly from your controller using dependency injection. A better approach is to request an `IOptions<T>` instance, where `T` is the configuration class you need.
 
 To work with the options pattern, you need to create a class that represents the options, such as this one:
 
@@ -101,4 +99,4 @@ Once you've specified a strongly-typed configuration object (in this case, `Samp
 
 [!code-csharp[Main](./dependency-injection/sample/src/ControllerDI/Controllers/SettingsController.cs?highlight=3,5,7&range=7-22)]
 
-Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](http://deviq.com/separation-of-concerns/), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to unit test [Testing Controller Logic](testing.md), since there is no [static cling](http://deviq.com/static-cling/) or direct instantiation of settings classes within the controller class.
+Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](http://deviq.com/separation-of-concerns/), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to unit test [Testing Controller Logic](testing.md), since there's no [static cling](http://deviq.com/static-cling/) or direct instantiation of settings classes within the controller class.

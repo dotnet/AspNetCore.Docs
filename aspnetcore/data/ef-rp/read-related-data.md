@@ -2,13 +2,12 @@
 title: Razor Pages with EF Core - Read Related Data - 6 of 8
 author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
-keywords: ASP.NET Core,Entity Framework Core,related data,joins
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/05/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/read-related-data
 ---
 
@@ -51,7 +50,7 @@ There are several ways that EF Core can load related data into the navigation pr
 
  ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
-* [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core does not currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
+* [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core doesn't currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
 * The `Select` operator loads only the related data needed.
 
@@ -90,13 +89,13 @@ Build the project. The build generates errors like the following:
 
 Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
-Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which is not useful.
+Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which isn't useful.
 
 Update the `OnGetAsync` method with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod)]
 
-The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they are not updated in the current context.
+The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
 
 Update *Views/Courses/Index.cshtml* with the following highlighted markup:
 
@@ -105,7 +104,7 @@ Update *Views/Courses/Index.cshtml* with the following highlighted markup:
 The following changes have been made to the scaffolded code:
 
 * Changed the heading from Index to Courses.
-* Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they are meaningless to end users. However, in this case the primary key is meaningful.
+* Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they're meaningless to end users. However, in this case the primary key is meaningful.
 * Changed the **Department** column to display the department name. The code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
 
   ```html
@@ -207,7 +206,7 @@ The preceding markup makes the following changes:
 	`http://localhost:1234/Instructors/2`
 
 * Page title is **Instructors**.
-* Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` is not null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
+* Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
 
   ```html
   @if (item.OfficeAssignment != null)

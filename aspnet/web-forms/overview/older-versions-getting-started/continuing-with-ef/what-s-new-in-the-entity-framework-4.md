@@ -85,7 +85,7 @@ Run the *Courses.aspx* page again to see the changed data.
 
 (If you want to set the number of credits back to their original values, in *UpdateCredits.aspx.cs* change `Credits * {0}` to `Credits / {0}` and re-run the page, entering 10 as the divisor.)
 
-For more information about executing queries that you define in code, see [How to: Directly Execute Commands Against the Data Source](https://msdn.microsoft.com/en-us/library/ee358769.aspx).
+For more information about executing queries that you define in code, see [How to: Directly Execute Commands Against the Data Source](https://msdn.microsoft.com/library/ee358769.aspx).
 
 ## Model-First Development
 
@@ -173,7 +173,7 @@ Run the page.
 
 (Note: This page is included in the downloadable project, but to make it work you must create the database in your local SQL Server Express instance; the database isn't included as an *.mdf* file in the *App\_Data* folder.)
 
-For more information about using the model-first feature of the Entity Framework, see [Model-First in the Entity Framework 4](https://msdn.microsoft.com/en-us/data/ff830362.aspx).
+For more information about using the model-first feature of the Entity Framework, see [Model-First in the Entity Framework 4](https://msdn.microsoft.com/data/ff830362.aspx).
 
 ## POCO Support
 
@@ -183,7 +183,7 @@ The Entity Framework 4 introduces the ability to use entity classes that don't i
 
 For more information about using POCOs in the Entity Framework, see the following resources:
 
-- [Working with POCO Entities](https://msdn.microsoft.com/en-us/library/dd456853.aspx). This is an MSDN document that's an overview of POCOs, with links to other documents that have more detailed information.
+- [Working with POCO Entities](https://msdn.microsoft.com/library/dd456853.aspx). This is an MSDN document that's an overview of POCOs, with links to other documents that have more detailed information.
 - [Walkthrough: POCO Template for the Entity Framework](https://blogs.msdn.com/b/adonet/archive/2010/01/25/walkthrough-poco-template-for-the-entity-framework.aspx) This is a blog post from the Entity Framework development team, with links to other blog posts about POCOs.
 
 ## Code-First Development
@@ -204,7 +204,7 @@ In addition, a new MVC Code-First tutorial that builds an application similar to
 
 This completes the overview to what's new in the Entity Framework and this Continuing with the Entity Framework tutorial series. For more information about new features in the Entity Framework 4 that aren't covered here, see the following resources:
 
-- [What's New in ADO.NET](https://msdn.microsoft.com/en-us/library/ex6y04yf.aspx) MSDN topic on new features in version 4 of the Entity Framework.
+- [What's New in ADO.NET](https://msdn.microsoft.com/library/ex6y04yf.aspx) MSDN topic on new features in version 4 of the Entity Framework.
 - [Announcing the release of Entity Framework 4](https://blogs.msdn.com/b/efdesign/archive/2010/04/12/announcing-the-release-of-entity-framework-4.aspx) The Entity Framework development team's blog post about new features in version 4.
 
 >[!div class="step-by-step"]

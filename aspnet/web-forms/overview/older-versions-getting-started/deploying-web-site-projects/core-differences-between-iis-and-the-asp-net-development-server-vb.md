@@ -42,7 +42,7 @@ To show this type of error in action I've created a page in the Book Reviews web
 [!code-vb[Main](core-differences-between-iis-and-the-asp-net-development-server-vb/samples/sample1.vb)]
 
 > [!NOTE]
-> The [`File.WriteAllText` method](https://msdn.microsoft.com/en-us/library/system.io.file.writealltext.aspx) creates a new file if it does not exist and then writes the specified contents to it. If the file already exists, it's existing content is overwritten.
+> The [`File.WriteAllText` method](https://msdn.microsoft.com/library/system.io.file.writealltext.aspx) creates a new file if it does not exist and then writes the specified contents to it. If the file already exists, it's existing content is overwritten.
 
 
 Next, visit the *Teach Yourself ASP.NET 3.5 in 24 Hours* book review page in the development environment using the ASP.NET Development Server. Assuming that you are logged on to your computer with an account that has adequate permissions to create and modify a text file in the web application's root directory the book review appears the same as before, but each time the page is visited the date and time and user's IP address is stored in the `LastTYASP35Access.txt` file. Point your browser to this file; you should see a message similar to the one shown in Figure 1.
@@ -53,7 +53,7 @@ Next, visit the *Teach Yourself ASP.NET 3.5 in 24 Hours* book review page in the
 **Figure 1**: The Text File Contains the Last Date and Time the Book Review was Visited([Click to view full-size image](core-differences-between-iis-and-the-asp-net-development-server-vb/_static/image3.png))
 
 
-Deploy the web application to production and then visit the hosted *Teach Yourself ASP.NET 3.5 in 24 Hours* book review page. At this point you should either see the book review page as normal or the error message shown in Figure 2. Some web host providers grant write permissions to the anonymous ASP.NET machine account, in which case the page will work without error. If, however, your web host provider prohibits write access for the anonymous account then an [`UnauthorizedAccessException` exception](https://msdn.microsoft.com/en-us/library/system.unauthorizedaccessexception.aspx) is raised when the `TYASP35.aspx` page attempts to write the current date and time to the `LastTYASP35Access.txt` file.
+Deploy the web application to production and then visit the hosted *Teach Yourself ASP.NET 3.5 in 24 Hours* book review page. At this point you should either see the book review page as normal or the error message shown in Figure 2. Some web host providers grant write permissions to the anonymous ASP.NET machine account, in which case the page will work without error. If, however, your web host provider prohibits write access for the anonymous account then an [`UnauthorizedAccessException` exception](https://msdn.microsoft.com/library/system.unauthorizedaccessexception.aspx) is raised when the `TYASP35.aspx` page attempts to write the current date and time to the `LastTYASP35Access.txt` file.
 
 
 [![The Default Machine Account Used by IIS Does Not Have Permissions to Write to the File System](core-differences-between-iis-and-the-asp-net-development-server-vb/_static/image5.png)](core-differences-between-iis-and-the-asp-net-development-server-vb/_static/image4.png)
@@ -118,7 +118,7 @@ Once IIS has been configured to use the integrated pipeline add the following ma
 This markup instructs IIS 7 to use the ASP.NET-based authentication and authorization modules. Re-deploy your application and then re-visit the PDF file. This time when IIS handles the request it gives the ASP.NET runtime's authentication and authorization logic an opportunity to inspect the request. Because only authenticated users are authorized to view the contents in the `PrivateDocs` folder, the anonymous visitor is automatically redirected to the login page (refer back to Figure 3).
 
 > [!NOTE]
-> If your web host provider is still using IIS 6 then you cannot use the integrated pipeline feature. One workaround is to put your private documents in a folder that prohibits HTTP access (such as `App_Data`) and then create a page to serve these documents. This page might be called `GetPDF.aspx`, and is passed the name of the PDF through a querystring parameter. The `GetPDF.aspx` page would first verify that the user has permission to view the file and, if so, would use the [`Response.WriteFile(filePath)`](https://msdn.microsoft.com/en-us/library/system.web.httpresponse.writefile.aspx) method to send the contents of the requested PDF file back to the requesting client. This technique would also work for IIS 7 if you did not wish to enable the integrated pipeline.
+> If your web host provider is still using IIS 6 then you cannot use the integrated pipeline feature. One workaround is to put your private documents in a folder that prohibits HTTP access (such as `App_Data`) and then create a page to serve these documents. This page might be called `GetPDF.aspx`, and is passed the name of the PDF through a querystring parameter. The `GetPDF.aspx` page would first verify that the user has permission to view the file and, if so, would use the [`Response.WriteFile(filePath)`](https://msdn.microsoft.com/library/system.web.httpresponse.writefile.aspx) method to send the contents of the requested PDF file back to the requesting client. This technique would also work for IIS 7 if you did not wish to enable the integrated pipeline.
 
 
 ## Summary
@@ -133,7 +133,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 - [ASP.NET Integration with IIS 7.0](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis)
 - [Using ASP.NET Forums Authentication With All Types of Content on IIS 7](https://blogs.iis.net/bills/archive/2007/05/19/using-asp-net-forms-authentication-with-all-types-of-content-with-iis7-video.aspx) (Video)
-- [Web Servers in Visual Web Developer](https://msdn.microsoft.com/en-us/library/58wxa9w5.aspx)
+- [Web Servers in Visual Web Developer](https://msdn.microsoft.com/library/58wxa9w5.aspx)
 
 >[!div class="step-by-step"]
 [Previous](common-configuration-differences-between-development-and-production-vb.md)

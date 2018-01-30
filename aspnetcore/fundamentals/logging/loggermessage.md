@@ -2,12 +2,12 @@
 title: High-performance logging with LoggerMessage in ASP.NET Core
 author: guardrex
 description: Learn how to use LoggerMessage features to create cacheable delegates that require fewer object allocations than logger extension methods for high-performance logging scenarios.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/03/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/logging/loggermessage
 ---
 # High-performance logging with LoggerMessage in ASP.NET Core
@@ -87,7 +87,7 @@ The static extension method for adding a quote, `QuoteAdded`, receives the quote
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-In the Index page's code-behind file (*Pages/Index.cshtml.cs*), `QuoteAdded` is called to log the message:
+In the Index page's page model (*Pages/Index.cshtml.cs*), `QuoteAdded` is called to log the message:
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -109,7 +109,7 @@ Note how the exception is passed to the delegate in `QuoteDeleteFailed`:
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-In the Index page code-behind, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an `ArgumentNullException` is thrown. The exception is trapped by the `try`&ndash;`catch` statement and logged by calling the `QuoteDeleteFailed` method on the logger in the `catch` block (*Pages/Index.cshtml.cs*):
+In the page model for the Index page, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an `ArgumentNullException` is thrown. The exception is trapped by the `try`&ndash;`catch` statement and logged by calling the `QuoteDeleteFailed` method on the logger in the `catch` block (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 

@@ -2,13 +2,13 @@
 title: Common errors reference for Azure App Service and IIS with ASP.NET Core
 author: guardrex
 description: Distinguish common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/13/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
@@ -139,7 +139,7 @@ Troubleshooting:
 
 * Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshooting](xref:host-and-deploy/iis/troubleshoot).
 
-* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is either (a) *.\{assembly}.dll* for a framework-dependent deployment (FDD); or (b) not present, an empty string (*arguments=""*), or a list of the app's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment (SCD).
+* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) *.\{assembly}.dll* for a framework-dependent deployment (FDD); or (b) not present, an empty string (*arguments=""*), or a list of the app's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment (SCD).
 
 ## Missing .NET Framework version
 

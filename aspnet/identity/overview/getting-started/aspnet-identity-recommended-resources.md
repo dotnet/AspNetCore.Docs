@@ -57,8 +57,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Two-factor authentication using SMS and email with ASP.NET Identity](../features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md)
 - [Migrating an Existing Website from SQL Membership to ASP.NET Identity](../migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md)
 - [Adding ASP.NET Identity to an Empty or Existing Web Forms Project](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project.md)
-- MSDN Magazine [External Authentication with ASP.NET Identity](https://msdn.microsoft.com/en-us/magazine/dn745860.aspx) by Dino Esposito
-- MSDN Magazine[A First Look at ASP.NET Identity](https://msdn.microsoft.com/en-us/magazine/dn605872.aspx) by Dino Esposito
+- MSDN Magazine [External Authentication with ASP.NET Identity](https://msdn.microsoft.com/magazine/dn745860.aspx) by Dino Esposito
+- MSDN Magazine[A First Look at ASP.NET Identity](https://msdn.microsoft.com/magazine/dn605872.aspx) by Dino Esposito
 - [ASP.NET Identity – User Lockout](http://tech.trailmax.info/2014/06/asp-net-identity-user-lockout/)
 
 <a id="samp"></a>

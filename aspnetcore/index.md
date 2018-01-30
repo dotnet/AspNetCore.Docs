@@ -2,13 +2,12 @@
 title: Introduction to ASP.NET Core
 author: rick-anderson
 description: Provides an introduction to ASP.NET Core.
-keywords: ASP.NET Core
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 12/12/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -24,7 +23,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 ## Why use ASP.NET Core?
 
-Millions of developers have used (and continue to use) [ASP.NET 4.x](https://docs.microsoft.com/en-us/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
+Millions of developers have used (and continue to use) [ASP.NET 4.x](https://docs.microsoft.com/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
 ASP.NET Core provides the following benefits:
 

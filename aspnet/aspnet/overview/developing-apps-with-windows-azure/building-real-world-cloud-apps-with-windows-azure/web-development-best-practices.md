@@ -137,20 +137,20 @@ For more information see the following resources.
 
 Stateless web servers:
 
-- [Microsoft Patterns and Practices - Autoscaling guidance](https://msdn.microsoft.com/en-us/library/dn589774.aspx).
+- [Microsoft Patterns and Practices - Autoscaling guidance](https://msdn.microsoft.com/library/dn589774.aspx).
 - [Disabling ARR's Instance Affinity in Windows Azure Web Sites](https://azure.microsoft.com/blog/2013/11/18/disabling-arrs-instance-affinity-in-windows-azure-web-sites/). Blog post by Erez Benari, explains session affinity in Windows Azure Web Sites.
 
 CDN:
 
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. See the CDN discussion in episode 3 starting at 1:34:00.
-- [Microsoft Patterns and Practices Static Content Hosting pattern](https://msdn.microsoft.com/en-us/library/dn589776.aspx)
+- [Microsoft Patterns and Practices Static Content Hosting pattern](https://msdn.microsoft.com/library/dn589776.aspx)
 - [CDN Reviews](http://www.cdnreviews.com/). Overview of many CDNs.
 
 Asynchronous programming:
 
 - [Using Asynchronous Methods in ASP.NET MVC 4](../../../../mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md). Tutorial by Rick Anderson.
-- [Asynchronous Programming with Async and Await (C# and Visual Basic)](https://msdn.microsoft.com/en-us/library/vstudio/hh191443.aspx). MSDN white paper that explains rationale for asynchronous programming, how it works in ASP.NET 4.5, and how to write code to implement it.
-- [Entity Framework Async Query and Save](https://msdn.microsoft.com/en-us/data/jj819165)
+- [Asynchronous Programming with Async and Await (C# and Visual Basic)](https://msdn.microsoft.com/library/vstudio/hh191443.aspx). MSDN white paper that explains rationale for asynchronous programming, how it works in ASP.NET 4.5, and how to write code to implement it.
+- [Entity Framework Async Query and Save](https://msdn.microsoft.com/data/jj819165)
 - [How to Build ASP.NET Web Applications Using Async](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/DEV-B337#fbid=tgkT4SR_DK7). Video presentation by Rowan Miller. Includes a graphic demonstration of how asynchronous programming can facilitate dramatic increases in web server throughput under high load conditions.
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. For discussions about the impact of asynchronous programming on scalability, see episode 4 and episode 8.
 - [The Magic of using Asynchronous Methods in ASP.NET 4.5 plus an important gotcha](http://www.hanselman.com/blog/TheMagicOfUsingAsynchronousMethodsInASPNET45PlusAnImportantGotcha.aspx). Blog post by Scott Hanselman, primarily about using async in ASP.NET Web Forms applications.

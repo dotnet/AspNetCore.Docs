@@ -2,13 +2,13 @@
 title: Host ASP.NET Core on Linux with Apache
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 author: spboyer
-ms.author: spboyer
 manager: wpickett
+ms.author: spboyer
 ms.custom: mvc
 ms.date: 10/19/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -88,7 +88,7 @@ Create a configuration file for the app named `hellomvc.conf`:
 
 The **VirtualHost** node can appear multiple times in one or more files on a server. **VirtualHost** is set to listen on any IP address using port 80. The next two lines are set to proxy requests at the root to the server at 127.0.0.1 on port 5000. For bi-directional communication, *ProxyPass* and *ProxyPassReverse* are required.
 
-Logging can be configured per **VirtualHost** using **ErrorLog** and **CustomLog** directives. **ErrorLog** is the location where the server logs errors, and **CustomLog** sets the filename and format of log file. In this case, this is where request information is logged. There is one line for each request.
+Logging can be configured per **VirtualHost** using **ErrorLog** and **CustomLog** directives. **ErrorLog** is the location where the server logs errors, and **CustomLog** sets the filename and format of log file. In this case, this is where request information is logged. There's one line for each request.
 
 Save the file and test the configuration. If everything passes, the response should be `Syntax [OK]`.
 

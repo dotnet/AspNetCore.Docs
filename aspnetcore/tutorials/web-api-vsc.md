@@ -1,18 +1,13 @@
 ---
 title: Create a Web API with ASP.NET Core and VS Code
-description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
 author: rick-anderson
+description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
+manager: wpickett
 ms.author: riande
 ms.date: 09/22/2017
-ms.topic: get-started-article
 ms.prod: asp.net-core
-
-#ROBOTS:
 ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
-#ms.devlang: 
-manager: wpickett
-ms.assetid: 830b4bf5-dd14-423e-9f59-764a6f13a8f6
+ms.topic: get-started-article
 uid: tutorials/web-api-vsc
 ---
 
@@ -20,7 +15,7 @@ uid: tutorials/web-api-vsc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
+In this tutorial, build a web API for managing a list of "to-do" items. A UI isn't constructed.
 
 There are 3 versions of this tutorial:
 
@@ -66,7 +61,7 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
-Creating a new project in .NET Core 2.0 adds the 'Microsoft.AspNetCore.All' provider in the *TodoApi.csproj* file. There is no need to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
+Creating a new project in .NET Core 2.0 adds the 'Microsoft.AspNetCore.All' provider in the *TodoApi.csproj* file. There's no need to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 [!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 

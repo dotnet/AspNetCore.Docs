@@ -2,14 +2,12 @@
 title: Migrating from ASP.NET Web API
 author: ardalis
 description: 
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 4f0564b4-ed4e-4e1e-9755-c1144d21a0ef
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: migration/webapi
 ---
 # Migrating from ASP.NET Web API
@@ -65,7 +63,7 @@ ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders.
 
 [!code-none[Main](../migration/webapi/sample/ProductsCore/Startup.cs?highlight=40)]
 
-Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that is included in the Web API starter project:
+Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that's included in the Web API starter project:
 
 [!code-csharp[Main](../migration/webapi/sample/ProductsCore/Controllers/ValuesController.cs?highlight=9,13,20,27,33,39)]
 

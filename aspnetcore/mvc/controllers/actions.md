@@ -2,14 +2,12 @@
 title: Handling requests with controllers in ASP.NET Core MVC
 author: ardalis
 description: 
-keywords: ASP.NET Core
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/03/2017
-ms.topic: article
-ms.assetid: 9da9eb52-8583-4069-af91-155ba3529d7f
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/controllers/actions
 ---
 # Handling requests with controllers in ASP.NET Core MVC
@@ -39,7 +37,7 @@ Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsibl
 
 The controller takes the result of the model's processing (if any) and returns either the proper view and its associated view data or the result of the API call. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Getting started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
-The controller is a *UI-level* abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it does not directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
+The controller is a *UI-level* abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it doesn't directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
 
 ## Defining Actions
 
@@ -51,7 +49,7 @@ Actions can return anything, but frequently return an instance of `IActionResult
 
 ### Controller Helper Methods
 
-Controllers usually inherit from [Controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller), although this is not required. Deriving from `Controller` provides access to three categories of helper methods:
+Controllers usually inherit from [Controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller), although this isn't required. Deriving from `Controller` provides access to three categories of helper methods:
 
 #### 1. Methods resulting in an empty response body
 

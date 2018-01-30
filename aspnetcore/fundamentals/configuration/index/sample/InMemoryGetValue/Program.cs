@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 public class Program
 {   
-    public static IConfigurationRoot Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static void Main(string[] args = null)
     {
@@ -37,4 +37,12 @@ public class Program
         Console.WriteLine("Press a key...");
         Console.ReadKey();
     }
+}
+
+public class MyWindow
+{
+    public int Height { get; set; }
+    public int Width { get; set; }
+    public int Top { get; set; }
+    public int Left { get; set; }
 }

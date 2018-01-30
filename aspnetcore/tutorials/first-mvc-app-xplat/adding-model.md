@@ -2,17 +2,12 @@
 title: Adding a model to an ASP.NET Core MVC app.
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
+manager: wpickett
 ms.author: riande
 ms.date: 09/18/2017
-ms.topic: get-started-article
-
-#ROBOTS:
-ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 ms.prod: asp.net-core
-#ms.devlang: 
-manager: wpickett
-ms.assetid: 8dc28498-eeee-4666-b903-b593059e9f39
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
 
@@ -58,10 +53,6 @@ Open a terminal window in the project folder and run the following commands:
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
-
-> [!NOTE]
-> If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
-
 The scaffolding engine creates the following:
 
 * A movies controller (*Controllers/MoviesController.cs*)

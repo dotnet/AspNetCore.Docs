@@ -22,4 +22,4 @@ The following diagram shows the basic design of the app.
 
 * A *controller* is an object that handles HTTP requests and creates the HTTP response. This app has a single controller.
 
-* To keep the tutorial simple, the app doesn’t use a persistent database. The sample app stores to-do items in an in-memory database.
+* To keep the tutorial simple, the app doesn't use a persistent database. The sample app stores to-do items in an in-memory database.

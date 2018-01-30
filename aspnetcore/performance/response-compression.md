@@ -2,14 +2,12 @@
 title: Response Compression Middleware for ASP.NET Core
 author: guardrex
 description: Learn about response compression and how to use Response Compression Middleware in ASP.NET Core apps.
-keywords: ASP.NET Core,performance,response compression,gzip,accept-encoding,middleware
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/20/2017
-ms.topic: article
-ms.assetid: de621887-c5c9-4ac8-9efd-f5cc0457a134
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: performance/response-compression
 ---
 # Response Compression Middleware for ASP.NET Core
@@ -28,7 +26,7 @@ Use Response Compression Middleware when you're:
 * Unable to use the following server-based compression technologies:
   * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
   * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+  * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
   * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
   * [Kestrel](xref:fundamentals/servers/kestrel)
@@ -93,7 +91,7 @@ The following code shows how to enable the Response Compression Middleware with 
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
 
-![Fiddler window showing result of a request without the Accept-Encoding header. The response is not compressed.](response-compression/_static/request-uncompressed.png)
+![Fiddler window showing result of a request without the Accept-Encoding header. The response isn't compressed.](response-compression/_static/request-uncompressed.png)
 
 Submit a request to the sample app with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
@@ -107,7 +105,7 @@ The gzip compression provider defaults to the fastest compression level (`Compre
 
 | Compression Level                | Description                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed. |
+| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
 | `CompressionLevel.NoCompression` | No compression should be performed.                                                                           |
 | `CompressionLevel.Optimal`       | Responses should be optimally compressed, even if the compression takes more time to complete.                |
 
@@ -179,7 +177,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 [!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet1)]
 
 ## Middleware issue when behind an Nginx reverse proxy
-When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, you can do so with an addition to your *web.config* file. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).

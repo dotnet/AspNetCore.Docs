@@ -2,14 +2,12 @@
 title: Twitter external login setup
 author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
-keywords: ASP.NET Core,Twitter,login,authentication
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/01/2016
-ms.topic: article
-ms.assetid: E5931607-31C0-4B20-B416-85E3550F5EA8
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/twitter-logins
 ---
 # Configuring Twitter authentication
@@ -105,7 +103,7 @@ You are now logged in using your Twitter credentials:
 
 ## Troubleshooting
 
-* **ASP.NET Core 2.x only:** If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

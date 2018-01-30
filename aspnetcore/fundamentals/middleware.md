@@ -2,14 +2,12 @@
 title: ASP.NET Core Middleware
 author: rick-anderson
 description: Learn about ASP.NET Core middleware and the request pipeline.
-keywords: ASP.NET Core,Middleware,pipeline,delegate
-ms.author: riande
 manager: wpickett
-ms.date: 10/14/2017
-ms.topic: article
-ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
-ms.technology: aspnet
+ms.author: riande
+ms.date: 01/22/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/middleware
 ---
 # ASP.NET Core Middleware Fundamentals
@@ -20,9 +18,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## What is middleware
+## What is middleware?
 
-Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:
+Middleware is software that's assembled into an application pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
 * Can perform work before and after the next component in the pipeline is invoked. 
@@ -52,7 +50,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 [!code-csharp[Main](middleware/sample/Chain/Startup.cs?name=snippet1)]
 
 >[!WARNING]
-> Do not call `next.Invoke` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
+> Don't call `next.Invoke` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
 > - May cause a protocol violation. For example, writing more than the stated `content-length`.
 > - May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
@@ -60,7 +58,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 
 ## Ordering
 
-The order that middleware components are added in the `Configure` method defines the order in which they are invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.
+The order that middleware components are added in the `Configure` method defines the order in which they're invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.
 
 The Configure method (shown below) adds the following middleware components:
 
@@ -113,11 +111,11 @@ The static file middleware is called early in the pipeline so it can handle requ
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 
-If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseAuthentication`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific Razor Page or controller and action.
+If the request isn't handled by the static file middleware, it's passed on to the Identity middleware (`app.UseAuthentication`), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific Razor Page or controller and action.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.
+If the request isn't handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.
 
 -----------
 
@@ -137,7 +135,7 @@ public void Configure(IApplicationBuilder app)
 
 ### Use, Run, and Map
 
-You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method can short-circuit the pipeline (that is, if it does not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
+You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method can short-circuit the pipeline (that is, if it doesn't call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
 
 `Map*` extensions are used as a convention for branching the pipeline. [Map](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions) branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
@@ -188,18 +186,22 @@ app.Map("/level1/level2", HandleMultiSeg);
 
 ## Built-in middleware
 
-ASP.NET Core ships with the following middleware components:
+ASP.NET Core ships with the following middleware components, as well as a description of the order in which they should be added:
 
-| Middleware | Description |
-| ----- | ------- |
-| [Authentication](xref:security/authentication/identity) | Provides authentication support. |
-| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. |
-| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
-| [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
+| Middleware | Description | Order |
+| ---------- | ----------- | ----- |
+| [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
+| [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
+| [ForwardedHeaders/HttpOverrides](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: Scheme, Host, ClientIP, Method). |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
+| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
+| [RequestLocalization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches files. |
+| [URL Rewriting ](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
 
 <a name="middleware-writing-middleware"></a>
 

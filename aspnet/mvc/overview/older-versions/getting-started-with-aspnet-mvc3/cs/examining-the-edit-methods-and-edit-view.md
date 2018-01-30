@@ -64,7 +64,7 @@ The `HttpGet` `Edit` method takes the movie ID parameter, looks up the movie usi
 
 Notice how the view template has a `@model MvcMovie.Models.Movie` statement at the top of the file — this specifies that the view expects the model for the view template to be of type `Movie`.
 
-The scaffolded code uses several *helper methods* to streamline the HTML markup. The [`Html.LabelFor`](https://msdn.microsoft.com/en-us/library/gg401864(VS.98).aspx) helper displays the name of the field ("Title", "ReleaseDate", "Genre", or "Price"). The [`Html.EditorFor`](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.editorextensions.editorfor(VS.98).aspx) helper displays an HTML `<input>` element. The [`Html.ValidationMessageFor`](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.validationextensions.validationmessagefor(VS.98).aspx) helper displays any validation messages associated with that property.
+The scaffolded code uses several *helper methods* to streamline the HTML markup. The [`Html.LabelFor`](https://msdn.microsoft.com/library/gg401864(VS.98).aspx) helper displays the name of the field ("Title", "ReleaseDate", "Genre", or "Price"). The [`Html.EditorFor`](https://msdn.microsoft.com/library/system.web.mvc.html.editorextensions.editorfor(VS.98).aspx) helper displays an HTML `<input>` element. The [`Html.ValidationMessageFor`](https://msdn.microsoft.com/library/system.web.mvc.html.validationextensions.validationmessagefor(VS.98).aspx) helper displays any validation messages associated with that property.
 
 Run the application and navigate to the */Movies* URL. Click an **Edit** link. In the browser, view the source for the page. The HTML in the page looks like the following example. (The menu markup was excluded for clarity.)
 
@@ -84,7 +84,7 @@ If the posted values aren't valid, they are redisplayed in the form. The `Html.V
 
 [![abcNotValid](examining-the-edit-methods-and-edit-view/_static/image8.png)](examining-the-edit-methods-and-edit-view/_static/image7.png)
 
-> **Note about locales** If you normally work with a locale other than English, see [Supporting ASP.NET MVC 3 Validation with Non-English Locales.](https://msdn.microsoft.com/en-us/library/gg674880(VS.98).aspx)
+> **Note about locales** If you normally work with a locale other than English, see [Supporting ASP.NET MVC 3 Validation with Non-English Locales.](https://msdn.microsoft.com/library/gg674880(VS.98).aspx)
 
 
 ## Making the Edit Method More Robust
@@ -111,7 +111,7 @@ Start by adding a `SearchIndex` action method to the existing `MoviesController`
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample7.cs)]
 
-The first line of the `SearchIndex` method creates the following [LINQ](https://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
+The first line of the `SearchIndex` method creates the following [LINQ](https://msdn.microsoft.com/library/bb397926.aspx) query to select the movies:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample8.cs)]
 
@@ -121,7 +121,7 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample9.cs)]
 
-LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where` or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the [`ToList`](https://msdn.microsoft.com/en-us/library/bb342261.aspx) method is called. In the `SearchIndex` sample, the query is executed in the SearchIndex view. For more information about deferred query execution, see [Query Execution](https://msdn.microsoft.com/en-us/library/bb738633.aspx).
+LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where` or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the [`ToList`](https://msdn.microsoft.com/library/bb342261.aspx) method is called. In the `SearchIndex` sample, the query is executed in the SearchIndex view. For more information about deferred query execution, see [Query Execution](https://msdn.microsoft.com/library/bb738633.aspx).
 
 Now you can implement the `SearchIndex` view that will display the form to the user. Right-click inside the `SearchIndex` method and then click **Add View**. In the **Add View** dialog box, specify that you're going to pass a `Movie` object to the view template as its model class. In the **Scaffold template** list, choose **List**, then click **Add**.
 

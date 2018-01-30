@@ -26,7 +26,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 With our application architecture and website page layout complete, we're ready to start exploring how to accomplish a variety of common data- and reporting-related tasks. In the previous tutorials we've seen how to programmatically bind data from the DAL and BLL to a data Web control in an ASP.NET page. This syntax assigning the data Web control's `DataSource` property to the data to display and then calling the control's `DataBind()` method was the pattern used in ASP.NET 1.x applications, and can continue to be used in your 2.0 applications. However, ASP.NET 2.0's new data source controls offer a declarative way to work with data. Using these controls you can bind data retrieved from the BLL created in the [previous tutorial](../introduction/creating-a-business-logic-layer-cs.md) without having to write a line of code!
 
-ASP.NET 2.0 ships with five built-in data source controls [SqlDataSource](https://msdn.microsoft.com/en-us/library/dz12d98w(vs.80).aspx), [AccessDataSource](https://msdn.microsoft.com/en-us/library/8e5545e1.aspx), [ObjectDataSource](https://msdn.microsoft.com/en-us/library/9a4kyhcx.aspx), [XmlDataSource](https://msdn.microsoft.com/en-us/library/e8d8587a(en-US,VS.80).aspx), and [SiteMapDataSource](https://msdn.microsoft.com/en-us/library/5ex9t96x(en-US,VS.80).aspx) although you can build your own [custom data source controls](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnvs05/html/DataSourceCon1.asp), if needed. Since we have developed an architecture for our tutorial application, we'll be using the ObjectDataSource against our BLL classes.
+ASP.NET 2.0 ships with five built-in data source controls [SqlDataSource](https://msdn.microsoft.com/library/dz12d98w(vs.80).aspx), [AccessDataSource](https://msdn.microsoft.com/library/8e5545e1.aspx), [ObjectDataSource](https://msdn.microsoft.com/library/9a4kyhcx.aspx), [XmlDataSource](https://msdn.microsoft.com/library/e8d8587a(en-US,VS.80).aspx), and [SiteMapDataSource](https://msdn.microsoft.com/library/5ex9t96x(en-US,VS.80).aspx) although you can build your own [custom data source controls](https://msdn.microsoft.com/library/default.asp?url=/library/dnvs05/html/DataSourceCon1.asp), if needed. Since we have developed an architecture for our tutorial application, we'll be using the ObjectDataSource against our BLL classes.
 
 
 ![ASP.NET 2.0 Includes Five Built-In Data Source Controls](displaying-data-with-the-objectdatasource-cs/_static/image1.png)
@@ -85,7 +85,7 @@ The ObjectDataSource's Configure Data Source wizard offers a quick way to specif
 
 [!code-aspx[Main](displaying-data-with-the-objectdatasource-cs/samples/sample1.aspx)]
 
-Even if you prefer the Configure Data Source wizard there may be times when you need to manually configure the ObjectDataSource, as the wizard only lists developer-created classes. If you want to bind the ObjectDataSource to a class in the .NET Framework such as the [Membership class](https://msdn.microsoft.com/en-us/library/system.web.security.membership.aspx), to access user account information, or the [Directory class](https://msdn.microsoft.com/en-us/library/system.io.directory.aspx) to work with file system information you'll need to manually set the ObjectDataSource's properties.
+Even if you prefer the Configure Data Source wizard there may be times when you need to manually configure the ObjectDataSource, as the wizard only lists developer-created classes. If you want to bind the ObjectDataSource to a class in the .NET Framework such as the [Membership class](https://msdn.microsoft.com/library/system.web.security.membership.aspx), to access user account information, or the [Directory class](https://msdn.microsoft.com/library/system.io.directory.aspx) to work with file system information you'll need to manually set the ObjectDataSource's properties.
 
 ## Step 2: Adding a Data Web Control and Binding it to the ObjectDataSource
 
@@ -167,7 +167,7 @@ With our Theme defined, the last step is to apply the Theme to our ASP.NET page.
 
 [!code-xml[Main](displaying-data-with-the-objectdatasource-cs/samples/sample5.xml)]
 
-That's all there is to it! The `styleSheetTheme` setting indicates that the properties specified in the Theme should *not* override the properties specified at the control level. To specify that Theme settings should trump control settings, use the `theme` attribute in place of `styleSheetTheme`; unfortunately, Theme settings specified via the `theme` attribute do not appear in the Visual Studio Design view. Refer to [ASP.NET Themes and Skins Overview](https://msdn.microsoft.com/en-us/library/ykzx33wh.aspx) and [Server-Side Styles Using Themes](https://quickstarts.asp.net/quickstartv20/aspnet/doc/themes/stylesheettheme.aspx) for more information on Themes and Skins; see [How To: Apply ASP.NET Themes](https://msdn.microsoft.com/en-us/library/0yy5hxdk(VS.80).aspx) for more on configuring a page to use a theme.
+That's all there is to it! The `styleSheetTheme` setting indicates that the properties specified in the Theme should *not* override the properties specified at the control level. To specify that Theme settings should trump control settings, use the `theme` attribute in place of `styleSheetTheme`; unfortunately, Theme settings specified via the `theme` attribute do not appear in the Visual Studio Design view. Refer to [ASP.NET Themes and Skins Overview](https://msdn.microsoft.com/library/ykzx33wh.aspx) and [Server-Side Styles Using Themes](https://quickstarts.asp.net/quickstartv20/aspnet/doc/themes/stylesheettheme.aspx) for more information on Themes and Skins; see [How To: Apply ASP.NET Themes](https://msdn.microsoft.com/library/0yy5hxdk(VS.80).aspx) for more on configuring a page to use a theme.
 
 
 [![The GridView Displays the Product's Name, Category, Supplier, Price, and Discontinued Information](displaying-data-with-the-objectdatasource-cs/_static/image31.png)](displaying-data-with-the-objectdatasource-cs/_static/image30.png)
@@ -177,7 +177,7 @@ That's all there is to it! The `styleSheetTheme` setting indicates that the prop
 
 ## Displaying One Record at a Time in the DetailsView
 
-The GridView displays one row for each record returned by the data source control to which it's bound. There are times, however, when we may want to display a sole record or just one record at a time. The [DetailsView control](https://msdn.microsoft.com/en-us/library/s3w1w7t4.aspx) offers this functionality, rendering as an HTML `<table>` with two columns and one row for each column or property bound to the control. You can think of the DetailsView as a GridView with a single record rotated 90 degrees.
+The GridView displays one row for each record returned by the data source control to which it's bound. There are times, however, when we may want to display a sole record or just one record at a time. The [DetailsView control](https://msdn.microsoft.com/library/s3w1w7t4.aspx) offers this functionality, rendering as an HTML `<table>` with two columns and one row for each column or property bound to the control. You can think of the DetailsView as a GridView with a single record rotated 90 degrees.
 
 Start by adding a DetailsView control *above* the GridView in `SimpleDisplay.aspx`. Next, bind it to the same ObjectDataSource control as the GridView. Like with the GridView, a BoundField will be added to the DetailsView for each property in the object returned by the ObjectDataSource's `Select` method. The only difference is that the DetailsView's BoundFields are laid out horizontally rather than vertically.
 
@@ -214,7 +214,7 @@ We'll talk more about paging in future tutorials.
 
 The DetailsView is pretty rigid in how it displays each record returned from the ObjectDataSource. We may want a more flexible view of the data. For example, rather than showing the product's name, category, supplier, price, and discontinued information each on a separate row, we may want to show the product name and price in an `<h4>` heading, with the category and supplier information appearing below the name and price in a smaller font size. And we may not care to show the property names (Product, Category, and so on) next to the values.
 
-The [FormView control](https://msdn.microsoft.com/en-US/library/fyf1dk77.aspx) provides this level of customization. Rather than using fields (like the GridView and DetailsView do), the FormView uses templates, which allow for a mix of Web controls, static HTML, and [databinding syntax](http://www.15seconds.com/issue/040630.htm). If you are familiar with the Repeater control from ASP.NET 1.x, you can think of the FormView as the Repeater for showing a single record.
+The [FormView control](https://msdn.microsoft.com/library/fyf1dk77.aspx) provides this level of customization. Rather than using fields (like the GridView and DetailsView do), the FormView uses templates, which allow for a mix of Web controls, static HTML, and [databinding syntax](http://www.15seconds.com/issue/040630.htm). If you are familiar with the Repeater control from ASP.NET 1.x, you can think of the FormView as the Repeater for showing a single record.
 
 Add a FormView control to the `SimpleDisplay.aspx` page's design surface. Initially the FormView displays as a gray block, informing us that we need to provide, at minimum, the control's `ItemTemplate`.
 
@@ -251,12 +251,12 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Create Your Own Data Source Controls](https://msdn.microsoft.com/en-us/library/ms364049.aspx)
-- [GridView Examples for ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/aa479339.aspx)
+- [Create Your Own Data Source Controls](https://msdn.microsoft.com/library/ms364049.aspx)
+- [GridView Examples for ASP.NET 2.0](https://msdn.microsoft.com/library/aa479339.aspx)
 - [Simplified and Extended Data Binding Syntax in ASP.NET 2.0](http://www.15seconds.com/issue/040630.htm)
 - [Themes in ASP.NET 2.0](http://www.odetocode.com/Articles/423.aspx)
 - [Server-Side Styles Using Themes](https://quickstarts.asp.net/quickstartv20/aspnet/doc/themes/stylesheettheme.aspx)
-- [How To: Apply ASP.NET Themes Programmatically](https://msdn.microsoft.com/en-us/library/tx35bd89.aspx)
+- [How To: Apply ASP.NET Themes Programmatically](https://msdn.microsoft.com/library/tx35bd89.aspx)
 
 ## About the Author
 

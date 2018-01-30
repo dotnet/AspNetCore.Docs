@@ -66,7 +66,7 @@ The `ServerInfo` helper is a diagnostic tool that gives you an overview of infor
     - HTTP Runtime Information. This section provides details about that the version of the Microsoft .NET Framework that your web page is running under, the path, details about the cache, and so on. (As you learned in [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkId=202890), ASP.NET Web Pages using the Razor syntax are built on Microsoft's ASP.NET web server technology, which is itself built on an extensive software development library called the .NET Framework.)
     - Environment Variables. This section provides a list of all the local environment variables and their values on the web server.
 
-    A full description of all the server and request information is beyond the scope of this article, but you can see that the `ServerInfo` helper returns a lot of diagnostic information. For more information about the values that `ServerInfo` returns, see [Recognized Environment Variables](https://technet.microsoft.com/en-us/library/dd560744(WS.10).aspx) on the Microsoft TechNet website and [IIS Server Variables](https://msdn.microsoft.com/en-us/library/ms524602(VS.90).aspx) on the MSDN website.
+    A full description of all the server and request information is beyond the scope of this article, but you can see that the `ServerInfo` helper returns a lot of diagnostic information. For more information about the values that `ServerInfo` returns, see [Recognized Environment Variables](https://technet.microsoft.com/library/dd560744(WS.10).aspx) on the Microsoft TechNet website and [IIS Server Variables](https://msdn.microsoft.com/library/ms524602(VS.90).aspx) on the MSDN website.
 
 ## Embedding Output Expressions to Display Page Values
 
@@ -134,5 +134,5 @@ For information about using the integrated debugger in Visual Studio to debug AS
 ## Additional Resources
 
 - [Programming ASP.NET Web Pages (Razor) Using Visual Studio](https://go.microsoft.com/fwlink/?LinkId=205854)
-- [IIS Server Variables](https://msdn.microsoft.com/en-us/library/ms524602(VS.90).aspx) (MSDN)
-- [Recognized Environment Variables](https://technet.microsoft.com/en-us/library/dd560744(WS.10).aspx) (TechNet)
+- [IIS Server Variables](https://msdn.microsoft.com/library/ms524602(VS.90).aspx) (MSDN)
+- [Recognized Environment Variables](https://technet.microsoft.com/library/dd560744(WS.10).aspx) (TechNet)

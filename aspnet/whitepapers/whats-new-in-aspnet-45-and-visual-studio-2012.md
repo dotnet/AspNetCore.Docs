@@ -325,7 +325,7 @@ To see all options, run the tool with no arguments.
 
 **Requirement**: .NET Framework 4.5
 
-For a cold site startup, not only do assemblies have to be read from disk, but the site must be JIT-compiled. For a complex site, this can add significant delays. A new general-purpose technique in the .NET Framework 4.5 reduces these delays by spreading JIT-compilation across available processor cores. It does this as much and as early as possible by using information gathered during previous launches of the site. This functionality implemented by the [System.Runtime.ProfileOptimization.StartProfile](https://msdn.microsoft.com/en-us/library/system.runtime.profileoptimization.startprofile(VS.110).aspx) method.
+For a cold site startup, not only do assemblies have to be read from disk, but the site must be JIT-compiled. For a complex site, this can add significant delays. A new general-purpose technique in the .NET Framework 4.5 reduces these delays by spreading JIT-compilation across available processor cores. It does this as much and as early as possible by using information gathered during previous launches of the site. This functionality implemented by the [System.Runtime.ProfileOptimization.StartProfile](https://msdn.microsoft.com/library/system.runtime.profileoptimization.startprofile(VS.110).aspx) method.
 
 JIT-compiling using multiple cores is enabled by default in ASP.NET, so you do not need to do anything to take advantage of this feature. If you want to disable this feature, make the following setting in the Web.config file:
 
@@ -907,7 +907,7 @@ Complying with all applicable copyright laws is the responsibility of the user. 
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
 
-Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
+Unless otherwise noted, the example companies, organizations, products, domain names, email addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
 
 © 2012 Microsoft Corporation. All rights reserved.
 

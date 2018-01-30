@@ -283,8 +283,8 @@ In this tutorial of the series you have added some basic UI, graphics, pages, an
 
 ## Additional Resources
 
-[Introduction to Programming ASP.NET Web Pages](https://msdn.microsoft.com/en-us/library/ms178125.aspx)   
-[ASP.NET Web Server Controls Overview](https://msdn.microsoft.com/en-us/library/zsyt68f1.aspx)   
+[Introduction to Programming ASP.NET Web Pages](https://msdn.microsoft.com/library/ms178125.aspx)   
+[ASP.NET Web Server Controls Overview](https://msdn.microsoft.com/library/zsyt68f1.aspx)   
 [CSS Tutorial](http://www.w3schools.com/css/default.asp)
 
 >[!div class="step-by-step"]

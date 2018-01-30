@@ -43,8 +43,8 @@ The media type determines how Web API serializes and deserializes the HTTP messa
 
 To create a media formatter, derive from one of these classes:
 
-- [MediaTypeFormatter](https://msdn.microsoft.com/en-us/library/system.net.http.formatting.mediatypeformatter.aspx). This class uses asynchronous read and write methods.
-- [BufferedMediaTypeFormatter](https://msdn.microsoft.com/en-us/library/system.net.http.formatting.bufferedmediatypeformatter.aspx). This class derives from **MediaTypeFormatter** but uses sychronous read/write methods.
+- [MediaTypeFormatter](https://msdn.microsoft.com/library/system.net.http.formatting.mediatypeformatter.aspx). This class uses asynchronous read and write methods.
+- [BufferedMediaTypeFormatter](https://msdn.microsoft.com/library/system.net.http.formatting.bufferedmediatypeformatter.aspx). This class derives from **MediaTypeFormatter** but uses sychronous read/write methods.
 
 Deriving from **BufferedMediaTypeFormatter** is simpler, because there is no asynchronous code, but it also means the calling thread can block during I/O.
 
@@ -86,10 +86,10 @@ To add a media type formatter to the Web API pipeline, use the **Formatters** pr
 
 Optionally, a media formatter can support multiple character encodings, such as UTF-8 or ISO 8859-1.
 
-In the constructor, add one or more [System.Text.Encoding](https://msdn.microsoft.com/en-us/library/system.text.encoding.aspx) types to the **SupportedEncodings** collection. Put the default encoding first.
+In the constructor, add one or more [System.Text.Encoding](https://msdn.microsoft.com/library/system.text.encoding.aspx) types to the **SupportedEncodings** collection. Put the default encoding first.
 
 [!code-csharp[Main](media-formatters/samples/sample10.cs?highlight=6-7)]
 
-In the **WriteToStream** and **ReadFromStream** methods, call [MediaTypeFormatter.SelectCharacterEncoding](https://msdn.microsoft.com/en-us/library/hh969054.aspx) to select the preferred character encoding. This method matches the request headers against the list of supported encodings. Use the returned **Encoding** when you read or write from the stream:
+In the **WriteToStream** and **ReadFromStream** methods, call [MediaTypeFormatter.SelectCharacterEncoding](https://msdn.microsoft.com/library/hh969054.aspx) to select the preferred character encoding. This method matches the request headers against the list of supported encodings. Use the returned **Encoding** when you read or write from the stream:
 
 [!code-csharp[Main](media-formatters/samples/sample11.cs?highlight=3,5)]

@@ -2,14 +2,12 @@
 title: WebListener web server implementation in ASP.NET Core
 author: rick-anderson
 description: Introduces WebListener, a web server for ASP.NET Core on Windows. Built on the Http.Sys kernel mode driver, WebListener is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-keywords: ASP.NET Core,WebListener,HttpListener,url prefixes,SSL
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/07/2017
-ms.topic: article
-ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/servers/weblistener
 ---
 # WebListener web server implementation in ASP.NET Core
@@ -88,7 +86,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
   > [!NOTE]
   > Make sure that you specify the same prefix strings in `UseUrls` that you preregister on the server. 
 
-* Make sure your application is not configured to run IIS or IIS Express.
+* Make sure your application isn't configured to run IIS or IIS Express.
 
   In Visual Studio, the default launch profile is for IIS Express.  To run the project as a console application you have to manually change the selected profile, as shown in the following screen shot.
 
@@ -128,11 +126,11 @@ using (WebListener listener = new WebListener(settings))
 
 ## Preregister URL prefixes and configure SSL
 
-Both IIS and WebListener rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you're using WebListener you need to configure Http.Sys yourself. The built-in tool for doing that is netsh.exe. 
+Both IIS and WebListener rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you're using WebListener you need to configure Http.Sys yourself. The built-in tool for doing that's netsh.exe. 
 
 The most common tasks you need to use netsh.exe for are reserving URL prefixes and assigning SSL certificates.
 
-NetSh.exe is not an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
+NetSh.exe isn't an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
 
 ```console
 netsh http add urlacl url=http://+:80/ user=Users

@@ -1,14 +1,13 @@
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: This doc provides an overview of using Razor Pages in ASP.NET Core to ease the development of page-focused scenarios.
-keywords: ASP.NET Core,Razor Pages
-ms.author: riande
+description: ASP.NET Core tutorial on Razor Pages. Includes MVC Core, ASP.NET Core 2.x, introduction to web development, and Visual Studio 2017. This doc provides an overview of using Razor Pages in ASP.NET Core to ease the development of page-focused scenarios.
 manager: wpickett
+ms.author: riande
 ms.date: 09/12/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: mvc/razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
@@ -73,7 +72,7 @@ A similar page, using a `PageModel` class, is shown in the following two files. 
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-The *Pages/Index2.cshtml.cs* "code-behind" file:
+The *Pages/Index2.cshtml.cs* page model:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -113,7 +112,7 @@ The *Pages/Create.cshtml* view file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
-The *Pages/Create.cshtml.cs* code-behind file for the view:
+The *Pages/Create.cshtml.cs* page model:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
@@ -315,7 +314,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-ASP.NET Core exposes the [TempData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
+ASP.NET Core exposes the [TempData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it's read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
 
 The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
 
@@ -329,7 +328,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 <h3>Msg: @Model.Message</h3>
 ```
 
-The *Pages/Customers/Index.cshtml.cs* code-behind file applies the `[TempData]` attribute to the `Message` property.
+The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
 ```cs
 [TempData]
@@ -345,11 +344,11 @@ The following page generates markup for two page handlers using the `asp-page-ha
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-<!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there is no `asp-` attribute   -->
+<!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there's no `asp-` attribute   -->
 
-The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page`. `asp-page-handler` generates URLs that submit to each of the handler methods defined by a page. `asp-page` is not specified because the sample is linking to the current page.
+The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page`. `asp-page-handler` generates URLs that submit to each of the handler methods defined by a page. `asp-page` isn't specified because the sample is linking to the current page.
 
-The code-behind file:
+The page model:
 
 [!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
@@ -367,7 +366,7 @@ If you don't like the query string `?handler=JoinList` in the URL, you can chang
 
 The preceding route puts the handler name in the URL path instead of the query string. The `?` following `handler` means the route parameter is optional.
 
-You can use `@page` to add additional segments and parameters to a page's route. Whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
+You can use `@page` to add additional segments and parameters to a page's route. Whatever's there's **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
 
 ## Configuration and settings
 

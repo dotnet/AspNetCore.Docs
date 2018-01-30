@@ -28,7 +28,7 @@ ASP.NET is a free web framework for building great websites and web applications
 
  ASP.NET offers three frameworks for creating web applications: Web Forms, ASP.NET MVC, and ASP.NET Web Pages. All three frameworks are stable and mature, and you can create great web applications with any of them. No matter what framework you choose, you will get all the benefits and features of ASP.NET everywhere.
 
-Each framework targets a different development style. The one you choose depends on a combination of your programming assets (knowledge, skills, and development experience), the type of application you’re creating, and the development approach you’re comfortable with.
+Each framework targets a different development style. The one you choose depends on a combination of your programming assets (knowledge, skills, and development experience), the type of application you're creating, and the development approach you're comfortable with.
 
 Below is an overview of each of the frameworks and some ideas for how to choose between them. If you prefer a video introduction, see [Making Websites with ASP.NET](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/Making-Websites-with-ASPNET) and [What is Web Tools?](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-web-tools)
 
@@ -109,9 +109,9 @@ Create Deployment TOC based on https://www.asp.net/aspnet/overview/deployment
 Copy deployment content map to MVC, WebForms, Web Pages, Web API sections.
 Copy Web Deployment in Enterprise from WebForms to MVC
 Move under ASP.NET Best practices
-	What not to do in ASP​.NET, and what to do instead https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
+	What not to do in ASP​.NET, and what to do instead https://review.docs.microsoft.cus/aspnet/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
 	Async and await https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/async-and-await
-	Building Real World Cloud Apps with Azure https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
-	Hands on Lab: Maintainable Azure Websites: Managing Change and Scale https://review.docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
+	Building Real World Cloud Apps with Azure https://review.docs.microsoft.com/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
+	Hands on Lab: Maintainable Azure Websites: Managing Change and Scale https://review.docs.microsoft.com/aspnet/aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 
 -->

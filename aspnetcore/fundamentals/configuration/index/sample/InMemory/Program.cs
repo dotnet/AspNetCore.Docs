@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 public class Program
 {   
-    public static IConfigurationRoot Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static void Main(string[] args = null)
     {
@@ -25,6 +25,8 @@ public class Program
         Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
 
         var window = new MyWindow();
+        // Bind requrires NuGet package
+        // Microsoft.Extensions.Configuration.Binder
         Configuration.GetSection("App:MainWindow").Bind(window);
         Console.WriteLine($"Left {window.Left}");
         Console.WriteLine();
@@ -32,4 +34,12 @@ public class Program
         Console.WriteLine("Press any key...");
         Console.ReadKey();
     }
+}
+
+public class MyWindow
+{
+    public int Height { get; set; }
+    public int Width { get; set; }
+    public int Top { get; set; }
+    public int Left { get; set; }
 }

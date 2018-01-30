@@ -145,7 +145,7 @@ After returning from PayPal, you can review and complete your order.
 
 Before you start, make sure that you have the following software installed on your computer:
 
-- [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/en-us/downloads#vs) or [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/en-us/downloads#express-web). The .NET Framework is installed automatically.
+- [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) or [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). The .NET Framework is installed automatically.
 
 This tutorial series uses Microsoft Visual Studio Express 2013 for Web. You can use either Microsoft Visual Studio Express 2013 for Web or Microsoft Visual Studio 2013 to complete this tutorial series.
 
@@ -158,7 +158,7 @@ If you already have a Visual Studio version installed, the installation process 
 
 > [!NOTE] 
 > 
-> This walkthrough assumes that you selected the *Web Development* collection of settings the first time that you started Visual Studio. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/en-us/library/ff521558.aspx).
+> This walkthrough assumes that you selected the *Web Development* collection of settings the first time that you started Visual Studio. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
 
 ## Download the Sample Application

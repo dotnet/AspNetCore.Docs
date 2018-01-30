@@ -96,7 +96,7 @@ When an error occurs, we only want the Label to be displayed once. That is, on s
 
 When an exception is raised, we'll assign the details of the exception to the `ExceptionDetails` Label control s `Text` property. Since its view state is disabled, on subsequent postbacks the `Text` property s programmatic changes will be lost, reverting back to the default text (an empty string), thereby hiding the warning message.
 
-To determine when an error has been raised in order to display a helpful message on the page, we need to add a `Try ... Catch` block to the `UpdateCommand` event handler. The `Try` portion contains code that may lead to an exception, while the `Catch` block contains code that is executed in the face of an exception. Check out the [Exception Handling Fundamentals](https://msdn.microsoft.com/en-us/library/2w8f0bss.aspx) section in the .NET Framework documentation for more information on the `Try ... Catch` block.
+To determine when an error has been raised in order to display a helpful message on the page, we need to add a `Try ... Catch` block to the `UpdateCommand` event handler. The `Try` portion contains code that may lead to an exception, while the `Catch` block contains code that is executed in the face of an exception. Check out the [Exception Handling Fundamentals](https://msdn.microsoft.com/library/2w8f0bss.aspx) section in the .NET Framework documentation for more information on the `Try ... Catch` block.
 
 
 [!code-csharp[Main](handling-bll-and-dal-level-exceptions-cs/samples/sample5.cs)]
@@ -137,7 +137,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Design Guidelines for Exceptions](https://msdn.microsoft.com/en-us/library/ms298399.aspx)
+- [Design Guidelines for Exceptions](https://msdn.microsoft.com/library/ms298399.aspx)
 - [Error Logging Modules and Handlers (ELMAH)](http://workspaces.gotdotnet.com/elmah) (an open-source library for logging errors)
 - [Enterprise Library for .NET Framework 2.0](https://www.microsoft.com/downloads/details.aspx?familyid=5A14E870-406B-4F2A-B723-97BA84AE80B5&amp;displaylang=en) (includes the Exception Management Application Block)
 
