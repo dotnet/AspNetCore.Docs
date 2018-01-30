@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
 
-`UseMiddleware` extension methods check if a middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance registered in the container is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The middleware is registered as a scoped service in the app's service container.
+`UseMiddleware` extension methods check if a middleware's registered type implements `IMiddleware`. If it does, the `IMiddlewareFactory` instance registered in the container is used to resolve the `IMiddleware` implementation instead of using the convention-based middleware activation logic. The middleware is registered as a scoped or transient service in the app's service container.
 
 Benefits:
 

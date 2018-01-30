@@ -15,7 +15,7 @@ namespace MiddlewareExtensibilitySample
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDb"));
 
-            services.AddScoped<IMiddlewareMiddleware>();
+            services.AddTransient<IMiddlewareMiddleware>();
 
             services.AddMvc();
         }
