@@ -15,5 +15,5 @@ uid: tutorials/razor-pages-vsc/da1
 [!INCLUDE[model1](../../includes/RP/da2.md)]
 
 >[!div class="step-by-step"]
-[Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages-vsc/sql)
+[Previous: Working with SQLlite](xref:tutorials/razor-pages-vsc/sql)
 [Adding Search](xref:tutorials/razor-pages/search)

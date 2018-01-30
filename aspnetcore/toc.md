@@ -34,6 +34,8 @@
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
 #### [Update the pages](xref:tutorials/razor-pages-mac/da1)
+#### [Add search](xref:tutorials/razor-pages-mac/search)
+
 
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
