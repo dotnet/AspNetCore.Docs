@@ -88,7 +88,7 @@ The production environment should be configured to maximize security, performanc
 * Client-side resources are bundled, minified, and potentially served from a CDN.
 * Diagnostic error pages disabled.
 * Friendly error pages enabled.
-* Production logging and monitoring enabled. For example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/).
+* Production logging and monitoring enabled. For example, [Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
 ## Setting the environment
 
