@@ -92,18 +92,10 @@
 
     @*<pretty replacement-text="Speakers">@Html.Raw("<a asp-protocol='https' asp-action='Index' asp-controller='Speaker'>Speakers</a>")</pretty>*@
 
-
-
     @*<a asp-protocol='https' asp-action='About' asp-controller='Home'>@Html.Raw(@Html.Encode("<a asp-protocol='https' asp-action='About' asp-controller='Home'>Text</a>"))</a>
-
-
 
         <br/><br/>
         <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">%3Ca+asp-action%3D%22AboutBlog%22+asp-controller%3D%22Home%22+asp-area%3D%22Blogs%22%3EText%3C%2Fa%3E</a>*@
-
-
-    @*<a asp-action="Evaluations" asp-controller="Speaker"  asp-fragment="SpeakerEvaluations">About Speaker Evals</a>*@
-
 
     @*<span>Simplest Usage</span><br/>
         <a asp-action="About">About</a>
@@ -126,24 +118,6 @@
         <br /><br />
 
         <span>Simplest Usage (being more explicit)</span><br />
-        <a  asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>
+        <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>
         <br /><br />
-
     *@
-
-    @*<a asp-controller="Speaker" asp-action="Detail" asp-route-name="Ronald">Ronald</a>
-        <a asp-controller="Speaker" asp-action="Detail" asp-route-id="11">Speaker 11</a>*@
-
-    @*<a asp-route="speakerevals">SpeakerEvals</a>*@
-
-
-    @*@{
-            var dict =
-                new Dictionary<string, string>
-                {
-                    {"speakerId", "11"},
-                    {"currentYear", "true"}
-                };
-        }
-        <a asp-route="speakerevalscurrent"
-           asp-all-route-data="dict">SpeakerEvals</a>*@

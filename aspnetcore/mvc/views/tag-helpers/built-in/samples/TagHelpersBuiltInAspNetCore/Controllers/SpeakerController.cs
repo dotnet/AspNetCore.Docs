@@ -23,6 +23,12 @@
                Name = "speakerevals")]
         public IActionResult Evaluations() => View();
 
+        [Route("/Speaker/EvaluationsCurrent",
+               Name = "speakerevalscurrent")]
+        public IActionResult Evaluations(
+            int speakerId,
+            bool currentYear) => View();
+
         public IActionResult Index() => View(Speakers);
     }
 
