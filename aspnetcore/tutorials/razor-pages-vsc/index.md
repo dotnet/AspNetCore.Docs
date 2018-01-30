@@ -11,7 +11,6 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/index
 ---
 
-
 # Create a Razor Pages web app with ASP.NET Core and Visual Studio Code
 
 This is a work in progress.
@@ -22,10 +21,10 @@ This series explains the basics of building a Razor Pages web app with ASP.NET C
 1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages-vsc/model)
 1. [Scaffolded Razor Pages]         (xref:tutorials/razor-pages-vsc/page)
 1. [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
+1. [Update the pages](xref:tutorials/razor-pages-vsc/da1)
+1. [Adding search](xref:tutorials/razor-pages-vsc/search)
 
 Until the next section is complete, follow the Visual Studio for Windows version.
 
-1. [Updating the pages](xref:tutorials/razor-pages/da1)
-1. [Adding search](xref:tutorials/razor-pages/search)
 1. [Adding a new field](xref:tutorials/razor-pages/new-field)
 1. [Adding validation](xref:tutorials/razor-pages/validation)
