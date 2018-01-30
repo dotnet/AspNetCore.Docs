@@ -6,13 +6,9 @@ manager: wpickett
 ms.author: riande
 ms.date: 01/22/2018
 ms.prod: asp.net-core
-<<<<<<< HEAD:aspnetcore/fundamentals/middleware.md
 ms.technology: aspnet
 ms.topic: article
-uid: fundamentals/middleware
-=======
 uid: fundamentals/middleware/index
->>>>>>> IMiddleware/IMiddlewareFactory topic:aspnetcore/fundamentals/middleware/index.md
 ---
 # ASP.NET Core Middleware Fundamentals
 
