@@ -315,5 +315,5 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 
 ## Additional resources
 
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Servers](xref:fundamentals/servers/index)

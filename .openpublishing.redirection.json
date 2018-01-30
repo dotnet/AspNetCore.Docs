@@ -309,6 +309,11 @@
         "source_path": "aspnetcore/tutorials/your-first-aspnet-application.md",
         "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/middleware.md",
+        "redirect_url": "/aspnet/core/fundamentals/middleware/index",
+        "redirect_document_id": false
     }
   ] 
 }

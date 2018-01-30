@@ -14,7 +14,7 @@ uid: migration/http-modules
 
 By [Matt Perdeck](https://www.linkedin.com/in/mattperdeck)
 
-This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](https://docs.microsoft.com/iis/configuration/system.webserver/) to ASP.NET Core [middleware](../fundamentals/middleware.md).
+This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](https://docs.microsoft.com/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
 ## Modules and handlers revisited
 
@@ -60,7 +60,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Middleware are configured using code rather than in *Web.config*
 
-   * [Pipeline branching](../fundamentals/middleware.md#middleware-run-map-use) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+   * [Pipeline branching](xref:fundamentals/middleware/index#middleware-run-map-use) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 **Middleware are very similar to modules:**
 
@@ -76,7 +76,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-   * See [Creating a middleware pipeline with IApplicationBuilder](../fundamentals/middleware.md#creating-a-middleware-pipeline-with-iapplicationbuilder)
+   * See [Creating a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Middleware](http-modules/_static/middleware.png)
 
@@ -88,13 +88,13 @@ An existing HTTP module will look similar to this:
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyModule.cs?highlight=6,8,24,31)]
 
-As shown in the [Middleware](../fundamentals/middleware.md) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
+As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
 
 <a name="http-modules-usemiddleware"></a>
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The above middleware template was taken from the section on [writing middleware](../fundamentals/middleware.md#middleware-writing-middleware).
+The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#middleware-writing-middleware).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
@@ -116,7 +116,7 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
 
 [!code-xml[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
-Convert this by [adding your new middleware](../fundamentals/middleware.md#creating-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
+Convert this by [adding your new middleware](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
@@ -378,4 +378,4 @@ The `SetCookies` callback method would look like the following:
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
