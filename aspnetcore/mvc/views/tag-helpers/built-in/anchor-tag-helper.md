@@ -19,7 +19,7 @@ By [Peter Kellner](http://peterkellner.net) and [Scott Addie](https://github.com
 
 The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered anchor element's `href` attribute value is determined by the values of the `asp-` attributes.
 
-*SpeakerController.cs* is used in samples throughout this document:
+*SpeakerController* is used in samples throughout this document:
 
 [!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs?name=snippet_SpeakerController)]
 
@@ -29,7 +29,7 @@ An inventory of the `asp-` attributes follows.
 
 The [asp-controller](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.controller) attribute assigns the controller used for generating the URL. The controller must exist in the current project. The following markup lists all speakers:
 
-[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspController&highlight=1)]
+[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspController)]
 
 The generated HTML is:
 
