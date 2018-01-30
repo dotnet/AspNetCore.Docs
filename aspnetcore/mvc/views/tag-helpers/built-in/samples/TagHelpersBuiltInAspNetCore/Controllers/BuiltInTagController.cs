@@ -2,7 +2,7 @@
 
 namespace TagHelpersBuiltInAspNetCore.Controllers
 {
-    public class BuiltInTag : Controller
+    public class BuiltInTagController : Controller
     {
         public IActionResult Index() => View();
 

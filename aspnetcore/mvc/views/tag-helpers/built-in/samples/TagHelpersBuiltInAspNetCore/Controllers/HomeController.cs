@@ -11,6 +11,10 @@ namespace TagHelpersBuiltInAspNetCore.Controllers
             return View();
         }
 
+        public IActionResult About() => View();
+
+        public IActionResult Contact() => View();
+
         public IActionResult Error() => View();
 
         public IActionResult AboutBlog() => View();

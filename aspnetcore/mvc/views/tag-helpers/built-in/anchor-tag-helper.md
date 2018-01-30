@@ -13,7 +13,7 @@ uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper
 
-By [Peter Kellner](http://peterkellner.net)
+By [Peter Kellner](http://peterkellner.net) and [Scott Addie](https://github.com/scottaddie)
 
 The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered DOM element's `href` attribute value is determined by the values of the `asp-` attributes.
 
