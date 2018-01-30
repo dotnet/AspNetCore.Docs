@@ -18,11 +18,29 @@ In this section, uploading files with a Razor Page is demonstrated.
 
 The [Razor Pages Movie sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) in this tutorial uses simple model binding to upload files, which works well for uploading small files. For information on streaming large files, see [Uploading large files with streaming](xref:mvc/models/file-uploads#uploading-large-files-with-streaming).
 
-In the steps below, you add a movie schedule file upload feature to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
+In the following steps, a movie schedule file upload feature is added to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
+
+## Security considerations
+
+Caution must be taken when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) and other attacks on a system. Some security steps that reduce the likelihood of a successful attack are:
+
+* Upload files to a dedicated file upload area on the system, which makes it easier to impose security measures on uploaded content. When permitting file uploads, make sure that execute permissions are disabled on the upload location.
+* Use a safe file name determined by the app, not from user input or the file name of the uploaded file.
+* Only allow a specific set of approved file extensions.
+* Verify client-side checks are performed on the server. Client-side checks are easy to circumvent.
+* Check the size of the upload and prevent larger uploads than expected.
+* Run a virus/malware scanner on uploaded content.
+
+> [!WARNING]
+> Uploading malicious code to a system is frequently the first step to executing code that can:
+> * Completely takeover a system.
+> * Overload a system with the result that the system completely fails.
+> * Compromise user or system data.
+> * Apply graffiti to a public interface.
 
 ## Add a FileUpload class
 
-Below, you create a Razor page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
+Create a Razor Page to handle a pair of file uploads. Add a `FileUpload` class, which is bound to the page to obtain the schedule data. Right click the *Models* folder. Select **Add** > **Class**. Name the class **FileUpload** and add the following properties:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/FileUpload.cs)]
 
@@ -33,6 +51,23 @@ The class has a property for the schedule's title and a property for each of the
 To avoid code duplication for processing uploaded schedule files, add a static helper method first. Create a *Utilities* folder in the app and add a *FileHelpers.cs* file with the following content. The helper method, `ProcessFormFile`, takes an [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [ModelStateDictionary](/api/microsoft.aspnetcore.mvc.modelbinding.modelstatedictionary) and returns a string containing the file's size and content. The content type and length are checked. If the file doesn't pass a validation check, an error is added to the `ModelState`.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Utilities/FileHelpers.cs)]
+
+### Save the file to disk
+
+The sample app saves the file's content into a database field. To save the file's content to disk, use a [FileStream](/dotnet/api/system.io.filestream):
+
+```csharp
+using (var fileStream = new FileStream(filePath, FileMode.Create))
+{
+    await formFile.CopyToAsync(fileStream);
+}
+```
+
+The worker process must have write permissions to the location specified by `filePath`.
+
+### Save the file to Azure Blob Storage
+
+To upload file content to Azure Blob Storage, see [Get started with Azure Blob Storage using .NET](/azure/storage/blobs/storage-dotnet-how-to-use-blobs). The topic demonstrates how to use [UploadFromStream](/dotnet/api/microsoft.windowsazure.storage.file.cloudfile.uploadfromstreamasync) to save a [FileStream](/dotnet/api/system.io.filestream) to blob storage.
 
 ## Add the Schedule class
 
@@ -101,7 +136,7 @@ Open *_Layout.cshtml* and add a link to the navigation bar to reach the file upl
 
 ## Add a page to confirm schedule deletion
 
-When the user clicks to delete a schedule, you want them to have a chance to cancel the operation. Add a delete confirmation page (*Delete.cshtml*) to the *Schedules* folder:
+When the user clicks to delete a schedule, a chance to cancel the operation is provided. Add a delete confirmation page (*Delete.cshtml*) to the *Schedules* folder:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Schedules/Delete.cshtml)]
 
@@ -139,7 +174,7 @@ The user can click the **Delete** link from there to reach the delete confirmati
 
 For troubleshooting information with `IFormFile` uploading, see the [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).
 
-Thanks for completing this introduction to Razor Pages. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 
