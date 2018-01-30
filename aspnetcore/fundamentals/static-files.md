@@ -34,11 +34,7 @@ The `WebHost.CreateDefaultBuilder` method sets the content root to the current d
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-<<<<<<< HEAD
 Set the content root to the current directory by invoking [UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseContentRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) inside of `Program.Main`:
-=======
-In order for static files to be served, you must configure the [Middleware](xref:fundamentals/middleware/index) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the `UseStaticFiles` extension method from `Startup.Configure`:
->>>>>>> IMiddleware/IMiddlewareFactory topic
 
 [!code-csharp[](static-files/samples/1x/Program.cs?name=snippet_ProgramClass&highlight=7)]
 
@@ -249,12 +245,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 * Place code files (including *.cs* and *.cshtml*) outside of the app project's web root. A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
-<<<<<<< HEAD
 ## Additional resources
 
 * [Middleware](xref:fundamentals/middleware/index)
 * [Introduction to ASP.NET Core](xref:index)
-=======
-* [Middleware](xref:fundamentals/middleware/index)
-* [Introduction to ASP.NET Core](../index.md)
->>>>>>> IMiddleware/IMiddlewareFactory topic
