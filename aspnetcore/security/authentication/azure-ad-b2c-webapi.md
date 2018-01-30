@@ -96,7 +96,8 @@ Visual Studio creates the web API with a controller named *ValuesController.cs* 
 
 In Visual Studio, run the API. Visual Studio launches a browser pointed at the API's root URL. Note the URL in the address bar, and leave the API running in the background.
 
-> [!NOTE] Since there is no controller defined for the root URL, the browser displays a 404 (page not found) error. This is expected behavior.
+> [!NOTE]
+> Since there is no controller defined for the root URL, the browser displays a 404 (page not found) error. This is expected behavior.
 
 ## Use Postman to get a token and test the API
 
