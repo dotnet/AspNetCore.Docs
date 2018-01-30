@@ -304,7 +304,7 @@ The framework provides an abstract `ResultFilterAttribute` that you can subclass
 
 ## Using middleware in the filter pipeline
 
-Resource filters work like [middleware](../../fundamentals/middleware.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of MVC, which means that they have access to MVC context and constructs.
+Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of MVC, which means that they have access to MVC context and constructs.
 
 In ASP.NET Core 1.1, you can use middleware in the filter pipeline. You might want to do that if you have a middleware component that needs access to MVC route data, or one that should run only for certain controllers or actions.
 

@@ -59,7 +59,7 @@ Add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Micros
 
 ---
 
-Configure the [middleware](xref:fundamentals/middleware) which enables the serving of static files.
+Configure the [middleware](xref:fundamentals/middleware/index) which enables the serving of static files.
 
 ### Serve files inside of web root
 
@@ -247,6 +247,5 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Additional resources
 
-* [Middleware](xref:fundamentals/middleware)
-
+* [Middleware](xref:fundamentals/middleware/index)
 * [Introduction to ASP.NET Core](xref:index)

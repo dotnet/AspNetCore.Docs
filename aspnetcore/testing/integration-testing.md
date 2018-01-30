@@ -122,7 +122,7 @@ This code works, but it's far from how you would like to implement this kind of 
 
 One option to consider is adding [MVC](xref:mvc/overview) to the application and creating a controller to handle the prime checking. However, assuming you don't currently need any other MVC functionality, that's a bit overkill.
 
-You can, however, take advantage of ASP.NET Core [middleware](xref:fundamentals/middleware), which will help us encapsulate the prime checking logic in its own class and achieve better [separation of concerns](http://deviq.com/separation-of-concerns/) in the `Configure` method.
+You can, however, take advantage of ASP.NET Core [middleware](xref:fundamentals/middleware/index), which will help us encapsulate the prime checking logic in its own class and achieve better [separation of concerns](http://deviq.com/separation-of-concerns/) in the `Configure` method.
 
 You want to allow the path the middleware uses to be specified as a parameter, so the middleware class expects a `RequestDelegate` and a `PrimeCheckerOptions` instance in its constructor. If the path of the request doesn't match what this middleware is configured to expect, you simply call the next middleware in the chain and do nothing further. The rest of the implementation code that was in `Configure` is now in the `Invoke` method.
 
@@ -145,5 +145,5 @@ Following this refactoring, you're confident that the web application still work
 ## Resources
 
 * [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Testing controllers](xref:mvc/controllers/testing)

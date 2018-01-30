@@ -75,7 +75,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
+ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware/index) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
 
 Install the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) NuGet package in your project. This package contains the cookie middleware.
 

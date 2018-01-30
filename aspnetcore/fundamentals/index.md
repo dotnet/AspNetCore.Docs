@@ -67,7 +67,7 @@ public class Startup
 }
 ```
 
-`ConfigureServices` defines the [Services](#dependency-injection-services) used by your app (for example, ASP.NET Core MVC, Entity Framework Core, Identity). `Configure` defines the [middleware](xref:fundamentals/middleware) for the request pipeline.
+`ConfigureServices` defines the [Services](#dependency-injection-services) used by your app (for example, ASP.NET Core MVC, Entity Framework Core, Identity). `Configure` defines the [middleware](xref:fundamentals/middleware/index) for the request pipeline.
 
 For more information, see [Application startup](xref:fundamentals/startup).
 
@@ -87,9 +87,9 @@ For more information, see [Dependency injection](xref:fundamentals/dependency-in
 
 ## Middleware
 
-In ASP.NET Core, you compose your request pipeline using [middleware](xref:fundamentals/middleware). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking an `UseXYZ` extension method in the `Configure` method.
+In ASP.NET Core, you compose your request pipeline using [middleware](xref:fundamentals/middleware/index). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking an `UseXYZ` extension method in the `Configure` method.
 
-ASP.NET Core comes with a rich set of built-in middleware:
+ASP.NET Core includes a rich set of built-in middleware:
 
 * [Static files](xref:fundamentals/static-files)
 * [Routing](xref:fundamentals/routing)
@@ -99,7 +99,7 @@ ASP.NET Core comes with a rich set of built-in middleware:
 
 [OWIN](http://owin.org)-based middleware is available for ASP.NET Core apps, and you can write your own custom middleware.
 
-For more information, see [Middleware](xref:fundamentals/middleware) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
+For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
 ## Environments
 
