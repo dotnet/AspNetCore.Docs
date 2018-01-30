@@ -29,7 +29,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](https://docs.microso
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL (for example, `http://localhost:5000/Movies?searchString=Ghost`). The filtered movies are displayed.
 
-![Index view](../../tutorials/razor-pages/razor-pages-start/_static/ghost.png)
+![Index view](../../tutorials/razor-pages/search/_static/ghost.png)
 
 If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, `http://localhost:5000/Movies/ghost`).
 
@@ -39,7 +39,7 @@ If the following route template is added to the Index page, the search string ca
 
 The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The `?` in `"{searchString?}"` means this is an optional route parameter.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](../../tutorials/razor-pages/razor-pages-start/_static/g2.png)
+![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](../../tutorials/razor-pages/search/_static/g2.png)
 
 However, you can't expect users to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
@@ -49,7 +49,7 @@ Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlight
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page. Save the changes and test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](../../tutorials/razor-pages/razor-pages-start/_static/filter.png)
+![Index view with the word ghost typed into the Title filter textbox](../../tutorials/razor-pages/search/_static/filter.png)
 
 ## Search by genre
 

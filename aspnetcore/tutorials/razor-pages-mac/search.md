@@ -11,7 +11,6 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/search
 ---
 
-
 [!INCLUDE[Search](../../includes/RP/search.md)]
 
 >[!div class="step-by-step"]
