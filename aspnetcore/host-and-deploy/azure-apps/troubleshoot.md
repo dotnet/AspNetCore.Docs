@@ -140,6 +140,10 @@ When an app responds slowly or hangs on a request, see [Troubleshoot slow web ap
 
 To use the remote debugging features of [Visual Studio](https://www.visualstudio.com/vs/), see the [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) in the Azure documentation.
 
+## Application Insights
+
+[Application Insights](https://azure.microsoft.com/services/application-insights/) provides telemetry from apps hosted in the Azure App Service, including error logging and reporting features. Application Insights can only report on errors that occur after the app starts when the logging components become available. For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
+
 ## Monitoring blades
 
 Monitoring blades provide an alternative troubleshooting experience to the methods described earlier in the topic. These blades can be used to diagnose all 500-series errors.
