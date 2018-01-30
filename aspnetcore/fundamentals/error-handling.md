@@ -114,7 +114,7 @@ Hosting can only show an error page for a captured startup error if the error oc
 
 ## ASP.NET MVC error handling
 
-[MVC](../mvc/index.md) apps have some additional options for handling errors, such as configuring exception filters and performing model validation.
+[MVC](xref:mvc/overview) apps have some additional options for handling errors, such as configuring exception filters and performing model validation.
 
 ### Exception Filters
 
