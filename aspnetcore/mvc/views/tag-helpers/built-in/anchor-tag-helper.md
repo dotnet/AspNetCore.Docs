@@ -256,7 +256,7 @@ Consider the following page handler:
 
 The page model's associated markup links to the `OnGetProfile` page handler. Note that the `On<Verb>` prefix of the page handler method name is omitted in the `asp-page-handler` attribute value. If this were an asynchronous method, the `Async` suffix would be omitted too.
 
-[!code-cshtml[](samples/TagHelperBuiltInAspNetCore/Pages/Speaker.cshtml?name=snippet_AspPageHandler)]
+[!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPageHandler)]
 
 The generated HTML:
 
