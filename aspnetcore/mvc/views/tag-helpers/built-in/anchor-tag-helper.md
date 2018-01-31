@@ -5,7 +5,7 @@ description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/29/2018
+ms.date: 01/31/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -27,11 +27,11 @@ An inventory of the `asp-` attributes follows.
 
 ## asp-controller
 
-The [asp-controller](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.controller) attribute assigns the controller used for generating the URL. The controller must exist in the current project. The following markup lists all speakers:
+The [asp-controller](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.controller) attribute assigns the controller used for generating the URL. The following markup lists all speakers:
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspController)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Speaker">All Speakers</a>
@@ -49,7 +49,7 @@ The [asp-action](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspAction)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Speaker/Evaluations">Speaker Evaluations</a>
@@ -85,7 +85,7 @@ The MVC view uses the model, provided by the action, as follows:
 </html>
 ```
 
-The default route's `{id?}` placeholder was matched. The generated HTML is:
+The default route's `{id?}` placeholder was matched. The generated HTML:
 
 ```html
 <a href="/Speaker/Detail/12">SpeakerId: 12</a>
@@ -123,7 +123,7 @@ In the following markup, the `asp-route` attribute references the named route:
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspRoute)]
 
-The Anchor Tag Helper generates a route directly to that controller action using the URL */Speaker/Evaluations*. The generated HTML is:
+The Anchor Tag Helper generates a route directly to that controller action using the URL */Speaker/Evaluations*. The generated HTML:
 
 ```html
 <a href="/Speaker/Evaluations">Speaker Evaluations</a>
@@ -157,7 +157,7 @@ The [asp-fragment](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelp
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspFragment)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Speaker/Evaluations#SpeakerEvaluations">Speaker Evaluations</a>
@@ -186,7 +186,7 @@ Given the preceding directory hierarchy, the markup to reference the *AboutBlog.
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspArea)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Blogs/Home/AboutBlog">About Blog</a>
@@ -202,7 +202,7 @@ The [asp-protocol](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelp
 
 [!code-cshtml[samples/TagHelpersBuiltInAspNetCore/Views/Index.cshtml?name=snippet_AspProtocol]]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="https://localhost/Home/About">About</a>
@@ -216,7 +216,7 @@ The [asp-host](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.h
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspHost)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="https://microsoft.com/Home/About">About</a>
@@ -224,14 +224,13 @@ The generated HTML is:
 
 ## asp-page
 
-> [!NOTE]
-> The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is supported as of ASP.NET Core 2.x and only supports Razor Pages.
+The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is used with Razor Pages. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL.
 
-Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL. The following sample points to the speaker Razor Page:
+The following sample points to the speaker Razor Page:
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Speaker">All Speakers</a>
@@ -241,7 +240,7 @@ The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-contro
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPageAspRouteId)]
 
-The generated HTML is:
+The generated HTML:
 
 ```html
 <a href="/Attendee?attendeeid=10">View Attendee</a>
@@ -249,35 +248,20 @@ The generated HTML is:
 
 ## asp-page-handler
 
-> [!NOTE]
-> The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is supported as of ASP.NET Core 2.x and only supports Razor Pages.
+The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.pagehandler) attribute is used with Razor Pages. It's intended for linking to specific page handlers.
 
-It's intended for linking to specific page handlers. Consider the following page handler:
+Consider the following page handler:
 
-```csharp
-public async Task<IActionResult> OnPostDeleteAsync(int id)
-{
-    var speaker = await _db.Speakers.FindAsync(id);
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Pages/Speaker.cshtml.cs?name=snippet_OnGetProfileHandler)]
 
-    if (speaker != null)
-    {
-        _db.Speakers.Remove(speaker);
-        await _db.SaveChangesAsync();
-    }
+The page model's associated markup links to the `OnGetProfile` page handler. Note that the `On<Verb>` prefix of the page handler method name is omitted in the `asp-page-handler` attribute value. If this were an asynchronous method, the `Async` suffix would be omitted too.
 
-    return RedirectToPage();
-}
-```
+[!code-cshtml[](samples/TagHelperBuiltInAspNetCore/Pages/Speaker.cshtml?name=snippet_AspPageHandler)]
 
-The page model's associated markup links to the `OnPostDeleteAsync` page handler. Note that the `On<Verb>` prefix and the `Async` suffix of the page handler method name are omitted in the `asp-page-handler` attribute value.
+The generated HTML:
 
-```cshtml
-<form method="post">
-    @* markup omitted for brevity *@
-
-    <a asp-page-handler="Delete" 
-       asp-route-id="@speaker.Id">Delete</a>
-</form>
+```html
+<a href="/Speaker?speakerid=12&handler=Delete">Delete Speaker</a>
 ```
 
 ## Additional resources

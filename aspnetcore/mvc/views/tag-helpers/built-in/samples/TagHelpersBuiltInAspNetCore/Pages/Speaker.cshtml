@@ -5,3 +5,8 @@
 }
 
 <h2>Speaker - Razor Pages</h2>
+
+@if (ViewData["SpeakerId"] != null)
+{
+    <h4>Profile for speaker ID: @ViewData["SpeakerId"]</h4>
+}

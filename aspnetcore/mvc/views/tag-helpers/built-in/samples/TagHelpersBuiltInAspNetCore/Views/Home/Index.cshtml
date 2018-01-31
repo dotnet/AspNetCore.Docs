@@ -3,6 +3,7 @@
 }
 
 <table class="table table-hover">
+    <caption>Anchor Tag Helper attribute examples</caption>
     <thead>
         <tr>
             <th>Attribute</th>
@@ -108,7 +109,7 @@
             </td>
         </tr>
         <tr>
-            <td>asp-page</td>
+            <td>asp-page <span class="badge">RP</span></td>
             <td>
                 <code>
                     @Html.Raw(Html.Encode(@"<a asp-page=""/Speaker"">All Speakers</a>"))
@@ -118,6 +119,21 @@
                 <!-- <snippet_AspPage> -->
                 <a asp-page="/Speaker">All Speakers</a>
                 <!-- </snippet_AspPage> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-page-handler <span class="badge">RP</span></td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Speaker"" asp-page-handler=""Profile"" asp-route-speakerid=""12"">Speaker Profile</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspPageHandler> -->
+                <a asp-page="/Speaker"
+                   asp-page-handler="Profile"
+                   asp-route-speakerid="12">Speaker Profile</a>
+                <!-- </snippet_AspPageHandler> -->
             </td>
         </tr>
         <tr>
@@ -163,4 +179,11 @@
             </td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <span class="badge">RP</span> Supported in Razor Pages only
+            </td>
+        </tr>
+    </tfoot>
 </table>
