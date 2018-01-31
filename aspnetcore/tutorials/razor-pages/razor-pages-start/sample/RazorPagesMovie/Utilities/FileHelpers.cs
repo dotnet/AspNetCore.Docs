@@ -57,6 +57,10 @@ namespace RazorPagesMovie.Utilities
             {
                 modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) is empty.");
             }
+            else if (formFile.Length > 1048576)
+            {
+                modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) exceeds 1 MB.");
+            }
             else
             {
                 try
