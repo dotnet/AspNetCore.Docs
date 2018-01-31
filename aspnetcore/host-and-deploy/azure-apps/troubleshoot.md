@@ -22,7 +22,7 @@ This article provides instructions on how to diagnose an ASP.NET Core app startu
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
-This common startup error occurs when the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) attempts to start the worker process to host the app but it fails to start. For example, this error occurs when the app's assembly is misnamed in the *web.config* file. If an app's assembly is named *trobleshoot.dll* but the *web.config* calls for `arguments="troubleshoo.dll"` (missing the last "t"), the worker process can't be started given the incorrect assembly file name. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained later in this topic.
+This error occurs when the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)  the worker process to host the app fails to start. For example, this error occurs when the app's assembly is misnamed in the *web.config* file, or an exception is thrown in `Main`. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained [here](#event-log).
 
 The *502.5 Process Failure* error page is returned when a misconfigured app causes the worker process to fail:
 
@@ -31,7 +31,7 @@ The *502.5 Process Failure* error page is returned when a misconfigured app caus
 **500 Internal Server Error**  
 The app starts, but an error prevents the server from fulfilling the request.
 
-When an error occurs within the app's code during startup or creating a response, the app may produce an invalid response (for example, the response contains no content) or a *500 Internal Server Error* message in the browser. The Application Event Log usually states that the app started normally and is listening on a given port. From the server's perspective that's correct. It's the app itself which is unhealthy. Running the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) console on the server or enabling the ASP.NET Core Module stdout log usually helps troubleshoot the problem. Running the app in the Kudu console and accessing the stdout log is described later in this topic.
+When an error occurs within the app's code during startup or creating a response, the app may produce an invalid response. For example, the response contains no content or a *500 Internal Server Error* message in the browser. The Application Event Log usually states that the app started normally and is listening on a given port. From the server's perspective that's correct. It's the app itself which is unhealthy. Running the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) console or enabling the ASP.NET Core Module stdout log usually helps troubleshoot the problem. Running the app in the Kudu console and accessing the stdout log is described later in this topic.
 
 When the app is in its Production environment, the browser displays a friendly error page for 500-series errors:
 
@@ -41,7 +41,7 @@ When the app is in its Production environment, the browser displays a friendly e
 
 ### Application Event Log
 
-Use the **Diagnose and solve problems** blade in the Azure portal to access the Application Event Log:
+To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal :
 
 1. In the Azure portal, open the app's blade in the **App Services** blade.
 1. Select the **Diagnose and solve problems** blade.
@@ -70,12 +70,12 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 
 ### Run the app in the Kudu console
 
-Many startup errors don't produce useful information in the Application Event Log. Run the app in the Kudu Remote Execution Console to discover the error:
+Many startup errors don't produce useful information in the Application Event Log. You can run the app in the Kudu Remote Execution Console to discover the error:
 
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**.
-1. In the console, run the app by executing the app's assembly with *dotnet.exe*. In the command below, substitute the name of the app's assembly for `<assembly_name>`:
+1. In the console, run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for `<assembly_name>`:
    ```console
    dotnet .\<assembly_name>.dll
    ```
@@ -84,12 +84,12 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 ### ASP.NET Core Module stdout log
 
-The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startup failures. To enable and view stdout logs, perform the following steps:
+To enable and view stdout logs:
 
 1. Navigate to the **Diagnose and solve problems** blade in the Azure portal.
 1. Under **SELECT PROBLEM CATEGORY**, select the **Web App Down** button.
 1. Under **Suggested Solutions** > **Enable Stdout Log Redirection**, select the button to **Open Kudu Console to edit Web.Config**.
-1. In the Kudu **Diagnostic Console** (opens in a new browser tab or window), open the folders to the path **site** > **wwwroot** and scroll down to reveal the *web.config* file at the bottom of the list.
+1. In the Kudu **Diagnostic Console** , open the folders to the path **site** > **wwwroot**. Scroll down to reveal the *web.config* file at the bottom of the list.
 1. Click the pencil icon next to the *web.config* file.
 1. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to: `\\?\%home%\LogFiles\stdout`.
 1. Select **Save** to save the updated *web.config* file.
@@ -101,26 +101,26 @@ The ASP.NET Core Module *stdout log* is another log helpful in diagnosing startu
 1. When the log file opens, the error is displayed. For example:
    ![Browser window of the Azure portal open to the stdout log file in Kudu](troubleshoot/_static/stdout-log-error.png)
 
-**Important!** Be sure to disable stdout logging when troubleshooting is complete:
+**Important!** Disable stdout logging when troubleshooting is complete:
 
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
 
-## Common errors during startup
-
-The most common errors that occur when starting an ASP.NET Core app are described in the [Common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Collect the following information:
-
-* Browser behavior
-* Application Event Log entries
-* Kudu console run errors or ASP.NET Core Module stdout log entries
-
-Compare the browser behavior and log entries to the common errors listed in the topic and follow the troubleshooting advice provided. Not every general app error that prevents an app from responding is listed. However, most of the common problems that prevent app startup are covered.
-
 > [!WARNING]
 > Failure to disable the stdout log can lead to app failure. The log files have no limit on size. The number of log files created is unlimited. If stdout logging remains enabled, the disk storage space dedicated to the app might become exhausted causing the app instance to fail.
 >
 > For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+
+## Common startup errors 
+
+See [ASP.NET Core common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Collect the following information:
+
+* Browser behavior.
+* Application Event Log entries.
+* Kudu console run errors or ASP.NET Core Module stdout log entries.
+
+The error list is not complete. However, most of the common problems that prevent app startup are covered.
 
 ## Process dump for a slow or hanging app
 
@@ -128,7 +128,7 @@ When an app responds slowly or hangs on a request, see [Troubleshoot slow web ap
 
 ## Remote debugging
 
-To use the remote debugging features of [Visual Studio](https://www.visualstudio.com/vs/), see the [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) in the Azure documentation.
+See [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) in the Azure documentation.
 
 ## Application Insights
 
@@ -136,7 +136,7 @@ To use the remote debugging features of [Visual Studio](https://www.visualstudio
 
 ## Monitoring blades
 
-Monitoring blades provide an alternative troubleshooting experience to the methods described earlier in the topic. These blades can be used to diagnose all 500-series errors.
+Monitoring blades provide an alternative troubleshooting experience to the methods described earlier in the topic. These blades can be used to diagnose 500-series errors.
 
 Confirm that the ASP.NET Core Extensions are installed. If the extensions aren't installed, install them manually:
 
@@ -148,7 +148,7 @@ Confirm that the ASP.NET Core Extensions are installed. If the extensions aren't
 1. Select **OK** on the **Add extension** blade.
 1. An informational pop-up message indicates when the extensions are successfully installed.
 
-If stdout logging isn't already enabled, follow these steps:
+If stdout logging isn't enabled, follow these steps:
 
 1. In the Azure portal, select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
@@ -164,9 +164,9 @@ Proceed to activate diagnostic logging:
 1. To include failed request tracing, also known as Failed Request Event Buffering (FREB) logging, select the **On** switch for **Failed request tracing**. 
 1. Select the **Log stream** blade, which is listed immediately under the **Diagnostics logs** blade in the portal.
 1. Make a request to the app.
-1. Within the log stream data the cause of the error is indicated.
+1. Within the log stream data, the cause of the error is indicated.
 
-**Important!** Be sure to disable stdout logging when troubleshooting is complete:
+**Important!** Be sure to disable stdout logging when troubleshooting is complete.
 
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
@@ -185,18 +185,16 @@ To view the failed request tracing logs (FREB logs):
 1. Navigate to the **Diagnose and solve problems** blade in the Azure portal.
 1. Select **Failed Request Tracing Logs** from the **SUPPORT TOOLS** area of the sidebar.
 
-For more information on failed request tracing, see the [Failed request traces section of the Enable diagnostics logging for web apps in Azure App Service topic](/azure/app-service/web-sites-enable-diagnostic-log#failed-request-traces) and the [Application performance FAQs for Web Apps in Azure: How do I turn on failed request tracing?](/azure/app-service/app-service-web-availability-performance-application-issues-faq#how-do-i-turn-on-failed-request-tracing) in the Azure documentation.
+See [Failed request traces section of the Enable diagnostics logging for web apps in Azure App Service topic](/azure/app-service/web-sites-enable-diagnostic-log#failed-request-traces) and the [Application performance FAQs for Web Apps in Azure: How do I turn on failed request tracing?](/azure/app-service/app-service-web-availability-performance-application-issues-faq#how-do-i-turn-on-failed-request-tracing) for more information.
 
 > [!WARNING]
-> Failure to disable the stdout log can lead to app failure. The log files have no limit on size. The number of log files created is unlimited. If stdout logging remains enabled, the disk storage space dedicated to the app might become exhausted causing the app instance to fail.
+> Failure to disable the stdout log can lead to app failure. The log files have no limit on size or number created. If stdout logging remains enabled, the disk can be exhausted, causing the app to fail.
 >
 > For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-For more information, see [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log) in the Azure documentation.
+For more information, see [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log).
 
 ## Additional resources
-
-For additional monitoring, logging, and troubleshooting information, see the following articles:
 
 * [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
 * [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
