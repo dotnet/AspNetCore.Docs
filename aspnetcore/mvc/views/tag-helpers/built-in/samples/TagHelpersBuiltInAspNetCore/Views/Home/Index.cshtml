@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-hover">
+    <caption>Anchor Tag Helper attribute examples</caption>
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Markup</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>asp-action</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-controller=""Speaker"" asp-action=""Evaluations"">Speaker Evaluations</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspAction> -->
+                <a asp-controller="Speaker"
+                   asp-action="Evaluations">Speaker Evaluations</a>
+                <!-- </snippet_AspAction> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-all-route-data</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-route=""speakerevalscurrent"" asp-all-route-data=""parms"">Speaker Evaluations</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspAllRouteData> -->
+                @{
+                var parms = new Dictionary<string, string>
+                            {
+                                { "speakerId", "11" },
+                                { "currentYear", "true" }
+                            };
+                }
+
+                <a asp-route="speakerevalscurrent"
+                   asp-all-route-data="parms">Speaker Evaluations</a>
+                <!-- </snippet_AspAllRouteData> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-area</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-area=""Blogs"" asp-controller=""Home"" asp-action=""AboutBlog"">About Blog"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspArea> -->
+                <a asp-area="Blogs"
+                   asp-controller="Home"
+                   asp-action="AboutBlog">About Blog</a>
+                <!-- </snippet_AspArea> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-controller</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-controller=""Speaker"" asp-action=""Index"">All Speakers</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspController> -->
+                <a asp-controller="Speaker"
+                   asp-action="Index">All Speakers</a>
+                <!-- </snippet_AspController> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-fragment</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-controller=""Speaker"" asp-action=""Evaluations"" asp-fragment=""SpeakerEvaluations"">Speaker Evaluations</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspFragment> -->
+                <a asp-controller="Speaker"
+                   asp-action="Evaluations"
+                   asp-fragment="SpeakerEvaluations">Speaker Evaluations</a>
+                <!-- </snippet_AspFragment> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-host</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-protocol=""https"" asp-host=""microsoft.com"" asp-controller=""Home"" asp-action=""About"">About</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspHost> -->
+                <a asp-protocol="https"
+                   asp-host="microsoft.com"
+                   asp-controller="Home"
+                   asp-action="About">About</a>
+                <!-- </snippet_AspHost> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-page <span class="badge">RP</span></td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Attendee"">All Attendees</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspPage> -->
+                <a asp-page="/Attendee">All Attendees</a>
+                <!-- </snippet_AspPage> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-page-handler <span class="badge">RP</span></td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Attendee"" asp-page-handler=""Profile"" asp-route-attendeeid=""12"">Attendee Profile</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspPageHandler> -->
+                <a asp-page="/Attendee"
+                   asp-page-handler="Profile"
+                   asp-route-attendeeid="12">Attendee Profile</a>
+                <!-- </snippet_AspPageHandler> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-protocol</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-protocol=""https"" asp-controller=""Home"" asp-action=""About"">About</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspProtocol> -->
+                <a asp-protocol="https"
+                   asp-controller="Home"
+                   asp-action="About">About</a>
+                <!-- </snippet_AspProtocol> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-route</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-route=""speakerevals"">Speaker Evaluations</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspRoute> -->
+                <a asp-route="speakerevals">Speaker Evaluations</a>
+                <!-- </snippet_AspRoute> -->
+            </td>
+        </tr>
+        <tr>
+            <td>asp-route-<em>{value}</em></td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Attendee"" asp-route-attendeeid=""10"">View Attendee</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspPageAspRouteId> -->
+                <a asp-page="/Attendee"
+                   asp-route-attendeeid="10">View Attendee</a>
+                <!-- </snippet_AspPageAspRouteId> -->
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <span class="badge">RP</span> Supported in Razor Pages only
+            </td>
+        </tr>
+    </tfoot>
+</table>
