@@ -12,7 +12,7 @@ To run the app in a service, perform the following steps:
 
 1. Publish the app to the folder with `dotnet publish --configuration Release --output c:\\svc`. The command will move the app's assets to the folder, including the required `appsettings.json` file and the `wwwroot` folder with its contents.
 
-1. Open an **administrator** command prompt.
+1. Open an **administrator** command shell.
 
 1. Execute the following commands:
 

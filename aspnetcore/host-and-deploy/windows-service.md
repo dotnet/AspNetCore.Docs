@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 The recommended way to host an ASP.NET Core app on Windows without using IIS is to run it in a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app can automatically start after reboots and crashes without requiring human intervention.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). For instrucitons on how to run the sample app, see the sample's *README.md* file.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). For instructions on how to run the sample app, see the sample's *README.md* file.
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 1. Test by creating and starting the service.
 
-   Open an administrator command prompt window to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service. If the service is named MyService, published to `c:\svc`, and named AspNetCoreService, the commands are:
+   Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service. If the service is named MyService, published to `c:\svc`, and named AspNetCoreService, the commands are:
 
    ```console
    sc create MyService binPath="c:\svc\aspnetcoreservice.exe"
@@ -96,7 +96,7 @@ To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following
 
    [!code-csharp[](windows-service/sample/WebHostServiceExtensions.cs?name=ExtensionsClass)]
 
-1. In `Program.Main`, call the new extension method,`RunAsCustomService`, instead of `RunAsService`:
+1. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of `RunAsService`:
 
    # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
