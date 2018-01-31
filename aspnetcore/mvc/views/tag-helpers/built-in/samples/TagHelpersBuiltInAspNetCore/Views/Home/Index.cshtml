@@ -112,12 +112,12 @@
             <td>asp-page <span class="badge">RP</span></td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<a asp-page=""/Speaker"">All Speakers</a>"))
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Attendee"">All Attendees</a>"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_AspPage> -->
-                <a asp-page="/Speaker">All Speakers</a>
+                <a asp-page="/Attendee">All Attendees</a>
                 <!-- </snippet_AspPage> -->
             </td>
         </tr>
@@ -125,14 +125,14 @@
             <td>asp-page-handler <span class="badge">RP</span></td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<a asp-page=""/Speaker"" asp-page-handler=""Profile"" asp-route-speakerid=""12"">Speaker Profile</a>"))
+                    @Html.Raw(Html.Encode(@"<a asp-page=""/Attendee"" asp-page-handler=""Profile"" asp-route-attendeeid=""12"">Attendee Profile</a>"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_AspPageHandler> -->
-                <a asp-page="/Speaker"
+                <a asp-page="/Attendee"
                    asp-page-handler="Profile"
-                   asp-route-speakerid="12">Speaker Profile</a>
+                   asp-route-attendeeid="12">Attendee Profile</a>
                 <!-- </snippet_AspPageHandler> -->
             </td>
         </tr>

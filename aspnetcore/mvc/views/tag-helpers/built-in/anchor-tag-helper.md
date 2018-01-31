@@ -226,14 +226,14 @@ The generated HTML:
 
 The [asp-page](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.page) attribute is used with Razor Pages. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL.
 
-The following sample points to the speaker Razor Page:
+The following sample points to the attendee Razor Page:
 
 [!code-cshtml[](samples/TagHelpersBuiltInAspNetCore/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
 The generated HTML:
 
 ```html
-<a href="/Speaker">All Speakers</a>
+<a href="/Attendee">All Attendees</a>
 ```
 
 The `asp-page` attribute is mutually exclusive with the `asp-route`, `asp-controller`, and `asp-action` attributes. However, `asp-page` can be used with `asp-route-{value}` to control routing, as the following markup demonstrates:
@@ -252,7 +252,7 @@ The [asp-page-handler](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortag
 
 Consider the following page handler:
 
-[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Pages/Speaker.cshtml.cs?name=snippet_OnGetProfileHandler)]
+[!code-csharp[](samples/TagHelpersBuiltInAspNetCore/Pages/Attendee.cshtml.cs?name=snippet_OnGetProfileHandler)]
 
 The page model's associated markup links to the `OnGetProfile` page handler. Note that the `On<Verb>` prefix of the page handler method name is omitted in the `asp-page-handler` attribute value. If this were an asynchronous method, the `Async` suffix would be omitted too.
 
@@ -261,7 +261,7 @@ The page model's associated markup links to the `OnGetProfile` page handler. Not
 The generated HTML:
 
 ```html
-<a href="/Speaker?speakerid=12&handler=Delete">Delete Speaker</a>
+<a href="/Attendee?attendeeid=12&handler=Profile">Attendee Profile</a>
 ```
 
 ## Additional resources
