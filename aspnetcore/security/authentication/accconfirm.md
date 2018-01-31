@@ -109,7 +109,7 @@ The preceding line prevents registered users from being logged in until their em
 
 ### Configure email provider
 
-In this tutorial, SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email.
+In this tutorial, SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email. SMTP is difficult to to secure and set up correctly.
 
 The [Options pattern](xref:fundamentals/configuration/options) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration/index).
 
