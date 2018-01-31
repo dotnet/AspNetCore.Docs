@@ -70,17 +70,7 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 
 ### Run the app in the Kudu console
 
-Many startup errors where the process fails to start or where the app fails with an Internal Server Error don't produce useful information in the Application Event Log. For many errors as far as the proxy server is concerned, the app started normally:
-
-![Browser window of the Application Events Log showing an informational message from the IIS AspNetCoreModule](troubleshoot/_static/app-event-log-information.png)
-
-The informational message associated with this event states:
-
-> Application 'MACHINE/WEBROOT/APPHOST/TROUBLESHOOT' started process '7012' successfully and is listening on port '9489'.
-
-However, the app is clearly in an unhealthy state if it doesn't respond normally to requests.
-
-Run the app in the Kudu Remote Execution Console to discover the error:
+Many startup errors don't produce useful information in the Application Event Log. Run the app in the Kudu Remote Execution Console to discover the error:
 
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
