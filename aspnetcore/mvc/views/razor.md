@@ -466,7 +466,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive iisn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
 
 ### @inherits
 
