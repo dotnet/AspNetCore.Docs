@@ -29,15 +29,7 @@ The sample app demonstrates `LoggerMessage` features with a basic quote tracking
 
 [Define(LogLevel, EventId, String)](/dotnet/api/microsoft.extensions.logging.loggermessage.define) creates an `Action` delegate for logging a message. `Define` overloads permit passing up to six type parameters to a named format string (template).
 
-## LoggerMessage.DefineScope
-
-[DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) creates a `Func` delegate for defining a [log scope](xref:fundamentals/logging/index#log-scopes). `DefineScope` overloads permit passing up to three type parameters to a named format string (template).
-
-## Message template (named format string)
-
-The string provided to the `Define` and `DefineScope` methods is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates. They serve as property names within structured log data. We recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names. For example, `{Count}`, `{FirstName}`.
-
-## Implementing LoggerMessage.Define
+The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates. They serve as property names within structured log data. We recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names. For example, `{Count}`, `{FirstName}`.
 
 Each log message is an `Action` held in a static field created by `LoggerMessage.Define`. For example, the sample app creates a field to describe a log message for a GET request for the Index page (*Internal/LoggerExtensions.cs*):
 
@@ -136,7 +128,11 @@ Parameter name: entity
       <PATH>\sample\Pages\Index.cshtml.cs:line 87
 ```
 
-## Implementing LoggerMessage.DefineScope
+## LoggerMessage.DefineScope
+
+[DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) creates a `Func` delegate for defining a [log scope](xref:fundamentals/logging/index#log-scopes). `DefineScope` overloads permit passing up to three type parameters to a named format string (template).
+
+As is the case with the `Define` method, the string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates. They serve as property names within structured log data. We recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names. For example, `{Count}`, `{FirstName}`.
 
 Define a [log scope](xref:fundamentals/logging/index#log-scopes) to apply to a series of log messages using the [DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) method.
 
