@@ -27,6 +27,12 @@
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
+## [Create backend services for mobile apps](mobile/native-mobile-backend.md)
+## [Build Web APIs](mvc/web-api/index.md)
+### [Create a Web API on Mac](xref:tutorials/first-web-api-mac)
+### [ASP.NET Core Web API help pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
+### [Create backend services for native mobile apps](mobile/native-mobile-backend.md)
+
 ## [Cross platform tutorials](xref:tutorials/xplat)
 ### [Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
@@ -95,11 +101,6 @@
 #### [Inheritance](data/ef-mvc/inheritance.md)
 #### [Advanced topics](data/ef-mvc/advanced.md)
 
-## [Create backend services for mobile apps](mobile/native-mobile-backend.md)
-## [Build Web APIs](mvc/web-api/index.md)
-## [Create a Web API](xref:tutorials/first-web-api-mac)
-### [ASP.NET Core Web API help pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
-### [Create backend services for native mobile apps](mobile/native-mobile-backend.md)
 
 # [Fundamentals](fundamentals/index.md)
 ## [Application startup](fundamentals/startup.md)
