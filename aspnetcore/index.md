@@ -60,6 +60,7 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 For more information, see the following resources:
 
+* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [ASP.NET Core tutorials](xref:tutorials/index)
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.
