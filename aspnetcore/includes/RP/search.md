@@ -90,7 +90,3 @@ Update *Index.cshtml* as follows:
 [!code-cshtml[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
-
->[!div class="step-by-step"]
-[Previous: Updating the pages](xref:tutorials/razor-pages/da1)
-[Next: Adding a new field](xref:tutorials/razor-pages/new-field)
