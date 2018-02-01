@@ -36,13 +36,13 @@
 #### [Update the pages](xref:tutorials/razor-pages-mac/da1)
 #### [Add search](xref:tutorials/razor-pages-mac/search)
 
-
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
 #### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
+#### [Add search](xref:tutorials/razor-pages-vsc/search)
 
 ### [MVC web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
 #### [Getting started](xref:tutorials/first-mvc-app-mac/start-mvc)
