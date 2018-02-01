@@ -180,7 +180,7 @@
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 
-# [Data access with EF Core](data/index.md)
+# [Data access with EF Core and Azure](data/index.md)
 ## [Get started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/intro)
 ## [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
