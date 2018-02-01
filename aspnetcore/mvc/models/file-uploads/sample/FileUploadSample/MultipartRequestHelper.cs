@@ -10,7 +10,8 @@ namespace FileUploadSample
         // The spec says 70 characters is a reasonable limit.
         public static string GetBoundary(MediaTypeHeaderValue contentType, int lengthLimit)
         {
-            var boundary = HeaderUtilities.RemoveQuotes(contentType.Boundary);
+            // Add .Value for .NET Core 2.0
+            var boundary = HeaderUtilities.RemoveQuotes(contentType.Boundary).Value;
             if (string.IsNullOrWhiteSpace(boundary))
             {
                 throw new InvalidDataException("Missing content-type boundary.");
