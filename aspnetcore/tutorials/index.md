@@ -48,7 +48,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Data access and storage
 * [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
-* [Get started with ASP.NET Core MVC and EG Core using Visual Studio](../data/ef-mvc/index.md)
+* [Get started with ASP.NET Core MVC and EF Core using Visual Studio](../data/ef-mvc/index.md)
 * [ASP.NET Core MVC with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
 * [ASP.NET Core MVC with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 
