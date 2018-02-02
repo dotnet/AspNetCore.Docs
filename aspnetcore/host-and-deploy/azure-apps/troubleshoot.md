@@ -33,6 +33,10 @@ The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app in the Kudu console](#run-the-app-in-the-kudu-console) or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
 
+## Default startup limits
+
+The ASP.NET Core Module is configured with a default *startupTimeLimit* (120 seconds) and *startupRetryCount* (2). A slow-starting app may take up to six minutes before the module logs a process failure. For more information, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+
 ## Troubleshoot app startup errors
 
 ### Application Event Log
@@ -60,10 +64,16 @@ Many startup errors don't produce useful information in the Application Event Lo
 1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**.
-1. In the console, run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for `<assembly_name>`:
-   ```console
-   dotnet .\<assembly_name>.dll
-   ```
+1. In the console, run the app by executing the app's assembly.
+   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for `<assembly_name>`:
+     ```console
+     dotnet .\<assembly_name>.dll
+     ```
+   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable. In the following command, substitute the name of the app's assembly for `<assembly_name>`:
+     ```console
+     <assembly_name>.exe
+     ```
+
 1. The console output from the app, showing any errors, is piped to the Kudu console.
 
 ### ASP.NET Core Module stdout log
@@ -99,13 +109,16 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 
 See the [ASP.NET Core common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Most of the common problems that prevent app startup are covered in the reference topic.
 
-## Process dump for a slow or hanging app
+## Slow or hanging app
 
 When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation) for debugging guidance.
 
 ## Remote debugging
 
-See [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) in the Azure documentation.
+See the following topics:
+
+* [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) (Azure documentation)
+* [Remote Debug ASP.NET Core on IIS in Azure in Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure) (Visual Studio documentation)
 
 ## Application Insights
 
