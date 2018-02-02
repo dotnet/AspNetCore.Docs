@@ -1,5 +1,5 @@
 ---
-title: Introduction to ASP.NET Core
+title: ASP.NET Core
 author: rick-anderson
 description: Provides an introduction to ASP.NET Core.
 manager: wpickett
