@@ -96,7 +96,7 @@ If the error message "Build failed." is displayed, run the command again. If you
 
 The EF Core command `migrations add` generated code to create the DB from. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
+[!code-csharp[Main](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-99)]
 
 Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, migrations calls the `Down` method.
 
