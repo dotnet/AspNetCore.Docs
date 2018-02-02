@@ -25,11 +25,11 @@ The [RequireHttpsAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft
 
 Add the following code to `ConfigureServices` in `Startup`:
 
-[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-)]
+[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-999)]
 
 The highlighted code above requires all requests use `HTTPS`, therefore HTTP requests are ignored. The following highlighted code redirects all HTTP requests to HTTPS:
 
-[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=7-)]
+[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=7-999)]
 
 See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
 

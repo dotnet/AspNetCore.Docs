@@ -65,7 +65,7 @@ These two statements enable the view to set the column heading hyperlinks as fol
 
 The method uses LINQ to Entities to specify the column to sort by. The code initializes an `IQueryable<Student> ` before the switch statement, and modifies it in the switch statement:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-999)]
 
  When an`IQueryable` is created or modified, no query is sent to the database. The query isn't executed until the `IQueryable` object is converted into a collection. `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that's not executed until the following statement:
 
@@ -174,7 +174,7 @@ In *Students/Index.cshtml.cs*, update the type of `Student` from `IList<Student>
 
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
 
 The preceding code adds the page index, the current `sortOrder`, and the `currentFilter` to the method signature.
 
@@ -211,7 +211,7 @@ The two question marks in `PaginatedList.CreateAsync` represent the [null-coales
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-)]
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
 
