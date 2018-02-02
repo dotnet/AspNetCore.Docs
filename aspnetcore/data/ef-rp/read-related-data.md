@@ -175,7 +175,7 @@ Run the app and navigate to the instructors page.
 
 Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,20-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,20-99)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
@@ -244,7 +244,7 @@ Click on the **Select** link. The row style changes.
 
 Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
 
 Examine the updated query:
 
@@ -271,7 +271,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Add the following markup to the end of the *Pages/Courses/Index.cshtml* Razor Page:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-)]
+[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 

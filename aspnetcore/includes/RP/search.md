@@ -55,7 +55,7 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 
 Add the the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
-[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-)]
+[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
 The `SelectList Genres` contains the list of genres. This allows the user to select a genre from the list.
 
