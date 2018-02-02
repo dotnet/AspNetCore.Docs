@@ -286,7 +286,7 @@ npm i -g gulp-cli
 
 Copy the *gulpfile.js* file below to the project root:
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-99)]
 
 ### Run Gulp tasks
 
