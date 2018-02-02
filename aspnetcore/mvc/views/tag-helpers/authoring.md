@@ -221,7 +221,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
 
 4.  Add the following markup to the *About.cshtml* view. The highlighted markup displays the web site information.
     
-    [!code-html[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,12-)]
+    [!code-html[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,12-999)]
     
     >[!NOTE]
     > In the Razor markup shown below:

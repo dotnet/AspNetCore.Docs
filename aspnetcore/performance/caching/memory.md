@@ -37,7 +37,7 @@ In-memory caching is a *service* that's referenced from your app using [Dependen
 
 Request the `IMemoryCache` instance in the constructor:
 
-[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ctor&highlight=3,5-)] 
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ctor&highlight=3,5-999)] 
 
 `IMemoryCache` requires NuGet package "Microsoft.Extensions.Caching.Memory".
 
