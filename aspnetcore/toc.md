@@ -181,8 +181,8 @@
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 
 # [Data access with EF Core and Azure](data/index.md)
-## [Get started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/intro)
-## [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
+## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
+## [Get started with ASP.NET Core and EF Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
 ## [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [Get started with ASP.NET Core and Entity Framework 6](data/entity-framework-6.md)
