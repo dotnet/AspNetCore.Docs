@@ -20,8 +20,7 @@ namespace MiddlewareExtensibilitySample
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDb"));
 
-            services.AddTransient<IMiddlewareMiddleware>();
-            services.AddTransient<IMiddlewareFactory, SimpleInjectorMiddlewareFactory>();
+            services.AddTransient<SimpleInjectorActivatedMiddleware>();
 
             services.AddMvc();
 
@@ -49,7 +48,7 @@ namespace MiddlewareExtensibilitySample
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseIMiddlewareMiddleware();
+            app.UseSimpleInjectorActivatedMiddleware();
 
             app.UseStaticFiles();
             app.UseMvc();
@@ -64,7 +63,7 @@ namespace MiddlewareExtensibilitySample
                 return new AppDbContext(optionsBuilder.Options);
             }, Lifestyle.Scoped);
 
-            container.Register<IMiddlewareMiddleware>();
+            container.Register<SimpleInjectorActivatedMiddleware>();
             
             container.Register<SimpleInjectorMiddlewareFactory>();
         }

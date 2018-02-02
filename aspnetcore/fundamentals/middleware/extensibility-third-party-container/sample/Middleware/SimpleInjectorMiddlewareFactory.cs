@@ -8,10 +8,12 @@ namespace MiddlewareExtensibilitySample.Middleware
     public class SimpleInjectorMiddlewareFactory : IMiddlewareFactory
     {
         private readonly AppDbContext _db;
+        private readonly SimpleInjectorActivatedMiddleware _middleware;
 
-        public SimpleInjectorMiddlewareFactory(AppDbContext db)
+        public SimpleInjectorMiddlewareFactory(AppDbContext db, SimpleInjectorActivatedMiddleware middleware)
         {
             _db = db;
+            _middleware = middleware;
         }
 
         public IMiddleware Created { get; private set; }
@@ -19,7 +21,7 @@ namespace MiddlewareExtensibilitySample.Middleware
 
         public IMiddleware Create(Type middlewareType)
         {
-            Created = new IMiddlewareMiddleware(_db);
+            Created = _middleware;
 
             return Created;
         }

@@ -27,9 +27,9 @@ The sample's middleware implementation records the value provided by a query str
 
 [IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) defines middleware for the app's request pipeline.
 
-Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/IMiddlewareMiddleware.cs*):
+Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/SimpleInjectorActivatedMiddleware.cs*):
 
-[!code-csharp[](extensibility-third-party-container/sample/Middleware/IMiddlewareMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorActivatedMiddleware.cs?name=snippet1)]
 
 An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*):
 
@@ -51,15 +51,11 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware.
 
-In the sample app, a middleware factory is implemented to create an `IMiddlewareMiddleware` instance. The middleware factory passes an injected database context (a scoped service) to the middleware instance when it's created:
+In the sample app, a middleware factory is implemented to create an `SimpleInjectorActivatedMiddleware` instance. The middleware factory passes an injected database context (a scoped service) to the middleware instance when it's created:
 
 [!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorMiddlewareFactory.cs?name=snippet1&highlight=5-8,15)]
 
-The middleware factory is registered in the default container as a scoped or transient service:
-
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet1&highlight=7)]
-
-The middleware factory is also registered in the Simple Injector container. The registration permits Simple Injector to provide DI services to the factory, such as the `AppDbContext` in the sample app:
+The middleware factory is registered in the Simple Injector container. The registration permits Simple Injector to provide DI services to the factory, such as the `AppDbContext` and the `SimpleInjectorActivatedMiddleware` in the sample app:
 
 [!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=10)]
 
