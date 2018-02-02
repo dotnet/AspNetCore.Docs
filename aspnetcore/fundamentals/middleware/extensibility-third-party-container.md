@@ -53,7 +53,7 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 In the sample app, a middleware factory is implemented to create an `SimpleInjectorActivatedMiddleware` instance. The middleware factory passes an injected database context (a scoped service) to the middleware instance when it's created:
 
-[!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorMiddlewareFactory.cs?name=snippet1&highlight=6-10,17)]
+[!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorMiddlewareFactory.cs?name=snippet1&highlight=5-8,15)]
 
 The middleware factory is registered in the Simple Injector container. The registration permits Simple Injector to provide DI services to the factory, such as the `AppDbContext` and the `SimpleInjectorActivatedMiddleware` in the sample app:
 
