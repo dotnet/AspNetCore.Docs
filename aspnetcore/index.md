@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: index
 ---
-# Introduction to ASP.NET Core
+# ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
