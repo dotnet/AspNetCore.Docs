@@ -44,7 +44,7 @@ When a new course entity is created, it must have a relationship to an existing 
 
 Update the Create page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Courses/Create.cshtml.cs?highlight=7,18,32-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Create.cshtml.cs?highlight=7,18,32-999)]
 
 The preceding code:
 
@@ -77,7 +77,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 Update the edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-999)]
 
 The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select the department specified in the drop-down list.
 
@@ -133,7 +133,7 @@ When editing an instructor record, you may want to update the instructor's offic
 
 Update the instructors Edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,32,39-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,32,39-999)]
 
 The preceding code:
 
@@ -180,7 +180,7 @@ The `InstructorCoursesPageModel` is the base class you will use for the Edit and
 
 Update the instructor Edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit.cshtml.cs?name=snippet&highlight=1,20-24,30,34,41-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit.cshtml.cs?name=snippet&highlight=1,20-24,30,34,41-999)]
 
 The preceding code handles office assignment changes.
 
@@ -218,7 +218,7 @@ Test the instructor Create page.
 
 Update the Delete page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Delete.cshtml.cs?highlight=5,40-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Delete.cshtml.cs?highlight=5,40-999)]
 
 The preceding code makes the following changes:
 
