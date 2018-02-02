@@ -12,9 +12,7 @@ uid: data/ef-mvc/index
 ---
 # Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
 
-Note: A Razor Pages version of this tutorial is available [here](xref:data/ef-rp/intro). The Razor Pages version is easier to follow and covers more EF features.
-
-This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2017.
+[!INCLUDE[RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 
 1. [Getting started](intro.md)
 2. [Create, Read, Update, and Delete operations](crud.md)
