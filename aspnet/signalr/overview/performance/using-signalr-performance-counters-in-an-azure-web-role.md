@@ -61,7 +61,7 @@ SignalR performance counters are used to monitor your app's performance in an Az
 
    ![Add Startup Folder](using-signalr-performance-counters-in-an-azure-web-role/_static/image5.png)
     
-10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from \<project folder>\SignalRPerfCounters\packages\Microsoft.AspNet.SignalR.Utils.\<version>\tools to the *Startup* folder you created in the previous step.
+10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from \<project folder>/SignalRPerfCounters/packages/Microsoft.AspNet.SignalR.Utils.\<version>/tools to the *Startup* folder you created in the previous step.
 
 11. In **Solution Explorer**, right-click the *Startup* folder and select **Add** > **Existing Item**. In the dialog that appears, select *signalr.exe* and select **Add**.
 
@@ -129,7 +129,7 @@ SignalR performance counters are used to monitor your app's performance in an Az
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
     
-27. Wait about one minute. Open the Cloud Explorer tool window in Visual Studio (**View** > **Cloud Explorer**) and expand the path `(Local)\Storage Accounts\(Development)\Tables`. Double-click **WADPerformanceCountersTable**. You should see SignalR counters in the table data. If you don't see the table, you may need to re-enter your Azure Storage credentials. You may need to select the **Refresh** button to see the table in **Cloud Explorer** or select the **Refresh** button in the open table window to see data in the table.
+27. Wait about one minute. Open the Cloud Explorer tool window in Visual Studio (**View** > **Cloud Explorer**) and expand the path `(Local)/Storage Accounts/(Development)/Tables`. Double-click **WADPerformanceCountersTable**. You should see SignalR counters in the table data. If you don't see the table, you may need to re-enter your Azure Storage credentials. You may need to select the **Refresh** button to see the table in **Cloud Explorer** or select the **Refresh** button in the open table window to see data in the table.
 
     ![Selecting the WAD Performance Counters Table in Visual Studio Cloud Explorer](using-signalr-performance-counters-in-an-azure-web-role/_static/image11.png)
 
