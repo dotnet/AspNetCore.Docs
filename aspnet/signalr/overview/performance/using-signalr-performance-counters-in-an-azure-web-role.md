@@ -61,7 +61,7 @@ SignalR performance counters are used to monitor your app's performance in an Az
 
    ![Add Startup Folder](using-signalr-performance-counters-in-an-azure-web-role/_static/image5.png)
     
-10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from \<project folder>\SignalRPerfCounters\packages\Microsoft.AspNet.SignalR.Utils.\<version>\tools** to the *Startup* folder you created in the previous step.
+10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from \<project folder>/SignalRPerfCounters/packages/Microsoft.AspNet.SignalR.Utils.\<version>/tools to the *Startup* folder you created in the previous step.
 
 11. In **Solution Explorer**, right-click the *Startup* folder and select **Add** > **Existing Item**. In the dialog that appears, select *signalr.exe* and select **Add**.
 
