@@ -134,14 +134,14 @@ The location where themes are stored differs based upon their scope. Themes that
 
 `C:\WINDOWS\Microsoft.NET\Framework\v2.x.xxxxx\ASP.NETClientFiles\Themes\<Theme_Name>`
 
-A theme that is specific to a particular application is stored in an App\_Themes\&lt;Theme\_Name&gt; directory in the root of the Web site.
+A theme that is specific to a particular application is stored in an `App\_Themes\<Theme\_Name>` directory in the root of the Web site.
 
 > [!NOTE]
 > A skin file should only modify server control properties that affect appearance.
 
 A global theme is a theme that can be applied to any application or Web site running on the Web server. These themes are stored by default in the ASP.NETClientfiles\Themes directory that is inside of the v2.x.xxxxx directory. Alternatively, you can move the theme files into the aspnet\_client/system\_web/[version]/Themes/[theme\_name] folder in the root of your Web site.
 
-Application-specific themes can only be applied to the application in which the files reside. These files are stored in the App\_Themes/&lt;theme\_name&gt; directory in the root of the Web site.
+Application-specific themes can only be applied to the application in which the files reside. These files are stored in the `App\_Themes/<theme\_name>` directory in the root of the Web site.
 
 ## The Components of a Theme
 
@@ -253,7 +253,7 @@ So far, we've talked only about applying themes using the Theme property. When u
 
 If you'd like to be able to override the properties defined in the theme's skin file with properties specified in the designer, you can use the **StyleSheetTheme** property instead of the Theme property. The StyleSheetTheme property is the same as the Theme property except that it does not override all explicit property settings like the Theme property does.
 
-To see this in action, open the web.config file from the project in exercise 1 and change the &lt;pages&gt; element to the following:
+To see this in action, open the web.config file from the project in exercise 1 and change the `<pages>` element to the following:
 
 [!code-xml[Main](profiles-themes-and-web-parts/samples/sample19.xml)]
 
@@ -333,11 +333,11 @@ In this part of the walkthrough, you create a page that uses Web Parts controls 
 1. Close the default page and add a new page to the site named WebPartsDemo.aspx.
 2. Switch to **Design** view.
 3. From the **View** menu, make sure that the **Non-Visual Controls** and **Details** options are selected so you can see layout tags and controls that do not have a UI.
-4. Place the insertion point before the **&lt;div&gt;** tags on the design surface, and press ENTER to add a new line. Position the insertion point before the new line character, click the **Block Format** drop-down list control on the menu, and select the **Heading 1** option. In the heading, add the text **Web Parts Demonstration Page**.
-5. From the **WebParts** tab of the Toolbox, drag a **WebPartManager** control onto the page, positioning it just after the new line character and before the **&lt;div&gt;** tags.   
+4. Place the insertion point before the `<div>` tags on the design surface, and press ENTER to add a new line. Position the insertion point before the new line character, click the **Block Format** drop-down list control on the menu, and select the **Heading 1** option. In the heading, add the text **Web Parts Demonstration Page**.
+5. From the **WebParts** tab of the Toolbox, drag a **WebPartManager** control onto the page, positioning it just after the new line character and before the `<div>`tags.   
   
  The **WebPartManager** control does not render any output, so it appears as a grey box on the designer surface.
-6. Position the insertion point within the **&lt;div&gt;** tags.
+6. Position the insertion point within the `<div>` tags.
 7. In the **Layout** menu, click **Insert Table**, and create a new table that has one row and three columns. Click the **Cell Properties** button, select **top** from the **Vertical align** drop-down list, click **OK**, and click **OK** again to create the table.
 8. Drag a WebPartZone control into the left table column. Right-click the **WebPartZone** control, choose **Properties**, and set the following properties:   
   
@@ -353,13 +353,13 @@ In this part of the walkthrough, you create a page that uses Web Parts controls 
 
 Your page now has two distinct zones that you can control separately. However, neither zone has any content, so creating content is the next step. For this walkthrough, you work with Web Parts controls that display only static content.
 
-The layout of a Web Parts zone is specified by a **&lt;zonetemplate&gt;** element. Inside the zone template, you can add any ASP.NET control, whether it is a custom Web Parts control, a user control, or an existing server control. Notice that here you are using the Label control, and to that you are simply adding static text. When you place a regular server control in a **WebPartZone** zone, ASP.NET treats the control as a Web Parts control at run time, which enables Web Parts features on the control.
+The layout of a Web Parts zone is specified by a &lt;zonetemplate&gt; element. Inside the zone template, you can add any ASP.NET control, whether it is a custom Web Parts control, a user control, or an existing server control. Notice that here you are using the Label control, and to that you are simply adding static text. When you place a regular server control in a **WebPartZone** zone, ASP.NET treats the control as a Web Parts control at run time, which enables Web Parts features on the control.
 
 **To create content for the main zone**
 
 1. In **Design** view, drag a **Label** control from the **Standard** tab of the Toolbox into the contents area of the zone whose **ID** property is set to MainZone.
-2. Switch to **Source** view. Notice that a **&lt;zonetemplate&gt;** element was added to wrap the **Label** control in the MainZone.
-3. Add an attribute named **title** to the **&lt;asp:label&gt;** element, and set its value to Content. Remove the Text="Label" attribute from the **&lt;asp:label&gt;** element. Between the opening and closing tags of the **&lt;asp:label&gt;** element, add some text such as **Welcome to my Home Page** within a pair of **&lt;h2&gt;** element tags. Your code should look as follows. 
+2. Switch to **Source** view. Notice that a &lt;zonetemplate&gt; element was added to wrap the **Label** control in the MainZone.
+3. Add an attribute named **title** to the &lt;asp:label&gt; element, and set its value to Content. Remove the Text="Label" attribute from the &lt;asp:label&gt; element. Between the opening and closing tags of the &lt;asp:label&gt; element, add some text such as **Welcome to my Home Page** within a pair of &lt;h2&gt; element tags. Your code should look as follows. 
 
     [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample21.aspx)]
 4. Save the file.
@@ -391,7 +391,7 @@ At run time, the Web Parts control set wraps both controls with GenericWebPart c
 3. Drag the user control page you created, SearchUserControl.ascx, from **Solution Explorer** into the zone whose **ID** property is set to SidebarZone, and drop it there.
 4. Save the WebPartsDemo.aspx page.
 5. Switch to **Source** view.
-6. Inside the **&lt;asp:webpartzone&gt;** element for the SidebarZone, just above the reference to your user control, add an **&lt;asp:label&gt;** element with contained links, as shown in the following example. Also, add a **Title** attribute to the user control tag, with a value of **Search**, as shown. 
+6. Inside the &lt;asp:webpartzone&gt; element for the SidebarZone, just above the reference to your user control, add an &lt;asp:label&gt; element with contained links, as shown in the following example. Also, add a **Title** attribute to the user control tag, with a value of **Search**, as shown. 
 
     [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample23.aspx)]
 7. Save and close the file.
@@ -412,7 +412,7 @@ In the title bar of each control is a downward arrow that provides access to a v
 
 Web Parts provides the capability for users to change the layout of Web Parts controls by dragging them from one zone to another. In addition to allowing users to move **WebPart** controls from one zone to another, you can allow users to edit various characteristics of the controls, including their appearance, layout, and behavior. The Web Parts control set provides basic editing functionality for **WebPart** controls. Although you will not do so in this walkthrough, you can also create custom editor controls that allow users to edit the features of **WebPart** controls. As with changing the location of a **WebPart** control, editing a control's properties relies on ASP.NET personalization to save the changes that users make.
 
-In this part of the walkthrough, you add the ability for users to edit the basic characteristics of any **WebPart** control on the page. To enable these features, you add another custom user control to the page, along with an **&lt;asp:editorzone&gt;** element and two editing controls.
+In this part of the walkthrough, you add the ability for users to edit the basic characteristics of any **WebPart** control on the page. To enable these features, you add another custom user control to the page, along with an &lt;asp:editorzone&gt; element and two editing controls.
 
 ### To create a user control that enables changing page layout
 
@@ -496,7 +496,7 @@ You can also allow users to add Web Parts controls to their page at run time. To
 4. From the **WebParts** section of the Toolbox, drag a DeclarativeCatalogPart control into the content area of the **CatalogZone** control.
 5. Click the arrow in the upper right corner of the **DeclarativeCatalogPart** control to expose its Tasks menu, and then select **Edit Templates**.
 6. From the **Standard** section of the Toolbox, drag a **FileUpload** control and a **Calendar** control into the **WebPartsTemplate** section of the **DeclarativeCatalogPart** control.
-7. Switch to **Source** view. Inspect the source code of the **&lt;asp:catalogzone&gt;** element. Notice that the **DeclarativeCatalogPart** control contains a **&lt;webpartstemplate&gt;** element with the two enclosed server controls that you will be able to add to your page from the catalog.
+7. Switch to **Source** view. Inspect the source code of the &lt;asp:catalogzone&gt; element. Notice that the **DeclarativeCatalogPart** control contains a &lt;webpartstemplate&gt; element with the two enclosed server controls that you will be able to add to your page from the catalog.
 8. Add a **Title** property to each of the controls you added to the catalog, using the string value shown for each title in the code example below. Even though the title is not a property you can normally set on these two server controls at design time, when a user adds these controls to a **WebPartZone** zone from the catalog at run time, they are each wrapped with a **GenericWebPart** control. This enables them to act as Web Parts controls, so they will be able to display titles.   
   
  The code for the two controls contained in the **DeclarativeCatalogPart** control should look as follows. 
