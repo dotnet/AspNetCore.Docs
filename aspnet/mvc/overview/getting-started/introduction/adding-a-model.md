@@ -53,7 +53,7 @@ You can do this by manually adding the using statement, or you can hover over th
 
 ![](adding-a-model/_static/image2.png)
 
-Note: Several unused `using` statements have been removed. Visual Studio will show unused dependencies as gray. You can remove unnused dependencies by hovering over the gray dependencies, click `Show potential fixes` and click **Remove Unused Usings.**
+Note: Several unused `using` statements have been removed. Visual Studio will show unused dependencies as gray. You can remove unused dependencies by hovering over the gray dependencies, click `Show potential fixes` and click **Remove Unused Usings.**
 
 ![](adding-a-model/_static/image3.png)
 
