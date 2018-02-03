@@ -227,7 +227,7 @@ This template enables you to quickly create a working data-entry user interface.
 
 For *Data Context class*, you can make these choices:
 
-- If you want to use Code First and have no existing data context class, choose *&lt;New data context…&gt;*". A data context class will then be generated for you.
+- If you want to use Code First and have no existing data context class, choose **New data context **. A data context class will then be generated for you.
 - If you want to use Code First and have an existing data context class, choose it here. It will be updated to persist the model class you have selected.
 - If you are using Database First or Model First, choose your object context class here.
 
@@ -250,7 +250,7 @@ The Project Template list includes a new Intranet Application template. This tem
 
 #### Project templates are now HTML5 enabled
 
-The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 *&lt;header&gt;*, *&lt;footer&gt;*, and *&lt;navigation&gt;* elements.
+The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 `<header>`, `<footer>`, and `<navigation>` elements. elements.
 
 Note that earlier versions of browsers do not support HTML5-specific tags. To address this limitation, the HTML5 project templates include a reference to the Modernizr library. (See the next section.)
 
@@ -288,7 +288,7 @@ When you create a new ASP.NET MVC 3 project, the project includes the JavaScript
 
 For example, given the frequency of new jQuery releases, the version of jQuery included in the project template will at some point be out of date. However, because jQuery is included as an installed NuGet package, you will be notified in the NuGet dialog box when newer versions of jQuery are available.
 
-Because jQuery includes the version number in the file name, updating jQuery to the latest version also requires updating the *&lt;script&gt;* tag that references the jQuery file to use the new file name. Other included script libraries do not include the version number in the script name, so they can be more easily updated to their latest versions.
+Because jQuery includes the version number in the file name, updating jQuery to the latest version also requires updating the `<script>` tag that references the jQuery file to use the new file name. Other included script libraries do not include the version number in the script name, so they can be more easily updated to their latest versions.
 
 <a id="tu-KI"></a>
 ## Known Issues
@@ -348,7 +348,7 @@ Renaming a Razor file using Solution Explorer while the file is opened in the ed
 - IntelliSense for Razor syntax does not work when ReSharper is installed. If you have ReSharper installed and want to take advantage of the Razor IntelliSense support in ASP.NET MVC 3, see the entry [Razor Intellisense and ReSharper](http://blogs.jetbrains.com/dotnet/2010/11/razor-intellisense-and-resharper/) on Hadi Hariri's blog, which discusses ways to use them together today.
 - CCSHTML and VBHTML views created with the Beta version of ASP.NET MVC 3 do not have their build action set correctly, with the result that these view types are omitted when the project is published. The Build Action value for these files should be set to "Content". ASP.NET MVC 3 RTM fixes this issue for new files, but doesn't correct the setting for existing files for a project created with prerelease versions.
 - ![](mvc3-release-notes/_static/image3.png)
-- During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended./li&gt;
+- During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended.
 - When you are editing a Razor view (.cshtml file), the Go To Controller menu item in Visual Studio will not be available, and there are no code snippets.
 - If you install ASP.NET MVC 3 for Visual Web Developer Express on a computer where Visual Studio is not installed, and then later install Visual Studio, you must reinstall ASP.NET MVC 3. Visual Studio and Visual Web Developer Express share components that are upgraded by the ASP.NET MVC 3 installer. The same issue applies if you install ASP.NET MVC 3 for Visual Studio on a computer that does not have Visual Web Developer Express and then later install Visual Web Developer Express.
 
@@ -393,7 +393,7 @@ The default Edit and Create templates include references to the jQuery scripts n
 <a id="_Toc2_4"></a>
 ### Added Html.Raw Method
 
-By default, the Razor view engine HTML-encodes all values. For example, the following code snippet encodes the HTML inside the greeting variable so that it is displayed in the page as &amp;lt;strong&amp;gt;Hello World!&amp;lt;/strong&amp;gt;.
+By default, the Razor view engine HTML-encodes all values. For example, the following code snippet encodes the HTML inside the greeting variable so that it is displayed in the page as `<strong>Hello World!</strong>`.
 
 [!code-cshtml[Main](mvc3-release-notes/samples/sample10.cshtml)]
 
@@ -616,7 +616,7 @@ Alternatively, to turn off request validation for every property of the model, a
 - The installer may take much longer than previous versions of ASP.NET MVC to complete because it updates components of Visual Studio 2010.
 - The Add View scaffolding when selecting an "Edit" strongly typed view scaffolds read only properties. Likewise, write-only properties are scaffolded for "Display" views.
 - During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended.
-- Installing the [Visual Studio Async CTP](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=18712f38-fcd2-4e9f-9028-8373dc5732b2&amp;displaylang=en) causes a conflict with the Razor release that is included as part of the ASP.NET MVC 3 tooling installation. Make sure that you do not try to install both the Visual Studio Async CTP and the Razor release on the same machine.
+- Installing the Visual Studio Async CTP causes a conflict with the Razor release that is included as part of the ASP.NET MVC 3 tooling installation. Make sure that you do not try to install both the Visual Studio Async CTP and the Razor release on the same machine.
 - When you are editing a Razor view (.cshtml file), the Go To Controller menu item in Visual Studio will not be available, and there are no code snippets.
 
 <a id="TOC_ASP_NET_3_Beta"></a>
@@ -847,7 +847,7 @@ When you are editing a Razor view (CSHTML file), the <a id="0.1__Toc224729061"><
 
 When using the @model syntax to specify a strongly typed CSHTML view, language-specific shortcuts for types are not recognized. For example, @model int will not work, but @model Int32 will work. The workaround for this bug is to use the actual type name when you specify the model type.
 
-When using the @model syntax to specify a strongly typed CSHTML view (or @ModelType to specify a strongly typed VBHTML view), nullable types and array declarations are not supported. For example, @model int? is not supported. Instead, use @model Nullable&lt;Int32&gt;. The syntax @model string[] is also not supported; instead, use @model IList&lt;string&gt;.
+When using the @model syntax to specify a strongly typed CSHTML view (or @ModelType to specify a strongly typed VBHTML view), nullable types and array declarations are not supported. For example, @model int? is not supported. Instead, use `@model Nullable<Int32>`. The syntax @model string[] is also not supported; instead, use `@model IList<string>`.
 
 When you upgrade an ASP.NET MVC 2 project to ASP.NET MVC 3, make sure to add the following to the appSettings section of the Web.config file:
 
