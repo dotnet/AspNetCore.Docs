@@ -12,7 +12,7 @@ namespace MiddlewareExtensibilitySample
 {
     public class Startup
     {
-        private Container container = new Container();
+        private Container _container = new Container();
 
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
@@ -25,28 +25,28 @@ namespace MiddlewareExtensibilitySample
             // instantiated.
             services.AddTransient<IMiddlewareFactory>(_ =>
             {
-                return new SimpleInjectorMiddlewareFactory(container);
+                return new SimpleInjectorMiddlewareFactory(_container);
             });
 
             // Wraps ASP.NET requests in an 
             // SimpleInjector.Lifestyles.AsyncScopedLifestyle.
-            services.UseSimpleInjectorAspNetRequestScoping(container);
+            services.UseSimpleInjectorAspNetRequestScoping(_container);
 
             // Provide the AppDbContext from the Simple Injector
             // container whenever it's requested from the default
             // service container.
             services.AddScoped<AppDbContext>(provider => 
-                container.GetInstance<AppDbContext>());
+                _container.GetInstance<AppDbContext>());
 
             // Sets the default scoped lifestyle that the 
             // container should use when a registration is made 
             // using SimpleInjector.Lifestyle.Scoped.
-            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            _container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
             // Register the AppDbContext in the Simple Injector
             // container. Use an options builder to specify the
             // use of an in-memory database.
-            container.Register<AppDbContext>(() => 
+            _container.Register<AppDbContext>(() => 
             {
                 var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
                 optionsBuilder.UseInMemoryDatabase("InMemoryDb");
@@ -55,10 +55,10 @@ namespace MiddlewareExtensibilitySample
 
             // Register the middleware with the Simple Injector 
             // container.
-            container.Register<SimpleInjectorActivatedMiddleware>();
+            _container.Register<SimpleInjectorActivatedMiddleware>();
 
             // Verifies and diagnoses the container instance.
-            container.Verify();
+            _container.Verify();
         }
         #endregion
 
