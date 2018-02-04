@@ -14,19 +14,14 @@ namespace MiddlewareExtensibilitySample.Middleware
             _container = container;
         }
 
-        public IMiddleware Created { get; private set; }
-        public IMiddleware Released { get; private set; }
-
         public IMiddleware Create(Type middlewareType)
         {
-            Created = _container.GetInstance(middlewareType) as IMiddleware;
-
-            return Created;
+            return _container.GetInstance(middlewareType) as IMiddleware;
         }
 
         public void Release(IMiddleware middleware)
         {
-            Released = middleware;
+            // The container is responsible for releasing resources.
         }
     }
     #endregion

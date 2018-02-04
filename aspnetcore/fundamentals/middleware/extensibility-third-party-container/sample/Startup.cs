@@ -35,7 +35,8 @@ namespace MiddlewareExtensibilitySample
             // Provide the AppDbContext from the Simple Injector
             // container whenever it's requested from the default
             // service container.
-            services.AddScoped<AppDbContext>(provider => container.GetInstance<AppDbContext>());
+            services.AddScoped<AppDbContext>(provider => 
+                container.GetInstance<AppDbContext>());
 
             // Sets the default scoped lifestyle that the 
             // container should use when a registration is made 
@@ -51,10 +52,6 @@ namespace MiddlewareExtensibilitySample
                 optionsBuilder.UseInMemoryDatabase("InMemoryDb");
                 return new AppDbContext(optionsBuilder.Options);
             }, Lifestyle.Scoped);
-
-            // Register the middleware factory with the Simple
-            // Injector container.
-            container.Register<SimpleInjectorMiddlewareFactory>();
 
             // Register the middleware with the Simple Injector 
             // container.
