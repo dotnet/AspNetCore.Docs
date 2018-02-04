@@ -105,7 +105,7 @@ The preceding code is for the initial migration. That code was created when the 
 If the initial migration is created and the DB exits:
 
 * The DB creation code is generated.
-* The DB creation code doesn't need to run because the DB already matches the data model. If the The DB creation code is run, it doesn't make any changes because the DB already matches the data model.
+* The DB creation code doesn't need to run because the DB already matches the data model. If the DB creation code is run, it doesn't make any changes because the DB already matches the data model.
 
 When the app is deployed to a new environment, the DB creation code must be run to create the DB.
 
