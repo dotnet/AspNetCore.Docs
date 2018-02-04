@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MiddlewareExtensibilitySample.Data;
-using MiddlewareExtensibilitySample.Middleware;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using MiddlewareExtensibilitySample.Data;
+using MiddlewareExtensibilitySample.Middleware;
 
 namespace MiddlewareExtensibilitySample
 {
@@ -17,28 +17,57 @@ namespace MiddlewareExtensibilitySample
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseInMemoryDatabase("InMemoryDb"));
-
-            services.AddTransient<SimpleInjectorActivatedMiddleware>();
-
             services.AddMvc();
 
-            IntegrateSimpleInjector(services);
-        }
+            // Replace the default middleware factory with the 
+            // SimpleInjectorMiddlewareFactory. Pass in the 
+            // Simple Injector container when the factory is
+            // instantiated.
+            services.AddTransient<IMiddlewareFactory>(_ =>
+            {
+                return new SimpleInjectorMiddlewareFactory(container);
+            });
 
-        private void IntegrateSimpleInjector(IServiceCollection services) {
+            // Wraps ASP.NET requests in an 
+            // SimpleInjector.Lifestyles.AsyncScopedLifestyle.
+            services.UseSimpleInjectorAspNetRequestScoping(container);
+
+            // Provide the AppDbContext from the Simple Injector
+            // container whenever it's requested from the default
+            // service container.
+            services.AddScoped<AppDbContext>(provider => container.GetInstance<AppDbContext>());
+
+            // Sets the default scoped lifestyle that the 
+            // container should use when a registration is made 
+            // using SimpleInjector.Lifestyle.Scoped.
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+
+            // Register the AppDbContext in the Simple Injector
+            // container. Use an options builder to specify the
+            // use of an in-memory database.
+            container.Register<AppDbContext>(() => 
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
+                optionsBuilder.UseInMemoryDatabase("InMemoryDb");
+                return new AppDbContext(optionsBuilder.Options);
+            }, Lifestyle.Scoped);
+
+            // Register the middleware factory with the Simple
+            // Injector container.
+            container.Register<SimpleInjectorMiddlewareFactory>();
+
+            // Register the middleware with the Simple Injector 
+            // container.
+            container.Register<SimpleInjectorActivatedMiddleware>();
+
+            // Verifies and diagnoses the container instance.
+            container.Verify();
         }
         #endregion
 
-        #region snippet3
+        #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            InitializeContainer(app);
-
-            container.Verify();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,20 +81,6 @@ namespace MiddlewareExtensibilitySample
 
             app.UseStaticFiles();
             app.UseMvc();
-        }
-        #endregion
-
-        #region snippet2
-        private void InitializeContainer(IApplicationBuilder app) {
-            container.Register<AppDbContext>(() => {
-                var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
-                optionsBuilder.UseInMemoryDatabase("InMemoryDb");
-                return new AppDbContext(optionsBuilder.Options);
-            }, Lifestyle.Scoped);
-
-            container.Register<SimpleInjectorActivatedMiddleware>();
-            
-            container.Register<SimpleInjectorMiddlewareFactory>();
         }
         #endregion
     }

@@ -1,16 +1,17 @@
 using System;
 using Microsoft.AspNetCore.Http;
+using SimpleInjector;
 
 namespace MiddlewareExtensibilitySample.Middleware
 {
     #region snippet1
     public class SimpleInjectorMiddlewareFactory : IMiddlewareFactory
     {
-        private readonly SimpleInjectorActivatedMiddleware _middleware;
+        private readonly Container _container;
 
-        public SimpleInjectorMiddlewareFactory(SimpleInjectorActivatedMiddleware middleware)
+        public SimpleInjectorMiddlewareFactory(Container container)
         {
-            _middleware = middleware;
+            _container = container;
         }
 
         public IMiddleware Created { get; private set; }
@@ -18,7 +19,7 @@ namespace MiddlewareExtensibilitySample.Middleware
 
         public IMiddleware Create(Type middlewareType)
         {
-            Created = _middleware;
+            Created = _container.GetInstance(middlewareType) as IMiddleware;
 
             return Created;
         }

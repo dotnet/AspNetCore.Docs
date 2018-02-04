@@ -23,6 +23,14 @@ The sample app demonstrates middleware activation by an `IMiddlewareFactory` imp
 
 The sample's middleware implementation records the value provided by a query string parameter (`key`). The middleware uses an injected database context (a scoped service) to record the query string value in an in-memory database.
 
+## IMiddlewareFactory
+
+[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware.
+
+In the sample app, a middleware factory is implemented to create an `SimpleInjectorActivatedMiddleware` instance. The middleware factory passes an injected database context (a scoped service) to the middleware instance when it's created:
+
+[!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorMiddlewareFactory.cs?name=snippet1&highlight=5-8,15)]
+
 ## IMiddleware
 
 [IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) defines middleware for the app's request pipeline.
@@ -35,29 +43,17 @@ An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*
 
 [!code-csharp[](extensibility-third-party-container/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
-The factory-activated middleware is added to the built-in container in `Startup.ConfigureServices`:
+`Startup.ConfigureServices` must perform several tasks to:
 
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet1&highlight=6)]
+* Use the Simple Injector container.
+* Register the factory and middleware.
+* Make the app's database context available from the Simple Injector container for a Razor Page
 
-The middleware is added to the Simple Injector container in `Startup.InitializeContainer`:
-
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=8)]
+[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet1)]
 
 The middleware is registered in the request processing pipeline in `Startup.Configure`:
 
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet3&highlight=16)]
-
-## IMiddlewareFactory
-
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware.
-
-In the sample app, a middleware factory is implemented to create an `SimpleInjectorActivatedMiddleware` instance. The middleware factory passes an injected database context (a scoped service) to the middleware instance when it's created:
-
-[!code-csharp[](extensibility-third-party-container/sample/Middleware/SimpleInjectorMiddlewareFactory.cs?name=snippet1&highlight=5-8,15)]
-
-The middleware factory is registered in the Simple Injector container. The registration permits Simple Injector to provide DI services to the factory, such as the `AppDbContext` and the `SimpleInjectorActivatedMiddleware` in the sample app:
-
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=10)]
+[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=12)]
 
 ## Additional resources
 
