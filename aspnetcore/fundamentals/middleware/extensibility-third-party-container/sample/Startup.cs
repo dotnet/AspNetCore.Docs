@@ -30,9 +30,9 @@ namespace MiddlewareExtensibilitySample
             // context.
             services.UseSimpleInjectorAspNetRequestScoping(_container);
 
-            // Provide the AppDbContext from the Simple Injector
-            // container whenever it's requested from the default
-            // service container.
+            // Provide the database context from the Simple 
+            // Injector container whenever it's requested from 
+            // the default service container.
             services.AddScoped<AppDbContext>(provider => 
                 _container.GetInstance<AppDbContext>());
 
