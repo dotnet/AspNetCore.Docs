@@ -20,16 +20,14 @@ namespace MiddlewareExtensibilitySample
             services.AddMvc();
 
             // Replace the default middleware factory with the 
-            // SimpleInjectorMiddlewareFactory. Pass in the 
-            // Simple Injector container when the factory is
-            // instantiated.
+            // SimpleInjectorMiddlewareFactory.
             services.AddTransient<IMiddlewareFactory>(_ =>
             {
                 return new SimpleInjectorMiddlewareFactory(_container);
             });
 
-            // Wraps ASP.NET requests in an 
-            // SimpleInjector.Lifestyles.AsyncScopedLifestyle.
+            // Wrap ASP.NET requests in a Simple Injector execution 
+            // context.
             services.UseSimpleInjectorAspNetRequestScoping(_container);
 
             // Provide the AppDbContext from the Simple Injector
@@ -38,14 +36,8 @@ namespace MiddlewareExtensibilitySample
             services.AddScoped<AppDbContext>(provider => 
                 _container.GetInstance<AppDbContext>());
 
-            // Sets the default scoped lifestyle that the 
-            // container should use when a registration is made 
-            // using SimpleInjector.Lifestyle.Scoped.
             _container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
-            // Register the AppDbContext in the Simple Injector
-            // container. Use an options builder to specify the
-            // use of an in-memory database.
             _container.Register<AppDbContext>(() => 
             {
                 var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
@@ -53,11 +45,8 @@ namespace MiddlewareExtensibilitySample
                 return new AppDbContext(optionsBuilder.Options);
             }, Lifestyle.Scoped);
 
-            // Register the middleware with the Simple Injector 
-            // container.
             _container.Register<SimpleInjectorActivatedMiddleware>();
 
-            // Verifies and diagnoses the container instance.
             _container.Verify();
         }
         #endregion

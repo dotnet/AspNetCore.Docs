@@ -43,11 +43,11 @@ An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*
 
 [!code-csharp[](extensibility-third-party-container/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
-`Startup.ConfigureServices` must perform several tasks to:
+`Startup.ConfigureServices` must perform several tasks:
 
-* Use the Simple Injector container.
+* Set up the Simple Injector container.
 * Register the factory and middleware.
-* Make the app's database context available from the Simple Injector container for a Razor Page
+* Make the app's database context available from the Simple Injector container for a Razor Page.
 
 [!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet1)]
 
