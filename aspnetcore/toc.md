@@ -108,6 +108,7 @@
 ## [Middleware](xref:fundamentals/middleware/index)
 ### [Middleware](xref:fundamentals/middleware/index)
 ### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
+### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## [Work with static files](fundamentals/static-files.md)
 ## [Routing](fundamentals/routing.md)
 ## [URL rewriting middleware](fundamentals/url-rewriting.md)

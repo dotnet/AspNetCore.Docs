@@ -79,3 +79,4 @@ The default `IMiddlewareFactory` implementation, [MiddlewareFactory](/dotnet/api
 ## Additional resources
 
 * [Middleware](xref:fundamentals/middleware/index)
+* [Factory-based middleware activation with a third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
