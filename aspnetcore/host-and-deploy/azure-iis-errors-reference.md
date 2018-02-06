@@ -15,8 +15,6 @@ uid: host-and-deploy/azure-iis-errors-reference
 
 By [Luke Latham](https://github.com/guardrex)
 
-The following isn't a complete list of errors. If you encounter an error not listed here, [open a new issue](https://github.com/aspnet/Docs/issues/new) with detailed instructions to reproduce the error.
-
 Collect the following information:
 
 * Browser behavior
@@ -24,6 +22,8 @@ Collect the following information:
 * ASP.NET Core Module stdout log entries
 
 Compare the information to the following common errors. If a match is found, follow the troubleshooting advice.
+
+The following isn't a complete list of errors. If an unlisted error is encountered, [open a new issue](https://github.com/aspnet/Docs/issues/new) with detailed instructions to reproduce the error.
 
 ## Installer unable to obtain VC++ Redistributable
 
