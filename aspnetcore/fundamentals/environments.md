@@ -82,7 +82,7 @@ Changes made to project profiles may not take effect until the web server is res
 
 ### Production
 
-The production environment should be configured to maximize security, performance, and application robustness. Some common settings that a production environment might have that would differ from development include:
+The production environment should be configured to maximize security, performance, and application robustness. Some common settings that differ from development include:
 
 * Caching.
 * Client-side resources are bundled, minified, and potentially served from a CDN.
