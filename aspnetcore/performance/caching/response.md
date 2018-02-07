@@ -63,7 +63,7 @@ For more information, see [Introduction to in-memory caching in ASP.NET Core](xr
 
 ### Distributed Cache
 
-Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group and cached data for the client if available. ASP.NET Core offers SQL Server and Redis distributed caches.
+Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
 
 For more information, see [Working with a distributed cache](xref:performance/caching/distributed).
 
