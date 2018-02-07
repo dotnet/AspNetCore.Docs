@@ -37,6 +37,8 @@ A proxy server is one which forwards client requests to another server instead o
 
 Because requests are forwarded by reverse proxy, use the Forwarded Headers Middleware from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. This middleware updates `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
+When using any type of authentication middleware, the authentication middleware needs the Forwarded Headers Middleware to run first. This ordering ensures that the authentication middleware can consume the header values and generate correct redirect URIs.
+
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or similar authentication scheme middleware:
