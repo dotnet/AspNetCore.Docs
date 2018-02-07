@@ -72,6 +72,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 ---
 
+If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
 
 ### Install Apache
 
