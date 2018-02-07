@@ -15,14 +15,22 @@ uid: host-and-deploy/iis/troubleshoot
 
 By [Luke Latham](https://github.com/guardrex)
 
-This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis).
+This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis). The information in this article applies to hosting in IIS on Windows Server and Windows Desktop.
+
+Additional troubleshooting topics:
+
+[Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
+Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
+
+[Error handling](xref:fundamentals/error-handling)  
+Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
 ## App startup errors
 
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
+The ASP.NET Core Module attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 The *502.5 Process Failure* error page is returned when a hosting or app misconfiguration causes the worker process to fail:
 
@@ -32,6 +40,10 @@ The *502.5 Process Failure* error page is returned when a hosting or app misconf
 The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app at a command prompt](#run-the-app-at-a-command-prompt) on the server or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
+
+**Connection reset**
+
+If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
 
 ## Default startup limits
 
@@ -45,7 +57,8 @@ Access the Application Event Log:
 
 1. Open the Start menu, search for **Event Viewer**, and then select the **Event Viewer** app.
 1. In **Event Viewer**, open the **Windows Logs** node.
-1. Select **Application** to open the Application Event Log. Search for errors associated with the failing app.
+1. Select **Application** to open the Application Event Log.
+1. Search for errors associated with the failing app. Errors have a value of *IIS Express AspNetCore Module* in the *Source* column.
 
 ### Run the app at a command prompt
 
@@ -55,21 +68,17 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. At a command prompt, set the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=true`.
-1. Navigate to the deployment folder and run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for \<assembly_name>: `dotnet .\<assembly_name>.dll`.
+1. At a command prompt, navigate to the deployment folder and run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for \<assembly_name>: `dotnet .\<assembly_name>.dll`.
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
-1. When finished, remove the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=`.
 
 **Self-contained deployment**
 
 If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. At a command prompt, set the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=true`.
-1. Navigate to the deployment folder and run the app's executable. In the following command, substitute the name of the app's assembly for \<assembly_name>: `<assembly_name>.exe`.
+1. At a command prompt, navigate to the deployment folder and run the app's executable. In the following command, substitute the name of the app's assembly for \<assembly_name>: `<assembly_name>.exe`.
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
-1. When finished, remove the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=`.
 
 ### ASP.NET Core Module stdout log
 
@@ -77,7 +86,7 @@ To enable and view stdout logs:
 
 1. Navigate to the site's deployment folder on the hosting system.
 1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
-1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). A timestamp, process id, and file extension are added automatically when the log is created (for example, *stdout_20180205184032_5412.log*).
+1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*. 
 1. Save the updated *web.config* file.
 1. Make a request to the app.
 1. Navigate to the *logs* folder. Find and open the most recent stdout log.
@@ -152,3 +161,4 @@ Sometimes a functioning app fails immediately after upgrading either the .NET Co
 * [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
 * [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
 * [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
+* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
