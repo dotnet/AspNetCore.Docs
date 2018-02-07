@@ -55,17 +55,21 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. At a command prompt, navigate to the deployment folder and run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for \<assembly_name>: `dotnet .\<assembly_name>.dll`.
+1. At a command prompt, set the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=true`.
+1. Navigate to the deployment folder and run the app by executing the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for \<assembly_name>: `dotnet .\<assembly_name>.dll`.
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
+1. When finished, remove the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=`.
 
 **Self-contained deployment**
 
 If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. At a command prompt, navigate to the deployment folder and run the app's executable. In the following command, substitute the name of the app's assembly for \<assembly_name>: `<assembly_name>.exe`.
+1. At a command prompt, set the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=true`.
+1. Navigate to the deployment folder and run the app's executable. In the following command, substitute the name of the app's assembly for \<assembly_name>: `<assembly_name>.exe`.
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
+1. When finished, remove the `ASPNETCORE_DETAILEDERRORS` environment variable. Use the command: `set ASPNETCORE_DETAILEDERRORS=`.
 
 ### ASP.NET Core Module stdout log
 
