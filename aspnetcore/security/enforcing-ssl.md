@@ -35,5 +35,5 @@ The preceding highlighted code requires all requests use `HTTPS`; therefore HTTP
 
  For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
-Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the 
+Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the
 `[RequireHttps]` attribute to all controller isn't considered as secure as requiring HTTPS globally. You can't guarantee that when new controllers and Razor Pages are added, the `[RequireHttps]` attribute is applied.
