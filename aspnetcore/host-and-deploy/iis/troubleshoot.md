@@ -35,7 +35,7 @@ This error occurs within the app's code during startup or while creating a respo
 
 ## Default startup limits
 
-The ASP.NET Core Module is configured with a default *startupTimeLimit* (120 seconds) and *startupRetryCount* (2). A slow-starting app may take up to six minutes before the module logs a process failure. For information on configuring these settings, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+The ASP.NET Core Module is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
 ## Troubleshoot app startup errors
 
