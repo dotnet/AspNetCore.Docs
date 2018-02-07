@@ -130,9 +130,7 @@ When an app responds slowly or hangs on a request, obtain and analyze a [dump fi
 
 * [ProcDump](/sysinternals/downloads/procdump)
 * [DebugDiag](https://www.microsoft.com/download/details.aspx?id=49924)
-* WinDbg
-  * [Download Debugging tools for Windows](https://developer.microsoft.com/windows/hardware/download-windbg)
-  * [Debugging Using WinDbg](/windows-hardware/drivers/debugger/debugging-using-windbg)
+* WinDbg: [Download Debugging tools for Windows](https://developer.microsoft.com/windows/hardware/download-windbg), [Debugging Using WinDbg](/windows-hardware/drivers/debugger/debugging-using-windbg)
 
 ## Remote debugging
 
