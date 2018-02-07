@@ -4,7 +4,7 @@ author: rick-anderson
 description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
 manager: wpickett
 ms.author: riande
-ms.date: 12/1/2017
+ms.date: 2/11/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -12,17 +12,39 @@ uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette) 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset.
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset. This is **not** a beginning topic. You should be familiar with:
+
+* [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
+* [Authentication](xref:security/authentication/index)
+* [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
+* [Entity Framework Core](xref:data/ef-mvc/intro)
+
+See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC  1.1 and 2.x versions.
+
+## Prerequisites
+
+[.NET Core 2.1.4 SDK](https://www.microsoft.com/net/core) or later.
 
 ## Create a New ASP.NET Core Project
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-This step applies to Visual Studio on Windows. See the next section for CLI instructions.
+```console
+dotnet new mvc --auth Individual razor -o WebPWrecover
+cd WebPWrecover
+```
 
-The tutorial requires Visual Studio 2017 Preview 2 or later.
+* `--auth Individual` specifies the Individual User Accounts template.
+* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
+* Run `new mvc --help` to get help on this command.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf).
+
+# [Visual Studio](#tab/visual-studio)
 
 * In Visual Studio, create a New Web Application Project.
 * Select **ASP.NET Core 2.0**. The following image show **.NET Core** selected, but you can select **.NET Framework**.
@@ -31,38 +53,17 @@ The tutorial requires Visual Studio 2017 Preview 2 or later.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/2.png)
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-The tutorial requires Visual Studio 2017 or later.
-
-* In Visual Studio, create a New Web Application Project.
-* Select **Change Authentication** and set to **Individual User Accounts**.
-
-![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
-
 ---
-
-### .NET Core CLI project creation for macOS and Linux
-
-If you're using the CLI or SQLite, run the following in a command window:
-
-```console
-dotnet new mvc --auth Individual
-```
-
-* `--auth Individual` specifies the Individual User Accounts template.
-* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
-* Run `new mvc --help` to get help on this command.
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this  point, the only validation on the email is with the [[EmailAddress]](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, we'll change this so new users cannot log in until their email has been validated.
+Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this point, the only validation on the email is with the [[EmailAddress]](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, we'll change this so new users cannot log in until their email has been validated.
 
 ## View the Identity database
 
-# [SQL Server](#tab/sql-server)
+# [Visual Studio](#tab/visual-studio)
 
-* From the **View** menu, select **SQL Server Object Explorer** (SSOX). 
+* From the **View** menu, select **SQL Server Object Explorer** (SSOX).
 * Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
 
 ![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
@@ -73,7 +74,7 @@ You might want to use this email again in the next step when the app sends a con
 
 # [SQLite](#tab/sqlite)
 
-See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB. 
+See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB.
 
 ---
 
@@ -86,22 +87,13 @@ See [Enforcing SSL](xref:security/enforcing-ssl).
 
 It's a best practice to confirm the email of a new user registration to verify they're not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, and you wanted to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
-You generally want to prevent new users from posting any data to your web site before they have a confirmed email. 
+You generally want to prevent new users from posting any data to your web site before they have a confirmed email.
 
 Update `ConfigureServices` to require a confirmed email:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=6-9)]
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Startup.cs?name=snippet1&highlight=6-9)]
 
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=13-16)]
-
----
-
- 
 ```csharp
 config.SignIn.RequireConfirmedEmail = true;
 ```
@@ -128,7 +120,7 @@ On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file
 
 The contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the `SendGridKey` value has been removed.)
 
-  ```json
+ ```json
   {
     "SendGridUser": "RickAndMSFT",
     "SendGridKey": "<key removed>"
@@ -182,7 +174,7 @@ The template has the code for account confirmation and password recovery. Find t
 
 Prevent newly registered users from being automatically logged on by commenting out the following line:
 
-```csharp 
+```csharp
 await _signInManager.SignInAsync(user, isPersistent: false);
 ```
 
@@ -200,7 +192,7 @@ Uncomment the code to enable account confirmation.
 
 Note: We're also preventing a newly-registered user from being automatically logged on by commenting out the following line:
 
-```csharp 
+```csharp
 //await _signInManager.SignInAsync(user, isPersistent: false);
 ```
 
@@ -238,7 +230,7 @@ You might need to expand the navbar to see user name.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed. 
+The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
 
 ![manage page](accconfirm/_static/rick2.png)
 
@@ -252,7 +244,7 @@ We'll talk about this page later in the tutorial.
 
 ### Test password reset
 
-* If you're logged in, select **Logout**.  
+* If you're logged in, select **Logout**.
 * Select the **Log in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
 * An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
