@@ -58,7 +58,7 @@ Access the Application Event Log:
 1. Open the Start menu, search for **Event Viewer**, and then select the **Event Viewer** app.
 1. In **Event Viewer**, open the **Windows Logs** node.
 1. Select **Application** to open the Application Event Log.
-1. Search for errors associated with the failing app. Errors have a value of *IIS Express AspNetCore Module* in the *Source* column.
+1. Search for errors associated with the failing app. Errors have a value of *IIS AspNetCore Module* or *IIS Express AspNetCore Module* in the *Source* column.
 
 ### Run the app at a command prompt
 
