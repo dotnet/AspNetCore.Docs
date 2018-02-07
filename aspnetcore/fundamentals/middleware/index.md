@@ -258,3 +258,4 @@ public class MyMiddleware
 * [Application Startup](xref:fundamentals/startup)
 * [Request Features](xref:fundamentals/request-features)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
+* [Factory-based middleware activation with a third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
