@@ -56,7 +56,7 @@ When using any type of authentication middleware, the authentication middleware 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Invoke the `UseForwardedHeaders` method in `Startup.Configure` before calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or similar authentication scheme middleware:
+Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or similar authentication scheme middleware:
 
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -69,7 +69,7 @@ app.UseAuthentication();
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Invoke the `UseForwardedHeaders` method in `Startup.Configure` before calling [UseIdentity](/dotnet/api/microsoft.aspnetcore.builder.builderextensions.useidentity) and [UseFacebookAuthentication](/dotnet/api/microsoft.aspnetcore.builder.facebookappbuilderextensions.usefacebookauthentication) or similar authentication scheme middleware:
+Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseIdentity](/dotnet/api/microsoft.aspnetcore.builder.builderextensions.useidentity) and [UseFacebookAuthentication](/dotnet/api/microsoft.aspnetcore.builder.facebookappbuilderextensions.usefacebookauthentication) or similar authentication scheme middleware:
 
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -86,6 +86,8 @@ app.UseFacebookAuthentication(new FacebookOptions()
 ```
 
 ---
+
+If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
 
 ### Install Nginx
 
