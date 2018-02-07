@@ -15,7 +15,7 @@ uid: host-and-deploy/iis/troubleshoot
 
 By [Luke Latham](https://github.com/guardrex)
 
-This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](https://www.iis.net/).
+This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis).
 
 ## App startup errors
 
@@ -51,7 +51,7 @@ Access the Application Event Log:
 
 Many startup errors don't produce useful information in the Application Event Log. You can find the cause of some errors by running the app at a command prompt on the hosting system.
 
-# [Framework-dependent deployment](#tab/framework-dependent-deployment)
+**Framework-dependent deployment**
 
 If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
@@ -59,7 +59,7 @@ If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framewo
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
 
-# [Self-contained deployment](#tab/self-contained-deployment)
+**Self-contained deployment**
 
 If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
@@ -67,15 +67,13 @@ If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contain
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the reverse proxy configuration and less likely within the app.
 
----
-
 ### ASP.NET Core Module stdout log
 
 To enable and view stdout logs:
 
 1. Navigate to the site's deployment folder on the hosting system.
 1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
-1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). A timestamp, process id, and file extension are added automatically when the log is created (for example, `stdout_20180205184032_5412.log`).
+1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). A timestamp, process id, and file extension are added automatically when the log is created (for example, *stdout_20180205184032_5412.log*).
 1. Save the updated *web.config* file.
 1. Make a request to the app.
 1. Navigate to the *logs* folder. Find and open the most recent stdout log.
@@ -129,14 +127,14 @@ See [Remote Debug ASP.NET Core on a Remote IIS Computer in Visual Studio 2017](/
 
 ## Application Insights
 
-[Application Insights](https://azure.microsoft.com/services/application-insights/) provides telemetry from apps hosted by IIS, including error logging and reporting features. Application Insights can only report on errors that occur after the app starts when the app's logging features become available. For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
+[Application Insights](/azure/application-insights/) provides telemetry from apps hosted by IIS, including error logging and reporting features. Application Insights can only report on errors that occur after the app starts when the app's logging features become available. For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
 
 ## Additional troubleshooting advice
 
 Sometimes a functioning app fails immediately after upgrading either the .NET Core SDK on the development machine or package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
-1. Delete the `bin` and `obj` folders.
-1. Clear the package caches at `%UserProfile%\.nuget\packages\` and `%LocalAppData%\Nuget\v3-cache`.
+1. Delete the *bin* and *obj* folders.
+1. Clear the package caches at *%UserProfile%\\.nuget\\packages* and *%LocalAppData%\\Nuget\\v3-cache*.
 1. Restore and rebuild the project.
 1. Confirm that the prior deployment on the server has been completely deleted prior to redeploying the app.
 
