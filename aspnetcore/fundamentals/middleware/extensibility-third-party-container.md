@@ -23,6 +23,9 @@ The sample app demonstrates middleware activation by an `IMiddlewareFactory` imp
 
 The sample's middleware implementation records the value provided by a query string parameter (`key`). The middleware uses an injected database context (a scoped service) to record the query string value in an in-memory database.
 
+> [!NOTE]
+> The sample app uses [Simple Injector](https://github.com/simpleinjector/SimpleInjector) purely for demonstration purposes. Use of Simple Injector isn't an endorsement. Middleware activation approaches described in the Simple Injector documentation and GitHub issues are recommended by the maintainers of Simple Injector. For more information, see the [Simple Injector documentation](https://simpleinjector.readthedocs.io/en/latest/index.html) and [Simple Injector GitHub repository](https://github.com/simpleinjector/SimpleInjector).
+
 ## IMiddlewareFactory
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware.
@@ -59,4 +62,5 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 * [Middleware](xref:fundamentals/middleware/index)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
+* [Simple Injector GitHub repository](https://github.com/simpleinjector/SimpleInjector)
 * [Simple Injector documentation](https://simpleinjector.readthedocs.io/en/latest/index.html)
