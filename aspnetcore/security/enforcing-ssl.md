@@ -33,7 +33,7 @@ The preceding highlighted code requires all requests use `HTTPS`; therefore HTTP
 
 [!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=7-999)]
 
- For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
+For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the
 `[RequireHttps]` attribute to all controller isn't considered as secure as requiring HTTPS globally. You can't guarantee that when new controllers and Razor Pages are added, the `[RequireHttps]` attribute is applied.
