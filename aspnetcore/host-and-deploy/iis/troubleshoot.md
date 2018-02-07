@@ -25,6 +25,9 @@ Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/as
 [Error handling](xref:fundamentals/error-handling)  
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
+[Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
+This topic introduces the features of the Visual Studio debugger. In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A process failure that occurs when debugging locally can be troubleshooted using the following advice.
+
 ## App startup errors
 
 **502.5 Process Failure**  
