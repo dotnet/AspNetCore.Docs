@@ -17,6 +17,8 @@ By [Luke Latham](https://github.com/guardrex)
 
 This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis). The information in this article applies to hosting in IIS on Windows Server and Windows Desktop.
 
+In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+
 Additional troubleshooting topics:
 
 [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
@@ -26,7 +28,7 @@ Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/as
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
-This topic introduces the features of the Visual Studio debugger. In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A process failure that occurs when debugging locally can be troubleshooted using the following advice.
+This topic introduces the features of the Visual Studio debugger.
 
 ## App startup errors
 
