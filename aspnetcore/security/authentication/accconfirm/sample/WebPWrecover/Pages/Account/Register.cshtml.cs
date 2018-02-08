@@ -60,6 +60,7 @@ namespace WebPWrecover.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        #region snippet_Register
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -75,7 +76,7 @@ namespace WebPWrecover.Pages.Account
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(Input.Email, callbackUrl);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    // await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(Url.GetLocalUrl(returnUrl));
                 }
                 foreach (var error in result.Errors)
@@ -87,5 +88,6 @@ namespace WebPWrecover.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+        #endregion
     }
 }

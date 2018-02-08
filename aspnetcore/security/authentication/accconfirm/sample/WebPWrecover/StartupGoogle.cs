@@ -10,17 +10,15 @@ using WebPWrecover.Services;
 
 namespace WebPWrecover
 {
-    public class Startup
+    public class StartupGoogle
     {
-        public Startup(IConfiguration configuration)
+        public StartupGoogle(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        #region snippet2
-        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             // Requires using Microsoft.AspNetCore.Mvc;
@@ -39,19 +37,23 @@ namespace WebPWrecover
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
                 });
-            #endregion
 
             services.AddSingleton<IEmailSender, EmailSender>();
 
             services.Configure<AuthMessageSenderOptions>(Configuration);
         }
-        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -27,7 +27,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 [.NET Core 2.1.4 SDK](https://www.microsoft.com/net/core) or later.
 
-## Create a New ASP.NET Core Project
+## Create a New ASP.NET Core project with dotnet
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -42,9 +42,20 @@ cd WebPWrecover
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf).
+If you're using the CLI or SQLite, run the following in a command window:
 
-# [Visual Studio](#tab/visual-studio)
+```console
+dotnet new mvc --auth Individual
+```
+
+* `--auth Individual` specifies the Individual User Accounts template.
+* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
+* Run `new mvc --help` to get help on this command.
+
+---
+
+### Create a New ASP.NET Core project with Visual Studio
+
 
 * In Visual Studio, create a New Web Application Project.
 * Select **ASP.NET Core 2.0**. The following image show **.NET Core** selected, but you can select **.NET Framework**.
@@ -53,15 +64,15 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/2.png)
 
----
-
 ## Test new user registration
 
 Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this point, the only validation on the email is with the [[EmailAddress]](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, we'll change this so new users cannot log in until their email has been validated.
 
 ## View the Identity database
 
-# [Visual Studio](#tab/visual-studio)
+See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB.
+
+For Visual Studio:
 
 * From the **View** menu, select **SQL Server Object Explorer** (SSOX).
 * Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
@@ -72,15 +83,11 @@ Note the `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
-# [SQLite](#tab/sqlite)
-
-See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB.
-
 ---
 
-## Require SSL and setup IIS Express for SSL
+## Require HTTPS
 
-See [Enforcing SSL](xref:security/enforcing-ssl).
+See [Require HTTPS](xref:security/enforcing-ssl).
 
 <a name="prevent-login-at-registration"></a>
 ## Require email confirmation
@@ -91,13 +98,9 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update `ConfigureServices` to require a confirmed email:
 
-[!code-csharp[Main](accconfirm/sample/WebPWrecover/Startup.cs?name=snippet1&highlight=6-9)]
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Startup.cs?name=snippet1&highlight=12-17)]
 
-
-```csharp
-config.SignIn.RequireConfirmedEmail = true;
-```
-The preceding line prevents registered users from being logged in until their email is confirmed. However, that line doesn't prevent new users from being logged in after they register. The default code logs in a user after they register. Once they log out, they won't be able to log in again until they register. Later in the tutorial we'll change the code so newly registered user are **not** logged in.
+`config.SignIn.RequireConfirmedEmail = true;` prevents registered users from logging in until their email is confirmed. However, that line doesn't prevent new users from being logged in after they register. The default code logs in a user after they register. Once they log out, they won't be able to log in again until they register. Later in the tutorial we'll change the code so newly registered users are **not** logged in.
 
 ### Configure email provider
 
@@ -107,16 +110,16 @@ The [Options pattern](xref:fundamentals/configuration/options) is used to access
 
 Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
-```none
+```console
 C:\WebAppl\src\WebApp1>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId> directory.
+On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
 The contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the `SendGridKey` value has been removed.)
 
@@ -133,9 +136,10 @@ Add `AuthMessageSenderOptions` to the service container at the end of the `Confi
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=18)]
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Startup.cs?name=snippet2&highlight=28)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
 
 ---
@@ -144,20 +148,25 @@ Add `AuthMessageSenderOptions` to the service container at the end of the `Confi
 
 This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
 
-* Install the `SendGrid` NuGet package. From the Package Manager Console,  enter the following the following command:
+Install the `SendGrid` NuGet package:
+
+* From the command line:
+
+    `dotnet add package SendGrid`
+
+* From the Package Manager Console,  enter the following the following command:
 
   `Install-Package SendGrid`
 
-* See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
+See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
 
 #### Configure SendGrid
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-* Add code in *Services/EmailSender.cs* similar to the following to configure SendGrid:
+To configure SendGrid, add code similar to the following in *Services/EmailSender.cs*.
 
-[!code-csharp[Main](accconfirm/sample/WebPW/Services/EmailSender.cs)]
-
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Services/EmailSender.cs)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
@@ -168,7 +177,7 @@ This tutorial shows how to add email notifications through [SendGrid](https://se
 
 ## Enable account confirmation and password recovery
 
-The template has the code for account confirmation and password recovery. Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
+The template has the code for account confirmation and password recovery. Find the `OnPostAsync` method in the *Pages/Account/Register.cshtml.cs* file.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -180,9 +189,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 The complete method is shown with the changed line highlighted:
 
-[!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=19&name=snippet_Register)]
-
-Note: The previous code will fail if you implement `IEmailSender` and send a plain text email. See [this issue](https://github.com/aspnet/Home/issues/2152) for more information and a workaround.
+[!code-csharp[Main](accconfirm/sample/WebPWrecover/Pages/Account/Register.cshtml.cs?highlight=16&name=snippet_Register)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -203,6 +210,8 @@ Enable password recovery by uncommenting the code in the `ForgotPassword` action
 Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might want to remove the `<p> For more information on how to enable reset password ... </p>` element which contains a link to this article.
 
 [!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-10,12,28)]
+
+
 
 ---
 
@@ -255,26 +264,15 @@ We'll talk about this page later in the tutorial.
 
 If you can't get email working:
 
+* Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
 * Review the [Email Activity](https://sendgrid.com/docs/User_Guide/email_activity.html) page.
 * Check your spam folder.
 * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-* Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
 * Try sending to different email accounts.
 
-**Note:** A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
-
-## Prevent login at registration
-
-With the current templates, once a user completes the registration form, they're logged in (authenticated). You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they're logged in. Update the `[HttpPost] Login` action in the *AccountController.cs* file with the following highlighted changes.
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=11-21&name=snippet_Login)]
-
-**Note:** A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
-
+**A security best practice** is to **not** use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 ## Combine social and local login accounts
-
-Note: This section applies only to ASP.NET Core 1.x. For ASP.NET Core 2.x, see [this](https://github.com/aspnet/Docs/issues/3753) issue.
 
 To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).
 

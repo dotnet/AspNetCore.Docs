@@ -19,7 +19,8 @@ namespace WebPWrecover
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+                .UseStartup<StartupGoogle>()
+       //       .UseStartup<Startup>()
                 .Build();
     }
 }
