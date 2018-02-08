@@ -77,13 +77,13 @@ You can alternatively use MVC to apply specific CORS per action, per controller,
 
 ### Per action
 
-To specify a CORS policy for a specific action add the `[EnableCors]` attribute to the action. Specify the policy name.
+To specify a CORS policy for a specific action add the `[EnableCors]` attribute to the action in witch specify the policy name.
 
 [!code-csharp[Main](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=EnableOnAction)]
 
 ### Per controller
 
-To specify the CORS policy for a specific controller add the `[EnableCors]` attribute to the controller class. Specify the policy name.
+To specify the CORS policy for a specific controller add the `[EnableCors]` attribute to the controller class in witch specify the policy name.
 
 [!code-csharp[Main](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=EnableOnController)]
 
