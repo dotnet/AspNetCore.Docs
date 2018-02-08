@@ -36,7 +36,7 @@ The ASP.NET Core Module is configured via a site or application *web.config* fil
 </configuration>
 ```
 
-The *web.config* example below is for a [self-contained deployment](https://docs.microsoft.com/dotnet/articles/core/deploying/#self-contained-deployments-scd) to the [Azure App Service](https://azure.microsoft.com/services/app-service/). For more information, see [Host on Windows with IIS](xref:host-and-deploy/iis/index). See [Configuration of sub-applications](xref:host-and-deploy/iis/index#configuration-of-sub-applications) for an important note pertaining to the configuration of *web.config* files in sub-applications.
+The *web.config* example below is for a [self-contained deployment](https://docs.microsoft.com/dotnet/articles/core/deploying/#self-contained-deployments-scd) to the [Azure App Service](https://azure.microsoft.com/services/app-service/). For more information, see [Host on Windows with IIS](xref:host-and-deploy/iis/index). See [Configuration of sub-applications](xref:host-and-deploy/iis/index#sub-application-configuration) for an important note pertaining to the configuration of *web.config* files in sub-applications.
 
 ```xml
 <configuration>
