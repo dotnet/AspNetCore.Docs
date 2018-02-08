@@ -305,7 +305,7 @@
 ### [Compatibility](xref:security/data-protection/compatibility/index)
 #### [Share cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 #### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
-## [Enforce SSL](xref:security/enforcing-ssl)
+## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [Safe storage of app secrets during development](xref:security/app-secrets)
 ## [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 ## [Anti-request forgery](xref:security/anti-request-forgery)
