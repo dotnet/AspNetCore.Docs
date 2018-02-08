@@ -310,11 +310,11 @@ For more information on configuring the ASP.NET Core Module, see the [Introducti
 
 IIS configuration is influenced by the **\<system.webServer>** section of *web.config* for those IIS features that apply to a reverse proxy configuration. If IIS is configured at the server level to use dynamic compression, the **\<urlCompression>** element in the app's *web.config* file can disable it.
 
-For more information, see the [configuration reference for \<system.webServer>](https://docs.microsoft.com/iis/configuration/system.webServer/), [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules). To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
+For more information, see the [configuration reference for \<system.webServer>](/iis/configuration/system.webServer/), [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules). To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
 ## Configuration sections of web.config
 
-Configuration sections of ASP.NET Framework apps in *web.config* aren't used by ASP.NET Core apps for configuration:
+Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 
 * **\<system.web>**
 * **\<appSettings>**
@@ -372,4 +372,4 @@ For more information, see the [icacls](/windows-server/administration/windows-co
 * [Using IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
 * [Introduction to ASP.NET Core](../index.md)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
-* [Microsoft TechNet Library: Windows Server](https://docs.microsoft.com/windows-server/windows-server-versions)
+* [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)
