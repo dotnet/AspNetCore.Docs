@@ -50,7 +50,7 @@ public class AccountController : Controller
 
 Now only authenticated users can access the `Logout` function.
 
-You can also use the `AllowAnonymousAttribute` attribute to allow access by non-authenticated users to individual actions. For example:
+You can also use the `AllowAnonymous` attribute to allow access by non-authenticated users to individual actions. For example:
 
 ```csharp
 [Authorize]
