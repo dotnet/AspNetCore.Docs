@@ -91,7 +91,7 @@ for the base image, additional components, the app you
 want to run, and other configuration images.  The Dockerfile is the input
 to the `docker build` command, which creates the image.
 
-You will build an image based on the `microsft/aspnet`
+You will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
 Windows Server Core, IIS and ASP.NET 4.6.2. When you run this image in your container, it will
