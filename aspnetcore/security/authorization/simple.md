@@ -14,7 +14,7 @@ uid: security/authorization/simple
 
 <a name="security-authorization-simple"></a>
 
-Authorization in MVC is controlled through the `AuthorizeAttribute` attribute and its various parameters. At its simplest, applying the `AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authenticated user.
+Authorization in MVC is controlled through the `Authoriz` attribute and its various parameters. At its simplest, applying the `Authorize` attribute to a controller or action limits access to the controller or action to any authenticated user.
 
 For example, the following code limits access to the `AccountController` to any authenticated user.
 
@@ -32,7 +32,7 @@ public class AccountController : Controller
 }
 ```
 
-If you want to apply authorization to an action rather than the controller, apply the `AuthorizeAttribute` attribute to the action itself:
+If you want to apply authorization to an action rather than the controller, apply the `Authorize` attribute to the action itself:
 
 ```csharp
 public class AccountController : Controller
