@@ -20,8 +20,6 @@ There are many third party tools you can download to manage and view a SQLite da
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-"D:\GH\2\Docs\aspnetcore\includes\RP\code\Models\SeedData.cs"
-
 [!code-csharp[Main](code\Models\SeedData.cs)]
 
 If there are any movies in the DB, the seed initializer returns.
@@ -43,5 +41,5 @@ Add the seed initializer to the `Main` method in the *Program.cs* file:
 ### Test the app
 
 Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
-   
+
 The app shows the seeded data.
