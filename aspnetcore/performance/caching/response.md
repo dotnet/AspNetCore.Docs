@@ -81,12 +81,14 @@ For more information, see [Distributed Cache Tag Helper](xref:mvc/views/tag-help
 
 ## ResponseCache attribute
 
-The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for a description of the parameters.
+The [ResponseCacheAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) specifies the parameters necessary for setting appropriate headers in response caching.
 
 > [!WARNING]
-> Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn't change based on a user's identity or whether a user is logged in.
+> Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn't change based on a user's identity or whether a user is signed in.
 
-`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1 and higher): When set, the Response Caching Middleware varies the stored response by the values of the given list of query keys. The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There's no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[VaryByQueryKeys](/dotnet/api/microsoft.aspnetcore.mvc.responsecacheattribute.varybyquerykeys) varies the stored response by the values of the given list of query keys. When a single value of `*` is provided, the middleware varies responses by all request query string parameters. `VaryByQueryKeys` requires ASP.NET Core 1.1 or later.
+
+The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the `VaryByQueryKeys` property. The property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                   |
 | -------------------------------- | ------------------------ |
@@ -96,7 +98,7 @@ The `ResponseCacheAttribute` specifies the parameters necessary for setting appr
 
 The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request isn't in the middleware cache because the query string value doesn't match a previous request. 
 
-The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
+The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a [ResponseCacheFilter](/dotnet/api/microsoft.aspnetcore.mvc.internal.responsecachefilter). The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
 * Removes any existing headers for `Vary`, `Cache-Control`, and `Pragma`. 
 * Writes out the appropriate headers based on the properties set in the `ResponseCacheAttribute`. 
