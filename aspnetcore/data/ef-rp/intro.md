@@ -235,18 +235,6 @@ The previous command adds the NuGet packages to the *.csproj file:
 dotnet restore
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
  ```
- 
-If the following error is generated:
-
-```text
-Unhandled Exception: System.IO.FileNotFoundException: 
-Could not load file or assembly 
-'Microsoft.VisualStudio.Web.CodeGeneration.Utils, 
-Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'.
-The system cannot find the file specified.
-```
-
-Run the command again and leave a comment at the bottom of the page.
 
 If you get the error:
   ```
