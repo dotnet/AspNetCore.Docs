@@ -74,6 +74,8 @@ if (responseCachingFeature != null)
 }
 ```
 
+Using a single value equal to `*` in `VaryByQueryKeys` varies the cache by all request query parameters.
+
 ## HTTP headers used by Response Caching Middleware
 
 Response caching by the middleware is configured using HTTP headers.

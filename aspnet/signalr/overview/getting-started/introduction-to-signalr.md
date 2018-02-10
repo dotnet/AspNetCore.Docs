@@ -30,7 +30,7 @@ ASP.NET SignalR is a library for ASP.NET developers that simplifies the process 
 
 SignalR can be used to add any sort of "real-time" web functionality to your ASP.NET application. While chat is often used as an example, you can do a whole lot more. Any time a user refreshes a web page to see new data, or the page implements [long polling](http://en.wikipedia.org/wiki/Push_technology#Long_polling) to retrieve new data, it is a candidate for using SignalR. Examples include dashboards and monitoring applications, collaborative applications (such as simultaneous editing of documents), job progress updates, and real-time forms.
 
-SignalR also enables completely new types of web applications that require high frequency updates from the server, for example, real-time gaming. For a great example of this, see the [ShootR game.](http://shootr.signalr.net/)
+SignalR also enables completely new types of web applications that require high frequency updates from the server, for example, real-time gaming.
 
 SignalR provides a simple API for creating server-to-client remote procedure calls (RPC) that call JavaScript functions in client browsers (and other client platforms) from server-side .NET code. SignalR also includes API for connection management (for instance, connect and disconnect events), and grouping connections.
 
