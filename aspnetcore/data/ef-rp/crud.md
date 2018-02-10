@@ -88,7 +88,7 @@ The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `FirstOrD
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
 
-The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. These methods are examinied in detail in the reading-related data tutorial.
+The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. These methods are examined in detail in the reading-related data tutorial.
 
 The `AsNoTracking` method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
@@ -193,7 +193,7 @@ An entity may be in one of the following states:
 
 In a desktop app, state changes are typically set automatically. An entity is read, changes are made, and the entity state to automatically be changed to `Modified`. Calling `SaveChanges` generates a SQL UPDATE statement that updates only the changed properties.
 
-In a web app, the `DbContext` that reads an entity and displays the data is disposed after a page is rendered. When a pages `OnPostAsync` method is called, a new web request is made and with a new instance of the `DbContext`. Re-reading the entity in that new context simulates desktop processing.
+In a web app, the `DbContext` that reads an entity and displays the data is disposed after a page is rendered. When a page's `OnPostAsync` method is called, a new web request is made and with a new instance of the `DbContext`. Re-reading the entity in that new context simulates desktop processing.
 
 ## Update the Delete page
 
