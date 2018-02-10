@@ -74,7 +74,7 @@ You can explore the features of the Response Compression Middleware with the [sa
 To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
 
 ## Configuration
-The following code shows how to enable the Response Compression Middleware with the with the default gzip compression and for default MIME types.
+The following code shows how to enable the Response Compression Middleware with the default gzip compression and for default MIME types.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
