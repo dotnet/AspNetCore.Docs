@@ -32,7 +32,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```console
-dotnet new mvc --auth Individual razor -o WebPWrecover
+dotnet new razor --auth Individual -o WebPWrecover
 cd WebPWrecover
 ```
 
@@ -54,8 +54,7 @@ dotnet new mvc --auth Individual
 
 ---
 
-### Create a New ASP.NET Core project with Visual Studio
-
+Alternatively, you can create a New ASP.NET Core project with Visual Studio:
 
 * In Visual Studio, create a New Web Application Project.
 * Select **ASP.NET Core 2.0**. The following image show **.NET Core** selected, but you can select **.NET Framework**.
@@ -66,7 +65,7 @@ dotnet new mvc --auth Individual
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this point, the only validation on the email is with the [[EmailAddress]](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, we'll change this so new users cannot log in until their email has been validated.
+Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this point, the only validation on the email is with the [[EmailAddress]](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, the code is updated so new users cannot log in until their email has been validated.
 
 ## View the Identity database
 
@@ -119,7 +118,7 @@ C:\WebAppl\src\WebApp1>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
+On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
 The contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the `SendGridKey` value has been removed.)
 
