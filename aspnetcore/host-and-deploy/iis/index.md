@@ -120,6 +120,9 @@ Enable the **Web Server (IIS)** server role and establish role services.
 
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
+   **WebSockets**  
+   WebSockets is supported with ASP.NET Core 1.1 or later with the **WebSocket Protocol** role service on Windows Server. For more information, see [WebSockets](xref:fundamentals/websockets).
+
 1. Proceed through the **Confirmation** step to install the web server role and services. A server/IIS restart isn't required after installing the **Web Server (IIS)** role.
 
 **Windows desktop operating systems**
@@ -127,10 +130,18 @@ Enable the **Web Server (IIS)** server role and establish role services.
 Enable the **IIS Management Console** and **World Wide Web Services**.
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
+
 1. Open the **Internet Information Services** node. Open the **Web Management Tools** node.
+
 1. Check the box for **IIS Management Console**.
+
 1. Check the box for **World Wide Web Services**.
+
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
+
+   **WebSockets**  
+   WebSockets is supported with ASP.NET Core 1.1 or later with the **WebSocket Protocol** app development feature on Windows Desktop. To enable WebSockets, select **World Wide Web Services** > **Application Development Features** > **WebSocket Protocol**. For more information, see [WebSockets](xref:fundamentals/websockets).
+
 1. If the IIS installation requires a restart, restart the system.
 
 ![IIS Management Console and World Wide Web Services are selected in Windows Features.](index/_static/windows-features-win10.png)
@@ -177,6 +188,9 @@ When deploying apps to servers with [Web Deploy](/iis/publish/using-web-deploy/i
 1. Confirm the process model identity has the proper permissions.
 
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
+
+**Windows Authentication configuration**  
+See [Enable Windows authentication with IIS](xref:security/authentication/windowsauth#enable-windows-authentication-with-iis) in the Windows authentication topic.
 
 ## Deploy the app
 
