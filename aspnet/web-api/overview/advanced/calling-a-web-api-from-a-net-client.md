@@ -111,7 +111,7 @@ The **GetAsync** method sends the HTTP GET request. When the method completes, i
 
 When **ReadAsAsync** is called with no parameters, it uses a default set of *media formatters* to read the response body. The default formatters support JSON, XML, and Form-url-encoded data.
 
-Instead of using the default formatters, you can provide a list of formatters to the **ReadAsAsync** method.  Using a a list of formatters is useful if you have a custom media-type formatter:
+Instead of using the default formatters, you can provide a list of formatters to the **ReadAsAsync** method.  Using a list of formatters is useful if you have a custom media-type formatter:
 
 ```csharp
 var formatters = new List<MediaTypeFormatter>() {

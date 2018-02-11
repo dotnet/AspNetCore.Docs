@@ -53,7 +53,7 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 
 ## Search by genre
 
-Add the the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
+Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
