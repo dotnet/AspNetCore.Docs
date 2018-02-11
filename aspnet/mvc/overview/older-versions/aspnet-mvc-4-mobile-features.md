@@ -303,7 +303,7 @@ As you type each letter in the search box, jQuery Mobile filters the displayed l
 
 Like the default *Speakers* view, the *Tags* view is readable, but the links are small and difficult to tap on a mobile device. In this section, you'll fix the *Tags* view the same way you fixed the *Speakers* view.
 
-Remove the &quot;hide&quot; suffix to the the *Views\Home\AllTags.Mobile.cshtml.hide* file so the name is *Views\Home\AllTags.Mobile.cshtml*. Open the renamed file and remove the `<h2>` element.
+Remove the &quot;hide&quot; suffix to the *Views\Home\AllTags.Mobile.cshtml.hide* file so the name is *Views\Home\AllTags.Mobile.cshtml*. Open the renamed file and remove the `<h2>` element.
 
 Add the `data-role` and `data-filter` attributes to the `<ul>` tag, as shown here:
 

@@ -298,7 +298,7 @@ Linking an application to Windows Live for Microsoft Authentication is a simple 
 <a id="DISABLE"></a>
 ### Optional: Disable Local Registration
 
-The current ASP.NET local registration functionality does not prevent automated programs (bots) from creating member accounts; for example, by using a bot-prevention and validation technology like [CAPTCHA](../../../web-pages/overview/security/16-adding-security-and-membership.md). Because of this, you should remove the local login form and registration link on the login page. To do so, open the *\_Login.cshtml* page in your project, and then comment out the lines for the local login panel and the registration link. The resulting page should like like the following code sample:
+The current ASP.NET local registration functionality does not prevent automated programs (bots) from creating member accounts; for example, by using a bot-prevention and validation technology like [CAPTCHA](../../../web-pages/overview/security/16-adding-security-and-membership.md). Because of this, you should remove the local login form and registration link on the login page. To do so, open the *\_Login.cshtml* page in your project, and then comment out the lines for the local login panel and the registration link. The resulting page should look like the following code sample:
 
 [!code-html[Main](external-authentication-services/samples/sample10.html)]
 

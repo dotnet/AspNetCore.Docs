@@ -155,7 +155,7 @@ Note: The Basic Authentication sample abstracts this logic a bit, by placing it 
 
 "Host-level authentication" is authentication performed by the host (such as IIS), before the request reaches the Web API framework.
 
-Often, you may want to to enable host-level authentication for the rest of your application, but disable it for your Web API controllers. For example, a typical scenario is to enable Forms Authentication at the host level, but use token-based authentication for Web API.
+Often, you may want to enable host-level authentication for the rest of your application, but disable it for your Web API controllers. For example, a typical scenario is to enable Forms Authentication at the host level, but use token-based authentication for Web API.
 
 To disable host-level authentication inside the Web API pipeline, call `config.SuppressHostPrincipal()` in your configuration. This causes Web API to remove the **IPrincipal** from any request that enters the Web API pipeline. Effectively, it &quot;un-authenticates&quot; the request.
 

@@ -56,7 +56,7 @@ Open the `Movies` controller. The two `Edit` action methods are shown below.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample2.cs)]
 
-Notice the second `Edit` action method is preceded by the `HttpPost` attribute. This attribute specifies that that overload of the `Edit` method can be invoked only for POST requests. You could apply the `HttpGet` attribute to the first edit method, but that's not necessary because it's the default. (We'll refer to action methods that are implicitly assigned the `HttpGet` attribute as `HttpGet` methods.)
+Notice the second `Edit` action method is preceded by the `HttpPost` attribute. This attribute specifies that overload of the `Edit` method can be invoked only for POST requests. You could apply the `HttpGet` attribute to the first edit method, but that's not necessary because it's the default. (We'll refer to action methods that are implicitly assigned the `HttpGet` attribute as `HttpGet` methods.)
 
 The `HttpGet` `Edit` method takes the movie ID parameter, looks up the movie using the Entity Framework `Find` method, and returns the selected movie to the Edit view. When the scaffolding system created the Edit view, it examined the `Movie` class and created code to render `<label>` and `<input>` elements for each property of the class. The following example shows the Edit view that was generated:
 

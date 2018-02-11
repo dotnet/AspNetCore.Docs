@@ -226,7 +226,7 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 
 Without the `@:` in the code, a Razor runtime error is generated.
 
-Warning: Extra `@` characters in a Razor file can cause cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
+Warning: Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
 ## Control Structures
 

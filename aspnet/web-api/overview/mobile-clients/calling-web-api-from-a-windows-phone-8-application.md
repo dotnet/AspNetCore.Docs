@@ -117,14 +117,14 @@ The next step of this end-to-end scenario is to create the catalog application f
 6. Update the **MainViewModel.cs** class to include the functionality to communicate with the BookStore Web API application:
 
     1. Expand the **ViewModels** folder in the solution explorer, and then double-click the **MainViewModel.cs** file.
-    2. When the the **MainViewModel.cs** file is opened, replace the code in the file with the following; note that you will need to update the value of the `apiUrl` constant with the actual URL of your Web API: 
+    2. When the **MainViewModel.cs** file is opened, replace the code in the file with the following; note that you will need to update the value of the `apiUrl` constant with the actual URL of your Web API: 
 
         [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample5.cs)]
     3. Save and close the **MainViewModel.cs** file.
 7. Update the **MainPage.xaml** file to customize the application name:
 
     1. Double-click the **MainPage.xaml** file in the solution explorer.
-    2. When the the **MainPage.xaml** file is opened, locate the following lines of code: 
+    2. When the **MainPage.xaml** file is opened, locate the following lines of code: 
 
         [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample6.xml)]
     3. Replace those lines with the following: 
@@ -134,7 +134,7 @@ The next step of this end-to-end scenario is to create the catalog application f
 8. Update the **DetailsPage.xaml** file to customize the displayed items:
 
     1. Double-click the **DetailsPage.xaml** file in the solution explorer.
-    2. When the the **DetailsPage.xaml** file is opened, locate the following lines of code: 
+    2. When the **DetailsPage.xaml** file is opened, locate the following lines of code: 
 
         [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample8.xml)]
     3. Replace those lines with the following: 

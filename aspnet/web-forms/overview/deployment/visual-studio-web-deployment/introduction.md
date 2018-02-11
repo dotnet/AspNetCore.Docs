@@ -190,7 +190,7 @@ The following features of the application affect how you deploy it or what you h
 - The application uses the ASP.NET membership system, which stores user account information in a SQL Server database. The application defines an administrator user who has access to some restricted information. You need to deploy the membership database without test accounts but with an administrator account.
 - The application uses a third-party error logging and reporting utility. This utility is provided in an assembly which must be deployed with the application.
 - The error logging utility writes error information in XML files to a file folder. You have to make sure that the account that ASP.NET runs under in the deployed site has write permission to this folder, and you have to exclude this folder from deployment. (Otherwise, error log data from the test environment might be deployed to production and/or production error log files might be deleted.)
-- The application includes some settings that must be changed in in the deployed *Web.config* file depending on the destination environment (test, staging, or production), and other settings that must be changed depending on the build configuration (Debug or Release).
+- The application includes some settings that must be changed in the deployed *Web.config* file depending on the destination environment (test, staging, or production), and other settings that must be changed depending on the build configuration (Debug or Release).
 - The Visual Studio solution includes a class library project. Only the assembly that this project generates should be deployed, not the project itself.
 
 ## Summary
