@@ -314,6 +314,11 @@
         "source_path": "aspnetcore/fundamentals/middleware.md",
         "redirect_url": "/aspnet/core/fundamentals/middleware/index",
         "redirect_document_id": false
-    }
+    },
+	{
+		"source_path": "aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md",
+		"redirect_url": "/aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow",
+		"redirect_document_id": false
+	}
   ] 
 }

@@ -85,7 +85,7 @@ In this section, you add a birth date column to the `Person` base class for the 
 6. In the **Web One Click Publish** toolbar, click the **Production** publish profile, and then click **Publish Web**.
 7. Run the **Instructors** page in production to verify that the update was successfully deployed.
 
-    For a a real production application update that includes a database change you would also typically take the application offline during deployment by using *app\_offline.htm*, as you saw in the previous tutorial.
+    For a real production application update that includes a database change you would also typically take the application offline during deployment by using *app\_offline.htm*, as you saw in the previous tutorial.
 
 ## Deploy a database update by using the dbDacFx provider
 

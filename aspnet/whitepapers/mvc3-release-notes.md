@@ -250,7 +250,7 @@ The Project Template list includes a new Intranet Application template. This tem
 
 #### Project templates are now HTML5 enabled
 
-The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 `<header>`, `<footer>`, and `<navigation>` elements. elements.
+The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 `<header>`, `<footer>`, and `<navigation>` elements.
 
 Note that earlier versions of browsers do not support HTML5-specific tags. To address this limitation, the HTML5 project templates include a reference to the Modernizr library. (See the next section.)
 
@@ -603,7 +603,7 @@ Alternatively, to turn off request validation for every property of the model, a
 ## Breaking Changes
 
 - The order of execution for exception filters has changed for exception filters that have the same *Order* value. In ASP.NET MVC 2 and earlier, exception filters on the controller that had the same *Order* as those on an action method were executed before the exception filters on the action method. This would typically be the case when exception filters were applied without a specified *Order* value. In ASP.NET MVC 3, this order has been reversed so that the most specific exception handler executes first. As in earlier versions, if the *Order* property is explicitly specified, the filters are run in the specified order.
-- Added a new property named *FileExtensions* to the *VirtualPathProviderViewEngine* base class. When looking up a view by path (and not by name), only views with a file extension contained in the list specified by this new property is considered. This is a breaking change for those who register a custom build provider to enable a custom file extension for web form views and and are referencing those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
+- Added a new property named *FileExtensions* to the *VirtualPathProviderViewEngine* base class. When looking up a view by path (and not by name), only views with a file extension contained in the list specified by this new property is considered. This is a breaking change for those who register a custom build provider to enable a custom file extension for web form views and are referencing those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
 
 <a id="_Toc276711795"></a>
 ## Known Issues

@@ -22,5 +22,5 @@ In this episode I followup with more information about using Windows Workflow, a
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-19a-windows-workflow-followup)
 
 >[!div class="step-by-step"]
-[Previous](aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
+[Previous](aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
 [Next](aspnet-mvc-storefront-part-20-logging.md)

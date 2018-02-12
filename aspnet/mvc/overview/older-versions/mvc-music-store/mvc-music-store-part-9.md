@@ -114,7 +114,7 @@ The complete CheckoutController code is as follows:
 
 ## Adding the AddressAndPayment view
 
-Now, let's create the AddressAndPayment view. Right-click on one of the the AddressAndPayment controller actions and add a view named AddressAndPayment which is strongly typed as an Order and uses the Edit template, as shown below.
+Now, let's create the AddressAndPayment view. Right-click on one of the AddressAndPayment controller actions and add a view named AddressAndPayment which is strongly typed as an Order and uses the Edit template, as shown below.
 
 ![](mvc-music-store-part-9/_static/image6.png)
 

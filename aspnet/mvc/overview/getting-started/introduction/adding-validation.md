@@ -19,7 +19,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 [!INCLUDE[Tutorial Note](sample/code-location.md)]
 
-In this this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie using the application.
+In this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie using the application.
 
 ## Keeping Things DRY
 

@@ -123,7 +123,7 @@ The IdentityUser class implements IUser and contains any additional properties o
 <a id="userstore"></a>
 ## Customize the user store
 
-You also create a UserStore class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn315446(v=vs.108).aspx) class in the [Microsoft.ASP.NET.Identity.EntityFramework](https://msdn.microsoft.com/library/microsoft.aspnet.identity.entityframework(v=vs.108).aspx) namespace. In your UserStore class, you implement the [IUserStore&lt;TUser, TKey&gt;](https://msdn.microsoft.com/library/dn613276(v=vs.108).aspx) and any of the optional interfaces. You select which optional interfaces to implement based on on the functionality you wish to provide in your application.
+You also create a UserStore class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn315446(v=vs.108).aspx) class in the [Microsoft.ASP.NET.Identity.EntityFramework](https://msdn.microsoft.com/library/microsoft.aspnet.identity.entityframework(v=vs.108).aspx) namespace. In your UserStore class, you implement the [IUserStore&lt;TUser, TKey&gt;](https://msdn.microsoft.com/library/dn613276(v=vs.108).aspx) and any of the optional interfaces. You select which optional interfaces to implement based on the functionality you wish to provide in your application.
 
 The following image shows the UserStore class you must create and the relevant interfaces.
 

@@ -77,7 +77,7 @@ The `MediaPlayer` player of the `Video` helper lets you play Windows Media video
 - The video plays automatically when the page loads.
 - The video plays once (it doesn't loop).
 - The player displays the full set of controls in the user interface.
-- The video plays in in a window.
+- The video plays in a window.
 
 ### The Silverlight Player
 
