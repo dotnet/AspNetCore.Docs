@@ -37,7 +37,7 @@ cd WebPWrecover
 ```
 
 * `--auth Individual` specifies the Individual User Accounts project template.
-* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite database.
+* On Windows, add the `-uld` option. It specifies LocalDB should be used instead of SQLite.
 * Run `new mvc --help` to get help on this command.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
@@ -78,7 +78,7 @@ For Visual Studio:
 
 ![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
 
-Note the `EmailConfirmed` field is `False`.
+Note the table's `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias makes it easier in the following steps.
 
@@ -208,7 +208,7 @@ Enable password recovery by uncommenting the code in the `ForgotPassword` action
 
 Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might want to remove the `<p> For more information on how to enable reset password ... </p>` element, which contains a link to this article.
 
-[!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-10,12,28)]
+[!code-cshtml[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-10,12,28)]
 
 ---
 
@@ -286,7 +286,7 @@ Click the link to another login service and accept the app requests. In the foll
 
 The two accounts have been combined. You are able to log on with either account. You might want your users to add local accounts in case their social login authentication service is down, or more likely they've lost access to their social account.
 
-## Enabling account confirmation after a site has users
+## Enable account confirmation after a site has users
 
 Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around exiting user lockout, use one of the following approaches:
 
