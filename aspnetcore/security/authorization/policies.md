@@ -1,7 +1,7 @@
 ---
-title: Custom policy-based authorization in ASP.NET Core
+title: Policy-based authorization in ASP.NET Core
 author: rick-anderson
-description: Learn how to create and use custom authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
+description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/policies
 ---
-# Custom policy-based authorization
+# Policy-based authorization
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
@@ -68,7 +68,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 
 * To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
 
-Regardless of what you call inside your handler, all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if `context.Fail()` has been called in another handler.
+When set to `false`, the [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) property (available in ASP.NET Core 1.1 and later) short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called when a policy requires the requirement. This allows requirements to produce side effects, such as logging, which always take place even if `context.Fail` has been called in another handler.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
