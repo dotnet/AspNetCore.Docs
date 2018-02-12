@@ -14,7 +14,7 @@ uid: security/authentication/accconfirm
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset. This tutorial isn't a beginning topic. You should be familiar with:
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
 * [Authentication](xref:security/authentication/index)
