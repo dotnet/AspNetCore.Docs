@@ -30,7 +30,7 @@ An options class must be non-abstract with a public parameterless constructor. T
 
 [!code-csharp[Main](options/sample/Models/MyOptions.cs?name=snippet1)]
 
-The `MyOptions` class is added to the service container with [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) and bound to configuration:
+The `MyOptions` class is added to the service container with [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) and bound to configuration (*Startup.cs*, ConfigureServices(IServiceCollection services)):
 
 [!code-csharp[Main](options/sample/Startup.cs?name=snippet_Example1)]
 
@@ -39,6 +39,8 @@ The following page model uses [constructor dependency injection](xref:fundamenta
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?range=9)]
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+
+(Still in *Pages/Index.cshtml.cs* in  *public void OnGetAsync()* method):
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example1)]
 
@@ -60,7 +62,7 @@ Use a delegate to set options values. The sample app uses the `MyOptionsWithDele
 
 [!code-csharp[Main](options/sample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
 
-In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig`:
+In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig` (*ConfigureServices(IServiceCollection services)* from *Startup.cs*):
 
 [!code-csharp[Main](options/sample/Startup.cs?name=snippet_Example2)]
 
@@ -69,6 +71,8 @@ In the following code, a second `IConfigureOptions<TOptions>` service is added t
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?range=10)]
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
+
+(Still in *Pages/Index.cshtml.cs* in  *public void OnGetAsync()* method):
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
@@ -90,7 +94,7 @@ Apps should create options classes that pertain to specific feature groups (clas
 
 When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.
 
-In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
+In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file. (*Startup.cs*, ConfigureServices(IServiceCollection services)):
 
 [!code-csharp[Main](options/sample/Startup.cs?name=snippet_Example3)]
 
@@ -110,6 +114,8 @@ The page model's `OnGet` method returns a string with the sub-option values (*Pa
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
 
+(Still in *Pages/Index.cshtml.cs* in  *public void OnGetAsync()* method):
+
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example3)]
 
 When the app is run, the `OnGet` method returns a string showing the sub-option class values:
@@ -128,9 +134,11 @@ Options can be supplied in a view model or by injecting `IOptions<TOptions>` dir
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
 
+(Still in *Pages/Index.cshtml.cs* in  *public void OnGetAsync()* method):
+
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example4)]
 
-For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:
+For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive (*/Pages/Index.cshtml*):
 
 [!code-cshtml[Main](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
 
@@ -146,15 +154,17 @@ Reloading configuration data with `IOptionsSnapshot` is demonstrated in Example 
 
 [IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) supports reloading options with minimal processing overhead. In ASP.NET Core 1.1, `IOptionsSnapshot` is a snapshot of [IOptionsMonitor&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) and updates automatically whenever the monitor triggers changes based on the data source changing. In ASP.NET Core 2.0 and later, options are computed once per request when accessed and cached for the lifetime of the request.
 
-The following example demonstrates how a new `IOptionsSnapshot` is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.
+The following example demonstrates how a new `IOptionsSnapshot` is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads. (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?range=12)]
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
 
+(Still in *Pages/Index.cshtml.cs* in  *public void OnGetAsync()* method):
+
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:
+The following rendered web page output shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
@@ -172,7 +182,7 @@ Named options support with [IConfigureNamedOptions](/dotnet/api/microsoft.extens
 
 *Requires ASP.NET Core 2.0 or later.*
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with the [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method:
+*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with the [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method (*Startup.cs*, ConfigureServices(IServiceCollection services)):
 
 [!code-csharp[Main](options/sample/Startup.cs?name=snippet_Example6)]
 
@@ -182,9 +192,11 @@ The sample app accesses the named options with [IOptionsSnapshot&lt;TOptions&gt;
 
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
 
+(*Pages/Index.cshtml.cs*, *public void OnGetAsync()* method):
+
 [!code-csharp[Main](options/sample/Pages/Index.cshtml.cs?name=snippet_Example6)]
 
-Running the sample app, the named options are returned:
+Running the sample app, the named options are displayed in Index.cshtml by @Model.NamedOptions:
 
 ```html
 named_options_1: option1 = value1_from_json, option2 = -1
@@ -196,7 +208,7 @@ named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 * The `named_options_2` delegate in `ConfigureServices` for `Option1`.
 * The default value for `Option2` provided by the `MyOptions` class.
 
-Configure all named options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all named configuration instances with a common value. Add the following code manually to the `Configure` method:
+Configure all named options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all named configuration instances with a common value. Add the following code manually to the `ConfigureServices(IServiceCollection services)` method in `Startup.cs`:
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
@@ -213,13 +225,13 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 ```
 
 > [!NOTE]
-> In ASP.NET Core 2.0 and later, all options are named instances. Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. `IConfigureNamedOptions` also implements `IConfigureOptions`. The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/release/2.0.0/src/Microsoft.Extensions.Options/OptionsFactory.cs)) has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).
+> In ASP.NET Core 2.0 and later, all options are named instances. Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. `IConfigureNamedOptions` also implements `IConfigureOptions`. The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/dev/src/Microsoft.Extensions.Options/OptionsFactory.cs) has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).
 
 ## IPostConfigureOptions
 
 *Requires ASP.NET Core 2.0 or later.*
 
-Set postconfiguration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1). Postconfiguration runs after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs:
+Set postconfiguration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1). Postconfiguration runs after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs. `*ConfigureServices(IServiceCollection services)*` method in `*Startup.cs*`:
 
 ```csharp
 services.PostConfigure<MyOptions>(myOptions =>
