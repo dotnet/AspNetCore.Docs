@@ -38,15 +38,6 @@ namespace ContactManager
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeFolder("/Account/Manage");
-                    options.Conventions.AuthorizePage("/Account/Logout");
-                });
-
-            services.AddSingleton<IEmailSender, EmailSender>();
-
             var skipSSL = Configuration.GetValue<bool>("LocalTest:skipSSL");
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
@@ -60,6 +51,15 @@ namespace ContactManager
             });
             #endregion
 
+            services.AddMvc();
+                //.AddRazorPagesOptions(options =>
+                //{
+                //    options.Conventions.AuthorizeFolder("/Account/Manage");
+                //    options.Conventions.AuthorizePage("/Account/Logout");
+                //});
+
+            services.AddSingleton<IEmailSender, EmailSender>();
+           
             // requires: using Microsoft.AspNetCore.Authorization;
             //           using Microsoft.AspNetCore.Mvc.Authorization;
             services.AddMvc(config =>

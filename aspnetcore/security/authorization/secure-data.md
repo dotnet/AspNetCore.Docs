@@ -1,7 +1,7 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
-description: Learn how to create a Razor Pages app with user data protected by authorization. Includes SSL, authentication, security, ASP.NET Core Identity.
+description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 manager: wpickett
 ms.author: riande
 ms.date: 01/24/2018
@@ -92,7 +92,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### Require SSL and authenticated users
+### Require HTTPS and authenticated users
 
 Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) to `Startup`:
 
@@ -100,19 +100,26 @@ Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvir
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=19-999)]
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=10-999)]
 
-If you're using Visual Studio, enable SSL.
+If you're using Visual Studio, enable HTTPS.
 
-To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for SSL:
+To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
   Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. Add the following to the `ConfigureServices` method of the *Startup.cs* file:
+Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. 
 
-[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=31-999)]
+With the requirement of all users authenticated, the [AuthorizeFolder](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizefolder?view=aspnetcore-2.0#Microsoft_Extensions_DependencyInjection_PageConventionCollectionExtensions_AuthorizeFolder_Microsoft_AspNetCore_Mvc_ApplicationModels_PageConventionCollection_System_String_System_String_) and [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage?view=aspnetcore-2.0) calls are not required.
+
+Update `ConfigureServices` with the following changes:
+
+* Comment out `AuthorizeFolder` and `AuthorizePage`.
+* Set the default authentication policy to require users to be authenticated.
+
+[!code-csharp[Main](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=23-27,31-999)]
 
 Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
 
@@ -259,9 +266,9 @@ Update the details page model:
 
 ## Test the completed app
 
-If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for SSL:
+If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
-* Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file to skip the SSL requirement. Skip SSL only on a development machine.
+* Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
 
 If the app has contacts:
 
