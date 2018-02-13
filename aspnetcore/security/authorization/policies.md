@@ -80,7 +80,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 
 * To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
 
-When set to `false`, the [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) property (available in ASP.NET Core 1.1 and later) short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called when a policy requires the requirement. This allows requirements to produce side effects, such as logging, which always take place even if `context.Fail` has been called in another handler.
+When set to `false`, the [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) property (available in ASP.NET Core 1.1 and later) short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called. This allows requirements to produce side effects, such as logging, which always take place even if `context.Fail` has been called in another handler.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
