@@ -9,7 +9,7 @@ namespace HostingStartupSample.Pages
         
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public void Get()
+        public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
