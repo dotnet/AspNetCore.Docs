@@ -860,7 +860,7 @@ public class Startup
 }
 ```
 
-[StopApplication](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.stopapplication) requests termination of the app. The following Razor Pages page model class uses `StopApplication` to gracefully shutdown an app when a shutdown button is selected in the UI:
+[StopApplication](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.stopapplication) requests termination of the app. The following [Razor Pages](xref:mvc/razor-pages/index) page model class uses `StopApplication` to gracefully shutdown an app. The `OnPostShutdown` method executes after a shutdown button in the UI is selected:
 
 ```cshtml
 <button type="submit" asp-page-handler="Shutdown" class="btn btn-default">Shutdown</button>
