@@ -33,10 +33,11 @@ namespace BackgroundTasksSample.Pages
             {
                 var guid = Guid.NewGuid().ToString();
 
-                for (int i = 0; i < 3; i++)
+                for (int delayLoop = 0; delayLoop < 3; delayLoop++)
                 {
                     Console.WriteLine(
-                        $"{DateTime.UtcNow} - Queued Background Task {guid} is running. {i}/3");
+                        $"{DateTime.UtcNow} - Queued Background Task {guid} is running. " +
+                        $"{delayLoop}/3");
                     await Task.Delay(TimeSpan.FromSeconds(5), token);
                 }
 

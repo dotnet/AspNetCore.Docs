@@ -1,7 +1,7 @@
 ---
-title: Background tasks with IHostedService in ASP.NET Core
+title: Background tasks with hosted services in ASP.NET Core
 author: guardrex
-description: Learn how to implement background tasks with IHostedService in ASP.NET Core.
+description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -9,9 +9,9 @@ ms.date: 02/12/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: fundamentals/ihostedservice
+uid: fundamentals/hosted-services
 ---
-# Background tasks with IHostedService in ASP.NET Core
+# Background tasks with hosted services in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
@@ -21,7 +21,7 @@ In ASP.NET Core, background tasks are implemented as *hosted services*. A hosted
 * Hosted service that activates a scoped service. The scoped service can use dependency injection.
 * Queued background tasks that run sequentially.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/ihostedservice/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/hosted-services/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## IHostedService interface
 
@@ -29,7 +29,7 @@ Hosted services implement the [IHostedService](/dotnet/api/microsoft.extensions.
 
 * [StartAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.startasync) - Called after the server has started and [IApplicationLifetime.ApplicationStarted](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.applicationstarted) is triggered. `StartAsync` contains the logic to start the background task.
 
-* [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If the app shuts down ungracefully (for example, the app's process fails), `StopAsync` might not be called.
+* [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called.
 
 The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable](/dotnet/api/system.idisposable) is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
@@ -37,11 +37,11 @@ The hosted service is activated once at app startup and gracefully shutdown at a
 
 A timed background task makes use of the [System.Threading.Timer](/dotnet/api/system.threading.timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-[!code-csharp[](ihostedservice/sample/Services/TimedHostedService.cs?name=snippet1&highlight=9,23,30)]
+[!code-csharp[](hosted-services/sample/Services/TimedHostedService.cs?name=snippet1&highlight=9,23,30)]
 
 The service is registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](ihostedservice/sample/Startup.cs?name=snippet1)]
+[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet1)]
 
 ## Consuming a scoped service in a background task
 
@@ -49,37 +49,37 @@ To use scoped services within an `IHostedService`, create a scope. No scope is n
 
 The scoped background task service contains the background task's logic. In the following example, [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) is injected into the service:
 
-[!code-csharp[](ihostedservice/sample/Services/ScopedProcessingService.cs?name=snippet1&highlight=8,12,18)]
+[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1&highlight=8,12,18)]
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method:
 
-[!code-csharp[](ihostedservice/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=23-29)]
+[!code-csharp[](hosted-services/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=23-29)]
 
 The services are registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](ihostedservice/sample/Startup.cs?name=snippet2)]
+[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet2)]
 
 ## Queued background tasks
 
-A background task queue is based on .NET 4.x [QueueBackgroundWorkItem](/dotnet/api/system.web.hosting.hostingenvironment.queuebackgroundworkitem) ([tentatively scheduled to be built-in for ASP.NET Core 2.2](https://github.com/aspnet/Hosting/issues/1280)):
+A background task queue is based on the .NET 4.x [QueueBackgroundWorkItem](/dotnet/api/system.web.hosting.hostingenvironment.queuebackgroundworkitem) ([tentatively scheduled to be built-in for ASP.NET Core 2.2](https://github.com/aspnet/Hosting/issues/1280)):
 
-[!code-csharp[](ihostedservice/sample/Services/BackgroundTaskQueue.cs?name=snippet1)]
+[!code-csharp[](hosted-services/sample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
 In `QueueHostedService`, background tasks (`workItem`) in the queue are dequeued and executed:
 
-[!code-csharp[](ihostedservice/sample/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
+[!code-csharp[](hosted-services/sample/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
 
 The services are registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](ihostedservice/sample/Startup.cs?name=snippet3)]
+[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet3)]
 
 In the Index page model class, the `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`:
 
-[!code-csharp[](ihostedservice/sample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](hosted-services/sample/Pages/Index.cshtml.cs?name=snippet1)]
 
 When the **Add Task** button is selected on the Index page, the `OnPostAddTask` method is executed. `QueueBackgroundWorkItem` is called to enqueue the work item:
 
-[!code-csharp[](ihostedservice/sample/Pages/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](hosted-services/sample/Pages/Index.cshtml.cs?name=snippet2)]
 
 ## Additional resources
 

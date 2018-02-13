@@ -181,7 +181,7 @@ For more information, see [Request Features](xref:fundamentals/request-features)
 
 Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface.
 
-For more information, see [Background tasks with IHostedService](xref:fundamentals/ihostedservice).
+For more information, see [Background tasks with hosted services](xref:fundamentals/hosted-services).
 
 ## Open Web Interface for .NET (OWIN)
 
