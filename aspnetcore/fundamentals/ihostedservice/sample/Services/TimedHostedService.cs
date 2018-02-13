@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 namespace BackgroundTasksSample.Services
 {
     #region snippet1
-    internal class TimedHostedService : IHostedService
+    internal class TimedHostedService : IHostedService, IDisposable
     {
         private Timer _timer;
 
@@ -28,9 +28,14 @@ namespace BackgroundTasksSample.Services
         {
             Console.WriteLine($"{DateTime.UtcNow} - Timed Background Service is stopping.");
 
-            _timer.Dispose();
+            _timer.Change(Timeout.Infinite, 0);
 
             return Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            _timer.Dispose();
         }
     }
     #endregion

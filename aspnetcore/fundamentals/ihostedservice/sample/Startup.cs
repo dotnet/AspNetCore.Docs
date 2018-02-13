@@ -17,7 +17,7 @@ namespace BackgroundTasksSample
             #endregion
 
             #region snippet2
-            services.AddSingleton<IHostedService, ScopedHostedService>();
+            services.AddSingleton<IHostedService, ConsumeScopedServiceHostedService>();
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
             #endregion
 

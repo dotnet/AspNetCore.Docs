@@ -12,11 +12,13 @@ namespace BackgroundTasksSample.Services
         private CancellationTokenSource _shutdown = 
             new CancellationTokenSource();
         private Task _backgroundTask;
+        private readonly ILogger _logger;
 
-        public QueuedHostedService(IBackgroundTaskQueue taskQueue)
+        public QueuedHostedService(IBackgroundTaskQueue taskQueue, ILoggerFactory loggerFactory)
         {
             TaskQueue = taskQueue ?? 
                 throw new ArgumentNullException(nameof(taskQueue));
+            _logger = loggerFactory.CreateLogger<QueuedHostedService>();
         }
 
         public IBackgroundTaskQueue TaskQueue { get; }
@@ -41,7 +43,10 @@ namespace BackgroundTasksSample.Services
                 {
                     await workItem(_shutdown.Token);
                 }
-                catch (Exception) { } // TODO: Log
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred executing the workItem.");
+                }
             }
         }
 

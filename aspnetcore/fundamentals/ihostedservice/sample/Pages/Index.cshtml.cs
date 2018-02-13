@@ -4,23 +4,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using BackgroundTasksSample.Services;
 using System;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BackgroundTasksSample.Pages
 {
-    #region snippet1
     public class IndexModel : PageModel
     {
-        public IndexModel(IBackgroundTaskQueue queue)
+        private readonly IApplicationLifetime _appLifetime;
+
+        #region snippet1
+        public IndexModel(IBackgroundTaskQueue queue, IApplicationLifetime appLifetime)
         {
             Queue = queue ?? throw new ArgumentNullException(nameof(queue));
+            _appLifetime = appLifetime;
         }
 
         public IBackgroundTaskQueue Queue { get; }
+        #endregion
 
         public void OnGet()
         {
         }
 
+        #region snippet2
         public IActionResult OnPostAddTask()
         {
             Queue.QueueBackgroundWorkItem(async token =>
@@ -40,6 +46,11 @@ namespace BackgroundTasksSample.Pages
 
             return RedirectToPage();
         }
+        #endregion
+
+        public void OnPostShutdown()
+        {
+            _appLifetime.StopApplication();
+        }
     }
-    #endregion
 }

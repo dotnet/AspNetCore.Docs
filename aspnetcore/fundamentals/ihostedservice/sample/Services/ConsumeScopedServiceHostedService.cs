@@ -7,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 namespace BackgroundTasksSample.Services
 {
     #region snippet1
-    internal class ScopedHostedService : IHostedService
+    internal class ConsumeScopedServiceHostedService : IHostedService
     {
-        public ScopedHostedService(IServiceProvider services)
+        public ConsumeScopedServiceHostedService(IServiceProvider services)
         {
             Services = services ?? throw new ArgumentNullException(nameof(services));
         }
@@ -18,7 +18,16 @@ namespace BackgroundTasksSample.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine($"{DateTime.UtcNow} - Scoped Hosted Service is starting.");
+            Console.WriteLine($"{DateTime.UtcNow} - Consume Scoped Service Hosted Service is starting.");
+
+            DoWork();
+
+            return Task.CompletedTask;
+        }
+
+        private void DoWork()
+        {
+            Console.WriteLine($"{DateTime.UtcNow} - Consume Scoped Service Hosted Service is working.");
 
             using (var scope = Services.CreateScope())
             {
@@ -27,13 +36,11 @@ namespace BackgroundTasksSample.Services
 
                 scopedProcessingService.DoWork();
             }
-
-            return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine($"{DateTime.UtcNow} - Scoped Hosted Service is stopping.");
+            Console.WriteLine($"{DateTime.UtcNow} - Consume Scoped Service Hosted Service is stopping.");
 
             return Task.CompletedTask;
         }

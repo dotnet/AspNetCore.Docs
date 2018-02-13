@@ -29,15 +29,15 @@ Hosted services implement the [IHostedService](/dotnet/api/microsoft.extensions.
 
 * [StartAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.startasync) - Called after the server has started and [IApplicationLifetime.ApplicationStarted](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.applicationstarted) is triggered. `StartAsync` contains the logic to start the background task.
 
-* [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources.
+* [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If an error is thrown during background task execution, `StopAsync` might not be called.
 
-The hosted service is activated once at app startup and gracefully shutdown at app shutdown.
+The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable]() is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
 ## Timed background tasks
 
-A timed background task makes use of the [System.Threading.Timer](/dotnet/api/system.threading.timer) class. The timer triggers the task's work and is disposed when the service stops:
+A timed background task makes use of the [System.Threading.Timer](/dotnet/api/system.threading.timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-[!code-csharp[](ihostedservice/sample/Services/TimedHostedService.cs?name=snippet1&highlight=9,23)]
+[!code-csharp[](ihostedservice/sample/Services/TimedHostedService.cs?name=snippet1&highlight=9,23,30)]
 
 The service is registered in `Startup.ConfigureServices`:
 
@@ -45,7 +45,7 @@ The service is registered in `Startup.ConfigureServices`:
 
 ## Consuming a scoped service in a background task
 
-Since an `IHostedService` is started when the app starts, the service is activated only *once*. To use dependency injection with a hosted service, a scope must be created during execution. The scope is used resolve an independently registered service where dependency injection can be used.
+To use scoped services within an `IHostedService`, create a scope. No scope is needed for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example, [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) is injected into the service:
 
@@ -53,7 +53,7 @@ The scoped background task service contains the background task's logic. In the 
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method:
 
-[!code-csharp[](ihostedservice/sample/Services/ScopedHostedService.cs?name=snippet1&highlight=14-20)]
+[!code-csharp[](ihostedservice/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=23-29)]
 
 The services are registered in `Startup.ConfigureServices`:
 
@@ -61,18 +61,27 @@ The services are registered in `Startup.ConfigureServices`:
 
 ## Queued background tasks
 
-A background task queue is built based on .NET 4.x [QueueBackgroundWorkItem](/dotnet/api/system.web.hosting.hostingenvironment.queuebackgroundworkitem) ([tentatively scheduled to be built-in for ASP.NET Core 2.2](https://github.com/aspnet/Hosting/issues/1280)):
+A background task queue is based on .NET 4.x [QueueBackgroundWorkItem](/dotnet/api/system.web.hosting.hostingenvironment.queuebackgroundworkitem) ([tentatively scheduled to be built-in for ASP.NET Core 2.2](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](ihostedservice/sample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
 In `QueueHostedService`, background tasks (`workItem`) in the queue are dequeued and executed:
 
-[!code-csharp[](ihostedservice/sample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
+[!code-csharp[](ihostedservice/sample/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
 
 The services are registered in `Startup.ConfigureServices`:
 
 [!code-csharp[](ihostedservice/sample/Startup.cs?name=snippet3)]
 
+In the Index page model class, the `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`:
+
+[!code-csharp[](ihostedservice/sample/Pages/Index.cshtml.cs?name=snippet1)]
+
+When the **Add Task** button is selected on the Index page, the `OnPostAddTask` method is executed. `QueueBackgroundWorkItem` is called to enqueue the work item:
+
+[!code-csharp[](ihostedservice/sample/Pages/Index.cshtml.cs?name=snippet2)]
+
 ## Additional resources
 
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
+* [System.Threading.Timer](/dotnet/api/system.threading.timer)

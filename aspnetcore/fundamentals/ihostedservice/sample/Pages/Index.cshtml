@@ -53,3 +53,23 @@
         </form>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Graceful Shutdown</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Select the <b>Shutdown</b> button to execute a graceful shutdown of the host. The <code>StopAsync</code> methods of the app's three hosted services fire, and their &quot;stopping&quot; messages are written to the console.
+                    </p>
+                    <div class="form-group">
+                        <button type="submit" asp-page-handler="Shutdown" class="btn btn-default">Shutdown</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
