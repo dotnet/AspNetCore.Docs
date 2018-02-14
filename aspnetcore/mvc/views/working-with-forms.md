@@ -184,6 +184,8 @@ Generates the following:
 
 With collection properties, `asp-for="CollectionProperty[23].Member"` generates the same name as `asp-for="CollectionProperty[i].Member"` when `i` has the value `23`.
 
+The calculated value of a `ModelExpression` is the first non-null result found in the ModelState entry with full name, the ViewData entry with full name, or the expression evaluated against Model, in that order. 
+
 ### Navigating child properties
 
 You can also navigate to child properties using the property path of the view model. Consider a more complex model class that contains a child `Address` property.
