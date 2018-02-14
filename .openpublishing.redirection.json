@@ -182,7 +182,7 @@
     },
     {
         "source_path": "aspnetcore/hosting/ihostingstartup.md",
-        "redirect_url": "/aspnet/core/host-and-deploy/ihostingstartup",
+        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
         "redirect_document_id": false
     },
     {
@@ -313,6 +313,11 @@
     {
         "source_path": "aspnetcore/fundamentals/middleware.md",
         "redirect_url": "/aspnet/core/fundamentals/middleware/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/host-and-deploy/ihostingstartup.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
         "redirect_document_id": false
     }
   ] 

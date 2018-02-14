@@ -1,5 +1,5 @@
 ---
-title: Add app features from an external assembly using IHostingStartup in ASP.NET Core
+title: Add app features using a platform-specific configuration in ASP.NET Core
 author: guardrex
 description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 manager: wpickett
@@ -9,15 +9,15 @@ ms.date: 12/07/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: host-and-deploy/ihostingstartup
+uid: host-and-deploy/platform-specific-configuration
 ---
-# Add app features from an external assembly using IHostingStartup in ASP.NET Core
+# Add app features using a platform-specific configuration in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding features to an app at startup from outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding features to an app at startup from an external assembly outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Discover loaded hosting startup assemblies
 
@@ -25,7 +25,7 @@ To discover hosting startup assemblies loaded by the app or by libraries, enable
 
 The sample app reads the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey) into a `string` array and displays the result in the app's Index page:
 
-[!code-csharp[Main](ihostingstartup/sample/HostingStartupSample/Pages/Index.cshtml.cs?name=snippet1&highlight=14-16)]
+[!code-csharp[Main](platform-specific-configuration/sample/HostingStartupSample/Pages/Index.cshtml.cs?name=snippet1&highlight=14-16)]
 
 ## Disable automatic loading of hosting startup assemblies
 
@@ -44,19 +44,19 @@ Disabling hosting startup assemblies using the host setting or environment varia
 
 An `IHostingStartup` feature is deployed as an assembly based on a console app without an entry point. The assembly references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
-[!code-xml[Main](ihostingstartup/snapshot_sample/StartupFeature.csproj)]
+[!code-xml[Main](platform-specific-configuration/snapshot_sample/StartupFeature.csproj)]
 
 A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupFeature`, and the class is `StartupFeatureHostingStartup`:
 
-[!code-csharp[Main](ihostingstartup/snapshot_sample/StartupFeature.cs?name=snippet1)]
+[!code-csharp[Main](platform-specific-configuration/snapshot_sample/StartupFeature.cs?name=snippet1)]
 
 A class implements `IHostingStartup`. The class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add features to an app:
 
-[!code-csharp[Main](ihostingstartup/snapshot_sample/StartupFeature.cs?name=snippet2&highlight=3,5)]
+[!code-csharp[Main](platform-specific-configuration/snapshot_sample/StartupFeature.cs?name=snippet2&highlight=3,5)]
 
 When building an `IHostingStartup` project, the dependencies file (*\*.deps.json*) sets the `runtime` location of the assembly to the *bin* folder:
 
-[!code-json[Main](ihostingstartup/snapshot_sample/StartupFeature1.deps.json?range=2-13&highlight=8)]
+[!code-json[Main](platform-specific-configuration/snapshot_sample/StartupFeature1.deps.json?range=2-13&highlight=8)]
 
 Only part of the file is shown. The assembly name in the example is `StartupFeature`.
 
@@ -64,7 +64,7 @@ Only part of the file is shown. The assembly name in the example is `StartupFeat
 
 The runtime location is specified in the *\*.deps.json* file. To active the feature, the `runtime` element must specify the location of the feature's runtime assembly. Prefix the `runtime` location with `lib/netcoreapp2.0/`:
 
-[!code-json[Main](ihostingstartup/snapshot_sample/StartupFeature2.deps.json?range=2-13&highlight=8)]
+[!code-json[Main](platform-specific-configuration/snapshot_sample/StartupFeature2.deps.json?range=2-13&highlight=8)]
 
 In the sample app, modification of the *\*.deps.json* file is performed by a [PowerShell](/powershell/scripting/powershell-scripting) script. The PowerShell script is automatically triggered by a build target in the project file.
 
@@ -142,7 +142,7 @@ For examples of how to set environment variables for various operating systems, 
 
 ## Sample app
 
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/ihostingstartup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
+The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
 
 * Registered services
 * Address: scheme, host, path base, path, query string
