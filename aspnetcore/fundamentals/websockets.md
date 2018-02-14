@@ -28,12 +28,16 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
   * Windows 7 / Windows Server 2008 or later
   * Linux
   * macOS
-
-* **Exception**: If your app runs on Windows with IIS, or with HTTP.sys, you must use:
+  
+* If the app runs on Windows with IIS:
 
   * Windows 8 / Windows Server 2012 or later
   * IIS 8 / IIS 8 Express
   * WebSockets must be enabled in IIS (See the [IIS/IIS Express support](#iisiis-express-support) section.)
+  
+* If the app runs on [HTTP.sys](xref:fundamentals/servers/httpsys):
+
+  * Windows 8 / Windows Server 2012 or later
 
 * For supported browsers, see http://caniuse.com/#feat=websockets.
 
@@ -66,7 +70,7 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Only advanced users may need to change this for performance tuning based on the size of the data.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
 
 [!code-csharp[](websockets/sample/Startup.cs?name=UseWebSocketsOptions)]
 
