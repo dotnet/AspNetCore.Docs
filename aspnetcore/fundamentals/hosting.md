@@ -260,7 +260,7 @@ This feature is unavailable in ASP.NET Core 1.x.
 
 ### Prevent Hosting Startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Add app features from an external assembly using IHostingStartup](xref:host-and-deploy/ihostingstartup) for more information.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Add app features using a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration) for more information.
 
 **Key**: preventHostingStartup  
 **Type**: *bool* (`true` or `1`)  
@@ -818,17 +818,13 @@ public async Task Invoke(HttpContext context, IHostingEnvironment env)
 
 ## IApplicationLifetime interface
 
-[IApplicationLifetime](/aspnet/core/api/microsoft.aspnetcore.hosting.iapplicationlifetime) allows for post-startup and shutdown activities. Three properties on the interface are cancellation tokens used to register `Action` methods that define startup and shutdown events. There's also a `StopApplication` method.
+[IApplicationLifetime](/aspnet/core/api/microsoft.aspnetcore.hosting.iapplicationlifetime) allows for post-startup and shutdown activities. Three properties on the interface are cancellation tokens used to register `Action` methods that define startup and shutdown events.
 
 | Cancellation Token    | Triggered when&#8230; |
 | --------------------- | --------------------- |
 | `ApplicationStarted`  | The host has fully started. |
 | `ApplicationStopping` | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
 | `ApplicationStopped`  | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
-
-| Method            | Action                                           |
-| ----------------- | ------------------------------------------------ |
-| `StopApplication` | Requests termination of the current application. |
 
 ```csharp
 public class Startup 
@@ -860,6 +856,34 @@ public class Startup
     private void OnStopped()
     {
         // Perform post-stopped activities here
+    }
+}
+```
+
+[StopApplication](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.stopapplication) requests termination of the app. The following [Razor Pages](xref:mvc/razor-pages/index) page model class uses `StopApplication` to gracefully shutdown an app. The `OnPostShutdown` method executes after the **Shutdown** button in the UI is selected:
+
+```cshtml
+<button type="submit" asp-page-handler="Shutdown" class="btn btn-default">Shutdown</button>
+```
+
+```csharp
+public class IndexModel : PageModel
+{
+    private readonly IApplicationLifetime _appLifetime;
+
+    public IndexModel(IApplicationLifetime appLifetime)
+    {
+        _appLifetime = appLifetime;
+    }
+
+    public void OnGet()
+    {
+        ...
+    }
+
+    public void OnPostShutdown()
+    {
+        _appLifetime.StopApplication();
     }
 }
 ```

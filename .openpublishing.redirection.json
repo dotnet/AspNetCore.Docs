@@ -182,7 +182,7 @@
     },
     {
         "source_path": "aspnetcore/hosting/ihostingstartup.md",
-        "redirect_url": "/aspnet/core/host-and-deploy/ihostingstartup",
+        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
         "redirect_document_id": false
     },
     {
@@ -315,10 +315,15 @@
         "redirect_url": "/aspnet/core/fundamentals/middleware/index",
         "redirect_document_id": false
     },
-	{
-		"source_path": "aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md",
-		"redirect_url": "/aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow",
-		"redirect_document_id": false
-	}
+    {
+        "source_path": "aspnetcore/host-and-deploy/ihostingstartup.md",
+        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
+        "redirect_document_id": false
+    },
+	  {
+		    "source_path": "aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md",
+		    "redirect_url": "/aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow",
+		    "redirect_document_id": false
+	  }
   ] 
 }
