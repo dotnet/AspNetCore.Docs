@@ -1,7 +1,7 @@
 ---
-title: Custom policy-based authorization in ASP.NET Core
+title: Policy-based authorization in ASP.NET Core
 author: rick-anderson
-description: Learn how to create and use custom authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
+description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -11,15 +11,15 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/policies
 ---
-# Custom policy-based authorization
+# Policy-based authorization
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
-An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `ConfigureServices` method of the `Startup` class:
+An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63,72)]
 
-In the preceding example, an "AtLeast21" policy is created. It has a single requirement, that of a minimum age, which is supplied as a parameter to the requirement.
+In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
 Policies are applied by using the `[Authorize]` attribute with the policy name. For example:
 
@@ -27,7 +27,7 @@ Policies are applied by using the `[Authorize]` attribute with the policy name. 
 
 ## Requirements
 
-An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our "AtLeast21" policy, the requirement is a single parameter&mdash;the minimum age. A requirement implements `IAuthorizationRequirement`, which is an empty marker interface. A parameterized minimum age requirement could be implemented as follows:
+An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our "AtLeast21" policy, the requirement is a single parameter&mdash;the minimum age. A requirement implements [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), which is an empty marker interface. A parameterized minimum age requirement could be implemented as follows:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
@@ -38,15 +38,27 @@ An authorization requirement is a collection of data parameters that a policy ca
 
 ## Authorization handlers
 
-An authorization handler is responsible for the evaluation of a requirement's properties. The authorization handler evaluates the requirements against a provided `AuthorizationHandlerContext` to determine if access is allowed. A requirement can have [multiple handlers](#security-authorization-policies-based-multiple-handlers). Handlers inherit `AuthorizationHandler<T>`, where `T` is the requirement to be handled.
+An authorization handler is responsible for the evaluation of a requirement's properties. The authorization handler evaluates the requirements against a provided [AuthorizationHandlerContext](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) to determine if access is allowed.
+
+A requirement can have [multiple handlers](#security-authorization-policies-based-multiple-handlers). A handler may inherit [AuthorizationHandler\<TRequirement>](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1), where `TRequirement` is the requirement to be handled. Alternatively, a handler may implement [IAuthorizationHandler](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) to handle more than one type of requirement.
+
+### Use a handler for one requirement
 
 <a name="security-authorization-handler-example"></a>
 
-The minimum age handler might look like this:
+The following is an example of a one-to-one relationship in which a minimum age handler utilizes a single requirement:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/MinimumAgeHandler.cs?name=snippet_MinimumAgeHandlerClass)]
 
-The preceding code determines if the current user principal has a date of birth claim which has been issued by a known and trusted Issuer. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is deemed successful. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as a parameter.
+The preceding code determines if the current user principal has a date of birth claim which has been issued by a known and trusted Issuer. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is deemed successful. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
+
+### Use a handler for multiple requirements
+
+The following is an example of a one-to-many relationship in which a permission handler utilizes three requirements:
+
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs?name=snippet_PermissionHandlerClass)]
+
+The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;a property containing requirements not marked as successful. If the user has read permission, he or she must be either an owner or a sponsor to access the requested resource. If the user has edit or delete permission, he or she must be an owner to access the requested resource. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
@@ -68,7 +80,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 
 * To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
 
-Regardless of what you call inside your handler, all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if `context.Fail()` has been called in another handler.
+When set to `false`, the [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) property (available in ASP.NET Core 1.1 and later) short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called. This allows requirements to produce side effects, such as logging, which always take place even if `context.Fail` has been called in another handler.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 

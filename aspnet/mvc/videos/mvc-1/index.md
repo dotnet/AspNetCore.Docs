@@ -38,7 +38,7 @@ ASP.NET MVC 1
     - [ASP.NET MVC Storefront Part 16: Membership Redo With OpenID](aspnet-mvc-storefront/aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)
     - [ASP.NET MVC Storefront Part 17: Checkout With Jeff Atwood](aspnet-mvc-storefront/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
     - [ASP.NET MVC Storefront Part 18: Creating Experience](aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience.md)
-    - [ASP.NET MVC MVC Storefront Part 19: Processing Orders With Windows Workflow](aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
+    - [ASP.NET MVC Storefront Part 19: Processing Orders With Windows Workflow](aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
     - [ASP.NET MVC Storefront Part 19a: Windows Workflow Followup](aspnet-mvc-storefront/aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)
     - [ASP.NET MVC Storefront Part 20: Logging](aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging.md)
     - [ASP.NET MVC Storefront Part 21: Order Manager and Personalization](aspnet-mvc-storefront/aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)

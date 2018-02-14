@@ -15,7 +15,7 @@ msc.type: chapter
 ---
 CascadingDropdown
 ====================
-> This tutorial shows how to use the the CascadingDropDown control to create related drop-down lists that update when users make a selection.
+> This tutorial shows how to use the CascadingDropDown control to create related drop-down lists that update when users make a selection.
 
 
 - [Filling a List Using CascadingDropDown (C#)](filling-a-list-using-cascadingdropdown-cs.md)

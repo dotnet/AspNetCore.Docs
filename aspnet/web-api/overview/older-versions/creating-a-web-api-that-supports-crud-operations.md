@@ -122,7 +122,7 @@ If you have worked with ASP.NET MVC, then you are already familiar with controll
 
 Go ahead and delete ValuesController, by right-clicking the file in Solution Explorer and selecting **Delete.** Now add a new controller, as follows:
 
-In **Solution Explorer**, right-click the the Controllers folder. Select **Add** and then select **Controller**.
+In **Solution Explorer**, right-click the Controllers folder. Select **Add** and then select **Controller**.
 
 ![](creating-a-web-api-that-supports-crud-operations/_static/image6.png)
 

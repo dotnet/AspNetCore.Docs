@@ -144,7 +144,7 @@ Right-click the StoreApp.Tests project and select **Manage NuGet Packages**. You
 
 ![manage packages](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/_static/image4.png)
 
-From the Online packages, find and install the EntityFramework package (version 6.0 or later). If it appears that the EntityFramework package is already installed, you may have selected the StoreApp project instead of the the StoreApp.Tests project.
+From the Online packages, find and install the EntityFramework package (version 6.0 or later). If it appears that the EntityFramework package is already installed, you may have selected the StoreApp project instead of the StoreApp.Tests project.
 
 ![add Entity Framework](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/_static/image5.png)
 

@@ -118,7 +118,7 @@ The asynchronous version:
 - The `RegisterAsyncTask` method is used to register an asynchronous task containing the code which runs asynchronously.
 - The new `GetGizmosSvcAsync` method is marked with the [async](https://msdn.microsoft.com/library/hh156513(VS.110).aspx) keyword, which tells the compiler to generate callbacks for parts of the body and to automatically create a `Task` that is returned.
 - &quot;Async&quot; was appended to the asynchronous method name. Appending "Async" is not required but is the convention when writing asynchronous methods.
-- The return type of the new new `GetGizmosSvcAsync` method is `Task`. The return type of `Task` represents ongoing work and provides callers of the method with a handle through which to wait for the asynchronous operation's completion.
+- The return type of the new `GetGizmosSvcAsync` method is `Task`. The return type of `Task` represents ongoing work and provides callers of the method with a handle through which to wait for the asynchronous operation's completion.
 - The [await](https://msdn.microsoft.com/library/hh156528(VS.110).aspx) keyword was applied to the web service call.
 - The asynchronous web service API was called (`GetGizmosAsync`).
 

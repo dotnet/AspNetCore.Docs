@@ -54,7 +54,7 @@ For example, Listing 1 contains an Image HTML helper. The Image helper is implem
 
 The class in Listing 1 contains two static overloaded methods named Image. When you call the Image() method, you can pass an object which represents a set of HTML attributes or not.
 
-Notice how the TagBuilder.MergeAttribute() method is used to add individual attributes such as the src attribute to the TagBuilder. Notice, furthermore, how the TagBuilder.MergeAttributes() method is used to add a collection of attributes to the TagBuilder. The MergeAttributes() method accepts a Dictionary&lt;string,object&gt; parameter. The The RouteValueDictionary class is used to convert the Object representing the collection of attributes into a Dictionary&lt;string,object&gt;.
+Notice how the TagBuilder.MergeAttribute() method is used to add individual attributes such as the src attribute to the TagBuilder. Notice, furthermore, how the TagBuilder.MergeAttributes() method is used to add a collection of attributes to the TagBuilder. The MergeAttributes() method accepts a Dictionary&lt;string,object&gt; parameter. The RouteValueDictionary class is used to convert the Object representing the collection of attributes into a Dictionary&lt;string,object&gt;.
 
 After you create the Image helper, you can use the helper in your ASP.NET MVC views just like any of the other standard HTML helpers. The view in Listing 2 uses the Image helper to display the same image of an Xbox twice (see Figure 1). The Image() helper is called both with and without an HTML attribute collection.
 

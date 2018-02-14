@@ -95,11 +95,11 @@ From the metadata document, you can see that:
 
 - For the `Book` and `Press` types, the value of the `OpenType` attribute is true. The `Customer` and `Address` types don't have this attribute.
 - The `Book` entity type has three declared properties: ISBN, Title, and Press. The OData metadata does not include the `Book.Properties` property from the CLR class.
-- Similarly, the `Press` complex type has only two declared properties: Name and Category. The metadata does not not include the `Press.DynamicProperties` property from the CLR class.
+- Similarly, the `Press` complex type has only two declared properties: Name and Category. The metadata does not include the `Press.DynamicProperties` property from the CLR class.
 
 ## Query an Entity
 
-To get the book with ISBN equal to "978-0-7356-7942-9", send send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
+To get the book with ISBN equal to "978-0-7356-7942-9", send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
 
 [!code-console[Main](use-open-types-in-odata-v4/samples/sample7.cmd?highlight=8-13,15-23)]
 
