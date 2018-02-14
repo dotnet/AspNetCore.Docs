@@ -97,7 +97,7 @@ The problem with this approach is that each test receives the database in whatev
 
 [!code-csharp[Main](razor-pages-testing/sample/tests/RazorPagesTestingSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
-Using the `DbContextOptions` in the DAL unit tests allows each test to run atomically with a a fresh database instance:
+Using the `DbContextOptions` in the DAL unit tests allows each test to run atomically with a fresh database instance:
 
 ```csharp
 using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
