@@ -3,7 +3,7 @@ using System;
 
 namespace RazorPagesIntro.Pages
 {
-    public class IndexModel2 : PageModel
+    public class Index2Model : PageModel
     {
         public string Message { get; private set; } = "PageModel in C#";
 
