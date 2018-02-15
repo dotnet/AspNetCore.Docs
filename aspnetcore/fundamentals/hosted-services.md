@@ -31,7 +31,7 @@ Hosted services implement the [IHostedService](/dotnet/api/microsoft.extensions.
 
 * [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called.
 
-The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable](/dotnet/api/system.idisposable) is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
+The hosted service is a singleton that's activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable](/dotnet/api/system.idisposable) is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
 ## Timed background tasks
 
