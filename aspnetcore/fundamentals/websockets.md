@@ -112,9 +112,7 @@ To enable support for the WebSocket Protocol on Windows Server 2012 or later:
 To enable support for the WebSocket Protocol on Windows 8 or later:
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
-1. Open the **Internet Information Services** node.
-1. Open the **World Wide Web Services** node.
-1. Open the **Application Development Features** node.
+1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
 1. Select the **WebSocket Protocol** feature. Select **OK**.
 
 **Disable WebSocket when using socket.io on node.js**
