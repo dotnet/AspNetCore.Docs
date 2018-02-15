@@ -14,7 +14,8 @@ namespace BackgroundTasksSample.Services
         private Task _backgroundTask;
         private readonly ILogger _logger;
 
-        public QueuedHostedService(IBackgroundTaskQueue taskQueue, ILoggerFactory loggerFactory)
+        public QueuedHostedService(IBackgroundTaskQueue taskQueue, 
+            ILoggerFactory loggerFactory)
         {
             TaskQueue = taskQueue;
             _logger = loggerFactory.CreateLogger<QueuedHostedService>();
@@ -24,7 +25,7 @@ namespace BackgroundTasksSample.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine($"{DateTime.UtcNow} - Queued Hosted Service is starting.");
+            _logger.LogInformation("Queued Hosted Service is starting.");
 
             _backgroundTask = Task.Run(BackgroundProceessing);
 
@@ -44,14 +45,15 @@ namespace BackgroundTasksSample.Services
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"An error occurred executing the {nameof(workItem)}.");
+                    _logger.LogError(ex, 
+                        $"Error occurred executing {nameof(workItem)}.");
                 }
             }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine($"{DateTime.UtcNow} - Queued Hosted Service is stopping.");
+            _logger.LogInformation("Queued Hosted Service is stopping.");
 
             _shutdown.Cancel();
 
