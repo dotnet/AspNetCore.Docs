@@ -16,8 +16,7 @@ namespace BackgroundTasksSample.Services
 
         public QueuedHostedService(IBackgroundTaskQueue taskQueue, ILoggerFactory loggerFactory)
         {
-            TaskQueue = taskQueue ?? 
-                throw new ArgumentNullException(nameof(taskQueue));
+            TaskQueue = taskQueue;
             _logger = loggerFactory.CreateLogger<QueuedHostedService>();
         }
 
