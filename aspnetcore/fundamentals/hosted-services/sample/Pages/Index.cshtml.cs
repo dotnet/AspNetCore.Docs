@@ -15,7 +15,7 @@ namespace BackgroundTasksSample.Pages
         #region snippet1
         public IndexModel(IBackgroundTaskQueue queue, IApplicationLifetime appLifetime)
         {
-            Queue = queue ?? throw new ArgumentNullException(nameof(queue));
+            Queue = queue;
             _appLifetime = appLifetime;
         }
 
