@@ -11,7 +11,7 @@ namespace BackgroundTasksSample.Services
     {
         public ConsumeScopedServiceHostedService(IServiceProvider services)
         {
-            Services = services ?? throw new ArgumentNullException(nameof(services));
+            Services = services;
         }
 
         public IServiceProvider Services { get; }
