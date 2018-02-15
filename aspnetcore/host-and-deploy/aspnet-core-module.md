@@ -182,4 +182,4 @@ The Windows Server Hosting bundle installer logs for the module are found at *C:
 
    * .vs\config\applicationHost.config
 
-The files can be found by searching for *aspnetcore.dll* in the *applicationHost.config* file. For IIS Express, the *applicationHost.config* file won't exist by default. The file is created at *\<application_root>\\.vs\config* when starting any web app project in the Visual Studio solution.
+The files can be found by searching for *aspnetcore.dll* in the *applicationHost.config* file. For IIS Express, the *applicationHost.config* file won't exist by default. The file is created at *\<application_root>\\.vs\\config* when starting any web app project in the Visual Studio solution.
