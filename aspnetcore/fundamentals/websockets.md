@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/25/2017
+ms.date: 02/15/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -39,13 +39,13 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
   * Windows 8 / Windows Server 2012 or later
 
-* For supported browsers, see http://caniuse.com/#feat=websockets.
+* For supported browsers, see https://caniuse.com/#feat=websockets.
 
 ## When to use it
 
 Use WebSockets to work directly with a socket connection. For example, use WebSockets for the best possible performance with a real-time game.
 
-[ASP.NET SignalR](/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer app model for real-time functionality, but it only runs on ASP.NET, not ASP.NET Core. An ASP.NET Core version of SignalR is scheduled for release with ASP.NET Core 2.1. See [ASP.NET Core 2.1 high-level planning](https://github.com/aspnet/Announcements/issues/288).
+[ASP.NET SignalR](/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer app model for real-time functionality, but it only runs on ASP.NET 4.x, not ASP.NET Core. An ASP.NET Core version of SignalR is scheduled for release with ASP.NET Core 2.1. See [ASP.NET Core 2.1 high-level planning](https://github.com/aspnet/Announcements/issues/288).
 
 Until SignalR Core is released, WebSockets can be used. However, features that SignalR provides must be provided and supported by the developer, such as:
 
@@ -86,19 +86,19 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 ### Send and receive messages
 
-The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the WebSocket object to send and receive messages.
+The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.
 
 The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
 
 [!code-csharp[](websockets/sample/Startup.cs?name=Echo)]
 
-When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted, just as it would when an MVC action it hit. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
+When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
 ## IIS/IIS Express support
 
-Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or later has support for the WebSocket Protocol.
+Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or later has support for the WebSocket protocol.
 
-To enable support for the WebSocket Protocol on Windows Server 2012 or later:
+To enable support for the WebSocket protocol on Windows Server 2012 or later:
 
 1. Use the **Add Roles and Features** wizard from the **Manage** menu or the link in **Server Manager**.
 1. Select **Role-based or Feature-based Installation**. Select **Next**.
@@ -109,7 +109,7 @@ To enable support for the WebSocket Protocol on Windows Server 2012 or later:
 1. Select **Install**.
 1. When the installation completes, select **Close** to exit the wizard.
 
-To enable support for the WebSocket Protocol on Windows 8 or later:
+To enable support for the WebSocket protocol on Windows 8 or later:
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
 1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
