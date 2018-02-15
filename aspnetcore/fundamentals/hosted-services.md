@@ -15,7 +15,7 @@ uid: fundamentals/hosted-services
 
 By [Luke Latham](https://github.com/guardrex)
 
-In ASP.NET Core, background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. This topic provides three hosted service examples:
+In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. This topic provides three hosted service examples:
 
 * Background task that runs on a timer.
 * Hosted service that activates a scoped service. The scoped service can use dependency injection.
@@ -45,7 +45,7 @@ The service is registered in `Startup.ConfigureServices`:
 
 ## Consuming a scoped service in a background task
 
-To use scoped services within an `IHostedService`, create a scope. No scope is needed for a hosted service by default.
+To use scoped services within an `IHostedService`, create a scope. No scope is created for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example, [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) is injected into the service:
 
