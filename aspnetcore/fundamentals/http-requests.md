@@ -14,19 +14,19 @@ uid: fundamentals/http-requests
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak) and [Steve Gordon](https://github.com/stevejgordon) 
 
-A HttpClientFactory can be registered and used to configure and consume HttpClients in your application. It provides several benefits:
+A `HttpClientFactory` can be registered and used to configure and consume `HttpClient` instances in your application. It provides several benefits:
 
 1. Provides a central location for naming and configuring logical HttpClients. For example, you may configure a “github” client that is pre-configured to access github and a default client for other purposes.
 2. Codifies the concept of outgoing middleware via delegating handlers in HttpClient and implementing Polly based middleware to take advantage of that. HttpClient already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory will make registering of these per named client more intuitive as well as implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 3. Manage the lifetime of HttpClientMessageHandlers to avoid common DNS problems that can be hit when managing HttpClient lifetimes yourself.
 
-## Consumption Patterns
+## Consumption patterns
 
-There are several ways that HttpClientFactory can be used in your application. None of them are strictly superior to another, it really depends on your application and the constraints you are working under.
+There are several ways that `HttpClientFactory` can be used in your application. None of them are strictly superior to another, it really depends on your application and the constraints you are working under.
 
-## Basic Usage
+## Basic usage
 
-HttpClientFactory can be used directly in code to access HttpClient instances. First the services must be registered with the ServiceProvider.
+The `HttpClientFactory` can be used directly in your code to access `HttpClient` instances. First the services must be registered with the ServiceProvider.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -36,7 +36,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Once registered, you can accept an `IHttpClientFactory` in your constructor which can then be used to create a `HttpClient`.
+Once registered, you can accept a `IHttpClientFactory` in your constructor which can then be used to create a `HttpClient`.
 
 ```csharp
 public class MyController : Controller
@@ -57,7 +57,7 @@ public class MyController : Controller
 }
 ```
 
-Using HttpClientFactory like this is a good way to start refactoring an existing application, as it has no impact on the way you use HttpClient. In places where you create HttpClients, replace those with a call to `CreateClient()`.
+Using `HttpClientFactory` like this is a good way to start refactoring an existing application, as it has no impact on the way you use HttpClient. In places where you create HttpClients, replace those with a call to `CreateClient()`.
 
 ## Named clients
 
@@ -143,21 +143,6 @@ The typed client is registered as transient with the DI framework.
 The typed client can then be injected and consumed directly. 
 
 ```csharp
-public class IndexModel : PageModel
-{
-    private GitHubService _gitHubService;
-
-    public IndexModel(GitHubService gitHubService)
-    {
-        _gitHubService = gitHubService;
-    }
-
-    public async Task OnGet()
-    {
-        var result = await _gitHubService.Client.GetStringAsync("/orgs/octokit/repos");
-    }
-}
-
 public class MyController : Controller
 {
     private GitHubService _gitHubService;
