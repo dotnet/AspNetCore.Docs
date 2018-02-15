@@ -140,7 +140,7 @@ The sample app has a **Clear All** button for deleting all of the quotes in the 
 
 Enable `IncludeScopes` in the console logger options:
 
-[!code-csharp[Main](loggermessage/sample/Program.cs?name=snippet1&highlight=22)]
+[!code-csharp[Main](loggermessage/sample/Program.cs?name=snippet1&highlight=10)]
 
 Setting `IncludeScopes` is required in ASP.NET Core 2.0 apps to enable log scopes. Setting `IncludeScopes` via *appsettings* configuration files is a feature that's planned for the ASP.NET Core 2.1 release.
 
