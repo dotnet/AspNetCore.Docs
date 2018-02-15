@@ -28,7 +28,7 @@ namespace BackgroundTasksSample.Services
         {
             Console.WriteLine($"{DateTime.UtcNow} - Timed Background Service is stopping.");
 
-            _timer.Change(Timeout.Infinite, 0);
+            _timer?.Change(Timeout.Infinite, 0);
 
             return Task.CompletedTask;
         }
