@@ -32,7 +32,7 @@ If the IIS installation requires a restart, restart the system.
 
 ## Enable development-time IIS support
 
-Launch the Visual Studio installer. Select the **Development time IIS support** component. The component is listed as an optional component in the **Summary** panel for the **ASP.NET and web development** workload. This installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps.
+Launch the Visual Studio installer. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. This installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps.
 
 ![Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there's a checkbox for Development time IIS support.](development-time-iis-support/_static/development_time_support.png)
 
