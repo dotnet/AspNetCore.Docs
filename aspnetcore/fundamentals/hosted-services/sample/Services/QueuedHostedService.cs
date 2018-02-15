@@ -44,7 +44,7 @@ namespace BackgroundTasksSample.Services
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "An error occurred executing the workItem.");
+                    _logger.LogError(ex, $"An error occurred executing the {nameof(workItem)}.");
                 }
             }
         }
