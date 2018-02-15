@@ -48,10 +48,5 @@ namespace BackgroundTasksSample.Pages
             return RedirectToPage();
         }
         #endregion
-
-        public void OnPostShutdown()
-        {
-            _appLifetime.StopApplication();
-        }
     }
 }
