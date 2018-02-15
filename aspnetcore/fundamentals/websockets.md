@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https:/
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/websockets/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next Steps](#next-steps) section for more information.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/websockets/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next steps](#next-steps) section for more information.
 
 ## Prerequisites
 
@@ -41,13 +41,13 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 * For supported browsers, see https://caniuse.com/#feat=websockets.
 
-## When to use it
+## When to use WebSockets
 
 Use WebSockets to work directly with a socket connection. For example, use WebSockets for the best possible performance with a real-time game.
 
 [ASP.NET SignalR](/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer app model for real-time functionality, but it only runs on ASP.NET 4.x, not ASP.NET Core. An ASP.NET Core version of SignalR is scheduled for release with ASP.NET Core 2.1. See [ASP.NET Core 2.1 high-level planning](https://github.com/aspnet/Announcements/issues/288).
 
-Until SignalR Core is released, WebSockets can be used. However, features that SignalR provides must be provided and supported by the developer, such as:
+Until SignalR Core is released, WebSockets can be used. However, features that SignalR provides must be provided and supported by the developer. For example:
 
 * Support for a broader range of browser versions by using automatic fallback to alternative transport methods.
 * Automatic reconnection when a connection drops.
