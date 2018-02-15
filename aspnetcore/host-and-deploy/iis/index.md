@@ -116,12 +116,15 @@ Enable the **Web Server (IIS)** server role and establish role services.
 
    ![The Web Server IIS role is selected in the Select server roles step.](index/_static/server-roles-ws2016.png)
 
-1. On the **Role services** step, select the IIS role services desired or accept the default role services provided.
+1. After the **Features** step, the **Role services** step loads for Web Server (IIS). Select the IIS role services desired or accept the default role services provided.
 
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
-   **WebSockets**  
-   WebSockets is supported with ASP.NET Core 1.1 or later with the **WebSocket Protocol** role service on Windows Server. For more information, see [WebSockets](xref:fundamentals/websockets).
+   **Windows Authentication (Optional)**  
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+
+   **WebSockets (Optional)**  
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
 
 1. Proceed through the **Confirmation** step to install the web server role and services. A server/IIS restart isn't required after installing the **Web Server (IIS)** role.
 
@@ -139,8 +142,11 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
-   **WebSockets**  
-   WebSockets is supported with ASP.NET Core 1.1 or later with the **WebSocket Protocol** app development feature on Windows Desktop. To enable WebSockets, select **World Wide Web Services** > **Application Development Features** > **WebSocket Protocol**. For more information, see [WebSockets](xref:fundamentals/websockets).
+   **Windows Authentication (Optional)**  
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+
+   **WebSockets (Optional)**  
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
 
 1. If the IIS installation requires a restart, restart the system.
 
@@ -151,6 +157,8 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 ## Install the .NET Core Windows Server Hosting bundle
 
 1. Install the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) on the hosting system. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates the reverse proxy between IIS and the Kestrel server. If the system doesn't have an Internet connection, obtain and install the [Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.com/download/details.aspx?id=53840) before installing the .NET Core Windows Server Hosting bundle.
+
+   **Important!** If the hosting bundle is installed before IIS, the bundle installation must be repaired. Run the hosting bundle installer again after installing IIS.
 
 1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt. Restarting IIS picks up a change to the system PATH made by the installer.
 
@@ -165,9 +173,9 @@ When deploying apps to servers with [Web Deploy](/iis/publish/using-web-deploy/i
 
 1. On the hosting system, create a folder to contain the app's published folders and files. An app's deployment layout is described in the [Directory Structure](xref:host-and-deploy/directory-structure) topic.
 
-1. Within the new folder, create a *logs* folder to hold stdout logs when stdout logging is enabled. If the app is deployed with a *logs* folder in the payload, skip this step. For instructions on how to enable MSBuild to create the *logs* folder automatically when the project is built locally, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
+1. Within the new folder, create a *logs* folder to hold ASP.NET Core Module stdout logs when stdout logging is enabled. If the app is deployed with a *logs* folder in the payload, skip this step. For instructions on how to enable MSBuild to create the *logs* folder automatically when the project is built locally, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
 
-   **Important!** Only use the stdout log to troubleshoot app startup failures. Never use stdout logging for routine app logging. There's no limit on log file size or the number of log files created. For information on logging in an ASP.NET Core app, see the [Logging](xref:fundamentals/logging/index) topic.
+   **Important!** Only use the stdout log to troubleshoot app startup failures. Never use stdout logging for routine app logging. There's no limit on log file size or the number of log files created. For more information on the stdout log, see [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection). For information on logging in an ASP.NET Core app, see the [Logging](xref:fundamentals/logging/index) topic.
 
 1. In **IIS Manager**, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -189,8 +197,8 @@ When deploying apps to servers with [Web Deploy](/iis/publish/using-web-deploy/i
 
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
-**Windows Authentication configuration**  
-See [Enable Windows authentication with IIS](xref:security/authentication/windowsauth#enable-windows-authentication-with-iis) in the Windows authentication topic.
+**Windows Authentication configuration (Optional)**  
+For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
 
 ## Deploy the app
 
