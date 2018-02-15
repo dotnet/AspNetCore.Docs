@@ -185,10 +185,9 @@ Generates the following:
 With collection properties, `asp-for="CollectionProperty[23].Member"` generates the same name as `asp-for="CollectionProperty[i].Member"` when `i` has the value `23`.
 
 
-When ASP.NET Core MVC calculates the value of `ModelExpression`, it inspects several sources, including `ModelState` and `ViewData`. Consider `<input type="text" asp-for="@Name" />`. The calculated value of `asp-for` is the first of the following that is not null:
+When ASP.NET Core MVC calculates the value of `ModelExpression`, it inspects several sources, including `ModelState` and `ViewData`. Consider `<input type="text" asp-for="@Name" />`. The calculated value attribute of `asp-for` is the first of the following that is not null:
 
 * `ModelState` entry with key "Name".
-* `ViewData` entry with key "Name".
 * Result of the expression `Model.Name`.
 
 ### Navigating child properties
