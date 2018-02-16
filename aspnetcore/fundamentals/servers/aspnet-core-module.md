@@ -51,7 +51,7 @@ This section provides an overview of the process for setting up an IIS server an
 
 ### Install ANCM
 
-The ANCM is installed in IIS on Windows Server and in IIS Express on Windows desktop operating systems. For servers and development machines, the ANCM is included in the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting). If installing Visual Studio, the ANCM is automatically installed in IIS Express and in IIS if IIS is already installed on the machine.
+The ANCM is installed in IIS on Windows Server and in IIS Express on Windows desktop operating systems. For servers and development machines, the ANCM is included in the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting). If installing Visual Studio, the ANCM is automatically installed in IIS Express (and in IIS, if present on the machine).
 
 ### .NET Core Windows Server Hosting bundle
 
