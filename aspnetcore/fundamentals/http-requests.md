@@ -349,7 +349,38 @@ public static void Configure(IServiceCollection services)
 
 ## Handling errors with Polly
 
-TODO
+_NOTE: This is a WIP since the Polly Extensions API is still currently under design._
+
+The preceding example demonstrated building a simple retry handler manually. A more robust and feature-rich approach is to leverage a popular third-party library called [Polly](https://github.com/App-vNext/Polly).
+
+Polly is a comprehensive resilience and transient-fault-handling library for .NET which allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
+
+Extensions are provided for `HttpClientFactory` which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than defining a handler manually, the extension can be called passing in a Polly policy.
+
+```csharp
+public static void Configure(IServiceCollection services)
+{
+    services.AddTransient<OuterHandler>();
+    services.AddTransient<InnerHandler>();
+
+    services.AddHttpClient("example", c =>
+    {
+        c.BaseAddress = new Uri("https://localhost:5000/");
+    })
+
+    // Build a totally custom policy using any criteria
+    .AddPolicyHandler(Policy.Handle<HttpRequestException>().RetryAsync())
+
+    // Build a policy that will handle exceptions (connection failures)
+    .AddExceptionPolicyHandler(p => p.RetryAsync())
+
+    // Build a policy that will handle exceptions and 500s from the remote server
+    .AddServerErrorPolicyHandler(p => p.RetryAsync())
+
+    // Build a policy that will handle exceptions, 400s, and 500s from the remote server
+    .AddBadRequestPolicyHandler(p => p.RetryAsync());
+}
+```
 
 ## DNS and handler rotation
 
