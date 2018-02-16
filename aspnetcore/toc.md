@@ -129,6 +129,7 @@
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [Request features](fundamentals/request-features.md)
+## [Background tasks with hosted services](xref:fundamentals/hosted-services)
 ## [Primitives](xref:fundamentals/primitives/index)
 ### [Change tokens](xref:fundamentals/primitives/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
