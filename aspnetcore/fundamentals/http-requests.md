@@ -254,7 +254,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The defined interface can then be consumed whereever necessary in your code, with the implementation provided by the DI framework.
+The defined interface can then be consumed wherever necessary in your code, with the implementation provided by the DI framework and Refit.
 
 ```csharp
 [ApiController]
