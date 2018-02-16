@@ -14,19 +14,19 @@ uid: fundamentals/http-requests
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak) and [Steve Gordon](https://github.com/stevejgordon) 
 
-A `HttpClientFactory` can be registered and used to configure and consume `HttpClient` instances in your application. It provides several benefits:
+A `HttpClientFactory` can be registered and used to configure and consume `HttpClient` instances in your app. It provides several benefits:
 
 - Provides a central location for naming and configuring logical `HttpClient` instances. For example, you may configure a "github" client that is pre-configured to access Github and a default client for other purposes.
-- Codifies the concept of outgoing middleware via delegating handlers in HttpClient and implementing Polly based middleware to take advantage of that. HttpClient already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `HttpClientFactory` will make registering of these per named client more intuitive as well as implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
+- Codifies the concept of outgoing middleware via delegating handlers in HttpClient and implementing Polly-based middleware to take advantage of that. HttpClient already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `HttpClientFactory` makes registering of these per named client more intuitive as well as implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 - Manage the lifetime of HttpClientMessageHandlers to avoid common DNS problems that can be hit when managing `HttpClient` lifetimes yourself.
 
 ## Consumption patterns
 
-There are several ways that `HttpClientFactory` can be used in your application. None of them are strictly superior to another, it really depends on your application and the constraints you are working under.
+There are several ways that `HttpClientFactory` can be used in your app. None of them are strictly superior to another, it really depends on your app and the constraints you are working under.
 
 ## Basic usage
 
-The `HttpClientFactory` can be used directly in your code to access `HttpClient` instances. First the services must be registered with the ServiceProvider.
+The `HttpClientFactory` can be used directly in your code to access `HttpClient` instances. First, the services must be registered with the ServiceProvider.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -57,7 +57,7 @@ public class MyController : Controller
 }
 ```
 
-Using `HttpClientFactory` like this is a good way to start refactoring an existing application, as it has no impact on the way you use `HttpClient`. In places where you create HttpClients, replace those with a call to `CreateClient()`.
+Using `HttpClientFactory` like this is a good way to start refactoring an existing app, as it has no impact on the way you use `HttpClient`. In places where you create HttpClients, replace those with a call to `CreateClient()`.
 
 ## Named clients
 
@@ -77,7 +77,7 @@ Using `HttpClientFactory` like this is a good way to start refactoring an existi
 }
 ```
 
-Here `AddHttpClient` has been called twice; once with the name 'github' and once without. The github specific client has some default configuration applied, namely the base address and two headers required to work with the GitHub API.
+Here `AddHttpClient` has been called twice, once with the name 'github' and once without. The GitHub-specific client has some default configuration applied, namely the base address and two headers required to work with the GitHub API.
 
 The configuration function here will get called every time ceateClient is called, as a new instance of `HttpClient` is created each time.
 
@@ -102,13 +102,13 @@ public class MyController : Controller
 }
 ```
 
-In the above code the gitHubClient will have the `BaseAddress` and `DefaultRequestHeaders` set whereas the defaultClient does not. This provides you the with the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
+In the preceding code the gitHubClient will have the `BaseAddress` and `DefaultRequestHeaders` set whereas the defaultClient does not. This provides you the with the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
 
 `HttpClientFactory` will create, and cache, a single `HttpMessageHandler` per named client. Meaning that if you were to use netstat or some other tool to view connections on the host machine you would generally see a single TCP connection for each named client, rather than one per instance when you new-up and dispose of a `HttpClient` manually.
 
 ## Typed clients
 
-Typed clients give you the same capabilities as named clients without the need for using strings as keys. This provides intellisense and compiler help when consuming clients. They also provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic which deals with that endpoint. 
+Typed clients give you the same capabilities as named clients without the need for using strings as keys. This provides IntelliSense and compiler help when consuming clients. They also provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic which deals with that endpoint. 
 
 A typed client is expected to accept a HttpClient via it's constructor. 
 
