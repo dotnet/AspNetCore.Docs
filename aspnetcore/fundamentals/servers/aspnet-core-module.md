@@ -55,7 +55,8 @@ The ANCM is installed in IIS on Windows Server and in IIS Express on Windows des
 
 ### .NET Core Windows Server Hosting bundle
 
-The [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) installs the .NET Core Runtime, .NET Core Library, and the ANCM. For more information, see [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis#install-the-net-core-windows-server-hosting-bundle).
+The [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) installs the .NET Core Runtime, .NET Core Library, and the ANCM. For more information, see [Install the .NET Core Windows Server Hosting bundle](
+xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle).
 
 ### Install the IISIntegration NuGet package
 
