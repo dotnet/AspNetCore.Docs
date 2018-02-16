@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2018
+ms.date: 02/15/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -37,7 +37,7 @@ The hosted service is a singleton that's activated once at app startup and grace
 
 A timed background task makes use of the [System.Threading.Timer](/dotnet/api/system.threading.timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-[!code-csharp[](hosted-services/sample/Services/TimedHostedService.cs?name=snippet1&highlight=9,23,30)]
+[!code-csharp[](hosted-services/sample/Services/TimedHostedService.cs?name=snippet1&highlight=15-16,30,37)]
 
 The service is registered in `Startup.ConfigureServices`:
 
@@ -47,13 +47,13 @@ The service is registered in `Startup.ConfigureServices`:
 
 To use scoped services within an `IHostedService`, create a scope. No scope is created for a hosted service by default.
 
-The scoped background task service contains the background task's logic. In the following example, [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) is injected into the service:
+The scoped background task service contains the background task's logic. In the following example, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) is injected into the service:
 
-[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1&highlight=8,12,18)]
+[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1&highlight=8,12,17)]
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method:
 
-[!code-csharp[](hosted-services/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=23-29)]
+[!code-csharp[](hosted-services/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=29-36)]
 
 The services are registered in `Startup.ConfigureServices`:
 
