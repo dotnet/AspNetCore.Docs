@@ -1,22 +1,26 @@
-﻿using System.Threading.Tasks;
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using Microsoft.Extensions.Logging;
 using BackgroundTasksSample.Services;
-using System;
-using Microsoft.AspNetCore.Hosting;
 
 namespace BackgroundTasksSample.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly IApplicationLifetime _appLifetime;
+        private readonly ILogger _logger;
 
         #region snippet1
-        public IndexModel(IBackgroundTaskQueue queue, IApplicationLifetime appLifetime)
+        public IndexModel(IBackgroundTaskQueue queue, 
+            IApplicationLifetime appLifetime,
+            ILogger<IndexModel> logger)
         {
             Queue = queue;
             _appLifetime = appLifetime;
+            _logger = logger;
         }
 
         public IBackgroundTaskQueue Queue { get; }
@@ -35,14 +39,13 @@ namespace BackgroundTasksSample.Pages
 
                 for (int delayLoop = 0; delayLoop < 3; delayLoop++)
                 {
-                    Console.WriteLine(
-                        $"{DateTime.UtcNow} - Queued Background Task {guid} is running. " +
-                        $"{delayLoop}/3");
+                    _logger.LogInformation(
+                        $"Queued Background Task {guid} is running. {delayLoop}/3");
                     await Task.Delay(TimeSpan.FromSeconds(5), token);
                 }
 
-                Console.WriteLine(
-                    $"{DateTime.UtcNow} - Queued Background Task {guid} is complete. 3/3");
+                _logger.LogInformation(
+                    $"Queued Background Task {guid} is complete. 3/3");
             });
 
             return RedirectToPage();
