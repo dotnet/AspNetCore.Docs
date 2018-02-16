@@ -49,7 +49,7 @@ To use scoped services within an `IHostedService`, create a scope. No scope is c
 
 The scoped background task service contains the background task's logic. In the following example, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) is injected into the service:
 
-[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1&highlight=8,12,17)]
+[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1)]
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method:
 
