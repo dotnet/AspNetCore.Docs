@@ -1,5 +1,4 @@
-using System;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BackgroundTasksSample.Services
 {
@@ -11,17 +10,16 @@ namespace BackgroundTasksSample.Services
 
     internal class ScopedProcessingService : IScopedProcessingService
     {
-        private readonly IHostingEnvironment _env;
+        private readonly ILogger _logger;
         
-        public ScopedProcessingService(IHostingEnvironment env)
+        public ScopedProcessingService(ILogger<ScopedProcessingService> logger)
         {
-            _env = env;
+            _logger = logger;
         }
 
         public void DoWork()
         {
-            Console.WriteLine($"{DateTime.UtcNow} - Scoped Processing Service is working.");
-            Console.WriteLine($"Scoped Processing Service Env: {_env.EnvironmentName}");
+            _logger.LogInformation("Scoped Processing Service is working.");
         }
     }
     #endregion
