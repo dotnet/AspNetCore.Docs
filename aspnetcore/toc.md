@@ -243,6 +243,7 @@
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Configure primary key type for Identity](xref:security/authentication/identity-primary-key-configuration)
 ### [Custom storage providers for Identity](xref:security/authentication/identity-custom-storage-providers)
+### [Authentication articles](xref:security/authentication/individual)
 ### [Enable authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index)
 #### [Facebook authentication](xref:security/authentication/facebook-logins)
 #### [Twitter authentication](xref:security/authentication/twitter-logins)
