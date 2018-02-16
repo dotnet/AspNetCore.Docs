@@ -277,7 +277,75 @@ public class ValuesController : ControllerBase
 
 ## Outgoing request middleware
 
-TODO
+The `HttpClientFactory` supports registering and chaining `DelegatingHandlers` to easily build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request, in a very similar pattern to the middleware pipeline in ASP.NET Core. This provides a mechanism to manage cross cutting concerns around the requests an app is making. This includes things such as caching, error handling, serialization and logging.
+
+To create a handler, a class can be added, deriving from `DelegatingHandler`. The `SendAsync` method can then be overridden to execute code before and after the next handler in the pipeline.
+
+```csharp
+private class RetryHandler : DelegatingHandler
+{
+    public int RetryCount { get; set; } = 5;
+
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        for (var i = 0; i < RetryCount; i++)
+        {
+            try
+            {
+                return base.SendAsync(request, cancellationToken);
+            }
+            catch (HttpRequestException) when (i == RetryCount - 1)
+            {
+                throw;
+            }
+            catch (HttpRequestException)
+            {
+                // Retry
+                Task.Delay(TimeSpan.FromMilliseconds(50));
+            }
+        }
+
+        // Unreachable.
+        throw null;
+    }
+}
+```
+
+The preceding code, defines a basic retry handler which will retry up to five times if a `HttpRequestException` is caught.
+
+During registration, one or more handlers can be added to the configuration for a `HttpClient` via extension methods on the `HttpClientBuilder`.
+
+```csharp
+public static void Configure(IServiceCollection services)
+{
+    services.AddTransient<RetryHandler>();
+
+    services.AddHttpClient("example", c =>
+    {
+        c.BaseAddress = new Uri("https://localhost:5000/");
+    })
+    .AddHttpMessageHandler<RetryHandler>(); // Retry requests to github using the retry handler
+}
+```
+
+Here the `RetryHandler` is registered as a transient service with the DI framework. Once registered `AddHttpMessageHandler` can be called, passing in the type for the handler.
+
+Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request.
+
+```csharp
+public static void Configure(IServiceCollection services)
+{
+    services.AddTransient<OuterHandler>();
+    services.AddTransient<InnerHandler>();
+
+    services.AddHttpClient("example", c =>
+    {
+        c.BaseAddress = new Uri("https://localhost:5000/");
+    })
+    .AddHttpMessageHandler<OuterHandler>() // This handler is on the outside and executes first on the way out and last on the way in.
+    .AddHttpMessageHandler<InnerHandler>(); // This handler is on the inside, closest to the request.
+}
+```
 
 ## Handling errors with Polly
 
