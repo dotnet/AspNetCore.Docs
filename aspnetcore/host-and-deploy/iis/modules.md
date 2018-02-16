@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of the native IIS modules and all of the IIS managed modules aren't available to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the features of IIS native and managed modules.
 
-## Native Modules
+## Native modules
 
 | Module | .NET Core Active | ASP.NET Core Option |
 | ------ | :--------------: | ------------------- |
@@ -45,7 +45,7 @@ ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of th
 | **Request Filtering**<br>`RequestFilteringModule` | Yes | [URL Rewriting Middleware `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Request Monitor**<br>`RequestMonitorModule` | Yes | |
 | **URL Rewriting**<br>`RewriteModule` | Yes&#8224; | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
-| **Server Side Includes**<br>`ServerSideIncludeModule` | No | |
+| **Server-Side Includes**<br>`ServerSideIncludeModule` | No | |
 | **Static Compression**<br>`StaticCompressionModule` | No | [Response Compression Middleware](xref:performance/response-compression) |
 | **Static Content**<br>`StaticFileModule` | No | [Static File Middleware](xref:fundamentals/static-files) |
 | **Token Caching**<br>`TokenCacheModule` | Yes | |
@@ -53,9 +53,9 @@ ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of th
 | **URL Authorization**<br>`UrlAuthorizationModule` | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Windows Authentication**<br>`WindowsAuthenticationModule` | Yes | |
 
-&#8224;The URL Rewrite Module's `isFile` and `isDirectory` don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
+&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
 
-## Managed Modules
+## Managed modules
 
 | Module                  | .NET Core Active | ASP.NET Core Option |
 | ----------------------- | :--------------: | ------------------- |
@@ -70,12 +70,12 @@ ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of th
 | Session                 | No               | [Session Middleware](xref:fundamentals/app-state) |
 | UrlAuthorization        | No               | |
 | UrlMappingsModule       | No               | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | No               | [ASP.NET Core  Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | No               | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | WindowsAuthentication   | No               | |
 
 ## IIS Manager application changes
 
-When using IIS Manager to configure settings, the *web.config* file of the app is changed. If deploying an app and including *web.config*, any changes made with IIS Manger are overwritten by the deployed *web.config* file. If changes are made to the server's *web.config* file, copy the updated *web.config* file on the server to the local project immediately.
+When using IIS Manager to configure settings, the *web.config* file of the app is changed. If deploying an app and including *web.config*, any changes made with IIS Manager are overwritten by the deployed *web.config* file. If changes are made to the server's *web.config* file, copy the updated *web.config* file on the server to the local project immediately.
 
 ## Disabling IIS modules
 
@@ -105,7 +105,7 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
 
 1. Unlock the **\<modules>** section of *web.config*. In the **Connections** sidebar, select the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer/modules` section. In the **Actions** sidebar on the right, select to **Unlock** the section.
 
-1. At this point, a **\<modules>** section can be added to the *web.config* file with a **\<remove>** element to remove the module from the app. Multiple **\<remove>** elements can be added to remove multiple modules. Don't forget that if *web.config* changes are made on the server to make them immediately in the project locally. Removing a module this way won't affect the use of the module with other apps on the server.
+1. At this point, a **\<modules>** section can be added to the *web.config* file with a **\<remove>** element to remove the module from the app. Multiple **\<remove>** elements can be added to remove multiple modules. If *web.config* changes are made on the server, immediately make the same changes to the project's *web.config* file locally. Removing a module this way won't affect the use of the module with other apps on the server.
 
   ```xml
   <configuration> 
