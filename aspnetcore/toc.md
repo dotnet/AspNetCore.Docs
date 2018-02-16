@@ -136,7 +136,7 @@
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
-## [Making HTTP Requests](fundamentals/http-requests.md)
+## [Initiate HTTP requests](xref:fundamentals/http-requests.md)
 
 # [MVC](mvc/overview.md)
 ## [Razor Pages](xref:mvc/razor-pages/index)

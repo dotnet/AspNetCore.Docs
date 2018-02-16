@@ -211,4 +211,4 @@ For more information on choosing between ASP.NET Core and ASP.NET, see [Choose b
 
 ## Making HTTP requests
 
-For information about using `HttpClientFactory` to access HttpClient instances to make HTTP requests, see [Making HTTP requests](xref:fundamentals/http-requests).
+For information about using `HttpClientFactory` to access HttpClient instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
