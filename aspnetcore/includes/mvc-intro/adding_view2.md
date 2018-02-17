@@ -18,7 +18,7 @@ Tap the menu links (**MvcMovie**, **Home**, **About**). Each page shows the same
 
 ## Change the title and menu link in the layout file
 
-In the title element, change `MvcMovie` to `Movie App`. Change the anchor text in the layout template from `MvcMovie` to `Mvc Movie` and the controller from `Home` to `Movies` as highlighted below:
+In the title element, change `MvcMovie` to `Movie App`. Change the anchor text in the layout template from `MvcMovie` to `Movie App` and the controller from `Home` to `Movies` as highlighted below:
 
 Note: The ASP.NET Core 2.0 version is slightly different. It doesn't contain `@inject ApplicationInsights` and `@Html.Raw(JavaScriptSnippet.FullScript)`.
 
