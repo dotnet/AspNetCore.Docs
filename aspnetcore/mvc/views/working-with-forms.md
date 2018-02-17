@@ -578,4 +578,4 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 * [Model Binding](xref:mvc/models/model-binding)
 * [Model Validation](xref:mvc/models/validation)
 * [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
-* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/forms/sample)
+* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)
