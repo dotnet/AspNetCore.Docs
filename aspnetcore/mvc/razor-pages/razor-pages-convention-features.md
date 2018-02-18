@@ -14,7 +14,7 @@ uid: mvc/razor-pages/razor-pages-convention-features
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to use page route and app model provider convention features to control page routing, discovery, and processing in Razor Pages apps. When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
+Learn how to use page [route and app model provider convention](xref:mvc/controllers/application-model#conventions) features to control page routing, discovery, and processing in Razor Pages apps. When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
 Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
 
@@ -27,7 +27,7 @@ Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/r
 
 ## Add route and app model conventions
 
-Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) to add route and app model conventions that apply to Razor Pages.
+Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) to add [route and app model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
 
 **Add a route model convention to all pages**
 
