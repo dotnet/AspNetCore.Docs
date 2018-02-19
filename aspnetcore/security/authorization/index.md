@@ -14,6 +14,8 @@ uid: security/authorization/index
 
 * [Introduction](introduction.md)
 
+* [Create an app with user data protected by authorization](secure-data.md)
+
 * [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
 
 * [Simple authorization](simple.md)
