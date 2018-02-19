@@ -104,7 +104,7 @@ public class MyController : Controller
 
 In the preceding code, the `gitHubClient` has the `BaseAddress` and `DefaultRequestHeaders` set, whereas the `defaultClient` does not. This provides the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
 
-`HttpClientFactory` creates, and caches, a single `HttpMessageHandler` per named client. Generally a single TCP connection for each named client will be used. When instansiating and disposing of a `HttpClient` manually a TCP connection will be used per instance. Creating multiple connections in this way can lead to socket exhaustion on the host.
+`HttpClientFactory` creates, and caches, a single `HttpMessageHandler` per named client. Generally a single TCP connection for each named client is be used. When instansiating and disposing of a `HttpClient` manually, a TCP connection is used per instance. Creating multiple connections in this way can lead to socket exhaustion on the host.
 
 ## Typed clients
 
@@ -354,7 +354,7 @@ The preceding example demonstrated building a simple retry handler manually. A m
 
 Polly is a comprehensive resilience and transient-fault-handling library for .NET which allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extension methods are provided for `HttpClientFactory` which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than defining a handler manually, extension methods can be used which accept a Polly policy. This policy will be used when executing HTTP requests.
+Extension methods are provided for `HttpClientFactory` which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than defining a handler manually, extension methods can be used which accept a Polly policy. This policy is used when executing HTTP requests.
 
 ```csharp
 public static void Configure(IServiceCollection services)
@@ -370,13 +370,13 @@ public static void Configure(IServiceCollection services)
     // Build a totally custom policy using any criteria
     .AddPolicyHandler(Policy.Handle<HttpRequestException>().RetryAsync())
 
-    // Build a policy that will handle exceptions (connection failures)
+    // Build a policy that handles exceptions (connection failures)
     .AddExceptionPolicyHandler(p => p.RetryAsync())
 
-    // Build a policy that will handle exceptions and 500s from the remote server
+    // Build a policy that handles exceptions and 500s from the remote server
     .AddServerErrorPolicyHandler(p => p.RetryAsync())
 
-    // Build a policy that will handle exceptions, 400s, and 500s from the remote server
+    // Build a policy that handles exceptions, 400s, and 500s from the remote server
     .AddBadRequestPolicyHandler(p => p.RetryAsync());
 }
 ```
