@@ -281,6 +281,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
+
 [!code-cshtml[Main](localization/sample/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
@@ -319,3 +320,4 @@ Terms:
 * [Localization.StarterWeb project](https://github.com/aspnet/entropy) used in the article.
 * [Resource Files in Visual Studio](https://docs.microsoft.com/cpp/windows/resource-files-visual-studio)
 * [Resources in .resx Files](https://docs.microsoft.com/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
