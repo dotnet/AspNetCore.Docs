@@ -36,7 +36,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Once registered, you can accept a `IHttpClientFactory` whereever services can be injected by the DI framework which can then be used to create a `HttpClient` instance.
+Once registered, you can accept a `IHttpClientFactory` anywhere services can be injected by the DI framework. The `IHttpClientFactory` can then be used to create a HttpClient instance.
 
 ```csharp
 public class MyController : Controller
@@ -79,7 +79,7 @@ Using `HttpClientFactory` like this is a good way to start refactoring an existi
 
 Here `AddHttpClient` has been called twice, once with the name 'github' and once without. The GitHub-specific client has some default configuration applied, namely the base address and two headers required to work with the GitHub API.
 
-The configuration function here will get called every time ceateClient is called, as a new instance of `HttpClient` is created each time.
+The configuration function is called every time `CreateClient` is called, as a new instance of `HttpClient` is created each time.
 
 To consume a named client in your code you can pass the name of the client to `CreateClient`.
 
@@ -102,7 +102,7 @@ public class MyController : Controller
 }
 ```
 
-In the preceding code the gitHubClient will have the `BaseAddress` and `DefaultRequestHeaders` set whereas the defaultClient does not. This provides you the with the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
+In the preceding code the `gitHubClient` will have the `BaseAddress` and `DefaultRequestHeaders` set whereas the `defaultClient` does not. This provides you the with the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
 
 `HttpClientFactory` will create, and cache, a single `HttpMessageHandler` per named client. Meaning that if you were to use netstat or some other tool to view connections on the host machine you would generally see a single TCP connection for each named client, rather than one per instance when you new-up and dispose of a `HttpClient` manually.
 
@@ -277,7 +277,7 @@ public class ValuesController : ControllerBase
 
 ## Outgoing request middleware
 
-The `HttpClientFactory` supports registering and chaining `DelegatingHandlers` to easily build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request, in a very similar pattern to the middleware pipeline in ASP.NET Core. This provides a mechanism to manage cross cutting concerns around the requests an app is making. This includes things such as caching, error handling, serialization and logging.
+The `HttpClientFactory` supports registering and chaining multiple handlers to easily build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request, in a very similar pattern to the middleware pipeline in ASP.NET Core. This provides a mechanism to manage cross cutting concerns around the requests an app is making. This includes things such as caching, error handling, serialization and logging.
 
 To create a handler, a class can be added, deriving from `DelegatingHandler`. The `SendAsync` method can then be overridden to execute code before and after the next handler in the pipeline.
 
