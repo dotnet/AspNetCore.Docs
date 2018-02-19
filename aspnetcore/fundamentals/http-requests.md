@@ -14,19 +14,19 @@ uid: fundamentals/http-requests
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak) and [Steve Gordon](https://github.com/stevejgordon) 
 
-A `HttpClientFactory` can be registered and used to configure and consume `HttpClient` instances in your app. It provides several benefits:
+A `HttpClientFactory` can be registered and used to configure and consume `HttpClient` instances in an app. It provides several benefits:
 
-- Provides a central location for naming and configuring logical `HttpClient` instances. For example, you may configure a "github" client that is pre-configured to access Github and a default client for other purposes.
-- Codifies the concept of outgoing middleware via delegating handlers in HttpClient and implementing Polly-based middleware to take advantage of that. HttpClient already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `HttpClientFactory` makes registering of these per named client more intuitive as well as implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
-- Manage the lifetime of HttpClientMessageHandlers to avoid common DNS problems that can be hit when managing `HttpClient` lifetimes yourself.
+- Provides a central location for naming and configuring logical `HttpClient` instances. For example, a "github" client can be registered and pre-configured to access GitHub while a default client can be registered for other purposes.
+- Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that. 
+- Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that can be hit when managing `HttpClient` lifetimes manually.
 
 ## Consumption patterns
 
-There are several ways that `HttpClientFactory` can be used in your app. None of them are strictly superior to another, it really depends on your app and the constraints you are working under.
+There are several ways that `HttpClientFactory` can be used in an app. None of them are strictly superior to another, it really depends on the constraints on the app.
 
 ## Basic usage
 
-The `HttpClientFactory` can be used directly in your code to access `HttpClient` instances. First, the services must be registered with the ServiceProvider.
+The `HttpClientFactory` can be used directly in code to access `HttpClient` instances. First, the services must be registered with the ServiceProvider.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -36,7 +36,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Once registered, you can accept a `IHttpClientFactory` anywhere services can be injected by the DI framework. The `IHttpClientFactory` can then be used to create a HttpClient instance.
+Once registered, code can accept a `IHttpClientFactory` anywhere services can be injected by the DI framework. The `IHttpClientFactory` can then be used to create a `HttpClient` instance.
 
 ```csharp
 public class MyController : Controller
@@ -57,11 +57,11 @@ public class MyController : Controller
 }
 ```
 
-Using `HttpClientFactory` like this is a good way to start refactoring an existing app, as it has no impact on the way you use `HttpClient`. In places where you create HttpClients, replace those with a call to `CreateClient()`.
+Using `HttpClientFactory` like this is a good way to start refactoring an existing app, as it has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currenty created, replace those with a call to `CreateClient()`.
 
 ## Named clients
 
- If you have multiple distinct uses of `HttpClient`, each with different configurations, then you may want to use **named clients**. The common configuration for the use of that named `HttpClient` can be specified during registration.
+ If an app requires multiple distinct uses of `HttpClient`, each with different configurations, then an option is to use **named clients**. Any common configuration for a named `HttpClient` can be specified during registration.
 
 ```csharp
  public void ConfigureServices(IServiceCollection services)
@@ -79,9 +79,9 @@ Using `HttpClientFactory` like this is a good way to start refactoring an existi
 
 Here `AddHttpClient` has been called twice, once with the name 'github' and once without. The GitHub-specific client has some default configuration applied, namely the base address and two headers required to work with the GitHub API.
 
-The configuration function is called every time `CreateClient` is called, as a new instance of `HttpClient` is created each time.
+Every time `CreateClient` is called, a new instance of `HttpClient` is created and the configuration function is called.
 
-To consume a named client in your code you can pass the name of the client to `CreateClient`.
+To consume a named client in code, a string parameter can be passed to `CreateClient`, specifying the name of the client to be created.
 
 ```csharp
 public class MyController : Controller
@@ -102,13 +102,13 @@ public class MyController : Controller
 }
 ```
 
-In the preceding code the `gitHubClient` will have the `BaseAddress` and `DefaultRequestHeaders` set whereas the `defaultClient` does not. This provides you the with the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
+In the preceding code, the `gitHubClient` has the `BaseAddress` and `DefaultRequestHeaders` set, whereas the `defaultClient` does not. This provides the ability to have different configurations for different purposes. This may mean different configurations per endpoint/API for example.
 
-`HttpClientFactory` will create, and cache, a single `HttpMessageHandler` per named client. Meaning that if you were to use netstat or some other tool to view connections on the host machine you would generally see a single TCP connection for each named client, rather than one per instance when you new-up and dispose of a `HttpClient` manually.
+`HttpClientFactory` creates, and caches, a single `HttpMessageHandler` per named client. Generally a single TCP connection for each named client will be used. When instansiating and disposing of a `HttpClient` manually a TCP connection will be used per instance. Creating multiple connections in this way can lead to socket exhaustion on the host.
 
 ## Typed clients
 
-Typed clients give you the same capabilities as named clients without the need for using strings as keys. This provides IntelliSense and compiler help when consuming clients. They also provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic which deals with that endpoint. 
+Typed clients provide the same capabilities as named clients without the need to use strings as keys. This provides IntelliSense and compiler help when consuming clients. They also provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic which deals with that endpoint. 
 
 A typed client is expected to accept a HttpClient via it's constructor. 
 
@@ -120,15 +120,16 @@ public class GitHubService
     public GitHubService(HttpClient client)
     {
         client.BaseAddress = new Uri("https://api.github.com/");
-        client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // Github API versioning
-        client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // Github requires a user-agent
+        client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
+        client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // GitHub requires a user-agent
 
         Client = client;
     }
 }
 ```
+In this example, only the configuration is moved into the typed client and the `HttpClient` is exposed directly as a property. It is also possible to define API specific methods which expose `HttpClient` functionality. 
 
-To register a typed client the generic `AddHttpClient` method can be used, specifying our typed client class. 
+To register a typed client, the generic `AddHttpClient` extension method can be used, specifying the typed client class. 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -158,9 +159,7 @@ public class MyController : Controller
 }
 ```
 
-In this example, we only moved configuration into the type, but we could also have methods with behaviour and not actually expose the `HttpClient` if we want all access to go through this type. 
-
-If you prefer, the configuration for a typed client can be specified during registration, rather than in the constructor for the typed client.
+If preferred, the configuration for a typed client can be specified during registration, rather than in the constructor for the typed client.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -169,14 +168,14 @@ public void ConfigureServices(IServiceCollection services)
     {
         c.BaseAddress = new Uri("https://api.github.com/");
 
-        c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // Github API versioning
-        c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // Github requires a user-agent
+        c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
+        c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // GitHub requires a user-agent
     });
     services.AddMvc();
 }
 ```
 
-It's possible to entirely encapsulate the `HttpClient` within a typed client. Rather than exposing it as a property, public methods can be provided which internally consume the `HttpClient` instance.
+It is possible to entirely encapsulate the `HttpClient` within a typed client. Rather than exposing it as a property, public methods can be provided which call the `HttpClient` instance internally.
 
 ```csharp
 public class ValuesService
@@ -222,9 +221,9 @@ In this example, the `HttpClient` is stored as a private field and all access to
 
 ## Generated clients
 
-`HttpClientFactory` can be used in combination with other third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit is a REST library for .NET that is inspired by Square's [Retrofit](http://square.github.io/retrofit/) library. It turns your REST API into a live interface. This interface defines a external REST API. An implementation of the interface is generated by the `RestService` using `HttpClient` to make its calls. 
+`HttpClientFactory` can be used in combination with other third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit is a REST library for .NET which turns REST APIs into live interfaces. An implementation of the interface is generated dynamically by the `RestService`, using `HttpClient` to make the external HTTP calls. 
 
-First an interface and reply are defined which represent the exteranl API and its response.
+First, an interface and reply are defined which represent the exteranl API and its response.
 
 ```csharp
 public interface IHelloClient
@@ -254,7 +253,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The defined interface can then be consumed wherever necessary in your code, with the implementation provided by the DI framework and Refit.
+The defined interface can then be consumed wherever necessary in code, with the implementation provided by the DI framework and Refit.
 
 ```csharp
 [ApiController]
@@ -277,9 +276,9 @@ public class ValuesController : ControllerBase
 
 ## Outgoing request middleware
 
-The `HttpClientFactory` supports registering and chaining multiple handlers to easily build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request, in a very similar pattern to the middleware pipeline in ASP.NET Core. This provides a mechanism to manage cross cutting concerns around the requests an app is making. This includes things such as caching, error handling, serialization and logging.
+`HttpClient` already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `HttpClientFactory` makes registering of these per named client more intuitive. It supports registering and chaining multiple handlers together to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request, in a very similar pattern to the inbound middleware pipeline in ASP.NET Core. This provides a mechanism to manage cross cutting concerns around HTTP requests, including caching, error handling, serialization and logging for example.
 
-To create a handler, a class can be added, deriving from `DelegatingHandler`. The `SendAsync` method can then be overridden to execute code before and after the next handler in the pipeline.
+To create a handler, a class can be added, deriving from `DelegatingHandler`. The `SendAsync` method can then be overridden to execute code before passing the request to the next handler in the pipeline.
 
 ```csharp
 private class RetryHandler : DelegatingHandler
@@ -311,7 +310,7 @@ private class RetryHandler : DelegatingHandler
 }
 ```
 
-The preceding code, defines a basic retry handler which will retry up to five times if a `HttpRequestException` is caught.
+The preceding code, defines a basic retry handler which retries up to five times if a `HttpRequestException` is caught.
 
 During registration, one or more handlers can be added to the configuration for a `HttpClient` via extension methods on the `HttpClientBuilder`.
 
@@ -324,7 +323,7 @@ public static void Configure(IServiceCollection services)
     {
         c.BaseAddress = new Uri("https://localhost:5000/");
     })
-    .AddHttpMessageHandler<RetryHandler>(); // Retry requests to github using the retry handler
+    .AddHttpMessageHandler<RetryHandler>(); // Retry requests to GitHub using the retry handler
 }
 ```
 
@@ -355,7 +354,7 @@ The preceding example demonstrated building a simple retry handler manually. A m
 
 Polly is a comprehensive resilience and transient-fault-handling library for .NET which allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extensions are provided for `HttpClientFactory` which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than defining a handler manually, the extension can be called passing in a Polly policy.
+Extension methods are provided for `HttpClientFactory` which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than defining a handler manually, extension methods can be used which accept a Polly policy. This policy will be used when executing HTTP requests.
 
 ```csharp
 public static void Configure(IServiceCollection services)
@@ -384,8 +383,10 @@ public static void Configure(IServiceCollection services)
 
 ## DNS and handler rotation
 
-Each time you call `CreateClient` on the `HttpClientFactory` you get a new instance of a `HttpClient`, but the factory will reuse the underlying H`ttpMessageHandler` when appropriate. The `HttpMessageHandler` is responsible for creating and maintainging the underlying operating system connection. Reusing the `HttpMessageHandler` will save you from creating many connections on your host machine.
+Each time `CreateClient` is called on the `HttpClientFactory` a new instance of a `HttpClient` is returned. The `HttpClientFactory` may reuse the underlying `HttpMessageHandler` when appropriate. The `HttpMessageHandler` is responsible for creating and maintainging the underlying operating system connection. Reusing the `HttpMessageHandler` avoids creating many connections on the host machine which can lead to socket exhaustion.
 
-TODO - DNS
+TODO - More info
 
+## Logging
 
+TODO
