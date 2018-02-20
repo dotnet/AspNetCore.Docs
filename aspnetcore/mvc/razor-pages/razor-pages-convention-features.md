@@ -14,9 +14,9 @@ uid: mvc/razor-pages/razor-pages-convention-features
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to use page route and app model provider convention features to control page routing, discovery, and processing in Razor Pages apps. When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
+Learn how to use page [route and app model provider convention](xref:mvc/controllers/application-model#conventions) features to control page routing, discovery, and processing in Razor Pages apps. When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
-Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 | Features | The sample demonstrates ... |
 | -------- | --------------------------- |
@@ -27,7 +27,7 @@ Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/r
 
 ## Add route and app model conventions
 
-Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) to add route and app model conventions that apply to Razor Pages.
+Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) to add [route and app model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
 
 **Add a route model convention to all pages**
 
@@ -40,7 +40,7 @@ The sample app adds a `{globalTemplate?}` route template to all of the pages in 
 > [!NOTE]
 > The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this template is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
-*Startup.cs*:
+Razor Pages options, such as adding [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions), are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample/).
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet1)]
 
