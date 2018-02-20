@@ -103,8 +103,8 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 | `ExpireTimeSpan`  | Controls how much time the authentication ticket stored in the cookie will remain valid from the point it's created.  | 14 days  |
 | `LoginPath`  | When a user is unauthorized, they will be redirected to this path to login. | /Account/Login  |
 | `LogoutPath`  | When a user is logged out, they will be redirected to this path.  | /Account/Logout  |
-| `AccessDeniedPath`  | When a user fails an authorization check, they will be redirected to this path.  |   |
-| `SlidingExpiration`  | When true, a new cookie will be issued with a new expiration time when the current cookie is more than halfway through the expiration window.  | /Account/AccessDenied |
-| `ReturnUrlParameter`  | Determines the name of the query string parameter which is appended by the middleware when a 401 Unauthorized status code is changed to a 302 redirect onto the login path.  |  true |
+| `AccessDeniedPath`  | When a user fails an authorization check, they will be redirected to this path.  |  /Account/AccessDenied |
+| `SlidingExpiration`  | When true, a new cookie will be issued with a new expiration time when the current cookie is more than halfway through the expiration window.  | true |
+| `ReturnUrlParameter`  | Determines the name of the query string parameter which is appended by the middleware when a 401 Unauthorized status code is changed to a 302 redirect onto the login path.  | |
 | `AuthenticationScheme`  | This is only relevant for ASP.NET Core 1.x. The logical name for a particular authentication scheme. |  |
 | `AutomaticAuthenticate`  | This flag is only relevant for ASP.NET Core 1.x. When true, cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.  |  |
