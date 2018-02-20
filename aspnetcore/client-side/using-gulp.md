@@ -14,7 +14,7 @@ uid: client-side/using-gulp
 # Introduction to using Gulp in ASP.NET Core 
 
 By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
-
+JavaScript based
 In a typical modern web app, the build process might:
 
 * Bundle and minify JavaScript and CSS files.
