@@ -21,7 +21,7 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 * Hosted service that activates a scoped service. The scoped service can use dependency injection.
 * Queued background tasks that run sequentially.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/hosted-services/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/hosted-services/samples/2.x) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## IHostedService interface
 
@@ -37,11 +37,11 @@ The hosted service is a singleton that's activated once at app startup and grace
 
 A timed background task makes use of the [System.Threading.Timer](/dotnet/api/system.threading.timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-[!code-csharp[](hosted-services/sample/Services/TimedHostedService.cs?name=snippet1&highlight=15-16,30,37)]
+[!code-csharp[](hosted-services/samples/2.x/Services/TimedHostedService.cs?name=snippet1&highlight=15-16,30,37)]
 
 The service is registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet1)]
+[!code-csharp[](hosted-services/samples/2.x/Startup.cs?name=snippet1)]
 
 ## Consuming a scoped service in a background task
 
@@ -49,37 +49,37 @@ To use scoped services within an `IHostedService`, create a scope. No scope is c
 
 The scoped background task service contains the background task's logic. In the following example, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) is injected into the service:
 
-[!code-csharp[](hosted-services/sample/Services/ScopedProcessingService.cs?name=snippet1)]
+[!code-csharp[](hosted-services/samples/2.x/Services/ScopedProcessingService.cs?name=snippet1)]
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method:
 
-[!code-csharp[](hosted-services/sample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=29-36)]
+[!code-csharp[](hosted-services/samples/2.x/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=29-36)]
 
 The services are registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet2)]
+[!code-csharp[](hosted-services/samples/2.x/Startup.cs?name=snippet2)]
 
 ## Queued background tasks
 
 A background task queue is based on the .NET 4.x [QueueBackgroundWorkItem](/dotnet/api/system.web.hosting.hostingenvironment.queuebackgroundworkitem) ([tentatively scheduled to be built-in for ASP.NET Core 2.2](https://github.com/aspnet/Hosting/issues/1280)):
 
-[!code-csharp[](hosted-services/sample/Services/BackgroundTaskQueue.cs?name=snippet1)]
+[!code-csharp[](hosted-services/samples/2.x/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
 In `QueueHostedService`, background tasks (`workItem`) in the queue are dequeued and executed:
 
-[!code-csharp[](hosted-services/sample/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
+[!code-csharp[](hosted-services/samples/2.x/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
 
 The services are registered in `Startup.ConfigureServices`:
 
-[!code-csharp[](hosted-services/sample/Startup.cs?name=snippet3)]
+[!code-csharp[](hosted-services/samples/2.x/Startup.cs?name=snippet3)]
 
 In the Index page model class, the `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`:
 
-[!code-csharp[](hosted-services/sample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](hosted-services/samples/2.x/Pages/Index.cshtml.cs?name=snippet1)]
 
 When the **Add Task** button is selected on the Index page, the `OnPostAddTask` method is executed. `QueueBackgroundWorkItem` is called to enqueue the work item:
 
-[!code-csharp[](hosted-services/sample/Pages/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](hosted-services/samples/2.x/Pages/Index.cshtml.cs?name=snippet2)]
 
 ## Additional resources
 
