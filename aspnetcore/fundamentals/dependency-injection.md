@@ -192,8 +192,12 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 When the app is running in the Development environment on ASP.NET Core 2.0 or later, the default service provider performs checks to verify that:
 
-* Scoped services aren't directly or indirectly resolved from the root provider.
+* Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
+
+The root service provider is created when [BuildServiceProvider](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectioncontainerbuilderextensions.buildserviceprovider) is called. The root service provider's lifetime usually corresponds to the app/server's lifetime.
+
+Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
 For more information, see [Scope validation in the Hosting topic](xref:fundamentals/hosting#scope-validation).
 

@@ -895,8 +895,12 @@ In ASP.NET Core 2.0 or later, [CreateDefaultBuilder](/dotnet/api/microsoft.aspne
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify that:
 
-* Scoped services aren't directly or indirectly resolved from the root provider.
+* Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
+
+The root service provider is created when [BuildServiceProvider](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectioncontainerbuilderextensions.buildserviceprovider) is called. The root service provider's lifetime usually corresponds to the app/server's lifetime.
+
+Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
 To always validate scopes, including in the Production environment, configure the [ServiceProviderOptions](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions) with [UseDefaultServiceProvider](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usedefaultserviceprovider) on the host builder:
 
