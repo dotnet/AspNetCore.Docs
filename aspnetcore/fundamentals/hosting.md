@@ -893,7 +893,12 @@ public class IndexModel : PageModel
 
 In ASP.NET Core 2.0 or later, [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) sets [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) to `true` if the app's environment is Development.
 
-When `ValidateScopes` is set to `true`, the default service provider performs a check to verify that scoped services aren't resolved from the root provider. To always validate scopes, including in the Production environment, configure the [ServiceProviderOptions](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions) with [UseDefaultServiceProvider](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usedefaultserviceprovider) on the host builder:
+When `ValidateScopes` is set to `true`, the default service provider performs checks to verify that:
+
+* Scoped services aren't directly or indirectly resolved from the root provider.
+* Scoped services aren't directly or indirectly injected into singletons.
+
+To always validate scopes, including in the Production environment, configure the [ServiceProviderOptions](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions) with [UseDefaultServiceProvider](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usedefaultserviceprovider) on the host builder:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
