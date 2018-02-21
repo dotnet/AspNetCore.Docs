@@ -195,7 +195,7 @@ When the app is running in the Development environment on ASP.NET Core 2.0 or la
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
 
-The root service provider is created when [BuildServiceProvider](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectioncontainerbuilderextensions.buildserviceprovider) is called. The root service provider's lifetime usually corresponds to the app/server's lifetime.
+The root service provider is created when [BuildServiceProvider](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectioncontainerbuilderextensions.buildserviceprovider) is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
