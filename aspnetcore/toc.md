@@ -204,7 +204,7 @@
 ## [Bundle and minify](xref:client-side/bundling-and-minification)
 ## [Use Browser Link](xref:client-side/using-browserlink)
 ## [Use JavaScriptServices for SPAs](xref:client-side/spa-services)
-## [Use the SPA project templates (RC)](xref:spa/index)
+## [Use the SPA project templates](xref:spa/index)
 ### [Angular project template](xref:spa/angular)
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
