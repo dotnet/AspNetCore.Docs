@@ -190,7 +190,12 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 ## Scope validation
 
-In ASP.NET Core 2.0 or later, the default service provider performs a check to verify that scoped services aren't resolved from the root provider when the app is running in the Development environment. For more information, see [Scope validation in the Hosting topic](xref:fundamentals/hosting#scope-validation).
+When the app is running in the Development environment on ASP.NET Core 2.0 or later, the default service provider performs checks to verify that:
+
+* Scoped services aren't directly or indirectly resolved from the root provider.
+* Scoped services aren't directly or indirectly injected into singletons.
+
+For more information, see [Scope validation in the Hosting topic](xref:fundamentals/hosting#scope-validation).
 
 ## Request Services
 
