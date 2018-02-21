@@ -5,7 +5,7 @@ description: Learn how to install and get started with the ASP.NET Core Single-P
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
@@ -15,7 +15,7 @@ uid: spa/index
 # Use the Single-Page Application templates
 
 > [!NOTE]
-> The released .NET Core 2.0.x SDK includes older project templates for Angular, React, and React with Redux. **This documentation isn't about those older project templates.** This documentation is for the latest Angular, React, and React with Redux templates, which you can install manually into ASP.NET Core 2.0, and will be included by default with ASP.NET Core 2.1.
+> The released .NET Core 2.0.x SDK includes older project templates for Angular, React, and React with Redux. This documentation isn't about those older project templates. This documentation is for the latest Angular, React, and React with Redux templates, which can be installed manually into ASP.NET Core 2.0. The templates are included by default with ASP.NET Core 2.1.
 
 ## Prerequisites
 
