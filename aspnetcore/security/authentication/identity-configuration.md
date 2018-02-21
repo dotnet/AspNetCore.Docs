@@ -13,11 +13,11 @@ uid: security/authentication/identity-configuration
 
 # Configure Identity
 
-ASP.NET Core Identity uses default configuration for settings such as password policy, lockout time, and cookie settings that can be overridden in the app's `Startup` class.
+ASP.NET Core Identity uses default configuration for settings such as password policy, lockout time, and cookie settings. These settings can be overridden in the app's `Startup` class.
 
 ## Identity options
 
-The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) class represents the options that can be used to configure the identity system.
+The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) class represents the options that can be used to configure the Identity system.
 
 ### Claims Identity
 
@@ -91,7 +91,7 @@ ASP.NET Core 2.0 added the [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcor
 | [ChangePhoneNumberTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) | Gets or sets the `ChangePhoneNumberTokenProvider` used to generate tokens used when changing phone numbers. |
 | [EmailConfirmationTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.emailconfirmationtokenprovider) | Gets or sets the token provider used to generate tokens used in account confirmation emails. |
 | [PasswordResetTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider) | Gets or sets the [IUserTwoFactorTokenProvider<TUser>](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) used to generate tokens used in password reset emails. |
-| [ProviderMap](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap) | Used to construct UserTokenProviders with the key used as the providerName. |
+| [ProviderMap](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap) | Used to construct a [User Token Provider](/dotnet/api/microsoft.aspnetcore.identity.tokenproviderdescriptor) with the key used as the provider's name. |
 
 ### User
 
@@ -99,10 +99,10 @@ ASP.NET Core 2.0 added the [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcor
 
 [IdentityOptions.User](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) specifies the [UserOptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) with the properties shown in the table.
 
-| Property | Description |
-| -------- | ----------- |
-| [AllowedUserNameCharacters](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Allowed characters in the username.<br><br>The default value is:<br>abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-._@+ |
-| [RequireUniqueEmail](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Requires each user to have a unique email.<br><br>The default value is `false`. |
+| Property | Description | Default |
+| -------- | ----------- | :-----: |
+| [AllowedUserNameCharacters](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Allowed characters in the username. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-._@+ |
+| [RequireUniqueEmail](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Requires each user to have a unique email. | `false` |
 
 ## Cookie settings
 
