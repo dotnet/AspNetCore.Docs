@@ -1,29 +1,29 @@
 ---
 title: Use the Angular project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for Angular and the Angular CLI.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
 uid: spa/angular
 ---
-# Use the Angular project template (release candidate)
+# Use the Angular project template
 
 > [!NOTE]
-> This documentation isn't about the released Angular project template. **This documentation is about the release candidate of the Angular template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the Angular project template included in ASP.NET Core 2.0. It's about the newer Angular template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
 
-The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular 5 and the Angular CLI to implement a rich, client-side user interface (UI).
+The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular and the Angular CLI to implement a rich, client-side user interface (UI).
 
 The template is equivalent to creating an ASP.NET Core project to act as an API backend and an Angular CLI project to act as a UI. The template offers the convenience of hosting both project types in a single app project. Consequently, the app project can be built and published as a single unit.
 
 ## Create a new app
 
-To get started, ensure you've [installed the updated Angular project template](xref:spa/index#installation). These instructions don't apply to the previous Angular project template included in the .NET Core 2.0.x SDK.
+If using ASP.NET Core 2.0, ensure you've [installed the updated Angular project template](xref:spa/index#installation). If you have ASP.NET Core 2.1, there's no need to install it.
 
 Create a new project from a command prompt using the command `dotnet new angular` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 

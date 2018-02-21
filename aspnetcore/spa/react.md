@@ -1,21 +1,21 @@
 ---
 title: Use the React project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for React and create-react-app.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and create-react-app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
 uid: spa/react
 ---
-# Use the React project template (release candidate)
+# Use the React project template
 
 > [!NOTE]
-> This documentation isn't about the released React project template. **This documentation is about the release candidate of the React template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the React project template included in ASP.NET Core 2.0. It's about the newer React template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -23,7 +23,7 @@ The template is equivalent to creating both an ASP.NET Core project to act as an
 
 ## Create a new app
 
-To get started, ensure you've [installed the updated React project template](xref:spa/index#installation). These instructions don't apply to the previous React project template included in the .NET Core 2.0.x SDK.
+If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation). If you have ASP.NET Core 2.1, there's no need to install it.
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 

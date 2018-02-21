@@ -4,7 +4,7 @@ author: rick-anderson
 description: 
 manager: wpickett
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 02/21/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -21,7 +21,7 @@ uid: client-side/index
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
 - [Use Browser Link](xref:client-side/using-browserlink)
 - [Use JavaScriptServices for SPAs](xref:client-side/spa-services)
-- [Use the SPA project templates (RC)](xref:spa/index)
+- [Use the SPA project templates](xref:spa/index)
     - [Angular project template](xref:spa/angular)
     - [React project template](xref:spa/react)
     - [React with Redux project template](xref:spa/react-with-redux)
