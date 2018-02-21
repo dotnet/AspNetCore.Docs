@@ -131,7 +131,7 @@ Configure the app's cookie in `Startup.ConfigureServices`:
 | [Cookie.Expiration](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.expiration) | Gets or sets the lifespan of a cookie. |
 | [Cookie.HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) | Indicates whether a cookie is accessible by client-side script.<br><br>The default value is `true`. |
 | [Cookie.Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) | The name of the cookie.<br><br>The default value is `.AspNetCore.Cookies`. |
-| [Cookie.Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) | The cookie path. |  |
+| [Cookie.Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) | The cookie path. |
 | [Cookie.SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite) | The SameSite attribute of the cookie.<br><br>The default value is [SameSiteMode.Lax](/dotnet/api/microsoft.aspnetcore.http.samesitemode). |
 | [Cookie.SecurePolicy](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.securepolicy) | The [CookieSecurePolicy](/dotnet/api/microsoft.aspnetcore.http.cookiesecurepolicy) configuration.<br><br>The default value is [CookieSecurePolicy.SameAsRequest](/dotnet/api/microsoft.aspnetcore.http.cookiesecurepolicy). |
 | [CookieDomain](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.cookiedomain) | Only applies to ASP.NET Core 1.x.<br><br> The domain name where the cookie is served. |
