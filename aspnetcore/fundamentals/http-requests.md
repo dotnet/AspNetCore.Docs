@@ -48,10 +48,10 @@ public class MyController : Controller
         _httpClientFactory = httpClientFactory;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         var client = _httpClientFactory.CreateClient();
-        var result = client.GetStringAsync("http://myurl/");
+        var result = await client.GetStringAsync("http://myurl/");
         return View();
     }
 }
@@ -152,7 +152,7 @@ public class MyController : Controller
         _gitHubService = gitHubService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         var result = await _gitHubService.Client.GetStringAsync("/orgs/octokit/repos");
         return Ok(result);
