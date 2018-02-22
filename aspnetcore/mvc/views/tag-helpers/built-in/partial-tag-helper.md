@@ -21,12 +21,6 @@ The Partial Tag Helper is supported as of ASP.NET Core 2.1. It offers an alterna
 
 An inventory of this Tag Helper's attributes follows.
 
-## asp-for
-
-The `asp-for` attribute assigns an expression to be evaluated against the current model. The following markup loads *_ProductPartial.cshtml*, binding to it the model's `Product` property:
-
-[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_AspFor)]
-
 ## name
 
 The `name` attribute is required. It indicates the name or the path of the partial view to be rendered. When a partial view name is provided, the [view discovery](xref:mvc/views/overview#view-discovery) process is initiated. That process is bypassed when an explicit path is provided.
@@ -34,6 +28,12 @@ The `name` attribute is required. It indicates the name or the path of the parti
 The following markup uses an explicit path, indicating that *_ProductPartial.cshtml* is to be loaded from the *Shared* folder. Using the [asp-for](#asp-for) attribute, a model is passed to the partial view for binding.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Name)]
+
+## asp-for
+
+The `asp-for` attribute assigns an expression to be evaluated against the current model. The following markup loads *_ProductPartial.cshtml*, binding to it the model's `Product` property:
+
+[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_AspFor)]
 
 ## view-data
 
