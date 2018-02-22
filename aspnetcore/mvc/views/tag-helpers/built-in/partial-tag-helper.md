@@ -5,7 +5,7 @@ description: Discover the ASP.NET Core Partial Tag Helper and the role each of i
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 02/22/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -19,7 +19,7 @@ By [Scott Addie](https://github.com/scottaddie)
 
 The Partial Tag Helper is supported as of ASP.NET Core 2.1. It offers an alternative to [HTML Helper syntax](xref:mvc/views/partial#referencing-a-partial-view) for rendering a [partial view](xref:mvc/views/partial) in Razor Pages or MVC.
 
-An inventory of the Tag Helper's attributes follows.
+An inventory of this Tag Helper's attributes follows.
 
 ## asp-for
 
@@ -37,13 +37,15 @@ The following markup uses an explicit path, indicating that *_ProductPartial.csh
 
 ## view-data
 
-The `view-data` attribute assigns a [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) to pass along to the partial view. The following markup makes the entire ViewData collection accessible to the partial view:
+The `view-data` attribute assigns a [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) to pass to the partial view. The following markup makes the entire ViewData collection accessible to the partial view:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_ViewData&highlight=5-)]
 
-Notice that the `IsNumberReadOnly` key is set to `true` and added to the ViewBag. Consequently, `ViewBag["IsNumberReadOnly"]` is accessible within the partial view:
+Notice that the `IsNumberReadOnly` key is set to `true` and added to the ViewData collection. Consequently, `ViewData["IsNumberReadOnly"]` is made accessible within the partial view:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Shared/_ProductViewDataPartial.cshtml?highlight=5)]
+
+In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether the *Number* field is displayed as read only.
 
 ## Additional resources
 
