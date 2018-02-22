@@ -1,5 +1,5 @@
 ---
-title: Authenticate users with WS-Federation
+title: Authenticate users with WS-Federation in ASP.NET Core
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 manager: wpickett
@@ -13,7 +13,7 @@ uid: security/authentication/ws-federation.md
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
-This tutorial demonstrates how to enable users to sign in via a WS-Federation authentication provider, for example Active Directory Federation Services (ADFS) or Azure Active Directory. This tutorial uses ADFS on Windows Server 2012, but a similar approach can be taken with other providers.
+This tutorial demonstrates how to enable users to sign in via a WS-Federation authentication provider. Examples of providers include  Active Directory Federation Services (ADFS) and [Azure Active Directory](/azure/active-directory/). This tutorial uses ADFS on Windows Server 2012, but a similar approach can be taken with other providers.
 
 For ASP.NET Core 2.0 apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 
