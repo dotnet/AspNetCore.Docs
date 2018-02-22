@@ -87,7 +87,7 @@ The default behavior of the `View` method (`return View();`) is to return a view
 
 It doesn't matter if you implicitly return the `ViewResult` with `return View();` or explicitly pass the view name to the `View` method with `return View("<ViewName>");`. In both cases, view discovery searches for a matching view file in this order:
 
-   1. *Views/\[ControllerName]\[ViewName].cshtml*
+   1. *Views/\[ControllerName]/\[ViewName].cshtml*
    1. *Views/Shared/\[ViewName].cshtml*
 
 A view file path can be provided instead of a view name. If using an absolute path starting at the app root (optionally starting with "/" or "~/"), the *.cshtml* extension must be specified:
