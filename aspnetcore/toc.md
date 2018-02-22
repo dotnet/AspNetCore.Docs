@@ -102,6 +102,8 @@
 
 ## [Create backend services for mobile apps](mobile/native-mobile-backend.md)
 
+# [SignalR](xref:signalr/introduction-to-signalr)
+
 # [Fundamentals](fundamentals/index.md)
 ## [Application startup](fundamentals/startup.md)
 ## [Dependency injection (services)](fundamentals/dependency-injection.md)
