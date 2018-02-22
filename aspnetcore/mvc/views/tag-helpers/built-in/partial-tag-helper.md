@@ -41,7 +41,7 @@ The `view-data` attribute assigns a [ViewDataDictionary](/dotnet/api/microsoft.a
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_ViewData&highlight=5-)]
 
-Notice that the `IsNumberReadOnly` key is set to `true` and added to the ViewData collection. Consequently, `ViewData["IsNumberReadOnly"]` is made accessible within the partial view:
+Notice that the `IsNumberReadOnly` key value is set to `true` and added to the ViewData collection. Consequently, `ViewData["IsNumberReadOnly"]` is made accessible within the partial view:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Shared/_ProductViewDataPartial.cshtml?highlight=5)]
 
