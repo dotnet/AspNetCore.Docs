@@ -58,6 +58,25 @@ Name-value pairs written to the built-in [Configuration](/dotnet/api/microsoft.e
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the *options pattern*. For more information, see the [Options](xref:fundamentals/configuration/options) topic.
 
+## XML configuration
+
+To work with arrays in XML-formatted configuration sources, provide a `name` index to each element. Use the index to access the values:
+
+```xml
+<wizards>
+  <wizard name="Gandalf">
+    <age>1000</age>
+  </wizard>
+  <wizard name="Harry">
+    <age>17</age>
+  </wizard>
+</wizards>
+```
+
+```csharp
+Console.Write($"{Configuration["wizard:Harry:age"]}");
+// Output: 17
+```
 
 ## Configuration by environment
 

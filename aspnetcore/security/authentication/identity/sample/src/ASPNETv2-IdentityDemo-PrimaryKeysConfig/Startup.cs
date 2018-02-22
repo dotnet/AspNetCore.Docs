@@ -42,14 +42,14 @@ namespace webapptemplate
                 // Password settings
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 8;
+                options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = false;
 
                 // Lockout settings
+                options.Lockout.AllowedForNewUsers = true;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 10;
-                options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
                 options.User.RequireUniqueEmail = true;
@@ -58,11 +58,11 @@ namespace webapptemplate
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookie.Name = "YourAppCookieName";
                 options.ExpireTimeSpan = TimeSpan.FromDays(150);
                 options.LoginPath = "/Account/LogIn";
                 options.LogoutPath = "/Account/LogOff";
-                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
         }

@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/xplat
 ---
-# ASP.NET Core cross platform tutorials
+# ASP.NET Core cross-platform tutorials
 
 The following step-by-step guides for developing ASP.NET Core applications are available:
 

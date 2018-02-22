@@ -1,21 +1,21 @@
 ---
 title: Use the React-with-Redux project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for React with Redux and create-react-app.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React with Redux and create-react-app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
 uid: spa/react-with-redux
 ---
-# Use the React-with-Redux project template (release candidate)
+# Use the React-with-Redux project template
 
 > [!NOTE]
-> This documentation isn't about the released React-with-Redux project template. **This documentation is about the release candidate of the React-with-Redux template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the React-with-Redux project template included in ASP.NET Core 2.0. It's about the newer React-with-Redux template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
 
 The updated React-with-Redux project template provides a convenient starting point for ASP.NET Core apps using React, Redux, and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
