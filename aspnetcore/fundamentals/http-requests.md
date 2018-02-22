@@ -3,7 +3,8 @@ title: Initiate HTTP requests
 author: stevejgordon
 description: Learn about using the HttpClientFactory to managed logic HttpClient instances.
 manager: wpickett
-ms.author: riande
+ms.author: 
+ms.custom: mvc
 ms.date: 02/21/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
