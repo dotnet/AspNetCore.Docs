@@ -157,6 +157,7 @@
 ##### [Distributed Cache Tag Helper](mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 ##### [Environment Tag Helper](mvc/views/tag-helpers/built-in/environment-tag-helper.md)
 ##### [Image Tag Helper](mvc/views/tag-helpers/built-in/image-tag-helper.md)
+##### [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
 ### [Partial views](mvc/views/partial.md)
 ### [Dependency injection into views](mvc/views/dependency-injection.md)
 ### [View components](mvc/views/view-components.md)
