@@ -79,7 +79,7 @@ The content root is the base path to any content used by the app, such as views,
 
 The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files.
 
-## Dependency Injection (Services)
+## Dependency injection (services)
 
 A service is a component that's intended for common consumption in an app. Services are made available through [dependency injection (DI)](xref:fundamentals/dependency-injection). ASP.NET Core includes a native **I**nversion **o**f **C**ontrol (IoC) container that supports [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) by default. You can replace the default native container if you wish. In addition to its loose coupling benefit, DI makes services available throughout your app (for example, [logging](xref:fundamentals/logging/index)).
 
@@ -100,6 +100,10 @@ ASP.NET Core includes a rich set of built-in middleware:
 [OWIN](http://owin.org)-based middleware is available for ASP.NET Core apps, and you can write your own custom middleware.
 
 For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
+
+## Initiate HTTP requests
+
+For information about using `HttpClientFactory` to access HttpClient instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
 
 ## Environments
 
@@ -208,7 +212,3 @@ For more information, see [Choosing between .NET Core and .NET Framework](/dotne
 ## Choose between ASP.NET Core and ASP.NET
 
 For more information on choosing between ASP.NET Core and ASP.NET, see [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore).
-
-## Making HTTP requests
-
-For information about using `HttpClientFactory` to access HttpClient instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
