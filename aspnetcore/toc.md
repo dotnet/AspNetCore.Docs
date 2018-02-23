@@ -128,6 +128,7 @@
 ### [HTTP.sys](fundamentals/servers/httpsys.md)
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+## [Initiate HTTP requests](xref:fundamentals/http-requests)
 ## [Request features](fundamentals/request-features.md)
 ## [Primitives](xref:fundamentals/primitives/index)
 ### [Change tokens](xref:fundamentals/primitives/change-tokens)
@@ -136,7 +137,6 @@
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
-## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # [MVC](mvc/overview.md)
 ## [Razor Pages](xref:mvc/razor-pages/index)
