@@ -1,0 +1,13 @@
+﻿@page
+@model BasicUsageModel
+@{
+}
+
+<h1>Branches for Docs Repo</h1>
+
+<ul>
+    @foreach (var branch in Model.Branches)
+    {
+        <li>@branch.Name</li>
+    }
+</ul>
