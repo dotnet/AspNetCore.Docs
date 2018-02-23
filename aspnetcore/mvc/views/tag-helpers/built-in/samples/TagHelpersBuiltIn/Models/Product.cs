@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace TagHelpersBuiltIn.Models
 {
     public class Product

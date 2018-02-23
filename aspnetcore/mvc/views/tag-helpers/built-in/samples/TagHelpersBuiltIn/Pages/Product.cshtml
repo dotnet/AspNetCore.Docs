@@ -18,13 +18,13 @@
             <td>asp-for</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" asp-for=""@Model.Product"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" asp-for=""Product"" />"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_AspFor> -->
                 <partial name="_ProductPartial" 
-                         asp-for="@Model.Product" />
+                         asp-for="Product" />
                 <!-- </snippet_AspFor> -->
             </td>
         </tr>
@@ -32,13 +32,13 @@
             <td>name</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""Shared/_ProductPartial.cshtml"" asp-for=""@Model.Product"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""Shared/_ProductPartial.cshtml"" asp-for=""Product"" />"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_Name> -->
                 <partial name="Shared/_ProductPartial.cshtml"
-                         asp-for="@Model.Product" />
+                         asp-for="Product" />
                 <!-- </snippet_Name> -->
             </td>
         </tr>
@@ -46,7 +46,7 @@
             <td>view-data</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" asp-for=""@Model.Product"" view-data=""@ViewData"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" asp-for=""Product"" view-data=""@ViewData"" />"))
                 </code>
             </td>
             <td>
@@ -56,7 +56,7 @@
                 }
 
                 <partial name="_ProductViewDataPartial"
-                         asp-for="@Model.Product"
+                         asp-for="Product"
                          view-data="@ViewData" />
                 <!-- </snippet_ViewData> -->
             </td>
