@@ -1,5 +1,5 @@
 # Backup existing applicationHost.config
-copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingANCM.config
+copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingAspNetCoreModule.config
 
 Import-Module IISAdministration
 
@@ -29,7 +29,3 @@ New-IISConfigCollectionElement $globalModules -ConfigAttribute @{"name"="AspNetC
 # Configure module
 $modules = Get-IISConfigSection "system.webServer/modules" | Get-IISConfigCollection
 New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="AspNetCoreModule"}
-
-# Backup existing applicationHost.config
-copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_AfterInstallingANCM.config
-
