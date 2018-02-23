@@ -24,19 +24,19 @@ Supported Windows versions:
 
 &#8224;Conceptually, the use of the ASP.NET Core Module with IIS described in this document also applies to hosting ASP.NET Core apps on Nano Server IIS. For instructions specific to Nano Server, see the [ASP.NET Core with IIS on Nano Server](xref:tutorials/nano-server) tutorial.
 
-The ASP.NET Core Module only works with the Kestrel server. The module isn't compatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
+The ASP.NET Core Module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
 
 ## ASP.NET Core Module description
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to redirect web requests to backend ASP.NET Core apps. Many native modules, such as Windows Authentication remain active. The ASP.NET Core Module only takes control when a handler is selected for the request, and handler mapping is defined in the app's *web.config* file. To learn more about IIS modules active with the module, see [Using IIS modules](xref:host-and-deploy/iis/modules).
+The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to redirect web requests to backend ASP.NET Core apps. Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the module, see [Using IIS modules](xref:host-and-deploy/iis/modules).
 
-Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with .NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with ASP.NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and ASP.NET Core apps:
 
 ![ASP.NET Core Module](aspnet-core-module/_static/ancm.png)
 
-Requests arrive from the web to the kernel mode HTTP.sys driver, which routes the requests into IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a dynamically-configured port for the app, which isn't port 80/443.
+Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a dynamically-configured port for the app, which isn't port 80/443.
 
 The module specifies the dynamic port via an environment variable at startup, and the IIS Integration Middleware configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 

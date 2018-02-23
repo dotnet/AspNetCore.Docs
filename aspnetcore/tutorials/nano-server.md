@@ -99,7 +99,7 @@ To quickly verify if IIS is setup correctly, you can visit the URL `http://192.1
 
 ## Installing the ASP.NET Core Module
 
-The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. Install the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) on a regular (not Nano) machine. After installing the bundle on a regular machine, copy the following files to the file share that we created earlier.
 
 On a regular (not Nano) server with IIS, run the following copy commands:
 
