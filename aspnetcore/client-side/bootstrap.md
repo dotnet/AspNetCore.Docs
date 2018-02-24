@@ -26,7 +26,7 @@ There are several ways to get started with Bootstrap. If you're starting a new w
 
 Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to *bower.json* as a dependency:
 
-[!code-json[Main](../common/samples/WebApplication1/bower.json?highlight=5)]
+[!code-json[](../common/samples/WebApplication1/bower.json?highlight=5)]
 
 This is the recommended way to add Bootstrap to an ASP.NET Core project.
 
@@ -55,7 +55,7 @@ Install-Package bootstrap
 
 If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the *_Layout.cshtml* file does so like this:
 
-[!code-html[Main](../common/samples/WebApplication1/Views/Shared/_Layout.cshtml?highlight=9,13,51,59)]
+[!code-html[](../common/samples/WebApplication1/Views/Shared/_Layout.cshtml?highlight=9,13,51,59)]
 
 > [!NOTE]
 > If you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery.

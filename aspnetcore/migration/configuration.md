@@ -26,7 +26,7 @@ The *web.config* file has also been replaced in ASP.NET Core. Configuration itse
 
 For this article, we are starting with the partially-migrated ASP.NET Core project from [the previous article](mvc.md). To setup configuration, add the following constructor and property to the *Startup.cs* file located in the root of the project:
 
-[!code-csharp[Main](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-21)]
+[!code-csharp[](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-21)]
 
 Note that at this point, the *Startup.cs* file won't compile, as we still need to add the following `using` statement:
 
@@ -42,7 +42,7 @@ Add an *appsettings.json* file to the root of the project using the appropriate 
 
 Our ASP.NET MVC project included the required database connection string in *web.config*, in the `<connectionStrings>` element. In our ASP.NET Core project, we are going to store this information in the *appsettings.json* file. Open *appsettings.json*, and note that it already includes the following:
 
-[!code-json[Main](../migration/configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
+[!code-json[](../migration/configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
 
 
 In the highlighted line depicted above, change the name of the database from **_CHANGE_ME** to the name of your database.

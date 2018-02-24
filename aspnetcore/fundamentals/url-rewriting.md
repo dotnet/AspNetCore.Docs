@@ -59,7 +59,7 @@ Establish your URL rewrite and redirect rules by creating an instance of the `Re
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -87,7 +87,7 @@ Use `AddRedirect` to redirect requests. The first parameter contains your regex 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=9)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=9)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -157,7 +157,7 @@ Use `AddRewrite` to create a rule for rewriting URLs. The first parameter contai
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=10-11)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=10-11)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -212,7 +212,7 @@ Apply Apache mod_rewrite rules with `AddApacheModRewrite`. Make sure that the ru
 
 A `StreamReader` is used to read the rules from the *ApacheModRewrite.txt* rules file.
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=3-4,12)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=3-4,12)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -232,7 +232,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/redirected?id=$1`. The response status code is 302 (Found).
 
-[!code[Main](url-rewriting/sample/ApacheModRewrite.txt)]
+[!code[](url-rewriting/sample/ApacheModRewrite.txt)]
 
 Original Request: `/apache-mod-rules-redirect/1234`
 
@@ -277,7 +277,7 @@ To use rules that apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite`. M
 
 A `StreamReader` is used to read the rules from the *IISUrlRewrite.xml* rules file.
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=5-6,13)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=5-6,13)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -297,7 +297,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?id=$1`. The response is sent to the client with a 200 (OK) status code.
 
-[!code-xml[Main](url-rewriting/sample/IISUrlRewrite.xml)]
+[!code-xml[](url-rewriting/sample/IISUrlRewrite.xml)]
 
 Original Request: `/iis-rules-rewrite/1234`
 
@@ -365,7 +365,7 @@ Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=14)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=14)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -383,7 +383,7 @@ public void Configure(IApplicationBuilder app)
 
 The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If you make a request for `/file.xml`, it's redirected to `/xmlfiles/file.xml`. The status code is set to 301 (Moved Permanently). For a redirect, you must explicitly set the status code of the response; otherwise, a 200 (OK) status code is returned and the redirect won't occur on the client.
 
-[!code-csharp[Main](url-rewriting/sample/RewriteRules.cs?name=snippet1)]
+[!code-csharp[](url-rewriting/sample/RewriteRules.cs?name=snippet1)]
 
 Original Request: `/file.xml`
 
@@ -394,7 +394,7 @@ Use `Add(IRule)` to implement your own rule logic in a class that derives from `
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=15-16)]
+[!code-csharp[](url-rewriting/sample/Startup.cs?name=snippet1&highlight=15-16)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -413,7 +413,7 @@ public void Configure(IApplicationBuilder app)
 
 The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an `ArgumentException` is thrown. If you make a request for *image.png*, it's redirected to `/png-images/image.png`. If you make a request for *image.jpg*, it's redirected to `/jpg-images/image.jpg`. The status code is set to 301 (Moved Permanently), and the `context.Result` is set to stop processing rules and send the response.
 
-[!code-csharp[Main](url-rewriting/sample/RewriteRules.cs?name=snippet2)]
+[!code-csharp[](url-rewriting/sample/RewriteRules.cs?name=snippet2)]
 
 Original Request: `/image.png`
 

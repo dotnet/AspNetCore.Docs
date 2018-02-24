@@ -62,13 +62,13 @@ You can use the search box in Solution Explorer to find and display the font-awe
 
 Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development`. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
 
-[!code-html[Main](bower/sample/_Layout.cshtml?highlight=4&range=9-13)]
+[!code-html[](bower/sample/_Layout.cshtml?highlight=4&range=9-13)]
 
 In a production app you would add *font-awesome.min.css* to the environment tag helper for `Staging,Production`.
 
 Replace the contents of the *Views\Home\About.cshtml* Razor file with the following markup:
 
-[!code-html[Main](bower/sample/About.cshtml)]
+[!code-html[](bower/sample/About.cshtml)]
 
 Run the app and navigate to the About view to verify the font-awesome package works.
 
@@ -91,7 +91,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 * Open *bower.json*, and add jquery and bootstrap to the `dependencies` section. The resulting *bower.json* file will look like the following example. The versions will change over time and may not match the image below.
 
-[!code-json[Main](bower/sample/bower.json?highlight=5,6)]
+[!code-json[](bower/sample/bower.json?highlight=5,6)]
 
 * Save the *bower.json* file.
 
@@ -104,7 +104,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 * Add the `Microsoft.AspNetCore.StaticFiles` NuGet package to the project.
 * Enable static files to be served with the [Static file middleware](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions). Add a call to [UseStaticFiles](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
 
-[!code-csharp[Main](bower/sample/Startup.cs?highlight=9)]
+[!code-csharp[](bower/sample/Startup.cs?highlight=9)]
 
 ### Reference packages
 
@@ -114,7 +114,7 @@ In this section, you will create an HTML page to verify it can access the deploy
 
  Replace the contents of *Index.html* with the following markup:
 
-[!code-html[Main](bower/sample/Index.html)]
+[!code-html[](bower/sample/Index.html)]
 
 * Run the app and navigate to `http://localhost:<port>/Index.html`. Alternatively, with *Index.html* opened, press `Ctrl+Shift+W`. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.
 

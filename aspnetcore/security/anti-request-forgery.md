@@ -238,7 +238,7 @@ services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
 Using JavaScript with views, you can create the token using a service from within your view. To do so, you inject the `Microsoft.AspNetCore.Antiforgery.IAntiforgery` service into the view and call `GetAndStoreTokens`, as shown:
 
-[!code-csharp[Main](anti-request-forgery/sample/MvcSample/Views/Home/Ajax.cshtml?highlight=4-10,24)]
+[!code-csharp[](anti-request-forgery/sample/MvcSample/Views/Home/Ajax.cshtml?highlight=4-10,24)]
 
 This approach eliminates the need to deal directly with setting cookies from the server or reading them from the client.
 

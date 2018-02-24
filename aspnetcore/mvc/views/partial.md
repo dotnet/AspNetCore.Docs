@@ -38,15 +38,15 @@ Partial views are created like any other view: you create a *.cshtml* file withi
 
 From within a view page, there are several ways in which you can render a partial view. The simplest is to use `Html.Partial`, which returns an `IHtmlString` and can be referenced by prefixing the call with `@`:
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=9)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=9)]
 
 The `PartialAsync` method is available for partial views containing asynchronous code (although code in views is generally discouraged):
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=8)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=8)]
 
 You can render a partial view with `RenderPartial`. This method doesn't return a result; it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a Razor code block (you can also call `RenderPartialAsync` if necessary):
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=10-12)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=10-12)]
 
 Because it streams the result directly, `RenderPartial` and `RenderPartialAsync` may perform better in some scenarios. However, in most cases it's recommended you use `Partial` and `PartialAsync`.
 
@@ -99,19 +99,19 @@ You can also pass a model into a partial view. This can be the page's view model
 
 You can pass an instance of `ViewDataDictionary` and a view model to a partial view:
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?range=15-16)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?range=15-16)]
 
 The markup below shows the *Views/Articles/Read.cshtml* view which contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. You can pass new `ViewData` dictionary while retaining the existing `ViewData` if you use the constructor overload of the `ViewDataDictionary` highlighted below:
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml)]
 
 *Views/Shared/AuthorPartial*:
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Shared/AuthorPartial.cshtml)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Shared/AuthorPartial.cshtml)]
 
 The *ArticleSection* partial:
 
-[!code-cshtml[Main](partial/sample/src/PartialViewsSample/Views/Articles/ArticleSection.cshtml)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Articles/ArticleSection.cshtml)]
 
 At runtime, the partials are rendered into the parent view, which itself is rendered within the shared *_Layout.cshtml*
 

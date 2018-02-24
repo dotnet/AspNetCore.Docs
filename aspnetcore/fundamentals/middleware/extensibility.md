@@ -41,15 +41,15 @@ The middleware implementations function identically and record the value provide
 
 Middleware activated by convention:
 
-[!code-csharp[Main](extensibility/sample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility/sample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
 
 Middleware activated by `MiddlewareFactory`:
 
-[!code-csharp[Main](extensibility/sample/Middleware/IMiddlewareMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility/sample/Middleware/IMiddlewareMiddleware.cs?name=snippet1)]
 
 Extensions are created for the middlewares:
 
-[!code-csharp[Main](extensibility/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
+[!code-csharp[](extensibility/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
 It isn't possible to pass objects to the factory-activated middleware with `UseMiddleware`:
 
@@ -64,11 +64,11 @@ public static IApplicationBuilder UseIMiddlewareMiddleware(
 
 The factory-activated middleware is added to the built-in container in *Startup.cs*:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
 
 Both middlewares are registered in the request processing pipeline in `Configure`:
 
-[!code-csharp[Main](extensibility/sample/Startup.cs?name=snippet2&highlight=12-13)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=12-13)]
 
 ## IMiddlewareFactory
 

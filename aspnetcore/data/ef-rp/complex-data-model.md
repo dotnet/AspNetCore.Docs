@@ -38,7 +38,7 @@ The student pages currently displays the time of the enrollment date. Typically,
 
 Update *Models/Student.cs* with the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
 The [DataType](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
@@ -75,7 +75,7 @@ also provides client-side and server-side validation. The minimum value has no i
 
 Update the `Student` model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
@@ -107,7 +107,7 @@ The `Student` model uses `FirstMidName` for the first-name field because the fie
 
 Update the *Student.cs* file with the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
 With the preceding change, `Student.FirstMidName` in the app maps to the `FirstName` column of the `Student` table.
 
@@ -152,7 +152,7 @@ Before migration was applied, the name columns were of type [nvarchar(MAX)](http
 
 Update *Models/Student.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
 ### The Required attribute
 
@@ -180,7 +180,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 Create *Models/Instructor.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
+[!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
 Notice that several properties are the same in the `Student` and `Instructor` entities. In the Implementing Inheritance tutorial later in this series, this code is refactored
 to eliminate the redundancy.
@@ -227,7 +227,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 Create *Models/OfficeAssignment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/OfficeAssignment.cs)]
+[!code-csharp[](intro/samples/cu/Models/OfficeAssignment.cs)]
 
 ### The Key attribute
 
@@ -276,7 +276,7 @@ The preceding code specifies that there must be a related instructor. The preced
 
 Update *Models/Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
+[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
@@ -335,7 +335,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 Create *Models/Department.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
+[!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
 
 ### The Column attribute
 
@@ -396,7 +396,7 @@ An enrollment record is for a one course taken by one student.
 
 Update *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
+[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
 ### Foreign key and navigation properties
 
@@ -438,7 +438,7 @@ Note: EF 6.x supports implicit join tables for many-to-many relationships, but E
 
 Create *Models/CourseAssignment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/CourseAssignment.cs)]
+[!code-csharp[](intro/samples/cu/Models/CourseAssignment.cs)]
 
 ### Instructor-to-Courses
 
@@ -472,7 +472,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 
 Add the following highlighted code to *Data/SchoolContext.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
@@ -522,7 +522,7 @@ The preceding diagram shows:
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
+[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. The preceding code creates the following many-to-many relationships:
 
@@ -613,7 +613,7 @@ When migrations are run with existing data, there may be FK constraints that are
 
 The *{timestamp}_ComplexDataModel.cs* file contains the following code:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
 
 The preceding code adds a non-nullable `DepartmentID` FK to the `Course` table. The DB from the previous tutorial contains rows in `Course`, so that table cannot be updated by migrations.
 
@@ -629,10 +629,10 @@ Update the `ComplexDataModel` classes `Up` method:
 * Open the *{timestamp}_ComplexDataModel.cs* file.
 * Comment out the line of code that adds the `DepartmentID` column to the `Course` table.
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
- [!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+ [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
 

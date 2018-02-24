@@ -26,18 +26,18 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 `ConfigureServices` and `Configure` are called by the runtime when the app starts:
 
-[!code-csharp[Main](startup/snapshot_sample/Startup1.cs)]
+[!code-csharp[](startup/snapshot_sample/Startup1.cs)]
 
 Specify the `Startup` class with the [WebHostBuilderExtensions](/dotnet/api/Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions) [UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method:
 
-[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
+[!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
 
 The `Startup` class constructor accepts dependencies defined by the host. A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
 * [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment) to configure services by environment.
 * [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) to configure the app during startup.
 
-[!code-csharp[Main](startup/snapshot_sample/Startup2.cs)]
+[!code-csharp[](startup/snapshot_sample/Startup2.cs)]
 
 An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Working with multiple environments](xref:fundamentals/environments#startup-conventions).
 
@@ -57,7 +57,7 @@ The web host may configure some services before `Startup` methods are called. De
 
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
+[!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
 ## Services available in Startup
 
@@ -69,7 +69,7 @@ The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) 
 
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for a developer exception page, [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, and ASP.NET MVC:
 
-[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Startup.cs?range=28-48&highlight=5,6,10,13,15)]
+[!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Startup.cs?range=28-48&highlight=5,6,10,13,15)]
 
 Each `Use` extension method adds a middleware component to the request pipeline. For instance, the `UseMvc` extension method adds the [routing middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
 
@@ -81,7 +81,7 @@ For more information on how to use `IApplicationBuilder`, see [Middleware](xref:
 
 [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder.configureservices) and [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure) convenience methods can be used instead of specifying a `Startup` class. Multiple calls to `ConfigureServices` append to one another. Multiple calls to `Configure` use the last method call.
 
-[!code-csharp[Main](startup/snapshot_sample/Program.cs?highlight=18,22)]
+[!code-csharp[](startup/snapshot_sample/Program.cs?highlight=18,22)]
 
 ## Startup filters
 
@@ -93,15 +93,15 @@ Each `IStartupFilter` implements one or more middlewares in the request pipeline
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates how to register a middleware with `IStartupFilter`. The sample app includes a middleware that sets an options value from a query string parameter:
 
-[!code-csharp[Main](startup/sample/RequestSetOptionsMiddleware.cs?name=snippet1)]
+[!code-csharp[](startup/sample/RequestSetOptionsMiddleware.cs?name=snippet1)]
 
 The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
 
-[!code-csharp[Main](startup/sample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
+[!code-csharp[](startup/sample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
 
 The `IStartupFilter` is registered in the service container in `ConfigureServices`:
 
-[!code-csharp[Main](startup/sample/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](startup/sample/Startup.cs?name=snippet1&highlight=3)]
 
 When a query string parameter for `option` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
 

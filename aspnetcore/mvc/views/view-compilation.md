@@ -38,13 +38,13 @@ If your project targets .NET Core, no changes are necessary.
 
 The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default, which means this node can be safely removed from the *.csproj* file. If you prefer to be explicit, there's no harm in setting the `MvcRazorCompileOnPublish` property to `true`. The following *.csproj* sample highlights this setting:
 
-[!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
+[!code-xml[](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
-[!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
+[!code-xml[](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 
 ---
 

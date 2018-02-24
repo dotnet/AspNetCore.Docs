@@ -56,23 +56,23 @@ This tutorial demonstrates how to implement TPH inheritance. TPH is the only inh
 
 In the Models folder, create Person.cs and replace the template code with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Person.cs)]
+[!code-csharp[](intro/samples/cu/Models/Person.cs)]
 
 ## Make Student and Instructor classes inherit from Person
 
 In *Instructor.cs*, derive the Instructor class from the Person class and remove the key and name fields. The code will look like the following example:
 
-[!code-csharp[Main](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
+[!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
 
 Make the same changes in *Student.cs*.
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
 
 ## Add the Person entity type to the data model
 
 Add the Person entity type to *SchoolContext.cs*. The new lines are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
 This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a Person table in place of the Student and Instructor tables.
 
@@ -88,7 +88,7 @@ Don't run the `database update` command yet. That command will result in lost da
 
 Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
+[!code-csharp[](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
 This code takes care of the following database update tasks:
 

@@ -48,7 +48,7 @@ The version numbers in the preceding example were current when the tutorial was 
 
 In the *appsettings.json* file, change the name of the DB in the connection string to ContosoUniversity2.
 
-[!code-json[Main](intro/samples/cu/appsettings2.json?range=1-4)]
+[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
 Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name doesn't exist. Changing the connection string isn't required for getting started with migrations.
 
@@ -96,7 +96,7 @@ If the error message "Build failed." is displayed, run the command again. If you
 
 The EF Core command `migrations add` generated code to create the DB from. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
+[!code-csharp[](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
 
 Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, migrations calls the `Down` method.
 
@@ -115,7 +115,7 @@ Previously the connection string was changed to use a new name for the DB. The s
 
 Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolContextModelSnapshot.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
+[!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
 Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF Core determines what changed by comparing the data model to the snapshot file. EF Core interacts with the DB only when it has to update the DB.
 

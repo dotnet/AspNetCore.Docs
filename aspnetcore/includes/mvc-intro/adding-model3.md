@@ -12,7 +12,7 @@
 
 * In some locales you need to specify the date format. See the highlighted code below.
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateFormat.cs?name=snippet_1&highlight=2,10)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateFormat.cs?name=snippet_1&highlight=2,10)]
 
 We'll talk about `DataAnnotations` later in the tutorial.
 
