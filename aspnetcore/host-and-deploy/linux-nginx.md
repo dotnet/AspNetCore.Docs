@@ -33,7 +33,7 @@ This guide:
 
 ## Copy over the app
 
-Run `dotnet publish` from the dev environment to package an app into a self-contained directory that can run on the server.
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a self-contained directory that can run on the server.
 
 Copy the ASP.NET Core app to the server using whatever tool integrates into the organization's workflow (for example, SCP, FTP). Test the app, for example:
 

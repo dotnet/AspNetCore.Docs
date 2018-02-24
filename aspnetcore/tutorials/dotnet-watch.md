@@ -90,7 +90,7 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 1. Change the `Product` method of *MathController.cs* back to returning the sum and save the file.
 1. In a command shell, navigate to the *WebAppTests* folder.
-1. Run `dotnet restore`.
+1. Run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 1. Run `dotnet watch test`. Its output indicates that a test failed and that watcher is awaiting file changes:
 
      ```console

@@ -165,13 +165,13 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [.NET Core CLI](#tab/netcore-cli)
 
-    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the `dotnet run` command to run the app:
+    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the [dotnet run](/dotnet/core/tools/dotnet-run) command to run the app:
 
     ```cs
     dotnet run 
     ```
 
-    Browse the URL specified in the output from the `dotnet run` command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
+    Browse the URL specified in the output from the [dotnet run](/dotnet/core/tools/dotnet-run) command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
 
     ---
 

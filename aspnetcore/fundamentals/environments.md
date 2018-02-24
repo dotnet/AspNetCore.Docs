@@ -49,19 +49,19 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 
 [!code-json[](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
 
-When the application is launched with `dotnet run`, the first profile with `"commandName": "Project"` will be used. The value of `commandName` specifies the web server to launch. `commandName` can be one of :
+When the application is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` will be used. The value of `commandName` specifies the web server to launch. `commandName` can be one of :
 
 * IIS Express
 * IIS
 * Project (which launches Kestrel)
 
-When an app is launched with `dotnet run`:
+When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
 
 * *launchSettings.json* is read if available. `environmentVariables` settings in *launchSettings.json* override environment variables.
 * The hosting environment is displayed.
 
 
-The following output shows an app started with `dotnet run`:
+The following output shows an app started with [dotnet run](/dotnet/core/tools/dotnet-run):
 ```bash
 PS C:\Webs\WebApp1> dotnet run
 Using launch settings from C:\Webs\WebApp1\Properties\launchSettings.json...
@@ -105,7 +105,7 @@ For Azure app service:
 
 
 ### Windows
-To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using `dotnet run`, the following commands are used
+To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used
 
 **Command line**
 ```
