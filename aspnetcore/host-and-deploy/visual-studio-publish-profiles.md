@@ -104,7 +104,7 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 ## Basic command-line publishing
 
-Command-line publishing works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the `dotnet publish` command is run from the project directory (which contains the *.csproj* file). If not in the project folder, explicitly pass in the project file path. For example:
+Command-line publishing works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the *.csproj* file). If not in the project folder, explicitly pass in the project file path. For example:
 
 ```console
 dotnet publish c:/webs/web1
@@ -129,7 +129,7 @@ dotnet publish
 
 ---
 
-The `dotnet publish` produces output similar to the following:
+The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces output similar to the following:
 
 ```console
 C:\Webs\Web1>dotnet publish
@@ -150,7 +150,7 @@ The following command specifies a `Release` build and the publishing directory:
 dotnet publish -c Release -o C:/MyWebs/test
 ```
 
-The `dotnet publish` command calls MSBuild which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`.
+The [dotnet publish](/dotnet/core/tools/dotnet-publish) command calls MSBuild which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`.
 
 MSBuild properties can be passed using either of the following formats:
 
@@ -242,7 +242,7 @@ When publishing with a profile named *FolderProfile*, either of the commands bel
 * `dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 * `msbuild      /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 
-When invoking `dotnet build`, it calls `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when passing in a folder profile. When calling MSBuild directly on Windows, the .NET Framework version of MSBuild is used. MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
+When invoking [dotnet build](/dotnet/core/tools/dotnet-build), it calls `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when passing in a folder profile. When calling MSBuild directly on Windows, the .NET Framework version of MSBuild is used. MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
 
 The following folder publish profile was created with Visual Studio and publishes to a network share:
 

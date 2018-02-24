@@ -199,7 +199,7 @@ The bindings you set up with **Task Runner Explorer** are stored in the form of 
 </Target>
 ```
 
-Now the clean task is executed when you run the project in Visual Studio or from a command prompt using the `dotnet run` command (run `npm install` first).
+Now the clean task is executed when you run the project in Visual Studio or from a command prompt using the [dotnet run](/dotnet/core/tools/dotnet-run) command (run `npm install` first).
 
 ## Defining and running a new task
 
