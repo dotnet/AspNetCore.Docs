@@ -21,7 +21,7 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
+[!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
 
 Right click on a red squiggly line **> Quick Actions and Refactorings**.
 
@@ -40,7 +40,7 @@ Let's remove the `using` statements that are not needed. They show up by default
 
 The updated code:
 
-[!code-csharp[Main](./start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1)]
+[!code-csharp[](./start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1)]
 
 <!-- include start -->
 

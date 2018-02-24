@@ -21,7 +21,7 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1&highlight=2,11-12)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1&highlight=2,11-12)]
 
 Build and run the app.
 

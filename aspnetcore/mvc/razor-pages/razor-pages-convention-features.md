@@ -35,14 +35,14 @@ Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesopti
 
 The sample app adds a `{globalTemplate?}` route template to all of the pages in the app:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
 
 > [!NOTE]
 > The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this template is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Razor Pages options, such as adding [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions), are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample/).
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet1)]
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue` and inspect the result:
 
@@ -56,11 +56,11 @@ To demonstrate this and other conventions later in the topic, the sample app inc
 
 The sample app uses the `AddHeaderAttribute` class to add a header, `GlobalHeader`, to all of the pages in the app:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
 
 *Startup.cs*:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet2)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet2)]
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
@@ -76,7 +76,7 @@ Use [AddFolderRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applica
 
 The sample app uses `AddFolderRouteModelConvention` to add an `{otherPagesTemplate?}` route template to the pages in the *OtherPages* folder:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet3)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet3)]
 
 > [!NOTE]
 > The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 1`) due to setting the `Order` property.
@@ -91,7 +91,7 @@ Use [AddPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicati
 
 The sample app uses `AddPageRouteModelConvention` to add an `{aboutTemplate?}` route template to the About page:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet4)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet4)]
 
 > [!NOTE]
 > The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
@@ -106,13 +106,13 @@ Use [AddPageRoute](/dotnet/api/microsoft.extensions.dependencyinjection.pageconv
 
 The sample app creates a route to `/TheContactPage` for *Contact.cshtml*:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet5)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet5)]
 
 The Contact page can also be reached at `/Contact` via its default route.
 
 The sample app's custom route to the Contact page allows for an optional `text` route segment (`{text?}`). The page also includes this optional segment in its `@page` directive in case the visitor accesses the page at its `/Contact` route:
 
-[!code-cshtml[Main](razor-pages-convention-features/sample/Pages/Contact.cshtml?highlight=1)]
+[!code-cshtml[](razor-pages-convention-features/sample/Pages/Contact.cshtml?highlight=1)]
 
 Note that the URL generated for the **Contact** link in the rendered page reflects the updated route:
 
@@ -130,7 +130,7 @@ The default page model provider that implements [IPageApplicationModelProvider](
 
 For the examples in this section, the sample app uses an `AddHeaderAttribute` class, which is a [ResultFilterAttribute](/dotnet/api/microsoft.aspnetcore.mvc.filters.resultfilterattribute), that applies a response header:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Filters/AddHeader.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Filters/AddHeader.cs?name=snippet1)]
 
 Using conventions, the sample demonstrates how to apply the attribute to all of the pages in a folder and to a single page.
 
@@ -140,7 +140,7 @@ Use [AddFolderApplicationModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.a
 
 The sample demonstrates the use of `AddFolderApplicationModelConvention` by adding a header, `OtherPagesHeader`, to the pages inside the *OtherPages* folder of the app:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet6)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet6)]
 
 Request the sample's Page1 page at `localhost:5000/OtherPages/Page1` and inspect the headers to view the result:
 
@@ -152,7 +152,7 @@ Use [AddPageApplicationModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.app
 
 The sample demonstrates the use of `AddPageApplicationModelConvention` by adding a header, `AboutHeader`, to the About page:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet7)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet7)]
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
@@ -162,7 +162,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 [ConfigureFilter](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.configurefilter) configures the specified filter to apply. You can implement a filter class, but the sample app shows how to implement a filter in a lambda expression, which is implemented behind-the-scenes as a factory that returns a filter:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet8)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet8)]
 
 The page app model is used to check the relative path for segments that lead to the Page2 page in the *OtherPages* folder. If the condition passes, a header is added. If not, the `EmptyFilter` is applied.
 
@@ -178,11 +178,11 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet9)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet9)]
 
 *AddHeaderWithFactory.cs*:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Factories/AddHeaderWithFactory.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Factories/AddHeaderWithFactory.cs?name=snippet1)]
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
@@ -241,7 +241,7 @@ Assume that you prefer to change the way unnamed and named handler methods are n
 
 To establish this scheme, inherit from the `DefaultPageApplicationModelProvider` class and override the [CreateHandlerModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.internal.defaultpageapplicationmodelprovider.createhandlermodel) method to supply custom logic for resolving [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) handler names. The sample app shows you how this is done in its `CustomPageApplicationModelProvider` class:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/CustomPageApplicationModelProvider.cs?name=snippet1&highlight=1-2,45-46,64-68,78-85,87,92,106)]
+[!code-csharp[](razor-pages-convention-features/sample/CustomPageApplicationModelProvider.cs?name=snippet1&highlight=1-2,45-46,64-68,78-85,87,92,106)]
 
 Highlights of the class include:
 
@@ -255,7 +255,7 @@ Highlights of the class include:
 
 Register the `CustomPageApplicationModelProvider` in the `Startup` class:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet10)]
+[!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet10)]
 
 The page model in *Index.cshtml.cs* shows how the ordinary handler method naming conventions are changed for pages in the app. The ordinary "On" prefix naming used with Razor Pages is removed. The method that initializes the page state is now named `Get`. You can see this convention used throughout the app if you open any page model for any of the pages.
 
@@ -263,11 +263,11 @@ Each of the other methods start with the HTTP verb that describes its processing
 
 Note that `Async` is optional between `DeleteAllMessages` and `DeleteMessageAsync`. They're both asynchronous methods, but you can choose to use the `Async` postfix or not; we recommend that you do. `DeleteAllMessages` is used here for demonstration purposes, but we recommend that you name such a method `DeleteAllMessagesAsync`. It doesn't affect the processing of the sample's implementation, but using the `Async` postfix calls out the fact that it's an asynchronous method.
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Pages/Index.cshtml.cs?name=snippet1&highlight=1,6,16,29)]
+[!code-csharp[](razor-pages-convention-features/sample/Pages/Index.cshtml.cs?name=snippet1&highlight=1,6,16,29)]
 
 Note the handler names provided in *Index.cshtml* match the `DeleteAllMessages` and `DeleteMessageAsync` handler methods:
 
-[!code-cshtml[Main](razor-pages-convention-features/sample/Pages/Index.cshtml?range=29-60&highlight=7-8,24-25)]
+[!code-cshtml[](razor-pages-convention-features/sample/Pages/Index.cshtml?range=29-60&highlight=7-8,24-25)]
 
 `Async` in the handler method name `DeleteMessageAsync` is factored out by the `TryParseHandlerMethod` for handler matching of POST request to method. The `asp-page-handler` name of `DeleteMessage` is matched to the handler method `DeleteMessageAsync`.
 
@@ -277,13 +277,13 @@ MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by
 
 The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. It surrounds the execution of a page handler method. It allows you to process custom code at stages of page handler method execution. Here's an example from the sample app:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Filters/ReplaceRouteValueFilterAttribute.cs?name=snippet1)]
+[!code-csharp[](razor-pages-convention-features/sample/Filters/ReplaceRouteValueFilterAttribute.cs?name=snippet1)]
 
 This filter checks for a `globalTemplate` route value of "TriggerValue" and swaps in "ReplacementValue".
 
 The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel`:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=10-12&highlight=1)]
+[!code-csharp[](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=10-12&highlight=1)]
 
 Request the Page3 page from the sample app with at `localhost:5000/OtherPages/Page3/TriggerValue`. Notice how the filter replaces the route value:
 

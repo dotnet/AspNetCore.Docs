@@ -94,7 +94,7 @@ In the following sections, a class for each one of these entities is created.
 
 Create a *Models* folder. In the *Models* folder, create a class file named *Student.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
 The `ID` property becomes the primary key column of the database (DB) table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key.
 
@@ -108,7 +108,7 @@ If a navigation property can hold multiple entities, the navigation property mus
 
 In the *Models* folder, create *Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
 The `EnrollmentID` property is the primary key. This entity uses the `classnameID` pattern instead of `ID` like the `Student` entity. Typically developers choose one pattern and use it throughout the data model. In a later tutorial, using ID without classname is shown to make it easier to implement inheritance in the data model.
 
@@ -126,7 +126,7 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 In the *Models* folder, create *Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
@@ -140,7 +140,7 @@ In the project folder, create a folder named *Data*.
 
 In the *Data* folder create *SchoolContext.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
 This code creates a `DbSet` property for each entity set. In EF Core terminology:
 
@@ -151,7 +151,7 @@ This code creates a `DbSet` property for each entity set. In EF Core terminology
 
 When the DB is created, EF Core creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
 
 ## Register the context with dependency injection
 
@@ -159,13 +159,13 @@ ASP.NET Core includes [dependency injection](xref:fundamentals/dependency-inject
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
+[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces. Build the project.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings)]
+[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
 Open the *appsettings.json* file and add a connection string as shown in the following code:
 
@@ -183,7 +183,7 @@ EF Core creates an empty DB. In this section, a *Seed* method is written to popu
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
 
-[!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
 The code checks if there are any students in the DB. If there are no students in the DB, the DB is seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
@@ -197,7 +197,7 @@ In *Program.cs*, modify the `Main` method to do the following:
 
 The following code shows the updated *Program.cs* file.
 
-[!code-csharp[Main](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
 
 The first time the app is run, the DB is created and seeded with test data. When the data model is updated:
 * Delete the DB.
@@ -222,7 +222,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 
 The previous command adds the NuGet packages to the *.csproj file:
 
-[!code-csharp[Main](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
+[!code-csharp[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
 
 <a name="scaffold"></a>
 ## Scaffold the model
@@ -306,7 +306,7 @@ Asynchronous code does introduce a small amount of overhead at run time. For low
 
 In the following code, the `async` keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
-[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
+[!code-csharp[](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to:
 

@@ -10,4 +10,4 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
-[!code-csharp[Main](code/Models/Movie.cs?highlight=2,11-12)]
+[!code-csharp[](code/Models/Movie.cs?highlight=2,11-12)]

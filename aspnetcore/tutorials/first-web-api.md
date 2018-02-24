@@ -65,7 +65,7 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **C
 
 Update the `TodoItem` class with the following code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -77,7 +77,7 @@ Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > 
 
 Replace the class with the following code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 

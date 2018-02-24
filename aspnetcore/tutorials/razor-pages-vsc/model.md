@@ -24,7 +24,7 @@ uid: tutorials/razor-pages-vsc/model
 [!INCLUDE[model 2](../../includes/RP/model2.md)]
 [!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
-[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
 Build the project to verify you don't have any errors.
 
@@ -37,7 +37,7 @@ Edit the *RazorPagesMovie.csproj* file:
 * Select **File** > **Open File**, and then select the *RazorPagesMovie.csproj* file.
 * Add tool reference for `Microsoft.EntityFrameworkCore.Tools.DotNet` to the second **\<ItemGroup>**:
 
-[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
+[!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
 
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 

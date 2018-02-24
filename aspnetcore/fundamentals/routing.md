@@ -183,7 +183,7 @@ Add the NuGet package "Microsoft.AspNetCore.Routing".
 
 Add routing to the service container in *Startup.cs*:
 
-[!code-csharp[Main](../fundamentals/routing/sample/RoutingSample/Startup.cs?highlight=3&start=11&end=14)]
+[!code-csharp[](../fundamentals/routing/sample/RoutingSample/Startup.cs?highlight=3&start=11&end=14)]
 
 Routes must be configured in the `Configure` method in the `Startup` class. The sample below uses these APIs:
 
@@ -348,7 +348,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 The example below shows how to generate a link to a route given a dictionary of route values and a `RouteCollection`.
 
-[!code-csharp[Main](../fundamentals/routing/sample/RoutingSample/Startup.cs?range=45-59)]
+[!code-csharp[](../fundamentals/routing/sample/RoutingSample/Startup.cs?range=45-59)]
 
 The `VirtualPath` generated at the end of the sample above is `/package/create/123`.
 

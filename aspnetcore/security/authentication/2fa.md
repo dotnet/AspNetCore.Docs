@@ -55,7 +55,7 @@ We'll use the [Options pattern](xref:fundamentals/configuration/options) to acce
 
    * Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the *Services/SMSoptions.cs* file.
 
-[!code-csharp[Main](2fa/sample/Web2FA/Services/SMSoptions.cs)]
+[!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
 Set the `SMSAccountIdentification`, `SMSAccountPassword` and `SMSAccountFrom` with the [secret-manager tool](xref:security/app-secrets). For example:
 
@@ -76,16 +76,16 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 
 **Twilio:**  
-[!code-csharp[Main](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
+[!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
 
 **ASPSMS:**  
-[!code-csharp[Main](2fa/sample/Web2FA/Services/MessageServices_ASPSMS.cs)]
+[!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_ASPSMS.cs)]
 
 ### Configure startup to use `SMSoptions`
 
 Add `SMSoptions` to the service container in the `ConfigureServices` method in the *Startup.cs*:
 
-[!code-csharp[Main](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
+[!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
 
 ### Enable two-factor authentication
 
@@ -139,4 +139,4 @@ If you don't get a text message, see twilio log page.
 
 We recommend you use account lockout with 2FA. Once a user logs in (through a local account or social account), each failed attempt at 2FA is stored, and if the maximum attempts (default is 5) is reached, the user is locked out for five minutes (you can set the lock out time with `DefaultAccountLockoutTimeSpan`). The following configures Account to be locked out for 10 minutes after 10 failed attempts.
 
-[!code-csharp[Main](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)] 
+[!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)] 
