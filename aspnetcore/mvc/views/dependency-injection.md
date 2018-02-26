@@ -57,7 +57,7 @@ The HTML form used to update these preferences includes dropdown lists for three
 
 These lists are populated by a service that has been injected into the view:
 
-[!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/Profile/Index.cshtml?highlight=4,16,17,21,22,26,27)]
+[!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/Profile/Index.cshtml?highlight=4,16,17,21,22,26,27)]
 
 The `ProfileOptionsService` is a UI-level service designed to provide just the data needed for this form:
 
@@ -74,7 +74,7 @@ In addition to injecting new services, this technique can also be used to overri
 
 As you can see, the default fields include `Html`, `Component`, and `Url` (as well as the `StatsService` that we injected). If for instance you wanted to replace the default HTML Helpers with your own, you could easily do so using `@inject`:
 
-[!code-html[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/Helper/Index.cshtml?highlight=3,11)]
+[!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/Helper/Index.cshtml?highlight=3,11)]
 
 If you want to extend existing services, you can simply use this technique while inheriting from or wrapping the existing implementation with your own.
 
