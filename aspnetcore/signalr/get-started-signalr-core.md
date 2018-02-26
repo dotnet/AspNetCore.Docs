@@ -11,18 +11,20 @@ ms.technology: dotnet-signalr
 ms.prod: aspnet-core
 ms.custom: mvc
 ---
-# Tutorial: Get Started with SignalR for ASP.NET Core
+# Tutorial: Get started with SignalR for ASP.NET Core
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core. 
 
+  ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
+
 This tutorial demonstrates the following SignalR development tasks:
 
 > [!div class="checklist"]
-> * Add the SignalR library to an ASP.NET web application.
+> * Add the SignalR library to an ASP.NET web app.
 > * Create a SignalR hub to push content to clients.
-> * Modify the `Startup` class to configure the application.
+> * Modify the `Startup` class to configure the app.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
 
 # Prerequisites
@@ -38,22 +40,22 @@ Install the following:
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
-1. In the next step, choose **Web Application** to use a lightweight project template for using Razor Pages. Then select **Ok**.
+1. Select **Web Application** which creates a project using Razor Pages. Then select **Ok**.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
 
-1. Add the `Microsoft.AspNetCore.SignalR` NuGet package to the ASP.NET Core project. You can do this by selecting **Tools** > **NuGet Package Manager** > **Package Manager Console**. In the console, issue  the following command:
+1. Add the `Microsoft.AspNetCore.SignalR` NuGet package to the ASP.NET Core project. Select **Tools** > **NuGet Package Manager** > **Package Manager Console**. In the console, issue the following command:
 
-  ```text
-  Install-Package Microsoft.AspNetCore.SignalR -Version 1.0.0-alpha2-final
+  ```powershell
+  Install-Package Microsoft.AspNetCore.SignalR –IncludePrerelease
   ```
 
-  This command installs the `Microsoft.AspNetCore.SignalR` NuGet package that contains libraries SignalR server-side code.
+  The preceeding command installs the [Microsoft.AspNetCore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR) NuGet package that contains libraries SignalR server-side code.
 
 1. Install the JavaScript client library by using npm. `npm install` creates a *\node_modules\* folder and sub-folders for the libraries in the same location as where you run the npm command.
 
-  ```
-   npm install @aspnet/signalr-client
+  ```console
+   npm install @aspnet/signalr-client --save
   ```
 
 1. Copy the *signalr-client-1.0.0-alpha2-final.js* for SignalR from *\node_modules\@aspnet\signalr-client\dist\browser* to the *wwwroot\lib* folder in your project.
@@ -78,30 +80,30 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
   This adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
 
-1. In the `Startup` class you must also configure SignalR routes by calling `UseSignalR`. In the call to `UseSignalR` is where you setup the SignalR hub mappings.
+1. In the `Startup` class, you must also configure SignalR routes by calling `UseSignalR`. In the call to `UseSignalR` is where you setup the SignalR hub mappings.
 
   [!code-csharp[Startup](get-started-signalr-core/sample/Startup.cs?highlight=22,40-43)]
 
 ## Create the SignalR client code
 
-1. Open and replace the content in `\Pages\Index.cshtml` with the following code:
+1. Replace the content in *\Pages\Index.cshtml* with the following code:
 
   [!code-html[Index](get-started-signalr-core/sample/Index.cshtml)]
 
-  The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR, and a reference to *chat.js*, the custom SignalR client code.
+  The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
-1. Add a JavaScript file to the *\wwwroot\js\* folder named `chat.js` and add the following code to it:
+1. Add a JavaScript file to the *\wwwroot\js\* folder named *chat.js* and add the following code to it:
 
   [!code-html[Index](get-started-signalr-core/sample/chat.js)]
 
-## Verify the code works
+## Run the app
 
 1. Select **Debug** > **Start without debugging** to launch a browser and load the website locally.
 
-1. Enter a name and message, and click the **Send** button. You should see the name and message displayed in the page.
+1. Enter a name and message, and click the **Send** button. The name and message are displayed in the page.
 
-  ![Verify the chat app works](get-started-signalr-core/_static/signalr-verify-code.png)
+  ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
 ## Next Steps
 
-[Link](https://link)
+[Publish to Azure](xref:tutorials/publish-to-azure-webapp-using-vs)
