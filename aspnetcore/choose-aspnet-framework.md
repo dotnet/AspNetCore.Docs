@@ -49,4 +49,4 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 ## Resources
 
 * [Introduction to ASP.NET](https://docs.microsoft.com/aspnet/overview)
-* [Introduction to ASP.NET Core](xref:index)
+* [Introduction to ASP.NET Core](https://docs.microsoft.com/aspnet/core/)
