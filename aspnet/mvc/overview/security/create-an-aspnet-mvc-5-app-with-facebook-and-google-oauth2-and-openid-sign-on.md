@@ -154,6 +154,9 @@ To connect to authentication providers like Google and Facebook, you will need t
 <a id="fb"></a>
 ## Creating the app in Facebook and connecting the app to the project
 
+> [!WARNING]
+> For current Facebook OAuth2 authentication instructions, see [Configuring Facebook authentication](xref:/aspnet/core/security/authentication/social/facebook-logins)
+
 For Facebook OAuth2 authentication, you need to copy to your project some settings from an application that you create in Facebook.
 
 1. In your browser, navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in by entering your Facebook credentials.
