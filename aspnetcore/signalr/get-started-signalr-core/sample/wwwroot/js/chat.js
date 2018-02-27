@@ -1,4 +1,4 @@
-﻿var connection = new signalR.HubConnection('chat');
+﻿var connection = new signalR.HubConnection('chathub');
 
 connection.on('Send', (timestamp, user, message) => {
     var encodedUser = user;

@@ -3,7 +3,7 @@ uid: signalr/get-started-signalr-core
 title: Get Started with SignalR on ASP.NET Core
 author: rachelappel
 ms.author: rachelap
-description: In this tutorial, you will create a SignalR on ASP.NET Core application.
+description: In this tutorial, you create a SignalR on ASP.NET Core application.
 manager: wpickett
 ms.date: 02/23/2018
 ms.topic: tutorial
@@ -19,12 +19,13 @@ This tutorial teaches the basics of building a real-time app using SignalR for A
 
    ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
+[View or download the sample](get-started-signalr-core/sample/). [Download instructions](/tutorials/#how-to-download-a-sample)
+
 This tutorial demonstrates the following SignalR development tasks:
 
 > [!div class="checklist"]
 > * Create a SignalR on ASP.NET Core web app.
 > * Create a SignalR hub to push content to clients.
-> * Modify the `Startup` class to configure the app.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
 
 # Prerequisites
@@ -34,9 +35,10 @@ Install the following:
 * [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/core) or later.
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.6 or later with the ASP.NET and web development workload.
 
-## Create an ASP.NET Core project that uses SignalR
+## Create an ASP.NET Core project that hosts SignalR client and server
 
 1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**.
+1. Name the project `SignalRChat`
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
@@ -46,7 +48,7 @@ Install the following:
 
 The libraries that contain SignalR server-side code are included in the project template. You must include the client side JavaScript file.
 
-1. Install the JavaScript client library by using npm. `npm install` creates a *node_modules* folder and sub-folders for the libraries in the same location as where you run the npm command.
+1. Install the JavaScript client library with [npm](https://www.npmjs.com/). Open a command window at the root of your project and run `npm install`. `npm install` creates a *node_modules* folder and sub-folders for the libraries in the same location as where you run the npm command.
 
   ```console
    npm install @aspnet/signalr-client --save

@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRCoreChat.Hubs;
+using SignalRChat.Hubs;
 
-namespace SignalRCoreChat
+namespace SignalRChat
 {
     public class Startup
     {
@@ -39,7 +39,7 @@ namespace SignalRCoreChat
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("hubs/chat");
+                routes.MapHub<ChatHub>("ChatHub");
             });
 
             app.UseMvc(routes =>
