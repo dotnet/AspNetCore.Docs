@@ -97,7 +97,7 @@ Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
 
 To quickly verify if IIS is setup correctly, you can visit the URL `http://192.168.1.10/` and should see a welcome page. When IIS is installed, a website called `Default Web Site` listening on port 80 is created by default.
 
-## Installing the ASP.NET Core Module
+## Install the ASP.NET Core Module
 
 The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. Install the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) on a regular (not Nano) machine. After installing the bundle on a regular machine, copy the following files to the file share that we created earlier.
 
