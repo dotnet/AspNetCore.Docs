@@ -251,6 +251,7 @@
 #### [Google authentication](xref:security/authentication/google-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
 #### [Other authentication providers](xref:security/authentication/otherlogins)
+### [WS-Federation authentication](xref:security/authentication/ws-federation)
 ### [Account confirmation and password recovery](xref:security/authentication/accconfirm)
 ### [Enable QR code generation in Identity](xref:security/authentication/identity-enable-qrcodes)
 ### [Two-factor authentication with SMS](xref:security/authentication/2fa)

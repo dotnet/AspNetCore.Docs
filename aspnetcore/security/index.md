@@ -12,15 +12,15 @@ uid: security/index
 ---
 # ASP.NET Core Security Overview
 
-ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, SSL enforcement, app secrets, anti-request forgery protection, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps. 
+ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, SSL enforcement, app secrets, anti-request forgery protection, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps.
 
 ## ASP.NET Core security features
 
-ASP.NET Core provides many tools and libraries to secure your apps including built-in Identity providers but you can use 3rd party identity services such as Facebook, Twitter, or LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code. 
+ASP.NET Core provides many tools and libraries to secure your apps including built-in Identity providers but you can use 3rd party identity services such as Facebook, Twitter, or LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
 
 ## Authentication vs. Authorization
 
-Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they're authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do. 
+Authentication is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they're authorized for, during an authorization process. The authorization refers to the process that determines what a user is allowed to do.
 
 Another way to think of authentication is to consider it as a way to enter a space, such as a server, database, app or resource, while authorization is which actions the user can perform to which objects inside that space (server, database, or app).
 
@@ -33,16 +33,17 @@ ASP.NET Core and EF contain features that help you secure your apps and prevent 
 * [Cross-Site Request Forgery (CSRF)](https://docs.microsoft.com/aspnet/core/security/anti-request-forgery)
 * [Open redirect attacks](https://docs.microsoft.com/aspnet/core/security/preventing-open-redirects)
 
-There are more vulnerabilities that you should be aware of. For more information, see the section in this document on *ASP.NET Security Documentation*. 
+There are more vulnerabilities that you should be aware of. For more information, see the section in this document on *ASP.NET Security Documentation*.
 
 ## ASP.NET Security Documentation
 
 *   [Authentication](authentication/index.md)
     *   [Introduction to Identity](authentication/identity.md)
     *   [Enable authentication using Facebook, Google, and other external providers](authentication/social/index.md)
+    *   [Enable authentication with WS-Federation](authentication/ws-federation.md)
     * [Configure Windows Authentication](authentication/windowsauth.md)
     *   [Account confirmation and password recovery](authentication/accconfirm.md)
-    *   [Two-factor authentication with SMS](authentication/2fa.md) 
+    *   [Two-factor authentication with SMS](authentication/2fa.md)
     *   [Use cookie authentication without Identity](authentication/cookie.md)
     *   [Azure Active Directory](authentication/azure-active-directory/index.md)
         *   [Integrate Azure AD into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
