@@ -13,7 +13,7 @@ uid: security/authentication/ws-federation.md
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
-This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider. Examples of providers include  Active Directory Federation Services (ADFS) and [Azure Active Directory](/azure/active-directory/). This tutorial uses ADFS on Windows Server 2012, but a similar approach can be taken with other providers.
+This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Azure Active Directory](/azure/active-directory/) (AAD). It uses the ASP.NET Core 2.0 sample app described in [Enabling authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index).
 
 For ASP.NET Core 2.0 apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 
@@ -22,13 +22,9 @@ By default, the new middleware:
 * Doesn't allow unsolicited logins. This feature of the WS-Federation protocol is vulnerable to XSRF attacks. However, it can be enabled with the `AllowUnsolicitedLogins` option.
 * Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed. This path can be shared with other authentication providers by enabling the `SkipUnrecognizedRequests` option.
 
-## Use ADFS as an external login provider
+## Register the app with Active Directory
 
-Create an ASP.NET Core 2.0 project with individual user accounts, as described in [Enabling authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index).
-
-### Create an ADFS relying party
-
-ADFS requires a relying party trust for the ASP.NET Core app.
+### Active Directory Federation Services
 
 * Open the server's **Add Relying Party Trust Wizard** from the ADFS Management console:
 
@@ -63,9 +59,28 @@ ADFS requires a relying party trust for the ASP.NET Core app.
 
 * Click **Finish** > **OK** in the **Edit Claim Rules** window.
 
-### Add WS-Federation authentication to the app
+### Azure Active Directory
 
-* Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project. 
+* Navigate to the AAD tenant's app registrations blade. Click **New application registration**:
+
+![Azure Active Directory: App registrations](ws-federation/_static/AadNewAppRegistration.png)
+
+* Enter a name for the app registration. This is not important to the ASP.NET Core app.
+* Enter the URL the app listens on as the **Sign-on URL**:
+
+![Azure Active Directory: Create app registration](ws-federation/_static/AadCreateAppRegistration.png)
+
+* Click **Endpoints** and note the **Federation Metadata Document** URL. This will be the WS-Federation middleware's `MetadataAddress`:
+
+![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
+
+* Navigate to the new app registration. Click **Settings** > **Properties** and make note of the **App ID URI** This will be the WS-Federation middleware's `Wtrealm`:
+
+![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
+
+## Add WS-Federation as an external login provider for ASP.NET Core Identity
+
+* Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
 * Add WS-Federation to the `Configure` method in *Startup.cs*:
 
     ```csharp
@@ -76,11 +91,15 @@ ADFS requires a relying party trust for the ASP.NET Core app.
     services.AddAuthentication()
         .AddWsFederation(options =>
         {
-            // MetadataAddress represents the ADFS instance the app should use to use to authenticate users
-            options.MetadataAddress = "https://<your ADFS FQDN>/FederationMetadata/2007-06/FederationMetadata.xml";
+            // MetadataAddress represents the Active Directory instance used to authenticate users.
+            options.MetadataAddress = "https://<ADFS FQDN or AAD tenant>/FederationMetadata/2007-06/FederationMetadata.xml";
 
-            // Wtrealm is the relying party's identifier, its WS-Federation Passive protocol URL
+            // Wtrealm is the app's identifier in the Active Directory instance.
+            // For ADFS, use the relying party's identifier, its WS-Federation Passive protocol URL:
             options.Wtrealm = "https://localhost:44307/";
+
+            // For AAD, use the App ID URI from the app registration's Properties blade:
+            options.Wtrealm = "https://wsfedsample.onmicrosoft.com/bf0e7e6d-056e-4e37-b9a6-2c36797b9f01";
         });
 
     services.AddMvc()
@@ -89,13 +108,16 @@ ADFS requires a relying party trust for the ASP.NET Core app.
 
 [!INCLUDE[default settings configuration](social/includes/default-settings.md)]
 
-### Log in with ADFS
+### Log in with WS-Federation
 
 Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
 ![Log in page](ws-federation/_static/WsFederationButton.png)
 
-The button redirects to an ADFS sign-in page:
+With ADFS as the provider, the button redirects to an ADFS sign-in page:
 ![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
+
+With Azure Active Directory as the provider, the button redirects to an AAD sign-in page:
+![AAD sign-in page](ws-federation/_static/AadSignIn.png)
 
 A successful sign-in for a new user redirects to the app's user registration page:
 ![Register page](ws-federation/_static/Register.png)
