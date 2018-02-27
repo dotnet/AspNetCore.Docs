@@ -327,7 +327,14 @@ Specifies the amount of time to wait for the web host to shutdown.
 **Set using**: `UseShutdownTimeout`  
 **Environment variable**: `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 
-Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the `UseShutdownTimeout` extension method takes a `TimeSpan`. This feature is new in ASP.NET Core 2.0.
+Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the [UseShutdownTimeout](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useshutdowntimeout) extension method takes a [TimeSpan](/dotnet/api/system.timespan). This feature is new in ASP.NET Core 2.0.
+
+During the timeout period, hosting:
+
+* Triggers [IApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.applicationstopping).
+* Attempts to stop hosted services, logging any errors for services that fail to stop.
+
+If the timeout period expires before all of the hosted services stop, any remaining active services are stopped when the app shuts down. The services stop even if they haven't finished processing. If services require additional time to stop, increase the timeout.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
