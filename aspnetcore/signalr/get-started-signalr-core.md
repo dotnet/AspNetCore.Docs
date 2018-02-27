@@ -22,7 +22,7 @@ This tutorial teaches the basics of building a real-time app using SignalR for A
 This tutorial demonstrates the following SignalR development tasks:
 
 > [!div class="checklist"]
-> * Add the SignalR library to an ASP.NET web app.
+> * Add the SignalR library to an ASP.NET Core web app.
 > * Create a SignalR hub to push content to clients.
 > * Modify the `Startup` class to configure the app.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
@@ -98,9 +98,11 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 ## Run the app
 
-1. Select **Debug** > **Start without debugging** to launch a browser and load the website locally.
+1. Select **Debug** > **Start without debugging** to launch a browser and load the website locally. Copy the URL from the address bar.
 
-1. Enter a name and message, and click the **Send** button. The name and message are displayed in the page.
+1. Open another browser instance and paste in the URL.
+
+1. Choose either browser and enter a name and message, and click the **Send** button. The name and message are displayed on both pages instantly.
 
   ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
