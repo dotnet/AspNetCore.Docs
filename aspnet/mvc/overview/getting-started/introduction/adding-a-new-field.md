@@ -71,7 +71,7 @@ Doing so adds the following using statement:
 > 
 > [!code-csharp[Main](adding-a-new-field/samples/sample4.cs)]
 > 
-> This code assumes that titiles are unique. If you manually add a duplicate title, you'll get the following exception the next time you perform a migration.   
+> This code assumes that titles are unique. If you manually add a duplicate title, you'll get the following exception the next time you perform a migration.   
 >   
 >  *Sequence contains more than one element*  
 >   
