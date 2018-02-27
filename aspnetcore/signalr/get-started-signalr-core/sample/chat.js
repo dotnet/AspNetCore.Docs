@@ -1,5 +1,4 @@
-﻿var connection = new signalR.HubConnection('chathub');
-connection.start().catch(err => showErr(err));
+﻿var connection = new signalR.HubConnection('chat');
 
 connection.on('Send', (timestamp, user, message) => {
     var encodedUser = user;
@@ -19,7 +18,9 @@ document.getElementById('send').addEventListener('click', event => {
 
 function showErr(msg) {
     var listItem = document.createElement('li');
-    listItem.setAttribute("font-color", "red");
+    listItem.setAttribute("style", "color: red");
     listItem.innerHTML = msg;
     document.getElementById('messages').appendChild(listItem);
 }
+
+connection.start().catch(err => showErr(err));

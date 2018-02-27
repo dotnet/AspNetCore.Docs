@@ -3,23 +3,30 @@
     th, td { padding: 3px; }
 </style>
 <div class="row">
+<p></p>
+<div class="col-md-12">
+    <form action="#">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td colspan="2">
+                    <input type="text" id="user" />
+                </td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td colspan="2">
+                    <input type="text" id="message" />
+                </td>
+                <td>    
+                    <input type="submit" id="send" value="Send" />
+                </td>
+            </tr>
+        </table>
+    </form>
     <p></p>
-    <div class="col-md-12">
-        <form action="#">
-            <table>
-                <tr>
-                    <td>Name</td><td colspan="2"><input type="text" id="user" /></td>
-                </tr>
-                <tr>
-                    <td>Message</td>
-                    <td colspan="2"><input type="text" id="message" /></td>
-                    <td><input type="submit" id="send" value="Send" class="send" /></td>
-                </tr>
-            </table>
-        </form>
-        <p></p>
-        <ul id="messages" style="list-style-type:none"></ul>
-    </div>
+    <ul id="messages" style="list-style-type:none;"></ul>
 </div>
-<script src="~/lib/signalr-client-1.0.0-alpha2-final.js"></script>
+</div>
+<script src="~/lib/signalr.js"></script>
 <script src="~/js/chat.js"></script>
