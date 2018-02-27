@@ -17,7 +17,7 @@ By [Rachel Appel](https://twitter.com/rachelappel)
 
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
-  ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
+   ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
 This tutorial demonstrates the following SignalR development tasks:
 
