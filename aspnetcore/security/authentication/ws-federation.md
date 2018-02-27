@@ -5,7 +5,7 @@ description: This tutorial demonstrates how to use WS-Federation in an ASP.NET C
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/22/2018
+ms.date: 02/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -65,16 +65,16 @@ By default, the new middleware:
 
 ![Azure Active Directory: App registrations](ws-federation/_static/AadNewAppRegistration.png)
 
-* Enter a name for the app registration. This is not important to the ASP.NET Core app.
+* Enter a name for the app registration. This isn't important to the ASP.NET Core app.
 * Enter the URL the app listens on as the **Sign-on URL**:
 
 ![Azure Active Directory: Create app registration](ws-federation/_static/AadCreateAppRegistration.png)
 
-* Click **Endpoints** and note the **Federation Metadata Document** URL. This will be the WS-Federation middleware's `MetadataAddress`:
+* Click **Endpoints** and note the **Federation Metadata Document** URL. This is the WS-Federation middleware's `MetadataAddress`:
 
 ![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Navigate to the new app registration. Click **Settings** > **Properties** and make note of the **App ID URI** This will be the WS-Federation middleware's `Wtrealm`:
+* Navigate to the new app registration. Click **Settings** > **Properties** and make note of the **App ID URI**. This is the WS-Federation middleware's `Wtrealm`:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
@@ -124,7 +124,7 @@ A successful sign-in for a new user redirects to the app's user registration pag
 
 ## Use WS-Federation without ASP.NET Core Identity
 
-The WS-Federation middleware can also be used without Identity. For example:
+The WS-Federation middleware can be used without Identity. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
