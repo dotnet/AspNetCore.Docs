@@ -9,7 +9,7 @@ ms.date: 02/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: security/authentication/ws-federation.md
+uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
