@@ -110,7 +110,7 @@ To connect to authentication providers like Google and Facebook, you will need t
 ## Creating a Google app for OAuth 2 and connecting the app to the project
 
 > [!WARNING]
-> For current Google Oauth instructions, see [Configuring Google authentication in ASP.NET Core](/aspnet/core/security/authentication/social/google-logins).
+> For current Google OAuth instructions, see [Configuring Google authentication in ASP.NET Core](/aspnet/core/security/authentication/social/google-logins).
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
 1. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
