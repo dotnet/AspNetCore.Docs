@@ -97,9 +97,9 @@ Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
 
 To quickly verify if IIS is setup correctly, you can visit the URL `http://192.168.1.10/` and should see a welcome page. When IIS is installed, a website called `Default Web Site` listening on port 80 is created by default.
 
-## Installing the ASP.NET Core Module (ANCM)
+## Install the ASP.NET Core Module
 
-The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the [.NET Core Windows Server Hosting bundle](https://download.microsoft.com/download/B/1/D/B1D7D5BF-3920-47AA-94BD-7A6E48822F18/DotNetCore.2.0.0-WindowsHosting.exe) on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. Install the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore-2-windowshosting) on a regular (not Nano) machine. After installing the bundle on a regular machine, copy the following files to the file share that we created earlier.
 
 On a regular (not Nano) server with IIS, run the following copy commands:
 
@@ -119,39 +119,7 @@ Copy-Item -Path C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore_schema.xml -
 
 Run the following script in the remote session:
 
-```PowerShell
-# Backup existing applicationHost.config
-Copy-Item -Path C:\Windows\System32\inetsrv\config\applicationHost.config -Destination  C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingANCM.config
-
-Import-Module IISAdministration
-
-# Initialize variables
-$aspNetCoreHandlerFilePath="C:\windows\system32\inetsrv\aspnetcore.dll"
-Reset-IISServerManager -confirm:$false
-$sm = Get-IISServerManager
-
-# Add AppSettings section 
-$sm.GetApplicationHostConfiguration().RootSectionGroup.Sections.Add("appSettings")
-
-# Set Allow for handlers section
-$appHostconfig = $sm.GetApplicationHostConfiguration()
-$section = $appHostconfig.GetSection("system.webServer/handlers")
-$section.OverrideMode="Allow"
-
-# Add aspNetCore section to system.webServer
-$sectionaspNetCore = $appHostConfig.RootSectionGroup.SectionGroups["system.webServer"].Sections.Add("aspNetCore")
-$sectionaspNetCore.OverrideModeDefault = "Allow"
-$sm.CommitChanges()
-
-# Configure globalModule
-Reset-IISServerManager -confirm:$false
-$globalModules = Get-IISConfigSection "system.webServer/globalModules" | Get-IISConfigCollection
-New-IISConfigCollectionElement $globalModules -ConfigAttribute @{"name"="AspNetCoreModule";"image"=$aspNetCoreHandlerFilePath}
-
-# Configure module
-$modules = Get-IISConfigSection "system.webServer/modules" | Get-IISConfigCollection
-New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="AspNetCoreModule"}
-```
+[!code-powershell[](nano-server/enable-aspnetcoremodule.ps1)]
 
 > [!NOTE]
 > Delete the files *aspnetcore.dll* and *aspnetcore_schema.xml* from the share after the above step.
