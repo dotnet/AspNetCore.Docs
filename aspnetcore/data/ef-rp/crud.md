@@ -161,7 +161,7 @@ In Razor Pages, the `PageModel` derived class is the view model.
 
 ## Update the Edit page
 
-Update the page model for the Edit page:
+Update the page model for the Edit page. The major changes are highlighted:
 
 [!code-csharp[](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync&highlight=20,36)]
 
