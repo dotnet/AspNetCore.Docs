@@ -25,6 +25,8 @@ Collect the following information:
 
 Compare the information to the following common errors. If a match is found, follow the troubleshooting advice.
 
+[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+
 ## Installer unable to obtain VC++ Redistributable
 
 * **Installer Exception:** 0x80072efd or 0x80072f76 - Unspecified error
