@@ -108,7 +108,7 @@ When both Windows authentication and anonymous access are enabled, use the `[Aut
 In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows authentication. The recommended configuration varies slightly based on the web server being used.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with a blank document. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
 
 #### IIS
 
