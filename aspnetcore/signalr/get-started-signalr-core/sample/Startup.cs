@@ -39,7 +39,7 @@ namespace SignalRChat
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("ChatHub");
+                routes.MapHub<ChatHub>("/chat");
             });
 
             app.UseMvc(routes =>

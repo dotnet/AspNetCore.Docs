@@ -1,9 +1,9 @@
 ---
 uid: signalr/get-started-signalr-core
-title: Get Started with SignalR on ASP.NET Core
+title: Get started with SignalR on ASP.NET Core
 author: rachelappel
 ms.author: rachelap
-description: In this tutorial, you create a SignalR on ASP.NET Core application.
+description: In this tutorial, you create an app using SignalR for ASP.NET Core.
 manager: wpickett
 ms.date: 02/23/2018
 ms.topic: tutorial
@@ -24,41 +24,38 @@ This tutorial teaches the basics of building a real-time app using SignalR for A
 This tutorial demonstrates the following SignalR development tasks:
 
 > [!div class="checklist"]
-> * Create a SignalR on ASP.NET Core web app.
+> * Create an ASP.NET Core web app with a SignalR Hub.
 > * Create a SignalR hub to push content to clients.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
 
 # Prerequisites
 
-Install the following:
+Install the following software:
 
-* [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/core) or later.
+* [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1) or later.
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.6 or later with the ASP.NET and web development workload.
 
 ## Create an ASP.NET Core project that hosts SignalR client and server
 
-1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**.
-1. Name the project `SignalRChat`
+1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Name the project `SignalRChat`
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
-1. Select **Web Application** which creates a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector.
+1. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
 
-The libraries that contain SignalR server-side code are included in the project template. You must include the client side JavaScript file.
-
-1. Install the JavaScript client library with [npm](https://www.npmjs.com/). Open a command window at the root of your project and run `npm install`. `npm install` creates a *node_modules* folder and sub-folders for the libraries in the same location as where you run the npm command.
+The libraries that host SignalR server-side code are included in the project template. Install the client-side JavaScript separately with [npm](https://www.npmjs.com/).
 
   ```console
-   npm install @aspnet/signalr-client --save
+   npm install @aspnet/signalr
   ```
 
 1. Copy the *signalr.js* for SignalR from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
 
 ## Create the SignalR Hub
 
-A hub is a class that represents a high-level pipeline that allows the client and server to call methods on each other directly.
+A hub is a class that serves as a high-level pipeline that allows the client and server to call methods on each other.
 
 1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. 
 
@@ -74,15 +71,15 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. To configure a SignalR project, modify the `ConfigureServices` method of the application's `Startup` class by inserting a call to `services.AddSignalR()`.
 
-  This adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
+  `services.AddSignalR()` adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
 
-1. In the `Startup` class, you must also configure SignalR routes by calling `UseSignalR`. In the call to `UseSignalR` is where you setup the SignalR hub mappings.
+1. Configure SignalR routes and hub mappings by calling `UseSignalR`.
 
   [!code-csharp[Startup](get-started-signalr-core/sample/Startup.cs?highlight=22,40-43)]
 
 ## Create the SignalR client code
 
-1. Replace the content in *\Pages\Index.cshtml* with the following code:
+1. Replace the content in *Pages\Index.cshtml* with the following code:
 
   [!code-html[Index](get-started-signalr-core/sample/Index.cshtml)]
 
