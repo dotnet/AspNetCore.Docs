@@ -200,4 +200,4 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 * [Migrating Authentication and Identity](xref:migration/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
 * [Two-factor authentication with SMS](xref:security/authentication/2fa)
-* [Enabling authentication using Facebook, Google and other external providers](xref:security/authentication/social/index)
+* [Facebook, Google, and external provider authentication](xref:security/authentication/social/index)

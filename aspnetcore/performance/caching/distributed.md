@@ -1,7 +1,7 @@
 ---
 title: Working with a distributed cache in ASP.NET Core
 author: ardalis
-description: Learn how to use distributed caching to improve the performance and scalability of ASP.NET Core apps, especially when hosted in a cloud or server farm environment.
+description: Learn how to use ASP.NET Core distributed caching to improve app performance and scalability, especially in a cloud or server farm environment.
 manager: wpickett
 ms.author: riande
 ms.date: 02/14/2017
