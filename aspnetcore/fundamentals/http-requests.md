@@ -33,7 +33,7 @@ The `IHttpClientFactory` can be used directly in code to access `HttpClient` ins
 
 Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection](xref:fundamentals/dependency-injection) (DI). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
 
-[!code-csharp[Main](http-requests/samples/Pages/BasicUsage.cshtml?name=snippet1&highlight=7-10,18)]
+[!code-csharp[Main](http-requests/samples/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=7-10,18)]
 
 Using `IHttpClientFactory` in this fashion is a great way to begin refactoring an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those with a call to `CreateClient`.
 
