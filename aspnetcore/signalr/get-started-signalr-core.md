@@ -19,7 +19,7 @@ This tutorial teaches the basics of building a real-time app using SignalR for A
 
    ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
-[View or download the sample](get-started-signalr-core/sample/). [Download instructions](/tutorials/#how-to-download-a-sample)
+[View or download the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started-signalr-core/sample/). [View download instructions](/tutorials/#how-to-download-a-sample).
 
 This tutorial demonstrates the following SignalR development tasks:
 
@@ -41,17 +41,17 @@ Install the following software:
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
-1. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector.
+2. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
 
-The libraries that host SignalR server-side code are included in the project template. Install the client-side JavaScript separately with [npm](https://www.npmjs.com/).
+  The libraries that host SignalR server-side code are included in the project template. Install the client-side JavaScript separately with [npm](https://www.npmjs.com/).
 
   ```console
    npm install @aspnet/signalr
   ```
 
-1. Copy the *signalr.js* for SignalR from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
+3. Copy the *signalr.js* for SignalR from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
 
 ## Create the SignalR Hub
 
@@ -61,9 +61,9 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
-1. Create the `Send` method that sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous and scales better.
+1. Create the `Send` method that sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous. Asynchronous code scales better.
 
-  [!code-csharp[Startup](get-started-signalr-core/sample/ChatHub.cs?range=7-14)]
+  [!code-csharp[Startup](get-started-signalr-core/sample/Hubs/ChatHub.cs?range=7-14)]
 
 ## Configure the project to use SignalR
 
@@ -73,7 +73,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
   `services.AddSignalR()` adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
 
-1. Configure SignalR routes and hub mappings by calling `UseSignalR`.
+1. Configure routes to your hubs using `UseSignalR`.
 
   [!code-csharp[Startup](get-started-signalr-core/sample/Startup.cs?highlight=22,40-43)]
 
@@ -81,19 +81,19 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. Replace the content in *Pages\Index.cshtml* with the following code:
 
-  [!code-html[Index](get-started-signalr-core/sample/Index.cshtml)]
+  [!code-html[Index](get-started-signalr-core/sample/Pages/Index.cshtml)]
 
   The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
 1. Add a JavaScript file to the *wwwroot\js* folder named *chat.js* and add the following code to it:
 
-  [!code-javascript[Index](get-started-signalr-core/sample/chat.js)]
+  [!code-javascript[Index](get-started-signalr-core/sample/wwwroot/js/chat.js)]
 
 ## Run the app
 
 1. Select **Debug** > **Start without debugging** to launch a browser and load the website locally. Copy the URL from the address bar.
 
-1. Open another browser instance and paste the URL in the address bar. The browser can be the same
+1. Open another browser instance (any browser) and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and click the **Send** button. The name and message are displayed on both pages instantly.
 
