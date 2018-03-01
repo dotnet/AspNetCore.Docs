@@ -137,7 +137,7 @@ On the **Settings** page of the **Publish** dialog:
 
 ![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
-Click **Publish**. Visual Studio publishs your app to Azure. When the depoyment completes, the app is opened in a browser.
+Click **Publish**. Visual Studio publishs your app to Azure. When the deployment completes, the app is opened in a browser.
 
 ### Test your app in Azure
 
