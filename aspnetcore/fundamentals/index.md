@@ -103,7 +103,7 @@ For more information, see [Middleware](xref:fundamentals/middleware/index) and [
 
 ## Initiate HTTP requests
 
-For information about using `HttpClientFactory` to access HttpClient instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
+For information about using `IHttpClientFactory` to access `HttpClient` instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
 
 ## Environments
 
