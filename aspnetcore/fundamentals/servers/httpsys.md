@@ -20,7 +20,8 @@ By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/T
 
 [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) and offers some features that Kestrel doesn't provide.
 
-**Important!** HTTP.sys is incompatible with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and can't be used with IIS or IIS Express.
+> [!IMPORTANT]
+> HTTP.sys is incompatible with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and can't be used with IIS or IIS Express.
 
 HTTP.sys supports the following features:
 
@@ -107,10 +108,10 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
 ### Configure Windows Server
 
-1. Install the .NET Core or ASP.NET 4.x framework if the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install .NET Core, .NET Framework, or both (if the app is a .NET Core app targeting the .NET Framework).
 
    * **.NET Core** &ndash; If the app requires .NET Core, obtain and run the .NET Core installer from [.NET Downloads](https://www.microsoft.com/net/download/windows).
-   * **ASP.NET 4.x** &ndash; If the app requires ASP.NET 4.x, see [.NET Framework: Installation guide](/dotnet/framework/install/) to find installation instructions. Install the required ASP.NET 4.x framework. The installer for the latest ASP.NET 4.x framework can be found at [.NET Downloads](https://www.microsoft.com/net/download/windows).
+   * **.NET Framework** &ndash; If the app requires .NET Framework, see [.NET Framework: Installation guide](/dotnet/framework/install/) to find installation instructions. Install the required .NET Framework. The installer for the latest .NET Framework can be found at [.NET Downloads](https://www.microsoft.com/net/download/windows).
 
 1. Configure URLs and ports for the app.
 
@@ -127,7 +128,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
-   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`,`urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information on `UseUrls`, `urls`, and `ASPNETCORE_URLS`, see [Hosting](xref:fundamentals/hosting).
+   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information on `UseUrls`, `urls`, and `ASPNETCORE_URLS`, see [Hosting](xref:fundamentals/hosting).
 
    HTTP.sys uses the [HTTP Server API UrlPrefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
