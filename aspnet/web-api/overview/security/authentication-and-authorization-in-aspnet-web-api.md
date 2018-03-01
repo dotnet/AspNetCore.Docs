@@ -75,7 +75,7 @@ Authorization happens later in the pipeline, closer to the controller. That lets
 
 Web API provides a built-in authorization filter, [AuthorizeAttribute](https://msdn.microsoft.com/library/system.web.http.authorizeattribute.aspx). This filter checks whether the user is authenticated. If not, it returns HTTP status code 401 (Unauthorized), without invoking the action.
 
-You can apply the filter globally, at the controller level, or at the level of inidivual actions.
+You can apply the filter globally, at the controller level, or at the level of individual actions.
 
 **Globally**: To restrict access for every Web API controller, add the **AuthorizeAttribute** filter to the global filter list:
 
