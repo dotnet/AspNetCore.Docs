@@ -346,7 +346,7 @@ Add the line `Header set X-Content-Type-Options "nosniff"`. Save the file. Resta
 
 ### Load Balancing 
 
-This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing mutliple instances of the web apps behind the Apache proxy server.
+This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing multiple instances of the web apps behind the Apache proxy server.
 
 ```bash
 sudo yum install mod_proxy_balancer
