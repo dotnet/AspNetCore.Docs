@@ -32,8 +32,9 @@ This tutorial demonstrates the following SignalR development tasks:
 
 Install the following software:
 
-* [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1) or later.
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.6 or later with the ASP.NET and web development workload.
+* [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1) or later
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.6 or later with the ASP.NET and web development workload
+* [npm](https://www.npmjs.com/get-npm)
 
 ## Create an ASP.NET Core project that hosts SignalR client and server
 
