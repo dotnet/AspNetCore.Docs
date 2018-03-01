@@ -1,7 +1,7 @@
 ---
 title: Initiate HTTP requests
 author: stevejgordon
-description: Learn about using the IHttpClientFactory to managed logic HttpClient instances.
+description: Learn about using the IHttpClientFactory to manage logical HttpClient instances.
 manager: wpickett
 ms.author: 
 ms.custom: mvc
