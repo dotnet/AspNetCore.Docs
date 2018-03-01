@@ -1,7 +1,7 @@
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: ASP.NET Core tutorial on Razor Pages. Includes MVC Core, ASP.NET Core 2.x, introduction to web development, and Visual Studio 2017. This doc provides an overview of using Razor Pages in ASP.NET Core to ease the development of page-focused scenarios.
+description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 manager: wpickett
 ms.author: riande
 ms.date: 09/12/2017

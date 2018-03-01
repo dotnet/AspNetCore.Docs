@@ -270,7 +270,7 @@ If you can't get email working:
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google, and other external providers](social/index.md).
+To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
 
 You can combine local and social accounts by clicking on your email link. In the following sequence, "RickAndMSFT@gmail.com" is first created as a local login; however, you can create the account as a social login first, then add a local login.
 
