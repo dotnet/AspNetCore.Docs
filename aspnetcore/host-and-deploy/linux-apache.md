@@ -334,7 +334,7 @@ Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`. Save the file. Restar
 
 #### MIME-type sniffing
 
-The `X-Content-Type-Options` header prevents Internet Explorer from *MIME-sniffing* (determing a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, Internet Explorer renders the content as `text/html` regardless of the file's content.
+The `X-Content-Type-Options` header prevents Internet Explorer from *MIME-sniffing* (determining a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, Internet Explorer renders the content as `text/html` regardless of the file's content.
 
 Edit the *httpd.conf* file:
 
