@@ -17,7 +17,7 @@ Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
@@ -113,7 +113,7 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model4.md)]
 

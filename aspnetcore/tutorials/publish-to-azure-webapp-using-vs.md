@@ -10,11 +10,11 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
-
-
 # Publish an ASP.NET Core web app to Azure App Service using Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs), and [Rachel Appel](https://twitter.com/rachelappel)
+
+[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on a Mac.
 
@@ -137,7 +137,7 @@ On the **Settings** page of the **Publish** dialog:
 
 ![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
-Click **Publish**. Visual Studio publishs your app to Azure. When the depoyment completes, the app is opened in a browser.
+Click **Publish**. Visual Studio publishs your app to Azure. When the deployment completes, the app is opened in a browser.
 
 ### Test your app in Azure
 

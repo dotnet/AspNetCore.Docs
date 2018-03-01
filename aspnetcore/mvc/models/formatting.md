@@ -30,7 +30,7 @@ To return data in a specific format from a controller that inherits from the `Co
 
 Returning JSON-formatted data:
 
-[!code-csharp[Main](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=21-26)]
+[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=21-26)]
 
 Sample response from this action:
 
@@ -40,7 +40,7 @@ Note that the content type of the response is `application/json`, shown both in 
 
 To return plain text formatted data, use `ContentResult` and the `Content` helper:
 
-[!code-csharp[Main](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=47-52)]
+[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=47-52)]
 
 A response from this action:
 
@@ -48,7 +48,7 @@ A response from this action:
 
 Note in this case the `Content-Type` returned is `text/plain`. You can also achieve this same behavior using just a string response type:
 
-[!code-csharp[Main](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=54-59)]
+[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=54-59)]
 
 >[!TIP]
 > For non-trivial actions with multiple return types or options (for example, different HTTP status codes based on the result of operations performed), prefer `IActionResult` as the return type.
@@ -59,7 +59,7 @@ Content negotiation (*conneg* for short) occurs when the client specifies an [Ac
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
-[!code-csharp[Main](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=8,10&range=28-38)]
+[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=8,10&range=28-38)]
 
 A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](http://www.telerik.com/fiddler) to create a request that includes an Accept header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
 
@@ -71,7 +71,7 @@ Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.N
 
 Returning an object type:
 
-[!code-csharp[Main](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3&range=40-45)]
+[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3&range=40-45)]
 
 In the sample, a request for a valid author alias will receive a 200 OK response with the author's data. A request for an invalid alias will receive a 204 No Content response. Screenshots showing the response in XML and JSON formats are shown below.
 
@@ -106,7 +106,7 @@ To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatt
 
 Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
 
-[!code-csharp[Main](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
+[!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
 
 Alternately, you can add just the output formatter:
 

@@ -4,7 +4,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](code/Startup.cs?name=snippet2&highlight=6-8)]
+[!code-csharp[](code/Startup.cs?name=snippet2&highlight=6-8)]
 
 ## SQLite
 
@@ -20,7 +20,7 @@ There are many third party tools you can download to manage and view a SQLite da
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[Main](code\Models\SeedData.cs)]
+[!code-csharp[](code\Models\SeedData.cs)]
 
 If there are any movies in the DB, the seed initializer returns.
 
@@ -36,7 +36,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
-[!code-csharp[Main](../../tutorials/razor-pages\razor-pages-start\sample\RazorPagesMovie\Program.cs)]
+[!code-csharp[](../../tutorials/razor-pages\razor-pages-start\sample\RazorPagesMovie\Program.cs)]
 
 ### Test the app
 

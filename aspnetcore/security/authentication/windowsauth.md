@@ -51,7 +51,7 @@ Alternatively, these two properties can be configured in the *launchSettings.jso
 
 ## Enable Windows authentication with IIS
 
-IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
+IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module flows Windows authentication to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
 
 ### Create a new IIS site
 
@@ -108,7 +108,7 @@ When both Windows authentication and anonymous access are enabled, use the `[Aut
 In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows authentication. The recommended configuration varies slightly based on the web server being used.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with a blank document. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
 
 #### IIS
 

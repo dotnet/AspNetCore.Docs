@@ -334,7 +334,7 @@ Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`. Save the file. Restar
 
 #### MIME-type sniffing
 
-The `X-Content-Type-Options` header prevents Internet Explorer from *MIME-sniffing* (determing a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, Internet Explorer renders the content as `text/html` regardless of the file's content.
+The `X-Content-Type-Options` header prevents Internet Explorer from *MIME-sniffing* (determining a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, Internet Explorer renders the content as `text/html` regardless of the file's content.
 
 Edit the *httpd.conf* file:
 
@@ -346,7 +346,7 @@ Add the line `Header set X-Content-Type-Options "nosniff"`. Save the file. Resta
 
 ### Load Balancing 
 
-This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing mutliple instances of the web apps behind the Apache proxy server.
+This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing multiple instances of the web apps behind the Apache proxy server.
 
 ```bash
 sudo yum install mod_proxy_balancer

@@ -23,7 +23,7 @@ This article covers common appoaches to handling errors in ASP.NET Core apps.
 
 To configure an app to display a page that shows detailed information about exceptions, install the `Microsoft.AspNetCore.Diagnostics` NuGet package and add a line to the [Configure method in the Startup class](startup.md):
 
-[!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
+[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
 
 Put `UseDeveloperExceptionPage` before any middleware you want to catch exceptions in, such as `app.UseMvc`.
 
@@ -46,7 +46,7 @@ This request didn't have any cookies, but if it did, they would appear on the **
 
 It's a good idea to configure an exception handler page to use when the app isn't running in the `Development` environment.
 
-[!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
+[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
 
 In an MVC app, don't explicitly decorate the error handler action method with HTTP method attributes, such as `HttpGet`. Using explicit verbs could prevent some requests from reaching the method.
 
@@ -72,7 +72,7 @@ By default, this middleware adds simple, text-only handlers for common status co
 
 The middleware supports several different extension methods. One takes a lambda expression, another takes a content type and format string.
 
-[!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_StatusCodePages)]
+[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePages)]
 
 ```csharp
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
@@ -80,7 +80,7 @@ app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 
 There are also redirect extension methods. One sends a 302 status code to the client, and one returns the original status code to the client but also executes the handler for the redirect URL.
 
-[!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
+[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
 ```csharp
 app.UseStatusCodePagesWithReExecute("/error/{0}");

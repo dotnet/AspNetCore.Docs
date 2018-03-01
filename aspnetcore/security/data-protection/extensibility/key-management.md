@@ -217,4 +217,4 @@ The following sample code demonstrates creating and registering an `IKeyEscrowSi
 > [!NOTE]
 > To run this sample, you must be on a domain-joined Windows 8 / Windows Server 2012 machine, and the domain controller must be Windows Server 2012 or later.
 
-[!code-csharp[Main](key-management/samples/key-management-extensibility.cs)]
+[!code-csharp[](key-management/samples/key-management-extensibility.cs)]

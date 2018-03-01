@@ -13,22 +13,22 @@ ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals
 msc.type: authoredcontent
 ---
-ASP.NET MVC 4 Fundamentals
-====================
-by [Web Camps Team](https://twitter.com/webcamps)
+# ASP.NET MVC 4 Fundamentals
 
-> This Hands-On Lab is based on MVC (Model View Controller) Music Store, a tutorial application that introduces and explains step-by-step how to use ASP.NET MVC and Visual Studio. Throughout the lab you will learn the simplicity, yet power of using these technologies together. You will start with a simple application and will build it until you have a fully functional ASP.NET MVC 4 Web Application.
-> 
-> This Lab works with ASP.NET MVC 4.
-> 
-> If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
-> 
-> > [!NOTE]
-> > This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
-> 
-> 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/download/29843](https://www.microsoft.com/download/29843).
+By [Web Camps Team](https://twitter.com/webcamps)
 
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
+
+This Hands-On Lab is based on MVC (Model View Controller) Music Store, a tutorial application that introduces and explains step-by-step how to use ASP.NET MVC and Visual Studio. Throughout the lab you will learn the simplicity, yet power of using these technologies together. You will start with a simple application and will build it until you have a fully functional ASP.NET MVC 4 Web Application.
+
+This Lab works with ASP.NET MVC 4.
+
+If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
+
+This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
+
+> [!NOTE]
+> All sample code and snippets are included in the Web Camps Training Kit, available at [Microsoft-Web/WebCampTrainingKit Releases](https://aka.ms/webcamps-training-kit). The project specific to this lab is available at [ASP.NET MVC 4 Fundamentals](https://github.com/Microsoft-Web/HOL-MVC4Fundamentals).
 
 <a id="The_Music_Store_application"></a>
 ### The Music Store application

@@ -48,7 +48,7 @@ uid: getting-started-1.1
 
 4. Run the app.
 
-   The `dotnet run` command builds the app first if needed.
+   The [dotnet run](/dotnet/core/tools/dotnet-run) command builds the app first if needed.
 
    ```terminal
    dotnet run

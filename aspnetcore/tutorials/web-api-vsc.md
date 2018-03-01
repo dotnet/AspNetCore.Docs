@@ -63,7 +63,7 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 Creating a new project in .NET Core 2.0 adds the 'Microsoft.AspNetCore.All' provider in the *TodoApi.csproj* file. There's no need to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
-[!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
+[!code-xml[](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
 ## Add a model class
 
@@ -73,7 +73,7 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 
 Add a `TodoItem` class with the following code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -83,7 +83,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 Add a `TodoContext` class in the *Models* folder:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 

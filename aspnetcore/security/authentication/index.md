@@ -18,6 +18,8 @@ uid: security/authentication/index
 
 * [Enable authentication using Facebook, Google, and other external providers](social/index.md)
 
+* [Enable authentication with WS-Federation](ws-federation.md)
+
 * [Enable QR code generation in Identity](identity-enable-qrcodes.md)
 
 * [Configure Windows Authentication](windowsauth.md)

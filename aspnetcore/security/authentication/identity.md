@@ -56,23 +56,23 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
     Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
+    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-34)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-34)]
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
     Identity is enabled for the application by calling `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
         
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configure&highlight=21)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configure&highlight=21)]
     
     ---
      
@@ -95,7 +95,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to ``AccountController`` by dependency injection):
  
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
 
     If the user was created successfully, the user is logged in by the call to ``_signInManager.SignInAsync``.
 
@@ -107,7 +107,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     The ``Login`` action calls ``PasswordSignInAsync`` on the ``_signInManager`` object (provided to ``AccountController`` by dependency injection).
 
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
  
     The base ``Controller`` class exposes a ``User`` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
  
@@ -115,7 +115,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
     Clicking the **Log out** link calls the `LogOut` action.
  
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_logout&highlight=7)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_logout&highlight=7)]
  
     The preceding code above calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
  
@@ -126,11 +126,11 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-34)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-34)]
 
     ---
 	
@@ -165,13 +165,13 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [.NET Core CLI](#tab/netcore-cli)
 
-    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the `dotnet run` command to run the app:
+    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the [dotnet run](/dotnet/core/tools/dotnet-run) command to run the app:
 
     ```cs
     dotnet run 
     ```
 
-    Browse the URL specified in the output from the `dotnet run` command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
+    Browse the URL specified in the output from the [dotnet run](/dotnet/core/tools/dotnet-run) command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
 
     ---
 
@@ -200,4 +200,4 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 * [Migrating Authentication and Identity](xref:migration/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
 * [Two-factor authentication with SMS](xref:security/authentication/2fa)
-* [Enabling authentication using Facebook, Google and other external providers](xref:security/authentication/social/index)
+* [Facebook, Google, and external provider authentication](xref:security/authentication/social/index)

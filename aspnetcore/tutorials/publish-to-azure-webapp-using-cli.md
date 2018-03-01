@@ -18,6 +18,8 @@ uid: tutorials/publish-to-azure-webapp-using-cli
 
 By [Cam Soper](https://twitter.com/camsoper)
 
+[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+
 This tutorial will show you how to build and deploy an ASP.NET Core application to Microsoft Azure App Service using command line tools.  When finished, you'll have a web application built in ASP.NET MVC Core hosted as an Azure App Service Web App.  This tutorial is written using Windows command line tools, but can be applied to macOS and Linux environments, as well.  
 
 In this tutorial, you learn how to:
