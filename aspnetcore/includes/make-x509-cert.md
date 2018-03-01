@@ -1,6 +1,3 @@
-On macOS, Linux, and Windows, self-signed X.509 certificates can be created using [OpenSSL](https://www.openssl.org/).
+On Windows, self-signed certificates can be created using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
 
-On Windows, additional options include:
-
-* [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps)
-* [SelfCert](https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net)
+On macOS, Linux, and Windows, certificates can be created using [OpenSSL](https://www.openssl.org/).
