@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HttpClientFactorySample.GitHub;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
 namespace HttpClientFactorySample.Pages
 {
+    #region snippet1
     public class BasicUsageModel : PageModel
     {
         private readonly IHttpClientFactory _clientFactory;
@@ -37,6 +35,11 @@ namespace HttpClientFactorySample.Pages
                 var data = await response.Content.ReadAsStringAsync();
                 Branches = JsonConvert.DeserializeObject<IEnumerable<GitHubBranch>>(data);
             }
+            else
+            {
+                Branches = Array.Empty<GitHubBranch>();
+            }
         }
     }
+    #endregion
 }

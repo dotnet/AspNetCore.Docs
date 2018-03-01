@@ -29,34 +29,11 @@ There are several ways `IHttpClientFactory` can be used in an app. None of them 
 
 The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. The service must first be registered with the ServiceProvider:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHttpClient();
-    services.AddMvc();
-}
-```
+[!code-json[Main](http-requests/samples/Startup.cs?name=snippet1&highlight=4)]
 
 Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection](xref:fundamentals/dependency-injection) (DI). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
 
-```csharp
-public class MyController : Controller
-{
-    IHttpClientFactory _httpClientFactory;
-
-    public MyController(IHttpClientFactory httpClientFactory)
-    {
-        _httpClientFactory = httpClientFactory;
-    }
-
-    public async Task<IActionResult> Index()
-    {
-        var client = _httpClientFactory.CreateClient();
-        var result = await client.GetStringAsync("http://myurl/");
-        return View();
-    }
-}
-```
+[!code-json[Main](http-requests/samples/Pages/BasicUsage.cshtml?name=snippet1&highlight=7-10,18)]
 
 Using `IHttpClientFactory` in this fashion is a great way to begin refactoring an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those with a call to `CreateClient`.
 
