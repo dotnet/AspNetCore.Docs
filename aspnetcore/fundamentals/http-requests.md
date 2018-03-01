@@ -323,7 +323,7 @@ public static void Configure(IServiceCollection services)
 }
 ```
 
-## Handling errors with Polly
+## Handle errors with Polly
 
 _NOTE: This is a WIP since the Polly Extensions API is still currently under design._
 
