@@ -15,7 +15,7 @@ uid: fundamentals/http-requests
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon) 
 
-A [IHttpClientFactory](/dotnet/api/microsoft.extensions.http.ihttpclientfactory) can be registered and used to configure and create [HttpClient](/dotnet/api/system.net.http.httpclient) instances in an app. It offers the following benefits:
+An [IHttpClientFactory](/dotnet/api/microsoft.extensions.http.ihttpclientfactory) can be registered and used to configure and create [HttpClient](/dotnet/api/system.net.http.httpclient) instances in an app. It offers the following benefits:
 
 - Provides a central location for naming and configuring logical `HttpClient` instances. For example, a "github" client can be registered and pre-configured to access GitHub. A default client can be registered for other purposes.
 - Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that.
@@ -27,7 +27,7 @@ There are several ways `IHttpClientFactory` can be used in an app. None of them 
 
 ## Basic usage
 
-The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. The service must first be registered with the ServiceProvider:
+The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. The service must first be registered with the services provider:
 
 [!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet1&highlight=4)]
 
