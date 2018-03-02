@@ -19,12 +19,12 @@ This tutorial teaches the basics of building a real-time app using SignalR for A
 
    ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
 
-[View or download the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started-signalr-core/sample/). [View download instructions](/tutorials/#how-to-download-a-sample).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started-signalr-core/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 This tutorial demonstrates the following SignalR development tasks:
 
 > [!div class="checklist"]
-> * Create an ASP.NET Core web app with a SignalR Hub.
+> * Create an ASP.NET Core web app with a SignalR hub.
 > * Create a SignalR hub to push content to clients.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
 
@@ -38,11 +38,11 @@ Install the following software:
 
 ## Create an ASP.NET Core project that hosts SignalR client and server
 
-1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Name the project `SignalRChat`
+1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Name the project `SignalRChat`.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
-2. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector.
+2. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector, though SignalR runs on older versions of .NET.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
 
@@ -52,7 +52,7 @@ Install the following software:
    npm install @aspnet/signalr
   ```
 
-3. Copy the *signalr.js* for SignalR from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
+3. Copy the *signalr.js* from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
 
 ## Create the SignalR Hub
 
@@ -82,7 +82,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. Replace the content in *Pages\Index.cshtml* with the following code:
 
-  [!code-html[Index](get-started-signalr-core/sample/Pages/Index.cshtml)]
+  [!code-cshtml[Index](get-started-signalr-core/sample/Pages/Index.cshtml)]
 
   The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
