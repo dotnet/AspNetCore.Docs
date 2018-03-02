@@ -10,7 +10,9 @@
     {
         public Task HandleAsync(AuthorizationHandlerContext context)
         {
-            foreach (var requirement in context.PendingRequirements)
+            var pendingRequirements = context.PendingRequirements.ToList();
+
+            foreach (var requirement in pendingRequirements)
             {
                 if (requirement is ReadPermission)
                 {
