@@ -13,7 +13,7 @@ namespace Culture
             _next = next;
         }
 
-        public Task Invoke(HttpContext context)
+        public Task InvokeAsync(HttpContext context)
         {
             var cultureQuery = context.Request.Query["culture"];
             if (!string.IsNullOrWhiteSpace(cultureQuery))
