@@ -70,9 +70,9 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 The SignalR server must be configured so that it knows to pass requests to SignalR.
 
-1. To configure a SignalR project, modify the `ConfigureServices` method of the application's `Startup` class by inserting a call to `services.AddSignalR()`.
+1. To configure a SignalR project, modify the `ConfigureServices` method of the application's `Startup` class by inserting a call to `services.AddSignalR`.
 
-  `services.AddSignalR()` adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
+  `services.AddSignalR` adds SignalR as part of the [ASP.NET Core middleware](xref:fundamentals/middleware/index) pipeline.
 
 1. Configure routes to your hubs using `UseSignalR`.
 
