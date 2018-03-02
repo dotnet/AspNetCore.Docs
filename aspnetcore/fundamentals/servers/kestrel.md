@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/servers/kestrel
 ---
-# Introduction to Kestrel web server implementation in ASP.NET Core
+# Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
