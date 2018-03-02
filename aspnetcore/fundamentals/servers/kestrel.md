@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/servers/kestrel
 ---
-# Introduction to Kestrel web server implementation in ASP.NET Core
+# Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
@@ -179,7 +179,7 @@ The `Listen` method binds to a TCP socket, and an options lambda lets you config
 
 Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints.
 
-[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
+[!INCLUDE[How to make an X.509 cert](../../includes/make-x509-cert.md)]
 
 **Bind to a Unix socket**
 
@@ -333,7 +333,7 @@ var host = new WebHostBuilder()
 > [!NOTE]
 > HTTPS and HTTP cannot be hosted on the same port.
 
-[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
+[!INCLUDE[How to make an X.509 cert](../../includes/make-x509-cert.md)]
 
 ---
 ## Next steps

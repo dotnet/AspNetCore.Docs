@@ -218,6 +218,9 @@ The following code moves the middleware delegate to a class:
 
 [!code-csharp[](index/sample/Culture/RequestCultureMiddleware.cs)]
 
+> [!NOTE]
+> In ASP.NET Core 1.x, the middleware `Task` method's name must be `Invoke`. In ASP.NET Core 2.0 or later, the name can be either `Invoke` or `InvokeAsync`.
+
 The following extension method exposes the middleware through [IApplicationBuilder](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.iapplicationbuilder):
 
 [!code-csharp[](index/sample/Culture/RequestCultureMiddlewareExtensions.cs)]
