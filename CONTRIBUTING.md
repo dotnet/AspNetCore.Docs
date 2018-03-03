@@ -121,7 +121,7 @@ Our goal is to write documentation that is easily understandable by the widest p
 
 ## Microsoft Writing Style Guide
 
-The [Microsoft Writing Style Guide](/style-guide/welcome/) provides writing style and terminology guidance for all forms of technology communication, including the ASP.NET Core documentation.
+The [Microsoft Writing Style Guide](https://docs.microsoft.com/style-guide/welcome/) provides writing style and terminology guidance for all forms of technology communication, including the ASP.NET Core documentation.
 
 ## Redirects
 
