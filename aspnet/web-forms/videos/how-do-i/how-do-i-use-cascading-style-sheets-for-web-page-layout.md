@@ -17,6 +17,6 @@ msc.type: video
 ====================
 by [Chris Pels](https://twitter.com/chrispels)
 
-In this video we learn how to use &amp;lt;div&amp;gt; elements in combination with cascading style sheets (CSS) to create robust and higher performance web pages. The &amp;lt;div&amp;gt; based approach will be compared to the &amp;lt;table&amp;gt; based layout approach used by most web sites over recent years. Then, several CSS-based approaches will be shown, ranging from absolute positioning to floating elements. We also learn the benefits of separating structural HTML from design with the use of CSS.
+In this video we learn how to use `<div>` elements in combination with cascading style sheets (CSS) to create robust and higher performance web pages. The `<div>`based approach will be compared to the `<table>` based layout approach used by most web sites over recent years. Then, several CSS-based approaches will be shown, ranging from absolute positioning to floating elements. We also learn the benefits of separating structural HTML from design with the use of CSS.
 
 [&#9654; Watch video (29 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-cascading-style-sheets-for-web-page-layout)
