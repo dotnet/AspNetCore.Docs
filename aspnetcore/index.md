@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an introduction to ASP.NET Core.
 manager: wpickett
 ms.author: riande
-ms.date: 12/12/2017
+ms.date: 02/28/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -38,7 +38,7 @@ ASP.NET Core provides the following benefits:
 * Ability to build and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
 
-ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. This allows you to optimize your app to include only the necessary NuGet packages. In fact, ASP.NET Core 2.x apps targeting .NET Core only require a [single NuGet package](xref:fundamentals/metapackage). The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
+ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. Using NuGet packages allows you to optimize your app to include only the necessary dependencies. In fact, ASP.NET Core 2.x apps targeting .NET Core only require a [single NuGet package](xref:fundamentals/metapackage). The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
@@ -54,7 +54,21 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#buil
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](xref:client-side/bootstrap). See [Client-side development](xref:client-side/index) for more details.
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](xref:client-side/bootstrap). For more information, see [Client-side development](xref:client-side/index).
+
+## ASP.NET Core targeting .NET Framework
+
+ASP.NET Core can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. There are no plans to remove support for targeting .NET Framework in ASP.NET Core. Generally, ASP.NET Core is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+
+There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
+
+* Cross-platform. Runs on macOS, Linux, and Windows.
+* Improved performance
+* Side-by-side versioning
+* New APIs
+* Open source
+
+We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
 ## Next steps
 
