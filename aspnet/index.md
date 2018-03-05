@@ -1,6 +1,7 @@
 ---
 uid: index
 layout: HubPage 
+ms.topic: hub-page
 title: ASP.NET Documentation | Microsoft Docs 
 description: 
 ---
