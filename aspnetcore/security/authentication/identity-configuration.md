@@ -4,7 +4,7 @@ author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 manager: wpickett
 ms.author: scaddie
-ms.date: 02/21/2018
+ms.date: 03/06/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -128,7 +128,7 @@ Configure the app's cookie in `Startup.ConfigureServices`:
 | [AutomaticChallenge](/dotnet/api/microsoft.aspnetcore.builder.authenticationoptions.automaticchallenge) | Only applies to ASP.NET Core 1.x.<br><br> If true, the authentication middleware handles automatic challenges. If false, the authentication middleware only alters responses when explicitly indicated by the `AuthenticationScheme`. |
 | [ClaimsIssuer](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions.claimsissuer) | Gets or sets the issuer that should be used for any claims that are created (inherited from [AuthenticationSchemeOptions](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions)). |
 | [Cookie.Domain](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.domain) | The domain to associate the cookie with. |
-| [Cookie.Expiration](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.expiration) | Gets or sets the lifespan of a cookie. |
+| [Cookie.Expiration](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.expiration) | Gets or sets the lifespan of the HTTP cookie (not the authentication cookie). This property is overridden by [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan). It shouldn't be used in the context of CookieAuthentication. |
 | [Cookie.HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) | Indicates whether a cookie is accessible by client-side script.<br><br>The default value is `true`. |
 | [Cookie.Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) | The name of the cookie.<br><br>The default value is `.AspNetCore.Cookies`. |
 | [Cookie.Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) | The cookie path. |
