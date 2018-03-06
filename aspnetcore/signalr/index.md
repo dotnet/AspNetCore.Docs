@@ -12,4 +12,4 @@ uid: signalr/index
 ---
 # SignalR
 
-* [Get Started with SignalR for ASP.NET Core](get-started-signalr-core.md)
+* [Get started with SignalR for ASP.NET Core](get-started-signalr-core.md)
