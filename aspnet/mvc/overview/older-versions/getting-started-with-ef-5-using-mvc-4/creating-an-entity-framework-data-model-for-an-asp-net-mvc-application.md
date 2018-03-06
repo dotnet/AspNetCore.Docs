@@ -54,7 +54,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > 
 > ## Original version of the tutorial
 > 
-> The original version of the tutorial is available in the [the EF 4.1 / MVC 3 e-book](https://social.technet.microsoft.com/wiki/contents/articles/11608.e-book-gallery-for-microsoft-technologies.aspx#GettingStartedwiththeEntityFramework4.1usingASP.NETMVC).
+> The original version of the tutorial is available in the [EF 4.1 / MVC 3 e-book](https://social.technet.microsoft.com/wiki/contents/articles/11608.e-book-gallery-for-microsoft-technologies.aspx#GettingStartedwiththeEntityFramework4.1usingASP.NETMVC).
 
 
 ## The Contoso University Web Application
