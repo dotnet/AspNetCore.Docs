@@ -125,6 +125,8 @@ For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attack
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
+For more information, see [Razor view compilation and precompilation in ASP.NET Core](xref:mvc/views/view-compilation).
+
 ## Razor support for C# 7.1
 
 The Razor view engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics. To use C# 7.1 in your project, add the following property in your project file and then reload the solution:
