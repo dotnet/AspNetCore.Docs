@@ -28,7 +28,7 @@ This tutorial demonstrates the following SignalR development tasks:
 > * Create a SignalR hub to push content to clients.
 > * Use the SignalR JavaScript library to send messages and display updates from the hub.
 
-# Prerequisites
+## Prerequisites
 
 Install the following software:
 
