@@ -42,7 +42,6 @@ The connection between the client and server is persistent, unlike an HTTP conne
 
 SignalR abstracts over a number of techniques for building real-time web applications. [WebSockets](https://tools.ietf.org/html/rfc7118) is the optimal transport, but other techniques like Server-Sent Events and Long Polling can be used when those aren't available. SignalR will automatically detect and initialize the appropriate transport based on features supported on the server and client.
 
-
 ## Hubs and Endpoints
 
 SignalR uses Hubs and Endpoints to communicate between clients and servers. The Hubs API covers the most scenarios.
@@ -57,7 +56,6 @@ The following diagram shows the relationship between hubs, endpoints, and client
 
 ![SignalR map](introduction-signalr-core/_static/signalr-core-architecture.png)
 
+## Related resources
 
-## Related Resources
-
-[Get Started with SignalR for ASP.NET Core](get-started-signalr-core)
+[Get started with SignalR for ASP.NET Core](get-started-signalr-core)
