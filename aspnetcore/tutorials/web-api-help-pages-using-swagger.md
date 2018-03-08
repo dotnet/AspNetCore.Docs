@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Web API help pages using Swagger
+title: ASP.NET Core Web API help pages using Swagger/Open API
 author: spboyer
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API application.
 manager: wpickett
@@ -10,24 +10,23 @@ ms.technology: aspnet
 ms.topic: article
 uid: tutorials/web-api-help-pages-using-swagger
 ---
-# ASP.NET Core Web API help pages using Swagger
+# ASP.NET Core Web API help pages using Swagger/Open API
 
-By [Christoph Nienaber](https://twitter.com/zuckerthoben)
+By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](http://rsuter.com)
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming app.
 
-Generating good documentation and help pages for your Web API, using [Swagger](https://swagger.io/) with a .NET Core implementation is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.  
-In this article two popular Swagger .NET implementations are showcased: [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RSuter/NSwag),.
+Generating good documentation and help pages for your Web API, using [Swagger](https://swagger.io/) (a.k.a Open API) with a .NET Core implementation is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*. In this article two popular Swagger .NET implementations are showcased: [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://nswag.org).
 
-* [Swagger](https://swagger.io/) is a machine-readable representation of a RESTful API that enables support for interactive documentation, client SDK generation, and discoverability.
+* [Swagger](https://swagger.io/) is a machine-readable description of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
 
 * [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is an open source project for generating Swagger documents for ASP.NET Core Web APIs.
 
-* [NSwag](https://github.com/RSuter/NSwag) also is an open source project for integrating Swagger Ui and [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core Web APIs, while also offering approaches to generate C# and TypeScript client code for your api.
+* [NSwag](https://nswag.org) is another open source project for integrating Swagger UI and [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core Web APIs, while also offering approaches to generate C# and TypeScript client code for your API.
 
-# What is Swagger?
+# What is Swagger/Open API?
 
-Swagger is defining a standard interface for [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) APIs that is language-agnostic. It allows both computers and humans to understand the capabilities of a service without any direct access to the implementation (source code, network access, documentation). The goal is to minimize the amount of work needed to connect disassociated services and also to reduce the amount of time needed to accurately document a service.
+Swagger is a specification to describe [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) APIs that is language-agnostic. The Swagger project has been renamed to Open API, so both names can be used interchangeably, but Open API is preferred. It allows both computers and humans to understand the capabilities of a service without any direct access to the implementation (source code, network access, documentation). The goal is to minimize the amount of work needed to connect disassociated services and also to reduce the amount of time needed to accurately document a service.
 
 ## Swagger specification (swagger.json)
 
@@ -103,9 +102,9 @@ The core to the Swagger flow is the Swagger specification, by default a document
 }
 ```
 
-## Swagger Ui
+## Swagger UI
 
-Swagger offers a user interface that gives information about the service at hand, using the generated Swagger specification. It looks like this:
+Swagger UI offers a web user interface that gives information about the service at hand, using the generated Swagger specification. Both Swashbuckle and NSwag ship with an embedded version of Swagger UI so that it can easily be hosted in your ASP.NET Core application using a simple middleware registration call. The web UI looks like this:
 
 ![Swagger UI](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
@@ -113,11 +112,11 @@ Each public action method in your Controllers can be tested from the UI. Click a
 
 ![Example Swagger GET test](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
-**NOTE:** The Swagger UI version used for the screenshots is version 2. For a V3 example see [Petstore example](http://petstore.swagger.io/)
+**Note:** The Swagger UI version used for the screenshots is version 2. For a V3 example see [Petstore example](http://petstore.swagger.io/)
 
-# Getting Started
+# Getting started
 
-See the following pages to integrate Swagger UI and the Swagger toolchain to your solution using one of the following middlewares: 
+See the following pages to generate Swagger specifications and integrate Swagger UI with one of the two toolchains: 
 
 [Getting Started with Swashbuckle](getting-started-with-swashbuckle.md)
 

@@ -17,17 +17,17 @@ uid: tutorials/getting-started-with-NSwag
 
 <a name=getting-started-with-NSwag></a>
 
-By [Christoph Nienaber](https://twitter.com/zuckerthoben)
+By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](http://rsuter.com)
 
-When using NSwag with ASP.NET Core there is only one package you need to get started:
+When using NSwag with ASP.NET Core via middleware there is only one package you need to get started:
 
-* `NSwag.AspNetCore`: The main package, contains the Swagger UI (v2 and v3), Swagger Generator and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+* `NSwag.AspNetCore`: The main package, contains the Swagger generator, Swagger UI (v2 and v3) and [ReDoc UI](https://github.com/Rebilly/ReDoc).
 
-It's highly recommended to make use of the code generation capabilities of NSwag. Either by using [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), an easy to use Windows program to generate client code in C# and TypeScript for your API, or by using `NSwag.CodeGeneration.CSharp`or `NSwag.CodeGeneration.TypeScript` packages to to code generation right inside your project. There is also the possibility to use NSwag via [Command line](https://github.com/NSwag/NSwag/wiki/CommandLine), [MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild), [T4 Templates](https://github.com/NSwag/NSwag/wiki/T4) or [Cake](https://agc93.github.io/Cake.NSwag/doc/intro.html). 
+It's highly recommended to make use of the code generation capabilities of NSwag. Either by using [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), an easy to use Windows program to generate client code in C# and TypeScript for your API, or by using `NSwag.CodeGeneration.CSharp` or `NSwag.CodeGeneration.TypeScript` packages to to code generation right inside your project. There is also the possibility to use NSwag via [Command line](https://github.com/NSwag/NSwag/wiki/CommandLine), [MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild), [T4 Templates](https://github.com/NSwag/NSwag/wiki/T4) or [Cake](https://agc93.github.io/Cake.NSwag/doc/intro.html). 
 
 # Features
 
-The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger Generator, but also to make use of the flexible code generation capabilities. You don't even have to have an existing API yourself. You can easily use 3rd party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way you can speed up your development and also adjust easier to API changes. 
+The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but also to make use of the flexible code generation capabilities. You don't even have to have an existing API yourself. You can easily use 3rd party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way you can speed up your development and also adjust easier to API changes. 
 
 # Package install via NuGet
 
