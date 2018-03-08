@@ -1,5 +1,4 @@
 ---
-uid: signalr/get-started-signalr-core
 title: Get started with SignalR on ASP.NET Core
 author: rachelappel
 ms.author: rachelap
@@ -10,6 +9,7 @@ ms.topic: tutorial
 ms.technology: dotnet-signalr
 ms.prod: aspnet-core
 ms.custom: mvc
+uid: signalr/get-started-signalr-core
 ---
 # Tutorial: Get started with SignalR for ASP.NET Core
 
