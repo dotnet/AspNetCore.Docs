@@ -220,7 +220,7 @@ https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/S
 The app generates the following exception:
 
 ```text
-`SqlException: Cannot open database "ContosoUniversity" requested by the login.
+SqlException: Cannot open database "ContosoUniversity" requested by the login.
 The login failed.
 Login failed for user 'user name'.
 ```
