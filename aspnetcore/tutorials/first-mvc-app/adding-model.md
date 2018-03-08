@@ -110,7 +110,16 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
   dotnet ef database update
   ```     
   
+  If you run the app and get the error:
+  
+  ```text
+SqlException: Cannot open database "Movie" requested by the login.
+The login failed.
+Login failed for user 'user name'.
+```
 
+You probably have not run ` dotnet ef database update`.
+  
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 [!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
