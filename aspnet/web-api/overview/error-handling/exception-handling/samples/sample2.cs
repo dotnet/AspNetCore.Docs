@@ -7,7 +7,7 @@ public Product GetProduct(int id)
         {
             Content = new StringContent(string.Format("No product with ID = {0}", id)),
             ReasonPhrase = "Product ID Not Found"
-        }
+        };
         throw new HttpResponseException(resp);
     }
     return item;
