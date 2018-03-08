@@ -1,16 +1,14 @@
 ---
-title: Add a model to an ASP.NET MVC Core app
+title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
-keywords: ASP.NET Core,MVC,scaffold,scaffolding
+manager: wpickett
 ms.author: riande
-manager: wpickett  
-ms.devlang: csharp 
 ms.date: 09/22/2017
-ms.topic: get-started-article
-ms.assetid: 8dc28498-eeee-1638-b903-b593059e9f39
-ms.technology: aspnet
+ms.devlang: csharp
 ms.prod: .net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-mac/adding-model
 ---
 
@@ -25,7 +23,7 @@ uid: tutorials/first-mvc-app-mac/adding-model
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key.
 
@@ -39,19 +37,19 @@ Build the project to verify you don't have any errors. You now have a **M**odel 
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-  [!code-csharp[Main](../first-mvc-app-xplat/start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
+  [!code-csharp[](../first-mvc-app-xplat/start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
 
 - Save the file.
 
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
-   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
+   [!code-csharp[](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
    
 - Open the *Startup.cs* file and add two usings:
-   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
+   [!code-csharp[](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
 
 - Add the database context to the *Startup.cs* file:
 
-   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
+   [!code-csharp[](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
   This tells Entity Framework which model classes are included in the data model. You're defining one *entity set* of Movie objects, which will be represented in the database as a Movie table.
 
@@ -69,7 +67,7 @@ If you get the error `No executable found matching command "dotnet-aspnet-codege
 
  * You are in the project directory. The project directory has the *Program.cs*, *Startup.cs* and *.csproj* files.
  * Your dotnet version is 1.1 or higher. Run `dotnet` to get the version.
- * You have added the `<DotNetCliToolReference>` elment to the [MvcMovie.csproj file](#prepare-the-project-for-scaffolding).
+ * You have added the `<DotNetCliToolReference>` element to the [MvcMovie.csproj file](#prepare-the-project-for-scaffolding).
  
 <!--
 > [!NOTE]

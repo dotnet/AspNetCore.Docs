@@ -94,7 +94,7 @@ For help with IIS Express command line options, enter `iisexpress.exe /?` at the
 <a id="Can_I_use_ASP.NET_Web_Forms_controls_on_a_Web_Pages_page"></a>
 ## Can I use ASP.NET Web Forms controls on a Web Pages page?
 
-No. Web Forms controls like the [CheckBox](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.checkbox) control, the [validation controls](https://msdn.microsoft.com/en-us/library/bwd43d0x), and the [GridView](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview) control only work in Web Forms pages (*.aspx* files). These controls require the Web Forms page framework.
+No. Web Forms controls like the [CheckBox](https://msdn.microsoft.com/library/system.web.ui.webcontrols.checkbox) control, the [validation controls](https://msdn.microsoft.com/library/bwd43d0x), and the [GridView](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview) control only work in Web Forms pages (*.aspx* files). These controls require the Web Forms page framework.
 
 <a id="Can_I_deploy_an_ASP.NET_Web_Pages_site_without_using_WebMatrix"></a>
 ## Can I deploy an ASP.NET Web Pages site without using WebMatrix?

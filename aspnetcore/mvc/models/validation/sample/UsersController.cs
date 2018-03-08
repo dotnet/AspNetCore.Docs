@@ -21,7 +21,18 @@ namespace MVCMovie.Controllers
         {
             if (!_userRepository.VerifyEmail(email))
             {
-                return Json(data: $"Email {email} is already in use.");
+                return Json($"Email {email} is already in use.");
+            }
+
+            return Json(true);
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyName(string firstName, string lastName)
+        {
+            if (!_userRepository.VerifyName(firstName, lastName))
+            {
+                return Json(data: $"A user named {firstName} {lastName} already exists.");
             }
 
             return Json(data: true);

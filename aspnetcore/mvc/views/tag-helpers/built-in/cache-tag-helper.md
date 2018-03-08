@@ -2,29 +2,26 @@
 title: Cache Tag Helper in ASP.NET Core MVC
 author: pkellner
 description: Shows how to work with Cache Tag Helper
-keywords: ASP.NET Core,tag helper
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a012
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
 By [Peter Kellner](http://peterkellner.net) 
 
-
-The  Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
+The Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
 
 The Razor View Engine sets the default `expires-after` to twenty minutes.
 
 The following Razor markup caches the date/time:
 
 ```cshtml
-<Cache>@DateTime.Now<Cache>
+<cache>@DateTime.Now</cache>
 ```
 
 The first request to the page that contains `CacheTagHelper` will display the current date/time. Additional requests will show the cached value until the cache expires (default 20 minutes) or is evicted by memory pressure.
@@ -49,9 +46,9 @@ Determines whether the content enclosed by the Cache Tag Helper is cached. The d
 Example:
 
 ```cshtml
-<Cache enabled="true">
+<cache enabled="true">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -68,9 +65,9 @@ Sets an absolute expiration date. The following example will cache the contents 
 Example:
 
 ```cshtml
-<Cache expires-on="@new DateTime(2025,1,29,17,02,0)">
+<cache expires-on="@new DateTime(2025,1,29,17,02,0)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -87,9 +84,9 @@ Sets the length of time from the first request time to cache the contents.
 Example:
 
 ```cshtml
-<Cache expires-on="@TimeSpan.FromSeconds(120)">
+<cache expires-after="@TimeSpan.FromSeconds(120)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -106,9 +103,9 @@ Sets the time that a cache entry should be evicted if it has not been accessed.
 Example:
 
 ```cshtml
-<Cache expires-sliding="@TimeSpan.FromSeconds(60)">
+<cache expires-sliding="@TimeSpan.FromSeconds(60)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -125,9 +122,9 @@ Accepts a single header value or a comma-separated list of header values that tr
 Example:
 
 ```cshtml
-<Cache vary-by-header="User-Agent">
+<cache vary-by-header="User-Agent">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -144,9 +141,9 @@ Accepts a single header value or a comma-separated list of header values that tr
 Example:
 
 ```cshtml
-<Cache vary-by-query="Make,Model">
+<cache vary-by-query="Make,Model">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -172,9 +169,9 @@ routes.MapRoute(
 *Index.cshtml*
 
 ```cshtml
-<Cache vary-by-route="Make,Model">
+<cache vary-by-route="Make,Model">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -191,9 +188,9 @@ Accepts a single header value or a comma-separated list of header values that tr
 Example:
 
 ```cshtml
-<Cache vary-by-cookie=".AspNetCore.Identity.Application">
+<cache vary-by-cookie=".AspNetCore.Identity.Application">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -212,9 +209,9 @@ The following example looks at the current logged in user.
 Example:
 
 ```cshtml
-<Cache vary-by-user="true">
+<cache vary-by-user="true">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 Using this attribute maintains the contents in cache through a log-in and log-out cycle.  When using `vary-by-user="true"`, a log-in and log-out action invalidates the cache for the authenticated user.  The cache is invalidated because a new unique cookie value is generated on login. Cache is maintained for the anonymous state when no cookie is present or has expired. This means if no user is logged in, the cache will be maintained.
@@ -250,9 +247,9 @@ public IActionResult Index(string myParam1,string myParam2,string myParam3)
 *Index.cshtml*
 
 ```cshtml
-<Cache vary-by="@Model"">
+<cache vary-by="@Model"">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
 - - -
@@ -271,16 +268,16 @@ Provides cache eviction guidance to the built-in cache provider. The web server 
 Example:
 
 ```cshtml
-<Cache priority="High">
+<cache priority="High">
     Current Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</cache>
 ```
 
-The `priority` attribute does not guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` does not guarantee that the cache will always be retained. See [Additional Resources](#additional-resources) for more information.
+The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that the cache will always be retained. See [Additional Resources](#additional-resources) for more information.
 
 The Cache Tag Helper is dependent on the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it has not been added.
 
 ## Additional resources
 
-* <xref:performance/caching/memory>
-* <xref:security/authentication/identity>
+* [In-memory caching](xref:performance/caching/memory)
+* [Introduction to Identity](xref:security/authentication/identity)

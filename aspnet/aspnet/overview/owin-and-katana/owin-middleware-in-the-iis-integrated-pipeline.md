@@ -20,7 +20,7 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://
 > This article shows how to run OWIN middleware Components (OMCs) in the IIS integrated pipeline, and how to set the pipeline event an OMC runs on. You should review [An Overview of Project Katana](an-overview-of-project-katana.md) and [OWIN Startup Class Detection](owin-startup-class-detection.md) before reading this tutorial. This tutorial was written by Rick Anderson ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ), Chris Ross, Praburaj Thiagarajan, and Howard Dierking ( [@howard\_dierking](https://twitter.com/howard_dierking) ).
 
 
-Although [OWIN](an-overview-of-project-katana.md) middleware components (OMCs) are primarily designed to run in a server-agnostic pipeline, it is possible to run an OMC in the IIS integrated pipeline as well well (**classic mode is *not* supported**). An OMC can be made to work in the IIS integrated pipeline by installing the following package from the Package Manager Console (PMC):
+Although [OWIN](an-overview-of-project-katana.md) middleware components (OMCs) are primarily designed to run in a server-agnostic pipeline, it is possible to run an OMC in the IIS integrated pipeline as well (**classic mode is *not* supported**). An OMC can be made to work in the IIS integrated pipeline by installing the following package from the Package Manager Console (PMC):
 
 [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample1.cmd)]
 
@@ -31,9 +31,9 @@ This means that all application frameworks, even those that are not yet able to 
 
 ## How OWIN Middleware Executes in the IIS Integrated Pipeline
 
-For OWIN console applications, the application pipeline built using the [startup configuration](owin-startup-class-detection.md) is set by the order the components are added using the `IAppBuilder.Use` method. That is, the OWIN pipeline in the [Katana](an-overview-of-project-katana.md) runtime will process OMCs in the order they were registered using `IAppBuilder.Use`. In the IIS integrated pipeline the request pipeline consists of [HttpModules](https://msdn.microsoft.com/en-us/library/ms178468(v=vs.85).aspx) subscribed to a pre-defined set of the pipeline events such as [BeginRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.beginrequest.aspx), [AuthenticateRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest.aspx), [AuthorizeRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authorizerequest.aspx), etc.
+For OWIN console applications, the application pipeline built using the [startup configuration](owin-startup-class-detection.md) is set by the order the components are added using the `IAppBuilder.Use` method. That is, the OWIN pipeline in the [Katana](an-overview-of-project-katana.md) runtime will process OMCs in the order they were registered using `IAppBuilder.Use`. In the IIS integrated pipeline the request pipeline consists of [HttpModules](https://msdn.microsoft.com/library/ms178468(v=vs.85).aspx) subscribed to a pre-defined set of the pipeline events such as [BeginRequest](https://msdn.microsoft.com/library/system.web.httpapplication.beginrequest.aspx), [AuthenticateRequest](https://msdn.microsoft.com/library/system.web.httpapplication.authenticaterequest.aspx), [AuthorizeRequest](https://msdn.microsoft.com/library/system.web.httpapplication.authorizerequest.aspx), etc.
 
-If we compare an OMC to that of an [HttpModule](https://msdn.microsoft.com/en-us/library/zec9k340(v=vs.85).aspx) in the ASP.NET world, an OMC must be registered to the correct pre-defined pipeline event. For example, the HttpModule `MyModule` will get invoked when a request comes to the [AuthenticateRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest.aspx) stage in the pipeline:
+If we compare an OMC to that of an [HttpModule](https://msdn.microsoft.com/library/zec9k340(v=vs.85).aspx) in the ASP.NET world, an OMC must be registered to the correct pre-defined pipeline event. For example, the HttpModule `MyModule` will get invoked when a request comes to the [AuthenticateRequest](https://msdn.microsoft.com/library/system.web.httpapplication.authenticaterequest.aspx) stage in the pipeline:
 
 [!code-csharp[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample2.cs?highlight=10)]
 
@@ -52,7 +52,7 @@ The Startup configuration sets up a pipeline with three middleware components, t
 
 [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample5.cmd)]
 
-The Katana runtime mapped each of the OWIN middleware components to [PreExecuteRequestHandler](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.prerequesthandlerexecute.aspx) by default, which corresponds to the IIS pipeline event [PreRequestHandlerExecute](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.prerequesthandlerexecute.aspx).
+The Katana runtime mapped each of the OWIN middleware components to [PreExecuteRequestHandler](https://msdn.microsoft.com/library/system.web.httpapplication.prerequesthandlerexecute.aspx) by default, which corresponds to the IIS pipeline event [PreRequestHandlerExecute](https://msdn.microsoft.com/library/system.web.httpapplication.prerequesthandlerexecute.aspx).
 
 ## Stage Markers
 
@@ -60,7 +60,7 @@ You can mark OMCs to execute at specific stages of the pipeline by using the `IA
 
 [!code-csharp[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample6.cs?highlight=13,19)]
 
-The `app.UseStageMarker(PipelineStage.Authenticate)` call configures all the previously registered middleware components (in this case, our two diagnostic components) to run on the authentication stage of the pipeline. The last middleware component (which displays diagnostics and responds to requests) will run on the `ResolveCache` stage (the [ResolveRequestCache](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.resolverequestcache.aspx) event).
+The `app.UseStageMarker(PipelineStage.Authenticate)` call configures all the previously registered middleware components (in this case, our two diagnostic components) to run on the authentication stage of the pipeline. The last middleware component (which displays diagnostics and responds to requests) will run on the `ResolveCache` stage (the [ResolveRequestCache](https://msdn.microsoft.com/library/system.web.httpapplication.resolverequestcache.aspx) event).
 
 Hit F5 to run the app.The output window shows the following:
 
@@ -73,7 +73,7 @@ Owin middleware components (OMC) can be configured to run at the following OWIN 
 [!code-csharp[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample8.cs)]
 
 1. By default, OMCs run at the last event (`PreHandlerExecute`). That's why our first example code displayed "PreExecuteRequestHandler".
-2. You can use the a `pp.UseStageMarker` method to register a OMC to run earlier, at any stage of the OWIN pipeline listed in the `PipelineStage` enum.
+2. You can use the a `app.UseStageMarker` method to register a OMC to run earlier, at any stage of the OWIN pipeline listed in the `PipelineStage` enum.
 3. The OWIN pipeline and the IIS pipeline is ordered, therefore calls to `app.UseStageMarker` must be in order. You cannot set the event handler to an event that precedes the last event registered with to `app.UseStageMarker`. For example, *after* calling:
 
     [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample9.cmd)]

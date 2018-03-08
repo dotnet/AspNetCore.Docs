@@ -2,21 +2,21 @@
 title: Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio Code on Mac, Linux, and Windows
-keywords: ASP.NET Core,MVC,VS Code,Visual Studio Code,Mac,Linux,Windows
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/07/2017
-ms.topic: get-started-article
-ms.assetid: 1d18b589-1638-4dc6-1638-fb0f41998d78
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/start-mvc
 ---
 # Getting started with ASP.NET Core MVC  on Mac, Linux, or Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code). The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information. [!INCLUDE[consider RP](../../includes/razor.md)]
+This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code). The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information. 
+
+[!INCLUDE[consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 

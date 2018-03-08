@@ -117,8 +117,6 @@ You can revert to the old browser definition files by copying the browser defini
 
 Copy the files into the corresponding `\CONFIG\Browsers` folder for ASP.NET 4. After you copy the files, run the Aspnet\_regbrowsers.exe command-line tool.
 
-For more information, download the ASP.NET Browser Definition Files release from [http://aspnet.codeplex.com/releases/view/41420](http://aspnet.codeplex.com/releases/view/41420). This download includes the old browser definition files, the new browser definition files, and instructions for installing the files.
-
 <a id="0.1__Toc255587635"></a><a id="0.1__Toc256770146"></a>
 
 ## System.Web.Mobile.dll Removed from Root Web Configuration File
@@ -253,9 +251,9 @@ Web servers that run SharePoint have a `Web.config` file that is deployed at the
 
 If you try to run an ASP.NET 4 Web site that is deployed as a child of this type of SharePoint Web site, you will see the following error:
 
-`Could not find permission set named 'ASP.Net'.`
+`Could not find permission set named 'ASP.NET'.`
 
-This error occurs because the ASP.NET 4 code access security (CAS) infrastructure looks for a permission set named ASP.Net. However, the partial trust configuration file that is referenced by WSS\_Minimal does not contain any permission sets with that name.
+This error occurs because the ASP.NET 4 code access security (CAS) infrastructure looks for a permission set named ASP.NET. However, the partial trust configuration file that is referenced by WSS\_Minimal does not contain any permission sets with that name.
 
 Currently there is not a version of SharePoint available that is compatible with ASP.NET. As a result, you should not attempt to run an ASP.NET 4 Web site as a child site underneath SharePoint Web sites.
 
@@ -382,7 +380,7 @@ The following is a high-level summary of the changes to the default CAS implemen
 - Dynamically compiled assemblies that are created by ASP.NET build providers have been updated to explicitly mark assemblies as transparent.
 - All ASP.NET assemblies are now marked in such a way that the APTCA attribute is honored only in Web hosting environments. Partially trusted non-Web hosting environments like ClickOnce will not be able to call into ASP.NET assemblies.
 
-For more information about the new ASP.NET 4 code access security model, see [Using Code Access Security in ASP.NET Applications](https://msdn.microsoft.com/en-us/library/dd984947%28VS.100%29.aspx) on the MSDN Web site.
+For more information about the new ASP.NET 4 code access security model, see [Using Code Access Security in ASP.NET Applications](https://msdn.microsoft.com/library/dd984947%28VS.100%29.aspx) on the MSDN Web site.
 
 <a id="0.1__Toc256770156"></a><a id="0.1__Toc245724863"></a><a id="0.1__Toc252995496"></a><a id="0.1__Toc255587645"></a><a id="0.1__Toc245724864"></a>
 
@@ -498,7 +496,7 @@ Complying with all applicable copyright laws is the responsibility of the user. 
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
 
-Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
+Unless otherwise noted, the example companies, organizations, products, domain names, email addresses, logos, people, places and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, email address, logo, person, place or event is intended or should be inferred.
 
 © 2010 Microsoft Corporation. All rights reserved.
 

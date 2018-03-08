@@ -2,19 +2,17 @@
 title: ASP.NET Core MVC with EF Core - tutorial series
 author: tdykstra
 description: 
-keywords: ASP.NET Core,
-ms.author: tdykstra
 manager: wpickett
-ms.date: 03/15/2017
-ms.topic: get-started-article
-ms.assetid: 9918be4c-2096-404f-9b2a-ed5cde90042a
-ms.technology: aspnet
+ms.author: tdykstra
+ms.date: 10/15/2017
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-mvc/index
 ---
-# Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
+# Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
 
-This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2017.
+[!INCLUDE[RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 
 1. [Getting started](intro.md)
 2. [Create, Read, Update, and Delete operations](crud.md)

@@ -2,13 +2,12 @@
 title: Adding a model to a Razor Pages app with Visual Studio for Mac
 author: rick-anderson
 description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
-keywords: ASP.NET Core,Razor Pages,Razor,MVC,model
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/27/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/model
 ---
 
@@ -29,7 +28,7 @@ uid: tutorials/razor-pages-mac/model
 [!INCLUDE[model 2](../../includes/RP/model2.md)]
 [!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
-[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
 Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
 
@@ -39,7 +38,7 @@ Build the project to verify you don't have any errors.
 
 ### Entity Framework Core NuGet packages for migrations
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI.
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). Click on the [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet) link to get the version number to use. To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI.
 
 To edit a *.csproj* file:
 
@@ -49,9 +48,11 @@ To edit a *.csproj* file:
 
 ![Edit csproj file](model/csproj.png)
 
-Add the `Microsoft.EntityFrameworkCore.Tools.DotNet` tool reference to the second **\<ItemGroup>**:
+Add the `Microsoft.EntityFrameworkCore.Tools.DotNet` tool reference to the second **\<ItemGroup>**.:
 
-[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?range=12-16&highlight=4)]
+[!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
+
+The version numbers shown in the following code were correct at the time of writing.
 
 [!INCLUDE[model3](../../includes/RP/model3.md)]
 [!INCLUDE[model 4x](../../includes/RP/model4x.md)]
@@ -70,4 +71,4 @@ The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)

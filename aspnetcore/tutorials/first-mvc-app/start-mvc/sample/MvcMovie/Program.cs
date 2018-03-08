@@ -19,7 +19,7 @@ namespace MvcMovie
 
                 try
                 {
-                    // Requires using RazorPagesMovie.Models;
+                    // Requires using MvcMovie.Models;
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

@@ -195,7 +195,7 @@ This section of the document describes new features, changes, and known issues w
 > Although you would most typically see this behavior when using the web-based package manager interface, the same behavior occurs if you add, remove, or modify any files in the *App\_Data* folder.
 > 
 > **Workaround**   
-> To work with packages in Visual Studio, use the NuGet extension instead of the web-based package manager. For information, see the [NuGet documentation](http://nuget.codeplex.com/documentation?title=Getting%20Started). If you are working with other files in the *App\_Data* folder, consider keeping the files elsewhere to avoid this issue. If that's not practical, delete the *app\_offline.htm* file manually or wait until the site comes back online automatically (by default, after 30 seconds).
+> To work with packages in Visual Studio, use the NuGet extension instead of the web-based package manager. For information, see the [NuGet documentation](https://docs.microsoft.com/nuget/). If you are working with other files in the *App\_Data* folder, consider keeping the files elsewhere to avoid this issue. If that's not practical, delete the *app\_offline.htm* file manually or wait until the site comes back online automatically (by default, after 30 seconds).
 
 
 #### Issue: Visual Studio IntelliSense and project templates available only in ASP.NET MVC version 3
@@ -213,7 +213,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > [!code-xml[Main](overview/samples/sample2.xml)]
 > 
-> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
+> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) on the MSDN Web site.
 
 
 #### Issue: Uninstalling the .NET Framework version 4 disables ASP.NET Web Pages with Razor Syntax
@@ -558,4 +558,4 @@ For more information about WebMatrix 1.0, see the following websites:
 - [ASP.NET](https://asp.net/webmatrix)
 - [Microsoft.com/web](https://www.microsoft.com/web)
 
-© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.com/en-us/cc300389.aspx).
+© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.cos/cc300389.aspx).

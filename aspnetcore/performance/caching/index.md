@@ -1,20 +1,21 @@
 ---
 title: Caching
 author: ardalis
-description: Demonstrates how to use caching for higher performance.
-keywords: ASP.NET Core,caching,performance
-ms.author: riande
+description: Learn how to use caching to improve the performance of ASP.NET Core apps.
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 1e73cf62-8862-4341-8816-83be1a3edc96
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: performance/caching/index
 ---
 # Caching
 
-* [In Memory Caching](memory.md)
-* [Working with a Distributed Cache](distributed.md)
-* [Response caching](response.md)
-* [Response Caching Middleware](middleware.md)
+* [In-memory caching](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Response caching](xref:performance/caching/response)
+* [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

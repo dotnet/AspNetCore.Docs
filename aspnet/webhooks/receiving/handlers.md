@@ -20,9 +20,9 @@ A WebHook request can be processed by one or more handlers. Handlers are called 
 
 ![WebHook Handler Order Property Diagram](_static/Handlers.png)
 
-A handler can optionally set the *Response* property on the WebHookHandlerContext which will lead the processing to stop and the response to be sent back as the HTTP response to the WebHook. In the case above, Handler C won’t get called because it has a higher order than B and B sets the response.
+A handler can optionally set the *Response* property on the WebHookHandlerContext which will lead the processing to stop and the response to be sent back as the HTTP response to the WebHook. In the case above, Handler C won't get called because it has a higher order than B and B sets the response.
 
-Setting the response is typically only relevant for WebHooks where the response can carry information back to the originating API. This is for example the case with Slack WebHooks where the response is posted back to the channel where the WebHook came from. Handlers can set the Receiver property if they only want to receive WebHooks from that particular receiver. If they don’t set the receiver they are called for all of them.
+Setting the response is typically only relevant for WebHooks where the response can carry information back to the originating API. This is for example the case with Slack WebHooks where the response is posted back to the channel where the WebHook came from. Handlers can set the Receiver property if they only want to receive WebHooks from that particular receiver. If they don't set the receiver they are called for all of them.
 
 One other common use of a response is to use a *410 Gone* response to indicate that the WebHook no longer is active and no further requests should be submitted.
 
@@ -58,7 +58,7 @@ public class MyWebHookHandler : WebHookHandler
 
 Most WebHook senders will resend a WebHook if a response is not generated within a handful of seconds. This means that your handler must complete the processing within that time frame in order not for it to be called again.
 
-If the processing takes longer, or is better handled separately then the [WebHookQueueHandler](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/WebHookQueueHandler.cs) can be used to submit the WebHook request to a queue, for example [Azure Storage Queue](https://msdn.microsoft.com/en-us/library/azure/dd179353.aspx).
+If the processing takes longer, or is better handled separately then the [WebHookQueueHandler](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/WebHookQueueHandler.cs) can be used to submit the WebHook request to a queue, for example [Azure Storage Queue](https://msdn.microsoft.com/library/azure/dd179353.aspx).
 
 An outline of a [WebHookQueueHandler](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/WebHookQueueHandler.cs) implementation is provided here:
 

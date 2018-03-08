@@ -1,15 +1,15 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
 using TodoApi.Models;
 
 namespace TodoApi
 {
     public class Startup
-    {       
+    {
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
@@ -30,9 +30,9 @@ namespace TodoApi
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppContext.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
-                c.IncludeXmlComments(xmlPath);                
+                c.IncludeXmlComments(xmlPath);
             });
         }
         #endregion

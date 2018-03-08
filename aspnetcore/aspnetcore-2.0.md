@@ -2,14 +2,12 @@
 title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: What's new in ASP.NET Core 2.0
-keywords: ASP.NET Core,release notes,what's new
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/10/2017
-ms.topic: article
-ms.assetid: 08c9f457-9c24-40f9-a08b-47dc251e4cec
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: aspnetcore-2.0
 ---
 
@@ -42,7 +40,7 @@ For more information, see [Runtime store](https://docs.microsoft.com/dotnet/core
 
 The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
 
-The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it is intended to be used with the .NET Core 2.0 Runtime Store.
+The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it's intended to be used with the .NET Core 2.0 Runtime Store.
 
 ## Configuration update
 
@@ -54,7 +52,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
 
-For more information, see [Introduction to Logging](xref:fundamentals/logging).
+For more information, see [Introduction to Logging](xref:fundamentals/logging/index).
 
 ## Authentication update
 
@@ -81,7 +79,7 @@ Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.j
 
 ## Kestrel improvements
 
-The Kestrel web server has new features that make it more suitable as an Internet-facing server. We’ve added a number of server constraint configuration options in the `KestrelServerOptions` class’s new `Limits` property. You can now add limits for the following:
+The Kestrel web server has new features that make it more suitable as an Internet-facing server. A number of server constraint configuration options are added in the `KestrelServerOptions` class's new `Limits` property. Add limits for the following:
 
 - Maximum client connections
 - Maximum request body size
@@ -107,7 +105,7 @@ return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNo
 
 The file returned to your visitors will be decorated with the appropriate HTTP headers for the `ETag` and `LastModified` values.
 
-If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You do not need to write any special handlers into your methods to adapt or handle this feature; it is automatically handled for you.
+If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You don't need to write any special handlers into your methods to adapt or handle this feature; it's automatically handled for you.
 
 ## Hosting startup and Application Insights
 
@@ -119,9 +117,9 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Automatic use of anti-forgery tokens
 
-ASP.NET Core has always helped HTML-encode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
+ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
-For more information, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](xref:security/anti-request-forgery).
+For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
 
 ## Automatic precompilation
 
@@ -139,7 +137,7 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 ## Other documentation updates for 2.0
 
-* [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs)
+* [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
 * [Key Management](xref:security/data-protection/implementation/key-management)
 * [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
 * [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
@@ -157,4 +155,4 @@ For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0
 
 For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0).
 
-If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).
+To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).

@@ -2,14 +2,12 @@
 title: Developing ASP.NET Core apps using dotnet watch
 author: rick-anderson
 description: This tutorial demonstrates how to install and use the .NET Core CLI's file watcher (dotnet watch) tool in an ASP.NET Core application.
-keywords: ASP.NET Core,using dotnet watch
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/05/2017
-ms.topic: article
-ms.assetid: 563ffb3f-d369-4aa5-bf0a-7300b4e7832c
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: tutorials/dotnet-watch
 ---
 # Developing ASP.NET Core apps using dotnet watch
@@ -92,7 +90,7 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 1. Change the `Product` method of *MathController.cs* back to returning the sum and save the file.
 1. In a command shell, navigate to the *WebAppTests* folder.
-1. Run `dotnet restore`.
+1. Run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 1. Run `dotnet watch test`. Its output indicates that a test failed and that watcher is awaiting file changes:
 
      ```console
@@ -106,6 +104,6 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 ## dotnet-watch in GitHub
 
-dotnet-watch is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/Microsoft.DotNet.Watcher.Tools).
+dotnet-watch is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch).
 
-The [MSBuild section](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md#msbuild) of the [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md) explains how dotnet-watch can be configured from the MSBuild project file being watched. The [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md) contains information on dotnet-watch not covered in this tutorial.
+The [MSBuild section](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch#msbuild) of the [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) explains how dotnet-watch can be configured from the MSBuild project file being watched. The [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) contains information on dotnet-watch not covered in this tutorial.

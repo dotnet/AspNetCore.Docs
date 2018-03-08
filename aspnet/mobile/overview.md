@@ -33,17 +33,17 @@ In the second article in their series, the authors discuss how they use Xamarin 
 This end-to-end tutorial shows how to create an ASP.NET Web API application that provides data to a Windows Phone 8 application.
 
 
-### [Get Started with Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started?WT.mc_id=zumo_aspnet)
+### [Get Started with Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started?WT.mc_id=zumo_aspnet)
 
 Get started using Azure Mobile Services with ASP.NET Web API. This tutorial shows how to create a Mobile Services app from the Azure Management Portal.
 
 
-### [Authentication in Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-users/?WT.mc_id=zumo_aspnet)
+### [Authentication in Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-users/?WT.mc_id=zumo_aspnet)
 
 This tutorial shows how to authenticate users in Azure Mobile Services from your app.
 
 
-### [Using Push Notifications in Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-push/?WT.mc_id=zumo_aspnet)
+### [Using Push Notifications in Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-push/?WT.mc_id=zumo_aspnet)
 
 Use Azure Mobile Services to send push notifications to a mobile device.
 
@@ -61,7 +61,7 @@ This tutorial will teach you the basics of how to deploy an MVC 5 application to
 This How To describes various ways to serve pages optimized for mobile devices from your ASP.NET Web Forms / MVC application, and suggests architectural and design issues to consider when targeting a broad range of devices.
 
 
-### [Detect the latest mobile devices using 51degrees.mobi Foundation](http://51degrees.codeplex.com/)
+### [Detect the latest mobile devices using 51degrees.mobi Foundation](https://github.com/51Degrees/dotNET-Device-Detection)
 
 51degrees.mobi Foundation is a third-party open source project that enhances ASP.NET's Request.Browser API so you can easily detect recently-released mobile devices including Windows Phone 7, Android, and Apple iPad.
 

@@ -1,17 +1,15 @@
 ---
 title: Browser Link in ASP.NET Core
 author: ncarandini
-description: Learn how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
-keywords: ASP.NET Core,browser link,CSS sync
-ms.author: riande
+description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
 manager: wpickett
-ms.date: 09/22/2017
-ms.topic: article
-ms.assetid: 11813d4c-3f8a-445a-b23b-e4a57d001abc
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: client-side/using-browserlink
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 09/22/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: client-side/using-browserlink
 ---
 # Browser Link in ASP.NET Core 
 
@@ -76,7 +74,7 @@ From the Browser Link toolbar control, you can:
 * Refresh the web application in several browsers at once.
 * Open the **Browser Link Dashboard**.
 * Enable or disable **Browser Link**. Note: Browser Link is disabled by default in Visual Studio 2017 (15.3).
-* Enable or disable CSS Auto-Sync.
+* Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).
 
 > [!NOTE]
 > Some Visual Studio plug-ins, most notably *Web Extension Pack 2015* and *Web Extension Pack 2017*, offer extended functionality for Browser Link, but some of the additional features don't work with ASP.NET Core projects.

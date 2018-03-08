@@ -1,21 +1,19 @@
 ---
-title: Enabling authentication using Facebook, Google and other external
+title: Facebook, Google, and external provider authentication in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,authentication,social,authentication providers,google,facebook,twitter,microsoft account
-ms.author: riande
+description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
 manager: wpickett
+ms.author: riande
 ms.date: 11/01/2016
-ms.topic: article
-ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/social/index
 ---
 
-# Enabling authentication using Facebook, Google and other external providers
+# Facebook, Google, and external provider authentication in ASP.NET Core
 
-<a name=security-authentication-social-logins></a>
+<a name="security-authentication-social-logins"></a>
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -42,6 +40,13 @@ Note: Packages presented here abstract a great deal of complexity of the OAuth a
 ![New Web Application dialog](index/_static/select-project.png)
 
 Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.
+
+## Apply migrations
+
+* Run the app and select the **Log in** link.
+* Select the **Register as a new user** link.
+* Enter the email and password for the new account, and then select **Register**.
+* Follow the instructions to apply migrations.
 
 ## Require SSL
 
@@ -71,7 +76,7 @@ Use the following topics to configure your application to use the respective pro
 
 ## Optionally set password
 
-When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
+When you register with an external login provider, you don't have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
 
 To create a password and sign in using your email that you set during the sign in process with external providers:
 

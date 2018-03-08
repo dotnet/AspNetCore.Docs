@@ -33,7 +33,7 @@ by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://gith
 > 
 > ## Questions and Comments
 > 
-> If you have questions that are not directly related to the tutorial, you can post them at [http://katanaproject.codeplex.com/discussions](http://katanaproject.codeplex.com/discussions). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
+> If you have questions that are not directly related to the tutorial, you can post them at [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana/). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
 
 
 The [OAuth 2.0 framework](http://tools.ietf.org/html/rfc6749) enables a third-party app to obtain limited access to an HTTP service. Instead of using the resource owner's credentials to access a protected resource, the client obtains an access token (which is a string denoting a specific scope, lifetime, and other access attributes). Access tokens are issued to third-party clients by an authorization server with the approval of the resource owner.
@@ -52,12 +52,12 @@ This tutorial will cover:
 ## Prerequisites
 
 - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-editions) or the free [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-express), as indicated in **Software Versions** at the top of the page.
-- Familiarity with OWIN. See [Getting Started with the Katana Project](https://msdn.microsoft.com/en-us/magazine/dn451439.aspx) and [What's new in OWIN and Katana](index.md).
+- Familiarity with OWIN. See [Getting Started with the Katana Project](https://msdn.microsoft.com/magazine/dn451439.aspx) and [What's new in OWIN and Katana](index.md).
 - Familiarity with [OAuth](http://tools.ietf.org/html/rfc6749) terminology, including [Roles](http://tools.ietf.org/html/rfc6749#section-1.1), [Protocol Flow](http://tools.ietf.org/html/rfc6749#section-1.2), and [Authorization Grant](http://tools.ietf.org/html/rfc6749#section-1.3). [OAuth 2.0 introduction](http://tools.ietf.org/html/rfc6749#section-1) provides a good introduction.
 
 ## Create an Authorization Server
 
-In this tutorial, we will roughly sketch out how to use [OWIN](https://msdn.microsoft.com/en-us/magazine/dn451439.aspx) and ASP.NET MVC to create an authorization server. We hope to soon provide a download for the completed sample, as this tutorial does not include each step. First, create an empty web app named *AuthorizationServer* and install the following packages:
+In this tutorial, we will roughly sketch out how to use [OWIN](https://msdn.microsoft.com/magazine/dn451439.aspx) and ASP.NET MVC to create an authorization server. We hope to soon provide a download for the completed sample, as this tutorial does not include each step. First, create an empty web app named *AuthorizationServer* and install the following packages:
 
 - Microsoft.AspNet.Mvc
 - Microsoft.Owin.Host.SystemWeb
@@ -107,7 +107,7 @@ The login page is shown below:
 
 Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/rfc6749#section-4.1) section now. 
 
-**Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/en-us/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
+**Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
 
 | Flow steps from Authorization Code Grant section | Sample download performs these steps with: |
 | --- | --- |

@@ -26,7 +26,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > - The use of [Bootstrap](#bootstrap) to provide responsive design and theming capabilities.
 > - New features for Web Forms that used to be offered only for MVC, such as [automatic test project creation](#testproj) and an [Intranet site template](#winauth).
 > 
-> For information about how to create web projects for Azure Cloud Services or Azure Mobile Services, see [Get Started with Azure Cloud Services and ASP.NET](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-get-started/) and [Creating a Leaderboard App with Azure Mobile Services .NET Backend](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/).
+> For information about how to create web projects for Azure Cloud Services or Azure Mobile Services, see [Get Started with Azure Cloud Services and ASP.NET](https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-get-started/) and [Creating a Leaderboard App with Azure Mobile Services .NET Backend](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/).
 
 
 <a id="prerequisites"></a>
@@ -37,7 +37,7 @@ This article applies to [Visual Studio 2013](https://go.microsoft.com/fwlink/?Li
 <a id="wap"></a>
 ## Web application projects versus web site projects
 
-ASP.NET gives you a choice between two kinds of web projects: *web application projects* and *web site projects*. We recommend web application projects for new development, and this article applies only to web application projects. For more information, see [Web Application Projects versus Web Site Projects in Visual Studio](https://msdn.microsoft.com/en-us/library/dd547590(v=vs.120).aspx) on the MSDN site.
+ASP.NET gives you a choice between two kinds of web projects: *web application projects* and *web site projects*. We recommend web application projects for new development, and this article applies only to web application projects. For more information, see [Web Application Projects versus Web Site Projects in Visual Studio](https://msdn.microsoft.com/library/dd547590(v=vs.120).aspx) on the MSDN site.
 
 <a id="overview"></a>
 ## Overview of web application project creation
@@ -49,8 +49,8 @@ The following steps show how to create a web project:
 
     ![New Project dialog](creating-web-projects-in-visual-studio/_static/image1.png)
 
-    You can choose **Cloud** in the left pane to create an [Azure Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy), [Azure Mobile Service](https://msdn.microsoft.com/en-us/library/windows/apps/dn629482.aspx), or [Azure WebJob](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-webjobs). This topic doesn't cover those templates.
-3. In the right pane, click the **Add Application Insights to Project** check box if you want health and usage monitoring for your application. For more information, see [Monitor performance in web applications](https://azure.microsoft.com/en-us/documentation/articles/app-insights-web-monitor-performance/).
+    You can choose **Cloud** in the left pane to create an [Azure Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy), [Azure Mobile Service](https://msdn.microsoft.com/library/windows/apps/dn629482.aspx), or [Azure WebJob](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-webjobs). This topic doesn't cover those templates.
+3. In the right pane, click the **Add Application Insights to Project** check box if you want health and usage monitoring for your application. For more information, see [Monitor performance in web applications](https://azure.microsoft.com/documentation/articles/app-insights-web-monitor-performance/).
 4. Specify project **Name**, **Location**, and other options, and then click **OK**.
 
     The **New ASP.NET Project** dialog appears.
@@ -81,7 +81,7 @@ Visual Studio includes features that make it easy to work with Azure services fo
 - Run in debug mode remotely while the application runs in the cloud.
 - Viiew and manage other Azure services such as SQL databases.
 
-You can [create an Azure account](https://www.windowsazure.com/en-us/pricing/free-trial/) that includes basic services such as web apps for free, and if you are an MSDN subscriber you can [activate benefits](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/) that give you monthly credits toward additional Azure services. 
+You can [create an Azure account](https://www.windowsazure.com/pricing/free-trial/) that includes basic services such as web apps for free, and if you are an MSDN subscriber you can [activate benefits](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/) that give you monthly credits toward additional Azure services. 
 
 By default the **New ASP.NET Project** dialog box enables you to create a web app or virtual machine for a new web project. If you don't want to create a new web app or virtual machine, clear the **Host in the cloud** check box.
 
@@ -91,7 +91,7 @@ The check box caption might be **Host in the cloud** or **Create remote resource
 
 ![Configure Azure App Settings](creating-web-projects-in-visual-studio/_static/image9.png)
 
-For more information about how to use this process for creating Azure resources, see [Get Started with Azure and ASP.NET](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet) and [Creating a virtual machine for a web site with Visual Studio](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/).
+For more information about how to use this process for creating Azure resources, see [Get Started with Azure and ASP.NET](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet) and [Creating a virtual machine for a web site with Visual Studio](https://azure.microsoft.com/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/).
 
 The remainder of this article provides more information about the available templates and their options. The article also introduces Bootstrap, the layout and theming framework used in the templates.
 
@@ -107,7 +107,7 @@ Visual Studio 2013 provides the following choices for web project templates for 
 - [MVC template](#mvc)
 - [Web API template](#webapi)
 - [Single Page Application template](#spa)
-- [Azure Mobile Service template](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/)
+- [Azure Mobile Service template](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/)
 - [Visual Studio 2012 Templates](#vs2012)
 
 You can also install a Visual Studio extension that provides a [Facebook template](#facebook).
@@ -193,7 +193,7 @@ For more information about ASP.NET Single Page Applications, and about additiona
 
 - [ASP.NET Single Page Application](../../../single-page-application/index.md).
 - [Understanding Security Features in the SPA Template for VS2013 RC](https://blogs.msdn.com/b/webdev/archive/2013/09/20/understanding-security-features-in-spa-template.aspx)
-- [Single-Page Applications: Build Modern, Responsive Web Apps with ASP.NET](https://msdn.microsoft.com/en-us/magazine/dn463786.aspx)
+- [Single-Page Applications: Build Modern, Responsive Web Apps with ASP.NET](https://msdn.microsoft.com/magazine/dn463786.aspx)
 
 <a id="facebook"></a>
 ### Facebook Template
@@ -355,7 +355,7 @@ If you want to try one of the Azure AD options but don't have an account yet, [c
 
 ![Single Organization Authentication](creating-web-projects-in-visual-studio/_static/image24.png)
 
-Choose this option if you want to enable authentication for user accounts that are defined in one Azure AD [tenant](https://technet.microsoft.com/en-us/library/jj573650.aspx). For example, the site is contoso.com and it will be made available to employees of the Contoso Company who are in the contoso.onmicrosoft.com tenant. You won't be able to configure Azure AD to allow users from other tenants to access the application.
+Choose this option if you want to enable authentication for user accounts that are defined in one Azure AD [tenant](https://technet.microsoft.com/library/jj573650.aspx). For example, the site is contoso.com and it will be made available to employees of the Contoso Company who are in the contoso.onmicrosoft.com tenant. You won't be able to configure Azure AD to allow users from other tenants to access the application.
 
 #### Domain
 
@@ -363,7 +363,7 @@ Enter the Azure AD domain that you want to set up the application in, for exampl
 
 #### Access Level
 
-If the application needs to query or update directory information by using the Graph API, choose **Single Sign-On, Read Directory Data** or **Single Sign-On, Read and Write Directory Data**. Otherwise, choose **Single Sign-On**. For more information, see [Application Access Levels](https://msdn.microsoft.com/en-us/library/windowsazure/b08d91fa-6a64-4deb-92f4-f5857add9ed8#BKMK_AccessLevels) and [Using the Graph API to Query Azure AD](https://msdn.microsoft.com/en-US/library/windowsazure/dn151791.aspx).
+If the application needs to query or update directory information by using the Graph API, choose **Single Sign-On, Read Directory Data** or **Single Sign-On, Read and Write Directory Data**. Otherwise, choose **Single Sign-On**. For more information, see [Application Access Levels](https://msdn.microsoft.com/library/windowsazure/b08d91fa-6a64-4deb-92f4-f5857add9ed8#BKMK_AccessLevels) and [Using the Graph API to Query Azure AD](https://msdn.microsoft.com/library/windowsazure/dn151791.aspx).
 
 #### Application ID URI
 
@@ -382,7 +382,7 @@ For information about how to create applications that use **Cloud - Single Organ
 - [Azure Authentication](../2012/windows-azure-authentication.md)
 - [Adding Sign-On to Your Web Application Using Azure AD](https://msdn.microsoft.com/library/windowsazure/dn151790.aspx)
 - [Developing ASP.NET Apps with Azure Active Directory](../../../identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory.md)
-- [Secure ASP.NET Web API with Azure AD and Microsoft OWIN Components](https://msdn.microsoft.com/en-us/magazine/dn463788.aspx)
+- [Secure ASP.NET Web API with Azure AD and Microsoft OWIN Components](https://msdn.microsoft.com/magazine/dn463788.aspx)
 
 The tutorials have not yet been updated for Visual Studio 2013; some of what the tutorials direct you to do manually is automated in Visual Studio 2013.
 
@@ -391,14 +391,14 @@ The tutorials have not yet been updated for Visual Studio 2013; some of what the
 
 ![Multiple organization authentication](creating-web-projects-in-visual-studio/_static/image25.png)
 
-Choose this option if you want to enable authentication for user accounts that are defined in multiple Azure AD [tenants](https://technet.microsoft.com/en-us/library/jj573650.aspx). For example, the site is contoso.com and it will be made available to employees of the Contoso Company who are in the contoso.onmicrosoft.com tenant, and employees of the Fabrikam Company who are in the fabrikam.onmicrosoft.com tenant.
+Choose this option if you want to enable authentication for user accounts that are defined in multiple Azure AD [tenants](https://technet.microsoft.com/library/jj573650.aspx). For example, the site is contoso.com and it will be made available to employees of the Contoso Company who are in the contoso.onmicrosoft.com tenant, and employees of the Fabrikam Company who are in the fabrikam.onmicrosoft.com tenant.
 
 The settings that you enter and the application provisioning step are similar to [single organization authentication](#orgauthsingle).
 
 For information about how to create applications that use **Cloud - Multi Organization** authentication, see the following resources:
 
 - [Easy Web App Integration with Azure Active Directory, ASP.NET &amp; Visual Studio](https://blogs.msdn.com/b/active_directory_team_blog/archive/2013/06/26/improved-windows-azure-active-directory-integration-with-asp-net-amp-visual-studio.aspx) on the Active Directory Team blog.
-- [Developing Multi-Tenant Web Applications with Azure AD](https://msdn.microsoft.com/en-us/library/windowsazure/dn151789.aspx) tutorial. The tutorial hasn't yet been updated for Visual Studio 2013; some of what the tutorial directs you to do manually is automated in Visual Studio 2013.
+- [Developing Multi-Tenant Web Applications with Azure AD](https://msdn.microsoft.com/library/windowsazure/dn151789.aspx) tutorial. The tutorial hasn't yet been updated for Visual Studio 2013; some of what the tutorial directs you to do manually is automated in Visual Studio 2013.
 - [You Have to Sign Up With Your Own Multiple Organizations ASP.NET App Before You Can Sign In](http://www.cloudidentity.com/blog/2013/10/26/you-have-to-sign-up-with-your-own-multiple-organizations-asp-net-app-before-you-can-sign-in/). Blog by Vittorio Bertocci that explains how to resolve a common problem people encounter when creating a project that uses multi-organization authentication.
 
 <a id="orgauthonprem"></a>

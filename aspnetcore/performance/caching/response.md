@@ -1,20 +1,21 @@
 ---
 title: Response caching in ASP.NET Core
 author: rick-anderson
-description: Learn how to use response caching to lower bandwidth and increase performance.
-keywords: ASP.NET Core,Response caching,HTTP headers
-ms.author: riande
+description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 manager: wpickett
+ms.author: riande
 ms.date: 09/20/2017
-ms.topic: article
-ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
 ms.prod: asp.net-core
+ms.topic: article
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
 
 By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Luke Latham](https://github.com/guardrex)
 
+> [!NOTE]
+> Response caching [isn't supported in Razor Pages with ASP.NET Core 2.0](https://github.com/aspnet/Mvc/issues/6437). This feature will be supported in the [ASP.NET Core 2.1 release](https://github.com/aspnet/Home/wiki/Roadmap).
+  
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
@@ -62,7 +63,7 @@ For more information, see [Introduction to in-memory caching in ASP.NET Core](xr
 
 ### Distributed Cache
 
-Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that is handled by any server in the group and cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
+Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
 
 For more information, see [Working with a distributed cache](xref:performance/caching/distributed).
 
@@ -80,12 +81,14 @@ For more information, see [Distributed Cache Tag Helper](xref:mvc/views/tag-help
 
 ## ResponseCache attribute
 
-The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for a description of the parameters.
+The [ResponseCacheAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) specifies the parameters necessary for setting appropriate headers in response caching.
 
 > [!WARNING]
-> Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn't change based on a user's identity or whether a user is logged in.
+> Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn't change based on a user's identity or whether a user is signed in.
 
-`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1 and higher): When set, the Response Caching Middleware varies the stored response by the values of the given list of query keys. The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There's no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[VaryByQueryKeys](/dotnet/api/microsoft.aspnetcore.mvc.responsecacheattribute.varybyquerykeys) varies the stored response by the values of the given list of query keys. When a single value of `*` is provided, the middleware varies responses by all request query string parameters. `VaryByQueryKeys` requires ASP.NET Core 1.1 or later.
+
+The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the `VaryByQueryKeys` property. The property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                   |
 | -------------------------------- | ------------------------ |
@@ -93,9 +96,9 @@ The `ResponseCacheAttribute` specifies the parameters necessary for setting appr
 | `http://example.com?key1=value1` | Returned from middleware |
 | `http://example.com?key1=value2` | Returned from server     |
 
-The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request is not in the middleware cache because the query string value doesn't match a previous request. 
+The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request isn't in the middleware cache because the query string value doesn't match a previous request. 
 
-The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
+The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a [ResponseCacheFilter](/dotnet/api/microsoft.aspnetcore.mvc.internal.responsecachefilter). The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
 * Removes any existing headers for `Vary`, `Cache-Control`, and `Pragma`. 
 * Writes out the appropriate headers based on the properties set in the `ResponseCacheAttribute`. 
@@ -105,7 +108,7 @@ The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactor
 
 This header is only written when the `VaryByHeader` property is set. It's set to the `Vary` property's value. The following sample uses the `VaryByHeader` property:
 
-[!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
+[!code-csharp[](response/sample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
 
 You can view the response headers with your browser's network tools. The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is refreshed:
 
@@ -122,7 +125,7 @@ If `NoStore` is `false` and `Location` is `None`, `Cache-Control` and `Pragma` a
 
 You typically set `NoStore` to `true` on error pages. For example:
 
-[!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet1&highlight=1)]
+[!code-csharp[](response/sample/Controllers/HomeController.cs?name=snippet1&highlight=1)]
 
 This results in the following headers:
 
@@ -140,7 +143,7 @@ To enable caching, `Duration` must be set to a positive value and `Location` mus
 
 Below is an example showing the headers produced by setting `Duration` and leaving the default `Location` value:
 
-[!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet_duration&highlight=1)]
+[!code-csharp[](response/sample/Controllers/HomeController.cs?name=snippet_duration&highlight=1)]
 
 This produces the following header:
 
@@ -154,11 +157,11 @@ Instead of duplicating `ResponseCache` settings on many controller action attrib
 
 Setting up a cache profile:
 
-[!code-csharp[Main](response/sample/Startup.cs?name=snippet1)] 
+[!code-csharp[](response/sample/Startup.cs?name=snippet1)] 
 
 Referencing a cache profile:
 
-[!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet_controller&highlight=1,4)]
+[!code-csharp[](response/sample/Controllers/HomeController.cs?name=snippet_controller&highlight=1,4)]
 
 The `ResponseCache` attribute can be applied both to actions (methods) and controllers (classes). Method-level attributes override the settings specified in class-level attributes.
 
@@ -174,4 +177,9 @@ Cache-Control: public,max-age=60
 
 * [Caching in HTTP from the specification](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [In-memory caching](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response Caching Middleware](xref:performance/caching/middleware)
+* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

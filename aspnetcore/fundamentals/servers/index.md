@@ -1,15 +1,13 @@
 ---
 title: Web server implementations in ASP.NET Core
 author: tdykstra
-description: Introduces web servers Kestrel and WebListener for ASP.NET Core. Provides guidance on how to choose one and when to use one with a reverse proxy server.
-keywords: ASP.NET Core,IServer,web server,Kestrel,WebListener,reverse proxy
-ms.author: tdykstra
+description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose one and when to use one with a reverse proxy server.
 manager: wpickett
+ms.author: tdykstra
 ms.date: 08/03/2017
-ms.topic: article
-ms.assetid: dba74f39-58cd-4dee-a061-6d15f7346959
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -36,7 +34,7 @@ ASP.NET Core ships two server implementations:
 
 ## Kestrel
 
-Kestrel is the web server that is included by default in ASP.NET Core new-project templates. 
+Kestrel is the web server that's included by default in ASP.NET Core new-project templates. 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -74,11 +72,11 @@ When you use IIS or IIS Express as a reverse proxy for ASP.NET Core, the ASP.NET
 
 ### Nginx with Kestrel
 
-For information about how to use Nginx on Linux as a reverse proxy server for Kestrel, see [Publish to a Linux Production Environment](../../publishing/linuxproduction.md).
+For information about how to use Nginx on Linux as a reverse proxy server for Kestrel, see [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx).
 
 ### Apache with Kestrel
 
-For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
+For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Host on Linux with Apache](xref:host-and-deploy/linux-apache).
 
 ## HTTP.sys
 
@@ -126,16 +124,16 @@ For more information, see the following resources:
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
-- [Kestrel with Nginx](../../publishing/linuxproduction.md)
-- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
+- [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
 - [HTTP.sys](httpsys.md)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
-- [Kestrel with Nginx](../../publishing/linuxproduction.md)
-- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
+- [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
 - [WebListener](weblistener.md)
 
 ---

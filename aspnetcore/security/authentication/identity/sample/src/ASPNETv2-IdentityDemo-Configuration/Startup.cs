@@ -30,16 +30,16 @@ namespace WebApplication5
                 {
                     // Password settings
                     options.Password.RequireDigit = true;
-                    options.Password.RequiredLength = 8; 
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequiredUniqueChars = 2;
+                    options.Password.RequireLowercase = true;
                     options.Password.RequireNonAlphanumeric = true;
                     options.Password.RequireUppercase = true;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequiredUniqueChars = 2;
 
                     // Lockout settings
+                    options.Lockout.AllowedForNewUsers = true;
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                     options.Lockout.MaxFailedAccessAttempts = 5; 
-                    options.Lockout.AllowedForNewUsers = true;
 
                     // Signin settings
                     options.SignIn.RequireConfirmedEmail = true;
@@ -54,15 +54,15 @@ namespace WebApplication5
             #region snippet_ConfigureCookie
             services.ConfigureApplicationCookie(options =>
             {
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookie.Name = "YourAppCookieName";
                 options.Cookie.HttpOnly = true; 
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
-                options.AccessDeniedPath = "/Account/AccessDenied"; 
-                options.SlidingExpiration = true;
-                // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`
+                // ReturnUrlParameter requires `using Microsoft.AspNetCore.Authentication.Cookies;`
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
             });
             #endregion
 

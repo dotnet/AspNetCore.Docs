@@ -1,20 +1,18 @@
 ---
 title: Key Storage Format
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
-ms.author: riande
+description: This document explains the implementation details of the ASP.NET Core data protection key storage format.
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: e8996478-f7bf-4b58-bab4-7fdb5d8556c5
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/implementation/key-storage-format
 ---
 # Key Storage Format
 
-<a name=data-protection-implementation-key-storage-format></a>
+<a name="data-protection-implementation-key-storage-format"></a>
 
 Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\ASP.NET\DataProtection-Keys\.
 
@@ -94,4 +92,4 @@ In this case, only the specified key is revoked. If the key id is "*", however, 
 </revocation>
 ```
 
-The \<reason> element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.
+The \<reason> element is never read by the system. It's simply a convenient place to store a human-readable reason for revocation.

@@ -187,7 +187,7 @@ There are several causes for this issue. Verify all of the following:
 
 - **Hub proxy address reference not formatted correctly:** This error is commonly seen if the reference to the generated hub proxy address is not formatted correctly. Verify that the reference to the hub address is made properly. See [How to reference the dynamically generated proxy](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) for details.
 - **Adding routes to application before adding the hub route:** If your application uses other routes, verify that the first route added is the call to `MapSignalR`.
-- **Using IIS 7 or 7.5 without the update for extensionless URLs:** Using IIS 7 or 7.5 requires an update for extensionless URLs so that the server can provide access to the hub definitions at `/signalr/hubs`. The update can be found [here](https://support.microsoft.com/kb/980368/en-us).
+- **Using IIS 7 or 7.5 without the update for extensionless URLs:** Using IIS 7 or 7.5 requires an update for extensionless URLs so that the server can provide access to the hub definitions at `/signalr/hubs`. The update can be found [here](https://support.microsoft.com/kb/980368).
 - **IIS cache out of date or corrupt:** To verify that the cache contents are not out of date, enter the following command in a PowerShell window to clear the cache:
 
     [!code-powershell[Main](troubleshooting/samples/sample11.ps1)]

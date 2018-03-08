@@ -2,20 +2,21 @@
 title: Getting started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio
-keywords: ASP.NET Core,MVC,Visual Studio for Mac,Entity Framework
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 8/23/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: tutorials/first-mvc-app-mac/start-mvc
 ---
 # Getting started with ASP.NET Core MVC and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). [!INCLUDE[consider RP](../../includes/razor.md)]
+This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). 
+
+[!INCLUDE[consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
@@ -25,7 +26,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later. See [the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
+This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
 
 Install the following:
 
@@ -48,7 +49,7 @@ Name the project **MvcMovie**, and then select **Create**.
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview), launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/index#kestrel), launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 ![Browser with new project](start-mvc/b1.png)
 

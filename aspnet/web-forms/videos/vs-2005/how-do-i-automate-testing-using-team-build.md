@@ -17,7 +17,7 @@ msc.type: video
 ====================
 by [Chris Menegay](https://twitter.com/CMenegay)
 
-In this video we learn how to use Visual Studio Team System to define the automated tests that will run during a team build, and how we can drill down in to the results of those tests. We also learn that the [Test Tools Build Task](https://msdn.microsoft.com/en-us/vstudio/aa718351.aspx#bttt) provides an alternative way of specifying the tests to run during a team build.
+In this video we learn how to use Visual Studio Team System to define the automated tests that will run during a team build, and how we can drill down in to the results of those tests. We also learn that the [Test Tools Build Task](https://msdn.microsoft.com/vstudio/aa718351.aspx#bttt) provides an alternative way of specifying the tests to run during a team build.
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-automate-testing-using-team-build)
 

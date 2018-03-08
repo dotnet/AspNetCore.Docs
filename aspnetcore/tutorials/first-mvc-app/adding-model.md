@@ -2,14 +2,12 @@
 title: Adding a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
-ms.date: 03/30/2017
-ms.topic: get-started-article
-ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
-ms.technology: aspnet
+ms.author: riande
+ms.date: 12/8/2017
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -17,11 +15,9 @@ uid: tutorials/first-mvc-app/adding-model
 
 Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
 
-In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
-
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
@@ -33,15 +29,10 @@ In **Solution Explorer**, right-click the *Controllers* folder **> Add > Control
 
 ![view of above step](adding-model/_static/add_controller.png)
 
-In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and select **Add**.
+If the **Add MVC Dependencies** dialog appears:
 
-![view of above step](adding-model/_static/add_depend.png)
-
-Visual Studio adds the dependencies needed to scaffold a controller, but the controller itself is not created. The next invoke of **> Add > Controller** creates the controller. 
-
-In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
-
-![view of above step](adding-model/_static/add_controller.png)
+* [Update Visual Studio to the latest version](https://www.visualstudio.com/downloads/). Visual Studio versions prior to 15.5 show this dialog.
+* If you can't update, select **ADD**, and then follow the add controller steps again.
 
 In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
@@ -64,11 +55,11 @@ Visual Studio creates:
 
 * An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/&ast;.cshtml*)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/&ast;.cshtml*)
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
+If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
 
 ```
 An unhandled exception occurred while processing the request.
@@ -102,11 +93,11 @@ Add-Migration Initial
 Update-Database
 ```
 
-**Note:** If you receive an error with the `Install-Package` command, open NuGet Package Manager and search for the `Microsoft.EntityFrameworkCore.Tools` package. This allows you to install the package or check if it is already installed. Alternatively, see the [CLI approach](#cli) if you have problems with the PMC.
+**Note:** If you receive an error with the `Install-Package` command, open NuGet Package Manager and search for the `Microsoft.EntityFrameworkCore.Tools` package. This allows you to install the package or check if it's already installed. Alternatively, see the [CLI approach](#cli) if you have problems with the PMC.
 
 The `Add-Migration` command creates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_Initial.cs* file, which creates the database.
 
 <a name="cli"></a>
 You can perform the preceeding steps using the command-line interface (CLI) rather than the PMC:
@@ -115,14 +106,14 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
 * Run the following commands from the console (in the project directory):
 
   ```console
-  dotnet ef migrations add InitialCreate
+  dotnet ef migrations add Initial
   dotnet ef database update
   ```     
   
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model4.md)]
 

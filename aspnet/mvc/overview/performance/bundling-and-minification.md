@@ -71,7 +71,7 @@ The bytes sent had a significant reduction with bundling as browsers are fairly 
 
 ## Debugging Bundled and Minified JavaScript
 
-It's easy to debug your JavaScript in a development environment (where the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx) in the *Web.config* file is set to `debug="true"` ) because the JavaScript files are not bundled or minified. You can also debug a release build where your JavaScript files are bundled and minified. Using the IE F12 developer tools, you debug a JavaScript function included in a minified bundle using the following approach:
+It's easy to debug your JavaScript in a development environment (where the [compilation Element](https://msdn.microsoft.com/library/s10awwz0.aspx) in the *Web.config* file is set to `debug="true"` ) because the JavaScript files are not bundled or minified. You can also debug a release build where your JavaScript files are bundled and minified. Using the IE F12 developer tools, you debug a JavaScript function included in a minified bundle using the following approach:
 
 1. Select the **Script** tab and then select the **Start debugging** button.
 2. Select the bundle containing the JavaScript function you want to debug using the assets button.  
@@ -80,11 +80,11 @@ It's easy to debug your JavaScript in a development environment (where the [comp
 4. In the **Search Scrip** t input box, select the name of the function you want to debug. In the following image, **AddAltToImg** was entered in the **Search Scrip** t input box.  
     ![](bundling-and-minification/_static/image6.png)
 
-For more information on debugging with the F12 developer tools, see the MSDN article [Using the F12 Developer Tools to Debug JavaScript Errors](https://msdn.microsoft.com/en-us/library/ie/gg699336(v=vs.85).aspx).
+For more information on debugging with the F12 developer tools, see the MSDN article [Using the F12 Developer Tools to Debug JavaScript Errors](https://msdn.microsoft.com/library/ie/gg699336(v=vs.85).aspx).
 
 ## Controlling Bundling and Minification
 
-Bundling and minification is enabled or disabled by setting the value of the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file. In the following XML, `debug` is set to true so bundling and minification is disabled.
+Bundling and minification is enabled or disabled by setting the value of the debug attribute in the [compilation Element](https://msdn.microsoft.com/library/s10awwz0.aspx)  in the *Web.config* file. In the following XML, `debug` is set to true so bundling and minification is disabled.
 
 [!code-xml[Main](bundling-and-minification/samples/sample3.xml?highlight=2)]
 
@@ -93,7 +93,7 @@ To enable bundling and minification, set the `debug` value to "false". You can o
 [!code-csharp[Main](bundling-and-minification/samples/sample4.cs?highlight=7)]
 
 > [!NOTE]
-> Unless `EnableOptimizations` is `true` or the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file is set to `false`, files will not be bundled or minified. Additionally, the .min version of files will not be used, the full debug versions will be selected. `EnableOptimizations` overrides the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file
+> Unless `EnableOptimizations` is `true` or the debug attribute in the [compilation Element](https://msdn.microsoft.com/library/s10awwz0.aspx)  in the *Web.config* file is set to `false`, files will not be bundled or minified. Additionally, the .min version of files will not be used, the full debug versions will be selected. `EnableOptimizations` overrides the debug attribute in the [compilation Element](https://msdn.microsoft.com/library/s10awwz0.aspx)  in the *Web.config* file
 
 
 ## Using Bundling and Minification with ASP.NET Web Forms and Web Pages
@@ -132,11 +132,11 @@ In the code above, jQuery will be requested from the CDN while in release mode a
 
 ## Creating a Bundle
 
-The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the RegisterBundles method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the RegisterBundles method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
-The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` method is provided to add all the files in a directory (and optionally all subdirectories) which match a search pattern. The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` API is shown below:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` method is provided to add all the files in a directory (and optionally all subdirectories) which match a search pattern. The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` API is shown below:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
@@ -175,7 +175,7 @@ The following table shows the files added to a bundle using the wildcard as show
 
 Explicitly adding each file to a bundle is generally the preferred over wildcard loading of files for the following reasons:
 
-- Adding scripts by wildcard defaults to loading them in alphabetical order, which is typically not what you want. CSS and JavaScript files frequently need to be added in a specific (non-alphabetic) order. You can mitigate this risk by adding a custom [IBundleOrderer](https://msdn.microsoft.com/en-us/library/system.web.optimization.ibundleorderer(VS.110).aspx) implementation, but explicitly adding each file is less error prone. For example, you might add new assets to a folder in the future which might require you to modify your [IBundleOrderer](https://msdn.microsoft.com/en-us/library/system.web.optimization.ibundleorderer(VS.110).aspx) implementation.
+- Adding scripts by wildcard defaults to loading them in alphabetical order, which is typically not what you want. CSS and JavaScript files frequently need to be added in a specific (non-alphabetic) order. You can mitigate this risk by adding a custom [IBundleOrderer](https://msdn.microsoft.com/library/system.web.optimization.ibundleorderer(VS.110).aspx) implementation, but explicitly adding each file is less error prone. For example, you might add new assets to a folder in the future which might require you to modify your [IBundleOrderer](https://msdn.microsoft.com/library/system.web.optimization.ibundleorderer(VS.110).aspx) implementation.
 - View specific files added to a directory using wild card loading can be included in all views referencing that bundle. If the view specific script is added to a bundle, you may get a JavaScript error on other views that reference the bundle.
 - CSS files that import other files result in the imported files loaded twice. For example, the following code creates a bundle with most of the jQuery UI theme CSS files loaded twice. 
 
@@ -204,10 +204,10 @@ The bundling and minification framework provides a mechanism to process intermed
 1. Create a folder for your LESS content. The following example uses the *Content\MyLess* folder.
 2. Add the [.less](http://www.dotlesscss.org/) NuGet package **dotless** to your project.  
     ![NuGet dotless install](bundling-and-minification/_static/image9.png)
-3. Add a class that implements the [IBundleTransform](https://msdn.microsoft.com/en-us/library/system.web.optimization.ibundletransform(VS.110).aspx) interface. For the .less transform, add the following code to your project.
+3. Add a class that implements the [IBundleTransform](https://msdn.microsoft.com/library/system.web.optimization.ibundletransform(VS.110).aspx) interface. For the .less transform, add the following code to your project.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample13.cs)]
-4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/en-us/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file.
+4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample14.cs)]
 5. Add the following code to any views which references the LESS bundle.

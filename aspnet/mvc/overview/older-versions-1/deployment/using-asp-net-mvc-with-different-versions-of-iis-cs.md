@@ -28,7 +28,7 @@ Here's a summary of the different versions of IIS:
 - IIS 7.0 (classic mode) - You need to perform special configuration to use ASP.NET Routing.
 - IIS 6.0 or below - You need to perform special configuration to use ASP.NET Routing.
 
-The latest version of IIS is version 7.5 (on Win7). IIS 7 of IIS is included with Windows Server 2008 AND VISTA/SP1 and higher. You also can install IIS 7.0 on any version of the Vista operating system except Home Basic (see [https://technet.microsoft.com/en-us/library/cc731179%28WS.10%29.aspx](https://technet.microsoft.com/en-us/library/cc731179%28WS.10%29.aspx)).
+The latest version of IIS is version 7.5 (on Win7). IIS 7 of IIS is included with Windows Server 2008 AND VISTA/SP1 and higher. You also can install IIS 7.0 on any version of the Vista operating system except Home Basic (see [https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx](https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx)).
 
 IIS 7.0 supports two modes for processing requests. You can use integrated mode or classic mode. You don't need to perform any special configuration steps when using IIS 7.0 in integrated mode. However, you do need to perform additional configuration when using IIS 7.0 in classic mode.
 

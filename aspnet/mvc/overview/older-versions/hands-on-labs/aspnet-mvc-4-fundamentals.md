@@ -13,22 +13,22 @@ ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals
 msc.type: authoredcontent
 ---
-ASP.NET MVC 4 Fundamentals
-====================
-by [Web Camps Team](https://twitter.com/webcamps)
+# ASP.NET MVC 4 Fundamentals
 
-> This Hands-On Lab is based on MVC (Model View Controller) Music Store, a tutorial application that introduces and explains step-by-step how to use ASP.NET MVC and Visual Studio. Throughout the lab you will learn the simplicity, yet power of using these technologies together. You will start with a simple application and will build it until you have a fully functional ASP.NET MVC 4 Web Application.
-> 
-> This Lab works with ASP.NET MVC 4.
-> 
-> If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [[http://mvcmusicstore.codeplex.com/](http://mvcmusicstore.codeplex.com/)](http://mvcmusicstore.codeplex.com/).
-> 
-> > [!NOTE]
-> > This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
-> 
-> 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/en-us/download/29843](https://www.microsoft.com/en-us/download/29843).
+By [Web Camps Team](https://twitter.com/webcamps)
 
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
+
+This Hands-On Lab is based on MVC (Model View Controller) Music Store, a tutorial application that introduces and explains step-by-step how to use ASP.NET MVC and Visual Studio. Throughout the lab you will learn the simplicity, yet power of using these technologies together. You will start with a simple application and will build it until you have a fully functional ASP.NET MVC 4 Web Application.
+
+This Lab works with ASP.NET MVC 4.
+
+If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
+
+This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
+
+> [!NOTE]
+> All sample code and snippets are included in the Web Camps Training Kit, available at [Microsoft-Web/WebCampTrainingKit Releases](https://aka.ms/webcamps-training-kit). The project specific to this lab is available at [ASP.NET MVC 4 Fundamentals](https://github.com/Microsoft-Web/HOL-MVC4Fundamentals).
 
 <a id="The_Music_Store_application"></a>
 ### The Music Store application
@@ -314,7 +314,7 @@ In this task, you will use the **querystring** to send parameters to the **Brows
     > [!NOTE]
     > You are using the **HttpUtility.HtmlEncode** utility method to prevents users from injecting Javascript into the View with a link like **/Store/Browse?Genre=&lt;script&gt;window.location='[http://hackersite.com](http://hackersite.com)'&lt;/script&gt;**.
     > 
-    > For further explanation, please visit [this msdn article](https://msdn.microsoft.com/en-us/library/a2a4yykt(v=VS.80).aspx).
+    > For further explanation, please visit [this msdn article](https://msdn.microsoft.com/library/a2a4yykt(v=VS.80).aspx).
 
 <a id="Ex3Task2"></a>
 
@@ -963,7 +963,7 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 project
         *SimpleMembership Included in the solution*
 
         > [!NOTE]
-        > Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/en-us/library/jj158393(v=vs.111).aspx) in MSDN.
+        > Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/library/jj158393(v=vs.111).aspx) in MSDN.
 
 > [!NOTE]
 > Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).

@@ -2,16 +2,14 @@
 title: Open Web Interface for .NET (OWIN)
 author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
-keywords: ASP.NET Core,Open Web Interface for .NET,OWIN
-ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 70c4e6bc-a773-4039-96ec-6fe557c9369d
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/owin
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 10/14/2016
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/owin
 ---
 # Introduction to Open Web Interface for .NET (OWIN)
 
@@ -25,7 +23,7 @@ OWIN provides a decoupling layer that allows two frameworks with disparate objec
 
 This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host, or for other OWIN compatible components to be run on top of ASP.NET Core.
 
-Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components should not use the Owin package or adapters.
+Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components shouldn't use the Owin package or adapters.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -86,13 +84,13 @@ app.UseOwin(pipeline =>
 });
 ```
 
-<a name=hosting-on-owin></a>
+<a name="hosting-on-owin"></a>
 
 ## Using ASP.NET Hosting on an OWIN-based server
 
 OWIN-based servers can host ASP.NET applications. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
 
-[!code-csharp[Main](owin/sample/src/NowinSample/Program.cs?highlight=15)]
+[!code-csharp[](owin/sample/src/NowinSample/Program.cs?highlight=15)]
 
 `IServer` is an interface that requires an `Features` property and a `Start` method.
 
@@ -232,7 +230,7 @@ You can construct a OWIN environment using the `HttpContext`.
 
 OWIN depends on an `IDictionary<string,object>` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the [primary specification, extensions](http://owin.org/#spec), and [OWIN Key Guidelines and Common Keys](http://owin.org/spec/spec/CommonKeys.html).
 
-### Request Data (OWIN v1.0.0)
+### Request data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -245,13 +243,13 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.RequestHeaders | `IDictionary<string,string[]>`  | |
 | owin.RequestBody | `Stream`  | |
 
-### Request Data (OWIN v1.1.0)
+### Request data (OWIN v1.1.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | owin.RequestId | `String` | Optional |
 
-### Response Data (OWIN v1.0.0)
+### Response data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -261,7 +259,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.ResponseBody | `Stream`  | |
 
 
-### Other Data (OWIN v1.0.0)
+### Other data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -269,7 +267,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.Version  | `String` | |   
 
 
-### Common Keys
+### Common keys
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
@@ -315,9 +313,7 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | websocket.ClientCloseStatus | `int` | Optional |
 | websocket.ClientCloseDescription | `String` | Optional |
 
+## Additional resources
 
-## Additional Resources
-
-* [Middleware](middleware.md)
-
-* [Servers](servers/index.md)
+* [Middleware](xref:fundamentals/middleware/index)
+* [Servers](xref:fundamentals/servers/index)

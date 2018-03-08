@@ -63,7 +63,7 @@ In this example, "1" is an order number, but "pending" maps to a collection.
 `/orders/1`  
 `/orders/pending`
 
-**Mulitple parameter types**
+**Multiple parameter types**
 
 In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
@@ -125,7 +125,7 @@ Any controller methods that do not have a route attribute use convention-based r
 
 Web API also selects actions based on the HTTP method of the request (GET, POST, etc). By default, Web API looks for a case-insensitive match with the start of the controller method name. For example, a controller method named `PutCustomers` matches an HTTP PUT request.
 
-You can override this convention by decorating the mathod with any the following attributes:
+You can override this convention by decorating the method with any the following attributes:
 
 - **[HttpDelete]**
 - **[HttpGet]**
@@ -256,7 +256,7 @@ Here is how the total ordering is determined:
     3. Route parameters without constraints.
     4. Wildcard parameter segments with constraints.
     5. Wildcard parameter segments without constraints.
-3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/en-us/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
+3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
 
 Here is an example. Suppose you define the following controller:
 

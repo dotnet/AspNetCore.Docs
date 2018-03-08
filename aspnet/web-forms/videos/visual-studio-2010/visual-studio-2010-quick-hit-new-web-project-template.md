@@ -1,6 +1,6 @@
 ---
 uid: web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-new-web-project-template
-title: "Visual Studio 2010 "Quick Hit" - New Web Project Template | Microsoft Docs"
+title: Visual Studio 2010 Quick Hit - New Web Project Template | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn about Visual Studio's new web project starter template."
 ms.author: aspnetcontent

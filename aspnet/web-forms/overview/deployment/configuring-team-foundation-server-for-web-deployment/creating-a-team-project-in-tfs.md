@@ -111,7 +111,7 @@ Next, you need to give the user permission to create new team sites in the Share
 
     ![](creating-a-team-project-in-tfs/_static/image10.png)
 
-For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/en-us/library/dd547204.aspx).
+For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/library/dd547204.aspx).
 
 ## Create a New Team Project and Add Users
 
@@ -157,9 +157,9 @@ The next procedure describes how to create a new team project in TFS 2010.
 11. On the **Select a Process Template** page, select the process template that you want to use to manage the development process, and then click **Next**.
 
     > [!NOTE]
-    > For more information on process templates for TFS, see [Process Templates and Tools](https://msdn.microsoft.com/en-us/vstudio/aa718795).
+    > For more information on process templates for TFS, see [Process Templates and Tools](https://msdn.microsoft.com/vstudio/aa718795).
 12. On the **Team Site Settings** page, leave the default settings unchanged, and then click **Next**.
-13. This setting creates, or identifies, a SharePoint team site that is associated with the TFS team project. Your development team can use this site to manage documentation, participate in discussion threads, create wiki pages, and perform various other tasks that are not related to code. For more information, see [Interactions Between SharePoint Products and Team Foundation Server](https://msdn.microsoft.com/en-us/library/ms253177.aspx).
+13. This setting creates, or identifies, a SharePoint team site that is associated with the TFS team project. Your development team can use this site to manage documentation, participate in discussion threads, create wiki pages, and perform various other tasks that are not related to code. For more information, see [Interactions Between SharePoint Products and Team Foundation Server](https://msdn.microsoft.com/library/ms253177.aspx).
 14. On the **Specify Source Control Settings** page, leave the default settings unchanged, and then click **Next**.
 15. This setting identifies or creates the location in the TFS folder hierarchy that will act as a root folder for your content.
 16. On the **Confirm Team Project Settings** page, click **Finish**.
@@ -195,7 +195,7 @@ The next topic, [Adding Content to Source Control](adding-content-to-source-cont
 
 ## Further Reading
 
-For broader guidance on creating team projects in TFS, see [Create a Team Project](https://msdn.microsoft.com/en-us/library/ms181477(v=VS.100).aspx). For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/en-us/library/dd547204.aspx). For more information on adding users to team projects, see [Add Users to Team Projects](https://msdn.microsoft.com/en-us/library/bb558971.aspx).
+For broader guidance on creating team projects in TFS, see [Create a Team Project](https://msdn.microsoft.com/library/ms181477(v=VS.100).aspx). For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/library/dd547204.aspx). For more information on adding users to team projects, see [Add Users to Team Projects](https://msdn.microsoft.com/library/bb558971.aspx).
 
 >[!div class="step-by-step"]
 [Previous](configuring-team-foundation-server-for-web-deployment.md)

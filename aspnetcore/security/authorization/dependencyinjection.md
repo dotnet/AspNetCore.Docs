@@ -1,24 +1,22 @@
 ---
 title: Dependency Injection in requirement handlers
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
-ms.author: riande
+description: This document outlines how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 5fb6625c-173a-4feb-8380-73c9844dc23c
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/dependencyinjection
 ---
 # Dependency Injection in requirement handlers
 
-<a name=security-authorization-di></a>
+<a name="security-authorization-di"></a>
 
-[Authorization handlers must be registered](policies.md#security-authorization-policies-based-handler-registration) in the service collection during configuration (using [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection)).
+[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration (using [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection)).
 
-Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection.  Authorization will resolve and inject that into your constructor.
+Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization will resolve and inject that into your constructor.
 
 For example, if you wanted to use ASP.NET's logging infrastructure you would want to inject `ILoggerFactory` into your handler. Such a handler might look like:
 
@@ -45,7 +43,7 @@ You would register the handler with `services.AddSingleton()`:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
-   ```
+```
 
 An instance of the handler will be created when your application starts, and DI will inject the registered `ILoggerFactory` into your constructor.
 

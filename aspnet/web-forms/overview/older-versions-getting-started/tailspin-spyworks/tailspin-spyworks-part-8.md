@@ -72,7 +72,7 @@ Now in the Page\_Load event handler extract the error messages from the Request 
 
 ## <a id="_Toc260221683"></a>  Conclusion
 
-We've seen that that ASP.NET WebForms makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly.
+We've seen that ASP.NET WebForms makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly.
 
 Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET WebForms applications!
 

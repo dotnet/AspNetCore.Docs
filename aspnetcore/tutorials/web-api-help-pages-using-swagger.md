@@ -1,24 +1,20 @@
 ---
-title: ASP.NET Core Web API Help Pages using Swagger
+title: ASP.NET Core Web API help pages using Swagger
 author: spboyer
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API application.
-keywords: ASP.NET Core,Swagger,Swashbuckle,help pages,Web API
-ms.author: spboyer
 manager: wpickett
-ms.date: 09/01/2017
-ms.topic: article
-ms.assetid: 54bb961d-29d9-4dee-8e2c-a93fc33c16f2
-ms.technology: aspnet
+ms.author: spboyer
+ms.date: 02/02/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: tutorials/web-api-help-pages-using-swagger
 ---
-# ASP.NET Web API Help Pages using Swagger
-
-<a name=web-api-help-pages-using-swagger></a>
+# ASP.NET Core Web API help pages using Swagger
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben)
 
-Understanding the various methods of an API can be a challenge for a developer when building a consuming application.
+Understanding the various methods of an API can be a challenge for a developer when building a consuming app.
 
 Generating good documentation and help pages for your Web API, using [Swagger](https://swagger.io/) with a .NET Core implementation is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.  
 In this article two popular Swagger .NET implementations are showcased: [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RSuter/NSwag),.
@@ -123,6 +119,6 @@ Each public action method in your Controllers can be tested from the UI. Click a
 
 See the following pages to integrate Swagger UI and the Swagger toolchain to your solution using one of the following middlewares: 
 
-[Getting Started with Swashbuckle](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-swashbuckle.md)  
+[Getting Started with Swashbuckle](getting-started-with-swashbuckle.md)
 
-[Getting Started with NSwag](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-nswag.md)
+[Getting Started with NSwag](getting-started-with-nswag.md)

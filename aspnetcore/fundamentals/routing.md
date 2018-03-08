@@ -2,14 +2,12 @@
 title: Routing in ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core routing functionality is responsible for mapping an incoming request to a route handler.
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: bbbcf9e4-3c4c-4f50-b91e-175fe9cae4e2
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -33,9 +31,9 @@ Routing uses *routes* (implementations of [IRouter](https://docs.microsoft.com/a
 
 Generally, an app has a single collection of routes. When a request arrives, the route collection is processed in order. The incoming request looks for a route that matches the request URL by calling the `RouteAsync` method on each available route in the route collection. By contrast, a response can use routing to generate URLs (for example, for redirection or links) based on route information, and thus avoid having to hard-code URLs, which helps maintainability.
 
-Routing is connected to the [middleware](middleware.md) pipeline by the `RouterMiddleware` class. [ASP.NET MVC](../mvc/overview.md) adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see [using-routing-middleware](#using-routing-middleware).
+Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the `RouterMiddleware` class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see [Using routing middleware](#using-routing-middleware).
 
-<a name=url-matching-ref></a>
+<a name="url-matching-ref"></a>
 
 ### URL matching
 
@@ -68,7 +66,7 @@ The primary inputs to `GetVirtualPath` are:
 
 * `VirtualPathContext.AmbientValues`
 
-Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it is possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to get services or additional data associated with the current context.
+Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it's possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to get services or additional data associated with the current context.
 
 Tip: Think of `Values` as being a set of overrides for the `AmbientValues`. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
@@ -96,9 +94,9 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{id?}");
 ```
 
-This template will match a URL path like `/Products/Details/17` and extract the route values `{ controller = Products, action = Details, id = 17 }`. The route values are determined by splitting the URL path into segments, and matching each segment with the *route parameter* name in the route template. Route parameters are named. They are defined by enclosing the parameter name in braces `{ }`.
+This template will match a URL path like `/Products/Details/17` and extract the route values `{ controller = Products, action = Details, id = 17 }`. The route values are determined by splitting the URL path into segments, and matching each segment with the *route parameter* name in the route template. Route parameters are named. They're defined by enclosing the parameter name in braces `{ }`.
 
-The template above could also match the URL path `/` and would produce the values `{ controller = Home, action = Index }`. This happens because the `{controller}` and `{action}` route parameters have default values, and the `id` route parameter is optional. An equals `=` sign followed by a value after the route parameter name defines a default value for the parameter. A question mark `?` after the route parameter name defines the parameter as optional. Route parameters with a default value *always* produce a route value when the route matches - optional parameters will not produce a route value if there was no corresponding URL path segment.
+The template above could also match the URL path `/` and would produce the values `{ controller = Home, action = Index }`. This happens because the `{controller}` and `{action}` route parameters have default values, and the `id` route parameter is optional. An equals `=` sign followed by a value after the route parameter name defines a default value for the parameter. A question mark `?` after the route parameter name defines the parameter as optional. Route parameters with a default value *always* produce a route value when the route matches - optional parameters won't produce a route value if there was no corresponding URL path segment.
 
 See [route-template-reference](#route-template-reference) for a thorough description of route template features and syntax.
 
@@ -155,7 +153,7 @@ This template will match a URL path like `/Products/5` and will extract the valu
 
 ![Locals Windows tokens](routing/_static/tokens.png)
 
-<a name=id1></a>
+<a name="id1"></a>
 
 ### URL generation
 
@@ -185,7 +183,7 @@ Add the NuGet package "Microsoft.AspNetCore.Routing".
 
 Add routing to the service container in *Startup.cs*:
 
-[!code-csharp[Main](../fundamentals/routing/sample/RoutingSample/Startup.cs?highlight=3&start=11&end=14)]
+[!code-csharp[](../fundamentals/routing/sample/RoutingSample/Startup.cs?highlight=3&start=11&end=14)]
 
 Routes must be configured in the `Configure` method in the `Startup` class. The sample below uses these APIs:
 
@@ -253,7 +251,7 @@ The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in t
 
 ## Route Template Reference
 
-Tokens within curly braces (`{ }`) define *route parameters* which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example `{controller=Home}{action=Index}` would not be a valid route, since there is no literal value between `{controller}` and `{action}`. These route parameters must have a name, and may have additional attributes specified.
+Tokens within curly braces (`{ }`) define *route parameters* which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example `{controller=Home}{action=Index}` wouldn't be a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name, and may have additional attributes specified.
 
 Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter `{` or  `}`, escape it by repeating the character (`{{` or `}}`).
 
@@ -283,7 +281,7 @@ The following table demonstrates some route templates and their behavior.
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
-Tip: Enable [Logging](logging.md) to see how the built in routing implementations, such as `Route`, match requests.
+Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in routing implementations, such as `Route`, match requests.
 
 ## Route Constraint Reference
 
@@ -316,7 +314,7 @@ The following table demonstrates some route constraints and their expected behav
 | `required`  | `{name:required}` | `Rick` |  Used to enforce that a non-parameter value is present during URL generation |
 
 >[!WARNING]
-> Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+> Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
 ## Regular expressions 
 
@@ -350,7 +348,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 The example below shows how to generate a link to a route given a dictionary of route values and a `RouteCollection`.
 
-[!code-csharp[Main](../fundamentals/routing/sample/RoutingSample/Startup.cs?range=45-59)]
+[!code-csharp[](../fundamentals/routing/sample/RoutingSample/Startup.cs?range=45-59)]
 
 The `VirtualPath` generated at the end of the sample above is `/package/create/123`.
 

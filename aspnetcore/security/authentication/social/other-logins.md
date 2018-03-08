@@ -1,17 +1,16 @@
 ---
 title: Short survey of other authentication providers.
 author: rick-anderson
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/03/2016
-ms.topic: article
-ms.assetid: BC36CA84-3DE8-496E-9AA2-2F1B74AE8309
 ms.prod: asp.net-core
+ms.topic: article
 uid: security/authentication/otherlogins
 ---
 # Short survey of other authentication providers
 
-<a name=security-authentication-other-logins></a>
+<a name="security-authentication-other-logins"></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 

@@ -136,7 +136,7 @@ Creating an `IStockTicker` interface isn't strictly necessary, but I wanted to s
 
 ## Add the Ninject Library
 
-There are many open-source IoC containers for .NET. For this tutorial, I'll use [Ninject](http://www.ninject.org/). (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Unity](http://unity.codeplex.com/), and [StructureMap](http://docs.structuremap.net).)
+There are many open-source IoC containers for .NET. For this tutorial, I'll use [Ninject](http://www.ninject.org/). (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Unity](https://github.com/unitycontainer/unity), and [StructureMap](http://docs.structuremap.net).)
 
 Use NuGet Package Manager to install the [Ninject library](https://nuget.org/packages/Ninject/3.0.1.10). In Visual Studio, from the **Tools** menu select **Library Package Manager** | **Package Manager Console**. In the Package Manager Console window, enter the following command:
 

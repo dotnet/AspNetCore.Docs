@@ -109,7 +109,7 @@ There are three main pages in this default Web application: *Default.aspx* (Home
 
 ## ASP.NET Web Forms Background
 
-ASP.NET Web Forms are pages that are based on Microsoft ASP.NET technology, in which code that runs on the server dynamically generates Web page output to the browser or client device. An ASP.NET Web Forms page automatically renders the correct browser-compliant HTML for features such as styles, layout, and so on. Web Forms are compatible with any language supported by the .NET common language runtime, such as Microsoft Visual Basic and Microsoft Visual C#. Also, Web Forms are built on the [Microsoft .NET Framework](https://msdn.microsoft.com/en-US/vstudio/aa496123), which provides benefits such as a managed environment, type safety, and inheritance.
+ASP.NET Web Forms are pages that are based on Microsoft ASP.NET technology, in which code that runs on the server dynamically generates Web page output to the browser or client device. An ASP.NET Web Forms page automatically renders the correct browser-compliant HTML for features such as styles, layout, and so on. Web Forms are compatible with any language supported by the .NET common language runtime, such as Microsoft Visual Basic and Microsoft Visual C#. Also, Web Forms are built on the [Microsoft .NET Framework](https://msdn.microsoft.com/vstudio/aa496123), which provides benefits such as a managed environment, type safety, and inheritance.
 
 When an ASP.NET Web Forms page runs, the page goes through a life cycle in which it performs a series of processing steps. These steps include initialization, instantiating controls, restoring and maintaining state, running event handler code, and rendering. As you become more familiar with the power of ASP.NET Web Forms, it is important for you to understand the [ASP.NET page life cycle](https://msdn.microsoft.com/library/ms178472(v=vs.100).aspx) so that you can write code at the appropriate life-cycle stage for the effect you intend.
 
@@ -123,7 +123,7 @@ When a Web server receives a request for a page, it finds the page, processes it
 > 
 > **Membership**
 > 
-> [ASP.NET](https://msdn.microsoft.com/en-us/library/yh26yfzy.aspx) Identity stores your users' credentials in a database created by the application. When your users log in, the application validates their credentials by reading the database. Your project's *Account* folder contains the files that implement the various parts of membership: registering, logging in, changing a password, and authorizing access. Additionally, ASP.NET Web Forms supports OAuth and OpenID. These authentication enhancements allow users to log into your site using existing credentials, from such accounts as Facebook, Twitter, Windows Live, and Google.
+> [ASP.NET](https://msdn.microsoft.com/library/yh26yfzy.aspx) Identity stores your users' credentials in a database created by the application. When your users log in, the application validates their credentials by reading the database. Your project's *Account* folder contains the files that implement the various parts of membership: registering, logging in, changing a password, and authorizing access. Additionally, ASP.NET Web Forms supports OAuth and OpenID. These authentication enhancements allow users to log into your site using existing credentials, from such accounts as Facebook, Twitter, Windows Live, and Google.
 > 
 > ![Create the Project - Solution Explorer (ASP.NET Identity)](create-the-project/_static/image7.png)
 > 
@@ -135,7 +135,7 @@ When a Web server receives a request for a page, it finds the page, processes it
 > 
 > **Master Pages**
 > 
-> An [ASP.NET master page](https://msdn.microsoft.com/en-us/library/wtxbf3hh.aspx) defines a consistent appearance and behavior for all of the pages in your application. The layout of the master page merges with the content from an individual content page to produce the final page that the user sees. In the Wingtip Toys application, you modify the *Site.master* master page so that all the pages in the Wingtip Toys website share the same distinctive logo and navigation bar.
+> An [ASP.NET master page](https://msdn.microsoft.com/library/wtxbf3hh.aspx) defines a consistent appearance and behavior for all of the pages in your application. The layout of the master page merges with the content from an individual content page to produce the final page that the user sees. In the Wingtip Toys application, you modify the *Site.master* master page so that all the pages in the Wingtip Toys website share the same distinctive logo and navigation bar.
 > 
 > **HTML5**
 > 
@@ -187,8 +187,8 @@ In this tutorial you have created, reviewed and run the default Web Forms applic
 ## Additional Resources
 
 [Choosing the Right Programming Model](../../../videos/how-do-i/choosing-the-right-programming-model.md)   
-[Web Application Projects versus Web Site Projects](https://msdn.microsoft.com/en-us/library/dd547590.aspx)   
-[ASP.NET Web Forms Pages Overview](https://msdn.microsoft.com/en-us/library/428509ah.aspx)
+[Web Application Projects versus Web Site Projects](https://msdn.microsoft.com/library/dd547590.aspx)   
+[ASP.NET Web Forms Pages Overview](https://msdn.microsoft.com/library/428509ah.aspx)
 
 >[!div class="step-by-step"]
 [Previous](introduction-and-overview.md)

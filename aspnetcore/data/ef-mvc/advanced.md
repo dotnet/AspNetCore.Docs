@@ -1,15 +1,13 @@
 ---
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 author: tdykstra
-description: This tutorial introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Core.
-keywords: ASP.NET Core,Entity Framework Core,raw sql,examine sql,repository pattern,unit of work pattern,automatic change detection,existing database
-ms.author: tdykstra
+description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
 manager: wpickett
+ms.author: tdykstra
 ms.date: 03/15/2017
-ms.topic: get-started-article
-ms.assetid: 92a2986a-d005-4ff6-9559-6657fd466bb7
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 
@@ -25,7 +23,7 @@ In the previous tutorial, you implemented table-per-hierarchy inheritance. This 
 
 One of the advantages of using the Entity Framework is that it avoids tying your code too closely to a particular method of storing data. It does this by generating SQL queries and commands for you, which also frees you from having to write them yourself. But there are exceptional scenarios when you need to run specific SQL queries that you have manually created. For these scenarios, the Entity Framework Code First API includes methods that enable you to pass SQL commands directly to the database. You have the following options in EF Core 1.0:
 
-* Use the `DbSet.FromSql` method for queries that return entity types. The returned objects must be of the type expected by the `DbSet` object, and they are automatically tracked by the database context unless you [turn tracking off](crud.md#no-tracking-queries).
+* Use the `DbSet.FromSql` method for queries that return entity types. The returned objects must be of the type expected by the `DbSet` object, and they're automatically tracked by the database context unless you [turn tracking off](crud.md#no-tracking-queries).
 
 * Use the `Database.ExecuteSqlCommand` for non-query commands.
 
@@ -39,7 +37,7 @@ The `DbSet<TEntity>` class provides a method that you can use to execute a query
 
 In *DepartmentsController.cs*, in the `Details` method, replace the code that retrieves a department with a `FromSql` method call, as shown in the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10,13)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10,13)]
 
 To verify that the new code works correctly, select the **Departments** tab and then **Details** for one of the departments.
 
@@ -51,11 +49,11 @@ Earlier you created a student statistics grid for the About page that showed the
 
 In *HomeController.cs*, replace the `About` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseRawSQL&highlight=3-32)]
+[!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseRawSQL&highlight=3-32)]
 
 Add a using statement:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings2)]
+[!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings2)]
 
 Run the app and go to the About page. It displays the same data it did before.
 
@@ -69,9 +67,9 @@ Suppose Contoso University administrators want to perform global changes in the 
 
 In *CoursesContoller.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdateGet)]
+[!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdateGet)]
 
-[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdatePost)]
+[!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdatePost)]
 
 When the controller processes an HttpGet request, nothing is returned in `ViewData["RowsAffected"]`, and the view displays an empty text box and a submit button, as shown in the preceding illustration.
 
@@ -83,7 +81,7 @@ In the **Add New Item** dialog, click **ASP.NET** under **Installed** in the lef
 
 In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
-[!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
+[!code-html[](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
 Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Courses/UpdateCourseCredits`). Enter a number in the text box:
 
@@ -137,7 +135,7 @@ Note that you don't have to use debug mode and stop at a breakpoint to get loggi
 
 ## Repository and unit of work patterns
 
-Many developers write code to implement the repository and unit of work patterns as a wrapper around code that works with the Entity Framework. These patterns are intended to create an abstraction layer between the data access layer and the business logic layer of an application. Implementing these patterns can help insulate your application from changes in the data store and can facilitate automated unit testing or test-driven development (TDD). However, writing additional code to implement these patterns is not always the best choice for applications that use EF, for several reasons:
+Many developers write code to implement the repository and unit of work patterns as a wrapper around code that works with the Entity Framework. These patterns are intended to create an abstraction layer between the data access layer and the business logic layer of an application. Implementing these patterns can help insulate your application from changes in the data store and can facilitate automated unit testing or test-driven development (TDD). However, writing additional code to implement these patterns isn't always the best choice for applications that use EF, for several reasons:
 
 * The EF context class itself insulates your code from data-store-specific code.
 
@@ -167,7 +165,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## Entity Framework Core source code and development plans
 
-The source code for Entity Framework Core is available at [https://github.com/aspnet/EntityFrameworkCore](https://github.com/aspnet/EntityFrameworkCore). Besides source code, you can get nightly builds, issue tracking, feature specs, design meeting notes, [the roadmap for future development](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap), and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
+The Entity Framework Core source is at [https://github.com/aspnet/EntityFrameworkCore](https://github.com/aspnet/EntityFrameworkCore). The EF Core repository contains nightly builds, issue tracking, feature specs, design meeting notes, and [the roadmap for future development](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap). You can file or find bugs, and contribute.
 
 Although the source code is open, Entity Framework Core is fully supported as a Microsoft product. The Microsoft Entity Framework team keeps control over which contributions are accepted and tests all code changes to ensure the quality of each release.
 
@@ -180,7 +178,7 @@ To reverse engineer a data model including entity classes from an existing datab
 
 The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ code by hard-coding column names in a `switch` statement. With two columns to choose from, this works fine, but if you have many columns the code could get verbose. To solve that problem, you can use the `EF.Property` method to specify the name of the property as a string. To try out this approach, replace the `Index` method in the `StudentsController` with the following code.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DynamicLinq)]
+[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DynamicLinq)]
 
 ## Next steps
 
@@ -188,7 +186,7 @@ This completes this series of tutorials on using the Entity Framework Core in an
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
-For information about how to deploy your web application after you've built it, see [Publishing and deployment](../../publishing/index.md).
+For information on how to deploy a web app, see [Host and deploy](xref:host-and-deploy/index).
 
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.microsoft.com/aspnet/core/).
 
@@ -220,7 +218,7 @@ Run the `migrations remove` command, save your code changes and rerun the `migra
 
 ### Errors while running database update
 
-It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is much more likely to complete without errors.
+It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is much more likely to complete without errors.
 
 The simplest approach is to rename the database in *appsettings.json*. The next time you run `database update`, a new database will be created.
 

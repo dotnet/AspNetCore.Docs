@@ -26,7 +26,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 Over the past several years, more and more developers have been building [AJAX](http://en.wikipedia.org/wiki/Ajax_(programming))-enabled web applications. An AJAX-enabled website uses a number of related web technologies to offer a more responsive user experience. Creating AJAX-enabled ASP.NET applications is amazingly easy thanks to Microsoft's [ASP.NET AJAX framework](../../../../ajax/index.md). ASP.NET AJAX is built into ASP.NET 3.5 and Visual Studio 2008; it is also available as a separate download for ASP.NET 2.0 applications.
 
-When building AJAX-enabled web pages with the ASP.NET AJAX framework, you must add precisely one [ScriptManager control](https://msdn.microsoft.com/en-us/library/bb398863.aspx) to each and every page that uses the framework. As its name implies, the ScriptManager manages the client-side script used in AJAX-enabled web pages. At a minimum, the ScriptManager emits HTML that instructs the browser to download the JavaScript files that makeup the ASP.NET AJAX Client Library. It can also be used to register custom JavaScript files, script-enabled web services, and custom application service functionality.
+When building AJAX-enabled web pages with the ASP.NET AJAX framework, you must add precisely one [ScriptManager control](https://msdn.microsoft.com/library/bb398863.aspx) to each and every page that uses the framework. As its name implies, the ScriptManager manages the client-side script used in AJAX-enabled web pages. At a minimum, the ScriptManager emits HTML that instructs the browser to download the JavaScript files that makeup the ASP.NET AJAX Client Library. It can also be used to register custom JavaScript files, script-enabled web services, and custom application service functionality.
 
 If your site uses master pages (as it should), you do not necessarily need to add a ScriptManager control to every single content page; rather, you can add a ScriptManager control to the master page. This tutorial shows how to add the ScriptManager control to the master page. It also looks at how to use the ScriptManagerProxy control to register custom scripts and script services in a specific content page.
 
@@ -64,7 +64,7 @@ In the best case, then, when the script files are cached, the total cost is 1KB,
 
 Every web page that uses the ASP.NET AJAX framework must contain precisely one ScriptManager control. Because of this requirement, it usually makes sense to place a single ScriptManager control on the master page so that all content pages have the ScriptManager control automatically included. Furthermore, the ScriptManager must come before any of the ASP.NET AJAX server controls, such as the UpdatePanel and UpdateProgress controls. Therefore, it's best to put the ScriptManager before any ContentPlaceHolder controls within the Web Form.
 
-Open the `Site.master` master page and add a ScriptManager control to the page within the Web Form, but before the `<div id="topContent">` element (see Figure 1). If you are using Visual Web Developer 2008 or Visual Studio 2008, the ScriptManager control is located in the Toolbox in the AJAX Extensions tab. If you are using Visual Studio 2005, you will need to first install the ASP.NET AJAX framework and add the controls to the Toolbox. Visit the [ASP.NET AJAX download page](https://ajaxcontroltoolkit.codeplex.com/documentation) to get the framework for ASP.NET 2.0.
+Open the `Site.master` master page and add a ScriptManager control to the page within the Web Form, but before the `<div id="topContent">` element (see Figure 1). If you are using Visual Web Developer 2008 or Visual Studio 2008, the ScriptManager control is located in the Toolbox in the AJAX Extensions tab. If you are using Visual Studio 2005, you will need to first install the ASP.NET AJAX framework and add the controls to the Toolbox. Visit the [ASP.NET AJAX Wiki](https://github.com/DevExpress/AjaxControlToolkit/wiki) to get the framework for ASP.NET 2.0.
 
 After adding the ScriptManager to the page, change its `ID` from `ScriptManager1` to `MyManager`.
 
@@ -112,7 +112,7 @@ Configure the SqlDataSource control to connect to the Northwind database via the
 
 [!code-sql[Main](master-pages-and-asp-net-ajax-cs/samples/sample3.sql)]
 
-The `TOP 1` keyword in the `SELECT` clause returns only the first record returned by the query. The [`NEWID()` function](https://msdn.microsoft.com/en-us/library/ms190348.aspx) generates a new [globally unique identifier value (GUID)](http://en.wikipedia.org/wiki/Globally_Unique_Identifier) and can be used in an `ORDER BY` clause to return the table's records in a random order.
+The `TOP 1` keyword in the `SELECT` clause returns only the first record returned by the query. The [`NEWID()` function](https://msdn.microsoft.com/library/ms190348.aspx) generates a new [globally unique identifier value (GUID)](http://en.wikipedia.org/wiki/Globally_Unique_Identifier) and can be used in an `ORDER BY` clause to return the table's records in a random order.
 
 
 [![Configure the SqlDataSource to Return a Single, Randomly Selected Record](master-pages-and-asp-net-ajax-cs/_static/image11.png)](master-pages-and-asp-net-ajax-cs/_static/image10.png)

@@ -145,7 +145,7 @@ While the delete workflow successfully removed the Test Category record from the
 
 One of the downsides of storing binary data external to the database is that extra steps must be taken to clean up these files when the associated database record is deleted. The GridView and ObjectDataSource provide events that fire both before and after the delete command has been performed. We actually need to create event handlers for both the pre- and post-action events. Before the `Categories` record is deleted we need to determine its PDF file s path, but we don t want to delete the PDF before the category is deleted in case there is some exception and the category is not deleted.
 
-The GridView s [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx) fires before the ObjectDataSource s delete command has been invoked, while its [`RowDeleted` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleted.aspx) fires after. Create event handlers for these two events using the following code:
+The GridView s [`RowDeleting` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx) fires before the ObjectDataSource s delete command has been invoked, while its [`RowDeleted` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.rowdeleted.aspx) fires after. Create event handlers for these two events using the following code:
 
 
 [!code-vb[Main](updating-and-deleting-existing-binary-data-vb/samples/sample5.vb)]

@@ -13,10 +13,9 @@ ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs
 msc.type: chapter
 ---
-ASP.NET MVC 4 Hands On Labs
-====================
-> Learn how to develop with ASP.NET MVC with these Hands On Labs
+# ASP.NET MVC 4 Hands On Labs
 
+Learn how to develop with ASP.NET MVC with these Hands On Labs
 
 - [What's New in ASP.NET MVC 4](whats-new-in-aspnet-mvc-4.md)
 - [ASP.NET MVC 4 Fundamentals](aspnet-mvc-4-fundamentals.md)

@@ -2,14 +2,12 @@
 title: Integration testing in ASP.NET Core
 author: ardalis
 description: How to use ASP.NET Core integration testing to ensure that an application's components function correctly.
-keywords: ASP.NET Core,integration testing,Razor
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 09/25/2017
-ms.topic: article
-ms.assetid: 40d534f2-89b3-4b09-9c2c-3494bf9991c9
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: testing/integration-testing
 ---
 # Integration testing in ASP.NET Core
@@ -44,7 +42,7 @@ ASP.NET Core includes a test host that can be added to integration test projects
 
 Once the `Microsoft.AspNetCore.TestHost` package is included in the project, you'll be able to create and configure a `TestServer` in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Core Empty Web template created by Visual Studio.
 
-[!code-csharp[Main](../testing/integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebDefaultRequestShould.cs?name=snippet_WebDefault&highlight=7,16,22)]
+[!code-csharp[](../testing/integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebDefaultRequestShould.cs?name=snippet_WebDefault&highlight=7,16,22)]
 
 This test is using the Arrange-Act-Assert pattern. The Arrange step is done in the constructor, which creates an instance of `TestServer`. A configured `WebHostBuilder` will be used to create a `TestHost`; in this example, the `Configure` method from the system under test (SUT)'s `Startup` class is passed to the `WebHostBuilder`. This method will be used to configure the request pipeline of the `TestServer` identically to how the SUT server would be configured.
 
@@ -52,7 +50,7 @@ In the Act portion of the test, a request is made to the `TestServer` instance f
 
 Now you can add a few additional integration tests to confirm that the prime checking functionality works via the web application:
 
-[!code-csharp[Main](../testing/integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebCheckPrimeShould.cs?name=snippet_CheckPrime)]
+[!code-csharp[](../testing/integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebCheckPrimeShould.cs?name=snippet_CheckPrime)]
 
 Note that you're not really trying to test the correctness of the prime number checker with these tests but rather that the web application is doing what you expect. You already have unit test coverage that gives you confidence in `PrimeService`, as you can see here:
 
@@ -79,7 +77,7 @@ ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly
 
 ## Refactoring to use middleware
 
-Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
+Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there's a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -124,20 +122,20 @@ This code works, but it's far from how you would like to implement this kind of 
 
 One option to consider is adding [MVC](xref:mvc/overview) to the application and creating a controller to handle the prime checking. However, assuming you don't currently need any other MVC functionality, that's a bit overkill.
 
-You can, however, take advantage of ASP.NET Core [middleware](xref:fundamentals/middleware), which will help us encapsulate the prime checking logic in its own class and achieve better [separation of concerns](http://deviq.com/separation-of-concerns/) in the `Configure` method.
+You can, however, take advantage of ASP.NET Core [middleware](xref:fundamentals/middleware/index), which will help us encapsulate the prime checking logic in its own class and achieve better [separation of concerns](http://deviq.com/separation-of-concerns/) in the `Configure` method.
 
 You want to allow the path the middleware uses to be specified as a parameter, so the middleware class expects a `RequestDelegate` and a `PrimeCheckerOptions` instance in its constructor. If the path of the request doesn't match what this middleware is configured to expect, you simply call the next middleware in the chain and do nothing further. The rest of the implementation code that was in `Configure` is now in the `Invoke` method.
 
 > [!NOTE]
 > Since the middleware depends on the `PrimeService` service, you're also requesting an instance of this service with the constructor. The framework will provide this service via [Dependency Injection](xref:fundamentals/dependency-injection), assuming it has been configured, for example in `ConfigureServices`.
 
-[!code-csharp[Main](../testing/integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs?highlight=39-63)]
+[!code-csharp[](../testing/integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs?highlight=39-63)]
 
-Since this middleware acts as an endpoint in the request delegate chain when its path matches, there is no call to `_next.Invoke` when this middleware handles the request.
+Since this middleware acts as an endpoint in the request delegate chain when its path matches, there's no call to `_next.Invoke` when this middleware handles the request.
 
 With this middleware in place and some helpful extension methods created to make configuring it easier, the refactored `Configure` method looks like this:
 
-[!code-csharp[Main](../testing/integration-testing/sample/src/PrimeWeb/Startup.cs?highlight=9&range=19-33)]
+[!code-csharp[](../testing/integration-testing/sample/src/PrimeWeb/Startup.cs?highlight=9&range=19-33)]
 
 Following this refactoring, you're confident that the web application still works as before, since your integration tests are all passing.
 
@@ -147,5 +145,5 @@ Following this refactoring, you're confident that the web application still work
 ## Resources
 
 * [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Testing controllers](xref:mvc/controllers/testing)
