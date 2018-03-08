@@ -5,7 +5,7 @@ author: rachelappel
 ms.author: rachelap
 description: In this tutorial, you create an app using SignalR for ASP.NET Core.
 manager: wpickett
-ms.date: 02/23/2018
+ms.date: 03/06/2018
 ms.topic: tutorial
 ms.technology: dotnet-signalr
 ms.prod: aspnet-core
