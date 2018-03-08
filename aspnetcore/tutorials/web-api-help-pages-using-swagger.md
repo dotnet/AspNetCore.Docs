@@ -22,7 +22,7 @@ Generating good documentation and help pages for your Web API, using [Swagger](h
 
 * [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is an open source project for generating Swagger documents for ASP.NET Core Web APIs.
 
-* [NSwag](https://nswag.org) is another open source project for integrating Swagger UI and [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core Web APIs, while also offering approaches to generate C# and TypeScript client code for your API.
+* [NSwag](https://nswag.org) is another open source project for integrating Swagger UI or [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core Web APIs, while also offering approaches to generate C# and TypeScript client code for your API.
 
 # What is Swagger/Open API?
 
