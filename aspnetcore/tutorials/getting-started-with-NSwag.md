@@ -83,7 +83,7 @@ using NJsonSchema;
 
 In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwagNSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Thats it! You can now launch the app, and navigate to `/swagger` to see the Swagger UI or `/swagger/v1/swagger.json` to see the Swagger specification.
 
