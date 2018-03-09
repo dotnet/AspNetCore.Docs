@@ -106,25 +106,25 @@ The following image depicts the Swagger UI displaying the version information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio-xml)
 
 * Right-click the project in **Solution Explorer** and select **Properties**
 * Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac-xml)
 
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section:
 
 ![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code-xml)
 
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/TodoApi.Swashbuckle.csproj?range=7-9)]
+[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/TodoApiSwashbuckle.csproj?range=7-9)]
 
 ---
 

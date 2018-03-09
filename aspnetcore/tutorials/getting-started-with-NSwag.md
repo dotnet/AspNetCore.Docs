@@ -83,7 +83,7 @@ using NJsonSchema;
 
 In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwagNSwag/Startup1.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwagNSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Thats it! You can now launch the app, and navigate to `/swagger` to see the Swagger UI or `/swagger/v1/swagger.json` to see the Swagger specification.
 
@@ -140,25 +140,25 @@ You can also generate the code in other ways, more suited to your workflow
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio-xml)
 
 * Right-click the project in **Solution Explorer** and select **Properties**
 * Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac-xml)
 
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section:
 
 ![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code-xml)
 
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/TodoApi.NSwag.csproj?range=7-9)]
+[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
 
 ### Data Annotations
 
