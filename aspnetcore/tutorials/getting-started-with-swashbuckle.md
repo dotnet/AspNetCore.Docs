@@ -84,7 +84,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/Startup2.cs?name=snippet_Configure&highlight=4,7-10)]
 
-Launch the app, and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in the [main article](https://github.com/aspnet/Docs/edit/master/aspnetcore/tutorials/web-api-help-pages-using-swagger.md)
+Launch the app, and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
 The Swagger UI can be found at `http://localhost:<random_port>/swagger`. Now you can explore the API via Swagger UI and incorporate it in other programs.
 
