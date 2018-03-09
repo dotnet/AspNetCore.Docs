@@ -32,7 +32,7 @@ The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions)
 
 ### Lockout
 
-Locks out the user for a period of time after a given number of failed access attempts (default: 5 minutes after 5 failed access attempts). The following example shows the default values:
+Locks out the user for a period of time after a given number of failed access attempts (default: 5 minutes after 5 failed access attempts). Any successful login resets the failed access attempts count and resets the clock. The following example shows the default values:
 
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,39-42,50-52)]
 
