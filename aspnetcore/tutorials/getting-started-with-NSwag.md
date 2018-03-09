@@ -60,7 +60,7 @@ NSwag can be added with the following approaches:
 Run the following command from the **Integrated Terminal**:
 
 ```console
-dotnet add TodoApi.csproj package NSwag.AspNetCore
+dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
 ```
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -68,7 +68,7 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 Run the following command:
 
 ```console
-dotnet add TodoApi.csproj package NSwag.AspNetCore
+dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
 ```
 
 # Add and configure Swagger to the middleware
@@ -83,7 +83,7 @@ using NJsonSchema;
 
 In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated JSON document and the SwaggerUI:
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApiNSwag/Startup1.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwagNSwag/Startup1.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Thats it! You can now launch the app, and navigate to `/swagger` to see the Swagger UI or `/swagger/v1/swagger.json` to see the Swagger specification.
 
@@ -101,7 +101,7 @@ Thats it! You can now launch the app, and navigate to `/swagger` to see the Swag
 
 * Click `Generate Outputs`.
 
-* Here you see a complete client implementation of the sample TodoApi in C#:
+* Here you see a complete client implementation of the sample TodoApi.NSwag in C#:
 
 ![NSwagStudio-Output](web-api-help-pages-using-swagger/_static/NSwagStudio-Output.png)
 
@@ -158,7 +158,7 @@ XML comments can be enabled with the following approaches:
 
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/TodoApi.csproj?range=7-9)]
+[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/TodoApi.NSwag.csproj?range=7-9)]
 
 ### Data Annotations
 
