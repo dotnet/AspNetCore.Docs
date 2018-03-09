@@ -1,7 +1,8 @@
 void Application_Error(object sender, EventArgs e)
 {
     // Get the error details
-    HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
+    HttpException lastErrorWrapper = 
+        Server.GetLastError() as HttpException;
 
     Exception lastError = lastErrorWrapper;
     if (lastErrorWrapper.InnerException != null)
@@ -58,7 +59,8 @@ void Application_Error(object sender, EventArgs e)
     string YSODmarkup = lastErrorWrapper.GetHtmlErrorMessage();
     if (!string.IsNullOrEmpty(YSODmarkup))
     {
-        Attachment YSOD = Attachment.CreateAttachmentFromString(YSODmarkup, "YSOD.htm");
+        Attachment YSOD = 
+            Attachment.CreateAttachmentFromString(YSODmarkup, "YSOD.htm");
         mm.Attachments.Add(YSOD);
     }
 
