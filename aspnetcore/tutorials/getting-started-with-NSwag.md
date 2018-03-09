@@ -12,7 +12,6 @@ ms.technology: aspnet
 ms.topic: article
 uid: tutorials/getting-started-with-NSwag
 ---
-
 # Get started with NSwag
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://rsuter.com)
@@ -73,7 +72,7 @@ dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
 
 ---
 
-# Add and configure Swagger to the middleware
+# Add and configure Swagger middleware
 
 Import the following namespaces in the `Info` class:
 
