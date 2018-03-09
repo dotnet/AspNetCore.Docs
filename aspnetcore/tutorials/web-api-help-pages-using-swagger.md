@@ -113,10 +113,7 @@ Each public action method in your controllers can be tested from the UI. Click a
 > [!NOTE]
 > The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](http://petstore.swagger.io/).
 
-## Get started
+## Next steps
 
-The following tutorials demonstrate generating Swagger specifications and integrating Swagger UI with one of the two tool chains:
-
-[Get started with Swashbuckle](xref:tutorials/getting-started-with-swashbuckle)
-
-[Get started with NSwag](xref:tutorials/get-started-with-nswag)
+* [Get started with Swashbuckle](xref:tutorials/getting-started-with-swashbuckle)
+* [Get started with NSwag](xref:tutorials/get-started-with-nswag)
