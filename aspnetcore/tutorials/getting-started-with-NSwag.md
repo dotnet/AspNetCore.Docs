@@ -23,7 +23,7 @@ When using NSwag with ASP.NET Core via middleware there is only one package you 
 
 * `NSwag.AspNetCore`: The main package, contains the Swagger generator, Swagger UI (v2 and v3) and [ReDoc UI](https://github.com/Rebilly/ReDoc).
 
-It's highly recommended to make use of the code generation capabilities of NSwag. Either by using [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), an easy to use Windows program to generate client code in C# and TypeScript for your API, or by using `NSwag.CodeGeneration.CSharp` or `NSwag.CodeGeneration.TypeScript` packages to to code generation right inside your project. There is also the possibility to use NSwag via [Command line](https://github.com/NSwag/NSwag/wiki/CommandLine), [MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild), [T4 Templates](https://github.com/NSwag/NSwag/wiki/T4) or [Cake](https://agc93.github.io/Cake.NSwag/doc/intro.html). 
+It's highly recommended to make use of the code generation capabilities of NSwag. Either by using [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), an easy to use Windows program to generate client code in C# and TypeScript for your API, or by using `NSwag.CodeGeneration.CSharp` or `NSwag.CodeGeneration.TypeScript` packages to to code generation right inside your project. There is also the possibility to use NSwag via [Command line](https://github.com/NSwag/NSwag/wiki/CommandLine) or via [MSBuild NuGet package](https://github.com/NSwag/NSwag/wiki/MSBuild). 
 
 # Features
 
@@ -81,7 +81,7 @@ using System.Reflection;
 using NJsonSchema;
 ```
 
-In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated JSON document and the SwaggerUI:
+In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwagNSwag/Startup1.cs?name=snippet_Configure&highlight=4,7-10)]
 
@@ -89,7 +89,7 @@ Thats it! You can now launch the app, and navigate to `/swagger` to see the Swag
 
 # Code generation
 
-## Via NSwagStudio 
+## Via NSwagStudio
 
 * Install `NSwagStudio` from the official [GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio)
 
@@ -105,7 +105,7 @@ Thats it! You can now launch the app, and navigate to `/swagger` to see the Swag
 
 ![NSwagStudio-Output](web-api-help-pages-using-swagger/_static/NSwagStudio-Output.png)
 
-* Put the file into a client project, e.g. a Xamarin Forms App and start consuming the API: 
+* Put the file into a client project, e.g. a Xamarin.Forms app and start consuming the API: 
 
 ```csharp
 var todoClient = new TodoClient();
@@ -120,7 +120,7 @@ var createdTodo = await todoClient.CreateAsync(new TodoItem);
 var foundTodo = await todoClient.GetByIdAsync(1);
 ```
 
-**NOTE: You can also inject a base Url and/or a http client into the API client. Best practice is to always [reuse HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).**
+**Note: You can also inject a base Url and/or a http client into the API client. Best practice is to always [reuse HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).**
 
 You can now start implementing your API into client projects easily. 
 
@@ -191,5 +191,3 @@ public IActionResult Create([FromBody] TodoItem item)
 ```
 
 The Swagger generator can now accurately describe this action and generated clients will know what they receive when calling the endpoint. It is highly recommended to decorate all actions with these attributes. For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
-
-
