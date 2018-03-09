@@ -29,7 +29,9 @@
 
 ## [Build Web APIs](mvc/web-api/index.md)
 ### [Create a Web API on Mac](xref:tutorials/first-web-api-mac)
-### [ASP.NET Core Web API help pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
+### [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+#### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+#### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 ### [Create backend services for native mobile apps](mobile/native-mobile-backend.md)
 
 ## [Data access - with EF Core](xref:data/index)
