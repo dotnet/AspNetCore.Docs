@@ -10,7 +10,7 @@ ms.date: 03/09/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: tutorials/getting-started-with-NSwag
+uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag
 

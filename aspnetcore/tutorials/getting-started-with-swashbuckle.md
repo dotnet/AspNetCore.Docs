@@ -10,7 +10,7 @@ ms.date: 03/09/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: tutorials/getting-started-with-swashbuckle
+uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle
 

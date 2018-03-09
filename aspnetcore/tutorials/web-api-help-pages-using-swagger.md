@@ -115,5 +115,5 @@ Each public action method in your controllers can be tested from the UI. Click a
 
 ## Next steps
 
-* [Get started with Swashbuckle](xref:tutorials/getting-started-with-swashbuckle)
+* [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Get started with NSwag](xref:tutorials/get-started-with-nswag)
