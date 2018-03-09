@@ -183,7 +183,7 @@ public IActionResult Create([FromBody] TodoItem item)
 }
 ```
 
-The preceding action returns `IActionResult`, but inside the action it's returning either [Created](/dotnet/api/system.net.httpstatuscode#System_Net_HttpStatusCode_Created) or [BadRequest](/dotnet/api/system.net.httpstatuscode#System_Net_HttpStatusCode_BadRequest). Data annotations are used to tell clients which HTTP response this action is returning. Decorate the action with the following attributes:
+The preceding action returns `IActionResult`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute) or [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest). Data annotations are used to tell clients which HTTP response this action is returning. Decorate the action with the following attributes:
 
 ```csharp
 [HttpPost]
