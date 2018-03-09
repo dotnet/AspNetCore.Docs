@@ -15,7 +15,7 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](http://rsuter.com)
 
-When consuming a Web API, understanding its various methods can be challenging for a developer. [Swagger](https://swagger.io/), also known as Open API, solves the problem of generating useful documentation and help pages for Web APIs. It provides benefits such as interative documentation, client SDK generation, and API discoverability.
+When consuming a Web API, understanding its various methods can be challenging for a developer. [Swagger](https://swagger.io/), also known as Open API, solves the problem of generating useful documentation and help pages for Web APIs. It provides benefits such as interactive documentation, client SDK generation, and API discoverability.
 
 In this article, the [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RSuter/NSwag) .NET Swagger implementations are showcased:
 
