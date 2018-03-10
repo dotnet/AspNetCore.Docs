@@ -33,7 +33,7 @@ SignalR for ASP.NET Core:
 * Handles connection management automatically.
 * Enables broadcasting messages to all connected clients simultaneously. For example, a chat room.
 * Enables sending messages to specific clients or groups of clients.
-* Is open-sourced at [GitHub](https://github.com/aspnet/SignalR).
+* Is open-sourced at [GitHub](https://github.com/aspnet/signalr).
 * Scales nicely.
 
 The connection between the client and server is persistent, unlike an HTTP connection.
@@ -58,4 +58,4 @@ The following diagram shows the relationship between hubs, endpoints, and client
 
 ## Related resources
 
-[Get started with SignalR for ASP.NET Core](get-started-signalr-core)
+[Get started with SignalR for ASP.NET Core](xref:signalr/get-started-signalr-core)

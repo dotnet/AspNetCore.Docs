@@ -42,8 +42,11 @@ The following step-by-step guides for developing ASP.NET Core applications are a
   * [Web API with Visual Studio for Windows](first-web-api.md)
   * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
   * [Web API with Visual Studio Code](web-api-vsc.md)
-  
-* [ASP.NET Core Web API help pages using Swagger](web-api-help-pages-using-swagger.md)
+
+* [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+  * [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+  * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
+
 * [Create backend web services for native mobile apps](../mobile/native-mobile-backend.md)
 
 ## Data access and storage
