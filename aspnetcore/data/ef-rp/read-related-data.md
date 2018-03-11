@@ -35,7 +35,7 @@ There are several ways that EF Core can load related data into the navigation pr
 
  ![Eager loading example](read-related-data/_static/eager-loading.png)
  
- Eager loading sends multiple queries when a collection nvavigation is included:
+ Eager loading sends multiple queries when a collection navigation is included:
 
  * One query for the main query 
  * One query for each collection "edge" in the load tree.
