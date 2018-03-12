@@ -23,8 +23,8 @@ There are configuration providers for:
 * Command-line arguments
 * Environment variables
 * In-memory .NET objects
-* An encrypted user store
-* [Azure Key Vault](xref:security/key-vault-configuration)
+* The unencrypted [Secret Manager](xref:security/app-secrets) storage.
+* An encrypted user store, such as [Azure Key Vault](xref:security/key-vault-configuration).
 * Custom providers (installed or created)
 
 Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
