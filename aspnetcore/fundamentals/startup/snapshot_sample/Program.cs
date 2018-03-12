@@ -1,7 +1,7 @@
 public class Program
 {
-    public static IHostingEnvironment HostingEnvironment { get; }
-    public static IConfiguration Configuration { get; }
+    public static IHostingEnvironment HostingEnvironment { get; set; }
+    public static IConfiguration Configuration { get; set; }
 
     public static void Main(string[] args)
     {

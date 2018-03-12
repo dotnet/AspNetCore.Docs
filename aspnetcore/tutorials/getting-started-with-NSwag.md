@@ -72,7 +72,7 @@ dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
 
 ---
 
-# Add and configure Swagger middleware
+## Add and configure Swagger middleware
 
 Import the following namespaces in the `Info` class:
 
