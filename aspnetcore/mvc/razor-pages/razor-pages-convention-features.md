@@ -38,7 +38,7 @@ The sample app adds a `{globalTemplate?}` route template to all of the pages in 
 [!code-csharp[](razor-pages-convention-features/sample/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this template is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `-1`. This ensures that this template is given priority for the first route data value position when a single route value is provided and also that it would have priority over automatically generated Razor Pages routes. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = -1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Razor Pages options, such as adding [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions), are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-convention-features/sample/).
 
@@ -79,7 +79,7 @@ The sample app uses `AddFolderRouteModelConvention` to add an `{otherPagesTempla
 [!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet3)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = -1`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Request the sample's Page1 page at `localhost:5000/OtherPages/Page1/GlobalRouteValue/OtherPagesRouteValue` and inspect the result:
 
@@ -94,7 +94,7 @@ The sample app uses `AddPageRouteModelConvention` to add an `{aboutTemplate?}` r
 [!code-csharp[](razor-pages-convention-features/sample/Startup.cs?name=snippet4)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = -1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue/AboutRouteValue` and inspect the result:
 

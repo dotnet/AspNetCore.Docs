@@ -72,4 +72,4 @@ In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether 
 ## Additional resources
 
 * [Partial views](xref:mvc/views/partial)
-* [Weakly-typed data (ViewData and ViewBag)](xref:mvc/views/overview#weakly-typed-data-viewdata-and-viewbag)
+* [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#weakly-typed-data-viewdata-and-viewbag)

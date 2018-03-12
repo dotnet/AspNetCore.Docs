@@ -17,7 +17,7 @@ Processing Unhandled Exceptions (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
-[Download Code](http://download.microsoft.com/download/1/0/C/10CC829F-A808-4302-97D3-59989B8F9C01/ASPNET_Hosting_Tutorial_12_CS.zip) or [Download PDF](http://download.microsoft.com/download/5/C/5/5C57DB8C-5DEA-4B3A-92CA-4405544D313B/aspnet_tutorial12_ErrorHandling_cs.pdf)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/processing-unhandled-exceptions-cs/samples) ([how to download](/aspnet/core/tutorials/index#how-to-download-a-sample))
 
 > When a runtime error occurs on a web application in production it is important to notify a developer and to log the error so that it may be diagnosed at a later point in time. This tutorial provides an overview of how ASP.NET processes runtime errors and looks at one way to have custom code execute whenever an unhandled exception bubbles up to the ASP.NET runtime.
 
@@ -57,7 +57,7 @@ The `Global.asax` file created in a WAP by Visual Studio's Global Application Cl
 
 The event handlers created by Visual Studio's Global Application Class template are not exhaustive. You can add an event handler for any `HttpApplication` event by naming the event handler `Application_EventName`. For example, you could add the following code to the `Global.asax` file to create an event handler for the [`AuthorizeRequest` event](https://msdn.microsoft.com/library/system.web.httpapplication.authorizerequest.aspx):
 
-[!code-vb[Main](processing-unhandled-exceptions-cs/samples/sample1.vb)]
+[!code-cs[Main](processing-unhandled-exceptions-cs/samples/sample1.cs)]
 
 Likewise, you can remove any event handlers created by the Global Application Class template that are not needed. For this tutorial we only require an event handler for the `Error` event; feel free to remove the other event handlers from the `Global.asax` file.
 

@@ -74,10 +74,10 @@ Click here to view a video walkthrough of creating Web projects in Visual Studio
 As you saw in the video walkthrough, you can choose to create Web sites on the file system either on the local machine or on a remote location via a file share. Web sites that are created on the file system are browsed and debugged using the ASP.NET Development Server.
 
 > [!NOTE]
-> The ASP.NET Development Server may cause some confusion for customers. If a Web project is created on the file system in IISs directory structure (i.e. c:\inetpub\wwwroot), the Web site will still be browsed via the ASP.NET Development Server when launched from within Visual Studio 2005. Therefore, any IIS configuration (i.e. authentication methods) is not applicable.
+> The ASP.NET Development Server may cause some confusion for customers. If a Web project is created on the file system in IISs directory structure (i.e. c:/inetpub/wwwroot), the Web site will still be browsed via the ASP.NET Development Server when launched from within Visual Studio 2005. Therefore, any IIS configuration (i.e. authentication methods) is not applicable.
 
 
-The default web project also removes a lot of the overhead by only includes a Default.aspx page, default.cs file, and an App\_Data folder. The web.config and special folders (i.e. app\_code) are added as they are needed. Your web project only includes the files and folders that you need.
+The default web project also removes a lot of the overhead by only includes a Default.aspx page, default.cs file, and an App/_Data folder. The web.config and special folders (i.e. app/_code) are added as they are needed. Your web project only includes the files and folders that you need.
 
 ### HTTP Projects
 
@@ -86,7 +86,7 @@ HTTP projects can either be projects that are created on a local IIS Web site or
 The Local IIS option reads the site information from the metabase on the local machine and files are copied using the file system. The Remote Site option uses the FrontPage Server Extensions and the site information and files are copied using HTTP and FrontPage Server Extensions RPC calls.
 
 > [!NOTE]
-> The vs###\_tmp.htm file and get\_aspx\_ver.aspx are no longer used to determine version information.
+> The vs###/_tmp.htm file and get/_aspx/_ver.aspx are no longer used to determine version information.
 
 
 The default HTTP option is Local IIS. This option reads the IIS Metabase to determine which sites are available and the location in which to create content. You can select a different folder or virtual directory by selecting it in the tree view. You can also create a new virtual directory, mark folders as applications, as well as delete existing virtual directories from this dialog box.
@@ -132,7 +132,7 @@ When creating an application on a remote site via SSL, if the SSL certificate do
 Visual Studio 2005 introduces the option to create Web sites via FTP. When you use this option, the IDE creates the files locally in the users temp folder and then uses FTP to move the files to the FTP location.
 
 > [!NOTE]
-> The temp folder location is c:\Documents and Settings\&lt;User&gt;\Local Settings\Temp\VWDWebCache\&lt;Server&gt;\_&lt;application name&gt;
+> The temp folder location is c:/Documents and Settings/&lt;User&gt;/Local Settings/Temp/VWDWebCache/&lt;Server&gt;/_&lt;application name&gt;
 
 
 When using the FTP option, you will be presented with a Choose Location dialog. You enter the required FTP connection information into this dialog as shown below.
@@ -156,7 +156,7 @@ The following steps configure the FTP site so that a user has a location that on
 
 ### Create a New Folder for Content
 
-1. In Windows Explorer, create a new folder called **User1** inside of c:\inetpub\wwwroot.
+1. In Windows Explorer, create a new folder called **User1** inside of c:/inetpub/wwwroot.
 
 #### Configure folders and permissions on folders.
 
@@ -164,7 +164,7 @@ The following steps configure the FTP site so that a user has a location that on
 2. Expand **FTP Sites**.
 3. Right-click the **Default FTP Site**, select **New**, then **Virtual Directory**, then click **Next**.
 4. Enter **User1** for the virtual directory name and click **Next**.
-5. Enter **c:\inetpub\wwwroot\User1** for the path and click **Next**.
+5. Enter **c:/inetpub/wwwroot/User1** for the path and click **Next**.
 6. Click **Next** and then **Finish** to complete the wizard.
 7. Right-click the **User1** virtual directory under Default FTP Site and select **Properties**.
 8. Check the **Write** checkbox and click **OK** to close the dialog.
@@ -195,7 +195,7 @@ The following steps configure the FTP site so that a user has a location that on
 13. In the Web Site URL Required dialog, enter `http://localhost/user1` for the URL and click **OK**.
 
 > [!NOTE]
-> If you get a error indicating an inability to load the type \_Default, make sure that you are running ASP.NET 2.0 on your Web site and not an earlier version. You can do that from the ASP.NET tab in Internet Information Services.
+> If you get a error indicating an inability to load the type /_Default, make sure that you are running ASP.NET 2.0 on your Web site and not an earlier version. You can do that from the ASP.NET tab in Internet Information Services.
 
 
 ## Opening Web Projects
@@ -218,11 +218,11 @@ As indicated previously in this module, Visual Studio no longer uses a project f
 
 Because Visual Studio only creates additional files and folders when necessary, no additional files or folders are added to the location you open. A side-effect of this architecture is that it prevents you from nesting Web sites on the file system. For example, consider the following directory structure.
 
-Web project at C:\MyWebSite
+Web project at C:/MyWebSite
 
-Another web project at C:\MyWebSite\Nested
+Another web project at C:/MyWebSite/Nested
 
-When you open the Web site at c:\MyWebSite, the Nested folder will appear as a sub-folder of that application.
+When you open the Web site at c:/MyWebSite, the Nested folder will appear as a sub-folder of that application.
 
 <a id="_Toc116100246"></a>
 
@@ -244,7 +244,7 @@ Even though Visual Studio will display an icon for applications that are nested 
 
 When you open a site via FTP, the files are all copied locally to your temp folder. The full path for the local storage location is displayed in the Properties pane for the project and is created using the following format.
 
-C:\Documents and Settings\&lt;User&gt;\Local Settings\Temp\VWDWebCache\&lt;Server&gt;\_&lt;application name&gt;
+C:/Documents and Settings/&lt;User&gt;/Local Settings/Temp/VWDWebCache/&lt;Server&gt;/_&lt;application name&gt;
 
 When using FTP, Visual Studio will need to specify the base URL for your project so that you can browse it as shown below. If you do not specify a base URL, Visual Studio will ask you for it the first time you attempt to browse a page in the Web site.
 
@@ -258,7 +258,7 @@ When using FTP, Visual Studio will need to specify the base URL for your project
 
 Working with Web applications in Visual Studio 2005 is noticeably faster than previous versions. This is due in no small part to the changes in compilation architecture.
 
-In Visual Studio 2002 and 2003, Web applications were compiled into one primary assembly residing in the /bin folder. In Visual Studio 2005, an App\_Code folder was added. Classes and other non-UI code are added to the App\_Code folder. When Visual Studio builds the project, all files in the App\_Code folder are compiled into a single App\_Code.dll file. The result of this change is that subsequent builds are much faster than in previous versions.
+In Visual Studio 2002 and 2003, Web applications were compiled into one primary assembly residing in the /bin folder. In Visual Studio 2005, an App/_Code folder was added. Classes and other non-UI code are added to the App/_Code folder. When Visual Studio builds the project, all files in the App/_Code folder are compiled into a single App/_Code.dll file. The result of this change is that subsequent builds are much faster than in previous versions.
 
 > [!NOTE]
 > The MSBuild command line utility can also be used to build ASP.NET Web applications. That tool will be covered in module 9.
@@ -302,7 +302,7 @@ Click here to see a video walkthrough of designer support for user controls.
 > When a user control is removed from a page, the @Register directive remains in the markup and should be removed manually in order to avoid parser errors if the user control is deleted from the Web site.
 
 
-Another improvement in the Visual Studio compilation model is the Publish Web Site feature. Because the Publish feature precompiles the Web site, developers can enjoy the added performance of not having to compile anything on demand. It also precompiles all source code in the App\_Code folder into a DLL so that no source code has to be deployed.
+Another improvement in the Visual Studio compilation model is the Publish Web Site feature. Because the Publish feature precompiles the Web site, developers can enjoy the added performance of not having to compile anything on demand. It also precompiles all source code in the App/_Code folder into a DLL so that no source code has to be deployed.
 
 
 ![The Publish Web Site Dialog](improvements-in-visual-studio-2005/_static/image7.jpg)
@@ -311,10 +311,10 @@ Another improvement in the Visual Studio compilation model is the Publish Web Si
 
 
 > [!NOTE]
-> The aspnet\_compile.exe utility can also be used to pre-compile an ASP.NET Web application. That tool will be covered in module 9.
+> The aspnet/_compile.exe utility can also be used to pre-compile an ASP.NET Web application. That tool will be covered in module 9.
 
 
-When you Publish a Web site, the precompiled files are stored in the Temporary ASP.NET Files folder as shown below. Files with a *.compiled* file extension are XML files that define dependencies for particular DLLs. Any Webform or user controls are compiled into random DLLs that begin with *App\_Web\_*.
+When you Publish a Web site, the precompiled files are stored in the Temporary ASP.NET Files folder as shown below. Files with a *.compiled* file extension are XML files that define dependencies for particular DLLs. Any Webform or user controls are compiled into random DLLs that begin with *App/_Web/_*.
 
 If you leave the *Allow this precompiled site to be updatable* checkbox checked, markup inside of your Webforms and user controls will not be pre-compiled into a DLL allowing you to make changes after deployment. If you would prefer to lock down the markup so that changes to the deployed content are not allowed, uncheck this box.
 
@@ -427,9 +427,9 @@ This lab requires you to have two machines, one running Visual Studio 2005 and t
 
 
 1. From the remote Web server, locate msvsmon.exe on the development machine using a UNC path and execute it.  
- The default location for msvsmon.exe is \\server\c$\Program Files\Microsoft Visual Studio 8\Common7\IDE\Remote Debugger\x86.
+ The default location for msvsmon.exe is //server/c$/Program Files/Microsoft Visual Studio 8/Common7/IDE/Remote Debugger/x86.
 2. If prompted to unblock ports for remote debugging, do so.
-3. From the development machine, open the code-behind for Default.aspx and set a breakpoint in the Page\_Load method.
+3. From the development machine, open the code-behind for Default.aspx and set a breakpoint in the Page/_Load method.
 4. Start debugging from the development machine.
 
 You should hit the breakpoint as expected.
@@ -440,7 +440,7 @@ As weve already discussed, Visual Studio 2005 ships with a Web server called the
 
 The ASP.NET Development Server is a restricted Web server. It does not allow remote connections, it does not allow any requests from any user other than the user who started the Web server. It also does not have the capability of serving ASP pages. Only ASP.NET resources and HTML resources (including images, CSS files, etc.) are served.
 
-The ASP.NET Development Server can be launched via the command line by running the WebDev.WebServer.exe file located at c:\Windows\Microsoft.NET\Framework\v2.0.\*\*\*\*\*. The following dialog displays the parameters that are available.
+The ASP.NET Development Server can be launched via the command line by running the WebDev.WebServer.exe file located at c:/Windows/Microsoft.NET/Framework/v2.0./*/*/*/*/*. The following dialog displays the parameters that are available.
 
 
 ![](improvements-in-visual-studio-2005/_static/image11.jpg)

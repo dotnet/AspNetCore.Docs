@@ -38,7 +38,7 @@ This tutorial assumes the following software is installed:
 
 1. From the **File** menu, select **New** > **Project**.
 
-1. Select the **ASP.NET Core Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **.NET Core**. Name the project `SampleWebAppDemo`. Select the **Create new Git respository** option and click **OK**.
+1. Select the **ASP.NET Core Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **.NET Core**. Name the project `SampleWebAppDemo`. Select the **Create new Git repository** option and click **OK**.
 
    ![New Project dialog](azure-continuous-deployment/_static/01-new-project.png)
 

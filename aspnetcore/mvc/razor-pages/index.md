@@ -16,9 +16,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://git
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
+If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections difficult to follow, see [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).
+This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
 <a name="prerequisites"></a>
 
@@ -37,7 +37,7 @@ If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.
 
 # [Visual Studio](#tab/visual-studio) 
 
-See [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
+See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
 
 #	[Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -380,7 +380,7 @@ To precompile views, see [Razor view compilation](xref:mvc/views/view-compilatio
 
 [Download or view sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/index/sample).
 
-See [Getting started with Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
+See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 
 ### Specify that Razor Pages are at the content root
 
@@ -410,7 +410,8 @@ services.AddMvc()
 
 ## See also
 
-* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Introduction to ASP.NET Core](xref:index)
+* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)
 * [Razor Pages unit and integration testing](xref:testing/razor-pages-testing)

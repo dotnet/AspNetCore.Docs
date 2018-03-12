@@ -35,7 +35,7 @@ Controllers should follow the [Explicit Dependencies Principle](http://deviq.com
 
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 
-The controller takes the result of the model's processing (if any) and returns either the proper view and its associated view data or the result of the API call. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Getting started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
+The controller takes the result of the model's processing (if any) and returns either the proper view and its associated view data or the result of the API call. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Get started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
 The controller is a *UI-level* abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it doesn't directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
 
