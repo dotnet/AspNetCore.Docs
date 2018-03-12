@@ -148,6 +148,10 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
+> [!NOTE]
+> To bind a property on GET requests, set the `[BindProperty]` attribute's `SupportsGet` property to `true`:
+> `[BindProperty(SupportsGet = true)]`
+
 The home page (*Index.cshtml*):
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
