@@ -788,6 +788,11 @@ The following releases of [https://github.com/scottjehl/Respond](https://github.
 
 The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") bootstrap are hosted on the CDN:
 
+#### Bootstrap version 4.0.0
+
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+
 #### Bootstrap version 3.3.7
 
 - http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.js
