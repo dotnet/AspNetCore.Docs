@@ -792,6 +792,9 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 - http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
 - http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css
 
 #### Bootstrap version 3.3.7
 
