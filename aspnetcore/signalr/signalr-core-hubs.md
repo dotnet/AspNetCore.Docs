@@ -5,7 +5,7 @@ description: Learn how to use hubs in SignalR Core.
 manager: wpickett
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/08/2018
+ms.date: 03/16/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -19,32 +19,23 @@ By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](http://tw
 
 ## What is a SignalR Hub
 
-The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that can be called by clients, and you call methods that run on the client. In client code, you define methods that can be called from the server, and you call methods that run on the server. SignalR takes care of the client-to-server plumbing for you.
+The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that are called by client. In client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes nearly instant client-to-server and server-to-client communications possible.
 
-## Configure connections 
-### Connection Ids
-Each connection to a SignalR hub will be given its own connection id.  This connection id can be used by other parts of your application to send messages directly to a particular connection.
+## Configure SignalR in an ASP.NET Core app
 
-In the context of your Hub, you can determine the connection id for the current connection by referencing the `Context.ConnectionId` object.
+To define the route to your hub, call the `MapSignalR` method when the application starts.
 
-```csharp
-public class MyHub : Hub
-{
-    public Task HubMethod()
-    {
-        var connectionId = Context.ConnectionId; // this connection id is UNIQUE to the current connection
-    }
-}
-```
 
-Unique connection Id
-OnConnected OnDisconnected events
-Reconnecting
+## Create and use hubs
 
-## Send message to clients
+Hub object lifetime
+Camel-casing of Hub names in JavaScript clients
+strongly-typed Hubs
 
-### Sending to a Connection Id
-If you know the connection id of the connection(s) you'd like to send an event to, you can use `Clients.Client` or `Clients.Clients` to invoke the request.
+
+## Send messages to connections
+
+Use `Clients.Client` or `Clients.Clients` to make calls to clients by their connection. The `SendToOneConnectionId` method demonstrates sending a message to one specific connection, while the `SendToManyConnectionIds` method sends a message to the clients  stored in an array named `ids`.
 
 ```csharp
 public class MyHub : Hub
@@ -67,6 +58,55 @@ public class MyHub : Hub
 }
 ```
 
-Clients object
+## The `Clients` object
+
+Each instance of the `Hub` class has an object named `Clients` that contains the following properties for communication between server and client:
+
+| Property | Description |
+| ------ | ----------- |
+| All | Calls a method on all connected clients |
+| Caller | Calls a method on all connected clients |
+| Others | Calls a method on clients other than a specific connection |
+
+Additionally, the `Hub` class contains the following methods:
+
+| Method | Description |
+| ------ | ----------- |
+| AllExcept | Calls a method on all connected clients except a specified connection |
+| Client | Calls a method on a specific connected client |
+| Clients | Calls a method on specific connected clients |
+| Group | Sends a message to a group of connections  |
+| GroupExcept | Sends a message to a group of connections, excluding  the specified group |
+| Groups | Sends a message to multiple groups of connections  |
+| OthersInGroup | Sends a message to others in a group of connections  |
+| User | Sends a message to a specific user |
+| Users | Sends a message to multiple users |
+
+
+## Connection IDs
+
+Each connection to a SignalR hub has a unique connection ID. This ID can be used by other parts of your application to send messages directly to a particular connection.
+
+In the context of your hub, you can determine current by referencing its `Context.ConnectionId` object.
+
+```csharp
+public class MyHub : Hub
+{
+    public Task HubMethod()
+    {
+        // this connection ID is UNIQUE to the current connection
+        var connectionId = Context.ConnectionId;
+    }
+}
+```
+
+## Handle events for a connection
+
+The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections.
+
+
+
+## Handle errors
+
 
 ## Related Resources
