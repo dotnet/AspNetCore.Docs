@@ -56,7 +56,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
@@ -66,7 +66,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
-    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-34)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-33)]
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
@@ -126,11 +126,11 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
-    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-34)]
+    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-33)]
 
     ---
 	

@@ -63,8 +63,7 @@ namespace IdentityDemo
 
                 // Cookie settings
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
-                options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
-                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOut";
+                options.Cookies.ApplicationCookie.LoginPath = "/Account/Login";
 
                 // User settings
                 options.User.RequireUniqueEmail = true;
