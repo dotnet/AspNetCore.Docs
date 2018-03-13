@@ -82,7 +82,8 @@ namespace CookieSample.Pages.Account
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim("FullName", user.FullName)
+                    new Claim("FullName", user.FullName),
+                    new Claim(ClaimTypes.Role, "Administrator"),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
