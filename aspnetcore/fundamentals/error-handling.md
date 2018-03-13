@@ -60,7 +60,7 @@ public IActionResult Index()
 
 ## Configuring status code pages
 
-By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, configure the Status Code Pages Middleware by adding a line to the `Configure` method:
+By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, configure the Status Code Pages Middleware by adding a line to the `Startup.Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
@@ -90,10 +90,10 @@ The re-execute method returns the original status code to the client but also ex
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 ```
 
-To disable status code pages for certain requests, disable the feature:
+Status code pages can be disabled for specific requests in a Razor Pages handler method or in an MVC controller. To disable status code pages, attempt to retrieve the [IStatusCodePagesFeature](/dotnet/api/microsoft.aspnetcore.diagnostics.istatuscodepagesfeature) from the request's [HttpContext.Features](/dotnet/api/microsoft.aspnetcore.http.httpcontext.features) collection and disable the feature if it's available:
 
 ```csharp
-var statusCodePagesFeature = context.Features.Get<IStatusCodePagesFeature>();
+var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();
 
 if (statusCodePagesFeature != null)
 {
