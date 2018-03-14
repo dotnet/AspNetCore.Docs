@@ -92,7 +92,7 @@ If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forward
 
 ### Install Nginx
 
-Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. 
+Use `apt-get` to install Nginx. The installer creates a *systemd* init script that runs Nginx as daemon on system startup. 
 
 ```bash
 sudo -s
