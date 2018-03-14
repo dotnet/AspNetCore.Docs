@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to choose between ASP.NET and ASP.NET Core.
 manager: wpickett
 ms.author: riande
-ms.date: 09/30/2017
+ms.date: 03/14/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
