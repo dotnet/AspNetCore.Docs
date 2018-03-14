@@ -88,17 +88,19 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
-1. Create the `Send` method that sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous. Asynchronous code scales better.
+1. Create the `SendMessage` method that sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous. Asynchronous code scales better.
 
   [!code-csharp[Startup](get-started-signalr-core/sample/Hubs/ChatHub.cs?range=7-14)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+1. Open the *SignalRChat* folder in Visual Studio Code (VS Code).
+
 1. Add a class to the project by selecting **File** > **New File** from the menu.
 
 1. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data to clients.
 
-1. Add a `Send` method to the class. The `Send` method sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous. Asynchronous code scales better.
+1. Add a `SendMessage` method to the class. The `SendMessage` method sends a message to all connected chat clients. Notice it returns a `Task`, because SignalR is asynchronous. Asynchronous code scales better.
 
   [!code-csharp[Startup](get-started-signalr-core/sample/Hubs/ChatHub.cs?range=7-14)]
 
@@ -140,7 +142,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
   The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
-1. Add a JavaScript file to the *wwwroot\js* folder named *chat.js* and add the following code to it:
+1. Add a JavaScript file to the *wwwroot\js* folder named *chat.js*, and add the following code to it:
 
   [!code-javascript[Index](get-started-signalr-core/sample/wwwroot/js/chat.js)]
 
@@ -152,7 +154,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
   The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
-1. Add a JavaScript file to the *wwwroot\js* folder named *chat.js* and add the following code to it:
+1. Add a JavaScript file to the *wwwroot\js* folder named *chat.js*, and add the following code to it:
 
   [!code-javascript[Index](get-started-signalr-core/sample/wwwroot/js/chat.js)]
 
@@ -172,7 +174,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open two browser instances and load the website locally on each one.
+1. Press **Debug** (F5) to build and run the program. Running the program opens a browser window.
+
+1. Open another browser window and load the website locally in it.
 
 1. Choose either browser, enter a name and message, and click the **Send** button. The name and message are displayed on both pages instantly.
 
