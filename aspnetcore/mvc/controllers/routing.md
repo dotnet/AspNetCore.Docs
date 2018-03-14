@@ -398,7 +398,7 @@ public class ProductsController : MyBaseController
    [HttpGet] // Matches '/api/Products'
    public IActionResult List() { ... }
 
-   [HttpPost("{id}")] // Matches '/api/Products/{id}'
+   [HttpPut("{id}")] // Matches '/api/Products/{id}'
    public IActionResult Edit(int id) { ... }
 }
 ```
