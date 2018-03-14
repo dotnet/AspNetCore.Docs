@@ -313,7 +313,6 @@
 #### [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 #### [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
 ### [Compatibility](xref:security/data-protection/compatibility/index)
-#### [Share cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 #### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [Safe storage of app secrets during development](xref:security/app-secrets)
@@ -322,6 +321,7 @@
 ## [Prevent open redirect attacks](xref:security/preventing-open-redirects)
 ## [Prevent Cross-Site Scripting](xref:security/cross-site-scripting)
 ## [Enable Cross-Origin Requests (CORS)](xref:security/cors)
+## [Share cookies among apps](xref:security/cookie-sharing)
 
 # [Performance](xref:performance/index)
 ## [Caching](xref:performance/caching/index)

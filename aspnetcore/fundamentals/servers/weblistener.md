@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about WebListener, a web server for ASP.NET Core on Windows that can be used for direct connection to the Internet without IIS.
 manager: wpickett
 ms.author: riande
-ms.date: 08/07/2017
+ms.date: 03/13/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -82,6 +82,9 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
   By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseURLs` extension method, the `urls` command-line argument or the ASP.NET Core configuration system. For more information, see [Hosting](../../fundamentals/hosting.md).
 
   Web Listener uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to WebListener.
+
+  > [!WARNING]
+  > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
 
   > [!NOTE]
   > Make sure that you specify the same prefix strings in `UseUrls` that you preregister on the server. 

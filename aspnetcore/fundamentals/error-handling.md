@@ -60,39 +60,44 @@ public IActionResult Index()
 
 ## Configuring status code pages
 
-By default, your app won't provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` by adding a line to the `Configure` method:
+By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, configure the Status Code Pages Middleware by adding a line to the `Startup.Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
 ```
 
-By default, this middleware adds simple, text-only handlers for common status codes, such as 404:
+By default, Status Code Pages Middleware adds simple, text-only handlers for common status codes, such as 404:
 
 ![404 page](error-handling/_static/default-404-status-code.png)
 
-The middleware supports several different extension methods. One takes a lambda expression, another takes a content type and format string.
+The middleware supports several extension methods. One method takes a lambda expression:
 
 [!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePages)]
+
+Another method takes a content type and format string:
 
 ```csharp
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
 
-There are also redirect extension methods. One sends a 302 status code to the client, and one returns the original status code to the client but also executes the handler for the redirect URL.
+There are also redirect and re-execute extension methods. The redirect method sends a 302 status code to the client:
 
 [!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
+
+The re-execute method returns the original status code to the client but also executes the handler for the redirect URL:
 
 ```csharp
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 ```
 
-If you need to disable status code pages for certain requests, you can do so:
+Status code pages can be disabled for specific requests in a Razor Pages handler method or in an MVC controller. To disable status code pages, attempt to retrieve the [IStatusCodePagesFeature](/dotnet/api/microsoft.aspnetcore.diagnostics.istatuscodepagesfeature) from the request's [HttpContext.Features](/dotnet/api/microsoft.aspnetcore.http.httpcontext.features) collection and disable the feature if it's available:
 
 ```csharp
-var statusCodePagesFeature = context.Features.Get<IStatusCodePagesFeature>();
+var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();
+
 if (statusCodePagesFeature != null)
 {
-  statusCodePagesFeature.Enabled = false;
+    statusCodePagesFeature.Enabled = false;
 }
 ```
 
@@ -104,7 +109,7 @@ Also, be aware that once the headers for a response have been sent, you can't ch
 
 ## Server exception handling
 
-In addition to the exception handling logic in your app, the [server](servers/index.md) hosting your app performs some exception handling. If the server catches an exception before the headers are sent, the server sends a 500 Internal Server Error response with no body. If the server catches an exception after the headers have been sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
+In addition to the exception handling logic in your app, the [server](servers/index.md) hosting your app performs some exception handling. If the server catches an exception before the headers are sent, the server sends a *500 Internal Server Error* response with no body. If the server catches an exception after the headers have been sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
 
 ## Startup exception handling
 

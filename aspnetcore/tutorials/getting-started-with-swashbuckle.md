@@ -128,6 +128,16 @@ Manually add the following snippet to the *.csproj* file:
 
 ---
 
+Enabling XML comments provides debug information for undocumented public types and members. Undocumented types and members are indicated by the warning message. For example, the following message indicates a violation of warning code 1591:
+
+```text
+warning CS1591: Missing XML comment for publicly visible type or member 'TodoController.GetAll()'
+```
+
+Suppress warnings by defining a semicolon-delimited list of warning codes to ignore in the *.csproj* file:
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/TodoApiSwashbuckle.csproj?name=snippet_SuppressWarnings&highlight=3)]
+
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case sensitive. For example, a *TodoApi.Swashbuckle.XML* file is valid on Windows but not CentOS.
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/Startup.cs?name=snippet_ConfigureServices&highlight=20-22)]

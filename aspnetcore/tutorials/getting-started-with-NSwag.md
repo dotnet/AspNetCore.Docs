@@ -106,7 +106,7 @@ Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swa
 
 ![NSwagStudio-Output](web-api-help-pages-using-swagger/_static/NSwagStudio-Output.png)
 
-* Put the file into a client project (for example, a [Xamarin.Forms](https://developer.xamarin.com/guides/xamarin-forms/) app). Start consuming the API:
+* Put the file into a client project (for example, a [Xamarin.Forms](/xamarin/xamarin-forms/) app). Start consuming the API:
 
 ```csharp
 var todoClient = new TodoClient();
