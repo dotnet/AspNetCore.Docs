@@ -421,3 +421,5 @@ await HttpContext.Authentication.SignInAsync(
 
 * [Auth 2.0 Changes / Migration Announcement](https://github.com/aspnet/Announcements/issues/262)
 * [Limiting identity by scheme](xref:security/authorization/limitingidentitybyscheme)
+* [Claims-Based Authorization](xref:security/authorization/claims)
+* [Policy-based role checks](xref:security/authorization/roles#policy-based-role-checks)
