@@ -99,7 +99,7 @@ sudo apt-get install nginx
 > [!NOTE]
 > If optional Nginx modules will be installed, building Nginx from source might be required.
 
-Use `apt-get` to install Nginx. The installer creates a *systemd* init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
+Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
 sudo service nginx start
