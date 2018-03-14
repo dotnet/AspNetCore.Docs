@@ -1,7 +1,7 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
-description: Describes how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
+description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -92,14 +92,22 @@ If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forward
 
 ### Install Nginx
 
+Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. 
+
 ```bash
-sudo apt-get install nginx
+sudo -s
+nginx=stable # use nginx=development for latest development version
+add-apt-repository ppa:nginx/$nginx
+apt-get update
+apt-get install nginx
 ```
 
-> [!NOTE]
-> If optional Nginx modules will be installed, building Nginx from source might be required.
+The Ubuntu Personal Package Archive (PPA) is maintained by volunteers and isn't distributed by [nginx.org](https://nginx.org/). For more information, see [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
-Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
+> [!NOTE]
+> If optional Nginx modules are required, building Nginx from source might be required.
+
+Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
 sudo service nginx start
@@ -243,20 +251,6 @@ sudo ufw allow 443/tcp
 
 ### Securing Nginx
 
-The default distribution of Nginx doesn't enable SSL. To enable additional security features, build from source.
-
-#### Download the source and install the build dependencies
-
-```bash
-# Install the build dependencies
-sudo apt-get update
-sudo apt-get install build-essential zlib1g-dev libpcre3-dev libssl-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev
-
-# Download Nginx 1.10.0 or latest
-wget http://www.nginx.org/download/nginx-1.10.0.tar.gz
-tar zxf nginx-1.10.0.tar.gz
-```
-
 #### Change the Nginx response name
 
 Edit *src/http/ngx_http_header_filter_module.c*:
@@ -266,20 +260,9 @@ static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
 
-#### Configure the options and build
+#### Configure options
 
-The PCRE library is required for regular expressions. Regular expressions are used in the location directive for the ngx_http_rewrite_module. The http_ssl_module adds HTTPS protocol support.
-
-Consider using a web app firewall like *ModSecurity* to harden the app.
-
-```bash
-./configure
---with-pcre=../pcre-8.38
---with-zlib=../zlib-1.2.8
---with-http_ssl_module
---with-stream
---with-mail=dynamic
-```
+Configure the server with additional required modules. Consider using a web app firewall, such as [ModSecurity](https://www.modsecurity.org/), to harden the app.
 
 #### Configure SSL
 
@@ -321,3 +304,7 @@ sudo nano /etc/nginx/nginx.conf
 ```
 
 Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
+
+## Additional resources
+
+* [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
