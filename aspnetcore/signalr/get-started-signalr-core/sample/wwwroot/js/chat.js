@@ -18,7 +18,7 @@ document.getElementById('send').addEventListener('click', event => {
 
 function showErr(msg) {
     const listItem = document.createElement('li');
-    listItem.setAttribute("style", "color: red");
+    listItem.setAttribute('style', 'color: red');
     listItem.innerText = msg.toString();
     document.getElementById('messages').appendChild(listItem);
 }
