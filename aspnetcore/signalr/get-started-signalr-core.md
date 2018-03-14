@@ -1,5 +1,4 @@
 ---
-
 title: Get started with SignalR on ASP.NET Core
 author: rachelappel
 description: In this tutorial, you create an app using SignalR for ASP.NET Core.
@@ -42,7 +41,8 @@ Install the following software:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [.NET Core 2.1.0 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1) or later
-* [Visual Studio Code](https://code.visualstudio.com/download)
+* [Visual Studio Code](https://code.visualstudio.com/download) 
+* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 * [npm](https://www.npmjs.com/get-npm)
 
 -----
@@ -55,21 +55,21 @@ Install the following software:
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
 
-2. Select **Web Application** to create a project using Razor Pages. Then select **Ok**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector, though SignalR runs on older versions of .NET.
+2. Select **Web Application** to create a project using Razor Pages. Then select **OK**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector, though SignalR runs on older versions of .NET.
 
   ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
 
-The libraries that host SignalR server-side code are included in the project template. Install the client-side JavaScript separately with [npm](https://www.npmjs.com/).
+3. The libraries that host SignalR server-side code are included in the project template. Install the client-side JavaScript separately with [npm](https://www.npmjs.com/).
 
   ```console
    npm install @aspnet/signalr
   ```
 
-3. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
+4. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *wwwroot\lib* folder in your project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. From the *Integrated Terminal*, run the following commands:
+From the **Integrated Terminal**, run the following commands:
  
 ```console
 dotnet new razor -o SignalRChat
@@ -109,19 +109,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 The SignalR server must be configured so that it knows to pass requests to SignalR.
 
-# [Visual Studio](#tab/visual-studio)
-
 1. To configure a SignalR project, modify the project's `Startup.ConfigureServices` method.
-
-  `services.AddSignalR` adds SignalR as part of the [middleware](xref:fundamentals/middleware/index) pipeline.
-
-1. Configure routes to your hubs using `UseSignalR`.
-
-  [!code-csharp[Startup](get-started-signalr-core/sample/Startup.cs?highlight=22,40-43)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-1. To configure a SignalR project, modify the project's Startup.ConfigureServices method.
 
   `services.AddSignalR` adds SignalR as part of the [middleware](xref:fundamentals/middleware/index) pipeline.
 
@@ -132,20 +120,6 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 -----
 
 ## Create the SignalR client code
-
-# [Visual Studio](#tab/visual-studio)
-
-1. Replace the content in *Pages\Index.cshtml* with the following code:
-
-  [!code-cshtml[Index](get-started-signalr-core/sample/Pages/Index.cshtml)]
-
-  The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
-
-1. Add a JavaScript file, named *chat.js*, to the *wwwroot\js* folder. Add the following code to it:
-
-  [!code-javascript[Index](get-started-signalr-core/sample/wwwroot/js/chat.js)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
 
 1. Replace the content in *Pages\Index.cshtml* with the following code:
 
