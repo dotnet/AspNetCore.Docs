@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how a partial view is a view that's rendered within another view and when they should be used in ASP.NET Core apps.
 manager: wpickett
 ms.author: riande
-ms.date: 03/14/2017
+ms.date: 03/14/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
