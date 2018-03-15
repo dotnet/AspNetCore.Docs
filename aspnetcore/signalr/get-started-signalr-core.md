@@ -70,11 +70,18 @@ Install the following software:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-From the **Integrated Terminal**, run the following command:
+1. From the **Integrated Terminal**, run the following command:
  
-```console
-dotnet new razor -o SignalRChat
-```
+    ```console
+      dotnet new razor -o SignalRChat
+    ```
+
+2. Install the JavaScript client library using *npm*.
+
+    ```
+      npm init -y
+      npm install @aspnet/signalr
+    ```
 
 -----
 
