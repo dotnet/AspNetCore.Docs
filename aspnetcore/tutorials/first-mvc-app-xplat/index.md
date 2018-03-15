@@ -1,7 +1,7 @@
 ---
 title: Create an ASP.NET Core MVC app with Visual Studio Code
 author: rick-anderson
-description: Index page for first ASP.NET Core MVC app with Visual Studio Code
+description: Learn about the table of contents for the ASP.NET Core MVC app with Visual Studio Code tutorial.
 manager: wpickett
 ms.author: riande
 ms.date: 05/17/2017
@@ -16,13 +16,13 @@ This series of tutorials teaches you the basics of building an ASP.NET Core MVC 
 
 [!INCLUDE[consider RP](../../includes/razor.md)]
 
-1. [Getting started](start-mvc.md)
-2. [Adding a controller](adding-controller.md)
-3. [Adding a view](adding-view.md)
-4. [Adding a model](adding-model.md)
-5. [Working with SQLite](working-with-sql.md)
-6. [Controller methods and views](controller-methods-views.md)
-7. [Adding Search](search.md)
-8. [Adding a New Field](new-field.md)
-9. [Adding Validation](validation.md)
-10. [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+1. [Get started](xref:tutorials/first-mvc-app-xplat/start-mvc)
+1. [Adding a controller](xref:tutorials/first-mvc-app-xplat/adding-controller)
+1. [Adding a view](xref:tutorials/first-mvc-app-xplat/adding-view)
+1. [Adding a model](xref:tutorials/first-mvc-app-xplat/adding-model)
+1. [Working with SQLite](xref:tutorials/first-mvc-app-xplat/working-with-sql)
+1. [Controller methods and views](xref:tutorials/first-mvc-app-xplat/controller-methods-views)
+1. [Adding Search](xref:tutorials/first-mvc-app-xplat/search)
+1. [Adding a New Field](xref:tutorials/first-mvc-app-xplat/new-field)
+1. [Adding Validation](xref:tutorials/first-mvc-app-xplat/validation)
+1. [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)

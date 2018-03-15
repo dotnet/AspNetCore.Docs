@@ -60,7 +60,7 @@
 
 ## [Cross platform tutorials](xref:tutorials/xplat)
 ### [Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
-#### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-mac/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
@@ -68,7 +68,7 @@
 #### [Add search](xref:tutorials/razor-pages-mac/search)
 
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
-#### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
@@ -76,7 +76,7 @@
 #### [Add search](xref:tutorials/razor-pages-vsc/search)
 
 ### [MVC web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-#### [Getting started](xref:tutorials/first-mvc-app-mac/start-mvc)
+#### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 #### [Adding a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
 #### [Adding a view](xref:tutorials/first-mvc-app-mac/adding-view)
 #### [Adding a model](xref:tutorials/first-mvc-app-mac/adding-model)
@@ -88,7 +88,7 @@
 #### [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)
 
 ### [MVC web app with Visual Studio Code on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index)
-#### [Getting started](tutorials/first-mvc-app-xplat/start-mvc.md)
+#### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-xplat/adding-view.md)
 #### [Adding a model](tutorials/first-mvc-app-xplat/adding-model.md)

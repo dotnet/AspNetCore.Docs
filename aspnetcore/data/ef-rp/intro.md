@@ -1,5 +1,5 @@
 ---
-title: Razor Pages with Entity Framework Core - Tutorial 1 of 8
+title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 manager: wpickett
@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: data/ef-rp/intro
 ---
 
-# Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 8)
+# Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

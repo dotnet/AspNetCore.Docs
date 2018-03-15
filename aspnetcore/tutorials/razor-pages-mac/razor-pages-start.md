@@ -1,7 +1,7 @@
 ---
-title: Getting started with Razor Pages in ASP.NET Core on Mac
+title: Get started with Razor Pages in ASP.NET Core on Mac
 author: rick-anderson
-description: Getting started with Razor Pages in ASP.NET Core using Visual Studio for Mac
+description: Discover how to get started with Razor Pages in ASP.NET Core using Visual Studio for Mac.
 manager: wpickett
 ms.author: riande
 ms.date: 07/27/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/razor-pages-start
 ---
-# Getting started with Razor Pages in ASP.NET Core with Visual Studio for Mac
+# Get started with Razor Pages in ASP.NET Core with Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

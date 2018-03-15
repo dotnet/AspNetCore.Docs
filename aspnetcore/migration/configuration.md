@@ -1,7 +1,7 @@
 ---
-title: Migrating Configuration
+title: Migrating Configuration to ASP.NET Core
 author: ardalis
-description: 
+description: Learn how to migrate configuration from an ASP.NET MVC project to an ASP.NET Core MVC project.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/configuration
 ---
-# Migrating Configuration
+# Migrating Configuration to ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 

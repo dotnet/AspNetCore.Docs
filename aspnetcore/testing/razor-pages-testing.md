@@ -25,7 +25,7 @@ ASP.NET Core supports unit and integration testing of Razor Pages apps. Testing 
 This topic assumes that you have a basic understanding of Razor Pages apps, unit testing, and integration testing. If you're unfamiliar with Razor Pages apps or testing concepts, see the following topics:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
-* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * [Integration testing](xref:testing/integration-testing)
 
