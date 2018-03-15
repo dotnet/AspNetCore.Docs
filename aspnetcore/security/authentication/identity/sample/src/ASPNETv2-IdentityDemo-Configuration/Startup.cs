@@ -59,7 +59,6 @@ namespace WebApplication5
                 options.Cookie.HttpOnly = true; 
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
                 options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
                 // ReturnUrlParameter requires `using Microsoft.AspNetCore.Authentication.Cookies;`
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
