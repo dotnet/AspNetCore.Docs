@@ -28,7 +28,7 @@ There are 3 versions of this tutorial:
 
 [!INCLUDE[template files](../includes/webApi/intro.md)]
 
-* See [Introduction to ASP.NET Core MVC on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
+* See [Introduction to ASP.NET Core MVC on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
 
 ## Prerequisites
 

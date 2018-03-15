@@ -1,5 +1,5 @@
 ---
-title: Create a web app with ASP.NET Core MVC on a Mac
+title: Create a web app with ASP.NET Core MVC on macOS
 author: rick-anderson
 description: Create an ASP.NET Core MVC / Entity Framework app with Visual Studio for Mac
 manager: wpickett
