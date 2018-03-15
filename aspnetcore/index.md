@@ -1,7 +1,7 @@
 ---
 title: Introduction to ASP.NET Core
 author: rick-anderson
-description: Provides an introduction to ASP.NET Core.
+description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 manager: wpickett
 ms.author: riande
 ms.date: 02/28/2018
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: index
 ---
-# ASP.NET Core
+# Introduction to ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 

@@ -1,7 +1,7 @@
 ---
-title: Getting started with ASP.NET Core MVC and Visual Studio for Mac
+title: Get started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
-description: Getting started with ASP.NET Core MVC and Visual Studio
+description: Learn how to get started with ASP.NET Core MVC and Visual Studio
 manager: wpickett
 ms.author: riande
 ms.date: 8/23/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: tutorials/first-mvc-app-mac/start-mvc
 ---
-# Getting started with ASP.NET Core MVC and Visual Studio for Mac
+# Get started with ASP.NET Core MVC and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

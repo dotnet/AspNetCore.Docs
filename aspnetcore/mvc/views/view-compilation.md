@@ -1,7 +1,7 @@
 ---
-title: Razor view compilation and precompilation
+title: Razor view compilation and precompilation in ASP.NET Core
 author: rick-anderson
-description: A reference document explaining how to enable MVC Razor view compilation and precompilation in ASP.NET Core applications.
+description: Learn how to enable MVC Razor view compilation and precompilation in ASP.NET Core apps.
 manager: wpickett
 ms.author: riande
 ms.date: 12/13/2017

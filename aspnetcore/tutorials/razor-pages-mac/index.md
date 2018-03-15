@@ -18,7 +18,7 @@ This is a work in progress.
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core on Mac.
 
-1. [Getting started with Razor Pages on Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
+1. [Get started with Razor Pages on Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
 1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages-mac/model)
 1. [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 1. [Working with SQLite](xref:tutorials/razor-pages-mac/sql)

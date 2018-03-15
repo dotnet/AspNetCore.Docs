@@ -70,5 +70,5 @@ The version numbers shown in the following code were correct at the time of writ
 The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
+[Previous: Get Started](xref:tutorials/razor-pages-mac/razor-pages-start)
 [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)

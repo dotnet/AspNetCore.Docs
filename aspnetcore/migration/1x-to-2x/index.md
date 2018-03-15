@@ -21,7 +21,7 @@ Existing ASP.NET Core 1.x applications are based off of version-specific project
 <a name="prerequisites"></a>
 
 ## Prerequisites
-Please see [Getting Started with ASP.NET Core](xref:getting-started).
+Please see [Get Started with ASP.NET Core](xref:getting-started).
 
 <a name="tfm"></a>
 

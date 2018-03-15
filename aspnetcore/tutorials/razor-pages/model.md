@@ -1,7 +1,7 @@
 ---
 title: Adding a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
-description: Adding a model to a Razor Pages app in ASP.NET Core
+description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 manager: wpickett
 ms.author: riande
 ms.date: 07/27/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/model
 ---
-# Adding a model to a Razor Pages app
+# Adding a model to a Razor Pages app in ASP.NET Core
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
@@ -86,5 +86,5 @@ If you get a SQL exception, verify you have run migrations and updated the datab
 The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages/razor-pages-start)
+[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
