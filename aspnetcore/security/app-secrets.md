@@ -114,7 +114,7 @@ The Secret Manager tool abstracts away the implementation details, such as where
 
 * Linux: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
-* Mac: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
+* macOS: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
 The value of `userSecretsId` comes from the value specified in *.csproj* file.
 

@@ -318,7 +318,7 @@ Less provides a number of additional features, but this should give you some ide
 
 Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It's built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language didn't use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, **SCSS** ("Sassy CSS"). SCSS is similar to CSS in that it ignores indentation levels and whitespace, and instead uses semicolons and curly braces.
 
-To install Sass, typically you would first install Ruby (pre-installed on Mac), and then run:
+To install Sass, typically you would first install Ruby (pre-installed on macOS), and then run:
 
 ```console
 gem install sass

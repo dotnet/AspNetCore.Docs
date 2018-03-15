@@ -12,7 +12,7 @@ When asking general "how to" questions:
 
 When reporting a bug, include:
 
-- Operating system and version (Windows, Mac OS X, Android, iOS, Win10 Mobile)
+- Operating system and version (Windows, macOS, Android, iOS, Win10 Mobile)
 - Browser and version (Chrome, Firefox, Safari, IE, MS Edge, Opera 15+, Android Browser)
 - Reduced test cases and potential fixes using [JS Bin](https://jsbin.com)
 

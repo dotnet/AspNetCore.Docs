@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/index
 ---
 # Create a Razor Pages web app with ASP.NET Core
 
-This series explains the basics of building a Razor Pages web app with ASP.NET Core using Visual Studio. Other versions of this series inlcude a [Mac version](xref:tutorials/razor-pages-mac/index) and a [Visual Studio Code version](xref:tutorials/razor-pages-vsc/index).
+This series explains the basics of building a Razor Pages web app with ASP.NET Core using Visual Studio. Other versions of this series include a [macOS version](xref:tutorials/razor-pages-mac/index) and a [Visual Studio Code version](xref:tutorials/razor-pages-vsc/index).
 
 1. [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages/model)
