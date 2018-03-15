@@ -12,7 +12,7 @@ uid: mvc/views/partial
 ---
 # Partial Views in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Scott Sauber](https://twitter.com/scottsauber)
 
 ASP.NET Core MVC supports partial views, which are useful when you have reusable parts of web pages you want to share between different views.
 
