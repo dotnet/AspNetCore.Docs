@@ -58,4 +58,4 @@ The following diagram shows the relationship between hubs, endpoints, and client
 
 ## Related resources
 
-[Get started with SignalR for ASP.NET Core](xref:signalr/get-started-signalr-core)
+[Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
