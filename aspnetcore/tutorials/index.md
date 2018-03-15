@@ -22,14 +22,14 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * Create a Razor Pages web app with ASP.NET Core
 
    * [Razor Pages on Windows](xref:tutorials/razor-pages/index)
-   * [Razor Pages on Mac](xref:tutorials/razor-pages-mac/index)
+   * [Razor Pages on macOS](xref:tutorials/razor-pages-mac/index)
    * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
 
 * Create an ASP.NET Core MVC web app
 
    * [Web app with Visual Studio for Windows](first-mvc-app/index.md)
    * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
-   * [Web app with Visual Studio Code on Mac or Linux](first-mvc-app-xplat/index.md)
+   * [Web app with Visual Studio Code on macOS or Linux](first-mvc-app-xplat/index.md)
 
 * [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Create Tag Helpers](../mvc/views/tag-helpers/authoring.md)

@@ -1,7 +1,7 @@
 ---
-title: Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
+title: Introduction to ASP.NET Core MVC on macOS, Linux, or Windows
 author: rick-anderson
-description: Learn how to get started with ASP.NET Core MVC and Visual Studio Code on Mac, Linux, and Windows
+description: Learn how to get started with ASP.NET Core MVC and Visual Studio Code on macOS, Linux, and Windows
 manager: wpickett
 ms.author: riande
 ms.date: 07/07/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/start-mvc
 ---
-# Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
+# Introduction to ASP.NET Core MVC on macOS, Linux, or Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -70,7 +70,7 @@ In the next part of this tutorial, we'll learn about MVC and start writing some 
 - [Integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
 - [Keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
 
-  - [Mac keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+  - [macOS keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
   - [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   - [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 

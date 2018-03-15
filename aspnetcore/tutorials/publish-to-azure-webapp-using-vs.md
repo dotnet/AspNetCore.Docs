@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https
 
 [!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on a Mac.
+See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on macOS.
 
 ## Set up
 

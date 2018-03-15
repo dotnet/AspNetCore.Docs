@@ -21,13 +21,13 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
 * Create a Razor Pages web app with ASP.NET Core
 
-   * [Razor Pages on Mac](xref:tutorials/razor-pages-mac/index)
+   * [Razor Pages on macOS](xref:tutorials/razor-pages-mac/index)
    * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
 
 * Create an ASP.NET Core MVC web app
 
    * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
-   * [Web app with Visual Studio Code on Mac or Linux](first-mvc-app-xplat/index.md)
+   * [Web app with Visual Studio Code on macOS or Linux](first-mvc-app-xplat/index.md)
 
 ## Build Web APIs
 * Create a Web API with ASP.NET Core
