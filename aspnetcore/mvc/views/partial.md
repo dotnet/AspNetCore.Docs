@@ -1,7 +1,7 @@
 ---
-title: Partial Views
+title: Partial Views in ASP.NET Core
 author: ardalis
-description: Using partial views in ASP.NET Core MVC
+description: Learn how a partial view is a view that's rendered within another view and when they should be used in ASP.NET Core apps.
 manager: wpickett
 ms.author: riande
 ms.date: 03/14/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/partial
 ---
-# Partial Views
+# Partial Views in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

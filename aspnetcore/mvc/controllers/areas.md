@@ -1,7 +1,7 @@
 ---
-title: Areas
+title: Areas in ASP.NET Core
 author: rick-anderson
-description: Shows how to work with areas.
+description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 manager: wpickett
 ms.author: riande
 ms.date: 02/14/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/controllers/areas
 ---
-# Areas
+# Areas in ASP.NET Core
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

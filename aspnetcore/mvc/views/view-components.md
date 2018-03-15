@@ -1,7 +1,7 @@
 ---
-title: View components
+title: View components in ASP.NET Core
 author: rick-anderson
-description: View Components are intended anywhere you have reusable rendering logic.
+description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 manager: wpickett
 ms.author: riande
 ms.date: 02/14/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/view-components
 ---
-# View components
+# View components in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

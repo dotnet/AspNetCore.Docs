@@ -94,7 +94,7 @@ body {
 
 `@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they're set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The Less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that's produced.
 
-### Getting started
+### Get started
 
 Create an **npm Configuration File** (*package.json*) in your project folder and edit it to reference `gulp` and `gulp-less`:
 

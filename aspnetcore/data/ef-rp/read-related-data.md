@@ -1,5 +1,5 @@
 ---
-title: Razor Pages with EF Core - Read Related Data - 6 of 8
+title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
 author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: data/ef-rp/read-related-data
 ---
 
-# Reading related data - EF Core with Razor Pages (6 of 8)
+# Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

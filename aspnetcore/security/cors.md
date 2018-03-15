@@ -1,7 +1,7 @@
 ---
-title: Enabling Cross-Origin Requests (CORS)
+title: Enabling Cross-Origin Requests (CORS) in ASP.NET Core
 author: rick-anderson
-description: This document introduces CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
+description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
 ms.date: 05/17/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/cors
 ---
-# Enabling Cross-Origin Requests (CORS)
+# Enabling Cross-Origin Requests (CORS) in ASP.NET Core
 
 By [Mike Wasson](https://github.com/mikewasson), [Shayne Boyer](https://twitter.com/spboyer), and [Tom Dykstra](https://github.com/tdykstra)
 
