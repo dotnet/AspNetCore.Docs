@@ -46,7 +46,7 @@ You can render a partial view with `RenderPartialAsync`. This method doesn't ret
 
 Because it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, it's recommended you use `PartialAsync`.
 
-While there are synchronous equivalents of `Html.PartialAsync` (`Html.Partial`) and `Html.RenderPartialAsync` (`Html.RenderPartial`), use of the synchronous equivalents isn't recommended because there are scenarios where they deadlock. The synchronous methods will be removed and unavailable in future versions.
+While there are synchronous equivalents of `Html.PartialAsync` (`Html.Partial`) and `Html.RenderPartialAsync` (`Html.RenderPartial`), use of the synchronous equivalents isn't recommended because there are scenarios where they deadlock. The synchronous methods will be unavailable in future versions.
 
 > [!NOTE]
 > If your views need to execute code, the recommended pattern is to use a [view component](view-components.md) instead of a partial view.
