@@ -1,7 +1,7 @@
 ---
-title: Use Hubs in SignalR for ASP.NET Core
+title: Use Hubs in ASP.NET Core SignalR
 author: rachelappel
-description: Learn how to use hubs in SignalR Core.
+description: Learn how to use hubs in ASP.NET Core SignalR.
 manager: wpickett
 ms.author: rachelap
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 03/16/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-uid: signalr/use-hubs-signalr-core
+uid: signalr/hubs
 ---
 
 # Use Hubs in SignalR for ASP.NET Core
@@ -21,10 +21,11 @@ By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](http://tw
 
 The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that are called by client. In client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes nearly instant client-to-server and server-to-client communications possible.
 
-## Configure SignalR in an ASP.NET Core app
+## Configure SignalR hubs
 
 To define the route to your hub, call the `MapSignalR` method when the application starts.
 
+[!code-javascript[Startup](hubs/sample/js/startup.js?highlight=41,65-68)]
 
 ## Create and use hubs
 
@@ -35,7 +36,7 @@ strongly-typed Hubs
 
 ## Send messages to connections
 
-Use `Clients.Client` or `Clients.Clients` to make calls to clients by their connection. The `SendToOneConnectionId` method demonstrates sending a message to one specific connection, while the `SendToManyConnectionIds` method sends a message to the clients  stored in an array named `ids`.
+Use the members of `Clients.Client` or `Clients.Clients` to make calls to clients by their connection. In the following example, the `SendToOneConnectionId` method demonstrates sending a message to one specific connection, while the `SendToManyConnectionIds` method sends a message to the clients  stored in an array named `ids`.
 
 ```csharp
 public class MyHub : Hub
