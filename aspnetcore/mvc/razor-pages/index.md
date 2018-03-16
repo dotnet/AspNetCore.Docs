@@ -20,16 +20,9 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
-<a name="prerequisites"></a>
+## Prerequisites
 
-## ASP.NET Core 2.0 prerequisites
-
-Install [.NET Core](https://www.microsoft.com/net/core) 2.0.0 or later.
-
-If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 2017 version 15.3 or later with the following workloads:
-
-* **ASP.NET and web development**
-* **.NET Core cross-platform development**
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 <a name="rpvs17"></a>
 
@@ -39,7 +32,7 @@ If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.
 
 See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
 
-#	[Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Run `dotnet new razor` from the command line.
 
@@ -49,7 +42,7 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 Run `dotnet new razor` from the command line.
 
-#	[.NET Core CLI](#tab/netcore-cli) 
+# [.NET Core CLI](#tab/netcore-cli) 
 
 Run `dotnet new razor` from the command line.
 

@@ -15,7 +15,7 @@ uid: getting-started-1.1
 > [!NOTE]
 > These instructions are for ASP.NET Core 1.1. Looking for the latest version? See [the current version of this tutorial](xref:getting-started).
 
-1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core 1.0.5 & 1.1.2 SDK 1.0.4 downloads page](https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.0.5-download.md).
+1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
 
 2. Create a folder for a new .NET Core project.
 
