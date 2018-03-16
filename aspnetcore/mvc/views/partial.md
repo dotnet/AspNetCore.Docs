@@ -36,17 +36,17 @@ Partial views are created like any other view: you create a *.cshtml* file withi
 
 ## Referencing a Partial View
 
-From within a view page, there are several ways in which you can render a partial view. The recommended way is to use `Html.PartialAsync`, which returns an `IHtmlString` and can be referenced by prefixing the call with `@`:
+From within a view page, there are several ways in which you can render a partial view. The best practice is to use `Html.PartialAsync`, which returns an `IHtmlString` and can be referenced by prefixing the call with `@`:
 
 [!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=8)]
 
 You can render a partial view with `RenderPartialAsync`. This method doesn't return a result; it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a Razor code block:
 
-[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=18-20)]
+[!code-cshtml[](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=11-13)]
 
-Because it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, in most cases it's recommended you use `PartialAsync`.
+Because it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, it's recommended you use `PartialAsync`.
 
-While there are synchronous equivalents of `Html.PartialAsync` (`Html.Partial`) and `Html.RenderPartialAsync` (`Html.RenderPartial`), it is not recommended to use them, because there are scenarios where they will deadlock.  In future versions, the synchronous methods will be removed.
+While there are synchronous equivalents of `Html.PartialAsync` (`Html.Partial`) and `Html.RenderPartialAsync` (`Html.RenderPartial`), use of the synchronous equivalents isn't recommended because there are scenarios where they deadlock. The synchronous methods will be removed and unavailable in future versions.
 
 > [!NOTE]
 > If your views need to execute code, the recommended pattern is to use a [view component](view-components.md) instead of a partial view.
