@@ -1,7 +1,7 @@
 ---
-title: Introduction to Data Protection
+title: ASP.NET Core Data Protection
 author: rick-anderson
-description: This document introduces the concept of data protection and outlines the design principles of the associated ASP.NET Core APIs.
+description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/introduction
 ---
-# Introduction to Data Protection
+# ASP.NET Core Data Protection
 
 Web applications often need to store security-sensitive data. Windows provides DPAPI for desktop applications but this is unsuitable for web applications. The ASP.NET Core data protection stack provide a simple, easy to use cryptographic API a developer can use to protect data, including key management and rotation.
 

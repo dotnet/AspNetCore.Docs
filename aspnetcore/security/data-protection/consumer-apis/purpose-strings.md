@@ -1,7 +1,7 @@
 ---
-title: Purpose Strings
+title: Purpose strings in ASP.NET Core
 author: rick-anderson
-description: This document details how purpose strings are used in the ASP.NET Core data protection APIs.
+description: Learn how purpose strings are used in the ASP.NET Core Data Protection APIs.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/purpose-strings
 ---
-# Purpose Strings
+# Purpose strings in ASP.NET Core
 
 <a name="data-protection-consumer-apis-purposes"></a>
 

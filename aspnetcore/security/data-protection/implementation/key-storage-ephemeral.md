@@ -1,7 +1,7 @@
 ---
-title: Ephemeral data protection providers
+title: Ephemeral data protection providers in ASP.NET Core
 author: rick-anderson
-description: This document explains the implementation details of the ASP.NET Core ephemeral data protection providers.
+description: Learn implementation details of the ASP.NET Core ephemeral data protection providers.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-storage-ephemeral
 ---
-# Ephemeral data protection providers
+# Ephemeral data protection providers in ASP.NET Core
 
 <a name="data-protection-implementation-key-storage-ephemeral"></a>
 

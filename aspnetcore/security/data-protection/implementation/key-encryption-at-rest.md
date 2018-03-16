@@ -1,7 +1,7 @@
 ---
-title: Key Encryption At Rest
+title: Key encryption At rest in ASP.NET Core
 author: rick-anderson
-description: This document outlines the implementation details of ASP.NET Core data protection key encryption at rest.
+description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
-# Key Encryption At Rest
+# Key encryption At rest in ASP.NET Core
 
 <a name="data-protection-implementation-key-encryption-at-rest"></a>
 

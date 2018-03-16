@@ -1,5 +1,5 @@
 ---
-title: Use the Single Page Application templates
+title: Use the Single Page Application templates with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to install and get started with the ASP.NET Core Single Page Application (SPA) project templates.
 manager: wpickett
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: spa/index
 ---
-# Use the Single Page Application templates
+# Use the Single Page Application templates with ASP.NET Core
 
 > [!NOTE]
 > The released .NET Core 2.0.x SDK includes older project templates for Angular, React, and React with Redux. This documentation isn't about those older project templates. This documentation is for the latest Angular, React, and React with Redux templates, which can be installed manually into ASP.NET Core 2.0. The templates are included by default with ASP.NET Core 2.1.

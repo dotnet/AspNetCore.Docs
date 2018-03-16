@@ -1,7 +1,7 @@
 ---
-title: Key Storage Format
+title: Key storage format in ASP.NET Core
 author: tdykstra
-description: This document explains the implementation details of the ASP.NET Core data protection key storage format.
+description: Learn implementation details of the ASP.NET Core Data Protection key storage format.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-storage-format
 ---
-# Key Storage Format
+# Key storage format in ASP.NET Core
 
 <a name="data-protection-implementation-key-storage-format"></a>
 

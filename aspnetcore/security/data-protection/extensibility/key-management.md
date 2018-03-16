@@ -1,7 +1,7 @@
 ---
-title: Key management extensibility
+title: Key management extensibility in ASP.NET Core
 author: rick-anderson
-description: This document outlines ASP.NET Core data protection key management extensibility.
+description: Learn about ASP.NET Core Data Protection key management extensibility.
 manager: wpickett
 ms.author: riande
 ms.date: 11/22/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/extensibility/key-management
 ---
-# Key management extensibility
+# Key management extensibility in ASP.NET Core
 
 <a name="data-protection-extensibility-key-management"></a>
 

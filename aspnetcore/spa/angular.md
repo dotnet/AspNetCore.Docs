@@ -1,5 +1,5 @@
 ---
-title: Use the Angular project template
+title: Use the Angular project template with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
 manager: wpickett
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: spa/angular
 ---
-# Use the Angular project template
+# Use the Angular project template with ASP.NET Core
 
 > [!NOTE]
 > This documentation isn't about the Angular project template included in ASP.NET Core 2.0. It's about the newer Angular template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
