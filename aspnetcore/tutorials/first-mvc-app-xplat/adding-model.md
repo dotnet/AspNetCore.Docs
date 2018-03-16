@@ -2,17 +2,12 @@
 title: Adding a model to an ASP.NET Core MVC app.
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
+manager: wpickett
 ms.author: riande
 ms.date: 09/18/2017
-ms.topic: get-started-article
-
-#ROBOTS:
-ms.technology: aspnet
-keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 ms.prod: asp.net-core
-#ms.devlang: 
-manager: wpickett
-ms.assetid: 8dc28498-eeee-4666-b903-b593059e9f39
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
 
@@ -21,7 +16,7 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
@@ -31,20 +26,20 @@ Build the app to verify you don't have any errors, and you've finally added a **
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
+   [!code-csharp[](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
+   [!code-csharp[](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
    
 - Open the *Startup.cs* file and add two usings:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
+   [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
 
 - Add the database context to the *Startup.cs* file:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
+   [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
   This tells Entity Framework which model classes are included in the data model. You're defining one *entity set* of Movie objects, which will be represented in the database as a Movie table.
 
@@ -58,10 +53,6 @@ Open a terminal window in the project folder and run the following commands:
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
-
-> [!NOTE]
-> If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
-
 The scaffolding engine creates the following:
 
 * A movies controller (*Controllers/MoviesController.cs*)

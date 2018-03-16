@@ -17,18 +17,18 @@ Developing ASP.NET Apps with Azure Active Directory
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on [Azure](https://www.windowsazure.com/en-us/home/features/web-sites/). You can use Azure Authentication to authenticate Office 365 users from your organization, corporate accounts synced from your on-premise Active Directory or users created in your own custom Azure Active Directory domain. Enabling Windows Azure Authentication configures your application to authenticate users using a single [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) tenant.
+> Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on [Azure](https://www.windowsazure.com/home/features/web-sites/). You can use Azure Authentication to authenticate Office 365 users from your organization, corporate accounts synced from your on-premise Active Directory or users created in your own custom Azure Active Directory domain. Enabling Windows Azure Authentication configures your application to authenticate users using a single [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) tenant.
 > 
 >  This tutorial was written by Rick Anderson [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT)
 
 
-This tutorial will show you how to create an ASP.NET application that is configured for sign-on with [Azure Active Directory](https://msdn.microsoft.com/en-us/library/azure/mt168838.aspx) (Azure AD). You will also learn how to call the Graph API to get information about the currently signed-in user and how to deploy the application to Azure.
+This tutorial will show you how to create an ASP.NET application that is configured for sign-on with [Azure Active Directory](https://msdn.microsoft.com/library/azure/mt168838.aspx) (Azure AD). You will also learn how to call the Graph API to get information about the currently signed-in user and how to deploy the application to Azure.
 
 ## Prerequisites
 
 1. [Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express) or [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
-2. [Visual Studio 2013 Update 4](https://www.microsoft.com/en-us/download/details.aspx?id=44921) - Update 3 or higher is required.
-3. An Azure account. [Click here](https://azure.microsoft.com/en-us/pricing/free-trial/) for a free trial if you do not already have an account.
+2. [Visual Studio 2013 Update 4](https://www.microsoft.com/download/details.aspx?id=44921) - Update 3 or higher is required.
+3. An Azure account. [Click here](https://azure.microsoft.com/pricing/free-trial/) for a free trial if you do not already have an account.
 
 ## Add a Global Administrator to your Active Directory
 
@@ -53,7 +53,7 @@ This tutorial will show you how to create an ASP.NET application that is configu
 
 ## Create an ASP.NET Application
 
-The following steps use [Visual Studio Express 2013 for Web](https://www.microsoft.com/en-us/download/details.aspx?id=40747), and requires [Visual Studio 2013 Update 3](https://www.microsoft.com/en-us/download/details.aspx?id=43721).
+The following steps use [Visual Studio Express 2013 for Web](https://www.microsoft.com/download/details.aspx?id=40747), and requires [Visual Studio 2013 Update 3](https://www.microsoft.com/download/details.aspx?id=43721).
 
 1. In Visual Studio, click **File** and then **New Project**. On the **New Project** dialog, select the Visual C# Web project from the left menu and click **OK**. You may also want to uncheck the **Add Application Insights to Project** if you don't want the functionality for your application.
 2. In the **New ASP.NET Project** dialog, select **MVC**, and then click **Change Authentication**.   
@@ -69,7 +69,7 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image8.png)  
 
     > [!NOTE]
-    > You can optionally configure the Application ID URI that will be registered in Azure AD by clicking **More Options**. The App ID URI is the unique identifier for an application, which is registered in Azure AD and used by the application to identify itself when communicating with Azure AD. For more information about the App ID URI and other properties of registered applications, see [this topic](https://msdn.microsoft.com/en-us/library/azure/dn499820.aspx#BKMK_Registering). By clicking the checkbox below the App ID URI field, you can also choose to overwrite an existing registration in Azure AD that uses the same App ID URI.
+    > You can optionally configure the Application ID URI that will be registered in Azure AD by clicking **More Options**. The App ID URI is the unique identifier for an application, which is registered in Azure AD and used by the application to identify itself when communicating with Azure AD. For more information about the App ID URI and other properties of registered applications, see [this topic](https://msdn.microsoft.com/library/azure/dn499820.aspx#BKMK_Registering). By clicking the checkbox below the App ID URI field, you can also choose to overwrite an existing registration in Azure AD that uses the same App ID URI.
 4. After clicking **OK**, a sign-in dialog will appear, and you'll need to sign in using a Global Administrator account (not the Microsoft account associated with your subscription). If you created a new Administrator account earlier, you'll be required to change the password and then sign in again using the new password.   
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image9.png)
@@ -97,7 +97,7 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
 
 ## Basics of the Graph API
 
-[The Graph API](https://msdn.microsoft.com/en-us/library/azure/hh974476.aspx) is the programmatic interface used to perform CRUD and other operations on objects in your Azure AD directory. If you select an Organizational Account option for authentication when creating a new project in Visual Studio 2013, your application will already be configured to call the Graph API. This section briefly shows you how the Graph API works.
+[The Graph API](https://msdn.microsoft.com/library/azure/hh974476.aspx) is the programmatic interface used to perform CRUD and other operations on objects in your Azure AD directory. If you select an Organizational Account option for authentication when creating a new project in Visual Studio 2013, your application will already be configured to call the Graph API. This section briefly shows you how the Graph API works.
 
 1. In your running application, click on the name of the signed-in user at the top right of the page. This will take you to the User Profile page, which is an action on the Home Controller. You'll notice that the table contains user information about the administrator account you created earlier. This information is stored in your directory, and the Graph API is called to retrieve this information when the page loads.   
   
@@ -146,6 +146,6 @@ An excellent tutorial to follow is Rick Rainey's [Deep Dive: Azure Websites and 
 ## More Information
 
 - [Deep Dive: Azure Websites and Organizational Authentication using Azure AD](http://rickrainey.com/2014/08/19/deep-dive-azure-websites-and-organizational-authentication-using-azure-ad/)
-- [Azure AD Graph API Overview](https://msdn.microsoft.com/en-us/library/azure/hh974476.aspx)
-- [Authentication Scenarios in Azure AD](https://msdn.microsoft.com/en-us/library/azure/dn499820.aspx)
+- [Azure AD Graph API Overview](https://msdn.microsoft.com/library/azure/hh974476.aspx)
+- [Authentication Scenarios in Azure AD](https://msdn.microsoft.com/library/azure/dn499820.aspx)
 - [Azure AD Code Samples on GitHub](https://github.com/AzureADSamples)

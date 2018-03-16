@@ -1467,7 +1467,7 @@ MessageFormat.plurals = {};
 /** Default number formatting functions in the style of ICU's
  *  {@link http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html simpleArg syntax}
  *  implemented using the
- *  {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl Intl}
+ *  {@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl Intl}
  *  object defined by ECMA-402.
  *
  *  **Note**: Intl is not defined in default Node until 0.11.15 / 0.12.0, so

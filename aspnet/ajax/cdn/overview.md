@@ -157,6 +157,14 @@ The CDN hosts some of the most popular third party JavaScript libraries. Microso
 
 The following releases of jQuery are hosted on the CDN:
 
+#### jQuery version 3.3.1
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.map
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.js
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.js
+- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.map
+
 #### jQuery version 3.2.1
 - http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js
 - http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js
@@ -779,6 +787,19 @@ The following releases of [https://github.com/scottjehl/Respond](https://github.
 ### Bootstrap Releases on the CDN
 
 The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") bootstrap are hosted on the CDN:
+
+#### Bootstrap version 4.0.0
+
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.eot
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.svg
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.ttf
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff
+- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.7
 

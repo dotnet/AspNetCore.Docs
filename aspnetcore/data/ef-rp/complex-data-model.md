@@ -1,18 +1,17 @@
 ---
-title: Razor Pages with EF Core - Data Model - 5 of 8
+title: Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 author: rick-anderson
-description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
-keywords: ASP.NET Core,Entity Framework Core,data annotations
-ms.author: riande
+description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
 manager: wpickett
+ms.author: riande
 ms.date: 10/25/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/complex-data-model
 ---
 
-# Creating a complex data model - EF Core with Razor Pages tutorial (5 of 8)
+# Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -39,16 +38,16 @@ The student pages currently displays the time of the enrollment date. Typically,
 
 Update *Models/Student.cs* with the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-The [DataType](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that is more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
 
-The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes do not provide validation.
+The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes don't provide validation.
 
-`DataType.Date` does not specify the format of the date that is displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](https://docs.microsoft.com/aspnet/core/fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
+`DataType.Date` doesn't specify the format of the date that's displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](https://docs.microsoft.com/aspnet/core/fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
@@ -56,7 +55,7 @@ The `DisplayFormat` attribute is used to explicitly specify the date format:
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields should not use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
+The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields shouldn't use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
 
 The `DisplayFormat` attribute can be used by itself. It's generally a good idea to use the `DataType` attribute with the `DisplayFormat` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available in `DisplayFormat`:
 
@@ -76,12 +75,12 @@ also provides client-side and server-side validation. The minimum value has no i
 
 Update the `Student` model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
 ```
 
 Run the app:
@@ -108,7 +107,7 @@ The `Student` model uses `FirstMidName` for the first-name field because the fie
 
 Update the *Student.cs* file with the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
 With the preceding change, `Student.FirstMidName` in the app maps to the `FirstName` column of the `Student` table.
 
@@ -153,11 +152,11 @@ Before migration was applied, the name columns were of type [nvarchar(MAX)](http
 
 Update *Models/Student.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
 ### The Required attribute
 
-The `Required` attribute makes the name properties required fields. The `Required` attribute is not needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
+The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
 
 The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
 
@@ -181,7 +180,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 Create *Models/Instructor.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
+[!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
 Notice that several properties are the same in the `Student` and `Instructor` entities. In the Implementing Inheritance tutorial later in this series, this code is refactored
 to eliminate the redundancy.
@@ -228,7 +227,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 Create *Models/OfficeAssignment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/OfficeAssignment.cs)]
+[!code-csharp[](intro/samples/cu/Models/OfficeAssignment.cs)]
 
 ### The Key attribute
 
@@ -277,18 +276,18 @@ The preceding code specifies that there must be a related instructor. The preced
 
 Update *Models/Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
+[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
 EF Core doesn't require a FK property for a data model when the model has a navigation property for a related entity.
 
-EF Core automatically creates FKs in the database wherever they are needed. EF Core creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
+EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for automatically created FKs. Having the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
 
 * The `Department` entity is null if it's not explicitly loaded.
 * To update the course entity, the `Department` entity must first be fetched.
 
-When the FK property `DepartmentID` is included in the data model, there is no need to
+When the FK property `DepartmentID` is included in the data model, there's no need to
 fetch the `Department` entity before an update.
 
 ### The DatabaseGenerated attribute
@@ -336,7 +335,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 Create *Models/Department.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
+[!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
 
 ### The Column attribute
 
@@ -373,10 +372,10 @@ public ICollection<Course> Courses { get; set; }
 
 Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property was not defined as nullable:
+For example, if the `Department.InstructorID` property wasn't defined as nullable:
 
 * EF Core configures a cascade delete rule to delete the instructor when the department is deleted.
-* Deleting the instructor when the department is deleted is not the intended behavior.
+* Deleting the instructor when the department is deleted isn't the intended behavior.
 
 If business rules required the `InstructorID` property be non-nullable, use the following fluent API statement:
 
@@ -397,7 +396,7 @@ An enrollment record is for a one course taken by one student.
 
 Update *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
+[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
 ### Foreign key and navigation properties
 
@@ -431,7 +430,7 @@ If the `Enrollment` table didn't include grade information, it would only need t
 
 The `Instructor` and `Course` entities have a many-to-many relationship using a pure join table.
 
-Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
+Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## The CourseAssignment entity
 
@@ -439,7 +438,7 @@ Note: EF 6.x supports implicit join tables for many-to-many relationships, but E
 
 Create *Models/CourseAssignment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/CourseAssignment.cs)]
+[!code-csharp[](intro/samples/cu/Models/CourseAssignment.cs)]
 
 ### Instructor-to-Courses
 
@@ -462,7 +461,7 @@ The composite key ensures:
 
 * Multiple rows are allowed for one course.
 * Multiple rows are allowed for one instructor.
-* Multiple rows for the same instructor and course is not allowed.
+* Multiple rows for the same instructor and course isn't allowed.
 
 The `Enrollment` join entity defines its own PK, so duplicates of this sort are possible. To prevent such duplicates:
 
@@ -473,7 +472,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 
 Add the following highlighted code to *Data/SchoolContext.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
@@ -523,7 +522,7 @@ The preceding diagram shows:
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
+[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. The preceding code creates the following many-to-many relationships:
 
@@ -614,7 +613,7 @@ When migrations are run with existing data, there may be FK constraints that are
 
 The *{timestamp}_ComplexDataModel.cs* file contains the following code:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
 
 The preceding code adds a non-nullable `DepartmentID` FK to the `Course` table. The DB from the previous tutorial contains rows in `Course`, so that table cannot be updated by migrations.
 
@@ -630,17 +629,17 @@ Update the `ComplexDataModel` classes `Up` method:
 * Open the *{timestamp}_ComplexDataModel.cs* file.
 * Comment out the line of code that adds the `DepartmentID` column to the `Course` table.
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
- [!code-csharp[Main](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+ [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
 
 A production app would:
 
 * Include code or scripts to add `Department` rows and related `Course` rows to the new `Department` rows.
-* Would not use the "Temp" department or the default value for `Course.DepartmentID `.
+* Not use the "Temp" department or the default value for `Course.DepartmentID`.
 
 The next tutorial covers related data.
 

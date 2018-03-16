@@ -2,13 +2,13 @@
 title: Common errors reference for Azure App Service and IIS with ASP.NET Core
 author: guardrex
 description: Distinguish common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/13/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
@@ -16,6 +16,16 @@ uid: host-and-deploy/azure-iis-errors-reference
 By [Luke Latham](https://github.com/guardrex)
 
 The following isn't a complete list of errors. If you encounter an error not listed here, [open a new issue](https://github.com/aspnet/Docs/issues/new) with detailed instructions to reproduce the error.
+
+Collect the following information:
+
+* Browser behavior
+* Application Event Log entries
+* ASP.NET Core Module stdout log entries
+
+Compare the information to the following common errors. If a match is found, follow the troubleshooting advice.
+
+[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 ## Installer unable to obtain VC++ Redistributable
 
@@ -27,7 +37,7 @@ The following isn't a complete list of errors. If you encounter an error not lis
 
 Troubleshooting:
 
-* If the system doesn't have Internet access while installing the server hosting bundle, this exception occurs when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, the server may not receive the .NET Core runtime required to host a framework-dependent deployment (FDD). If hosting an FDD, confirm that the runtime is installed in Programs &amp; Features. If needed, obtain a runtime installer from [.NET Downloads](https://www.microsoft.com/net/download/core). After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* If the system doesn't have Internet access while installing the server hosting bundle, this exception occurs when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, the server may not receive the .NET Core runtime required to host a framework-dependent deployment (FDD). If hosting an FDD, confirm that the runtime is installed in Programs &amp; Features. If needed, obtain a runtime installer from [.NET All Downloads](https://www.microsoft.com/net/download/all). After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 ## OS upgrade removed the 32-bit ASP.NET Core Module
 
@@ -123,7 +133,7 @@ Troubleshooting:
 
 * An FDD may have been deployed and .NET Core installed without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
-* An FDD may have been deployed without installing the .NET Core runtime on the hosting system. If the .NET Core runtime hasn't been installed, run the **.NET Core Windows Server Hosting bundle installer** on the system. See [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle). If attempting to install the .NET Core runtime on a system without an Internet connection, obtain the runtime from [.NET Downloads](https://www.microsoft.com/net/download/core) and run the hosting bundle installer to install the ASP.NET Core Module. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* An FDD may have been deployed without installing the .NET Core runtime on the hosting system. If the .NET Core runtime hasn't been installed, run the **.NET Core Windows Server Hosting bundle installer** on the system. See [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle). If attempting to install the .NET Core runtime on a system without an Internet connection, obtain the runtime from [.NET All Downloads](https://www.microsoft.com/net/download/all) and run the hosting bundle installer to install the ASP.NET Core Module. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 * An FDD may have been deployed and the *Microsoft Visual C++ 2015 Redistributable (x64)* isn't installed on the system. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840).
 
@@ -139,7 +149,7 @@ Troubleshooting:
 
 * Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshooting](xref:host-and-deploy/iis/troubleshoot).
 
-* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is either (a) *.\{assembly}.dll* for a framework-dependent deployment (FDD); or (b) not present, an empty string (*arguments=""*), or a list of the app's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment (SCD).
+* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) *.\{assembly}.dll* for a framework-dependent deployment (FDD); or (b) not present, an empty string (*arguments=""*), or a list of the app's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment (SCD).
 
 ## Missing .NET Framework version
 

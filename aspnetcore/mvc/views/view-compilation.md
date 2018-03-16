@@ -1,15 +1,13 @@
 ---
-title: Razor view compilation and precompilation
+title: Razor view compilation and precompilation in ASP.NET Core
 author: rick-anderson
-description: A reference document explaining how to enable MVC Razor view compilation and precompilation in ASP.NET Core applications.
-keywords: ASP.NET Core,Razor view compilation,Razor pre-compilation,Razor precompilation
-ms.author: riande
+description: Learn how to enable MVC Razor view compilation and precompilation in ASP.NET Core apps.
 manager: wpickett
+ms.author: riande
 ms.date: 12/13/2017
-ms.topic: article
-ms.assetid: ab4705b7-1638-1638-bc97-ea7f292fe92a
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/view-compilation
 ---
 # Razor view compilation and precompilation in ASP.NET Core
@@ -40,13 +38,13 @@ If your project targets .NET Core, no changes are necessary.
 
 The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default, which means this node can be safely removed from the *.csproj* file. If you prefer to be explicit, there's no harm in setting the `MvcRazorCompileOnPublish` property to `true`. The following *.csproj* sample highlights this setting:
 
-[!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
+[!code-xml[](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
-[!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
+[!code-xml[](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 
 ---
 

@@ -1,23 +1,24 @@
 ---
-title: Publish an ASP.NET Core app to Azure using using command line tools | Microsoft Docs 
-description: Learn how to publish an ASP.NET Core app to Azure App Service using the Git command line client.
-services: multiple
-keywords: ASP.NET Core, Azure, App Service, Git, command line
+title: Publish an ASP.NET Core app to Azure using using command line tools
 author: camsoper
-ms.author: casoper
+description: Learn how to publish an ASP.NET Core app to Azure App Service using the Git command line client.
 manager: wpickett
+ms.author: casoper
+ms.custom: mvc
 ms.date: 11/03/2017
-ms.topic: get-started-article
+ms.devlang: dotnet
 ms.prod: asp.net-core
 ms.technology: aspnet
-ms.custom: mvc
-ms.devlang: dotnet
+ms.topic: get-started-article
+services: multiple
 uid: tutorials/publish-to-azure-webapp-using-cli
 ---
 
 # Deploy an ASP.NET Core application to Azure App Service from the command line
 
 By [Cam Soper](https://twitter.com/camsoper)
+
+[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 This tutorial will show you how to build and deploy an ASP.NET Core application to Microsoft Azure App Service using command line tools.  When finished, you'll have a web application built in ASP.NET MVC Core hosted as an Azure App Service Web App.  This tutorial is written using Windows command line tools, but can be applied to macOS and Linux environments, as well.  
 
@@ -32,7 +33,7 @@ In this tutorial, you learn how to:
 To complete this tutorial, you'll need:
 
 * A [Microsoft Azure subscription](https://azure.microsoft.com/free/)
-* [.NET Core](https://www.microsoft.com/net/download/core)
+* [.NET Core](https://www.microsoft.com/net/download/all)
 * [Git](https://www.git-scm.com/) command line client
 
 ## Create a web application
@@ -147,7 +148,7 @@ git push azure master
 ```
 ---
 
-Git will prompt for the deployment credentials that were set earlier.  After authenticating, the application will be pushed to the remote location, built, and deployed.
+Git prompts for the deployment credentials that were set earlier. After authenticating, the application will be pushed to the remote location, built, and deployed.
 
 ![Git deployment output](publish-to-azure-webapp-using-cli/_static/post_deploy.png)
 

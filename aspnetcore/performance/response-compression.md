@@ -2,14 +2,12 @@
 title: Response Compression Middleware for ASP.NET Core
 author: guardrex
 description: Learn about response compression and how to use Response Compression Middleware in ASP.NET Core apps.
-keywords: ASP.NET Core,performance,response compression,gzip,accept-encoding,middleware
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/20/2017
-ms.topic: article
-ms.assetid: de621887-c5c9-4ac8-9efd-f5cc0457a134
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: performance/response-compression
 ---
 # Response Compression Middleware for ASP.NET Core
@@ -28,7 +26,7 @@ Use Response Compression Middleware when you're:
 * Unable to use the following server-based compression technologies:
   * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
   * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+  * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
   * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
   * [Kestrel](xref:fundamentals/servers/kestrel)
@@ -76,15 +74,15 @@ You can explore the features of the Response Compression Middleware with the [sa
 To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
 
 ## Configuration
-The following code shows how to enable the Response Compression Middleware with the with the default gzip compression and for default MIME types.
+The following code shows how to enable the Response Compression Middleware with the default gzip compression and for default MIME types.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](response-compression/samples/2.x/StartupBasic.cs?name=snippet1&highlight=4,8)]
+[!code-csharp[](response-compression/samples/2.x/StartupBasic.cs?name=snippet1&highlight=4,8)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](response-compression/samples/1.x/StartupBasic.cs?name=snippet1&highlight=3,8)]
+[!code-csharp[](response-compression/samples/1.x/StartupBasic.cs?name=snippet1&highlight=3,8)]
 
 ---
 
@@ -93,7 +91,7 @@ The following code shows how to enable the Response Compression Middleware with 
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
 
-![Fiddler window showing result of a request without the Accept-Encoding header. The response is not compressed.](response-compression/_static/request-uncompressed.png)
+![Fiddler window showing result of a request without the Accept-Encoding header. The response isn't compressed.](response-compression/_static/request-uncompressed.png)
 
 Submit a request to the sample app with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
@@ -107,18 +105,18 @@ The gzip compression provider defaults to the fastest compression level (`Compre
 
 | Compression Level                | Description                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed. |
+| `CompressionLevel.Fastest`       | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
 | `CompressionLevel.NoCompression` | No compression should be performed.                                                                           |
 | `CompressionLevel.Optimal`       | Responses should be optimally compressed, even if the compression takes more time to complete.                |
 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=3,8-11)]
+[!code-csharp[](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=3,8-11)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=5,10-13)]
+[!code-csharp[](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=5,10-13)]
 
 ---
 
@@ -137,11 +135,11 @@ You can replace or append MIME types with the Response Compression Middleware op
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=5)]
+[!code-csharp[](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=5)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=7)]
+[!code-csharp[](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=7)]
 
 ---
 
@@ -152,15 +150,15 @@ Using the sample app, the client submits a request with the `Accept-Encoding: my
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=4)]
+[!code-csharp[](response-compression/samples/2.x/Program.cs?name=snippet1&highlight=4)]
 
-[!code-csharp[Main](response-compression/samples/2.x/CustomCompressionProvider.cs?name=snippet1)]
+[!code-csharp[](response-compression/samples/2.x/CustomCompressionProvider.cs?name=snippet1)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=6)]
+[!code-csharp[](response-compression/samples/1.x/Startup.cs?name=snippet2&highlight=6)]
 
-[!code-csharp[Main](response-compression/samples/1.x/CustomCompressionProvider.cs?name=snippet1)]
+[!code-csharp[](response-compression/samples/1.x/CustomCompressionProvider.cs?name=snippet1)]
 
 ---
 
@@ -176,10 +174,10 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 **ASP.NET Core 1.x only**
 
-[!code-csharp[Main](response-compression/samples/1.x/Startup.cs?name=snippet1)]
+[!code-csharp[](response-compression/samples/1.x/Startup.cs?name=snippet1)]
 
 ## Middleware issue when behind an Nginx reverse proxy
-When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, you can do so with an addition to your *web.config* file. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
@@ -193,7 +191,7 @@ Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getf
 
 ## Additional resources
 * [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware)
+* [Middleware](xref:fundamentals/middleware/index)
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
 * [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)

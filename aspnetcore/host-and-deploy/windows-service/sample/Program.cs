@@ -1,9 +1,9 @@
 ﻿#define HandleStopStart // or ServiceOnly ServiceOrConsole
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.WindowsServices;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AspNetCoreService
 {
@@ -16,13 +16,11 @@ namespace AspNetCoreService
             var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
             var pathToContentRoot = Path.GetDirectoryName(pathToExe);
 
-            var host = new WebHostBuilder()
-            .UseKestrel()
-            .UseContentRoot(pathToContentRoot)
-            .UseIISIntegration()
-            .UseStartup<Startup>()
-            .UseApplicationInsights()
-            .Build();
+            var host = WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(pathToContentRoot)
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .Build();
 
             host.RunAsService();
         }
@@ -45,13 +43,11 @@ namespace AspNetCoreService
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
             }
 
-            var host = new WebHostBuilder()
-            .UseKestrel()
-            .UseContentRoot(pathToContentRoot)
-            .UseIISIntegration()
-            .UseStartup<Startup>()
-            .UseApplicationInsights()
-            .Build();
+            var host = WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(pathToContentRoot)
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .Build();
 
             if (isService)
             {
@@ -81,13 +77,11 @@ namespace AspNetCoreService
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
             }
 
-            var host = new WebHostBuilder()
-            .UseKestrel()
-            .UseContentRoot(pathToContentRoot)
-            .UseIISIntegration()
-            .UseStartup<Startup>()
-            .UseApplicationInsights()
-            .Build();
+            var host = WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(pathToContentRoot)
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .Build();
 
             if (isService)
             {

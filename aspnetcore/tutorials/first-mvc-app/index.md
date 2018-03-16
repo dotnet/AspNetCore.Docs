@@ -1,14 +1,13 @@
 ---
 title: Create a web app with ASP.NET Core MVC on Windows
 author: rick-anderson
-description: Table of contents for introduction to ASP.NET Core MVC using Visual Studio on Windows.
-keywords: ASP.NET Core, MVC, tutorial, introduction
-ms.author: riande
+description: See the table of contents for an introduction to ASP.NET Core MVC using Visual Studio on Windows.
 manager: wpickett
+ms.author: riande
 ms.date: 10/26/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app/index
 ---
 # Create a web app with ASP.NET Core MVC using Visual Studio
@@ -22,7 +21,7 @@ There are 3 versions of this tutorial:
 * macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)
 The tutorial series includes the following:
 
-1. [Getting started](start-mvc.md)
+1. [Get started](start-mvc.md)
 1. [Adding a controller](adding-controller.md)
 1. [Adding a view](adding-view.md)
 1. [Adding a model](adding-model.md)

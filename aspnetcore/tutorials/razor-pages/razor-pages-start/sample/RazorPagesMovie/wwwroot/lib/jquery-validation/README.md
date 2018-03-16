@@ -15,7 +15,7 @@ and help spread the word. If you've used the plugin, or plan to use, consider a 
 
 You can find the plan for how to spend the money on the [pledgie page](http://pledgie.com/campaigns/18159).
 
-## Getting Started
+## Get Started
 
 ### Downloading the prebuilt files
 

@@ -57,7 +57,7 @@ The ObjectDataSource caching feature explored in the preceding tutorial internal
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample1.vb)]
 
-The [`Cache` class](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.aspx) s [`Insert` method](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.insert.aspx) has a number of overloads. `Cache("key") = value` and `Cache.Insert(key, value)` are synonymous and both add an item to the cache using the specified key without a defined expiry. Typically, we want to specify an expiry when adding an item to the cache, either as a dependency, a time-based expiry, or both. Use one of the other `Insert` method s overloads to provide dependency- or time-based expiry information.
+The [`Cache` class](https://msdn.microsoft.com/library/system.web.caching.cache.aspx) s [`Insert` method](https://msdn.microsoft.com/library/system.web.caching.cache.insert.aspx) has a number of overloads. `Cache("key") = value` and `Cache.Insert(key, value)` are synonymous and both add an item to the cache using the specified key without a defined expiry. Typically, we want to specify an expiry when adding an item to the cache, either as a dependency, a time-based expiry, or both. Use one of the other `Insert` method s overloads to provide dependency- or time-based expiry information.
 
 The Caching Layer s methods need to first check if the requested data is in the cache and, if so, return it from there. If the requested data is not in the cache, the appropriate BLL method needs to be invoked. Its return value should be cached and then returned, as the following sequence diagram illustrates.
 
@@ -85,7 +85,7 @@ The difference in this second, incorrect code snippet is that rather than storin
 > The data cache is thread-safe, so you don't need to synchronize thread access for simple reads or writes. However, if you need to perform multiple operations on data in the cache that need to be atomic, you are responsible for implementing a lock or some other mechanism to ensure thread safety. See [Synchronizing Access to the ASP.NET Cache](http://www.ddj.com/184406369) for more information.
 
 
-An item can be programmatically evicted from the data cache using the [`Remove` method](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.remove.aspx) like so:
+An item can be programmatically evicted from the data cache using the [`Remove` method](https://msdn.microsoft.com/library/system.web.caching.cache.remove.aspx) like so:
 
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample4.vb)]
@@ -110,10 +110,10 @@ The `GetCacheItem(key)` and `AddCacheItem(key, value)` methods interface with th
 
 `GetCacheItem(key)` does not use *key* value as supplied, but instead calls the `GetCacheKey(key)` method, which returns the *key* prepended with ProductsCache-. The `MasterCacheKeyArray`, which holds the string ProductsCache, is also used by the `AddCacheItem(key, value)` method, as we'll see momentarily.
 
-From an ASP.NET page s code-behind class, the data cache can be accessed using the `Page` class s [`Cache` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.cache.aspx), and allows for syntax like `Cache("key") = value`, as discussed in Step 2. From a class within the architecture, the data cache can be accessed using either `HttpRuntime.Cache` or `HttpContext.Current.Cache`. [Peter Johnson](https://weblogs.asp.net/pjohnson/default.aspx)'s blog entry [HttpRuntime.Cache vs. HttpContext.Current.Cache](https://weblogs.asp.net/pjohnson/httpruntime-cache-vs-httpcontext-current-cache) notes the slight performance advantage in using `HttpRuntime` instead of `HttpContext.Current`; consequently, `ProductsCL` uses `HttpRuntime`.
+From an ASP.NET page s code-behind class, the data cache can be accessed using the `Page` class s [`Cache` property](https://msdn.microsoft.com/library/system.web.ui.page.cache.aspx), and allows for syntax like `Cache("key") = value`, as discussed in Step 2. From a class within the architecture, the data cache can be accessed using either `HttpRuntime.Cache` or `HttpContext.Current.Cache`. [Peter Johnson](https://weblogs.asp.net/pjohnson/default.aspx)'s blog entry [HttpRuntime.Cache vs. HttpContext.Current.Cache](https://weblogs.asp.net/pjohnson/httpruntime-cache-vs-httpcontext-current-cache) notes the slight performance advantage in using `HttpRuntime` instead of `HttpContext.Current`; consequently, `ProductsCL` uses `HttpRuntime`.
 
 > [!NOTE]
-> If your architecture is implemented using Class Library projects then you will need to add a reference to the `System.Web` assembly in order to use the [`HttpRuntime`](https://msdn.microsoft.com/en-us/library/system.web.httpruntime.aspx) and [`HttpContext`](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) classes.
+> If your architecture is implemented using Class Library projects then you will need to add a reference to the `System.Web` assembly in order to use the [`HttpRuntime`](https://msdn.microsoft.com/library/system.web.httpruntime.aspx) and [`HttpContext`](https://msdn.microsoft.com/library/system.web.httpcontext.aspx) classes.
 
 
 If the item is not found in the cache, the `ProductsCL` class s methods get the data from the BLL and add it to the cache using the `AddCacheItem(key, value)` method. To add *value* to the cache we could use the following code, which uses a 60 second time expiry:
@@ -121,7 +121,7 @@ If the item is not found in the cache, the `ProductsCL` class s methods get the 
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample7.vb)]
 
-`DateTime.Now.AddSeconds(CacheDuration)` specifies the time-based expiry 60 seconds in the future while [`System.Web.Caching.Cache.NoSlidingExpiration`](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.noslidingexpiration(vs.80).aspx) indicates that there s no sliding expiration. While this `Insert` method overload has input parameters for both an absolute and sliding expiry, you can only provide one of the two. If you attempt to specify both an absolute time and a time span, the `Insert` method will throw an `ArgumentException` exception.
+`DateTime.Now.AddSeconds(CacheDuration)` specifies the time-based expiry 60 seconds in the future while [`System.Web.Caching.Cache.NoSlidingExpiration`](https://msdn.microsoft.com/library/system.web.caching.cache.noslidingexpiration(vs.80).aspx) indicates that there s no sliding expiration. While this `Insert` method overload has input parameters for both an absolute and sliding expiry, you can only provide one of the two. If you attempt to specify both an absolute time and a time span, the `Insert` method will throw an `ArgumentException` exception.
 
 > [!NOTE]
 > This implementation of the `AddCacheItem(key, value)` method currently has some shortcomings. We'll address and overcome these issues in Step 4.
@@ -145,7 +145,7 @@ Let s update the `AddCacheItem(key, value)` method so that each item added to th
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample9.vb)]
 
-`MasterCacheKeyArray` is a string array that holds a single value, ProductsCache. First, a cache item is added to the cache and assigned the current date and time. If the cache item already exists, it is updated. Next, a cache dependency is created. The [`CacheDependency` class](https://msdn.microsoft.com/en-US/library/system.web.caching.cachedependency(VS.80).aspx) s constructor has a number of overloads, but the one being used in here expects two `String` array inputs. The first one specifies the set of files to be used as dependencies. Since we don t want to use any file-based dependencies, a value of `Nothing` is used for the first input parameter. The second input parameter specifies the set of cache keys to use as dependencies. Here we specify our single dependency, `MasterCacheKeyArray`. The `CacheDependency` is then passed into the `Insert` method.
+`MasterCacheKeyArray` is a string array that holds a single value, ProductsCache. First, a cache item is added to the cache and assigned the current date and time. If the cache item already exists, it is updated. Next, a cache dependency is created. The [`CacheDependency` class](https://msdn.microsoft.com/library/system.web.caching.cachedependency(VS.80).aspx) s constructor has a number of overloads, but the one being used in here expects two `String` array inputs. The first one specifies the set of files to be used as dependencies. Since we don t want to use any file-based dependencies, a value of `Nothing` is used for the first input parameter. The second input parameter specifies the set of cache keys to use as dependencies. Here we specify our single dependency, `MasterCacheKeyArray`. The `CacheDependency` is then passed into the `Insert` method.
 
 With this modification to `AddCacheItem(key, value)`, invaliding the cache is as simple as removing the dependency.
 

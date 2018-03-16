@@ -30,7 +30,7 @@ ASP.NET version 2.0 introduced a series of *application services*, which are par
 - **Roles** - an API for categorizing users into groups.
 - **Profile** - an API for storing custom, user-specific content.
 - **Site Map** - an API for defining a site s logical structure in the form of a hierarchy, which can then be displayed via navigation controls, such as menus and breadcrumbs.
-- **Personalization** - an API for maintaining customization preferences, most often used with [*WebParts*](https://msdn.microsoft.com/en-us/library/e0s9t4ck.aspx).
+- **Personalization** - an API for maintaining customization preferences, most often used with [*WebParts*](https://msdn.microsoft.com/library/e0s9t4ck.aspx).
 - **Health Monitoring** - an API for monitoring performance, security, errors, and other system health metrics for a running web application.
   
 
@@ -66,7 +66,7 @@ To use the application services with a SQL Server database you must first add th
 
 It is possible, and usually ideal, to create the application services database objects in the same database where the website s application-specific data is stored. The .NET Framework ships with a tool named `aspnet_regsql.exe` that installs the database objects on a specified database. I have gone ahead and used this tool to add these objects to the `Reviews.mdf` database in the `App_Data` folder (the development database). We'll see how to use this tool later in this tutorial when we add these objects to the production database.
 
-If you add the application services database objects to a database other than `ASPNETDB` you will need to customize the `SqlMembershipProvider` and `SqlRoleProvider` provider classes configurations so that they use the appropriate database. To customize the Membership provider add a [*&lt;membership&gt; element*](https://msdn.microsoft.com/en-us/library/1b9hw62f.aspx) within the `<system.web>` section in `Web.config`; use the [*&lt;roleManager&gt; element*](https://msdn.microsoft.com/en-us/library/ms164660.aspx) to configure the Roles provider. The following snippet is taken from the Book Reviews application s `Web.config` and shows the configure settings for the Membership and Roles APIs. Note that both register a new provider - `ReviewMembership` and `ReviewRole` - that use the `SqlMembershipProvider` and `SqlRoleProvider` providers, respectively.
+If you add the application services database objects to a database other than `ASPNETDB` you will need to customize the `SqlMembershipProvider` and `SqlRoleProvider` provider classes configurations so that they use the appropriate database. To customize the Membership provider add a [*&lt;membership&gt; element*](https://msdn.microsoft.com/library/1b9hw62f.aspx) within the `<system.web>` section in `Web.config`; use the [*&lt;roleManager&gt; element*](https://msdn.microsoft.com/library/ms164660.aspx) to configure the Roles provider. The following snippet is taken from the Book Reviews application s `Web.config` and shows the configure settings for the Membership and Roles APIs. Note that both register a new provider - `ReviewMembership` and `ReviewRole` - that use the `SqlMembershipProvider` and `SqlRoleProvider` providers, respectively.
 
 [!code-xml[Main](configuring-a-website-that-uses-application-services-cs/samples/sample1.xml)]
 
@@ -89,7 +89,7 @@ When deploying a website that uses application services and a provider that stor
 
 Another challenge can arise when deploying a website that uses application services if you intend to replicate the user accounts created in the development environment to the production environment. Depending on the Membership and Roles configuration, it is possible that even if you successfully copy the user accounts that were created in the development environment to the production database, these users cannot sign into the web application in production. We'll look at the cause of this issue and discuss how to prevent it from happening.
 
-ASP.NET ships with a nice [*Web Site Administration Tool (WSAT)*](https://msdn.microsoft.com/en-us/library/yy40ytx0.aspx) that can be launched from Visual Studio and allows the user account, roles, and authorization rules to be managed through a web-based interface. Unfortunately, the WSAT only works for local websites, meaning that it cannot be used to remotely manage user accounts, roles, and authorization rules for the web application in the production environment. We'll look at different ways to implement WSAT-like behavior from your production website.
+ASP.NET ships with a nice [*Web Site Administration Tool (WSAT)*](https://msdn.microsoft.com/library/yy40ytx0.aspx) that can be launched from Visual Studio and allows the user account, roles, and authorization rules to be managed through a web-based interface. Unfortunately, the WSAT only works for local websites, meaning that it cannot be used to remotely manage user accounts, roles, and authorization rules for the web application in the production environment. We'll look at different ways to implement WSAT-like behavior from your production website.
 
 ### Adding the Database Objects Using aspnet\_regsql.exe
 
@@ -187,13 +187,13 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [*ASP.NET SQL Server Registration Tool (aspnet_regsql.exe)*](https://msdn.microsoft.com/en-us/library/ms229862.aspx)
-- [*Creating the Application Services Database for SQL Server*](https://msdn.microsoft.com/en-us/library/x28wfk74.aspx)
+- [*ASP.NET SQL Server Registration Tool (aspnet_regsql.exe)*](https://msdn.microsoft.com/library/ms229862.aspx)
+- [*Creating the Application Services Database for SQL Server*](https://msdn.microsoft.com/library/x28wfk74.aspx)
 - [*Creating the Membership Schema in SQL Server*](../../older-versions-security/membership/creating-the-membership-schema-in-sql-server-cs.md)
 - [*Examining ASP.NET s Membership, Roles, and Profile*](http://aspnet.4guysfromrolla.com/articles/120705-1.aspx)
 - [*Rolling Your Own Web Site Administration Tool*](http://aspnet.4guysfromrolla.com/articles/052307-1.aspx)
 - [*Website Security Tutorials*](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
-- [*Web Site Administration Tool Overview*](https://msdn.microsoft.com/en-us/library/yy40ytx0.aspx)
+- [*Web Site Administration Tool Overview*](https://msdn.microsoft.com/library/yy40ytx0.aspx)
 
 >[!div class="step-by-step"]
 [Previous](configuring-the-production-web-application-to-use-the-production-database-cs.md)

@@ -23,4 +23,4 @@ In this episode I work on pulling all of the technical pieces together to form a
 
 >[!div class="step-by-step"]
 [Previous](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
-[Next](aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
+[Next](aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)

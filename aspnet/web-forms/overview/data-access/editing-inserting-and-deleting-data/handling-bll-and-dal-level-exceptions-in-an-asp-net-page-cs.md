@@ -96,9 +96,9 @@ At this point we have a list of all of the products' `ProductName`, `QuantityPer
 
 ## Step 2: Gracefully Handling DAL-Level Exceptions
 
-While our editable GridView works wonderfully when users enter legal values for the edited product's name, price, and units in stock, entering illegal values results in an exception. For example, omitting the `ProductName` value causes a [NoNullAllowedException](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfsystemdatanonullallowedexceptionclasstopic.asp) to be thrown since the `ProductName` property in the `ProdcutsRow` class has its `AllowDBNull` property set to `false`; if the database is down, a `SqlException` will be thrown by the TableAdapter when attempting to connect to the database. Without taking any action, these exceptions bubble up from the Data Access Layer to the Business Logic Layer, then to the ASP.NET page, and finally to the ASP.NET runtime.
+While our editable GridView works wonderfully when users enter legal values for the edited product's name, price, and units in stock, entering illegal values results in an exception. For example, omitting the `ProductName` value causes a [NoNullAllowedException](https://msdn.microsoft.com/library/default.asp?url=/library/cpref/html/frlrfsystemdatanonullallowedexceptionclasstopic.asp) to be thrown since the `ProductName` property in the `ProdcutsRow` class has its `AllowDBNull` property set to `false`; if the database is down, a `SqlException` will be thrown by the TableAdapter when attempting to connect to the database. Without taking any action, these exceptions bubble up from the Data Access Layer to the Business Logic Layer, then to the ASP.NET page, and finally to the ASP.NET runtime.
 
-Depending on how your web application is configured and whether or not you're visiting the application from `localhost`, an unhandled exception can result in either a generic server-error page, a detailed error report, or a user-friendly web page. See [Web Application Error Handling in ASP.NET](http://www.15seconds.com/issue/030102.htm) and the [customErrors Element](https://msdn.microsoft.com/en-US/library/h0hfz6fc(VS.80).aspx) for more information on how the ASP.NET runtime responds to an uncaught exception.
+Depending on how your web application is configured and whether or not you're visiting the application from `localhost`, an unhandled exception can result in either a generic server-error page, a detailed error report, or a user-friendly web page. See [Web Application Error Handling in ASP.NET](http://www.15seconds.com/issue/030102.htm) and the [customErrors Element](https://msdn.microsoft.com/library/h0hfz6fc(VS.80).aspx) for more information on how the ASP.NET runtime responds to an uncaught exception.
 
 Figure 6 shows the screen encountered when attempting to update a product without specifying the `ProductName` value. This is the default detailed error report displayed when coming through `localhost`.
 
@@ -148,7 +148,7 @@ Creating this event handler will add the following code to the ASP.NET page's co
 
 [!code-csharp[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs/samples/sample4.cs)]
 
-This event handler's second input parameter is an object of type [GridViewUpdatedEventArgs](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.gridviewupdatedeventargs.aspx), which has three properties of interest for handling exceptions:
+This event handler's second input parameter is an object of type [GridViewUpdatedEventArgs](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridviewupdatedeventargs.aspx), which has three properties of interest for handling exceptions:
 
 - `Exception` a reference to the thrown exception; if no exception has been thrown, this property will have a value of `null`
 - `ExceptionHandled` a Boolean value that indicates whether or not the exception was handled in the `RowUpdated` event handler; if `false` (the default), the exception is re-thrown, percolating up to the ASP.NET runtime

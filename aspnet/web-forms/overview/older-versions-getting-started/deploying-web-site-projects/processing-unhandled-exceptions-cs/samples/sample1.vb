@@ -1,3 +1,0 @@
-Sub Application_AuthorizeRequest(ByVal sender As Object, ByVal e As EventArgs)
-    ...
-End Sub

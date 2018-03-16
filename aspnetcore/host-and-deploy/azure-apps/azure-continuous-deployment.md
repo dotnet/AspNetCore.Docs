@@ -1,19 +1,21 @@
 ---
-title: Continuous deployment to Azure with Visual Studio and Git
+title: Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
 author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 10/14/2016
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ---
-# Continuous deployment to Azure for ASP.NET Core with Visual Studio and Git
+# Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
 
 By [Erik Reitan](https://github.com/Erikre)
+
+[!INCLUDE[Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
 
 This tutorial shows how to create an ASP.NET Core web app using Visual Studio and deploy it from Visual Studio to Azure App Service using continuous deployment.
 
@@ -27,7 +29,7 @@ See also [Use VSTS to Build and Publish to an Azure Web App with Continuous Depl
 This tutorial assumes the following software is installed:
 
 * [Visual Studio](https://www.visualstudio.com)
-* [.NET Core SDK](https://www.microsoft.com/net/download/core) (runtime and tooling)
+* [.NET Core SDK](https://www.microsoft.com/net/download/all) (runtime and tooling)
 * [Git](https://git-scm.com/downloads) for Windows
 
 ## Create an ASP.NET Core web app
@@ -36,7 +38,7 @@ This tutorial assumes the following software is installed:
 
 1. From the **File** menu, select **New** > **Project**.
 
-1. Select the **ASP.NET Core Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **.NET Core**. Name the project `SampleWebAppDemo`. Select the **Create new Git respository** option and click **OK**.
+1. Select the **ASP.NET Core Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **.NET Core**. Name the project `SampleWebAppDemo`. Select the **Create new Git repository** option and click **OK**.
 
    ![New Project dialog](azure-continuous-deployment/_static/01-new-project.png)
 

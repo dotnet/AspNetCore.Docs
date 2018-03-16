@@ -2,12 +2,12 @@
 title: Test and debug in ASP.NET Core
 author: ardalis
 description: Links to resources for testing and debugging ASP.NET Core applications.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/20/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: testing/index
 ---
 # Test and debug in ASP.NET Core

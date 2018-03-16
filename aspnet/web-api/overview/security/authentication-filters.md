@@ -42,7 +42,7 @@ To apply the filter to all Web API controllers, add it to **GlobalConfiguration.
 
 ## Implementing a Web API Authentication Filter
 
-In Web API, authentication filters implement the [System.Web.Http.Filters.IAuthenticationFilter](https://msdn.microsoft.com/en-us/library/system.web.http.filters.iauthenticationfilter.aspx) interface. They should also inherit from **System.Attribute**, in order to be applied as attributes.
+In Web API, authentication filters implement the [System.Web.Http.Filters.IAuthenticationFilter](https://msdn.microsoft.com/library/system.web.http.filters.iauthenticationfilter.aspx) interface. They should also inherit from **System.Attribute**, in order to be applied as attributes.
 
 The **IAuthenticationFilter** interface has two methods:
 
@@ -155,7 +155,7 @@ Note: The Basic Authentication sample abstracts this logic a bit, by placing it 
 
 "Host-level authentication" is authentication performed by the host (such as IIS), before the request reaches the Web API framework.
 
-Often, you may want to to enable host-level authentication for the rest of your application, but disable it for your Web API controllers. For example, a typical scenario is to enable Forms Authentication at the host level, but use token-based authentication for Web API.
+Often, you may want to enable host-level authentication for the rest of your application, but disable it for your Web API controllers. For example, a typical scenario is to enable Forms Authentication at the host level, but use token-based authentication for Web API.
 
 To disable host-level authentication inside the Web API pipeline, call `config.SuppressHostPrincipal()` in your configuration. This causes Web API to remove the **IPrincipal** from any request that enters the Web API pipeline. Effectively, it &quot;un-authenticates&quot; the request.
 
@@ -163,4 +163,4 @@ To disable host-level authentication inside the Web API pipeline, call `config.S
 
 ## Additional Resources
 
-[ASP.NET Web API Security Filters](https://msdn.microsoft.com/en-us/magazine/dn781361.aspx) (MSDN Magazine)
+[ASP.NET Web API Security Filters](https://msdn.microsoft.com/magazine/dn781361.aspx) (MSDN Magazine)

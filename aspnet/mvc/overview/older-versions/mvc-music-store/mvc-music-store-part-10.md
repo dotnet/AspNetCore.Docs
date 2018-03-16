@@ -130,7 +130,7 @@ Now when we run the application, we'll see our updated home page with top sellin
 
 ## Conclusion
 
-We've seen that that ASP.NET MVC makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly. Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET MVC applications!
+We've seen that ASP.NET MVC makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly. Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET MVC applications!
 
 
 >[!div class="step-by-step"]

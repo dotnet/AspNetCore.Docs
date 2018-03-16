@@ -2,14 +2,12 @@
 title: Password Hashing
 author: rick-anderson
 description: This document explains how to hash passwords using the ASP.NET Core data protection APIs.
-keywords: ASP.NET Core,data protection,password hash
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 982a1eb2-1e6f-4909-896f-82784364472d
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/consumer-apis/password-hashing
 ---
 # Password Hashing
@@ -24,6 +22,6 @@ The package currently offers a method `KeyDerivation.Pbkdf2` which allows hashin
 
 3. The `KeyDerivation.Pbkdf2` method requires the caller to specify all parameters (salt, PRF, and iteration count). The `Rfc2898DeriveBytes` type provides default values for these.
 
-[!code-csharp[Main](password-hashing/samples/passwordhasher.cs)]
+[!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
 See the source code for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.

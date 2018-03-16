@@ -1,6 +1,7 @@
 Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
     ' Get the error details
-    Dim lastErrorWrapper As HttpException = CType(Server.GetLastError(), HttpException)
+    Dim lastErrorWrapper As HttpException = _
+        CType(Server.GetLastError(), HttpException)
 	
     Dim lastError As Exception = lastErrorWrapper
     If lastErrorWrapper.InnerException IsNot Nothing Then
@@ -57,7 +58,8 @@ Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
     'Attach the Yellow Screen of Death for this error
     Dim YSODmarkup As String = lastErrorWrapper.GetHtmlErrorMessage()
     If Not String.IsNullOrEmpty(YSODmarkup) Then
-        Dim YSOD As Attachment = Attachment.CreateAttachmentFromString(YSODmarkup, "YSOD.htm")
+        Dim YSOD As Attachment = _
+            Attachment.CreateAttachmentFromString(YSODmarkup, "YSOD.htm")
         mm.Attachments.Add(YSOD)
     End If
 

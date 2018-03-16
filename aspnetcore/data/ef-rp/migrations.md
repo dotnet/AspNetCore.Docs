@@ -1,18 +1,17 @@
 ---
-title: Razor Pages with EF Core - Migrations - 4 of 8
+title: Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
 author: rick-anderson
 description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
-keywords: ASP.NET Core,Entity Framework Core,migrations
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/15/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/migrations
 ---
 
-# Migrations - EF Core with Razor Pages tutorial (4 of 8)
+# Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -29,7 +28,7 @@ When a new app is developed, the data model changes frequently. Each time the mo
 * EF creates a new one that matches the model.
 * The app seeds the DB with test data.
 
-This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it is usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
+This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it's usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
 
 Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
@@ -49,9 +48,9 @@ The version numbers in the preceding example were current when the tutorial was 
 
 In the *appsettings.json* file, change the name of the DB in the connection string to ContosoUniversity2.
 
-[!code-json[Main](intro/samples/cu/appsettings2.json?range=1-4)]
+[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
-Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name does not exist. Changing the connection string isn't required for getting started with migrations.
+Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name doesn't exist. Changing the connection string isn't required for getting started with migrations.
 
 An alternative to changing the DB name is deleting the DB. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 
@@ -97,7 +96,7 @@ If the error message "Build failed." is displayed, run the command again. If you
 
 The EF Core command `migrations add` generated code to create the DB from. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
+[!code-csharp[](intro/samples/cu/Migrations/20171026010210_InitialCreate.cs?range=8-24,77-)]
 
 Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, migrations calls the `Down` method.
 
@@ -106,7 +105,7 @@ The preceding code is for the initial migration. That code was created when the 
 If the initial migration is created and the DB exits:
 
 * The DB creation code is generated.
-* The DB creation code doesn't need to run because the DB already matches the data model. If the The DB creation code is run, it doesn't make any changes because the DB already matches the data model.
+* The DB creation code doesn't need to run because the DB already matches the data model. If the DB creation code is run, it doesn't make any changes because the DB already matches the data model.
 
 When the app is deployed to a new environment, the DB creation code must be run to create the DB.
 
@@ -116,7 +115,7 @@ Previously the connection string was changed to use a new name for the DB. The s
 
 Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolContextModelSnapshot.cs*:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
+[!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
 Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF Core determines what changed by comparing the data model to the snapshot file. EF Core interacts with the DB only when it has to update the DB.
 
@@ -124,10 +123,10 @@ The snapshot file must be in sync with the migrations that created it. A migrati
 
 ## Remove EnsureCreated
 
-For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limatitions:
+For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limitations:
 
 * Bypasses migrations and creates the DB and schema.
-* Does not create a migrations table.
+* Doesn't create a migrations table.
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
@@ -178,7 +177,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[200101]
 Done.
 ```
 
-To reduce the level of detail in log messages, can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging/index).
+To reduce the level of detail in log messages, change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging/index).
 
 Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an `__EFMigrationsHistory` table. The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the DB. View the data in the `__EFMigrationsHistory` table, it shows one row for the first migration. The last log in the preceding CLI output example shows the INSERT statement that creates this row.
 
@@ -186,7 +185,7 @@ Run the app and verify that everything works.
 
 ## Appling migrations in production
 
-We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` should not be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
+We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -207,7 +206,7 @@ This tutorial shows how to use the CLI, some developers prefer using the PMC.
 
 The EF Core commands for the PMC are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
-**Important:** This is not the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
+**Important:** This isn't the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet).
 
@@ -221,7 +220,7 @@ https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/S
 The app generates the following exception:
 
 ```text
-`SqlException: Cannot open database "ContosoUniversity" requested by the login.
+SqlException: Cannot open database "ContosoUniversity" requested by the login.
 The login failed.
 Login failed for user 'user name'.
 ```

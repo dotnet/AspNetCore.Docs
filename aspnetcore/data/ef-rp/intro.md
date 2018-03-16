@@ -1,18 +1,17 @@
 ---
-title: Razor Pages with Entity Framework Core - Tutorial 1 of 8
+title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
-keywords: ASP.NET Core,Entity Framework Core,tutorial
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 11/15/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-rp/intro
 ---
 
-# Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 8)
+# Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -30,7 +29,7 @@ Familiarity with [Razor Pages](xref:mvc/razor-pages/index). New programmers shou
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots) or [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](xref:data/ef-mvc/advanced#common-errors). If you don't find what you need there, you can post a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](xref:data/ef-mvc/advanced#common-errors). If you don't find what you need there, you can post a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 > [!TIP]
 > This series of tutorials builds on what is done in earlier tutorials. Consider saving a copy of the project after each successful tutorial completion. If you run into problems, you can start over from the previous tutorial instead of going back to the beginning. Alternatively, you can download a [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots) and start over using the completed stage.
@@ -95,7 +94,7 @@ In the following sections, a class for each one of these entities is created.
 
 Create a *Models* folder. In the *Models* folder, create a class file named *Student.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
 The `ID` property becomes the primary key column of the database (DB) table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key.
 
@@ -109,7 +108,7 @@ If a navigation property can hold multiple entities, the navigation property mus
 
 In the *Models* folder, create *Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
 The `EnrollmentID` property is the primary key. This entity uses the `classnameID` pattern instead of `ID` like the `Student` entity. Typically developers choose one pattern and use it throughout the data model. In a later tutorial, using ID without classname is shown to make it easier to implement inheritance in the data model.
 
@@ -127,7 +126,7 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 In the *Models* folder, create *Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
@@ -141,7 +140,7 @@ In the project folder, create a folder named *Data*.
 
 In the *Data* folder create *SchoolContext.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
 This code creates a `DbSet` property for each entity set. In EF Core terminology:
 
@@ -152,7 +151,7 @@ This code creates a `DbSet` property for each entity set. In EF Core terminology
 
 When the DB is created, EF Core creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
 
 ## Register the context with dependency injection
 
@@ -160,13 +159,13 @@ ASP.NET Core includes [dependency injection](xref:fundamentals/dependency-inject
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
+[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces. Build the project.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings)]
+[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
 Open the *appsettings.json* file and add a connection string as shown in the following code:
 
@@ -176,7 +175,7 @@ The preceding connection string uses `ConnectRetryCount=0` to prevent [SQLClient
 
 ### SQL Server Express LocalDB
 
-The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
+The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
 ## Add code to initialize the DB with test data
 
@@ -184,7 +183,7 @@ EF Core creates an empty DB. In this section, a *Seed* method is written to popu
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
 
-[!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
 The code checks if there are any students in the DB. If there are no students in the DB, the DB is seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
@@ -198,7 +197,7 @@ In *Program.cs*, modify the `Main` method to do the following:
 
 The following code shows the updated *Program.cs* file.
 
-[!code-csharp[Main](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
 
 The first time the app is run, the DB is created and seeded with test data. When the data model is updated:
 * Delete the DB.
@@ -223,7 +222,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 
 The previous command adds the NuGet packages to the *.csproj file:
 
-[!code-csharp[Main](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
+[!code-csharp[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
 
 <a name="scaffold"></a>
 ## Scaffold the model
@@ -236,18 +235,6 @@ The previous command adds the NuGet packages to the *.csproj file:
 dotnet restore
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
  ```
- 
-If the following error is generated:
-
-```text
-Unhandled Exception: System.IO.FileNotFoundException: 
-Could not load file or assembly 
-'Microsoft.VisualStudio.Web.CodeGeneration.Utils, 
-Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'.
-The system cannot find the file specified.
-```
-
-Run the command again and leave a comment at the bottom of the page.
 
 If you get the error:
   ```
@@ -268,7 +255,7 @@ Build the project. The build generates errors like the following:
  <a name="test"></a>
 ### Test the app
 
-Run the app and select the **Students** link. Depending on the browser width, the **Students** link appears at the top of the page. If the **Students** link is not visible, click the navigation icon in the upper right corner.
+Run the app and select the **Students** link. Depending on the browser width, the **Students** link appears at the top of the page. If the **Students** link isn't visible, click the navigation icon in the upper right corner.
 
 ![Contoso University home page narrow](intro/_static/home-page-narrow.png)
 
@@ -319,24 +306,24 @@ Asynchronous code does introduce a small amount of overhead at run time. For low
 
 In the following code, the `async` keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
-[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
+[!code-csharp[](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to:
 
   * Generate callbacks for parts of the method body.
-  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that is returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 
-* The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.
+* The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
 
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
 Some things to be aware of when writing asynchronous code that uses EF Core:
 
-* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It does not include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
-* An EF Core context is not threaded safe: don't try to do multiple operations in parallel. 
+* An EF Core context isn't thread safe: don't try to do multiple operations in parallel. 
 
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 

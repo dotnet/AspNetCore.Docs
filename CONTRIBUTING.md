@@ -13,7 +13,7 @@ You'll need a basic understanding of [Git and GitHub.com](https://guides.github.
 * Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the team before you invest much time. 
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
 * Submit a pull request (PR) to master with your changes.
-* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla2.dotnetfoundation.org/)
+* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/)
 * Respond to PR feedback.
 
 For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
@@ -118,6 +118,10 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 ## Voice and tone
 
 Our goal is to write documentation that is easily understandable by the widest possible audience. To that end we have established guidelines for writing style that we ask our contributors to follow. For more information, see [Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) in the .NET repo.
+
+## Microsoft Writing Style Guide
+
+The [Microsoft Writing Style Guide](https://docs.microsoft.com/style-guide/welcome/) provides writing style and terminology guidance for all forms of technology communication, including the ASP.NET Core documentation.
 
 ## Redirects
 

@@ -44,14 +44,14 @@ The connection resiliency feature must be configured appropriately for a particu
 
 You can configure these settings manually for any database environment supported by an Entity Framework provider, but default values that typically work well for an online application that uses Windows Azure SQL Database have already been configured for you, and those are the settings you'll implement for the Contoso University application.
 
-All you have to do to enable connection resiliency is create a class in your assembly that derives from the [DbConfiguration](https://msdn.microsoft.com/en-us/data/jj680699.aspx) class, and in that class set the SQL Database *execution strategy*, which in EF is another term for *retry policy*.
+All you have to do to enable connection resiliency is create a class in your assembly that derives from the [DbConfiguration](https://msdn.microsoft.com/data/jj680699.aspx) class, and in that class set the SQL Database *execution strategy*, which in EF is another term for *retry policy*.
 
 1. In the DAL folder, add a class file named *SchoolConfiguration.cs*.
 2. Replace the template code with the following code:
 
     [!code-csharp[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-    The Entity Framework automatically runs the code it finds in a class that derives from `DbConfiguration`. You can use the `DbConfiguration` class to do configuration tasks in code that you would otherwise do in the *Web.config* file. For more information, see [EntityFramework Code-Based Configuration](https://msdn.microsoft.com/en-us/data/jj680699).
+    The Entity Framework automatically runs the code it finds in a class that derives from `DbConfiguration`. You can use the `DbConfiguration` class to do configuration tasks in code that you would otherwise do in the *Web.config* file. For more information, see [EntityFramework Code-Based Configuration](https://msdn.microsoft.com/data/jj680699).
 3. In *StudentController.cs*, add a `using` statement for `System.Data.Entity.Infrastructure`.
 
     [!code-csharp[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
@@ -61,13 +61,13 @@ All you have to do to enable connection resiliency is create a class in your ass
 
     You were using `DataException` to try to identify errors that might be transient in order to give a friendly "try again" message. But now that you've turned on a retry policy, the only errors likely to be transient will already have been tried and failed several times and the actual exception returned will be wrapped in the `RetryLimitExceededException` exception.
 
-For more information, see [Entity Framework Connection Resiliency / Retry Logic](https://msdn.microsoft.com/en-us/data/dn456835).
+For more information, see [Entity Framework Connection Resiliency / Retry Logic](https://msdn.microsoft.com/data/dn456835).
 
 ## Enable Command Interception
 
 Now that you've turned on a retry policy, how do you test to verify that it is working as expected? It's not so easy to force a transient error to happen, especially when you're running locally, and it would be especially difficult to integrate actual transient errors into an automated unit test. To test the connection resiliency feature, you need a way to intercept queries that Entity Framework sends to SQL Server and replace the SQL Server response with an exception type that is typically transient.
 
-You can also use query interception in order to implement a best practice for cloud applications: [log the latency and success or failure of all calls to external services](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md#log) such as database services. EF6 provides a [dedicated logging API](https://msdn.microsoft.com/en-us/data/dn469464) that can make it easier to do logging, but in this section of the tutorial you'll learn how to use the Entity Framework's [interception feature](https://msdn.microsoft.com/en-us/data/dn469464) directly, both for logging and for simulating transient errors.
+You can also use query interception in order to implement a best practice for cloud applications: [log the latency and success or failure of all calls to external services](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md#log) such as database services. EF6 provides a [dedicated logging API](https://msdn.microsoft.com/data/dn469464) that can make it easier to do logging, but in this section of the tutorial you'll learn how to use the Entity Framework's [interception feature](https://msdn.microsoft.com/data/dn469464) directly, both for logging and for simulating transient errors.
 
 ### Create a logging interface and class
 

@@ -95,7 +95,7 @@ With the TemplateField and CheckBox Web control added, each row now includes a c
 
 At this point we have a column of checkboxes but no way to determine what checkboxes were checked on postback. When the Delete Selected Products button is clicked, though, we need to know what checkboxes were checked in order to delete those products.
 
-The GridView s [`Rows` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rows.aspx) provides access to the data rows in the GridView. We can iterate through these rows, programmatically access the CheckBox control, and then consult its `Checked` property to determine whether the CheckBox has been selected.
+The GridView s [`Rows` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.rows.aspx) provides access to the data rows in the GridView. We can iterate through these rows, programmatically access the CheckBox control, and then consult its `Checked` property to determine whether the CheckBox has been selected.
 
 Create an event handler for the `DeleteSelectedProducts` Button Web control s `Click` event and add the following code:
 

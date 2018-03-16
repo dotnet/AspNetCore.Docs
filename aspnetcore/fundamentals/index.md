@@ -2,16 +2,14 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-keywords: ASP.NET Core,fundamentals,overview
-ms.author: riande
 manager: wpickett
-ms.date: 09/30/2017
-ms.topic: get-started-article
-ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/index
+ms.author: riande
 ms.custom: H1Hack27Feb2017
+ms.date: 09/30/2017
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
+uid: fundamentals/index
 ---
 
 # ASP.NET Core fundamentals
@@ -20,7 +18,7 @@ An ASP.NET Core application is a console app that creates a web server in its `M
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
+[!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
 The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
@@ -28,7 +26,7 @@ The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the buil
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
+[!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
 The `Main` method uses `WebHostBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
@@ -42,11 +40,11 @@ The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for yo
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=10&range=6-17)]
+[!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=10&range=6-17)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs?highlight=7&range=6-17)]
+[!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs?highlight=7&range=6-17)]
 
 ---
 
@@ -69,7 +67,7 @@ public class Startup
 }
 ```
 
-`ConfigureServices` defines the [Services](#dependency-injection-services) used by your app (for example, ASP.NET Core MVC, Entity Framework Core, Identity). `Configure` defines the [middleware](xref:fundamentals/middleware) for the request pipeline.
+`ConfigureServices` defines the [Services](#dependency-injection-services) used by your app (for example, ASP.NET Core MVC, Entity Framework Core, Identity). `Configure` defines the [middleware](xref:fundamentals/middleware/index) for the request pipeline.
 
 For more information, see [Application startup](xref:fundamentals/startup).
 
@@ -89,9 +87,9 @@ For more information, see [Dependency injection](xref:fundamentals/dependency-in
 
 ## Middleware
 
-In ASP.NET Core, you compose your request pipeline using [middleware](xref:fundamentals/middleware). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking an `UseXYZ` extension method in the `Configure` method.
+In ASP.NET Core, you compose your request pipeline using [middleware](xref:fundamentals/middleware/index). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking an `UseXYZ` extension method in the `Configure` method.
 
-ASP.NET Core comes with a rich set of built-in middleware:
+ASP.NET Core includes a rich set of built-in middleware:
 
 * [Static files](xref:fundamentals/static-files)
 * [Routing](xref:fundamentals/routing)
@@ -101,7 +99,7 @@ ASP.NET Core comes with a rich set of built-in middleware:
 
 [OWIN](http://owin.org)-based middleware is available for ASP.NET Core apps, and you can write your own custom middleware.
 
-For more information, see [Middleware](xref:fundamentals/middleware) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
+For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
 ## Environments
 
@@ -159,7 +157,7 @@ For more information, see [Session and application state](xref:fundamentals/app-
 
 ## Servers
 
-The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that can be accessed through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is often run behind a production web server, such as [IIS](https://www.iis.net/) or [nginx](http://nginx.org). Kestrel can be run as an edge server.
+The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that can be accessed through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is often run behind a production web server, such as [IIS](https://www.iis.net/) or [Nginx](http://nginx.org). Kestrel can be run as an edge server.
 
 For more information, see [Servers](xref:fundamentals/servers/index) and the following topics:
 
@@ -178,6 +176,12 @@ For more information, see [Globalization and localization](xref:fundamentals/loc
 Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the app's hosting pipeline.
 
 For more information, see [Request Features](xref:fundamentals/request-features).
+
+## Background tasks
+
+Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface.
+
+For more information, see [Background tasks with hosted services](xref:fundamentals/hosted-services).
 
 ## Open Web Interface for .NET (OWIN)
 

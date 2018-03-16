@@ -2,13 +2,13 @@
 title: Visual Studio publish profiles for ASP.NET Core app deployment
 author: rick-anderson
 description: Discover how to create publish profiles for ASP.NET Core apps in Visual Studio.
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 09/26/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
@@ -104,7 +104,7 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 ## Basic command-line publishing
 
-Command-line publishing works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the `dotnet publish` command is run from the project directory (which contains the *.csproj* file). If not in the project folder, explicitly pass in the project file path. For example:
+Command-line publishing works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the *.csproj* file). If not in the project folder, explicitly pass in the project file path. For example:
 
 ```console
 dotnet publish c:/webs/web1
@@ -129,7 +129,7 @@ dotnet publish
 
 ---
 
-The `dotnet publish` produces output similar to the following:
+The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces output similar to the following:
 
 ```console
 C:\Webs\Web1>dotnet publish
@@ -150,7 +150,7 @@ The following command specifies a `Release` build and the publishing directory:
 dotnet publish -c Release -o C:/MyWebs/test
 ```
 
-The `dotnet publish` command calls MSBuild which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`.
+The [dotnet publish](/dotnet/core/tools/dotnet-publish) command calls MSBuild which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`.
 
 MSBuild properties can be passed using either of the following formats:
 
@@ -213,7 +213,7 @@ In the preceeding samples, **don't** pass `deployonbuild` to `dotnet publish`.
 
 For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
-`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it is supported by websdk for cross plat publish to Azure.
+`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it's supported by websdk for cross plat publish to Azure.
 
 Add a publish profile to *Properties/PublishProfiles* folder with the following content:
 
@@ -242,7 +242,7 @@ When publishing with a profile named *FolderProfile*, either of the commands bel
 * `dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 * `msbuild      /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 
-When invoking `dotnet build`, it calls `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when passing in a folder profile. When calling MSBuild directly on Windows, the .NET Framework version of MSBuild is used. MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
+When invoking [dotnet build](/dotnet/core/tools/dotnet-build), it calls `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when passing in a folder profile. When calling MSBuild directly on Windows, the .NET Framework version of MSBuild is used. MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
 
 The following folder publish profile was created with Visual Studio and publishes to a network share:
 
@@ -325,7 +325,7 @@ The following `<MsDeploySkipRules>` element markup exludes all files from the *w
 <ItemGroup>
   <MsDeploySkipRules Include="CustomSkipFolder">
     <ObjectName>dirPath</ObjectName>
-    <AbsolutePath>wwwroot\content</AbsolutePath>
+    <AbsolutePath>wwwroot\\content</AbsolutePath>
   </MsDeploySkipRules>
 </ItemGroup>
 ```
@@ -357,7 +357,7 @@ If the following `<MsDeploySkipRules>` markup is added, those files wouldn't be 
 </ItemGroup>
 ```
 
-The `<MsDeploySkipRules>` markup shown above prevents the *skipped* files from being depoyed but won't delete those files once they are deployed.
+The `<MsDeploySkipRules>` markup shown above prevents the *skipped* files from being depoyed but won't delete those files once they're deployed.
 
 The following `<Content>` markup deletes the targeted files at the deployment site:
 

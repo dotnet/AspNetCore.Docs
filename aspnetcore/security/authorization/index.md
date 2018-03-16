@@ -1,35 +1,37 @@
 ---
 title: Authorization in ASP.NET Core
 author: rick-anderson
-description: This document serves as a table of contents for the various ASP.NET Core authorization topics.
-keywords: ASP.NET Core,authorization
-ms.author: riande
+description: Discover ASP.NET Core authorization topics that explain how to provide rights and privileges to app users.
 manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 1abd456b-2199-4ba3-9698-3241e0bd4afc
-ms.technology: aspnet
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/19/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/index
 ---
-# Authorization in ASP.NET Core: Simple, role, claims-based, and custom
 
-* [Introduction](introduction.md)
+# Authorization in ASP.NET Core
+
+* [Introduction](xref:security/authorization/introduction)
+
+* [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
 
 * [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
 
-* [Simple authorization](simple.md)
+* [Simple authorization](xref:security/authorization/simple)
 
-* [Role-based authorization](roles.md)
+* [Role-based authorization](xref:security/authorization/roles)
 
-* [Claims-based authorization](claims.md)
+* [Claims-based authorization](xref:security/authorization/claims)
 
-* [Policy-based authorization](policies.md)
+* [Policy-based authorization](xref:security/authorization/policies)
 
-* [Dependency injection in requirement handlers](dependencyinjection.md)
+* [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 
-* [Resource-based authorization](resourcebased.md)
+* [Resource-based authorization](xref:security/authorization/resourcebased)
 
-* [View-based authorization](views.md)
+* [View-based authorization](xref:security/authorization/views)
 
-* [Limiting identity by scheme](limitingidentitybyscheme.md)
+* [Authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme)

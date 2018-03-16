@@ -27,7 +27,7 @@ Prerequisites:
 - The [Windows Azure SDK](https://go.microsoft.com/fwlink/?linkid=254364&amp;clcid=0x409).
 - Visual Studio 2012.
 
-The service bus backplane is also compatible with [Service Bus for Windows Server](https://msdn.microsoft.com/en-us/library/windowsazure/dn282144.aspx), version 1.1. However, it is not compatible with version 1.0 of Service Bus for Windows Server.
+The service bus backplane is also compatible with [Service Bus for Windows Server](https://msdn.microsoft.com/library/windowsazure/dn282144.aspx), version 1.1. However, it is not compatible with version 1.0 of Service Bus for Windows Server.
 
 ## Pricing
 

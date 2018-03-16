@@ -2,14 +2,12 @@
 title: File uploads in ASP.NET Core
 author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
-keywords: ASP.NET Core,file upload,model binding,IFormFile,streaming
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/05/2017
-ms.topic: article
-ms.assetid: ebc98159-a028-4a94-b06c-43981c79c6be
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/models/file-uploads
 ---
 # File uploads in ASP.NET Core
@@ -68,7 +66,7 @@ When uploading files using model binding and the `IFormFile` interface, the acti
 
 [!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
-[!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs?name=snippet1)]
+[!code-csharp[](file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs?name=snippet1)]
 
 Files uploaded using the `IFormFile` technique are buffered in memory or on disk on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to [Azure Blob storage](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/) or [Entity Framework](https://docs.microsoft.com/ef/core/index).
 
@@ -131,7 +129,7 @@ public async Task<IActionResult> Register(RegisterViewModel model)
 If the size or frequency of file uploads is causing resource problems for the app, consider streaming the file upload rather than buffering it in its entirety, as the model binding approach shown above does. While using `IFormFile` and model binding is a much simpler solution, streaming requires a number of steps to implement properly.
 
 > [!NOTE]
-> Any single buffered file exceeding 64KB will be moved from RAM to a temp file on disk on the server. The resources (disk, RAM) used by file uploads depend on the number and size of concurrent file uploads. Streaming is not so much about perf, it's about scale. If you try to buffer too many uploads, your site will crash when it runs out of memory or disk space.
+> Any single buffered file exceeding 64KB will be moved from RAM to a temp file on disk on the server. The resources (disk, RAM) used by file uploads depend on the number and size of concurrent file uploads. Streaming isn't so much about perf, it's about scale. If you try to buffer too many uploads, your site will crash when it runs out of memory or disk space.
 
 The following example demonstrates using JavaScript/Angular to stream to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed in HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, model binding is disabled by another filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. Once all sections have been read, the action performs its own model binding.
 
@@ -148,15 +146,15 @@ public IActionResult Index()
 
 The attribute uses ASP.NET Core's built-in [Antiforgery](xref:security/anti-request-forgery) support to set a cookie with a request token:
 
-[!code-csharp[Main](file-uploads/sample/FileUploadSample/Filters/GenerateAntiforgeryTokenCookieForAjaxAttribute.cs?name=snippet1)]
+[!code-csharp[](file-uploads/sample/FileUploadSample/Filters/GenerateAntiforgeryTokenCookieForAjaxAttribute.cs?name=snippet1)]
 
 Angular automatically passes an antiforgery token in a request header named `X-XSRF-TOKEN`. The ASP.NET Core MVC app is configured to refer to this header in its configuration in *Startup.cs*:
 
-[!code-csharp[Main](file-uploads/sample/FileUploadSample/Startup.cs?name=snippet1)]
+[!code-csharp[](file-uploads/sample/FileUploadSample/Startup.cs?name=snippet1)]
 
 The `DisableFormValueModelBinding` attribute, shown below, is used to disable model binding for the `Upload` action method.
 
-[!code-csharp[Main](file-uploads/sample/FileUploadSample/Filters/DisableFormValueModelBindingAttribute.cs?name=snippet1)]
+[!code-csharp[](file-uploads/sample/FileUploadSample/Filters/DisableFormValueModelBindingAttribute.cs?name=snippet1)]
 
 Since model binding is disabled, the `Upload` action method doesn't accept parameters. It works directly with the `Request` property of `ControllerBase`. A `MultipartReader` is used to read each section. The file is saved with a GUID filename and the key/value data is stored in a `KeyValueAccumulator`. Once all sections have been read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
@@ -164,7 +162,7 @@ The complete `Upload` method is shown below:
 
 [!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
-[!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs?name=snippet1)]
+[!code-csharp[](file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs?name=snippet1)]
 
 ## Troubleshooting
 
@@ -196,4 +194,4 @@ This setting only applies to IIS. The behavior doesn't occur by default when hos
 
 ### Null Reference Exception with IFormFile
 
-If your controller is accepting uploaded files using `IFormFile` but you find that the value is always null, confirm that your HTML form is specifying an `enctype` value of `multipart/form-data`. If this attribute is not set on the `<form>` element, the file upload will not occur and any bound `IFormFile` arguments will be null.
+If your controller is accepting uploaded files using `IFormFile` but you find that the value is always null, confirm that your HTML form is specifying an `enctype` value of `multipart/form-data`. If this attribute isn't set on the `<form>` element, the file upload won't occur and any bound `IFormFile` arguments will be null.

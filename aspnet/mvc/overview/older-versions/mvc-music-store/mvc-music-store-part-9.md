@@ -114,7 +114,7 @@ The complete CheckoutController code is as follows:
 
 ## Adding the AddressAndPayment view
 
-Now, let's create the AddressAndPayment view. Right-click on one of the the AddressAndPayment controller actions and add a view named AddressAndPayment which is strongly typed as an Order and uses the Edit template, as shown below.
+Now, let's create the AddressAndPayment view. Right-click on one of the AddressAndPayment controller actions and add a view named AddressAndPayment which is strongly typed as an Order and uses the Edit template, as shown below.
 
 ![](mvc-music-store-part-9/_static/image6.png)
 
@@ -129,7 +129,7 @@ We'll start by updating the form code to use Html.EditorForModel(), followed by 
 
 ## Defining validation rules for the Order
 
-Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's e-mail address.
+Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's email address.
 
 [!code-csharp[Main](mvc-music-store-part-9/samples/sample11.cs)]
 

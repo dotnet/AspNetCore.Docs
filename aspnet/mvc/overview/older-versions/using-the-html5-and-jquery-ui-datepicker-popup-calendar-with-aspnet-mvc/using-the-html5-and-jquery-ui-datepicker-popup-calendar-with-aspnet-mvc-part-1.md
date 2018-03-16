@@ -46,7 +46,7 @@ You'll add templates (specifically, edit and display templates) to the simple mo
 
 Here's what you'll learn:
 
-- How to use attributes from the [DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace to control the format of data when it's displayed and when it's in edit mode.
+- How to use attributes from the [DataAnnotations](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) namespace to control the format of data when it's displayed and when it's in edit mode.
 - How to create templates (edit and display templates) to control the formatting of data.
 - How to add the [jQuery UI datepicker](http://jqueryui.com/demos/datepicker/) as a way to enter date fields.
 
@@ -62,7 +62,7 @@ In **Solution Explorer**, double-click the *Views\Shared\\_Layout.cshtml* to ope
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/_static/image3.png)
 
-The formatting for the date and the price is the result of using the [DisplayFormat](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute on properties of the `Movie` class.
+The formatting for the date and the price is the result of using the [DisplayFormat](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute on properties of the `Movie` class.
 
 Open the *Movie.cs* file and comment out the `DisplayFormat` attribute on the `ReleaseDate` and `Price` properties. The resulting `Movie` class looks like this:
 
@@ -74,11 +74,11 @@ Press CTRL+F5 again to run the application and select the **Home** tab to view t
 
 ### Using the DataAnnotations DataType Attribute to Specify the Data Type
 
-Replace the commented-out `DisplayFormat` attribute for the `ReleaseDate` property with the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration. Replace the `DisplayFormat` attribute for the `Price` property with the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute again, this time using the `Currency` enumeration. This is what the completed code looks like:
+Replace the commented-out `DisplayFormat` attribute for the `ReleaseDate` property with the [DataType](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration. Replace the `DisplayFormat` attribute for the `Price` property with the [DataType](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.datatype.aspx) attribute again, this time using the `Currency` enumeration. This is what the completed code looks like:
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/samples/sample2.cs)]
 
-Run the application. Now the release date and the price properties are formatted correctly (that is, using appropriate date and currency formats). The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute provides type metadata for the built-in ASP.NET MVC templates so that the fields render in the correct format. Using the `DataType` attribute is preferable to using the `DisplayFormat` attribute that was originally in the code, because the `DataType` attribute makes the model cleaner and more flexible for purposes like internationalization.
+Run the application. Now the release date and the price properties are formatted correctly (that is, using appropriate date and currency formats). The [DataType](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.datatype.aspx) attribute provides type metadata for the built-in ASP.NET MVC templates so that the fields render in the correct format. Using the `DataType` attribute is preferable to using the `DisplayFormat` attribute that was originally in the code, because the `DataType` attribute makes the model cleaner and more flexible for purposes like internationalization.
 
 In the next section you'll see how to make custom templates to display date fields.
 

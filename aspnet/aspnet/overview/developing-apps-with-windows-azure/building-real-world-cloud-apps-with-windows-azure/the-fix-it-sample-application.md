@@ -57,10 +57,10 @@ An administrator should be able to change ownership on existing tasks. For examp
 
 Queue message processing in the Fix It app was designed to be simple in order to illustrate the queue-centric work pattern with a minimum amount of code. This simple code would not be adequate for an actual production application.
 
-- The code does not guarantee that each queue message will be processed at most once. When you get a message from the queue, there is a timeout period, during which the message is invisible to other queue listeners. If the timeout expires before the message is deleted, the message becomes visible again. Therefore, if a worker role instance spends a long time processing a message, it is theoretically possible for the same message to get processed twice, resulting in a duplicate task in the database. For more information about this issue, see [Using Azure Storage Queues](https://msdn.microsoft.com/en-us/library/ff803365.aspx#sec7).
-- The queue polling logic could be more cost-effective, by batching message retrieval. Every time you call [CloudQueue.GetMessageAsync](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessageasync.aspx), there is a transaction cost. Instead, you can call [CloudQueue.GetMessagesAsync](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessagesasync.aspx) (note the plural 's'), which gets multiple messages in a single transaction. The transaction costs for Azure Storage Queues are very low, so the impact on costs is not substantial in most scenarios.
+- The code does not guarantee that each queue message will be processed at most once. When you get a message from the queue, there is a timeout period, during which the message is invisible to other queue listeners. If the timeout expires before the message is deleted, the message becomes visible again. Therefore, if a worker role instance spends a long time processing a message, it is theoretically possible for the same message to get processed twice, resulting in a duplicate task in the database. For more information about this issue, see [Using Azure Storage Queues](https://msdn.microsoft.com/library/ff803365.aspx#sec7).
+- The queue polling logic could be more cost-effective, by batching message retrieval. Every time you call [CloudQueue.GetMessageAsync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessageasync.aspx), there is a transaction cost. Instead, you can call [CloudQueue.GetMessagesAsync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessagesasync.aspx) (note the plural 's'), which gets multiple messages in a single transaction. The transaction costs for Azure Storage Queues are very low, so the impact on costs is not substantial in most scenarios.
 - The tight loop in the queue message-processing code causes CPU affinity, which does not utilize multi-core VMs efficiently. A better design would use task parallelism to run several async tasks in parallel.
-- Queue message-processing has only rudimentary exception handling. For example, the code doesn't handle [poison messages](https://msdn.microsoft.com/en-us/library/ms789028.aspx). (When message processing causes an exception, you have to log the error and delete the message, or the worker role will try to process it again, and the loop will continue indefinitely.)
+- Queue message-processing has only rudimentary exception handling. For example, the code doesn't handle [poison messages](https://msdn.microsoft.com/library/ms789028.aspx). (When message processing causes an exception, you have to log the error and delete the message, or the worker role will try to process it again, and the loop will continue indefinitely.)
 
 ### SQL queries are unbounded
 
@@ -80,7 +80,7 @@ Sample PowerShell automation scripts were written only for the base version of F
 
 ### Special handling for HTML codes in user input
 
-ASP.NET automatically prevents many ways in which malicious users might attempt cross-site scripting attacks by entering script in user input text boxes. And the MVC `DisplayFor` helper used to display task titles and notes automatically HTML-encodes values that it sends to the browser. But in a production app you might want to take additional measures. For more information, see [Request Validation in ASP.NET](https://msdn.microsoft.com/en-us/library/hh882339.aspx).
+ASP.NET automatically prevents many ways in which malicious users might attempt cross-site scripting attacks by entering script in user input text boxes. And the MVC `DisplayFor` helper used to display task titles and notes automatically HTML-encodes values that it sends to the browser. But in a production app you might want to take additional measures. For more information, see [Request Validation in ASP.NET](https://msdn.microsoft.com/library/hh882339.aspx).
 
 <a id="bestpractices"></a>
 ## Best practices
@@ -141,13 +141,13 @@ In order to display simple code, the original version of the Fix It app didn't s
 
 ### Mark private members as readonly when they aren't expected to change
 
-For example, in the `DashboardController` class an instance of `FixItTaskRepository` is created and isn't expected to change, so we defined it as [readonly](https://msdn.microsoft.com/en-us/library/acdd6hb7.aspx).
+For example, in the `DashboardController` class an instance of `FixItTaskRepository` is created and isn't expected to change, so we defined it as [readonly](https://msdn.microsoft.com/library/acdd6hb7.aspx).
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample9.cs?highlight=3)]
 
 ### Use list.Any() instead of list.Count() &gt; 0
 
-If you all you care about is whether one or more items in a list fit the specified criteria, use the [Any](https://msdn.microsoft.com/en-us/library/bb534972.aspx) method, because it returns as soon as an item fitting the criteria is found, whereas the `Count` method always has to iterate through every item. The Dashboard *Index.cshtml* file originally had this code:
+If you all you care about is whether one or more items in a list fit the specified criteria, use the [Any](https://msdn.microsoft.com/library/bb534972.aspx) method, because it returns as soon as an item fitting the criteria is found, whereas the `Count` method always has to iterate through every item. The Dashboard *Index.cshtml* file originally had this code:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample10.cshtml)]
 
@@ -161,13 +161,13 @@ For the **Create a Fix It** button on the home page, the Fix It app hard coded a
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample12.cshtml)]
 
-For View/Action links like this it's better to use the [Url.Action](https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.action.aspx) HTML helper, for example:
+For View/Action links like this it's better to use the [Url.Action](https://msdn.microsoft.com/library/system.web.mvc.urlhelper.action.aspx) HTML helper, for example:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample13.cshtml)]
 
 ### Use Task.Delay instead of Thread.Sleep in worker role
 
-The new-project template puts `Thread.Sleep` in the sample code for a worker role, but causing the thread to sleep can cause the thread pool to spawn additional unnecessary threads. You can avoid that by using [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096.aspx) instead.
+The new-project template puts `Thread.Sleep` in the sample code for a worker role, but causing the thread to sleep can cause the thread pool to spawn additional unnecessary threads. You can avoid that by using [Task.Delay](https://msdn.microsoft.com/library/hh139096.aspx) instead.
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample14.cs?highlight=11)]
 
@@ -179,11 +179,11 @@ This example is from the `FixItQueueManager` class:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample15.cs)]
 
-You should use `async void` only for top-level event handlers. If you define a method as `async void`, the caller cannot **await** the method or catch any exceptions the method throws. For more information, see [Best Practices in Asynchronous Programming](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx). 
+You should use `async void` only for top-level event handlers. If you define a method as `async void`, the caller cannot **await** the method or catch any exceptions the method throws. For more information, see [Best Practices in Asynchronous Programming](https://msdn.microsoft.com/magazine/jj991977.aspx). 
 
 ### Use a cancellation token to break from worker role loop
 
-Typically, the **Run** method on a worker role contains an infinite loop. When the worker role is stopping, the [RoleEntryPoint.OnStop](https://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) method is called. You should use this method to cancel the work that is being done inside the **Run** method and exit gracefully. Otherwise, the process might be terminated in the middle of an operation.
+Typically, the **Run** method on a worker role contains an infinite loop. When the worker role is stopping, the [RoleEntryPoint.OnStop](https://msdn.microsoft.com/library/windowsazure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) method is called. You should use this method to cancel the work that is being done inside the **Run** method and exit gracefully. Otherwise, the process might be terminated in the middle of an operation.
 
 ### Opt out of Automatic MIME Sniffing Procedure
 
@@ -214,7 +214,7 @@ There are two ways to run the Fix It app:
 <a id="runbase"></a>
 ### Run the base application
 
-1. Install [Visual Studio 2013 or Visual Studio 2013 Express for Web](https://www.visualstudio.com/en-us/downloads).
+1. Install [Visual Studio 2013 or Visual Studio 2013 Express for Web](https://www.visualstudio.com/downloads).
 2. Install the [Azure SDK for .NET for Visual Studio 2013.](https://go.microsoft.com/fwlink/p/?linkid=323510&amp;clcid=0x409)
 3. Download the .zip file from the [MSDN Code Gallery](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4).
 4. In File Explorer, right-click the .zip file and click Properties, then in the Properties window click Unblock.
@@ -223,7 +223,7 @@ There are two ways to run the Fix It app:
 7. From the Tools menu, click Library Package Manager, then Package Manager Console.
 8. In the Package Manager Console (PMC), click Restore.
 9. Exit Visual Studio.
-10. Start the [Azure storage emulator](https://msdn.microsoft.com/en-us/library/windowsazure/hh403989.aspx).
+10. Start the [Azure storage emulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx).
 11. Restart Visual Studio, opening the solution file you closed in the previous step.
 12. Make sure the FixIt project is set as the startup project, and then press CTRL+F5 to run the project.
 
@@ -235,7 +235,7 @@ There are two ways to run the Fix It app:
 3. In the application *Web.config* file in the *MyFixIt* project (the web project), change the value of `appSettings/UseQueues` to "true": 
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample19.cmd?highlight=3)]
-4. If the [Azure storage emulator](https://msdn.microsoft.com/en-us/library/windowsazure/hh403989.aspx) isn't still running, start it again.
+4. If the [Azure storage emulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx) isn't still running, start it again.
 5. Run the FixIt web project and the MyFixItCloudService project simultaneously.
 
     Using Visual Studio 2013:
@@ -392,7 +392,7 @@ In MyFixItCloudService\ServiceConfiguration.Cloud.cscfg, replace the same two pl
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample34.xml?highlight=3)]
 
-Now you are ready to deploy the cloud service. In Solution Explore, right-click the MyFixItCloudService project and select **Publish**. For more information, see "[Deploy the Application to Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", which is in part 2 of [this tutorial](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36).
+Now you are ready to deploy the cloud service. In Solution Explore, right-click the MyFixItCloudService project and select **Publish**. For more information, see "[Deploy the Application to Azure](https://www.windowsazure.com/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", which is in part 2 of [this tutorial](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36).
 
 >[!div class="step-by-step"]
 [Previous](more-patterns-and-guidance.md)

@@ -1,21 +1,21 @@
 ---
 title: Development-time IIS support in Visual Studio for ASP.NET Core
 author: shirhatti
-description: Discover support for debugging ASP.NET Core applications when running behind IIS on Windows Server.
-ms.author: riande
+description: Discover support for debugging ASP.NET Core apps when running behind IIS on Windows Server.
 manager: wpickett
+ms.author: riande
 ms.custom: mvc
 ms.date: 09/13/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
 By: [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-This article describes [Visual Studio](https://www.visualstudio.com/vs/) support for debugging ASP.NET Core applications running behind IIS on Windows Server. This topic walks through enabling this feature and setting up a project.
+This article describes [Visual Studio](https://www.visualstudio.com/vs/) support for debugging ASP.NET Core apps running behind IIS on Windows Server. This topic walks through enabling this feature and setting up a project.
 
 ## Prerequisites
 
@@ -28,13 +28,13 @@ Enable IIS. Navigate to **Control Panel** > **Programs** > **Programs and Featur
 
 ![Windows Features showing Internet Information Services checkbox checked as a black square (not a checkmark) indicating that some of the IIS features are enabled](development-time-iis-support/_static/enable_iis.png)
 
-If the IIS installation requires a reboot, reboot the system.
+If the IIS installation requires a restart, restart the system.
 
 ## Enable development-time IIS support
 
-Once IIS is installed, launch the Visual Studio installer to modify the existing Visual Studio installation. In the installer, select the **Development time IIS support** component. The component is listed as an optional component in the **Summary** panel for the **ASP.NET and web development** workload. This installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core applications.
+Launch the Visual Studio installer. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. This installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps.
 
-![Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there is a checkbox for Development time IIS support.](development-time-iis-support/_static/development_time_support.png)
+![Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there's a checkbox for Development time IIS support.](development-time-iis-support/_static/development_time_support.png)
 
 ## Configure the project
 
@@ -68,8 +68,6 @@ Alternatively, manually add a launch profile to the [launchSettings.json](http:/
 ```
 
 Visual Studio may prompt a restart if not running as an administrator. If prompted, restart Visual Studio.
-
-Congratulations! At this point, the project is configured for development-time IIS support. 
 
 ## Additional resources
 

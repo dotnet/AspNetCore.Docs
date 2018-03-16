@@ -1,21 +1,21 @@
 ---
 title: Use the React project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for React and create-react-app.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and create-react-app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
 uid: spa/react
 ---
-# Use the React project template (release candidate)
+# Use the React project template
 
 > [!NOTE]
-> This documentation is not about the released React project template. **This documentation is about the release candidate of the React template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the React project template included in ASP.NET Core 2.0. It's about the newer React template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -23,12 +23,12 @@ The template is equivalent to creating both an ASP.NET Core project to act as an
 
 ## Create a new app
 
-To get started, ensure you've [installed the updated React project template](xref:spa/index#installation). These instructions don't apply to the previous React project template included in the .NET Core 2.0.x SDK.
+If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation). If you have ASP.NET Core 2.1, there's no need to install it.
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
 ```console
-dotnet new -o my-new-app
+dotnet new react -o my-new-app
 cd my-new-app
 ```
 
@@ -44,9 +44,9 @@ The build process restores npm dependencies on the first run, which can take sev
 
 Ensure you have an environment variable called `ASPNETCORE_Environment` with value of `Development`. On Windows (in non-PowerShell prompts), run `SET ASPNETCORE_Environment=Development`. On Linux or macOS, run `export ASPNETCORE_Environment=Development`.
 
-Run `dotnet build` to verify your app builds correctly. On the first run, the build process restores npm dependencies, which can take several minutes. Subsequent builds are much faster.
+Run [dotnet build](/dotnet/core/tools/dotnet-build) to verify your app builds correctly. On the first run, the build process restores npm dependencies, which can take several minutes. Subsequent builds are much faster.
 
-Run `dotnet run` to start the app.
+Run [dotnet run](/dotnet/core/tools/dotnet-run) to start the app.
 
 ---
 
@@ -71,7 +71,7 @@ npm install --save <package_name>
 
 In development, the app runs in a mode optimized for developer convenience. For example, JavaScript bundles include source maps (so that when debugging, you can see your original source code). The app watches JavaScript, HTML, and CSS file changes on disk and automatically recompiles and reloads when it sees those files change.
 
-In production, serve a version of your app that is optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, transpiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
+In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, transpiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
 
 You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
@@ -79,7 +79,7 @@ You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and
 
 The project is configured to start its own instance of the CRA development server in the background when the ASP.NET Core app starts in development mode. This is convenient because it means you don't have to run a separate server manually.
 
-There is a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
+There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
 
 1. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
 

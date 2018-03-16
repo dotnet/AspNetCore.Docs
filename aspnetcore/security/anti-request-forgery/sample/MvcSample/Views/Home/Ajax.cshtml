@@ -8,29 +8,33 @@
         return Xsrf.GetAndStoreTokens(Context).RequestToken;
     }
 }
+
+<input type="hidden" id="RequestVerificationToken" 
+       name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
 <div class="row">
-    <input type="button" id="antiforgery" value="Antiforgery" />
+    <input type="button" id="antiforgery" value="Antiforgery">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
     <script>
-                $("#antiforgery").click(function () {
-                    $.ajax({
-                        type: "post",
-                        dataType: "html",
-                        headers:
-                        {
-                            "RequestVerificationToken": '@GetAntiXsrfRequestToken()'
-                        },
-                        url: '@Url.Action("Antiforgery", "Home")',
-                        success: function (result) {
-                            alert(result);
-                        },
-                        error: function (err, scnd) {
-                            alert(err.statusText);
-                        }
-                    });
-                });
+        $("#antiforgery").click(function () {
+            $.ajax({
+                type: "post",
+                dataType: "html",
+                headers:
+                {
+                    "RequestVerificationToken": $('#RequestVerificationToken').val()
+                },
+                url: '@Url.Action("Antiforgery", "Home")',
+                success: function (result) {
+                    alert(result);
+                },
+                error: function (err, scnd) {
+                    alert(err.statusText);
+                }
+            });
+        });
     </script>
 </div>

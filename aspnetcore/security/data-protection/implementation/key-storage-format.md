@@ -2,14 +2,12 @@
 title: Key Storage Format
 author: tdykstra
 description: This document explains the implementation details of the ASP.NET Core data protection key storage format.
-keywords: ASP.NET Core,data protection,key storage
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: e8996478-f7bf-4b58-bab4-7fdb5d8556c5
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/implementation/key-storage-format
 ---
 # Key Storage Format
@@ -94,4 +92,4 @@ In this case, only the specified key is revoked. If the key id is "*", however, 
 </revocation>
 ```
 
-The \<reason> element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.
+The \<reason> element is never read by the system. It's simply a convenient place to store a human-readable reason for revocation.

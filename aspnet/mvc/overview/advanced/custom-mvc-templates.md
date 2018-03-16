@@ -21,7 +21,7 @@ The release of MVC 3 Tools Update for Visual Studio 2010 introduced a separate p
 
 Adding custom templates was an arduous process that relied on using the registry to make new templates visible to the MVC project wizard. The author of a new template had to wrap it inside an MSI to ensure that the necessary registry entries would be created at install time. The alternative was to make a ZIP file containing the template available and have the end-user create the required registry entries by hand.
 
-Neither of the aforementioned approaches is ideal so we decided to leverage some of the existing infrastructure provided by [VSIX](https://msdn.microsoft.com/en-us/library/ff363239.aspx) extensions to make it easier to author, distribute and install custom MVC templates starting with MVC 4 for Visual Studio 2012. Some of the benefits provided by this approach are:
+Neither of the aforementioned approaches is ideal so we decided to leverage some of the existing infrastructure provided by [VSIX](https://msdn.microsoft.com/library/ff363239.aspx) extensions to make it easier to author, distribute and install custom MVC templates starting with MVC 4 for Visual Studio 2012. Some of the benefits provided by this approach are:
 
 - A VSIX extension can contain multiple templates that support different languages (C# and Visual Basic) and multiple view engines (ASPX and Razor).
 - A VSIX extension can target multiple SKUs of Visual Studio including Express SKUs.
@@ -66,7 +66,7 @@ The **Assets** tab is used to add all your content files to the VSIX. Since MVC 
 
 &lt;/Content&gt;
 
-If not, the IDE will try to compile the contents of the template when you build the VSIX and you will likely see an error. Code files in templates often contain special [template parameters](https://msdn.microsoft.com/en-us/library/eehb4faa(v=vs.110).aspx) used by Visual Studio when the project template is instantiated and therefore cannot be compiled in the IDE.
+If not, the IDE will try to compile the contents of the template when you build the VSIX and you will likely see an error. Code files in templates often contain special [template parameters](https://msdn.microsoft.com/library/eehb4faa(v=vs.110).aspx) used by Visual Studio when the project template is instantiated and therefore cannot be compiled in the IDE.
 
 ![Solution Explorer](custom-mvc-templates/_static/image6.jpg)
 

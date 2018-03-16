@@ -2,13 +2,12 @@
 title: Safe storage of app secrets during development in ASP.NET Core
 author: rick-anderson
 description: Shows how to safely store secrets during development
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 09/15/2017
-ms.topic: article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/app-secrets
 ---
 # Safe storage of app secrets during development in ASP.NET Core
@@ -33,7 +32,7 @@ For example, if you create a new ASP.NET Core web app with individual user accou
 The Secret Manager tool stores sensitive data for development work outside of your project tree. The Secret Manager tool is a project tool that can be used to store secrets for a [.NET Core](https://www.microsoft.com/net/core) project during development. With the Secret Manager tool, you can associate app secrets with a specific project and share them across multiple projects.
 
 >[!WARNING]
-> The Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store. It is for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
+> The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
 ## Installing the Secret Manager tool
 
@@ -42,11 +41,11 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. 
 Add the highlighted line to the *.csproj* file, and save to restore the associated NuGet package:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
+[!code-xml[](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
 Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file, as highlighted in the following sample:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
+[!code-xml[](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
 Saving the modified *.csproj* file also opens a `secrets.json` file in the text editor. Replace the contents of the `secrets.json` file with the following code:
 
@@ -58,9 +57,9 @@ Saving the modified *.csproj* file also opens a `secrets.json` file in the text 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run `dotnet restore`. You can use the same steps to install the Secret Manager Tool using for the command line.
+Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run [dotnet restore](/dotnet/core/tools/dotnet-restore). You can use the same steps to install the Secret Manager Tool using for the command line.
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
+[!code-xml[](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
 Test the Secret Manager tool by running the following command:
 
@@ -77,7 +76,7 @@ The Secret Manager tool operates on project-specific configuration settings that
 
 Add a `UserSecretsId` for your project in the *.csproj* file:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
+[!code-xml[](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
 Use the Secret Manager tool to set a secret. For example, in a command window from the project directory, enter the following:
 
@@ -97,15 +96,15 @@ You can also use the Secret Manager tool to list, remove and clear app secrets.
 
 ## Accessing user secrets via configuration
 
-You access Secret Manager secrets through the configuration system. Add the `Microsoft.Extensions.Configuration.UserSecrets` package and run `dotnet restore`.
+You access Secret Manager secrets through the configuration system. Add the `Microsoft.Extensions.Configuration.UserSecrets` package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 
 Add the user secrets configuration source to the `Startup` method:
 
-[!code-csharp[Main](app-secrets/sample/UserSecrets/Startup.cs?highlight=16-19)]
+[!code-csharp[](app-secrets/sample/UserSecrets/Startup.cs?highlight=16-19)]
 
 You can access user secrets via the configuration API:
 
-[!code-csharp[Main](app-secrets/sample/UserSecrets/Startup.cs?highlight=26-29)]
+[!code-csharp[](app-secrets/sample/UserSecrets/Startup.cs?highlight=26-29)]
 
 ## How the Secret Manager tool works
 
@@ -115,12 +114,12 @@ The Secret Manager tool abstracts away the implementation details, such as where
 
 * Linux: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
-* Mac: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
+* macOS: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
 The value of `userSecretsId` comes from the value specified in *.csproj* file.
 
-You should not write code that depends on the location or format of the data saved with the Secret Manager tool, as these implementation details might change. For example, the secret values are currently *not* encrypted today, but could be someday.
+You shouldn't write code that depends on the location or format of the data saved with the Secret Manager tool, as these implementation details might change. For example, the secret values are currently *not* encrypted today, but could be someday.
 
-## Additional Resources
+## Additional resources
 
 * [Configuration](xref:fundamentals/configuration/index)

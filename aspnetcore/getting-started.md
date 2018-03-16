@@ -1,15 +1,13 @@
 ---
-title: Getting Started with ASP.NET Core 2.0
+title: Get Started with ASP.NET Core
 author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
-keywords: ASP.NET Core,tutorial,get started
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/18/2017
-ms.topic: get-started-article
-ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: getting-started
 ---
 # Get Started with ASP.NET Core
@@ -40,7 +38,7 @@ uid: getting-started
 
 6. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now ":
 
-    [!code-html[Main](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+    [!code-html[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
 7. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 

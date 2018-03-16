@@ -2,14 +2,12 @@
 title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10
 author: tdykstra
 description: This tutorial will show you how to implement inheritance in the data model, using Entity Framework Core in an ASP.NET Core application.
-keywords: ASP.NET Core,Entity Framework Core,inheritance
-ms.author: tdykstra
 manager: wpickett
+ms.author: tdykstra
 ms.date: 03/15/2017
-ms.topic: get-started-article
-ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: data/ef-mvc/inheritance
 ---
 
@@ -58,23 +56,23 @@ This tutorial demonstrates how to implement TPH inheritance. TPH is the only inh
 
 In the Models folder, create Person.cs and replace the template code with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Models/Person.cs)]
+[!code-csharp[](intro/samples/cu/Models/Person.cs)]
 
 ## Make Student and Instructor classes inherit from Person
 
 In *Instructor.cs*, derive the Instructor class from the Person class and remove the key and name fields. The code will look like the following example:
 
-[!code-csharp[Main](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
+[!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
 
 Make the same changes in *Student.cs*.
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
 
 ## Add the Person entity type to the data model
 
 Add the Person entity type to *SchoolContext.cs*. The new lines are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
+[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
 This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a Person table in place of the Student and Instructor tables.
 
@@ -90,7 +88,7 @@ Don't run the `database update` command yet. That command will result in lost da
 
 Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
+[!code-csharp[](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
 This code takes care of the following database update tasks:
 
@@ -104,7 +102,7 @@ This code takes care of the following database update tasks:
 
 * Makes HireDate nullable since student rows won't have hire dates.
 
-* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they'll get new primary key values.
+* Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they will get new primary key values.
 
 * Copies data from the Student table into the Person table. This causes students to get assigned new primary key values.
 
@@ -123,7 +121,7 @@ dotnet ef database update
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
 > [!NOTE] 
-> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
+> It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
 
 ## Test with inheritance implemented
 

@@ -46,7 +46,7 @@ Browse to the page for editing enrollments, and attempt to provide a grade above
 
 ![grade range error](enhancing-data-validation/_static/image2.png)
 
-For a full list of data validation annotations you can apply to properties and classes, see [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx).
+For a full list of data validation annotations you can apply to properties and classes, see [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx).
 
 ## Add metadata classes
 

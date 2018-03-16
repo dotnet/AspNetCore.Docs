@@ -2,13 +2,12 @@
 title: Create a Web API with ASP.NET Core and Visual Studio for Windows
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
-keywords: ASP.NET Core,WebAPI,Web API,REST,HTTP,Service,HTTP Service
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/15/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-web-api
 ---
 
@@ -16,7 +15,7 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) is not created.
+This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
 
 There are 3 versions of this tutorial:
 
@@ -38,11 +37,11 @@ See [this PDF](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/f
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
 
-Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi` and select **OK**.
+Select **.NET Core** >  **ASP.NET Core Web Application** project template. Name the project `TodoApi` and select **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
-In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **Web API** template. Select **OK**. Do **not** select **Enable Docker Support**.
+In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **API** template. Select **OK**. Do **not** select **Enable Docker Support**.
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
@@ -66,7 +65,7 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **C
 
 Update the `TodoItem` class with the following code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -78,7 +77,7 @@ Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > 
 
 Replace the class with the following code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
