@@ -13,4 +13,4 @@ uid: signalr/index
 # SignalR
 
 * [Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
-* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction-signalr-core)
+* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction)

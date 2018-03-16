@@ -212,8 +212,8 @@
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
-# [SignalR](xref:signalr/introduction-signalr-core)
-## [Introduction](xref:signalr/introduction-signalr-core)
+# [SignalR](xref:signalr/introduction)
+## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 
 # [Mobile](xref:mobile/index)
