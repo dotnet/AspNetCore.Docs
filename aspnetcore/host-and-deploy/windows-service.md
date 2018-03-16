@@ -1,5 +1,5 @@
 ---
-title: Host in a Windows Service
+title: Host ASP.NET Core in a Windows Service
 author: tdykstra
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: host-and-deploy/windows-service
 ---
-# Host an ASP.NET Core app in a Windows Service
+# Host ASP.NET Core in a Windows Service
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
@@ -29,7 +29,7 @@ The recommended way to host an ASP.NET Core app on Windows without using IIS is 
 
 * If the app receives requests from the Internet (not just from an internal network), it must use the [HTTP.sys](xref:fundamentals/servers/httpsys) web server (formerly known as [WebListener](xref:fundamentals/servers/weblistener) for ASP.NET Core 1.x apps) rather than [Kestrel](xref:fundamentals/servers/kestrel). IIS is recommended for use as a reverse proxy server with Kestrel for edge deployments. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
-## Getting started
+## Get started
 
 This section explains the minimum changes required to set up an existing ASP.NET Core project to run in a service.
 

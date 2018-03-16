@@ -94,7 +94,7 @@ body {
 
 `@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they're set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The Less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that's produced.
 
-### Getting started
+### Get started
 
 Create an **npm Configuration File** (*package.json*) in your project folder and edit it to reference `gulp` and `gulp-less`:
 
@@ -318,7 +318,7 @@ Less provides a number of additional features, but this should give you some ide
 
 Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It's built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language didn't use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, **SCSS** ("Sassy CSS"). SCSS is similar to CSS in that it ignores indentation levels and whitespace, and instead uses semicolons and curly braces.
 
-To install Sass, typically you would first install Ruby (pre-installed on Mac), and then run:
+To install Sass, typically you would first install Ruby (pre-installed on macOS), and then run:
 
 ```console
 gem install sass

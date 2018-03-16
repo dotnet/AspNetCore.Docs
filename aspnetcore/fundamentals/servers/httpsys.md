@@ -110,8 +110,8 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
 1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install .NET Core, .NET Framework, or both (if the app is a .NET Core app targeting the .NET Framework).
 
-   * **.NET Core** &ndash; If the app requires .NET Core, obtain and run the .NET Core installer from [.NET Downloads](https://www.microsoft.com/net/download/windows).
-   * **.NET Framework** &ndash; If the app requires .NET Framework, see [.NET Framework: Installation guide](/dotnet/framework/install/) to find installation instructions. Install the required .NET Framework. The installer for the latest .NET Framework can be found at [.NET Downloads](https://www.microsoft.com/net/download/windows).
+   * **.NET Core** &ndash; If the app requires .NET Core, obtain and run the .NET Core installer from [.NET All Downloads](https://www.microsoft.com/net/download/all).
+   * **.NET Framework** &ndash; If the app requires .NET Framework, see [.NET Framework: Installation guide](/dotnet/framework/install/) to find installation instructions. Install the required .NET Framework. The installer for the latest .NET Framework can be found at [.NET All Downloads](https://www.microsoft.com/net/download/all).
 
 1. Configure URLs and ports for the app.
 

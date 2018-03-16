@@ -1,7 +1,7 @@
 ---
-title: Adding Validation
+title: Add validation to an ASP.NET Core Razor Page
 author: rick-anderson
-description: Explains how to add validation to a Razor Page.
+description: Discover how to add validation to a Razor Page in ASP.NET Core.
 manager: wpickett
 ms.author: riande
 ms.date: 08/07/2017
@@ -10,11 +10,11 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/validation
 ---
-# Adding validation to a Razor Page
+# Add validation to an ASP.NET Core Razor Page
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
+In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
 ## Validation
 
@@ -127,7 +127,7 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-[Getting started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows more advanced EF Core operations with Razor Pages.
+[Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows more advanced EF Core operations with Razor Pages.
 
 ### Publish to Azure
 

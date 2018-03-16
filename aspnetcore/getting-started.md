@@ -1,5 +1,5 @@
 ---
-title: Getting Started with ASP.NET Core 2.0
+title: Get Started with ASP.NET Core
 author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
 manager: wpickett

@@ -174,7 +174,7 @@ The user can click the **Delete** link from there to reach the delete confirmati
 
 For troubleshooting information with `IFormFile` uploading, see the [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).
 
-Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 

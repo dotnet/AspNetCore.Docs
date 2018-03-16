@@ -1,5 +1,5 @@
 ---
-title: Introduction to SignalR on ASP.NET Core
+title: Introduction to ASP.NET Core SignalR
 author: rachelappel
 description: Learn how the ASP.NET Core SignalR library simplifies adding real-time web functionality to apps.
 manager: wpickett
@@ -9,9 +9,9 @@ ms.date: 03/07/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-uid: signalr/introduction-signalr-core
+uid: signalr/introduction
 ---
-# Introduction to SignalR
+# Introduction to ASP.NET Core SignalR
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
@@ -54,8 +54,8 @@ Endpoints provide a raw socket-like API, enabling them to read and write from th
 
 The following diagram shows the relationship between hubs, endpoints, and clients.
 
-![SignalR map](introduction-signalr-core/_static/signalr-core-architecture.png)
+![SignalR map](introduction/_static/signalr-core-architecture.png)
 
 ## Related resources
 
-[Get started with SignalR for ASP.NET Core](xref:signalr/get-started-signalr-core)
+[Get started with SignalR for ASP.NET Core](xref:signalr/get-started)

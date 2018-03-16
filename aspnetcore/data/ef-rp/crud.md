@@ -1,5 +1,5 @@
 ---
-title: Razor Pages with EF Core - CRUD - 2 of 8
+title: Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 author: rick-anderson
 description: Shows how to create,read,update,delete with EF Core
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-rp/crud
 ---
-# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 8)
+# Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

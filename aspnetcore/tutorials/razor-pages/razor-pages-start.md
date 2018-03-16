@@ -1,7 +1,7 @@
 ---
-title: Getting started with Razor Pages in ASP.NET Core
+title: Get started with Razor Pages in ASP.NET Core
 author: rick-anderson
-description: Getting started with Razor Pages in ASP.NET Core
+description: Discover the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is recommended for web workloads in ASP.NET Core.
 manager: wpickett
 ms.author: riande
 ms.date: 12/22/2017
@@ -19,8 +19,8 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 There are three versions of this tutorial:
 
 * Windows: This tutorial
-* MacOS: [Getting started with Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
-* macOS, Linux, and Windows: [Getting started with ASP.NET Core Razor Pages in Visual Studio Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
+* MacOS: [Get started with Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
+* macOS, Linux, and Windows: [Get started with ASP.NET Core Razor Pages in Visual Studio Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 

@@ -1,5 +1,5 @@
 ---
-title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 8
+title: Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 ms.author: riande
@@ -10,7 +10,7 @@ ms.topic: get-started-article
 uid: data/ef-rp/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 8)
+# Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 

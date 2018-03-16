@@ -1,7 +1,7 @@
 ---
-title: Filters
+title: Filters in ASP.NET Core
 author: ardalis
-description: Learn how *Filters* work and how to use them in ASP.NET Core MVC.
+description: Learn how filters work and how to use them in ASP.NET Core MVC.
 manager: wpickett
 ms.author: tdykstra
 ms.date: 12/12/2016
@@ -11,7 +11,7 @@ ms.topic: article
 uid: mvc/controllers/filters
 ---
 
-# Filters
+# Filters in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis.com/)
 
