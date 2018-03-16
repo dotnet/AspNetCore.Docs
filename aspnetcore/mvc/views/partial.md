@@ -89,7 +89,7 @@ You can pass an instance of `ViewDataDictionary` to the partial view:
 @await Html.PartialAsync("PartialName", customViewData)
 ```
 
-You can also pass a model into a partial view. This can be the page's view model, or some portion of it, or a custom object. You can pass a model to `PartialAsync` or `RenderPartialAsync`:
+You can also pass a model into a partial view. This can be the page's view model or a custom object. You can pass a model to `PartialAsync` or `RenderPartialAsync`:
 
 ```cshtml
 @await Html.PartialAsync("PartialName", viewModel)
