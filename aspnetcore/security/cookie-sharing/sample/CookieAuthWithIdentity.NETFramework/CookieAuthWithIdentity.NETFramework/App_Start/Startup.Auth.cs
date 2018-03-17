@@ -42,7 +42,7 @@ namespace CookieAuthWithIdentity
                 },
                 TicketDataFormat = new AspNetTicketDataFormat(
                     new DataProtectorShim(
-                        DataProtectionProvider.Create(new DirectoryInfo(GetKeyRingFolderPath()))
+                        DataProtectionProvider.Create(GetKeyRingDirInfo())
                         .CreateProtector(
                             "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware",
                             "Cookies",
@@ -92,7 +92,7 @@ namespace CookieAuthWithIdentity
         // finds the KeyRing folder in the sample. Using this
         // approach allows the sample to run from a Debug
         // or Release location within the bin folder.
-        private string GetKeyRingFolderPath()
+        private DirectoryInfo GetKeyRingDirInfo()
         {
             var startupAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             var applicationBasePath = AppContext.BaseDirectory;
@@ -104,7 +104,7 @@ namespace CookieAuthWithIdentity
                 var projectDirectoryInfo = new DirectoryInfo(Path.Combine(directoryInfo.FullName, "KeyRing"));
                 if (projectDirectoryInfo.Exists)
                 {
-                    return projectDirectoryInfo.FullName;
+                    return projectDirectoryInfo;
                 }
             }
             while (directoryInfo.Parent != null);

@@ -26,10 +26,11 @@ namespace CookieAuthCore
 
             #region snippet1
             services.AddDataProtection()
-                .PersistKeysToFileSystem(GetKeyRingFolderPath());
+                .PersistKeysToFileSystem(GetKeyRingDirInfo())
+                .SetApplicationName("SharedCookieApp");
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
+            services.AddAuthentication("Identity.Application")
+                .AddCookie("Identity.Application", options =>
                 {
                     options.Cookie.Name = ".AspNet.SharedCookie";
                 });
@@ -60,7 +61,7 @@ namespace CookieAuthCore
         // finds the KeyRing folder in the sample. Using this
         // approach allows the sample to run from a Debug
         // or Release location within the bin folder.
-        private DirectoryInfo GetKeyRingFolderPath()
+        private DirectoryInfo GetKeyRingDirInfo()
         {
             var startupAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             var applicationBasePath = System.AppContext.BaseDirectory;

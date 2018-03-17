@@ -45,7 +45,7 @@ In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/
 
 [!code-csharp[](cookie-sharing/sample/CookieAuthWithIdentity.Core/Startup.cs?name=snippet1)]
 
-Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. For more information, see [Configuring Data Protection: PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem). 
+Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. Use [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) to configure a common shared app name. For more information, see [Configuring Data Protection](xref:security/data-protection/configuration/overview).
 
 In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
 
@@ -103,7 +103,7 @@ When using cookies directly:
 
 [!code-csharp[](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
 
-Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. For more information, see [Configuring Data Protection: PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem). 
+Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. Use [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) to configure a common shared app name. For more information, see [Configuring Data Protection](xref:security/data-protection/configuration/overview). 
 
 In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
 
