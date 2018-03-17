@@ -45,7 +45,25 @@ In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/
 
 [!code-csharp[](cookie-sharing/sample/CookieAuthWithIdentity.Core/Startup.cs?name=snippet1)]
 
-Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location. In ASP.NET Core apps, an alternative approach to supplying the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_) is to configure the data protection service with the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. For more information, see [Configuring Data Protection: PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem).
+Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. For more information, see [Configuring Data Protection: PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem). 
+
+In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
+
+```csharp
+services.ConfigureApplicationCookie(options => {
+    var protectionProvider = DataProtectionProvider.Create(
+        GetKeyRingFolderPath());
+
+    options.Cookie.Name = ".AspNet.SharedCookie";
+    options.DataProtectionProvider = protectionProvider;
+    options.TicketDataFormat = 
+        new TicketDataFormat(
+            protectionProvider.CreateProtector(
+                "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", 
+                "Cookies", 
+                "v2"));
+});
+```
 
 See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
@@ -84,6 +102,20 @@ When using cookies directly:
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
+
+Data protection keys must be shared among apps. In the sample apps, `GetKeyRingFolderPath` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. For more information, see [Configuring Data Protection: PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem). 
+
+In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
+
+```csharp
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = ".AspNet.SharedCookie";
+        options.DataProtectionProvider = DataProtectionProvider.Create(
+            GetKeyRingFolderPath());
+});
+```
 
 See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
