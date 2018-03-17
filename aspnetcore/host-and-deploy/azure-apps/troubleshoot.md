@@ -100,9 +100,9 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 1. Select **Save** to save the file.
 
 > [!WARNING]
-> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
+> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
 ## Common startup errors 
 
