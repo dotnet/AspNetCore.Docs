@@ -17,13 +17,13 @@ jQuery Mobile 1.0 Beta 3 on the Microsoft Ajax CDN
 ====================
 The jQuery Mobile 1.0 Beta 3 library includes the following files:
 
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.min.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/ajax-loader.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-18-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-18-white.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-36-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-36-white.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-search-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/jquery.mobile-1.0b3.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/ajax-loader.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-18-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-18-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-36-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-36-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0b3/images/icons-search-black.png
