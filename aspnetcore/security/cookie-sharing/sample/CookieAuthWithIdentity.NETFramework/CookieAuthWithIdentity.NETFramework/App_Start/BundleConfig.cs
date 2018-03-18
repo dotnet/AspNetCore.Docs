@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace CookieAuthWithIdentity
+namespace CookieAuthWithIdentity.NETFramework
 {
     public class BundleConfig
     {

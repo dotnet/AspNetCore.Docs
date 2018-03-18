@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CookieAuthWithIdentity.Models
+namespace CookieAuthWithIdentity.NETFramework.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

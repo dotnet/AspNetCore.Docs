@@ -1,16 +1,16 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Owin;
-using CookieAuthWithIdentity.Models;
 using Microsoft.Owin.Security.Interop;
-using Microsoft.AspNetCore.DataProtection;
-using System.IO;
+using Owin;
+using CookieAuthWithIdentity.NETFramework.Models;
 
-namespace CookieAuthWithIdentity
+namespace CookieAuthWithIdentity.NETFramework
 {
     public partial class Startup
     {
@@ -33,27 +33,28 @@ namespace CookieAuthWithIdentity
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
-                    OnValidateIdentity = 
+                    OnValidateIdentity =
                         SecurityStampValidator
                             .OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                                 validateInterval: TimeSpan.FromMinutes(30),
-                                regenerateIdentity: (manager, user) => 
+                                regenerateIdentity: (manager, user) =>
                                     user.GenerateUserIdentityAsync(manager))
                 },
                 TicketDataFormat = new AspNetTicketDataFormat(
                     new DataProtectorShim(
-                        DataProtectionProvider.Create(GetKeyRingDirInfo())
+                        DataProtectionProvider.Create(GetKeyRingDirInfo(), 
+                            (builder) => { builder.SetApplicationName("SharedCookieApp"); })
                         .CreateProtector(
                             "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware",
-                            "Cookies",
+                            "Identity.Application",
                             "v2"))),
-                            CookieManager = new ChunkingCookieManager()
+                CookieManager = new ChunkingCookieManager()
             });
 
             // If not setting http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier and 
             // http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider,
             // then set UniqueClaimTypeIdentifier to a claim that distinguishes unique users.
-            System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier = 
+            System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
                 "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
             #endregion
 
