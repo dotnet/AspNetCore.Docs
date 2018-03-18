@@ -10,7 +10,6 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authentication/social/index
 ---
-
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
 <a name="security-authentication-social-logins"></a>
@@ -19,7 +18,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 This tutorial demonstrates how to build an ASP.NET Core 2.x app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
 
-[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are covered in the following sections. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
+[Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 ![Social media icons for Facebook, Twitter, Google plus, and Windows](index/_static/social.png)
 
@@ -68,11 +67,11 @@ Follow the steps in [Safe storage of app secrets during development in ASP.NET C
 
 Use the following topics to configure your application to use the respective providers:
 
-* [Facebook](facebook-logins.md) instructions
-* [Twitter](twitter-logins.md) instructions
-* [Google](google-logins.md) instructions
-* [Microsoft](microsoft-logins.md) instructions
-* [Other provider](other-logins.md) instructions
+* [Facebook](xref:security/authentication/facebook-logins) instructions
+* [Twitter](xref:security/authentication/twitter-logins) instructions
+* [Google](xref:security/authentication/google-logins) instructions
+* [Microsoft](xref:security/authentication/microsoft-logins) instructions
+* [Other provider](xref:security/authentication/otherlogins) instructions
 
 ## Optionally set password
 

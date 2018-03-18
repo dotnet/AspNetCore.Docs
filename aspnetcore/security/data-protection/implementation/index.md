@@ -12,20 +12,20 @@ uid: security/data-protection/implementation/index
 ---
 # Implementation
 
-* [Authenticated encryption details](authenticated-encryption-details.md)
+* [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 
-* [Subkey Derivation and Authenticated Encryption](subkeyderivation.md)
+* [Subkey Derivation and Authenticated Encryption](xref:security/data-protection/implementation/subkeyderivation)
 
-* [Context headers](context-headers.md)
+* [Context headers](xref:security/data-protection/implementation/context-headers)
 
-* [Key Management](key-management.md)
+* [Key Management](xref:security/data-protection/implementation/key-management)
 
-* [Key Storage Providers](key-storage-providers.md)
+* [Key Storage Providers](xref:security/data-protection/implementation/key-storage-providers)
 
-* [Key Encryption At Rest](key-encryption-at-rest.md)
+* [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-* [Key Immutability and Changing Settings](key-immutability.md)
+* [Key Immutability and Changing Settings](xref:security/data-protection/implementation/key-immutability)
 
-* [Key Storage Format](key-storage-format.md)
+* [Key Storage Format](xref:security/data-protection/implementation/key-storage-format)
 
-* [Ephemeral data protection providers](key-storage-ephemeral.md)
+* [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
