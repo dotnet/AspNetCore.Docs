@@ -1,7 +1,7 @@
 ---
-title: Unprotecting payloads whose keys have been revoked
+title: Unprotecting payloads whose keys have been revoked in ASP.NET Core
 author: rick-anderson
-description: This document explains how to unprotect data, protected with keys that have since been revoked, in an ASP.NET Core app.
+description: Learn how to unprotect data, protected with keys that have since been revoked, in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/dangerous-unprotect
 ---
-# Unprotecting payloads whose keys have been revoked
+# Unprotecting payloads whose keys have been revoked in ASP.NET Core
 
 <a name="data-protection-consumer-apis-dangerous-unprotect"></a>
 

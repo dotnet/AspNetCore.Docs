@@ -1,7 +1,7 @@
 ---
-title: Core cryptography extensibility
+title: Core cryptography extensibility in ASP.NET Core
 author: rick-anderson
-description: Explains IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer, and the top-level factory.
+description: Learn about IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer, and the top-level factory.
 manager: wpickett
 ms.author: riande
 ms.date: 8/11/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/extensibility/core-crypto
 ---
-# Core cryptography extensibility
+# Core cryptography extensibility in ASP.NET Core
 
 <a name="data-protection-extensibility-core-crypto"></a>
 

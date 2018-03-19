@@ -1,7 +1,7 @@
 ---
-title: Implementation
+title: ASP.NET Core Data Protection implementation
 author: rick-anderson
-description: This document serves as the table of contents for the various ASP.NET Core data protection implementation topics.
+description: Discover the various ASP.NET Core Data Protection implementation topics.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/index
 ---
-# Implementation
+# ASP.NET Core Data Protection implementation
 
 * [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 

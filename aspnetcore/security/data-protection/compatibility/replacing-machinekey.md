@@ -1,5 +1,5 @@
 ---
-title: Replace machineKey in ASP.NET
+title: Replace the ASP.NET machineKey in ASP.NET Core
 author: rick-anderson
 description: Discover how to replace machineKey in ASP.NET to allow the use of a new and more secure data protection system.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
-# Replace machineKey in ASP.NET
+# Replace the ASP.NET machineKey in ASP.NET Core
 
 <a name="compatibility-replacing-machinekey"></a>
 
