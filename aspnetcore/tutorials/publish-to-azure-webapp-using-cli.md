@@ -33,7 +33,7 @@ In this tutorial, you learn how to:
 To complete this tutorial, you'll need:
 
 * A [Microsoft Azure subscription](https://azure.microsoft.com/free/)
-* [.NET Core](https://www.microsoft.com/net/download/core)
+* [.NET Core](https://www.microsoft.com/net/download/all)
 * [Git](https://www.git-scm.com/) command line client
 
 ## Create a web application

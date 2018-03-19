@@ -65,7 +65,7 @@ To work with SpaServices, install the following:
 
 Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node.js is installed and available in the server environments.
 
-* [.NET Core SDK](https://www.microsoft.com/net/download/core) 1.0 (or later)
+* [.NET Core SDK](https://www.microsoft.com/net/download/all) 1.0 (or later)
     * If you're on Windows, this can be installed by selecting Visual Studio 2017's **.NET Core cross-platform development** workload.
 
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package

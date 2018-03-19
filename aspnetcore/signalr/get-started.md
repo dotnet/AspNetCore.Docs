@@ -9,15 +9,17 @@ ms.date: 03/16/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
-uid: signalr/get-started-signalr-core
+uid: signalr/get-started
 ---
 # Tutorial: Get started with SignalR for ASP.NET Core
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
+[!INCLUDE[Version notice](../includes/signalr-version-notice.md)]
+
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
-   ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
+   ![Solution](get-started/_static/signalr-get-started-finished.png)
 
 This tutorial demonstrates the following SignalR development tasks:
 
@@ -26,7 +28,7 @@ This tutorial demonstrates the following SignalR development tasks:
 > * Create a SignalR hub to push content to clients.
 > * Modify the `Startup` class and configure the app.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started-signalr-core/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # Prerequisites
 
@@ -53,11 +55,11 @@ Install the following software:
 
 1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Name the project *SignalRChat*.
 
-  ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-dialog.png)
+  ![New Project dialog in Visual Studio](get-started/_static/signalr-new-project-dialog.png)
 
 2. Select **Web Application** to create a project using Razor Pages. Then select **OK**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector, though SignalR runs on older versions of .NET.
 
-  ![New Project dialog in Visual Studio](get-started-signalr-core/_static/signalr-new-project-choose-type.png)
+  ![New Project dialog in Visual Studio](get-started/_static/signalr-new-project-choose-type.png)
 
 3. Right-click the project in **Solution Explorer** > **Add** > **New Item** > **npm Configuration File**. Name the file *package.json*.
 
@@ -97,7 +99,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Create the `SendMessage` method that sends a message to all connected chat clients. Notice it returns a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task(v=vs.110).aspx), because SignalR is asynchronous. Asynchronous code scales better.
 
-  [!code-csharp[Startup](get-started-signalr-core/sample/Hubs/ChatHub.cs?range=7-14)]
+  [!code-csharp[Startup](get-started/sample/Hubs/ChatHub.cs?range=7-14)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -109,7 +111,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Add a `SendMessage` method to the class. The `SendMessage` method sends a message to all connected chat clients. Notice it returns a [Task](/dotnet/api/system.threading.tasks.task), because SignalR is asynchronous. Asynchronous code scales better.
 
-  [!code-csharp[Startup](get-started-signalr-core/sample/Hubs/ChatHub.cs?range=7-14)]
+  [!code-csharp[Startup](get-started/sample/Hubs/ChatHub.cs?range=7-14)]
 
 -----
 
@@ -123,19 +125,19 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. Configure routes to your hubs using `UseSignalR`.
 
-  [!code-csharp[Startup](get-started-signalr-core/sample/Startup.cs?highlight=22,40-43)]
+  [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=22,40-43)]
 
 ## Create the SignalR client code
 
 1. Replace the content in *Pages\Index.cshtml* with the following code:
 
-  [!code-cshtml[Index](get-started-signalr-core/sample/Pages/Index.cshtml)]
+  [!code-cshtml[Index](get-started/sample/Pages/Index.cshtml)]
 
   The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
 1. Add a JavaScript file, named *chat.js*, to the *wwwroot\js* folder. Add the following code to it:
 
-  [!code-javascript[Index](get-started-signalr-core/sample/wwwroot/js/chat.js)]
+  [!code-javascript[Index](get-started/sample/wwwroot/js/chat.js)]
 
 ## Run the app
 
@@ -157,4 +159,4 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 -----
 
-  ![Solution](get-started-signalr-core/_static/signalr-get-started-finished.png)
+  ![Solution](get-started/_static/signalr-get-started-finished.png)

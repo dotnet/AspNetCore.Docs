@@ -12,14 +12,14 @@ uid: security/data-protection/consumer-apis/index
 ---
 # Consumer APIs
 
-* [Consumer APIs Overview](overview.md)
+* [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview)
 
-* [Purpose Strings](purpose-strings.md)
+* [Purpose Strings](xref:security/data-protection/consumer-apis/purpose-strings)
 
-* [Purpose hierarchy and multi-tenancy](purpose-strings-multitenancy.md)
+* [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
 
-* [Password Hashing](password-hashing.md)
+* [Password Hashing](xref:security/data-protection/consumer-apis/password-hashing)
 
-* [Limiting the lifetime of protected payloads](limited-lifetime-payloads.md)
+* [Limiting the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
 
-* [Unprotecting payloads whose keys have been revoked](dangerous-unprotect.md)
+* [Unprotecting payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)

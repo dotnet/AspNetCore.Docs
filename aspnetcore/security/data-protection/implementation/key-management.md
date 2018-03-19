@@ -24,7 +24,7 @@ The data protection system automatically manages the lifetime of master keys use
 
 * Revoked - the key is compromised and must not be used for new Protect operations.
 
-Created, active, and expired keys may all be used to unprotect incoming payloads. Revoked keys by default may not be used to unprotect payloads, but the application developer can [override this behavior](../consumer-apis/dangerous-unprotect.md#data-protection-consumer-apis-dangerous-unprotect) if necessary.
+Created, active, and expired keys may all be used to unprotect incoming payloads. Revoked keys by default may not be used to unprotect payloads, but the application developer can [override this behavior](xref:security/data-protection/consumer-apis/dangerous-unprotect#data-protection-consumer-apis-dangerous-unprotect) if necessary.
 
 >[!WARNING]
 > The developer might be tempted to delete a key from the key ring (e.g., by deleting the corresponding file from the file system). At that point, all data protected by the key is permanently undecipherable, and there's no emergency override like there's with revoked keys. Deleting a key is truly destructive behavior, and consequently the data protection system exposes no first-class API for performing this operation.
@@ -78,6 +78,6 @@ The sample below demonstrates using the `IKeyManager` interface to inspect and m
 
 The data protection system has a heuristic whereby it tries to deduce an appropriate key storage location and encryption at rest mechanism automatically. This is also configurable by the app developer. The following documents discuss the in-box implementations of these mechanisms:
 
-* [In-box key storage providers](key-storage-providers.md#data-protection-implementation-key-storage-providers)
+* [In-box key storage providers](xref:security/data-protection/implementation/key-storage-providers#data-protection-implementation-key-storage-providers)
 
-* [In-box key encryption at rest providers](key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest-providers)
+* [In-box key encryption at rest providers](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest-providers)
