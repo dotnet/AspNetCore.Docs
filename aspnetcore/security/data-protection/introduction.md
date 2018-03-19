@@ -40,7 +40,7 @@ We started by identifying problems with the existing stack. Once we had that, we
 
 * Keys should be protected at rest when possible. The system should figure out an appropriate default protection mechanism and apply it automatically.
 
-With these principles in mind we developed a simple, [easy to use](using-data-protection.md) data protection stack.
+With these principles in mind we developed a simple, [easy to use](xref:security/data-protection/using-data-protection) data protection stack.
 
 The ASP.NET Core data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like [Windows CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx) and [Azure Rights Management](https://docs.microsoft.com/rights-management/) are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there's nothing prohibiting a developer from using the ASP.NET Core data protection APIs for long-term protection of confidential data.
 
@@ -48,11 +48,11 @@ The ASP.NET Core data protection APIs are not primarily intended for indefinite 
 
 The data protection system is divided into five main packages. Various aspects of these APIs target three main audiences;
 
-1. The [Consumer APIs Overview](consumer-apis/overview.md) target application and framework developers.
+1. The [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview) target application and framework developers.
 
    "I don't want to learn about how the stack operates or about how it's configured. I simply want to perform some operation in as simple a manner as possible with high probability of using the APIs successfully."
 
-2. The [configuration APIs](configuration/overview.md) target application developers and system administrators.
+2. The [configuration APIs](xref:security/data-protection/configuration/overview) target application developers and system administrators.
 
    "I need to tell the data protection system that my environment requires non-default paths or settings."
 
@@ -70,6 +70,6 @@ The data protection stack consists of five packages.
 
 * Microsoft.AspNetCore.DataProtection.Extensions contains additional APIs which developers might find useful but which don't belong in the core package. For instance, this package contains a simple "instantiate the system pointing at a specific key storage directory with no dependency injection setup" API (more info). It also contains extension methods for limiting the lifetime of protected payloads (more info).
 
-* Microsoft.AspNetCore.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machineKey> operations to instead use the new data protection stack. See [compatibility](compatibility/replacing-machinekey.md#compatibility-replacing-machinekey) for more information.
+* Microsoft.AspNetCore.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machineKey> operations to instead use the new data protection stack. See [compatibility](xref:security/data-protection/compatibility/replacing-machinekey#compatibility-replacing-machinekey) for more information.
 
-* Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See [Password Hashing](consumer-apis/password-hashing.md) for more information.
+* Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See [Password Hashing](xref:security/data-protection/consumer-apis/password-hashing) for more information.

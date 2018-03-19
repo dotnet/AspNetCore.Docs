@@ -14,7 +14,7 @@ uid: security/authentication/microsoft-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md).
+This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Microsoft Developer Portal
 
@@ -58,7 +58,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 ![New password generated dialog](index/_static/MicrosoftDevPassword.png)
 
-Link sensitive settings like Microsoft `Application ID` and `Password` to your application configuration using the [Secret Manager](../../app-secrets.md). For the purposes of this tutorial, name the tokens `Authentication:Microsoft:ApplicationId` and `Authentication:Microsoft:Password`.
+Link sensitive settings like Microsoft `Application ID` and `Password` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Microsoft:ApplicationId` and `Authentication:Microsoft:Password`.
 
 ## Configure Microsoft Account Authentication
 
@@ -131,7 +131,7 @@ You are now logged in using your Microsoft credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
+* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
 * Once you publish your web site to Azure web app, you should create a new `Password` in the Microsoft Developer Portal.
 

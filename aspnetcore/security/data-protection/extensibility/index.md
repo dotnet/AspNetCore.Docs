@@ -12,8 +12,8 @@ uid: security/data-protection/extensibility/index
 ---
 # Extensibility APIs
 
-* [Core cryptography extensibility](core-crypto.md)
+* [Core cryptography extensibility](xref:security/data-protection/extensibility/core-crypto)
 
-* [Key management extensibility](key-management.md)
+* [Key management extensibility](xref:security/data-protection/extensibility/key-management)
 
-* [Miscellaneous APIs](misc-apis.md)
+* [Miscellaneous APIs](xref:security/data-protection/extensibility/misc-apis)
