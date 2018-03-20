@@ -257,54 +257,15 @@ public class ValuesController : ControllerBase
 
 To create a handler, a class can be added, deriving from `DelegatingHandler`. The `SendAsync` method can then be overridden to execute code before passing the request to the next handler in the pipeline:
 
-```csharp
-private class RetryHandler : DelegatingHandler
-{
-    public int RetryCount { get; set; } = 5;
+[!code-csharp[Main](http-requests/samples/Handlers/RequestDataHandler.cs?name=snippet1)]
 
-    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        for (var i = 0; i < RetryCount; i++)
-        {
-            try
-            {
-                return base.SendAsync(request, cancellationToken);
-            }
-            catch (HttpRequestException) when (i == RetryCount - 1)
-            {
-                throw;
-            }
-            catch (HttpRequestException)
-            {
-                // Retry
-                Task.Delay(TimeSpan.FromMilliseconds(50));
-            }
-        }
-
-        // Unreachable.
-        throw null;
-    }
-}
-```
-
-The preceding code defines a basic retry handler which retries up to five times if a `HttpRequestException` is caught.
+The preceding code defines a basic handler which adds a source and request ID to the headers in the outgoing request.
 
 During registration, one or more handlers can be added to the configuration for a `HttpClient` via extension methods on the `HttpClientBuilder`.
 
-```csharp
-public static void Configure(IServiceCollection services)
-{
-    services.AddTransient<RetryHandler>();
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet1&highlight=21-25)]
 
-    services.AddHttpClient("example", c =>
-    {
-        c.BaseAddress = new Uri("https://localhost:5000/");
-    })
-    .AddHttpMessageHandler<RetryHandler>(); // Retry requests to GitHub using the retry handler
-}
-```
-
-In the preceding code, the `RetryHandler` is registered as a transient service with DI. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
+In the preceding code, the `RequestDataHandler` is registered as a transient service with DI. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request.
 

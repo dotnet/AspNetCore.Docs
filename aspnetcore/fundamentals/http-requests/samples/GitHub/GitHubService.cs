@@ -30,7 +30,7 @@ namespace HttpClientFactorySample.GitHub
             {
                 var serializer = new JsonSerializer();
 
-                while (jsonReader.Read())
+                while (await jsonReader.ReadAsync())
                 {
                     if (jsonReader.TokenType == JsonToken.StartObject)
                     {

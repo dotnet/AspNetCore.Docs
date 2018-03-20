@@ -1,5 +1,6 @@
 using System;
 using HttpClientFactorySample.GitHub;
+using HttpClientFactorySample.Handlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +34,18 @@ namespace HttpClientFactorySample
                 c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // Github requires a user-agent
             });
 
+            services.AddTransient<RequestDataHandler>();
+            services.AddTransient<SecureRequestHandler>();
+
             // configuration occurs in ctor
             services.AddHttpClient<GitHubService>();
+
+            // named client with a handler
+            services.AddHttpClient("clientwithhandler", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:5000/");
+            })
+            .AddHttpMessageHandler<RequestDataHandler>();
 
             // configuring during registration
             services.AddHttpClient<ValuesService>(c =>
