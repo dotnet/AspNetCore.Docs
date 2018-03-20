@@ -1,7 +1,7 @@
 ---
-title: Performance
+title: Performance in ASP.NET Core
 author: ardalis
-description: 
+description: Discover topics pertaining to ASP.NET Core app performance.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: performance/index
 ---
-# Performance
+# Performance in ASP.NET Core
 
 *   [Caching](caching/index.md)
     *   [In-memory caching](caching/memory.md)

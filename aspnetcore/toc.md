@@ -28,7 +28,7 @@
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
 ## [Build Web APIs](mvc/web-api/index.md)
-### [Create a Web API on Mac](xref:tutorials/first-web-api-mac)
+### [Create a Web API on macOS](xref:tutorials/first-web-api-mac)
 ### [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 #### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 #### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
@@ -59,8 +59,8 @@
 #### [Advanced topics](data/ef-mvc/advanced.md)
 
 ## [Cross platform tutorials](xref:tutorials/xplat)
-### [Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
-#### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+### [Razor Pages web app on macOS](xref:tutorials/razor-pages-mac/index)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-mac/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-mac/sql)
@@ -68,7 +68,7 @@
 #### [Add search](xref:tutorials/razor-pages-mac/search)
 
 ### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
-#### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages-vsc/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 #### [Working with SQLite](xref:tutorials/razor-pages-vsc/sql)
@@ -76,7 +76,7 @@
 #### [Add search](xref:tutorials/razor-pages-vsc/search)
 
 ### [MVC web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-#### [Getting started](xref:tutorials/first-mvc-app-mac/start-mvc)
+#### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 #### [Adding a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
 #### [Adding a view](xref:tutorials/first-mvc-app-mac/adding-view)
 #### [Adding a model](xref:tutorials/first-mvc-app-mac/adding-model)
@@ -87,8 +87,8 @@
 #### [Adding Validation](xref:tutorials/first-mvc-app-mac/validation)
 #### [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)
 
-### [MVC web app with Visual Studio Code on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index)
-#### [Getting started](tutorials/first-mvc-app-xplat/start-mvc.md)
+### [MVC web app with Visual Studio Code on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index)
+#### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-xplat/adding-view.md)
 #### [Adding a model](tutorials/first-mvc-app-xplat/adding-model.md)
@@ -212,9 +212,9 @@
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
-# [SignalR](xref:signalr/introduction-signalr-core)
-## [Introduction](xref:signalr/introduction-signalr-core)
-## [Get started](xref:signalr/get-started-signalr-core)
+# [SignalR](xref:signalr/introduction)
+## [Introduction](xref:signalr/introduction)
+## [Get started](xref:signalr/get-started)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
@@ -313,7 +313,6 @@
 #### [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 #### [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
 ### [Compatibility](xref:security/data-protection/compatibility/index)
-#### [Share cookies among apps](xref:security/data-protection/compatibility/cookie-sharing)
 #### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [Safe storage of app secrets during development](xref:security/app-secrets)
@@ -322,6 +321,7 @@
 ## [Prevent open redirect attacks](xref:security/preventing-open-redirects)
 ## [Prevent Cross-Site Scripting](xref:security/cross-site-scripting)
 ## [Enable Cross-Origin Requests (CORS)](xref:security/cors)
+## [Share cookies among apps](xref:security/cookie-sharing)
 
 # [Performance](xref:performance/index)
 ## [Caching](xref:performance/caching/index)

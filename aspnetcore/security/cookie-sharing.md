@@ -1,5 +1,5 @@
 ---
-title: Sharing cookies among apps
+title: Sharing cookies among apps with ASP.NET and ASP.NET Core
 author: rick-anderson
 description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
 manager: wpickett
@@ -9,15 +9,15 @@ ms.date: 01/19/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: security/data-protection/compatibility/cookie-sharing
+uid: security/cookie-sharing
 ---
-# Sharing cookies among apps
+# Sharing cookies among apps with ASP.NET and ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
 Websites often consist of individual web apps working together. To provide a single sign-on (SSO) experience, web apps within a site must share authentication cookies. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 The sample illustrates cookie sharing across three apps that use cookie authentication:
 
@@ -45,7 +45,7 @@ In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/
 
 [!code-csharp[](cookie-sharing/sample/CookieAuthWithIdentity.Core/Startup.cs?name=snippet1)]
 
-See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -83,7 +83,7 @@ When using cookies directly:
 
 [!code-csharp[](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
 
-See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -145,7 +145,7 @@ To share authentication cookies among ASP.NET 4.x apps and ASP.NET Core apps, co
 
 [!code-csharp[](cookie-sharing/sample/CookieAuthWithIdentity.NETFramework/CookieAuthWithIdentity.NETFramework/App_Start/Startup.Auth.cs?name=snippet1)]
 
-See the *CookieAuthWithIdentity.NETFramework* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/data-protection/compatibility/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+See the *CookieAuthWithIdentity.NETFramework* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 When generating a user identity, the authentication type must match the type defined in `AuthenticationType` set with `UseCookieAuthentication`.
 

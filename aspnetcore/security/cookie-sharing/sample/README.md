@@ -16,4 +16,4 @@ Instructions:
 1. Sign in the user to any of the three apps. The authentication cookie is shared among the apps. Note that the user is automatically signed into the other two apps.
 1. Sign out the user from any of the apps. Note that the user is automatically signed out of the other two apps.
 
-This sample demonstrates the features described in the [Sharing cookies among apps](https://docs.microsoft.com/aspnet/core/security/data-protection/compatibility/cookie-sharing) topic.
+This sample demonstrates the features described in the [Sharing cookies among apps](https://docs.microsoft.com/aspnet/core/security/cookie-sharing) topic.

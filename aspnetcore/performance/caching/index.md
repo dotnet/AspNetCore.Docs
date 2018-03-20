@@ -1,5 +1,5 @@
 ---
-title: Caching
+title: Caching in ASP.NET Core
 author: ardalis
 description: Learn how to use caching to improve the performance of ASP.NET Core apps.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: performance/caching/index
 ---
-# Caching
+# Caching in ASP.NET Core
 
 * [In-memory caching](xref:performance/caching/memory)
 * [Working with a distributed cache](xref:performance/caching/distributed)

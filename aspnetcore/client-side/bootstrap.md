@@ -1,7 +1,7 @@
 ---
-title: Building beautiful, responsive sites with Bootstrap
+title: Building beautiful, responsive sites with Bootstrap and ASP.NET Core
 author: ardalis
-description: 
+description: Learn how to use Bootstrap for developing responsive web apps with ASP.NET Core.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/bootstrap
 ---
-# Building beautiful, responsive sites with Bootstrap
+# Building beautiful, responsive sites with Bootstrap and ASP.NET Core
 
 <a name="bootstrap-index"></a>
 
@@ -18,7 +18,7 @@ By [Steve Smith](https://ardalis.com/)
 
 Bootstrap is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
 
-## Getting started
+## Get started
 
 There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core, in which case Bootstrap will come pre-installed:
 

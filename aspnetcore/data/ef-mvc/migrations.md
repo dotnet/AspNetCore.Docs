@@ -41,7 +41,7 @@ In the *appsettings.json* file, change the name of the database in the connectio
 
 [!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
-This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
+This change sets up the project so that the first migration will create a new database. This isn't required to get started with migrations, but you'll see later why it's a good idea.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:

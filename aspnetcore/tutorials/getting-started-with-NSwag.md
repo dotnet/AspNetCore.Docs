@@ -1,18 +1,17 @@
 ---
-title: Get started with NSwag
+title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
-description: This tutorial provides a walkthrough of adding NSwag to generate documentation and help pages for a Web API app.
-keywords: ASP.NET Core,Swagger,NSwag,help pages,Web API
-ms.author: scaddie
+description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core Web API app.
 manager: wpickett
+ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/09/2018
+ms.date: 03/15/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
 uid: tutorials/get-started-with-nswag
 ---
-# Get started with NSwag
+# Get started with NSwag and ASP.NET Core
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://rsuter.com)
 
@@ -106,7 +105,7 @@ Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swa
 
 ![NSwagStudio-Output](web-api-help-pages-using-swagger/_static/NSwagStudio-Output.png)
 
-* Put the file into a client project (for example, a [Xamarin.Forms](https://developer.xamarin.com/guides/xamarin-forms/) app). Start consuming the API:
+* Put the file into a client project (for example, a [Xamarin.Forms](/xamarin/xamarin-forms/) app). Start consuming the API:
 
 ```csharp
 var todoClient = new TodoClient();

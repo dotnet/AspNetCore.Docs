@@ -1,7 +1,7 @@
 ---
-title: Examining the Details and Delete methods
+title: Examining the Details and Delete methods of an ASP.NET Core app
 author: rick-anderson
-description: The Details controller method and view in a basic ASP.NET Core MVC app.
+description: Learn about the Details controller method and view in a basic ASP.NET Core MVC app.
 manager: wpickett
 ms.author: riande
 ms.date: 03/07/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-mvc-app/details
 ---
-# Examining the Details and Delete methods
+# Examining the Details and Delete methods of an ASP.NET Core app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -53,7 +53,7 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure using Visual Studio.  The app can also be published from the [command line](xref:tutorials/publish-to-azure-webapp-using-cli).
 
-Thanks for completing this introduction to ASP.NET Core MVC. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to ASP.NET Core MVC. We appreciate any comments you leave. [Get started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 >[!div class="step-by-step"]
 [Previous](validation.md)

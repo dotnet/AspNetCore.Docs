@@ -1,7 +1,7 @@
 ---
-title: Ephemeral data protection providers
+title: Ephemeral data protection providers in ASP.NET Core
 author: rick-anderson
-description: This document explains the implementation details of the ASP.NET Core ephemeral data protection providers.
+description: Learn implementation details of the ASP.NET Core ephemeral data protection providers.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,13 +10,13 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-storage-ephemeral
 ---
-# Ephemeral data protection providers
+# Ephemeral data protection providers in ASP.NET Core
 
 <a name="data-protection-implementation-key-storage-ephemeral"></a>
 
 There are scenarios where an application needs a throwaway `IDataProtectionProvider`. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the [Microsoft.AspNetCore.DataProtection](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) package includes a type `EphemeralDataProtectionProvider`. This type provides a basic implementation of `IDataProtectionProvider` whose key repository is held solely in-memory and isn't written out to any backing store.
 
-Each instance of `EphemeralDataProtectionProvider` uses its own unique master key. Therefore, if an `IDataProtector` rooted at an `EphemeralDataProtectionProvider` generates a protected payload, that payload can only be unprotected by an equivalent `IDataProtector` (given the same [purpose](../consumer-apis/purpose-strings.md#data-protection-consumer-apis-purposes) chain) rooted at the same `EphemeralDataProtectionProvider` instance.
+Each instance of `EphemeralDataProtectionProvider` uses its own unique master key. Therefore, if an `IDataProtector` rooted at an `EphemeralDataProtectionProvider` generates a protected payload, that payload can only be unprotected by an equivalent `IDataProtector` (given the same [purpose](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-consumer-apis-purposes) chain) rooted at the same `EphemeralDataProtectionProvider` instance.
 
 The following sample demonstrates instantiating an `EphemeralDataProtectionProvider` and using it to protect and unprotect data.
 

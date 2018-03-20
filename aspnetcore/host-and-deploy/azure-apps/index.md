@@ -41,6 +41,9 @@ Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to
 [Continuous deployment to Azure with VSTS](https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure)  
 Set up a CI build for an ASP.NET Core app, then create a continuous deployment release to Azure App Service.
 
+[Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
+Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
+
 ## Application configuration
 
 With ASP.NET Core 2.0 and later, three packages in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) provide automatic logging features for apps deployed to Azure App Service:
@@ -94,4 +97,4 @@ Azure App Service on Windows Server uses [Internet Information Services (IIS)](h
 * [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 * [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
 * [Using IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
-* [Microsoft TechNet Library: Windows Server](https://docs.microsoft.com/windows-server/windows-server-versions)
+* [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)

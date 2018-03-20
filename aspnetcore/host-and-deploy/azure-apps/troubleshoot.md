@@ -100,9 +100,9 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 1. Select **Save** to save the file.
 
 > [!WARNING]
-> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
+> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
 ## Common startup errors 
 
@@ -179,4 +179,5 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 * [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in your Azure web apps](/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
 * [Application performance FAQs for Web Apps in Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
+* [Azure Web App sandbox (App Service runtime execution limitations)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 * [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience (12-minute video)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)

@@ -5,7 +5,7 @@ description: Describes how to setup Nginx as a reverse proxy on Ubuntu 16.04 to 
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/21/2017
+ms.date: 03/13/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -17,7 +17,8 @@ By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 Server.
 
-**Note:** For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
+> [!NOTE]
+> For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 This guide:
 
@@ -108,23 +109,37 @@ Verify a browser displays the default landing page for Nginx.
 
 ### Configure Nginx
 
-To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following:
+To configure Nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify */etc/nginx/sites-available/default*. Open it in a text editor, and replace the contents with the following:
 
-```
+```nginx
 server {
-    listen 80;
+    listen        80;
+    server_name   example.com *.example.com;
     location / {
-        proxy_pass http://localhost:5000;
+        proxy_pass         http://localhost:5000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection keep-alive;
-        proxy_set_header Host $http_host;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection keep-alive;
+        proxy_set_header   Host $http_host;
         proxy_cache_bypass $http_upgrade;
     }
 }
 ```
 
-This Nginx configuration file forwards incoming public traffic from port `80` to port `5000`.
+When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server which returns a status code of 444 in your configuration file. A default server configuration example is:
+
+```nginx
+server {
+    listen   80 default_server;
+    # listen [::]:80 default_server deferred;
+    return   444;
+}
+```
+
+With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://localhost:5000`. See [How nginx processes a request](https://nginx.org/docs/http/request_processing.html) for more information.
+
+> [!WARNING]
+> Failure to specify a proper [server_name directive](https://nginx.org/docs/http/server_names.html) exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
 
 Once the Nginx configuration is established, run `sudo nginx -t` to verify the syntax of the configuration files. If the configuration file test is successful, force Nginx to pick up the changes by running `sudo nginx -s reload`.
 

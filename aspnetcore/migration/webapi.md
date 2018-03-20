@@ -1,7 +1,7 @@
 ---
-title: Migrating from ASP.NET Web API
+title: Migrating from ASP.NET Web API to ASP.NET Core
 author: ardalis
-description: 
+description: Learn how to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC. 
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/webapi
 ---
-# Migrating from ASP.NET Web API
+# Migrating from ASP.NET Web API to ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
@@ -20,7 +20,7 @@ Web APIs are HTTP services that reach a broad range of clients, including browse
 
 ## Review ASP.NET Web API Project
 
-This article uses the sample project, *ProductsApp*, created in the article [Getting Started with ASP.NET Web API](https://docs.microsoft.com/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.
+This article uses the sample project, *ProductsApp*, created in the article [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.
 
 In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 

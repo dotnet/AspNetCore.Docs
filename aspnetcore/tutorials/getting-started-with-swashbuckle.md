@@ -1,18 +1,17 @@
 ---
-title: Get started with Swashbuckle
+title: Get started with Swashbuckle and ASP.NET Core
 author: zuckerthoben
-description: This tutorial provides a walkthrough of adding Swashbuckle to your project to integrate the Swagger UI.
-keywords: ASP.NET Core,Swagger,Swashbuckle,help pages,Web API
-ms.author: scaddie
+description: Learn how to add Swashbuckle to your ASP.NET Core project to integrate the Swagger UI.
 manager: wpickett
+ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/09/2018
+ms.date: 03/15/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
 uid: tutorials/get-started-with-swashbuckle
 ---
-# Get started with Swashbuckle
+# Get started with Swashbuckle and ASP.NET Core
 
 By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -127,6 +126,16 @@ Manually add the following snippet to the *.csproj* file:
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/TodoApiSwashbuckle.csproj?range=7-9)]
 
 ---
+
+Enabling XML comments provides debug information for undocumented public types and members. Undocumented types and members are indicated by the warning message. For example, the following message indicates a violation of warning code 1591:
+
+```text
+warning CS1591: Missing XML comment for publicly visible type or member 'TodoController.GetAll()'
+```
+
+Suppress warnings by defining a semicolon-delimited list of warning codes to ignore in the *.csproj* file:
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.Swashbuckle/TodoApiSwashbuckle.csproj?name=snippet_SuppressWarnings&highlight=3)]
 
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case sensitive. For example, a *TodoApi.Swashbuckle.XML* file is valid on Windows but not CentOS.
 

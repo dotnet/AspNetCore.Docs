@@ -10,7 +10,6 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/mvc2
 ---
-
 # Migrating from ASP.NET to ASP.NET Core 2.0
 
 By [Isaac Levin](https://isaaclevin.com)
@@ -19,7 +18,12 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 
 ## Prerequisites
 
-* [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
+Install **one** of the following from [.NET Downloads: Windows](https://www.microsoft.com/net/download/windows):
+
+* .NET Core SDK
+* Visual Studio for Windows
+  * **ASP.NET and web development** workload
+  * **.NET Core cross-platform development** workload
 
 ## Target frameworks
 ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.

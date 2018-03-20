@@ -1,7 +1,7 @@
 ---
-title: Subkey Derivation and Authenticated Encryption
+title: Subkey derivation and authenticated encryption in ASP.NET Core
 author: rick-anderson
-description: This document explains the implementation details of ASP.NET Core data protection subkey derivation and authenticated encryption.
+description: Learn implementation details of ASP.NET Core Data Protection subkey derivation and authenticated encryption.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/subkeyderivation
 ---
-# Subkey Derivation and Authenticated Encryption
+# Subkey derivation and authenticated encryption in ASP.NET Core
 
 <a name="data-protection-implementation-subkey-derivation"></a>
 
@@ -58,7 +58,7 @@ Once K_E is generated via the above mechanism, we generate a random initializati
 *output:= keyModifier || iv || E_cbc (K_E,iv,data) || HMAC(K_H, iv || E_cbc (K_E,iv,data))*
 
 > [!NOTE]
-> The `IDataProtector.Protect` implementation will [prepend the magic header and key id](authenticated-encryption-details.md) to output before returning it to the caller. Because the magic header and key id are implicitly part of [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad), and because the key modifier is fed as input to the KDF, this means that every single byte of the final returned payload is authenticated by the MAC.
+> The `IDataProtector.Protect` implementation will [prepend the magic header and key id](xref:security/data-protection/implementation/authenticated-encryption-details) to output before returning it to the caller. Because the magic header and key id are implicitly part of [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad), and because the key modifier is fed as input to the KDF, this means that every single byte of the final returned payload is authenticated by the MAC.
 
 ## Galois/Counter Mode encryption + validation
 
@@ -69,4 +69,4 @@ Once K_E is generated via the above mechanism, we generate a random 96-bit nonce
 *output := keyModifier || nonce || E_gcm (K_E,nonce,data) || authTag*
 
 > [!NOTE]
-> Even though GCM natively supports the concept of AAD, we're still feeding AAD only to the original KDF, opting to pass an empty string into GCM for its AAD parameter. The reason for this is two-fold. First, [to support agility](context-headers.md#data-protection-implementation-context-headers) we never want to use K_M directly as the encryption key. Additionally, GCM imposes very strict uniqueness requirements on its inputs. The probability that the GCM encryption routine is ever invoked on two or more distinct sets of input data with the same (key, nonce) pair must not exceed 2^32. If we fix K_E we cannot perform more than 2^32 encryption operations before we run afoul of the 2^-32 limit. This might seem like a very large number of operations, but a high-traffic web server can go through 4 billion requests in mere days, well within the normal lifetime for these keys. To stay compliant of the 2^-32 probability limit, we continue to use a 128-bit key modifier and 96-bit nonce, which radically extends the usable operation count for any given K_M. For simplicity of design we share the KDF code path between CBC and GCM operations, and since AAD is already considered in the KDF there's no need to forward it to the GCM routine.
+> Even though GCM natively supports the concept of AAD, we're still feeding AAD only to the original KDF, opting to pass an empty string into GCM for its AAD parameter. The reason for this is two-fold. First, [to support agility](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers) we never want to use K_M directly as the encryption key. Additionally, GCM imposes very strict uniqueness requirements on its inputs. The probability that the GCM encryption routine is ever invoked on two or more distinct sets of input data with the same (key, nonce) pair must not exceed 2^32. If we fix K_E we cannot perform more than 2^32 encryption operations before we run afoul of the 2^-32 limit. This might seem like a very large number of operations, but a high-traffic web server can go through 4 billion requests in mere days, well within the normal lifetime for these keys. To stay compliant of the 2^-32 probability limit, we continue to use a 128-bit key modifier and 96-bit nonce, which radically extends the usable operation count for any given K_M. For simplicity of design we share the KDF code path between CBC and GCM operations, and since AAD is already considered in the KDF there's no need to forward it to the GCM routine.

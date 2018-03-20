@@ -29,7 +29,7 @@ For example, if you create a new ASP.NET Core web app with individual user accou
 
 ## Secret Manager
 
-The Secret Manager tool stores sensitive data for development work outside of your project tree. The Secret Manager tool is a project tool that can be used to store secrets for a [.NET Core](https://www.microsoft.com/net/core) project during development. With the Secret Manager tool, you can associate app secrets with a specific project and share them across multiple projects.
+The Secret Manager tool stores sensitive data for development work outside of your project tree. The Secret Manager tool is a project tool that can be used to store secrets for a .NET Core project during development. With the Secret Manager tool, you can associate app secrets with a specific project and share them across multiple projects.
 
 >[!WARNING]
 > The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
@@ -114,7 +114,7 @@ The Secret Manager tool abstracts away the implementation details, such as where
 
 * Linux: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
-* Mac: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
+* macOS: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
 The value of `userSecretsId` comes from the value specified in *.csproj* file.
 

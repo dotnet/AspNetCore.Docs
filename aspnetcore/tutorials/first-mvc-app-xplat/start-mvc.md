@@ -1,7 +1,7 @@
 ---
-title: Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
+title: Introduction to ASP.NET Core MVC on macOS, Linux, or Windows
 author: rick-anderson
-description: Getting started with ASP.NET Core MVC and Visual Studio Code on Mac, Linux, and Windows
+description: Learn how to get started with ASP.NET Core MVC and Visual Studio Code on macOS, Linux, and Windows
 manager: wpickett
 ms.author: riande
 ms.date: 07/07/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/start-mvc
 ---
-# Getting started with ASP.NET Core MVC  on Mac, Linux, or Windows
+# Introduction to ASP.NET Core MVC on macOS, Linux, or Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -24,15 +24,9 @@ There are 3 versions of this tutorial:
 * Windows: [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)
 * macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc) 
 
-## Install VS Code and .NET Core
+## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later. See [the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
-
-Install the following:
-
-* [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-* [Visual Studio Code](https://code.visualstudio.com)
-* VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) 
+[!INCLUDE[](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create a web app with dotnet
 
@@ -70,7 +64,7 @@ In the next part of this tutorial, we'll learn about MVC and start writing some 
 - [Integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
 - [Keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
 
-  - [Mac keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+  - [macOS keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
   - [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   - [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 

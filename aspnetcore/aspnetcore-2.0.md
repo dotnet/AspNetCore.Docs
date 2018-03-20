@@ -1,7 +1,7 @@
 ---
 title: What's new in ASP.NET Core 2.0
 author: rick-anderson
-description: What's new in ASP.NET Core 2.0
+description: Learn about the new features in ASP.NET Core 2.0.
 manager: wpickett
 ms.author: riande
 ms.date: 07/10/2017
@@ -22,7 +22,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 For more information, see the introduction and tutorial:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
-* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## ASP.NET Core metapackage
 

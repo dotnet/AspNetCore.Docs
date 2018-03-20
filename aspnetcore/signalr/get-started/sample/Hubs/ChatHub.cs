@@ -6,10 +6,10 @@ namespace SignalRChat.Hubs
 {
     public class ChatHub : Hub
     {
-        public Task Send(string user, string message)
+        public Task SendMessage(string user, string message)
         {
             string timestamp = DateTime.Now.ToShortTimeString();
-            return Clients.All.SendAsync(timestamp, user, message);
+            return Clients.All.SendAsync("ReceiveMessage", timestamp, user, message);
         }
     }
 }
