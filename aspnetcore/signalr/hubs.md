@@ -24,7 +24,7 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 Since SignalR is middleware, a call to `services.AddMvc` is required in the `ConfigureServices` method of the `Startup` class to register the service. The following example shows both how to register the service, and how to map a route to a hub.
 
-[!code-javascript[Configure hubs](hubs/sample/js/startup.js?highlight=41,65-68)]
+[!code-javascript[Configure hubs](hubs/sample/js/startup.cs?highlight=41,65-68)]
 
 When adding SignalR functionality to an ASP.NET MVC application, add the SignalR route before the other routes.
 
@@ -32,7 +32,7 @@ When adding SignalR functionality to an ASP.NET MVC application, add the SignalR
 
 To create a hub, inherit from the `Hub` class, and add public methods to it. Clients can call methods that are defined as `public`. Methods using other class specifiers such as `private` or `protected` can be defined in a class, but can't accept calls from clients.
 
-[!code-csharp[Create and use hubs](clients/sample/hubs/chathub.cs?range=10-14)]
+[!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=10-14)]
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. Data that you receive in parameters or return to the caller is communicated between the server and the client by using JSON. SignalR handles the binding of complex objects and arrays of objects automatically.
 
@@ -42,7 +42,7 @@ Each connection to a SignalR hub has a unique connection ID. This ID can be used
 
 In the context of your hub, you can determine current by referencing its `Context.ConnectionId` object.
 
-[!code-csharp[Connection Ids](clients/sample/hubs/chathub.cs?range=20-24)]
+[!code-csharp[Connection Ids](hubs/sample/hubs/chathub.cs?range=20-24)]
 
 ## The `Clients` object
 
@@ -72,13 +72,13 @@ Additionally, the `Hub` class contains the following methods:
 
 Use the members of `Clients.Client` or `Clients.Clients` to make calls to specific clients. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients  stored in an array named `ids`.
 
-[!code-csharp[Send messages](clients/sample/hubs/chathub.cs?range=15-24)]
+[!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
 
 ## Handle events for a connection
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections. Use the `OnConnectedAsync` event to capture the connection ID of the incoming connection.
 
-[!code-csharp[Handle events](clients/sample/hubs/chathub.cs?range=33-37)]
+[!code-csharp[Handle events](hubs/sample/hubs/chathub.cs?range=33-37)]
 
 ## Handle errors
 
@@ -86,4 +86,4 @@ To handle errors that occur in your Hub class methods wrap your method code in t
 
 ## Related Resources
 
-[Get Started]()
+[Intro to SignalR](signalr/intro.md)
