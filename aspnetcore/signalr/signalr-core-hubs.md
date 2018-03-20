@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 manager: wpickett
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/16/2018
+ms.date: 03/23/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -16,48 +16,33 @@ uid: signalr/hubs
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](http://twitter.com/1kevgriff)
 
-
 ## What is a SignalR Hub
 
-The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that are called by client. In client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes nearly instant client-to-server and server-to-client communications possible.
+The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that are called by client. In client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.
 
 ## Configure SignalR hubs
 
-To define the route to your hub, call the `MapSignalR` method when the application starts.
+Since SignalR is middleware, a call to `services.AddMvc` is required in the `ConfigureServices` method of the `Startup` class to register the service. The following example shows both how to register the service, and how to map a route to a hub.
 
-[!code-javascript[Startup](hubs/sample/js/startup.js?highlight=41,65-68)]
+[!code-javascript[Configure hubs](hubs/sample/js/startup.js?highlight=41,65-68)]
+
+When adding SignalR functionality to an ASP.NET MVC application, add the SignalR route before the other routes.
 
 ## Create and use hubs
 
-Hub object lifetime
-Camel-casing of Hub names in JavaScript clients
-strongly-typed Hubs
+To create a hub, inherit from the `Hub` class, and add public methods to it. Clients can call methods that are defined as `public`. Methods using other class specifiers such as `private` or `protected` can be defined in a class, but can't accept calls from clients.
 
+[!code-csharp[Create and use hubs](clients/sample/hubs/chathub.cs?range=10-14)]
 
-## Send messages to connections
+You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. Data that you receive in parameters or return to the caller is communicated between the server and the client by using JSON. SignalR handles the binding of complex objects and arrays of objects automatically.
 
-Use the members of `Clients.Client` or `Clients.Clients` to make calls to clients by their connection. In the following example, the `SendToOneConnectionId` method demonstrates sending a message to one specific connection, while the `SendToManyConnectionIds` method sends a message to the clients  stored in an array named `ids`.
+## Connection IDs
 
-```csharp
-public class MyHub : Hub
-{
-    public async Task SendToOneConnectionId()
-    {
-        var connectionIdToSendTo = "fb83d9c6-e026-4ce3-a815-d2916ebcf448";
-        await Clients.Client(connectionIdToSendTo).SendAsync("methodToInvoke");
-    }
+Each connection to a SignalR hub has a unique connection ID. This ID can be used by other parts of your application to send messages directly to a particular connection.
 
-    public async Task SendToManyConnectionIds()
-    {
-        var ids = new string[]
-        {
-            "fb83d9c6-e026-4ce3-a815-d2916ebcf448",
-            "07bcd5d5-5b1d-4428-87f2-6ecef45d4968"
-        };
-        await Clients.Clients(ids).SendAsync("methodToInvoke");
-    }
-}
-```
+In the context of your hub, you can determine current by referencing its `Context.ConnectionId` object.
+
+[!code-csharp[Connection Ids](clients/sample/hubs/chathub.cs?range=20-24)]
 
 ## The `Clients` object
 
@@ -83,31 +68,22 @@ Additionally, the `Hub` class contains the following methods:
 | User | Sends a message to a specific user |
 | Users | Sends a message to multiple users |
 
+## Send messages to clients
 
-## Connection IDs
+Use the members of `Clients.Client` or `Clients.Clients` to make calls to specific clients. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients  stored in an array named `ids`.
 
-Each connection to a SignalR hub has a unique connection ID. This ID can be used by other parts of your application to send messages directly to a particular connection.
-
-In the context of your hub, you can determine current by referencing its `Context.ConnectionId` object.
-
-```csharp
-public class MyHub : Hub
-{
-    public Task HubMethod()
-    {
-        // this connection ID is UNIQUE to the current connection
-        var connectionId = Context.ConnectionId;
-    }
-}
-```
+[!code-csharp[Send messages](clients/sample/hubs/chathub.cs?range=15-24)]
 
 ## Handle events for a connection
 
-The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections.
+The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections. Use the `OnConnectedAsync` event to capture the connection ID of the incoming connection.
 
-
+[!code-csharp[Handle events](clients/sample/hubs/chathub.cs?range=33-37)]
 
 ## Handle errors
 
+To handle errors that occur in your Hub class methods wrap your method code in try-catch blocks to handle and log the exception object.
 
 ## Related Resources
+
+[Get Started]()
