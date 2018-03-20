@@ -30,7 +30,7 @@ In the examples that follow:
 * The authentication cookie name is set to a common value of `.AspNet.SharedCookie`.
 * The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
 * A common app name is used to enable the data protection system to share data protection keys (`SharedCookieApp`).
-* `Identity.Application` is used as the authentication scheme.
+* `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within each app* either as the default scheme or by explicitly setting it. The scheme doesn't need to be consistent across the shared cookie apps.
 * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used. The sample app uses a folder named *KeyRing* at the root of the solution to hold the data protection keys.
 * In the ASP.NET Core apps, [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) is used to set the key storage location. [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) is used to configure a common shared app name.
 * In the .NET Framework app, the cookie authentication middleware uses an implementation of [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider). `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app.
