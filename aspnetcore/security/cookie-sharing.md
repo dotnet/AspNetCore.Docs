@@ -49,24 +49,6 @@ In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/
 
 Data protection keys and the app name must be shared among apps. In the sample apps, `GetKeyRingDirInfo` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. Use [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) to configure a common shared app name (`SharedCookieApp` in the sample). For more information, see [Configuring Data Protection](xref:security/data-protection/configuration/overview).
 
-In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
-
-```csharp
-services.ConfigureApplicationCookie(options => {
-    var protectionProvider = DataProtectionProvider.Create(
-        GetKeyRingDirInfo());
-
-    options.Cookie.Name = ".AspNet.SharedCookie";
-    options.DataProtectionProvider = protectionProvider;
-    options.TicketDataFormat = 
-        new TicketDataFormat(
-            protectionProvider.CreateProtector(
-                "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", 
-                "Cookies", 
-                "v2"));
-});
-```
-
 See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
@@ -106,18 +88,6 @@ When using cookies directly:
 [!code-csharp[](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
 
 Data protection keys and the app name must be shared among apps. In the sample apps, `GetKeyRingDirInfo` returns the common key storage location to the [PersistKeysToFileSystem](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystofilesystem) method. Use [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) to configure a common shared app name (`SharedCookieApp` in the sample). For more information, see [Configuring Data Protection](xref:security/data-protection/configuration/overview). 
-
-In ASP.NET Core apps, an alternative approach is not to use `PersistKeysToFileSystem` but to supply the key location to [DataProtectionProvider.Create(DirectoryInfo)](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionprovider.create#Microsoft_AspNetCore_DataProtection_DataProtectionProvider_Create_System_IO_DirectoryInfo_):
-
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Cookie.Name = ".AspNet.SharedCookie";
-        options.DataProtectionProvider = DataProtectionProvider.Create(
-            GetKeyRingDirInfo());
-});
-```
 
 See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
