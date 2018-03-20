@@ -2,8 +2,8 @@
 
 * For information on using a persistent database, see:
 
-  *  [Create a Razor Pages web app with ASP.NET Core](xref:tutorials/index)
-  * [Working with Data in ASP.NET Core](xref:data/index)
+  * [Create a Razor Pages web app with ASP.NET Core](xref:tutorials/index)
+  * [Working with data in ASP.NET Core](xref:data/index)
   
 * [ASP.NET Core Web API Help Pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 * [Routing to Controller Actions](xref:mvc/controllers/routing)
