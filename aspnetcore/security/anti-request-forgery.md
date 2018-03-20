@@ -64,7 +64,7 @@ However, CSRF vulnerabilities are fundamentally a problem with the web app, not 
 ## How does ASP.NET Core MVC address CSRF?
 
 > [!WARNING]
-> ASP.NET Core implements anti-request-forgery using the [ASP.NET Core data protection stack](xref:security/data-protection/introduction). ASP.NET Core data protection must be configured to work in a server farm. See [Configuring data protection](xref:security/data-protection/configuration/overview) for more information.
+> ASP.NET Core implements anti-request-forgery using the [ASP.NET Core data protection stack](xref:security/data-protection/introduction). ASP.NET Core data protection must be configured to work in a server farm. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information.
 
 ASP.NET Core anti-request-forgery default data protection configuration 
 

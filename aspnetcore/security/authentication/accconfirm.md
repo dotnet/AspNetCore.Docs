@@ -69,7 +69,7 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 
 ## View the Identity database
 
-See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
+See [Work with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
 
 For Visual Studio:
 

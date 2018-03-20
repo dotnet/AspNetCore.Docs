@@ -37,7 +37,7 @@ For a DI-aware component, the intended usage is that the component take an `IDat
 
 The following sample demonstrates three concepts:
 
-1. [Adding the data protection system](xref:security/data-protection/configuration/overview) to the service container,
+1. [Add the data protection system](xref:security/data-protection/configuration/overview) to the service container,
 
 2. Using DI to receive an instance of an `IDataProtectionProvider`, and
 

@@ -18,8 +18,8 @@ uid: security/data-protection/consumer-apis/index
 
 * [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
 
-* [Password Hashing](xref:security/data-protection/consumer-apis/password-hashing)
+* [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing)
 
-* [Limiting the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
+* [Limit the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
 
-* [Unprotecting payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
+* [Unprotect payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)

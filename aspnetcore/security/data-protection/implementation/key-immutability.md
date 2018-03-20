@@ -1,5 +1,5 @@
 ---
-title: Key immutability and changing key settings in ASP.NET Core
+title: Key immutability and key settings in ASP.NET Core
 author: rick-anderson
 description: Learn the implementation details of the ASP.NET Core Data Protection key immutability APIs.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-immutability
 ---
-# Key immutability and changing key settings in ASP.NET Core
+# Key immutability and key settings in ASP.NET Core
 
 Once an object is persisted to the backing store, its representation is forever fixed. New data can be added to the backing store, but existing data can never be mutated. The primary purpose of this behavior is to prevent data corruption.
 

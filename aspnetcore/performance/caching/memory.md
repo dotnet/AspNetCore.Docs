@@ -1,5 +1,5 @@
 ---
-title: In-memory caching in ASP.NET Core
+title: Cache in-memory in ASP.NET Core
 author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: performance/caching/memory
 ---
-# In-memory caching in ASP.NET Core
+# Cache in-memory in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
@@ -93,7 +93,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 ## Additional resources
 
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)

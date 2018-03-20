@@ -70,12 +70,12 @@ We've made it easier to build secure web APIs using Identity in ASP.NET Core 2.0
 For more information on authentication changes in 2.0, see the following resources:
 
 * [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
-* [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Enable QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## SPA templates
 
-Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Using JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Use JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
 
 ## Kestrel improvements
 
@@ -141,17 +141,17 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 * [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
 * [Key Management](xref:security/data-protection/implementation/key-management)
-* [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
-* [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
-* [Configuring Google authentication](xref:security/authentication/google-logins)
-* [Configuring Microsoft Account authentication](xref:security/authentication/microsoft-logins)
+* [Configure Facebook authentication](xref:security/authentication/facebook-logins)
+* [Configure Twitter authentication](xref:security/authentication/twitter-logins)
+* [Configure Google authentication](xref:security/authentication/google-logins)
+* [Configure Microsoft Account authentication](xref:security/authentication/microsoft-logins)
 
 ## Migration guidance
 
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:
 
-* [Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## Additional Information
 

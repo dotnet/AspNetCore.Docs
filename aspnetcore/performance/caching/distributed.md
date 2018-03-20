@@ -1,5 +1,5 @@
 ---
-title: Working with a distributed cache in ASP.NET Core
+title: Work with a distributed cache in ASP.NET Core
 author: ardalis
 description: Learn how to use ASP.NET Core distributed caching to improve app performance and scalability, especially in a cloud or server farm environment.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: performance/caching/distributed
 ---
-# Working with a distributed cache in ASP.NET Core
+# Work with a distributed cache in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -20,7 +20,7 @@ Distributed caches can improve the performance and scalability of ASP.NET Core a
 
 ## What is a distributed cache
 
-A distributed cache is shared by multiple app servers (see [Caching Basics](memory.md#caching-basics)). The information in the cache isn't stored in the memory of individual web servers, and the cached data is available to all of the app's servers. This provides several advantages:
+A distributed cache is shared by multiple app servers (see [Cache Basics](memory.md#caching-basics)). The information in the cache isn't stored in the memory of individual web servers, and the cached data is available to all of the app's servers. This provides several advantages:
 
 1. Cached data is coherent on all web servers. Users don't see different results depending on which web server handles their request
 
@@ -133,7 +133,7 @@ When deciding which implementation of `IDistributedCache` is right for your app,
 
 * [Redis Cache on Azure](https://azure.microsoft.com/documentation/services/redis-cache/)
 * [SQL Database on Azure](https://azure.microsoft.com/documentation/services/sql-database/)
-* [In-memory caching](xref:performance/caching/memory)
+* [Cache in-memory](xref:performance/caching/memory)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)

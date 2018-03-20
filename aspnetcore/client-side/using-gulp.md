@@ -318,7 +318,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
     Notice that the stylesheet links point to the unminified versions of the CSS files.
 
-For more information related to environments in ASP.NET Core, see [Working with Multiple Environments](../fundamentals/environments.md).
+For more information related to environments in ASP.NET Core, see [Work with multiple environments](../fundamentals/environments.md).
 
 ## Task and module details
 
@@ -341,4 +341,4 @@ The Gulp community provides Gulp [recipes](https://github.com/gulpjs/gulp/blob/m
 
 * [Gulp documentation](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 * [Bundling and minification in ASP.NET Core](bundling-and-minification.md)
-* [Using Grunt in ASP.NET Core](using-grunt.md)
+* [Use Grunt in ASP.NET Core](using-grunt.md)

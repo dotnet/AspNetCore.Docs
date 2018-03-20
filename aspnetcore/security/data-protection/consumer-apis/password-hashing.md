@@ -1,5 +1,5 @@
 ---
-title: Password hashing in ASP.NET Core
+title: Hash passwords in ASP.NET Core
 author: rick-anderson
 description: Learn how to hash passwords using the ASP.NET Core Data Protection APIs.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/password-hashing
 ---
-# Password hashing in ASP.NET Core
+# Hash passwords in ASP.NET Core
 
 The data protection code base includes a package *Microsoft.AspNetCore.Cryptography.KeyDerivation* which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
 

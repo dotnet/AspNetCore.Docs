@@ -14,7 +14,7 @@ uid: security/data-protection/configuration/index
 
 Visit these topics to learn about Data Protection configuration in ASP.NET Core:
 
-* [Configuring Data Protection](xref:security/data-protection/configuration/overview)  
+* [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview)  
   An overview on configuring ASP.NET Core Data Protection.
 
 * [Data Protection key management and lifetime](xref:security/data-protection/configuration/default-settings)  

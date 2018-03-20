@@ -15,5 +15,5 @@ uid: tutorials/razor-pages-mac/da1
 [!INCLUDE[model1](../../includes/RP/da2.md)]
 
 >[!div class="step-by-step"]
-[Previous: Working with SQLlite](xref:tutorials/razor-pages-mac/sql)
-[Adding Search](xref:tutorials/razor-pages-mac/search)
+[Previous: Work with SQLlite](xref:tutorials/razor-pages-mac/sql)
+[Add search](xref:tutorials/razor-pages-mac/search)

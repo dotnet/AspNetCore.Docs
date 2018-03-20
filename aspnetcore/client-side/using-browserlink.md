@@ -61,7 +61,7 @@ if (env.IsDevelopment())
 }
 ```
 
-For more information, see [Working with Multiple Environments](xref:fundamentals/environments).
+For more information, see [Work with Multiple Environments](xref:fundamentals/environments).
 
 ## How to use Browser Link
 

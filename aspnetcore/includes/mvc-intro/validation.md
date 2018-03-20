@@ -119,4 +119,4 @@ In the next part of the series, we'll review the application and make some impro
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)

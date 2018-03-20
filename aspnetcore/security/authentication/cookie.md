@@ -1,5 +1,5 @@
 ---
-title: Using Cookie Authentication without ASP.NET Core Identity
+title: Use cookie authentication without ASP.NET Core Identity
 author: rick-anderson
 description: An explanation of using cookie authentication without ASP.NET Core Identity
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authentication/cookie
 ---
-# Using Cookie Authentication without ASP.NET Core Identity
+# Use cookie authentication without ASP.NET Core Identity
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
@@ -18,7 +18,7 @@ As you've seen in the earlier authentication topics, [ASP.NET Core Identity](xre
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/cookie/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-For information on migrating cookie-based authentication from ASP.NET Core 1.x to 2.0, see [Migrating Authentication and Identity to ASP.NET Core 2.0 topic (Cookie-based Authentication)](xref:migration/1x-to-2x/identity-2x#cookie-based-authentication).
+For information on migrating cookie-based authentication from ASP.NET Core 1.x to 2.0, see [Migrate Authentication and Identity to ASP.NET Core 2.0 topic (Cookie-based Authentication)](xref:migration/1x-to-2x/identity-2x#cookie-based-authentication).
 
 ## Configuration
 
@@ -420,6 +420,6 @@ await HttpContext.Authentication.SignInAsync(
 ## See also
 
 * [Auth 2.0 Changes / Migration Announcement](https://github.com/aspnet/Announcements/issues/262)
-* [Limiting identity by scheme](xref:security/authorization/limitingidentitybyscheme)
+* [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 * [Claims-Based Authorization](xref:security/authorization/claims)
 * [Policy-based role checks](xref:security/authorization/roles#policy-based-role-checks)
