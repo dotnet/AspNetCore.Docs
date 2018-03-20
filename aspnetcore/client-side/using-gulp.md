@@ -1,5 +1,5 @@
 ---
-title: Using Gulp in ASP.NET Core
+title: Use Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/using-gulp
 ---
-# Using Gulp in ASP.NET Core
+# Use Gulp in ASP.NET Core
 
 By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
 
