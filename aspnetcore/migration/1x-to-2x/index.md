@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/1x-to-2x/index
 ---
-# Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0
+# Migrating from ASP.NET Core 1.x to 2.0
 
 By [Scott Addie](https://github.com/scottaddie)
 

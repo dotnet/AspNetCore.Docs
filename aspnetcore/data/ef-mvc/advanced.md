@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 
-# Advanced topics - EF Core with ASP.NET Core MVC tutorial (10 of 10)
+# ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

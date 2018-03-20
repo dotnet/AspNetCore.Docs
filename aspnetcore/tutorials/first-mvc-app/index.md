@@ -1,5 +1,5 @@
 ---
-title: Create a web app with ASP.NET Core MVC on Windows
+title: Create a web app with ASP.NET Core MVC on Windows using Visual Studio
 author: rick-anderson
 description: See the table of contents for an introduction to ASP.NET Core MVC using Visual Studio on Windows.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-mvc-app/index
 ---
-# Create a web app with ASP.NET Core MVC using Visual Studio
+# Create a web app with ASP.NET Core MVC on Windows using Visual Studio
 
 [!INCLUDE[consider RP](../../includes/razor.md)]
 

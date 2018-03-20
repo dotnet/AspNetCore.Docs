@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/models/formatting
 ---
-# Introduction to formatting response data in ASP.NET Core MVC
+# Formatting response data in ASP.NET Core MVC
 
 By [Steve Smith](https://ardalis.com/)
 

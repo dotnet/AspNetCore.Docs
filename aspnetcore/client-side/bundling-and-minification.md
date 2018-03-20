@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/bundling-and-minification
 ---
-# Bundling and minification
+# Bundling and minification in ASP.NET Core
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 

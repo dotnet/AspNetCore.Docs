@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-mvc/intro
 ---
-# Get started with ASP.NET Core MVC and Entity Framework Core using Visual Studio (1 of 10)
+# ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

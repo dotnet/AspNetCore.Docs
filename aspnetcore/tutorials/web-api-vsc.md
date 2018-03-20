@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/web-api-vsc
 ---
 
-# Create a Web API with ASP.NET Core MVC and Visual Studio Code on Linux, macOS, and Windows
+# Create a Web API with ASP.NET Core and VS Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 

@@ -14,7 +14,7 @@ services: multiple
 uid: tutorials/publish-to-azure-webapp-using-cli
 ---
 
-# Deploy an ASP.NET Core application to Azure App Service from the command line
+# Publish an ASP.NET Core app to Azure using using command line tools
 
 By [Cam Soper](https://twitter.com/camsoper)
 

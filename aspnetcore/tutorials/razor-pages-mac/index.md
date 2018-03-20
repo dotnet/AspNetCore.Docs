@@ -1,5 +1,5 @@
 ---
-title: Create a Razor Pages web app with ASP.NET Core on macOS
+title: Create a Razor Pages web app with ASP.NET Core on macOS with Visual Studio for Mac
 author: rick-anderson
 description: Create a Razor Pages web app with ASP.NET Core and EF Core.
 manager: wpickett
@@ -10,8 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/index
 ---
-
-# Create a Razor Pages web app with ASP.NET Core and Visual Studio for Mac
+# Create a Razor Pages web app with ASP.NET Core on macOS with Visual Studio for Mac
 
 This is a work in progress.
 

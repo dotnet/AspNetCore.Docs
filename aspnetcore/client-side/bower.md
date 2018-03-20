@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/bower
 ---
-# Manage client-side packages with Bower in ASP.NET Core
+# Using Bower in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/), and [Scott Addie](https://scottaddie.com) 
 

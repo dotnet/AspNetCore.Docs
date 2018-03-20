@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/index
 ---
-# ASP.NET Core Security Overview
+# Overview of ASP.NET Core Security
 
 ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, SSL enforcement, app secrets, anti-request forgery protection, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps.
 

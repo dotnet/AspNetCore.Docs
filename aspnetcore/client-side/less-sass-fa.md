@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/less-sass-fa
 ---
-# Introduction to styling applications with Less, Sass, and Font Awesome in ASP.NET Core
+# Less, Sass, and Font Awesome in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 

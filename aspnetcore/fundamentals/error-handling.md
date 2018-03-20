@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/error-handling
 ---
-# Introduction to Error Handling in ASP.NET Core
+# Error handling in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra/)
 

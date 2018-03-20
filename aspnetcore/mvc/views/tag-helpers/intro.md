@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/tag-helpers/intro
 ---
-# Introduction to Tag Helpers in ASP.NET Core 
+# Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/using-browserlink
 ---
-# Browser Link in ASP.NET Core 
+# Browser Link in ASP.NET Core
 
 By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)
 

@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
-# Publish an ASP.NET Core web app to Azure App Service using Visual Studio
+# Publish an ASP.NET Core app to Azure using Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs), and [Rachel Appel](https://twitter.com/rachelappel)
 

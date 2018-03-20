@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: data/index
 ---
-# Working with Data in ASP.NET Core 
+# Working with Data in ASP.NET Core
 
 * [Get started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/index)
 

@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/index
 ---
-# Data Protection in ASP.NET Core: Consumer APIs, configuration, extensibility APIs and implementation
+# Data Protection in ASP.NET Core
 
 * [Introduction to data protection](xref:security/data-protection/introduction)
 

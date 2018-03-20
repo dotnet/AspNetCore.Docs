@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: host-and-deploy/iis/modules
 ---
-# Using IIS Modules with ASP.NET Core
+# Using IIS modules with ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 

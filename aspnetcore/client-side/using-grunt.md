@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/using-grunt
 ---
-# Using Grunt in ASP.NET Core 
+# Using Grunt in ASP.NET Core
 
 By [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)
 

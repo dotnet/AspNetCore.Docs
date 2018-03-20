@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/configuration/index
 ---
-# Configure an ASP.NET Core App
+# Configuration in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 

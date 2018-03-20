@@ -12,7 +12,7 @@ ms.topic: article
 uid: fundamentals/app-state
 ---
 
-# Introduction to session and application state in ASP.NET Core
+# Session and application state in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Diana LaRose](https://github.com/DianaLaRose)
 

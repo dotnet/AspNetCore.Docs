@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-mvc/index
 ---
-# Get started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
+# ASP.NET Core MVC with EF Core - tutorial series
 
 [!INCLUDE[RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 

@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-mvc/crud
 ---
-# Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial (2 of 10)
+# ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

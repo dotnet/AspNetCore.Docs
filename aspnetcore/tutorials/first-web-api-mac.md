@@ -11,8 +11,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-web-api-mac
 ---
-
-# Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
+# Create a Web API with ASP.NET Core and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
