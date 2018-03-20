@@ -31,7 +31,7 @@ Here is an example with attributes:
 
 [!code-powershell[Main](http-cookies/samples/sample2.ps1)]
 
-To return a cookie to the server, the client inclues a Cookie header in later requests.
+To return a cookie to the server, the client includes a Cookie header in later requests.
 
 [!code-console[Main](http-cookies/samples/sample3.cmd)]
 
