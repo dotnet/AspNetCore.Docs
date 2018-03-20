@@ -77,8 +77,8 @@ If you wish to submit your JavaScript library and your library is one of the top
 
 The CDN used to use the microsoft.com domain name and has been changed to use the aspnetcdn.com domain name. This change was made to increase performance because when a browser referenced the microsoft.com domain it would send any cookies from that domain across the wire with each request. By renaming to a domain name other than microsoft.com performance can be increased by as much to 25%. Note ajax.microsoft.com will continue to function but ajax.aspnetcdn.com is recommended.
 
-- Old Format: http://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
-- New Format: http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
+- Old Format: https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
+- New Format: https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
 
 <a id="Visual_Studio_vsdoc_Support_19"></a>
 
@@ -158,359 +158,359 @@ The CDN hosts some of the most popular third party JavaScript libraries. Microso
 The following releases of jQuery are hosted on the CDN:
 
 #### jQuery version 3.3.1
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.slim.min.map
 
 #### jQuery version 3.2.1
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.slim.min.map
 
 #### jQuery version 3.2.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.slim.min.map
 
 #### jQuery version 3.1.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.slim.min.map
 
 #### jQuery version 3.1.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.slim.min.map
 
 #### jQuery version 3.0.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.map
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.slim.min.map
 
 #### jQuery version 2.2.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.map
 
 #### jQuery version 2.2.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.min.map
 
 #### jQuery version 2.2.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.2.min.map
 
 #### jQuery version 2.2.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.map
 
 #### jQuery version 2.2.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.map
 
 #### jQuery version 2.1.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.map
 
 #### jQuery version 2.1.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.map
 
 #### jQuery version 2.1.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.min.js
 
 #### jQuery version 2.1.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.map
 
 #### jQuery version 2.1.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.map
 
 #### jQuery version 2.0.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.map
 
 #### jQuery version 2.0.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.2.min.map
 
 #### jQuery version 2.0.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.map
 
 #### jQuery version 2.0.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.map
 
 #### jQuery version 1.12.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.map
 
 #### jQuery version 1.12.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.3.min.map
 
 #### jQuery version 1.12.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.map
 
 #### jQuery version 1.12.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.min.map
 
 #### jQuery version 1.12.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.map
 
 #### jQuery version 1.11.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.map
 
 #### jQuery version 1.11.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.map
 
 #### jQuery version 1.11.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.map
 
 #### jQuery version 1.11.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.map
 
 #### jQuery version 1.10.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.map
 
 #### jQuery version 1.10.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.map
 
 #### jQuery version 1.10.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.map
 
 #### jQuery version 1.9.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.map
 
 #### jQuery version 1.9.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.map
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.map
 
 #### jQuery version 1.8.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3-vsdoc.js
 
 #### jQuery version 1.8.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2-vsdoc.js
 
 #### jQuery version 1.8.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1-vsdoc.js
 
 #### jQuery version 1.8.0
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0-vsdoc.js
 
 #### jQuery version 1.7.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js
 
 #### jQuery version 1.7.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1-vsdoc.js
 
 #### jQuery version 1.7
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7-vsdoc.js
 
 #### jQuery version 1.6.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4-vsdoc.js
 
 #### jQuery version 1.6.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3-vsdoc.js
 
 #### jQuery version 1.6.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2-vsdoc.js
 
 #### jQuery version 1.6.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1-vsdoc.js
 
 #### jQuery version 1.6
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6-vsdoc.js
 
 #### jQuery version 1.5.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2-vsdoc.js
 
 #### jQuery version 1.5.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1-vsdoc.js
 
 #### jQuery version 1.5
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5-vsdoc.js
 
 #### jQuery version 1.4.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4-vsdoc.js
 
 #### jQuery version 1.4.3
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3-vsdoc.js
 
 #### jQuery version 1.4.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2-vsdoc.js
 
 #### jQuery version 1.4.1
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1-vsdoc.js
 
 #### jQuery version 1.4
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.min.js
 
 #### jQuery version 1.3.2
 
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.min-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.3.2.min-vsdoc.js
 
 <a id="jQuery_Migrate_Releases_on_the_CDN_1"></a>
 
@@ -520,33 +520,33 @@ The following releases of jQuery Migrate are hosted on the CDN:
 
 #### jQuery Migrate version 3.0.0
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.0.0.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.0.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.0.0.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.0.0.min.js
 
 #### jQuery Migrate version 1.2.1
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js
 
 jQuery Migrate version 1.2.0
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.0.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.0.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.0.min.js
 
 #### jQuery Migrate version 1.1.1
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.1.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.1.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.1.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.1.min.js
 
 #### jQuery Migrate version 1.1.0
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.0.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.0.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.1.0.min.js
 
 #### jQuery Migrate version 1.0.0
 
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.0.0.js
-- http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.0.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.0.0.js
+- https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.0.0.min.js
 
 <a id="jQuery_UI_Releases_on_the_CDN_2"></a>
 
@@ -677,12 +677,12 @@ The following releases of the jQuery DataTables plugin are hosted on this CDN. C
 
 The following releases of [Modernizr](http://www.modernizr.com "Modernizr") are hosted on the CDN:
 
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.1.js
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.6.2.js
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-1.7-development-only.js
-- http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.1.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.6.2.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-1.7-development-only.js
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js
 
 <a id="JSHint_Releases_on_the_CDN_10"></a>
 
@@ -690,7 +690,7 @@ The following releases of [Modernizr](http://www.modernizr.com "Modernizr") are 
 
 The following releases of [JSHint](http://www.jshint.com "JSHint") are hosted on the CDN:
 
-- http://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js
+- https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js
 
 <a id="Knockout_Releases_on_the_CDN_11"></a>
 
@@ -698,26 +698,26 @@ The following releases of [JSHint](http://www.jshint.com "JSHint") are hosted on
 
 The following releases of [Knockout](http://www.knockoutjs.com "Knockout") are hosted on the CDN:
 
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.2.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.2.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.1.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.1.debug.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js
-- http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.2.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.2.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.1.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.1.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.debug.js
 
 <a id="Globalize_Releases_on_the_CDN_12"></a>
 
@@ -727,23 +727,23 @@ The following releases of [Globalize](https://github.com/jquery/globalize "Globa
 
 #### Globalize version 1.0.0
 
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/node-main.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/currency.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/date.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/message.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/number.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/plural.js
-- http://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/relative-time.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/node-main.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/currency.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/date.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/message.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/number.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/plural.js
+- https://ajax.aspnetcdn.com/ajax/globalize/1.0.0/globalize/relative-time.js
 
 #### Globalize version 0.1.1
 
-- http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js
-- http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.js
-- http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.cultures.js
+- https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js
+- https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.js
+- https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.cultures.js
 
     - all cultures
-- http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
+- https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
 
     - Replace "{culture-code}" with the desired culture code, e.g. globalize.culture.en-GB.js== Microsoft Files on the CDN ==These libraries were uploaded by Microsoft.
 
@@ -755,32 +755,32 @@ The following releases of [https://github.com/scottjehl/Respond](https://github.
 
 #### Respond version 1.4.2
 
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.min.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.matchmedia.addListener.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.matchmedia.addListener.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.matchmedia.addListener.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.2/respond.matchmedia.addListener.min.js
 
 #### Respond version 1.4.1
 
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.min.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.matchmedia.addListener.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.matchmedia.addListener.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.matchmedia.addListener.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.1/respond.matchmedia.addListener.min.js
 
 #### Respond version 1.4.0
 
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.min.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.matchmedia.addListener.js
-- http://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.matchmedia.addListener.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.min.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.matchmedia.addListener.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.4.0/respond.matchmedia.addListener.min.js
 
 #### Respond version 1.3.0
 
-- http://ajax.aspnetcdn.com/ajax/respond/1.3.0/respond.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.3.0/respond.js
 
 #### Respond version 1.2.0
 
-- http://ajax.aspnetcdn.com/ajax/respond/1.2.0/respond.js
+- https://ajax.aspnetcdn.com/ajax/respond/1.2.0/respond.js
 
 <a id="Bootstrap_Releases_on_the_CDN_14"></a>
 
@@ -790,245 +790,245 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 #### Bootstrap version 4.0.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.7
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.6
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.5
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.4
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.2
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff2
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.1
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.3.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.0/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.2.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.1.1
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.1.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.css.map
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.1.0/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.0.3
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.0.2
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.2/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.0.1
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.1/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 3.0.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap-theme.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap-theme.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf
-- http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff
 
 #### Bootstrap version 2.3.2
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap-responsive.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap-responsive.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings.png
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings-white.png
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap-responsive.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/css/bootstrap-responsive.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings.png
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings-white.png
 
 #### Bootstrap version 2.3.1
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.min.js
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap-responsive.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap-responsive.min.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings.png
-- http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings-white.png
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap-responsive.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/css/bootstrap-responsive.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings.png
+- https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings-white.png
 
 <a id="BootstrapTouchCarousel_Releases_on_the_CDN_18"></a>
 
@@ -1038,8 +1038,8 @@ The following releases of [https://github.com/ixisio/bootstrap-touch-carousel](h
 
 #### Bootstrap TouchCarousel version 0.8.0
 
-- http://ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css
-- http://ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js
 
 <a id="Hammerjs_Releases_on_the_CDN_19"></a>
 
@@ -1049,9 +1049,9 @@ The following releases of [http://hammerjs.github.io/](http://hammerjs.github.io
 
 #### Hammer.js version 2.0.4
 
-- http://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.js
-- http://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js
-- http://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.map
+- https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.js
+- https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js
+- https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.map
 
 <a id="ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15"></a>
 
@@ -1071,42 +1071,42 @@ The following ASP.NET MVC JavaScript files are hosted on this CDN:
 
 #### ASP.NET MVC 5.2.3
 
-- http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js
-- http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js
 
 #### ASP.NET MVC 5.1
 
-- http://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.js
-- http://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.min.js
 
 #### ASP.NET MVC 5.0
 
-- http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.js
-- http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.js
+- https://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js
 
 #### ASP.NET MVC 4.0
 
-- http://ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.js
-- http://ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.js
+- https://ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js
 
 #### ASP.NET MVC 3.0
 
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.js
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.js
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/MicrosoftMvcAjax.js
-- http://ajax.aspnetcdn.com/ajax/mvc/3.0/MicrosoftMvcAjax.debug.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/MicrosoftMvcAjax.js
+- https://ajax.aspnetcdn.com/ajax/mvc/3.0/MicrosoftMvcAjax.debug.js
 
 #### ASP.NET MVC 2.0
 
-- http://ajax.aspnetcdn.com/ajax/mvc/2.0/MicrosoftMvcAjax.js
-- http://ajax.aspnetcdn.com/ajax/mvc/2.0/MicrosoftMvcAjax.debug.js
+- https://ajax.aspnetcdn.com/ajax/mvc/2.0/MicrosoftMvcAjax.js
+- https://ajax.aspnetcdn.com/ajax/mvc/2.0/MicrosoftMvcAjax.debug.js
 
 #### ASP.NET MVC 1.0
 
-- http://ajax.aspnetcdn.com/ajax/mvc/1.0/MicrosoftMvcAjax.js
-- http://ajax.aspnetcdn.com/ajax/mvc/1.0/MicrosoftMvcAjax.debug.js
+- https://ajax.aspnetcdn.com/ajax/mvc/1.0/MicrosoftMvcAjax.js
+- https://ajax.aspnetcdn.com/ajax/mvc/1.0/MicrosoftMvcAjax.debug.js
 
 <a id="ASPNET_SignalR_Releases_on_the_CDN_17"></a>
 
@@ -1116,67 +1116,67 @@ The following ASP.NET SignalR JavaScript files are hosted on this CDN:
 
 #### ASP.NET SignalR 2.2.2
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.js
 
 #### ASP.NET SignalR 2.2.1
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.js
 
 #### ASP.NET SignalR 2.2.0
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.js
 
 #### ASP.NET SignalR 2.1.0
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.1.0.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.1.0.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.1.0.js
 
 #### ASP.NET SignalR 2.0.3
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.js
 
 #### ASP.NET SignalR 2.0.2
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.2.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.2.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.2.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.2.js
 
 #### ASP.NET SignalR 2.0.1
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.1.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.1.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.1.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.1.js
 
 #### ASP.NET SignalR 2.0.0
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.js
 
 #### ASP.NET SignalR 1.1.3
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.3.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.3.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.3.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.3.js
 
 #### ASP.NET SignalR 1.1.2
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.2.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.2.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.2.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.2.js
 
 #### ASP.NET SignalR 1.1.1
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.1.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.1.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.1.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.1.js
 
 #### ASP.NET SignalR 1.1.0
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.0.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.0.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.1.0.js
 
 #### ASP.NET SignalR 1.0.1
 
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js
-- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js
+- https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.js
 
 For information about the terms of use for the CDN, see [Microsoft Ajax CDN Terms of Use](https://www.asp.net/terms-of-use "Microsoft Ajax CDN Terms of Use").

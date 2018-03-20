@@ -17,9 +17,9 @@ jquery.validate version 1.8
 ====================
 The following files are hosted on the CDN:
 
-- http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.js
-- http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js
-- http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate-vsdoc.js
-- http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/additional-methods.js
-- http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/additional-methods.min.js
-- Localization Files at http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages\_##.js where ## is the loc code.
+- https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.js
+- https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate-vsdoc.js
+- https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/additional-methods.js
+- https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/additional-methods.min.js
+- Localization Files at https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages\_##.js where ## is the loc code.
