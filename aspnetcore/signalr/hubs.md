@@ -22,15 +22,17 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 ## Configure SignalR hubs
 
-Since SignalR is middleware, a call to `services.AddMvc` is required in the `ConfigureServices` method of the `Startup` class to register the service. The following example shows both how to register the service, and how to map a route to a hub.
+Since SignalR is middleware, a call to `services.AddSignalR` is required in the `ConfigureServices` method of the `Startup` class to register the service.
 
-[!code-javascript[Configure hubs](hubs/sample/js/startup.cs?highlight=41,65-68)]
+[!code-javascript[Configure service](hubs/sample/startup.cs?range=35)]
 
-When adding SignalR functionality to an ASP.NET MVC application, add the SignalR route before the other routes.
+When adding SignalR functionality to an ASP.NET MVC application, setup SignalR routes by calling `app.UseSignalR` in the `Configure` method before the other routes.
+
+[!code-javascript[Configure routes to hubs](hubs/sample/startup.cs?range=55-58)]
 
 ## Create and use hubs
 
-To create a hub, inherit from the `Hub` class, and add public methods to it. Clients can call methods that are defined as `public`. Methods using other class specifiers such as `private` or `protected` can be defined in a class, but can't accept calls from clients.
+To create a hub, inherit from the `Hub` class, and add public methods to it. Clients can call methods that are defined as `public`. Methods that use access modifiers such as `private` or `protected` can't accept calls from clients.
 
 [!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=10-14)]
 
@@ -44,9 +46,9 @@ In the context of your hub, you can determine current by referencing its `Contex
 
 [!code-csharp[Connection Ids](hubs/sample/hubs/chathub.cs?range=20-24)]
 
-## The `Clients` object
+## The Clients object
 
-Each instance of the `Hub` class has an object named `Clients` that contains the following properties for communication between server and client:
+Each instance of the `Hub` class has a property named `Clients` that contains the following members for communication between server and client:
 
 | Property | Description |
 | ------ | ----------- |
@@ -68,9 +70,11 @@ Additionally, the `Hub` class contains the following methods:
 | User | Sends a message to a specific user |
 | Users | Sends a message to multiple users |
 
+Each property or method in the preceding tables contains a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
+
 ## Send messages to clients
 
-Use the members of `Clients.Client` or `Clients.Clients` to make calls to specific clients. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients  stored in an array named `ids`.
+Yo make calls to specific clients, use the members of `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients  stored in an array named `ids`.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
 
@@ -78,12 +82,17 @@ Use the members of `Clients.Client` or `Clients.Clients` to make calls to specif
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections. Use the `OnConnectedAsync` event to capture the connection ID of the incoming connection.
 
-[!code-csharp[Handle events](hubs/sample/hubs/chathub.cs?range=33-37)]
+[!code-csharp[Handle events](hubs/sample/hubs/chathub.cs?range=32-37)]
 
 ## Handle errors
 
-To handle errors that occur in your Hub class methods wrap your method code in try-catch blocks to handle and log the exception object.
+Use the same method you normally would for handling errors. In hubs, wrap your method code in try-catch blocks to handle and log the exception object.
+
+On the client, chain a `catch` method to the call to `invoke` to designate the error handling routine.
+
+[!code-csharp[Connection Ids](hubs/sample/wwwroot/js/chat.js?range=19)]
+[!code-csharp[Connection Ids](hubs/sample/wwwroot/js/chat.js?range=24-29)]
 
 ## Related Resources
 
-[Intro to SignalR](signalr/intro.md)
+[Intro to ASP.NET Core SignalR](introduction.md)
