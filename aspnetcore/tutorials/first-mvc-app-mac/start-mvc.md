@@ -26,12 +26,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-
-Install the following:
-
-- [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later
-- [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+[!INCLUDE[](~/includes/net-core-prereqs-macos.md)]
 
 ## Create a web app
 

@@ -19,7 +19,7 @@ uid: spa/index
 
 ## Prerequisites
 
-* [.NET Core SDK](https://www.microsoft.com/net/download), version 2.0.0 or later
+* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
 * [Node.js](https://nodejs.org), version 6 or later
 
 ## Installation
