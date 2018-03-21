@@ -27,9 +27,13 @@ This document explains when it's most appropriate to use each return type.
 
 ## Specific type
 
-The simplest action returns a single, specific type (for example, `string` or a custom object type). Consider the following action, which returns a collection of custom `Product` objects:
+The simplest action returns a primitive or complex data type (for example, `string` or a custom object type). Consider the following action, which returns a collection of custom `Product` objects:
 
 [!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_Get)]
+
+When there are no known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters; therefore, parameter constraints validation isn't needed.
+
+When known conditions need to be accounted for in an action, multiple return paths are introduced. In such a case, it's common to mix an [ActionResult](/dotnet/api/microsoft.aspnetcore.mvc.actionresult) return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action.
 
 ## IActionResult type
 
@@ -92,4 +96,4 @@ If model validation fails, the [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc
 
 * [Controller actions](xref:mvc/controllers/actions)
 * [Model validation](xref:mvc/models/validation)
-* [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+* [Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
