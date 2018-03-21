@@ -1,7 +1,7 @@
 ---
-title: Consumer APIs Overview
+title: Consumer APIs overview for ASP.NET Core
 author: rick-anderson
-description: This document provides a brief overview of the various consumer APIs available within the ASP.NET Core data protection library.
+description: Receive a brief overview of the various consumer APIs available within the ASP.NET Core data protection library.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/overview
 ---
-# Consumer APIs overview
+# Consumer APIs overview for ASP.NET Core
 
 The `IDataProtectionProvider` and `IDataProtector` interfaces are the basic interfaces through which consumers use the data protection system. They're located in the [Microsoft.AspNetCore.DataProtection.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) package.
 

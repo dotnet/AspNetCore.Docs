@@ -1,7 +1,7 @@
 ---
-title: Update the generated pages
+title: Update the generated pages in an ASP.NET Core app
 author: rick-anderson
-description: Update the generated pages with better display.
+description: Learn how to update the generated pages in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
 ms.date: 08/07/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/da1
 ---
-# Update the generated pages
+# Update the generated pages in an ASP.NET Core app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

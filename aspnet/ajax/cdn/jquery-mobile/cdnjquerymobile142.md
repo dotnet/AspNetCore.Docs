@@ -17,16 +17,16 @@ jQuery Mobile 1.4.2 on the Microsoft Ajax CDN
 ====================
 The jQuery Mobile 1.4.2 library includes the following files:
 
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.structure-1.4.2.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.theme-1.4.2.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.theme-1.4.2.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.min.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/ajax-loader.gif
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-18-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-18-white.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-36-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-36-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.structure-1.4.2.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.theme-1.4.2.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile.theme-1.4.2.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/jquery.mobile-1.4.2.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/ajax-loader.gif
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-18-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-18-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-36-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.4.2/images/icons-36-white.png

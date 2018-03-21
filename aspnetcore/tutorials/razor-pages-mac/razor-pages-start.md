@@ -18,10 +18,7 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 ## Prerequisites
 
-Install the following:
-
-* [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later
-* [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+[!INCLUDE[](~/includes/net-core-prereqs-macos.md)]
 
 ## Create a Razor web app
 

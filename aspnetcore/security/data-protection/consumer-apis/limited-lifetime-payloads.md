@@ -1,7 +1,7 @@
 ---
-title: Limiting the lifetime of protected payloads
+title: Limiting the lifetime of protected payloads in ASP.NET Core
 author: rick-anderson
-description: This document explains how to limit the lifetime of a protected payload using the ASP.NET Core data protection APIs.
+description: Learn how to limit the lifetime of a protected payload using the ASP.NET Core Data Protection APIs.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
 ---
-# Limiting the lifetime of protected payloads
+# Limiting the lifetime of protected payloads in ASP.NET Core
 
 There are scenarios where the application developer wants to create a protected payload that expires after a set period of time. For instance, the protected payload might represent a password reset token that should only be valid for one hour. It's certainly possible for the developer to create their own payload format that contains an embedded expiration date, and advanced developers may wish to do this anyway, but for the majority of developers managing these expirations can grow tedious.
 

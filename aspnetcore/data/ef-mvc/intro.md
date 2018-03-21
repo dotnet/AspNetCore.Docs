@@ -30,7 +30,7 @@ EF Core 2.0 is the latest version of EF but doesn't yet have all the features of
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 ## Troubleshooting
 

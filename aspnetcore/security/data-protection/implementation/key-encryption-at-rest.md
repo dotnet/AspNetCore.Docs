@@ -1,7 +1,7 @@
 ---
-title: Key Encryption At Rest
+title: Key encryption At rest in ASP.NET Core
 author: rick-anderson
-description: This document outlines the implementation details of ASP.NET Core data protection key encryption at rest.
+description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
-# Key Encryption At Rest
+# Key encryption At rest in ASP.NET Core
 
 <a name="data-protection-implementation-key-encryption-at-rest"></a>
 
@@ -90,7 +90,7 @@ In this scenario, the AD domain controller is responsible for distributing the e
 
 ## Certificate-based encryption with Windows DPAPI-NG
 
-If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on [.NET Core](https://www.microsoft.com/net/core). To take advantage of this, use the rule descriptor string "CERTIFICATE=HashId:thumbprint", where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.
+If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on .NET Core. To take advantage of this, use the rule descriptor string "CERTIFICATE=HashId:thumbprint", where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.
 
 ```csharp
 sc.AddDataProtection()

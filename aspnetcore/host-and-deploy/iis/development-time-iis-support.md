@@ -19,8 +19,7 @@ This article describes [Visual Studio](https://www.visualstudio.com/vs/) support
 
 ## Prerequisites
 
-* Visual Studio (2017/version 15.3 or later)
-* ASP.NET and web development workload *OR* the .NET Core cross-platform development workload
+[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
 
 ## Enable IIS
 

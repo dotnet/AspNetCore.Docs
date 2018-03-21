@@ -27,12 +27,9 @@ There are 3 versions of this tutorial:
 
 [!INCLUDE[template files](../includes/webApi/intro.md)]
 
-## Set up your development environment
+## Prerequisites
 
-Download and install:
-- [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-- [Visual Studio Code](https://code.visualstudio.com)
-- Visual Studio Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+[!INCLUDE[](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create the project
 

@@ -25,7 +25,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 ## Prerequisites
 
-[.NET Core 2.1.4 SDK](https://www.microsoft.com/net/core) or later.
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 ## Create a new ASP.NET Core project with the .NET Core CLI
 

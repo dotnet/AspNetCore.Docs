@@ -26,7 +26,7 @@ There are three versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 

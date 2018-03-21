@@ -1,7 +1,7 @@
 ---
-title: Consumer APIs
+title: Consumer APIs for ASP.NET Core
 author: rick-anderson
-description: This document serves as a table of contents for the various ASP.NET Core consumer API data protection topics.
+description: Learn about the various ASP.NET Core consumer API data protection topics.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/consumer-apis/index
 ---
-# Consumer APIs
+# Consumer APIs for ASP.NET Core
 
 * [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview)
 

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using CookieAuthCore.Data;
 using CookieAuthCore.Models;
@@ -110,7 +109,7 @@ namespace CookieAuthCore.Pages.Account
                     // redirect response value.
                 };
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                await HttpContext.SignInAsync("Identity.Application", 
                     new ClaimsPrincipal(claimsIdentity), authProperties);
 
                 _logger.LogInformation($"User {user.Email} registered and logged in at {DateTime.UtcNow}.");

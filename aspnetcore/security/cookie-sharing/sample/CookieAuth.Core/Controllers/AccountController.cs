@@ -22,7 +22,7 @@ namespace CookieAuthCore.Controllers
         {
             _logger.LogInformation($"User {User.Identity.Name} logged out at {DateTime.UtcNow}.");
             
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync("Identity.Application");
 
             return RedirectToPage("/Account/SignedOut");
         }

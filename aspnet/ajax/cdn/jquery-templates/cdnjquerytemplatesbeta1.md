@@ -17,7 +17,7 @@ jQuery Templates Beta 1
 ====================
 The jQuery Templates plugin includes the following files:
 
-- http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js
-- http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js
-- http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmplPlus.js
-- http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmplPlus.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js
+- https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmplPlus.js
+- https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmplPlus.min.js
