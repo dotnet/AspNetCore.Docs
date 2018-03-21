@@ -15,10 +15,10 @@ uid: host-and-deploy/linux-nginx
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 Server.
+This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server.
 
 > [!NOTE]
-> For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
+> For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 This guide:
 
@@ -29,17 +29,34 @@ This guide:
 
 ## Prerequisites
 
-1. Access to an Ubuntu 16.04 Server with a standard user account with sudo privilege
+1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege
 1. An existing ASP.NET Core app
 
 ## Copy over the app
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a self-contained directory that can run on the server.
+Configure the app for a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-Copy the ASP.NET Core app to the server using whatever tool integrates into the organization's workflow (for example, SCP, FTP). Test the app, for example:
+Specify the RID, `ubuntu.16.04-x64` in the project file (*.csproj*):
 
-* From the command line, run `dotnet <app_assembly>.dll`.
-* In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux. 
+```xml
+<PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RuntimeIdentifier>ubuntu.16.04-x64</RuntimeIdentifier>
+</PropertyGroup>
+```
+
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a self-contained directory that can run on the server:
+
+```console
+dotnet publish --configuration Release --runtime ubuntu.16.04-x64
+```
+
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, FTP).
+
+Test the app:
+
+1. From the command line, run the app: `dotnet <app_assembly>.dll`.
+1. In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux locally.
  
 ## Configure a reverse proxy server
 
@@ -113,7 +130,7 @@ Since Nginx was installed for the first time, explicitly start it by running:
 sudo service nginx start
 ```
 
-Verify a browser displays the default landing page for Nginx.
+Verify a browser displays the default landing page for Nginx. The landing page is reachable at `http://<server_IP_address>/index.nginx-debian.html`.
 
 ### Configure Nginx
 
@@ -150,6 +167,21 @@ With the preceding configuration file and default server, Nginx accepts public t
 > Failure to specify a proper [server_name directive](https://nginx.org/docs/http/server_names.html) exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
 
 Once the Nginx configuration is established, run `sudo nginx -t` to verify the syntax of the configuration files. If the configuration file test is successful, force Nginx to pick up the changes by running `sudo nginx -s reload`.
+
+To directly run the app on the server:
+
+1. Navigate to the app's directory.
+1. Run the app's executable: `./<app_executable>`.
+
+If a permissions error occurs, change the permissions:
+
+```console
+chmod u+x <app_executable>
+```
+
+If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm that port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
+
+When done testing the app, shut the app down with `Ctrl+C` at the command prompt.
 
 ## Monitoring the app
 
