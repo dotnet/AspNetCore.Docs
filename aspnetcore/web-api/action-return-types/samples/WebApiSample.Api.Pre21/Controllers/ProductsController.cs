@@ -28,7 +28,7 @@ namespace WebApiSample.Api.Pre21.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Product))]
         [ProducesResponseType(404)]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             if (!_repository.TryGetProduct(id, out var product))
             {
@@ -52,7 +52,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
             await _repository.AddProductAsync(product);
 
-            return CreatedAtAction(nameof(Get), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         #endregion
     }

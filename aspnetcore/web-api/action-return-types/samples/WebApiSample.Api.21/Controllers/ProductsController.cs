@@ -27,8 +27,9 @@ namespace WebApiSample.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public ActionResult<Product> Get(int id)
+        public ActionResult<Product> GetById(int id)
         {
             if (!_repository.TryGetProduct(id, out var product))
             {
@@ -52,7 +53,7 @@ namespace WebApiSample.Controllers
 
             await _repository.AddProductAsync(product);
 
-            return CreatedAtAction(nameof(Get), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         #endregion
     }
