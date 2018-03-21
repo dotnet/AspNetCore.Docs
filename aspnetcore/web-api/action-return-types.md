@@ -47,7 +47,7 @@ Consider the following synchronous action in which there are two possible return
 
 [!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.Pre21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=8,11)]
 
-In the preceding action, a 404 status code is returned when the product represented by `id` doesn't exist in the underlying data store. The [NotFound](/dotnet/api/system.web.http.apicontroller.notfound) helper method is invoked as a shortcut to `return new NotFoundResult();`. If the product does exist, a `Product` object representing the payload is returned with a 200 status code. The [Ok](/dotnet/api/system.web.http.apicontroller.ok) helper method is invoked as a shortcut to `return new OkObjectResult<Product>(product);`.
+In the preceding action, a 404 status code is returned when the product represented by `id` doesn't exist in the underlying data store. The [NotFound](/dotnet/api/system.web.http.apicontroller.notfound) helper method is invoked as a shortcut to `return new NotFoundResult();`. If the product does exist, a `Product` object representing the payload is returned with a 200 status code. The [Ok](/dotnet/api/system.web.http.apicontroller.ok) helper method is invoked as the shorthand form of `return new OkObjectResult(product);`.
 
 ### Asynchronous action
 
