@@ -82,7 +82,7 @@ Consider an asynchronous action in which there are two possible return types:
 If model validation fails, the [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest#Microsoft_AspNetCore_Mvc_ControllerBase_BadRequest_Microsoft_AspNetCore_Mvc_ModelBinding_ModelStateDictionary_) method is invoked to return a 400 status code. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property containing the specific validation errors is passed to it. If model validation succeeds, the product is created in the database. A 201 status code is returned.
 
 > [!TIP]
-> As of ASP.NET Core 2.1, action parameter inference is enabled when a controller class is decorated with the `[ApiController]` attribute. Complex type parameters are automatically bound using the request body. Consequently, the preceding action's `product` parameter isn't explicitly annotated with the [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
+> As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. Complex type parameters are automatically bound using the request body. Consequently, the preceding action's `product` parameter isn't explicitly annotated with the [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
 
 ## Additional resources
 
