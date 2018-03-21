@@ -167,6 +167,12 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
 ## Culture fallback behavior
+When searching for a resource, localization engages in "culture fallback", meaning that starting from the requested culture, if not found, it will fall back to the parent culture of that culture (CultureInfo.Parent LINK). This usually (but not always) means removing the national signifier from the ISO (IE, 'es-MX' the dialect of spanish spoken in Mexico has the parent 'es', spanish non-specific to any country). 
+
+If your site recieves a request for culture "fr-CA" which wants a "Welcome" resource the localization system will look for the following resources, in order, and select the first one it finds:
+- Welcome.fr-CA.resx
+- Welcome.fr.resx
+- Welcome.resx (if the NeutralResourceLanguage is 'fr-CA')
 
 As an example, if you remove the ".fr" culture designator and you have the culture set to French, the default resource file is read and strings are localized. The Resource manager designates a default or fallback resource for when nothing meets your requested culture. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.
 
@@ -176,7 +182,7 @@ If you create a resource file in Visual Studio without a culture in the file nam
 
 ### Add Other Cultures
 
-Each language and culture combination (other than the default language) requires a unique resource file. You create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the *.resx* file name extension, as in *Welcome.es-MX.resx* (Spanish/Mexico). To specify a culturally neutral language, remove the country code (`MX` in the preceding example). The culturally neutral Spanish resource file name is *Welcome.es.resx*.
+Each language and culture combination (other than the default language) requires a unique resource file. You create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the *.resx* file extension, as in *Welcome.es-MX.resx* (Spanish/Mexico).
 
 ## Implement a strategy to select the language/culture for each request  
 
