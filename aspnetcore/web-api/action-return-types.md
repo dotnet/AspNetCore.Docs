@@ -5,7 +5,7 @@ description: Learn about using the various controller action method return types
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/20/2018
+ms.date: 03/21/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -27,7 +27,7 @@ This document explains when it's most appropriate to use each return type.
 
 ## Specific type
 
-The simplest action returns a single, specific type (for example, `string` or a custom object type). Consider the following action, which returns a custom type of `Product`:
+The simplest action returns a single, specific type (for example, `string` or a custom object type). Consider the following action, which returns a collection of custom `Product` objects:
 
 [!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_Get)]
 
@@ -74,7 +74,7 @@ Consider a synchronous action in which there are two possible return types:
 In the preceding code snippet, a 404 status code is returned when the product doesn't exist in the database. If the product does exist, the corresponding `Product` object is returned. Prior to ASP.NET Core 2.1, the `return product;` line would have been `return Ok(product);`.
 
 > [!TIP]
-> As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. An action parameter name matching a name in the route template is automatically bound using the request route data. Consequently, the preceding action's `id` parameter isn't explicitly annotated with the [[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute) attribute.
+> As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. A parameter name matching a name in the route template is automatically bound using the request route data. Consequently, the preceding action's `id` parameter isn't explicitly annotated with the [[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute) attribute.
 
 ### Asynchronous action
 
@@ -85,7 +85,7 @@ Consider an asynchronous action in which there are two possible return types:
 If model validation fails, the [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest#Microsoft_AspNetCore_Mvc_ControllerBase_BadRequest_Microsoft_AspNetCore_Mvc_ModelBinding_ModelStateDictionary_) method is invoked to return a 400 status code. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property containing the specific validation errors is passed to it. If model validation succeeds, the product is created in the database. A 201 status code is returned.
 
 > [!TIP]
-> As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. Complex type parameters to an action are automatically bound using the request body. Consequently, the preceding action's `product` parameter isn't explicitly annotated with the [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
+> As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. Complex type parameters are automatically bound using the request body. Consequently, the preceding action's `product` parameter isn't explicitly annotated with the [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
 
 ## Additional resources
 
