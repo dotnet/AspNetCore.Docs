@@ -30,7 +30,7 @@ In the previous tutorial you created a web site, a database, and a data model. I
 
 [![Image18](the-entity-framework-and-aspnet-getting-started-part-2/_static/image6.png)](the-entity-framework-and-aspnet-getting-started-part-2/_static/image5.png)
 
-Note that in this application you won't be adding input validation to pages that update the database, and some of the error handling will not be as robust as would be required in a production application. That keeps the tutorial focused on the Entity Framework and keeps it from getting too long. For details about how to add these features to your application, see [Validating User Input in ASP.NET Web Pages](https://msdn.microsoft.com/en-us/library/7kh55542.aspx) and [Error Handling in ASP.NET Pages and Applications](https://msdn.microsoft.com/en-us/library/w16865z6.aspx).
+Note that in this application you won't be adding input validation to pages that update the database, and some of the error handling will not be as robust as would be required in a production application. That keeps the tutorial focused on the Entity Framework and keeps it from getting too long. For details about how to add these features to your application, see [Validating User Input in ASP.NET Web Pages](https://msdn.microsoft.com/library/7kh55542.aspx) and [Error Handling in ASP.NET Pages and Applications](https://msdn.microsoft.com/library/w16865z6.aspx).
 
 ## Adding and Configuring the EntityDataSource Control
 
@@ -152,13 +152,13 @@ In the markup for the `EntityDataSource` control, remove the `ConnectionString` 
 
 - Better performance. When the `EntityDataSource` control initializes the data model using the `ConnectionString` and `DefaultContainerName` attributes, it performs additional work to load metadata on every request. This isn't necessary if you specify the `ContextTypeName` attribute.
 - Lazy loading is turned on by default in generated object context classes (such as `SchoolEntities` in this tutorial) in Entity Framework 4.0. This means that navigation properties are loaded with related data automatically right when you need it. Lazy loading is explained in more detail later in this tutorial.
-- Any customizations that you've applied to the object context class (in this case, the `SchoolEntities` class) will be available to controls that use the `EntityDataSource` control. Customizing the object context class is an advanced topic that is not covered in this tutorial series. For more information, see [Extending Entity Framework Generated Types](https://msdn.microsoft.com/en-us/library/dd456844.aspx).
+- Any customizations that you've applied to the object context class (in this case, the `SchoolEntities` class) will be available to controls that use the `EntityDataSource` control. Customizing the object context class is an advanced topic that is not covered in this tutorial series. For more information, see [Extending Entity Framework Generated Types](https://msdn.microsoft.com/library/dd456844.aspx).
 
 The markup will now resemble the following example (the order of the properties might be different):
 
 [!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample6.aspx)]
 
-The `EnableFlattening` attribute refers to a feature that was needed in earlier versions of the Entity Framework because foreign key columns were not exposed as entity properties. The current version makes it possible to use *foreign key associations*, which means foreign key properties are exposed for all but many-to-many associations. If your entities have foreign key properties and no [complex types](https://msdn.microsoft.com/en-us/library/bb738472.aspx), you can leave this attribute set to `False`. Don't remove the attribute from the markup, because the default value is `True`. For more information, see [Flattening Objects (EntityDataSource)](https://msdn.microsoft.com/en-us/library/ee404746.aspx).
+The `EnableFlattening` attribute refers to a feature that was needed in earlier versions of the Entity Framework because foreign key columns were not exposed as entity properties. The current version makes it possible to use *foreign key associations*, which means foreign key properties are exposed for all but many-to-many associations. If your entities have foreign key properties and no [complex types](https://msdn.microsoft.com/library/bb738472.aspx), you can leave this attribute set to `False`. Don't remove the attribute from the markup, because the default value is `True`. For more information, see [Flattening Objects (EntityDataSource)](https://msdn.microsoft.com/library/ee404746.aspx).
 
 Run the page and you see a list of students and employees (you'll filter for just students in the next tutorial). The first name and last name are displayed together.
 

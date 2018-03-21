@@ -2,14 +2,12 @@
 title: Dependency Injection in requirement handlers
 author: rick-anderson
 description: This document outlines how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
-keywords: ASP.NET Core,dependency injection,authorization handler
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 5fb6625c-173a-4feb-8380-73c9844dc23c
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/dependencyinjection
 ---
 # Dependency Injection in requirement handlers

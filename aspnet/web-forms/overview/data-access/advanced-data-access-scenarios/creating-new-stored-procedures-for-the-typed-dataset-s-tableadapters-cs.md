@@ -42,7 +42,7 @@ Functions are a construct common to all programming languages. A function is a c
 > Stored procedures are oftentimes referred to as sprocs or SPs .
 
 
-Stored procedures are created using the [`CREATE PROCEDURE`](https://msdn.microsoft.com/en-us/library/aa258259(SQL.80).aspx) T-SQL statement. For example, the following T-SQL script creates a stored procedure named `GetProductsByCategoryID` that takes in a single parameter named `@CategoryID` and returns the `ProductID`, `ProductName`, `UnitPrice`, and `Discontinued` fields of those columns in the `Products` table that have a matching `CategoryID` value:
+Stored procedures are created using the [`CREATE PROCEDURE`](https://msdn.microsoft.com/library/aa258259(SQL.80).aspx) T-SQL statement. For example, the following T-SQL script creates a stored procedure named `GetProductsByCategoryID` that takes in a single parameter named `@CategoryID` and returns the `ProductID`, `ProductName`, `UnitPrice`, and `Discontinued` fields of those columns in the `Products` table that have a matching `CategoryID` value:
 
 
 [!code-sql[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample1.sql)]
@@ -379,7 +379,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Creating and Maintaining Stored Procedures](https://msdn.microsoft.com/en-us/library/aa214299(SQL.80).aspx)
+- [Creating and Maintaining Stored Procedures](https://msdn.microsoft.com/library/aa214299(SQL.80).aspx)
 - [Retrieving Scalar Data from a Stored Procedure](http://aspnet.4guysfromrolla.com/articles/062905-1.aspx)
 - [SQL Server Stored Procedure Basics](http://www.awprofessional.com/articles/article.asp?p=25288&amp;rl=1)
 - [Stored Procedures: An Overview](http://www.sqlteam.com/item.asp?ItemID=563)

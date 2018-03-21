@@ -2,14 +2,12 @@
 title: Configure Windows authentication in ASP.NET Core
 author: ardalis
 description: This article describes how to configure Windows authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
-keywords: ASP.NET Core,Windows authentication,Authorize attribute,AllowAnonymous attribute
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/24/2017
-ms.topic: article
-ms.assetid: cf119f21-1a2b-49a2-b052-548ccb66ee83
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authentication/windowsauth
 ---
 # Configure Windows authentication in an ASP.NET Core app
@@ -53,7 +51,7 @@ Alternatively, these two properties can be configured in the *launchSettings.jso
 
 ## Enable Windows authentication with IIS
 
-IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
+IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module flows Windows authentication to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
 
 ### Create a new IIS site
 
@@ -108,6 +106,9 @@ When Windows authentication is enabled and anonymous access is disabled, the `[A
 When both Windows authentication and anonymous access are enabled, use the `[Authorize]` and `[AllowAnonymous]` attributes. The `[Authorize]` attribute allows you to secure pieces of the app which truly do require Windows authentication. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access. See [Simple Authorization](xref:security/authorization/simple) for attribute usage details.
 
 In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows authentication. The recommended configuration varies slightly based on the web server being used.
+
+> [!NOTE]
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
 
 #### IIS
 

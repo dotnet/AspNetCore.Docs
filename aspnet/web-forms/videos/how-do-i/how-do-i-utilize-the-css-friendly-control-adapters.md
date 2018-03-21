@@ -17,6 +17,6 @@ msc.type: video
 ====================
 by [Chris Pels](https://twitter.com/chrispels)
 
-The CSS Friendly Control Adapters allow you to alter the HTML that is rendered by a standard ASP.NET 2.0 server control. In this video we learn that the standard ASP.NET Menu control renders an HTML &amp;lt;table&amp;gt; element, but with the CSS Friendly Control Adapters the same control will render an HTML &amp;lt;ul&amp;gt; list element, improving the menu's accessibility and presentation. Visit the &lt;a href=&quot;https://www.asp.net/cssadapters/&quot;&gt;CSS Friendly Control Adapters&lt;/a&gt; page to see how the same techniques can be applied to many other ASP.NET server controls.
+The CSS Friendly Control Adapters allow you to alter the HTML that is rendered by a standard ASP.NET 2.0 server control. In this video we learn that the standard ASP.NET Menu control renders an HTML `<table>` element, but with the CSS Friendly Control Adapters the same control will render an HTML `<ul>` list element, improving the menu's accessibility and presentation. 
 
 [&#9654; Watch video (26 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-utilize-the-css-friendly-control-adapters)

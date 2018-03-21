@@ -1,18 +1,16 @@
 ---
-title: View components
+title: View components in ASP.NET Core
 author: rick-anderson
-description: View Components are intended anywhere you have reusable rendering logic.
-keywords: ASP.NET Core,view components,partial view
-ms.author: riande
+description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.assetid: ab4705b7-59d7-4f31-bc97-ea7f292fe926
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/view-components
 ---
-# View components
+# View components in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -20,14 +18,14 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Introducing view components
 
-New to ASP.NET Core MVC, view components are similar to partial views, but they are much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
+New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. A view component:
 
-* Renders a chunk rather than a whole response
-* Includes the same separation-of-concerns and testability benefits found between a controller and view
-* Can have parameters and business logic
-* Is typically invoked from a layout page
+* Renders a chunk rather than a whole response.
+* Includes the same separation-of-concerns and testability benefits found between a controller and view.
+* Can have parameters and business logic.
+* Is typically invoked from a layout page.
 
-View components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as:
+View components are intended anywhere you have reusable rendering logic that's too complex for a partial view, such as:
 
 * Dynamic navigation menus
 * Tag cloud (where it queries the database)
@@ -57,7 +55,7 @@ A view component class:
 
 * Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
 
-* Does not take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
+* Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 ### View component methods
 
@@ -65,8 +63,8 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 * Define an `InvokeAsync` method that returns an `IViewComponentResult`
 * Typically initializes a model and passes it to a view by calling the `ViewComponent` `View` method
-* Parameters come from the calling method, not HTTP, there is no model binding
-* Are not reachable directly as an HTTP endpoint, they are invoked from your code (usually in a view). A view component never handles a request
+* Parameters come from the calling method, not HTTP, there's no model binding
+* Are not reachable directly as an HTTP endpoint, they're invoked from your code (usually in a view). A view component never handles a request
 * Are overloaded on the signature rather than any details from the current HTTP request
 
 ### View search path
@@ -90,13 +88,13 @@ To use the view component, call the following inside a view:
 
 The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 ## Invoking a view component as a Tag Helper
 
 For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [lower kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
@@ -117,21 +115,21 @@ You can register a View Component as a Tag Helper to any file that references th
 
 The `InvokeAsync` method used in this tutorial:
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 In Tag Helper markup:
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in lower kebab case.
 
 ### Invoking a view component directly from a controller
 
-View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
+View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components don't define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
 
 In this example, the view component is called directly from the controller:
 
-[!code-csharp[Main](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
+[!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
 ## Walkthrough: Creating a simple view component
 
@@ -143,13 +141,13 @@ In this example, the view component is called directly from the controller:
 
 Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
 
-[!code-csharp[Main](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
+[!code-csharp[](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
 * Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime will use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
-* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could have named the class `XYZ` and applied the `ViewComponent` attribute:
+* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could've named the class `XYZ` and applied the `ViewComponent` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
@@ -168,7 +166,7 @@ Notes on the code:
 * Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
 
 * Create a *Views/Shared/Components/PriorityList/Default.cshtml* Razor view:
-  [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
+  [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
     
    The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/Todo/Components/PriorityList/Default.cshtml)*.
     
@@ -176,7 +174,7 @@ Notes on the code:
 
 * Add a `div` containing a call to the priority list component to the bottom of the *Views/Todo/index.cshtml* file:
 
-    [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFirst.cshtml?range=34-38)]
+    [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFirst.cshtml?range=34-38)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -186,7 +184,7 @@ Test the app. The following image shows the ToDo list and the priority items:
 
 You can also call the view component directly from the controller:
 
-[!code-csharp[Main](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
+[!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
 ![priority items from IndexVC action](view-components/_static/indexvc.png)
 
@@ -194,33 +192,33 @@ You can also call the view component directly from the controller:
 
 A complex view component might need to specify a non-default view under some conditions. The following code shows how to specify the "PVC" view  from the `InvokeAsync` method. Update the `InvokeAsync` method in the `PriorityListViewComponent` class.
 
-[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
+[!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
 
 Copy the *Views/Shared/Components/PriorityList/Default.cshtml* file to a view named *Views/Shared/Components/PriorityList/PVC.cshtml*. Add a heading to indicate the PVC view is being used.
 
-[!code-cshtml[Main](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
+[!code-cshtml[](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
 Update *Views/TodoList/Index.cshtml*:
 
 <!-- Views/TodoList/Index.cshtml is never imported, so change to test tutorial -->
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 Run the app and verify PVC view.
 
 ![Priority View Component](view-components/_static/pvc.png)
 
-If the PVC view is not rendered, verify you are calling the view component with a priority of 4 or higher.
+If the PVC view isn't rendered, verify you are calling the view component with a priority of 4 or higher.
 
 ### Examine the view path
 
-* Change the priority parameter to three or less so the priority view is not returned.
+* Change the priority parameter to three or less so the priority view isn't returned.
 * Temporarily rename the *Views/Todo/Components/PriorityList/Default.cshtml* to *1Default.cshtml*.
 * Test the app, you'll get the following error:
 
    ```
    An unhandled exception occurred while processing the request.
-   InvalidOperationException: The view 'Components/PriorityList/Default' was not found. The following locations were searched:
+   InvalidOperationException: The view 'Components/PriorityList/Default' wasn't found. The following locations were searched:
    /Views/ToDo/Components/PriorityList/Default.cshtml
    /Views/Shared/Components/PriorityList/Default.cshtml
    EnsureSuccessful
@@ -236,12 +234,12 @@ If the PVC view is not rendered, verify you are calling the view component with 
 
 If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 
-[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
+[!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
 Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
-[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
 
-## Additional Resources
+## Additional resources
 
-* [Dependency injection into views](dependency-injection.md)
+* [Dependency injection into views](xref:mvc/views/dependency-injection)

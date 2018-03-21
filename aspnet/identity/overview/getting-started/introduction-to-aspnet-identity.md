@@ -26,7 +26,7 @@ by [Jon Galloway](https://github.com/jongalloway), [Pranav Rastogi](https://gith
 
 ### ASP.NET Membership
 
-[ASP.NET Membership](https://msdn.microsoft.com/en-us/library/yh26yfzy(v=VS.100).aspx) was designed to solve site membership requirements that were common in 2005, which involved Forms Authentication, and a SQL Server database for user names, passwords, and profile data. Today there is a much broader array of data storage options for web applications, and most developers want to enable their sites to use social identity providers for authentication and authorization functionality. The limitations of ASP.NET Membership's design make this transition difficult:
+[ASP.NET Membership](https://msdn.microsoft.com/library/yh26yfzy(v=VS.100).aspx) was designed to solve site membership requirements that were common in 2005, which involved Forms Authentication, and a SQL Server database for user names, passwords, and profile data. Today there is a much broader array of data storage options for web applications, and most developers want to enable their sites to use social identity providers for authentication and authorization functionality. The limitations of ASP.NET Membership's design make this transition difficult:
 
 - The database schema was designed for SQL Server and you can't change it. You can add profile information, but the additional data is packed into a different table, which makes it difficult to access by any means except through the Profile Provider API.
 - The provider system enables you to change the backing data store, but the system is designed around assumptions appropriate for a relational database. You can write a provider to store membership information in a non-relational storage mechanism, such as Azure Storage Tables, but then you have to work around the relational design by writing a lot of code and a lot of `System.NotImplementedException` exceptions for methods that don't apply to NoSQL databases.
@@ -127,7 +127,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample3.cs?highlight=5-6)]
 
- The highlighted code above in the `SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage.  
+ The highlighted code above in the `SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage.  
   
  The highlighted code below in the `SignInAsync` method signs in the user by using the AuthenticationManager from OWIN and calling `SignIn` and passing in the ClaimsIdentity.  
 
@@ -137,7 +137,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample5.cs?highlight=6)]
 
- The highlighted code above shows the OWIN `AuthenticationManager.SignOut` method. This is analogous to [FormsAuthentication.SignOut](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.signout.aspx) method used by the [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module in Web Forms.
+ The highlighted code above shows the OWIN `AuthenticationManager.SignOut` method. This is analogous to [FormsAuthentication.SignOut](https://msdn.microsoft.com/library/system.web.security.formsauthentication.signout.aspx) method used by the [FormsAuthentication](https://msdn.microsoft.com/library/system.web.security.formsauthenticationmodule.aspx) module in Web Forms.
 
 ## Components of ASP.NET Identity
 

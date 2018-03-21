@@ -1,1 +1,0 @@
-This folder if for SignalR content. Delete this file when the first file is added to this directory.

@@ -45,9 +45,9 @@ The [finished application](https://github.com/dotnet/docs/tree/master/samples/fr
 
 The development machine must be running
 
-- [Windows 10 Anniversary Update](https://www.microsoft.com/en-us/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/en-us/cloud-platform/windows-server) (or higher).
+- [Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (or higher).
 - [Docker for Windows](https://docs.docker.com/docker-for-windows/) - version Stable 1.13.0 or 1.12 Beta 26 (or newer versions)
-- [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx).
+- [Visual Studio 2017](https://www.visualstudio.com/visual-studio-homepage-vs.aspx).
 
 > [!IMPORTANT]
 > If you are using Windows Server 2016, follow the
@@ -91,7 +91,7 @@ for the base image, additional components, the app you
 want to run, and other configuration images.  The Dockerfile is the input
 to the `docker build` command, which creates the image.
 
-You will build an image based on the `microsft/aspnet`
+You will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
 Windows Server Core, IIS and ASP.NET 4.6.2. When you run this image in your container, it will

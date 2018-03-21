@@ -1,6 +1,6 @@
 ---
 uid: visual-studio/overview/2013/index
-title: "Visual Studio 2013 | Microsoft Docs"
+title: "ASP.NET and Visual Studio 2013 | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio 2013"
 ms.author: aspnetcontent
@@ -13,9 +13,9 @@ ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013
 msc.type: chapter
 ---
-Visual Studio 2013
+ASP.NET and Visual Studio 2013
 ====================
-> Visual Studio 2013
+> Developing ASP.NET web apps with Visual Studio 2013
 
 
 - [Creating ASP.NET Web Projects in Visual Studio 2013](creating-web-projects-in-visual-studio.md)

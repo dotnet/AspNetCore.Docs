@@ -1,16 +1,14 @@
 ---
-ms.assetid: 1638bacf-1638-bebe-7734-06a1574b7734
-uid: tutorials/first-mvc-app-mac/new-field
 title: Adding a New Field to an ASP.NET Core app
 author: rick-anderson
 description: Shows you how to add an new field to an exiting ASP.NET Core EF/MVC app.
-keywords: ASP.NET Core,EF migrations
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 04/14/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
+uid: tutorials/first-mvc-app-mac/new-field
 ---
 
 [!INCLUDE[adding-field](../../includes/mvc-intro/new-field.md)]

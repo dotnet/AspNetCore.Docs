@@ -53,13 +53,13 @@ When you configure a build server, your first task is to install and configure t
 - Create a *build controller* and one or more *build agents*. Each build controller manages a set of build agents. When you queue a build, the build controller assigns the build task to an available build agent. Each team project collection in TFS is mapped to a single build controller.
 - Configure a drop folder for your build outputs. This is a network share. Any build outputs, like web deployment packages, are sent to the drop folder.
 
-The [Administering Team Foundation Build](https://msdn.microsoft.com/en-us/library/ms252495.aspx) chapter on MSDN contains all the resources you need in order to perform these tasks:
+The [Administering Team Foundation Build](https://msdn.microsoft.com/library/ms252495.aspx) chapter on MSDN contains all the resources you need in order to perform these tasks:
 
-- For a conceptual overview of Team Foundation Build, including the build service, build controllers, and build agents, see [Understanding a Team Foundation Build System](https://msdn.microsoft.com/en-us/library/dd793166.aspx).
-- For information on installing and configuring the build service, see [Configure a Build Machine](https://msdn.microsoft.com/en-us/library/ms181712.aspx).
-- For information on creating build controllers, see [Create and Work with a Build Controller](https://msdn.microsoft.com/en-us/library/ee330987.aspx).
-- For information on creating build agents, see [Create and Work with Build Agents](https://msdn.microsoft.com/en-us/library/bb399135.aspx).
-- For information on creating and configuring drop folders, see [Set Up Drop Folders](https://msdn.microsoft.com/en-us/library/bb778394.aspx).
+- For a conceptual overview of Team Foundation Build, including the build service, build controllers, and build agents, see [Understanding a Team Foundation Build System](https://msdn.microsoft.com/library/dd793166.aspx).
+- For information on installing and configuring the build service, see [Configure a Build Machine](https://msdn.microsoft.com/library/ms181712.aspx).
+- For information on creating build controllers, see [Create and Work with a Build Controller](https://msdn.microsoft.com/library/ee330987.aspx).
+- For information on creating build agents, see [Create and Work with Build Agents](https://msdn.microsoft.com/library/bb399135.aspx).
+- For information on creating and configuring drop folders, see [Set Up Drop Folders](https://msdn.microsoft.com/library/bb778394.aspx).
 
 ## Install Required Products and Components
 
@@ -109,7 +109,7 @@ At this point, your build server is ready to start building and deploying your w
 
 ## Further Reading
 
-For more general guidance on working with Team Build, see [Administering Team Foundation Build](https://msdn.microsoft.com/en-us/library/ms252495.aspx).
+For more general guidance on working with Team Build, see [Administering Team Foundation Build](https://msdn.microsoft.com/library/ms252495.aspx).
 
 >[!div class="step-by-step"]
 [Previous](adding-content-to-source-control.md)

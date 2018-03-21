@@ -73,7 +73,6 @@ namespace webapptemplate
                 options.Cookies.ApplicationCookie.CookieName = "YourAppCookieName";
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
                 options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
-                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
                 options.Cookies.ApplicationCookie.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookies.ApplicationCookie.AutomaticAuthenticate = true;
                 // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`

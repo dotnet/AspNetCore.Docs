@@ -2,14 +2,12 @@
 title: Client-side development in ASP.NET Core
 author: rick-anderson
 description: 
-keywords: ASP.NET Core
-ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2e4
-ms.technology: aspnet
+ms.author: riande
+ms.date: 02/21/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: client-side/index
 ---
 # Client-side development in ASP.NET Core
@@ -23,7 +21,7 @@ uid: client-side/index
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
 - [Use Browser Link](xref:client-side/using-browserlink)
 - [Use JavaScriptServices for SPAs](xref:client-side/spa-services)
-- [Use the SPA project templates (RC)](xref:spa/index)
+- [Use the SPA project templates](xref:spa/index)
     - [Angular project template](xref:spa/angular)
     - [React project template](xref:spa/react)
     - [React with Redux project template](xref:spa/react-with-redux)

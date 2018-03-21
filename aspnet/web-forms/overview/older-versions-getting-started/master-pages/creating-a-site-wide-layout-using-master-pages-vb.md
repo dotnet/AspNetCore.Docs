@@ -55,7 +55,7 @@ Building a website with a consistent site-wide page layout requires that each we
 
 There are a variety of techniques for creating web pages with a consistent look and feel. A naive approach is to simply copy and paste the common layout markup into all web pages, but this approach has a number of downsides. For starters, every time a new page is created, you must remember to copy and paste the shared content into the page. Such copying and pasting operations are ripe for error as you may accidentally copy only a subset of the shared markup into a new page. And to top it off, this approach makes replacing the existing site-wide appearance with a new one a real pain because every single page in the site must be edited in order to use the new look and feel.
 
-Prior to ASP.NET version 2.0, page developers often placed common markup in [User Controls](https://msdn.microsoft.com/en-us/library/y6wb1a0e.aspx) and then added these User Controls to each and every page. This approach required that the page developer remember to manually add the User Controls to every new page, but allowed for easier site-wide modifications because when updating the common markup only the User Controls needed to be modified. Unfortunately, Visual Studio .NET 2002 and 2003 - the versions of Visual Studio used to create ASP.NET 1.x applications - rendered User Controls in the Design view as gray boxes. Consequently, page developers using this approach did not enjoy a WYSIWYG design-time environment.
+Prior to ASP.NET version 2.0, page developers often placed common markup in [User Controls](https://msdn.microsoft.com/library/y6wb1a0e.aspx) and then added these User Controls to each and every page. This approach required that the page developer remember to manually add the User Controls to every new page, but allowed for easier site-wide modifications because when updating the common markup only the User Controls needed to be modified. Unfortunately, Visual Studio .NET 2002 and 2003 - the versions of Visual Studio used to create ASP.NET 1.x applications - rendered User Controls in the Design view as gray boxes. Consequently, page developers using this approach did not enjoy a WYSIWYG design-time environment.
 
 The shortcomings of using User Controls were addressed in ASP.NET version 2.0 and Visual Studio 2005 with the introduction of *master pages*. A master page is a special type of ASP.NET page that defines both the site-wide markup and the *regions* where associated *content pages* define their custom markup. As we will see in Step 1, these regions are defined by ContentPlaceHolder controls. The ContentPlaceHolder control simply denotes a position in the master page's control hierarchy where custom content can be injected by a content page.
 
@@ -90,7 +90,7 @@ Now that we have discussed how master pages work, let's take a look at creating 
 Before we can explore creating and using master and content pages, we first need an ASP.NET website. Start by creating a new file system-based ASP.NET website. To accomplish this, launch Visual Web Developer and then go to the File menu and choose New Web Site, displaying the New Web Site dialog box (see Figure 4). Choose the ASP.NET Web Site template, set the Location drop-down list to File System, choose a folder to place the web site, and set the language to Visual Basic. This will create a new web site with a `Default.aspx` ASP.NET page, an `App_Data` folder, and a `Web.config` file.
 
 > [!NOTE]
-> Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the `/bin` folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I use the Web Site Project model for my demos in this tutorial series. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/en-us/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
+> Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the `/bin` folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I use the Web Site Project model for my demos in this tutorial series. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
 
 
 [![Create a New File System-Based Web Site](creating-a-site-wide-layout-using-master-pages-vb/_static/image9.png)](creating-a-site-wide-layout-using-master-pages-vb/_static/image8.png)
@@ -110,7 +110,7 @@ Adding a new master page file through Visual Web Developer creates a master page
 
 [!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-vb/samples/sample1.aspx)]
 
-The first line in the declarative markup is the [`@Master` directive](https://msdn.microsoft.com/en-us/library/ms228176.aspx). The `@Master` directive is similar to the [`@Page` directive](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) that appears in ASP.NET pages. It defines the server-side language (VB) and information about the location and inheritance of the master page's code-behind class.
+The first line in the declarative markup is the [`@Master` directive](https://msdn.microsoft.com/library/ms228176.aspx). The `@Master` directive is similar to the [`@Page` directive](https://msdn.microsoft.com/library/ydy4x04a.aspx) that appears in ASP.NET pages. It defines the server-side language (VB) and information about the location and inheritance of the master page's code-behind class.
 
 The `DOCTYPE` and the page's declarative markup appears beneath the `@Master` directive. The page includes static HTML along with four server-side controls:
 
@@ -158,7 +158,7 @@ Over the years I've built a number of ASP.NET web applications for small- to med
 Fortunately, there are innumerous websites that offer free HTML design templates - Google returned more than six million results for the search term "free website templates." One of my favorite ones is [OpenDesigns.org](http://opendesigns.org/). Once you find a website template you like, add the CSS files and images to your website project and integrate the template's HTML into your master page.
 
 > [!NOTE]
-> Microsoft also offers a number of [free ASP.NET Design Start Kit Templates](https://msdn.microsoft.com/en-us/asp.net/aa336613.aspx) that integrate into the New Web Site dialog box in Visual Studio.
+> Microsoft also offers a number of [free ASP.NET Design Start Kit Templates](https://msdn.microsoft.com/asp.net/aa336613.aspx) that integrate into the New Web Site dialog box in Visual Studio.
 
 
 ## Step 2: Creating Associated Content Pages
@@ -267,8 +267,8 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET for Designers: Free Design Templates and Guidance on Building ASP.NET Websites Using Web Standards](https://msdn.microsoft.com/en-us/asp.net/aa336602.aspx)
-- [ASP.NET Master Pages Overview](https://msdn.microsoft.com/en-us/library/wtxbf3hh.aspx)
+- [ASP.NET for Designers: Free Design Templates and Guidance on Building ASP.NET Websites Using Web Standards](https://msdn.microsoft.com/asp.net/aa336602.aspx)
+- [ASP.NET Master Pages Overview](https://msdn.microsoft.com/library/wtxbf3hh.aspx)
 - [Cascading Stylesheets (CSS) Tutorials](http://www.w3schools.com/css/default.asp)
 - [Dynamically Setting the Page's Title](http://aspnet.4guysfromrolla.com/articles/051006-1.aspx)
 - [Master Pages in ASP.NET](http://www.odetocode.com/articles/419.aspx)

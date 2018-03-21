@@ -1,15 +1,14 @@
 ---
-title: Building Web APIs
+title: Building Web APIs in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
-ms.author: riande
+description: Discover information on building Web APIs in ASP.NET Core.
 manager: wpickett
+ms.author: riande
 ms.date: 01/05/2016
-ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2ef
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: mvc/web-api/index
 ---
 
 # Building Web APIs

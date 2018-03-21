@@ -2,22 +2,20 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: tdykstra
 description: Introduces Kestrel, the cross-platform web server for ASP.NET Core based on libuv.
-keywords: ASP.NET Core,Kestrel,libuv,url prefixes
-ms.author: tdykstra
 manager: wpickett
-ms.date: 08/02/2017
-ms.topic: article
-ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: fundamentals/servers/kestrel
+ms.author: tdykstra
 ms.custom: H1Hack27Feb2017
+ms.date: 03/13/2018
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/servers/kestrel
 ---
-# Introduction to Kestrel web server implementation in ASP.NET Core
+# Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-Kestrel is a cross-platform [web server for ASP.NET Core](index.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core project templates. 
+Kestrel is a cross-platform [web server for ASP.NET Core](index.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that's included by default in ASP.NET Core project templates. 
 
 Kestrel supports the following features:
 
@@ -71,6 +69,9 @@ Even if a reverse proxy server isn't required, using one might be a good choice 
 * It provides an optional additional layer of configuration and defense.
 * It might integrate better with existing infrastructure.
 * It simplifies load balancing and SSL set-up. Only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.
+
+> [!WARNING]
+> If you're not using a reverse proxy with host filtering enabled, you must enable [host filtering](#host-filtering).
 
 ## How to use Kestrel in ASP.NET Core apps
 
@@ -141,7 +142,7 @@ An exception is thrown if you try to configure the limit on a request after the 
 
 **Minimum request body data rate**
 
-Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
+Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
 
 The default minimum rate is 240 bytes/second, with a 5 second grace period.
 
@@ -181,7 +182,7 @@ The `Listen` method binds to a TCP socket, and an options lambda lets you config
 
 Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints.
 
-[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
+[!INCLUDE[How to make an X.509 cert](../../includes/make-x509-cert.md)]
 
 **Bind to a Unix socket**
 
@@ -220,7 +221,7 @@ If you call `UseUrls` or use the `urls` command-line argument or ASPNETCORE_URLS
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configure URL bindings by using `UseUrls`.
+Only HTTP URL prefixes are valid; Kestrel doesn't support SSL when you configure URL bindings by using `UseUrls`.
 
 * IPv4 address with port number
 
@@ -247,7 +248,10 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://*:80/
   ```
 
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HTTP.sys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, *, and +, are not special. Anything that's not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HTTP.sys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+
+  > [!WARNING]
+  > If you're not using a reverse proxy with host filtering enabled, you must enable [host filtering](#host-filtering).
 
 * "Localhost" name with port number or loopback IP with port number
 
@@ -257,7 +261,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://[::1]:5000/
   ```
 
-  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
+  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -300,7 +304,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://[::1]:5000/
   ```
 
-  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
+  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning. 
 
 * Unix socket
 
@@ -335,9 +339,169 @@ var host = new WebHostBuilder()
 > [!NOTE]
 > HTTPS and HTTP cannot be hosted on the same port.
 
-[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
+[!INCLUDE[How to make an X.509 cert](../../includes/make-x509-cert.md)]
 
 ---
+
+## Host filtering
+
+While Kestrel supports configuration based on prefixes such as `http://example.com:5000`, it largely ignores the host name. Localhost is a special case used for binding to loopback addresses. Any host other than an explicit IP address binds to all public IP addresses. None of this information is used to validate request Host headers.
+
+There are two possible workarounds:
+
+* Host behind a reverse proxy with host header filtering. This was the only supported scenario for Kestrel in ASP.NET Core 1.x.
+* Use a middleware to filter requests by the host header. A sample middleware follows:
+
+```csharp
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+// A normal middleware would provide an options type, config binding, extension methods, etc..
+// This intentionally does all of the work inside of the middleware so it can be
+// easily copy-pasted into docs and other projects.
+public class HostFilteringMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly IList<string> _hosts;
+    private readonly ILogger<HostFilteringMiddleware> _logger;
+
+    public HostFilteringMiddleware(RequestDelegate next, IConfiguration config, ILogger<HostFilteringMiddleware> logger)
+    {
+        if (config == null)
+        {
+            throw new ArgumentNullException(nameof(config));
+        }
+
+        _next = next ?? throw new ArgumentNullException(nameof(next));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+        // A semicolon separated list of host names without the port numbers.
+        // IPv6 addresses must use the bounding brackets and be in their normalized form.
+        _hosts = config["AllowedHosts"]?.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+        if (_hosts == null || _hosts.Count == 0)
+        {
+            throw new InvalidOperationException("No configuration entry found for AllowedHosts.");
+        }
+    }
+
+    public Task Invoke(HttpContext context)
+    {
+        if (!ValidateHost(context))
+        {
+            context.Response.StatusCode = 400;
+            _logger.LogDebug("Request rejected due to incorrect host header.");
+            return Task.CompletedTask;
+        }
+
+        return _next(context);
+    }
+
+    // This does not duplicate format validations that are expected to be performed by the host.
+    private bool ValidateHost(HttpContext context)
+    {
+        StringSegment host = context.Request.Headers[HeaderNames.Host].ToString().Trim();
+
+        if (StringSegment.IsNullOrEmpty(host))
+        {
+            // Http/1.0 does not require the host header.
+            // Http/1.1 requires the header but the value may be empty.
+            return true;
+        }
+
+        // Drop the port
+
+        var colonIndex = host.LastIndexOf(':');
+
+        // IPv6 special case
+        if (host.StartsWith("[", StringComparison.Ordinal))
+        {
+            var endBracketIndex = host.IndexOf(']');
+            if (endBracketIndex < 0)
+            {
+                // Invalid format
+                return false;
+            }
+            if (colonIndex < endBracketIndex)
+            {
+                // No port, just the IPv6 Host
+                colonIndex = -1;
+            }
+        }
+
+        if (colonIndex > 0)
+        {
+            host = host.Subsegment(0, colonIndex);
+        }
+
+        foreach (var allowedHost in _hosts)
+        {
+            if (StringSegment.Equals(allowedHost, host, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            // Sub-domain wildcards: *.example.com
+            if (allowedHost.StartsWith("*.", StringComparison.Ordinal) && host.Length >= allowedHost.Length)
+            {
+                // .example.com
+                var allowedRoot = new StringSegment(allowedHost, 1, allowedHost.Length - 1);
+
+                var hostRoot = host.Subsegment(host.Length - allowedRoot.Length, allowedRoot.Length);
+                if (hostRoot.Equals(allowedRoot, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+Register the preceding `HostFilteringMiddleware` in `Startup.Configure`. Note that the [ordering of middleware registration](xref:fundamentals/middleware/index#ordering) is important. Registration should occur immediately after the diagnostic middleware (for example, `app.UseExceptionHandler`).
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseBrowserLink();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+    }
+
+    app.UseMiddleware<HostFilteringMiddleware>();
+
+    app.UseMvcWithDefaultRoute();
+}
+```
+
+The preceding middleware expects an `AllowedHosts` key in *appsettings.\<EnvironmentName>.json*. This key's value is a semicolon-delimited list of host names without the port numbers. Include the `AllowedHosts` key-value pair in *appsettings.Production.json*:
+
+```json
+{
+  "AllowedHosts": "example.com"
+}
+```
+
+The localhost configuration file, *appsettings.Development.json*, looks like this:
+
+```json
+{
+  "AllowedHosts": "localhost"
+}
+```
+
 ## Next steps
 
 For more information, see the following resources:

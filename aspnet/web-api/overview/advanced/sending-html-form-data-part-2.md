@@ -67,7 +67,7 @@ When the method completes, you can get information about the files from the **Fi
 - **MultipartFileData.FileName** is the local file name on the server, where the file was saved.
 - **MultipartFileData.Headers** contains the part header (*not* the request header). You can use this to access the Content\_Disposition and Content-Type headers.
 
-As the name suggests, **ReadAsMultipartAsync** is an asynchronous method. To perform work after the method completes, use a [continuation task](https://msdn.microsoft.com/en-us/library/ee372288.aspx) (.NET 4.0) or the **await** keyword (.NET 4.5).
+As the name suggests, **ReadAsMultipartAsync** is an asynchronous method. To perform work after the method completes, use a [continuation task](https://msdn.microsoft.com/library/ee372288.aspx) (.NET 4.0) or the **await** keyword (.NET 4.5).
 
 Here is the .NET Framework 4.0 version of the previous code:
 

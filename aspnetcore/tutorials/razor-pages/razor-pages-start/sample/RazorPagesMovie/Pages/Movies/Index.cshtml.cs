@@ -23,7 +23,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public List<Movie> Movie;
+        public IList<Movie> Movie;
         public SelectList Genres;
         public string MovieGenre { get; set; }
         #endregion

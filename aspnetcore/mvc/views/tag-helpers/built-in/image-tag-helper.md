@@ -1,15 +1,13 @@
 ---
-title: Image Tag Helper | Microsoft Docs
+title: Image Tag Helper in ASP.NET Core
 author: pkellner
 description: Shows how to work with Image Tag Helper
-keywords: ASP.NET Core,tag helper
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 02/14/2017
-ms.topic: article
-ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a013
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # ImageTagHelper
@@ -52,7 +50,7 @@ The value assigned to the parameter `v` is the hash value of the file on disk. I
 To activate the Image Tag Helper, the src attribute is required on the `<img>` element. 
 
 > [!NOTE]
-> The Image Tag Helper uses the `Cache` provider on the local web server to store the calculated `Sha512` of a given file. If the file is requested again the `Sha512` does not need to be recalculated. The Cache is invalidated by a file watcher that is attached to the file when the file's `Sha512` is calculated.
+> The Image Tag Helper uses the `Cache` provider on the local web server to store the calculated `Sha512` of a given file. If the file is requested again the `Sha512` doesn't need to be recalculated. The Cache is invalidated by a file watcher that's attached to the file when the file's `Sha512` is calculated.
 
 ## Additional resources
 

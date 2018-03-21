@@ -55,7 +55,7 @@ Make sure that the root of your website has at least one *.cshtml* file in it.
 
 If you see this error when the web server is on a remote server, contact the server administrator. Make sure that the server has the .NET Framework 4 or later installed. Also make sure that the application is running in an application pool that's configured to use that version of the.NET Framework.
 
-If you have control over the server, make sure it's running the correct version of the .NET Framework. You might also try repairing the installation by running the `aspnet_regiis -iru` command. (For example, if you install IIS after you install the .NET Framework, IIS will not be correctly configured to run ASP.NET pages.) For more information, see [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/en-US/library/k6h9cz8h(v=vs.100).aspx).
+If you have control over the server, make sure it's running the correct version of the .NET Framework. You might also try repairing the installation by running the `aspnet_regiis -iru` command. (For example, if you install IIS after you install the .NET Framework, IIS will not be correctly configured to run ASP.NET pages.) For more information, see [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/library/k6h9cz8h(v=vs.100).aspx).
 
 ### HTTP Error 403.14 - Forbidden
 
@@ -142,7 +142,7 @@ Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some o
 - *Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain*
 
     This message can indicate that the `From` address is not correct or is missing.
-- *The specified string is not in the form required for an e-mail address.*
+- *The specified string is not in the form required for an email address.*
 
     This error might indicate that the value of the `To` or `From` properties are not recognized as email addresses. (ASP.NET cannot check that the email address is valid, only that it's in the correct format, like *name@domain.com*.)
 

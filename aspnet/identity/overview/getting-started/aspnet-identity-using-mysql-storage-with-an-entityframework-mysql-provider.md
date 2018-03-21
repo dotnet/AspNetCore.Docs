@@ -78,7 +78,7 @@ To complete the steps in this section of the tutorial, you will first need to in
 
 ### Update the Entity Framework assembly for your project
 
-The MVC application that was created from the Visual Studio 2013 template contains a reference to the [EntityFramework 6.0.0](http://www.nuget.org/packages/EntityFramework) package, but there have been updates to to that assembly since its release which contain significant performance improvements. In order to use these latest updates in your application, use the following steps.
+The MVC application that was created from the Visual Studio 2013 template contains a reference to the [EntityFramework 6.0.0](http://www.nuget.org/packages/EntityFramework) package, but there have been updates to that assembly since its release which contain significant performance improvements. In order to use these latest updates in your application, use the following steps.
 
 1. Open your MVC project in Visual Studio 2013.
 2. Click **TOOLS**, then click **Library Package Manager**, and then click **Package Manager Console**:  
@@ -134,7 +134,7 @@ Entity Framework Code First uses a **MigrationHistory** table to keep track of m
 
 ### Creating a custom EntityFramework initializer for ApplicationDbContext
 
-The MySQL provider that is featured in this tutorial does not currently support Entity Framework migrations, so you will need to use model initializers in order to connect to the database. Because this tutorial is using a MySQL instance on Azure, you will need need to create a custom Entity Framework initializer.
+The MySQL provider that is featured in this tutorial does not currently support Entity Framework migrations, so you will need to use model initializers in order to connect to the database. Because this tutorial is using a MySQL instance on Azure, you will need to create a custom Entity Framework initializer.
 
 > [!NOTE]
 > This step is not required if you are connecting to a SQL Server instance on Azure or if you are using a database that is hosted on premises.

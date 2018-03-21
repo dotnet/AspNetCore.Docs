@@ -160,7 +160,7 @@ The **Add View** dialog box in ASP.NET MVC 3 lets you choose the view engine you
 Sometimes you want to perform logic either before an action method runs or after an action method runs. To support this, ASP.NET MVC 2 provided action filters. Action filters are custom attributes that provide a declarative means to add pre-action and post-action behavior to specific controller action methods. However, in some cases you might want to specify pre-action or post-action behavior that applies to all action methods. MVC 3 lets you specify global filters by adding them to the `GlobalFilters` collection. For more information about global action filters, see the following resources:
 
 - [Scott Guthrie's blog on the MVC 3 Preview](https://weblogs.asp.net/scottgu/archive/2010/07/27/introducing-asp-net-mvc-3-preview-1.aspx)
-- [Filtering in ASP.NET MVC](https://msdn.microsoft.com/en-us/library/gg416513(VS.98).aspx)
+- [Filtering in ASP.NET MVC](https://msdn.microsoft.com/library/gg416513(VS.98).aspx)
 
 ### New "ViewBag" Property
 
@@ -170,9 +170,9 @@ MVC 2 controllers support a `ViewData` property that enables you to pass data to
 
 The following `ActionResult` types and corresponding helper methods are new or enhanced in MVC 3:
 
-- [HttpNotFoundResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.httpnotfoundresult(v=vs.98).aspx). Returns a 404 HTTP status code to the client.
-- [RedirectResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.redirectresult(v=VS.98).aspx). Returns a temporary redirect (HTTP 302 status code) or a permanent redirect (HTTP 301 status code), depending on a Boolean parameter. In conjunction with this change, the [Controller](https://msdn.microsoft.com/en-us/library/system.web.mvc.controller(v=VS.98).aspx) class now has three methods for performing permanent redirects: `RedirectPermanent`, `RedirectToRoutePermanent`, and `RedirectToActionPermanent`. These methods return an instance of `RedirectResult` with the `Permanent` property set to `true`.
-- [HttpStatusCodeResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.httpstatuscoderesult(v=VS.98).aspx). Returns a user-specified HTTP status code.
+- [HttpNotFoundResult](https://msdn.microsoft.com/library/system.web.mvc.httpnotfoundresult(v=vs.98).aspx). Returns a 404 HTTP status code to the client.
+- [RedirectResult](https://msdn.microsoft.com/library/system.web.mvc.redirectresult(v=VS.98).aspx). Returns a temporary redirect (HTTP 302 status code) or a permanent redirect (HTTP 301 status code), depending on a Boolean parameter. In conjunction with this change, the [Controller](https://msdn.microsoft.com/library/system.web.mvc.controller(v=VS.98).aspx) class now has three methods for performing permanent redirects: `RedirectPermanent`, `RedirectToRoutePermanent`, and `RedirectToActionPermanent`. These methods return an instance of `RedirectResult` with the `Permanent` property set to `true`.
+- [HttpStatusCodeResult](https://msdn.microsoft.com/library/system.web.mvc.httpstatuscoderesult(v=VS.98).aspx). Returns a user-specified HTTP status code.
 
 <a id="BM_JavaScript_and_Ajax_Improvements"></a>
 
@@ -194,7 +194,7 @@ In order for client-side validation to work, you still need to reference the app
 
 ### Remote Validator
 
-ASP.NET MVC 3 supports the new [RemoteAttribute](https://msdn.microsoft.com/en-us/library/system.web.mvc.remoteattribute(v=VS.98).aspx) class that enables you to take advantage of the jQuery Validation plug-in's remote validator support. This enables the client-side validation library to automatically call a custom method that you define on the server in order to perform validation logic that can only be done server-side.
+ASP.NET MVC 3 supports the new [RemoteAttribute](https://msdn.microsoft.com/library/system.web.mvc.remoteattribute(v=VS.98).aspx) class that enables you to take advantage of the jQuery Validation plug-in's remote validator support. This enables the client-side validation library to automatically call a custom method that you define on the server in order to perform validation logic that can only be done server-side.
 
 In the following example, the `Remote` attribute specifies that client validation will call an action named `UserNameAvailable` on the `UsersController` class in order to validate the `UserName` field.
 
@@ -204,7 +204,7 @@ The following example shows the corresponding controller.
 
 [!code-csharp[Main](mvc3/samples/sample2.cs)]
 
-For more information about how to use the `Remote` attribute, see [How to: Implement Remote Validation in ASP.NET MVC](https://msdn.microsoft.com/en-us/library/gg508808(VS.98).aspx) in the MSDN library.
+For more information about how to use the `Remote` attribute, see [How to: Implement Remote Validation in ASP.NET MVC](https://msdn.microsoft.com/library/gg508808(VS.98).aspx) in the MSDN library.
 
 ### JSON Binding Support
 
@@ -226,9 +226,9 @@ The `ValidationAttribute` class was improved in the .NET Framework 4 to support 
 
 ### Validation Interfaces
 
-The [IValidatableObject](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.ivalidatableobject.aspx) interface enables you to perform model-level validation, and it enables you to provide validation error messages that are specific to the state of the overall model, or between two properties within the model. MVC 3 now retrieves errors from the `IValidatableObject` interface when model binding, and automatically flags or highlights affected fields within a view using the built-in HTML form helpers.
+The [IValidatableObject](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.ivalidatableobject.aspx) interface enables you to perform model-level validation, and it enables you to provide validation error messages that are specific to the state of the overall model, or between two properties within the model. MVC 3 now retrieves errors from the `IValidatableObject` interface when model binding, and automatically flags or highlights affected fields within a view using the built-in HTML form helpers.
 
-The [IClientValidatable](https://msdn.microsoft.com/en-us/library/system.web.mvc.iclientvalidatable(v=VS.98).aspx) interface enables ASP.NET MVC to discover at run time whether a validator has support for client validation. This interface has been designed so that it can be integrated with a variety of validation frameworks.
+The [IClientValidatable](https://msdn.microsoft.com/library/system.web.mvc.iclientvalidatable(v=VS.98).aspx) interface enables ASP.NET MVC to discover at run time whether a validator has support for client validation. This interface has been designed so that it can be integrated with a variety of validation frameworks.
 
 For more information about validation interfaces, see the **Model Validation Improvements** section of [Scott Guthrie's MVC 3 Preview blog post](https://weblogs.asp.net/scottgu/archive/2010/07/27/introducing-asp-net-mvc-3-preview-1.aspx). (However, note that the reference to "IValidateObject" in the blog should be "IValidatableObject".)
 
@@ -273,7 +273,7 @@ ASP.NET MVC has supported output caching of full page responses since version 1.
 
 ### Granular Control over Request Validation
 
-ASP.NET MVC has built-in request validation that automatically helps protect against XSS and HTML injection attacks. However, sometimes you want to explicitly disable request validation, such as if you want to let users post HTML content (for example, in blog entries or CMS content). You can now add an [AllowHtml](https://msdn.microsoft.com/en-us/library/system.web.mvc.allowhtmlattribute(v=VS.98).aspx) attribute to models or view models to disable request validation on a per-property basis during model binding. For more information about request validation, see the following resources:
+ASP.NET MVC has built-in request validation that automatically helps protect against XSS and HTML injection attacks. However, sometimes you want to explicitly disable request validation, such as if you want to let users post HTML content (for example, in blog entries or CMS content). You can now add an [AllowHtml](https://msdn.microsoft.com/library/system.web.mvc.allowhtmlattribute(v=VS.98).aspx) attribute to models or view models to disable request validation on a per-property basis during model binding. For more information about request validation, see the following resources:
 
 - The **Unobtrusive JavaScript and Validation** section in [Scott Guthrie's blog post on the MVC 3 release candidate](https://weblogs.asp.net/scottgu/archive/2010/11/09/announcing-the-asp-net-mvc-3-release-candidate.aspx).
 - [MVC 3 Release Notes](../whitepapers/mvc3-release-notes.md)
@@ -298,7 +298,7 @@ In ASP.NET MVC 3 you can indicate whether you want a controller class to use ses
 
 ### New "AdditionalMetadataAttribute" Class
 
-You can use the [AdditionalMetadata](https://msdn.microsoft.com/en-us/library/system.web.mvc.additionalmetadataattribute(v=VS.98).aspx) attribute to populate the `ModelMetadata.AdditionalValues` dictionary for a model property. For example, if a view model has a property that should be displayed only to an administrator, you can annotate that property as shown in the following example:
+You can use the [AdditionalMetadata](https://msdn.microsoft.com/library/system.web.mvc.additionalmetadataattribute(v=VS.98).aspx) attribute to populate the `ModelMetadata.AdditionalValues` dictionary for a model property. For example, if a view model has a property that should be displayed only to an administrator, you can annotate that property as shown in the following example:
 
 [!code-csharp[Main](mvc3/samples/sample4.cs)]
 

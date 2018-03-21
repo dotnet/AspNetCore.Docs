@@ -75,7 +75,7 @@ Fill in the user information fields on the left using the following information:
 | **User Name** | Administrator |
 | **Password** | password123! |
 | **Confirm Password** | password123! |
-| **E-mail** | (any e-mail address will work) |
+| **E-mail** | (any email address will work) |
 | **Security Question** | (whatever you like) |
 | **Security Answer** | (whatever you like) |
 

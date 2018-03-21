@@ -36,6 +36,7 @@ The SignalR server component can be hosted in the following server or client ope
 
 - Windows Server 2012
 - Windows Server 2008 r2
+- Windows 10
 - Windows 8
 - Windows 7
 - Windows Azure

@@ -2,14 +2,12 @@
 title: Configuring Data Protection in ASP.NET Core
 author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
-keywords: ASP.NET Core,data protection,configuration
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 07/17/2017
-ms.topic: article
-ms.assetid: 0e4881a3-a94d-4e35-9c1c-f025d65dcff0
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/data-protection/configuration/overview
 ---
 # Configuring Data Protection in ASP.NET Core
@@ -188,7 +186,7 @@ serviceCollection.AddDataProtection()
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) and [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), though the system special-cases some values like `typeof(Aes)` for convenience.
 
 > [!NOTE]
-> The SymmetricAlgorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The KeyedHashAlgorithm must have a digest size of >= 128 bits, and it must support keys of length equal to the hash algorithm's digest length. The KeyedHashAlgorithm is not strictly required to be HMAC.
+> The SymmetricAlgorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The KeyedHashAlgorithm must have a digest size of >= 128 bits, and it must support keys of length equal to the hash algorithm's digest length. The KeyedHashAlgorithm isn't strictly required to be HMAC.
 
 ### Specifying custom Windows CNG algorithms
 

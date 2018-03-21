@@ -1,15 +1,13 @@
 ---
 title: WebListener web server implementation in ASP.NET Core
 author: rick-anderson
-description: Introduces WebListener, a web server for ASP.NET Core on Windows. Built on the Http.Sys kernel mode driver, WebListener is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-keywords: ASP.NET Core,WebListener,HttpListener,url prefixes,SSL
-ms.author: riande
+description: Learn about WebListener, a web server for ASP.NET Core on Windows that can be used for direct connection to the Internet without IIS.
 manager: wpickett
-ms.date: 08/07/2017
-ms.topic: article
-ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
-ms.technology: aspnet
+ms.author: riande
+ms.date: 03/13/2018
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: fundamentals/servers/weblistener
 ---
 # WebListener web server implementation in ASP.NET Core
@@ -85,10 +83,13 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
   Web Listener uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to WebListener.
 
+  > [!WARNING]
+  > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
+
   > [!NOTE]
   > Make sure that you specify the same prefix strings in `UseUrls` that you preregister on the server. 
 
-* Make sure your application is not configured to run IIS or IIS Express.
+* Make sure your application isn't configured to run IIS or IIS Express.
 
   In Visual Studio, the default launch profile is for IIS Express.  To run the project as a console application you have to manually change the selected profile, as shown in the following screen shot.
 
@@ -128,11 +129,11 @@ using (WebListener listener = new WebListener(settings))
 
 ## Preregister URL prefixes and configure SSL
 
-Both IIS and WebListener rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you're using WebListener you need to configure Http.Sys yourself. The built-in tool for doing that is netsh.exe. 
+Both IIS and WebListener rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you're using WebListener you need to configure Http.Sys yourself. The built-in tool for doing that's netsh.exe. 
 
 The most common tasks you need to use netsh.exe for are reserving URL prefixes and assigning SSL certificates.
 
-NetSh.exe is not an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
+NetSh.exe isn't an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
 
 ```console
 netsh http add urlacl url=http://+:80/ user=Users

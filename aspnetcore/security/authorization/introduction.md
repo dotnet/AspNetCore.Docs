@@ -2,14 +2,12 @@
 title: Introduction to authorization
 author: rick-anderson
 description: This document provides a basic explanation of authorization and explains how authorization relates to ASP.NET Core.
-keywords: ASP.NET Core,authorization
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: a6a556ed-ba59-4107-9358-44cf20e5931b
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/introduction
 ---
 # Introduction
@@ -20,10 +18,12 @@ Authorization refers to the process that determines what a user is able to do. F
 
 Authorization is orthogonal and independent from authentication, which is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
 
-## Authorization Types
+## Authorization types
 
-ASP.NET Core authorization provides a simple declarative [role](roles.md) and a [rich policy based](policies.md) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.
+ASP.NET Core authorization provides a simple, declarative [role](roles.md) and a rich [policy-based](policies.md) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.
 
 ## Namespaces
 
-Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes are found in the `Microsoft.AspNetCore.Authorization` namespace.
+Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes, are found in the `Microsoft.AspNetCore.Authorization` namespace.
+
+Consult the documentation on [simple authorization](xref:security/authorization/simple).

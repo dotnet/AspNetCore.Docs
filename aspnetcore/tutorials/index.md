@@ -2,13 +2,12 @@
 title: ASP.NET Core tutorials
 author: rick-anderson
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
-keywords: ASP.NET Core,
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 10/14/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/index
 ---
 # ASP.NET Core tutorials
@@ -23,14 +22,14 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * Create a Razor Pages web app with ASP.NET Core
 
    * [Razor Pages on Windows](xref:tutorials/razor-pages/index)
-   * [Razor Pages on Mac](xref:tutorials/razor-pages-mac/index)
+   * [Razor Pages on macOS](xref:tutorials/razor-pages-mac/index)
    * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
 
 * Create an ASP.NET Core MVC web app
 
    * [Web app with Visual Studio for Windows](first-mvc-app/index.md)
    * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
-   * [Web app with Visual Studio Code on Mac or Linux](first-mvc-app-xplat/index.md)
+   * [Web app with Visual Studio Code on macOS or Linux](first-mvc-app-xplat/index.md)
 
 * [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Create Tag Helpers](../mvc/views/tag-helpers/authoring.md)
@@ -43,14 +42,18 @@ The following step-by-step guides for developing ASP.NET Core applications are a
   * [Web API with Visual Studio for Windows](first-web-api.md)
   * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
   * [Web API with Visual Studio Code](web-api-vsc.md)
-  
-* [ASP.NET Core Web API help pages using Swagger](web-api-help-pages-using-swagger.md)
+
+* [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+  * [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+  * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
+
 * [Create backend web services for native mobile apps](../mobile/native-mobile-backend.md)
 
 ## Data access and storage
-* [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
-* [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
+* [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
+* [Get started with ASP.NET Core MVC and EF Core using Visual Studio](../data/ef-mvc/index.md)
+* [ASP.NET Core MVC with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
+* [ASP.NET Core MVC with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 
 ## Authentication and authorization
 * [Enable authentication using Facebook, Google, and other external providers](../security/authentication/social/index.md)

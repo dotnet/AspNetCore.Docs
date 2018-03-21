@@ -31,7 +31,7 @@ The two previous tutorials looked at caching data in the Presentation and Cachin
 Another flavor of proactive loading, and the type we'll be exploring in this tutorial, is loading data into the cache at application startup. This approach is especially useful for caching static data, such as the records in database lookup tables.
 
 > [!NOTE]
-> For a more in-depth look at the differences between proactive and reactive loading, as well as lists of pros, cons, and implementation recommendations, refer to the [Managing the Contents of a Cache](https://msdn.microsoft.com/en-us/library/ms978503.aspx) section of the [Caching Architecture Guide for .NET Framework Applications](https://msdn.microsoft.com/en-us/library/ms978498.aspx).
+> For a more in-depth look at the differences between proactive and reactive loading, as well as lists of pros, cons, and implementation recommendations, refer to the [Managing the Contents of a Cache](https://msdn.microsoft.com/library/ms978503.aspx) section of the [Caching Architecture Guide for .NET Framework Applications](https://msdn.microsoft.com/library/ms978498.aspx).
 
 
 ## Step 1: Determining What Data to Cache at Application Startup
@@ -63,7 +63,7 @@ When working with a class, typically the class must first be instantiated before
 
 Before we can invoke *SomeMethod* or work with *SomeProperty*, we must first create an instance of the class using the `New` keyword. *SomeMethod* and *SomeProperty* are associated with a particular instance. The lifetime of these members is tied to the lifetime of their associated object. *Static members*, on the other hand, are variables, properties, and methods that are shared among *all* instances of the class and, consequently, have a lifetime as long as the class. Static members are denoted by the keyword `Shared`.
 
-In addition to static members, data can be cached using application state. Each ASP.NET application maintains a name/value collection that s shared across all users and pages of the application. This collection can be accessed using the [`HttpContext` class](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) s [`Application` property](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.application.aspx), and used from an ASP.NET page s code-behind class like so:
+In addition to static members, data can be cached using application state. Each ASP.NET application maintains a name/value collection that s shared across all users and pages of the application. This collection can be accessed using the [`HttpContext` class](https://msdn.microsoft.com/library/system.web.httpcontext.aspx) s [`Application` property](https://msdn.microsoft.com/library/system.web.httpcontext.application.aspx), and used from an ASP.NET page s code-behind class like so:
 
 
 [!code-vb[Main](caching-data-at-application-startup-vb/samples/sample2.vb)]
@@ -130,7 +130,7 @@ The default `Global.asax` file template includes five methods within a server-si
 - **`Session_Start`** executes when a new session is created
 - **`Session_End`** runs when a session is expired or abandoned
 
-The `Application_Start` event handler is called only once during an application s life cycle. The application starts the first time an ASP.NET resource is requested from the application and continues to run until the application is restarted, which can happen by modifying the contents of the `/Bin` folder, modifying `Global.asax`, modifying the contents in the `App_Code` folder, or modifying the `Web.config` file, among other causes. Refer to [ASP.NET Application Life Cycle Overview](https://msdn.microsoft.com/en-us/library/ms178473.aspx) for a more detailed discussion on the application life cycle.
+The `Application_Start` event handler is called only once during an application s life cycle. The application starts the first time an ASP.NET resource is requested from the application and continues to run until the application is restarted, which can happen by modifying the contents of the `/Bin` folder, modifying `Global.asax`, modifying the contents in the `App_Code` folder, or modifying the `Web.config` file, among other causes. Refer to [ASP.NET Application Life Cycle Overview](https://msdn.microsoft.com/library/ms178473.aspx) for a more detailed discussion on the application life cycle.
 
 For these tutorials we only need to add code to the `Application_Start` method, so feel free to remove the others. In `Application_Start`, simply call the `StaticCache` class s `LoadStaticCache()` method, which will load and cache the supplier information:
 

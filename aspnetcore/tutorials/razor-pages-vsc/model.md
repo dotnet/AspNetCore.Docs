@@ -2,17 +2,16 @@
 title: Adding a model to a Razor Pages app with Visual Studio for Mac
 author: rick-anderson
 description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
-keywords: ASP.NET Core,Razor Pages,Razor,MVC,model
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/27/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
+# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio Code
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
@@ -25,7 +24,7 @@ uid: tutorials/razor-pages-vsc/model
 [!INCLUDE[model 2](../../includes/RP/model2.md)]
 [!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
-[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
 Build the project to verify you don't have any errors.
 
@@ -38,7 +37,7 @@ Edit the *RazorPagesMovie.csproj* file:
 * Select **File** > **Open File**, and then select the *RazorPagesMovie.csproj* file.
 * Add tool reference for `Microsoft.EntityFrameworkCore.Tools.DotNet` to the second **\<ItemGroup>**:
 
-[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?range=12-16&highlight=4)]
+[!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
 
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 
@@ -73,5 +72,5 @@ Exit Visual Studio and run the command again.
 The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+[Previous: Get Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)

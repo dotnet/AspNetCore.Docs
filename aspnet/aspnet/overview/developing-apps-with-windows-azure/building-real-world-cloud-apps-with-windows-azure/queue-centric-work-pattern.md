@@ -86,7 +86,7 @@ To implement the queue pattern, we need to make two changes to the Fix It app.
 - When a user submits a new Fix It task, put the task in the queue, instead of writing it to the database.
 - Create a back-end service that processes messages in the queue.
 
-For the queue, we'll use the [Azure Queue Storage Service](https://www.windowsazure.com/en-us/develop/net/how-to-guides/queue-service/). Another option is to use [Azure Service Bus](https://docs.microsoft.com/azure/service-bus/).
+For the queue, we'll use the [Azure Queue Storage Service](https://www.windowsazure.com/develop/net/how-to-guides/queue-service/). Another option is to use [Azure Service Bus](https://docs.microsoft.com/azure/service-bus/).
 
 To decide which queue service to use, consider how your app needs to send and receive the messages in the queue:
 
@@ -101,10 +101,10 @@ Another consideration is application availability. The Queue Storage Service is 
 
 To put a Fix It task on the queue, the web front end performs the following steps:
 
-1. Create a [CloudQueueClient](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.queue.cloudqueueclient.aspx) instance. The `CloudQueueClient` instance is used to execute requests against the Queue Service.
+1. Create a [CloudQueueClient](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueueclient.aspx) instance. The `CloudQueueClient` instance is used to execute requests against the Queue Service.
 2. Create the queue, if it doesn't exist yet.
 3. Serialize the Fix It task.
-4. Call [CloudQueue.AddMessageAsync](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.queue.cloudqueue.addmessageasync.aspx) to put the message onto the queue.
+4. Call [CloudQueue.AddMessageAsync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.addmessageasync.aspx) to put the message onto the queue.
 
 We'll do this work in the constructor and `SendMessageAsync` method of a new `FixItQueueManager` class.
 
@@ -112,7 +112,7 @@ We'll do this work in the constructor and `SendMessageAsync` method of a new `Fi
 
 Here we are using the [Json.NET](https://github.com/JamesNK/Newtonsoft.Json) library to serialize the fixit to JSON format. You can use whatever serialization approach you prefer. JSON has the advantage of being human-readable, while being less verbose than XML.
 
-Production-quality code would add error handling logic, pause if the database became unavailable, handle recovery more cleanly, create the queue on application start-up, and manage "[poison" messages](https://msdn.microsoft.com/en-us/library/ms789028(v=vs.110).aspx). (A poison message is a message that cannot be processed for some reason. You don't want poison messages to sit in the queue, where the worker role will continually try to process them, fail, try again, fail, and so on.)
+Production-quality code would add error handling logic, pause if the database became unavailable, handle recovery more cleanly, create the queue on application start-up, and manage "[poison" messages](https://msdn.microsoft.com/library/ms789028(v=vs.110).aspx). (A poison message is a message that cannot be processed for some reason. You don't want poison messages to sit in the queue, where the worker role will continually try to process them, fail, try again, fail, and so on.)
 
 In the front-end MVC application, we need to update the code that creates a new task. Instead of putting the task into the repository, call the `SendMessageAsync` method shown above.
 
@@ -151,7 +151,7 @@ Click **OK** to complete the dialog. This adds two projects to the Visual Studio
 
 ![](queue-centric-work-pattern/_static/image8.png)
 
-For more information, see [Creating an Azure Project with Visual Studio.](https://msdn.microsoft.com/en-us/library/windowsazure/ee405487.aspx)
+For more information, see [Creating an Azure Project with Visual Studio.](https://msdn.microsoft.com/library/windowsazure/ee405487.aspx)
 
 Inside the worker role, we poll for messages by calling the `ProcessMessageAsync` method of the `FixItQueueManager` class that we saw earlier.
 
@@ -163,7 +163,7 @@ The `ProcessMessagesAsync` method checks if there's a message waiting. If there 
 
 Polling for queue messages incurs a small transaction charge, so when there's no message waiting to be processed, the worker role's `RunAsync` method waits a second before polling again by calling `Task.Delay(1000)`.
 
-In a web project, adding asynchronous code can automatically improve performance because IIS manages a limited thread pool. That is not the case in a worker role project. To improve scalability of the worker role, you can write multi-threaded code or use asynchronous code to implement [parallel programming](https://msdn.microsoft.com/en-us/library/ff963553.aspx). The sample doesn't implement parallel programming but shows how to make the code asynchronous so you can implement parallel programming.
+In a web project, adding asynchronous code can automatically improve performance because IIS manages a limited thread pool. That is not the case in a worker role project. To improve scalability of the worker role, you can write multi-threaded code or use asynchronous code to implement [parallel programming](https://msdn.microsoft.com/library/ff963553.aspx). The sample doesn't implement parallel programming but shows how to make the code asynchronous so you can implement parallel programming.
 
 ## Summary
 
@@ -179,11 +179,11 @@ For more information about queues, see the following resources.
 Documentation:
 
 - [Microsoft Azure Storage Queues Part 1: Getting Started](http://justazure.com/microsoft-azure-storage-queues-part-1-getting-started/). Article by Roman Schacherl.
-- [Executing Background Tasks](https://msdn.microsoft.com/en-us/library/ff803365.aspx), chapter 5 of [Moving Applications to the Cloud, 3rd Edition](https://msdn.microsoft.com/en-us/library/ff728592.aspx) from Microsoft Patterns and Practices. (In particular, the section ["Using Azure Storage Queues"](https://msdn.microsoft.com/en-us/library/ff803365.aspx#sec7).)
-- [Best Practices for Maximizing Scalability and Cost Effectiveness of Queue-Based Messaging Solutions on Azure](https://msdn.microsoft.com/en-us/library/windowsazure/hh697709.aspx). White paper by Valery Mizonov.
-- [Comparing Azure Queues and Service Bus Queues](https://msdn.microsoft.com/en-us/magazine/jj159884.aspx). MSDN Magazine article, provides additional information that can help you choose which queue service to use. The article mentions that Service Bus is dependent on ACS for authentication, which means your SB queues would be unavailable when ACS is unavailable. However, since the article was written, SB was changed to enable you to use [SAS tokens](https://msdn.microsoft.com/en-us/library/windowsazure/dn170477.aspx) as an alternative to ACS.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Asynchronous Messaging primer, Pipes and Filters pattern, Compensating Transaction pattern, Competing Consumers pattern, CQRS pattern.
-- [CQRS Journey](https://msdn.microsoft.com/en-us/library/jj554200). E-book about CQRS by Microsoft Patterns and Practices.
+- [Executing Background Tasks](https://msdn.microsoft.com/library/ff803365.aspx), chapter 5 of [Moving Applications to the Cloud, 3rd Edition](https://msdn.microsoft.com/library/ff728592.aspx) from Microsoft Patterns and Practices. (In particular, the section ["Using Azure Storage Queues"](https://msdn.microsoft.com/library/ff803365.aspx#sec7).)
+- [Best Practices for Maximizing Scalability and Cost Effectiveness of Queue-Based Messaging Solutions on Azure](https://msdn.microsoft.com/library/windowsazure/hh697709.aspx). White paper by Valery Mizonov.
+- [Comparing Azure Queues and Service Bus Queues](https://msdn.microsoft.com/magazine/jj159884.aspx). MSDN Magazine article, provides additional information that can help you choose which queue service to use. The article mentions that Service Bus is dependent on ACS for authentication, which means your SB queues would be unavailable when ACS is unavailable. However, since the article was written, SB was changed to enable you to use [SAS tokens](https://msdn.microsoft.com/library/windowsazure/dn170477.aspx) as an alternative to ACS.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Asynchronous Messaging primer, Pipes and Filters pattern, Compensating Transaction pattern, Competing Consumers pattern, CQRS pattern.
+- [CQRS Journey](https://msdn.microsoft.com/library/jj554200). E-book about CQRS by Microsoft Patterns and Practices.
 
 Video:
 

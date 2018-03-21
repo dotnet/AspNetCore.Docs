@@ -1,15 +1,13 @@
 ---
-title: Working with SQLite and ASP.NET Core MVC 
+title: Working with SQLite and ASP.NET Core MVC
 author: rick-anderson
 description: Using SQLite with a basic MVC app
-keywords: ASP.NET Core,SQLite,SQL Server
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 04/07/2017
-ms.topic: get-started-article
-ms.assetid: 1638d9b8-6666-1638-8641-1638e23bf541
-ms.technology: aspnet
 ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/first-mvc-app-mac/working-with-sql
 ---
 

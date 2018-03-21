@@ -77,7 +77,7 @@ The `MediaPlayer` player of the `Video` helper lets you play Windows Media video
 - The video plays automatically when the page loads.
 - The video plays once (it doesn't loop).
 - The player displays the full set of controls in the user interface.
-- The video plays in in a window.
+- The video plays in a window.
 
 ### The Silverlight Player
 
@@ -179,8 +179,8 @@ This procedure shows you how to play video contained in a Silverlight *.xap* pag
 ## Additional Resources
 
 
-[Silverlight Overview](https://msdn.microsoft.com/en-us/library/bb404700(VS.95).aspx)
+[Silverlight Overview](https://msdn.microsoft.com/library/bb404700(VS.95).aspx)
 
 [Flash OBJECT and EMBED tag attributes](http://kb2.adobe.com/cps/127/tn_12701.html)
 
-[Windows Media Player 11 SDK PARAM Tags](https://msdn.microsoft.com/en-us/library/aa392321(VS.85).aspx)
+[Windows Media Player 11 SDK PARAM Tags](https://msdn.microsoft.com/library/aa392321(VS.85).aspx)

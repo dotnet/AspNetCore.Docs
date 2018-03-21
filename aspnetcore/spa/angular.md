@@ -1,29 +1,29 @@
 ---
 title: Use the Angular project template
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single-Page Application (SPA) release candidate project template for Angular and the Angular CLI.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/06/2017
+ms.date: 02/21/2018
 ms.devlang: csharp
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
 uid: spa/angular
 ---
-# Use the Angular project template (release candidate)
+# Use the Angular project template
 
 > [!NOTE]
-> This documentation is not about the released Angular project template. **This documentation is about the release candidate of the Angular template.** We hope to ship the released version in early 2018.
+> This documentation isn't about the Angular project template included in ASP.NET Core 2.0. It's about the newer Angular template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
 
-The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular 5 and the Angular CLI to implement a rich, client-side user interface (UI).
+The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular and the Angular CLI to implement a rich, client-side user interface (UI).
 
 The template is equivalent to creating an ASP.NET Core project to act as an API backend and an Angular CLI project to act as a UI. The template offers the convenience of hosting both project types in a single app project. Consequently, the app project can be built and published as a single unit.
 
 ## Create a new app
 
-To get started, ensure you've [installed the updated Angular project template](xref:spa/index#installation). These instructions don't apply to the previous Angular project template included in the .NET Core 2.0.x SDK.
+If using ASP.NET Core 2.0, ensure you've [installed the updated Angular project template](xref:spa/index#installation). If you have ASP.NET Core 2.1, there's no need to install it.
 
 Create a new project from a command prompt using the command `dotnet new angular` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
@@ -44,9 +44,9 @@ The build process restores npm dependencies on the first run, which can take sev
 
 Ensure you have an environment variable called `ASPNETCORE_Environment` with a value of `Development`. On Windows (in non-PowerShell prompts), run `SET ASPNETCORE_Environment=Development`. On Linux or macOS, run `export ASPNETCORE_Environment=Development`.
 
-Run `dotnet build` to verify the app builds correctly. On the first run, the build process restores npm dependencies, which can take several minutes. Subsequent builds are much faster.
+Run [dotnet build](/dotnet/core/tools/dotnet-build) to verify the app builds correctly. On the first run, the build process restores npm dependencies, which can take several minutes. Subsequent builds are much faster.
 
-Run `dotnet run` to start the app. A message similar to the following is logged:
+Run [dotnet run](/dotnet/core/tools/dotnet-run) to start the app. A message similar to the following is logged:
 
 ```console
 Now listening on: http://localhost:<port>
@@ -91,7 +91,7 @@ npm install --save <package_name>
 
 In development, the app runs in a mode optimized for developer convenience. For example, JavaScript bundles include source maps (so that when debugging, you can see your original TypeScript code). The app watches for TypeScript, HTML, and CSS file changes on disk and automatically recompiles and reloads when it sees those files change.
 
-In production, serve a version of your app that is optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled [server-side prerendering](#server-side-rendering)).
+In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled [server-side prerendering](#server-side-rendering)).
 
 You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
@@ -99,7 +99,7 @@ You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and
 
 The project is configured to start its own instance of the Angular CLI server in the background when the ASP.NET Core app starts in development mode. This is convenient because you don't have to run a separate server manually.
 
-There is a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the Angular CLI server restarts. Around 10 seconds is required to start back up. If you're making frequent C# code edits and don't want to wait for Angular CLI to restart, run the Angular CLI server externally, independently of the ASP.NET Core process. To do so:
+There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the Angular CLI server restarts. Around 10 seconds is required to start back up. If you're making frequent C# code edits and don't want to wait for Angular CLI to restart, run the Angular CLI server externally, independently of the ASP.NET Core process. To do so:
 
 1. In a command prompt, switch to the *ClientApp* subdirectory, and launch the Angular CLI development server:
 
@@ -132,7 +132,7 @@ In the *Startup* class, *after* the line that configures `spa.Options.SourcePath
 
 [!code-csharp[](sample/AngularServerSideRendering/Startup.cs?name=snippet_Call_UseSpa&highlight=5-12)]
 
-In development mode, this code attempts to build the SSR bundle by running the script `build:ssr`, which is defined in *ClientApp\package.json*. This builds an Angular app named `ssr`, which is not yet defined. 
+In development mode, this code attempts to build the SSR bundle by running the script `build:ssr`, which is defined in *ClientApp\package.json*. This builds an Angular app named `ssr`, which isn't yet defined. 
 
 At the end of the `apps` array in *ClientApp/.angular-cli.json*, define an extra app with name `ssr`. Use the following options:
 
@@ -171,7 +171,7 @@ During SSR, you might want to pass per-request data from your ASP.NET Core app i
 ```csharp
 options.SupplyData = (context, data) =>
 {
-    // Creates a new value called isHttpsRequest that is passed to TypeScript code
+    // Creates a new value called isHttpsRequest that's passed to TypeScript code
     data["isHttpsRequest"] = context.Request.IsHttps;
 };
 ```

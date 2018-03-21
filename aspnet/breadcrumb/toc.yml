@@ -2,6 +2,9 @@
   tocHref: /
   topicHref: /
   items:
+  - name: API reference
+    tocHref: /dotnet/api/
+    topicHref: /dotnet/api/index
   - name: ASP.NET
     tocHref: /aspnet/
     topicHref: /aspnet/index

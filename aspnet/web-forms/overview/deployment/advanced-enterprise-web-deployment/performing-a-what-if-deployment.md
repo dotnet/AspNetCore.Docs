@@ -47,7 +47,7 @@ If you're using MSDeploy.exe directly, you can run a "what if" deployment by add
 When you're satisfied with the results of your "what if" deployment, you can remove the **–whatif** flag to run a live deployment.
 
 > [!NOTE]
-> For more information on command-line options for MSDeploy.exe, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
+> For more information on command-line options for MSDeploy.exe, see [Web Deploy Operation Settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx).
 
 
 If you're using the *.deploy.cmd* file, you can run a "what if" deployment by including the **/t** flag (trial mode) flag instead of the **/y** flag ("yes," or update mode) in your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package by running the *.deploy.cmd* file, your command should resemble this:
@@ -63,7 +63,7 @@ When you're satisfied with the results of your "trial mode" deployment, you can 
 
 
 > [!NOTE]
-> For more information on command-line options for *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx). If you run the *.deploy.cmd* file without specifying any flags, the command prompt will display a list of available flags.
+> For more information on command-line options for *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/library/ff356104.aspx). If you run the *.deploy.cmd* file without specifying any flags, the command prompt will display a list of available flags.
 
 
 ## Performing a "What If" Deployment for Databases
@@ -137,7 +137,7 @@ This topic described how to run "what if" deployments using Web Deploy, VSDBCMD,
 
 ## Further Reading
 
-For more information on Web Deploy command-line syntax, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx). For guidance on command-line options when you use the *.deploy.cmd* file, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx). For guidance on VSDBCMD command-line syntax, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/en-us/library/dd193283.aspx).
+For more information on Web Deploy command-line syntax, see [Web Deploy Operation Settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx). For guidance on command-line options when you use the *.deploy.cmd* file, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/library/ff356104.aspx). For guidance on VSDBCMD command-line syntax, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx).
 
 >[!div class="step-by-step"]
 [Previous](advanced-enterprise-web-deployment.md)

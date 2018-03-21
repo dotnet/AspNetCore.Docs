@@ -1,17 +1,16 @@
 ---
-title: Adding a New Field to a Razor Page
+title: Adding a New Field to a Razor Page in ASP.NET Core
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
-keywords: ASP.NET Core,Entity Framework Core,migrations
-ms.author: riande
 manager: wpickett
+ms.author: riande
 ms.date: 08/07/2017
-ms.topic: get-started-article
-ms.technology: aspnet
 ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: get-started-article
 uid: tutorials/razor-pages/new-field
 ---
-# Adding a new field to a Razor Page
+# Adding a new field to a Razor Page in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -23,13 +22,13 @@ When you use EF Code First to automatically create a database, Code First adds a
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
 
 Build the app (Ctrl+Shift+B).
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
 
 Add the `Rating` field to the Delete and Details pages.
 
@@ -39,7 +38,7 @@ Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous `<
 
 The following code shows *Create.cshtml* with a `Rating` field:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
 
 Add the `Rating` field to the Edit Page.
 
@@ -63,7 +62,7 @@ For this tutorial, use Code First Migrations.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie` block.
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
 See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
 
@@ -98,7 +97,7 @@ If you delete all the records in the DB, the initializer will seed the DB and in
   Update-Database
   ```
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database is not seeded, stop IIS Express, and then run the app.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
 
 >[!div class="step-by-step"]
 [Previous: Adding Search](xref:tutorials/razor-pages/search)
