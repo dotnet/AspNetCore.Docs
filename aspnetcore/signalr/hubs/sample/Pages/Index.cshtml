@@ -1,0 +1,58 @@
+﻿@page
+<style>
+    th, td {
+        padding: 3px;
+    }
+</style>
+<div class="row">
+    <p></p>
+    <div class="col-md-12">
+        <form action="#">
+            <table>
+                <tr>
+                    <td>Join Group</td>
+                    <td>
+                        <select id="group">
+                            <option value="0">--Select--</option>
+                            <option value="Group 1">Group 1</option>
+                            <option value="Group 2">Group 2</option>
+                        </select>
+                    </td>
+                    <td><input type="submit" id="joingroup" value="Join Group" /></td>
+                </tr>
+                </table>
+            <hr />
+            <table>
+                <tr>
+                    <td>Send message to group</td>
+                    <td colspan="2">
+                        <select id="group">
+                            <option value="0">--All Groups--</option>
+                            <option value="Group 1">Group 1</option>
+                            <option value="Group 2">Group 2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td colspan="2">
+                        <input type="text" id="user" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Message</td>
+                    <td colspan="2">
+                        <input type="text" id="message" />
+                    </td>
+                    <td>
+                        <input type="submit" id="send" value="Send" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <p></p>
+        <ul id="messages" style="list-style-type:none;"></ul>
+    </div>
+</div>
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/chat.js"></script>
