@@ -86,8 +86,8 @@ To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
 DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using the option `ResourcesPath = "Resources"`, the error messages in `RegisterViewModel` can be stored in either of the following paths:
 
-* Resources/ViewModels.Account.RegisterViewModel.fr.resx
-* Resources/ViewModels/Account/RegisterViewModel.fr.resx
+* *Resources/ViewModels.Account.RegisterViewModel.fr.resx*
+* *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
 [!code-csharp[](localization/sample/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
@@ -109,9 +109,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the preceeding code, `SharedResource` is the class corresponding to the resx where your validation messages are stored. With this approach, DataAnnotations will only use `SharedResource`, rather than the resource for each class. 
+In the preceeding code, `SharedResource` is the class corresponding to the resx where your validation messages are stored. With this approach, DataAnnotations will only use `SharedResource`, rather than the resource for each class.
 
-## Provide localized resources for the languages and cultures you support  
+## Provide localized resources for the languages and cultures you support
 
 ### SupportedCultures and SupportedUICultures
 
@@ -167,24 +167,26 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
 ## Culture fallback behavior
-When searching for a resource, localization engages in "culture fallback", meaning that starting from the requested culture, if not found, it will fall back to the parent culture of that culture (CultureInfo.Parent LINK). This usually (but not always) means removing the national signifier from the ISO (IE, 'es-MX' the dialect of spanish spoken in Mexico has the parent 'es', spanish non-specific to any country). 
 
-If your site recieves a request for culture "fr-CA" which wants a "Welcome" resource the localization system will look for the following resources, in order, and select the first one it finds:
-- Welcome.fr-CA.resx
-- Welcome.fr.resx
-- Welcome.resx (if the NeutralResourceLanguage is 'fr-CA')
+When searching for a resource, localization engages in "culture fallback". Starting from the requested culture, if not found, it reverts to the parent culture of that culture. As an aside, the [CultureInfo.Parent](/dotnet/api/system.globalization.cultureinfo.parent) property represents the parent culture. This usually (but not always) means removing the national signifier from the ISO. For example, the dialect of Spanish spoken in Mexico is "es-MX". It has the parent "es"&mdash;Spanish non-specific to any country.
+
+Imagine your site receives a request for a "Welcome" resource using culture "fr-CA". The localization system looks for the following resources, in order, and selects the first match:
+
+* *Welcome.fr-CA.resx*
+* *Welcome.fr.resx*
+* *Welcome.resx* (if the `NeutralResourcesLanguage` is "fr-CA")
 
 As an example, if you remove the ".fr" culture designator and you have the culture set to French, the default resource file is read and strings are localized. The Resource manager designates a default or fallback resource for when nothing meets your requested culture. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.
 
 ### Generate resource files with Visual Studio
 
-If you create a resource file in Visual Studio without a culture in the file name (for example, *Welcome.resx*), Visual Studio will create a C# class with a property for each string. That's usually not what you want with ASP.NET Core; you typically don't have a default *.resx* resource file (A *.resx* file without the culture name). We suggest you create the *.resx* file with a culture name (for example *Welcome.fr.resx*). When you create a *.resx* file with a culture name, Visual Studio won't generate the class file. We anticipate that many developers will **not** create a default language resource file.
+If you create a resource file in Visual Studio without a culture in the file name (for example, *Welcome.resx*), Visual Studio will create a C# class with a property for each string. That's usually not what you want with ASP.NET Core. You typically don't have a default *.resx* resource file (a *.resx* file without the culture name). We suggest you create the *.resx* file with a culture name (for example *Welcome.fr.resx*). When you create a *.resx* file with a culture name, Visual Studio won't generate the class file. We anticipate that many developers won't create a default language resource file.
 
-### Add Other Cultures
+### Add other cultures
 
 Each language and culture combination (other than the default language) requires a unique resource file. You create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the *.resx* file extension, as in *Welcome.es-MX.resx* (Spanish/Mexico).
 
-## Implement a strategy to select the language/culture for each request  
+## Implement a strategy to select the language/culture for each request
 
 ### Configure localization
 
