@@ -1,0 +1,1 @@
+The [latest version of SignalR documentation](https://docs.microsoft.com/aspnet/core/signalr/introduction) for .NET Core is now available.
