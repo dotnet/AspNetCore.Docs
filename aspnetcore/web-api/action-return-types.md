@@ -31,7 +31,7 @@ The simplest action returns a primitive or complex data type (for example, `stri
 
 [!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_Get)]
 
-When there are no known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters; therefore, parameter constraints validation isn't needed.
+Without known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
 When known conditions need to be accounted for in an action, multiple return paths are introduced. In such a case, it's common to mix an [ActionResult](/dotnet/api/microsoft.aspnetcore.mvc.actionresult) return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action.
 
@@ -76,7 +76,7 @@ Consider a synchronous action in which there are two possible return types:
 
 [!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=8,11)]
 
-In the preceding code snippet, a 404 status code is returned when the product doesn't exist in the database. If the product does exist, the corresponding `Product` object is returned. Prior to ASP.NET Core 2.1, the `return product;` line would have been `return Ok(product);`.
+In the preceding code snippet, a 404 status code is returned when the product doesn't exist in the database. If the product does exist, the corresponding `Product` object is returned. Before ASP.NET Core 2.1, the `return product;` line would have been `return Ok(product);`.
 
 > [!TIP]
 > As of ASP.NET Core 2.1, action parameter binding source inference is enabled when a controller class is decorated with the `[ApiController]` attribute. A parameter name matching a name in the route template is automatically bound using the request route data. Consequently, the preceding action's `id` parameter isn't explicitly annotated with the [[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute) attribute.
