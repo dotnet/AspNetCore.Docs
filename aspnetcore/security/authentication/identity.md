@@ -189,7 +189,7 @@ These dependencies are needed to use the Identity system in ASP.NET Core applica
 
 ## Migrating to ASP.NET Core Identity
 
-For additional information and guidance on migrating your existing Identity store see [Migrating Authentication and Identity](xref:migration/identity).
+For additional information and guidance on migrating your existing Identity store see [Migrate Authentication and Identity](xref:migration/identity).
 
 ## Setting password strength
 
@@ -197,7 +197,7 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 
 ## Next Steps
 
-* [Migrating Authentication and Identity](xref:migration/identity)
+* [Migrate Authentication and Identity](xref:migration/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
 * [Two-factor authentication with SMS](xref:security/authentication/2fa)
 * [Facebook, Google, and external provider authentication](xref:security/authentication/social/index)

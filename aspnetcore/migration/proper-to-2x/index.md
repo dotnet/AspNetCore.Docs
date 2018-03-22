@@ -1,5 +1,5 @@
 ---
-title: Migrating from ASP.NET to ASP.NET Core 2.0
+title: Migrate from ASP.NET to ASP.NET Core 2.0
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core 2.0.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.topic: article
 uid: migration/proper-to-2x/index
 ---
 
-# Migrating from ASP.NET to ASP.NET Core 2.0
+# Migrate from ASP.NET to ASP.NET Core 2.0
 
 By [Isaac Levin](https://isaaclevin.com)
 
@@ -141,7 +141,7 @@ In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt
 
 For example, an image asset in the *wwwroot/images* folder is accessible to the browser at a location such as `http://<app>/images/<imageFileName>`.
 
-**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Introduction to working with static files in ASP.NET Core](xref:fundamentals/static-files).
+**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
 
 ## Additional resources
 

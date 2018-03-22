@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/index
 ---
-# Migration to ASP.NET Core, including ASP.NET 4.x, ASP.NET Core 2
+# Migration to ASP.NET Core
 
 ### ASP.NET to ASP.NET Core 1.x
 *   [Migrate from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)

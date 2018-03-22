@@ -33,7 +33,7 @@ The MVC project template has been updated to use [Bootstrap](http://getbootstrap
 
 ### Authentication filters
 
-[Authentication filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957) are a new kind of filter in ASP.NET MVC that run prior to authorization filters in the ASP.NET MVC pipeline and allow you to specify authentication logic per-action, per-controller, or globally for all controllers. Authentication filters process credentials in the request and provide a corresponding principal. Authentication filters can also add authentication challenges in response to unauthorized requests. See [ASP.NET MVC 5 Authentication Filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957), [Authentication Filters in ASP.NET MVC 5](http://theshravan.net/blog/authentication-filters-in-asp-net-mvc-5/) and [Finally the new ASP.NET MVC 5 Authentication Filters!](http://hackwebwith.net/finally-the-new-asp-net-mvc-5-authentication-filters/).
+[Authentication filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957) are a new kind of filter in ASP.NET MVC that run prior to authorization filters in the ASP.NET MVC pipeline and allow you to specify authentication logic per-action, per-controller, or globally for all controllers. Authentication filters process credentials in the request and provide a corresponding principal. Authentication filters can also add authentication challenges in response to unauthorized requests. See [ASP.NET MVC 5 Authentication Filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957), [Authentication Filters in ASP.NET MVC 5](http://theshravan.net/blog/authentication-filters-in-asp-net-mvc-5/).
 
 ### Filter overrides
 

@@ -72,4 +72,4 @@ The data protection stack consists of five packages.
 
 * Microsoft.AspNetCore.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machineKey> operations to instead use the new data protection stack. See [compatibility](xref:security/data-protection/compatibility/replacing-machinekey#compatibility-replacing-machinekey) for more information.
 
-* Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See [Password Hashing](xref:security/data-protection/consumer-apis/password-hashing) for more information.
+* Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing) for more information.

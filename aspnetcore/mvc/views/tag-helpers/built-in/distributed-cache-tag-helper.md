@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
-# Distributed Cache Tag Helper
+# Distributed Cache Tag Helper in ASP.NET Core
 
 By [Peter Kellner](http://peterkellner.net) 
 

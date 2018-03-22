@@ -1,5 +1,5 @@
 ---
-title: Using Bower in ASP.NET Core
+title: Manage client-side packages with Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
 manager: wpickett
@@ -110,7 +110,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 In this section, you will create an HTML page to verify it can access the deployed packages.
 
-* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Working with static files](xref:fundamentals/static-files) for more information.
+* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Work with static files](xref:fundamentals/static-files) for more information.
 
  Replace the contents of *Index.html* with the following markup:
 

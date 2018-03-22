@@ -11,8 +11,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-web-api-mac
 ---
-
-# Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
+# Create a Web API with ASP.NET Core and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -188,7 +187,7 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 ## Next steps
 
-* [Routing to Controller Actions](xref:mvc/controllers/routing)
+* [Route to controller actions](xref:mvc/controllers/routing)
 * For information about deploying your API, see [Host and deploy](xref:host-and-deploy/index).
 * [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 * [Postman](https://www.getpostman.com/)

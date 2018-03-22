@@ -134,7 +134,7 @@ When `OnPostStartMonitoring` is triggered, monitoring is enabled, and the curren
 
 ## Monitoring cached file changes
 
-File content can be cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [In-memory caching](xref:performance/caching/memory) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
+File content can be cached in-memory using [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). In-memory caching is described in the [Cache in-memory](xref:performance/caching/memory) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
 
 Not taking into account the status of a cached source file when renewing a [sliding expiration](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.slidingexpiration) period leads to stale cache data. Each request for the data renews the sliding expiration period, but the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly receiving stale content.
 
@@ -194,8 +194,8 @@ var compositeChangeToken =
 
 ## See also
 
-* [In-memory caching](xref:performance/caching/memory)
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache in-memory](xref:performance/caching/memory)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)

@@ -1,5 +1,5 @@
 ---
-title: Preventing Open Redirect Attacks in an ASP.NET Core app
+title: Prevent open redirect attacks in ASP.NET Core
 author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/preventing-open-redirects
 ---
-# Preventing Open Redirect Attacks in an ASP.NET Core app
+# Prevent open redirect attacks in ASP.NET Core
 
 A web app that redirects to a URL that's specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
 

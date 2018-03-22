@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: data/ef-mvc/concurrency
 ---
 
-# Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial (8 of 10)
+# ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

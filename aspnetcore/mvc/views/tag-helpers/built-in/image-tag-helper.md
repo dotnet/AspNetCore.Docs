@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
-# ImageTagHelper
+# Image Tag Helper in ASP.NET Core
 
 By [Peter Kellner](http://peterkellner.net) 
 

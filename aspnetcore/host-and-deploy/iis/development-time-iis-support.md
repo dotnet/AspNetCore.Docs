@@ -13,7 +13,7 @@ uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
-By: [Sourabh Shirhatti](https://twitter.com/sshirhatti)
+By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This article describes [Visual Studio](https://www.visualstudio.com/vs/) support for debugging ASP.NET Core apps running behind IIS on Windows Server. This topic walks through enabling this feature and setting up a project.
 

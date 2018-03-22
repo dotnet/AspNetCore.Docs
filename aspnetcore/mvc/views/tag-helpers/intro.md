@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/tag-helpers/intro
 ---
-# Introduction to Tag Helpers in ASP.NET Core 
+# Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -56,7 +56,7 @@ Generates the following HTML:
  <label for="Movie_Title">Title</label>
 ```
 
-The `asp-for` attribute is made available by the `For` property in the [LabelTagHelper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.labeltaghelper?view=aspnetcore-2.0). See [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
+The `asp-for` attribute is made available by the `For` property in the [LabelTagHelper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.labeltaghelper?view=aspnetcore-2.0). See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
 
 ## Managing Tag Helper scope
 
@@ -264,7 +264,6 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 ## Additional resources
 
-* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Working with Forms ](xref:mvc/views/working-with-forms)
 * [TagHelperSamples on GitHub](https://github.com/dpaquette/TagHelperSamples) contains Tag Helper samples for working with [Bootstrap](http://getbootstrap.com/).
-* [Working with Forms ](xref:mvc/views/working-with-forms)

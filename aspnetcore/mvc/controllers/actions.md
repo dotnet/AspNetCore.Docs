@@ -1,5 +1,5 @@
 ---
-title: Handling requests with controllers in ASP.NET Core MVC
+title: Handle requests with controllers in ASP.NET Core MVC
 author: ardalis
 description: 
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/controllers/actions
 ---
-# Handling requests with controllers in ASP.NET Core MVC
+# Handle requests with controllers in ASP.NET Core MVC
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://github.com/scottaddie)
 
@@ -96,7 +96,7 @@ Applications typically share parts of their workflow. Examples include an app th
 Most filter attributes, such as `[Authorize]`, can be applied at the controller or action level depending upon the desired level of granularity.
 
 Error handling and response caching are often cross-cutting concerns:
-   * [Error handling](xref:mvc/controllers/filters#exception-filters)
+   * [Handle errors](xref:mvc/controllers/filters#exception-filters)
    * [Response Caching](xref:performance/caching/response)
 
 Many cross-cutting concerns can be handled using filters or custom [middleware](xref:fundamentals/middleware/index).

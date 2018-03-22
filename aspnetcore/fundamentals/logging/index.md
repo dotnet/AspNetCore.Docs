@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/logging/index
 ---
-# Introduction to logging in ASP.NET Core
+# Logging in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra)
 

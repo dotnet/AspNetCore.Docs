@@ -96,5 +96,5 @@ Azure App Service on Windows Server uses [Internet Information Services (IIS)](h
 * [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
 * [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 * [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [Using IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
+* [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
 * [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)

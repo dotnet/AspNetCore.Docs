@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/index
 ---
-# Data Protection in ASP.NET Core: Consumer APIs, configuration, extensibility APIs and implementation
+# Data Protection in ASP.NET Core
 
 * [Introduction to data protection](xref:security/data-protection/introduction)
 
@@ -24,15 +24,15 @@ uid: security/data-protection/index
 
   * [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
 
-  * [Password hashing](xref:security/data-protection/consumer-apis/password-hashing)
+  * [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing)
 
-  * [Limiting the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
+  * [Limit the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
 
-  * [Unprotecting payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
+  * [Unprotect payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
 
 * [Configuration](xref:security/data-protection/configuration/index)
 
-  * [Configuring data protection](xref:security/data-protection/configuration/overview)
+  * [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview)
 
   * [Default settings](xref:security/data-protection/configuration/default-settings)
 
@@ -62,7 +62,7 @@ uid: security/data-protection/index
 
   * [Key encryption at rest](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-  * [Key immutability and changing settings](xref:security/data-protection/implementation/key-immutability)
+  * [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
 
   * [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 

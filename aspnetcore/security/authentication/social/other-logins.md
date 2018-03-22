@@ -1,5 +1,5 @@
 ---
-title: Short survey of other authentication providers.
+title: Short survey of other authentication providers
 author: rick-anderson
 manager: wpickett
 ms.author: riande

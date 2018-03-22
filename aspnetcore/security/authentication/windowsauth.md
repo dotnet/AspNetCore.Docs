@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authentication/windowsauth
 ---
-# Configure Windows authentication in an ASP.NET Core app
+# Configure Windows authentication in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com) and [Scott Addie](https://twitter.com/Scott_Addie)
 
