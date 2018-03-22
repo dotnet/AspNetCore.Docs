@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/models/validation
 ---
-# Introduction to model validation in ASP.NET Core MVC
+# Model validation in ASP.NET Core MVC
 
 By [Rachel Appel](https://github.com/rachelappel)
 

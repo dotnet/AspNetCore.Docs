@@ -138,7 +138,7 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 
 >[!div class="step-by-step"]
 [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)

@@ -141,7 +141,7 @@ From the **Create New** dialog:
 2. Enter *Get Values* in the **Request name** box.
 3. Select **+ Create Collection** to create a new collection for storing the request. Name the collection *ASP.NET Core tutorials* and then select the checkmark.
     
-    ![Creating a new collection](./azure-ad-b2c-webapi/postman-create-collection.png)
+    ![Create a new collection](./azure-ad-b2c-webapi/postman-create-collection.png)
 
 4. Select the **Save to ASP.NET Core tutorials** button.
 

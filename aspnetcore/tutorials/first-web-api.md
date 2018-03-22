@@ -10,8 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-web-api
 ---
-
-#Create a web API with ASP.NET Core and Visual Studio for Windows
+# Create a Web API with ASP.NET Core and Visual Studio for Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 

@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: host-and-deploy/directory-structure
 ---
-# Directory structure of published ASP.NET Core apps
+# ASP.NET Core directory structure
 
 By [Luke Latham](https://github.com/guardrex)
 

@@ -1,5 +1,5 @@
 ---
-title: Authoring Tag Helpers in ASP.NET Core
+title: Author Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/tag-helpers/authoring
 ---
-# Author Tag Helpers in ASP.NET Core, a walkthrough with samples
+# Author Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

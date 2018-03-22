@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/index
 ---
-# ASP.NET Core Security Overview
+# Overview of ASP.NET Core Security
 
 ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, SSL enforcement, app secrets, anti-request forgery protection, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps.
 
@@ -69,7 +69,7 @@ There are more vulnerabilities that you should be aware of. For more information
         *   [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview)
         *   [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
         *   [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
-        *   [Password hashing](xref:security/data-protection/consumer-apis/password-hashing)
+        *   [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing)
         *   [Limit the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
         *   [Unprotect payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
     *   [Configuration](xref:security/data-protection/configuration/index)
@@ -88,13 +88,13 @@ There are more vulnerabilities that you should be aware of. For more information
         *   [Key management](xref:security/data-protection/implementation/key-management)
         *   [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)
         *   [Key encryption at rest](xref:security/data-protection/implementation/key-encryption-at-rest)
-        *   [Key immutability and changing settings](xref:security/data-protection/implementation/key-immutability)
+        *   [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
         *   [Key storage format](xref:security/data-protection/implementation/key-storage-format)
         *   [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
     *   [Compatibility](xref:security/data-protection/compatibility/index)
         *   [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 *   [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
-*   [Safe storage of app secrets during development](xref:security/app-secrets)
+*   [Safe storage of app secrets in development](xref:security/app-secrets)
 *   [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 *   [Enforce SSL](xref:security/enforcing-ssl)
 *   [Anti-Request Forgery](xref:security/anti-request-forgery)

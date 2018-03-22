@@ -11,7 +11,7 @@ ms.topic: article
 uid: security/authentication/identity-configuration
 ---
 
-# Configure Identity
+# Configure ASP.NET Core Identity
 
 ASP.NET Core Identity uses default configuration for settings such as password policy, lockout time, and cookie settings. These settings can be overridden in the app's `Startup` class.
 

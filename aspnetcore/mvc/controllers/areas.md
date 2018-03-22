@@ -120,7 +120,7 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
    }
    ```
 
-Set up a route definition that works with your newly created areas. The [Routing to Controller Actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
+Set up a route definition that works with your newly created areas. The [Route to controller actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
 
 ```csharp
 ...

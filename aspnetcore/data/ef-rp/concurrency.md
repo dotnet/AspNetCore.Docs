@@ -304,7 +304,7 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 ### Additional resources
 
 * [Concurrency Tokens in EF Core](https://docs.microsoft.com/ef/core/modeling/concurrency)
-* [Handling concurrency in EF Core](https://docs.microsoft.com/ef/core/saving/concurrency)
+* [Handle concurrency in EF Core](https://docs.microsoft.com/ef/core/saving/concurrency)
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/update-related-data)

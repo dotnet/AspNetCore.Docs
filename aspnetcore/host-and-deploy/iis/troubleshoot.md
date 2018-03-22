@@ -24,7 +24,7 @@ Additional troubleshooting topics:
 [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
 Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
 
-[Error handling](xref:fundamentals/error-handling)  
+[Handle errors](xref:fundamentals/error-handling)  
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  

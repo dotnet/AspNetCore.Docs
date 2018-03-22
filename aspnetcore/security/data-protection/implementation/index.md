@@ -24,7 +24,7 @@ uid: security/data-protection/implementation/index
 
 * [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-* [Key Immutability and Changing Settings](xref:security/data-protection/implementation/key-immutability)
+* [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
 
 * [Key Storage Format](xref:security/data-protection/implementation/key-storage-format)
 

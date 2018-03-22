@@ -16,4 +16,4 @@ uid: tutorials/razor-pages-vsc/da1
 
 >[!div class="step-by-step"]
 [Previous: Working with SQLlite](xref:tutorials/razor-pages-vsc/sql)
-[Adding Search](xref:tutorials/razor-pages/search)
+[Add search](xref:tutorials/razor-pages/search)
