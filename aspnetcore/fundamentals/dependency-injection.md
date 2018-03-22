@@ -150,6 +150,9 @@ Transient lifetime services are created each time they're requested. This lifeti
 
 Scoped lifetime services are created once per request.
 
+>[!WARNING]
+> If you are using your scoped services in middlewares, inject it directly into the incoke method, not in the constructor as it will force the service to behave like a singleton.
+
 **Singleton**
 
 Singleton lifetime services are created the first time they're requested (or when `ConfigureServices` is run if you specify an instance there) and then every subsequent request will use the same instance. If your application requires singleton behavior, allowing the services container to manage the service's lifetime is recommended instead of implementing the singleton design pattern and managing your object's lifetime in the class yourself.
