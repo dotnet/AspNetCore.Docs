@@ -29,9 +29,9 @@ namespace TodoApi
             app.UseStaticFiles();
 
             // Enable the Swagger UI middleware and the Swagger generator
-            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, new SwaggerUiSettings()
+            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
             {
-                DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
+                settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
             });
 
             app.UseMvc();
