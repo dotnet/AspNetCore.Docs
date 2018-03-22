@@ -92,7 +92,7 @@ Below is an example of how to add additional services to the container using a n
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add*ServiceName* extension method to register all of the services required by that feature.
 
->[!TIP]
+> [!TIP]
 > You can request certain framework-provided services within `Startup` methods through their parameter lists - see [Application Startup](startup.md) for more details.
 
 ## Registering services
@@ -132,7 +132,7 @@ In this case, both `ICharacterRepository` and in turn `ApplicationDbContext` mus
 
 Entity Framework contexts should be added to the services container using the `Scoped` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
->[!WARNING]
+> [!WARNING]
 > The main danger to be wary of is resolving a `Scoped` service from a singleton. It's likely in such a case that the service will have incorrect state when processing subsequent requests.
 
 Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using [configuration](xref:fundamentals/configuration/index) and the [options pattern](xref:fundamentals/configuration/options).
@@ -149,8 +149,8 @@ Transient lifetime services are created each time they're requested. This lifeti
 
 Scoped lifetime services are created once per request.
 
->[!WARNING]
-> If you're using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection, as it forces the service to behave like a singleton.
+> [!WARNING]
+> If you're using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton.
 
 **Singleton**
 
