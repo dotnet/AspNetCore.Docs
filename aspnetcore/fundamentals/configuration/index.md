@@ -43,7 +43,7 @@ The app reads and displays the following configuration settings:
 
 [!code-json[](index/sample/ConfigJson/appsettings.json)]
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the `Configuration` indexer with the corresponding item's key:
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a double underscore (`__`). To retrieve a value, access the `Configuration` indexer with the corresponding item's key:
 
 [!code-csharp[](index/sample/ConfigJson/Program.cs?range=21-22)]
 
@@ -108,7 +108,7 @@ Configuration considerations:
 * `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
-* If a colon (`:`) can't be used in environment variables on a system, replace the colon (`:`) with a double-underscore (`__`).
+* A colon (`:`) may also be used for hierarchigal config keys, but may not work on all platforms. Double underscore (__) is supported by all platforms.
 
 ## In-memory provider and binding to a POCO class
 
