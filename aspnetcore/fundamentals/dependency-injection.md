@@ -43,7 +43,6 @@ Constructor injection requires that the constructor in question be *public*. Oth
 
 > A suitable constructor for type 'YourType' couldn't be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
 
-
 Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, your app will throw an `InvalidOperationException`:
 
 > Multiple constructors accepting all given argument types have been found in type 'YourType'. There should only be one applicable constructor.
@@ -151,7 +150,7 @@ Transient lifetime services are created each time they're requested. This lifeti
 Scoped lifetime services are created once per request.
 
 >[!WARNING]
-> If you are using your scoped services in middlewares, inject it directly into the incoke method, not in the constructor as it will force the service to behave like a singleton.
+> If you're using your a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection, as it forces the service to behave like a singleton.
 
 **Singleton**
 
