@@ -150,7 +150,7 @@ Transient lifetime services are created each time they're requested. This lifeti
 Scoped lifetime services are created once per request.
 
 >[!WARNING]
-> If you're using your a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection, as it forces the service to behave like a singleton.
+> If you're using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection, as it forces the service to behave like a singleton.
 
 **Singleton**
 
