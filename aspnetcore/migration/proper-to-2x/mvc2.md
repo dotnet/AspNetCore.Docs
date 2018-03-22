@@ -10,6 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/mvc2
 ---
+
 # Migrate from ASP.NET to ASP.NET Core 2.0
 
 By [Isaac Levin](https://isaaclevin.com)
