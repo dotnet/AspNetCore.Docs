@@ -4,4 +4,4 @@ This tutorial teaches ASP.NET Core MVC web development with controllers and view
 * Is easier to follow.
 * Covers more features.
 
-If you choose this tutorial over the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) version, please leave a not explaining why.
+If you choose this tutorial over the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) version, please leave a note explaining why.
