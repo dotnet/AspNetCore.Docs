@@ -202,6 +202,15 @@
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
 # [Client-side development](xref:client-side/index)
+## [Blazor](xref:client-side/blazor/index)
+<!-- ### [Build your first app](xref:client-side/blazor/first-app)
+### [Introduction](xref:client-side/blazor/introduction/index)
+### [Create components](xref:client-side/blazor/create-components/index)
+### [Use components](xref:client-side/blazor/use-components/index)
+### [Layouts](xref:client-side/blazor/layouts)
+### [Dependency injection](xref:client-side/blazor/dependency-injection)
+### [Host and deploy](xref:client-side/blazor/host-and-deploy/index)
+### [Troubleshoot Blazor](xref:client-side/blazor/troubleshoot/index) -->
 ## [Use Gulp](xref:client-side/using-gulp)
 ## [Use Grunt](xref:client-side/using-grunt)
 ## [Manage client-side packages with Bower](xref:client-side/bower)
