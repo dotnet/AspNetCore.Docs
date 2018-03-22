@@ -12,7 +12,7 @@ ms.topic: article
 uid: fundamentals/app-state
 ---
 
-# Introduction to session and application state in ASP.NET Core
+# Session and application state in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Diana LaRose](https://github.com/DianaLaRose)
 
@@ -29,7 +29,7 @@ The server retains a session for a limited time after the last request. Either s
 > [!WARNING]
 > Don't store sensitive data in session. The client might not close the browser and clear the session cookie (and some browsers keep session cookies alive across windows). Also, a session might not be restricted to a single user; the next user might continue with the same session.
 
-The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don't require sticky sessions. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed). For details on setting up service providers, see [Configuring Session](#configuring-session) later in this article.
+The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don't require sticky sessions. For more information, see [Work with a Distributed Cache](xref:performance/caching/distributed). For details on setting up service providers, see [Configuring Session](#configuring-session) later in this article.
 
 <a name="temp"></a>
 ## TempData
@@ -103,11 +103,11 @@ Cookies are often used for personalization, where content is customized for a kn
 
 ## HttpContext.Items
 
-The `Items` collection is a good location to store data that's needed only while processing one particular request. The collection's contents are discarded after each request. The `Items` collection is best used as a way for components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters. For more information, see [Working with HttpContext.Items](#working-with-httpcontextitems), later in this article.
+The `Items` collection is a good location to store data that's needed only while processing one particular request. The collection's contents are discarded after each request. The `Items` collection is best used as a way for components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters. For more information, see [Work with HttpContext.Items](#working-with-httpcontextitems), later in this article.
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. You can control the lifetime of cached items based on time and other considerations. Learn more about [Caching](../performance/caching/index.md).
+Caching is an efficient way to store and retrieve data. You can control the lifetime of cached items based on time and other considerations. Learn more about [how to cache](../performance/caching/index.md).
 
 <a name="session"></a>
 ## Working with Session State
@@ -267,7 +267,7 @@ public class MyController : Controller
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed) and [In memory caching](xref:performance/caching/memory).
+  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Work with a Distributed Cache](xref:performance/caching/distributed) and [In memory caching](xref:performance/caching/memory).
 
 * In the event that the session middleware fails to persist a session (for example: if the database isn't available), it logs the exception and swallows it. The request will then continue normally, which leads to very unpredictable behavior.
 

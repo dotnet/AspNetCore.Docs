@@ -1,5 +1,5 @@
 ---
-title: Adding a model to a Razor Pages app in ASP.NET Core
+title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/model
 ---
-# Adding a model to a Razor Pages app in ASP.NET Core
+# Add a model to a Razor Pages app in ASP.NET Core
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 

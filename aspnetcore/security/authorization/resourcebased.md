@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/resourcebased
 ---
-# Resource-based authorization
+# Resource-based authorization in ASP.NET Core
 
 Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
 

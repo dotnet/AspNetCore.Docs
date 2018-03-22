@@ -10,7 +10,7 @@ ms.topic: get-started-article
 uid: data/ef-mvc/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial (3 of 10)
+# ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

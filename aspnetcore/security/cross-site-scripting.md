@@ -1,5 +1,5 @@
 ---
-title: Preventing Cross-Site Scripting (XSS) in ASP.NET Core
+title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 author: rick-anderson
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/cross-site-scripting
 ---
-# Preventing Cross-Site Scripting (XSS) in ASP.NET Core
+# Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

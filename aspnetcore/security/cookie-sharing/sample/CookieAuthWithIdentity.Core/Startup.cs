@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -25,18 +24,12 @@ namespace CookieAuthWithIdentityCore
                 .AddDefaultTokenProviders();
 
             #region snippet1
-            services.ConfigureApplicationCookie(options => {
-                var protectionProvider = DataProtectionProvider.Create(
-                    new DirectoryInfo(GetKeyRingFolderPath()));
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(GetKeyRingDirInfo())
+                .SetApplicationName("SharedCookieApp");
 
+            services.ConfigureApplicationCookie(options => {
                 options.Cookie.Name = ".AspNet.SharedCookie";
-                options.DataProtectionProvider = protectionProvider;
-                options.TicketDataFormat = 
-                    new TicketDataFormat(
-                        protectionProvider.CreateProtector(
-                            "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", 
-                            "Cookies", 
-                            "v2"));
             });
             #endregion
 
@@ -73,7 +66,7 @@ namespace CookieAuthWithIdentityCore
         // finds the KeyRing folder in the sample. Using this
         // approach allows the sample to run from a Debug
         // or Release location within the bin folder.
-        private string GetKeyRingFolderPath()
+        private DirectoryInfo GetKeyRingDirInfo()
         {
             var startupAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             var applicationBasePath = System.AppContext.BaseDirectory;
@@ -82,10 +75,10 @@ namespace CookieAuthWithIdentityCore
             {
                 directoryInfo = directoryInfo.Parent;
 
-                var projectDirectoryInfo = new DirectoryInfo(Path.Combine(directoryInfo.FullName, "KeyRing"));
-                if (projectDirectoryInfo.Exists)
+                var keyRingDirectoryInfo = new DirectoryInfo(Path.Combine(directoryInfo.FullName, "KeyRing"));
+                if (keyRingDirectoryInfo.Exists)
                 {
-                    return projectDirectoryInfo.FullName;
+                    return keyRingDirectoryInfo;
                 }
             }
             while (directoryInfo.Parent != null);

@@ -180,13 +180,13 @@ Your app can also use [dependency injection in view files](views/dependency-inje
 
 In addition to being a great platform for building web sites, ASP.NET Core MVC has great support for building Web APIs. You can build services that reach a broad range of clients including browsers and mobile devices.
 
-The framework includes support for HTTP content-negotiation with built-in support for [formatting data](models/formatting.md) as JSON or XML. Write [custom formatters](advanced/custom-formatters.md) to add support for your own formats.
+The framework includes support for HTTP content-negotiation with built-in support to [format data](models/formatting.md) as JSON or XML. Write [custom formatters](advanced/custom-formatters.md) to add support for your own formats.
 
 Use link generation to enable support for hypermedia. Easily enable support for [cross-origin resource sharing (CORS)](http://www.w3.org/TR/cors/) so that your Web APIs can be shared across multiple Web applications.
 
 ### Testability
 
-The framework's use of interfaces and dependency injection make it well-suited to unit testing, and the framework includes features (like a TestHost and InMemory provider for Entity Framework) that make [integration testing](../testing/integration-testing.md) quick and easy as well. Learn more about [testing controller logic](controllers/testing.md).
+The framework's use of interfaces and dependency injection make it well-suited to unit testing, and the framework includes features (like a TestHost and InMemory provider for Entity Framework) that make [integration tests](../testing/integration-testing.md) quick and easy as well. Learn more about [how to test controller logic](controllers/testing.md).
 
 ### Razor view engine
 

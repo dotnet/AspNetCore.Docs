@@ -52,7 +52,7 @@ namespace CookieAuthCore.Pages.Account
             }
 
             // Clear the existing external cookie
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync("Identity.Application");
 
             ReturnUrl = returnUrl;
         }
@@ -105,7 +105,7 @@ namespace CookieAuthCore.Pages.Account
                     // redirect response value.
                 };
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                await HttpContext.SignInAsync("Identity.Application", 
                     new ClaimsPrincipal(claimsIdentity), authProperties);
 
                 _logger.LogInformation($"User {user.Email} logged in at {DateTime.UtcNow}.");

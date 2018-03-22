@@ -1,5 +1,5 @@
 ---
-title: Authorize with a specific scheme - ASP.NET Core
+title: Authorize with a specific scheme in ASP.NET Core
 author: rick-anderson
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/limitingidentitybyscheme
 ---
-# Authorize with a specific scheme
+# Authorize with a specific scheme in ASP.NET Core
 
 In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication handler. For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
 

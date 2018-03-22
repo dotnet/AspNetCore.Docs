@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: tutorials/nano-server
 ---
-# ASP.NET Core with IIS on Nano Server
+# ASP.NET Core on Nano Server
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 

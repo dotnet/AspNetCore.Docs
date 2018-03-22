@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-mvc/crud
 ---
-# Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial (2 of 10)
+# ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -39,7 +39,7 @@ In *Controllers/StudentsController.cs*, the action method for the Details view u
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Details&highlight=8-12)]
 
-The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the [reading related data](read-related-data.md) tutorial.
+The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the [read related data](read-related-data.md) tutorial.
 
 The `AsNoTracking` method improves performance in scenarios where the entities returned won't be updated in the current context's lifetime. You'll learn more about `AsNoTracking` at the end of this tutorial.
 

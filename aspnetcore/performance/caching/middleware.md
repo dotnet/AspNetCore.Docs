@@ -100,8 +100,8 @@ The middleware respects the rules of the [HTTP 1.1 Caching specification](https:
 
 For more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
-* [In-memory caching](xref:performance/caching/memory)
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache in-memory](xref:performance/caching/memory)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Cache Tag Helper in ASP.NET Core MVC](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
 * [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
 
@@ -137,8 +137,8 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)
-* [In-memory caching](xref:performance/caching/memory)
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache in-memory](xref:performance/caching/memory)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)

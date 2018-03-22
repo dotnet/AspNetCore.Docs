@@ -26,7 +26,7 @@ There are 3 versions of this tutorial:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

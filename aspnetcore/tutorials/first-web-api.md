@@ -10,8 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-web-api
 ---
-
-#Create a web API with ASP.NET Core and Visual Studio for Windows
+# Create a Web API with ASP.NET Core and Visual Studio for Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -29,15 +28,13 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../includes/install2.0.md)]
-
-See [this PDF](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-web-api/_static/_webAPI.pdf) for the ASP.NET Core 1.1 version.
+[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
 
 ## Create the project
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
 
-Select **.NET Core** >  **ASP.NET Core Web Application** project template. Name the project `TodoApi` and select **OK**.
+Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project `TodoApi` and select **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 

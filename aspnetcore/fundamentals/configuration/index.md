@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/configuration/index
 ---
-# Configure an ASP.NET Core App
+# Configuration in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
@@ -101,13 +101,13 @@ When the environment is set to `Staging`, the following `Configure` method reads
 [!code-csharp[](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 
 
-The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Working with multiple environments](xref:fundamentals/environments).
+The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Work with multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
 * `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [working with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets during development](xref:security/app-secrets).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to work with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
 * If a colon (`:`) can't be used in environment variables on a system, replace the colon (`:`) with a double-underscore (`__`).
 
 ## In-memory provider and binding to a POCO class
@@ -467,8 +467,8 @@ In an MVC view:
 ## Additional resources
 
 * [Options](xref:fundamentals/configuration/options)
-* [Working with Multiple Environments](xref:fundamentals/environments)
-* [Safe storage of app secrets during development](xref:security/app-secrets)
+* [Work with Multiple Environments](xref:fundamentals/environments)
+* [Safe storage of app secrets in development](xref:security/app-secrets)
 * [Hosting in ASP.NET Core](xref:fundamentals/hosting)
 * [Dependency Injection](xref:fundamentals/dependency-injection)
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration)

@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/views/razor
 ---
-# Razor syntax for ASP.NET Core
+# Razor syntax reference for ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 

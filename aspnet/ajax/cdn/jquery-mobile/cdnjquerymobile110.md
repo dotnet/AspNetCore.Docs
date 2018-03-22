@@ -17,17 +17,17 @@ jQuery Mobile 1.1.0 on the Microsoft Ajax CDN
 ====================
 The jQuery Mobile 1.1.0 library includes the following files:
 
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.structure-1.1.0.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.theme-1.1.0.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.theme-1.1.0.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.css
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.js
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/ajax-loader.gif
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/ajax-loader.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-18-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-18-white.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-36-black.png
-- http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/imagesicons-36-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.structure-1.1.0.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.theme-1.1.0.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile.theme-1.1.0.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.css
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.js
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/ajax-loader.gif
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/ajax-loader.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-18-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-18-white.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/images/icons-36-black.png
+- https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/imagesicons-36-white.png

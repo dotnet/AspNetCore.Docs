@@ -11,7 +11,7 @@ ms.topic: tutorial
 ms.technology: aspnet
 uid: signalr/get-started
 ---
-# Tutorial: Get started with SignalR for ASP.NET Core
+# Get started with SignalR on ASP.NET Core
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 

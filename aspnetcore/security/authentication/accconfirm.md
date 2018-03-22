@@ -1,5 +1,5 @@
 ---
-title: Account Confirmation and Password Recovery in ASP.NET Core
+title: Account confirmation and password recovery in ASP.NET Core
 author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 manager: wpickett
@@ -25,7 +25,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 ## Prerequisites
 
-[.NET Core 2.1.4 SDK](https://www.microsoft.com/net/core) or later.
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 ## Create a new ASP.NET Core project with the .NET Core CLI
 
@@ -69,7 +69,7 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 
 ## View the Identity database
 
-See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
+See [Work with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
 
 For Visual Studio:
 

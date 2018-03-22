@@ -59,13 +59,13 @@ There's no current developer control over this caching behavior when using the [
 
 In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using *sticky sessions*. Sticky sessions means that the requests from a client are always routed to the same server for processing.
 
-For more information, see [Introduction to in-memory caching in ASP.NET Core](xref:performance/caching/memory).
+For more information, see [Cache in-memory](xref:performance/caching/memory).
 
 ### Distributed Cache
 
 Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
 
-For more information, see [Working with a distributed cache](xref:performance/caching/distributed).
+For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
 
 ### Cache Tag Helper
 
@@ -175,10 +175,10 @@ Cache-Control: public,max-age=60
 
 ## Additional resources
 
-* [Caching in HTTP from the specification](https://tools.ietf.org/html/rfc7234#section-3)
+* [Storing Responses in Caches](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
-* [In-memory caching](xref:performance/caching/memory)
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache in-memory](xref:performance/caching/memory)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response Caching Middleware](xref:performance/caching/middleware)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)

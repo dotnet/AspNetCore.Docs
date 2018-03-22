@@ -13,8 +13,8 @@ uid: testing/index
 # Test and debug in ASP.NET Core
 
 * [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Integration testing](xref:testing/integration-testing)
-* [Razor Pages unit and integration testing](xref:testing/razor-pages-testing)
+* [Integration tests](xref:testing/integration-testing)
+* [Razor Pages unit and integration tests](xref:testing/razor-pages-testing)
 * [Test controllers](xref:mvc/controllers/testing)
 * [Debug ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 * [Remote debugging](/visualstudio/debugger/remote-debugging-azure)

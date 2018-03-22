@@ -1,5 +1,5 @@
 ---
-title: Add app features using a platform-specific configuration in ASP.NET Core
+title: Add app features with a platform-specific configuration in ASP.NET Core
 author: guardrex
 description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 manager: wpickett
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: host-and-deploy/platform-specific-configuration
 ---
-# Add app features using a platform-specific configuration in ASP.NET Core
+# Add app features with a platform-specific configuration in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
@@ -138,7 +138,7 @@ The sample app sets this value to:
 %UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
 ```
 
-For examples of how to set environment variables for various operating systems, see [Working with multiple environments](xref:fundamentals/environments).
+For examples of how to set environment variables for various operating systems, see [Work with multiple environments](xref:fundamentals/environments).
 
 ## Sample app
 

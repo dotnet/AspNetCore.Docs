@@ -12,7 +12,7 @@ ms.topic: article
 uid: fundamentals/websockets
 ---
 
-# Introduction to WebSockets in ASP.NET Core
+# WebSockets support in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https://github.com/anurse)
 

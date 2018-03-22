@@ -1,5 +1,5 @@
 ---
-title: Creating Backend Services for Native Mobile Applications with ASP.NET Core
+title: Create backend services for native mobile apps with ASP.NET Core
 author: ardalis
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mobile/native-mobile-backend
 ---
-# Creating Backend Services for Native Mobile Applications with ASP.NET Core
+# Create backend services for native mobile apps with ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -80,7 +80,7 @@ Configure the implementation in *Startup.cs*:
 At this point, you're ready to create the *ToDoItemsController*.
 
 > [!TIP]
-> Learn more about creating web APIs in [Building Your First Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
+> Learn more about creating web APIs in [Build your first Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
 
 ## Creating the Controller
 

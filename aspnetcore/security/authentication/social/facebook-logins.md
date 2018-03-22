@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authentication/facebook-logins
 ---
-# Configuring Facebook authentication
+# Facebook external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

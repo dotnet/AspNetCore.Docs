@@ -1,5 +1,5 @@
 ---
-title: Building Web APIs in ASP.NET Core
+title: Build Web APIs in ASP.NET Core
 author: rick-anderson
 description: Discover information on building Web APIs in ASP.NET Core.
 manager: wpickett
@@ -11,11 +11,11 @@ ms.topic: article
 uid: mvc/web-api/index
 ---
 
-# Building Web APIs
+# Build Web APIs in ASP.NET Core
 
-* [Building your first Web API with ASP.NET Core using Visual Studio](../../tutorials/first-web-api.md)
+* [Build your first Web API with ASP.NET Core using Visual Studio](../../tutorials/first-web-api.md)
 * [ASP.NET Core Web API Help Pages using Swagger](../../tutorials/web-api-help-pages-using-swagger.md)
-* [Creating backend services for native mobile applications](../../mobile/native-mobile-backend.md)
-* [Formatting response data](../models/formatting.md)
+* [Create backend services for native mobile applications](../../mobile/native-mobile-backend.md)
+* [Format response data](../models/formatting.md)
 * [Custom formatters](../advanced/custom-formatters.md)
 
