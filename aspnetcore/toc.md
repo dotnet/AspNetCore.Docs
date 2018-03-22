@@ -177,6 +177,9 @@
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 ### [Format response data](mvc/models/formatting.md)
 
+# [Web API](xref:web-api/index)
+## [Controller action return types](xref:web-api/action-return-types)
+
 # [Test and debug](xref:testing/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:testing/integration-testing)
