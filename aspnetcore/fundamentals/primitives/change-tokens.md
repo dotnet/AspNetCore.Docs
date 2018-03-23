@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 A *change token* is a general-purpose, low-level building block used to track changes.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/primitives/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/primitives/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## IChangeToken interface
 

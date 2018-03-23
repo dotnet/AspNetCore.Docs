@@ -14,7 +14,7 @@ uid: mvc/views/view-components
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Introducing view components
 
@@ -133,7 +133,7 @@ In this example, the view component is called directly from the controller:
 
 ## Walkthrough: Creating a simple view component
 
-[Download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `Todo` controller that displays a list of *Todo* items.
+[Download](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `Todo` controller that displays a list of *Todo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 

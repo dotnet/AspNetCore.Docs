@@ -21,7 +21,7 @@ By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis
 
 You can create custom filters to handle cross-cutting concerns for your application. Anytime you want to avoid duplicating code across actions, filters are the solution. For example, you can consolidate error handling code in a exception filter.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/controllers/filters/sample).
 
 ## How do filters work?
 
@@ -320,4 +320,4 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Next actions
 
-To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/controllers/filters/sample).

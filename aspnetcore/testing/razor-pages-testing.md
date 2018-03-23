@@ -29,7 +29,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps, unit
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * [Integration tests](xref:testing/integration-testing)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/testing/razor-pages-testing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/testing/razor-pages-testing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 

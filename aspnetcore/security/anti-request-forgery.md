@@ -229,7 +229,7 @@ For ASP.NET Core API work with this convention:
 services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 ```
 
-[View sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample).
+[View sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/anti-request-forgery/sample/AngularSample).
 
 ### JavaScript
 

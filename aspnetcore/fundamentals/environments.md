@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core provides support for setting application behavior at runtime with environment variables.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Environments
 

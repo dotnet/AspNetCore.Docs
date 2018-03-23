@@ -64,7 +64,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/live/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
 
 Build the solution.
 
