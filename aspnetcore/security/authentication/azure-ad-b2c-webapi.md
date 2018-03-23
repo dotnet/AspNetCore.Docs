@@ -18,7 +18,7 @@ By [Cam Soper](https://twitter.com/camsoper)
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 Since web APIs have no user interface, they're unable to redirect the user to a secure token service like Azure AD B2C. Instead, the API is passed a bearer token from the calling app, which has already authenticated the user with Azure AD B2C. The API then validates the token without direct user interaction.
 
@@ -145,7 +145,7 @@ From the **Create New** dialog:
 
 4. Select the **Save to ASP.NET Core tutorials** button.
 
-### Test the web API withoutauthentication
+### Test the web API without authentication
 
 To verify that the web API requires authentication, first make a request without authentication.
 
@@ -170,10 +170,10 @@ To make an authenticated request to the web API, a bearer token is required. Pos
     | **Token Name**            | *&lt;token name&gt;*                                                                          | Enter a descriptive name for the token.                                                    |
     | **Grant Type**            | Implicit                                                                                      |                                                                                            |
     | **Callback URL**          | `https://getpostman.com/postman`                                                              |                                                                                            |
-    | **Auth URL**              | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` | Replace *&lt;tenant domain name&gt;* with the tenant's domain name without angle brackets. |
+    | **Auth URL**              | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` | Replace *&lt;tenant domain name&gt;* with the tenant's domain name. |
     | **Client ID**             | *&lt;enter the Postman app's <b>Application ID</b>&gt;*                                       |                                                                                            |
     | **Client Secret**         | *&lt;leave blank&gt;*                                                                         |                                                                                            |
-    | **Scope**                 | `https://<tenant domain name>/api/user_impersonation openid offline_access`                   | Replace *&lt;tenant domain name&gt;* with the tenant's domain name without angle brackets. |
+    | **Scope**                 | `https://<tenant domain name>/<api>/user_impersonation openid offline_access`                   | Replace *&lt;tenant domain name&gt;* with the tenant's domain name. Replace *&lt;api&gt;* with the Web API project name. You can also use Application ID. The pattern for the URL is: *https://{tenant}.onmicrosoft.com/{app_name_or_id}/{scope name}*.  |
     | **Client Authentication** | Send client credentials in body                                                               |                                                                                            |
     
 3. Select the **Request Token** button.
