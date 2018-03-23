@@ -17,13 +17,13 @@ uid: client-side/blazor/index
 
 Blazor is a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with WebAssembly.
 
-To learn more about Blazor's technological backbone, see the following doc sets: [WebAssembly](http://webassembly.org/), [C# Guide](/dotnet/csharp/), [Razor](xref:mvc/views/razor), and [HTML](https://www.w3.org/html/).
+To learn more about Blazor's technological backbone, see the following documentation sets: [WebAssembly](http://webassembly.org/), [C# Guide](/dotnet/csharp/), [Razor](xref:mvc/views/razor), and [HTML](https://www.w3.org/html/).
 
 ## Get started
 
 For an overview of Blazor features, see [Blazor at the .NET website](https://www.microsoft.com/net/web/blazor). For development setup instructions and a quick blast of Blazor, see [Get started with Blazor in 10 minutes](https://www.microsoft.com/net/web/blazor/get-started). You can find answers to common questions in the [Blazor FAQ](https://github.com/aspnet/Blazor/wiki/FAQ). To chat live with other rockstars about Blazor, visit [Gitter](https://gitter.im/aspnet/Blazor).
 
-## Explore preview Blazor docs
+## Explore preview Blazor documentation
 
 \[Build your first Blazor app](xref:client-side/blazor/first-app)  
 DESCRIPTION
@@ -53,9 +53,9 @@ DESCRIPTION
 
 To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs on the [Blazor Gitter chat](https://gitter.im/aspnet/Blazor).
 
-## Contribute to the Blazor docs
+## Contribute to the Blazor documentation
 
-Blazor preview docs are provided to assist you in trying out Blazor. We need your help to improve the docs. To contribute to the docs, see [Contributing to the ASP.NET documentation](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md).
+Blazor preview documentation is provided to assist you in trying out Blazor. We need your help to improve the documentation. For instructions, see [Contributing to the ASP.NET documentation](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md).
 
 ## Blazor release notes
 
