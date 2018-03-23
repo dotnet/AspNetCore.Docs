@@ -173,7 +173,7 @@ To make an authenticated request to the web API, a bearer token is required. Pos
     | **Auth URL**              | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` | Replace *&lt;tenant domain name&gt;* with the tenant's domain name without angle brackets. |
     | **Client ID**             | *&lt;enter the Postman app's <b>Application ID</b>&gt;*                                       |                                                                                            |
     | **Client Secret**         | *&lt;leave blank&gt;*                                                                         |                                                                                            |
-    | **Scope**                 | `https://<tenant domain name>/api/user_impersonation openid offline_access`                   | Replace *&lt;tenant domain name&gt;* with the tenant's domain name without angle brackets. |
+    | **Scope**                 | `https://<tenant domain name>/api/user_impersonation openid offline_access`                   | Replace *&lt;tenant domain name&gt;* with the tenant's domain name without angle brackets. *api* is a name of application, created before for our Web API project. If you have created different name, use it instead of *api*. You can also use Application ID. Pattern for the url is: *https://{tenant}.onmicrosoft.com/{app_name_or_id}/{scope name}*  |
     | **Client Authentication** | Send client credentials in body                                                               |                                                                                            |
     
 3. Select the **Request Token** button.
