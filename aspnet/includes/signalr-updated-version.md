@@ -1,1 +1,1 @@
-The [latest version of SignalR documentation](https://docs.microsoft.com/aspnet/core/signalr/introduction) for .NET Core is now available.
+`The preview version of SignalR for ASP.NET Core documentation is [here](https://docs.microsoft.com/aspnet/core/signalr/introduction).`
