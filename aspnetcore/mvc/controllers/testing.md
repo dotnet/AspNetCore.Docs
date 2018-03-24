@@ -9,6 +9,7 @@ ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
 uid: mvc/controllers/testing
+
 ---
 # Test controller logic in ASP.NET Core
 
