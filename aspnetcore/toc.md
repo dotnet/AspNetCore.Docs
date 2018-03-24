@@ -203,9 +203,9 @@
 
 # [Client-side development](xref:client-side/index)
 ## [Blazor](xref:client-side/blazor/index)
-<!-- ### [Build your first app](xref:client-side/blazor/first-app)
+<!-- ### [Build your first app](xref:client-side/blazor/first-app) -->
 ### [Introduction](xref:client-side/blazor/introduction/index)
-### [Create components](xref:client-side/blazor/create-components/index)
+<!-- ### [Create components](xref:client-side/blazor/create-components/index)
 ### [Use components](xref:client-side/blazor/use-components/index)
 ### [Layouts](xref:client-side/blazor/layouts)
 ### [Dependency injection](xref:client-side/blazor/dependency-injection)

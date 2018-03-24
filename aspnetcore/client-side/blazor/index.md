@@ -21,15 +21,15 @@ To learn more about Blazor's technological backbone, see the following documenta
 
 ## Get started
 
-For an overview of Blazor features, see [Blazor at the .NET website](https://www.microsoft.com/net/web/blazor). For development setup instructions and a quick blast of Blazor, see [Get started with Blazor in 10 minutes](https://www.microsoft.com/net/web/blazor/get-started). You can find answers to common questions in the [Blazor FAQ](https://github.com/aspnet/Blazor/wiki/FAQ). To chat live with other rockstars about Blazor, visit [Gitter](https://gitter.im/aspnet/Blazor).
+For an overview of Blazor features, see [Blazor at the .NET website](https://www.microsoft.com/net/web/blazor). For development setup instructions and a quick blast of Blazor, see [Get started with Blazor in 10 minutes](https://www.microsoft.com/net/web/blazor/get-started). You can find answers to common questions in the [Blazor FAQ](https://github.com/aspnet/Blazor/wiki/FAQ). To chat live with other rockstars about Blazor, visit [Gitter](https://gitter.im/aspnet/Blazor) or [Slack](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
 
 ## Explore preview Blazor documentation
 
 \[Build your first Blazor app](xref:client-side/blazor/first-app)  
 DESCRIPTION
 
-\[Introduction to Blazor](xref:client-side/blazor/introduction/index)  
-DESCRIPTION
+[Introduction to Blazor](xref:client-side/blazor/introduction/index)  
+Explains how Blazor runs in the browser to execute C#/Razor code with WebAssembly and the Mono runtime.
 
 \[Create components](xref:client-side/blazor/create-components/index)  
 DESCRIPTION
@@ -51,7 +51,7 @@ DESCRIPTION
 
 ## Suggest a feature or file a bug report
 
-To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs on the [Blazor Gitter chat](https://gitter.im/aspnet/Blazor).
+To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs on the [Gitter Blazor room](https://gitter.im/aspnet/Blazor) or [Slack Blazor channel](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
 
 ## Contribute to the Blazor documentation
 
