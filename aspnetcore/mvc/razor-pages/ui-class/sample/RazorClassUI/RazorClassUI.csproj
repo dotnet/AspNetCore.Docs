@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ResolvedRazorCompileToolset>RazorSdk</ResolvedRazorCompileToolset>
+    <RazorCompileOnBuild>true</RazorCompileOnBuild>
+    <IncludeContentInPack>false</IncludeContentInPack>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>RickAndMSFT</Authors>
+    <Company>MSFT</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\**\*.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Shared\_Message.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-preview1-final" />
+  </ItemGroup>
+
+</Project>

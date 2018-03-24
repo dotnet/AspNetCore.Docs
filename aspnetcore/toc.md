@@ -143,6 +143,7 @@
 # [MVC](mvc/overview.md)
 ## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
+### [Razor Pages UI in class libraries](xref:mvc/razor-pages/ui-class)
 ### [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
 ## [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
