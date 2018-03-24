@@ -10,18 +10,18 @@ ms.technology: aspnet
 ms.topic: advanced
 uid: mvc/razor-pages/ui-class
 ---
-# Reusable Razor UI in class libraries with ASP.NET Core
+# Reusable Razor User Interface (UI) in class libraries with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be packaged and shared in a class library. Applications can include the Razor UI class libary and override the views and pages it contains.
+Razor views, pages, controllers, page models, and data models can be packaged and shared in a class library. Applications can include the Razor UI class library and override the views and pages it contains.
 
 [!INCLUDE[](~/includes/2.1-required.md)]
 [!INCLUDE[](~/includes/2.1.md)]
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Create a class libary containing Razor UI
+## Create a class library containing Razor UI
 
 * Create a .NET Standard class library. For example, run 
 
@@ -39,7 +39,7 @@ Razor views, pages, controllers, page models, and data models can be packaged an
 
     [!code-xml[Main](ui-class/sample/RazorClassUI/RazorClassUI.csproj)]
 
-    Preview1 requires you to manually update the *.csproj* file. In a future release we hope to provide a Razor MSBuild SDK (`Microsoft.NET.Sdk.Razor`) and project templates to update the *.csproj* file.
+    Preview1 requires you to manually update the *.csproj* file. In a future release, we hope to provide a Razor MSBuild SDK (`Microsoft.NET.Sdk.Razor`) and project templates to update the *.csproj* file.
 
 * Add Razor files to the class library. For example:
 
@@ -49,11 +49,11 @@ Razor views, pages, controllers, page models, and data models can be packaged an
         ```cli
         dotnet new razor -o RazorPagesApp
         ```
-    * Add a *Pages/_ViewImports.cshtml* file to contain the `namespace` for the Razor Pages.
+    * Optional: Add a *Pages/_ViewImports.cshtml* file to contain the `namespace` for the Razor Pages.
     
-### Use the class libary containing Razor UI in an ASP.NET Core web app
+### Use the class library containing Razor UI in an ASP.NET Core web app
 
-Add a Razor UI class reference to the ASP.NET Core web app. The following references are supported for the Razor UI class libary:
+Add a Razor UI class reference to the ASP.NET Core web app. The following references are supported for the Razor UI class library:
 
 * Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package).
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.PrecompiledViews.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
