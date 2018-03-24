@@ -80,6 +80,17 @@ services.Configure<IISOptions>(options =>
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
+### Proxy server and load balancer scenarios
+
+The IIS Integration Middleware, which configures Forwarded Headers Middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers.
+
+Forwarded Headers Middleware default settings can be configured. The default settings are:
+
+* There is only *one proxy* between the app and the source of the requests.
+* Only loopback addresses are configured for known proxies and known networks.
+
+For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+
 ### web.config file
 
 The *web.config* file configures the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). Creating, transforming, and publishing *web.config* is handled by the .NET Core Web SDK (`Microsoft.NET.Sdk.Web`). The SDK is set  at the top of the project file:
