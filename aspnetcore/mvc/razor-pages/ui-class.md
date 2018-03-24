@@ -19,7 +19,7 @@ Razor views, pages, controllers, page models, and data models can be packaged an
 [!INCLUDE[](~/includes/2.1-required.md)]
 [!INCLUDE[](~/includes/2.1.md)]
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/razor-pages/ui-class/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Create a class libary containing Razor UI
 
