@@ -27,11 +27,11 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/servers/kestrel/sample2) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/servers/kestrel/sample1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ---
 
@@ -508,12 +508,12 @@ For more information, see the following resources:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-* [Sample app for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+* [Sample app for 2.x](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/servers/kestrel/sample2)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
+* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/servers/kestrel/sample1)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 ---

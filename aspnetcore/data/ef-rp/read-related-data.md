@@ -19,7 +19,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part6-related).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part6-related).
 
 The following illustrations show the completed pages for this tutorial:
 
@@ -132,7 +132,7 @@ The `CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
 
-See [IndexSelect.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+See [IndexSelect.cshtml](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
 
 ## Create an Instructors page that shows Courses and Enrollments
 

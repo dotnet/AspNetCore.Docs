@@ -279,5 +279,5 @@ The recommended way to check for such errors is to call `await feature.Session.C
 
 ### Additional resources
 
-* [ASP.NET Core 1.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
-* [ASP.NET Core 2.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App)
+* [ASP.NET Core 1.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
+* [ASP.NET Core 2.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App)

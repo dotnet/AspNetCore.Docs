@@ -189,6 +189,6 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 * [Route to controller actions](xref:mvc/controllers/routing)
 * For information about deploying your API, see [Host and deploy](xref:host-and-deploy/index).
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/tutorials/first-web-api/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 * [Postman](https://www.getpostman.com/)
 * [Fiddler](https://www.telerik.com/download/fiddler)

@@ -19,7 +19,7 @@ The Contoso University sample web app demonstrates how to create ASP.NET Core 2.
 
 The sample app is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This page is the first in a series of tutorials that explain how to build the Contoso University sample app.
 
-[Download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:tutorials/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:tutorials/index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -29,10 +29,10 @@ Familiarity with [Razor Pages](xref:mvc/razor-pages/index). New programmers shou
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](xref:data/ef-mvc/advanced#common-errors). If you don't find what you need there, you can post a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed stage](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/StageSnapShots). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](xref:data/ef-mvc/advanced#common-errors). If you don't find what you need there, you can post a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 > [!TIP]
-> This series of tutorials builds on what is done in earlier tutorials. Consider saving a copy of the project after each successful tutorial completion. If you run into problems, you can start over from the previous tutorial instead of going back to the beginning. Alternatively, you can download a [completed stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots) and start over using the completed stage.
+> This series of tutorials builds on what is done in earlier tutorials. Consider saving a copy of the project after each successful tutorial completion. If you run into problems, you can start over from the previous tutorial instead of going back to the beginning. Alternatively, you can download a [completed stage](https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/StageSnapShots) and start over using the completed stage.
 
 ## The Contoso University web app
 

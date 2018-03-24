@@ -20,7 +20,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
 If you run into problems you can't solve, download the [completed app for this stage](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
+https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
 
@@ -215,7 +215,7 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 ## Troubleshooting
 
 Download the [completed app for this stage](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
+https://github.com/aspnet/Docs/tree/live/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
 The app generates the following exception:
 

@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https
 
 In this tutorial, we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains a bug that we'll fix as part of this tutorial.
 
-Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects: *WebApp* (an ASP.NET Core Web API) and *WebAppTests* (unit tests for the Web API).
+Download the [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects: *WebApp* (an ASP.NET Core Web API) and *WebAppTests* (unit tests for the Web API).
 
 In a command shell, navigate to the *WebApp* folder and run the following command:
 

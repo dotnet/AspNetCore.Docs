@@ -19,7 +19,7 @@ Routing functionality is responsible for mapping an incoming request to a route 
 >[!IMPORTANT]
 > This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see [Route to controller actions](../mvc/controllers/routing.md)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/fundamentals/routing/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Routing basics
 

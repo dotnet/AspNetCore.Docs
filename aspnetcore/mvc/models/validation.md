@@ -20,7 +20,7 @@ Before an app stores data in a database, the app must validate the data. Data mu
 
 Fortunately, .NET has abstracted validation into validation attributes. These attributes contain validation code, thereby reducing the amount of code you must write.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/live/aspnetcore/mvc/models/validation/sample).
 
 ## Validation Attributes
 

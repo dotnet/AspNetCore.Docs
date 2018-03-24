@@ -16,7 +16,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but isn't a step-by-step walkthrough.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/identity/sample).
 
 ## Introduction
 
@@ -136,7 +136,7 @@ Create a `UserStore` class that provides the methods for all data operations on 
 - IUserTwoFactorStore
 - IUserLockoutStore
 
-The optional interfaces inherit from `IUserStore`. You can see a partially implemented sample user store [here](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
+The optional interfaces inherit from `IUserStore`. You can see a partially implemented sample user store [here](https://github.com/aspnet/Docs/blob/live/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
 
 Within the `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the SQL Server with Dapper implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `DapperUsersTable` to insert a new record:
 
