@@ -1,5 +1,5 @@
 ---
-title: Worke with data in ASP.NET Core
+title: Work with data in ASP.NET Core
 author: rick-anderson
 description: Provides links to articles on working with data. Many use Entity Framework Core.
 manager: wpickett
