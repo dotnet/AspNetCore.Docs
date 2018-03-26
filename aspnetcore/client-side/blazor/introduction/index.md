@@ -39,11 +39,11 @@ Mono aims run under WebAssembly in two modes: interpreted and ahead-of-time (AOT
 
 ### Interpreted mode
 
-In interpreted mode, the Mono runtime is compiled into WebAssembly bytecode, but the .NET assembly files aren't compiled into bytecode. The browser can load and execute the Mono runtime, which in turn can load and execute standard .NET assemblies (*\*.dll* files) built by the normal .NET compilation toolchain.
+In interpreted mode, the Mono runtime is compiled into WebAssembly bytecode. However, the .NET assembly files aren't compiled into bytecode. The browser loads and executes the Mono runtime. Mono then loads and executes standard .NET assemblies (*\*.dll* files) built by the normal .NET compilation toolchain.
 
 ![Interpreted mode](index/_static/interpretedmode.png)
 
-Interpreted mode is similar to how the core internals of the desktop Common Language Runtime (CLR) are distributed precompiled into native code, which then loads and executes .NET assembly files. One key difference is that the desktop CLR uses just-in-time (JIT) compilation extensively to make execution faster, while Mono on WebAssembly is closer to a pure interpretation model.
+Interpreted mode is similar to how the core internals of the desktop Common Language Runtime (CLR) work. The desktop CLR is distributed precompiled into native code, which then loads and executes .NET assembly files. One key difference is that the desktop CLR uses just-in-time (JIT) compilation extensively to make execution faster. Mono on WebAssembly is closer to a pure interpretation model.
 
 ### Ahead-of-time (AOT) compilation mode
 
@@ -51,17 +51,17 @@ In ahead-of-time (AOT) compilation mode, the app's .NET assemblies are transform
 
 ![AOT mode](index/_static/aotmode.png)
 
-This is similar to how the ngen tool has historically allowed AOT compilation of .NET binaries into native machine code. More recently, CoreRT provides a complete native AOT .NET runtime for executing .NET binaries.
+This is similar to how the [Ngen.exe tool](/dotnet/framework/tools/ngen-exe-native-image-generator) has historically allowed AOT compilation of .NET binaries into native machine code. More recently, CoreRT provides a complete native AOT .NET runtime for executing .NET binaries.
 
 ## Interpreted versus AOT
 
-Interpreted mode provides a faster development cycle than AOT. When code is changed under the interpreted model, the app can be rebuilt and reloaded in the browser within a few seconds. An AOT rebuild might take several minutes to compile and reload. Because interpreted mode offers faster recompilation, it might become the default mode for compilation during development. More work is required before a conclusion can be drawn on how to best apply interpreted and AOT modes of compilation with WebAssembly.
+Interpreted mode provides a faster development cycle than AOT. When code is changed under the interpreted model, the app can be rebuilt and reloaded in the browser within a few seconds. An AOT rebuild might take several minutes to compile and reload. Because interpreted mode offers faster recompilation, it may be preferred for development. It remains an open question how to best apply interpreted and AOT modes of compilation in Blazor.
 
 ## Blazor, a SPA framework
 
 Blazor has a growing standard feature set to solve common app requirements, such as UI composition, state management, and routing. Features are designed around the strengths of .NET and the C# language with careful consideration given to tooling support.
 
-Blazor is inspired by today's top SPA frameworks such as React, Vue, and Angular, plus some Microsoft technologies, such as Razor Pages. The goal is to provide SPA features that web developers have found most successful in existing frameworks in a way that capitalizes on .NET's strengths.
+Blazor is inspired by the most popular SPA frameworks, such as [React](https://reactjs.org/), [Vue](https://vuejs.org/), and [Angular](https://angular.io/), plus some Microsoft technologies, such as [Razor Pages](xref:mvc/razor-pages/index). The goal is to provide SPA features that web developers have found most successful in existing frameworks in a way that capitalizes on .NET's strengths.
 
 ## Blazor components
 
@@ -69,7 +69,7 @@ In SPA frameworks, apps are built with *components*. A component usually represe
 
 In Blazor, a component is a .NET class. The class can either be written directly, as a C# class (*\*.cs*), or more commonly in the form of a Razor markup page (*\*.cshtml*).
 
-Razor, which has been around since 2010, is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. Here's an example of how to express a simple custom dialog component in a Razor file:
+Many design patterns are possible using [Razor](xref:mvc/views/razor) as a foundation for Blazor. Razor, which has been around since 2010, is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. Here's an example of how to express a simple custom dialog component in a Razor file:
 
 ```cshtml
 <div>
@@ -86,8 +86,6 @@ Razor, which has been around since 2010, is a syntax for combining HTML markup w
 ```
 
 When this component is used elsewhere in the app, IntelliSense speeds development with syntax completion and parameter info.
-
-Many design patterns are possible with this simple foundation. This includes patterns recognizable in other SPA frameworks, such as stateful components, functional stateless components, and higher-order components.
 
 Components can be:
 
@@ -106,19 +104,19 @@ Blazor offers the core facilities that most apps require, including:
 * Lazy loading (loading parts of the app on demand as a user navigates the app)
 * Unit testing
 
-As an important design point, all of these features are optional. When one of these features isn't used in an app, the implementation is stripped out of the app when published by the IL linker.
+All of these features are optional. When one of these features isn't used in an app, the implementation is stripped out of the app when published by the IL linker.
 
-Only a few low-level elements are baked into the framework. For example, routing and layouts aren't built-in. Routing and layouts are implemented in *user space*, code that an app developer can write without using internal APIs. These features can be replaced with different systems to suit the app's requirements. The current layouts prototype is implemented in only about 30 lines of C# code, so a developer can easily understand and replace it if desired.
+A few low-level elements are included in the framework. For example, routing and layouts aren't built-in. Routing and layouts are implemented in *user space*, code that an app developer can write without using internal APIs. These features can be replaced with different systems to suit the app's requirements. The current layouts prototype is implemented in about 30 lines of C# code, so a developer can understand and replace it if desired.
 
 ## Code sharing and .NET Standard
 
-The [.NET Standard](/dotnet/standard/net-standard) is a formal specification of .NET APIs that are intended to be available on all .NET implementations. Mono on WebAssembly supports `netstandard2.0` or higher. .NET Standard class libraries can be shared across backend server code and in browser-based apps.
+The [.NET Standard](/dotnet/standard/net-standard) is a formal specification of .NET APIs that are intended to be available on all .NET implementations. Mono on WebAssembly supports `netstandard2.0` or higher. .NET Standard class libraries can be shared across server code and in browser-based apps.
 
-Browsers support the APIs that developers use to build web apps. Not all .NET APIs make sense in the browser. For example, arbitrary TCP sockets can't be accessed in a browser, so [System.Net.Sockets.TcpListener](/dotnet/api/system.net.sockets.tcplistener) can't perform any useful task. For BCL APIs that don't apply to a given platform, the BCL throws a [PlatformNotSupported](/dotnet/api/system.platformnotsupportedexception) exception.
+Browsers support the APIs that developers use to build web apps. Not all .NET APIs are callable from the browser. For example, arbitrary TCP sockets can't be accessed in a browser, so [System.Net.Sockets.TcpListener](/dotnet/api/system.net.sockets.tcplistener) can't perform any useful task. For BCL APIs that don't apply to a given platform, the BCL throws a [PlatformNotSupported](/dotnet/api/system.platformnotsupportedexception) exception.
 
 ## JavaScript/TypeScript interop
 
-Sometimes, access to third-party JavaScript libraries and browser APIs is required. WebAssembly is designed to interoperate with JavaScript, so Blazor is capable of using any library or API that JavaScript is able to use.
+For apps that require third-party JavaScript libraries and browser APIs, WebAssembly is designed to interoperate with JavaScript. Blazor is capable of using any library or API that JavaScript is able to use.
 
 To call JavaScript libraries or your own custom JavaScript/TypeScript code from .NET, the current approach is to register a named function in a JavaScript/TypeScript file:
 
@@ -139,7 +137,7 @@ public static bool DoPrompt(string message)
 
 This approach has the benefit of working with JavaScript build tools, such as [webpack](https://webpack.js.org/).
 
-To save the trouble of registering functions in this way for standard browser APIs, the Mono team is working on a library that exposes standard browser APIs to .NET.
+The Mono team is working on a library that exposes standard browser APIs to .NET.
 
 ## Optimization
 
