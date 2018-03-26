@@ -31,7 +31,7 @@ When a Blazor app is built and run in a browser:
 
 1. C# code files and Razor files are compiled into .NET assemblies.
 1. The assemblies and the Mono WebAssembly runtime are downloaded to the browser.
-1. Blazor uses JavaScript to bootstrap the .NET runtime and configures the runtime to load the app's assemblies along with any required base class libraries (BCLs). Document object model (DOM) manipulation and browser API calls are handled via JavaScript interoperability (interop).
+1. Blazor uses JavaScript to bootstrap the .NET runtime and configures the runtime to load the app's assemblies and required base class libraries (BCLs). Document object model (DOM) manipulation and browser API calls are handled via JavaScript interoperability (interop).
 
 ## Compilation modes
 
@@ -69,7 +69,7 @@ In SPA frameworks, apps are built with *components*. A component usually represe
 
 In Blazor, a component is a .NET class. The class can either be written directly, as a C# class (*\*.cs*), or more commonly in the form of a Razor markup page (*\*.cshtml*).
 
-Many design patterns are possible using [Razor](xref:mvc/views/razor) as a foundation for Blazor. Razor, which has been around since 2010, is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. Here's an example of how to express a simple custom dialog component in a Razor file:
+Many design patterns are possible using [Razor](xref:mvc/views/razor) as a foundation for Blazor. Razor, which has been around since 2010, is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. The following markup is an example of a basic custom dialog component in a Razor file:
 
 ```cshtml
 <div>
