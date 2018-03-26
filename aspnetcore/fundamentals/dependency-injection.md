@@ -190,6 +190,35 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 * *Singleton* objects are the same for every object and every request (regardless of whether an instance is provided in `ConfigureServices`)
 
+## Resolve a scoped service within the application scope
+
+Create an [IServiceScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescope) with [IServiceScopeFactory.CreateScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescopefactory.createscope) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
+
+```csharp
+public static void Main(string[] args)
+{
+    var host = BuildWebHost(args);
+
+    using (var serviceScope = host.Services.CreateScope())
+    {
+        var services = serviceScope.ServiceProvider;
+
+        try
+        {
+            var serviceContext = services.GetRequiredService<MyScopedService>();
+            // Use the context here
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred.");
+        }
+    }
+
+    host.Run();
+}
+```
+
 ## Scope validation
 
 When the app is running in the Development environment on ASP.NET Core 2.0 or later, the default service provider performs checks to verify that:
