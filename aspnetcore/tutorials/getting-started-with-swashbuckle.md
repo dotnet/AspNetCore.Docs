@@ -5,7 +5,7 @@ description: Learn how to add Swashbuckle to your ASP.NET Core project to integr
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/15/2018
+ms.date: 03/26/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -251,7 +251,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 ### Customize the UI
 
-The stock UI is both functional and presentable. However, API documentation pages should better represent your brand or theme. Accomplishing that task with the Swashbuckle components requires adding the resources to serve static files and then building the folder structure to host those files.
+The stock UI is both functional and presentable. However, API documentation pages should represent your brand or theme. Branding the Swashbuckle components requires adding the resources to serve static files and building the folder structure to host those files.
 
 If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles) NuGet package to the project:
 
