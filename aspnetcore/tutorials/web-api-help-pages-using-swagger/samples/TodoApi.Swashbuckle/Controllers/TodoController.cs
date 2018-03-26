@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using TodoApi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using TodoApi.Models;
 
 #region snippet_TodoController
 namespace TodoApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class TodoController : Controller
+    public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
 #endregion
@@ -38,11 +38,13 @@ namespace TodoApi.Controllers
         [Produces("application/json", Type = typeof(TodoItem))]
         public IActionResult GetById(long id)
         {
-            var item = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var item = _context.TodoItems.Find(id);
+
             if (item == null)
             {
                 return NotFound();
             }
+
             return new ObjectResult(item);
         }
         #endregion
@@ -63,12 +65,12 @@ namespace TodoApi.Controllers
         ///
         /// </remarks>
         /// <param name="item"></param>
-        /// <returns>A newly-created TodoItem</returns>
-        /// <response code="201">Returns the newly-created item</response>
+        /// <returns>A newly created TodoItem</returns>
+        /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>            
         [HttpPost]
         [ProducesResponseType(typeof(TodoItem), 201)]
-        [ProducesResponseType(typeof(TodoItem), 400)]
+        [ProducesResponseType(400)]
         public IActionResult Create([FromBody] TodoItem item)
         {
             if (item == null)
@@ -92,7 +94,8 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
 
-            var todo = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var todo = _context.TodoItems.Find(id);
+
             if (todo == null)
             {
                 return NotFound();
@@ -103,6 +106,7 @@ namespace TodoApi.Controllers
 
             _context.TodoItems.Update(todo);
             _context.SaveChanges();
+
             return new NoContentResult();
         }
         #endregion
@@ -115,7 +119,8 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var todo = _context.TodoItems.Find(id);
+
             if (todo == null)
             {
                 return NotFound();
@@ -123,6 +128,7 @@ namespace TodoApi.Controllers
 
             _context.TodoItems.Remove(todo);
             _context.SaveChanges();
+
             return new NoContentResult();
         }
         #endregion

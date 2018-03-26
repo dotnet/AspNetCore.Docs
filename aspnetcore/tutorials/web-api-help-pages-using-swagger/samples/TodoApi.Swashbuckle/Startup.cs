@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
+using System.Reflection;
 using TodoApi.Models;
 
 namespace TodoApi
@@ -25,13 +26,22 @@ namespace TodoApi
                     Title = "ToDo API",
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = "None",
-                    Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer" },
-                    License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
+                    Contact = new Contact
+                    {
+                        Name = "Shayne Boyer",
+                        Email = string.Empty,
+                        Url = "https://twitter.com/spboyer"
+                    },
+                    License = new License
+                    {
+                        Name = "Use under LICX",
+                        Url = "https://example.com/license"
+                    }
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
-                var basePath = AppContext.BaseDirectory;
-                var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
+                var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
         }
