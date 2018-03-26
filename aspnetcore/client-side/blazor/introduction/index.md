@@ -5,7 +5,7 @@ description: Learn how Blazor runs in the browser to execute C#/Razor code with 
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2018
+ms.date: 03/26/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
