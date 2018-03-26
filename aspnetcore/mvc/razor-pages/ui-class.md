@@ -14,7 +14,7 @@ uid: mvc/razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be packaged and shared in a class library. Applications can include the Razor UI class library and override the views and pages it contains.
+Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains.
 
 [!INCLUDE[](~/includes/2.1-required.md)]
 [!INCLUDE[](~/includes/2.1.md)]
