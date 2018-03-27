@@ -51,7 +51,7 @@ DESCRIPTION
 
 ## Suggest a feature or file a bug report
 
-To make suggestions and file bug reports, please [open an issue](https://github.com/aspnet/Blazor/issues/new). For general help and get answers from the community, join the conversation on [Gitter](https://gitter.im/aspnet/Blazor).
+To make suggestions and file bug reports, please [open an issue](https://github.com/aspnet/Blazor/issues/new). For general help and to get answers from the community, join the conversation on [Gitter](https://gitter.im/aspnet/Blazor).
 
 ## Contribute to the Blazor documentation
 
