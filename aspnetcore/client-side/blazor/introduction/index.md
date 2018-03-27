@@ -17,7 +17,7 @@ By [Steve Sanderson](http://blog.stevensanderson.com), [Daniel Roth](https://git
 
 [!INCLUDE[](~/includes/blazor-preview-notice.md)]
 
-Blazor is a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with [WebAssembly](http://webassembly.org). Blazor provides all of the benefits of a rich single-page application (SPA) platform using .NET on both the server and the client.
+Blazor is a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with [WebAssembly](http://webassembly.org). Blazor provides all of the benefits of a rich client-side web UI framework using .NET on both the server and the client.
 
 ## Why use .NET for browser apps?
 
@@ -46,13 +46,9 @@ When a Blazor app is built and run in a browser:
 
 The .NET runtime is supplied as a WebAssembly binary and an [asm.js](https://en.wikipedia.org/wiki/Asm.js)-based implementation. *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used because it's larger and slower than the WebAssembly runtime.
 
-## Blazor, a single-page application framework
-
-Blazor has a growing standard feature set to solve common app requirements, such as UI composition, state management, and routing. Features are designed around the strengths of .NET and the C# language with careful consideration given to tooling support.
-
 ## Blazor components
 
-In SPA frameworks, apps are built with *components*. A component usually represents a piece of UI, such as a page, dialog, or data entry form. Components can be nested, reused, and shared between projects.
+In client-side web UI frameworks, apps are built with *components*. A component usually represents a piece of UI, such as a page, dialog, or data entry form. Components can be nested, reused, and shared between projects.
 
 In Blazor, a component is a .NET class. The class can either be written directly, as a C# class (*\*.cs*), or more commonly in the form of a Razor markup page (*\*.cshtml*).
 
