@@ -111,15 +111,13 @@ When the app is deployed to a new environment, the DB creation code must be run 
 
 Previously the connection string was changed to use a new name for the DB. The specified DB doesn't exist, so migrations creates the DB.
 
-### Examine the data model snapshot
+### The data model snapshot
 
-Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolContextModelSnapshot.cs*:
+Migrations creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
-[!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
+When deleting a migration, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command. `dotnet ef migrations remove` deletes the migration and ensures the snapshot is correctly reset.
 
-Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF Core determines what changed by comparing the data model to the snapshot file. EF Core interacts with the DB only when it has to update the DB.
-
-The snapshot file must be in sync with the migrations that created it. A migration can't be removed by deleting the file named *\<timestamp>_\<migrationname>.cs*. If that file is deleted, the remaining migrations are out of sync with the DB snapshot file. To delete the last migration added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
+See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information about how the snapshot file is used.
 
 ## Remove EnsureCreated
 
