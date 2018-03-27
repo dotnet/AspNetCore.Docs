@@ -57,6 +57,10 @@ This is similar to how the [Ngen.exe tool](/dotnet/framework/tools/ngen-exe-nati
 
 Interpreted mode provides a faster development cycle than AOT. When code is changed under the interpreted model, the app can be rebuilt and reloaded in the browser within a few seconds. An AOT rebuild might take several minutes to compile and reload. Because interpreted mode offers faster recompilation, it may be preferred for development. It remains an open question how to best apply interpreted and AOT modes of compilation in Blazor.
 
+## Browsers that don't support WebAssembly
+
+When the .NET runtime is compiled into WebAssembly, it's also compiled into [asm.js](https://en.wikipedia.org/wiki/Asm.js). *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used becuase it's larger and slower than the WebAssembly runtime.
+
 ## Blazor, a SPA framework
 
 Blazor has a growing standard feature set to solve common app requirements, such as UI composition, state management, and routing. Features are designed around the strengths of .NET and the C# language with careful consideration given to tooling support.
