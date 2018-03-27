@@ -19,53 +19,36 @@ By [Steve Sanderson](http://blog.stevensanderson.com), [Daniel Roth](https://git
 
 Blazor is a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with [WebAssembly](http://webassembly.org). Blazor provides all of the benefits of a rich single-page application (SPA) platform using .NET on both the server and the client.
 
+## Why use .NET for browser apps?
+
+Web development has improved in many ways over the years, but building modern web apps still poses challenges. Using .NET in the browser offers many advantages that can help make web development easier and more productive: 
+
+* Stability and consistency: .NET provides standardized programming frameworks across platforms that are stable, feature rich, and easy to use.
+* Modern innovative languages: .NET languages are constantly improving with innovative new language features.
+* Industry-leading tools: The Visual Studio product family provides a fantastic .NET development experience across platforms on Windows, Linux, and macOS.
+* Speed and scalability: .NET has a strong history of performance, reliability, and security for app development. Using .NET as a full-stack solution makes it easier to build fast, reliable, and secure apps.
+* Full-stack development that leverages existing skills: C#/Razor developers use their existing C#/Razor skills to write client-side code and share server and client-side logic among apps.
+* Wide browser support: Blazor runs on .NET using open web standards in the browser with no plugins and no code transpilation. It works in all modern web browsers, including mobile browsers.
+
 ## Running .NET in the browser
 
-Running .NET code inside web browsers is made possible by a relatively new technology, WebAssembly (abbreviated *wasm*). WebAssembly is based on open web standards and is supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
+Running .NET code inside web browsers is made possible by a relatively new technology, WebAssembly (abbreviated *wasm*). WebAssembly is an open web standard and is supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
 
 Security isn't a major concern because WebAssembly isn't ordinary assembly code (for example, x86/x64) &mdash; WebAssembly is a new bytecode format that accesses browser functionality with the same capabilities as JavaScript.
-
-Mono is the official .NET runtime for client platforms, such as native mobile apps and games. Recently, the Mono team added support for WebAssembly.
 
 When a Blazor app is built and run in a browser:
 
 1. C# code files and Razor files are compiled into .NET assemblies.
-1. The assemblies and the Mono WebAssembly runtime are downloaded to the browser.
-1. Blazor uses JavaScript to bootstrap the .NET runtime and configures the runtime to load the app's assemblies and required base class libraries (BCLs). Document object model (DOM) manipulation and browser API calls are handled via JavaScript interoperability (interop).
-
-## Compilation modes
-
-Mono aims run under WebAssembly in two modes: interpreted and ahead-of-time (AOT).
-
-### Interpreted mode
-
-In interpreted mode, the Mono runtime is compiled into WebAssembly bytecode. However, the .NET assembly files aren't compiled into bytecode. The browser loads and executes the Mono runtime. Mono then loads and executes standard .NET assemblies (*\*.dll* files) built by the normal .NET compilation toolchain.
-
-![Interpreted mode](index/_static/interpretedmode.png)
-
-Interpreted mode is similar to how the core internals of the desktop Common Language Runtime (CLR) work. The desktop CLR is distributed precompiled into native code, which then loads and executes .NET assembly files. One key difference is that the desktop CLR uses just-in-time (JIT) compilation extensively to make execution faster. Mono on WebAssembly is closer to a pure interpretation model.
-
-### Ahead-of-time (AOT) compilation mode
-
-In ahead-of-time (AOT) compilation mode, the app's .NET assemblies are transformed into WebAssembly binaries at build time. At runtime, there's no interpretation. The code executes immediately. It's still necessary to load part of the Mono runtime. Features for low-level .NET services are loaded, such as garbage collection. Features for parsing .NET assemblies aren't required and aren't loaded.
-
-![AOT mode](index/_static/aotmode.png)
-
-This is similar to how the [Ngen.exe tool](/dotnet/framework/tools/ngen-exe-native-image-generator) has historically allowed AOT compilation of .NET binaries into native machine code. More recently, CoreRT provides a complete native AOT .NET runtime for executing .NET binaries.
-
-## Interpreted versus AOT
-
-Interpreted mode provides a faster development cycle than AOT. When code is changed under the interpreted model, the app can be rebuilt and reloaded in the browser within a few seconds. An AOT rebuild might take several minutes to compile and reload. Because interpreted mode offers faster recompilation, it may be preferred for development. It remains an open question how to best apply interpreted and AOT modes of compilation in Blazor.
+1. The assemblies and the .NET runtime are downloaded to the browser.
+1. Blazor uses JavaScript to bootstrap the .NET runtime and configures the runtime to load required assembly references. Document object model (DOM) manipulation and browser API calls are handled by the Blazor runtime via JavaScript interoperability.
 
 ## Browsers that don't support WebAssembly
 
-When the .NET runtime is compiled into WebAssembly, it's also compiled into [asm.js](https://en.wikipedia.org/wiki/Asm.js). *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used becuase it's larger and slower than the WebAssembly runtime.
+The .NET runtime is supplied as a WebAssembly binary and an [asm.js](https://en.wikipedia.org/wiki/Asm.js)-based implementation. *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used because it's larger and slower than the WebAssembly runtime.
 
-## Blazor, a SPA framework
+## Blazor, a single-page application framework
 
 Blazor has a growing standard feature set to solve common app requirements, such as UI composition, state management, and routing. Features are designed around the strengths of .NET and the C# language with careful consideration given to tooling support.
-
-Blazor is inspired by the most popular SPA frameworks, such as [React](https://reactjs.org/), [Vue](https://vuejs.org/), and [Angular](https://angular.io/), plus some Microsoft technologies, such as [Razor Pages](xref:mvc/razor-pages/index). The goal is to provide SPA features that web developers have found most successful in existing frameworks in a way that capitalizes on .NET's strengths.
 
 ## Blazor components
 
@@ -73,7 +56,7 @@ In SPA frameworks, apps are built with *components*. A component usually represe
 
 In Blazor, a component is a .NET class. The class can either be written directly, as a C# class (*\*.cs*), or more commonly in the form of a Razor markup page (*\*.cshtml*).
 
-Many design patterns are possible using [Razor](xref:mvc/views/razor) as a foundation for Blazor. Razor, which has been around since 2010, is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. The following markup is an example of a basic custom dialog component in a Razor file:
+Many design patterns are possible using [Razor](xref:mvc/views/razor) as a foundation for Blazor. Razor is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with IntelliSense support. The following markup is an example of a basic custom dialog component in a Razor file:
 
 ```cshtml
 <div>
@@ -146,6 +129,6 @@ Overall, a .NET-based browser app is never going to be as tiny as a minimal Reac
 
 ## Deployment
 
-A target market for Blazor is ASP.NET developers. For ASP.NET Core apps, [middleware](xref:fundamentals/middleware/index) will offer an easy path to serve a Blazor UI seamlessly from ASP.NET Core. Advanced features, such as server-side prerendering, are possible.
+Developers have the option of using Blazor for only client-side development or for full-stack .NET development. Full-stack development offers many advantages &mdash; client- and server-side development uses the same tooling, build infrastructure, and language. Code can be shared between client and server apps.
 
-Equally important are developers who don't yet use ASP.NET Core. To make Blazor a viable consideration for developers using Node.js, Rails, PHP, or even for serverless web apps, ASP.NET Core isn't required on the server. When a Blazor app is built, a *dist* directory is produced containing nothing but static files. The contents of the *dist* folder can be hosted on the Azure CDN, GitHub Pages, Node.js servers, and many other servers and services.
+For ASP.NET Core apps, [middleware](xref:fundamentals/middleware/index) will offer an easy path to serve a Blazor UI seamlessly from ASP.NET Core. Equally important are developers who don't yet use ASP.NET Core. To make Blazor a viable consideration for developers using Node.js, Rails, PHP, or even for serverless web apps, ASP.NET Core isn't required on the server. When a Blazor app is built, a *dist* directory is produced containing nothing but static files. The contents of the *dist* folder can be hosted on the Azure CDN, GitHub Pages, Node.js servers, and many other servers and services.

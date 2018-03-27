@@ -21,7 +21,7 @@ To learn more about Blazor's technological backbone, see the following documenta
 
 ## Get started
 
-For an overview of Blazor features, see [Blazor at the .NET website](https://www.microsoft.com/net/web/blazor). For development setup instructions and a quick blast of Blazor, see [Get started with Blazor in 10 minutes](https://www.microsoft.com/net/web/blazor/get-started). You can find answers to common questions in the [Blazor FAQ](https://github.com/aspnet/Blazor/wiki/FAQ). To chat live with other rockstars about Blazor, visit [Gitter](https://gitter.im/aspnet/Blazor) or [Slack](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
+[Get started with Blazor in 10 minutes](https://www.microsoft.com/net/web/blazor/get-started)
 
 ## Explore preview Blazor documentation
 
@@ -51,7 +51,7 @@ DESCRIPTION
 
 ## Suggest a feature or file a bug report
 
-To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs on the [Gitter Blazor room](https://gitter.im/aspnet/Blazor) or [Slack Blazor channel](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
+To make suggestions and file bug reports, please [open an issue](https://github.com/aspnet/Blazor/issues/new). For general help and get answers from the community, join the conversation on [Gitter](https://gitter.im/aspnet/Blazor).
 
 ## Contribute to the Blazor documentation
 
@@ -60,3 +60,7 @@ Blazor preview documentation is provided to assist you in trying out Blazor. We 
 ## Blazor release notes
 
 [Release notes (0.1.0)](https://github.com/aspnet/blazor/tag/0.1.0)
+
+## Additional resources
+
+* [Blazor FAQ](https://github.com/aspnet/Blazor/wiki/FAQ)
