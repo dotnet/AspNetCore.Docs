@@ -54,14 +54,7 @@ With ASP.NET Core 2.0 and later, three packages in the [Microsoft.AspNetCore.All
 
 ## Proxy server and load balancer scenarios
 
-The IIS Integration Middleware, which configures Forwarded Headers Middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers.
-
-Forwarded Headers Middleware default settings can be configured. The default settings are:
-
-* There is only *one proxy* between the app and the source of the requests.
-* Only loopback addresses are configured for known proxies and known networks.
-
-For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The IIS Integration Middleware, which configures Forwarded Headers Middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
 ## Monitoring and logging
 

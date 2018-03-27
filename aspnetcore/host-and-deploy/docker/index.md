@@ -37,4 +37,4 @@ Discover how Visual Studio 2017 supports building, debugging, and running ASP.NE
 Find out how to use the Visual Studio Tools for Docker extension to deploy an ASP.NET Core app to a Docker host on Azure using PowerShell.
 
 [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)  
-Additional configuration might be required for apps hosted behind proxy servers and load balancers, which frequently move or remove important information in requests. Without additional configuration, an app might not have access to the scheme (HTTP/HTTPS) and the remote IP address where a request originated.
+Additional configuration might be required for apps hosted behind proxy servers and load balancers. Passing requests through a proxy often obscures information about the original request, such as the scheme and client IP. It might be necessary to forwarded some information about the request manually to the app.
