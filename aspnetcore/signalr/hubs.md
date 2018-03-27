@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 manager: wpickett
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/23/2018
+ms.date: 03/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -14,25 +14,25 @@ uid: signalr/hubs
 
 # Use Hubs in SignalR for ASP.NET Core
 
-By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](http://twitter.com/1kevgriff)
+By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
 ## What is a SignalR Hub
 
-The SignalR Hubs API enables you to call methods on connected clients from the server. In server code, you define methods that are called by client. In client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.
+The SignalR Hubs API enables you to call methods on connected clients from the server. In the server code, you define methods that are called by client. In the client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.
 
 ## Configure SignalR hubs
 
-Since SignalR is a middleware, a call to `services.AddSignalR` is required in the `ConfigureServices` method of the `Startup` class to register the service.
+The SignalR middleware requires some services to be able to run, to configure those call `services.AddSignalR`.
 
 [!code-javascript[Configure service](hubs/sample/startup.cs?range=35)]
 
-When adding SignalR functionality to an ASP.NET Core application, setup SignalR routes by calling `app.UseSignalR` in the `Configure` method before the other routes.
+When adding SignalR functionality to an ASP.NET Core application, setup SignalR routes by calling `app.UseSignalR` in the `Configure` method.
 
 [!code-javascript[Configure routes to hubs](hubs/sample/startup.cs?range=55-58)]
 
 ## Create and use hubs
 
-Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`. 
+Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`.
 
 [!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=10-14)]
 
@@ -78,7 +78,7 @@ The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` v
 
 ## Handle errors
 
-Exceptions thrown in your Hub methods are sent to the client that invoked the method. On the client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). When the client receives the error, if a handler was attached to the Promise using `catch`, it will be invoked and passed the error as a JavaScript Error object.
+Exceptions thrown in your hub methods are sent to the client that invoked the method. On the client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). When the client receives the error, if a handler was attached to the promise using `catch`, it will be invoked and passed the error as a JavaScript Error object.
 
 [!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=19)]
 [!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=24-29)]
