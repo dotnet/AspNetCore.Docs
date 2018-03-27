@@ -22,29 +22,21 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 ## Configure SignalR hubs
 
-Since SignalR is middleware, a call to `services.AddSignalR` is required in the `ConfigureServices` method of the `Startup` class to register the service.
+Since SignalR is a middleware, a call to `services.AddSignalR` is required in the `ConfigureServices` method of the `Startup` class to register the service.
 
 [!code-javascript[Configure service](hubs/sample/startup.cs?range=35)]
 
-When adding SignalR functionality to an ASP.NET MVC application, setup SignalR routes by calling `app.UseSignalR` in the `Configure` method before the other routes.
+When adding SignalR functionality to an ASP.NET Core application, setup SignalR routes by calling `app.UseSignalR` in the `Configure` method before the other routes.
 
 [!code-javascript[Configure routes to hubs](hubs/sample/startup.cs?range=55-58)]
 
 ## Create and use hubs
 
-To create a hub, inherit from the `Hub` class, and add public methods to it. Clients can call methods that are defined as `public`. Methods that use access modifiers such as `private` or `protected` can't accept calls from clients.
+Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`. 
 
 [!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=10-14)]
 
-You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. Data that you receive in parameters or return to the caller is communicated between the server and the client by using JSON. SignalR handles the binding of complex objects and arrays of objects automatically.
-
-## Connection IDs
-
-Each connection to a SignalR hub has a unique connection ID. This ID can be used by other parts of your application to send messages directly to a particular connection.
-
-In the context of your hub, you can determine current by referencing its `Context.ConnectionId` object.
-
-[!code-csharp[Connection Ids](hubs/sample/hubs/chathub.cs?range=20-24)]
+You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
 ## The Clients object
 
@@ -53,45 +45,43 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | Property | Description |
 | ------ | ----------- |
 | All | Calls a method on all connected clients |
-| Caller | Calls a method on all connected clients |
-| Others | Calls a method on clients other than a specific connection |
+| Caller | Calls a method on the currently connected client |
+| Others | Calls a method on all connected clients except the client that invoked the method |
 
 Additionally, the `Hub` class contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
-| AllExcept | Calls a method on all connected clients except a specified connection |
+| AllExcept | Calls a method on all connected clients except for the provided connections |
 | Client | Calls a method on a specific connected client |
 | Clients | Calls a method on specific connected clients |
-| Group | Sends a message to a group of connections  |
-| GroupExcept | Sends a message to a group of connections, excluding  the specified group |
+| Group | Sends a message to all connections in the specified group  |
+| GroupExcept | Sends a message to all connections in the specified group, except the specified connections |
 | Groups | Sends a message to multiple groups of connections  |
 | OthersInGroup | Sends a message to others in a group of connections  |
-| User | Sends a message to a specific user |
-| Users | Sends a message to multiple users |
+| User | Sends a message to all connections associated with a specific user |
+| Users | Sends a message to all connections associated with the specified users |
 
-Each property or method in the preceding tables contains a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
+Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
 
 ## Send messages to clients
 
-Yo make calls to specific clients, use the members of `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients  stored in an array named `ids`.
+to make calls to specific clients, use the members of `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection, while the `SendMessageToMultipleConnections` method sends a message to the clients stored in an array named `ids`.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
 
 ## Handle events for a connection
 
-The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` events to manage and track connections. Use the `OnConnectedAsync` event to capture the connection ID of the incoming connection.
+The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
 
 [!code-csharp[Handle events](hubs/sample/hubs/chathub.cs?range=32-37)]
 
 ## Handle errors
 
-Use the same method you normally would for handling errors. In hubs, wrap your method code in try-catch blocks to handle and log the exception object.
+Exceptions thrown in your Hub methods are sent to the client that invoked the method. On the client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). When the client receives the error, if a handler was attached to the Promise using `catch`, it will be invoked and passed the error as a JavaScript Error object.
 
-On the client, chain a `catch` method to the call to `invoke` to designate the error handling routine.
-
-[!code-csharp[Connection Ids](hubs/sample/wwwroot/js/chat.js?range=19)]
-[!code-csharp[Connection Ids](hubs/sample/wwwroot/js/chat.js?range=24-29)]
+[!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=19)]
+[!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=24-29)]
 
 ## Related Resources
 
