@@ -1,0 +1,84 @@
+﻿@page "/"
+@*
+    The page directive indicates this component is available as a page 
+    at the root of the app, the "/" route.
+*@
+
+@*
+    Blazor components can be nested. HeadingComponent is a component 
+    supplied by the Razor file HeadingComponent.cshtml.
+*@
+<HeadingComponent />
+
+<h2>Index.cshtml</h2>
+
+<p>
+    <code>HeadingComponent</code> (<em>HeadingComponent.cshtml</em>) 
+    is embedded within this Index page component:
+</p>
+<pre><code>&lt;HeadingComponent /&gt;</code></pre>
+
+<h2>HeadingComponent.cshtml</h2>
+
+<pre><code>@@using System.Net
+@@*
+    The 'using' directive makes System.Net available to the component.
+*@@
+
+@@*
+    Heading text is displayed and bound to the HeadingText property.
+    The font-style of the heading is bound to the HeadingFontStyle
+    property.
+*@@
+&lt;h1 style="font-style:@@HeadingFontStyle"&gt;@@HeadingText&lt;/h1&gt;
+
+&lt;form&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="headingText"&gt;New heading text&lt;/label&gt;
+        @@*
+            A field accepts new heading text from the user. 
+            The field is bound to the NewHeadingText property.
+        *@@
+        &lt;input type="text" class="form-control" id="headingText" 
+            placeholder="New heading text..." bind="@@NewHeadingText" /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-check"&gt;
+        @@*
+            A checkbox toggles the font style and is bound to the 
+            ItalicsCheck property.
+        *@@
+        &lt;input type="checkbox" class="form-check-input" 
+            id="italicsCheck" bind="@@ItalicsCheck" /&gt;
+        &lt;label class="form-check-label" 
+            for="italicsCheck"&gt;Use italics&lt;/label&gt;
+    &lt;/div&gt;
+
+    @@*
+        When the form is submitted, the onclick event executes 
+        the UpdateHeading method.
+    *@@
+    &lt;button class="btn btn-primary" @@onclick(UpdateHeading)&gt;
+        Update heading
+    &lt;/button&gt;
+&lt;/form&gt;
+
+@@functions {
+    public string HeadingText { get; set; } = "Welcome to Blazor!";
+    public string NewHeadingText { get; set; }
+    public string HeadingFontStyle { get; set; } = "normal";
+    public bool ItalicsCheck { get; set; } = false;
+
+    // When UpdateHeading is executed:
+    //    HeadingText is assigned the value of NewHeadingText.
+    //    ItalicsCheck determines the value of HeadingFontStyle to 
+    //        set the font style of the heading.
+    //    WebUtility.HtmlEncode ensures that user input can't 
+    //        compromise the security of the page with a malicious 
+    //        entry.
+    public void UpdateHeading()
+    {
+        HeadingText = WebUtility.HtmlEncode(NewHeadingText);
+
+        HeadingFontStyle = ItalicsCheck ? "italic" : "normal";
+    }
+}</code></pre>
