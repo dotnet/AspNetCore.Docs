@@ -120,28 +120,7 @@ Browsers support the APIs that developers use to build web apps. Not all .NET AP
 
 ## JavaScript/TypeScript interop
 
-For apps that require third-party JavaScript libraries and browser APIs, WebAssembly is designed to interoperate with JavaScript. Blazor is capable of using any library or API that JavaScript is able to use.
-
-To call JavaScript libraries or your own custom JavaScript/TypeScript code from .NET, the current approach is to register a named function in a JavaScript/TypeScript file:
-
-```javascript
-Blazor.registerFunction('doPrompt', message => {
-  return prompt(message);
-});
-```
-
-Wrap the named function for calls from .NET:
-
-```csharp
-public static bool DoPrompt(string message)
-{
-    return RegisteredFunction.Invoke<bool>("doPrompt", message);
-}
-```
-
-This approach has the benefit of working with JavaScript build tools, such as [webpack](https://webpack.js.org/).
-
-The Mono team is working on a library that exposes standard browser APIs to .NET.
+For apps that require third-party JavaScript libraries and browser APIs, WebAssembly is designed to interoperate with JavaScript. Blazor is capable of using any library or API that JavaScript is able to use. The Mono team is working on a library that exposes standard browser APIs to .NET.
 
 ## Optimization
 
