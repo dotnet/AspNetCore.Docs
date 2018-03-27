@@ -97,11 +97,11 @@ If you created the initial migration when the database already exists, the datab
 
 ## The data model snapshot
 
-Migrations creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. 
+Migrations creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
-To delete a migration, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
+When deleting a migration, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command. `dotnet ef migrations remove` deletes the snapshot and ensures the snapshot is correctly reset.
 
-See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information.
+See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information about how the snapshot file is used.
 
 ## Apply the migration to the database
 
