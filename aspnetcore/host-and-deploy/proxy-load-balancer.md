@@ -20,7 +20,7 @@ In the recommended configuration for ASP.NET Core, the app is hosted using IIS/A
 * When HTTPS requests are proxied over HTTP, the original scheme (HTTPS) is lost and must be forwarded in a header.
 * Because an app receives a request from the proxy and not its true source on the Internet or corporate network, the originating client IP address must also be forwarded in a header.
 
-This information may be important in request processing, for example in link generation, policy evaluation, and client geoloation, just to name a few.
+This information may be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geoloation.
 
 ## Forwarded headers
 
@@ -28,9 +28,9 @@ By convention, proxies forward information in HTTP headers.
 
 | Header | Description |
 | ------ | ----------- |
-| X-Forwarded-For | Holds information about the client that initiated the request and subsequent proxies in a chain of proxies. This parameter may contain IP addresses (and, optionally, port numbers). In a chain of proxy servers, the first parameter indicates the client where the request was first made. Subsequent proxy identifiers follow. The last proxy in the chain isn't in the list of parameters. The last proxy's IP address, and optionally a port number, are available as the remote IP address at the transport layer. See [RFC 7239 5.2](https://tools.ietf.org/html/rfc7239#section-5.2). |
-| X-Forwarded-Proto | The value of the originating scheme (HTTP/HTTPS). The value may also be a list of schemes if the request has traversed multiple proxies. See [RFC 7239 5.4](https://tools.ietf.org/html/rfc7239#section-5.4). |
-| X-Forwarded-Host | The original value of the Host header field. Usually, proxies don't modify the Host header. See [RFC 7239 5.3](https://tools.ietf.org/html/rfc7239#section-5.3). See [Microsoft Security Advisory CVE-2018-0787](https://github.com/aspnet/Announcements/issues/295) for information on an elevation-of-privileges vulnerability that affects systems where the proxy doesn't validate or restict Host headers to known good values. |
+| X-Forwarded-For | Holds information about the client that initiated the request and subsequent proxies in a chain of proxies. This parameter may contain IP addresses (and, optionally, port numbers). In a chain of proxy servers, the first parameter indicates the client where the request was first made. Subsequent proxy identifiers follow. The last proxy in the chain isn't in the list of parameters. The last proxy's IP address, and optionally a port number, are available as the remote IP address at the transport layer. |
+| X-Forwarded-Proto | The value of the originating scheme (HTTP/HTTPS). The value may also be a list of schemes if the request has traversed multiple proxies. |
+| X-Forwarded-Host | The original value of the Host header field. Usually, proxies don't modify the Host header. See [Microsoft Security Advisory CVE-2018-0787](https://github.com/aspnet/Announcements/issues/295) for information on an elevation-of-privileges vulnerability that affects systems where the proxy doesn't validate or restict Host headers to known good values. |
 
 The Forwarded Headers Middleware, from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package, reads these headers and fills in the associated fields on [HttpContext](/dotnet/api/microsoft.aspnetcore.http.httpcontext). 
 
@@ -38,6 +38,7 @@ The middleware updates:
 
 * [HttpContext.Connection.RemoteIpAddress](/dotnet/api/microsoft.aspnetcore.http.connectioninfo.remoteipaddress) &ndash; Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options).
 * [HttpContext.Request.Scheme](/dotnet/api/microsoft.aspnetcore.http.httprequest.scheme) &ndash; Set using the `X-Forwarded-Proto` header value.
+* [HttpContext.Request.Host](/dotnet/api/microsoft.aspnetcore.http.httprequest.host) &ndash; Set using the `X-Forwarded-Host` header value.
 
 Any component that depends on these fields, such as authentication, link generation, redirects, geolocation, and others, must be placed after invoking the Forwarded Headers Middleware. As a general rule, Forwarded Headers Middleware should run before other middleware except diagnostics and error handling middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
 
@@ -56,15 +57,26 @@ Forwarded Headers Middleware is enabled by default by IIS Integration Middleware
 
 Outside of using IIS Integration Middleware, Forwarded Headers Middleware isn't enabled by default. Forwarded Headers Middleware must be enabled for an app to process forwarded headers with [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders). After enabling the middleware if no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.forwardedheaders) are [ForwardedHeaders.None](/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheaders).
 
-When using any type of middleware that relies on forwarded headers (for example, authentication), the Forwarded Headers Middleware must run first.
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or similar authentication scheme middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Configure the middleware with [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers in `Startup.ConfigureServices`. Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling other middleware:
 
 ```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    
+    services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = 
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    });
+}
+
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
+    app.UseForwardedHeaders();
+
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
@@ -73,11 +85,6 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
         app.UseExceptionHandler("/Home/Error");
     }
-
-    app.UseForwardedHeaders(new ForwardedHeadersOptions
-    {
-        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-    });
 
     app.UseStaticFiles();
     app.UseAuthentication();
@@ -87,11 +94,24 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseIdentity](/dotnet/api/microsoft.aspnetcore.builder.builderextensions.useidentity) and [UseFacebookAuthentication](/dotnet/api/microsoft.aspnetcore.builder.facebookappbuilderextensions.usefacebookauthentication) or similar authentication scheme middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Configure the middleware with [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers in `Startup.ConfigureServices`. Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling other middleware:
 
 ```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    
+    services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = 
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    });
+}
+
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
+    app.UseForwardedHeaders();
+
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
@@ -100,11 +120,6 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
         app.UseExceptionHandler("/Home/Error");
     }
-
-    app.UseForwardedHeaders(new ForwardedHeadersOptions
-    {
-        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-    });
 
     app.UseStaticFiles();
     app.UseIdentity();
@@ -120,7 +135,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 ---
 
 > [!NOTE]
-> If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware:
+> If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified in `Startup.ConfigureServices` or directly to the extension method with [UseForwardedHeaders(IApplicationBuilder, ForwardedHeadersOptions)](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_ForwardedHeadersExtensions_UseForwardedHeaders_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_ForwardedHeadersOptions_):
 > 
 > ```csharp
 > app.UseForwardedHeaders();
@@ -173,7 +188,15 @@ This code can be disabled with an environment variable or other configuration se
 
 ### Deal with path base and proxies that change the request path
 
-[UsePathBaseExtensions.UsePathBase](/dotnet/api/microsoft.aspnetcore.builder.usepathbaseextensions.usepathbase) is used by IIS/ASP.NET Core Module to trim the app base path.
+Some proxies pass the path intact but with an app base path that should be removed so that routing works properly. "Use Path Base Middleware" ([UsePathBaseExtensions.UsePathBase](/dotnet/api/microsoft.aspnetcore.builder.usepathbaseextensions.usepathbase)) splits the path into [HttpRequest.Path](/dotnet/api/microsoft.aspnetcore.http.httprequest.path) and the app base path into [HttpRequest.PathBase](/dotnet/api/microsoft.aspnetcore.http.httprequest.pathbase).
+
+If `/foo` is the app base path for a proxy path passed as `/foo/api/1`, the middleware sets `Request.PathBase` to `/foo` and `Request.Path` to `/api/1` with the following command:
+
+```csharp
+app.UsePathBase("/foo");
+```
+
+The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [Middleware](xref:fundamentals/middleware/index).
 
 If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), fix redirects and links by setting the request's [PathBase](/dotnet/api/microsoft.aspnetcore.http.httprequest.pathbase) property:
 
