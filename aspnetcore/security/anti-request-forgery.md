@@ -79,7 +79,7 @@ When a user is authenticated, they're issued a token (not an antiforgery token).
 
 ### Multiple apps hosted at one domain
 
-Although `example1.mydomain.net` and `example2.mydomain.net` are different hosts, there's an implicit trust relationship between hosts under the `*.mydomain.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other's cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies).
+Although `example1.contoso.net` and `example2.contoso.net` are different hosts, there's an implicit trust relationship between hosts under the `*.contoso.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other's cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies).
 
 The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token. Even if a malicious subdomain is able to overwrite a session token, it can't generate a valid field token for the user. When hosted in such an environment, the built-in anti-CSRF routines still can't defend against session hijacking or login CSRF attacks. Shared hosting environments are vulnerable to session hijacking, login CSRF, and other attacks.
 
@@ -178,7 +178,7 @@ Customize [antiforgery options](/dotnet/api/Microsoft.AspNetCore.Antiforgery.Ant
 ```csharp
 services.AddAntiforgery(options => 
 {
-    options.CookieDomain = "mydomain.com";
+    options.CookieDomain = "contoso.com";
     options.CookieName = "X-CSRF-TOKEN-COOKIENAME";
     options.CookiePath = "Path";
     options.FormFieldName = "AntiforgeryFieldname";
