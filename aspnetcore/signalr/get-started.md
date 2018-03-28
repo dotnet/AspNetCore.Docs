@@ -160,3 +160,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 -----
 
   ![Solution](get-started/_static/signalr-get-started-finished.png)
+
+## Related resources
+
+[Introduction to ASP.NET Core SignalR](introduction.md)
