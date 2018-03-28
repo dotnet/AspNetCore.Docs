@@ -25,7 +25,7 @@ The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/par
 * Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#referencing-a-partial-view).
 * Loads the partial view asynchronously.
 
-To recap, the HTML Helper options for rendering a partial view include:
+The HTML Helper options for rendering a partial view include:
 
 * [@await Html.PartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync)
 * [@await Html.RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync)
