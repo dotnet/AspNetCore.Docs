@@ -58,7 +58,7 @@ However, CSRF attacks aren't limited to exploiting cookies. For example, Basic a
 
 &dagger;In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
 
-Users can guard against CSRF vulnerabilities by taking simple precautions:
+Users can guard against CSRF vulnerabilities by taking precautions:
 
 * Sign off of web apps when finished using them.
 * Clear browser cookies periodically.
@@ -73,17 +73,17 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that accompanies every request the client makes. Generating and validating this cookie is performed by the Cookie Authentication Middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the [User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user) property of [HttpContext](/dotnet/api/microsoft.aspnetcore.http.httpcontext).
 
-When a user is authenticated to access an app, a server-side user session is created and stored in a database or some other persistent store. The app generates a session key that points to the stored session in the data store and includes it in the authentication ticket/cookie. The web server checks this session key each time a user requests a resource that requires authorization. The app checks whether the associated user session has sufficient privileges to access the requested resource. If the user is authorized to access the resource, the request continues. Otherwise, the request returns as unauthorized. Cookies are used to make the app appear stateful, since the app is able to maintain the user's authentication/authorization state on each request.
-
 ### Token-based authentication
 
-Token-based authentication doesn't store session on the server. When a user is authenticated, they're issued a token (not an antiforgery token). The token contains user information in the form of [claims](/dotnet/framework/security/claims-based-identity-model). When a user attempts to access a resource requiring authentication, the token is sent to the app with an additional authorization header in form of Bearer token. This makes the app stateless. In each subsequent request, the token is passed in the request for server-side validation. This token isn't *encrypted*; it's *encoded*. On the server, the token is decoded to access its information. To send the token on subsequent requests, either store the token in the browser's local storage or in a cookie. Don't be concerned about CSRF vulnerability if the token is stored in the browser's local storage. CSRF is a concern when the token is stored in a cookie.
+When a user is authenticated, they're issued a token (not an antiforgery token). The token contains user information in the form of [claims](/dotnet/framework/security/claims-based-identity-model) or a reference token that points the app to user state maintained in the app. When a user attempts to access a resource requiring authentication, the token is sent to the app with an additional authorization header in form of Bearer token. This makes the app stateless. In each subsequent request, the token is passed in the request for server-side validation. This token isn't *encrypted*; it's *encoded*. On the server, the token is decoded to access its information. To send the token on subsequent requests, either store the token in the browser's local storage or in a cookie. Don't be concerned about CSRF vulnerability if the token is stored in the browser's local storage. CSRF is a concern when the token is stored in a cookie.
 
 ### Multiple apps hosted at one domain
 
-Although `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there's an implicit trust relationship between hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other's cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies).
+Although `example1.mydomain.net` and `example2.mydomain.net` are different hosts, there's an implicit trust relationship between hosts under the `*.mydomain.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other's cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies).
 
 The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token. Even if a malicious subdomain is able to overwrite a session token, it can't generate a valid field token for the user. When hosted in such an environment, the built-in anti-CSRF routines still can't defend against session hijacking or login CSRF attacks. Shared hosting environments are vulnerable to session hijacking, login CSRF, and other attacks.
+
+Attacks that exploit trusted cookies between apps hosted on the same domain can be prevented by not sharing domains. When each app is hosted on its own domain, there is no implicit cookie trust relationship to exploit.
 
 ## ASP.NET Core antiforgery configuration 
 
@@ -97,6 +97,8 @@ In ASP.NET Core MVC 2.0 or later, the [FormTagHelper](xref:mvc/views/working-wit
     ...
 </form>
 ```
+
+Similarily, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper.beginform) generates antiforgery tokens by default if the form's method isn't GET.
 
 The automatic generation of antiforgery tokens for HTML form elements happens when the `<form>` tag contains the `method="post"` attribute and either of the following are true:
 
