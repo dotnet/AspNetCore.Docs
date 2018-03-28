@@ -173,34 +173,7 @@ app.Use((context, next) =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. The headers can be written to logs or to an app response using inline middleware.
-
-**Log headers to a debug log**
-
-```csharp
-public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
-{
-    var logger = loggerfactory.CreateLogger("Requests");
-
-    app.Run(async (context) =>
-    {
-        // Request method and path
-        logger.LogDebug(
-            $"Request: {context.Request.Method} {context.Request.Path}");
-
-        // Headers
-        foreach (var header in context.Request.Headers)
-        {
-            logger.LogDebug($"Header: {header.Key}: {header.Value}");
-        }
-
-        // Connection
-        logger.LogDebug($"RemoteIp: {context.Connection.RemoteIpAddress}");
-    }
-}
-```
-
-**Write headers as an response**
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. The headers can be written to an app response using inline middleware:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
@@ -209,12 +182,16 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
     {
         context.Response.ContentType = "text/plain";
 
-        // Request method and path
-        await context.Response.WriteAsync($"Request: {context.Request.Method} " +
-            $"{context.Request.Path}{Environment.NewLine}{Environment.NewLine}");
+        // Request method, scheme, and path
+        await context.Response.WriteAsync(
+            $"Request Method: {context.Request.Method}{Environment.NewLine}");
+        await context.Response.WriteAsync(
+            $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
+        await context.Response.WriteAsync(
+            $"Request Path: {context.Request.Path}{Environment.NewLine}");
 
         // Headers
-        await context.Response.WriteAsync($"Headers:{Environment.NewLine}");
+        await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
 
         foreach (var header in context.Request.Headers)
         {
@@ -224,9 +201,9 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
 
         await context.Response.WriteAsync(Environment.NewLine);
 
-        // Connection
+        // Connection: RemoteIp
         await context.Response.WriteAsync(
-            $"RemoteIp: {context.Connection.RemoteIpAddress}");
+            $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
     }
 }
 ```
