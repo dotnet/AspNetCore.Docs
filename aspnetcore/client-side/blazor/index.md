@@ -29,7 +29,7 @@ To learn more about Blazor's technological backbone, see the following documenta
 DESCRIPTION
 
 [Introduction to Blazor](xref:client-side/blazor/introduction/index)  
-Explains how Blazor runs in the browser to execute C#/Razor code with WebAssembly and the Mono runtime.
+Explains how Blazor runs in the browser to execute C#/Razor code with WebAssembly and the .NET runtime.
 
 \[Create components](xref:client-side/blazor/create-components/index)  
 DESCRIPTION

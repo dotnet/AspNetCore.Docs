@@ -17,13 +17,13 @@ By [Steve Sanderson](http://blog.stevensanderson.com), [Daniel Roth](https://git
 
 [!INCLUDE[](~/includes/blazor-preview-notice.md)]
 
-Blazor is a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with [WebAssembly](http://webassembly.org). Blazor provides all of the benefits of a rich client-side web UI framework using .NET on both the server and the client.
+Blazor is an experimental .NET web framework using C#/Razor and HTML that runs in the browser with [WebAssembly](http://webassembly.org). Blazor provides all of the benefits of a client-side web UI framework using .NET on both the server and the client.
 
-## Why use .NET for browser apps?
+## Why use .NET for client-side apps?
 
 Web development has improved in many ways over the years, but building modern web apps still poses challenges. Using .NET in the browser offers many advantages that can help make web development easier and more productive: 
 
-* Stability and consistency: .NET provides standardized programming frameworks across platforms that are stable, feature rich, and easy to use.
+* Stability and consistency: .NET provides standardized programming frameworks across platforms that are stable, feature-rich, and easy to use.
 * Modern innovative languages: .NET languages are constantly improving with innovative new language features.
 * Industry-leading tools: The Visual Studio product family provides a fantastic .NET development experience across platforms on Windows, Linux, and macOS.
 * Speed and scalability: .NET has a strong history of performance, reliability, and security for app development. Using .NET as a full-stack solution makes it easier to build fast, reliable, and secure apps.
@@ -34,7 +34,7 @@ Web development has improved in many ways over the years, but building modern we
 
 Running .NET code inside web browsers is made possible by a relatively new technology, WebAssembly (abbreviated *wasm*). WebAssembly is an open web standard and is supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
 
-Security isn't a major concern because WebAssembly isn't ordinary assembly code (for example, x86/x64) &mdash; WebAssembly is a new bytecode format that accesses browser functionality with the same capabilities as JavaScript.
+Security isn't a major concern because WebAssembly isn't ordinary assembly code (for example, x86/x64)&mdash;WebAssembly is a new bytecode format that accesses browser functionality with the same capabilities as JavaScript.
 
 When a Blazor app is built and run in a browser:
 
@@ -44,7 +44,7 @@ When a Blazor app is built and run in a browser:
 
 ## Browsers that don't support WebAssembly
 
-The .NET runtime is supplied as a WebAssembly binary and an [asm.js](https://en.wikipedia.org/wiki/Asm.js)-based implementation. *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used because it's larger and slower than the WebAssembly runtime.
+The .NET runtime is supplied as a WebAssembly binary and an [asm.js](https://wikipedia.org/wiki/Asm.js)-based implementation. *asm.js* is a subset of JavaScript and can be executed by JavaScript runtimes in browsers going back several years. When Blazor loads in the browser, it checks for WebAssembly support. If WebAssembly isn't supported, the *asm.js* runtime is loaded. *asm.js* isn't always used because it's larger and slower than the WebAssembly runtime.
 
 ## Blazor components
 
@@ -103,7 +103,7 @@ For apps that require third-party JavaScript libraries and browser APIs, WebAsse
 
 ## Optimization
 
-Traditionally, .NET has focused on platforms where the app's binary size isn't a major concern. It doesn't really matter whether a server-side ASP.NET app is 1MB or 50MB. It's only a moderate concern for native desktop or mobile apps. But for browser apps, payload size is critical.
+Traditionally, .NET has focused on platforms where the app's binary size isn't a major concern. It doesn't really matter whether a server-side ASP.NET app is 1MB or 50MB. It's only a moderate concern for native desktop or mobile apps. But for client-side apps, payload size is critical.
 
 Development efforts are aimed at reducing the download size of the Mono runtime and .NET app assemblies. Here are three phases of size optimization the Blazor engineering team has in mind:
 
@@ -121,10 +121,10 @@ Development efforts are aimed at reducing the download size of the Mono runtime 
 
    Most web servers support HTTP compression, which typically cuts the remaining payload size by a further 75%.
 
-Overall, a .NET-based browser app is never going to be as tiny as a minimal React app, but the goal is to make it small enough that a typical user with average Internet bandwidth won't notice or care about an app's first load time. After first load, the app's assemblies are fully cached.
+Overall, a .NET-based client-side app is never going to be as tiny as a minimal React app, but the goal is to make it small enough that a typical user with average Internet bandwidth won't notice or care about an app's first load time. After first load, the app's assemblies are fully cached.
 
 ## Deployment
 
-Developers have the option of using Blazor for only client-side development or for full-stack .NET development. Full-stack development offers many advantages &mdash; client- and server-side development uses the same tooling, build infrastructure, and language. Code can be shared between client and server apps.
+Developers have the option of using Blazor for only client-side development or for full-stack .NET development. Full-stack development offers many advantages&mdash;client- and server-side development uses the same tooling, build infrastructure, and language. Code can be shared between client and server apps.
 
-For ASP.NET Core apps, [middleware](xref:fundamentals/middleware/index) will offer an easy path to serve a Blazor UI seamlessly from ASP.NET Core. Equally important are developers who don't yet use ASP.NET Core. To make Blazor a viable consideration for developers using Node.js, Rails, PHP, or even for serverless web apps, ASP.NET Core isn't required on the server. When a Blazor app is built, a *dist* directory is produced containing nothing but static files. The contents of the *dist* folder can be hosted on the Azure CDN, GitHub Pages, Node.js servers, and many other servers and services.
+For ASP.NET Core, [middleware](xref:fundamentals/middleware/index) offers an easy path to serve a Blazor UI seamlessly from an ASP.NET Core app. Equally important are developers who don't yet use ASP.NET Core. To make Blazor a viable consideration for developers using Node.js, Rails, PHP, or even for serverless web apps, ASP.NET Core isn't required on the server. When a Blazor app is built, a *dist* directory is produced containing nothing but static files. The contents of the *dist* folder can be hosted on the Azure CDN, GitHub Pages, Node.js servers, and many other servers and services.
