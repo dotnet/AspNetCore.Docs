@@ -95,7 +95,7 @@ A few low-level elements are included in the framework. For example, routing and
 
 The [.NET Standard](/dotnet/standard/net-standard) is a formal specification of .NET APIs that are intended to be available on all .NET implementations. Mono on WebAssembly supports `netstandard2.0` or higher. .NET Standard class libraries can be shared across server code and in browser-based apps.
 
-Browsers support the APIs that developers use to build web apps. Not all .NET APIs are callable from the browser. For example, arbitrary TCP sockets can't be accessed in a browser, so [System.Net.Sockets.TcpListener](/dotnet/api/system.net.sockets.tcplistener) can't perform any useful task. For BCL APIs that don't apply to a given platform, the BCL throws a [PlatformNotSupported](/dotnet/api/system.platformnotsupportedexception) exception.
+Browsers support the APIs that developers use to build web apps. Not all .NET APIs are callable from the browser. For example, arbitrary TCP sockets can't be accessed in a browser, so [System.Net.Sockets.TcpListener](/dotnet/api/system.net.sockets.tcplistener) can't perform any useful task. For BCL APIs that don't apply to a given platform, the BCL throws a [PlatformNotSupportedException](/dotnet/api/system.platformnotsupportedexception).
 
 ## JavaScript/TypeScript interop
 
