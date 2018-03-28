@@ -53,7 +53,7 @@ The following Razor markup:
 Generates the following HTML:
 
 ```html
- <label for="Movie_Title">Title</label>
+<label for="Movie_Title">Title</label>
 ```
 
 The `asp-for` attribute is made available by the `For` property in the [LabelTagHelper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.labeltaghelper?view=aspnetcore-2.0). See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
