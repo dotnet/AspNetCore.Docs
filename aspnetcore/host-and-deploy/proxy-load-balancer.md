@@ -171,6 +171,70 @@ app.Use((context, next) =>
 });
 ```
 
+## Troubleshoot
+
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. The headers can be written to logs or to an app response using inline middleware.
+
+**Log headers to a debug log**
+
+```csharp
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
+{
+    var logger = loggerfactory.CreateLogger("Requests");
+
+    app.Run(async (context) =>
+    {
+        // Request method and path
+        logger.LogDebug(
+            $"Request: {context.Request.Method} {context.Request.Path}");
+
+        // Headers
+        foreach (var header in context.Request.Headers)
+        {
+            logger.LogDebug($"Header: {header.Key}: {header.Value}");
+        }
+
+        // Connection
+        logger.LogDebug($"RemoteIp: {context.Connection.RemoteIpAddress}");
+    }
+}
+```
+
+**Write headers as an response**
+
+```csharp
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
+{
+    app.Run(async (context) =>
+    {
+        context.Response.ContentType = "text/plain";
+
+        // Request method and path
+        await context.Response.WriteAsync($"Request: {context.Request.Method} " +
+            $"{context.Request.Path}{Environment.NewLine}{Environment.NewLine}");
+
+        // Headers
+        await context.Response.WriteAsync($"Headers:{Environment.NewLine}");
+
+        foreach (var header in context.Request.Headers)
+        {
+            await context.Response.WriteAsync($"{header.Key}: " +
+                $"{header.Value}{Environment.NewLine}");
+        }
+
+        await context.Response.WriteAsync(Environment.NewLine);
+
+        // Connection
+        await context.Response.WriteAsync(
+            $"RemoteIp: {context.Connection.RemoteIpAddress}");
+    }
+}
+```
+
+Ensure that the X-Forwarded-* headers are received by the server with the expected values. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left.
+
+The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before X-Forwarded-For is processed. This limits header spoofing by not accepting forwarders from untrusted proxies.
+
 ## Additional resources
 
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
