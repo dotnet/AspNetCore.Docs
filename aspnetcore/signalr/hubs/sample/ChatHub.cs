@@ -35,7 +35,8 @@ namespace SignalRChat
             _connectionID = Context.ConnectionId;
             return base.OnConnectedAsync();
         }
-        private void JoinGroup(string connection, string group) {
+        private void JoinGroup(string connection, string group)
+        {
             Groups.AddAsync(connection, group);
         }
     }

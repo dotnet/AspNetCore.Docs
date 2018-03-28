@@ -34,7 +34,7 @@ When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes b
 
 Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`.
 
-[!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=10-14)]
+[!code-csharp[Create and use hubs](hubs/sample/chathub.cs?range=10-14)]
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
@@ -45,7 +45,7 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | Property | Description |
 | ------ | ----------- |
 | `All` | Calls a method on all connected clients |
-| `Caller` | Calls a method on the currently connected client |
+| `Caller` | Calls a method on the client that invoked the hub method |
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
 Additionally, the `Hub` class contains the following methods:
@@ -58,7 +58,7 @@ Additionally, the `Hub` class contains the following methods:
 | `Group` | Sends a message to all connections in the specified group  |
 | `GroupExcept` | Sends a message to all connections in the specified group, except the specified connections |
 | `Groups` | Sends a message to multiple groups of connections  |
-| `OthersInGroup` | Sends a message to others in a group of connections  |
+| `OthersInGroup` | Sends a message to a group of connections, excluding the client that invoked the hub method  |
 | `User` | Sends a message to all connections associated with a specific user |
 | `Users` | Sends a message to all connections associated with the specified users |
 
@@ -66,22 +66,22 @@ Each property or method in the preceding tables returns an object with a `SendAs
 
 ## Send messages to clients
 
-To make calls to specific clients, use the members of `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection. The `SendMessageToMultipleConnections` method sends a message to the clients stored in an array named `ids`.
+To make calls to specific clients, use the `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection. The `SendMessageToMultipleConnections` method sends a message to the clients stored in an array named `ids`.
 
-[!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
+[!code-csharp[Send messages](hubs/sample/chathub.cs?range=15-24)]
 
 ## Handle events for a connection
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
 
-[!code-csharp[Handle events](hubs/sample/hubs/chathub.cs?range=32-37)]
+[!code-csharp[Handle events](hubs/sample/chathub.cs?range=32-37)]
 
 ## Handle errors
 
-Exceptions thrown in your hub methods are sent to the client that invoked the method. On the client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
+Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
 
-[!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=19)]
-[!code-csharp[Error](hubs/sample/wwwroot/js/chat.js?range=24-29)]
+[!code-csharp[Error](hubs/sample/chat.js?range=19)]
+[!code-csharp[Error](hubs/sample/chat.js?range=24-29)]
 
 ## Related resources
 

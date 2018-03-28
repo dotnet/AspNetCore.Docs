@@ -13,10 +13,10 @@ document.getElementById('send').addEventListener('click', event => {
     const usr = document.getElementById('user').value;
     const grp = document.getElementById('group').value;
     if (grp != null) {
-        connection.invoke('SendMessageToGroup', usr, msg, grp).catch(err => showErr(err));
+        connection.send('SendMessageToGroup', usr, msg, grp).catch(err => showErr(err));
     }
     else {
-        connection.invoke('SendMessageToAll', usr, msg).catch(err => showErr(err));
+        connection.send('SendMessageToAll', usr, msg).catch(err => showErr(err));
     }    
     event.preventDefault();
 });
@@ -29,18 +29,6 @@ function showErr(msg) {
 }
 
 connection.start().catch(err => showErr(err));
-
-function getParameterByName(name, url) {
-    if (!url) {
-        url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-};
 
 function receiveMessage(user, message, group, connection) {
     const encodedUser = user;
