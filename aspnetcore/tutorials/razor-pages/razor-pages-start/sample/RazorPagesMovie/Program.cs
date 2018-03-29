@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace RazorPagesMovie
 {
@@ -23,7 +25,10 @@ namespace RazorPagesMovie
                 {
                     var context = services.GetRequiredService<MovieContext>();
                     // requires using Microsoft.EntityFrameworkCore;
-                    context.Database.Migrate();
+                    if (!(context.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+                    {
+                        context.Database.Migrate();
+                    }
                     // Requires using RazorPagesMovie.Models;
                     SeedData.Initialize(services);
                 }
