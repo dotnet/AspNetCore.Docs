@@ -34,7 +34,7 @@ When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes b
 
 Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`.
 
-[!code-csharp[Create and use hubs](hubs/sample/chathub.cs?range=10-14)]
+[!code-csharp[Create and use hubs](hubs/sample/chathub.cs?range=10-13)]
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
@@ -52,7 +52,7 @@ Additionally, the `Hub` class contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
-| `AllExcept` | Calls a method on all connected clients except for the provided connections |
+| `AllExcept` | Calls a method on all connected clients except for the specified connections |
 | `Client` | Calls a method on a specific connected client |
 | `Clients` | Calls a method on specific connected clients |
 | `Group` | Sends a message to all connections in the specified group  |
@@ -66,22 +66,22 @@ Each property or method in the preceding tables returns an object with a `SendAs
 
 ## Send messages to clients
 
-To make calls to specific clients, use the `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToSingleConnection` method demonstrates sending a message to one specific connection. The `SendMessageToMultipleConnections` method sends a message to the clients stored in an array named `ids`.
+To make calls to specific clients, use the `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToOneConnection` method demonstrates sending a message to one specific connection. The `SendMessageToManyConnections` method sends a message to the clients stored in an array named `ids`.
 
-[!code-csharp[Send messages](hubs/sample/chathub.cs?range=15-24)]
+[!code-csharp[Send messages](hubs/sample/chathub.cs?range=15-23)]
 
 ## Handle events for a connection
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
 
-[!code-csharp[Handle events](hubs/sample/chathub.cs?range=32-37)]
+[!code-csharp[Handle events](hubs/sample/chathub.cs?range=25-29)]
 
 ## Handle errors
 
 Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
 
-[!code-javascript[Error](hubs/sample/chat.js?range=19)]
-[!code-javascript[Error](hubs/sample/chat.js?range=24-29)]
+[!code-javascript[Error](hubs/sample/chat.js?range=22)]
+[!code-javascript[Error](hubs/sample/chat.js?range=18-20)]
 
 ## Related resources
 
