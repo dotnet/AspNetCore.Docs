@@ -22,13 +22,13 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 ## Configure SignalR hubs
 
-The SignalR middleware requires some services to be able to run. To configure those call `services.AddSignalR`.
+The SignalR middleware requires some services, which are configured by calling `services.AddSignalR`.
 
-[!code-javascript[Configure service](hubs/sample/startup.cs?range=35)]
+[!code-csharp[Configure service](hubs/sample/startup.cs?range=35)]
 
 When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling `app.UseSignalR` in the `Startup.Configure` method.
 
-[!code-javascript[Configure routes to hubs](hubs/sample/startup.cs?range=55-58)]
+[!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=55-58)]
 
 ## Create and use hubs
 
@@ -80,8 +80,8 @@ The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` v
 
 Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
 
-[!code-csharp[Error](hubs/sample/chat.js?range=19)]
-[!code-csharp[Error](hubs/sample/chat.js?range=24-29)]
+[!code-javascript[Error](hubs/sample/chat.js?range=19)]
+[!code-javascript[Error](hubs/sample/chat.js?range=24-29)]
 
 ## Related resources
 
