@@ -41,9 +41,9 @@ If you have an assembly that contains controllers you don't want to be used, rem
 
 ```csharp
 services.AddMvc()
-    .ConfigureApplicationPartManager(p =>
+    .ConfigureApplicationPartManager(apm =>
     {
-        var dependentLibrary = p.ApplicationParts
+        var dependentLibrary = apm.ApplicationParts
             .FirstOrDefault(part => part.Name == "DependentLibrary");
 
         if (dependentLibrary != null)
@@ -80,8 +80,8 @@ The feature provider is added in `Startup`:
 
 ```csharp
 services.AddMvc()
-    .ConfigureApplicationPartManager(p => 
-        p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
+    .ConfigureApplicationPartManager(apm => 
+        apm.FeatureProviders.Add(new GenericControllerFeatureProvider()));
 ```
 
 By default, the generic controller names used for routing would be of the form *GenericController`1[Widget]* instead of *Widget*. The following attribute is used to modify the name to correspond to the generic type used by the controller:
