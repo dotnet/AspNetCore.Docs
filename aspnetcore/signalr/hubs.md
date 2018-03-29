@@ -66,15 +66,15 @@ Each property or method in the preceding tables returns an object with a `SendAs
 
 ## Send messages to clients
 
-To make calls to specific clients, use the `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToOneConnection` method demonstrates sending a message to one specific connection. The `SendMessageToManyConnections` method sends a message to the clients stored in an array named `ids`.
+To make calls to specific clients, use the `Clients.Client` or `Clients.Clients`. In the following example, the `SendMessageToCaller` method demonstrates sending a message to the connection that invoked the hub method. The `SendMessageToGroups` method sends a message to the groups stored in a `List` named `groups`.
 
-[!code-csharp[Send messages](hubs/sample/chathub.cs?range=15-23)]
+[!code-csharp[Send messages](hubs/sample/chathub.cs?range=15-24)]
 
 ## Handle events for a connection
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
 
-[!code-csharp[Handle events](hubs/sample/chathub.cs?range=25-29)]
+[!code-csharp[Handle events](hubs/sample/chathub.cs?range=26-30)]
 
 ## Handle errors
 

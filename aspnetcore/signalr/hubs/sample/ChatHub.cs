@@ -12,14 +12,15 @@ namespace SignalRChat
             return Clients.All.SendAsync("ReceiveMessage", message);    
         }
 
-        public Task SendMessageToOneConnection(string message)
+        public Task SendMessageToCaller(string message)
         {
-            return Clients.Client(Context.User.Identity.Name).SendAsync("ReceiveMessage", message);
+            return Clients.Caller.SendAsync("ReceiveMessage", message);
         }
 
-        public Task SendMessageToManyConnections(string message, List<string> connections)
-        {          
-            return Clients.Clients(connections).SendAsync("ReceiveMessage", message);
+        public Task SendMessageToGroups(string user, string message)
+        {
+            List<string> groups = new List<string>() { "SignalR Users" };
+            return Clients.Groups(groups).SendAsync("ReceiveMessage", message);
         }
 
         public override Task OnConnectedAsync()
