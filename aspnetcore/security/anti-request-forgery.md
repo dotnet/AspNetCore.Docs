@@ -46,7 +46,7 @@ When the user selects the button to submit the form, the malicious site could:
 
 Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
 
-Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that changes state are insecure. A best practice is to never change state on a GET request.**
+Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that change state are insecure. A best practice is to never change state on a GET request.**
 
 CSRF attacks are possible against web apps that use cookies for authentication because:
 
@@ -90,7 +90,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. See [Configuring data protection](xref:security/data-protection/configuration/overview) for more information.
 
-In ASP.NET Core MVC 2.0 or later, the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+In ASP.NET Core 2.0 or later, the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 ```cshtml
 <form method="post">
@@ -102,7 +102,7 @@ Similarily, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.renderi
 
 The automatic generation of antiforgery tokens for HTML form elements happens when the `<form>` tag contains the `method="post"` attribute and either of the following are true:
 
-  * The action attribute is empty ( `action=""`).
+  * The action attribute is empty (`action=""`).
   * The action attribute isn't supplied (`<form method="post">`).
 
 Automatic generation of antiforgery tokens for HTML form elements can be disabled:
@@ -138,7 +138,7 @@ The most common approach to defending against CSRF attacks is to use the *Synchr
 1. The client sends back the token to the server for verification.
 1. If the server receives a token that doesn't match the authenticated user's identity, the request is rejected.
 
-The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 &ndash; page 2 &ndash; page 3). All of the forms in ASP.NET Core MVC templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
+The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 &ndash; page 2 &ndash; page 3). All of the forms in ASP.NET Core MVC and Razor Pages templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
 
 ```cshtml
 <form asp-controller="Manage" asp-action="ChangePassword" method="post">
@@ -188,15 +188,16 @@ services.AddAntiforgery(options =>
 });
 ```
 
-| Option                      | Description |
-| --------------------------- | ----------- |
-| CookieDomain                | The domain of the cookie. Defaults to `null`. |
-| CookieName                  | The name of the cookie. If not set, the system generates a unique name beginning with the [DefaultCookiePrefix](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) (".AspNetCore.Antiforgery."). |
-| CookiePath                  | The path set on the cookie. |
-| FormFieldName               | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
-| HeaderName                  | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| RequireSsl                  | Specifies whether SSL is required by the antiforgery system. If `true`, non-SSL requests fail. Defaults to `false`. |
-| SuppressXFrameOptionsHeader | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+| Option | Description |
+| ------ | ----------- |
+| [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | Determines the settings used to create the antiforgery cookies. |
+| [CookieDomain](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | The domain of the cookie. Defaults to `null`. This property is obsolete and will be removed in a future version. The recommended alternative is Cookie.Domain. |
+| [CookieName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | The name of the cookie. If not set, the system generates a unique name beginning with the [DefaultCookiePrefix](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) (".AspNetCore.Antiforgery."). This property is obsolete and will be removed in a future version. The recommended alternative is Cookie.Name. |
+| [CookiePath](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | The path set on the cookie. This property is obsolete and will be removed in a future version. The recommended alternative is Cookie.Path. |
+| [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | Specifies whether SSL is required by the antiforgery system. If `true`, non-SSL requests fail. Defaults to `false`. This property is obsolete and will be removed in a future version. The recommended alternative is to set Cookie.SecurePolicy. |
+| [SuppressXFrameOptionsHeader](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.suppressxframeoptionsheader) | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 For more information, see [CookieAuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.CookieAuthenticationOptions).
 
