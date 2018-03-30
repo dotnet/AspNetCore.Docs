@@ -25,11 +25,11 @@ Razor Page filters can:
 * Run initialization code before model binding occurs. 
 * Be implemented on a page or globally.
 
-[PageModel](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0) contructors run before the handler methods, but they don't have access to the [HttpContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to a subset of the `HttpContext`.
+[PageModel](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0) constructors run before the handler methods, but they don't have access to the [HttpContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to a subset of the `HttpContext`.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-Razor Page filters provides the following methods, which can be applied globally or at the page level:
+Razor Page filters provide the following methods, which can be applied globally or at the page level:
 
 * Synchronous methods:
 
