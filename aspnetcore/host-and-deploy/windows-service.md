@@ -112,6 +112,10 @@ If the custom `WebHostService` code requires a service from dependency injection
 
 [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]
 
+## Proxy server and load balancer scenarios
+
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+
 ## Acknowledgments
 
 This article was written with the help of published sources:

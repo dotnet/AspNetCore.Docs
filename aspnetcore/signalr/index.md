@@ -4,7 +4,7 @@ author: rachelappel
 description: Discover topics that pertain to ASP.NET Core SignalR.
 manager: wpickett
 ms.author: rachelap
-ms.date: 03/14/2018
+ms.date: 03/29/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article

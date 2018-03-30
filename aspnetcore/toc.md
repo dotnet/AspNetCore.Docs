@@ -213,7 +213,7 @@
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
-# [SignalR](xref:signalr/introduction)
+# [SignalR](xref:signalr/index)
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 
@@ -239,6 +239,7 @@
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
 ### [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
+## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
