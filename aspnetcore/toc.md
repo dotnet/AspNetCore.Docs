@@ -216,6 +216,7 @@
 # [SignalR](xref:signalr/index)
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
+## [Hubs](xref:signalr/hubs)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
