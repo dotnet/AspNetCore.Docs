@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis
 *Filters* in ASP.NET Core MVC allow you to run code before or after certain stages in the request processing pipeline.
 
 > [!IMPORTANT]
-> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 preview and later supports `IPageFilter` and `IAsyncPageFilter` for Razor Pages.
+> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 preview and later supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) for Razor Pages. See [Filter methods for Razor Pages](xref:mvc/razor-pages/filter) for more information.
 
  Built-in filters handle tasks such as authorization (preventing access to resources a user isn't authorized for), ensuring that all requests use HTTPS, and response caching (short-circuiting the request pipeline to return a cached response). 
 
