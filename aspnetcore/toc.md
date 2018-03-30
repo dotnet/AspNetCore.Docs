@@ -213,7 +213,7 @@
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
-# [SignalR](xref:signalr/introduction)
+# [SignalR](xref:signalr/index)
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 
