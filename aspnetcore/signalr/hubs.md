@@ -80,8 +80,8 @@ The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` v
 
 Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
 
-[!code-javascript[Error](hubs/sample/chat.js?range=22)]
-[!code-javascript[Error](hubs/sample/chat.js?range=18-20)]
+[!code-javascript[Error](hubs/sample/chat.js?range=20)]
+[!code-javascript[Error](hubs/sample/chat.js?range=16-18)]
 
 ## Related resources
 
