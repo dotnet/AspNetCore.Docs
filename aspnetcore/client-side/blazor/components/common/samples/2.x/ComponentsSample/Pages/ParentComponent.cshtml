@@ -1,0 +1,39 @@
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent">
+    Body of child component supplied by the parent component.
+</ChildComponent>
+
+<p>
+    <code>ParentComponent</code> 
+    (<em>ParentComponent.cshtml</em>; this page) embeds a 
+    child component into the page using a 
+    <code>&lt;ChildComponent&gt;</code> tag. The 
+    child component (<em>ChildComponent.cshtml</em>) 
+    contains a Bootstrap-styled panel.
+</p>
+<p>
+    The <code>Title</code> attribute and body of 
+    the of the panel are specified by the 
+    <code>&lt;ChildComponent&gt;</code> tag.
+</p>
+
+<h2>ParentComponent.cshtml</h2>
+
+<pre><code>&lt;ChildComponent Title="Panel Title from Parent"&gt;
+    Body of child component supplied by the parent component.
+&lt;/ChildComponent&gt;</code></pre>
+
+<h2>ChildComponent.cshtml</h2>
+
+<pre><code>&lt;div class="panel panel-success"&gt;
+  &lt;div class="panel-heading"&gt;@@Title&lt;/div&gt;
+  &lt;div class="panel-body"&gt;@@ChildContent&lt;/div&gt;
+&lt;/div&gt;
+
+@@functions {
+    public string Title { get; set; }
+    public RenderFragment ChildContent { get; set; }
+}</code></pre>

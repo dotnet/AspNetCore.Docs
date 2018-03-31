@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Date": "2018-05-06",
+    "TemperatureC": 1,
+    "Summary": "Freezing",
+    "TemperatureF": 33
+  },
+  {
+    "Date": "2018-05-07",
+    "TemperatureC": 14,
+    "Summary": "Bracing",
+    "TemperatureF": 57
+  },
+  {
+    "Date": "2018-05-08",
+    "TemperatureC": -13,
+    "Summary": "Freezing",
+    "TemperatureF": 9
+  },
+  {
+    "Date": "2018-05-09",
+    "TemperatureC": -16,
+    "Summary": "Balmy",
+    "TemperatureF": 4
+  },
+  {
+    "Date": "2018-05-10",
+    "TemperatureC": -2,
+    "Summary": "Chilly",
+    "TemperatureF": 29
+  }
+]

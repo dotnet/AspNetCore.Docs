@@ -1,0 +1,63 @@
+@using System.Net
+@*
+    The using directive makes System.Net available to the component. 
+    System.Net provides a method for HTML encoding in its 
+    WebUtility class used by the component to encode user input.
+*@
+
+@*
+    Heading text is bound to the HeadingText property. The 
+    font-style of the heading is bound to the HeadingFontStyle 
+    property. The component sets these values based on user 
+    input with one-way databinding.
+*@
+<h1 style="font-style:@HeadingFontStyle">@HeadingText</h1>
+
+<form>
+    <div class="form-group">
+        <label for="headingText">New heading text</label>
+        @*
+            A field accepts new heading text from the user. 
+            The field is bound to the NewHeadingText property.
+        *@
+        <input type="text" class="form-control" id="headingText" 
+            placeholder="New heading text..." bind="@NewHeadingText" />
+    </div>
+    <div class="form-check">
+        @*
+            A checkbox toggles the font style and is bound to the 
+            ItalicsCheck property.
+        *@
+        <input type="checkbox" class="form-check-input" 
+            id="italicsCheck" bind="@ItalicsCheck" />
+        <label class="form-check-label" 
+            for="italicsCheck">Use italics</label>
+    </div>
+
+    @*
+        When the form is submitted, the onclick event executes 
+        the UpdateHeading method.
+    *@
+    <button class="btn btn-primary" @onclick(UpdateHeading)>
+        Update heading
+    </button>
+</form>
+
+@functions {
+    public string HeadingText { get; set; } = "Welcome to Blazor!";
+    public string NewHeadingText { get; set; }
+    public string HeadingFontStyle { get; set; } = "normal";
+    public bool ItalicsCheck { get; set; } = false;
+
+    // When UpdateHeading is executed:
+    //    HeadingText is assigned the HTML encoded value of 
+    //        NewHeadingText.
+    //    ItalicsCheck determines the value of HeadingFontStyle to 
+    //        set the font style of the heading.
+    public void UpdateHeading()
+    {
+        HeadingText = WebUtility.HtmlEncode(NewHeadingText);
+
+        HeadingFontStyle = ItalicsCheck ? "italic" : "normal";
+    }
+}

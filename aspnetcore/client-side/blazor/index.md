@@ -31,11 +31,8 @@ DESCRIPTION
 \[Introduction to Blazor](xref:client-side/blazor/introduction/index)  
 DESCRIPTION
 
-\[Create components](xref:client-side/blazor/create-components/index)  
-DESCRIPTION
-
-\[Use components](xref:client-side/blazor/use-components/index)  
-DESCRIPTION
+[Components](xref:client-side/blazor/components/index)  
+Create and use Blazor components, the fundamental building blocks of Blazor apps provided by compiled Razor or C# files.
 
 \[Layouts](xref:client-side/blazor/layouts)  
 DESCRIPTION
@@ -51,7 +48,7 @@ DESCRIPTION
 
 ## Suggest a feature or file a bug report
 
-To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs on the [Gitter Blazor room](https://gitter.im/aspnet/Blazor) or [Slack Blazor channel](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
+To make suggestions and file bug reports, open an issue in the [aspnet/Blazor repo](https://github.com/aspnet/Blazor/issues/new). For general help and to ask questions, hit up the devs in the [Gitter Blazor room](https://gitter.im/aspnet/Blazor) or [Slack Blazor channel](https://aspnetcore.slack.com/messages/C958WJP2N/) ([signup](http://tattoocoder.com/aspnet-slack-sign-up/)).
 
 ## Contribute to the Blazor documentation
 
