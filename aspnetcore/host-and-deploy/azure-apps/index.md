@@ -15,8 +15,6 @@ uid: host-and-deploy/azure-apps/index
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core.
 
-[!INCLUDE[Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
-
 ## Useful resources
 
 The Azure [Web Apps Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
@@ -87,6 +85,62 @@ When swapping between deployment slots, any system using data protection won't b
 * Redis cache
 
 For more information, see [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+
+## Deploy ASP.NET Core preview release to Azure App Service
+
+ASP.NET Core preview apps can be deployed to Azure App Service with the following approaches:
+
+* [Install the preview site extention](#site-x)
+* [Deploy the app self contained](#self)
+* [Use Docker with Web Apps for containers](#docker)
+
+If you have a problem using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
+
+<a name="site-x"></a>
+###Install the preview site extention
+
+* From the Azure portal, navigate to the App Service blade.
+* Enter "ex" in the search box.
+* Select **Extensions**.
+* Select "Add".
+
+![Azure App blade with preceding steps](index/_static/x1.png)
+
+* Select **ASP.NET Core Runtime Extensions**.
+* Select **OK** > **OK**.
+
+When the add operations completes, the latest .NET Core 2.1 preview is installed. You can verify the installation by running `dotnet --info` in the console. From the App Service blade:
+
+* Enter "con" in the search box.
+* Select **Console**.
+* Enter `dotnet --info` in the console.
+
+![Azure App blade with preceding steps](index/_static/cons.png)
+
+The preceding image was current at the time this was written. You may see a different version.
+
+The `dotnet --info` displays the the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
+
+#### Use the preview site extention with an ARM template
+
+If you are using an ARM template to create and deploy applications you can use the `siteextensions` resource type to add the site extension to a Web App. For example:
+
+[!code-json[Main](index/sample/arm.json?highlight=2)]
+
+<a name="self"></a>
+### Deploy the app self contained
+
+You can deploy a [self-contained app](/dotnet/core/deploying/#self-contained-deployments-scd) that carries the preview runtime with it when being deployed. When deploying a self contained app:
+
+* You don’t need to prepare your site.
+* Requires you to publish your application differently than you would when deploying an app once the SDK is installed on the server.
+
+Self-contained apps are an option for all .NET Core applications.
+
+<a name="docker"></a>
+### Use Docker with Web Apps for containers
+
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest 2.1 preview Docker images. You can use them as your base image and deploy to Web Apps for Containers as you normally would.
 
 ## Additional resources
 
