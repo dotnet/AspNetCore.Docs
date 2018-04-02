@@ -27,12 +27,14 @@
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-## [Build Web APIs](mvc/web-api/index.md)
-### [Create a Web API on macOS](xref:tutorials/first-web-api-mac)
-### [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+## [Build Web APIs](xref:web-api/index)
+### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
+### [Create a Web API in Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [Create a Web API in Visual Studio for Windows](xref:tutorials/first-web-api)
+### [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 #### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 #### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-### [Create backend services for native mobile apps](mobile/native-mobile-backend.md)
 
 ## [Data access - with EF Core](xref:data/index)
 ### [Data access - with Razor Pages and EF Core](xref:data/ef-rp/index)
@@ -172,11 +174,12 @@
 ### [Areas](mvc/controllers/areas.md)
 ### [Application parts](mvc/advanced/app-parts.md)
 ### [Custom model binding](mvc/advanced/custom-model-binding.md)
-### [Custom formatters](mvc/advanced/custom-formatters.md)
-### [Format response data](mvc/models/formatting.md)
 
 # [Web API](xref:web-api/index)
 ## [Controller action return types](xref:web-api/action-return-types)
+## [Advanced](xref:web-api/advanced/index)
+### [Custom formatters](xref:web-api/advanced/custom-formatters)
+### [Format response data](xref:web-api/advanced/formatting)
 
 # [Test and debug](xref:testing/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)

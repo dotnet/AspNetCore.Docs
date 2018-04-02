@@ -71,7 +71,7 @@ There are two result types within this category: Redirect and HTTP Status Code.
 
 Most helper methods in this category include a `ContentType` property, allowing you to set the `Content-Type` response header to describe the response body.
 
-There are two result types within this category: [View](xref:mvc/views/overview) and [Formatted Response](xref:mvc/models/formatting).
+There are two result types within this category: [View](xref:mvc/views/overview) and [Formatted Response](xref:web-api/advanced/formatting).
 
 * **View**
 
@@ -85,7 +85,7 @@ There are two result types within this category: [View](xref:mvc/views/overview)
 
 #### 3. Methods resulting in a non-empty response body formatted in a content type negotiated with the client
 
-This category is better known as **Content Negotiation**. [Content negotiation](xref:mvc/models/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult) implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
+This category is better known as **Content Negotiation**. [Content negotiation](xref:web-api/advanced/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult) implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
 
 Some helper methods of this type include `BadRequest`, `CreatedAtRoute`, and `Ok`. Examples of these methods include `return BadRequest(modelState);`, `return CreatedAtRoute("routename", values, newobject);`, and `return Ok(value);`, respectively. Note that `BadRequest` and `Ok` perform content negotiation only when passed a value; without being passed a value, they instead serve as HTTP Status Code result types. The `CreatedAtRoute` method, on the other hand, always performs content negotiation since its overloads all require that a value be passed.
 

@@ -18,5 +18,3 @@ uid: mvc/advanced/index
 * [Areas](xref:mvc/controllers/areas)
 * [Application parts](app-parts.md)
 * [Custom Model Binding](custom-model-binding.md)
-* [Custom formatters](custom-formatters.md)
-
