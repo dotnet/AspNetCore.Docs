@@ -23,10 +23,10 @@ namespace SignalRChat
             return Clients.Groups(groups).SendAsync("ReceiveMessage", message);
         }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             await Groups.AddAsync(Context.User.Identity.Name, "SignalR Users");
-            return base.OnConnectedAsync();
+            await base.OnConnectedAsync();
         }
     }
 }
