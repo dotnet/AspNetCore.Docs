@@ -1,7 +1,7 @@
 ---
-title: Format response data in ASP.NET Core MVC
+title: Format response data in ASP.NET Core Web API
 author: ardalis
-description: Learn how to format response data in ASP.NET Core MVC.
+description: Learn how to format response data in ASP.NET Core Web API.
 manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
@@ -9,9 +9,9 @@ ms.date: 10/14/2016
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: mvc/models/formatting
+uid: web-api/advanced/formatting
 ---
-# Format response data in ASP.NET Core MVC
+# Format response data in ASP.NET Core Web API
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -67,7 +67,7 @@ A JSON-formatted response will be returned unless another format was requested a
 
 In the above screenshot, the Fiddler Composer has been used to generate a request, specifying `Accept: application/xml`. By default, ASP.NET Core MVC only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. You'll see how to add additional formatters in the next section.
 
-Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.NET MVC will automatically create an `ObjectResult` for you that wraps the object. The client will get the formatted serialized object (JSON format is the default; you can configure XML or other formats). If the object being returned is `null`, then the framework will return a `204 No Content` response.
+Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.NET Core MVC automatically creates an `ObjectResult` for you that wraps the object. The client will get the formatted serialized object (JSON format is the default; you can configure XML or other formats). If the object being returned is `null`, then the framework will return a `204 No Content` response.
 
 Returning an object type:
 
@@ -77,8 +77,7 @@ In the sample, a request for a valid author alias will receive a 200 OK response
 
 ### Content Negotiation Process
 
-Content *negotiation* only takes place if an `Accept` header appears in the request. When a request contains an accept header, the framework will enumerate the media types in the accept header in preference order and will try to find a formatter that can produce a response in one of the formats specified by the accept header. In case no formatter is found that can satisfy the client's request, the framework will try to find the first formatter that can produce a response (unless the developer has configured the option on `MvcOptions` to return 406 Not Acceptable instead). If the request specifies XML, but the XML formatter has not been configured, then the JSON formatter will be used. More generally, if no formatter is configured that can provide the requested format, then the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object to be returned will be used to serialize the response. In this case, there isn't any
-negotiation taking place - the server is determining what format it will use.
+Content *negotiation* only takes place if an `Accept` header appears in the request. When a request contains an accept header, the framework will enumerate the media types in the accept header in preference order and will try to find a formatter that can produce a response in one of the formats specified by the accept header. In case no formatter is found that can satisfy the client's request, the framework will try to find the first formatter that can produce a response (unless the developer has configured the option on `MvcOptions` to return 406 Not Acceptable instead). If the request specifies XML, but the XML formatter has not been configured, then the JSON formatter will be used. More generally, if no formatter is configured that can provide the requested format, then the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object to be returned will be used to serialize the response. In this case, there isn't any negotiation taking place - the server is determining what format it will use.
 
 > [!NOTE]
 > If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
@@ -98,7 +97,7 @@ services.AddMvc(options =>
 
 ## Configuring Formatters
 
-If your application needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](model-binding.md); output formatters are used to format responses. You can also configure [Custom Formatters](../advanced/custom-formatters.md).
+If your application needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. You can also configure [Custom Formatters](xref:web-api/advanced/custom-formatters).
 
 ### Adding XML Format Support
 
@@ -140,14 +139,14 @@ In this screenshot, you can see the request sets a header of `Accept: applicatio
 
 ### Forcing a Particular Format
 
-If you would like to restrict the response formats for a specific action you can, you can apply the `[Produces]` filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](../controllers/filters.md), this can be applied at the action, controller, or global scope.
+If you would like to restrict the response formats for a specific action you can, you can apply the `[Produces]` filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](xref:mvc/controllers/filters), this can be applied at the action, controller, or global scope.
 
 ```csharp
 [Produces("application/json")]
 public class AuthorsController
 ```
 
-The `[Produces]` filter will force all actions within the `AuthorsController` to return JSON-formatted responses, even if other formatters were configured for the application and the client provided an `Accept` header requesting a different, available format. See [Filters](../controllers/filters.md) to learn more, including how to apply filters globally.
+The `[Produces]` filter will force all actions within the `AuthorsController` to return JSON-formatted responses, even if other formatters were configured for the application and the client provided an `Accept` header requesting a different, available format. See [Filters](xref:mvc/controllers/filters) to learn more, including how to apply filters globally.
 
 ### Special Case Formatters
 
