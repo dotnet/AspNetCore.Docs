@@ -55,7 +55,7 @@ This e-book explains thirteen recommended patterns for cloud development. "Patte
     - Keep web tier stateless.
     - Demo: scaling and auto-scaling in Web Apps in Azure App Service.
     - Avoid session state.
-    - Use a CDN.
+    - Use a CDN with a fallback when the CDN is unavailable.
     - Use asynchronous programming model.
     - Demo: async in ASP.NET MVC and Entity Framework.
 - [Single sign-on](single-sign-on.md). 
