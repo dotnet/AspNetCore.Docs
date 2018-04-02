@@ -140,7 +140,7 @@ Self-contained apps are an option for all .NET Core applications.
 <a name="docker"></a>
 ### Use Docker with Web Apps for containers
 
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains a 2.1 preview1 Docker images. You can use them as your base image and deploy to Web Apps for Containers as you normally would.
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest 2.1 preview Docker images. You can use them as your base image and deploy to Web Apps for Containers as you normally would.
 
 ## Additional resources
 
