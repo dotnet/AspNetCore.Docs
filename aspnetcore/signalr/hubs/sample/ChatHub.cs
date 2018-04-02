@@ -25,7 +25,7 @@ namespace SignalRChat
 
         public override Task OnConnectedAsync()
         {
-            Groups.AddAsync(Context.User.Identity.Name, "SignalR Users");
+            await Groups.AddAsync(Context.User.Identity.Name, "SignalR Users");
             return base.OnConnectedAsync();
         }
     }
