@@ -21,6 +21,6 @@ This video shows you how to add validation to the data model. You will be able t
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-handle-business-logic-exceptions)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-change-how-my-fields-render.md)
-[Next](how-do-i-make-custom-pages.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-change-how-my-fields-render.md)
+> [Next](how-do-i-make-custom-pages.md)

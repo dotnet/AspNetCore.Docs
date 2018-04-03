@@ -107,6 +107,6 @@ One solution is to use DTOs, which I describe in the next section. Alternatively
 
 For this tutorial, you don't need the `Author.Book` navigation property, so you can leave it out.
 
->[!div class="step-by-step"]
-[Previous](part-3.md)
-[Next](part-5.md)
+> [!div class="step-by-step"]
+> [Previous](part-3.md)
+> [Next](part-5.md)

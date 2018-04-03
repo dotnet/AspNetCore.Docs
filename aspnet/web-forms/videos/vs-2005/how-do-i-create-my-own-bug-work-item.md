@@ -21,6 +21,6 @@ This video demonstrates how to create your own Bug Work Item definition for use 
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-my-own-bug-work-item)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-integrate-defect-tracking-with-testing.md)
-[Next](how-do-i-write-code-more-quickly-with-unit-tests.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-integrate-defect-tracking-with-testing.md)
+> [Next](how-do-i-write-code-more-quickly-with-unit-tests.md)

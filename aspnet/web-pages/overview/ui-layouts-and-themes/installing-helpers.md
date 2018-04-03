@@ -44,10 +44,10 @@ ASP.NET Web Pages has a few helpers built in. However, many helpers are availabl
 2. This launches the NuGet package manager and displays available packages. In the search box, enter a keyword for the helper you want to install.
 
     ![NuGet Gallery dialog box in WebMatrix](installing-helpers/_static/image2.png)
-- Select the package and then click **Install**. Click **Yes** when asked if you want to install the package and indicate that you accept the terms.
+3. Select the package and then click **Install**. Click **Yes** when asked if you want to install the package and indicate that you accept the terms.
 
-    If this is the first time you've installed a helper, NuGet creates folders in your website for the code that makes up the helper.
-- To uninstall a helper, click the **Gallery** button, click the **Installed** tab, and pick the package you want to uninstall.
+     If this is the first time you've installed a helper, NuGet creates folders in your website for the code that makes up the helper.
+4. To uninstall a helper, click the **Gallery** button, click the **Installed** tab, and pick the package you want to uninstall.
 
 ## Installing the Twitter helper
 

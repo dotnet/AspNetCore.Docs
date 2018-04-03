@@ -200,6 +200,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Dan Jagers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](using-templatefields-in-the-gridview-control-vb.md)
-[Next](using-the-formview-s-templates-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-templatefields-in-the-gridview-control-vb.md)
+> [Next](using-the-formview-s-templates-vb.md)

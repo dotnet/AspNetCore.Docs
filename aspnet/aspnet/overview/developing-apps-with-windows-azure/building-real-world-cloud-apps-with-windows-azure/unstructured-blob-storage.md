@@ -143,6 +143,6 @@ For more information see the following resources:
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For a discussion of Azure Storage service and blobs, see episode 5 starting at 35:13.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Valet Key pattern.
 
->[!div class="step-by-step"]
-[Previous](data-partitioning-strategies.md)
-[Next](design-to-survive-failures.md)
+> [!div class="step-by-step"]
+> [Previous](data-partitioning-strategies.md)
+> [Next](design-to-survive-failures.md)

@@ -21,6 +21,6 @@ In this video I will show you how to implement what I refer to as the infinite d
 
 [&#9654; Watch video (18 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/implement-infinite-data-patterns-in-ajax)
 
->[!div class="step-by-step"]
-[Previous](use-aspnet-ajax-cascading-drop-down-control-to-access-a-database.md)
-[Next](basic-aspnet-authentication-in-an-ajax-enabled-application.md)
+> [!div class="step-by-step"]
+> [Previous](use-aspnet-ajax-cascading-drop-down-control-to-access-a-database.md)
+> [Next](basic-aspnet-authentication-in-an-ajax-enabled-application.md)

@@ -73,7 +73,7 @@ To create a WFF controller server, you'll need to install both IIS 7 or later an
 2. At the top of the **Web Platform Installer 3.0** window, click **Products**.
 3. On the left side of the window, in the navigation pane, click **Server**.
 4. In the **IIS 7 Recommended Configuration** row, click **Add**.
-5. In the **Web Farm Framework 2.***x* row, click **Add**.
+5. In the <strong>Web Farm Framework 2.</strong><em>x</em> row, click <strong>Add</strong>.
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image2.png)
 6. Click **Install**. Notice that the Web Platform Installer has added the Web Deployment Tool, along with various other dependencies, to the installation list.
@@ -226,6 +226,6 @@ Your WFF server farm should now be up and running. You can configure the primary
 
 For more guidance on all aspects of configuring and using the WFF, see the [Microsoft Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805129) website.
 
->[!div class="step-by-step"]
-[Previous](configuring-a-database-server-for-web-deploy-publishing.md)
-[Next](configuring-deployment-properties-for-a-target-environment.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-database-server-for-web-deploy-publishing.md)
+> [Next](configuring-deployment-properties-for-a-target-environment.md)

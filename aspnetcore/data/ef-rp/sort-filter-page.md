@@ -14,7 +14,7 @@ uid: data/ef-rp/sort-filter-page
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, sorting, filtering, grouping, and paging, functionality is added.
 
@@ -279,6 +279,6 @@ If you run into problems you can't solve, download the [completed app for this s
 
 In the next tutorial, the app uses migrations to update the data model.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/crud)
-[Next](xref:data/ef-rp/migrations)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/crud)
+> [Next](xref:data/ef-rp/migrations)

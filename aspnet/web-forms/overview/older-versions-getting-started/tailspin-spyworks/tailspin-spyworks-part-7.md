@@ -231,6 +231,6 @@ When we build and run now and browse to a product we see the "Also Purchased" it
 
 ![](tailspin-spyworks-part-7/_static/image7.jpg)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-6.md)
-[Next](tailspin-spyworks-part-8.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-6.md)
+> [Next](tailspin-spyworks-part-8.md)

@@ -21,6 +21,6 @@ Find out how ADO.NET Data Services can be integrated with ASP.NET AJAX support s
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adonet-data-services-with-aspnet-ajax-support)
 
->[!div class="step-by-step"]
-[Previous](aspnet-ajax-a-demonstration-of-aspnet-ajax.md)
-[Next](introduction-to-aspnet-ajax-history.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-ajax-a-demonstration-of-aspnet-ajax.md)
+> [Next](introduction-to-aspnet-ajax-history.md)

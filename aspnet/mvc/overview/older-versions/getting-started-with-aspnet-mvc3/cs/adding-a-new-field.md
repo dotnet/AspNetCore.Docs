@@ -128,6 +128,6 @@ Click **Create**. The new movie, including the rating, now shows up in the movie
 
 In this section you saw how you can modify model objects and keep the database in sync with the changes. You also learned a way to populate a newly created database with sample data so you can try out scenarios. Next, let's look at how you can add richer validation logic to the model classes and enable some business rules to be enforced.
 
->[!div class="step-by-step"]
-[Previous](examining-the-edit-methods-and-edit-view.md)
-[Next](adding-validation-to-the-model.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-edit-methods-and-edit-view.md)
+> [Next](adding-validation-to-the-model.md)

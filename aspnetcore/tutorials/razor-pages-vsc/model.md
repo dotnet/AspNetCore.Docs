@@ -13,7 +13,7 @@ uid: tutorials/razor-pages-vsc/model
 
 # Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 
-[!INCLUDE[model1](../../includes/RP/model1.md)]
+[!INCLUDE [model1](../../includes/RP/model1.md)]
 
 ## Add a data model
 
@@ -21,8 +21,9 @@ uid: tutorials/razor-pages-vsc/model
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
 
-[!INCLUDE[model 2](../../includes/RP/model2.md)]
-[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
+
+[!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
@@ -39,7 +40,7 @@ Edit the *RazorPagesMovie.csproj* file:
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
 
-[!INCLUDE[model 3](../../includes/RP/model3.md)]
+[!INCLUDE [model 3](../../includes/RP/model3.md)]
 
 <a name="scaffold"></a>
 ### Scaffold the Movie model
@@ -68,9 +69,10 @@ If you get the error:
 
 Exit Visual Studio and run the command again.
 
-[!INCLUDE[model 4](../../includes/RP/model4.md)]
+[!INCLUDE [model 4](../../includes/RP/model4.md)]
+
 The next tutorial explains the files created by scaffolding.
 
->[!div class="step-by-step"]
-[Previous: Get Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
+> [!div class="step-by-step"]
+> [Previous: Get Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)

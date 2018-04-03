@@ -21,6 +21,6 @@ Microsoft is part of the [OpenAjax alliance](http://www.openajax.org/) and the M
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-other-javascript-user-interface-libraries-with-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-choose-between-methods-of-ajax-page-updates.md)
-[Next](how-do-i-use-the-aspnet-ajax-profile-services.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-choose-between-methods-of-ajax-page-updates.md)
+> [Next](how-do-i-use-the-aspnet-ajax-profile-services.md)

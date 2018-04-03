@@ -21,6 +21,6 @@ In this episode I implement mocking so I can test my Authentication action for m
 
 [&#9654; Watch video (18 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-12-mocking)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-11-hooking-up-the-shopping-cart-and-using-components.md)
-[Next](aspnet-mvc-storefront-part-13-dependency-injection.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-11-hooking-up-the-shopping-cart-and-using-components.md)
+> [Next](aspnet-mvc-storefront-part-13-dependency-injection.md)

@@ -23,7 +23,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs.md)]
+[!INCLUDE [](~/includes/net-core-prereqs.md)]
 
 Familiarity with [Razor Pages](xref:mvc/razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
@@ -250,7 +250,7 @@ Build the project. The build generates errors like the following:
 
  Globally change `_context.Student` to `_context.Students` (that is, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633) in the next release.
 
-[!INCLUDE[model4tbl](../../includes/RP/model4tbl.md)]
+[!INCLUDE [model4tbl](../../includes/RP/model4tbl.md)]
 
  <a name="test"></a>
 ### Test the app
@@ -272,7 +272,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* DB files are in the *C:\Users\\<yourusername>* folder.
+The <em>.mdf</em> and <em>.ldf</em> DB files are in the <em>C:\Users\\<yourusername></em> folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 
@@ -331,5 +331,5 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
->[!div class="step-by-step"]
-[Next](xref:data/ef-rp/crud)
+> [!div class="step-by-step"]
+> [Next](xref:data/ef-rp/crud)

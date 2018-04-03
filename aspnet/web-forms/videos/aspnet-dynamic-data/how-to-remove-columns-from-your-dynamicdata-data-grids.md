@@ -21,6 +21,6 @@ In this video you'll see how to take advantage of full column scaffolding but st
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-remove-columns-from-your-dynamicdata-data-grids)
 
->[!div class="step-by-step"]
-[Previous](how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md)
-[Next](how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md)
+> [Next](how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.md)

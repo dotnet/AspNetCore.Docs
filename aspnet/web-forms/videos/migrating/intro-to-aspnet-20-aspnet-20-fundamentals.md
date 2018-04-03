@@ -21,5 +21,5 @@ Developers new to ASP.NET will want to attend this webcast designed to familiari
 
 [&#9654; Watch video (70 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-20-aspnet-20-fundamentals)
 
->[!div class="step-by-step"]
-[Next](intro-to-aspnet-20-user-interface-elements.md)
+> [!div class="step-by-step"]
+> [Next](intro-to-aspnet-20-user-interface-elements.md)

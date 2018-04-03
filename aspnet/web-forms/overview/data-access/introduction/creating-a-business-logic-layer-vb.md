@@ -208,6 +208,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Liz Shulok, Dennis Patterson, Carlos Santos, and Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](creating-a-data-access-layer-vb.md)
-[Next](master-pages-and-site-navigation-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-data-access-layer-vb.md)
+> [Next](master-pages-and-site-navigation-vb.md)

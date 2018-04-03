@@ -158,6 +158,6 @@ Next, we discussed how you can create a custom design by modifying the default c
 
 In the next iteration, we tackle the very important subject of validation. We add validation code to our application so that a user cannot create a new contact without supplying required values such as a person s first and last name.
 
->[!div class="step-by-step"]
-[Previous](iteration-1-create-the-application-cs.md)
-[Next](iteration-3-add-form-validation-cs.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-1-create-the-application-cs.md)
+> [Next](iteration-3-add-form-validation-cs.md)

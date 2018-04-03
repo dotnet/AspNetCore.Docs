@@ -21,6 +21,6 @@ Video accompaniment to the Adding Search to Your Web Site tutorial
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adding-search-to-your-web-site)
 
->[!div class="step-by-step"]
-[Previous](adding-email-to-your-web-site.md)
-[Next](adding-social-networking-to-your-website.md)
+> [!div class="step-by-step"]
+> [Previous](adding-email-to-your-web-site.md)
+> [Next](adding-social-networking-to-your-website.md)

@@ -485,6 +485,6 @@ Second, we have not implemented any form validation. For example, there is nothi
 
 Finally, and most importantly, the current iteration of the Contact Manager application cannot be easily modified or maintained. For example, the database access logic is baked right into the controller actions. This means that we cannot modify our data access code without modifying our controllers. In later iterations, we explore software design patterns that we can implement to make the Contact Manager more resilient to change.
 
->[!div class="step-by-step"]
-[Previous](iteration-7-add-ajax-functionality-cs.md)
-[Next](iteration-2-make-the-application-look-nice-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-7-add-ajax-functionality-cs.md)
+> [Next](iteration-2-make-the-application-look-nice-vb.md)

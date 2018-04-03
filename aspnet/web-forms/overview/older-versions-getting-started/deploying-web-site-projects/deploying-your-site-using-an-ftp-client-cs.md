@@ -156,6 +156,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [App\_Offline.htm and Working Around the "IE Friendly Errors" Feature](https://weblogs.asp.net/scottgu/App_5F00_Offline.htm-and-working-around-the-_2200_IE-Friendly-Errors_2200_-feature)
 - [Session-State Modes](https://msdn.microsoft.com/library/ms178586.aspx)
 
->[!div class="step-by-step"]
-[Previous](determining-what-files-need-to-be-deployed-cs.md)
-[Next](deploying-your-site-using-visual-studio-cs.md)
+> [!div class="step-by-step"]
+> [Previous](determining-what-files-need-to-be-deployed-cs.md)
+> [Next](deploying-your-site-using-visual-studio-cs.md)

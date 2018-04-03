@@ -48,5 +48,5 @@ The Localhost constraint is used in the definition of the Admin route. This rout
 
 Notice that the Default route has been commented out from the Global.asax file in Listing 2. If you include the Default route, then the Default route would match requests for the Admin controller. In that case, remote users could still invoke actions of the Admin controller even though their requests wouldn't match the Admin route.
 
->[!div class="step-by-step"]
-[Previous](creating-a-route-constraint-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-route-constraint-vb.md)

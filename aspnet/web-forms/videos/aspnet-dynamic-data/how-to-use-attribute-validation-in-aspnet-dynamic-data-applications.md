@@ -21,6 +21,6 @@ This video will introduce modifying the Partial Classes in our Dynamic Data Appl
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-use-attribute-validation-in-aspnet-dynamic-data-applications)
 
->[!div class="step-by-step"]
-[Previous](how-to-enable-table-specific-routing-in-dynamic-data-applications.md)
-[Next](how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-enable-table-specific-routing-in-dynamic-data-applications.md)
+> [Next](how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md)

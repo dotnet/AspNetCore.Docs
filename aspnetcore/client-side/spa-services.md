@@ -57,7 +57,7 @@ Collectively, these infrastructure components enhance both the development workf
 
 To work with SpaServices, install the following:
 * [Node.js](https://nodejs.org/) (version 6 or later) with npm
-    * To verify these components are installed and can be found, run the following from the command line:
+  * To verify these components are installed and can be found, run the following from the command line:
 
     ```console
     node -v && npm -v
@@ -65,7 +65,8 @@ To work with SpaServices, install the following:
 
 Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node.js is installed and available in the server environments.
 
-* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+* [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
+
   * If you're on Windows using Visual Studio 2017, the SDK is installed by selecting the **.NET Core cross-platform development** workload.
 
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package

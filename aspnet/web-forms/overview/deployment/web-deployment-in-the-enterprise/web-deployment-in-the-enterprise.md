@@ -99,5 +99,5 @@ This forms part of a series of five tutorials on enterprise-scale web deployment
 - [Configuring Team Foundation Server for Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial describes how to configure TFS to support various deployment scenarios, including automated deployment as part of a CI process and manually triggered deployments of specific builds.
 - [Advanced Enterprise Web Deployment](../advanced-enterprise-web-deployment/advanced-enterprise-web-deployment.md). This tutorial describes how to accomplish various more advanced deployment tasks, like customizing database deployments for multiple environments, excluding files and folders from deployment, and taking web applications offline during the deployment process.
 
->[!div class="step-by-step"]
-[Next](the-contact-manager-solution.md)
+> [!div class="step-by-step"]
+> [Next](the-contact-manager-solution.md)

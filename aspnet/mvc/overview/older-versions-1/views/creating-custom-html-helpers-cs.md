@@ -120,6 +120,6 @@ In this tutorial, you learned two methods of creating custom HTML Helpers. First
 
 In this tutorial, I focused on building an extremely simple HTML Helper method. Realize that an HTML Helper can be as complicated as you want. You can build HTML Helpers that render rich content such as tree views, menus, or tables of database data.
 
->[!div class="step-by-step"]
-[Previous](asp-net-mvc-views-overview-cs.md)
-[Next](using-the-tagbuilder-class-to-build-html-helpers-cs.md)
+> [!div class="step-by-step"]
+> [Previous](asp-net-mvc-views-overview-cs.md)
+> [Next](using-the-tagbuilder-class-to-build-html-helpers-cs.md)

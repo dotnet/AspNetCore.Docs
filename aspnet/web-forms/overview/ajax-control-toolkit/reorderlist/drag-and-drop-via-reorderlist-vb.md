@@ -85,5 +85,5 @@ Run this example in the browser and rearrange the list items a bit. Then, reload
 
 The data in the database changes according to the new list item order ([Click to view full-size image](drag-and-drop-via-reorderlist-vb/_static/image9.png))
 
->[!div class="step-by-step"]
-[Previous](using-postbacks-with-reorderlist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-postbacks-with-reorderlist-vb.md)

@@ -18,7 +18,7 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-macos.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-macos.md)]
 
 ## Create a Razor web app
 
@@ -34,7 +34,7 @@ The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 
-[!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
+[!INCLUDE [razor-pages-start](../../includes/RP/razor-pages-start.md)]
 
 ## Open the project
 
@@ -48,5 +48,5 @@ In Visual Studio, select **Run > Start Without Debugging** to launch the app. Vi
 
 In the next tutorial, we add a model to the project.
 
->[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages-mac/model)
+> [!div class="step-by-step"]
+> [Next: Adding a model](xref:tutorials/razor-pages-mac/model)

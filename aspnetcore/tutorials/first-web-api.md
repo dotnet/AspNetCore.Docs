@@ -24,11 +24,11 @@ There are 3 versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE[intro to web API](../includes/webApi/intro.md)]
+[!INCLUDE [intro to web API](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
 ## Create the project
 
@@ -76,7 +76,7 @@ Replace the class with the following code:
 
 [!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
 
 ### Add a controller
 
@@ -86,13 +86,13 @@ In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **N
 
 Replace the class with the following code:
 
-[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
 In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:port/api/todo`.
 
-[!INCLUDE[last part of web API](../includes/webApi/end.md)]
+[!INCLUDE [last part of web API](../includes/webApi/end.md)]
 
-[!INCLUDE[next steps](../includes/webApi/next.md)]
+[!INCLUDE [next steps](../includes/webApi/next.md)]
 

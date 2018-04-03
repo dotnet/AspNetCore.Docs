@@ -87,10 +87,10 @@ The controller in Listing 3 exposes one action named Index() that returns the st
 
 `http://localhost:40071/Person`
 
-> [!NOTE] 
+> [!NOTE]
 > 
 > The ASP.NET Development Server uses a random port number (for example, 40071). When entering a URL to invoke a controller, you'll need to supply the right port number. You can determine the port number by hovering your mouse over the icon for the ASP.NET Development Server in the Windows Notification Area (bottom-right of your screen).
-
->[!div class="step-by-step"]
-[Previous](adding-dynamic-content-to-a-cached-page-cs.md)
-[Next](creating-an-action-cs.md)
+> 
+> [!div class="step-by-step"]
+> [Previous](adding-dynamic-content-to-a-cached-page-cs.md)
+> [Next](creating-an-action-cs.md)

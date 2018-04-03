@@ -21,6 +21,6 @@ In this episode I work on pulling all of the technical pieces together to form a
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-18-creating-an-experience)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
-[Next](aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
+> [Next](aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)

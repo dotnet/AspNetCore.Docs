@@ -101,21 +101,21 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
 
 1. Unlock the module at the server level. Select the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Select the module in the list. In the **Actions** sidebar on the right, select **Unlock**. Unlock as many modules as you plan to remove from *web.config* later.
 
-1. Deploy the app without a **\<modules>** section in *web.config*. If an app is deployed with a *web.config* containing the **\<modules>** section without having unlocked the section first in the IIS Manager, the Configuration Manager throws an exception when attempting to unlock the section. Therefore, deploy the app without a **\<modules>** section.
+2. Deploy the app without a **\<modules>** section in *web.config*. If an app is deployed with a *web.config* containing the **\<modules>** section without having unlocked the section first in the IIS Manager, the Configuration Manager throws an exception when attempting to unlock the section. Therefore, deploy the app without a **\<modules>** section.
 
-1. Unlock the **\<modules>** section of *web.config*. In the **Connections** sidebar, select the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer/modules` section. In the **Actions** sidebar on the right, select to **Unlock** the section.
+3. Unlock the **\<modules>** section of *web.config*. In the **Connections** sidebar, select the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer/modules` section. In the **Actions** sidebar on the right, select to **Unlock** the section.
 
-1. At this point, a **\<modules>** section can be added to the *web.config* file with a **\<remove>** element to remove the module from the app. Multiple **\<remove>** elements can be added to remove multiple modules. If *web.config* changes are made on the server, immediately make the same changes to the project's *web.config* file locally. Removing a module this way won't affect the use of the module with other apps on the server.
+4. At this point, a **\<modules>** section can be added to the *web.config* file with a **\<remove>** element to remove the module from the app. Multiple **\<remove>** elements can be added to remove multiple modules. If *web.config* changes are made on the server, immediately make the same changes to the project's *web.config* file locally. Removing a module this way won't affect the use of the module with other apps on the server.
 
-  ```xml
-  <configuration> 
+   ```xml
+   <configuration> 
     <system.webServer> 
       <modules> 
         <remove name="MODULE_NAME" /> 
       </modules> 
     </system.webServer> 
-  </configuration>
-  ```
+   </configuration>
+   ```
 
 For an IIS installation with the default modules installed, use the following **\<module>** section to remove the default modules.
 

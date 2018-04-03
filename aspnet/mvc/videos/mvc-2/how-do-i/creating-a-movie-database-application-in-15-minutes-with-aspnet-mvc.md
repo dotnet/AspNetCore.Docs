@@ -21,6 +21,6 @@ Stephen Walther builds an entire ASP.NET MVC application from start to finish. T
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-a-movie-database-application-in-15-minutes-with-aspnet-mvc)
 
->[!div class="step-by-step"]
-[Previous](creating-a-tasklist-application-with-aspnet-mvc.md)
-[Next](understanding-models-views-and-controllers.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-tasklist-application-with-aspnet-mvc.md)
+> [Next](understanding-models-views-and-controllers.md)

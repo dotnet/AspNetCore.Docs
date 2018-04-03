@@ -310,6 +310,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Liz Shulok, Dennis Patterson, and Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](creating-a-business-logic-layer-cs.md)
-[Next](creating-a-data-access-layer-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-business-logic-layer-cs.md)
+> [Next](creating-a-data-access-layer-vb.md)

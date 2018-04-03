@@ -21,6 +21,6 @@ In this video I will highlight some of JavaScript Intellisense built into Visual
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/javascript-intellisense-support-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Previous](new-designer-support-in-visual-studio-2008.md)
-[Next](javascript-debugging-in-visual-studio-2008.md)
+> [!div class="step-by-step"]
+> [Previous](new-designer-support-in-visual-studio-2008.md)
+> [Next](javascript-debugging-in-visual-studio-2008.md)

@@ -64,20 +64,17 @@ if (context.Movie.Any())
 <a name="si"></a>
 ### Add the seed initializer
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Program.cs?highlight=6,14-32)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
 
----
-
+* * *
 Test the app
 
 * Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
@@ -89,13 +86,13 @@ Test the app
 
     ![Contextual menu](working-with-sql/_static/stopIIS.png)
 
-   * If you were running VS in non-debug mode, press F5 to run in debug mode
-   * If you were running VS in debug mode, stop the debugger and press F5
-   
+    * If you were running VS in non-debug mode, press F5 to run in debug mode
+    * If you were running VS in debug mode, stop the debugger and press F5
+
 The app shows the seeded data.
 
 ![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
 
->[!div class="step-by-step"]
-[Previous](adding-model.md)
-[Next](controller-methods-views.md)  
+> [!div class="step-by-step"]
+> [Previous](adding-model.md)
+> [Next](controller-methods-views.md)  

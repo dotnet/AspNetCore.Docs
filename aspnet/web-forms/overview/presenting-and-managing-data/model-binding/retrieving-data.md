@@ -177,5 +177,5 @@ In this tutorial, you created data model classes and generated a database from t
 
 In the next [tutorial](updating-deleting-and-creating-data.md) in this series, you will enable updating, deleting, and creating data.
 
->[!div class="step-by-step"]
-[Next](updating-deleting-and-creating-data.md)
+> [!div class="step-by-step"]
+> [Next](updating-deleting-and-creating-data.md)

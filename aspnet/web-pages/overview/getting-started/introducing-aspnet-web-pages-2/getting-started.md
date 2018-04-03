@@ -284,5 +284,5 @@ In the next tutorial in this series, you explore ASP.NET Web Pages programming a
 
 [Create an ASP.NET website from scratch](https://www.microsoft.com/web/post/create-an-aspnet-website-from-scratch). This is a tutorial that's specifically about using WebMatrix (not ASP.NET Web Pages). It goes into a little more detail about some of the additional features of WebMatrix that we won't cover in this tutorial set.
 
->[!div class="step-by-step"]
-[Next](intro-to-web-pages-programming.md)
+> [!div class="step-by-step"]
+> [Next](intro-to-web-pages-programming.md)

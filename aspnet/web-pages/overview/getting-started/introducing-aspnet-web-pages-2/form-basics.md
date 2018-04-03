@@ -358,6 +358,6 @@ In the next tutorial, you'll create a page that uses a form to let users add mov
 - [SQL WHERE Clause](http://www.w3schools.com/sql/sql_where.asp) on the W3Schools site
 - [Method Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) article on the W3C site
 
->[!div class="step-by-step"]
-[Previous](displaying-data.md)
-[Next](entering-data.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-data.md)
+> [Next](entering-data.md)

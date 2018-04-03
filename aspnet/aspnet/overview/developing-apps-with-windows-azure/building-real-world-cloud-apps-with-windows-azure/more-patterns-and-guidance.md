@@ -127,6 +127,6 @@ Other members of the DGAC reviewed and commented on the preliminary outline:
 - Roger Whitehead
 - Pawel Wilkosz
 
->[!div class="step-by-step"]
-[Previous](queue-centric-work-pattern.md)
-[Next](the-fix-it-sample-application.md)
+> [!div class="step-by-step"]
+> [Previous](queue-centric-work-pattern.md)
+> [Next](the-fix-it-sample-application.md)

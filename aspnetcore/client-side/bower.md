@@ -34,7 +34,7 @@ In this tutorial, we'll add support for [Font Awesome](http://fontawesome.io). B
 
 * In the **Bower: \<project name\>** window, click the "Browse" tab, and then filter the packages list by entering `font-awesome` in the search box:
 
- ![manage bower packages](bower/_static/manage-bower-packages.png)
+  ![manage bower packages](bower/_static/manage-bower-packages.png)
 
 * Confirm that the "Save changes to *bower.json*" checkbox is checked. Select a version from the drop-down list and click the **Install** button. The **Output** window shows the installation details.
 
@@ -95,9 +95,9 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 * Save the *bower.json* file.
 
- Verify the project includes the *bootstrap* and *jQuery* directories in *wwwroot/lib*. Bower uses the *.bowerrc* file to install the assets in *wwwroot/lib*.
+  Verify the project includes the *bootstrap* and *jQuery* directories in *wwwroot/lib*. Bower uses the *.bowerrc* file to install the assets in *wwwroot/lib*.
 
- Note: The "Manage Bower Packages" UI provides an alternative to manual file editing.
+  Note: The "Manage Bower Packages" UI provides an alternative to manual file editing.
 
 ### Enable static files
 
@@ -112,10 +112,10 @@ In this section, you will create an HTML page to verify it can access the deploy
 
 * Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Work with static files](xref:fundamentals/static-files) for more information.
 
- Replace the contents of *Index.html* with the following markup:
+  Replace the contents of *Index.html* with the following markup:
 
 [!code-html[](bower/sample/Index.html)]
 
 * Run the app and navigate to `http://localhost:<port>/Index.html`. Alternatively, with *Index.html* opened, press `Ctrl+Shift+W`. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.
 
- ![jumbotron style applied](bower/_static/jumbotron.png)
+  ![jumbotron style applied](bower/_static/jumbotron.png)

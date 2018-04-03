@@ -21,6 +21,6 @@ In this video you will learn about how you can use strongly typed HTML Helpers t
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc2-stronglytyped-helpers)
 
->[!div class="step-by-step"]
-[Previous](mvc2-html-encoding.md)
-[Next](mvc2-model-validation.md)
+> [!div class="step-by-step"]
+> [Previous](mvc2-html-encoding.md)
+> [Next](mvc2-model-validation.md)

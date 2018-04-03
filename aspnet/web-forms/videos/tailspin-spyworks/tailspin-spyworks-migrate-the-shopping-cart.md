@@ -21,6 +21,6 @@ Joe Stagner shows how to convert the shopping cart of an anonymous user to an au
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-migrate-the-shopping-cart)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-update-the-shopping-cart.md)
-[Next](tailspin-spyworks-final-check-out.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-update-the-shopping-cart.md)
+> [Next](tailspin-spyworks-final-check-out.md)

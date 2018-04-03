@@ -21,6 +21,6 @@ Are you planning to migrate from classic ASP to Microsoft ASP.NET 2.0? This webc
 
 [&#9654; Watch video (78 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/migrating-from-classic-asp-to-aspnet)
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-20-user-interface-elements.md)
-[Next](intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-20-user-interface-elements.md)
+> [Next](intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.md)

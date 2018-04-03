@@ -47,7 +47,7 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 ## Walkthrough: Integrating Partial Rendering into an Existing Project
 
 
-1. In Microsoft Visual Studio 2008, create a new ASP.NET Web Site project by going to *File**-&gt; New**-&gt; Web Site* and selecting ASP.NET Web Site from the dialog. You can name it whatever you like, and you may install it either to the file system or into Internet Information Services (IIS).
+1. In Microsoft Visual Studio 2008, create a new ASP.NET Web Site project by going to <em>File</em><em>-&gt; New</em><em>-&gt; Web Site</em> and selecting ASP.NET Web Site from the dialog. You can name it whatever you like, and you may install it either to the file system or into Internet Information Services (IIS).
 2. You will be presented with the blank default page with basic ASP.NET markup (a server-side form and an `@Page` directive). Drop a Label called `Label1` and a Button called `Button1` onto the page within the form element. You may set their text properties to whatever you like.
 3. In Design view, double-click `Button1` to generate a code-behind event handler. Within this event handler, set `Label1.Text` to You clicked the button! .
 
@@ -68,11 +68,11 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 ([Click to view full-size image](understanding-partial-page-updates-with-asp-net-ajax/_static/image3.png))
 
 
-1. *Known Issue:*If you install Visual Studio 2008 onto a computer that already has Visual Studio 2005 installed with the ASP.NET 2.0 AJAX Extensions, Visual Studio 2008 will import the AJAX Extensions toolbox items. You can determine whether this is the case by examining the tooltip of the components; they should say Version 3.5.0.0. If they say Version 2.0.0.0, then you have imported your old toolbox items, and will need to manually import them by using the Choose Toolbox Items dialog in Visual Studio. You will be unable to add Version 2 controls via the designer.
+1. <em>Known Issue:</em>If you install Visual Studio 2008 onto a computer that already has Visual Studio 2005 installed with the ASP.NET 2.0 AJAX Extensions, Visual Studio 2008 will import the AJAX Extensions toolbox items. You can determine whether this is the case by examining the tooltip of the components; they should say Version 3.5.0.0. If they say Version 2.0.0.0, then you have imported your old toolbox items, and will need to manually import them by using the Choose Toolbox Items dialog in Visual Studio. You will be unable to add Version 2 controls via the designer.
 
-1. Before the `<asp:Label>` tag begins, create a line of whitespace, and double-click on the UpdatePanel control in the toolbox. Note that a new `@Register` directive is included at the top of the page, indicating that controls within the System.Web.UI namespace should be imported using the `asp:` prefix.
-2. Drag the closing `</asp:UpdatePanel>` tag past the end of the Button element, so that the element is well-formed with the Label and Button controls wrapped.
-3. After the opening `<asp:UpdatePanel>` tag, begin opening a new tag. Note that IntelliSense prompts you with two options. In this case, create a `<ContentTemplate>` tag. Be sure to wrap this tag around your Label and Button so that the markup is well-formed.
+2. Before the `<asp:Label>` tag begins, create a line of whitespace, and double-click on the UpdatePanel control in the toolbox. Note that a new `@Register` directive is included at the top of the page, indicating that controls within the System.Web.UI namespace should be imported using the `asp:` prefix.
+3. Drag the closing `</asp:UpdatePanel>` tag past the end of the Button element, so that the element is well-formed with the Label and Button controls wrapped.
+4. After the opening `<asp:UpdatePanel>` tag, begin opening a new tag. Note that IntelliSense prompts you with two options. In this case, create a `<ContentTemplate>` tag. Be sure to wrap this tag around your Label and Button so that the markup is well-formed.
 
 
 [![](understanding-partial-page-updates-with-asp-net-ajax/_static/image5.png)](understanding-partial-page-updates-with-asp-net-ajax/_static/image4.png)
@@ -312,5 +312,5 @@ Together, these tools assist creating a rich and seamless user experience by mak
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Next](understanding-asp-net-ajax-updatepanel-triggers.md)
+> [!div class="step-by-step"]
+> [Next](understanding-asp-net-ajax-updatepanel-triggers.md)

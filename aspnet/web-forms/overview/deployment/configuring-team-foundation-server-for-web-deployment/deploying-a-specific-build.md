@@ -128,6 +128,6 @@ This topic described how to publish deployment resources, like web packages and 
 
 For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/library/ms181722.aspx).
 
->[!div class="step-by-step"]
-[Previous](creating-a-build-definition-that-supports-deployment.md)
-[Next](configuring-permissions-for-team-build-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-build-definition-that-supports-deployment.md)
+> [Next](configuring-permissions-for-team-build-deployment.md)

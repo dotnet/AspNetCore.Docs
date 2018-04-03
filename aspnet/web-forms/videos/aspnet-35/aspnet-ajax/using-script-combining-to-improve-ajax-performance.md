@@ -19,5 +19,5 @@ Betrand Le Roy outlines how to improve the performance of an Ajax application us
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/using-script-combining-to-improve-ajax-performance)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-aspnet-ajax-history.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-aspnet-ajax-history.md)

@@ -24,8 +24,8 @@ by [Mads Kristensen](https://github.com/madskristensen)
 > [Hot Towel MVC Template for Visual Studio 2012](https://visualstudiogallery.msdn.microsoft.com/1f68fbe8-b4e9-4968-9fd3-ddc7cbc52dca)
 > 
 > [Hot Towel MVC Template for Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/1eb8780d-d522-4dcf-bf56-56f0eab305c2)
-
-
+> 
+> 
 > Hot Towel: Because you don't want to go to the SPA without one!
 
 

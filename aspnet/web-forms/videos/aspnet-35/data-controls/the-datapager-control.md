@@ -21,5 +21,5 @@ Generally the DataPager control is used with the ListView control. The ListView 
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/the-datapager-control)
 
->[!div class="step-by-step"]
-[Previous](the-listview-control.md)
+> [!div class="step-by-step"]
+> [Previous](the-listview-control.md)

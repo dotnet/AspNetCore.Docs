@@ -140,7 +140,7 @@ In this case, the database didn't actually raise (or *throw*) an error. You didn
 
 Obviously, you don't want to let users enter half-empty movie information into the database. The solution is to validate the user's input. Initially, the validation will simply make sure that the user has entered a value for all of the fields (that is, that none of them contains an empty string).
 
-> [!TIP] 
+> [!TIP]
 > 
 > **Null and Empty Strings**
 > 
@@ -255,6 +255,6 @@ In the next tutorial, you'll learn how to let users edit data that's already in 
 - [SQL INSERT INTO Statement](http://www.w3schools.com/sql/sql_insert.asp) on the W3Schools site
 - [Validating User Input in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=253002). More information about working with the `Validation` helper.
 
->[!div class="step-by-step"]
-[Previous](form-basics.md)
-[Next](updating-data.md)
+> [!div class="step-by-step"]
+> [Previous](form-basics.md)
+> [Next](updating-data.md)

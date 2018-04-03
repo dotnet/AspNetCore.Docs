@@ -31,7 +31,7 @@ When a new genre name is entered and the **Save** button is pushed, the followin
 2. JavaScript adds the new genre data to the select list.
 3. JavaScript makes the new genre the selected item.
 
- In the image below, **Opera** was added to the database and selected in the **Genre** drop down list. 
+   In the image below, **Opera** was added to the database and selected in the **Genre** drop down list. 
 
 ![](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/_static/image3.png)
 
@@ -97,7 +97,7 @@ The jQuery `$.post` line makes an AJAX call to the action attribute (`/StoreMana
 3. In the search box, enter GenreID.
 4. Using the next icon,   
     ![](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/_static/image9.png)  
- navigate to the following select tag:
+   navigate to the following select tag:
 
     [!code-html[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample9.html)]
 5. Expand the last option value.
@@ -136,5 +136,5 @@ Rick.Anderson[at]Microsoft.com
 - Mike Pope
 - Tom Dykstra
 
->[!div class="step-by-step"]
-[Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)
+> [!div class="step-by-step"]
+> [Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)

@@ -21,6 +21,6 @@ Need to display a set of database records in an ASP.NET MVC view? Learn two meth
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/displaying-a-table-of-database-data)
 
->[!div class="step-by-step"]
-[Previous](creating-model-classes-with-linq-to-sql.md)
-[Next](what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.md)
+> [!div class="step-by-step"]
+> [Previous](creating-model-classes-with-linq-to-sql.md)
+> [Next](what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.md)

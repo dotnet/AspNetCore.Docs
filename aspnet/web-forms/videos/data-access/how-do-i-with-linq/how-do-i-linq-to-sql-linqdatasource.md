@@ -21,6 +21,6 @@ The new asp:LinqDataSource control .NET 3.5 makes binding to UI elements easy. I
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-linqdatasource)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-updating-the-database.md)
-[Next](how-do-i-linq-to-sql-custom-linqdatasource.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-updating-the-database.md)
+> [Next](how-do-i-linq-to-sql-custom-linqdatasource.md)

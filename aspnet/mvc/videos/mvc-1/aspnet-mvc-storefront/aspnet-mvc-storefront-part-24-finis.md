@@ -21,5 +21,5 @@ This is the last episode in the MVC Storefront series and this might seem a bit 
 
 [&#9654; Watch video (27 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-24-finis)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design.md)

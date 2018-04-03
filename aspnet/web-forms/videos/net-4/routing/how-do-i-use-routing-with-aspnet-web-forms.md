@@ -21,6 +21,6 @@ In this video Chris Pels shows how to implement routing for Web Forms in ASP.NET
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-routing-with-aspnet-web-forms)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-outbound-webforms-routing.md)
-[Next](how-do-i-work-with-urls-in-aspnet-routing.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-outbound-webforms-routing.md)
+> [Next](how-do-i-work-with-urls-in-aspnet-routing.md)

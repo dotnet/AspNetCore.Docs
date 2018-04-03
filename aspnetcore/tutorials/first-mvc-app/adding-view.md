@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/first-mvc-app/adding-view
 ---
 
-[!INCLUDE[adding-view](../../includes/mvc-intro/adding_view1.md)]
+[!INCLUDE [adding-view](../../includes/mvc-intro/adding_view1.md)]
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
@@ -29,8 +29,8 @@ uid: tutorials/first-mvc-app/adding-view
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
-[!INCLUDE[adding-view22](../../includes/mvc-intro/adding_view2.md)]
+[!INCLUDE [adding-view22](../../includes/mvc-intro/adding_view2.md)]
 
->[!div class="step-by-step"]
-[Previous](adding-controller.md)
-[Next](adding-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-controller.md)
+> [Next](adding-model.md)

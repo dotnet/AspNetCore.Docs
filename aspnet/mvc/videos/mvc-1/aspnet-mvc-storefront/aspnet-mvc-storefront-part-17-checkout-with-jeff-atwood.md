@@ -21,6 +21,6 @@ In this episode I ready up the checkout process and talk with Mr. CodingHorror h
 
 [&#9654; Watch video (34 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)
-[Next](aspnet-mvc-storefront-part-18-creating-an-experience.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)
+> [Next](aspnet-mvc-storefront-part-18-creating-an-experience.md)

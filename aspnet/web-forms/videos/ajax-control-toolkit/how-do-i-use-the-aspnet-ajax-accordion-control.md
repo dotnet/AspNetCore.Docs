@@ -21,6 +21,6 @@ Learn how the ASP.NET AJAX Accordion control makes efficient use of screen real-
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-accordion-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-collapsable-panel-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-collapsable-panel-extender.md)

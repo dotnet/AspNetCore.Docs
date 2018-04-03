@@ -57,6 +57,6 @@ And indeed: when you run this script, the panel is displayed, then resizes (more
 
 The panel is fading out and resizing (including its content, thanks to the browser's rendering engine) ([Click to view full-size image](executing-several-animations-at-the-same-time-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](adding-animation-to-a-control-cs.md)
-[Next](executing-several-animations-after-each-other-cs.md)
+> [!div class="step-by-step"]
+> [Previous](adding-animation-to-a-control-cs.md)
+> [Next](executing-several-animations-after-each-other-cs.md)

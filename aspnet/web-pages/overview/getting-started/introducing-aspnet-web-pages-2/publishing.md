@@ -27,7 +27,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 ## About Publishing Your Site
 
-Up to now, you've done all your work on a local computer, including testing your pages. To run your*.cshtml* pages, you've used the web server that's built into WebMatrix, namely IIS Express. But of course no one can see the site you've created except you. To let others work with your site, you have to publish it to the Internet.
+Up to now, you've done all your work on a local computer, including testing your pages. To run your<em>.cshtml</em> pages, you've used the web server that's built into WebMatrix, namely IIS Express. But of course no one can see the site you've created except you. To let others work with your site, you have to publish it to the Internet.
 
 Unless you have access to a public web server already, publishing means that you have to have an account with a *cloud platform* or a *hosting provider*. A cloud platform, such as Microsoft Azure, provides on-demand infrastructure for your applications. A hosting provider is a company that owns publicly accessible web servers and that will rent you space for your site. Hosting plans run from a few dollars a month (or even free) for small sites to many hundreds of dollars a month for high-volume commercial websites.
 
@@ -48,7 +48,7 @@ This tutorial contains four sections:
 <a id="defaultpage"></a>
 ## Setting up the default page
 
-When a user navigates to the base address for your web site, the default page for your site is displayed to the user. For example, when Default.htm is set as the default page for the site at www.contoso.com, then navigating to **www.contoso.com** is the same as navigating to **www.contoso.com/Default.htm**.
+When a user navigates to the base address for your web site, the default page for your site is displayed to the user. For example, when Default.htm is set as the default page for the site at www.contoso.com, then navigating to <strong>www.contoso.com</strong> is the same as navigating to <strong>www.contoso.com/Default.htm</strong>.
 
 Currently, your site uses **Default.cshtml** as the default page. This page is fine for your default page, but in this tutorial you have not added any content to that page so it would display a blank page. Open Default.cshtml and replace the content with the following code.
 
@@ -214,5 +214,5 @@ Go to the live site (you can click the link in the success message if it's still
 
 - [ASP.NET WebMatrix ASP.NET Web Pages forum](https://forums.asp.net/1224.aspx/1?WebMatrix+and+ASP+NET+Web+Pages), a great place to post questions and get answers.
 
->[!div class="step-by-step"]
-[Previous](layouts.md)
+> [!div class="step-by-step"]
+> [Previous](layouts.md)

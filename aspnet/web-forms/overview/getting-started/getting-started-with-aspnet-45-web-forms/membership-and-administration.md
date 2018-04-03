@@ -61,14 +61,14 @@ Using ASP.NET Identity, you can add a custom role and assign a user to that role
 
     [!code-csharp[Main](membership-and-administration/samples/sample2.cs?highlight=11,26-28)]
 6. Notice that `AddUserAndRole` is underlined in red. Double-click the AddUserAndRole code.  
- The letter "A" at the beginning of the highlighted method will be underlined.
+   The letter "A" at the beginning of the highlighted method will be underlined.
 7. Hover over the letter "A" and click the UI that allows you to generate a method stub for the `AddUserAndRole` method. 
 
     ![Membership and Advministration - Generate Method Stub](membership-and-administration/_static/image1.png)
 8. Click the option titled:  
     `Generate method stub for "AddUserAndRole" in "WingtipToys.Logic.RoleActions"`
 9. Open the *RoleActions.cs* file from the *Logic* folder.  
- The `AddUserAndRole` method has been added to the class file.
+   The `AddUserAndRole` method has been added to the class file.
 10. Modify the *RoleActions.cs* file by removing the `NotImplementedeException` and adding the code highlighted in yellow, so that it appears as follows:  
 
     [!code-csharp[Main](membership-and-administration/samples/sample3.cs?highlight=5-7,15-51)]
@@ -115,8 +115,8 @@ Next, you will create a folder named *Admin* for the "canEditUser" user belongin
 1. Right-click the project name (**Wingtip Toys**) in **Solution Explorer** and select **Add** -&gt; **New Folder**.
 2. Name the new folder *Admin*.
 3. Right-click the *Admin* folder and then select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
-4. Select the **Visual C#**-&gt; **Web** templates group on the left. From the middle list, select **Web Form with Master Page**,name it *AdminPage.aspx***,** and then select **Add**.
+   The **Add New Item** dialog box is displayed.
+4. Select the <strong>Visual C#</strong>-&gt; <strong>Web</strong> templates group on the left. From the middle list, select <strong>Web Form with Master Page</strong>,name it <em>AdminPage.aspx</em><strong>,</strong> and then select <strong>Add</strong>.
 5. Select the *Site.Master* file as the master page, and then choose **OK**.
 
 #### Add a Web.config File
@@ -124,8 +124,8 @@ Next, you will create a folder named *Admin* for the "canEditUser" user belongin
 By adding a *Web.config* file to the *Admin* folder, you can restrict access to the page contained in the folder.
 
 1. Right-click the *Admin* folder and select **Add** -&gt; **New Item**.  
- The **Add New Item** dialog box is displayed.
-2. From the list of Visual C# web templates, select **Web Configuration File**from the middle list, accept the default name of *Web.config***,** and then select **Add**.
+   The **Add New Item** dialog box is displayed.
+2. From the list of Visual C# web templates, select <strong>Web Configuration File</strong>from the middle list, accept the default name of <em>Web.config</em><strong>,</strong> and then select <strong>Add</strong>.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
     [!code-xml[Main](membership-and-administration/samples/sample4.xml)]
@@ -162,9 +162,9 @@ So far, you have created the "canEdit" role and added an "canEditUser" user, an 
 In the code that you entered for the *AdminPage.aspx.cs* code-behind file, a class called `AddProducts` does the actual work of adding products to the database. This class doesn't exist yet, so you will create it now.
 
 1. In **Solution Explorer**, right-click the *Logic* folder and then select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Code** templates group on the left. Then, select **Class**from the middle list and name it *AddProducts.cs*.   
- The new class file is displayed.
+   The new class file is displayed.
 3. Replace the existing code with the following:  
 
     [!code-csharp[Main](membership-and-administration/samples/sample9.cs)]
@@ -230,15 +230,15 @@ The `Page_Load` event handler checks the query string value and determines wheth
 You can run the application now to see how you can add, delete, and update items in the shopping cart. The shopping cart total will reflect the total cost of all items in the shopping cart.
 
 1. In Solution Explorer, press **F5** to run the Wingtip Toys sample application.  
- The browser opens and shows the *Default.aspx* page.
+   The browser opens and shows the *Default.aspx* page.
 2. Click the **Log in** link at the top of the page. 
 
     ![Membership and Administration - Log In Link](membership-and-administration/_static/image2.png)
 
- The *Login.aspx* page is displayed.
+   The *Login.aspx* page is displayed.
 3. Use the following user name and password:  
- User name: canEditUser@wingtiptoys.com  
- Password: Pa$$word1 
+   User name: canEditUser@wingtiptoys.com  
+   Password: Pa$$word1 
 
     ![Membership and Administration - Log In Page](membership-and-administration/_static/image3.png)
 4. Click the **Log in** button near the bottom of the page.
@@ -249,7 +249,7 @@ You can run the application now to see how you can add, delete, and update items
 
     ![Membership and Administration - Admin Page](membership-and-administration/_static/image5.png)
 
- Notice that the required field messages are displayed.
+   Notice that the required field messages are displayed.
 7. Add the details for a new product, and then click the **Add Product** button. 
 
     ![Membership and Administration - Add Product](membership-and-administration/_static/image6.png)
@@ -263,7 +263,7 @@ You can run the application now to see how you can add, delete, and update items
     ![Membership and Administration - Remove Product](membership-and-administration/_static/image8.png)
 12. Select **Products** from the top navigation menu to confirm that the product has been removed.
 13. Click **Log off** to exist administration mode.   
- Notice that the top navigation pane no longer shows the **Admin** menu item.
+    Notice that the top navigation pane no longer shows the **Admin** menu item.
 
 ## Summary
 
@@ -276,6 +276,6 @@ In this tutorial, you added a custom role and a user belonging to the custom rol
 [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to an Azure Web Site](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)  
 [Microsoft Azure - Free Trial](https://azure.microsoft.com/pricing/free-trial/)
 
->[!div class="step-by-step"]
-[Previous](checkout-and-payment-with-paypal.md)
-[Next](url-routing.md)
+> [!div class="step-by-step"]
+> [Previous](checkout-and-payment-with-paypal.md)
+> [Next](url-routing.md)

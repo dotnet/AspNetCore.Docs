@@ -15,7 +15,7 @@ uid: host-and-deploy/azure-apps/azure-continuous-deployment
 
 By [Erik Reitan](https://github.com/Erikre)
 
-[!INCLUDE[Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
+[!INCLUDE [Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
 
 This tutorial shows how to create an ASP.NET Core web app using Visual Studio and deploy it from Visual Studio to Azure App Service using continuous deployment.
 
@@ -29,7 +29,7 @@ See also [Use VSTS to Build and Publish to an Azure Web App with Continuous Depl
 This tutorial assumes the following software is installed:
 
 * [Visual Studio](https://www.visualstudio.com)
-* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+* [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 * [Git](https://git-scm.com/downloads) for Windows
 
 ## Create an ASP.NET Core web app

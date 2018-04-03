@@ -10,8 +10,8 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/working-with-sql
 ---
-[!INCLUDE[adding-model](../../includes/mvc-intro/sql.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/sql.md)]
 
->[!div class="step-by-step"]
-[Previous - Add a model](adding-model.md)
-[Next - Controller methods and views](controller-methods-views.md)
+> [!div class="step-by-step"]
+> [Previous - Add a model](adding-model.md)
+> [Next - Controller methods and views](controller-methods-views.md)

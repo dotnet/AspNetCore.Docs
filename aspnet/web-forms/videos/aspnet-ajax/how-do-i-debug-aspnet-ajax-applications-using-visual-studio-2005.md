@@ -21,6 +21,6 @@ In this video we learn how to use Visual Studio 2005 to debug ASP.NET AJAX appli
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-profile-services.md)
-[Next](how-do-i-build-a-custom-aspnet-ajax-server-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-profile-services.md)
+> [Next](how-do-i-build-a-custom-aspnet-ajax-server-control.md)

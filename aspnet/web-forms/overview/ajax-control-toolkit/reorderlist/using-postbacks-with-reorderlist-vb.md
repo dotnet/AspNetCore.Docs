@@ -64,6 +64,6 @@ Finally, in order to activate the functionality of ASP.NET AJAX and the Control 
 
 Each reordering triggers a postback ([Click to view full-size image](using-postbacks-with-reorderlist-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](drag-and-drop-via-reorderlist-cs.md)
-[Next](drag-and-drop-via-reorderlist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](drag-and-drop-via-reorderlist-cs.md)
+> [Next](drag-and-drop-via-reorderlist-vb.md)

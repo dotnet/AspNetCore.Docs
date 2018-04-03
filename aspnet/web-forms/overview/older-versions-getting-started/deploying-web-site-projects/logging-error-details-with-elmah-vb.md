@@ -252,6 +252,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Using HTTP Modules and Handlers to Create Pluggable ASP.NET Components](https://msdn.microsoft.com/library/aa479332.aspx)
 - [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 
->[!div class="step-by-step"]
-[Previous](logging-error-details-with-asp-net-health-monitoring-vb.md)
-[Next](precompiling-your-website-vb.md)
+> [!div class="step-by-step"]
+> [Previous](logging-error-details-with-asp-net-health-monitoring-vb.md)
+> [Next](precompiling-your-website-vb.md)

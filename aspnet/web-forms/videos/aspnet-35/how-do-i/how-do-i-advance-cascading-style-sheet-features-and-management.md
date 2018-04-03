@@ -21,6 +21,6 @@ In this video we will build upon the basic Cascading Style Sheet from a previous
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-advance-cascading-style-sheet-features-and-management)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly.md)
-[Next](how-do-i-converting-a-net-20-windows-forms-application-to-net-35.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly.md)
+> [Next](how-do-i-converting-a-net-20-windows-forms-application-to-net-35.md)

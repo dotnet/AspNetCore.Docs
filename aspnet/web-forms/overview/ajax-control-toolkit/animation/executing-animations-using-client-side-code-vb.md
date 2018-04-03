@@ -65,6 +65,6 @@ Here is the complete client-side JavaScript code that emulates the click on the 
 
 The animation runs immediately, without a mouse click ([Click to view full-size image](executing-animations-using-client-side-code-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](modifying-animations-from-the-server-side-vb.md)
-[Next](changing-an-animation-using-client-side-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](modifying-animations-from-the-server-side-vb.md)
+> [Next](changing-an-animation-using-client-side-code-vb.md)

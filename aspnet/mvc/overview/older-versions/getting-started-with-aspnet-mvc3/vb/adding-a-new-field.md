@@ -44,7 +44,7 @@ Recompile the application using the **Debug** &gt;**Build Movie** menu command.
 
 Now that you've updated the `Model` class, you also need to update the *\Views\Movies\Index.vbhtml* and *\Views\Movies\Create.vbhtml* view templates in order to support the new `Rating` property.
 
-Open the*\Views\Movies\Index.vbhtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.vbhtml* view template looks like:
+Open the<em>\Views\Movies\Index.vbhtml</em> file and add a `<th>Rating</th>` column heading just after the <strong>Price</strong> column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated <em>Index.vbhtml</em> view template looks like:
 
 [!code-vbhtml[Main](adding-a-new-field/samples/sample3.vbhtml)]
 
@@ -118,6 +118,6 @@ Click **Create**. The new movie, including the rating, now shows up in the movie
 
 In this section you saw how you can modify model objects and keep the database in sync with the changes. You also learned a way to populate a newly created database with sample data so you can try out scenarios. Next, let's look at how you can add richer validation logic to the model classes and enable some business rules to be enforced.
 
->[!div class="step-by-step"]
-[Previous](examining-the-edit-methods-and-edit-view.md)
-[Next](adding-validation-to-the-model.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-edit-methods-and-edit-view.md)
+> [Next](adding-validation-to-the-model.md)

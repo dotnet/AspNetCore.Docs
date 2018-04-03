@@ -21,6 +21,6 @@ In this tutorial, Stephen Walther introduces you to ASP.NET MVC controllers. You
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-controllers-controller-actions-and-action-results)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-controller-overview.md)
-[Next](understanding-views-view-data-and-html-helpers.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-controller-overview.md)
+> [Next](understanding-views-view-data-and-html-helpers.md)

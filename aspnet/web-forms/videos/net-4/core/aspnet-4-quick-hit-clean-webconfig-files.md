@@ -21,6 +21,6 @@ In this video you will see how the major configuration elements have been moved 
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-clean-webconfig-files)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-auto-start.md)
-[Next](aspnet-4-quick-hit-predictable-client-ids.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-auto-start.md)
+> [Next](aspnet-4-quick-hit-predictable-client-ids.md)

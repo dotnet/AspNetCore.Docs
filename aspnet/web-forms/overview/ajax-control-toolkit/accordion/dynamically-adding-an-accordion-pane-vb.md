@@ -57,5 +57,5 @@ To finish the example, the two CSS classes referenced in the Accordion control p
 
 The data in the accordion was dynamically added by server-side code ([Click to view full-size image](dynamically-adding-an-accordion-pane-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](databinding-to-an-accordion-vb.md)
+> [!div class="step-by-step"]
+> [Previous](databinding-to-an-accordion-vb.md)

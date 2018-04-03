@@ -106,6 +106,6 @@ Code sample
 
 - [Cloud Service Fundamentals in Azure](https://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649). Sample application that implements distributed caching. See the accompanying blog post [Cloud Service Fundamentals – Caching Basics](https://blogs.msdn.com/b/windowsazure/archive/2013/10/03/cloud-service-fundamentals-caching-basics.aspx).
 
->[!div class="step-by-step"]
-[Previous](transient-fault-handling.md)
-[Next](queue-centric-work-pattern.md)
+> [!div class="step-by-step"]
+> [Previous](transient-fault-handling.md)
+> [Next](queue-centric-work-pattern.md)

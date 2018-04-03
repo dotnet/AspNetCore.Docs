@@ -65,8 +65,8 @@ If you know that all clients are trusted (for example, in an enterprise environm
     [!code-csharp[Main](odata-security-guidance/samples/sample9.cs)]
 - Consider restricting $filter queries by writing a validator that is customized for your database. For example, consider these two queries: 
 
-    - All movies with actors whose last name starts with ‘A'.
-    - All movies released in 1994.
+  - All movies with actors whose last name starts with ‘A'.
+  - All movies released in 1994.
 
     Unless movies are indexed by actors, the first query might require the DB engine to scan the entire list of movies. Whereas the second query might be acceptable, assuming movies are indexed by release year.
 

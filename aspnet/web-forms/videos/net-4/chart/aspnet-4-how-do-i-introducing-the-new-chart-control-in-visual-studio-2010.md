@@ -21,5 +21,5 @@ There is a lot of excitement around the imminent release of Microsoft Visual Stu
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-chart-control.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-chart-control.md)
