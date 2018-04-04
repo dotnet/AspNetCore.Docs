@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using HttpClientFactorySample.GitHub;
 using HttpClientFactorySample.Handlers;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
 
 namespace HttpClientFactorySample
 {
@@ -56,6 +58,42 @@ namespace HttpClientFactorySample
                 c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // GitHub requires a user-agent
             });
 
+            #region snippet2
+            services.AddHttpClient("regulartimeouthandler", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:5000/");
+            })
+            .AddTransientHttpErrorPolicy(p => p.RetryAsync(3));
+            #endregion
+            
+            #region snippet3
+            var timeout = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10));
+            var longTimeout = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(30));
+
+            services.AddHttpClient("example", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:5000/");
+            })
+
+            // Build a totally custom policy using any criteria
+            .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
+
+            // Run some code to select a policy based on the request
+            .AddPolicyHandler(request => request.Method == HttpMethod.Get ? timeout : longTimeout);
+            #endregion
+
+            var registry = services.AddPolicyRegistry();
+
+            registry.Add("regular", timeout);
+            registry.Add("long", longTimeout);
+            
+            services.AddHttpClient("regulartimeouthandler", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:5000/");
+            })
+            .AddPolicyHandlerFromRegistry("regular");
+            
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion

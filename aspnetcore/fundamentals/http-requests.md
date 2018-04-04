@@ -284,40 +284,27 @@ public static void Configure(IServiceCollection services)
 }
 ```
 
-## Handle errors with Polly
+## Adding Polly based handlers
 
-_NOTE: This is a WIP since the Polly Extensions API is still currently under design._
+_NOTE: This is a still a WIP since the Polly Extensions API is still currently under design._
 
-The preceding example demonstrated building a simple retry handler manually. A more robust and feature-rich approach is to leverage a popular third-party library called [Polly](https://github.com/App-vNext/Polly).
+The preceding example demonstrated building a simple retry handler manually. A more robust and feature-rich approach is to leverage a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient-fault-handling library for .NET which allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Polly is a comprehensive resilience and transient-fault-handling library for .NET which allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
+Extension methods are provided which enable easy integration and use of Polly policies with configured `HttpClient` instances.
 
-Extension methods are provided for `IHttpClientFactory`, which enable easy integration and use of Polly policies with configured `HttpClient` instances. Rather than manually defining a handler, extension methods can be used which accept a Polly policy. This policy is used when executing HTTP requests.
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet2)]
 
-```csharp
-public static void Configure(IServiceCollection services)
-{
-    services.AddTransient<OuterHandler>();
-    services.AddTransient<InnerHandler>();
+The preceding code demonstrates the use of the `AddTransientHttpErrorPolicy` extension. This extension provides access to a `PolicyBuilder` which is preconfigured to handle errors which represent a possible transient fault. This includes exceptions such as `HttpRequestException`, responses with HTTP 5XX status codes or responses with a 408 status code.
 
-    services.AddHttpClient("example", c =>
-    {
-        c.BaseAddress = new Uri("https://localhost:5000/");
-    })
+Using the `PolicyBuilder` in this case a `RetryPolicy` is specified that will retry failed requests which match the above criteria up to 3 times. The created policy will be cached indefinitely per named client.
 
-    // Build a totally custom policy using any criteria
-    .AddPolicyHandler(Policy.Handle<HttpRequestException>().RetryAsync())
+Additional extension methods exist which can be used to add Polly based handlers.
 
-    // Build a policy that handles exceptions (connection failures)
-    .AddExceptionPolicyHandler(p => p.RetryAsync())
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet3)]
 
-    // Build a policy that handles exceptions and 500s from the remote server
-    .AddServerErrorPolicyHandler(p => p.RetryAsync())
+In the preceding example two handlers are added. The first uses the `AddPolicyHandler` extension which allows you to provide an `IAsyncPolicy` directly which will be applied to HTTP requests made from the `HttpClient`. 
 
-    // Build a policy that handles exceptions, 400s, and 500s from the remote server
-    .AddBadRequestPolicyHandler(p => p.RetryAsync());
-}
-```
+The second handler is added using a different overload of `AddPolicyHandler` which allows the request to be inspected before determining which policy to apply. In this case, if the outgoing request is a GET, a 10 second timeout is applied. For any other HTTP method, a longer 30 second timeout is used.
 
 ## HttpClient and lifetime management
 
