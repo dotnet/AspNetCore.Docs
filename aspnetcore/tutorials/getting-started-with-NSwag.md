@@ -1,7 +1,7 @@
 ---
-title: Get started with NSwag
+title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
-description: This tutorial provides a walkthrough of adding NSwag to generate documentation and help pages for a Web API app.
+description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core Web API app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: tutorials/get-started-with-nswag
 ---
-# Get started with NSwag
+# Get started with NSwag and ASP.NET Core
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://rsuter.com)
 
@@ -83,7 +83,7 @@ using NJsonSchema;
 
 In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-cs[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-cs[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swagger/v1/swagger.json` to view the Swagger specification.
 
@@ -159,7 +159,7 @@ XML comments are enabled with the following approaches:
 
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
 
 ---
 

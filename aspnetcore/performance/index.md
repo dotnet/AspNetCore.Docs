@@ -12,8 +12,8 @@ uid: performance/index
 ---
 # Performance in ASP.NET Core
 
-*   [Caching](caching/index.md)
-    *   [In-memory caching](caching/memory.md)
+*   [Cache responses](caching/index.md)
+    *   [Cache in-memory](caching/memory.md)
     *   [Work with a distributed cache](caching/distributed.md)
     *   [Response caching](caching/response.md)
 *   [Response compression middleware](response-compression.md)

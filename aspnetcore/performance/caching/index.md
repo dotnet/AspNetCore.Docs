@@ -1,5 +1,5 @@
 ---
-title: Caching in ASP.NET Core
+title: Cache responses in ASP.NET Core
 author: ardalis
 description: Learn how to use caching to improve the performance of ASP.NET Core apps.
 manager: wpickett
@@ -10,10 +10,10 @@ ms.technology: aspnet
 ms.topic: article
 uid: performance/caching/index
 ---
-# Caching in ASP.NET Core
+# Cache responses in ASP.NET Core
 
-* [In-memory caching](xref:performance/caching/memory)
-* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache in-memory](xref:performance/caching/memory)
+* [Work with a distributed cache](xref:performance/caching/distributed)
 * [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)

@@ -87,7 +87,7 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Anti-Request Forgery](xref:security/anti-request-forgery)
 * Protect your controller from [over-posting](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](http://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)

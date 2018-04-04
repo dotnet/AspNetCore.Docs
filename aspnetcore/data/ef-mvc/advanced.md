@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 
-# Advanced topics - EF Core with ASP.NET Core MVC tutorial (10 of 10)
+# ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -145,7 +145,7 @@ Many developers write code to implement the repository and unit of work patterns
 
 For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/ef/core/miscellaneous/testing/in-memory).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Test with InMemory](https://docs.microsoft.com/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 

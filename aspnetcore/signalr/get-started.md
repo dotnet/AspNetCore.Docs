@@ -11,9 +11,11 @@ ms.topic: tutorial
 ms.technology: aspnet
 uid: signalr/get-started
 ---
-# Tutorial: Get started with SignalR for ASP.NET Core
+# Get started with SignalR on ASP.NET Core
 
 By [Rachel Appel](https://twitter.com/rachelappel)
+
+[!INCLUDE[Version notice](../includes/signalr-version-notice.md)]
 
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
@@ -158,3 +160,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 -----
 
   ![Solution](get-started/_static/signalr-get-started-finished.png)
+
+## Related resources
+
+[Introduction to ASP.NET Core SignalR](introduction.md)

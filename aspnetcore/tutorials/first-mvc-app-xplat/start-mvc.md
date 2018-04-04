@@ -24,15 +24,9 @@ There are 3 versions of this tutorial:
 * Windows: [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)
 * macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc) 
 
-## Install VS Code and .NET Core
+## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later. See [the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
-
-Install the following:
-
-* [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-* [Visual Studio Code](https://code.visualstudio.com)
-* VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) 
+[!INCLUDE[](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create a web app with dotnet
 

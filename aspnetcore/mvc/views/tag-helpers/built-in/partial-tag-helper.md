@@ -23,8 +23,9 @@ The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/par
 
 * Requires ASP.NET Core 2.1 or later.
 * Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#referencing-a-partial-view).
+* Renders the partial view asynchronously.
 
-To recap, the HTML Helper options for rendering a partial view include:
+The HTML Helper options for rendering a partial view include:
 
 * [@await Html.PartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync)
 * [@await Html.RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync)
@@ -55,7 +56,7 @@ The following markup loads *_ProductPartial.cshtml*:
 
 The partial view is bound to the associated page model's `Product` property:
 
-[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
+[!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
 ## view-data
 

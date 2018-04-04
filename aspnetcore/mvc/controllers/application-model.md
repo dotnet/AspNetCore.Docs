@@ -1,5 +1,5 @@
 ---
-title: Working with the Application Model in ASP.NET Core
+title: Work with the application model in ASP.NET Core
 author: ardalis
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: mvc/controllers/application-model
 ---
-# Working with the Application Model in ASP.NET Core
+# Work with the application model in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -163,7 +163,7 @@ This sample applies this convention to routes that are not using attribute routi
 ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a Web API app. Microsoft ships the [WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim/) specifically for this purpose.
 
 > [!NOTE]
-> Learn more about [migrating from ASP.NET Web API](xref:migration/webapi).
+> Learn more about [migrate from ASP.NET Web API](xref:migration/webapi).
 
 To use the Web API Compatibility Shim, you need to add the package to your project and then add the conventions to MVC by calling `AddWebApiConventions` in `Startup`:
 

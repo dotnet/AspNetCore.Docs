@@ -1,7 +1,7 @@
 ---
-title: Introduction to authorization
+title: Introduction to authorization in ASP.NET Core
 author: rick-anderson
-description: This document provides a basic explanation of authorization and explains how authorization relates to ASP.NET Core.
+description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/introduction
 ---
-# Introduction
+# Introduction to authorization in ASP.NET Core
 
 <a name="security-authorization-introduction"></a>
 
@@ -20,7 +20,7 @@ Authorization is orthogonal and independent from authentication, which is the pr
 
 ## Authorization types
 
-ASP.NET Core authorization provides a simple, declarative [role](roles.md) and a rich [policy-based](policies.md) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.
+ASP.NET Core authorization provides a simple, declarative [role](xref:security/authorization/roles) and a rich [policy-based](xref:security/authorization/policies) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.
 
 ## Namespaces
 

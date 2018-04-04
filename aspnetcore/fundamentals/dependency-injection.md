@@ -43,7 +43,6 @@ Constructor injection requires that the constructor in question be *public*. Oth
 
 > A suitable constructor for type 'YourType' couldn't be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
 
-
 Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, your app will throw an `InvalidOperationException`:
 
 > Multiple constructors accepting all given argument types have been found in type 'YourType'. There should only be one applicable constructor.
@@ -93,7 +92,7 @@ Below is an example of how to add additional services to the container using a n
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add*ServiceName* extension method to register all of the services required by that feature.
 
->[!TIP]
+> [!TIP]
 > You can request certain framework-provided services within `Startup` methods through their parameter lists - see [Application Startup](startup.md) for more details.
 
 ## Registering services
@@ -133,7 +132,7 @@ In this case, both `ICharacterRepository` and in turn `ApplicationDbContext` mus
 
 Entity Framework contexts should be added to the services container using the `Scoped` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
->[!WARNING]
+> [!WARNING]
 > The main danger to be wary of is resolving a `Scoped` service from a singleton. It's likely in such a case that the service will have incorrect state when processing subsequent requests.
 
 Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using [configuration](xref:fundamentals/configuration/index) and the [options pattern](xref:fundamentals/configuration/options).
@@ -149,6 +148,9 @@ Transient lifetime services are created each time they're requested. This lifeti
 **Scoped**
 
 Scoped lifetime services are created once per request.
+
+> [!WARNING]
+> If you're using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton.
 
 **Singleton**
 
@@ -188,6 +190,35 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 * *Singleton* objects are the same for every object and every request (regardless of whether an instance is provided in `ConfigureServices`)
 
+## Resolve a scoped service within the application scope
+
+Create an [IServiceScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescope) with [IServiceScopeFactory.CreateScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescopefactory.createscope) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
+
+```csharp
+public static void Main(string[] args)
+{
+    var host = BuildWebHost(args);
+
+    using (var serviceScope = host.Services.CreateScope())
+    {
+        var services = serviceScope.ServiceProvider;
+
+        try
+        {
+            var serviceContext = services.GetRequiredService<MyScopedService>();
+            // Use the context here
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred.");
+        }
+    }
+
+    host.Run();
+}
+```
+
 ## Scope validation
 
 When the app is running in the Development environment on ASP.NET Core 2.0 or later, the default service provider performs checks to verify that:
@@ -209,7 +240,7 @@ The services available within an ASP.NET request from `HttpContext` are exposed 
 
 Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
-Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Testing](../testing/index.md)) and are more loosely coupled.
+Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Test and debug](../testing/index.md)) and are more loosely coupled.
 
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
@@ -323,7 +354,7 @@ Remember, dependency injection is an *alternative* to static/global object acces
 ## Additional resources
 
 * [Application Startup](xref:fundamentals/startup)
-* [Testing](xref:testing/index)
+* [Test and debug](xref:testing/index)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)

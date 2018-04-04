@@ -27,7 +27,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using [Run](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.runextensions), [Map](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions), and [Use](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.useextensions) extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, or *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline, or short-circuiting the chain if appropriate.
 
-[Migrating HTTP Modules to Middleware](xref:migration/http-modules) explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides more middleware samples.
+[Migrate HTTP Modules to Middleware](xref:migration/http-modules) explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides more middleware samples.
 
 ## Creating a middleware pipeline with IApplicationBuilder
 
@@ -104,7 +104,7 @@ public void Configure(IApplicationBuilder app)
 
 In the code above, `UseExceptionHandler` is the first middleware component added to the pipeline—therefore, it catches any exceptions that occur in later calls.
 
-The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. See [Working with static files](xref:fundamentals/static-files) for an approach to secure static files.
+The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. See [Work with static files](xref:fundamentals/static-files) for an approach to secure static files.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -257,7 +257,7 @@ public class MyMiddleware
 
 ## Additional resources
 
-* [Migrating HTTP Modules to Middleware](xref:migration/http-modules)
+* [Migrate HTTP Modules to Middleware](xref:migration/http-modules)
 * [Application Startup](xref:fundamentals/startup)
 * [Request Features](xref:fundamentals/request-features)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)

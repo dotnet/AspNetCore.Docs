@@ -179,7 +179,7 @@ If you request `/api/books/1/details`, the response looks like this:
 
 ## Get Books By Genre
 
-To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/get/books/fantasy`.)
+To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/api/books/fantasy`.)
 
 Add the following method to `BooksController`.
 

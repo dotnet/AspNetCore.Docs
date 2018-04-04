@@ -105,7 +105,7 @@ For more information, see [Middleware](xref:fundamentals/middleware/index) and [
 
 Environments, such as "Development" and "Production", are a first-class notion in ASP.NET Core and can be set using environment variables.
 
-For more information, see [Working with Multiple Environments](xref:fundamentals/environments).
+For more information, see [Work with multiple environments](xref:fundamentals/environments).
 
 ## Configuration
 
@@ -123,7 +123,7 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 ASP.NET Core has built-in features for handling errors in apps, including a developer exception page, custom error pages, static status code pages, and startup exception handling.
 
-For more information, see [Error Handling](xref:fundamentals/error-handling).
+For more information, see [how to handle errors](xref:fundamentals/error-handling).
 
 ## Routing
 
@@ -141,7 +141,7 @@ For more information, see [File Providers](xref:fundamentals/file-providers).
 
 Static files middleware serves static files, such as HTML, CSS, image, and JavaScript.
 
-For more information, see [Working with static files](xref:fundamentals/static-files).
+For more information, see [Work with static files](xref:fundamentals/static-files).
 
 ## Hosting
 

@@ -1,7 +1,7 @@
 ---
-title: Adding a model to a Razor Pages app with Visual Studio for Mac
+title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 author: rick-anderson
-description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
+description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac.
 manager: wpickett
 ms.author: riande
 ms.date: 08/27/2017
@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
+# Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
@@ -65,7 +65,7 @@ The version numbers shown in the following code were correct at the time of writ
 
 * In Visual Studio, Right-click the *Pages* folder and select **Add > Add existing Folder**.
 * Select the *Movies* folder.
-* In the *Chosse files to include in the project* dialog, select **Include All**.
+* In the *Choose files to include in the project* dialog, select **Include All**.
 
 The next tutorial explains the files created by scaffolding.
 

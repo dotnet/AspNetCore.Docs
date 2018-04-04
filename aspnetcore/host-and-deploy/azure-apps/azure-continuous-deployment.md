@@ -29,7 +29,7 @@ See also [Use VSTS to Build and Publish to an Azure Web App with Continuous Depl
 This tutorial assumes the following software is installed:
 
 * [Visual Studio](https://www.visualstudio.com)
-* [.NET Core SDK](https://www.microsoft.com/net/download/all) (runtime and tooling)
+* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
 * [Git](https://git-scm.com/downloads) for Windows
 
 ## Create an ASP.NET Core web app

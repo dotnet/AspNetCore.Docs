@@ -86,7 +86,7 @@ When MSBuild or Visual Studio loads a project, the following high level actions 
 * Compute files to publish
 * Publish files to destination
 
-### Compute project items
+## Compute project items
 
 When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled.
 
@@ -192,6 +192,7 @@ The Publish wizard supports the following publish targets:
 See [What publishing options are right for me?](https://docs.microsoft.com/visualstudio/ide/not-in-toc/web-publish-options) for more information.
 
 When creating a publish profile with Visual Studio, a *Properties/PublishProfiles/\<publish name>.pubxml* MSBuild file is created. This *.pubxml* file is a MSBuild file and contains publish configuration settings. This file can be changed to customize the build and publish process. This file is read by the publishing process. `<LastUsedBuildConfiguration>` is special because it's a global property and shouldn't be in any file that's imported in the build. See [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx) for more info.
+
 The *.pubxml* file shouldn't be checked into source control because it depends on the *.user* file. The *.user* file should never be checked into source control because it can contain sensitive information and it's only valid for one user and machine.
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level and stored in the *Properties/PublishProfiles/\<publish name>.pubxml.user* file. Because this file can contain sensitive information, it should **not** be checked into source control.
@@ -442,7 +443,7 @@ MSBuild file.
 
 See the [WebSDK Readme](https://github.com/aspnet/websdk) for more deployment samples.
 
-### Run a target before or after publishing
+## Run a target before or after publishing
 
 The built-in `BeforePublish` and `AfterPublish` targets can be used to execute a target before or after the publish target. The following markup can be added to the publish profile to log messages to the console output before and after publishing:
 
@@ -453,6 +454,16 @@ The built-in `BeforePublish` and `AfterPublish` targets can be used to execute a
   <Target Name="CustomActionsAfterPublish" AfterTargets="AfterPublish">
     <Message Text="Inside AfterPublish" Importance="high" />
 </Target>
+```
+
+## Publish to a server using an untrusted certificate
+
+Add the `<AllowUntrustedCertificate>` property with a value of `True` to the publish profile:
+
+```xml
+<PropertyGroup>
+  <AllowUntrustedCertificate>True</AllowUntrustedCertificate>
+</PropertyGroup>
 ```
 
 ## The Kudu service

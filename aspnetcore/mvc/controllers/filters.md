@@ -17,6 +17,9 @@ By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after certain stages in the request processing pipeline.
 
+> [!IMPORTANT]
+> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 preview and later supports `IPageFilter` and `IAsyncPageFilter` for Razor Pages.
+
  Built-in filters handle tasks such as authorization (preventing access to resources a user isn't authorized for), ensuring that all requests use HTTPS, and response caching (short-circuiting the request pipeline to return a cached response). 
 
 You can create custom filters to handle cross-cutting concerns for your application. Anytime you want to avoid duplicating code across actions, filters are the solution. For example, you can consolidate error handling code in a exception filter.
@@ -53,7 +56,7 @@ Filters support both synchronous and asynchronous implementations through differ
 
 Synchronous filters that can run code both before and after their pipeline stage define On*Stage*Executing and On*Stage*Executed methods. For example, `OnActionExecuting` is called before the action method is called, and `OnActionExecuted` is called after the action method returns.
 
-[!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleActionFilter.cs?highlight=6,8,13)]
+[!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleActionFilter.cs?&name=snippet1)]
 
 Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterType*ExecutionDelegate delegate which executes the filter's pipeline stage. For example, `ActionExecutionDelegate` calls the action method, and you can execute code before and after you call it.
 
@@ -274,7 +277,7 @@ Exception filters handle unhandled exceptions that occur in controller creation,
 To handle an exception, set the `ExceptionContext.ExceptionHandled` property to true or write a response. This stops propagation of the exception. Note that an Exception filter can't turn an exception into a "success". Only an Action filter can do that.
 
 > [!NOTE]
-> In ASP.NET 1.1, the response isn't sent if you set `ExceptionHandled` to true **and** write a response. In that scenario, ASP.NET Core 1.0 does send the response, and ASP.NET Core 1.1.2 will return to the 1.0 behavior. For more information, see [issue #5594](https://github.com/aspnet/Mvc/issues/5594) in the GitHub repository. 
+> In ASP.NET Core 1.1, the response isn't sent if you set `ExceptionHandled` to true **and** write a response. In that scenario, ASP.NET Core 1.0 does send the response, and ASP.NET Core 1.1.2 will return to the 1.0 behavior. For more information, see [issue #5594](https://github.com/aspnet/Mvc/issues/5594) in the GitHub repository. 
 
 Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 

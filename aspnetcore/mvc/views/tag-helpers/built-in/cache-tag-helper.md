@@ -279,5 +279,5 @@ The Cache Tag Helper is dependent on the [memory cache service](xref:performance
 
 ## Additional resources
 
-* [In-memory caching](xref:performance/caching/memory)
+* [Cache in-memory](xref:performance/caching/memory)
 * [Introduction to Identity](xref:security/authentication/identity)

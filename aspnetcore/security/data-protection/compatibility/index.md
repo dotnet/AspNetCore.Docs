@@ -12,4 +12,4 @@ uid: security/data-protection/compatibility/index
 ---
 # Compatibility in ASP.NET Core
 
-* [Replacing \<machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
+* [Replacing ASP.NET \<machineKey> in ASP.NET Core](xref:security/data-protection/compatibility/replacing-machinekey)

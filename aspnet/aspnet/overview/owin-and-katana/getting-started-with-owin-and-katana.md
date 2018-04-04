@@ -69,7 +69,7 @@ Press F5 to begin debugging. Visual Studio will open a browser window to `http:/
 
 ## Self-Host OWIN in a Console Application
 
-It's easy to convert this application from IIS hosting to self-hosting in a custom process. With IIS hosting, IIS acts as both the HTTP server and as the process that host the sever. With self-hosting, your application creates the process and uses the **HttpListener** class as the HTTP server.
+It's easy to convert this application from IIS hosting to self-hosting in a custom process. With IIS hosting, IIS acts as both the HTTP server and as the process that hosts the service. With self-hosting, your application creates the process and uses the **HttpListener** class as the HTTP server.
 
 In Visual Studio, create a new console application. In the Package Manager Console window, type the following command:
 

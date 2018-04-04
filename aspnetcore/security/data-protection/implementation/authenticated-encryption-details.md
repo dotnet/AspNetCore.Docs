@@ -1,7 +1,7 @@
 ---
-title: Authenticated encryption details
+title: Authenticated encryption details in ASP.NET Core
 author: rick-anderson
-description: This document outlines the implementation details of ASP.NET Core data protection authenticated encryption.
+description: Learn implementation details of ASP.NET Core Data Protection authenticated encryption.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/authenticated-encryption-details
 ---
-# Authenticated encryption details
+# Authenticated encryption details in ASP.NET Core
 
 <a name="data-protection-implementation-authenticated-encryption-details"></a>
 
@@ -26,7 +26,7 @@ The protected payload format consists of three primary components:
 
 * A 128-bit key id that identifies the key used to protect this particular payload.
 
-* The remainder of the protected payload is [specific to the encryptor encapsulated by this key](subkeyderivation.md#data-protection-implementation-subkey-derivation). In the example below the key represents an AES-256-CBC + HMACSHA256 encryptor, and the payload is further subdivided as follows: * A 128-bit key modifier. * A 128-bit initialization vector. * 48 bytes of AES-256-CBC output. * An HMACSHA256 authentication tag.
+* The remainder of the protected payload is [specific to the encryptor encapsulated by this key](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). In the example below the key represents an AES-256-CBC + HMACSHA256 encryptor, and the payload is further subdivided as follows: * A 128-bit key modifier. * A 128-bit initialization vector. * 48 bytes of AES-256-CBC output. * An HMACSHA256 authentication tag.
 
 A sample protected payload is illustrated below.
 

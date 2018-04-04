@@ -1,5 +1,5 @@
 ---
-title: Migrating HTTP handlers and modules to ASP.NET Core middleware
+title: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 description: 
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/http-modules
 ---
-# Migrating HTTP handlers and modules to ASP.NET Core middleware 
+# Migrate HTTP handlers and modules to ASP.NET Core middleware
 
 By [Matt Perdeck](https://www.linkedin.com/in/mattperdeck)
 
@@ -76,7 +76,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-   * See [Creating a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder)
+   * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Middleware](http-modules/_static/middleware.png)
 

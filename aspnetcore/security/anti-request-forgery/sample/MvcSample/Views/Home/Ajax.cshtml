@@ -16,25 +16,26 @@
 <h3>@ViewData["Message"]</h3>
 
 <div class="row">
-    <input type="button" id="antiforgery" value="Antiforgery">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+    <p><input type="button" id="antiforgery" value="Antiforgery"></p>
     <script>
-        $("#antiforgery").click(function () {
-            $.ajax({
-                type: "post",
-                dataType: "html",
-                headers:
-                {
-                    "RequestVerificationToken": $('#RequestVerificationToken').val()
-                },
-                url: '@Url.Action("Antiforgery", "Home")',
-                success: function (result) {
-                    alert(result);
-                },
-                error: function (err, scnd) {
-                    alert(err.statusText);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == XMLHttpRequest.DONE) {
+                if (xhttp.status == 200) {
+                    alert(xhttp.responseText);
+                } else {
+                    alert('There was an error processing the AJAX request.');
                 }
-            });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("antiforgery").onclick = function () {
+                xhttp.open('POST', '@Url.Action("Antiforgery", "Home")', true);
+                xhttp.setRequestHeader("RequestVerificationToken", 
+                    document.getElementById('RequestVerificationToken').value);
+                xhttp.send();
+            }
         });
     </script>
 </div>

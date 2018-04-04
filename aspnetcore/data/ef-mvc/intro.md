@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: data/ef-mvc/intro
 ---
-# Get started with ASP.NET Core MVC and Entity Framework Core using Visual Studio (1 of 10)
+# ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -30,7 +30,7 @@ EF Core 2.0 is the latest version of EF but doesn't yet have all the features of
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs.md)]
 
 ## Troubleshooting
 
