@@ -59,7 +59,7 @@ The table indicates native IIS modules that are functional on reverse proxy requ
 
 ## Managed modules
 
-Managed modules are *not* functional with hosted ASP.NET Core apps. ASP.NET Core offers middleware alternatives in several cases.
+Managed modules are *not* functional with hosted ASP.NET Core apps when the app pool's .NET CLR version is set to **No Managed Code**. ASP.NET Core offers middleware alternatives in several cases.
 
 | Module                  | ASP.NET Core Option |
 | ----------------------- | ------------------- |
