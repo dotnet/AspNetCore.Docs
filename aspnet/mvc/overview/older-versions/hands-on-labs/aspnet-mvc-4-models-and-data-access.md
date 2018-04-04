@@ -181,8 +181,8 @@ In this task, you will create a data model to interact with the database added i
 
     *Entity diagram*
 
-> [!NOTE]
-> The T4 templates (.tt) run code to generate the entities classes and will overwrite the existing classes with the same name. In this example, the classes &quot;Album&quot;, &quot;Genre&quot; and &quot;Artist&quot; were overwritten with the generated code.
+    > [!NOTE]
+    > The T4 templates (.tt) run code to generate the entities classes and will overwrite the existing classes with the same name. In this example, the classes &quot;Album&quot;, &quot;Genre&quot; and &quot;Artist&quot; were overwritten with the generated code.
 
 
 <a id="Ex1Task3"></a>
@@ -347,7 +347,7 @@ Now that you have already added a database to our project, you will write in the
 
 Now that you have already configured the connection to the database, you will link the model with the database tables. In this task, you will create a class that will be linked to the database with Code First. Remember that there is an existent POCO model class that should be modified.
 
-> [!NOTE]
+   > [!NOTE]
 > If you completed Exercise 1, you will note that this step was performed by a wizard. By doing Code First, you will manually create classes that will be linked to data entities.
 
 
