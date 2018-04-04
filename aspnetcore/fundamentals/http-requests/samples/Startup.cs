@@ -53,9 +53,8 @@ namespace HttpClientFactorySample
             services.AddHttpClient<ValuesService>(c =>
             {
                 c.BaseAddress = new Uri("https://api.github.com/");
-
-                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
-                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // GitHub requires a user-agent
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
             });
 
             #region snippet2
@@ -75,7 +74,7 @@ namespace HttpClientFactorySample
                 c.BaseAddress = new Uri("https://localhost:5000/");
             })
 
-            // Build a totally custom policy using any criteria
+            // Build a custom policy using any criteria
             .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
 
             // Run some code to select a policy based on the request

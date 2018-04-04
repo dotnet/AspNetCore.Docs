@@ -29,11 +29,11 @@ There are several ways `IHttpClientFactory` can be used in an app. None of them 
 
 The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. The service must first be registered with the services provider:
 
-[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet1&highlight=4)]
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet1&highlight=4)]
 
 Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection](xref:fundamentals/dependency-injection) (DI). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
 
-[!code-csharp[Main](http-requests/samples/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=7-10,18)]
+[!code-csharp[](http-requests/samples/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=7-10,18)]
 
 Using `IHttpClientFactory` in this fashion is a great way to begin refactoring an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those with a call to `CreateClient`.
 
@@ -88,33 +88,13 @@ Typed clients provide the same capabilities as named clients without the need to
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
-```csharp
-public class GitHubService
-{
-    public HttpClient Client { get; private set; }
+[!code-csharp[](http-requests/samples/GitHub/GitHubService.cs?start=12&end=49)]
 
-    public GitHubService(HttpClient client)
-    {
-        client.BaseAddress = new Uri("https://api.github.com/");
-        client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
-        client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");   // GitHub requires a user-agent
+In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods which expose `HttpClient` functionality. In this example the `GetLatestDocsIssue` method encapsulates the code needed to query for and parse out the latest issue from a repository.
 
-        Client = client;
-    }
-}
-```
+To register a typed client, the generic `AddHttpClient` extension method can be used within `ConfigureServices`, specifying the typed client class:
 
-In the preceding code, only the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods which expose `HttpClient` functionality.
-
-To register a typed client, the generic `AddHttpClient` extension method can be used, specifying the typed client class:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHttpClient<GitHubService>();
-    services.AddMvc();
-}
-```
+[!code-csharp[](http-requests/samples/Startup.cs?range=43)]
 
 The typed client is registered as transient with DI. The typed client can be injected and consumed directly:
 
@@ -136,21 +116,9 @@ public class MyController : Controller
 }
 ```
 
-If preferred, the configuration for a typed client can be specified during registration, rather than in the typed client's constructor:
+If preferred, the configuration for a typed client can be specified during registration in `ConfigureServices`, rather than in the typed client's constructor:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHttpClient<GitHubService>(c =>
-    {
-        c.BaseAddress = new Uri("https://api.github.com/");
-
-        c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
-        c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample"); // GitHub requires a user-agent
-    });
-    services.AddMvc();
-}
-```
+[!code-csharp[](http-requests/samples/Startup.cs?start=53&end=59)]
 
 It's possible to entirely encapsulate the `HttpClient` within a typed client. Rather than exposing it as a property, public methods can be provided which call the `HttpClient` instance internally.
 
@@ -294,7 +262,7 @@ Extension methods are provided which enable easy integration and use of Polly po
 
 [!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet2)]
 
-The preceding code demonstrates the use of the `AddTransientHttpErrorPolicy` extension. This extension provides access to a `PolicyBuilder` which is preconfigured to handle errors which represent a possible transient fault. This includes exceptions such as `HttpRequestException`, responses with HTTP 5XX status codes or responses with a 408 status code.
+The preceding code, used within `ConfigureServices` demonstrates the use of the `AddTransientHttpErrorPolicy` extension. This extension provides access to a `PolicyBuilder` which is preconfigured to handle errors that represent a possible transient fault. This includes exceptions such as `HttpRequestException`, responses with HTTP 5XX status codes or responses with a 408 status code.
 
 Using the `PolicyBuilder` in this case a `RetryPolicy` is specified that will retry failed requests which match the above criteria up to 3 times. The created policy will be cached indefinitely per named client.
 
