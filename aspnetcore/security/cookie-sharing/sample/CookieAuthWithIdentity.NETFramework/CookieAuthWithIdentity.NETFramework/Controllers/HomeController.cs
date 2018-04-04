@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CookieAuthWithIdentity.Controllers
+namespace CookieAuthWithIdentity.NETFramework.Controllers
 {
     public class HomeController : Controller
     {
@@ -20,7 +20,6 @@ namespace CookieAuthWithIdentity.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

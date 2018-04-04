@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CookieAuthWithIdentity.Models;
+using CookieAuthWithIdentity.NETFramework.Models;
 
-namespace CookieAuthWithIdentity.Controllers
+namespace CookieAuthWithIdentity.NETFramework.Controllers
 {
     [Authorize]
     public class ManageController : Controller

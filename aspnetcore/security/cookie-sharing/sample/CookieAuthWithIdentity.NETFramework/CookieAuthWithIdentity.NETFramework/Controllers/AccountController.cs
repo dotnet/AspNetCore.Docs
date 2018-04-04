@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CookieAuthWithIdentity.Models;
+using CookieAuthWithIdentity.NETFramework.Models;
 
-namespace CookieAuthWithIdentity.Controllers
+namespace CookieAuthWithIdentity.NETFramework.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -391,7 +391,7 @@ namespace CookieAuthWithIdentity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            AuthenticationManager.SignOut("Identity.Application");
             return RedirectToAction("Index", "Home");
         }
 

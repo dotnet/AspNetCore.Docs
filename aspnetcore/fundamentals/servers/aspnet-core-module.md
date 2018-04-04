@@ -28,7 +28,7 @@ The ASP.NET Core Module only works with Kestrel. The module is incompatible with
 
 ## ASP.NET Core Module description
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to redirect web requests to backend ASP.NET Core apps. Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the module, see [Using IIS modules](xref:host-and-deploy/iis/modules).
+The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to redirect web requests to backend ASP.NET Core apps. Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the module, see [IIS modules](xref:host-and-deploy/iis/modules).
 
 Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with ASP.NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 

@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using CookieAuthWithIdentity.Models;
+using CookieAuthWithIdentity.NETFramework.Models;
 
-namespace CookieAuthWithIdentity
+namespace CookieAuthWithIdentity.NETFramework
 {
     public class EmailService : IIdentityMessageService
     {

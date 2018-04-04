@@ -321,6 +321,8 @@ By taking advantage of the Microsoft Ajax CDN, you can significantly improve the
 
 The Microsoft Ajax Content Delivery Network supports SSL (HTTPS) in case you need to serve a web page using the Secure Sockets Layer.
 
+Implement a fallback when the CDN is unavailable. Test the fallback.
+
 To learn more about the Microsoft Ajax CDN, visit the following website:
 
 [https://www.asp.net/ajaxlibrary/CDN.ashx](../../ajax/cdn/overview.md)

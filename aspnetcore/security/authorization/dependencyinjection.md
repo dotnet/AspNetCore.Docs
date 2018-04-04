@@ -1,7 +1,7 @@
 ---
-title: Dependency Injection in requirement handlers
+title: Dependency injection in requirement handlers in ASP.NET Core
 author: rick-anderson
-description: This document outlines how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
+description: Learn how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
 manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,11 +10,11 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authorization/dependencyinjection
 ---
-# Dependency Injection in requirement handlers
+# Dependency injection in requirement handlers in ASP.NET Core
 
 <a name="security-authorization-di"></a>
 
-[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration (using [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection)).
+[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration (using [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection)).
 
 Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization will resolve and inject that into your constructor.
 

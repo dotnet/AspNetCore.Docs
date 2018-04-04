@@ -17,7 +17,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/)
 Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the ASP.NET app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the ASP.NET app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.
 
 >[!IMPORTANT]
-> This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see [Routing to Controller Actions](../mvc/controllers/routing.md)
+> This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see [Route to controller actions](../mvc/controllers/routing.md)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -84,7 +84,7 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
-Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Routing to Controller Actions](../mvc/controllers/routing.md).
+Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Route to controller actions](../mvc/controllers/routing.md).
 
 This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
 

@@ -1,7 +1,7 @@
 ---
-title: Articles based on projects created with individual user accounts
+title: Articles based on ASP.NET Core projects created with individual user accounts
 author: rick-anderson
-description: This document lists articles based on projects created with individual user accounts.
+description: Discover articles based on ASP.NET Core projects created with individual user accounts.
 manager: wpickett
 ms.author: riande
 ms.date: 11/30/2017
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/authentication/individual
 ---
-# Articles based on projects created with individual user accounts
+# Articles based on ASP.NET Core projects created with individual user accounts
 
 ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
 

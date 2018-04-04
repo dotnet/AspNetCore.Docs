@@ -17,5 +17,5 @@ ASP.NET Ajax 3.5
 ====================
 The following files are hosted on the CDN:
 
-- http://ajax.aspnetcdn.com/ajax/3.5/MicrosoftAjax.debug.js
-- http://ajax.aspnetcdn.com/ajax/3.5/MicrosoftAjax.js
+- https://ajax.aspnetcdn.com/ajax/3.5/MicrosoftAjax.debug.js
+- https://ajax.aspnetcdn.com/ajax/3.5/MicrosoftAjax.js

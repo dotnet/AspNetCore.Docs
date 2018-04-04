@@ -207,6 +207,18 @@ Troubleshooting
 
 * Confirm that the sub-app's *web.config* file doesn't include a `<handlers>` section.
 
+## stdout log path incorrect
+
+* **Browser:** The app responds normally.
+
+* **Application Log:** Warning: Could not create stdoutLogFile \\?\C:\_apps\app_folder\bin\Release\netcoreapp2.0\win10-x64\publish\logs\path_doesnt_exist\stdout_8748_201831835937.log, ErrorCode = -2147024893.
+
+* **ASP.NET Core Module Log:** Log file not created
+
+Troubleshooting
+
+* The `stdoutLogFile` path specified in the `<aspNetCore>` element of *web.config* doesn't exist. For more information, see the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) section of the ASP.NET Core Module configuration reference topic.
+
 ## Application configuration general issue
 
 * **Browser:** HTTP Error 502.5 - Process Failure

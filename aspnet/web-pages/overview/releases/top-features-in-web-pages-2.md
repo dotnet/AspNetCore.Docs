@@ -144,7 +144,7 @@ To display a summary (`<ul>` list) of all the errors in the page, `Html.Validati
 
 These steps are enough to implement server-side validation. If you want to add client-side validation, do the following in addition.
 
-Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file.
+Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file. Production apps should implement a fallback when the CDN is unavailable. Test the fallback.
 
 [!code-html[Main](top-features-in-web-pages-2/samples/sample5.html)]
 

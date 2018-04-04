@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace CookieAuthWithIdentity
+namespace CookieAuthWithIdentity.NETFramework
 {
     public class FilterConfig
     {

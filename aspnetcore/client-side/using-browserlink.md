@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: client-side/using-browserlink
 ---
-# Browser Link in ASP.NET Core 
+# Browser Link in ASP.NET Core
 
 By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -61,7 +61,7 @@ if (env.IsDevelopment())
 }
 ```
 
-For more information, see [Working with Multiple Environments](xref:fundamentals/environments).
+For more information, see [Work with Multiple Environments](xref:fundamentals/environments).
 
 ## How to use Browser Link
 

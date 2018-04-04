@@ -1,5 +1,5 @@
 ---
-title: Migrating from ASP.NET MVC to ASP.NET Core MVC
+title: Migrate from ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: Learn how to get started migrating an ASP.NET MVC project to ASP.NET Core MVC.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/mvc
 ---
-# Migrating from ASP.NET MVC to ASP.NET Core MVC
+# Migrate from ASP.NET MVC to ASP.NET Core MVC
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](https://ardalis.com/), and [Scott Addie](https://scottaddie.com)
 
@@ -43,7 +43,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Install the `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` NuGet packages.
 
-  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Working with Static Files](../fundamentals/static-files.md)).
+  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Work with static files](../fundamentals/static-files.md)).
 
 * Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
@@ -215,7 +215,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 }
 ```
 
-See **Using the Developer Exception Page** in [Error Handling](../fundamentals/error-handling.md) for more information.
+See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
 
 ## Additional resources
 

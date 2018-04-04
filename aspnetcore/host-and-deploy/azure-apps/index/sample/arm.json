@@ -1,0 +1,12 @@
+{
+    "type": "siteextensions",
+    "name": "AspNetCoreRuntime",
+    "apiVersion": "2015-04-01",
+    "location": "[resourceGroup().location]",
+    "properties": {
+        "version": "[parameters('aspnetcoreVersion')]"
+    },
+    "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+    ]
+}

@@ -1,5 +1,5 @@
 ---
-title: Working with SQL Server LocalDB and ASP.NET Core
+title: Work with SQL Server LocalDB and ASP.NET Core
 author: rick-anderson
 description: Explains working with SQL Server LocalDB and ASP.NET Core.
 manager: wpickett
@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: tutorials/razor-pages/sql
 ---
-# Working with SQL Server LocalDB and ASP.NET Core
+# Work with SQL Server LocalDB and ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette) 
 

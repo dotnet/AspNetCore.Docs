@@ -15,7 +15,7 @@ uid: fundamentals/configuration/options
 
 By [Luke Latham](https://github.com/guardrex)
 
-The options pattern uses options classes to represent groups of related settings. When configuration settings are isolated by feature into separate options classes, the app adheres to two important software engineering principles:
+The options pattern uses classes to represent groups of related settings. When configuration settings are isolated by feature into separate classes, the app adheres to two important software engineering principles:
 
 * The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Features (classes) that depend on configuration settings depend only on the configuration settings that they use.
 * [Separation of Concerns](http://deviq.com/separation-of-concerns/): Settings for different parts of the app aren't dependent or coupled to one another.
