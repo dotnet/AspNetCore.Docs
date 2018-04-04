@@ -181,7 +181,7 @@ Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an 
 
 Run the app and verify that everything works.
 
-## Appling migrations in production
+## Applying migrations in production
 
 We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 

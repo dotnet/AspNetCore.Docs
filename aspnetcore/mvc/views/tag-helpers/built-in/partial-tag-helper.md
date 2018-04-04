@@ -56,7 +56,7 @@ The following markup loads *_ProductPartial.cshtml*:
 
 The partial view is bound to the associated page model's `Product` property:
 
-[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
+[!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
 ## view-data
 

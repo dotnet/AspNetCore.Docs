@@ -1,5 +1,5 @@
 ---
-title: Custom formatters in ASP.NET Core MVC web APIs
+title: Custom formatters in ASP.NET Core Web API
 author: tdykstra
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
 manager: wpickett
@@ -8,9 +8,9 @@ ms.date: 02/08/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: mvc/models/custom-formatters
+uid: web-api/advanced/custom-formatters
 ---
-# Custom formatters in ASP.NET Core MVC web APIs
+# Custom formatters in ASP.NET Core Web API
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
@@ -20,17 +20,17 @@ ASP.NET Core MVC has built-in support for data exchange in web APIs by using JSO
 
 ## When to use custom formatters
 
-Use a custom formatter when you want the [content negotiation](xref:mvc/models/formatting) process to support a content type that isn't supported by the built-in formatters (JSON, XML, and plain text).
+Use a custom formatter when you want the [content negotiation](xref:web-api/advanced/formatting#content-negotiation) process to support a content type that isn't supported by the built-in formatters (JSON, XML, and plain text).
 
-For example, if some of the clients for your web API can handle the [Protobuf](https://github.com/google/protobuf) format, you might want to use Protobuf with those clients because it's more efficient.  Or you might want your web API to send contact names and addresses in [vCard](https://wikipedia.org/wiki/VCard) format, a commonly used format for exchanging contact data. The sample app provided with this article implements a simple vCard formatter.
+For example, if some of the clients for your web API can handle the [Protobuf](https://github.com/google/protobuf) format, you might want to use Protobuf with those clients because it's more efficient. Or you might want your web API to send contact names and addresses in [vCard](https://wikipedia.org/wiki/VCard) format, a commonly used format for exchanging contact data. The sample app provided with this article implements a simple vCard formatter.
 
 ## Overview of how to use a custom formatter
 
 Here are the steps to create and use a custom formatter:
 
 * Create an output formatter class if you want to serialize data to send to the client.
-* Create an input formatter class if you want to deserialize data received from the client. 
-* Add instances of your formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.mvcoptions).
+* Create an input formatter class if you want to deserialize data received from the client.
+* Add instances of your formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/aspnet/core/api/microsoft.aspnetcore.mvc.mvcoptions).
 
 The following sections provide guidance and code examples for each of these steps.
 
@@ -45,11 +45,11 @@ To create a formatter:
   
 ### Derive from the appropriate base class
 
-For text media types (for example, vCard), derive from the [TextInputFormatter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
+For text media types (for example, vCard), derive from the [TextInputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=classdef)]
 
-For binary types, derive from the [InputFormatter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
+For binary types, derive from the [InputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
 
 ### Specify valid media types and encodings
 
@@ -57,10 +57,10 @@ In the constructor, specify valid media types and encodings by adding to the `Su
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=ctor&highlight=3,5-6)]
 
-> [!NOTE]  
+> [!NOTE]
 > You can't do constructor dependency injection in a formatter class. For example, you can't get a logger by adding a logger parameter to the constructor. To access services, you have to use the context object that gets passed in to your methods. A code example [below](#read-write) shows how to do this.
 
-### Override CanReadType/CanWriteType 
+### Override CanReadType/CanWriteType
 
 Specify the type you can deserialize into or serialize from by overriding the `CanReadType` or `CanWriteType` methods. For example, you might only be able to create vCard text from a `Contact` type and vice versa.
 
@@ -70,26 +70,26 @@ Specify the type you can deserialize into or serialize from by overriding the `C
 
 In some scenarios you have to override `CanWriteResult` instead of `CanWriteType`. Use `CanWriteResult` if the following conditions are true:
 
-  * Your action method returns a model class.
-  * There are derived classes which might be returned at runtime.
-  * You need to know at runtime which derived class was returned by the action.  
+* Your action method returns a model class.
+* There are derived classes which might be returned at runtime.
+* You need to know at runtime which derived class was returned by the action.
 
-For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
+For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
 
 <a id="read-write"></a>
-### Override ReadRequestBodyAsync/WriteResponseBodyAsync 
+### Override ReadRequestBodyAsync/WriteResponseBodyAsync
 
-You do the actual work of deserializing or serializing in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`.  The highlighted lines in the following example show how to get services from the dependency injection container (you can't get them from constructor parameters).
+You do the actual work of deserializing or serializing in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The highlighted lines in the following example show how to get services from the dependency injection container (you can't get them from constructor parameters).
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=writeresponse&highlight=3-4)]
 
 ## How to configure MVC to use a custom formatter
- 
+
 To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
 
 [!code-csharp[](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
-Formatters are evaluated in the order you insert them. The first one takes precedence. 
+Formatters are evaluated in the order you insert them. The first one takes precedence.
 
 ## Next steps
 

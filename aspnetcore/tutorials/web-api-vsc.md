@@ -1,5 +1,5 @@
 ---
-title: Create a Web API with ASP.NET Core and VS Code
+title: Create a Web API with ASP.NET Core and Visual Studio Code
 author: rick-anderson
 description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
 manager: wpickett
@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/web-api-vsc
 ---
 
-# Create a Web API with ASP.NET Core and VS Code
+# Create a Web API with ASP.NET Core and Visual Studio Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
