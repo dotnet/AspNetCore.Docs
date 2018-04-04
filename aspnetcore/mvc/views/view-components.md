@@ -238,7 +238,7 @@ If you want compile time safety, you can replace the hard-coded view component n
 
 Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,35-)]
 
 ## Additional resources
 
