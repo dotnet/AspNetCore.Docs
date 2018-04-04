@@ -108,7 +108,7 @@ Configuration considerations:
 * `IOptionsSnapshot` can reload configuration data when it changes. For more information, see [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot).,
 * Configuration keys are **not** case-sensitive.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to work with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
-* A colon (`:`) may also be used for hierarchigal config keys, but may not work on all platforms. Double underscore (__) is supported by all platforms.
+* A colon (`:`) may be used for hierarchical config keys, but may not work on all platforms. Double underscore (__) is supported by all platforms.
 ## In-memory provider and binding to a POCO class
 
 The following sample shows how to use the in-memory provider and bind to a class:
