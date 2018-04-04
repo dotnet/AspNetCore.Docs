@@ -91,6 +91,6 @@ Here is the complete code for the Admin view:
 
 Run the application, log in with the Administrator account, and click the "Admin" link. You should see the list of products, and be able to create, update, or delete products.
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-4.md)
-[Next](using-web-api-with-entity-framework-part-6.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-4.md)
+> [Next](using-web-api-with-entity-framework-part-6.md)

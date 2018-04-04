@@ -21,6 +21,6 @@ Learn how the ASP.NET Extensions Preview allows control over the Browser back bu
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-aspnet-ajax-history)
 
->[!div class="step-by-step"]
-[Previous](adonet-data-services-with-aspnet-ajax-support.md)
-[Next](using-script-combining-to-improve-ajax-performance.md)
+> [!div class="step-by-step"]
+> [Previous](adonet-data-services-with-aspnet-ajax-support.md)
+> [Next](using-script-combining-to-improve-ajax-performance.md)

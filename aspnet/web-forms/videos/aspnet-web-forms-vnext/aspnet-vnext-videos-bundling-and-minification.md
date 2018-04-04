@@ -21,6 +21,6 @@ Mads Kristensen demonstrates how the ASP.NET vNext can automatically bundle and 
 
 [&#9654; Watch video (1 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-vnext-videos-bundling-and-minification)
 
->[!div class="step-by-step"]
-[Previous](aspnet-45-web-forms-strong-typed-data-controls.md)
-[Next](getting-started-with-the-next-version-of-aspnet.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-45-web-forms-strong-typed-data-controls.md)
+> [Next](getting-started-with-the-next-version-of-aspnet.md)

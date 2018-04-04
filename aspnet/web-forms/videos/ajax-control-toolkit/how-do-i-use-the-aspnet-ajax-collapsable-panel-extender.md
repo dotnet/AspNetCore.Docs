@@ -21,6 +21,6 @@ In this video you will learn how to use the ASP.NET AJAX Collapsable Panel Exten
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-collapsable-panel-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-accordion-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-draggable-panel-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-accordion-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-draggable-panel-extender.md)

@@ -127,5 +127,5 @@ This concludes this series of tutorials on Getting Started with the Entity Frame
 - [Entity Framework Forums on MSDN](https://social.msdn.microsoft.com/forums/adodotnetentityframework/)
 - [Julie Lerman's blog](http://thedatafarm.com/blog/)
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-7.md)

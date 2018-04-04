@@ -88,7 +88,7 @@ A project file typically needs to provide lots of different pieces of informatio
 [!code-xml[Main](understanding-the-project-file/samples/sample2.xml)]
 
 
-To retrieve a property value, you use the format **$(***PropertyName***)***.*For example, to retrieve the value of the **ServerName** property, you would type:
+To retrieve a property value, you use the format <strong>$(</strong><em>PropertyName</em><strong>)</strong><em>.</em>For example, to retrieve the value of the <strong>ServerName</strong> property, you would type:
 
 
 [!code-powershell[Main](understanding-the-project-file/samples/sample3.ps1)]
@@ -190,8 +190,8 @@ Both targets and tasks can include **Condition** attributes. As such, you can ch
 
 Generally speaking, when you create useful tasks and targets, you'll need to refer to the properties and items that you've defined elsewhere in the project file:
 
-- To use a property value, type **$(***PropertyName***)**, where *PropertyName* is the name of the **Property** element or the name of the parameter.
-- To use an item, type **@(***ItemName***)**, where *ItemName* is the name of the **Item** element.
+- To use a property value, type <strong>$(</strong><em>PropertyName</em><strong>)</strong>, where <em>PropertyName</em> is the name of the <strong>Property</strong> element or the name of the parameter.
+- To use an item, type <strong>@(</strong><em>ItemName</em><strong>)</strong>, where <em>ItemName</em> is the name of the <strong>Item</strong> element.
 
 > [!NOTE]
 > Remember that if you create multiple items with the same name, you're building a list. In contrast, if you create multiple properties with the same name, the last property value you provide will overwrite any previous properties with the same name&#x2014;a property can only contain a single value.
@@ -261,6 +261,6 @@ The next topic, [Understanding the Build Process](understanding-the-build-proces
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"]
-[Previous](setting-up-the-contact-manager-solution.md)
-[Next](understanding-the-build-process.md)
+> [!div class="step-by-step"]
+> [Previous](setting-up-the-contact-manager-solution.md)
+> [Next](understanding-the-build-process.md)

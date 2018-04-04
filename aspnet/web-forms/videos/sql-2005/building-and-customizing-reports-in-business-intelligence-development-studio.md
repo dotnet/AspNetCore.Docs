@@ -21,6 +21,6 @@ Building on the previous lesson, we dive into building reports from scratch and 
 
 [&#9654; Watch video (44 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/building-and-customizing-reports-in-business-intelligence-development-studio)
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-reporting-services.md)
-[Next](creating-and-using-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-reporting-services.md)
+> [Next](creating-and-using-stored-procedures.md)

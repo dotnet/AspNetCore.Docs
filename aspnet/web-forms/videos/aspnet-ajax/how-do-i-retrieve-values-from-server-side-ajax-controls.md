@@ -21,6 +21,6 @@ In this video I will demonstrate how to retrieve values from server side AJAX co
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-retrieve-values-from-server-side-ajax-controls)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.md)
-[Next](two-simple-techniques-for-triggering-updates-to-update-panels.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.md)
+> [Next](two-simple-techniques-for-triggering-updates-to-update-panels.md)

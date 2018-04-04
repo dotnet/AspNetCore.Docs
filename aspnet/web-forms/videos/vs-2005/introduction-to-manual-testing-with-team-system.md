@@ -21,6 +21,6 @@ In this video we see how you can create and run your manual test cases for your 
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-manual-testing-with-team-system)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-load-testing-web-applications-with-team-system.md)
-[Next](introduction-to-managing-and-running-tests-with-team-system.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-load-testing-web-applications-with-team-system.md)
+> [Next](introduction-to-managing-and-running-tests-with-team-system.md)

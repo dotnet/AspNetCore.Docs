@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). 
 
-[!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
@@ -26,7 +26,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-macos.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-macos.md)]
 
 ## Create a web app
 
@@ -57,5 +57,5 @@ The default template gives you **Home, About** and **Contact** links. The browse
 
 In the next part of this tutorial, you learn about MVC and start writing some code.
 
->[!div class="step-by-step"]
-[Next](adding-controller.md)  
+> [!div class="step-by-step"]
+> [Next](adding-controller.md)  

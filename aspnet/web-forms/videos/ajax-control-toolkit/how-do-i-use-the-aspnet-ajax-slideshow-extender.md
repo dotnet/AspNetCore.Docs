@@ -21,6 +21,6 @@ This video demonstrates how the SlideShow extender from the ASP.NET AJAX Control
 
 [&#9654; Watch video (19 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-slideshow-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-tabs-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-tabs-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender.md)

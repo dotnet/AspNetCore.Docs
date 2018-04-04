@@ -52,15 +52,17 @@ Compared with the other templates listed here, the Hot Towel teample provides a 
 
 Here are the features provided by each SPA template:
 
-|  | ASP.NET SPA | Backbone | Breeze/Angular | Breeze/KO | Ember | Hot Towel |
-| --- | --- | --- | --- | --- | --- | --- |
-| ToDo sample | &#10003; |  | &#10003; | &#10003; | &#10003; |  |
-| Bare template |  | &#10003; |  |  |  | &#10003; |
-| Navigation and history |  | &#10003; | &#10003; |  | &#10003; | &#10003; |
-| Libaries |  |  |  |  |  |  |
-| Angular |  |  | &#10003; |  |  |  |
-| &#8195;Backbone |  | &#10003; |  |  |  |  |
-| Breeze |  |  | &#10003; | &#10003; |  | &#10003; |
-| Durandal |  |  |  |  |  | &#10003; |
-| Ember |  |  |  |  | &#10003; |  |
-| Knockout | &#10003; |  |  | &#10003; |  | &#10003; |
+
+|                        | ASP.NET SPA | Backbone | Breeze/Angular | Breeze/KO |  Ember   | Hot Towel |
+|------------------------|-------------|----------|----------------|-----------|----------|-----------|
+|      ToDo sample       |  &#10003;   |          |    &#10003;    | &#10003;  | &#10003; |           |
+|     Bare template      |             | &#10003; |                |           |          | &#10003;  |
+| Navigation and history |             | &#10003; |    &#10003;    |           | &#10003; | &#10003;  |
+|        Libaries        |             |          |                |           |          |           |
+|        Angular         |             |          |    &#10003;    |           |          |           |
+|    &#8195;Backbone     |             | &#10003; |                |           |          |           |
+|         Breeze         |             |          |    &#10003;    | &#10003;  |          | &#10003;  |
+|        Durandal        |             |          |                |           |          | &#10003;  |
+|         Ember          |             |          |                |           | &#10003; |           |
+|        Knockout        |  &#10003;   |          |                | &#10003;  |          | &#10003;  |
+

@@ -11,7 +11,7 @@ ms.topic: article
 uid: fundamentals/metapackage
 ---
 
-#Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x
+# Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
@@ -31,4 +31,4 @@ You can use the package trimming process to remove packages that you don't use. 
 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
-[!code-xml[](..\mvc\views\view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=9)]
+[!code-xml[](../mvc/views/view-compilation/sample/MvcRazorCompileOnPublish2.csproj?highlight=9)]

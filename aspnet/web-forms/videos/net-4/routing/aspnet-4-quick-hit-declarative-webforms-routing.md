@@ -21,6 +21,6 @@ In this video you will learn how to do WebForms routing declaratively through ma
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-declarative-webforms-routing)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-imperative-webforms-routing.md)
-[Next](aspnet-4-quick-hit-outbound-webforms-routing.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-imperative-webforms-routing.md)
+> [Next](aspnet-4-quick-hit-outbound-webforms-routing.md)

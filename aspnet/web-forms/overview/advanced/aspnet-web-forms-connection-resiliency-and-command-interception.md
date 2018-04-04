@@ -97,9 +97,9 @@ Based on the above procedure, you have downloaded and opened the **WingtipToys**
 
     [!code-csharp[Main](aspnet-web-forms-connection-resiliency-and-command-interception/samples/sample4.cs)]
 
- The interface provides three tracing levels to indicate the relative importance of logs, and one designed to provide latency information for external service calls such as database queries. The logging methods have overloads that let you pass in an exception. This is so that exception information including stack trace and inner exceptions is reliably logged by the class that implements the interface, instead of relying on that being done in each logging method call throughout the application.  
+   The interface provides three tracing levels to indicate the relative importance of logs, and one designed to provide latency information for external service calls such as database queries. The logging methods have overloads that let you pass in an exception. This is so that exception information including stack trace and inner exceptions is reliably logged by the class that implements the interface, instead of relying on that being done in each logging method call throughout the application.  
   
- The `TraceApi` methods enable you to track the latency of each call to an external service such as SQL Database.
+   The `TraceApi` methods enable you to track the latency of each call to an external service such as SQL Database.
 3. In the *Logging* folder, create a class file named *Logger.cs* and replace the default code with the following code:  
 
     [!code-csharp[Main](aspnet-web-forms-connection-resiliency-and-command-interception/samples/sample5.cs)]
@@ -116,20 +116,20 @@ Next, you'll create the classes that the Entity Framework will call into every t
 
     [!code-csharp[Main](aspnet-web-forms-connection-resiliency-and-command-interception/samples/sample6.cs)]
 
- For successful queries or commands, this code writes an Information log with latency information. For exceptions, it creates an Error log.
+   For successful queries or commands, this code writes an Information log with latency information. For exceptions, it creates an Error log.
 2. To create the interceptor class that will generate dummy transient errors when you enter &quot;Throw&quot; in the **Name** textbox on the page named *AdminPage.aspx*, create a class file named *InterceptorTransientErrors.cs* in the *Logic* folder and replace the default code with the following code:  
 
     [!code-csharp[Main](aspnet-web-forms-connection-resiliency-and-command-interception/samples/sample7.cs)]
 
     This code only overrides the `ReaderExecuting` method, which is called for queries that can return multiple rows of data. If you wanted to check connection resiliency for other types of queries, you could also override the `NonQueryExecuting` and `ScalarExecuting` methods, as the logging interceptor does.  
   
- Later, you will log in as the "Admin" and select the **Admin** link on the top navigation bar. Then, on the *AdminPage.aspx* page you will add a product named &quot;Throw&quot;. The code creates a dummy SQL Database exception for error number 20, a type known to be typically transient. Other error numbers currently recognized as transient are 64, 233, 10053, 10054, 10060, 10928, 10929, 40197, 40501, and 40613, but these are subject to change in new versions of SQL Database. The product will be renamed to "TransientErrorExample", which you can follow in the code of the *InterceptorTransientErrors.cs* file.  
+   Later, you will log in as the "Admin" and select the **Admin** link on the top navigation bar. Then, on the *AdminPage.aspx* page you will add a product named &quot;Throw&quot;. The code creates a dummy SQL Database exception for error number 20, a type known to be typically transient. Other error numbers currently recognized as transient are 64, 233, 10053, 10054, 10060, 10928, 10929, 40197, 40501, and 40613, but these are subject to change in new versions of SQL Database. The product will be renamed to "TransientErrorExample", which you can follow in the code of the *InterceptorTransientErrors.cs* file.  
   
- The code returns the exception to Entity Framework instead of running the query and passing back results. The transient exception is returned *four* times, and then the code reverts to the normal procedure of passing the query to the database.
+   The code returns the exception to Entity Framework instead of running the query and passing back results. The transient exception is returned *four* times, and then the code reverts to the normal procedure of passing the query to the database.
 
     Because everything is logged, you'll be able to see that Entity Framework tries to execute the query four times before finally succeeding, and the only difference in the application is that it takes longer to render a page with query results.  
   
- The number of times the Entity Framework will retry is configurable; the code specifies four times because that's the default value for the SQL Database execution policy. If you change the execution policy, you'd also change the code here that specifies how many times transient errors are generated. You could also change the code to generate more exceptions so that Entity Framework will throw the `RetryLimitExceededException` exception.
+   The number of times the Entity Framework will retry is configurable; the code specifies four times because that's the default value for the SQL Database execution policy. If you change the execution policy, you'd also change the code here that specifies how many times transient errors are generated. You could also change the code to generate more exceptions so that Entity Framework will throw the `RetryLimitExceededException` exception.
 3. In *Global.asax*, add the following using statements:  
 
     [!code-csharp[Main](aspnet-web-forms-connection-resiliency-and-command-interception/samples/sample8.cs)]
@@ -153,16 +153,16 @@ You've written the transient error simulation code in a way that lets you cause 
 2. Select **Admin** from the navigation bar at the top.
 3. Enter a new product named "Throw" with appropriate description, price and image file.
 4. Press the **Add Product** button.  
- You'll notice that the browser seems to hang for several seconds while Entity Framework is retrying the query several times. The first retry happens very quickly, then the wait increases before each additional retry. This process of waiting longer before each retry is called *exponential backoff* .
+   You'll notice that the browser seems to hang for several seconds while Entity Framework is retrying the query several times. The first retry happens very quickly, then the wait increases before each additional retry. This process of waiting longer before each retry is called *exponential backoff* .
 5. Wait until the page is no longer atttempting to load.
 6. Stop the project and look at the Visual Studio **Output** window to see the tracing output. You can find the **Output** window by selecting **Debug** -&gt; **Windows** -&gt; **Output**. You might have to scroll past several other logs written by your logger.  
   
- Notice that you can see the actual SQL queries sent to the database. You see some initial queries and commands that Entity Framework does to get started, checking the database version and migration history table.   
+   Notice that you can see the actual SQL queries sent to the database. You see some initial queries and commands that Entity Framework does to get started, checking the database version and migration history table.   
     ![Output Window](aspnet-web-forms-connection-resiliency-and-command-interception/_static/image1.png)   
- Note that you can't repeat this test unless you stop the application and restart it. If you wanted to be able to test connection resiliency multiple times in a single run of the application, you could write code to reset the error counter in `InterceptorTransientErrors` .
+   Note that you can't repeat this test unless you stop the application and restart it. If you wanted to be able to test connection resiliency multiple times in a single run of the application, you could write code to reset the error counter in `InterceptorTransientErrors` .
 7. To see the difference the execution strategy (retry policy) makes, comment out the `SetExecutionStrategy` line in *WingtipToysConfiguration.cs* file in the *Logic* folder, run the **Admin** page in debug mode again, and add the product named &quot;Throw&quot; again.  
   
- This time the debugger stops on the first generated exception immediately when it tries to execute the query the first time.  
+   This time the debugger stops on the first generated exception immediately when it tries to execute the query the first time.  
     ![Debugging - View Detail](aspnet-web-forms-connection-resiliency-and-command-interception/_static/image2.png)
 8. Uncomment the `SetExecutionStrategy` line in the *WingtipToysConfiguration.cs* file.
 

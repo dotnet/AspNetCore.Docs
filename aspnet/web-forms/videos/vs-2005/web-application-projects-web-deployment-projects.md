@@ -21,5 +21,5 @@ Bradley Bartz shows how the Web Application Projects and Web Deployment Projects
 
 [&#9654; Watch video (66 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/web-application-projects-web-deployment-projects)
 
->[!div class="step-by-step"]
-[Previous](web-deployment-projects.md)
+> [!div class="step-by-step"]
+> [Previous](web-deployment-projects.md)

@@ -313,6 +313,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Yaakov Ellis, Liz Shulok, Randy Schmidt, and Stacy Park. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](nested-data-web-controls-cs.md)
-[Next](formatting-the-datalist-and-repeater-based-upon-data-vb.md)
+> [!div class="step-by-step"]
+> [Previous](nested-data-web-controls-cs.md)
+> [Next](formatting-the-datalist-and-repeater-based-upon-data-vb.md)

@@ -21,6 +21,6 @@ In this video you'll learn how to set up your Development Environment for develo
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/set-up-your-development-environment-for-aspnet-20)
 
->[!div class="step-by-step"]
-[Previous](set-up-your-development-environment-for-aspnet-35.md)
-[Next](how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md)
+> [!div class="step-by-step"]
+> [Previous](set-up-your-development-environment-for-aspnet-35.md)
+> [Next](how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md)

@@ -21,6 +21,6 @@ In this introductory video Brian Dawson will show you how to serialize a Graph w
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-serialize-a-graph-with-the-entity-framework)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-new-entity-data-source.md)
-[Next](how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-new-entity-data-source.md)
+> [Next](how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities.md)

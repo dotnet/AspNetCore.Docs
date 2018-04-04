@@ -21,6 +21,6 @@ In this video, Joe Stagner shows you how to add new users to the membership repo
 
 [&#9654; Watch video (47 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adding-users-to-your-membership-system)
 
->[!div class="step-by-step"]
-[Previous](validating-users-with-the-login-control.md)
-[Next](logging-users-into-your-membership-system.md)
+> [!div class="step-by-step"]
+> [Previous](validating-users-with-the-login-control.md)
+> [Next](logging-users-into-your-membership-system.md)

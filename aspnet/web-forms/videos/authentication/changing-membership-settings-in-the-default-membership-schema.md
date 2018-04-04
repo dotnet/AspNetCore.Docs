@@ -21,6 +21,6 @@ In this video Joe Stagner looks at how to change the default settings of the mem
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/changing-membership-settings-in-the-default-membership-schema)
 
->[!div class="step-by-step"]
-[Previous](configuring-sql-to-work-with-membership-schemas.md)
-[Next](creating-user-accounts-with-the-create-user-wizard.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-sql-to-work-with-membership-schemas.md)
+> [Next](creating-user-accounts-with-the-create-user-wizard.md)

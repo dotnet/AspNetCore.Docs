@@ -209,6 +209,6 @@ You have now completed this introduction to working with related data. So far in
 
 Links to other Entity Framework resources, can be found at the end of [the last tutorial in this series](advanced-entity-framework-scenarios-for-an-mvc-web-application.md).
 
->[!div class="step-by-step"]
-[Previous](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)

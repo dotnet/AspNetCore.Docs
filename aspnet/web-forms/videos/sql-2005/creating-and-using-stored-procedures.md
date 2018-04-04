@@ -21,6 +21,6 @@ This video expands on the topic of Stored Procedures which was introduced severa
 
 [&#9654; Watch video (42 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-and-using-stored-procedures)
 
->[!div class="step-by-step"]
-[Previous](building-and-customizing-reports-in-business-intelligence-development-studio.md)
-[Next](enabling-full-text-search-in-your-text-data.md)
+> [!div class="step-by-step"]
+> [Previous](building-and-customizing-reports-in-business-intelligence-development-studio.md)
+> [Next](enabling-full-text-search-in-your-text-data.md)

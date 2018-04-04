@@ -21,6 +21,6 @@ In this video you will learn about Visual Studio IDE Start Page changes which af
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/visual-studio-2010-quick-hit-websites-instead-of-web-projects)
 
->[!div class="step-by-step"]
-[Previous](visual-studio-2010-quick-hit-new-multi-targeting.md)
-[Next](visual-studio-2010-quick-hit-snippets-intellisense.md)
+> [!div class="step-by-step"]
+> [Previous](visual-studio-2010-quick-hit-new-multi-targeting.md)
+> [Next](visual-studio-2010-quick-hit-snippets-intellisense.md)

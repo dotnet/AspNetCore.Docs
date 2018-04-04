@@ -21,6 +21,6 @@ This video introduces the exciting new remote management functionality built for
 
 [&#9654; Watch video (22 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/working-with-iis7-deligated-admin)
 
->[!div class="step-by-step"]
-[Previous](developing-and-deploying-in-a-shared-hosting.md)
-[Next](feature-specific-delegated-management.md)
+> [!div class="step-by-step"]
+> [Previous](developing-and-deploying-in-a-shared-hosting.md)
+> [Next](feature-specific-delegated-management.md)

@@ -291,6 +291,6 @@ For more information, see [Tracking vs. No-Tracking](https://docs.microsoft.com/
 
 You now have a complete set of pages that perform simple CRUD operations for Student entities. In the next tutorial you'll expand the functionality of the **Index** page by adding sorting, filtering, and paging.
 
->[!div class="step-by-step"]
-[Previous](intro.md)
-[Next](sort-filter-page.md)  
+> [!div class="step-by-step"]
+> [Previous](intro.md)
+> [Next](sort-filter-page.md)  

@@ -21,6 +21,6 @@ Visual Studio 2008 lets you create ASP.NET custom Web services that you can acce
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-and-using-an-ajax-enabled-web-service-in-a-web-site)
 
->[!div class="step-by-step"]
-[Previous](adding-ajax-functionality-to-an-existing-aspnet-page.md)
-[Next](aspnet-ajax-a-demonstration-of-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](adding-ajax-functionality-to-an-existing-aspnet-page.md)
+> [Next](aspnet-ajax-a-demonstration-of-aspnet-ajax.md)

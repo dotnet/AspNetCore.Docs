@@ -136,6 +136,6 @@ Now data is taken from the URL and passed to the controller automatically. The c
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

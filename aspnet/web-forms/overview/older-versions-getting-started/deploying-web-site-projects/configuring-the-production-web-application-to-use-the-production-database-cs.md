@@ -66,7 +66,7 @@ Next, specify the various database connection information (see Figure 2). When y
 
 The production environment database should now be listed in the Server Explorer. Select the database from the Server Explorer and go to the Properties window. There you will find a property named Connection String with the database s connection string. Assuming you are using a Microsoft SQL Server database on production and the SqlClient provider your connection string should look similar to the following:
 
-**Data Source=*serverName*; Initial Catalog=*databaseName*; Persist Security Info=True; User ID=*username*; Password=*password***
+<strong>Data Source=<em>serverName</em>; Initial Catalog=<em>databaseName</em>; Persist Security Info=True; User ID=<em>username</em>; Password=*password</strong>*
 
 Where *serverName*, *databaseName*, *username*, and *password* are with the values for the database server name, the database name, and the username and password supplied to you by your web host company.
 
@@ -147,6 +147,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Move Settings Out of the Web.config File](http://www.asp101.com/tips/index.asp?id=154)
 - [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/library/bf7sd233.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-a-database-cs.md)
-[Next](configuring-a-website-that-uses-application-services-cs.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-database-cs.md)
+> [Next](configuring-a-website-that-uses-application-services-cs.md)

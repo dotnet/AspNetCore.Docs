@@ -48,7 +48,7 @@ Finally, modify the `PostBook` method to return a DTO.
 
 > [!NOTE]
 > In this tutorial, we're converting to DTOs manually in code. Another option is to use a library like [AutoMapper](http://automapper.org/) that handles the conversion automatically.
-
->[!div class="step-by-step"]
-[Previous](part-4.md)
-[Next](part-6.md)
+> 
+> [!div class="step-by-step"]
+> [Previous](part-4.md)
+> [Next](part-6.md)

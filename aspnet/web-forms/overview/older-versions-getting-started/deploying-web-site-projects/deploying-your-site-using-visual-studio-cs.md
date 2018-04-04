@@ -150,6 +150,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [How To: Publish Web Sites](https://msdn.microsoft.com/library/20yh9f1b.aspx)
 - [Setup and Deployment Projects in Visual Studio](https://msdn.microsoft.com/library/wx3b589t.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-your-site-using-an-ftp-client-cs.md)
-[Next](common-configuration-differences-between-development-and-production-cs.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-your-site-using-an-ftp-client-cs.md)
+> [Next](common-configuration-differences-between-development-and-production-cs.md)

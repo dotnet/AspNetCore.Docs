@@ -21,6 +21,6 @@ Nearly every Web application today needs to access data from a database, but thi
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/the-effects-of-caching)
 
->[!div class="step-by-step"]
-[Previous](custom-extraction-rules-and-coded-web-tests.md)
-[Next](using-the-load-test-agent.md)
+> [!div class="step-by-step"]
+> [Previous](custom-extraction-rules-and-coded-web-tests.md)
+> [Next](using-the-load-test-agent.md)

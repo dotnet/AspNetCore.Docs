@@ -21,5 +21,5 @@ In this webcast, you will learn about building and running PHP applications on t
 
 [&#9654; Watch video (64 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/interop-between-php-and-the-windows-platform)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)

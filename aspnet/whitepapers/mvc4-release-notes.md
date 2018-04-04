@@ -256,7 +256,7 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
     - *MvcCSharpRazorCodeGenerator*
     - *MvcVBRazorCodeParser*
 
- The following methods were also removed: 
+  The following methods were also removed: 
 
     - *MvcCSharpRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
     - *MvcWebPageRazorHost.DecorateCodeGenerator(System.Web.Razor.Generator.RazorCodeGenerator)*
@@ -270,22 +270,23 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
 
     **Required updates**
 
-    1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*. 
+  1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*. 
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample7.xml)]
-    2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
-    3. Locate the following assembly references: 
+      [!code-xml[Main](mvc4-release-notes/samples/sample7.xml)]
+  2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
+  3. Locate the following assembly references: 
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample8.xml)]
+      [!code-xml[Main](mvc4-release-notes/samples/sample8.xml)]
 
-        Replace them with the following:
+      Replace them with the following:
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample9.xml)]
-    4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
+      [!code-xml[Main](mvc4-release-notes/samples/sample9.xml)]
+  4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
+
 - **Changing an ASP.NET MVC 4 project to target 4.0 from 4.5 does not update the EntityFramework assembly reference:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 the reference to the EntityFramework assembly will still point to the 4.5 version. To fix this issue uninstall and reinstall the EntityFramework NuGet package.
 - **403 Forbidden when running an ASP.NET MVC 4 application on Azure after changing to target 4.0 from 4.5:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 and then deploy to Azure you may see a 403 Forbidden error at runtime. To workaround this issue add the following to your web.config: `<modules runAllManagedModulesForAllRequests="true" />`
 - **Visual Studio 2012 crashes when you type a '\' in a string literal in a Razor file.** To work around the issue enter the closing quote of the string literal first.
-- **Browsing to &quot;Account/Manage&quot; in the Internet template results in a runtime error for CHS, TRK and CHT languages.** To fix the issue modify the page to separate out *@User.Identity.Name* by puting it as the only content within the *&lt;strong&gt;* tag.
+- <strong>Browsing to &quot;Account/Manage&quot; in the Internet template results in a runtime error for CHS, TRK and CHT languages.</strong> To fix the issue modify the page to separate out <em>@User.Identity.Name</em> by puting it as the only content within the <em>&lt;strong&gt;</em> tag.
 - **Google and LinkedIn providers are not supported within Azure Web Sites.** Use alternative authentication providers when deploying to Azure Web Sites.
 - **When using UriPathExtensionMapping with IIS 8 Express/IIS, you would receive 404 Not Found errors when you try to use the extension.** The static file handler will interfere with requests to web APIs that use *UriPathExtensionMappings*. Set *runAllManagedModulesForAllRequests=true* in web.config to work around the issue.
 - **Controller.Execute method is no longer called.** All MVC controllers are now always executed asynchronously.

@@ -56,7 +56,7 @@ The configuration information for a web application is typically located in the 
 In addition to web application configuration changes, Step 1 also may entail configuration for the web server and database. For example, if an ASP.NET page creates or deletes files from a directory on the web server then the web server needs to be configured to permit these file system modifications. Similarly, there may be permission or authentication settings that need to be made to the database.
 
 
-Step 2 involves synchronizing the set of essential ASP.NET pages and support files between the development and production environments. The particular set of ASP.NET-related files that need to be synchronized between the two environments depends on the type of project you created in Visual Studio, and is the discussion in the next tutorial, *[Determining What Files Need to Be Deployed](determining-what-files-need-to-be-deployed-vb.md)*. The third and fourth tutorials - *[Deploying Your Site Using FTP](deploying-your-site-using-an-ftp-client-vb.md)*and *[Deploying Your Site Using Visual Studio](deploying-your-site-using-visual-studio-vb.md)* - examine different tools and techniques for syncing these files.
+Step 2 involves synchronizing the set of essential ASP.NET pages and support files between the development and production environments. The particular set of ASP.NET-related files that need to be synchronized between the two environments depends on the type of project you created in Visual Studio, and is the discussion in the next tutorial, <em>[Determining What Files Need to Be Deployed](determining-what-files-need-to-be-deployed-vb.md)</em>. The third and fourth tutorials - <em>[Deploying Your Site Using FTP](deploying-your-site-using-an-ftp-client-vb.md)</em>and <em>[Deploying Your Site Using Visual Studio](deploying-your-site-using-visual-studio-vb.md)</em> - examine different tools and techniques for syncing these files.
 
 When building data-driven applications there are typically two databases being used: one for development and one on production. During development, the development database's schema may be modified to include new tables, columns, stored procedures, and triggers, or may be modified to remove or rename existing database objects. Between the time that these changes are made and the time the application is deployed to production, the development and production databases are out of sync. This asynchrony needs to be fixed during the deployment process. These challenges will be examined in future tutorials.
 
@@ -90,6 +90,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](users-and-roles-on-the-production-website-cs.md)
-[Next](determining-what-files-need-to-be-deployed-vb.md)
+> [!div class="step-by-step"]
+> [Previous](users-and-roles-on-the-production-website-cs.md)
+> [Next](determining-what-files-need-to-be-deployed-vb.md)

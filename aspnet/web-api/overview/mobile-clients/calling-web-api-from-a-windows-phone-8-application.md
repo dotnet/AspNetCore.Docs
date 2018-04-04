@@ -47,15 +47,21 @@ The first step of this end-to-end tutorial is to create a Web API project that s
 2. Click **File**, then **New**, and then **Project**.
 3. When the **New Project** dialog box is displayed, expand **Installed**, then **Templates**, then **Visual C#**, and then **Web**.
 
-    | [![](calling-web-api-from-a-windows-phone-8-application/_static/image2.png)](calling-web-api-from-a-windows-phone-8-application/_static/image1.png) |
-    | --- |
-    | Click image to expand |
+
+   | [![](calling-web-api-from-a-windows-phone-8-application/_static/image2.png)](calling-web-api-from-a-windows-phone-8-application/_static/image1.png) |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------|
+   |                                                                Click image to expand                                                                |
+
+
 4. Highlight **ASP.NET Web Application**, enter **BookStore** for the project name, and then click **OK**.
 5. When the **New ASP.NET Project** dialog box is displayed, select the **Web API** template, and then click **OK**.
 
-    | [![](calling-web-api-from-a-windows-phone-8-application/_static/image4.png)](calling-web-api-from-a-windows-phone-8-application/_static/image3.png) |
-    | --- |
-    | Click image to expand |
+
+   | [![](calling-web-api-from-a-windows-phone-8-application/_static/image4.png)](calling-web-api-from-a-windows-phone-8-application/_static/image3.png) |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------|
+   |                                                                Click image to expand                                                                |
+
+
 6. When the Web API project opens, remove the sample controller from the project:
 
     1. Expand the **Controllers** folder in the solution explorer.
@@ -63,30 +69,33 @@ The first step of this end-to-end tutorial is to create a Web API project that s
     3. Click **OK** when prompted to confirm the deletion.
 7. Add an XML data file to the Web API project; this file contains the contents of the bookstore catalog:
 
-    1. Right-click the **App\_Data** folder in the solution explorer, then click **Add**, and then click **New Item**.
-    2. When the **Add New Item** dialog box is displayed, highlight the **XML File** template.
-    3. Name the file **Books.xml**, and then click **Add**.
-    4. When the **Books.xml** file is opened, replace the code in the file with the XML from the sample **books.xml** file on MSDN: 
+   1. Right-click the **App\_Data** folder in the solution explorer, then click **Add**, and then click **New Item**.
+   2. When the **Add New Item** dialog box is displayed, highlight the **XML File** template.
+   3. Name the file **Books.xml**, and then click **Add**.
+   4. When the **Books.xml** file is opened, replace the code in the file with the XML from the sample **books.xml** file on MSDN: 
 
-        [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample1.xml)]
-    5. Save and close the XML file.
+       [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample1.xml)]
+   5. Save and close the XML file.
+
 8. Add the bookstore model to the Web API project; this model contains the Create, Read, Update, and Delete (CRUD) logic for the bookstore application:
 
-    1. Right-click the **Models** folder in the solution explorer, then click **Add**, and then click **Class**.
-    2. When the **Add New Item** dialog box is displayed, name the class file **BookDetails.cs**, and then click **Add**.
-    3. When the **BookDetails.cs** file is opened, replace the code in the file with the following: 
+   1. Right-click the **Models** folder in the solution explorer, then click **Add**, and then click **Class**.
+   2. When the **Add New Item** dialog box is displayed, name the class file **BookDetails.cs**, and then click **Add**.
+   3. When the **BookDetails.cs** file is opened, replace the code in the file with the following: 
 
-        [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample2.cs)]
-    4. Save and close the **BookDetails.cs** file.
+       [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample2.cs)]
+   4. Save and close the **BookDetails.cs** file.
+
 9. Add the bookstore controller to the Web API project:
 
-    1. Right-click the **Controllers** folder in the solution explorer, then click **Add**, and then click **Controller**.
-    2. When the **Add Scaffold** dialog box is displayed, highlight **Web API 2 Controller - Empty**, and then click **Add**.
-    3. When the **Add Controller** dialog box is displayed, name the controller **BooksController**, and then click **Add**.
-    4. When the **BooksController.cs** file is opened, replace the code in the file with the following: 
+   1. Right-click the **Controllers** folder in the solution explorer, then click **Add**, and then click **Controller**.
+   2. When the **Add Scaffold** dialog box is displayed, highlight **Web API 2 Controller - Empty**, and then click **Add**.
+   3. When the **Add Controller** dialog box is displayed, name the controller **BooksController**, and then click **Add**.
+   4. When the **BooksController.cs** file is opened, replace the code in the file with the following: 
 
-        [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample3.cs)]
-    5. Save and close the **BooksController.cs** file.
+       [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample3.cs)]
+   5. Save and close the **BooksController.cs** file.
+
 10. Build the Web API application to check for errors.
 
 <a id="STEP2"></a>
@@ -106,41 +115,45 @@ The next step of this end-to-end scenario is to create the catalog application f
     5. When the installation has completed, click **Close**.
 5. Add the **BookDetails** model to the **BookCatalog** project; this contains a generic model of the bookstore class:
 
-    1. Right-click the **BookCatalog** project in the solution explorer, then click **Add**, and then click **New Folder**.
-    2. Name the new folder **Models**.
-    3. Right-click the **Models** folder in the solution explorer, then click **Add**, and then click **Class**.
-    4. When the **Add New Item** dialog box is displayed, name the class file **BookDetails.cs**, and then click **Add**.
-    5. When the **BookDetails.cs** file is opened, replace the code in the file with the following: 
+   1. Right-click the **BookCatalog** project in the solution explorer, then click **Add**, and then click **New Folder**.
+   2. Name the new folder **Models**.
+   3. Right-click the **Models** folder in the solution explorer, then click **Add**, and then click **Class**.
+   4. When the **Add New Item** dialog box is displayed, name the class file **BookDetails.cs**, and then click **Add**.
+   5. When the **BookDetails.cs** file is opened, replace the code in the file with the following: 
 
-        [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample4.cs)]
-    6. Save and close the **BookDetails.cs** file.
+       [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample4.cs)]
+   6. Save and close the **BookDetails.cs** file.
+
 6. Update the **MainViewModel.cs** class to include the functionality to communicate with the BookStore Web API application:
 
-    1. Expand the **ViewModels** folder in the solution explorer, and then double-click the **MainViewModel.cs** file.
-    2. When the **MainViewModel.cs** file is opened, replace the code in the file with the following; note that you will need to update the value of the `apiUrl` constant with the actual URL of your Web API: 
+   1. Expand the **ViewModels** folder in the solution explorer, and then double-click the **MainViewModel.cs** file.
+   2. When the **MainViewModel.cs** file is opened, replace the code in the file with the following; note that you will need to update the value of the `apiUrl` constant with the actual URL of your Web API: 
 
-        [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample5.cs)]
-    3. Save and close the **MainViewModel.cs** file.
+       [!code-csharp[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample5.cs)]
+   3. Save and close the **MainViewModel.cs** file.
+
 7. Update the **MainPage.xaml** file to customize the application name:
 
-    1. Double-click the **MainPage.xaml** file in the solution explorer.
-    2. When the **MainPage.xaml** file is opened, locate the following lines of code: 
+   1. Double-click the **MainPage.xaml** file in the solution explorer.
+   2. When the **MainPage.xaml** file is opened, locate the following lines of code: 
 
-        [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample6.xml)]
-    3. Replace those lines with the following: 
+       [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample6.xml)]
+   3. Replace those lines with the following: 
 
-        [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample7.xml)]
-    4. Save and close the **MainPage.xaml** file.
+       [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample7.xml)]
+   4. Save and close the **MainPage.xaml** file.
+
 8. Update the **DetailsPage.xaml** file to customize the displayed items:
 
-    1. Double-click the **DetailsPage.xaml** file in the solution explorer.
-    2. When the **DetailsPage.xaml** file is opened, locate the following lines of code: 
+   1. Double-click the **DetailsPage.xaml** file in the solution explorer.
+   2. When the **DetailsPage.xaml** file is opened, locate the following lines of code: 
 
-        [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample8.xml)]
-    3. Replace those lines with the following: 
+       [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample8.xml)]
+   3. Replace those lines with the following: 
 
-        [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample9.xml)]
-    4. Save and close the **DetailsPage.xaml** file.
+       [!code-xml[Main](calling-web-api-from-a-windows-phone-8-application/samples/sample9.xml)]
+   4. Save and close the **DetailsPage.xaml** file.
+
 9. Build the Windows Phone application to check for errors.
 
 ### Step 3: Testing the End-to-End Solution
@@ -179,6 +192,8 @@ If the application cannot communicate with your Web API, an error message will b
 
 If you tap on the error message, any additional details about the error will be displayed:
 
+
 | [![](calling-web-api-from-a-windows-phone-8-application/_static/image16.png)](calling-web-api-from-a-windows-phone-8-application/_static/image15.png) |
-| --- |
-| Click image to expand |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                                                                 Click image to expand                                                                 |
+

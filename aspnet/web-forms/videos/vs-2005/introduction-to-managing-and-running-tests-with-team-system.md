@@ -21,6 +21,6 @@ In this video we see how you can manage all or your various test cases using the
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-managing-and-running-tests-with-team-system)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-manual-testing-with-team-system.md)
-[Next](measuring-the-business-value-of-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-manual-testing-with-team-system.md)
+> [Next](measuring-the-business-value-of-ajax.md)

@@ -185,6 +185,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Carlos Santos. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](efficiently-paging-through-large-amounts-of-data-vb.md)
-[Next](creating-a-customized-sorting-user-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](efficiently-paging-through-large-amounts-of-data-vb.md)
+> [Next](creating-a-customized-sorting-user-interface-vb.md)

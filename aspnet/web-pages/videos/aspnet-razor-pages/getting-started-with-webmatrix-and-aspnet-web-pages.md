@@ -21,5 +21,5 @@ Video accompaniment to the Getting Started with WebMatrix and ASP.NET Web Pages 
 
 [&#9654; Watch video (27 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-webmatrix-and-aspnet-web-pages)
 
->[!div class="step-by-step"]
-[Next](introduction-to-aspnet-web-programming-using-the-razor-syntax.md)
+> [!div class="step-by-step"]
+> [Next](introduction-to-aspnet-web-programming-using-the-razor-syntax.md)

@@ -184,6 +184,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Visual Studio 2005's Web Site Project System: What Is It and Why Did We Do It?](https://weblogs.asp.net/scottgu/archive/2005/08/21/423201.aspx)
 - [Walkthrough: Converting a Web Site Project to a Web Application Project in Visual Studio](https://msdn.microsoft.com/library/aa983476.aspx)
 
->[!div class="step-by-step"]
-[Previous](asp-net-hosting-options-vb.md)
-[Next](deploying-your-site-using-an-ftp-client-vb.md)
+> [!div class="step-by-step"]
+> [Previous](asp-net-hosting-options-vb.md)
+> [Next](deploying-your-site-using-an-ftp-client-vb.md)

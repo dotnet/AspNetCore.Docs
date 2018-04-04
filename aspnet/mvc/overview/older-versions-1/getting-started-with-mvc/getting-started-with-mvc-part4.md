@@ -82,6 +82,6 @@ If you don't like the default naming and mapping conventions used by the Entity 
 
 Now, let's work with some real data!
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part3.md)
-[Next](getting-started-with-mvc-part5.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part3.md)
+> [Next](getting-started-with-mvc-part5.md)

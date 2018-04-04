@@ -52,5 +52,5 @@ Enter a site name. Select your Azure subscription and the region. Under **Databa
 
 Click the **Settings** tab and check &quot;Execute Code First Migrations&quot;. Then click **Publish**.
 
->[!div class="step-by-step"]
-[Previous](part-9.md)
+> [!div class="step-by-step"]
+> [Previous](part-9.md)

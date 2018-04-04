@@ -41,7 +41,7 @@ In order to complete this walkthrough, you will need:
     >   
     > If you are using Visual Studio, this walkthrough assumes that you selected the **Web Development** collection of settings the first time that you started Visual Studio. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
- For an introduction to Visual Studio and ASP.NET, see [Creating a basic ASP.NET 4.5 Web Forms page in Visual Studio 2013](creating-a-basic-web-forms-page.md).   
+  For an introduction to Visual Studio and ASP.NET, see [Creating a basic ASP.NET 4.5 Web Forms page in Visual Studio 2013](creating-a-basic-web-forms-page.md).   
  
 
 ## Creating a Web application project and a Page
@@ -93,19 +93,19 @@ The code editor in Visual Studio helps you to avoid errors as you write code, an
 
 
 1. In **Design** view, double-click the blank page to create a handler for the **Load** event for the page.   
-You are using the event handler only as a place to write some code.
+   You are using the event handler only as a place to write some code.
 2. Inside the handler, type the following line that contains an error and press **ENTER**:
 
     [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample1.cs)]
 
- When you press **ENTER**, the code editor places green and red underlines (commonly call &quot;squiggly&quot; lines) under areas of the code that have issues. A green underline indicates a warning. A red underline indicates an error that you must fix. 
+   When you press **ENTER**, the code editor places green and red underlines (commonly call &quot;squiggly&quot; lines) under areas of the code that have issues. A green underline indicates a warning. A red underline indicates an error that you must fix. 
 
     Hold the mouse pointer over `myStr` to see a tooltip that tells you about the warning. Also, hold your mouse pointer over the red underline to see the error message.
 
     The following image shows the code with the underlines.
 
     ![Welcome text in Design view](code-editing-in-web-forms-pages/_static/image5.png "Welcome text in Design view")  
- The error must be fixed by adding a semicolon `;` to the end of the line. The warning simply notifies you that you haven't used the `myStr` variable yet.  
+   The error must be fixed by adding a semicolon `;` to the end of the line. The warning simply notifies you that you haven't used the `myStr` variable yet.  
 
     > [!NOTE] 
     > 
@@ -132,7 +132,7 @@ In this part of the walkthrough, you will write some simple code, and then extra
 
     [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample2.cs?highlight=3-16)]
 
- The code creates an **ArrayList** object, uses a loop to load it with values, and then uses another loop to display the contents of the **ArrayList** object.
+   The code creates an **ArrayList** object, uses a loop to load it with values, and then uses another loop to display the contents of the **ArrayList** object.
 4. Press **CTRL+F5** to run the page, and then click the **button** to make sure that you see the following output:   
 
     [!code-html[Main](code-editing-in-web-forms-pages/samples/sample3.html)]

@@ -74,6 +74,6 @@ When you run this script, the panel is displayed and fades out in one and a half
 
 The panel is fading out ([Click to view full-size image](adding-animation-to-a-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](dynamically-controlling-updatepanel-animations-cs.md)
-[Next](executing-several-animations-at-the-same-time-vb.md)
+> [!div class="step-by-step"]
+> [Previous](dynamically-controlling-updatepanel-animations-cs.md)
+> [Next](executing-several-animations-at-the-same-time-vb.md)

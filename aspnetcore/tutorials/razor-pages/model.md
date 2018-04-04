@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
 
-[!INCLUDE[model1](../../includes/RP/model1.md)]
+[!INCLUDE [model1](../../includes/RP/model1.md)]
 
 ## Add a data model
 
@@ -20,7 +20,7 @@ In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **
 
 Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!INCLUDE[model 2](../../includes/RP/model2.md)]
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
 
 <a name="cs"></a>
 ### Add a database connection string
@@ -65,9 +65,9 @@ The `Add-Migration` command generates code to create the initial database schema
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
-[!INCLUDE[model 4windows](../../includes/RP/model4Win.md)]
+[!INCLUDE [model 4windows](../../includes/RP/model4Win.md)]
 
-[!INCLUDE[model 4](../../includes/RP/model4tbl.md)]
+[!INCLUDE [model 4](../../includes/RP/model4tbl.md)]
 
 <a name="test"></a>
 ### Test the app
@@ -75,7 +75,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
- ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
+  ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
 
 <a name="scaffold"></a>
 
@@ -85,6 +85,6 @@ If you get a SQL exception, verify you have run migrations and updated the datab
 
 The next tutorial explains the files created by scaffolding.
 
->[!div class="step-by-step"]
-[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
+> [!div class="step-by-step"]
+> [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    

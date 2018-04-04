@@ -12,7 +12,7 @@ uid: data/ef-mvc/index
 ---
 # ASP.NET Core MVC with EF Core - tutorial series
 
-[!INCLUDE[RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
+[!INCLUDE [RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 
 1. [Get started](xref:data/ef-mvc/intro)
 1. [Create, Read, Update, and Delete operations](xref:data/ef-mvc/crud)

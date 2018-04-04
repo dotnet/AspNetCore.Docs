@@ -148,6 +148,6 @@ In this tutorial, you have added routes for categories and products. You have le
 [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)  
 [Microsoft Azure - Free Trial](https://azure.microsoft.com/pricing/free-trial/)
 
->[!div class="step-by-step"]
-[Previous](membership-and-administration.md)
-[Next](aspnet-error-handling.md)
+> [!div class="step-by-step"]
+> [Previous](membership-and-administration.md)
+> [Next](aspnet-error-handling.md)

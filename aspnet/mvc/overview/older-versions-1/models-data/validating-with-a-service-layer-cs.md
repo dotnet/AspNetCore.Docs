@@ -94,6 +94,6 @@ Using the IValidationDictionary interface and the ModelStateWrapper class enable
 
 The goal of this tutorial was to discuss one approach to performing validation in an ASP.NET MVC application. In this tutorial, you learned how to move all of your validation logic out of your controllers and into a separate service layer. You also learned how to isolate your service layer from your controller layer by creating a ModelStateWrapper class.
 
->[!div class="step-by-step"]
-[Previous](validating-with-the-idataerrorinfo-interface-cs.md)
-[Next](validation-with-the-data-annotation-validators-cs.md)
+> [!div class="step-by-step"]
+> [Previous](validating-with-the-idataerrorinfo-interface-cs.md)
+> [Next](validation-with-the-data-annotation-validators-cs.md)

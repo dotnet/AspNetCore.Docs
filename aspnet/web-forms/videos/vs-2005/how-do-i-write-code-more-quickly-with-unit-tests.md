@@ -21,6 +21,6 @@ In this video we learn how Unit Testing can increase your productivity by easing
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-write-code-more-quickly-with-unit-tests)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-create-my-own-bug-work-item.md)
-[Next](how-do-i-practice-test-driven-development.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-create-my-own-bug-work-item.md)
+> [Next](how-do-i-practice-test-driven-development.md)

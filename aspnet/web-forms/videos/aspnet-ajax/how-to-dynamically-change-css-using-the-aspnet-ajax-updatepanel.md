@@ -21,6 +21,6 @@ This video illustrates how to dynamically modify the style of your page using CS
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-dynamically-change-css-using-the-aspnet-ajax-updatepanel)
 
->[!div class="step-by-step"]
-[Previous](basic-aspnet-authentication-in-an-ajax-enabled-application.md)
-[Next](how-to-dynamically-add-controls-to-a-web-page.md)
+> [!div class="step-by-step"]
+> [Previous](basic-aspnet-authentication-in-an-ajax-enabled-application.md)
+> [Next](how-to-dynamically-add-controls-to-a-web-page.md)

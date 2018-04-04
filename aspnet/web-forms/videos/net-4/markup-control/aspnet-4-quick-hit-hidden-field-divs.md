@@ -21,6 +21,6 @@ In this video you will learn how div elements around hidden fields are now style
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-hidden-field-divs)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-tableless-menu-control.md)
-[Next](aspnet-4-quick-hit-disabled-control-styling.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-tableless-menu-control.md)
+> [Next](aspnet-4-quick-hit-disabled-control-styling.md)

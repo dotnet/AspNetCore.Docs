@@ -127,6 +127,6 @@ This topic described one way in which you can add database users and role member
 
 For more information on using VSDBCMD to deploy database projects, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). For guidance on customizing database deployments for different target environments, see [Customizing Database Deployments for Multiple Environments](customizing-database-deployments-for-multiple-environments.md). For more information on using custom MSBuild project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md). For more information on sqlcmd command-line options, see [sqlcmd Utility](https://msdn.microsoft.com/library/ms162773.aspx).
 
->[!div class="step-by-step"]
-[Previous](customizing-database-deployments-for-multiple-environments.md)
-[Next](deploying-membership-databases-to-enterprise-environments.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-database-deployments-for-multiple-environments.md)
+> [Next](deploying-membership-databases-to-enterprise-environments.md)

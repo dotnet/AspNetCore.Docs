@@ -229,8 +229,7 @@ The [CommandLine configuration provider](/aspnet/core/api/microsoft.extensions.c
 
 ### Setup and use the CommandLine configuration provider
 
-# [Basic Configuration](#tab/basicconfiguration)
-
+#### [Basic Configuration](#tab/basicconfiguration/)
 To activate command-line configuration, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program.cs?highlight=18,21)]
@@ -259,8 +258,7 @@ To override configuration provided by other configuration providers with command
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program2.cs?range=11-16&highlight=1,5)]
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Typical ASP.NET Core 2.x apps use the static convenience method `CreateDefaultBuilder` to build the host:
 
 [!code-csharp[](index/sample_snapshot//Program.cs?highlight=12)]
@@ -277,14 +275,12 @@ If all the preceding conditions are true, the command-line arguments are overrid
 
 ASP.NET Core 2.x app can use [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of `CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Create a [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder) and call the `AddCommandLine` method to use the CommandLine configuration provider. Calling the provider last allows the command-line arguments passed at runtime to override configuration set by the other configuration providers called earlier. Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program2.cs?highlight=11,15,19)]
 
----
-
+* * *
 ### Arguments
 
 Arguments passed on the command line must conform to one of two formats shown in the following table:

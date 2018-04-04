@@ -56,5 +56,5 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 
 Thanks for completing this introduction to ASP.NET Core MVC. We appreciate any comments you leave. [Get started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
->[!div class="step-by-step"]
-[Previous](validation.md)
+> [!div class="step-by-step"]
+> [Previous](validation.md)

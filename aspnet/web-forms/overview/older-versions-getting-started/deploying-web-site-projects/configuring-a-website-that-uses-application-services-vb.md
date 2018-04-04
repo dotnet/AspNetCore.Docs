@@ -195,6 +195,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [*Website Security Tutorials*](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 - [*Web Site Administration Tool Overview*](https://msdn.microsoft.com/library/yy40ytx0.aspx)
 
->[!div class="step-by-step"]
-[Previous](configuring-the-production-web-application-to-use-the-production-database-vb.md)
-[Next](strategies-for-database-development-and-deployment-vb.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-the-production-web-application-to-use-the-production-database-vb.md)
+> [Next](strategies-for-database-development-and-deployment-vb.md)

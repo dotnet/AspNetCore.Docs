@@ -14,7 +14,7 @@ uid: tutorials/first-mvc-app-xplat/index
 
 This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio Code. 
 
-[!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](../../includes/razor.md)]
 
 1. [Get started](xref:tutorials/first-mvc-app-xplat/start-mvc)
 1. [Add a controller](xref:tutorials/first-mvc-app-xplat/adding-controller)

@@ -58,6 +58,6 @@ These topics provide all the information you need in order to complete these tas
 
 For guidance on configuring a typical staging environment, see [Scenario: Configuring a Staging Environment for Web Deployment](scenario-configuring-a-staging-environment-for-web-deployment.md). For guidance on configuring a typical production environment, see [Scenario: Configuring a Production Environment for Web Deployment](scenario-configuring-a-production-environment-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](choosing-the-right-approach-to-web-deployment.md)
-[Next](scenario-configuring-a-staging-environment-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](choosing-the-right-approach-to-web-deployment.md)
+> [Next](scenario-configuring-a-staging-environment-for-web-deployment.md)

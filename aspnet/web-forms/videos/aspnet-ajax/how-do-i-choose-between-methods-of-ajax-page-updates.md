@@ -21,6 +21,6 @@ In this video Joe Stagner compares the two primary methods of performing AJAX-st
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-choose-between-methods-of-ajax-page-updates)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax.md)
-[Next](how-do-i-use-other-javascript-user-interface-libraries-with-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax.md)
+> [Next](how-do-i-use-other-javascript-user-interface-libraries-with-aspnet-ajax.md)

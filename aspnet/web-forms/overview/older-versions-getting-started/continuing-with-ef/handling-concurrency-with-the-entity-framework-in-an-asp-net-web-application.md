@@ -299,6 +299,6 @@ Run the page and create a concurrency conflict again. This time you see an error
 
 This completes the introduction to handling concurrency conflicts. The next tutorial will provide guidance on how to improve performance in a web application that uses the Entity Framework.
 
->[!div class="step-by-step"]
-[Previous](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
-[Next](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+> [Next](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)

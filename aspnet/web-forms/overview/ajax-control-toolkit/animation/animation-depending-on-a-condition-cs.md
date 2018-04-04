@@ -55,6 +55,6 @@ Note that the less than sign (`<`) in the `ConditionScript` attribute must be es
 
 The panel is fading out without resizing, so the second animation runs, the first one didn't ([Click to view full-size image](animation-depending-on-a-condition-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](executing-several-animations-after-each-other-cs.md)
-[Next](picking-one-animation-out-of-a-list-cs.md)
+> [!div class="step-by-step"]
+> [Previous](executing-several-animations-after-each-other-cs.md)
+> [Next](picking-one-animation-out-of-a-list-cs.md)

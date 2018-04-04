@@ -20,7 +20,7 @@ There are many third party tools you can download to manage and view a SQLite da
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](code\Models\SeedData.cs)]
+[!code-csharp[](code/Models/SeedData.cs)]
 
 If there are any movies in the DB, the seed initializer returns.
 
@@ -36,7 +36,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
-[!code-csharp[](../../tutorials/razor-pages\razor-pages-start\sample\RazorPagesMovie\Program.cs)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Program.cs)]
 
 ### Test the app
 

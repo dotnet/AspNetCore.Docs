@@ -189,6 +189,6 @@ Video:
 
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For an introduction to the Azure Storage service and queues, see episode 5 starting at 35:13.
 
->[!div class="step-by-step"]
-[Previous](distributed-caching.md)
-[Next](more-patterns-and-guidance.md)
+> [!div class="step-by-step"]
+> [Previous](distributed-caching.md)
+> [Next](more-patterns-and-guidance.md)

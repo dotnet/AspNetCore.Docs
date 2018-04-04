@@ -145,6 +145,6 @@ For more information on Web Deploy command-line operations and syntax, see [Web 
 
 For more general guidance on the different ways in which you can deploy web packages from a remote computer, see [Using Web Deploy Remotely](https://technet.microsoft.com/library/ee461175(WS.10).aspx). For more information on using Web Deploy On Demand, see [Web Deploy On Demand](https://technet.microsoft.com/library/ee517345(WS.10).aspx).
 
->[!div class="step-by-step"]
-[Previous](configuring-server-environments-for-web-deployment.md)
-[Next](scenario-configuring-a-test-environment-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-server-environments-for-web-deployment.md)
+> [Next](scenario-configuring-a-test-environment-for-web-deployment.md)

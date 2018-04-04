@@ -47,11 +47,11 @@ In this section, you'll use NuGet to download a sample we will work with. Start 
     `Install-Package SendGrid`  
     `Install-Package -Prerelease Microsoft.AspNet.Identity.Samples`  
   
- In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email and [Twilio](https://www.twilio.com/) or [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) for sms texting. The `Identity.Samples` package installs the code we will be working with.
+   In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email and [Twilio](https://www.twilio.com/) or [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) for sms texting. The `Identity.Samples` package installs the code we will be working with.
 3. Set the [project to use SSL](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
 4. *Optional*: Follow the instructions in my [Email confirmation tutorial](account-confirmation-and-password-recovery-with-aspnet-identity.md) to hook up SendGrid and then run the app and register an email account.
 5. *Optional: *Remove the demo email link confirmation code from the sample (The `ViewBag.Link` code in the account controller. See the `DisplayEmail` and `ForgotPasswordConfirmation` action methods and razor views ).
-6. *Optional: *Remove the `ViewBag.Status` code from the Manage and Account controllers and from the *Views\Account\VerifyCode.cshtml* and *Views\Manage\VerifyPhoneNumber.cshtml* razor views. Alternatively, you can keep the `ViewBag.Status` display to test how this app works locally without having to hook up and send email and SMS messages.
+6. <em>Optional: *Remove the `ViewBag.Status` code from the Manage and Account controllers and from the *Views\Account\VerifyCode.cshtml</em> and <em>Views\Manage\VerifyPhoneNumber.cshtml</em> razor views. Alternatively, you can keep the `ViewBag.Status` display to test how this app works locally without having to hook up and send email and SMS messages.
 
 > [!NOTE]
 > Warning: If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls out the changes made.
@@ -65,44 +65,44 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
 1. **Creating a User Account with an SMS provider**  
   
- Create a [Twilio](https://www.twilio.com/try-twilio) or an [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) account.
+   Create a [Twilio](https://www.twilio.com/try-twilio) or an [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) account.
 2. **Installing additional packages or adding service references**  
   
- Twilio:  
- In the Package Manager Console, enter the following command:  
+   Twilio:  
+   In the Package Manager Console, enter the following command:  
     `Install-Package Twilio`  
   
- ASPSMS:  
- The following service reference needs to be added:  
+   ASPSMS:  
+   The following service reference needs to be added:  
   
     ![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image1.png)  
   
- Address:  
+   Address:  
     `https://webservice.aspsms.com/aspsmsx2.asmx?WSDL`  
   
- Namespace:  
+   Namespace:  
     `ASPSMSX2`
 3. **Figuring out SMS Provider User credentials**  
   
- Twilio:  
- From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth token**.  
+   Twilio:  
+   From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth token**.  
   
- ASPSMS:  
- From your account settings, navigate to **Userkey** and copy it together with your self-defined **Password**.  
+   ASPSMS:  
+   From your account settings, navigate to **Userkey** and copy it together with your self-defined **Password**.  
   
- We will later store these values in the variables `SMSAccountIdentification` and `SMSAccountPassword` .
+   We will later store these values in the variables `SMSAccountIdentification` and `SMSAccountPassword` .
 4. **Specifying SenderID / Originator**  
   
- Twilio:  
- From the **Numbers** tab, copy your Twilio phone number.  
+   Twilio:  
+   From the **Numbers** tab, copy your Twilio phone number.  
   
- ASPSMS:  
- Within the **Unlock Originators** Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks).  
+   ASPSMS:  
+   Within the **Unlock Originators** Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks).  
   
- We will later store this value in the variable `SMSAccountFrom` .
+   We will later store this value in the variable `SMSAccountFrom` .
 5. **Transferring SMS provider credentials into app**  
   
- Make the credentials and sender phone number available to the app:
+   Make the credentials and sender phone number available to the app:
 
     [!code-csharp[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample1.cs)]
 
@@ -110,9 +110,9 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
     > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 6. **Implementation of data transfer to SMS provider**  
   
- Configure the `SmsService`  class in the *App\_Start\IdentityConfig.cs* file.  
+   Configure the `SmsService`  class in the *App\_Start\IdentityConfig.cs* file.  
   
- Depending on the used SMS provider activate either the **Twilio** or the **ASPSMS** section: 
+   Depending on the used SMS provider activate either the **Twilio** or the **ASPSMS** section: 
 
     [!code-csharp[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample2.cs)]
 7. Run the app and log in with the account you previously registered.

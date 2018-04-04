@@ -21,6 +21,6 @@ Traditionally when a Web page is requested, the user must wait while the entire 
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-ajax-incremental-page-display-pattern)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-ajax-paging-pattern.md)
-[Next](how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-ajax-paging-pattern.md)
+> [Next](how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post.md)

@@ -330,6 +330,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Jackie Goor and Liz Shulok. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](an-overview-of-inserting-updating-and-deleting-data-vb.md)
-[Next](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md)
+> [!div class="step-by-step"]
+> [Previous](an-overview-of-inserting-updating-and-deleting-data-vb.md)
+> [Next](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md)

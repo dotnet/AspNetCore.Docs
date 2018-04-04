@@ -73,6 +73,6 @@ The following JavaScript code assigns this JSON descripting to the `OnClick` ani
 
 The animation runs immediately, without a mouse click (and with very little markup) ([Click to view full-size image](changing-an-animation-using-client-side-code-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](executing-animations-using-client-side-code-vb.md)
-[Next](animating-an-updatepanel-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](executing-animations-using-client-side-code-vb.md)
+> [Next](animating-an-updatepanel-control-vb.md)

@@ -132,6 +132,6 @@ In the browser, open the Instructors page in the public site, and select an inst
 
 You've now deployed an application update that did not involve a database change. The next tutorial shows you how to deploy a database change.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md)
-[Next](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md)
+> [Next](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md)

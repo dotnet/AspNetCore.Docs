@@ -14,7 +14,7 @@ uid: data/ef-rp/crud
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
@@ -238,6 +238,6 @@ Verify the Razor Page contains the correct `@page` directive. For example, The S
 
 Each Razor Page must include the `@page` directive.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/intro)
-[Next](xref:data/ef-rp/sort-filter-page)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/intro)
+> [Next](xref:data/ef-rp/sort-filter-page)

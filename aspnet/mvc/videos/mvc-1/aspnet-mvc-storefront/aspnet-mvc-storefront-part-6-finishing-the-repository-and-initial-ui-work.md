@@ -21,6 +21,6 @@ Rob talks with Jon Galloway about CSS strategies and begin working in the Front 
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-5-globalization.md)
-[Next](aspnet-mvc-storefront-part-7-routing-and-ui-work.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-5-globalization.md)
+> [Next](aspnet-mvc-storefront-part-7-routing-and-ui-work.md)

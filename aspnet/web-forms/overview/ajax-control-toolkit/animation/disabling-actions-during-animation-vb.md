@@ -57,6 +57,6 @@ However in the given scenario this would be useless since the button fades out a
 
 The button is disabled as soon as the animation runs ([Click to view full-size image](disabling-actions-during-animation-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](animating-in-response-to-user-interaction-vb.md)
-[Next](triggering-an-animation-in-another-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](animating-in-response-to-user-interaction-vb.md)
+> [Next](triggering-an-animation-in-another-control-vb.md)

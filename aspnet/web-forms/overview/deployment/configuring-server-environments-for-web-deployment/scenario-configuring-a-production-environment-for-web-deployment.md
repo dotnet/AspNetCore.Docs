@@ -54,6 +54,6 @@ These topics provide all the information you need in order to complete these tas
 
 For guidance on configuring a typical developer test environment, see [Scenario: Configuring a Test Environment for Web Deployment](scenario-configuring-a-test-environment-for-web-deployment.md). For guidance on configuring a typical staging environment, see [Scenario: Configuring a Staging Environment for Web Deployment](scenario-configuring-a-staging-environment-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](scenario-configuring-a-staging-environment-for-web-deployment.md)
-[Next](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
+> [!div class="step-by-step"]
+> [Previous](scenario-configuring-a-staging-environment-for-web-deployment.md)
+> [Next](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)

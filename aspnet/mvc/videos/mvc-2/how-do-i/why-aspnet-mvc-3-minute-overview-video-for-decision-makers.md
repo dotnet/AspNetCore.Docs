@@ -21,6 +21,6 @@ A high-level overview of ASP.NET MVC for decision-makers who would like to know 
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/why-aspnet-mvc-3-minute-overview-video-for-decision-makers)
 
->[!div class="step-by-step"]
-[Previous](what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.md)
-[Next](aspnet-mvc-how-10-minute-technical-video-for-developers.md)
+> [!div class="step-by-step"]
+> [Previous](what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.md)
+> [Next](aspnet-mvc-how-10-minute-technical-video-for-developers.md)

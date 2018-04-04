@@ -61,5 +61,5 @@ To conclude this sample, you need to define the two CSS classes that are referen
 
 The data in the accordion comes directly from the data source ([Click to view full-size image](databinding-to-an-accordion-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](dynamically-adding-an-accordion-pane-cs.md)
+> [!div class="step-by-step"]
+> [Next](dynamically-adding-an-accordion-pane-cs.md)

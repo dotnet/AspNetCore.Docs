@@ -21,6 +21,6 @@ In this video, Joe Stagner extends the registration process in an ASP.NET applic
 
 [&#9654; Watch video (35 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/implement-the-registration-verification-pattern)
 
->[!div class="step-by-step"]
-[Previous](logging-users-into-your-membership-system.md)
-[Next](simple-web-service-authentication.md)
+> [!div class="step-by-step"]
+> [Previous](logging-users-into-your-membership-system.md)
+> [Next](simple-web-service-authentication.md)

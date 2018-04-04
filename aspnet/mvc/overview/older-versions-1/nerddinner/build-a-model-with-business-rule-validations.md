@@ -223,6 +223,6 @@ We've now got a model that we can use to both query and update our database.
 
 Let's now add some controllers and views to the project that we can use to build an HTML UI experience around it.
 
->[!div class="step-by-step"]
-[Previous](create-a-database.md)
-[Next](use-controllers-and-views-to-implement-a-listingdetails-ui.md)
+> [!div class="step-by-step"]
+> [Previous](create-a-database.md)
+> [Next](use-controllers-and-views-to-implement-a-listingdetails-ui.md)

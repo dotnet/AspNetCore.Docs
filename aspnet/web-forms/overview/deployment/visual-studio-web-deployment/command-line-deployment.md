@@ -139,6 +139,6 @@ You have now deployed an application update by using the command line.
 
 In the next tutorial, you will see an example of how to extend the web publish pipeline. The example will show you how to deploy files that are not included in the project.
 
->[!div class="step-by-step"]
-[Previous](deploying-a-database-update.md)
-[Next](deploying-extra-files.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-database-update.md)
+> [Next](deploying-extra-files.md)

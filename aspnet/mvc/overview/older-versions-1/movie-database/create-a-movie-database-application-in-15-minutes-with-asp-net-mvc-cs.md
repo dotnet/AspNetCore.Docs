@@ -363,5 +363,5 @@ The purpose of this tutorial was to give you a sense of the experience of buildi
 
 In this tutorial, we examined only the most basic features of the ASP.NET MVC framework. In future tutorials, we dive deeper into topics such as controllers, controller actions, views, view data, and HTML helpers.
 
->[!div class="step-by-step"]
-[Next](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb.md)
+> [!div class="step-by-step"]
+> [Next](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb.md)

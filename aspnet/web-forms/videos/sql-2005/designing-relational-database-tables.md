@@ -21,6 +21,6 @@ Why are relational databases the most popular? SQL Server beginners will learn t
 
 [&#9654; Watch video (34 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/designing-relational-database-tables)
 
->[!div class="step-by-step"]
-[Previous](more-about-column-data-types-and-other-properties.md)
-[Next](manipulating-database-data.md)
+> [!div class="step-by-step"]
+> [Previous](more-about-column-data-types-and-other-properties.md)
+> [Next](manipulating-database-data.md)

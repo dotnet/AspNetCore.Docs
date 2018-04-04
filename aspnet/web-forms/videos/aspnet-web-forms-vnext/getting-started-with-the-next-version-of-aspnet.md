@@ -21,6 +21,6 @@ Scott Hanselman introduces you to the upcoming features in the next version of A
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-the-next-version-of-aspnet)
 
->[!div class="step-by-step"]
-[Previous](aspnet-vnext-videos-bundling-and-minification.md)
-[Next](aspnet-and-web-tools-20122.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-vnext-videos-bundling-and-minification.md)
+> [Next](aspnet-and-web-tools-20122.md)

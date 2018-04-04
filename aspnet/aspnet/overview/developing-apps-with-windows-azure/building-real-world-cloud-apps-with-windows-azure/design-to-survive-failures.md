@@ -126,6 +126,6 @@ Videos:
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. Episodes 1 and 8 go in depth into the reasons for designing cloud apps to survive failures. See also the follow-up discussion of throttling in episode 2 starting at 49:57, the discussion of failure points and failure modes in episode 2 starting at 56:05, and the discussion of circuit breakers in episode 3 starting at 40:55.
 - [Building Big: Lessons learned from Azure customers - Part II](https://channel9.msdn.com/Events/Build/2012/3-030). Mark Simms talks about designing for failure and instrumenting everything. Similar to the Failsafe series but goes into more how-to details.
 
->[!div class="step-by-step"]
-[Previous](unstructured-blob-storage.md)
-[Next](monitoring-and-telemetry.md)
+> [!div class="step-by-step"]
+> [Previous](unstructured-blob-storage.md)
+> [Next](monitoring-and-telemetry.md)

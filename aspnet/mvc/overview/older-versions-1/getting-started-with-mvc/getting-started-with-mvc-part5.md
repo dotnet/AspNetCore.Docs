@@ -58,6 +58,6 @@ It's creating links that we won't need, so we'll delete them for this example. W
 
 We now have a simple listing of our movie data. However, if we click the "Create New" link, we'll get an error as it's not hooked up! Let's implement a Create Action method and enable a user to enter new movies in our database.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part4.md)
-[Next](getting-started-with-mvc-part6.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part4.md)
+> [Next](getting-started-with-mvc-part6.md)

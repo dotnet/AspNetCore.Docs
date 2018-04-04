@@ -21,5 +21,5 @@ In this short introduction, you create a complete Dynamic Data application in mi
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/your-first-scaffold-and-what-is-dynamic-data)
 
->[!div class="step-by-step"]
-[Next](how-do-i-enable-inline-gridview-editing.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-enable-inline-gridview-editing.md)

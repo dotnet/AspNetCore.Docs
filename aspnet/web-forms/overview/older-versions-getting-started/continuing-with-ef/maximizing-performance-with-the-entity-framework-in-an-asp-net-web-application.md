@@ -261,6 +261,6 @@ This completes the introduction to improving performance in an ASP.NET web appli
 
 The next tutorial reviews some of the important enhancements to the Entity Framework that are new in version 4.
 
->[!div class="step-by-step"]
-[Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
-[Next](what-s-new-in-the-entity-framework-4.md)
+> [!div class="step-by-step"]
+> [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [Next](what-s-new-in-the-entity-framework-4.md)

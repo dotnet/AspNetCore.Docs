@@ -21,6 +21,6 @@ In this video I will demonstrate a technique to dynamically add an indeterminate
 
 [&#9654; Watch video (31 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-dynamically-add-controls-to-a-web-page)
 
->[!div class="step-by-step"]
-[Previous](how-to-dynamically-change-css-using-the-aspnet-ajax-updatepanel.md)
-[Next](set-up-your-development-environment-for-aspnet-35.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-dynamically-change-css-using-the-aspnet-ajax-updatepanel.md)
+> [Next](set-up-your-development-environment-for-aspnet-35.md)

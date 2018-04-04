@@ -117,6 +117,6 @@ In addition, managing deployment when updates are frequent and incremental throw
 - You want to log deployment activities. The deployment process should send email notifications of successful or failed deployments to designated recipients.
 - If an automated deployment fails, the deployment process should retry the current deployment or deploy the previous web package instead.
 
->[!div class="step-by-step"]
-[Previous](deploying-web-applications-in-enterprise-scenarios.md)
-[Next](application-lifecycle-management-from-development-to-production.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-web-applications-in-enterprise-scenarios.md)
+> [Next](application-lifecycle-management-from-development-to-production.md)

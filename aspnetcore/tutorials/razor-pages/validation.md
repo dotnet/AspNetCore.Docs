@@ -140,6 +140,6 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 
->[!div class="step-by-step"]
-[Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
-[Next: Uploading files](xref:tutorials/razor-pages/uploading-files)
+> [!div class="step-by-step"]
+> [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
+> [Next: Uploading files](xref:tutorials/razor-pages/uploading-files)

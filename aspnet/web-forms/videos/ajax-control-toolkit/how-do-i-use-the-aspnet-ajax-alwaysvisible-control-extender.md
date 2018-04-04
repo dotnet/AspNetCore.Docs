@@ -21,6 +21,6 @@ See how easy it is to anchor a page element to a position on screen, where it re
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-modalpopup-extender-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-accordion-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-modalpopup-extender-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-accordion-control.md)
