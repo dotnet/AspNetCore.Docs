@@ -329,6 +329,16 @@
         "source_path": "aspnetcore/security/data-protection/compatibility/cookie-sharing.md", 
         "redirect_url": "/aspnet/core/security/cookie-sharing/", 
         "redirect_document_id": false 
+    },
+    {
+        "source_path": "aspnetcore/mvc/models/formatting.md",
+        "redirect_url": "/aspnet/core/web-api/advanced/formatting",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/advanced/custom-formatters.md",
+        "redirect_url": "/aspnet/core/web-api/advanced/custom-formatters",
+        "redirect_document_id": false
     }
   ] 
 }

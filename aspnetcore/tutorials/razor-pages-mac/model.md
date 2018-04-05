@@ -65,7 +65,7 @@ The version numbers shown in the following code were correct at the time of writ
 
 * In Visual Studio, Right-click the *Pages* folder and select **Add > Add existing Folder**.
 * Select the *Movies* folder.
-* In the *Chosse files to include in the project* dialog, select **Include All**.
+* In the *Choose files to include in the project* dialog, select **Include All**.
 
 The next tutorial explains the files created by scaffolding.
 

@@ -281,7 +281,7 @@ If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated. 
 * Users are required to sign in again on their next request. 
-* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#how-does-aspnet-core-mvc-address-csrf) and [ASP.NET Core MVC tempdata cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
