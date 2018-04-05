@@ -17,6 +17,9 @@ Introduction to ASP.NET Web Programming Using the Razor Syntax (C#)
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample28.cs)] 
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample29.cs)] 
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)] 
 > This article gives you an overview of programming with ASP.NET Web Pages using the Razor syntax. ASP.NET is Microsoft's technology for running dynamic web pages on web servers. This articles focuses on using the C# programming language.
 > 
 > **What you'll learn**:
