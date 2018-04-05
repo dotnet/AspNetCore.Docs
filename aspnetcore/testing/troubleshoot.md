@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 manager: wpickett
 ms.author: riande
-ms.date: 4/5/2018
+ms.date: 04/05/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: content
