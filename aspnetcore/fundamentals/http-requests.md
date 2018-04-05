@@ -23,9 +23,16 @@ An `IHttpClientFactory` can be registered and used to configure and create [Http
 
 ## Consumption patterns
 
-There are several ways `IHttpClientFactory` can be used in an app. None of them are strictly superior to another. The best approach depends upon the app's constraints.
+There are several ways `IHttpClientFactory` can be used in an app:
 
-## Basic usage
+* [Basic usage](#basic-usage)
+* [Named clients](#named-clients)
+* [Typed clients](#typed-clients)
+* [Generated clients](#generated-clients)
+
+None of them are strictly superior to another. The best approach depends upon the app's constraints.
+
+### Basic usage
 
 The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. Register the service with the services provider:
 
@@ -37,7 +44,7 @@ Once registered, code can accept an `IHttpClientFactory` anywhere services can b
 
 Using `IHttpClientFactory` in this fashion is a great way to refactor an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to `CreateClient`.
 
-## Named clients
+### Named clients
 
 If an app requires multiple distinct uses of `HttpClient`, each with different configurations, an option is to use **named clients**. Any common configuration for a named `HttpClient` can be specified during registration.
 
@@ -82,7 +89,7 @@ public class MyController : Controller
 
 In the preceding code, the `gitHubClient` variable has the `BaseAddress` and `DefaultRequestHeaders` set. The `defaultClient` variable doesn't. This scenario enables different configurations per endpoint/API, for example.
 
-## Typed clients
+### Typed clients
 
 Typed clients provide the same capabilities as named clients without the need to use strings as keys. The typed client approach provides IntelliSense and compiler help when consuming clients. They provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint. Another advantage is that they work with DI and can be injected where required in your app.
 
@@ -164,7 +171,7 @@ public class ValuesService
 
 In the preceding code, the `HttpClient` is stored as a private field. All access to make external calls goes through the `GetValues` method.
 
-## Generated clients
+### Generated clients
 
 `IHttpClientFactory` can be used in combination with other third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit is a REST library for .NET. It converts REST APIs into live interfaces. An implementation of the interface is generated dynamically by the `RestService`, using `HttpClient` to make the external HTTP calls.
 
