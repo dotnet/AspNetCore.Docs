@@ -24,19 +24,19 @@ The following links provide troubleshooting guidance:
 ## .NET Core SDK warnings
 
 ### Both the 32 and 64 bit versions of the .NET Core SDK are installed
-In the **New Project** dialog for ASP.NET Core you may see the following warning appear at the top: 
+In the **New Project** dialog for ASP.NET Core, you may see the following warning appear at the top: 
 
     Both 32 and 64 bit versions of the .NET Core SDK are installed. Only templates from the 64 bit version(s) installed at C:\Program Files\dotnet\sdk\" will be displayed.
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/both32and64bit.png)
 
-This warning appears when both 32 bit (x86) and 64 bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions can be installed include:
+This warning appears when both 32-bit (x86) and 64-bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions can be installed include:
 
-* You originally downloaded the .NET Core SDK installer using a 32 bit machine, but then copied it across and installed it on a 64 bit machine. 
-* The 32 bit .NET Core SDK was installed by another application.
+* You originally downloaded the .NET Core SDK installer using a 32-bit machine, but then copied it across and installed it on a 64-bit machine. 
+* The 32-bit .NET Core SDK was installed by another application.
 * The wrong version was downloaded and installed.
 
-Uninstall the 32 bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and it's implications, you can ignore the warning.
+Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
 
 ### The .NET Core SDK is installed in multiple locations
 In the **New Project** dialog for ASP.NET Core you may see the following warning appear at the top: 
@@ -45,7 +45,6 @@ In the **New Project** dialog for ASP.NET Core you may see the following warning
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/multiplelocations.png)
 
-
 You are seeing this message because you have at least one installation of the .NET Core SDK in a directory outside of *C:\Program Files\dotnet\sdk\*. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
-Uninstall the 32 bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and it's implications, you can ignore the warning.
+Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
