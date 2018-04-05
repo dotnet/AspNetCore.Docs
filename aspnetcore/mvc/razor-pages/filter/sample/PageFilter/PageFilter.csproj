@@ -10,14 +10,4 @@
   </ItemGroup>
 
 
-  <ItemGroup>
-    <Content Update="Pages\About2.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Pages\Index2.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
-
-
 </Project>

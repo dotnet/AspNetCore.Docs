@@ -15,18 +15,17 @@ namespace PageFilter.Filters
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
         {
-            _logger.LogDebug("Do something during page handler selection.");
+            _logger.LogDebug("Global sync OnPageHandlerSelected called.");
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            _logger.LogDebug("Do something after handler selection,"
-                + "but before a handler method executes."); 
+            _logger.LogDebug("Global sync PageHandlerExecutingContext called.");
         }
 
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
         {
-            _logger.LogDebug(" Do something after a handler method executes.");
+            _logger.LogDebug("Global sync OnPageHandlerExecuted called.");
         }
     }
 }

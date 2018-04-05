@@ -3,11 +3,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PageFilter.Pages
 {
-    public class About2Model : PageModel
+    public class AboutModel : PageModel
     {
         private readonly ILogger _logger;
 
-        public About2Model(ILogger<About2Model> logger)
+        public AboutModel(ILogger<AboutModel> logger)
         {
             _logger = logger;
         }
@@ -17,12 +17,12 @@ namespace PageFilter.Pages
         public void OnGet()
         {
             Message = "Your application description page.";
-            _logger.LogDebug("About2/OnGet");
+            _logger.LogDebug("About/OnGet");
         }
 
         public void OnPost()
         {
-            _logger.LogDebug("About2/OnPost");
+            _logger.LogDebug("About/OnPost");
         }
     }
 }

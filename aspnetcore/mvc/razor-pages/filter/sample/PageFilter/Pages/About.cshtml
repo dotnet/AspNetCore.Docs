@@ -1,5 +1,5 @@
 ﻿@page
-@model About2Model
+@model AboutModel
 @{
     ViewData["Title"] = "About";
 }
@@ -10,23 +10,7 @@
 
 <div class="col-md-12">
     <form method="post">
-        <table>
-            <tr>
-                <td>Name</td>
-                <td colspan="2">
-                    <input type="text" id="user" />
-                </td>
-            </tr>
-            <tr>
-                <td>Message</td>
-                <td colspan="2">
-                    <input type="text" id="message" />
-                </td>
-                <td>
-                    <input type="submit" id="send" value="Send" />
-                </td>
-            </tr>
-        </table>
+        <input type="submit" id="send" value="Post" />
     </form>
     <p></p>
     <ul id="messages" style="list-style-type:none;"></ul>
