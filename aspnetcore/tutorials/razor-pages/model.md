@@ -59,13 +59,13 @@ Add-Migration Initial
 Update-Database
 ```
 
-Alternatively, If you are using the .NET Core SDK command line, you can use
-``` Console
+Alternatively, the following .NET Core CLI commands can be used:
+
+```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet ef migrations add Initial
 dotnet ef database update
 ```
-
 
 The `Install-Package` command installs the tooling required to run the scaffolding engine.
 
