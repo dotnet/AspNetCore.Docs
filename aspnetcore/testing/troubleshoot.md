@@ -21,7 +21,7 @@ The following links provide troubleshooting guidance:
 * [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
 
 <a name="sdk"></a>
-## .NET Core SDK  Warnings
+## .NET Core SDK warnings
 
 ### Both the 32 and 64 bit versions of the .NET Core SDK are installed
 In the **New Project** dialog for ASP.NET Core you may see the following warning appear at the top: 
