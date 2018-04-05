@@ -67,12 +67,14 @@ The following code enables the `SamplePageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## Implement Razor Page filters by overriding page handlers
+## Implement Razor Page filters by overriding filter methods
 
 The following code overrides the synchronous Razor Page filters:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
 
-The following code overrides the asynchronous Razor Page filters:
+## Implement a filter attribute
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs)]
+The framework includes built-in attribute-based filters that you can subclass. For example, the following [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter adds a header to the response:
+
+[!code-csharp[Main](filter/sample/PageFilter/Filters/SampleAsyncPageFilter.cs)]

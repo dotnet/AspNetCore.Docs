@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using PageFilter.Filters;
 using System.Threading.Tasks;
 
 namespace PageFilter.Pages
 {
+    [AddHeader("Author", "Rick")]
     public class ContactModel : PageModel
     {
         private readonly ILogger _logger;
@@ -20,21 +21,6 @@ namespace PageFilter.Pages
             Message = "Your contact page.";
             _logger.LogDebug("Contact/OnGet");
             await Task.CompletedTask;
-        }
-
-        public override async Task OnPageHandlerSelectionAsync(
-            PageHandlerSelectedContext context)
-        {
-            _logger.LogDebug("ContactModel/OnPageHandlerSelectionAsync called.");
-            await Task.CompletedTask;
-        }
-
-        public override async Task OnPageHandlerExecutionAsync(
-            PageHandlerExecutingContext context,
-           PageHandlerExecutionDelegate next)
-        {
-            _logger.LogDebug("ContactModel/OnPageHandlerExecutionAsync called.");
-            await next.Invoke();
         }
     }
 }
