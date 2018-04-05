@@ -21,8 +21,6 @@ Razor Page filters can:
 * Run code after a handler method has been selected, but before model binding occurs.
 * Run code before the handler method executes, after model binding is complete.
 * Run code after the handler method executes.
-* Influence which page handler runs.
-* Run initialization code before model binding occurs. 
 * Be implemented on a page or globally.
 
 [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0) constructors run before the handler methods, but they don't have access to the [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to a subset of the `HttpContext`. Filters also differ from middleware in that they have context.
