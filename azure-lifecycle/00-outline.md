@@ -1,4 +1,4 @@
-# Azure .NET Developer Lifecycle 
+# Azure Developer Lifecycle for .NET Developers
 
 The purpose of this book (or set of docs, or whatever else this project becomes) is to set the minimum bar for a complete .NET development lifecycle on Azure. We shall assume that developers are experienced ASP.NET developers (200-300 level understanding) with no cloud/Azure experience. The emphasis will be on onboarding developers to Azure, not a survey of everything available.  
 
