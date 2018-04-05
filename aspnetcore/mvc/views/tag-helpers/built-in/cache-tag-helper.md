@@ -35,10 +35,10 @@ You can set the cache duration with the following attributes:
 ### enabled    
 
 
-| Attribute Type    | Valid Values      |
-|----------------   |----------------   |
-| boolean           | "true" (default)  |
-|                   | "false"   |
+| Attribute Type 	| Valid Values   	|
+|----------------	|----------------	|
+| boolean         	| "true" (default) 	|
+|               	| "false"	|
 
 
 Determines whether the content enclosed by the Cache Tag Helper is cached. The default is `true`.  If set to `false` this Cache Tag Helper will have no caching effect on the rendered output.
@@ -55,9 +55,10 @@ Example:
 
 ### expires-on 
 
-| Attribute Type |           Example Value            |
-|----------------|------------------------------------|
-| DateTimeOffset | "@new DateTime(2025,1,29,17,02,0)" |
+| Attribute Type 	| Example Value   	|
+|----------------	|----------------	|
+| DateTimeOffset    | "@new DateTime(2025,1,29,17,02,0)" 	|
+
 
 Sets an absolute expiration date. The following example will cache the contents of the Cache Tag Helper until 5:02 PM on January 29, 2025.
 
@@ -73,9 +74,10 @@ Example:
 
 ### expires-after
 
-| Attribute Type |        Example Value         |
-|----------------|------------------------------|
-|    TimeSpan    | "@TimeSpan.FromSeconds(120)" |
+| Attribute Type 	| Example Value   	|
+|----------------	|----------------	|
+| TimeSpan    | "@TimeSpan.FromSeconds(120)" 	|
+
 
 Sets the length of time from the first request time to cache the contents. 
 
@@ -91,9 +93,10 @@ Example:
 
 ### expires-sliding
 
-| Attribute Type |        Example Value        |
-|----------------|-----------------------------|
-|    TimeSpan    | "@TimeSpan.FromSeconds(60)" |
+| Attribute Type 	| Example Value   	|
+|----------------	|----------------	|
+| TimeSpan    | "@TimeSpan.FromSeconds(60)" 	|
+
 
 Sets the time that a cache entry should be evicted if it has not been accessed.
 
@@ -109,9 +112,9 @@ Example:
 
 ### vary-by-header
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| String            | "User-Agent"                  |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| String            | "User-Agent"   	            |
 |                   | "User-Agent,content-encoding" |
 
 Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when they change. The following example monitors the header value `User-Agent`. The example will cache the content for every different `User-Agent` presented to the web server.
@@ -128,9 +131,9 @@ Example:
 
 ### vary-by-query
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| String            | "Make"                |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| String            | "Make"   	            |
 |                   | "Make,Model" |
 
 Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the header value changes. The following example looks at the values of `Make` and `Model`.
@@ -147,9 +150,9 @@ Example:
 
 ### vary-by-route
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| String            | "Make"                |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| String            | "Make"   	            |
 |                   | "Make,Model" |
 
 Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the route data parameter value(s) change. 
@@ -162,7 +165,7 @@ routes.MapRoute(
     name: "default",
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
-
+  
 *Index.cshtml*
 
 ```cshtml
@@ -175,9 +178,9 @@ routes.MapRoute(
 
 ### vary-by-cookie
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| String            | ".AspNetCore.Identity.Application"                |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| String            | ".AspNetCore.Identity.Application"   	            |
 |                   | ".AspNetCore.Identity.Application,HairColor" |
 
 Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the header values(s) change. The following example looks at the cookie associated with ASP.NET Identity. When a user is authenticated the request cookie to be set which triggers a cache refresh.
@@ -194,9 +197,9 @@ Example:
 
 ### vary-by-user
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| Boolean             | "true"                  |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| Boolean             | "true"   	            |
 |                     | "false" (default) |
 
 Specifies whether or not the cache should reset when the logged-in user (or Context Principal) changes. The current user is also known as the Request Context Principal and can be viewed in a Razor view by referencing `@User.Identity.Name`.
@@ -217,9 +220,10 @@ Using this attribute maintains the contents in cache through a log-in and log-ou
 
 ### vary-by
 
-| Attribute Type | Example Values |
-|----------------|----------------|
-|     String     |    "@Model"    |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| String             | "@Model"  	            |
+
 
 Allows for customization of what data gets cached. When the object referenced by the attribute's string value changes, the content of the Cache Tag Helper is updated. Often a string-concatenation of model values are assigned to this attribute.  Effectively, that means an update to any of the concatenated values invalidates the cache.
 
@@ -252,9 +256,9 @@ public IActionResult Index(string myParam1,string myParam2,string myParam3)
 
 ### priority
 
-| Attribute Type    | Example Values                |
-|----------------   |----------------               |
-| CacheItemPriority  | "High"                   |
+| Attribute Type 	| Example Values            	|
+|----------------	|----------------             	|
+| CacheItemPriority  | "High"   	            |
 |                    | "Low" |
 |                    | "NeverRemove" |
 |                    | "Normal" |
