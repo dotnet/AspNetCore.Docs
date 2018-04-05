@@ -14,6 +14,13 @@ uid: testing/troubleshoot
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+The following links provide troubleshooting guidance:
+
+* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+* [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
+* [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
+
+<a name="sdk"></a>
 ## .NET Core SDK  Warnings
 
 ### Both the 32 and 64 bit versions of the .NET Core SDK are installed
@@ -29,15 +36,16 @@ This warning appears when both 32 bit (x86) and 64 bit (x64) versions of the [.N
 * The 32 bit .NET Core SDK was installed by another application.
 * The wrong version was downloaded and installed.
 
-To 
-If you understand why you are seeing this warning and you are not interested in making it go away, you can safely ignore it. If you are interested in making it go away, all you have to do is uninstall any 32 bit versions of the .NET Core SDK installed on the machine. You can use Control Panel | Programs and Features | Uninstall or change a program to do that.
+Uninstall the 32 bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and it's implications, you can ignore the warning.
 
 ### The .NET Core SDK is installed in multiple locations
-In the "New Project" dialog for ASP.NET Core you may see the following warning appear at the top: "The .NET Core SDK is installed in multiple locations. Only templates from the SDK(s) installed at 'C:\Program Files\dotnet\sdk\' will be displayed."
+In the **New Project** dialog for ASP.NET Core you may see the following warning appear at the top: 
+
+ The .NET Core SDK is installed in multiple locations. Only templates from the SDK(s) installed at 'C:\Program Files\dotnet\sdk\' will be displayed.
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/multiplelocations.png)
 
 
-You are seeing this message because you have at least one installation of the .NET Core SDK in a directory outside of 'C:\Program Files\dotnet\sdk\'. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
+You are seeing this message because you have at least one installation of the .NET Core SDK in a directory outside of *C:\Program Files\dotnet\sdk\*. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
-If you understand why you are seeing this warning and you are not interested in making it go away, you can safely ignore it. If you are interested in making it go away, all you have to do is remove any installations of the .NET Core SDK that exist outside of 'C:\Program Files\dotnet\sdk\'. The specific file we look for in order to display the warning is 'dotnet.dll'.
+Uninstall the 32 bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and it's implications, you can ignore the warning.
