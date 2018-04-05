@@ -23,12 +23,13 @@ In the **New Project** dialog for ASP.NET Core you may see the following warning
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/both32and64bit.png)
 
-This warning appears when both 32 bit (x86) and 64 bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Both version can be installed when:
+This warning appears when both 32 bit (x86) and 64 bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions can be installed include:
 
 * You originally downloaded the .NET Core SDK installer using a 32 bit machine, but then copied it across and installed it on a 64 bit machine. 
 * The 32 bit .NET Core SDK was installed by another application.
 * The wrong version was downloaded and installed.
 
+To 
 If you understand why you are seeing this warning and you are not interested in making it go away, you can safely ignore it. If you are interested in making it go away, all you have to do is uninstall any 32 bit versions of the .NET Core SDK installed on the machine. You can use Control Panel | Programs and Features | Uninstall or change a program to do that.
 
 ### The .NET Core SDK is installed in multiple locations
