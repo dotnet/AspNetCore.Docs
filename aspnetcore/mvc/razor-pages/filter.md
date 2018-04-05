@@ -79,3 +79,14 @@ The following code overrides the synchronous Razor Page filters:
 The framework includes built-in attribute-based filters that you can subclass. For example, the following [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter adds a header to the response:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/SampleAsyncPageFilter.cs)]
+
+The following filter attributes can be overloaded:
+
+* `ActionFilterAttribute`
+* `ExceptionFilterAttribute`
+* `ResultFilterAttribute`
+* `FormatFilterAttribute`
+* `ServiceFilterAttribute`
+* `TypeFilterAttribute`
+
+`TypeFilterAttribute` and `ServiceFilterAttribute` are explained [Dependency injection and filters](xref:mvc/controllers/filters#dependency-injection).
