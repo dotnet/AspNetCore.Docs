@@ -1,7 +1,7 @@
 ---
 title: Filter methods for Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: Learn how to create filter  methods for Razor Pages in ASP.NET Core.
+description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 manager: wpickett
 ms.author: riande
 ms.date: 4/5/2018
@@ -14,16 +14,16 @@ uid: mvc/razor-pages/filter
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters).
+Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters).
 
-Razor Page filters can:
+Razor Page filters:
 
 * Run code after a handler method has been selected, but before model binding occurs.
 * Run code before the handler method executes, after model binding is complete.
 * Run code after the handler method executes.
-* Be implemented on a page or globally.
+* Can be implemented on a page or globally.
 
-[PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0) constructors run before the handler methods, but they don't have access to the [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to a subset of the `HttpContext`. Filters also differ from middleware in that they have context.
+Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to `HttpContext`.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -53,7 +53,7 @@ In the preceding code, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogge
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet2)]
+[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
 
 The following code shows the complete `Startup` class:
 
@@ -62,6 +62,10 @@ The following code shows the complete `Startup` class:
 The following code implements the synchronous `IPageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
+
+The following code enables the `SamplePageFilter`:
+
+[!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
 ## Implement Razor Page filters by overriding page handlers
 

@@ -14,14 +14,16 @@ namespace PageFilter.Filters
             _logger = logger;
         }
 
-        public async Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
+        public async Task OnPageHandlerSelectionAsync(
+                                            PageHandlerSelectedContext context)
         {
             _logger.LogDebug("Global OnPageHandlerSelectionAsync called.");
             await Task.CompletedTask;
         }
 
-        public async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context,
-            PageHandlerExecutionDelegate next)
+        public async Task OnPageHandlerExecutionAsync(
+                                            PageHandlerExecutingContext context,
+                                            PageHandlerExecutionDelegate next)
         {
             _logger.LogDebug("Global OnPageHandlerExecutionAsync called.");
             await next.Invoke();
