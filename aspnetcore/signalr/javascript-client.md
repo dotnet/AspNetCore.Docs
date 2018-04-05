@@ -18,27 +18,29 @@ By [Rachel Appel](http://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Install the SignalR client package
 
-The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, call `npm install` from the command line in any folder. For Visual Studio Code, call the command from the **Integrated Terminal**.
+The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the command line in any folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
 
   ```console
    npm install @aspnet/signalr
   ```
 
-Npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Copy the *signalr.js* or its minified version to a folder in your project.
+Npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* or its minified version to the *wwwroot\lib\signalr* folder.
 
 ## Use the SignalR JavaScript client
 
-To use the SignalR JavaScript client, a script reference is required. Since the reference is an HTML `<script>` element, it can go in any kind of client-side page, such as a [Razor Page](xref:mvc/razor-pages/index?tabs=visual-studio), [MVC view](xref:mvc/views/overview), or HTML page.
+Reference the SignalR JavaScript client in the `<script>` element.
 
 ```html
-<script src="~/scripts/signalr.js"></script>
+<script src="~/wwwroot/lib/signalr/signalr.js"></script>
 ```
 
 ## Connect to a hub
 
-To connect to a SignalR hub, create a new instance of a connection with the route as its argument. The route maps to a hub with the same name. However, the hub's name can be mixed case, such as `ChatHub`.
+The following code creates a connection. The hub's name is case insensitive.
 
 ```javascript
 const connection = new signalR.HubConnection('/chathub');
@@ -46,42 +48,33 @@ const connection = new signalR.HubConnection('/chathub');
 
 While the preceding code sample creates a connection to a hub named `ChatHub`, it doesn't start it. To start the connection, call the `connection.start` method.
 
-```javascript
-connection.start().catch(err => logError(err));
-```
-
-### Specify the connection's transport type
-
-Transports define how servers and clients communicate. To set the transport type when you create the connection by setting the `signalR.TransportType` to *WebSockets*, *LongPolling*, or *ServerSentEvents*. The default, recommended transport is *WebSockets*.
-
-[!code-javascript[Specify transport](javascript-client/sample/chat.js?range=1-3)]
+[!code-javascript[Call hub methods](javascript-client/sample/chat.js?range=9)]
 
 ### Cross-origin connections
 
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
-For better security, [cross-origin connections](xref:security/cors) are disabled by default. If you need to create a cross-origin request, configure and enable it in the `Startup` class.
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class.
 
 [!code-csharp[Cross-origin connections](javascript-client/sample/startup.cs?highlight=22-29,39-40)]
 
 ## Call hub methods from client
 
-JavaScript clients can call public methods on hubs by issuing `connection.invoke`. The `invoke` method accepts two arguments:
+JavaScript clients call public methods on hubs by issuing `connection.invoke`. The `invoke` method accepts two arguments:
 
-* The name of the hub's method. In the following example, the hub name is `SendMessage`.
-* Any arguments defined in the hub's method. In the following example, the argument name is `message`.
+* The name of the hub method. In the following example, the hub name is `SendMessage`.
+* Any arguments defined in the hub method. In the following example, the argument name is `message`.
 
-[!code-javascript[Call hub methods](javascript-client/sample/chat.js?range=13-16)]
+[!code-javascript[Call hub methods](javascript-client/sample/chat.js?range=12)]
 
 ## Call client methods from hub
 
 To receive messages from the hub, define a method in the client's `connection.on` method. The `connection.on` method requires the following information:
 
-* The name of the JavaScript client's method. In the following example, the method name is `ReceiveMessage`.
+* The name of the JavaScript client method. In the following example, the method name is `ReceiveMessage`.
 * Arguments the hub passes to the method. In the following example, the argument value is `message`.
-* The method's code.
 
-[!code-javascript[Receive calls from hub](javascript-client/sample/chat.js?range=6-9)]
+[!code-javascript[Receive calls from hub](javascript-client/sample/chat.js?range=4-7)]
 
 The preceding code in `connection.on` runs when  server-side code calls it using the `SendAsync` method.
 
@@ -90,17 +83,21 @@ The preceding code in `connection.on` runs when  server-side code calls it using
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
 > [!NOTE]
-> As a best practice, call `connection.start` after `connection.on` so the code is properly loaded.
+> As a best practice, call `connection.start` after `connection.on` so your handlers are registered before any messages are received.
 
 ## Error handling and logging
 
-Chain a `catch` method to the end of the `connection.start` method to handle client-side errors. Use `console.log` to output custom messages or errors to the browser's console.
+Chain a `catch` method to the end of the `connection.start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
 
-[!code-javascript[Error handling](javascript-client/sample/chat.js?range=11,18-20)]
+[!code-javascript[Error handling](javascript-client/sample/chat.js?range=9)]
 
-Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Available log levels are: `signalR.LogLevel.Information`, `signalR.LogLevel.Warning`, and `signalR.LogLevel.Error`.
+Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Available log levels are as follows:
 
-[!code-javascript[Logging levels](javascript-client/sample/chat.js?range=2-4)]
+* `signalR.LogLevel.Information` : Status messages without errors.
+* `signalR.LogLevel.Warning` : Warning messages about potential errors.
+* `signalR.LogLevel.Error` : Error messages.
+
+[!code-javascript[Logging levels](javascript-client/sample/chat.js?range=1-2)]
 
 ## Related resources
 
