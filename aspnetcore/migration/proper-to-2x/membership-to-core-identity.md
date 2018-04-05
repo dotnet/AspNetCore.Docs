@@ -106,7 +106,7 @@ Using the above mapping, putting together a migration script for Users and Roles
 ````sql
 -- THIS SCRIPT WILL NEED TO BE RUN FROM THE CONTEXT OF THE MEMBERSHIP DB
 BEGIN TRANSACTION MigrateUsersAndRoles
-USING aspnetdb
+use aspnetdb
 
 -- INSERT USERS
 INSERT INTO coreidentity.dbo.aspnetusers
@@ -126,13 +126,13 @@ INSERT INTO coreidentity.dbo.aspnetusers
              normalizedemail)
 SELECT aspnet_users.userid,
        aspnet_users.username,
-       aspnet_users.loweredusername
-       "", --Creates an empty password since passwords do not map between the two schemas
+       aspnet_users.loweredusername,
+       '', --Creates an empty password since passwords do not map between the two schemas
        NewID(), -- Security Stamp is a token used to verify the state of an account and is subject to change at any time. Due to this it should be intialized as a new ID
        1, --EmailConfirmed is set when a new user is created and confirmed via email. Users must have this set during migration to ensure they are able to reset passwords.
        aspnet_users.mobilealias,
        CASE
-         WHEN aspnet_membership.mobilealias = null THEN 0
+         WHEN aspnet_Users.MobileAlias is null THEN 0
          ELSE 1
        END, --
        0, --More than likely Two Factor Authentication was not setup in Membership for users so setting as false
@@ -144,7 +144,7 @@ SELECT aspnet_users.userid,
        aspnet_membership.islockedout,
        0, --AccessFailedAccount is used to track failed logins. This is stored in membership in multiple columns. Setting to 0 arbitrarily.
        aspnet_membership.email,
-       aspnet_membership.normalizedemail
+       aspnet_membership.loweredemail
 FROM   aspnet_users
        LEFT OUTER JOIN aspnet_membership
                     ON aspnet_membership.applicationid =
@@ -156,13 +156,13 @@ WHERE  aspnetusers.id IS NULL
 
 -- INSERT ROLES
 
-INSERT INTO coreIdentity.aspnetroles(id,name)
+INSERT INTO coreIdentity.dbo.aspnetroles(id,name)
 SELECT roleId,rolename
 FROM aspnet_roles;
 
 -- INSERT USER ROLES
 
-INSERT INTO coreidentity.aspnetuserroles(userid,roleid)
+INSERT INTO coreidentity.dbo.aspnetuserroles(userid,roleid)
 SELECT userid,roleid
 FROM aspnet_usersinroles;
 
