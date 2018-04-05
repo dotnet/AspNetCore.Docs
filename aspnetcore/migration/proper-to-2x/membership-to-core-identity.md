@@ -12,7 +12,7 @@ uid: migration/proper-to-2x/membership-to-core-identity
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating the database schema for ASP.NET applications using Membership Authentication to to ASP.NET Core 2 Identity.
+This article serves as a reference guide for migrating the database schema for ASP.NET applications using Membership Authentication to ASP.NET Core 2 Identity.
 
 ## Prerequisites
 
