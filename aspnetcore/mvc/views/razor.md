@@ -512,7 +512,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### @functions
 
-The `@functions` directive enables a Razor Page to add function-level content to a view:
+The `@functions` directive enables a Razor Page to add a C# code block to a view:
 
 ```cshtml
 @functions { // C# Code }
