@@ -43,7 +43,7 @@ The app reads and displays the following configuration settings:
 
 [!code-json[](index/sample/ConfigJson/appsettings.json)]
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a double underscore (`__`). To retrieve a value, access the `Configuration` indexer with the corresponding item's key:
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon (`:`). To retrieve a value, access the `Configuration` indexer with the corresponding item's key:
 
 [!code-csharp[](index/sample/ConfigJson/Program.cs?range=21-22)]
 
