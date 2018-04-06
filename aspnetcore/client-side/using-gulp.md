@@ -171,7 +171,7 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     }
     ```
 
-3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
+3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**. If you do not see Task Runner Explorer in the context menu and the tasks in the Explorer(View/Other Windows/Task Runner Explorer), ensure that gulpfile.js is in the root directory with package.json. 
     
     ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
