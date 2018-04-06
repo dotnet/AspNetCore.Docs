@@ -16,14 +16,14 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) )
 
 [!INCLUDE[](~/includes/2.1.md)]
 
-The [!INCLUDE[](~/includes/[!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
+The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
 * Standardizes the experience around building, packaging and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC based projects.
 * Includes a set of predefined targets, properties and items that allow customizing the compilation of Razor files.
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/[!INCLUDE[](~/includes/2.1-SDK.md)]
+[!INCLUDE[](~/includes/2.1-SDK.md)]
 
 ## Using the Razor SDK
 
