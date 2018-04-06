@@ -31,22 +31,29 @@ Most web apps, don't need to expressly reference the Razor SDK.
 
 To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
 
-a) Use `Microsoft.NET.Sdk.Razor` instead of `Microsoft.NET.Sdk` e.g. 
+* Use `Microsoft.NET.Sdk.Razor` instead of `Microsoft.NET.Sdk`:
 ```xml
 <Project SDK="Microsoft.NET.Sdk.Razor">
   ...
 </Project>
 ```
 
-b) Typically a package reference to `Microsoft.AspNetCore.Mvc` is required to bring in additional dependencies required to correctly build and compile Razor Pages and Razor views. At minimum, your project needs to add package references to `Microsoft.AspNetCore.Razor.Design` and `Microsoft.AspNetCore.Mvc.Razor.Extensions`.
+* Typically a package reference to `Microsoft.AspNetCore.Mvc` is required to bring in additional dependencies required to build and compile Razor Pages and Razor views. At minimum, your project needs to add package references to:
+
+    * `Microsoft.AspNetCore.Razor.Design` 
+    * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
+    
+    [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
+
 
 ### Properties
-These properties control the Razor's SDK behavior as part of a project build:
 
-* `RazorCompileOnBuild` - When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
-* `RazorCompileOnPublish` - When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+The following properties control the Razor's SDK behavior as part of a project build:
 
-In addition to this, the following properties and items are used to configure inputs and output to the Razor SDK:
+* `RazorCompileOnBuild` : When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
+* `RazorCompileOnPublish` : When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+
+The following properties and items are used to configure inputs and output to the Razor SDK:
 
 | Items                                         | Description                                                                   |
 | ------------                                  | -------------                                                                 |
