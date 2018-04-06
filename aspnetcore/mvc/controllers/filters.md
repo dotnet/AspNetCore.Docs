@@ -258,13 +258,11 @@ Learn more about [Authorization](../../security/authorization/index.md).
 
 ## Resource filters
 
-*Resource filters:
-
 * Implement either the `IResourceFilter` or `IAsyncResourceFilter` interface,
 * Their execution wraps most of the filter pipeline. 
 * Only [Authorization filters](#authorization-filters) run before Resource filters.
 
-Resource filters are especially useful if you need to short-circuit most of the work a request is doing. For example, a caching filter can avoid the rest of the pipeline if the response is in the cache.
+Resource filters are useful to short-circuit most of the work a request is doing. For example, a caching filter can avoid the rest of the pipeline if the response is in the cache.
 
 The [short circuiting resource filter](#short-circuiting-resource-filter) shown earlier is one example of a resource filter. Another example is [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/1.1.1/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
 
@@ -336,13 +334,11 @@ Exception filters:
 * Are good for trapping exceptions that occur within MVC actions.
 * Are not as flexible as error handling middleware. 
 
-Prefer middleware for the general case, and use exception filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
+Prefer middleware for exception handling. Use exception filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
-The framework provides an abstract `ExceptionFilterAttribute` that you can subclass. 
+The `ExceptionFilterAttribute` can be subclassed. 
 
 ## Result filters
-
-*Result filters*:
 
 * Implement either the `IResultFilter` or `IAsyncResultFilter` interface.
 * Their execution surrounds the execution of action results. 
