@@ -226,7 +226,7 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     ![Task Runner Explorer run first task](using-gulp/_static/06-TaskRunner-First.png)
 
-    You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see [Gulp Recipes](https://docs.microsoft.com/en-us/aspnet/core/client-side/using-gulp#gulp-recipes).
+    You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see [Gulp Recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md).
 
 ## Defining and running tasks in a series
 
