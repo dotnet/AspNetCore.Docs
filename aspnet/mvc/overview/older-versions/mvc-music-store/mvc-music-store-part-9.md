@@ -158,6 +158,6 @@ Since this is a generic error page, the content is very simple. We'll include a 
 [!code-cshtml[Main](mvc-music-store-part-9/samples/sample13.cshtml)]
 
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-8.md)
-[Next](mvc-music-store-part-10.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-8.md)
+> [Next](mvc-music-store-part-10.md)

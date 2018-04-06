@@ -181,7 +181,7 @@
 ### [Custom formatters](xref:web-api/advanced/custom-formatters)
 ### [Format response data](xref:web-api/advanced/formatting)
 
-# [Test and debug](xref:testing/index)
+# [Test, debug, and troubleshoot](xref:testing/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:testing/integration-testing)
 ## [Razor Pages testing](xref:testing/razor-pages-testing)
@@ -189,6 +189,7 @@
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
+## [Troubleshoot](xref:testing/troubleshoot)
 
 # [Data access with EF Core and Azure](data/index.md)
 ## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)

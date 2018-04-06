@@ -17,7 +17,7 @@ Adding a Model
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section you'll add some classes for managing movies in a database. These classes will be the &quot;model&quot; part of the ASP.NET MVC app.
 
@@ -59,6 +59,6 @@ Note: Several unused `using` statements have been removed. Visual Studio will sh
 
 We've finally added a model (the M in MVC). In the next section you'll work with the database connection string.
 
->[!div class="step-by-step"]
-[Previous](adding-a-view.md)
-[Next](creating-a-connection-string.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-view.md)
+> [Next](creating-a-connection-string.md)

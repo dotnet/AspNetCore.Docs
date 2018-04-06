@@ -81,6 +81,6 @@ Open the AdminController.cs file and add the **Authorize** attribute to the enti
 
 Now only administrators can view the Admin page. Also, if you send an HTTP request to the Admin controller, the request must contain an authentication cookie. If not, the server sends an HTTP 401 (Unauthorized) response. You can see this in Fiddler by sending a GET request to `http://localhost:*port*/api/admin`.
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-3.md)
-[Next](using-web-api-with-entity-framework-part-5.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-3.md)
+> [Next](using-web-api-with-entity-framework-part-5.md)

@@ -4,7 +4,7 @@ connection.on('ReceiveMessage', (timestamp, user, message) => {
     const encodedUser = user;
     const encodedMsg = message;
     const listItem = document.createElement('li');
-    listItem.innerHTML = timestamp + ' <b>' + encodedUser + '</b>: ' + encodedMsg;
+    listItem.innerText = timestamp + ' ' + encodedUser + ': ' + encodedMsg;
     document.getElementById('messages').appendChild(listItem);
 });
 

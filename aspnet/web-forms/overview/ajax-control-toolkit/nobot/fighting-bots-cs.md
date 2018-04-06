@@ -67,5 +67,5 @@ When you run this script and deactivate JavaScript or submit the form within the
 
 This error message could have been caused by a bot ([Click to view full-size image](fighting-bots-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](fighting-bots-vb.md)
+> [!div class="step-by-step"]
+> [Next](fighting-bots-vb.md)

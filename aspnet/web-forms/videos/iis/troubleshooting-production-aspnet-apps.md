@@ -21,6 +21,6 @@ This video provides you with a quick inventory of tools to troubleshoot your pro
 
 [&#9654; Watch video (30 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/troubleshooting-production-aspnet-apps)
 
->[!div class="step-by-step"]
-[Previous](feature-specific-delegated-management.md)
-[Next](creating-a-site-with-iis7-manager.md)
+> [!div class="step-by-step"]
+> [Previous](feature-specific-delegated-management.md)
+> [Next](creating-a-site-with-iis7-manager.md)

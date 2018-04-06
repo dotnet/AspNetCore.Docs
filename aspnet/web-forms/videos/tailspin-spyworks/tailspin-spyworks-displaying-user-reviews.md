@@ -21,5 +21,5 @@ Joe Stagner displays reviews from customers in the Tailspin Spyworks sample Web 
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-displaying-user-reviews)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-adding-user-product-reviews.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-adding-user-product-reviews.md)

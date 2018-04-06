@@ -21,5 +21,5 @@ New language features for C# and VB support data access directly from code, with
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-overview)
 
->[!div class="step-by-step"]
-[Next](how-do-i-linq-to-sql-data-model.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-linq-to-sql-data-model.md)

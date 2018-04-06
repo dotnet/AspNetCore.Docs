@@ -134,6 +134,6 @@ We also have &lt;&lt;&lt; and &gt;&gt;&gt; navigation UI at the bottom of the pa
 
 Let's now look at how we can add authentication and authorization support to our application.
 
->[!div class="step-by-step"]
-[Previous](re-use-ui-using-master-pages-and-partials.md)
-[Next](secure-applications-using-authentication-and-authorization.md)
+> [!div class="step-by-step"]
+> [Previous](re-use-ui-using-master-pages-and-partials.md)
+> [Next](secure-applications-using-authentication-and-authorization.md)

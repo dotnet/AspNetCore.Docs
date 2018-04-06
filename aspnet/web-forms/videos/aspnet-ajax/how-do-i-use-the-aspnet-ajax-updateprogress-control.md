@@ -21,6 +21,6 @@ In an AJAX application there is often a noticeable pause between the time the br
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-updateprogress-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post.md)
-[Next](how-do-i-use-the-aspnet-ajax-history-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post.md)
+> [Next](how-do-i-use-the-aspnet-ajax-history-control.md)

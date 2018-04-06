@@ -95,6 +95,6 @@ In this tutorial, you enabled sorting and paging of the data. You also enabled f
 
 In the next [tutorial](integrating-jquery-ui.md) you will enhance the UI by integrating a JQuery UI widget into the dynamic data template.
 
->[!div class="step-by-step"]
-[Previous](updating-deleting-and-creating-data.md)
-[Next](integrating-jquery-ui.md)
+> [!div class="step-by-step"]
+> [Previous](updating-deleting-and-creating-data.md)
+> [Next](integrating-jquery-ui.md)

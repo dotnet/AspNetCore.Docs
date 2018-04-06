@@ -15,7 +15,7 @@ uid: data/ef-rp/read-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
@@ -33,22 +33,22 @@ There are several ways that EF Core can load related data into the navigation pr
 
 * [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than was the case for some queries in EF6 where there was a single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
- ![Eager loading example](read-related-data/_static/eager-loading.png)
+  ![Eager loading example](read-related-data/_static/eager-loading.png)
  
- Eager loading sends multiple queries when a collection navigation is included:
+  Eager loading sends multiple queries when a collection navigation is included:
 
- * One query for the main query 
- * One query for each collection "edge" in the load tree.
+  * One query for the main query 
+  * One query for each collection "edge" in the load tree.
 
 * Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explict loading than eager loading.
 
- ![Separate queries example](read-related-data/_static/separate-queries.png)
+  ![Separate queries example](read-related-data/_static/separate-queries.png)
 
- Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+  Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
 
 * [Explicit loading](https://docs.microsoft.com/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the DB. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
 
- ![Explicit loading example](read-related-data/_static/explicit-loading.png)
+  ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
 * [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core doesn't currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
@@ -72,9 +72,9 @@ To display the name of the assigned department in a list of courses:
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Run the following command:
 
- ```console
-dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
- ```
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
+  ```
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
@@ -161,9 +161,9 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Run the following command:
 
- ```console
-dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
- ```
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+  ```
 
 The preceding command scaffolds the `Instructor` model. Open the project in Visual Studio.
 

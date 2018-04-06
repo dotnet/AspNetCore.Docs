@@ -199,7 +199,7 @@ The jQuery.Mobile.MVC NuGet package installs the following:
 - jQuery Mobile JavaScript files.
 - A jQuery Mobile-styled layout file (*Views\Shared\\_Layout.Mobile.cshtml*).
 - A view-switcher partial view *(MvcMobile\Views\Shared\\_ViewSwitcher.cshtml*) that provides a link at the top of each page to switch from desktop view to mobile view and vice versa.
-- Several*.png* and *.gif* image files in the *Content\images* folder.
+- Several<em>.png</em> and <em>.gif</em> image files in the <em>Content\images</em> folder.
 
 Open the *Global.asax* file and add the following code as the last line of the `Application_Start` method.
 
@@ -265,7 +265,7 @@ You can globally disable a default (non-mobile) view from rendering inside a mob
 
 [!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample17.cshtml)]
 
-When `RequireConsistentDisplayMode` is set to `true`, the mobile layout (*\_Layout.Mobile.cshtml*) is used only for mobile views. (That is, the view file is of the form ***ViewName**.Mobile.cshtml*.) You might want to set `RequireConsistentDisplayMode` to `true` if your mobile layout doesn't work well with your non-mobile views. The screenshot below shows how the *Speakers* page renders when `RequireConsistentDisplayMode` is set to `true`.
+When `RequireConsistentDisplayMode` is set to `true`, the mobile layout (<em>\_Layout.Mobile.cshtml</em>) is used only for mobile views. (That is, the view file is of the form <em>**ViewName</em><em>.Mobile.cshtml</em>.) You might want to set `RequireConsistentDisplayMode` to `true` if your mobile layout doesn't work well with your non-mobile views. The screenshot below shows how the <em>Speakers</em> page renders when `RequireConsistentDisplayMode` is set to `true`.
 
 [![p3_speakersConsistent](aspnet-mvc-4-mobile-features/_static/image33.png)](aspnet-mvc-4-mobile-features/_static/image32.png)
 

@@ -134,6 +134,6 @@ In this iteration, we added the validation logic to our Contact Manager applicat
 
 In the next iteration, we will refactor our validation logic and database access logic out of our controllers. We'll take advantage of several software design principles to enable us to create a more loosely coupled, and more maintainable, application.
 
->[!div class="step-by-step"]
-[Previous](iteration-2-make-the-application-look-nice-cs.md)
-[Next](iteration-4-make-the-application-loosely-coupled-cs.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-2-make-the-application-look-nice-cs.md)
+> [Next](iteration-4-make-the-application-loosely-coupled-cs.md)

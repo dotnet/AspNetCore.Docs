@@ -21,6 +21,6 @@ This video will teach how to install and configure a great new IIS7 feature – 
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/bit-rate-throttling)
 
->[!div class="step-by-step"]
-[Previous](installing-ftp7.md)
-[Next](iis7-playlists.md)
+> [!div class="step-by-step"]
+> [Previous](installing-ftp7.md)
+> [Next](iis7-playlists.md)

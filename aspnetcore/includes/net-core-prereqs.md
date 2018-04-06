@@ -1,6 +1,6 @@
 Install **one** of the following:
 
-* CLI tooling: Windows, Linux, or macOS: [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+* CLI tooling: Windows, Linux, or macOS: [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 * IDE/editor tooling
   * Windows: [Visual Studio for Windows](https://www.microsoft.com/net/download/windows)
     * **ASP.NET and web development** workload

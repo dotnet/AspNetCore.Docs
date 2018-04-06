@@ -76,5 +76,5 @@ We've seen that ASP.NET WebForms makes it easy to create a sophisticated website
 
 Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET WebForms applications!
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-7.md)

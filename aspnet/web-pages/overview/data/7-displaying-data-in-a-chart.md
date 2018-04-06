@@ -124,7 +124,7 @@ The third option for charting is to use an XML file as the data for the chart. T
 
     ![](7-displaying-data-in-a-chart/_static/image10.jpg)
 
-> [!TIP] 
+> [!TIP]
 > 
 > <a id="SB_UsingStatements"></a>
 > ### "Using" Statements and Fully Qualified Names

@@ -120,6 +120,6 @@ At this point, the Contact Manager solution should be fully configured to run on
 
 The next topic, [Understanding the Project File](understanding-the-project-file.md), explains how you can use the custom Microsoft Build Engine (MSBuild) project files within the Contact Manager solution to control the deployment process.
 
->[!div class="step-by-step"]
-[Previous](the-contact-manager-solution.md)
-[Next](understanding-the-project-file.md)
+> [!div class="step-by-step"]
+> [Previous](the-contact-manager-solution.md)
+> [Next](understanding-the-project-file.md)

@@ -141,6 +141,6 @@ These articles on MSDN provide more general guidance on database deployment:
 - [Build and Deploy Databases to an Isolated Development Environment](https://msdn.microsoft.com/library/dd193409.aspx)
 - [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/library/dd193413.aspx)
 
->[!div class="step-by-step"]
-[Previous](performing-a-what-if-deployment.md)
-[Next](deploying-database-role-memberships-to-test-environments.md)
+> [!div class="step-by-step"]
+> [Previous](performing-a-what-if-deployment.md)
+> [Next](deploying-database-role-memberships-to-test-environments.md)

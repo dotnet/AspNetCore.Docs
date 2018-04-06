@@ -21,6 +21,6 @@ In this video, Joe Stagner explores an alternative method of user authentication
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/validating-users-with-the-login-control)
 
->[!div class="step-by-step"]
-[Previous](validating-users-manually.md)
-[Next](adding-users-to-your-membership-system.md)
+> [!div class="step-by-step"]
+> [Previous](validating-users-manually.md)
+> [Next](adding-users-to-your-membership-system.md)

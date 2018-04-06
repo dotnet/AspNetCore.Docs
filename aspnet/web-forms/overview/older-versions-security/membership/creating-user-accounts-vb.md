@@ -378,6 +378,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](creating-the-membership-schema-in-sql-server-vb.md)
-[Next](validating-user-credentials-against-the-membership-user-store-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-the-membership-schema-in-sql-server-vb.md)
+> [Next](validating-user-credentials-against-the-membership-user-store-vb.md)

@@ -17,7 +17,7 @@ en-us/
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and  [Jon P Smith](https://twitter.com/thereformedprog)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part8).
 
@@ -53,21 +53,21 @@ Optimistic concurrency includes the following options:
 
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
- In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they will see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
+  In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they will see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
 		* Can't avoid data loss if competing changes are made to the same property.
 		* Is generally not practical in a web app. It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
 		* Can increase app complexity compared to concurrency detection on an entity.
 
 * You can let John's change overwrite Jane's change.
 
- The next time someone browses the English department, they will see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
+  The next time someone browses the English department, they will see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
 
 * You can prevent John's change from being updated in the DB. Typically, the app would:
 		* Display an error message.
 		* Show the current state of the data.
 		* Allow the user to reapply the changes.
 
- This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
+  This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
 ## Handling concurrency 
 
@@ -156,9 +156,9 @@ The preceding commands:
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Run the following command:
 
- ```console
-dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
- ```
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
+  ```
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
@@ -306,5 +306,5 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 * [Concurrency Tokens in EF Core](https://docs.microsoft.com/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](https://docs.microsoft.com/ef/core/saving/concurrency)
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/update-related-data)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/update-related-data)

@@ -78,5 +78,5 @@ Enjoy!
 
 - Scott Hanselman - [http://hanselman.com](http://hanselman.com) and [@shanselman](http://twitter.com/shanselman) on Twitter.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part7.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part7.md)

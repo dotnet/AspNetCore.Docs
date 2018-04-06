@@ -88,20 +88,20 @@ This procedure shows you how to set `WebMail` settings globally. (For more infor
 
     Modify the following email related settings in the code:
 
-    - Set `your-SMTP-host` to the name of the SMTP server that you have access to.
-    - Set `your-user-name-here` to the user name for your SMTP server account.
-    - Set `your-account-password` to the password for your SMTP server account.
-    - Set `your-email-address-here` to your own email address. This is the email address that the message is sent from. (Some email providers don't let you specify a different `From` address and will use your user name as the `From` address.)
+   - Set `your-SMTP-host` to the name of the SMTP server that you have access to.
+   - Set `your-user-name-here` to the user name for your SMTP server account.
+   - Set `your-account-password` to the password for your SMTP server account.
+   - Set `your-email-address-here` to your own email address. This is the email address that the message is sent from. (Some email providers don't let you specify a different `From` address and will use your user name as the `From` address.)
 
-    For more information about SMTP settings, see [Configuring Email Settings](https://go.microsoft.com/fwlink/?LinkID=202899#configuring_email_settings) in the article [Sending Email from an ASP.NET Web Pages (Razor) Site](https://go.microsoft.com/fwlink/?LinkID=202899) and [Issues with Sending Email](https://go.microsoft.com/fwlink/?LinkId=253001#email) in the [ASP.NET Web Pages (Razor) Troubleshooting Guide](https://go.microsoft.com/fwlink/?LinkId=253001).
-- Save the *\_AppStart.cshtml* file and close it.
-- In the root folder of a website, create new page named *TestEmail.cshtml*.
-- Replace the existing content with the following: 
+     For more information about SMTP settings, see [Configuring Email Settings](https://go.microsoft.com/fwlink/?LinkID=202899#configuring_email_settings) in the article [Sending Email from an ASP.NET Web Pages (Razor) Site](https://go.microsoft.com/fwlink/?LinkID=202899) and [Issues with Sending Email](https://go.microsoft.com/fwlink/?LinkId=253001#email) in the [ASP.NET Web Pages (Razor) Troubleshooting Guide](https://go.microsoft.com/fwlink/?LinkId=253001).
+4. Save the *\_AppStart.cshtml* file and close it.
+5. In the root folder of a website, create new page named *TestEmail.cshtml*.
+6. Replace the existing content with the following: 
 
-    [!code-cshtml[Main](18-customizing-site-wide-behavior/samples/sample4.cshtml)]
-- Run the *TestEmail.cshtml* page in a browser.
-- Fill in the fields to send yourself an email message and then click **Send**.
-- Check your email to make sure you've gotten the message.
+     [!code-cshtml[Main](18-customizing-site-wide-behavior/samples/sample4.cshtml)]
+7. Run the *TestEmail.cshtml* page in a browser.
+8. Fill in the fields to send yourself an email message and then click **Send**.
+9. Check your email to make sure you've gotten the message.
 
 The important part of this example is that the settings that you don't usually change — like the name of your SMTP server and your email credentials — are set in the *\_AppStart.cshtml* file. That way you don't need to set them again in each page where you send email. (Although if for some reason you need to change those settings, you can set them individually in a page.) In the page, you only set the values that typically change each time, like the recipient and the body of the email message.
 

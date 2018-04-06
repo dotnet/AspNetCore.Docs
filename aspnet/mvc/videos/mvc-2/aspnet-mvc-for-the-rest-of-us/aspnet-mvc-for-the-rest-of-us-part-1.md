@@ -21,5 +21,5 @@ In this Video Microsoft's Joe Stagner builds a "Contact Us" feature for an ASP.N
 
 [&#9654; Watch video (36 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-for-the-rest-of-us-part-1)
 
->[!div class="step-by-step"]
-[Next](aspnet-mvc-for-the-rest-of-us-part-2.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-mvc-for-the-rest-of-us-part-2.md)

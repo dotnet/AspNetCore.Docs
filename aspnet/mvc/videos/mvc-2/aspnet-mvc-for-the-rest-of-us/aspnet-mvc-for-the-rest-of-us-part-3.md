@@ -21,6 +21,6 @@ In this Video Microsoft's Joe Stagner rebuilds the "Contact Us" feature for an A
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-for-the-rest-of-us-part-3)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-for-the-rest-of-us-part-2.md)
-[Next](aspnet-mvc-for-the-rest-of-us-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-for-the-rest-of-us-part-2.md)
+> [Next](aspnet-mvc-for-the-rest-of-us-part-4.md)

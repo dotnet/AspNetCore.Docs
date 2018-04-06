@@ -113,10 +113,10 @@ Explicit expressions can be used to render output from generic methods in *.csht
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
+* The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
+* Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
- The following markup shows the correct way write this code. The code is written as an explicit expression:
+  The following markup shows the correct way write this code. The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -512,7 +512,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### @functions
 
-The `@functions` directive enables a Razor Page to add function-level content to a view:
+The `@functions` directive enables a Razor Page to add a C# code block to a view:
 
 ```cshtml
 @functions { // C# Code }

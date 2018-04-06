@@ -21,6 +21,6 @@ In this video we will review the improved tools for creating external Cascading 
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-cascading-style-sheets-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-create-nested-master-page-in-visual-studio-2008.md)
-[Next](how-do-i-working-with-visual-studio-2008-net-framework.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-create-nested-master-page-in-visual-studio-2008.md)
+> [Next](how-do-i-working-with-visual-studio-2008-net-framework.md)

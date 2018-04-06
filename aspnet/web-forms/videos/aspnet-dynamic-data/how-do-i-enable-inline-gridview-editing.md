@@ -21,6 +21,6 @@ Now that you have created a site with Edit and Details views, how do you enable 
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-enable-inline-gridview-editing)
 
->[!div class="step-by-step"]
-[Previous](your-first-scaffold-and-what-is-dynamic-data.md)
-[Next](how-do-i-change-how-my-fields-render.md)
+> [!div class="step-by-step"]
+> [Previous](your-first-scaffold-and-what-is-dynamic-data.md)
+> [Next](how-do-i-change-how-my-fields-render.md)

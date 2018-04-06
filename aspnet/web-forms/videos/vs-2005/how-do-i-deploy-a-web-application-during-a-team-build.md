@@ -21,6 +21,6 @@ This video demonstrates how to create a new team build and how to deploy your We
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-deploy-a-web-application-during-a-team-build)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-automate-testing-using-team-build.md)
-[Next](how-do-i-run-unit-tests-against-a-deployed-database.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-automate-testing-using-team-build.md)
+> [Next](how-do-i-run-unit-tests-against-a-deployed-database.md)

@@ -30,8 +30,8 @@ Build and run the app.
 
  -->
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/controller-methods-views.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/controller-methods-views.md)]
 
->[!div class="step-by-step"]
-[Previous - Working with SQLite](working-with-sql.md)
-[Next - Add search](search.md)
+> [!div class="step-by-step"]
+> [Previous - Working with SQLite](working-with-sql.md)
+> [Next - Add search](search.md)

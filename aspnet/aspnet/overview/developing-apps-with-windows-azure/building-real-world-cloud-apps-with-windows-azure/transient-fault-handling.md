@@ -99,6 +99,6 @@ Code sample
 
 - [Cloud Service Fundamentals in Azure](https://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649). Sample application created by the Microsoft Azure Customer Advisory Team that demonstrates how to use the [Enterprise Library Transient Fault Handling Block](http://nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/) (TFH). For more information, see [Cloud Service Fundamentals Data Access Layer – Transient Fault Handling](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx). TFH is recommended for database access using ADO.NET directly (without using Entity Framework).
 
->[!div class="step-by-step"]
-[Previous](monitoring-and-telemetry.md)
-[Next](distributed-caching.md)
+> [!div class="step-by-step"]
+> [Previous](monitoring-and-telemetry.md)
+> [Next](distributed-caching.md)

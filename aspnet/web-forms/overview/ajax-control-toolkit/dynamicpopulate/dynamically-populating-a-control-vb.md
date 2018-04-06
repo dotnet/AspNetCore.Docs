@@ -68,6 +68,6 @@ Run the ASP.NET page in the browser and click on the button; you will receive th
 
 A click on the button retrieves the date from the server ([Click to view full-size image](dynamically-populating-a-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
-[Next](dynamically-populating-a-control-using-javascript-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
+> [Next](dynamically-populating-a-control-using-javascript-code-vb.md)

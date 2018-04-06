@@ -21,6 +21,6 @@ Joe Stagner shows how to display the shopping cart in the Tailspin Spyworks samp
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-display-shopping-cart)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-adding-items-to-the-shopping-cart.md)
-[Next](tailspin-spyworks-update-the-shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-adding-items-to-the-shopping-cart.md)
+> [Next](tailspin-spyworks-update-the-shopping-cart.md)

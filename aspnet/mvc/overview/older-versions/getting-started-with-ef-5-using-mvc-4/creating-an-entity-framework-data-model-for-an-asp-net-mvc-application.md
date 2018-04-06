@@ -306,29 +306,29 @@ The next step is to create an ASP.NET MVC controller and views in your applicati
 
 1. To create a `Student` controller, right-click the **Controllers** folder in **Solution Explorer**, select **Add**, and then click **Controller**. In the **Add Controller** dialog box, make the following selections and then click **Add**: 
 
-    - Controller name: **StudentController**.
-    - Template: **MVC controller with read/write actions and views, using Entity Framework**.
-    - Model class: **Student (ContosoUniversity.Models)**. (If you don't see this option in the drop-down list, build the project and try again.)
-    - Data context class: **SchoolContext (ContosoUniversity.Models)**.
-    - Views: **Razor (CSHTML)**. (The default.)
+   - Controller name: **StudentController**.
+   - Template: **MVC controller with read/write actions and views, using Entity Framework**.
+   - Model class: **Student (ContosoUniversity.Models)**. (If you don't see this option in the drop-down list, build the project and try again.)
+   - Data context class: **SchoolContext (ContosoUniversity.Models)**.
+   - Views: **Razor (CSHTML)**. (The default.)
 
-    ![Add_Controller_dialog_box_for_Student_controller](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image20.png)
-- Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
+     ![Add_Controller_dialog_box_for_Student_controller](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image20.png)
+2. Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
 
-    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample16.cs)]
+     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample16.cs)]
 
-    The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
+     The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
 
-    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample17.cs)]
+     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample17.cs)]
 
-    The *Student\Index.cshtml* view displays this list in a table:
+     The *Student\Index.cshtml* view displays this list in a table:
 
-    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.cshtml)]
-- Press CTRL+F5 to run the project.
+     [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.cshtml)]
+3. Press CTRL+F5 to run the project.
 
-    Click the **Students** tab to see the test data that the `Seed` method inserted.
+     Click the **Students** tab to see the test data that the `Seed` method inserted.
 
-    ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image21.png)
+     ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image21.png)
 
 ## Conventions
 
@@ -346,5 +346,5 @@ You've now created a simple application that uses the Entity Framework and SQL S
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)

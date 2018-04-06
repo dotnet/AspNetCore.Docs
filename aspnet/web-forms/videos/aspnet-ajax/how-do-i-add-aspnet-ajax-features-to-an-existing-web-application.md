@@ -21,6 +21,6 @@ Learn how easily you add Microsoft ASP.NET AJAX functionality to an existing ASP
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-add-aspnet-ajax-features-to-an-existing-web-application)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-make-client-side-network-callbacks-with-aspnet-ajax.md)
-[Next](how-do-i-aspnet-ajax-enable-an-existing-web-service.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-make-client-side-network-callbacks-with-aspnet-ajax.md)
+> [Next](how-do-i-aspnet-ajax-enable-an-existing-web-service.md)

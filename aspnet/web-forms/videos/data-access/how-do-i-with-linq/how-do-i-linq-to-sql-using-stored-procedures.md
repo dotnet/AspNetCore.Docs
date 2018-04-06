@@ -21,6 +21,6 @@ Using existing stored procedures and functions is easy with LINQ. We simply drag
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-using-stored-procedures)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-custom-linqdatasource.md)
-[Next](how-do-i-linq-to-sql-updating-with-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-custom-linqdatasource.md)
+> [Next](how-do-i-linq-to-sql-updating-with-stored-procedures.md)

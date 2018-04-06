@@ -21,6 +21,6 @@ If your ASP.NET application is configured to deploy a database along with the We
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-run-unit-tests-against-a-deployed-database)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-deploy-a-web-application-during-a-team-build.md)
-[Next](how-do-i-enable-code-coverage-and-profiling-in-production-applications.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-deploy-a-web-application-during-a-team-build.md)
+> [Next](how-do-i-enable-code-coverage-and-profiling-in-production-applications.md)

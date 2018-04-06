@@ -60,7 +60,8 @@ Below is a table demonstrating the results of analyzing a [perfview](https://cha
 | CPU / request (samples/req) | 19.73 | 16.47 | -16.50% |
 
 | Color coding: | <font style="background-color: #00ff00">Core Improvement</font> | <font style="background-color: #4bacc6">Positive impact on performance</font> |
-| --- | --- | --- |
+|---------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------|
+|               |                                                                 |                                                                               |
 
 ## ASP.NET Web Pages 3.2.3 beta1
 

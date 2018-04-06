@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRChat.Hubs;
+using SignalRCoreChat.Hubs;
 
-namespace SignalRChat
+
+namespace SignalRCoreChat
 {
     public class Startup
     {
@@ -34,7 +35,7 @@ namespace SignalRChat
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            
             app.UseStaticFiles();
 
             app.UseSignalR(routes =>

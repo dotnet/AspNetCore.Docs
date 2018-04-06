@@ -21,6 +21,6 @@ Joe Stagner utilizes the previous code example to demonstrate how to change the 
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-change-the-forms-authentication-properties)
 
->[!div class="step-by-step"]
-[Previous](using-basic-forms-authentication-in-aspnet.md)
-[Next](how-to-setup-and-use-cookie-less-authentication-in-an-aspnet-application.md)
+> [!div class="step-by-step"]
+> [Previous](using-basic-forms-authentication-in-aspnet.md)
+> [Next](how-to-setup-and-use-cookie-less-authentication-in-an-aspnet-application.md)

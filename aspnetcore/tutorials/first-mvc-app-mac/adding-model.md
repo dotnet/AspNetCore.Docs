@@ -13,7 +13,7 @@ uid: tutorials/first-mvc-app-mac/adding-model
 ---
 # Add a model to an ASP.NET Core MVC app with Visual Studio for Mac
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model1.md)]
 
 * Right-click the *Models* folder, and then select **Add** > **New File**. 
 * In the **New File** dialog:
@@ -95,9 +95,9 @@ The automatic creation of [CRUD](https://wikipedia.org/wiki/Create,_read,_update
   * Navigate to the *Views* folder, select *Views\Movies*, and then select **Open**.
   * In the **Select files to add from Movies** dialog, select **Include All**, and then **OK**.
 
-[!INCLUDE[adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
+[!INCLUDE [adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
@@ -106,6 +106,6 @@ You now have a database and pages to display, edit, update and delete data. In t
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
->[!div class="step-by-step"]
-[Previous Adding a View](adding-view.md)
-[Next Working with SQL](working-with-sql.md)  
+> [!div class="step-by-step"]
+> [Previous Adding a View](adding-view.md)
+> [Next Working with SQL](working-with-sql.md)  

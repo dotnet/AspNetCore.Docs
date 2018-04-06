@@ -207,5 +207,5 @@ The first option requires you to modify the URLs used in your ASP.NET MVC applic
 
 The second option is to create a wildcard script map. The advantage of this second option is that you do not need to modify your URLs. The disadvantage of this second option is that it can impact the performance of your ASP.NET MVC application.
 
->[!div class="step-by-step"]
-[Next](using-asp-net-mvc-with-different-versions-of-iis-vb.md)
+> [!div class="step-by-step"]
+> [Next](using-asp-net-mvc-with-different-versions-of-iis-vb.md)

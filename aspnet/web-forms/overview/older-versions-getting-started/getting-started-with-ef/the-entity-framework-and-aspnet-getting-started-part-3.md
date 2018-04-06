@@ -179,6 +179,6 @@ Enter the letter "g" in the text box and click **Search**. You see a list of stu
 
 You've now displayed, updated, filtered, ordered, and grouped data from individual tables. In the next tutorial you'll begin to work with related data (master-detail scenarios).
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-2.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-2.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-4.md)

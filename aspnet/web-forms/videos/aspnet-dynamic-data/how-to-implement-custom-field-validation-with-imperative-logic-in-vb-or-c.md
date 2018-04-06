@@ -21,6 +21,6 @@ In this video we will build on the declarative field validation we implemented i
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c)
 
->[!div class="step-by-step"]
-[Previous](how-to-use-attribute-validation-in-aspnet-dynamic-data-applications.md)
-[Next](how-to-remove-columns-from-your-dynamicdata-data-grids.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-use-attribute-validation-in-aspnet-dynamic-data-applications.md)
+> [Next](how-to-remove-columns-from-your-dynamicdata-data-grids.md)

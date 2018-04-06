@@ -21,6 +21,6 @@ In this video you will learn about list filtering in Visual Studio's IntelliSens
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/visual-studio-2010-quick-hit-intellisense-smart-lists)
 
->[!div class="step-by-step"]
-[Previous](visual-studio-2010-quick-hit-code-search-view-hierarchy.md)
-[Next](visual-studio-2010-quick-hit-multi-monitor-support.md)
+> [!div class="step-by-step"]
+> [Previous](visual-studio-2010-quick-hit-code-search-view-hierarchy.md)
+> [Next](visual-studio-2010-quick-hit-multi-monitor-support.md)

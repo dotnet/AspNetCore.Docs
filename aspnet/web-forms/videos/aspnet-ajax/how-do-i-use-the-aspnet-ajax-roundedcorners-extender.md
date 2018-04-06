@@ -21,6 +21,6 @@ In this video we see how the RoundedCorner extender control can give your web pa
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-roundedcorners-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-an-aspnet-ajax-scriptmanagerproxy.md)
-[Next](how-do-i-use-the-aspnet-ajax-timer-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-an-aspnet-ajax-scriptmanagerproxy.md)
+> [Next](how-do-i-use-the-aspnet-ajax-timer-control.md)

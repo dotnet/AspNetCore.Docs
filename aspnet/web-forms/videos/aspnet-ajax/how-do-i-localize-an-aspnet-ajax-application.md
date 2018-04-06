@@ -21,6 +21,6 @@ In this video we start with an overview of the localization capabilities of the 
 
 [&#9654; Watch video (28 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-localize-an-aspnet-ajax-application)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.md)
-[Next](how-do-i-implement-the-persistent-communications-pattern-using-web-services.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.md)
+> [Next](how-do-i-implement-the-persistent-communications-pattern-using-web-services.md)

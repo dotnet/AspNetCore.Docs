@@ -56,5 +56,5 @@ If you run the page, notice how the value in the text box always doubles when yo
 
 Only numbers that are a power of 2 appear ([Click to view full-size image](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](creating-a-numeric-up-down-control-with-a-web-service-backend-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-numeric-up-down-control-with-a-web-service-backend-cs.md)

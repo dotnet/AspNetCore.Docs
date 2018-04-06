@@ -184,6 +184,6 @@ The RenderPartial() method is different than most of the other helper methods be
 
 The goal of this tutorial was to explain how you can display a set of database records in an HTML table. First, you learned how to return a set of database records from a controller action by taking advantage of the Microsoft Entity Framework. Next, you learned how to use Visual Studio scaffolding to generate a view that displays a collection of items automatically. Finally, you learned how to simplify the view by taking advantage of a partial. You learned how to use a partial as a template so that you can format each database record.
 
->[!div class="step-by-step"]
-[Previous](creating-model-classes-with-linq-to-sql-cs.md)
-[Next](performing-simple-validation-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-model-classes-with-linq-to-sql-cs.md)
+> [Next](performing-simple-validation-cs.md)

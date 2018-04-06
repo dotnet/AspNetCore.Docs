@@ -35,7 +35,7 @@ by [Raquel Soares De Almeida](https://github.com/raquelsa)
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image2.png)  
   
- Notice the **Change Authentication** button is disabled and no authentication support is provided in this template. The Web Forms, MVC and Web API templates allow you to select the authentication approach. For more information, see [Overview of Authentication](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#auth) .
+   Notice the **Change Authentication** button is disabled and no authentication support is provided in this template. The Web Forms, MVC and Web API templates allow you to select the authentication approach. For more information, see [Overview of Authentication](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#auth) .
 
 ## Adding Identity Packages to your App
 
@@ -158,9 +158,9 @@ At this point we have only added support for creating users. Now, we are going t
 5. Press **Ctrl + F5** to build and run the web application. Enter a new user name and password and then click on **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image13.png)  
- Note: At this point, the new user is created and logged in.
+   Note: At this point, the new user is created and logged in.
 6. Click on **Log out** button.You will be redirected to the Log in form.
 7. Enter an invalid user name or password and Click on **Log in** button.   
- The `UserManager.Find`  method will return null and the error message: " *Invalid user name or password* " will be displayed.  
+   The `UserManager.Find`  method will return null and the error message: " *Invalid user name or password* " will be displayed.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image14.png)

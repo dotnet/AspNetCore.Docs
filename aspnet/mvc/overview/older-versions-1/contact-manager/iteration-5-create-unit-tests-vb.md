@@ -233,6 +233,6 @@ We created two sets of unit tests. First, we tested our validation logic by crea
 
 In the next iteration, we modify the Contact Manager application so that it supports Contact Groups. We'll add this new functionality to our application using a software design process called test-driven development.
 
->[!div class="step-by-step"]
-[Previous](iteration-4-make-the-application-loosely-coupled-vb.md)
-[Next](iteration-6-use-test-driven-development-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-4-make-the-application-loosely-coupled-vb.md)
+> [Next](iteration-6-use-test-driven-development-vb.md)

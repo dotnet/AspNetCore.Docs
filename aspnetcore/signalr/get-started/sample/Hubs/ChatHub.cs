@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace SignalRChat.Hubs
+namespace SignalRCoreChat.Hubs
 {
     public class ChatHub : Hub
     {

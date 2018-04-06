@@ -21,6 +21,6 @@ Joe Stagner displays the product details in the Tailspin Spyworks sample Web For
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-display-per-product-details)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-display-the-product-list.md)
-[Next](tailspin-spyworks-adding-items-to-the-shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-display-the-product-list.md)
+> [Next](tailspin-spyworks-adding-items-to-the-shopping-cart.md)

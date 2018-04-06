@@ -21,6 +21,6 @@ Learn how to create a custom Web server control with ASP.NET AJAX functionality 
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-build-a-custom-aspnet-ajax-server-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.md)
-[Next](how-do-i-use-javascript-to-refresh-an-aspnet-ajax-updatepanel.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.md)
+> [Next](how-do-i-use-javascript-to-refresh-an-aspnet-ajax-updatepanel.md)

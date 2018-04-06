@@ -216,5 +216,5 @@ The purpose of this tutorial was to demonstrate how you can build database-drive
 
 First, we discussed how you can use the Entity Data Model Wizard to generate an Entity Data Model from within Visual Studio. Next, you learn how to use LINQ to Entities to retrieve a set of database records from a database table. Finally, we used the Entity Framework to insert, update, and delete database records.
 
->[!div class="step-by-step"]
-[Next](creating-model-classes-with-linq-to-sql-cs.md)
+> [!div class="step-by-step"]
+> [Next](creating-model-classes-with-linq-to-sql-cs.md)

@@ -21,6 +21,6 @@ SQL Server beginners will discover more SQL statements like sub-select and learn
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/more-structured-query-language)
 
->[!div class="step-by-step"]
-[Previous](manipulating-database-data.md)
-[Next](understanding-security-and-network-connectivity.md)
+> [!div class="step-by-step"]
+> [Previous](manipulating-database-data.md)
+> [Next](understanding-security-and-network-connectivity.md)

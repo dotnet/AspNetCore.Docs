@@ -114,5 +114,5 @@ Additional resources:
 - [ASP.NET Data Access Content Map](https://msdn.microsoft.com/library/6759sth4.aspx)
 - [Entity Framework Developer Center](https://msdn.microsoft.com/data/ef)
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-6.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-6.md)

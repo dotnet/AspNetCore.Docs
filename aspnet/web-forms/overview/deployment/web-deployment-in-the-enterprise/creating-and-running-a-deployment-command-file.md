@@ -113,6 +113,6 @@ A command file to publish to a staging environment might contain this MSBuild co
 
 You can also customize the build process for each environment by overriding properties or setting various other switches in your MSBuild command. For more information, see [MSBuild Command Line Reference](https://msdn.microsoft.com/library/ms164311.aspx).
 
->[!div class="step-by-step"]
-[Previous](deploying-database-projects.md)
-[Next](manually-installing-web-packages.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-database-projects.md)
+> [Next](manually-installing-web-packages.md)

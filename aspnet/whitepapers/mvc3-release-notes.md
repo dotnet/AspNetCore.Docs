@@ -433,7 +433,7 @@ When the *Html.ValidationMessage* method displays a validation message, it skips
 <a id="_Toc2_10"></a>
 ### Fixed @model Declaration to not Add Whitespace to the Document
 
-In earlier releases, the *@model* declaration at the top of a view added a blank line to the rendered HTML output. This has been fixed so that the declaration does not introduce whitespace.
+In earlier releases, the <em>@model</em> declaration at the top of a view added a blank line to the rendered HTML output. This has been fixed so that the declaration does not introduce whitespace.
 
 <a id="_Toc2_11"></a>
 ### Added "FileExtensions" Property to View Engines to Support Engine-Specific File Names
@@ -460,7 +460,7 @@ In earlier versions, explicit values that were passed to the *RenderAction* meth
 - In previous versions of ASP.NET MVC, action filters were created per request except in a few cases. This behavior was never a guaranteed behavior but merely an implementation detail and the contract for filters was to consider them stateless. In ASP.NET MVC 3, filters are cached more aggressively. Therefore, any custom action filters which improperly store instance state might be broken.
 - The order of execution for exception filters has changed for exception filters that have the same *Order* value. In ASP.NET MVC 2 and earlier, exception filters on the controller that had the same *Order* value as those on an action method were executed before the exception filters on the action method. This would typically be the case when exception filters were applied without a specified *Order* value. In ASP.NET MVC 3, this order has been reversed so that the most specific exception handler executes first. As in earlier versions, if the *Order* property is explicitly specified, the filters are run in the specified order.
 - A new property named *FileExtensions* was added to the *VirtualPathProviderViewEngine* base class. When ASP.NET looks up a view by path (not by name), only views with a file extension contained in the list specified by this new property are considered. This is a breaking change in applications where a custom build provider is registered in order to enable a custom file extension for Web Form views and where the provider references those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
-- Custom controller factory implementations that directly implement the *IControllerFactory* interface must provide an implementation of the new *GetControllerSessionBehavior**method that was added to the interface in this release*. In general, it is recommended that you do not implement this interface directly and instead derive your class from *DefaultControllerFactory*.
+- Custom controller factory implementations that directly implement the <em>IControllerFactory</em> interface must provide an implementation of the new <em>GetControllerSessionBehavior</em><em>method that was added to the interface in this release</em>. In general, it is recommended that you do not implement this interface directly and instead derive your class from <em>DefaultControllerFactory</em>.
 
 <a id="_Toc2_KI"></a>
 ## Known Issues

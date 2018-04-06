@@ -61,6 +61,6 @@ To conclude this sample, you need to define the two CSS classes that are referen
 
 The data in the accordion comes directly from the data source ([Click to view full-size image](databinding-to-an-accordion-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](dynamically-adding-an-accordion-pane-cs.md)
-[Next](dynamically-adding-an-accordion-pane-vb.md)
+> [!div class="step-by-step"]
+> [Previous](dynamically-adding-an-accordion-pane-cs.md)
+> [Next](dynamically-adding-an-accordion-pane-vb.md)

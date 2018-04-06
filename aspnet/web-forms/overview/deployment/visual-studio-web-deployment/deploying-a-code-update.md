@@ -202,6 +202,6 @@ You've now seen several ways to deploy an application update that does not invol
 
 The next tutorial shows you how to deploy a database change: you'll add a birthdate field to the database and to the Instructors page.
 
->[!div class="step-by-step"]
-[Previous](deploying-to-production.md)
-[Next](deploying-a-database-update.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-to-production.md)
+> [Next](deploying-a-database-update.md)

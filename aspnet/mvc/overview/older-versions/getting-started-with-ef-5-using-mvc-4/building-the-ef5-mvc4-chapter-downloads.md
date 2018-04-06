@@ -52,5 +52,5 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image5.png)
 
->[!div class="step-by-step"]
-[Previous](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

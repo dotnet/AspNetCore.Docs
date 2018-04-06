@@ -58,5 +58,5 @@ Run the page and try to enter a letter if JavaScript is enabled, it will not wor
 
 Only digits may be entered ([Click to view full-size image](allowing-only-certain-characters-in-a-text-box-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](allowing-only-certain-characters-in-a-text-box-cs.md)
+> [!div class="step-by-step"]
+> [Previous](allowing-only-certain-characters-in-a-text-box-cs.md)

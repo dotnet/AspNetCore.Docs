@@ -257,6 +257,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Alicja Maziarz. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at
 
->[!div class="step-by-step"]
-[Previous](unlocking-and-approving-user-accounts-cs.md)
-[Next](recovering-and-changing-passwords-vb.md)
+> [!div class="step-by-step"]
+> [Previous](unlocking-and-approving-user-accounts-cs.md)
+> [Next](recovering-and-changing-passwords-vb.md)

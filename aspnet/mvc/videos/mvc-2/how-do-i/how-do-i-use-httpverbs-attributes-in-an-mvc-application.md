@@ -21,6 +21,6 @@ In this video Chris Pels shows how to use the HttpVerbs attributes to control ac
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-httpverbs-attributes-in-an-mvc-application)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-work-with-model-binders-in-an-mvc-application.md)
-[Next](mvc2-html-encoding.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-work-with-model-binders-in-an-mvc-application.md)
+> [Next](mvc2-html-encoding.md)

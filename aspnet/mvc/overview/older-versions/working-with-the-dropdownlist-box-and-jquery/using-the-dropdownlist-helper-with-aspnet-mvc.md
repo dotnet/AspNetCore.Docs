@@ -212,5 +212,5 @@ Run the application and navigate to the `MultiSelectCountry` view. Try adding an
 
 In the next section you'll see how the ASP.NET MVC scaffolding mechanism works with the **DropDownList** helper.
 
->[!div class="step-by-step"]
-[Next](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)
+> [!div class="step-by-step"]
+> [Next](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)

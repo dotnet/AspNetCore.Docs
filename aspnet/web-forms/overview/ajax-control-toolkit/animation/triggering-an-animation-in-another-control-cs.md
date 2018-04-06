@@ -59,6 +59,6 @@ Note the special order in which the individual animations appear. First of all, 
 
 A mouse click on the button starts the panel animation ([Click to view full-size image](triggering-an-animation-in-another-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](disabling-actions-during-animation-cs.md)
-[Next](modifying-animations-from-the-server-side-cs.md)
+> [!div class="step-by-step"]
+> [Previous](disabling-actions-during-animation-cs.md)
+> [Next](modifying-animations-from-the-server-side-cs.md)

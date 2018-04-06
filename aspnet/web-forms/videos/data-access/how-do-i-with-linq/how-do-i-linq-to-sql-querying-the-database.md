@@ -21,6 +21,6 @@ This video shows how to query a database with LINQ, the underlying SQL with a qu
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-querying-the-database)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-data-model.md)
-[Next](how-do-i-linq-to-sql-updating-the-database.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-data-model.md)
+> [Next](how-do-i-linq-to-sql-updating-the-database.md)

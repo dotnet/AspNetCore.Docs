@@ -149,6 +149,6 @@ Run the page. In addition to the sorting and filtering capability that you added
 
 This completes the introduction to sorting, filtering, and master-detail scenarios. In the next tutorial, you'll see how to handle concurrency.
 
->[!div class="step-by-step"]
-[Previous](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
-[Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
+> [Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)

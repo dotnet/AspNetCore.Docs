@@ -311,6 +311,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Teresa Murphy and Michael Olivero. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](creating-user-accounts-cs.md)
-[Next](user-based-authorization-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-user-accounts-cs.md)
+> [Next](user-based-authorization-cs.md)

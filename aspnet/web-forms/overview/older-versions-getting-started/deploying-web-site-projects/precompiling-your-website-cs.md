@@ -185,6 +185,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Precompilation in ASP.NET](http://www.odetocode.com/Articles/417.aspx)
 - [Precompiled Site Options in ASP.NET](http://www.dotnetperls.com/precompiled)
 
->[!div class="step-by-step"]
-[Previous](logging-error-details-with-elmah-cs.md)
-[Next](users-and-roles-on-the-production-website-cs.md)
+> [!div class="step-by-step"]
+> [Previous](logging-error-details-with-elmah-cs.md)
+> [Next](users-and-roles-on-the-production-website-cs.md)

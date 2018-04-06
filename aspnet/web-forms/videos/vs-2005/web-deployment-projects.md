@@ -21,6 +21,6 @@ Bradley Bartz and Richard Ersek show how the Web Deployment Projects provide add
 
 [&#9654; Watch video (65 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/web-deployment-projects)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-enable-code-coverage-and-profiling-in-production-applications.md)
-[Next](web-application-projects-web-deployment-projects.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-enable-code-coverage-and-profiling-in-production-applications.md)
+> [Next](web-application-projects-web-deployment-projects.md)

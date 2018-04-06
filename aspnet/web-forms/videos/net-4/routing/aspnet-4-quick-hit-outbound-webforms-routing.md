@@ -21,6 +21,6 @@ In this video you will see how to use the routing mechanism to dynamically creat
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-outbound-webforms-routing)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-declarative-webforms-routing.md)
-[Next](how-do-i-use-routing-with-aspnet-web-forms.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-declarative-webforms-routing.md)
+> [Next](how-do-i-use-routing-with-aspnet-web-forms.md)

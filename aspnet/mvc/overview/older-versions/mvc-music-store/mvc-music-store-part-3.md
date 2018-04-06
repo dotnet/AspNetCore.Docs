@@ -257,6 +257,6 @@ The HTML for the genre list looks like this:
 [!code-html[Main](mvc-music-store-part-3/samples/sample22.html)]
 
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-2.md)
-[Next](mvc-music-store-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-2.md)
+> [Next](mvc-music-store-part-4.md)

@@ -191,6 +191,6 @@ When we created the service layer, we took advantage of the Decorator pattern to
 
 Finally, we took advantage of a software design pattern named the Dependency Injection pattern. This pattern enables us to program against interfaces (abstractions) instead of concrete classes. Implementing the Dependency Injection design pattern also makes our code more testable. In the next iteration, we add unit tests to our project.
 
->[!div class="step-by-step"]
-[Previous](iteration-3-add-form-validation-cs.md)
-[Next](iteration-5-create-unit-tests-cs.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-3-add-form-validation-cs.md)
+> [Next](iteration-5-create-unit-tests-cs.md)

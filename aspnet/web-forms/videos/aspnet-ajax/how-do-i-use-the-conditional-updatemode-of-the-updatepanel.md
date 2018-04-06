@@ -21,6 +21,6 @@ The ASP.NET AJAX UpdatePanel includes an UpdateMode property that may be set to 
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-conditional-updatemode-of-the-updatepanel)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-determine-whether-an-asynchronous-postback-has-occurred.md)
-[Next](how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-determine-whether-an-asynchronous-postback-has-occurred.md)
+> [Next](how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.md)
