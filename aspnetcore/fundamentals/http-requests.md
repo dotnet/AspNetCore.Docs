@@ -287,4 +287,12 @@ Each time `CreateClient` is called on the `IHttpClientFactory`, a new instance o
 
 ## Logging
 
-TODO
+Clients created via `IHttpClientFactory` record log messages for all requests. You will need to enable information level in your logging configuration to see the default log messages. Additional logging, such as the logging of request headers is only included at trace level. 
+
+The log category used for each client will include the name of the client. A client named "MyNamedClient" for example will log messages with a category of `System.Net.Http.HttpClient.MyNamedClient.LogicalHandler`. Messages with the suffix of LogicalHandler occur on the outside of request handler pipeline. On the request messages will be logged before any other handlers in the pipeline have processed it. On the response messages will be logged after any other pipeline handlers have received the response.
+
+Logging also occurs on the inside of the request handler pipeline. In the case of the "MyNameClient" example, those messages will be logged against the log category `System.Net.Http.HttpClient.MyNamedClient.ClientHandler`. For the request this occurs after all other handlers have run and immediately before the request is sent out on the network. On the response this logging will include the state of the response before it passes back through the handler pipeline. 
+
+Having logging on the outside and inside of the pipeline is useful as it enables inspection of the changes made by the other pipeline handlers. This may include changes to request headers for example or even to the response status code.
+
+By including the name of the client in the log category it enables log filtering to be applied for specific named clients where necessary.
