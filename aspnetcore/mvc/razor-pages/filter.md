@@ -80,6 +80,10 @@ The framework includes built-in attribute-based filters that you can subclass. F
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
+The following code applies the `AddHeader` attribute:
+
+[!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
+
 The following filter attributes can be overloaded:
 
 * `ActionFilterAttribute`

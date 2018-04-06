@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace PageFilter.Pages
 {
+    #region snippet1
     [AddHeader("Author", "Rick")]
     public class ContactModel : PageModel
     {
@@ -23,4 +24,5 @@ namespace PageFilter.Pages
             await Task.CompletedTask;
         }
     }
+    #endregion
 }
