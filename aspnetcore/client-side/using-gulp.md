@@ -178,6 +178,9 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
     
     ![Task Runner Explorer](using-gulp/_static/03-TaskRunnerExplorer.png)
+    
+    > [!IMPORTANT]
+    > The **Task Runner Explorer** context menu item appears only if *gulpfile.js* is in the root project directory.
 
 4.  Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
