@@ -12,7 +12,7 @@ uid: mvc/razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) )
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[](~/includes/2.1.md)]
 
@@ -43,7 +43,9 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
     * `Microsoft.AspNetCore.Razor.Design` 
     * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
     
-    [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
+ The following markup shows a basic *.csproj* file which uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
+    
+ [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
 
 
 ### Properties
@@ -57,28 +59,28 @@ The following properties and items are used to configure inputs and output to th
 
 | Items                                         | Description                                                                   |
 | ------------                                  | -------------                                                                 |
-| RazorGenerate                                 | Item elements (.cshtml files) that are inputs to code generation targets. |
+| RazorGenerate                                 | Item elements (*.cshtml* files) that are inputs to code generation targets. |
 | RazorCompile                                  | Item elements (.cs files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled in to the Razor assembly. |
-| RazorAssemblyAttribute                        | Item elements used to code generate attributes for the Razor assembly. e.g. <br />`<RazorAssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
+| RazorAssemblyAttribute                        | Item elements used to code generate attributes for the Razor assembly. For example:  <br />`<RazorAssemblyAttribute ` <br />  `Include="System.Reflection.AssemblyMetadataAttribute"`<br />`  _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
 | RazorEmbeddedResource                         | Item elements added as embedded resources to the generated Razor assembly |
 
 | Property                                      | Description                                                                   |
 | ------------                                  | -------------                                                                 |
 | RazorTargetName                               | File name (without extension) of the assembly produced by Razor. | 
-| RazorOutputPath                               | The Razor output directory                                       |
-| RazorCompileToolset                           | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK` and `PrecompilationTool` |
-| EnableDefaultContentItems                     | When `true`, includes certain file types, such as .cshtml files, as content in the project. When referenced via Microsoft.NET.Sdk.Web, this additionally includes all files under wwwroot, and any config files                                                                               |
-| EnableDefaultRazorGenerateItems               | When `true`, includes .cshtml files from `Content` items in `RazorGenerate` items. |
-| GenerateRazorTargetAssemblyInfo               | When `true`, generates a .cs file containing attributes specified by `RazorAssemblyAttribute` and includes it in the compile output. |
+| RazorOutputPath                               | The Razor output directory.                                      |
+| RazorCompileToolset                           | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK` and `PrecompilationTool`. |
+| EnableDefaultContentItems                     | When `true`, includes certain file types, such as *.cshtml* files, as content in the project. When referenced via Microsoft.NET.Sdk.Web, also includes all files under *wwwroot*, and config files.         |
+| EnableDefaultRazorGenerateItems               | When `true`, includes *.cshtml* files from `Content` items in `RazorGenerate` items. |
+| GenerateRazorTargetAssemblyInfo               | When `true`, generates a *.cs* file containing attributes specified by `RazorAssemblyAttribute` and includes it in the compile output. |
 | EnableDefaultRazorTargetAssemblyInfoAttributes | When `true`, adds a default set of assembly attributes to `RazorAssemblyAttribute`. |
-| CopyRazorGenerateFilesToPublishDirectory       | When `true`, copies RazorGenerate items (.cshtml) files to the publish directory. Typically Razor files are not needed for a published application if they participate in compilation at build-time or publish-time. Defaults to `false`. |
+| CopyRazorGenerateFilesToPublishDirectory       | When `true`, copies RazorGenerate items (*.cshtml*) files to the publish directory. Typically Razor files are not needed for a published application if they participate in compilation at build-time or publish-time. Defaults to `false`. |
 | CopyRefAssembliesToPublishDirectory            | When `true`, copy reference assembly items to the publish directory. Typically reference assemblies are not needed for a published application if Razor compilation occurs at build-time or publish-time. Set to `true`, if your published application requires runtime compilation, e.g. modifies cshtml files at runtime, or use embedded views. Defaults to `false`. |
-| IncludeRazorContentInPack                      | When `true`, configures whether all Razor content items (.cshtml files) will be marked to be included in the produced NuGet package as content. Defaults to `false`. |
-| EmbedRazorGenerateSources | When `true`, adds RazorGenerate (.cshtml) items as embedded files to the generated Razor assembly. Defaults to `false`. |
+| IncludeRazorContentInPack                      | When `true`, all Razor content items (*.cshtml* files) will be marked to be included in the produced NuGet package as content. Defaults to `false`. |
+| EmbedRazorGenerateSources | When `true`, adds RazorGenerate (*.cshtml*) items as embedded files to the generated Razor assembly. Defaults to `false`. |
 | UseRazorBuildServer                           | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
 
 ### Targets
 The Razor SDK defines two primary targets:
 
-* `RazorGenerate` - Code generates cs files from RazorGenerate item elements. Use `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
-* `RazorCompile` - Compiles generated cs files in to an Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
+* `RazorGenerate` - Code generates *.cs* files from RazorGenerate item elements. Use `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorCompile` - Compiles generated *.cs* files in to an Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
