@@ -171,7 +171,7 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     }
     ```
 
-3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
+3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer**. If **Task Runner Explorer** isn't listed in the context menu, install the [NPM Task Runner extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner) using **Tools** > **Extensions and Updates**.
     
     ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
