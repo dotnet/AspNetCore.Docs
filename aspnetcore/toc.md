@@ -144,6 +144,7 @@
 ## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
 ### [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
+### [Razor SDK](xref:mvc/razor-pages/sdk)
 ## [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
