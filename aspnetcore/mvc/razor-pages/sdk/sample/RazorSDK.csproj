@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
    <ResolvedRazorCompileToolset>RazorSdk</ResolvedRazorCompileToolset>
     <RazorCompileOnBuild>true</RazorCompileOnBuild>
-    <IncludeContentInPack>false</IncludeContentInPack>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="2.1.0-preview2-final" />
   </ItemGroup>
 
 </Project>
