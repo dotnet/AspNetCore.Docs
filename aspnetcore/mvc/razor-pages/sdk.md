@@ -1,0 +1,77 @@
+---
+title: ASP.NET Core Razor SDK
+author: Rick-Anderson
+description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
+manager: wpickett
+ms.author: riande
+ms.date: 4/12/2018
+ms.prod: asp.net-core
+ms.technology: aspnet
+ms.topic: content
+uid: mvc/razor-pages/sdk
+---
+# ASP.NET Core Razor SDK
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) )
+
+[!INCLUDE[](~/includes/2.1.md)]
+
+The [!INCLUDE[](~/includes/[!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
+
+* Standardizes the experience around building, packaging and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC based projects.
+* Includes a set of predefined targets, properties and items that allow customizing the compilation of Razor files.
+
+## Prerequisites
+
+[!INCLUDE[](~/includes/[!INCLUDE[](~/includes/2.1-SDK.md)]
+
+## Using the Razor SDK
+
+Most web apps, don't need to expressly reference the Razor SDK. 
+
+To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
+
+a) Use `Microsoft.NET.Sdk.Razor` instead of `Microsoft.NET.Sdk` e.g. 
+```xml
+<Project SDK="Microsoft.NET.Sdk.Razor">
+  ...
+</Project>
+```
+
+b) Typically a package reference to `Microsoft.AspNetCore.Mvc` is required to bring in additional dependencies required to correctly build and compile Razor Pages and Razor views. At minimum, your project needs to add package references to `Microsoft.AspNetCore.Razor.Design` and `Microsoft.AspNetCore.Mvc.Razor.Extensions`.
+
+### Properties
+These properties control the Razor's SDK behavior as part of a project build:
+
+* `RazorCompileOnBuild` - When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
+* `RazorCompileOnPublish` - When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+
+In addition to this, the following properties and items are used to configure inputs and output to the Razor SDK:
+
+| Items                                         | Description                                                                   |
+| ------------                                  | -------------                                                                 |
+| RazorGenerate                                 | Item elements (.cshtml files) that are inputs to code generation targets. |
+| RazorCompile                                  | Item elements (.cs files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled in to the Razor assembly. |
+| RazorAssemblyAttribute                        | Item elements used to code generate attributes for the Razor assembly. e.g. <br />`<RazorAssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
+| RazorEmbeddedResource                         | Item elements added as embedded resources to the generated Razor assembly |
+
+| Property                                      | Description                                                                   |
+| ------------                                  | -------------                                                                 |
+| RazorTargetName                               | File name (without extension) of the assembly produced by Razor. | 
+| RazorOutputPath                               | The Razor output directory                                       |
+| RazorCompileToolset                           | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK` and `PrecompilationTool` |
+| EnableDefaultContentItems                     | When `true`, includes certain file types, such as .cshtml files, as content in the project. When referenced via Microsoft.NET.Sdk.Web, this additionally includes all files under wwwroot, and any config files                                                                               |
+| EnableDefaultRazorGenerateItems               | When `true`, includes .cshtml files from `Content` items in `RazorGenerate` items. |
+| GenerateRazorTargetAssemblyInfo               | When `true`, generates a .cs file containing attributes specified by `RazorAssemblyAttribute` and includes it in the compile output. |
+| EnableDefaultRazorTargetAssemblyInfoAttributes | When `true`, adds a default set of assembly attributes to `RazorAssemblyAttribute`. |
+| CopyRazorGenerateFilesToPublishDirectory       | When `true`, copies RazorGenerate items (.cshtml) files to the publish directory. Typically Razor files are not needed for a published application if they participate in compilation at build-time or publish-time. Defaults to `false`. |
+| CopyRefAssembliesToPublishDirectory            | When `true`, copy reference assembly items to the publish directory. Typically reference assemblies are not needed for a published application if Razor compilation occurs at build-time or publish-time. Set to `true`, if your published application requires runtime compilation, e.g. modifies cshtml files at runtime, or use embedded views. Defaults to `false`. |
+| IncludeRazorContentInPack                      | When `true`, configures whether all Razor content items (.cshtml files) will be marked to be included in the produced NuGet package as content. Defaults to `false`. |
+| EmbedRazorGenerateSources | When `true`, adds RazorGenerate (.cshtml) items as embedded files to the generated Razor assembly. Defaults to `false`. |
+| UseRazorBuildServer                           | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
+
+### Targets
+The Razor SDK defines two primary targets:
+
+* `RazorGenerate` - Code generates cs files from RazorGenerate item elements. Use `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorCompile` - Compiles generated cs files in to an Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
