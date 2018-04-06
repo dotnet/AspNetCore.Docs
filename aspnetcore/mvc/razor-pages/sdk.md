@@ -18,8 +18,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
-* Standardizes the experience around building, packaging and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC based projects.
-* Includes a set of predefined targets, properties and items that allow customizing the compilation of Razor files.
+* Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.
+* Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor files.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` M
 
 ## Using the Razor SDK
 
-Most web apps, don't need to expressly reference the Razor SDK. 
+Most web apps don't need to expressly reference the Razor SDK. 
 
 To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
 
@@ -43,7 +43,7 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
     * `Microsoft.AspNetCore.Razor.Design` 
     * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
     
- The following markup shows a basic *.csproj* file which uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
+ The following markup shows a basic *.csproj* file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
     
  [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
 
@@ -68,14 +68,14 @@ The following properties and items are used to configure inputs and output to th
 | ------------                                  | -------------                                                                 |
 | RazorTargetName                               | File name (without extension) of the assembly produced by Razor. | 
 | RazorOutputPath                               | The Razor output directory.                                      |
-| RazorCompileToolset                           | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK` and `PrecompilationTool`. |
+| RazorCompileToolset                           | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, , and `PrecompilationTool`. |
 | EnableDefaultContentItems                     | When `true`, includes certain file types, such as *.cshtml* files, as content in the project. When referenced via Microsoft.NET.Sdk.Web, also includes all files under *wwwroot*, and config files.         |
 | EnableDefaultRazorGenerateItems               | When `true`, includes *.cshtml* files from `Content` items in `RazorGenerate` items. |
 | GenerateRazorTargetAssemblyInfo               | When `true`, generates a *.cs* file containing attributes specified by `RazorAssemblyAttribute` and includes it in the compile output. |
 | EnableDefaultRazorTargetAssemblyInfoAttributes | When `true`, adds a default set of assembly attributes to `RazorAssemblyAttribute`. |
 | CopyRazorGenerateFilesToPublishDirectory       | When `true`, copies RazorGenerate items (*.cshtml*) files to the publish directory. Typically Razor files are not needed for a published application if they participate in compilation at build-time or publish-time. Defaults to `false`. |
-| CopyRefAssembliesToPublishDirectory            | When `true`, copy reference assembly items to the publish directory. Typically reference assemblies are not needed for a published application if Razor compilation occurs at build-time or publish-time. Set to `true`, if your published application requires runtime compilation, e.g. modifies cshtml files at runtime, or use embedded views. Defaults to `false`. |
-| IncludeRazorContentInPack                      | When `true`, all Razor content items (*.cshtml* files) will be marked to be included in the produced NuGet package as content. Defaults to `false`. |
+| CopyRefAssembliesToPublishDirectory            | When `true`, copy reference assembly items to the publish directory. Typically reference assemblies are not needed for a published application if Razor compilation occurs at build-time or publish-time. Set to `true`, if your published application requires runtime compilation, for example, modifies cshtml files at runtime, or uses embedded views. Defaults to `false`. |
+| IncludeRazorContentInPack                      | When `true`, all Razor content items (*.cshtml* files) will be marked for inclusion in the generated NuGet package. Defaults to `false`. |
 | EmbedRazorGenerateSources | When `true`, adds RazorGenerate (*.cshtml*) items as embedded files to the generated Razor assembly. Defaults to `false`. |
 | UseRazorBuildServer                           | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
 
@@ -83,4 +83,4 @@ The following properties and items are used to configure inputs and output to th
 The Razor SDK defines two primary targets:
 
 * `RazorGenerate` - Code generates *.cs* files from RazorGenerate item elements. Use `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
-* `RazorCompile` - Compiles generated *.cs* files in to an Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
+* `RazorCompile` - Compiles generated *.cs* files in to a Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
