@@ -27,6 +27,17 @@ This document shows how to:
 
 ## Require HTTPS
 
+# [ASP.NET Core 2.1](#tab/aspnetcore2x)
+
+We recommend all ASP.NET Core web apps call the `UseHttpsRedirection` middleware to redirect all HTTP requests to HTTPS. If `UseHsts` is called in the app, it must be called before `UseHttpsRedirection`.
+
+The following code calls `UseHttpsRedirection`:
+
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1)]
+
+
+# [ASP.NET Core 1.x and 2.0](#tab/aspnetcore1x)
+
 The [RequireHttpsAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.RequireHttpsAttribute) is used to require HTTPS. `[RequireHttpsAttribute]` can decorate controllers or methods, or can be applied globally. To apply the attribute globally, add the following code to `ConfigureServices` in `Startup`:
 
 [!code-csharp[](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-999)]
@@ -39,3 +50,5 @@ For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewri
 
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the
 `[RequireHttps]` attribute to all controllers/Razor Pages isn't considered as secure as requiring HTTPS globally. You can't guarantee the `[RequireHttps]` attribute is applied when new controllers and Razor Pages are added.
+
+-------------------
