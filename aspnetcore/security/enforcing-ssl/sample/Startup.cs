@@ -17,6 +17,7 @@ namespace WebHTTPS
 
         public IConfiguration Configuration { get; }
 
+        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -31,7 +32,7 @@ namespace WebHTTPS
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromSeconds(5000);
+                options.MaxAge = TimeSpan.FromDays(60);
             });
 
             services.AddHttpsRedirection(options =>
@@ -40,6 +41,7 @@ namespace WebHTTPS
                 options.HttpsPort = 5001;
             });            
         }
+        #endregion
 
         #region snippet1
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

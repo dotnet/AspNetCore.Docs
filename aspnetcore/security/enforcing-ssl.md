@@ -29,11 +29,20 @@ This document shows how to:
 
 # [ASP.NET Core 2.1](#tab/aspnetcore2x)
 
+[!INCLUDE[](~/includes/2.1.md)]
+
 We recommend all ASP.NET Core web apps call the `UseHttpsRedirection` middleware to redirect all HTTP requests to HTTPS. If `UseHsts` is called in the app, it must be called before `UseHttpsRedirection`.
 
-The following code calls `UseHttpsRedirection`:
+The following code calls `UseHttpsRedirection` in the `Startup` class:
 
-[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1)]
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=13)]
+
+
+The following code:
+
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=18-22)]
+
+* Sets the
 
 
 # [ASP.NET Core 1.x and 2.0](#tab/aspnetcore1x)
@@ -52,3 +61,32 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 `[RequireHttps]` attribute to all controllers/Razor Pages isn't considered as secure as requiring HTTPS globally. You can't guarantee the `[RequireHttps]` attribute is applied when new controllers and Razor Pages are added.
 
 -------------------
+
+<a name="hsts"></a>
+## HTTP Strict Transport Security Protocol (HSTS)
+
+
+Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that is specified by a web application through the use of a special response header. Once a supported browser receives this header that browser will prevent any communications from being sent over HTTP to the specified domain and will instead send all communications over HTTPS. It also prevents HTTPS click through prompts on browsers.
+
+ASP.NET Core 2.1 preview1 or later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
+
+`UseHsts` not recommend in development because it excludes the local loopback address.
+
+The following code:
+
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=11-16)]
+
+* Sets the preload parameter of the Strict-Transport-Security header. Preload is not part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
+* Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains. 
+* Explicitly sets the max-age parameter of the Strict-Transport-Security header to to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
+
+`UseHsts` excludes the following loopback hosts:
+
+* `localhost` : The IPv4 loopback address.
+* `127.0.0.1` : The IPv4 loopback address.
+* `[::1]` : The IPv6 loopback address.
+
+
+
