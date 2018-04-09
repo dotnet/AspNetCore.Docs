@@ -92,7 +92,7 @@ Setup client-side log tracing by passing a logger and type of event to log when 
 * `signalR.LogLevel.Information` : Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace` : Trace messages. Logs everything, including data transported between hub and client.
 
-Pass the logger to the connection. Browser developer tools typically contain a console that displays the messages.
+Pass the logger to the connection to start logging. Browser developer tools typically contain a console that displays the messages.
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=1-2)]
 
