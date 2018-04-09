@@ -43,10 +43,9 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
     * `Microsoft.AspNetCore.Razor.Design` 
     * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
     
- The following markup shows a basic *.csproj* file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
+ The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following markup shows a basic *.csproj* file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
     
  [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
-
 
 ### Properties
 
