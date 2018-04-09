@@ -22,13 +22,14 @@ The ASP.NET Core SignalR JavaScript client library enables developers to call se
 
 ## Install the SignalR client package
 
-The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the command line in any folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
+The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
 
   ```console
+   npm init -y
    npm install @aspnet/signalr
   ```
 
-Npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* to the *wwwroot\lib\signalr* folder.
+Npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
 
 ## Use the SignalR JavaScript client
 
@@ -70,7 +71,7 @@ To receive messages from the hub, define a method using the `connection.on` meth
 
 [!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=4-9)]
 
-The preceding code in `connection.on` runs when  server-side code calls it using the `SendAsync` method.
+The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
 
 [!code-javascript[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
