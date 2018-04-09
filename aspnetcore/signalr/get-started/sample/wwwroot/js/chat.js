@@ -1,26 +1,18 @@
-﻿const connection = new signalR.HubConnection('/chathub');
+﻿const connection = new signalR.HubConnection(
+                   "/chathub", { logger: signalR.LogLevel.Information });
 
-connection.on('ReceiveMessage', (timestamp, user, message) => {
-    const encodedUser = user;
-    const encodedMsg = message;
-    const listItem = document.createElement('li');
-    listItem.innerText = timestamp + ' ' + encodedUser + ': ' + encodedMsg;
-    document.getElementById('messages').appendChild(listItem);
+connection.on("ReceiveMessage", (user, message) => { 
+    const encodedMsg = user + " says " + message;
+    const li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("messagesList").appendChild(li);
 });
 
-document.getElementById('send').addEventListener('click', event => {
-    const msg = document.getElementById('message').value;
-    const usr = document.getElementById('user').value;
-
-    connection.invoke('SendMessage', usr, msg).catch(err => showErr(err));
+document.getElementById("sendButton").addEventListener("click", event => {
+    const user = document.getElementById("userInput").value;
+    const message = document.getElementById("messageInput").value;    
+    connection.invoke("SendMessage", user, message).catch(err => console.error);
     event.preventDefault();
 });
 
-function showErr(msg) {
-    const listItem = document.createElement('li');
-    listItem.setAttribute('style', 'color: red');
-    listItem.innerText = msg.toString();
-    document.getElementById('messages').appendChild(listItem);
-}
-
-connection.start().catch(err => showErr(err));
+connection.start().catch(err => console.error);
