@@ -6,8 +6,8 @@
 <body>
 
   <div>
-    <h2>All Products</h2>
-    <ul id="products" />
+    <h2>All ToDos</h2>
+    <ul id="todos" />
   </div>
   <div>
     <h2>Search by ID</h2>
@@ -16,18 +16,21 @@
     <p id="product" />
   </div>
 
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
   <script>
-    var uri = 'api/products';
+    var uri = 'api/todo';
 
     $(document).ready(function () {
       // Send an AJAX request
       $.getJSON(uri)
           .done(function (data) {
-            // On success, 'data' contains a list of products.
+            // On success, 'data' contains a list of todo.
             $.each(data, function (key, item) {
-              // Add a list item for the product.
-              $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+              // Add a list item for the todo.
+              $('<li>', { text: formatItem(item) }).appendTo($('#todos'));
             });
           });
     });
@@ -37,13 +40,13 @@
     }
 
     function find() {
-      var id = $('#prodId').val();
+      var id = $('#todoId').val();
       $.getJSON(uri + '/' + id)
           .done(function (data) {
-            $('#product').text(formatItem(data));
+            $('#todo').text(formatItem(data));
           })
           .fail(function (jqXHR, textStatus, err) {
-            $('#product').text('Error: ' + err);
+            $('#todo').text('Error: ' + err);
           });
     }
   </script>

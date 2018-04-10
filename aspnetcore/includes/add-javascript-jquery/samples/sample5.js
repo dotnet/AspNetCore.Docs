@@ -1,10 +1,10 @@
 function find() {
-    var id = $('#prodId').val();
+    var id = $('#todoId').val();
     $.getJSON(apiUrl + '/' + id)
         .done(function (data) {
-            $('#product').text(formatItem(data));
+            $('#todo').text(formatItem(data));
         })
         .fail(function (jqXHR, textStatus, err) {
-            $('#product').text('Error: ' + err);
+            $('#todo').text('Error: ' + err);
         });
 }
