@@ -5,7 +5,7 @@ description: Learn how to create publish profiles in Visual Studio and use them 
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2018
+ms.date: 04/10/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -196,7 +196,7 @@ For more information, see [What publishing options are right for me](/visualstud
 
 When creating a publish profile with Visual Studio, a *Properties/PublishProfiles/&lt;profile_name&gt;.pubxml* MSBuild file is created. The *.pubxml* file is a MSBuild file and contains publish configuration settings. This file can be changed to customize the build and publish process. This file is read by the publishing process. `<LastUsedBuildConfiguration>` is special because it's a global property and shouldn't be in any file that's imported in the build. See [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx) for more information.
 
-When publishing to an Azure target, the *.pubxml* file shouldn't be checked into source control. It stores sensitive information, such as the Azure subscription identifier. When publishing to a non-Azure target, it's safer to check in the *.pubxml* file.
+When publishing to an Azure target, the *.pubxml* file contains your Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/&lt;profile_name&gt;.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
 
