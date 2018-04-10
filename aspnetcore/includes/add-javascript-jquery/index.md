@@ -1,16 +1,16 @@
 ## Call the Web API with Javascript and jQuery
 
-In this section, an HTML page is added that uses AJAX to call the web API. jQuery is used to make the AJAX calls and to update the page with the results. Add an HTML page with the following:
+In this section, an HTML page is added that uses AJAX to call the Web API. jQuery is used to make the AJAX calls and to update the page with the results. Add an HTML page with the following:
 
 [!code-html[Main](samples/sample3.html)]
 
-There are several ways to get jQuery. For this example, the library is loaded from [http://jquery.com/](http://jquery.com/).
+There are several ways to get jQuery. For this example, the library is loaded from [https://jquery.com/](https://jquery.com/).
 
 ### Get a list of ToDos
 
 To get a list of ToDos, send an HTTP GET request to &quot;/api/todo&quot;.
 
-The jQuery [getJSON](http://api.jquery.com/jQuery.getJSON/) function sends an AJAX request to the Api, which returns a JSON structured item, representing an object or array. The `done` function specifies a callback that is called if the request succeeds. In the callback, we update the DOM with the Todo information.
+The jQuery [getJSON](https://api.jquery.com/jQuery.getJSON/) function sends an AJAX request to the API, which returns JSON representing an object or array. The `done` function specifies a callback that is called if the request succeeds. In the callback, we update the DOM with the ToDo information.
 
 [!code-html[Main](samples/sample4.html)]
 
@@ -20,4 +20,4 @@ To get a ToDo by ID, send an HTTP GET request to &quot;/api/todo/*id*&quot;, whe
 
 [!code-javascript[Main](samples/sample5.js)]
 
-We still call `getJSON` to send the AJAX request, but this time we put the ID in the request URI. The response from this request is a JSON representation of a single Todo.
+We still call `getJSON` to send the AJAX request, but this time the ID is included in the request URI. The response from this request is a JSON representation of a single ToDo item.
