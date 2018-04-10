@@ -271,32 +271,227 @@ To convert the values to integers, you call the `AsInt` method. If the conversio
 The following table lists some common conversion and test methods for variables.
 
 
-|   <strong>Method</strong>    |                                                                              <strong>Description</strong>                                                                              |                     <strong>Example</strong>                      |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-|      `AsInt(), IsInt()`      |                                                 Converts a string that represents a whole number (like &quot;593&quot;) to an integer.                                                 | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample23.vb)] |
-|     `AsBool(), IsBool()`     |                                                    Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.                                                     | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample24.vb)] |
-|    `AsFloat(), IsFloat()`    |                                    Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.                                    | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample25.vb)] |
-|  `AsDecimal(), IsDecimal()`  | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample26.vb)] |
-| `AsDateTime(), IsDateTime()` |                                                Converts a string that represents a date and time value to the ASP.NET `DateTime` type.                                                 | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample27.vb)] |
-|         `ToString()`         |                                                                       Converts any other data type to a string.                                                                        | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample28.vb)] |
+:::row:::
+    :::column:::
+        <strong>Method</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Description</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Example</strong>
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsInt(), IsInt()`
+    :::column-end:::
+    :::column:::
+        Converts a string that represents a whole number (like &quot;593&quot;) to an integer.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample23.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsBool(), IsBool()`
+    :::column-end:::
+    :::column:::
+        Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample24.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsFloat(), IsFloat()`
+    :::column-end:::
+    :::column:::
+        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample25.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsDecimal(), IsDecimal()`
+    :::column-end:::
+    :::column:::
+        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.)
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample26.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsDateTime(), IsDateTime()`
+    :::column-end:::
+    :::column:::
+        Converts a string that represents a date and time value to the ASP.NET `DateTime` type.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample27.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `ToString()`
+    :::column-end:::
+    :::column:::
+        Converts any other data type to a string.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample28.vb)]
+    :::column-end:::
+:::row-end:::
+
 
 ## Operators
 
 An operator is a keyword or character that tells ASP.NET what kind of command to perform in an expression. Visual Basic supports many operators, but you only need to recognize a few to get started developing ASP.NET web pages. The following table summarizes the most common operators.
 
 
-| <strong>Operator</strong> |                                                                        <strong>Description</strong>                                                                         |                         <strong>Examples</strong>                         |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-|         `+ - * /`         |                                                                Math operators used in numerical expressions.                                                                |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample29.vb)]     |
-|            `=`            | Assignment and equality. Depending on context, either assigns the value on the right side of a statement to the object on the left side, or checks the values for equality. |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample30.vb)]     |
-|           `<>`            |                                                           Inequality. Returns `True` if the values are not equal.                                                           |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample31.vb)]     |
-|        `< > <= >=`        |                                                   Less than, greater than, less than or equal, and greater than or equal.                                                   |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample32.vb)]     |
-|            `&`            |                                                                Concatenation, which is used to join strings.                                                                | [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample33.vbhtml)] |
-|          `+= -=`          |                                       The increment and decrement operators, which add and subtract 1 (respectively) from a variable.                                       |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample34.vb)]     |
-|            `.`            |                                                     Dot. Used to distinguish objects and their properties and methods.                                                      |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample35.vb)]     |
-|           `()`            |                           Parentheses. Used to group expressions, to pass parameters to methods, and to access members of arrays and collections.                           | [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample36.vbhtml)] |
-|           `Not`           |                    Not. Reverses a true value to false and vice versa. Typically used as a shorthand way to test for `False` (that is, for not `True`).                     |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample37.vb)]     |
-|     `AndAlso OrElse`      |                                                       Logical AND and OR, which are used to link conditions together.                                                       |     [!code-vb[Main](introducing-razor-syntax-vb/samples/sample38.vb)]     |
+:::row:::
+    :::column:::
+        <strong>Operator</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Description</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Examples</strong>
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `+ - * /`
+    :::column-end:::
+    :::column:::
+        Math operators used in numerical expressions.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample29.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `=`
+    :::column-end:::
+    :::column:::
+        Assignment and equality. Depending on context, either assigns the value on the right side of a statement to the object on the left side, or checks the values for equality.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample30.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `<>`
+    :::column-end:::
+    :::column:::
+        Inequality. Returns `True` if the values are not equal.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample31.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `< > <= >=`
+    :::column-end:::
+    :::column:::
+        Less than, greater than, less than or equal, and greater than or equal.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample32.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `&`
+    :::column-end:::
+    :::column:::
+        Concatenation, which is used to join strings.
+    :::column-end:::
+    :::column:::
+        [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample33.vbhtml)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `+= -=`
+    :::column-end:::
+    :::column:::
+        The increment and decrement operators, which add and subtract 1 (respectively) from a variable.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample34.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `.`
+    :::column-end:::
+    :::column:::
+        Dot. Used to distinguish objects and their properties and methods.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample35.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `()`
+    :::column-end:::
+    :::column:::
+        Parentheses. Used to group expressions, to pass parameters to methods, and to access members of arrays and collections.
+    :::column-end:::
+    :::column:::
+        [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample36.vbhtml)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `Not`
+    :::column-end:::
+    :::column:::
+        Not. Reverses a true value to false and vice versa. Typically used as a shorthand way to test for `False` (that is, for not `True`).
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample37.vb)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AndAlso OrElse`
+    :::column-end:::
+    :::column:::
+        Logical AND and OR, which are used to link conditions together.
+    :::column-end:::
+    :::column:::
+        [!code-vb[Main](introducing-razor-syntax-vb/samples/sample38.vb)]
+    :::column-end:::
+:::row-end:::
 
 ## Working with File and Folder Paths in Code
 

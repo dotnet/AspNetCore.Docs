@@ -338,35 +338,250 @@ To convert the values to integers, you call the `AsInt` method. If the conversio
 
 The following table lists some common conversion and test methods for variables.
 
-
-|   <strong>Method</strong>    |                                                                              <strong>Description</strong>                                                                              |                         <strong>Example</strong>                         |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-|      `AsInt(), IsInt()`      |                                                      Converts a string that represents a whole number (like "593") to an integer.                                                      |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample28.cs)]   |
-|     `AsBool(), IsBool()`     |                                                    Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.                                                     |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample29.cs)]   |
-|    `AsFloat(), IsFloat()`    |                                    Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.                                    |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)]   |
-|  `AsDecimal(), IsDecimal()`  | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample31.cs)]   |
-| `AsDateTime(), IsDateTime()` |                                                Converts a string that represents a date and time value to the ASP.NET `DateTime` type.                                                 |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample32.cs)]   |
-|         `ToString()`         |                                                                       Converts any other data type to a string.                                                                        | [!code-javascript[Main](introducing-razor-syntax-c/samples/sample33.js)] |
+:::row:::
+    :::column:::
+        <strong>Method</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Description</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Example</strong>
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsInt(), IsInt()`
+    :::column-end:::
+    :::column:::
+        Converts a string that represents a whole number (like "593") to an integer.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample28.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsBool(), IsBool()`
+    :::column-end:::
+    :::column:::
+        Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample29.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsFloat(), IsFloat()`
+    :::column-end:::
+    :::column:::
+        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsDecimal(), IsDecimal()`
+    :::column-end:::
+    :::column:::
+        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.)
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample31.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `AsDateTime(), IsDateTime()`
+    :::column-end:::
+    :::column:::
+        Converts a string that represents a date and time value to the ASP.NET `DateTime` type.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample32.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `ToString()`
+    :::column-end:::
+    :::column:::
+        Converts any other data type to a string.
+    :::column-end:::
+    :::column:::
+        [!code-javascript[Main](introducing-razor-syntax-c/samples/sample33.js)]
+    :::column-end:::
+:::row-end:::
 
 ## Operators
 
 An operator is a keyword or character that tells ASP.NET what kind of command to perform in an expression. The C# language (and the Razor syntax that's based on it) supports many operators, but you only need to recognize a few to get started. The following table summarizes the most common operators.
 
 
-|   <strong>Operator</strong>    |                                                                     <strong>Description</strong>                                                                     |                        <strong>Examples</strong>                         |
-|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-|        `+` `-` `*` `/`         |                                                            Math operators used in numerical expressions.                                                             |    [!code-css[Main](introducing-razor-syntax-c/samples/sample34.css)]    |
-|              `=`               |                                    Assignment. Assigns the value on the right side of a statement to the object on the left side.                                    |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample35.cs)]   |
-|              `==`              |                      Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.)                      |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample36.cs)]   |
-|              `!=`              |                                                       Inequality. Returns `true` if the values are not equal.                                                        |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample37.cs)]   |
-|          `< > <= >=`           |                                               Less-than, greater-than, less-than-or-equal, and greater-than-or-equal.                                                |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample38.cs)]   |
-|              `+`               | Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression. |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample39.cs)]   |
-|           `+=` `-=`            |                                   The increment and decrement operators, which add and subtract 1 (respectively) from a variable.                                    |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample40.cs)]   |
-|              `.`               |                                                  Dot. Used to distinguish objects and their properties and methods.                                                  |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample41.cs)]   |
-|              `()`              |                                              Parentheses. Used to group expressions and to pass parameters to methods.                                               | [!code-javascript[Main](introducing-razor-syntax-c/samples/sample42.js)] |
-|              `[]`              |                                                    Brackets. Used for accessing values in arrays or collections.                                                     |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)]   |
-|              `!`               |               Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`).               |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)]   |
-| `&&` <code>&#124;&#124;</code> |                                                   Logical AND and OR, which are used to link conditions together.                                                    |   [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)]   |
+:::row:::
+    :::column:::
+        <strong>Operator</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Description</strong>
+    :::column-end:::
+    :::column:::
+        <strong>Examples</strong>
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `+` `-` `*` `/`
+    :::column-end:::
+    :::column:::
+        Math operators used in numerical expressions.
+    :::column-end:::
+    :::column:::
+        [!code-css[Main](introducing-razor-syntax-c/samples/sample34.css)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `=`
+    :::column-end:::
+    :::column:::
+        Assignment. Assigns the value on the right side of a statement to the object on the left side.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample35.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `==`
+    :::column-end:::
+    :::column:::
+        Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.)
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample36.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `!=`
+    :::column-end:::
+    :::column:::
+        Inequality. Returns `true` if the values are not equal.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample37.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `< > <= >=`
+    :::column-end:::
+    :::column:::
+        Less-than, greater-than, less-than-or-equal, and greater-than-or-equal.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample38.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `+`
+    :::column-end:::
+    :::column:::
+        Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample39.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `+=` `-=`
+    :::column-end:::
+    :::column:::
+        The increment and decrement operators, which add and subtract 1 (respectively) from a variable.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample40.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `.`
+    :::column-end:::
+    :::column:::
+        Dot. Used to distinguish objects and their properties and methods.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample41.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `()`
+    :::column-end:::
+    :::column:::
+        Parentheses. Used to group expressions and to pass parameters to methods.
+    :::column-end:::
+    :::column:::
+        [!code-javascript[Main](introducing-razor-syntax-c/samples/sample42.js)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `[]`
+    :::column-end:::
+    :::column:::
+        Brackets. Used for accessing values in arrays or collections.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `!`
+    :::column-end:::
+    :::column:::
+        Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`).
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)]
+    :::column-end:::
+:::row-end:::
+* * *
+:::row:::
+    :::column:::
+        `&&` <code>&#124;&#124;</code>
+    :::column-end:::
+    :::column:::
+        Logical AND and OR, which are used to link conditions together.
+    :::column-end:::
+    :::column:::
+        [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)]
+    :::column-end:::
+:::row-end:::
 
 <a id="ID_WorkingWithFileAndFolderPaths"></a>
 ## Working with File and Folder Paths in Code

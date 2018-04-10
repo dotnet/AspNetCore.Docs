@@ -144,6 +144,7 @@
 ## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
 ### [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
+### [Razor SDK](xref:mvc/razor-pages/sdk)
 ## [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
@@ -221,6 +222,7 @@
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 ## [Hubs](xref:signalr/hubs)
+## [JavaScript Client](xref:signalr/javascript-client)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
