@@ -1,20 +1,10 @@
 ## Calling the Web API with Javascript and jQuery
 
-In this section, we'll add an HTML page that uses AJAX to call the web API. We'll use jQuery to make the AJAX calls and also to update the page with the results.
-
-In Solution Explorer, right-click the project and select **Add**, then select **New Item**.
-
-![](~/includes/add-javascript-jquery/_static/image9.png)
-
-In the **Add New Item** dialog, select the **Web** node under **Visual C#**, and then select the **HTML Page** item. Name the page &quot;index.html&quot;.
-
-![](_static/image10.png)
-
-Replace everything in this file with the following:
+In this section, an HTML page is added that uses AJAX to call the web API. jQuery is used to make the AJAX calls and to update the page with the results. Add an HTML page with the following:
 
 [!code-html[Main](samples/sample3.html)]
 
-There are several ways to get jQuery. In this example, I used the [Microsoft Ajax CDN](../../../aspnet/ajax/cdn/overview.md). You can also download it from [http://jquery.com/](http://jquery.com/), and the ASP.NET "Web API" project template includes jQuery as well.
+There are several ways to get jQuery. For this example, the [Microsoft Ajax CDN](/aspnet/ajax/cdn/overview) is used. You can also download it from [http://jquery.com/](http://jquery.com/).
 
 ### Getting a List of Products
 
