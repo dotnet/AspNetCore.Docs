@@ -4,7 +4,7 @@ In this section, we'll add an HTML page that uses AJAX to call the web API. We'l
 
 In Solution Explorer, right-click the project and select **Add**, then select **New Item**.
 
-![](_static/image9.png)
+![](~/includes/add-javascript-jquery/_static/image9.png)
 
 In the **Add New Item** dialog, select the **Web** node under **Visual C#**, and then select the **HTML Page** item. Name the page &quot;index.html&quot;.
 
