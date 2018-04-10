@@ -185,6 +185,8 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
 
+[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
+
 ## Next steps
 
 * [Route to controller actions](xref:mvc/controllers/routing)
