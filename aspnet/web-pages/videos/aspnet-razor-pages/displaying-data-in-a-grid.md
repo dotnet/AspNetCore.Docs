@@ -21,6 +21,6 @@ Video accompaniment to the Displaying Data in a Grid tutorial
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/displaying-data-in-a-grid)
 
->[!div class="step-by-step"]
-[Previous](working-with-data-part-2.md)
-[Next](displaying-data-in-a-chart-part-1.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-data-part-2.md)
+> [Next](displaying-data-in-a-chart-part-1.md)

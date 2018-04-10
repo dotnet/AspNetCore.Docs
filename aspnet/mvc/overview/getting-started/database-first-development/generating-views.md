@@ -104,6 +104,6 @@ Furthermore, validation of the provided values is automatically applied based on
 
 You have verified that the automatically-generated views enable users to work with the data in the database. In the next tutorial in this series, you will update the database and make the corresponding changes in the web application.
 
->[!div class="step-by-step"]
-[Previous](creating-the-web-application.md)
-[Next](changing-the-database.md)
+> [!div class="step-by-step"]
+> [Previous](creating-the-web-application.md)
+> [Next](changing-the-database.md)

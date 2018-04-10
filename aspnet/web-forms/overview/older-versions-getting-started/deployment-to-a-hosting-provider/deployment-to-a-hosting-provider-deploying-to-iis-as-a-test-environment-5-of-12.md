@@ -245,6 +245,6 @@ For information about running IIS or IIS Express in Visual Studio, see the follo
 
 For information about what issues might arise when your application runs in medium trust, see [Hosting ASP.NET Applications in Medium Trust](http://www.4guysfromrolla.com/articles/100307-1.aspx) on the 4 Guys from Rolla site.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-configuring-project-properties-4-of-12.md)
-[Next](deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-configuring-project-properties-4-of-12.md)
+> [Next](deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.md)

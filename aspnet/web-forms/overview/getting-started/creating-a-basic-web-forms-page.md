@@ -226,7 +226,7 @@ For this walkthrough, you will write code that reads the name that the user ente
 2. Double-click the [Button](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.aspx) control.
 
     By default, Visual Studio switches to a code-behind file and creates a skeleton event handler for the [Button](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.aspx) control's default event, the [Click](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.click.aspx) event. The code-behind file separates your UI markup (such as HTML) from your server code (such as C#).   
-The cursor is positioned to added code for this event handler.
+   The cursor is positioned to added code for this event handler.
 
     > [!NOTE] 
     > 
@@ -311,10 +311,12 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
 2. Finish the [SelectionChanged](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selectionchanged.aspx) event handler with the following code.
 
 
-    [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
+~~~
+[!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
 
 
-    [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
+[!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
+~~~
 
  The above code sets the text of the label control to the selected date of the calendar control.
 

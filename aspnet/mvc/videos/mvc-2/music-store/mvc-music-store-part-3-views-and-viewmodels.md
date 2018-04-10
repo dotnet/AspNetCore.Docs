@@ -21,5 +21,5 @@ Jon continues the MVC Music Store tutorial with an introduction to Views, ViewMo
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc-music-store-part-3-views-and-viewmodels)
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-2-controllers.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-2-controllers.md)

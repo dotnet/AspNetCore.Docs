@@ -21,6 +21,6 @@ Using the new multi-targeting feature of Visual Studio 2008, I will demonstrate 
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-converting-a-net-20-windows-forms-application-to-net-35)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-advance-cascading-style-sheet-features-and-management.md)
-[Next](how-do-i-get-started-with-the-entity-framework.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-advance-cascading-style-sheet-features-and-management.md)
+> [Next](how-do-i-get-started-with-the-entity-framework.md)

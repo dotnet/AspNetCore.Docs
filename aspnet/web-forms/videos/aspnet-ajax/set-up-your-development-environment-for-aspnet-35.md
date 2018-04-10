@@ -21,6 +21,6 @@ In this video you'll learn how to set up your Development Environment for develo
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/set-up-your-development-environment-for-aspnet-35)
 
->[!div class="step-by-step"]
-[Previous](how-to-dynamically-add-controls-to-a-web-page.md)
-[Next](set-up-your-development-environment-for-aspnet-20.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-dynamically-add-controls-to-a-web-page.md)
+> [Next](set-up-your-development-environment-for-aspnet-20.md)

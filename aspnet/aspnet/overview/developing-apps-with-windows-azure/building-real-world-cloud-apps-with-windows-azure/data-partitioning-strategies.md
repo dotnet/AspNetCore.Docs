@@ -108,6 +108,6 @@ Sample code:
 
 - [Cloud Service Fundamentals in Windows Azure](https://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649). Sample application that includes a sharded database. For a description of the sharding scheme implemented, see [DAL – Sharding of RDBMS](https://blogs.msdn.com/b/windowsazure/archive/2013/09/05/dal-sharding-of-rdbms.aspx) on the Windows Azure blog.
 
->[!div class="step-by-step"]
-[Previous](data-storage-options.md)
-[Next](unstructured-blob-storage.md)
+> [!div class="step-by-step"]
+> [Previous](data-storage-options.md)
+> [Next](unstructured-blob-storage.md)

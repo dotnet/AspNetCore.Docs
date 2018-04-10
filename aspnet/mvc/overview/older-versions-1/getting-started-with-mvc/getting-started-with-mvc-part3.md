@@ -115,6 +115,6 @@ Run your application and visit `http://localhost:xx/HelloWorld/Welcome?name=Scot
 
 Well, that was a kind of an "M" for Model, but not the database kind. Let's take what we've learned and create a database of Movies.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part2.md)
-[Next](getting-started-with-mvc-part4.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part2.md)
+> [Next](getting-started-with-mvc-part4.md)

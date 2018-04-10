@@ -94,6 +94,6 @@ When Visual Studio opens the home page URL in the browser, the *app\_offline.htm
 
 You've now deployed an application update that included a database change to both test and production. The next tutorial shows you how to migrate your database from SQL Server Compact to SQL Server Express and SQL Server.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12.md)
-[Next](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12.md)
+> [Next](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12.md)

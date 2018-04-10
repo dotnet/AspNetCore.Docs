@@ -21,6 +21,6 @@ Video accompaniment to the Introduction to ASP.NET Web Programming Using the Raz
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-aspnet-web-programming-using-the-razor-syntax)
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-webmatrix-and-aspnet-web-pages.md)
-[Next](creating-a-consistent-look-part-1.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-webmatrix-and-aspnet-web-pages.md)
+> [Next](creating-a-consistent-look-part-1.md)

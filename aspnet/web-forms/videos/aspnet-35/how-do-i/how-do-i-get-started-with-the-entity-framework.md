@@ -21,6 +21,6 @@ In this introductory video, Alex James will show you how to build a simple Entit
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-the-entity-framework)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-converting-a-net-20-windows-forms-application-to-net-35.md)
-[Next](how-do-i-use-the-new-entity-data-source.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-converting-a-net-20-windows-forms-application-to-net-35.md)
+> [Next](how-do-i-use-the-new-entity-data-source.md)

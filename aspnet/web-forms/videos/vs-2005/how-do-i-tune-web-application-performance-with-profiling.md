@@ -21,6 +21,6 @@ In this video we learn that Visual Studio Team System provides two methods of pr
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-tune-web-application-performance-with-profiling)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-load-test-a-web-application.md)
-[Next](how-do-i-set-up-distributed-load-testing-for-high-volume-tests.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-load-test-a-web-application.md)
+> [Next](how-do-i-set-up-distributed-load-testing-for-high-volume-tests.md)

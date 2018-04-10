@@ -163,7 +163,7 @@ To test out this authorization change, start by visiting the website as an anony
 
 ### A Look at How the`UrlAuthorizationModule`Uses the Authorization Rules to Grant or Deny Access
 
-The `UrlAuthorizationModule` determines whether to authorize a particular identity for a particular URL by analyzing the URL authorization rules one at a time, starting from the first one and working its way down. As soon as a match is found, the user is granted or denied access, depending on if the match was found in an `<allow>` or `<deny>` element. **If no match is found, the user is granted access.** Consequently, if you want to restrict access, it is imperative that you use a `<deny>` element as the last element in the URL authorization configuration. **If you omit a****`<deny>`****element, all users will be granted access.**
+The `UrlAuthorizationModule` determines whether to authorize a particular identity for a particular URL by analyzing the URL authorization rules one at a time, starting from the first one and working its way down. As soon as a match is found, the user is granted or denied access, depending on if the match was found in an `<allow>` or `<deny>` element. <strong>If no match is found, the user is granted access.</strong> Consequently, if you want to restrict access, it is imperative that you use a `<deny>` element as the last element in the URL authorization configuration. <strong>If you omit a</strong><strong>`<deny>`</strong><strong>element, all users will be granted access.</strong>
 
 To better understand the process used by the `UrlAuthorizationModule` to determine authority, consider the example URL authorization rules we looked at earlier in this step. The first rule is an `<allow>` element that allows access to Tito and Scott. The second rules is a `<deny>` element that denies access to everyone. If an anonymous user visits, the `UrlAuthorizationModule` starts by asking, Is anonymous either Scott or Tito? The answer, obviously, is No, so it proceeds to the second rule. Is anonymous in the set of everybody? Since the answer here is Yes, the `<deny>` rule is put in effect and the visitor is redirected to the login page. Similarly, if Jisun is visiting, the `UrlAuthorizationModule` starts by asking, Is Jisun either Scott or Tito? Since she is not, the `UrlAuthorizationModule` proceeds to the second question, Is Jisun in the set of everybody? She is, so she, too, is denied access. Finally, if Tito visits, the first question posed by the `UrlAuthorizationModule` is an affirmative answer, so Tito is granted access.
 
@@ -413,6 +413,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](validating-user-credentials-against-the-membership-user-store-vb.md)
-[Next](storing-additional-user-information-vb.md)
+> [!div class="step-by-step"]
+> [Previous](validating-user-credentials-against-the-membership-user-store-vb.md)
+> [Next](storing-additional-user-information-vb.md)

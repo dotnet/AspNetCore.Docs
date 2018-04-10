@@ -131,6 +131,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [VS 2008 Web Deployment Projects](https://weblogs.asp.net/scottgu/archive/2005/11/06/429723.aspx) | [VS 2008 Web Deployment Project Support Released](https://weblogs.asp.net/scottgu/archive/2008/01/28/vs-2008-web-deployment-project-support-released.aspx)
 - [Web Deployment Projects](https://msdn.microsoft.com/magazine/cc163448.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-your-site-using-visual-studio-vb.md)
-[Next](core-differences-between-iis-and-the-asp-net-development-server-vb.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-your-site-using-visual-studio-vb.md)
+> [Next](core-differences-between-iis-and-the-asp-net-development-server-vb.md)

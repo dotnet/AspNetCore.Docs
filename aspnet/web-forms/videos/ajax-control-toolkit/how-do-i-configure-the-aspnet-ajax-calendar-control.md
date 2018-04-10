@@ -21,6 +21,6 @@ In this video we see a demonstration of the variety of options available to conf
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-configure-the-aspnet-ajax-calendar-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-autocomplete-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-dropdown-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-autocomplete-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-dropdown-control.md)

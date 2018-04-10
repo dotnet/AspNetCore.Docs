@@ -21,6 +21,6 @@ This video demonstrates the use of the PagingBulletedList extender control from 
 
 [&#9654; Watch video (25 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-pagingbulletedlist-extender-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-listsearch-extender.md)
-[Next](how-do-i-use-the-numericupdown-extender-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-listsearch-extender.md)
+> [Next](how-do-i-use-the-numericupdown-extender-control.md)

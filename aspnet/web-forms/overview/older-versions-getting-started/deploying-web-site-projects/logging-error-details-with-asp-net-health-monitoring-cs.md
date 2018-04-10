@@ -149,6 +149,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [How To: Use Health Monitoring in ASP.NET](https://msdn.microsoft.com/library/ms998306.aspx)
 - [Health Monitoring in ASP.NET](http://aspnet.4guysfromrolla.com/articles/031407-1.aspx)
 
->[!div class="step-by-step"]
-[Previous](processing-unhandled-exceptions-cs.md)
-[Next](logging-error-details-with-elmah-cs.md)
+> [!div class="step-by-step"]
+> [Previous](processing-unhandled-exceptions-cs.md)
+> [Next](logging-error-details-with-elmah-cs.md)

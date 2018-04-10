@@ -17,7 +17,7 @@ Adding a New Field
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section you'll use Entity Framework Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
 
@@ -57,7 +57,7 @@ Doing so adds the following using statement:
 
 [!code-csharp[Main](adding-a-new-field/samples/sample2.cs)]
 
-> [!NOTE] 
+> [!NOTE]
 > 
 > Code First Migrations calls the `Seed` method after every migration (that is, calling **update-database** in the Package Manager Console), and this method updates rows that have already been inserted, or inserts them if they don't exist yet.
 > 
@@ -66,15 +66,15 @@ Doing so adds the following using statement:
 > [!code-csharp[Main](adding-a-new-field/samples/sample3.cs)]
 > 
 > Because the [Seed](https://msdn.microsoft.com/library/hh829453(v=vs.103).aspx) method runs with every migration, you can't just insert data, because the rows you are trying to add will already be there after the first migration that creates the database. The "[upsert](http://en.wikipedia.org/wiki/Upsert)" operation prevents errors that would happen if you try to insert a row that already exists, but it overrides any changes to data that you may have made while testing the application. With test data in some tables you might not want that to happen: in some cases when you change data while testing you want your changes to remain after database updates. In that case you want to do a conditional insert operation: insert a row only if it doesn't already exist.   
->   
+> 
 > The first parameter passed to the [AddOrUpdate](https://msdn.microsoft.com/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method specifies the property to use to check if a row already exists. For the test movie data that you are providing, the `Title` property can be used for this purpose since each title in the list is unique:
 > 
 > [!code-csharp[Main](adding-a-new-field/samples/sample4.cs)]
 > 
 > This code assumes that titles are unique. If you manually add a duplicate title, you'll get the following exception the next time you perform a migration.   
->   
+> 
 >  *Sequence contains more than one element*  
->   
+> 
 > For more information about the [AddOrUpdate](https://msdn.microsoft.com/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method, see [Take care with EF 4.3 AddOrUpdate Method](http://thedatafarm.com/blog/data-access/take-care-with-ef-4-3-addorupdate-method/)..
 
 
@@ -186,6 +186,6 @@ You could enter the "update-database" command in the **Package Manager Console**
 
 In this section you saw how you can modify model objects and keep the database in sync with the changes. You also learned a way to populate a newly created database with sample data so you can try out scenarios. This was just a quick introduction to Code First, see [Creating an Entity Framework Data Model for an ASP.NET MVC Application](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) for a more complete tutorial on the subject. Next, let's look at how you can add richer validation logic to the model classes and enable some business rules to be enforced.
 
->[!div class="step-by-step"]
-[Previous](adding-search.md)
-[Next](adding-validation.md)
+> [!div class="step-by-step"]
+> [Previous](adding-search.md)
+> [Next](adding-validation.md)

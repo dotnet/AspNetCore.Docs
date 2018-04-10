@@ -21,6 +21,6 @@ What is an ASP.NET MVC View and how does it differ from a HTML page? In this tut
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-views-view-data-and-html-helpers)
 
->[!div class="step-by-step"]
-[Previous](understanding-controllers-controller-actions-and-action-results.md)
-[Next](an-introduction-to-url-routing.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-controllers-controller-actions-and-action-results.md)
+> [Next](an-introduction-to-url-routing.md)

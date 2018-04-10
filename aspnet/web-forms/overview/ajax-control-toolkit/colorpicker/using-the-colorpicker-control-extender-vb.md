@@ -109,5 +109,5 @@ The SampleControlID property is used to associate a control that displays the se
 
 In this tutorial, you learned how to use the ColorPicker control extender to display a popup color picker dialog. First, we examined how you can display the dialog when focus is moved to a TextBox control. Next, you learned how to create a button that displays the color picker dialog when the button is clicked.
 
->[!div class="step-by-step"]
-[Previous](using-the-colorpicker-control-extender-cs.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-colorpicker-control-extender-cs.md)

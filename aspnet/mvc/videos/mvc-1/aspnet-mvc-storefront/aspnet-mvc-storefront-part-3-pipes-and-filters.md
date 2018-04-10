@@ -21,6 +21,6 @@ Rob Conery discusses the feedback from Parts 1 and 2, and then dive into the Pip
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-3-pipes-and-filters)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-2-the-repository-pattern.md)
-[Next](aspnet-mvc-storefront-part-4-linq-to-sql-spike.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-2-the-repository-pattern.md)
+> [Next](aspnet-mvc-storefront-part-4-linq-to-sql-spike.md)

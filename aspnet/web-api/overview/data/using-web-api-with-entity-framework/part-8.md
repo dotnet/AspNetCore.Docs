@@ -47,6 +47,6 @@ Now if you run the app and click one of the &quot;Detail&quot; links, the app wi
 
 [![](part-8/_static/image2.png)](part-8/_static/image1.png)
 
->[!div class="step-by-step"]
-[Previous](part-7.md)
-[Next](part-9.md)
+> [!div class="step-by-step"]
+> [Previous](part-7.md)
+> [Next](part-9.md)

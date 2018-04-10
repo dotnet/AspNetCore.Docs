@@ -95,7 +95,7 @@ This change isn't required; it just changes the name of the InstructorID column 
 Next you need to change `InstructorID` to `PersonID` and `StudentID` to `PersonID` throughout the project ***except*** in the time-stamped migrations files in the *Migrations* folder. To do that you'll find and open only the files that need to be changed, then perform a global change on the opened files. The only file in the *Migrations* folder you should change is *Migrations\Configuration.cs.*
 
 1. > [!IMPORTANT]
- > Begin by closing all the open files in Visual Studio.
+   > Begin by closing all the open files in Visual Studio.
 2. Click **Find and Replace -- Find all Files** in the **Edit** menu, and then search for all files in the project that contain `InstructorID`.  
   
     ![](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
@@ -164,6 +164,6 @@ Table-per-hierarchy inheritance has now been implemented for the `Person`, `Stud
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)

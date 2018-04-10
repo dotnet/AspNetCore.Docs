@@ -147,5 +147,5 @@ After you create the required login, you need to map the login to a database use
 
 In this tutorial, you learned how to use Forms authentication when building an ASP.NET MVC application. First, you learned how to create new users and roles by taking advantage of the Web Site Administration Tool. Next, you learned how to use the [Authorize] attribute to prevent unauthorized users from invoking controller actions. Finally, you learned how to configure your MVC application to store user and role information in a production database.
 
->[!div class="step-by-step"]
-[Next](authenticating-users-with-windows-authentication-cs.md)
+> [!div class="step-by-step"]
+> [Next](authenticating-users-with-windows-authentication-cs.md)

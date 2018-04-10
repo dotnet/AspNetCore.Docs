@@ -16,38 +16,32 @@ uid: fundamentals/index
 
 An ASP.NET Core application is a console app that creates a web server in its `Main` method:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
 The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
 `IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the app in HTTP.sys and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that hosts the app and begins listening for HTTP requests.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
 The `Main` method uses `WebHostBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
 `WebHostBuilder` provides many optional methods, including `UseIISIntegration` for hosting in IIS and IIS Express and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that hosts the app and begins listening for HTTP requests.
 
----
-
+* * *
 ## Startup
 
 The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for your app:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=10&range=6-17)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs?highlight=7&range=6-17)]
 
----
-
+* * *
 The `Startup` class is where you define the request handling pipeline and where any services needed by the app are configured. The `Startup` class must be public and contain the following methods:
 
 ```csharp

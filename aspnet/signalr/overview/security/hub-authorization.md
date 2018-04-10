@@ -121,7 +121,7 @@ When your .NET client interacts with a hub that uses ASP.NET Forms Authenticatio
 
 [!code-csharp[Main](hub-authorization/samples/sample7.cs)]
 
-The console app posts the credentials to **www.contoso.com/RemoteLogin** which could refer to an empty page that contains the following code-behind file.
+The console app posts the credentials to <strong>www.contoso.com/RemoteLogin</strong> which could refer to an empty page that contains the following code-behind file.
 
 [!code-csharp[Main](hub-authorization/samples/sample8.cs)]
 

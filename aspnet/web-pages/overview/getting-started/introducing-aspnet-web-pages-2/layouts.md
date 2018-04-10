@@ -144,7 +144,7 @@ Open the *Movies.cshtml* page again. In the code at the top, add the following l
 
 The `Page` object is available on all *.cshtml* pages and is for this purpose, namely to share information between a page and its layout.
 
-Open the*\_Layout.cshtml* page. Change the `<title>` element so that it looks like this markup:
+Open the<em>\_Layout.cshtml</em> page. Change the `<title>` element so that it looks like this markup:
 
 [!code-html[Main](layouts/samples/sample9.html)]
 
@@ -232,6 +232,6 @@ In the next tutorial, you'll learn how to publish your site to the Internet so e
 - [Creating a Consistent Look](https://go.microsoft.com/fwlink/?LinkID=202891) — An article that provides some more detail on working with layouts. It also describes how to pass a value to a layout page that shows or hides some of the content.
 - [Nested Layout Pages with Razor](http://www.mikesdotnetting.com/Article/164/Nested-Layout-Pages-with-Razor) — Mike Brind blogs an example of how to nest layout pages. (Includes a download of the pages.)
 
->[!div class="step-by-step"]
-[Previous](deleting-data.md)
-[Next](publishing.md)
+> [!div class="step-by-step"]
+> [Previous](deleting-data.md)
+> [Next](publishing.md)

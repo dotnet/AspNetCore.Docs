@@ -21,6 +21,6 @@ The MutuallyExclusive control from the ASP.NET AJAX Control Toolkit enables the 
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-maskededit-controls.md)
-[Next](how-do-i-use-the-aspnet-ajax-nobot-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-maskededit-controls.md)
+> [Next](how-do-i-use-the-aspnet-ajax-nobot-control.md)

@@ -99,9 +99,9 @@ Although this tutorial only shows how to add email notification through [SendGri
 2. In **Solution Explorer**, right-click *Default.aspx* and select **Set As Start Page**.
 3. Run the app by pressing **F5.** After the page is displayed, click the **Register** link to display the Register page.
 4. Enter your email and password, then click the **Register** button to send an email message via SendGrid.  
- The current state of your project and code will allow the user to log in once they complete the registration form, even though they haven't confirmed their account.
+   The current state of your project and code will allow the user to log in once they complete the registration form, even though they haven't confirmed their account.
 5. Check your email account and click on the link to confirm your email.  
- Once you submit the registration form, you will be logged in.  
+   Once you submit the registration form, you will be logged in.  
     ![Sample Website - Signed In](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/_static/image4.png)
 
 <a id="require"></a>
@@ -141,9 +141,9 @@ Although you have confirmed the email account, at this point you would not need 
 4. Run the app by pressing **F5.** After the page is displayed, click the **Log in** link.
 5. Click the **Forgot your password?** link to display the **Forgot Password** page.
 6. Enter your email address and click the **Submit** button to send an email to your address which will allow you to reset your password.   
- Check your email account and click on the link to display the **Reset Password** page.
+   Check your email account and click on the link to display the **Reset Password** page.
 7. On the **Reset Password** page, enter your email, password, and confirmed password. Then, press the **Reset** button.  
- When you successfully reset your password, the **Password Changed** page will be displayed. Now you can log in with your new password.
+   When you successfully reset your password, the **Password Changed** page will be displayed. Now you can log in with your new password.
 
 <a id="rsend"></a>
 ## Resend Email Confirmation Link
@@ -162,7 +162,7 @@ Once a user creates a new local account, they are emailed a confirmation link th
 4. Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test.
 5. Run the app (**F5**) and register your email address.
 6. Before confirming your new account via the email that was just sent, attempt to log in with the new account.  
- You'll see that you are unable to log in and that you must have a confirmed email account. In addition, you can now resend a confirmation message to your email account.
+   You'll see that you are unable to log in and that you must have a confirmed email account. In addition, you can now resend a confirmation message to your email account.
 7. Enter your email address and password, then press the **Resend confirmation** button.
 8. Once you confirm your email address based on the newly sent email message, log in to the app.
 

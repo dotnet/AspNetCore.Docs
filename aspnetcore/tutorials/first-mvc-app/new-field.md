@@ -81,6 +81,6 @@ If you delete all the records in the DB, the initialize will seed the DB and inc
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
->[!div class="step-by-step"]
-[Previous](search.md)
-[Next](validation.md)  
+> [!div class="step-by-step"]
+> [Previous](search.md)
+> [Next](validation.md)  

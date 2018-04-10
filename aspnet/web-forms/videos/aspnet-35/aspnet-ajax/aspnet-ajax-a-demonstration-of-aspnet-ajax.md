@@ -21,6 +21,6 @@ See how easy it is to build from scratch a "To Do List" management application u
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-ajax-a-demonstration-of-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](creating-and-using-an-ajax-enabled-web-service-in-a-web-site.md)
-[Next](adonet-data-services-with-aspnet-ajax-support.md)
+> [!div class="step-by-step"]
+> [Previous](creating-and-using-an-ajax-enabled-web-service-in-a-web-site.md)
+> [Next](adonet-data-services-with-aspnet-ajax-support.md)

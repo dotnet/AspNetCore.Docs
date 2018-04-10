@@ -21,6 +21,6 @@ In this lesson, you will see how to maintain state in ASP.NET, including the var
 
 [&#9654; Watch video (40 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-4-understanding-web-application-state)
 
->[!div class="step-by-step"]
-[Previous](lesson-3-understanding-more-about-events-and-postback.md)
-[Next](lesson-5-debugging-and-tracing-your-website.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-3-understanding-more-about-events-and-postback.md)
+> [Next](lesson-5-debugging-and-tracing-your-website.md)

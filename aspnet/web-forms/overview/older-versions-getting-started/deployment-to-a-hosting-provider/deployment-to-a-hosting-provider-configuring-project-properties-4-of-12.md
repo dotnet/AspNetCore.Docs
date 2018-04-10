@@ -65,6 +65,6 @@ In **Solution Explorer**, right-click the *Elmah* folder, select **Add New Item*
 
 You have now completed all of the deployment set-up tasks. In the next tutorial, you'll deploy the Contoso University site to the test environment and test it there.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12.md)
-[Next](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12.md)
+> [Next](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md)

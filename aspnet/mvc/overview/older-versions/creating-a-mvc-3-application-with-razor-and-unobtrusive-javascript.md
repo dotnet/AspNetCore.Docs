@@ -49,7 +49,7 @@ In this tutorial you will not be using the ASP.NET membership provider, so you c
 
 ![Soln Exp](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image5.png)
 
-Edit the *\_Layout.cshtml* file and replace the markup inside the `<div>` element named `logindisplay` with the message *&quot;*Login Disabled&quot;. The following example shows the new markup:
+Edit the <em>\_Layout.cshtml</em> file and replace the markup inside the `<div>` element named `logindisplay` with the message <em>&quot;</em>Login Disabled&quot;. The following example shows the new markup:
 
 [!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.cshtml)]
 
@@ -117,7 +117,7 @@ Add the following `Details` method to the home controller:
 
 [!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample8.cs)]
 
-Right-click inside the `Details` method and then select **Add View**. Verify that the **View data class** box contains **Mvc3Razor.Models.UserModel***.* Set **View content** to **Details** and then click **Add**.
+Right-click inside the `Details` method and then select <strong>Add View</strong>. Verify that the <strong>View data class</strong> box contains <strong>Mvc3Razor.Models.UserModel</strong><em>.</em> Set <strong>View content</strong> to <strong>Details</strong> and then click <strong>Add</strong>.
 
 ![Add details view](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image11.png)
 

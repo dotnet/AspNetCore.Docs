@@ -120,7 +120,7 @@ If you created the initial migration when the database already exists, the datab
     ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
 
     The `update-database` command runs the `Up` method to create the database and then it runs the `Seed` method to populate the database. The same process will run automatically in production after you deploy the application, as you'll see in the following section.
-- Use **Server Explorer** to inspect the database as you did in the first tutorial, and run the application to verify that everything still works the same as before.
+2. Use **Server Explorer** to inspect the database as you did in the first tutorial, and run the application to verify that everything still works the same as before.
 
 ## Deploy to Azure
 
@@ -148,7 +148,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 
     ![New button in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/CreateWeb-Sql.png)
 
- The **New Web App & SQL - Create** wizard opens.
+   The **New Web App & SQL - Create** wizard opens.
 
 2. In the blade, enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard will notify you of this with a red *The app name is not available* message. If the **App name** is available, you will get a green checkmark.
 
@@ -170,9 +170,9 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 10. Modify [collation](https://docs.microsoft.com/sql/relational-databases/collations/collation-and-unicode-support) as needed.
 11. Enter an administrator **SQL Admin Username** and **SQL Admin Password**. If you selected **New SQL Database server**, you aren't entering an existing name and password here, you're entering a new name and password that you're defining now to use later when you access the database. If you selected a server that you created previously, you'll enter credentials for that server.
 12. Telemetry collection can be enabled for App Service using Application Insights. Application Insights with little configuration collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, get started in [Azure Docs](https://azure.microsoft.com/services/application-insights/).
-12. Click **Create** at the bottom of the blade to indicate that you're finished.
+13. Click **Create** at the bottom of the blade to indicate that you're finished.
   
- The Management Portal returns to the Dashboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** appears in the *App Services* section and the new **SQL Database** appears in the *SQL Databases* section.
+    The Management Portal returns to the Dashboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** appears in the *App Services* section and the new **SQL Database** appears in the *SQL Databases* section.
 
 ### Deploy the application to Azure
 
@@ -190,30 +190,30 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 5. After the Profile has been configured, the **Connection** tab will be shown. Click **Validate Connection** to make sure that the settings are correct
 
     ![Validate connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Connection.png)
-7. When the connection has been validated, a green check mark is shown next to the **Validate Connection** button. Click **Next**.
+6. When the connection has been validated, a green check mark is shown next to the **Validate Connection** button. Click **Next**.
   
     ![Successfully validated connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-SettingsValidated.png)
-8. Open the **Remote connection string** drop-down list under **SchoolContext** and select the connection string for the database you created.
-9. Select **Update database**.
+7. Open the **Remote connection string** drop-down list under **SchoolContext** and select the connection string for the database you created.
+8. Select **Update database**.
 
     ![Settings tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Settings.png)
 
     This setting causes the deployment process to automatically configure the application *Web.config* file on the destination server so that Code First uses the `MigrateDatabaseToLatestVersion` initializer class.
-10. Click **Next**.
-11. In the **Preview** tab, click **Start Preview**.
+9. Click **Next**.
+10. In the **Preview** tab, click **Start Preview**.
   
     ![StartPreview button in the Preview tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Preview.png)
   
- The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.
+    The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.
     ![StartPreview file output](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-PreviewLoaded.png)
 
-12. Click **Publish**.
- Visual Studio begins the process of copying the files to the Azure server.
-13. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
+11. Click **Publish**.
+    Visual Studio begins the process of copying the files to the Azure server.
+12. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
   
     ![Output window reporting successful deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-BuildOutput.png)
-14. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
- The application you created is now running in the cloud. 
+13. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
+    The application you created is now running in the cloud. 
   
     ![Students_index_page_with_paging](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Site.png)
 
@@ -253,6 +253,6 @@ Please leave feedback on how you liked this tutorial and what we could improve. 
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
 
->[!div class="step-by-step"]
-[Previous](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
-[Next](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application)
+> [!div class="step-by-step"]
+> [Previous](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
+> [Next](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application)

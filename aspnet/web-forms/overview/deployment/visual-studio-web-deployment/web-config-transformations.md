@@ -147,6 +147,6 @@ In the following tutorial, you'll take care of deployment set-up tasks that requ
 
 For more information about topics covered by this tutorial, see [Using Web.config transformations to change settings in the destination Web.config file or app.config file during deployment](https://go.microsoft.com/fwlink/p/?LinkId=282413#transforms) in the Web Deployment Content Map for Visual Studio and ASP.NET.
 
->[!div class="step-by-step"]
-[Previous](preparing-databases.md)
-[Next](project-properties.md)
+> [!div class="step-by-step"]
+> [Previous](preparing-databases.md)
+> [Next](project-properties.md)

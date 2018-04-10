@@ -21,6 +21,6 @@ In this video Chris Pels shows how to use the concept of a "View Model" for mana
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-work-with-data-in-aspnet-mvc-partial-views.md)
-[Next](how-do-i-create-a-custom-html-helper-for-an-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-work-with-data-in-aspnet-mvc-partial-views.md)
+> [Next](how-do-i-create-a-custom-html-helper-for-an-mvc-application.md)

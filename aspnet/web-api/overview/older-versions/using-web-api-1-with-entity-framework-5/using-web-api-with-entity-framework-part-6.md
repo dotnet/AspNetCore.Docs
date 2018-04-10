@@ -112,6 +112,6 @@ Finally, add the **Authorize** attribute to the controller:
 
 Now only registered users can create or view orders.
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-5.md)
-[Next](using-web-api-with-entity-framework-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-5.md)
+> [Next](using-web-api-with-entity-framework-part-7.md)

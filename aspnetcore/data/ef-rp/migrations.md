@@ -15,7 +15,7 @@ uid: data/ef-rp/migrations
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
@@ -230,6 +230,6 @@ If the `update` command returns the error "Build failed.":
 * Run the command again.
 * Leave a message at the bottom of the page.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/sort-filter-page)
-[Next](xref:data/ef-rp/complex-data-model)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/sort-filter-page)
+> [Next](xref:data/ef-rp/complex-data-model)

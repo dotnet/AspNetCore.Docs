@@ -21,5 +21,5 @@ In this video you will learn about the new auto-start scalability feature which 
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-auto-start)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-quick-hit-clean-webconfig-files.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-quick-hit-clean-webconfig-files.md)

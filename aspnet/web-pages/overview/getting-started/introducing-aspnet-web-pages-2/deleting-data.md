@@ -167,6 +167,6 @@ The next tutorial shows you how to give all the pages on your site a common look
 - [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../introducing-razor-syntax-c.md)
 - [SQL DELETE Statement](http://www.w3schools.com/sql/sql_delete.asp) on the W3Schools site
 
->[!div class="step-by-step"]
-[Previous](updating-data.md)
-[Next](layouts.md)
+> [!div class="step-by-step"]
+> [Previous](updating-data.md)
+> [Next](layouts.md)

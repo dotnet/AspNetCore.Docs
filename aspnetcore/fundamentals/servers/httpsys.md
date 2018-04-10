@@ -60,7 +60,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
 1. A package reference in the project file isn't required when using the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) ([nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.All/)) (ASP.NET Core 2.0 or later). When not using the `Microsoft.AspNetCore.All` metapackage, add a package reference to [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
-1. Call the [UseHttpSys](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderhttpsysextensions.usehttpsys) extension method when building the web host, specifying any required [HTTP.sys options](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions):
+2. Call the [UseHttpSys](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderhttpsysextensions.usehttpsys) extension method when building the web host, specifying any required [HTTP.sys options](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions):
 
    [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=4-12)]
 
@@ -88,7 +88,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
    The maximum allowed size of any request body in bytes. When set to `null`, the maximum request body size is unlimited. This limit has no effect on upgraded connections, which are always unlimited.
 
    The recommended method to override the limit in an ASP.NET Core MVC app for a single `IActionResult` is to use the [RequestSizeLimitAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requestsizelimitattribute) attribute on an action method:
-   
+
    ```csharp
    [RequestSizeLimit(100000000)]
    public IActionResult MyActionMethod()
@@ -100,7 +100,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
    [!code-csharp[](httpsys/sample/Startup.cs?name=snippet1&highlight=6-7)]
 
-1. If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
+3. If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
    In Visual Studio, the default launch profile is for IIS Express. To run the project as a console app, manually change the selected profile, as shown in the following screen shot:
 
@@ -113,7 +113,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
    * **.NET Core** &ndash; If the app requires .NET Core, obtain and run the .NET Core installer from [.NET All Downloads](https://www.microsoft.com/net/download/all).
    * **.NET Framework** &ndash; If the app requires .NET Framework, see [.NET Framework: Installation guide](/dotnet/framework/install/) to find installation instructions. Install the required .NET Framework. The installer for the latest .NET Framework can be found at [.NET All Downloads](https://www.microsoft.com/net/download/all).
 
-1. Configure URLs and ports for the app.
+2. Configure URLs and ports for the app.
 
    By default, ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, options include using:
 
@@ -135,7 +135,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
    > [!WARNING]
    > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
 
-1. Preregister URL prefixes to bind to HTTP.sys and set up x.509 certificates.
+3. Preregister URL prefixes to bind to HTTP.sys and set up x.509 certificates.
 
    If URL prefixes aren't preregistered in Windows, run the app with administrator privileges. The only exception is when binding to localhost using HTTP (not HTTPS) with a port number greater than 1024. In that case, administrator privileges aren't required.
 
@@ -159,11 +159,12 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
       * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)
       * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
-   1. Create self-signed X.509 certificates, if required.
+   2. Create self-signed X.509 certificates, if required.
 
-     [!INCLUDE[How to make an X.509 cert](../../includes/make-x509-cert.md)]
+      [!INCLUDE [How to make an X.509 cert](../../includes/make-x509-cert.md)]
 
-1. Open firewall ports to allow traffic to reach HTTP.sys. Use *netsh.exe* or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906).
+
+4. Open firewall ports to allow traffic to reach HTTP.sys. Use *netsh.exe* or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906).
 
 ## Proxy server and load balancer scenarios
 

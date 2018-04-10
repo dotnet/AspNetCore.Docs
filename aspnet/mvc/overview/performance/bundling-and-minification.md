@@ -181,7 +181,7 @@ Explicitly adding each file to a bundle is generally the preferred over wildcard
 
     [!code-csharp[Main](bundling-and-minification/samples/sample12.cs)]
 
- The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\themes\base\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
+  The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\themes\base\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
 
 ## Bundle Caching
 

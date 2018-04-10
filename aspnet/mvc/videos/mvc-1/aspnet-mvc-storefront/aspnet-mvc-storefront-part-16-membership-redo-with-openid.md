@@ -21,6 +21,6 @@ Rob changes the Membership system and splits it out into three separate services
 
 [&#9654; Watch video (40 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-16-membership-redo-with-openid)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-15-public-code-review.md)
-[Next](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-15-public-code-review.md)
+> [Next](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)

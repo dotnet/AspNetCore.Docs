@@ -21,6 +21,6 @@ This is a joint development session with Jeremy Miller of CodeBetter/StructureMa
 
 [&#9654; Watch video (58 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-13-dependency-injection)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-12-mocking.md)
-[Next](aspnet-mvc-storefront-part-14-rich-client-interaction.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-12-mocking.md)
+> [Next](aspnet-mvc-storefront-part-14-rich-client-interaction.md)

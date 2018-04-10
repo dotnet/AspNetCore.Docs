@@ -21,6 +21,6 @@ Video accompaniment to the Working with Video tutorial
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/working-with-video)
 
->[!div class="step-by-step"]
-[Previous](working-with-images.md)
-[Next](adding-email-to-your-web-site.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-images.md)
+> [Next](adding-email-to-your-web-site.md)

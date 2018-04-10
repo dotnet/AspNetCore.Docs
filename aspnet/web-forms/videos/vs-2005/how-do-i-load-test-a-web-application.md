@@ -21,6 +21,6 @@ This video walks you through the process of recording a Web Test and then replay
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-load-test-a-web-application)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-practice-test-driven-development.md)
-[Next](how-do-i-tune-web-application-performance-with-profiling.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-practice-test-driven-development.md)
+> [Next](how-do-i-tune-web-application-performance-with-profiling.md)

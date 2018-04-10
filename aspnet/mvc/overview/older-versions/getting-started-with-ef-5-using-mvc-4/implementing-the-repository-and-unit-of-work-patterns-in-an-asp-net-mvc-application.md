@@ -119,7 +119,7 @@ Only the highlighted code has changed.
 
 In the original version of the code, `students` is typed as an `IQueryable` object. The query isn't sent to the database until it's converted into a collection using a method such as `ToList`, which doesn't occur until the Index view accesses the student model. The `Where` method in the original code above becomes a `WHERE` clause in the SQL query that is sent to the database. That in turn means that only the selected entities are returned by the database. However, as a result of changing `context.Students` to `studentRepository.GetStudents()`, the `students` variable after this statement is an `IEnumerable` collection that includes all students in the database. The end result of applying the `Where` method is the same, but now the work is done in memory on the web server and not by the database. For queries that return large volumes of data, this can be inefficient.
 
-> [!TIP] 
+> [!TIP]
 > 
 > **IQueryable vs. IEnumerable**
 > 
@@ -244,6 +244,6 @@ You have now implemented both the repository and unit of work patterns. You have
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

@@ -62,7 +62,7 @@ ASP.NET Web Pages 2 requires the .NET Framework 4. It also works with the .NET F
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample2.cs)]
 
- However, we recommend that if you use the new input validation methods, don't use *ModelState.IsValid*. Instead, structure your code like this: 
+  However, we recommend that if you use the new input validation methods, don't use *ModelState.IsValid*. Instead, structure your code like this: 
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample3.cs)]
 - **On Internet Explorer 7 and Internet Explorer 8, client-side validation does not work**. Client-side validation does not work due to incompatibilities with jQuery 1.6.2, which is included with the default project template. (Server-side validation works.).

@@ -63,13 +63,13 @@ In this tutorial, you'll start out by adding simple entity classes representing 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image1.png)
 
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Under **Visual C#** from the **Installed** pane on the left, select **Code**. 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image2.png)
 3. Select **Class** from the middle pane and name this new class *Product.cs*.
 4. Click **Add**.  
- The new class file is displayed in the editor.
+   The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
     [!code-csharp[Main](create_the_data_access_layer/samples/sample1.cs)]
@@ -90,7 +90,7 @@ To start using the classes for data access, you must define a context class. As 
 This procedure adds a new C# context class to the *Models* folder.
 
 1. Right-click the *Models* folder and then select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Select **Class** from the middle pane, name it *ProductContext.cs* and click **Add**.
 3. Replace the default code contained in the class with the following code:   
 
@@ -183,6 +183,6 @@ In the next tutorial, you'll update the UI, add navigation, and retrieve data fr
 [Code First Data Annotations](https://msdn.microsoft.com/data/gg193958)  
 [Productivity Improvements for the Entity Framework](https://blogs.msdn.com/b/efdesign/archive/2010/06/21/productivity-improvements-for-the-entity-framework.aspx?wa=wsignin1.0)
 
->[!div class="step-by-step"]
-[Previous](create-the-project.md)
-[Next](ui_and_navigation.md)
+> [!div class="step-by-step"]
+> [Previous](create-the-project.md)
+> [Next](ui_and_navigation.md)

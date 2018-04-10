@@ -21,6 +21,6 @@ By adding animation to a partial-page update we can inform the user when an upda
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-slideshow-extender.md)
-[Next](how-do-i-the-ajax-toolkit-reorder-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-slideshow-extender.md)
+> [Next](how-do-i-the-ajax-toolkit-reorder-control.md)

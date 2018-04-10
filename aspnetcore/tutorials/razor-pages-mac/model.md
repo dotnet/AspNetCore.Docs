@@ -13,7 +13,7 @@ uid: tutorials/razor-pages-mac/model
 
 # Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 
-[!INCLUDE[model1](../../includes/RP/model1.md)]
+[!INCLUDE [model1](../../includes/RP/model1.md)]
 
 ## Add a data model
 
@@ -25,8 +25,9 @@ uid: tutorials/razor-pages-mac/model
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
-[!INCLUDE[model 2](../../includes/RP/model2.md)]
-[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
+
+[!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
@@ -54,12 +55,13 @@ Add the `Microsoft.EntityFrameworkCore.Tools.DotNet` tool reference to the secon
 
 The version numbers shown in the following code were correct at the time of writing.
 
-[!INCLUDE[model3](../../includes/RP/model3.md)]
-[!INCLUDE[model 4x](../../includes/RP/model4x.md)]
+[!INCLUDE [model3](../../includes/RP/model3.md)]
 
-[!INCLUDE[model 4 exit](../../includes/RP/model4exit.md)]
+[!INCLUDE [model 4x](../../includes/RP/model4x.md)]
 
-[!INCLUDE[model 4](../../includes/RP/model4.md)]
+[!INCLUDE [model 4 exit](../../includes/RP/model4exit.md)]
+
+[!INCLUDE [model 4](../../includes/RP/model4.md)]
 
 ### Add the Pages/Movies files to the project
 
@@ -69,6 +71,6 @@ The version numbers shown in the following code were correct at the time of writ
 
 The next tutorial explains the files created by scaffolding.
 
->[!div class="step-by-step"]
-[Previous: Get Started](xref:tutorials/razor-pages-mac/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
+> [!div class="step-by-step"]
+> [Previous: Get Started](xref:tutorials/razor-pages-mac/razor-pages-start)
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)

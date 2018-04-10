@@ -80,6 +80,6 @@ In this tutorial, you added a link with a query string value. You used that quer
 
 In the next [tutorial](adding-business-logic-layer.md), you will move the code from the code-behind files into a business logic layer and a data access layer.
 
->[!div class="step-by-step"]
-[Previous](integrating-jquery-ui.md)
-[Next](adding-business-logic-layer.md)
+> [!div class="step-by-step"]
+> [Previous](integrating-jquery-ui.md)
+> [Next](adding-business-logic-layer.md)

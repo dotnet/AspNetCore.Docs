@@ -21,6 +21,6 @@ Watch this video to understand the difference between Controls and AJAX Control 
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/control-extenders)
 
->[!div class="step-by-step"]
-[Previous](utilize-the-ajax-rating-control-in-the-aspnet-toolkit.md)
-[Next](color-picker.md)
+> [!div class="step-by-step"]
+> [Previous](utilize-the-ajax-rating-control-in-the-aspnet-toolkit.md)
+> [Next](color-picker.md)

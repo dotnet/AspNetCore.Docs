@@ -21,6 +21,6 @@ In this video, part 2 of 3, Joe Stagner uses the sample ASP application created 
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-manually-bind-a-dataset-to-a-datagrid)
 
->[!div class="step-by-step"]
-[Previous](data-access-layers-in-aspnet-applications.md)
-[Next](how-to-work-with-datasets-and-filters-from-an-asp-application.md)
+> [!div class="step-by-step"]
+> [Previous](data-access-layers-in-aspnet-applications.md)
+> [Next](how-to-work-with-datasets-and-filters-from-an-asp-application.md)

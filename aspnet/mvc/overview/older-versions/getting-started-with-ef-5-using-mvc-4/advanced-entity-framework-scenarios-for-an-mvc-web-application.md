@@ -331,6 +331,6 @@ Solution:
 
 Check connection string. If you have manually deleted the database, change the name of the database in the construction string.
 
->[!div class="step-by-step"]
-[Previous](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)
-[Next](building-the-ef5-mvc4-chapter-downloads.md)
+> [!div class="step-by-step"]
+> [Previous](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)
+> [Next](building-the-ef5-mvc4-chapter-downloads.md)

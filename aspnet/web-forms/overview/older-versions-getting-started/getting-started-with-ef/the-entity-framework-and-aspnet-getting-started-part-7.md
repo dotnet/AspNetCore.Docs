@@ -134,6 +134,6 @@ The page now uses the `GetCourses` stored procedure to retrieve the list of all 
 
 In the next tutorial, you'll learn how to use Dynamic Data functionality to make it easier to program and test data formatting and validation rules. Instead of specifying on each web page rules such as data format strings and whether or not a field is required, you can specify such rules in data model metadata and they're automatically applied on every page.
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-6.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-8.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-6.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-8.md)

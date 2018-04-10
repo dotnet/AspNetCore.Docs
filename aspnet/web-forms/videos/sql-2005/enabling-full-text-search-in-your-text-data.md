@@ -21,5 +21,5 @@ Full-Text search allows you to save large portions of text - even Microsoft Word
 
 [&#9654; Watch video (38 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/enabling-full-text-search-in-your-text-data)
 
->[!div class="step-by-step"]
-[Previous](creating-and-using-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](creating-and-using-stored-procedures.md)

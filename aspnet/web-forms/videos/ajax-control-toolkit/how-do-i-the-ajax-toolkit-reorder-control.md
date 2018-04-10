@@ -21,6 +21,6 @@ In this video I will demonstrate the use of the reorder control that ships with 
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-the-ajax-toolkit-reorder-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender.md)
-[Next](utilize-the-ajax-rating-control-in-the-aspnet-toolkit.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender.md)
+> [Next](utilize-the-ajax-rating-control-in-the-aspnet-toolkit.md)

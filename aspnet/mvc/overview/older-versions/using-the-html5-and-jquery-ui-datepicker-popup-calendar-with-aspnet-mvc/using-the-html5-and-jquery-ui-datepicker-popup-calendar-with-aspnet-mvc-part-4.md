@@ -173,5 +173,5 @@ This tutorial has covered the basics of ASP.NET templated helpers and shows you 
 - For information about how to localize the datepicker control, see [UI/Datepicker/Localization](http://docs.jquery.com/UI/Datepicker/Localization).
 - For more information about the ASP.NET MVC templates, see Brad Wilson's blog series on [ASP.NET MVC 2 Templates](http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-1-introduction.html). Although the series was written for ASP.NET MVC 2, the material still applies for the current version of ASP.NET MVC.
 
->[!div class="step-by-step"]
-[Previous](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3.md)

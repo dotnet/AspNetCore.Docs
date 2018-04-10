@@ -68,5 +68,5 @@ Save the page and load it into your browser. When you hover over the (initially 
 
 Creating a rating system with minimal code ([Click to view full-size image](creating-a-rating-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](creating-a-rating-control-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-rating-control-cs.md)

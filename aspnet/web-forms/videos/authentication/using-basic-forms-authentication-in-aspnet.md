@@ -21,5 +21,5 @@ Joe Stagner walks through the process to utilize basic forms based authenticatio
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/using-basic-forms-authentication-in-aspnet)
 
->[!div class="step-by-step"]
-[Next](how-to-change-the-forms-authentication-properties.md)
+> [!div class="step-by-step"]
+> [Next](how-to-change-the-forms-authentication-properties.md)

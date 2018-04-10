@@ -150,6 +150,6 @@ Rob Paveza is a senior .NET application developer at Terralever ([www.terralever
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Previous](understanding-partial-page-updates-with-asp-net-ajax.md)
-[Next](understanding-asp-net-ajax-authentication-and-profile-application-services.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-partial-page-updates-with-asp-net-ajax.md)
+> [Next](understanding-asp-net-ajax-authentication-and-profile-application-services.md)

@@ -57,6 +57,6 @@ These topics provide all the information you need in order to complete these tas
 
 For guidance on configuring a typical developer test environment, see [Scenario: Configuring a Test Environment for Web Deployment](scenario-configuring-a-test-environment-for-web-deployment.md). For guidance on configuring a typical production environment, see [Scenario: Configuring a Production Environment for Web Deployment](scenario-configuring-a-production-environment-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](scenario-configuring-a-test-environment-for-web-deployment.md)
-[Next](scenario-configuring-a-production-environment-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](scenario-configuring-a-test-environment-for-web-deployment.md)
+> [Next](scenario-configuring-a-production-environment-for-web-deployment.md)

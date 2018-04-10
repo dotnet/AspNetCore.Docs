@@ -51,6 +51,6 @@ Then, every item in the data source is displayed with a button next to it that t
 
 The modal popup can be triggered for every data source entry ([Click to view full-size image](using-modalpopup-with-a-repeater-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](launching-a-modal-popup-window-from-server-code-cs.md)
-[Next](handling-postbacks-from-a-modalpopup-cs.md)
+> [!div class="step-by-step"]
+> [Previous](launching-a-modal-popup-window-from-server-code-cs.md)
+> [Next](handling-postbacks-from-a-modalpopup-cs.md)

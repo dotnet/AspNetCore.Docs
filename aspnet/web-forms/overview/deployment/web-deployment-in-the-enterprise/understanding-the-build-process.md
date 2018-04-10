@@ -246,6 +246,6 @@ This topic provided a walkthrough of how split project files are used to control
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"]
-[Previous](understanding-the-project-file.md)
-[Next](building-and-packaging-web-application-projects.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-the-project-file.md)
+> [Next](building-and-packaging-web-application-projects.md)
