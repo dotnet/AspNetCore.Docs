@@ -12,7 +12,7 @@ To get a list of ToDos, send an HTTP GET request to &quot;/api/todo&quot;.
 
 The jQuery [getJSON](https://api.jquery.com/jQuery.getJSON/) function sends an AJAX request to the API, which returns JSON representing an object or array. The `done` function specifies a callback that is called if the request succeeds. In the callback, the DOM is updated with the ToDo information.
 
-[!code-html[Main](samples/sample4.html)]
+[!code-javascript[Main](samples/sample4.html)]
 
 ### Get a ToDo by ID
 
