@@ -95,7 +95,9 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 3. Create the `SendMessage` method that sends a message to all connected chat clients. Notice it returns a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task(v=vs.110).aspx), because SignalR is asynchronous. Asynchronous code scales better.
 
+
    [!code-csharp[Startup](get-started/sample/Hubs/ChatHub.cs)]
+
 
 #### [Visual Studio Code](#tab/visual-studio-code/)
 1. Open the *SignalRChat* folder in Visual Studio Code.
@@ -119,7 +121,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 2. Configure routes to your hubs using `UseSignalR`.
 
+
    [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=36,56-59)]
+
 
 ## Create the SignalR client code
 

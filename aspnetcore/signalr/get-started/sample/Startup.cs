@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRChat.Hubs;
+using SignalRCoreChat.Hubs;
 
-namespace SignalRChat
+
+namespace SignalRCoreChat
 {
     public class Startup
     {
@@ -50,6 +51,7 @@ namespace SignalRChat
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseCors("CorsPolicy");
