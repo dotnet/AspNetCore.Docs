@@ -1,4 +1,4 @@
-## Calling the Web API with Javascript and jQuery
+## Call the Web API with Javascript and jQuery
 
 In this section, an HTML page is added that uses AJAX to call the web API. jQuery is used to make the AJAX calls and to update the page with the results. Add an HTML page with the following:
 
@@ -6,7 +6,7 @@ In this section, an HTML page is added that uses AJAX to call the web API. jQuer
 
 There are several ways to get jQuery. For this example, the library is loaded from [http://jquery.com/](http://jquery.com/).
 
-### Getting a List of ToDos
+### Get a list of ToDos
 
 To get a list of ToDos, send an HTTP GET request to &quot;/api/todo&quot;.
 
@@ -14,7 +14,7 @@ The jQuery [getJSON](http://api.jquery.com/jQuery.getJSON/) function sends an AJ
 
 [!code-html[Main](samples/sample4.html)]
 
-### Getting a ToDo By ID
+### Get a ToDo by ID
 
 To get a ToDo by ID, send an HTTP GET request to &quot;/api/todo/*id*&quot;, where *id* is the ToDo ID.
 
