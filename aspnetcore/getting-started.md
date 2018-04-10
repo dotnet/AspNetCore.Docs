@@ -12,19 +12,8 @@ uid: getting-started
 ---
 # Get Started with ASP.NET Core
 
-::: moniker range="= aspnetcore-2.1"
-
 > [!NOTE]
-> These instructions are for the latest version of ASP.NET Core.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-1.1"
-
-> [!NOTE]
-> See [Getting Started with ASP.NET Core 1.1](xref:getting-started-1.1) for the 1.1 version of this document.
-
-::: moniker-end
+> These instructions are for the latest version of ASP.NET Core. See [Getting Started with ASP.NET Core 1.1](xref:getting-started-1.1) for the 1.1 version of this document.
 
 1. Install the [!INCLUDE [](~/includes/net-core-sdk-download-link.md)].
 
