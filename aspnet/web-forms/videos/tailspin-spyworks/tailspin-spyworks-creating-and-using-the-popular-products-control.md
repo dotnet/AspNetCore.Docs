@@ -21,5 +21,5 @@ Joe Stagner creates and uses the Popular Products control in the Tailspin Spywor
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-creating-and-using-the-popular-products-control)
 
->[!div class="step-by-step"]
-[Next](tailspin-spyworks-implementing-and-using-the-also-purchased-control.md)
+> [!div class="step-by-step"]
+> [Next](tailspin-spyworks-implementing-and-using-the-also-purchased-control.md)

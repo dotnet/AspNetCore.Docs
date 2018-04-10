@@ -276,6 +276,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Liz Shulok, Ken Pespisa, and Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](sorting-data-in-a-datalist-or-repeater-control-cs.md)
-[Next](sorting-data-in-a-datalist-or-repeater-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](sorting-data-in-a-datalist-or-repeater-control-cs.md)
+> [Next](sorting-data-in-a-datalist-or-repeater-control-vb.md)

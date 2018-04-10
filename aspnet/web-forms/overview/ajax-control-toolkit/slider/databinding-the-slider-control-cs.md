@@ -47,6 +47,6 @@ As you can see in the browser, the data binding works in both directions: enteri
 
 Slider and text box are in sync ([Click to view full-size image](databinding-the-slider-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-the-slider-control-with-auto-postback-cs.md)
-[Next](using-the-slider-control-with-auto-postback-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-slider-control-with-auto-postback-cs.md)
+> [Next](using-the-slider-control-with-auto-postback-vb.md)

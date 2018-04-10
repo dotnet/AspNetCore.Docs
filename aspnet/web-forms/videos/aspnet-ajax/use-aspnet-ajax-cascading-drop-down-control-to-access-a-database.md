@@ -21,6 +21,6 @@ This video demonstrates how ASP.NET's standard DropDownList can become AJAX-enab
 
 [&#9654; Watch video (32 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/use-aspnet-ajax-cascading-drop-down-control-to-access-a-database)
 
->[!div class="step-by-step"]
-[Previous](two-simple-techniques-for-triggering-updates-to-update-panels.md)
-[Next](implement-infinite-data-patterns-in-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](two-simple-techniques-for-triggering-updates-to-update-panels.md)
+> [Next](implement-infinite-data-patterns-in-ajax.md)

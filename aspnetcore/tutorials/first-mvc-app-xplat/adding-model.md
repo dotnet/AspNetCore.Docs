@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 ---
 # Add a model to an ASP.NET Core MVC app
 
-[!INCLUDE[adding-model1](../../includes/mvc-intro/adding-model1.md)]
+[!INCLUDE [adding-model1](../../includes/mvc-intro/adding-model1.md)]
 
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
@@ -61,9 +61,9 @@ The scaffolding engine creates the following:
 
 The automatic creation of [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-[!INCLUDE[adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
+[!INCLUDE [adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
@@ -72,6 +72,6 @@ You now have a database and pages to display, edit, update and delete data. In t
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
->[!div class="step-by-step"]
-[Previous - Add a view](adding-view.md)
-[Next - Working with SQLite](working-with-sql.md)
+> [!div class="step-by-step"]
+> [Previous - Add a view](adding-view.md)
+> [Next - Working with SQLite](working-with-sql.md)

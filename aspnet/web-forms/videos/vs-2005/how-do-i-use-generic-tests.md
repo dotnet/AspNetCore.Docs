@@ -21,6 +21,6 @@ A generic test is an existing program that is wrapped and made available as a te
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-generic-tests)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-enforce-coding-standards-with-code-analysis.md)
-[Next](how-do-i-publish-and-analyze-test-results.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-enforce-coding-standards-with-code-analysis.md)
+> [Next](how-do-i-publish-and-analyze-test-results.md)

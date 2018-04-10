@@ -57,6 +57,6 @@ Note that within the context of a radio button, the JavaScript expression `this.
 
 A click on the button retrieves the date from the server, in the format specified ([Click to view full-size image](dynamically-populating-a-control-using-javascript-code-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](dynamically-populating-a-control-cs.md)
-[Next](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
+> [!div class="step-by-step"]
+> [Previous](dynamically-populating-a-control-cs.md)
+> [Next](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)

@@ -101,16 +101,16 @@ The next procedure shows you how to add a *.wpp.targets* file to a web applicati
     [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample2.xml)]
 6. If you want to exclude folders from the web package, add an **ExcludeFromPackageFolders** element to the **ItemGroup** element:
 
-    1. In the **Include** attribute, provide a semicolon-separated list of the folders you want to exclude.
-    2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the folders are being excluded, like the name of the *.wpp.targets* file.
+   1. In the **Include** attribute, provide a semicolon-separated list of the folders you want to exclude.
+   2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the folders are being excluded, like the name of the *.wpp.targets* file.
 
-    [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample3.xml)]
+      [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample3.xml)]
 7. If you want to exclude files from the web package, add an **ExcludeFromPackageFiles** element to the **ItemGroup** element:
 
-    1. In the **Include** attribute, provide a semicolon-separated list of the files you want to exclude.
-    2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the files are being excluded, like the name of the *.wpp.targets* file.
+   1. In the **Include** attribute, provide a semicolon-separated list of the files you want to exclude.
+   2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the files are being excluded, like the name of the *.wpp.targets* file.
 
-    [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample4.xml)]
+      [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample4.xml)]
 8. The *[project name].wpp.targets* file should now resemble this:
 
     [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample5.xml)]
@@ -126,6 +126,6 @@ This topic described how to exclude specific files and folders when you build a 
 
 For more information on using custom Microsoft Build Engine (MSBuild) project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md). For more information on the packaging and deployment process, see [Building and Packaging Web Application Projects](../web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.md), [Configuring Parameters for Web Package Deployment](../web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment.md), and [Deploying Web Packages](../web-deployment-in-the-enterprise/deploying-web-packages.md).
 
->[!div class="step-by-step"]
-[Previous](deploying-membership-databases-to-enterprise-environments.md)
-[Next](taking-web-applications-offline-with-web-deploy.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-membership-databases-to-enterprise-environments.md)
+> [Next](taking-web-applications-offline-with-web-deploy.md)

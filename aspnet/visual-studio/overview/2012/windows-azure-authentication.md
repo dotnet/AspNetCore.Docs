@@ -45,7 +45,7 @@ If you do not have an existing Windows Azure Active Directory tenant (For exampl
 
 1. From the Project menu select **Enable Windows Azure Authentication**:  
   
- ![](windows-azure-authentication/_static/image2.png)
+   ![](windows-azure-authentication/_static/image2.png)
 
 2. Enter the domain for your Windows Azure Active Directory tenant (for example, contoso.onmicrosoft.com) and click **Enable**:
 
@@ -53,7 +53,7 @@ If you do not have an existing Windows Azure Active Directory tenant (For exampl
 
 3. In the Web Authentication dialog sign in as an administrator for your Windows Azure Active Directory tenant:  
   
- ![](windows-azure-authentication/_static/image4.png)
+   ![](windows-azure-authentication/_static/image4.png)
 
 ![](windows-azure-authentication/_static/image5.png)
 

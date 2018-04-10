@@ -49,5 +49,5 @@ This data source can then be used within a repeater. As usual, the `DataBinder.E
 
 The confirm button appears next to each entry from the data source ([Click to view full-size image](using-a-confirmbutton-in-a-repeater-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-a-confirmbutton-in-a-repeater-cs.md)
+> [!div class="step-by-step"]
+> [Previous](using-a-confirmbutton-in-a-repeater-cs.md)

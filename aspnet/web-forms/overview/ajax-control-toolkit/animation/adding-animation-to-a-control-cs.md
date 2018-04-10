@@ -74,5 +74,5 @@ When you run this script, the panel is displayed and fades out in one and a half
 
 The panel is fading out ([Click to view full-size image](adding-animation-to-a-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](executing-several-animations-at-the-same-time-cs.md)
+> [!div class="step-by-step"]
+> [Next](executing-several-animations-at-the-same-time-cs.md)

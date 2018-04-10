@@ -21,6 +21,6 @@ Video accompaniment to the Working with Files tutorial
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/working-with-files)
 
->[!div class="step-by-step"]
-[Previous](displaying-data-in-a-chart-part-2.md)
-[Next](working-with-images.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-data-in-a-chart-part-2.md)
+> [Next](working-with-images.md)

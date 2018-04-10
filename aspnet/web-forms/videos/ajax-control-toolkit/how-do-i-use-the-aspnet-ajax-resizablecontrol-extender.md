@@ -21,6 +21,6 @@ The ResizableControl extender from the ASP.NET AJAX Control Toolkit allows the d
 
 [&#9654; Watch video (30 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-resizablecontrol-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-tabs-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-tabs-control.md)

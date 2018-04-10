@@ -11,9 +11,8 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/sql
 ---
 
-[!INCLUDE[SQLlite](../../includes/RP/sql.md)]
+[!INCLUDE [SQLlite](../../includes/RP/sql.md)]
 
-
->[!div class="step-by-step"]
-[Previous: Adding a model](xref:tutorials/razor-pages-vsc/model)
-[Next: Update the pages](xref:tutorials/razor-pages-vsc/da1)
+> [!div class="step-by-step"]
+> [Previous: Adding a model](xref:tutorials/razor-pages-vsc/model)
+> [Next: Update the pages](xref:tutorials/razor-pages-vsc/da1)

@@ -21,6 +21,6 @@ Override the generated ORM update/delete/insert logic with your own through stor
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-updating-with-stored-procedures)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-using-stored-procedures.md)
-[Next](how-do-i-linq-to-sql-executing-arbitrary-sql.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-using-stored-procedures.md)
+> [Next](how-do-i-linq-to-sql-executing-arbitrary-sql.md)

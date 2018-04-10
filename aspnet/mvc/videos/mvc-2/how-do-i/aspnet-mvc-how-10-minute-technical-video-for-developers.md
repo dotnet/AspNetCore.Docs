@@ -21,6 +21,6 @@ A short overview of what it's like to work with ASP.NET MVC.
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-how-10-minute-technical-video-for-developers)
 
->[!div class="step-by-step"]
-[Previous](why-aspnet-mvc-3-minute-overview-video-for-decision-makers.md)
-[Next](how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](why-aspnet-mvc-3-minute-overview-video-for-decision-makers.md)
+> [Next](how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.md)

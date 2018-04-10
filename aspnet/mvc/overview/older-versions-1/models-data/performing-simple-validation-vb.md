@@ -125,6 +125,6 @@ If you want to customize the appearance of these prebinding error messages then 
 
 The goal of this tutorial was to describe the basic mechanics of validation in the ASP.NET MVC framework. You learned how to use model state and the validation HTML helpers. We also discussed the distinction between prebinding and postbinding validation. In other tutorials, we'll discuss various strategies for moving your validation code out of your controllers and into your model classes.
 
->[!div class="step-by-step"]
-[Previous](displaying-a-table-of-database-data-vb.md)
-[Next](validating-with-the-idataerrorinfo-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-a-table-of-database-data-vb.md)
+> [Next](validating-with-the-idataerrorinfo-interface-vb.md)

@@ -21,6 +21,6 @@ In this lesson, you will explore the various ASP.NET2.0 server controls availabl
 
 [&#9654; Watch video (49 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-2-creating-a-web-forms-user-interface)
 
->[!div class="step-by-step"]
-[Previous](lesson-1-getting-started-with-visual-web-developer-express.md)
-[Next](lesson-3-understanding-more-about-events-and-postback.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-1-getting-started-with-visual-web-developer-express.md)
+> [Next](lesson-3-understanding-more-about-events-and-postback.md)

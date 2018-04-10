@@ -21,6 +21,6 @@ Joe Stagner updates the shopping cart for the Tailspin Spyworks sample Web Forms
 
 [&#9654; Watch video (41 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-update-the-shopping-cart)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-display-shopping-cart.md)
-[Next](tailspin-spyworks-migrate-the-shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-display-shopping-cart.md)
+> [Next](tailspin-spyworks-migrate-the-shopping-cart.md)

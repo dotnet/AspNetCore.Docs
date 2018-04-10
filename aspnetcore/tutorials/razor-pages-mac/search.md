@@ -11,8 +11,8 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/search
 ---
 
-[!INCLUDE[Search](../../includes/RP/search.md)]
+[!INCLUDE [Search](../../includes/RP/search.md)]
 
->[!div class="step-by-step"]
-[Previous: Updating the pages](xref:tutorials/razor-pages-mac/da1)
-[Next: Adding a new field](xref:tutorials/razor-pages/new-field)
+> [!div class="step-by-step"]
+> [Previous: Updating the pages](xref:tutorials/razor-pages-mac/da1)
+> [Next: Adding a new field](xref:tutorials/razor-pages/new-field)

@@ -79,5 +79,5 @@ This will cause Visual Web Developer to start a development web-server and run o
 
 Out of the box this default template gives you two pages to visit and a basic login page. Let's change how this application works and learn a little bit about ASP.NET MVC in the process. Close your browser and lets change some code.
 
->[!div class="step-by-step"]
-[Next](getting-started-with-mvc-part2.md)
+> [!div class="step-by-step"]
+> [Next](getting-started-with-mvc-part2.md)

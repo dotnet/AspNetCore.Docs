@@ -21,6 +21,6 @@ This video provides an overview of the new Intellisense features for JavaScript 
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intellisense-for-jscript-and-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](multi-targeting-support-in-visual-studio-2008.md)
-[Next](quick-tour-of-the-visual-studio-2008-integrated-development-environment.md)
+> [!div class="step-by-step"]
+> [Previous](multi-targeting-support-in-visual-studio-2008.md)
+> [Next](quick-tour-of-the-visual-studio-2008-integrated-development-environment.md)

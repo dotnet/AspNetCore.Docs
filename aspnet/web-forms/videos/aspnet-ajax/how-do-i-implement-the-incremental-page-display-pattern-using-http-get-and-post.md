@@ -21,6 +21,6 @@ This video takes another look at the AJAX Incremental Page Display Pattern in wh
 
 [&#9654; Watch video (19 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-ajax-incremental-page-display-pattern.md)
-[Next](how-do-i-use-the-aspnet-ajax-updateprogress-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-ajax-incremental-page-display-pattern.md)
+> [Next](how-do-i-use-the-aspnet-ajax-updateprogress-control.md)

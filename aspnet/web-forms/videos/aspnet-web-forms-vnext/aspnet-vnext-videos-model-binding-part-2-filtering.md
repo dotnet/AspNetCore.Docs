@@ -21,6 +21,6 @@ In this video, Damian Edwards continues the demonstration of model binding by ex
 
 [&#9654; Watch video (1 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-vnext-videos-model-binding-part-2-filtering)
 
->[!div class="step-by-step"]
-[Previous](aspnet-vnext-videos-model-binding-part-1-selecting-data.md)
-[Next](aspnet-vnext-videos-model-binding-part-3-updating.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-vnext-videos-model-binding-part-1-selecting-data.md)
+> [Next](aspnet-vnext-videos-model-binding-part-3-updating.md)

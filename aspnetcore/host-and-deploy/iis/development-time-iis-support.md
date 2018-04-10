@@ -19,7 +19,7 @@ This article describes [Visual Studio](https://www.visualstudio.com/vs/) support
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
 ## Enable IIS
 

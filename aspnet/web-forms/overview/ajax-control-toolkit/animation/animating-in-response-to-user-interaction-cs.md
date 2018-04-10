@@ -61,6 +61,6 @@ In this scenario, `<OnClick>` is used. When the user clicks on the panel, it is 
 
 A mouse click starts the animation ([Click to view full-size image](animating-in-response-to-user-interaction-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](picking-one-animation-out-of-a-list-cs.md)
-[Next](disabling-actions-during-animation-cs.md)
+> [!div class="step-by-step"]
+> [Previous](picking-one-animation-out-of-a-list-cs.md)
+> [Next](disabling-actions-during-animation-cs.md)

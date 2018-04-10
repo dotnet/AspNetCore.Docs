@@ -122,6 +122,6 @@ In this tutorial, you were introduced to ASP.NET MVC action filters. You learned
 
 Finally, you learned how to implement a simple action filter. We created a Log action filter that logs the stages of processing a controller action to the Visual Studio Output window.
 
->[!div class="step-by-step"]
-[Previous](asp-net-mvc-routing-overview-cs.md)
-[Next](improving-performance-with-output-caching-cs.md)
+> [!div class="step-by-step"]
+> [Previous](asp-net-mvc-routing-overview-cs.md)
+> [Next](improving-performance-with-output-caching-cs.md)

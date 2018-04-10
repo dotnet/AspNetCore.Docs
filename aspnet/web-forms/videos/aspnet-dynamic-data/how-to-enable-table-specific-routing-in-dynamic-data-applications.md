@@ -21,6 +21,6 @@ In this video learn how to add custom workflow logic to your ASP.NET dynamic dat
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-enable-table-specific-routing-in-dynamic-data-applications)
 
->[!div class="step-by-step"]
-[Previous](enable-in-line-editing-in-aspnet-dynamic-data-applications.md)
-[Next](how-to-use-attribute-validation-in-aspnet-dynamic-data-applications.md)
+> [!div class="step-by-step"]
+> [Previous](enable-in-line-editing-in-aspnet-dynamic-data-applications.md)
+> [Next](how-to-use-attribute-validation-in-aspnet-dynamic-data-applications.md)

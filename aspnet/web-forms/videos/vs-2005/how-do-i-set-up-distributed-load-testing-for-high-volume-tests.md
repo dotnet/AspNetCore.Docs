@@ -21,6 +21,6 @@ Visual Studio Team System allows you to set up distibuted load testing by creati
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-set-up-distributed-load-testing-for-high-volume-tests)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-tune-web-application-performance-with-profiling.md)
-[Next](how-do-i-enforce-coding-standards-with-code-analysis.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-tune-web-application-performance-with-profiling.md)
+> [Next](how-do-i-enforce-coding-standards-with-code-analysis.md)

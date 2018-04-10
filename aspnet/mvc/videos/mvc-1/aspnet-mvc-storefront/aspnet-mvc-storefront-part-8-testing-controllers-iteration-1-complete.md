@@ -21,6 +21,6 @@ Rob finishes up the initial iteration of the site and work on Controller Tests a
 
 [&#9654; Watch video (30 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-7-routing-and-ui-work.md)
-[Next](aspnet-mvc-storefront-part-9-the-shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-7-routing-and-ui-work.md)
+> [Next](aspnet-mvc-storefront-part-9-the-shopping-cart.md)

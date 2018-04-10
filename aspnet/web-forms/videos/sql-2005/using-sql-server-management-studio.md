@@ -21,6 +21,6 @@ SQL Server Management Studio Express will typically be your main interface into 
 
 [&#9654; Watch video (40 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/using-sql-server-management-studio)
 
->[!div class="step-by-step"]
-[Previous](connecting-your-web-application-to-sql-server-2005-express-edition.md)
-[Next](getting-started-with-reporting-services.md)
+> [!div class="step-by-step"]
+> [Previous](connecting-your-web-application-to-sql-server-2005-express-edition.md)
+> [Next](getting-started-with-reporting-services.md)

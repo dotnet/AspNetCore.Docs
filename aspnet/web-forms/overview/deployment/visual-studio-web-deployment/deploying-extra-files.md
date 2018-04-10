@@ -99,6 +99,6 @@ I would like to thank the following people who made significant contributions to
 - [Srđan Božović, Serbia](http://msforge.net/blogs/zmajcek/)
 - [Vishal Joshi, Microsoft](http://vishaljoshi.blogspot.com/) (twitter: [@vishalrjoshi](http://twitter.com/vishalrjoshi))
 
->[!div class="step-by-step"]
-[Previous](command-line-deployment.md)
-[Next](troubleshooting.md)
+> [!div class="step-by-step"]
+> [Previous](command-line-deployment.md)
+> [Next](troubleshooting.md)

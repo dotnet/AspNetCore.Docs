@@ -144,6 +144,7 @@
 ## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
 ### [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
+### [Razor SDK](xref:mvc/razor-pages/sdk)
 ## [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
@@ -181,7 +182,7 @@
 ### [Custom formatters](xref:web-api/advanced/custom-formatters)
 ### [Format response data](xref:web-api/advanced/formatting)
 
-# [Test and debug](xref:testing/index)
+# [Test, debug, and troubleshoot](xref:testing/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:testing/integration-testing)
 ## [Razor Pages testing](xref:testing/razor-pages-testing)
@@ -189,6 +190,7 @@
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
+## [Troubleshoot](xref:testing/troubleshoot)
 
 # [Data access with EF Core and Azure](data/index.md)
 ## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
@@ -220,6 +222,7 @@
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 ## [Hubs](xref:signalr/hubs)
+## [JavaScript Client](xref:signalr/javascript-client)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)

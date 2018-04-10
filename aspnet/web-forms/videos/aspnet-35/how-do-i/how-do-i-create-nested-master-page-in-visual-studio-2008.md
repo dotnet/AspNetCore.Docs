@@ -21,6 +21,6 @@ Using Visual Studio 2008's improved Designer, I will demonstrate how to create a
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-nested-master-page-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-create-a-master-page-in-visual-studio-2008.md)
-[Next](how-do-i-cascading-style-sheets-in-visual-studio-2008.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-create-a-master-page-in-visual-studio-2008.md)
+> [Next](how-do-i-cascading-style-sheets-in-visual-studio-2008.md)

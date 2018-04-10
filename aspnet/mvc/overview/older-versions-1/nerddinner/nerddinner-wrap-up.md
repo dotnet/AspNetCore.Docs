@@ -44,5 +44,5 @@ Hope this helps,
 
 Scott
 
->[!div class="step-by-step"]
-[Previous](enable-automated-unit-testing.md)
+> [!div class="step-by-step"]
+> [Previous](enable-automated-unit-testing.md)

@@ -21,5 +21,5 @@ There are two key steps involved in building AJAX interactions, calling services
 
 [&#9654; Watch video (33 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-aspnet-ajax-client-templates)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md)

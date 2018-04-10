@@ -21,6 +21,6 @@ This video demonstrates the provisioning process for new web sites with IIS7.
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-a-site-with-iis7-manager)
 
->[!div class="step-by-step"]
-[Previous](troubleshooting-production-aspnet-apps.md)
-[Next](installing-ftp7.md)
+> [!div class="step-by-step"]
+> [Previous](troubleshooting-production-aspnet-apps.md)
+> [Next](installing-ftp7.md)

@@ -21,5 +21,5 @@ In this video, part 1 of 3, Joe Stagner creates a data access layer using a type
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/data-access-layers-in-aspnet-applications)
 
->[!div class="step-by-step"]
-[Next](how-to-manually-bind-a-dataset-to-a-datagrid.md)
+> [!div class="step-by-step"]
+> [Next](how-to-manually-bind-a-dataset-to-a-datagrid.md)

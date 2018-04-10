@@ -21,6 +21,6 @@ In this video we see how you can load test your web applications using the load 
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-load-testing-web-applications-with-team-system)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-testing-web-applications-with-team-system.md)
-[Next](introduction-to-manual-testing-with-team-system.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-testing-web-applications-with-team-system.md)
+> [Next](introduction-to-manual-testing-with-team-system.md)

@@ -21,6 +21,6 @@ SQL Server beginners will learn about tables and definitions of data types, prop
 
 [&#9654; Watch video (24 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-database-tables-and-records)
 
->[!div class="step-by-step"]
-[Previous](what-is-a-database.md)
-[Next](more-about-column-data-types-and-other-properties.md)
+> [!div class="step-by-step"]
+> [Previous](what-is-a-database.md)
+> [Next](more-about-column-data-types-and-other-properties.md)

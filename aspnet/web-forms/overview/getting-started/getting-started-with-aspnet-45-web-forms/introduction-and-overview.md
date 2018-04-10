@@ -172,9 +172,9 @@ After installing the prerequisites, you are ready to begin creating the new Web 
 
 [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) 
 
-The download is a *.zip* file. To see the completed project that this tutorial series creates, find and select the *C#*folder in the *.zip* file. Save the *C#* folderto the folder you use to work with Visual Studio 2013 projects. By default, the Visual Studio 2013 projects folder is the following:
+The download is a <em>.zip</em> file. To see the completed project that this tutorial series creates, find and select the <em>C#</em>folder in the <em>.zip</em> file. Save the <em>C#</em> folderto the folder you use to work with Visual Studio 2013 projects. By default, the Visual Studio 2013 projects folder is the following:
 
-**C:\Users\*****&lt;username&gt;*****\Documents\Visual Studio 2013\Projects**
+<strong>C:\Users\</strong><strong><em>&lt;username&gt;</em></strong><strong>\Documents\Visual Studio 2013\Projects</strong>
 
 Rename the ***C#*** folder to ***WingtipToys***.
 
@@ -192,5 +192,5 @@ Comments on this tutorial series are welcome, and when this tutorial series is u
 
 When an error happens during development, or if the Web site does not run correctly, the error messages may give complex clues to the source of the problem or might not explain how to fix it. To help you with some common problem scenarios, you can also use the [ASP.NET forums](https://forums.asp.net/) or the Q AND A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample. If you get an error message or something doesn't work as you go through the tutorials, be sure to check the above locations.
 
->[!div class="step-by-step"]
-[Next](create-the-project.md)
+> [!div class="step-by-step"]
+> [Next](create-the-project.md)

@@ -97,7 +97,7 @@ ASP.NET Core preview apps can be deployed to Azure App Service with the followin
 If you have a problem using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
 <a name="site-x"></a>
-###Install the preview site extention
+### Install the preview site extention
 
 * From the Azure portal, navigate to the App Service blade.
 * Enter "ex" in the search box.

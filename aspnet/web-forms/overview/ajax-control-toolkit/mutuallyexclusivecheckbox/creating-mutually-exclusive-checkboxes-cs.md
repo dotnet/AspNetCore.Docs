@@ -49,5 +49,5 @@ Save and run the page: You can check and uncheck both check boxes, however at no
 
 Only one checkbox can be checked at a time ([Click to view full-size image](creating-mutually-exclusive-checkboxes-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](creating-mutually-exclusive-checkboxes-vb.md)
+> [!div class="step-by-step"]
+> [Next](creating-mutually-exclusive-checkboxes-vb.md)

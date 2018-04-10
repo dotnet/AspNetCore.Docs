@@ -21,6 +21,6 @@ In this lesson, you will learn about the GridView and FormView controls and how 
 
 [&#9654; Watch video (30 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-8-working-with-the-gridview-and-formview)
 
->[!div class="step-by-step"]
-[Previous](lesson-7-databinding-to-user-interface-controls.md)
-[Next](watch-aspnet-development-in-action.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-7-databinding-to-user-interface-controls.md)
+> [Next](watch-aspnet-development-in-action.md)

@@ -21,6 +21,6 @@ Joe Stagner adds reviews from customers to product details page in the Tailspin 
 
 [&#9654; Watch video (41 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-adding-user-product-reviews)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-final-check-out.md)
-[Next](tailspin-spyworks-displaying-user-reviews.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-final-check-out.md)
+> [Next](tailspin-spyworks-displaying-user-reviews.md)

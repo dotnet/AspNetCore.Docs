@@ -149,6 +149,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Ken Pespisa. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](performing-batch-updates-vb.md)
-[Next](adding-validation-controls-to-the-datalist-s-editing-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](performing-batch-updates-vb.md)
+> [Next](adding-validation-controls-to-the-datalist-s-editing-interface-vb.md)

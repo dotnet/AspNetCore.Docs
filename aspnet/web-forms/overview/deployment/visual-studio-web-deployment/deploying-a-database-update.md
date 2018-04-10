@@ -165,6 +165,6 @@ You've now deployed an application update that included a database change using 
 
 The next tutorial shows you how to execute deployments by using the command line.
 
->[!div class="step-by-step"]
-[Previous](deploying-a-code-update.md)
-[Next](command-line-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-code-update.md)
+> [Next](command-line-deployment.md)

@@ -21,6 +21,6 @@ In this video you will learn how to use the TextBoxWatermark control extender fr
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-popup-control-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-popup-control-extender.md)

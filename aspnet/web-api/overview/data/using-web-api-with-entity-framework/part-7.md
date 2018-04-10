@@ -49,6 +49,6 @@ If you run the application now, it should look like this:
 
 The list of books loads asynchronously, after the page loads. Right now, the &quot;Details&quot; links are not functional. We'll add this functionality in the next section.
 
->[!div class="step-by-step"]
-[Previous](part-6.md)
-[Next](part-8.md)
+> [!div class="step-by-step"]
+> [Previous](part-6.md)
+> [Next](part-8.md)

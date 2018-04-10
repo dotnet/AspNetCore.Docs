@@ -89,7 +89,7 @@ The Swagger UI can be found at `http://localhost:<random_port>/swagger`. Explore
 
 > [!TIP]
 > To serve the Swagger UI at the app's root (`http://localhost:<random_port>/`), set the `RoutePrefix` property to an empty string:
->
+> 
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
 ## Customize & extend
@@ -110,28 +110,24 @@ The Swagger UI displays the version's information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio-xml)
-
+#### [Visual Studio](#tab/visual-studio-xml/)
 * Right-click the project in **Solution Explorer** and select **Properties**
 * Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml)
-
+#### [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section:
 
 ![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
 
-# [Visual Studio Code](#tab/visual-studio-code-xml)
-
+#### [Visual Studio Code](#tab/visual-studio-code-xml/)
 Manually add the following snippet to the *.csproj* file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=2)]
 
----
-
+* * *
 Enabling XML comments provides debug information for undocumented public types and members. Undocumented types and members are indicated by the warning message. For example, the following message indicates a violation of warning code 1591:
 
 ```text

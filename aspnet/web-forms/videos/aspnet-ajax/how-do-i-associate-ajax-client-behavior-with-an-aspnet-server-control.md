@@ -21,6 +21,6 @@ Learn how to create a client behavior based upon Microsoft AJAX that can be asso
 
 [&#9654; Watch video (18 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-build-custom-server-controls-that-work-with-or-without-aspnet-ajax.md)
-[Next](how-do-i-retrieve-values-from-server-side-ajax-controls.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-build-custom-server-controls-that-work-with-or-without-aspnet-ajax.md)
+> [Next](how-do-i-retrieve-values-from-server-side-ajax-controls.md)

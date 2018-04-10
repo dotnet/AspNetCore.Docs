@@ -269,37 +269,37 @@ Now you'll create a web page to display data, and the process of requesting the 
 the creation of the database. You'll begin by creating a new controller. But before you do that, build the project to make the model and context classes available to MVC controller scaffolding.
 
 1. Right-click the **Controllers** folder in **Solution Explorer**, select **Add**, and then click **New Scaffolded Item**.
-- In the **Add Scaffold** dialog box, select **MVC 5 Controller with views, using Entity Framework**.
+2. In the **Add Scaffold** dialog box, select **MVC 5 Controller with views, using Entity Framework**.
 
-    ![Add Scaffold](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image12.png)
-- In the Add Controller dialog box, make the following selections and then click **Add**:
+     ![Add Scaffold](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image12.png)
+3. In the Add Controller dialog box, make the following selections and then click **Add**:
 
-    - Model class: **Student (ContosoUniversity.Models)**. (If you don't see this option in the drop-down list, build the project and try again.)
-    - Data context class: **SchoolContext (ContosoUniversity.DAL)**.
-    - Controller name: **StudentController** (not StudentsController).
-    - Leave the default values for the other fields.
+   - Model class: **Student (ContosoUniversity.Models)**. (If you don't see this option in the drop-down list, build the project and try again.)
+   - Data context class: **SchoolContext (ContosoUniversity.DAL)**.
+   - Controller name: **StudentController** (not StudentsController).
+   - Leave the default values for the other fields.
 
-    ![Add_Controller_dialog_box_for_Student_controller](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image13.png)
+     ![Add_Controller_dialog_box_for_Student_controller](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image13.png)
 
-    When you click **Add**, the scaffolder creates a StudentController.cs file and a set of views (.cshtml files) that work with the controller. In the future when you create projects that use Entity Framework you can also take advantage of some additional functionality of the scaffolder: just create your first model class, don't create a connection string, and then in the **Add Controller** box specify new context class. The scaffolder will create your `DbContext` class and your connection string as well as the controller and views.
-- Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
+     When you click **Add**, the scaffolder creates a StudentController.cs file and a set of views (.cshtml files) that work with the controller. In the future when you create projects that use Entity Framework you can also take advantage of some additional functionality of the scaffolder: just create your first model class, don't create a connection string, and then in the **Add Controller** box specify new context class. The scaffolder will create your `DbContext` class and your connection string as well as the controller and views.
+4. Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
 
-    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
+     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
 
-    The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
+     The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
 
-    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
+     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
 
-    The *Student\Index.cshtml* view displays this list in a table:
+     The *Student\Index.cshtml* view displays this list in a table:
 
-    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
-- Press CTRL+F5 to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
+     [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
+5. Press CTRL+F5 to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
-    Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you'll see the Student tab link in the top address bar or you'll have to click the upper right corner to see the link.
+     Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you'll see the Student tab link in the top address bar or you'll have to click the upper right corner to see the link.
 
-    ![Menu button](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
+     ![Menu button](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
 
-    ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image15.png)
+     ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image15.png)
 
 ## View the Database
 
@@ -339,5 +339,5 @@ Please leave feedback on how you liked this tutorial and what we could improve. 
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)

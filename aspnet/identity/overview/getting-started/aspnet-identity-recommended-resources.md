@@ -89,7 +89,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     - [Understanding the Owin External Authentication Pipeline](http://coding.abel.nu/2014/06/understanding-the-owin-external-authentication-pipeline/)
     - [ASP.NET Identity and Owin Overview](http://coding.abel.nu/2014/06/asp-net-identity-and-owin-overview/)
 
- By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
+  By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
 
     - [ASP.NET Core Identity](http://odetocode.com/blogs/scott/archive/2013/11/25/asp-net-core-identity.aspx) This blog examines the core abstractions, including IUser, IUserStore and the I\*Store interfaces.
     - [ASP.NET Identity with the Entity Framework](http://odetocode.com/blogs/scott/archive/2014/01/03/asp-net-identity-with-the-entity-framework.aspx) Individual User Accounts in MVC 5, Web API and SPA apps, connection strings and managing contexts

@@ -62,14 +62,14 @@ For this tutorial, we will take a web application template (Web Forms) created u
 
 1. In Solution Explorer, right-click the project &gt; **Manage NuGet Packages**. In the search box, enter "Asp.net Identity". Select the package in the list of results and click install. Accept the license agreement by clicking on "I Accept" button. Note that this package will install the dependency packages: EntityFramework and Microsoft ASP.NET Identity Core. Similarly install the following packages (skip the last 4 OWIN packages if you don't want to enable OAuth log-in):
 
-    - Microsoft.AspNet.Identity.Owin
-    - Microsoft.Owin.Host.SystemWeb
-    - Microsoft.Owin.Security.Facebook
-    - Microsoft.Owin.Security.Google
-    - Microsoft.Owin.Security.MicrosoftAccount
-    - Microsoft.Owin.Security.Twitter
+   - Microsoft.AspNet.Identity.Owin
+   - Microsoft.Owin.Host.SystemWeb
+   - Microsoft.Owin.Security.Facebook
+   - Microsoft.Owin.Security.Google
+   - Microsoft.Owin.Security.MicrosoftAccount
+   - Microsoft.Owin.Security.Twitter
 
-    ![](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/_static/image6.png)
+     ![](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/_static/image6.png)
 
 ### Migrate database to the new Identity system
 

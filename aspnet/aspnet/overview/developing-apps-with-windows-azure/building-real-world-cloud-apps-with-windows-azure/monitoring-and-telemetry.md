@@ -287,6 +287,6 @@ Code sample:
 
 - [Cloud Service Fundamentals in Azure](https://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649). Sample application created by the Microsoft Azure Customer Advisory Team. Demonstrates both telemetry and logging practices, as explained in the following articles. The sample implements application logging by using [NLog](http://nlog-project.org/). For related documentation, see the [series of four TechNet wiki articles about telemetry and logging](https://social.technet.microsoft.com/wiki/contents/articles/17987.cloud-service-fundamentals.aspx#Telemetry_coming_soon).
 
->[!div class="step-by-step"]
-[Previous](design-to-survive-failures.md)
-[Next](transient-fault-handling.md)
+> [!div class="step-by-step"]
+> [Previous](design-to-survive-failures.md)
+> [Next](transient-fault-handling.md)

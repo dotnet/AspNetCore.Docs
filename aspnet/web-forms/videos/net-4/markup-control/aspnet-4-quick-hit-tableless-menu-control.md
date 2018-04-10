@@ -21,6 +21,6 @@ In this video you will see how the ASP.NET Menu control renders HTML using seman
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-tableless-menu-control)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-table-free-templated-controls.md)
-[Next](aspnet-4-quick-hit-hidden-field-divs.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-table-free-templated-controls.md)
+> [Next](aspnet-4-quick-hit-hidden-field-divs.md)

@@ -181,5 +181,5 @@ Thanks for completing this introduction to Razor Pages. We appreciate feedback. 
 * [File uploads in ASP.NET Core](xref:mvc/models/file-uploads)
 * [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile)
 
->[!div class="step-by-step"]
-[Previous: Validation](xref:tutorials/razor-pages/validation)
+> [!div class="step-by-step"]
+> [Previous: Validation](xref:tutorials/razor-pages/validation)

@@ -21,5 +21,5 @@ Microsoft's Scott Hanselman shows you what you need to learn how to use ASP.NET 
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-best-learn-asp-net-mvc)
 
->[!div class="step-by-step"]
-[Previous](5-minute-introduction-to-aspnet-mvc.md)
+> [!div class="step-by-step"]
+> [Previous](5-minute-introduction-to-aspnet-mvc.md)

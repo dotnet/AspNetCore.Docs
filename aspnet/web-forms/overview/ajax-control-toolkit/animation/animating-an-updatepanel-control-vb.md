@@ -52,6 +52,6 @@ Now whenever a postback occurs within the UpdatePanel, the new contents of the p
 
 The next wizard step is fading in ([Click to view full-size image](animating-an-updatepanel-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](changing-an-animation-using-client-side-code-vb.md)
-[Next](dynamically-controlling-updatepanel-animations-vb.md)
+> [!div class="step-by-step"]
+> [Previous](changing-an-animation-using-client-side-code-vb.md)
+> [Next](dynamically-controlling-updatepanel-animations-vb.md)

@@ -91,12 +91,12 @@ In this task, you will learn how to use the Page Inspector in the context of an 
 
 1. Open the **Begin** solution located at **Source/Ex1-MVC4/Begin/** folder.
 
-    1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. In the Solution Explorer, locate **Index.cshtml** view under the **/Views/Home** project folder, right-click it and select **View in Page Inspector**.
 
     ![Selecting a file to preview in Page Inspector](using-page-inspector-in-visual-studio-2012/_static/image1.png "Selecting a file to preview in Page Inspector")
@@ -282,12 +282,12 @@ In this task, you will learn how to use the Page Inspector features in the conte
 
 1. Open the **Begin** solution located at **Source/Ex2-WebForms/Begin/** folder.
 
-    1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. In the Solution Explorer, locate **Default.aspx** page, right-click it and select **View in Page Inspector**.
 
     ![Opening Default.aspx with Page Inspector](using-page-inspector-in-visual-studio-2012/_static/image24.png "Opening Default.aspx with Page Inspector")
@@ -471,7 +471,7 @@ By completing this Hands-On Lab, you have learnt how to use Page Inspector to pr
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 

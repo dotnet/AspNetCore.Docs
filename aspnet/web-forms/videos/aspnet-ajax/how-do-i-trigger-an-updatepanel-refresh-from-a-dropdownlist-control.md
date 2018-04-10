@@ -21,6 +21,6 @@ In most of our videos on the ASP.NET AJAX UpdatePanel, we have used a Button con
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-persistent-communications-pattern-using-web-services.md)
-[Next](how-do-i-create-an-aspnet-ajax-extender-from-scratch.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-persistent-communications-pattern-using-web-services.md)
+> [Next](how-do-i-create-an-aspnet-ajax-extender-from-scratch.md)

@@ -57,6 +57,6 @@ Also, the textbox controls within the modal popup should be filled with the curr
 
 The modal popup causes a postback ([Click to view full-size image](handling-postbacks-from-a-modalpopup-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-modalpopup-with-a-repeater-control-vb.md)
-[Next](positioning-a-modalpopup-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-modalpopup-with-a-repeater-control-vb.md)
+> [Next](positioning-a-modalpopup-vb.md)

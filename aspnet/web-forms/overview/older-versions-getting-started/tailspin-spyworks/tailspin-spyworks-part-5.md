@@ -182,6 +182,6 @@ At this stage in your project's development we are getting ready to implement th
 
 Before doing so let's use Visual Studio to generate the membership database and add a user to the membership repository.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-4.md)
-[Next](tailspin-spyworks-part-6.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-4.md)
+> [Next](tailspin-spyworks-part-6.md)

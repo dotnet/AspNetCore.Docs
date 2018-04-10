@@ -21,6 +21,6 @@ In this tutorial, Stephen Walther demonstrates how browser requests get mapped t
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/an-introduction-to-url-routing)
 
->[!div class="step-by-step"]
-[Previous](understanding-views-view-data-and-html-helpers.md)
-[Next](preventing-javascript-injection-attacks.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-views-view-data-and-html-helpers.md)
+> [Next](preventing-javascript-injection-attacks.md)

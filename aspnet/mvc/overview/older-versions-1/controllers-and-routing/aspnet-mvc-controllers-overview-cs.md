@@ -113,6 +113,6 @@ The Index() action in Listing 5 returns a DateTime object. The ASP.NET MVC frame
 
 The purpose of this tutorial was to introduce you to the concepts of ASP.NET MVC controllers, controller actions, and controller action results. In the first section, you learned how to add new controllers to an ASP.NET MVC project. Next, you learned how public methods of a controller are exposed to the universe as controller actions. Finally, we discussed the different types of action results that can be returned from a controller action. In particular, we discussed how to return a ViewResult, RedirectToActionResult, and ContentResult from a controller action.
 
->[!div class="step-by-step"]
-[Previous](creating-an-action-vb.md)
-[Next](creating-custom-routes-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-an-action-vb.md)
+> [Next](creating-custom-routes-cs.md)

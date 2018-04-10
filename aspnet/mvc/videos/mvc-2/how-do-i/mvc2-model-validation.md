@@ -21,6 +21,6 @@ In this video you will learn about how to use Data Annotation Attributes to defi
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc2-model-validation)
 
->[!div class="step-by-step"]
-[Previous](mvc2-stronglytyped-helpers.md)
-[Next](mvc2-template-customization.md)
+> [!div class="step-by-step"]
+> [Previous](mvc2-stronglytyped-helpers.md)
+> [Next](mvc2-template-customization.md)

@@ -21,6 +21,6 @@ Visual Basic programmers will learn how to perform group and aggregate queries o
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-perform-group-and-aggregate-queries)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-get-started-with-linq.md)
-[Next](how-do-i-upgrade-visual-basic-projects-to-enable-linq.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-get-started-with-linq.md)
+> [Next](how-do-i-upgrade-visual-basic-projects-to-enable-linq.md)

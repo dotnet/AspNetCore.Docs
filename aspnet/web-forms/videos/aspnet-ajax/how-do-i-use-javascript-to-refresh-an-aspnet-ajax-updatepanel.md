@@ -21,6 +21,6 @@ In this video we learn two different ways of using JavaScript logic to refresh t
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-javascript-to-refresh-an-aspnet-ajax-updatepanel)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-build-a-custom-aspnet-ajax-server-control.md)
-[Next](how-do-i-determine-whether-an-asynchronous-postback-has-occurred.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-build-a-custom-aspnet-ajax-server-control.md)
+> [Next](how-do-i-determine-whether-an-asynchronous-postback-has-occurred.md)

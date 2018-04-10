@@ -220,6 +220,6 @@ This completes the introduction to implementing the repository pattern for using
 
 In the following tutorial you'll see how to add sorting and filtering functionality to the application.
 
->[!div class="step-by-step"]
-[Previous](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
-[Next](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
+> [Next](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)

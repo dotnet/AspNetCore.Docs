@@ -25,11 +25,11 @@ There are 3 versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE[template files](../includes/webApi/intro.md)]
+[!INCLUDE [template files](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-vscode.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create the project
 
@@ -82,13 +82,13 @@ Add a `TodoContext` class in the *Models* folder:
 
 [!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
 
 ## Add a controller
 
 In the *Controllers* folder, create a class named `TodoController`. Add the following code:
 
-[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
@@ -109,6 +109,5 @@ In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/t
   - [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   - [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
-[!INCLUDE[next steps](../includes/webApi/next.md)]
-
+[!INCLUDE [next steps](../includes/webApi/next.md)]
 

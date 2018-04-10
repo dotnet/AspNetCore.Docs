@@ -83,5 +83,5 @@ After you sign in to Azure, Visual Studio prompts you to configure the web app. 
 
 [![](part-1/_static/image10.png)](part-1/_static/image9.png)
 
->[!div class="step-by-step"]
-[Next](part-2.md)
+> [!div class="step-by-step"]
+> [Next](part-2.md)

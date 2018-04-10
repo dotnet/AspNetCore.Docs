@@ -19,7 +19,7 @@ uid: spa/index
 
 ## Prerequisites
 
-* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+* [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 * [Node.js](https://nodejs.org), version 6 or later
 
 ## Installation

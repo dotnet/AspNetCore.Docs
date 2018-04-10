@@ -21,6 +21,6 @@ This video compares the same application written twice, once with Dynamic Data a
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-display-unknown-datatypes.md)
-[Next](getting-started-with-dynamic-data.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-display-unknown-datatypes.md)
+> [Next](getting-started-with-dynamic-data.md)

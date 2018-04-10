@@ -21,6 +21,6 @@ With Visual Studio Team System you have fine control over the code analysis rule
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-enforce-coding-standards-with-code-analysis)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-set-up-distributed-load-testing-for-high-volume-tests.md)
-[Next](how-do-i-use-generic-tests.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-set-up-distributed-load-testing-for-high-volume-tests.md)
+> [Next](how-do-i-use-generic-tests.md)

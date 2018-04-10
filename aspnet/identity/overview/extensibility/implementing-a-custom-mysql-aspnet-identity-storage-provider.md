@@ -119,7 +119,7 @@ If needed, install either [Visual Studio Express 2013 for Web](https://go.micros
 5. Right click the IdentityMySQLDemo project, select **Add**, **Reference, Solution, Projects;** select the AspNet.Identity.MySQL project and click **OK**.
 6. In the IdentityMySQLDemo project, replace all references to  
     `using Microsoft.AspNet.Identity.EntityFramework;`  
- with  
+   with  
      `using AspNet.Identity.MySQL;`
 7. In IdentityModels.cs, set **ApplicationDbContext** to derive from **MySqlDatabase** and include a contructor that take a single parameter with the connection name.  
 

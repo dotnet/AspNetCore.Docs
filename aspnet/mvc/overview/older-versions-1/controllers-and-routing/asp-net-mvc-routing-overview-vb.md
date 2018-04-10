@@ -104,6 +104,6 @@ The URL /Home/Index/3, on the other hand, works just fine with the Index control
 
 The goal of this tutorial was to provide you with a brief introduction to ASP.NET Routing. We examined the default route table that you get with a new ASP.NET MVC application. You learned how the default route maps URLs to controller actions.
 
->[!div class="step-by-step"]
-[Previous](creating-an-action-cs.md)
-[Next](understanding-action-filters-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-an-action-cs.md)
+> [Next](understanding-action-filters-vb.md)

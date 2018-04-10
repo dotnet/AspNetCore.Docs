@@ -21,5 +21,5 @@ In this video Chris Pels shows how to specify URLs in a web site that utilizes A
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-work-with-urls-in-aspnet-routing)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-routing-with-aspnet-web-forms.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-routing-with-aspnet-web-forms.md)

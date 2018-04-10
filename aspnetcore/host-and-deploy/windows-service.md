@@ -35,25 +35,23 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 1. Install the NuGet package [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
 
-1. Make the following changes in `Program.Main`:
-  
+2. Make the following changes in `Program.Main`:
+
    * Call `host.RunAsService` instead of `host.Run`.
-  
+
    * If the code calls `UseContentRoot`, use a path to the publish location instead of `Directory.GetCurrentDirectory()`.
 
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
    [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=3-4,7,12)]
 
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
    [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOnly&highlight=3-4,8,14)]
 
-   ---
+   * * *
 
-1. Publish the app to a folder. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
+3. Publish the app to a folder. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
 
-1. Test by creating and starting the service.
+4. Test by creating and starting the service.
 
    Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service. If the service is named MyService, published to `c:\svc`, and named AspNetCoreService, the commands are:
 
@@ -74,16 +72,13 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 It's easier to test and debug when running outside of a service, so it's customary to add code that calls `RunAsService` only under certain conditions. For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOrConsole)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOrConsole)]
 
----
-
+* * *
 ## Handle stopping and starting events
 
 To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following additional changes:
@@ -92,22 +87,19 @@ To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following
 
    [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=NoLogging)]
 
-1. Create an extension method for `IWebHost` that passes the custom `WebHostService` to `ServiceBase.Run`:
+2. Create an extension method for `IWebHost` that passes the custom `WebHostService` to `ServiceBase.Run`:
 
    [!code-csharp[](windows-service/sample/WebHostServiceExtensions.cs?name=ExtensionsClass)]
 
-1. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of `RunAsService`:
+3. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of `RunAsService`:
 
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
    [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=24)]
 
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
    [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=HandleStopStart&highlight=26)]
 
-   ---
-
+   * * *
 If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the `Services` property of `IWebHost`:
 
 [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]

@@ -21,5 +21,5 @@ In this video we see how the unit testing features of Visual Studio Team System 
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-unit-testing-with-team-system)
 
->[!div class="step-by-step"]
-[Next](introduction-to-testing-web-applications-with-team-system.md)
+> [!div class="step-by-step"]
+> [Next](introduction-to-testing-web-applications-with-team-system.md)

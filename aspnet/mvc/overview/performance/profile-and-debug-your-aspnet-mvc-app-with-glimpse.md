@@ -50,7 +50,7 @@ The following commands install Glimpse MVC5 and EF6 modules from the package man
 <a id="eg"></a>
 ## Enable Glimpse for localhost
 
-Navigate to http://localhost:&lt;port #&gt;/glimpse.axd and click the **Turn Glimpse On** button.
+Navigate to http://localhost:&lt;port #&gt;/glimpse.axd and click the <strong>Turn Glimpse On</strong> button.
 
 ![Glimpse axd page](profile-and-debug-your-aspnet-mvc-app-with-glimpse/_static/image4.png)
 

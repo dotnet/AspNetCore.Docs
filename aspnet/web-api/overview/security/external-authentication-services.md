@@ -255,19 +255,21 @@ Some external authentication providers do not support testing your application b
 
 - Add a static FQDN mapping your HOSTS file:
 
-    1. Open an elevated command prompt in Windows.
-    2. Type the following command:
+  1. Open an elevated command prompt in Windows.
+  2. Type the following command:
 
-        <kbd>notepad %WinDir%\system32\drivers\etc\hosts</kbd>
-    3. Add an entry like the following to the HOSTS file:
+      <kbd>notepad %WinDir%\system32\drivers\etc\hosts</kbd>
+  3. Add an entry like the following to the HOSTS file:
 
-        <kbd>127.0.0.1 www.wingtiptoys.com</kbd>
-    4. Save and close your HOSTS file.
+      <kbd>127.0.0.1 www.wingtiptoys.com</kbd>
+  4. Save and close your HOSTS file.
+
 - Configure your Visual Studio project to use the FQDN:
 
-    1. When your project is open in Visual Studio 2013, click the **Project** menu, and then select your project's properties. For example, you might select **WebApplication1 Properties**.
-    2. Select the **Web** tab.
-    3. Enter your FQDN for the **Project Url**. For example, you would enter <kbd>http://www.wingtiptoys.com</kbd> if that was the FQDN mapping that you added to your HOSTS file.
+  1. When your project is open in Visual Studio 2013, click the **Project** menu, and then select your project's properties. For example, you might select **WebApplication1 Properties**.
+  2. Select the **Web** tab.
+  3. Enter your FQDN for the <strong>Project Url</strong>. For example, you would enter <kbd><http://www.wingtiptoys.com></kbd> if that was the FQDN mapping that you added to your HOSTS file.
+
 - Configure IIS Express to use the FQDN for your application:
 
     1. Open an elevated command prompt in Windows.
@@ -278,7 +280,7 @@ Some external authentication providers do not support testing your application b
 
         <kbd>appcmd.exe set config -section:system.applicationHost/sites /+&quot;[name='WebApplication1'].bindings.[protocol='http',bindingInformation='*:80:www.wingtiptoys.com']&quot; /commit:apphost</kbd>
 
- Where **WebApplication1** is the name of your project and **bindingInformation** contains the port number and FQDN that you want to use for your testing.
+  Where **WebApplication1** is the name of your project and **bindingInformation** contains the port number and FQDN that you want to use for your testing.
 
 <a id="OBTAIN"></a>
 ### How to Obtain your Application Settings for Microsoft Authentication

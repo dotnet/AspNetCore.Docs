@@ -21,6 +21,6 @@ In this video, you learn how to make a custom page for some tables, while other 
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-make-custom-pages)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-handle-business-logic-exceptions.md)
-[Next](how-do-i-display-unknown-datatypes.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-handle-business-logic-exceptions.md)
+> [Next](how-do-i-display-unknown-datatypes.md)

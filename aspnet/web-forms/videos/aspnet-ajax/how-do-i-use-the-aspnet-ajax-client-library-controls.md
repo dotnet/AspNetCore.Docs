@@ -21,6 +21,6 @@ Demonstrates the client-side programming experience using scripts and controls f
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-client-library-controls)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-aspnet-ajax-enable-an-existing-web-service.md)
-[Next](how-do-i-use-an-aspnet-ajax-scriptmanagerproxy.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-aspnet-ajax-enable-an-existing-web-service.md)
+> [Next](how-do-i-use-an-aspnet-ajax-scriptmanagerproxy.md)

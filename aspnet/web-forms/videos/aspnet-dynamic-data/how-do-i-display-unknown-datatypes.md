@@ -21,6 +21,6 @@ In this video, we show you how to configure Dynamic Data to handle a totally unk
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-display-unknown-datatypes)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-make-custom-pages.md)
-[Next](how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-make-custom-pages.md)
+> [Next](how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.md)

@@ -115,13 +115,13 @@ Single-Instance Services
 Multiple-Instance Services
 
 
-| Service | Description |
-| --- | --- |
-| **IFilterProvider** | Returns a list of filters for a controller action. |
-| **ModelBinderProvider** | Returns a model binder for a given type. |
-| **ModelMetadataProvider** | Provides metadata for a model. |
-| **ModelValidatorProvider** | Provides a validator for a model. |
-| **ValueProviderFactory** | Creates a value provider. For more information, see Mike Stall's blog post [How to create a custom value provider in WebAPI](https://blogs.msdn.com/b/jmstall/archive/2012/04/23/how-to-create-a-custom-value-provider-in-webapi.aspx) |.
+|                 Service                 |                                                                                                              Description                                                                                                               |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    <strong>IFilterProvider</strong>     |                                                                                           Returns a list of filters for a controller action.                                                                                           |
+|  <strong>ModelBinderProvider</strong>   |                                                                                                Returns a model binder for a given type.                                                                                                |
+| <strong>ModelMetadataProvider</strong>  |                                                                                                     Provides metadata for a model.                                                                                                     |
+| <strong>ModelValidatorProvider</strong> |                                                                                                   Provides a validator for a model.                                                                                                    |
+|  <strong>ValueProviderFactory</strong>  | Creates a value provider. For more information, see Mike Stall's blog post [How to create a custom value provider in WebAPI](https://blogs.msdn.com/b/jmstall/archive/2012/04/23/how-to-create-a-custom-value-provider-in-webapi.aspx) |
 
 To add a custom implementation to a multi-instance service, call **Add** or **Insert** on the **Services** collection:
 

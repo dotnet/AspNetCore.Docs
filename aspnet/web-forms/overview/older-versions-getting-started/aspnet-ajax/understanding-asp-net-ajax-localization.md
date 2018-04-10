@@ -148,6 +148,6 @@ The .NET Framework intrinsically supports a rich localization framework, utilizi
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Previous](understanding-asp-net-ajax-authentication-and-profile-application-services.md)
-[Next](understanding-asp-net-ajax-web-services.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-asp-net-ajax-authentication-and-profile-application-services.md)
+> [Next](understanding-asp-net-ajax-web-services.md)

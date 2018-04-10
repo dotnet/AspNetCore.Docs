@@ -197,5 +197,5 @@ The following features of the application affect how you deploy it or what you h
 
 In this first tutorial in the series, you have downloaded the sample Visual Studio project and reviewed site features that affect how you deploy the application. In the following tutorials, you prepare for deployment by setting up some of these things to be handled automatically. Others you take care of manually.
 
->[!div class="step-by-step"]
-[Next](preparing-databases.md)
+> [!div class="step-by-step"]
+> [Next](preparing-databases.md)

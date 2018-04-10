@@ -21,5 +21,5 @@ In this video Joe demonstrates how to use the AJAX Control Toolkit to create a n
 
 [&#9654; Watch video (26 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/create-a-new-custom-extender)
 
->[!div class="step-by-step"]
-[Previous](editor-control-custom.md)
+> [!div class="step-by-step"]
+> [Previous](editor-control-custom.md)
