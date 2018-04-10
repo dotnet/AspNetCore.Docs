@@ -13,6 +13,7 @@ namespace PageFilter.Filters
             _name = name;
             _value = value;
         }
+
         public override async Task OnResultExecutionAsync(
             ResultExecutingContext context,
             ResultExecutionDelegate next)

@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 manager: wpickett
 ms.author: riande
-ms.date: 4/5/2018
+ms.date: 4/10/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
