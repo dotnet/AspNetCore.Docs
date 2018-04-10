@@ -21,5 +21,5 @@ Jon Galloway begins the MVC Music Store tutorial with an introduction, overview 
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc-music-store-part-1-intro-tools-and-project-structure)
 
->[!div class="step-by-step"]
-[Next](mvc-music-store-part-2-controllers.md)
+> [!div class="step-by-step"]
+> [Next](mvc-music-store-part-2-controllers.md)

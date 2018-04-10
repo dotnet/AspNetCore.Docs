@@ -55,6 +55,6 @@ The following markup defines three subanimations: Resizing the width, resizing t
 
 One of the possible three animations: The panel gets wider ([Click to view full-size image](picking-one-animation-out-of-a-list-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](animation-depending-on-a-condition-cs.md)
-[Next](animating-in-response-to-user-interaction-cs.md)
+> [!div class="step-by-step"]
+> [Previous](animation-depending-on-a-condition-cs.md)
+> [Next](animating-in-response-to-user-interaction-cs.md)

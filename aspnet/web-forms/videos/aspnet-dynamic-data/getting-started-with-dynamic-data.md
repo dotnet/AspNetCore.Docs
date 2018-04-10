@@ -21,6 +21,6 @@ In this video we'll build an entire ASP.NET application with ASP.NET Dynamic Dat
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-dynamic-data)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.md)
-[Next](begin-editing-the-templates-in-aspnet-dynamic-data-applications.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.md)
+> [Next](begin-editing-the-templates-in-aspnet-dynamic-data-applications.md)

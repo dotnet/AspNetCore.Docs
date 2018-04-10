@@ -86,5 +86,5 @@ F5 causes Visual Web Developer to start a development web server and run your we
 
 Right out of the box this default template gives you two pages to visit and a basic login page. The next step is to change how this application works and learn a little bit about ASP.NET MVC in the process. Close your browser and let's change some code.
 
->[!div class="step-by-step"]
-[Next](adding-a-controller.md)
+> [!div class="step-by-step"]
+> [Next](adding-a-controller.md)

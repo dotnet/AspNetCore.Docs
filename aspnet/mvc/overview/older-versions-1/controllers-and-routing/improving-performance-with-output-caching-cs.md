@@ -160,6 +160,6 @@ If you invoke the Index() action exposed by the controller in Listing 7 then the
 
 Output caching provides you with a very easy method of dramatically improving the performance of your ASP.NET MVC applications. In this tutorial, you learned how to use the [OutputCache] attribute to cache the output of controller actions. You also learned how to modify properties of the [OutputCache] attribute such as the Duration and VaryByParam properties to modify how content gets cached. Finally, you learned how to define cache profiles in the web configuration file.
 
->[!div class="step-by-step"]
-[Previous](understanding-action-filters-cs.md)
-[Next](adding-dynamic-content-to-a-cached-page-cs.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-action-filters-cs.md)
+> [Next](adding-dynamic-content-to-a-cached-page-cs.md)

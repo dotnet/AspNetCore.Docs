@@ -21,5 +21,5 @@ This video introduces developing ASP.NET applications in a shared hosting enviro
 
 [&#9654; Watch video (46 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/developing-and-deploying-in-a-shared-hosting)
 
->[!div class="step-by-step"]
-[Next](working-with-iis7-deligated-admin.md)
+> [!div class="step-by-step"]
+> [Next](working-with-iis7-deligated-admin.md)

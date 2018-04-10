@@ -21,5 +21,5 @@ In this video you will learn about the RepeatLayout rendering option for Check B
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-quick-hit-table-free-templated-controls.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-quick-hit-table-free-templated-controls.md)

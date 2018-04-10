@@ -139,7 +139,7 @@ Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some o
     *A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond*
 
     This error usually means that the application could not connect to the SMTP server. Check the server name and port number.
-- *Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain*
+- <em>Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain</em>
 
     This message can indicate that the `From` address is not correct or is missing.
 - *The specified string is not in the form required for an email address.*

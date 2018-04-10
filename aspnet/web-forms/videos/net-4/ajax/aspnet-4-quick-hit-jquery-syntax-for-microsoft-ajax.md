@@ -21,6 +21,6 @@ In this video you will learn about jQuery syntax for Microsoft Ajax.
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-jquery-syntax-for-microsoft-ajax)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-the-scriptloader.md)
-[Next](aspnet-4-quick-hit-ajax-data-templates.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-the-scriptloader.md)
+> [Next](aspnet-4-quick-hit-ajax-data-templates.md)

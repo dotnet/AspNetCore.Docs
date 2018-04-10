@@ -36,7 +36,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
     [!code-csharp[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample1.cs)]
 
- to
+   to
 
     [!code-csharp[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample2.cs)]
 3. Make sure all the packages that your projects use are compatible with MVC 5 and Web API 2. The following table shows the MVC 4 and Web API related packages than need to be changed. If you have a package that is dependent on one of the packages listed below, please contact the publishers to get the newer versions that are compatible with MVC 5 and Web API 2. If you have the source code for those packages, you should recompile them with the new assemblies of MVC 5 and Web API 2.   
@@ -73,17 +73,17 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 5. Remove any of the following ASP.NET NuGet packages that are installed. You will remove these using the Package Manager Console (PMC). To open the PMC, select the **Tools** menu and then select **Library Package Manager,** then select **Package Manager Console**. Your project might not include all of these.
 
     1. `Microsoft.AspNet.WebPages.Administration`  
- This package is typically added when upgrading from MVC 3 to MVC 4. To remove it, run the following command in the PMC:  
+   This package is typically added when upgrading from MVC 3 to MVC 4. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft.AspNet.WebPages.Administration`
     2. `Microsoft-Web-Helpers`   
- This package has been rebranded as `Microsoft.AspNet.WebHelpers`. To remove it, run the following command in the PMC:  
+   This package has been rebranded as `Microsoft.AspNet.WebHelpers`. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft-Web-Helpers`
     3. `Microsoft.AspNet.Mvc.FixedDisplayMode`  
- This package contains a work around for a bug in MVC 4 that has been fixed in MVC 5. To remove it, run the following command in the PMC:  
+   This package contains a work around for a bug in MVC 4 that has been fixed in MVC 5. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft.AspNet.Mvc.FixedDisplayModes`
 6. Upgrade all the ASP.NET NuGet packages using the PMC. In the PMC, run the following command:  
     `Update-Package`  
- The `Update-Package` command without any parameters will update every package. You can update packages individually by using the ID argument. For more information about the update command, run     `get-help update-package` .
+   The `Update-Package` command without any parameters will update every package. You can update packages individually by using the ID argument. For more information about the update command, run     `get-help update-package` .
 
 ## Update the Application *web.config* File
 

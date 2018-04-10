@@ -21,6 +21,6 @@ The AutoComplete extender control from the ASP.NET AJAX Control Toolkit provides
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-autocomplete-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-slider-control.md)
-[Next](how-do-i-configure-the-aspnet-ajax-calendar-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-slider-control.md)
+> [Next](how-do-i-configure-the-aspnet-ajax-calendar-control.md)

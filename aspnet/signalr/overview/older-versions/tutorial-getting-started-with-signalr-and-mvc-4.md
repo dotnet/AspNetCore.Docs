@@ -58,17 +58,17 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
         > In VS 2010, select **.NET Framework 4** in the Framework version dropdown control. SignalR code runs on .NET Framework versions 4 and 4.5.
 
         ![Create mvc web](tutorial-getting-started-with-signalr-and-mvc-4/_static/image3.png)
-    2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
+      2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
 
-        ![Create mvc internet site](tutorial-getting-started-with-signalr-and-mvc-4/_static/image4.png)
-    3. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
+         ![Create mvc internet site](tutorial-getting-started-with-signalr-and-mvc-4/_static/image4.png)
+      3. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
-        `install-package Microsoft.AspNet.SignalR -Version 1.1.3`
-    4. In **Solution Explorer** expand the Scripts folder. Note that script libraries for SignalR have been added to the project.
+         `install-package Microsoft.AspNet.SignalR -Version 1.1.3`
+      4. In **Solution Explorer** expand the Scripts folder. Note that script libraries for SignalR have been added to the project.
 
-        ![Library references](tutorial-getting-started-with-signalr-and-mvc-4/_static/image6.png)
-    5. In **Solution Explorer**, right-click the project, select **Add | New Folder**, and add a new folder named **Hubs**.
-    6. Right-click the **Hubs** folder, click **Add | Class**, and create a new C# class named **ChatHub.cs**. You will use this class as a SignalR server hub that sends messages to all clients.
+         ![Library references](tutorial-getting-started-with-signalr-and-mvc-4/_static/image6.png)
+      5. In **Solution Explorer**, right-click the project, select **Add | New Folder**, and add a new folder named **Hubs**.
+      6. Right-click the **Hubs** folder, click **Add | Class**, and create a new C# class named **ChatHub.cs**. You will use this class as a SignalR server hub that sends messages to all clients.
 
 > [!NOTE]
 > If you use Visual Studio 2012 and have installed the [ASP.NET and Web Tools 2012.2 update](../../../visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw.md#_Installation), you can use the new SignalR item template to create the hub class. To do that, right-click the **Hubs** folder, click **Add | New Item**, select **SignalR Hub Class (v1)**, and name the class **ChatHub.cs**.

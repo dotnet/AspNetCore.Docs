@@ -193,7 +193,7 @@ Next, we need to create a new ASP.NET page. Follow these steps:
 2. Drag a ScriptManager onto the page.
 3. Drag a TextBox control onto the page.
 4. Drag a Button control onto the page.
-5. In the Properties window, change the Button ID property to the value *btnSave* and the Text property to the value *Save\**.
+5. In the Properties window, change the Button ID property to the value <em>btnSave</em> and the Text property to the value *Save\**.
   
 
 We created a page with a standard ASP.NET TextBox and Button control.
@@ -233,6 +233,6 @@ When you run the page (by hitting F5), the Button control is initially disabled.
 
 The goal of this tutorial was to explain how you can extend the AJAX Control Toolkit with custom extender controls. In this tutorial, we created a simple DisabledButton control extender. We implemented this extender by creating a DisabledButtonExtender class, a DisabledButtonBehavior JavaScript behavior, and a DisabledButtonDesigner class. You follow a similar set of steps whenever you create a custom control extender.
 
->[!div class="step-by-step"]
-[Previous](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
-[Next](get-started-with-the-ajax-control-toolkit-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
+> [Next](get-started-with-the-ajax-control-toolkit-vb.md)

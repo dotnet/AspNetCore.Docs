@@ -21,5 +21,5 @@ In this video Microsoft's Joe Stagner adds a controller to an ASP.NET MVC applic
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-for-the-rest-of-us-part-4)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-for-the-rest-of-us-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-for-the-rest-of-us-part-3.md)

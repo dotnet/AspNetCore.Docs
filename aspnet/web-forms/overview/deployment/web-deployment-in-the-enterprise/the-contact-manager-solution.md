@@ -62,6 +62,6 @@ This topic provided a high-level overview of the Contact Manager solution and id
 
 The next topic, [Setting Up the Contact Manager Solution](setting-up-the-contact-manager-solution.md), describes how to download and run the solution on your developer workstation.
 
->[!div class="step-by-step"]
-[Previous](web-deployment-in-the-enterprise.md)
-[Next](setting-up-the-contact-manager-solution.md)
+> [!div class="step-by-step"]
+> [Previous](web-deployment-in-the-enterprise.md)
+> [Next](setting-up-the-contact-manager-solution.md)

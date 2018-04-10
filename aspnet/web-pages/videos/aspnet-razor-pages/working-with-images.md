@@ -21,6 +21,6 @@ Video accompaniment to the Working with Images tutorial
 
 [&#9654; Watch video (26 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/working-with-images)
 
->[!div class="step-by-step"]
-[Previous](working-with-files.md)
-[Next](working-with-video.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-files.md)
+> [Next](working-with-video.md)

@@ -58,6 +58,6 @@ The views now contain the MiddleName property.
 
 In the next section, you will add code to customize the view for showing details about a student record.
 
->[!div class="step-by-step"]
-[Previous](generating-views.md)
-[Next](customizing-a-view.md)
+> [!div class="step-by-step"]
+> [Previous](generating-views.md)
+> [Next](customizing-a-view.md)

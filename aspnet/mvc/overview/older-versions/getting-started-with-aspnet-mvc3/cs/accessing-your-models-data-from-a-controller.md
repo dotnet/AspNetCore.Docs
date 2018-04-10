@@ -137,6 +137,6 @@ When you're finished, close the connection. (If you don't close the connection, 
 
 You now have the database and a simple listing page to display content from it. In the next tutorial, we'll examine the rest of the scaffolded code and add a `SearchIndex` method and a `SearchIndex` view that lets you search for movies in this database.
 
->[!div class="step-by-step"]
-[Previous](adding-a-model.md)
-[Next](examining-the-edit-methods-and-edit-view.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-model.md)
+> [Next](examining-the-edit-methods-and-edit-view.md)

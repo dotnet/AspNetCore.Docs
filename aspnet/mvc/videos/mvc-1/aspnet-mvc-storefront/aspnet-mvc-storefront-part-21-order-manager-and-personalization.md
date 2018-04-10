@@ -21,6 +21,6 @@ In this episode I create the Order Manager page and talk about various issues re
 
 [&#9654; Watch video (43 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-21-order-manager-and-personalization)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-20-logging.md)
-[Next](aspnet-mvc-storefront-part-22-restructuring-rerouting-and-paypal.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-20-logging.md)
+> [Next](aspnet-mvc-storefront-part-22-restructuring-rerouting-and-paypal.md)

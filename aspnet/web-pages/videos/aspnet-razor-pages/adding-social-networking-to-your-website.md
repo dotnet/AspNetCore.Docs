@@ -21,5 +21,5 @@ Video accompaniment to the Adding Social Networking to Your Website tutorial
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adding-social-networking-to-your-website)
 
->[!div class="step-by-step"]
-[Previous](adding-search-to-your-web-site.md)
+> [!div class="step-by-step"]
+> [Previous](adding-search-to-your-web-site.md)

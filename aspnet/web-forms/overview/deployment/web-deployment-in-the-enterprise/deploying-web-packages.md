@@ -208,6 +208,6 @@ This topic described how you can deploy a web package either by running the *.de
 
 For guidance on how to create and parameterize a web deployment package, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md) and [Configuring Parameters for Web Package Deployment](configuring-parameters-for-web-package-deployment.md). For guidance on how to build and deploy web packages from a Team Foundation Server (TFS) instance, see [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). For information on how to customize and troubleshoot the deployment process, see [Excluding Files and Folders from Deployment](../advanced-enterprise-web-deployment/excluding-files-and-folders-from-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](configuring-parameters-for-web-package-deployment.md)
-[Next](deploying-database-projects.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-parameters-for-web-package-deployment.md)
+> [Next](deploying-database-projects.md)

@@ -21,6 +21,6 @@ This video demonstrates how ASP.NET's standard DropDownList can become AJAX-enab
 
 [&#9654; Watch video (27 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md)
-[Next](how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md)
+> [Next](how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender.md)

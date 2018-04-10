@@ -21,6 +21,6 @@ This video will demonstrate how to use the new Color Picker control from the Mic
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/color-picker)
 
->[!div class="step-by-step"]
-[Previous](control-extenders.md)
-[Next](combo-box.md)
+> [!div class="step-by-step"]
+> [Previous](control-extenders.md)
+> [Next](combo-box.md)

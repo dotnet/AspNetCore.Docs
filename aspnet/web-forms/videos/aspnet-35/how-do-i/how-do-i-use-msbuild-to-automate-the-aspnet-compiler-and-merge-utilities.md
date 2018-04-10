@@ -21,5 +21,5 @@ In this video Chris Pels shows how to create an MSBuild project that orchestrate
 
 [&#9654; Watch video (31 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-serialize-a-graph-with-the-entity-framework.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-serialize-a-graph-with-the-entity-framework.md)

@@ -93,7 +93,7 @@ Now that you've created a site, you can see how IntelliSense works in Visual Stu
 
     ![intellisense](program-asp-net-web-pages-in-visual-studio/_static/image4.png)
 3. Select the `GetHtml` method from the list and then press Enter. IntelliSense automatically fills in the method. (As with any method in C#, you must add `()` characters after the method.)  
- The completed code for the `GetHtml` method looks like the following example:  
+   The completed code for the `GetHtml` method looks like the following example:  
 
     [!code-cshtml[Main](program-asp-net-web-pages-in-visual-studio/samples/sample1.cshtml)]
 4. Press Ctrl+F5 to run the page. This is what the page looks like when displayed in a browser: 

@@ -21,6 +21,6 @@ Discover how to improve the presentation of ASP.NET sites by using the AJAX Drop
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-dropshadow-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-togglebutton-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-passwordstrength-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-togglebutton-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-passwordstrength-extender.md)

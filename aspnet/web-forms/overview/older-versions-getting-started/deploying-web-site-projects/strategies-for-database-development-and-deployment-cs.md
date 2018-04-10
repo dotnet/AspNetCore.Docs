@@ -155,6 +155,6 @@ This tutorial concludes our focus on deploying a data-driven application. The ne
 
 Happy Programming!
 
->[!div class="step-by-step"]
-[Previous](configuring-a-website-that-uses-application-services-cs.md)
-[Next](displaying-a-custom-error-page-cs.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-website-that-uses-application-services-cs.md)
+> [Next](displaying-a-custom-error-page-cs.md)

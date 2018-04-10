@@ -21,6 +21,6 @@ In this episode I restructure a bit in order to clean things up some. I also cha
 
 [&#9654; Watch video (45 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-22-restructuring-rerouting-and-paypal)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)
-[Next](aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)
+> [Next](aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design.md)

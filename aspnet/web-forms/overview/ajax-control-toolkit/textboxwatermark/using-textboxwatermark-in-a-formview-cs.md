@@ -51,5 +51,5 @@ Now when the user changes into the insert mode of the `FormView` control, the te
 
 The watermark in the field comes from the extender ([Click to view full-size image](using-textboxwatermark-in-a-formview-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](using-textboxwatermark-with-validation-controls-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-textboxwatermark-with-validation-controls-cs.md)

@@ -67,5 +67,5 @@ The third button toggles the state of the panel: from collapsed to expanded, and
 
 The third button changes the state of the panel: from collapsed to expanded and back ([Click to view full-size image](collapsing-and-expanding-a-panel-from-javascript-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](collapsing-and-expanding-a-panel-from-javascript-vb.md)
+> [!div class="step-by-step"]
+> [Next](collapsing-and-expanding-a-panel-from-javascript-vb.md)

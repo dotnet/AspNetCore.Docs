@@ -161,6 +161,6 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 In this tutorial, you've seen how to create and apply your first migration. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model. Along the way you'll create and apply additional migrations.
 
->[!div class="step-by-step"]
-[Previous](sort-filter-page.md)
-[Next](complex-data-model.md)  
+> [!div class="step-by-step"]
+> [Previous](sort-filter-page.md)
+> [Next](complex-data-model.md)  

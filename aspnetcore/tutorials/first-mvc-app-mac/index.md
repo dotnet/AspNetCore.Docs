@@ -14,7 +14,7 @@ uid: tutorials/first-mvc-app-mac/index
 
 This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio for Mac. 
 
-[!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](../../includes/razor.md)]
 
 1. [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 1. [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)

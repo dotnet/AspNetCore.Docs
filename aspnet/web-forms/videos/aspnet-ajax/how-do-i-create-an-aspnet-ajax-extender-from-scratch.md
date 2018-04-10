@@ -21,6 +21,6 @@ Learn how to create an ASP.NET AJAX extender for a standard ASP.NET server contr
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-an-aspnet-ajax-extender-from-scratch)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)
-[Next](how-do-i-build-custom-server-controls-that-work-with-or-without-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)
+> [Next](how-do-i-build-custom-server-controls-that-work-with-or-without-aspnet-ajax.md)

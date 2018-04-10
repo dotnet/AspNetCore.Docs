@@ -21,5 +21,5 @@ In this video I will demonstrate how to create a simple Master Page using .NET 3
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-master-page-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Next](how-do-i-create-nested-master-page-in-visual-studio-2008.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-create-nested-master-page-in-visual-studio-2008.md)

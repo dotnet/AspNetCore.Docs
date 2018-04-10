@@ -21,6 +21,6 @@ Learn how to use the Source Control Explorer from Visual Studio Team System to d
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-discover-application-changes-prior-to-deployment)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-publish-and-analyze-test-results.md)
-[Next](how-do-i-implement-continuous-integration-with-team-foundation.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-publish-and-analyze-test-results.md)
+> [Next](how-do-i-implement-continuous-integration-with-team-foundation.md)

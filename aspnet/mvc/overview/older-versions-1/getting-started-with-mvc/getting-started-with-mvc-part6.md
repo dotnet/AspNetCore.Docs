@@ -60,6 +60,6 @@ This Movie object was then passed to the [HttpPost] version of our Create action
 
 We aren't checking if our movies are correct, though, and the database won't allow us to save a movie with no Title. It'd be nice if we could tell the user that before the database threw an error. We'll do this next by adding validation support to our application.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part5.md)
-[Next](getting-started-with-mvc-part7.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part5.md)
+> [Next](getting-started-with-mvc-part7.md)

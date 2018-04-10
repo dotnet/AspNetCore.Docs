@@ -57,6 +57,6 @@ And the `stopMoving()` function comes into play when the popup is closed this ca
 
 The modal popup appears at the designated position ([Click to view full-size image](positioning-a-modalpopup-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](handling-postbacks-from-a-modalpopup-cs.md)
-[Next](launching-a-modal-popup-window-from-server-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](handling-postbacks-from-a-modalpopup-cs.md)
+> [Next](launching-a-modal-popup-window-from-server-code-vb.md)

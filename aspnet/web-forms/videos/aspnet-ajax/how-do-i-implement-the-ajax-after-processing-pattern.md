@@ -21,6 +21,6 @@ The ASP.NET AJAX framework allows your server-side code to hook in and respond t
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-ajax-after-processing-pattern)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-history-control.md)
-[Next](how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-history-control.md)
+> [Next](how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax.md)

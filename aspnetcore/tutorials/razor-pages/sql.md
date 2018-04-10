@@ -77,8 +77,8 @@ Test the app
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-   * If you were running VS in non-debug mode, press F5 to run in debug mode.
-   * If you were running VS in debug mode, stop the debugger and press F5.
+    * If you were running VS in non-debug mode, press F5 to run in debug mode.
+    * If you were running VS in debug mode, stop the debugger and press F5.
    
 The app shows the seeded data:
 
@@ -86,6 +86,6 @@ The app shows the seeded data:
 
 The next tutorial will clean up the presentation of the data.
 
->[!div class="step-by-step"]
-[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-[Next: Updating the pages](xref:tutorials/razor-pages/da1)
+> [!div class="step-by-step"]
+> [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Next: Updating the pages](xref:tutorials/razor-pages/da1)

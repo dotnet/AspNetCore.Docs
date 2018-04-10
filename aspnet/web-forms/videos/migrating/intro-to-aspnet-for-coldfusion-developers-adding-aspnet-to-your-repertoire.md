@@ -21,6 +21,6 @@ This sessions shows a simple yet real world code comparison between ColdFusion a
 
 [&#9654; Watch video (49 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire)
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-for-jsp-developers-building-applications.md)
-[Next](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-for-jsp-developers-building-applications.md)
+> [Next](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)

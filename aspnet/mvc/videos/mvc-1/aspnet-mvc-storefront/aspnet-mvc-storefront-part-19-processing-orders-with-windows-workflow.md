@@ -21,6 +21,6 @@ In this episode I introduce Windows Workflow and spike it to see how well it wil
 
 [&#9654; Watch video (43 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-18-creating-an-experience.md)
-[Next](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-18-creating-an-experience.md)
+> [Next](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)

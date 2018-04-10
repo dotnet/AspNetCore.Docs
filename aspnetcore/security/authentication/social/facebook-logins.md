@@ -31,7 +31,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 * On the **Select a product** page, click **Set Up** on the **Facebook Login** card.
 
    ![Product Setup page](index/_static/FBProductSetup.png)
-  
+
 * The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu on the left:
 
    ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
@@ -65,8 +65,7 @@ dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 
 ## Configure Facebook Authentication
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
@@ -81,10 +80,9 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 });
 ```
 
-[!INCLUDE[default settings configuration](includes/default-settings.md)]
+[!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
@@ -102,8 +100,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 });
 ```
 
----
-
+* * *
 See the [FacebookOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
 
 * Request different information about the user.

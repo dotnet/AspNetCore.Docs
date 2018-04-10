@@ -21,6 +21,6 @@ In this video will learn about the ScriptLoader.
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-the-scriptloader)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-imperative-javascript-syntax-for-microsoft-client-side-controls.md)
-[Next](aspnet-4-quick-hit-jquery-syntax-for-microsoft-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-imperative-javascript-syntax-for-microsoft-client-side-controls.md)
+> [Next](aspnet-4-quick-hit-jquery-syntax-for-microsoft-ajax.md)

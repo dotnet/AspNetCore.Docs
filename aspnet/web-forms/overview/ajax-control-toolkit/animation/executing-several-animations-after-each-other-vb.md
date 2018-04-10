@@ -60,6 +60,6 @@ First the width is increased ([Click to view full-size image](executing-several-
 
 Then the height is decreased ([Click to view full-size image](executing-several-animations-after-each-other-vb/_static/image6.png))
 
->[!div class="step-by-step"]
-[Previous](executing-several-animations-at-the-same-time-vb.md)
-[Next](animation-depending-on-a-condition-vb.md)
+> [!div class="step-by-step"]
+> [Previous](executing-several-animations-at-the-same-time-vb.md)
+> [Next](animation-depending-on-a-condition-vb.md)

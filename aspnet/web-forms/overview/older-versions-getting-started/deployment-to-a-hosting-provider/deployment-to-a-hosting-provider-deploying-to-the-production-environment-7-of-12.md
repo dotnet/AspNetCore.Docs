@@ -247,6 +247,6 @@ Creating a second hosting account is an approach to working with a test environm
 
 In the next tutorial, you'll update application code and deploy your change to the test and production environments.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.md)
-[Next](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.md)
+> [Next](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12.md)

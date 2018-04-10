@@ -25,7 +25,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs.md)]
+[!INCLUDE [](~/includes/net-core-prereqs.md)]
 
 ## Create a new ASP.NET Core project with the .NET Core CLI
 
@@ -133,16 +133,13 @@ The contents of the *secrets.json* file aren't encrypted. The *secrets.json* fil
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 [!code-csharp[](accconfirm/sample/WebPWrecover/Startup.cs?name=snippet2&highlight=28)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 [!code-csharp[](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
 
----
-
+* * *
 ### Configure the AuthMessageSender class
 
 This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
@@ -155,31 +152,28 @@ Install the `SendGrid` NuGet package:
 
 * From the Package Manager Console, enter the following command:
 
- `Install-Package SendGrid`
+  `Install-Package SendGrid`
 
 See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
 
 #### Configure SendGrid
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 To configure SendGrid, add code similar to the following in *Services/EmailSender.cs*:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover/Services/EmailSender.cs)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
 
 [!code-csharp[](accconfirm/sample/WebApp1/Services/MessageServices.cs)]
 
----
-
+* * *
 ## Enable account confirmation and password recovery
 
 The template has the code for account confirmation and password recovery. Find the `OnPostAsync` method in *Pages/Account/Register.cshtml.cs*.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Prevent newly registered users from being automatically logged on by commenting out the following line:
 
 ```csharp
@@ -190,8 +184,7 @@ The complete method is shown with the changed line highlighted:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover/Pages/Account/Register.cshtml.cs?highlight=16&name=snippet_Register)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 To enable account confirmation, uncomment the following code:
 
 [!code-csharp[](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16-25&name=snippet_Register)]
@@ -210,15 +203,14 @@ Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might w
 
 [!code-cshtml[](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-10,12,28)]
 
----
-
+* * *
 ## Register, confirm email, and reset password
 
 Run the web app, and test the account confirmation and password recovery flow.
 
 * Run the app and register a new user
 
- ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
+  ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
 
 * Check your email for the account confirmation link. See [Debug email](#debug) if you don't get the email.
 * Click the link to confirm your email.

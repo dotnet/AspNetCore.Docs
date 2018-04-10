@@ -74,6 +74,6 @@ Notice that you must import the namespace associated with the Image helper at th
 
 In a Visual Basic application, the default namespace is the same as the name of the application.
 
->[!div class="step-by-step"]
-[Previous](creating-custom-html-helpers-vb.md)
-[Next](creating-page-layouts-with-view-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-html-helpers-vb.md)
+> [Next](creating-page-layouts-with-view-master-pages-vb.md)

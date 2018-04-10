@@ -44,8 +44,8 @@ The updated code:
 
 <!-- include start -->
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/controller-methods-views.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/controller-methods-views.md)]
 
->[!div class="step-by-step"]
-[Previous](working-with-sql.md)
-[Next](search.md)  
+> [!div class="step-by-step"]
+> [Previous](working-with-sql.md)
+> [Next](search.md)  

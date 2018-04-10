@@ -114,6 +114,6 @@ The DataList, by default, lists its items in a single-column, multi-row table, w
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was John Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](formatting-the-datalist-and-repeater-based-upon-data-vb.md)
-[Next](nested-data-web-controls-vb.md)
+> [!div class="step-by-step"]
+> [Previous](formatting-the-datalist-and-repeater-based-upon-data-vb.md)
+> [Next](nested-data-web-controls-vb.md)

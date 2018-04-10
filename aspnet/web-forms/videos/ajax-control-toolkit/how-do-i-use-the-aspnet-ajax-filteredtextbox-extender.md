@@ -21,6 +21,6 @@ Learn how the handy ASP.NET AJAX FilteredTextbox extender allows the developer t
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-filteredtextbox-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-dynamicpopulate-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-hovermenu-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-dynamicpopulate-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-hovermenu-extender.md)

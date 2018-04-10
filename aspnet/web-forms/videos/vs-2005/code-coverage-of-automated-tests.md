@@ -21,6 +21,6 @@ This video demonstrates how to use code coverage as a metric for determining how
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/code-coverage-of-automated-tests)
 
->[!div class="step-by-step"]
-[Previous](measuring-the-business-value-of-ajax.md)
-[Next](custom-extraction-rules-and-coded-web-tests.md)
+> [!div class="step-by-step"]
+> [Previous](measuring-the-business-value-of-ajax.md)
+> [Next](custom-extraction-rules-and-coded-web-tests.md)

@@ -21,6 +21,6 @@ I will illustrate the MultiTarget feature of Visual Studio 2008. In the past, yo
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/multi-targeting-support-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Previous](javascript-debugging-in-visual-studio-2008.md)
-[Next](intellisense-for-jscript-and-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](javascript-debugging-in-visual-studio-2008.md)
+> [Next](intellisense-for-jscript-and-aspnet-ajax.md)

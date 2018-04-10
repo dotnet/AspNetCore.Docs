@@ -107,6 +107,6 @@ For the purposes of this sample application we'll calculate a ship date by simpl
 
 Running the application now will permit us to test the shopping process from start to finish.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-5.md)
-[Next](tailspin-spyworks-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-5.md)
+> [Next](tailspin-spyworks-part-7.md)

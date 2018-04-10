@@ -94,6 +94,6 @@ The approach you use depends on what you need to do in your application. It's no
 
 In the next section, you'll switch gears a bit and move from customizing how data is displayed to customizing how it's entered. You'll hook up the jQuery datepicker to the edit views in the application in order to provide a slick way to specify dates.
 
->[!div class="step-by-step"]
-[Previous](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2.md)
-[Next](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2.md)
+> [Next](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4.md)

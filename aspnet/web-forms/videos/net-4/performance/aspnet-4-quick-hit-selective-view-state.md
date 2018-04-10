@@ -21,5 +21,5 @@ In this video you will learn about the ViewStateMode property that lets you disa
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-selective-view-state)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-quick-hit-easy-state-compression.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-quick-hit-easy-state-compression.md)

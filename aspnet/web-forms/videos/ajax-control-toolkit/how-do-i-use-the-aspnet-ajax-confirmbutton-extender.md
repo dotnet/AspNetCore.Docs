@@ -21,6 +21,6 @@ Learn how the ConfirmButton extender in the ASP.NET AJAX Control Toolkit provide
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-confirmbutton-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-slider-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-slider-control.md)

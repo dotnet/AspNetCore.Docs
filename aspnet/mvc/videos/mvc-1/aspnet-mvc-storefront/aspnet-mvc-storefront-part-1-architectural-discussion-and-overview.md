@@ -21,5 +21,5 @@ Rob Conery covers the initial architecture here, in part 1, where he discusses t
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview)
 
->[!div class="step-by-step"]
-[Next](aspnet-mvc-storefront-part-2-the-repository-pattern.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-mvc-storefront-part-2-the-repository-pattern.md)

@@ -143,6 +143,6 @@ You have now specified all of the *Web.config* transformations that you need for
 
 For more information about topics covered by this tutorial, see the Web.config transformation scenario in [ASP.NET Deployment Content Map](https://msdn.microsoft.com/library/bb386521.aspx).
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12.md)
-[Next](deployment-to-a-hosting-provider-configuring-project-properties-4-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12.md)
+> [Next](deployment-to-a-hosting-provider-configuring-project-properties-4-of-12.md)

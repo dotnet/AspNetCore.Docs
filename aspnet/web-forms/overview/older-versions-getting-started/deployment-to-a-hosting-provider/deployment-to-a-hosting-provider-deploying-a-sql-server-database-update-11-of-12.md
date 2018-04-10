@@ -168,6 +168,6 @@ I would like to thank the following people who made significant contributions to
 - [Srđan Božović, Serbia](http://msforge.net/blogs/zmajcek/)
 - [Vishal Joshi, Microsoft](http://vishaljoshi.blogspot.com/) (twitter: [@vishalrjoshi](http://twitter.com/vishalrjoshi))
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12.md)
-[Next](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12.md)
+> [Next](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12.md)

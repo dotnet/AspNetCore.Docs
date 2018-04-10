@@ -93,7 +93,7 @@ Here is an example of a CSRF attack:
 
     [!code-html[Main](introduction-to-security/samples/sample1.html)]
 
- Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
+   Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
 5. The request runs on the example.com server with the user's authentication context, and can do anything that an authenticated user is allowed to do.
 

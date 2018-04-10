@@ -21,6 +21,6 @@ This webcast shows how to build an ASP.NET application starting from a blank for
 
 [&#9654; Watch video (77 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application)
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)
-[Next](interop-between-php-and-the-windows-platform.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)
+> [Next](interop-between-php-and-the-windows-platform.md)

@@ -240,5 +240,5 @@ Solution:
 
 Check the connection string. If you have manually deleted the database file, change the name of the database in the construction string to start over with a new database.
 
->[!div class="step-by-step"]
-[Previous](inheritance.md)
+> [!div class="step-by-step"]
+> [Previous](inheritance.md)

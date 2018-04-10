@@ -297,6 +297,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Zack Jones. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-detail-filtering-acess-two-pages-datalist-cs.md)
-[Next](master-detail-filtering-with-a-dropdownlist-datalist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-detail-filtering-acess-two-pages-datalist-cs.md)
+> [Next](master-detail-filtering-with-a-dropdownlist-datalist-vb.md)

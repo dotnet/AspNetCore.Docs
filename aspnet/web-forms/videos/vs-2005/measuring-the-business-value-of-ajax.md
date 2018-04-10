@@ -21,6 +21,6 @@ ASP.NET AJAX is well known for its ability to improve the user experience of Web
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/measuring-the-business-value-of-ajax)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-managing-and-running-tests-with-team-system.md)
-[Next](code-coverage-of-automated-tests.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-managing-and-running-tests-with-team-system.md)
+> [Next](code-coverage-of-automated-tests.md)

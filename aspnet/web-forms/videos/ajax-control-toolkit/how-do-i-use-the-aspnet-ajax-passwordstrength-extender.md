@@ -21,6 +21,6 @@ Learn how the PasswordStrength extender control provides immediate and dynamic f
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-passwordstrength-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-dropshadow-extender.md)
-[Next](how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-dropshadow-extender.md)
+> [Next](how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control.md)

@@ -21,5 +21,5 @@ In this video you will learn how to use the &quot;Web Development (Code Optimize
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/visual-studio-2010-quick-hit-code-optimized-profile)
 
->[!div class="step-by-step"]
-[Next](visual-studio-2010-quick-hit-code-search-view-hierarchy.md)
+> [!div class="step-by-step"]
+> [Next](visual-studio-2010-quick-hit-code-search-view-hierarchy.md)

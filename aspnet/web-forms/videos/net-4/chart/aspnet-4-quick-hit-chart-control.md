@@ -21,5 +21,5 @@ In this video you will learn how to use the ASP.NET Chart Control to create simp
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-chart-control)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010.md)

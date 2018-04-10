@@ -21,6 +21,6 @@ In this video we examine how to incorporate the Load Test Agent in to the testin
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/using-the-load-test-agent)
 
->[!div class="step-by-step"]
-[Previous](the-effects-of-caching.md)
-[Next](the-effects-of-viewstate.md)
+> [!div class="step-by-step"]
+> [Previous](the-effects-of-caching.md)
+> [Next](the-effects-of-viewstate.md)

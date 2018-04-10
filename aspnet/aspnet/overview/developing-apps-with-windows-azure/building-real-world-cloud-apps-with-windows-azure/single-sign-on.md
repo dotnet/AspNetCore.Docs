@@ -188,6 +188,6 @@ For more information, see the following resources:
 - [Azure Active Directory Graph API blog](https://blogs.msdn.com/b/aadgraphteam/).
 - [Access Control in BYOD and Directory Integration in a Hybrid Identity Infrastructure](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2014/PCIT-B213#fbid=). Tech Ed 2014 session video by Gayana Bagdasaryan.
 
->[!div class="step-by-step"]
-[Previous](web-development-best-practices.md)
-[Next](data-storage-options.md)
+> [!div class="step-by-step"]
+> [Previous](web-development-best-practices.md)
+> [Next](data-storage-options.md)

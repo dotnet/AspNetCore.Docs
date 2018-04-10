@@ -21,6 +21,6 @@ In this lesson, you will learn how events can be used in your code, and how to r
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-3-understanding-more-about-events-and-postback)
 
->[!div class="step-by-step"]
-[Previous](lesson-2-creating-a-web-forms-user-interface.md)
-[Next](lesson-4-understanding-web-application-state.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-2-creating-a-web-forms-user-interface.md)
+> [Next](lesson-4-understanding-web-application-state.md)

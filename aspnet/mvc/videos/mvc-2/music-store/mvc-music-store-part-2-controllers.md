@@ -21,6 +21,6 @@ Jon continues the MVC Music Store tutorial by creating some basic controller act
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc-music-store-part-2-controllers)
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-1-intro-tools-and-project-structure.md)
-[Next](mvc-music-store-part-3-views-and-viewmodels.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-1-intro-tools-and-project-structure.md)
+> [Next](mvc-music-store-part-3-views-and-viewmodels.md)

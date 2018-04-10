@@ -21,6 +21,6 @@ Scott Hanselman presents a 5 minute introduction to ASP.NET MVC.
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/5-minute-introduction-to-aspnet-mvc)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-2-render-action.md)
-[Next](how-to-best-learn-asp-net-mvc.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-2-render-action.md)
+> [Next](how-to-best-learn-asp-net-mvc.md)

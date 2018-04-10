@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/adding-model
 ---
 # Add a model to an ASP.NET Core MVC app
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model1.md)]
 
 Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
 
@@ -56,7 +56,7 @@ Visual Studio creates:
 
 * An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/&ast;.cshtml*)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (<em>Views/Movies/&ast;.cshtml</em>)
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
@@ -114,18 +114,18 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
   If you run the app and get the error:
   
   ```text
-SqlException: Cannot open database "Movie" requested by the login.
-The login failed.
-Login failed for user 'user name'.
-```
+  SqlException: Cannot open database "Movie" requested by the login.
+  The login failed.
+  Login failed for user 'user name'.
+  ```
 
 You probably have not run ` dotnet ef database update`.
   
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 [!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model4.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model4.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
@@ -134,6 +134,6 @@ You probably have not run ` dotnet ef database update`.
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
->[!div class="step-by-step"]
-[Previous Adding a View](adding-view.md)
-[Next Working with SQL](working-with-sql.md)  
+> [!div class="step-by-step"]
+> [Previous Adding a View](adding-view.md)
+> [Next Working with SQL](working-with-sql.md)  

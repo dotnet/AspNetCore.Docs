@@ -82,6 +82,6 @@ Save the ContosoModel.edmx file to apply the changes.
 
 Open the Student.cs file or the Enrollment.cs file, and notice that the data validation attributes you applied earlier are no longer in the file. However, run the application, and notice that the validation rules are still applied when you enter data.
 
->[!div class="step-by-step"]
-[Previous](customizing-a-view.md)
-[Next](publish-to-azure.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-a-view.md)
+> [Next](publish-to-azure.md)

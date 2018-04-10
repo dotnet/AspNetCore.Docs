@@ -21,6 +21,6 @@ This video demonstrates the use of the Popup control extender that ships with th
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-popup-control-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-modalpopup-extender-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-modalpopup-extender-control.md)

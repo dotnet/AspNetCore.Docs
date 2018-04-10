@@ -96,6 +96,6 @@ Take advantage of caching whenever possible – it can have a dramatic impact on
 
 ## 
 
->[!div class="step-by-step"]
-[Previous](improving-performance-with-output-caching-cs.md)
-[Next](creating-a-controller-cs.md)
+> [!div class="step-by-step"]
+> [Previous](improving-performance-with-output-caching-cs.md)
+> [Next](creating-a-controller-cs.md)

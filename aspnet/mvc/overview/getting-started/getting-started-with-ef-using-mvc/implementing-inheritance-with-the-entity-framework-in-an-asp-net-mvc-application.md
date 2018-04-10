@@ -147,7 +147,7 @@ This section requires you to have completed the optional **Deploying the app to 
   
     ![publish](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)  
   
- The Web app will open in your default browser.
+   The Web app will open in your default browser.
 3. Test the application to verify it's working.
 
     The first time you run a page that accesses the database, the Entity Framework runs all of the migrations `Up` methods required to bring the database up to date with the current data model.
@@ -158,6 +158,6 @@ You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, 
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

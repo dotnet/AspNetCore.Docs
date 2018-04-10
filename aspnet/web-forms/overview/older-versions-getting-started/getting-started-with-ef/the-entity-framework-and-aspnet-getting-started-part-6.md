@@ -52,7 +52,7 @@ TPH inheritance patterns generally deliver better performance in the Entity Fram
 
 ## Adding Instructor and Student Entities
 
-Open the *SchoolModel.edmx* file, right-click an unoccupied area in the designer, select **Add**, then select **Entity***.*
+Open the <em>SchoolModel.edmx</em> file, right-click an unoccupied area in the designer, select <strong>Add</strong>, then select <strong>Entity</strong><em>.</em>
 
 [![image01](the-entity-framework-and-aspnet-getting-started-part-6/_static/image6.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image5.png)
 
@@ -156,6 +156,6 @@ As a result of these changes, you've improved the Contoso University application
 
 You've now seen one way to implement an inheritance pattern in the Entity Framework. In the following tutorial, you'll learn how to use stored procedures in order to have more control over how the Entity Framework accesses the database.
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-5.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-5.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-7.md)

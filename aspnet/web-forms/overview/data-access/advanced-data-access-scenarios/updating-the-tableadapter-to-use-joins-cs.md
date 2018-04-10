@@ -261,6 +261,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Geisenow, David Suru, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)
-[Next](adding-additional-datatable-columns-cs.md)
+> [!div class="step-by-step"]
+> [Previous](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)
+> [Next](adding-additional-datatable-columns-cs.md)

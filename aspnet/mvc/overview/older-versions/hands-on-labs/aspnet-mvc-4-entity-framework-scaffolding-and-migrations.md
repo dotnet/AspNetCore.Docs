@@ -104,7 +104,9 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
     (Code Snippet - *ASP.NET MVC 4 and Entity Framework Migrations - Ex1 Person Properties*)
 
 
-    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.cs)]
+~~~
+[!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.cs)]
+~~~
 6. Click **Build | Build Solution** to save the changes and build the project.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image3.png "Building the application")
@@ -113,14 +115,14 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
 7. In the Solution Explorer, right-click the controllers folder and select **Add | Controller**.
 8. Name the controller *PersonController* and complete the **Scaffolding options** with the following values.
 
-    1. In the **Template** drop-down list, select the **MVC controller with read/write actions and views, using Entity Framework** option.
-    2. In the **Model class** drop-down list, select the **Person** class.
-    3. In the **Data Context class** list, select **&lt;New data context...&gt;**. Choose any name and click **OK**.
-    4. In the **Views** drop-down list, make sure that **Razor** is selected.
+   1. In the **Template** drop-down list, select the **MVC controller with read/write actions and views, using Entity Framework** option.
+   2. In the **Model class** drop-down list, select the **Person** class.
+   3. In the **Data Context class** list, select **&lt;New data context...&gt;**. Choose any name and click **OK**.
+   4. In the **Views** drop-down list, make sure that **Razor** is selected.
 
-    ![Adding the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image4.png "Adding the Person controller with scaffolding")
+      ![Adding the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image4.png "Adding the Person controller with scaffolding")
 
-    *Adding the Person controller with scaffolding*
+      *Adding the Person controller with scaffolding*
 9. Click **Add** to create the new controller for Person with scaffolding. You have now generated the controller actions as well as the views.
 
     ![After creating the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image5.png "After creating the Person controller with scaffolding")
@@ -128,9 +130,9 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
     *After creating the Person controller with scaffolding*
 10. Open **PersonController** class. Notice that the full CRUD action methods have been generated automatically.
 
-    ![Inside the Person controller](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image6.png "Inside the Person controller")
+   ![Inside the Person controller](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image6.png "Inside the Person controller")
 
-    *Inside the Person controller*
+   *Inside the Person controller*
 
 <a id="Ex1Task2"></a>
 
@@ -190,11 +192,15 @@ In this task you will update the database using Entity Framework Migrations. You
 3. Open the **Configuration.cs** file in the Migrations folder. Locate the class constructor and change the **AutomaticMigrationsEnabled** value to *true*.
 
 
-    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.cs)]
+~~~
+[!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.cs)]
+~~~
 4. Open the Person class and add an attribute for the person's middle name. With this new attribute, you are changing the model.
 
 
-    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.cs)]
+~~~
+[!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.cs)]
+~~~
 5. Select **Build | Build Solution** on the menu to build the application.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image13.png "Building the application")
@@ -242,9 +248,9 @@ In this task you will update the database using Entity Framework Migrations. You
     *Updating the controller*
 10. Click **Add**. Then, select the values **Overwrite PersonController.cs** and the **Overwrite associated views** and click **OK**.
 
-    ![Adding a controller overwrite](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image19.png)
+   ![Adding a controller overwrite](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image19.png)
 
-    *Updating the controller*
+   *Updating the controller*
 
 <a id="Ex1Task4"></a>
 
@@ -277,7 +283,7 @@ In this Hands-On lab, you have learned simple steps to create CRUD operations wi
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 

@@ -69,7 +69,7 @@ To create a new master page:
 **Figure 2**: Creating a New Master Page
 
 
-Notice that the file extension for a master page is *.master*. This is one of the ways that a master page differs from an ordinary page. The other primary difference is that in lieu of a @Page directive, the master page contains a @Master directive. Switch to Source View for the master page youve just created and review the code.
+Notice that the file extension for a master page is <em>.master</em>. This is one of the ways that a master page differs from an ordinary page. The other primary difference is that in lieu of a @Page directive, the master page contains a @Master directive. Switch to Source View for the master page youve just created and review the code.
 
 A new master page will have one ContentPlaceHolder control by default. In most cases, it makes more sense to create the common page elements first and then insert ContentPlaceHolder controls where custom content is desired. In those cases, developers will want to delete the default ContentPlaceHolder control and insert new ones as the page is developed. ContentPlaceHolder controls are not resizable despite the fact that they do display sizing handles. The ContentPlaceHolder control sizes automatically based upon the content that it contains with one exception; if you place a ContentPlaceHolder control inside of a block element such as a table cell, it will size according to the size of the element.
 
@@ -137,7 +137,7 @@ The new content page appears in Visual Studio with one Content control for each 
 
 The association between a master page and a content page can be configured in one of four different ways:
 
-- The **MasterPageFile** attribute of the @Page directive
+- The <strong>MasterPageFile</strong> attribute of the @Page directive
 - Setting the **Page.MasterPageFile** property in code.
 - The **&lt;pages&gt;** element in the applications configuration file (web.config in the root folder of the application)
 - The **&lt;pages&gt;** element in a subfolders configuration file (web.config in a subfolder)
@@ -152,7 +152,7 @@ By setting the MasterPageFile property in code, you can apply a particular maste
 
 ## Using the &lt;pages&gt; Element
 
-You can configure a master page for your pages by setting the masterPageFile attribute in the &lt;pages&gt; element of the web.config file. When using this method, keep in mind that web.config files lower in the application structure can override this setting. Any MasterPageFile attribute set in a @Page directive will also override this setting. Using the &lt;pages&gt; element makes it simple to create a *master* master page that can be overridden if necessary in particular folders or files.
+You can configure a master page for your pages by setting the masterPageFile attribute in the &lt;pages&gt; element of the web.config file. When using this method, keep in mind that web.config files lower in the application structure can override this setting. Any MasterPageFile attribute set in a @Page directive will also override this setting. Using the &lt;pages&gt; element makes it simple to create a <em>master</em> master page that can be overridden if necessary in particular folders or files.
 
 ## Properties in Master Pages
 

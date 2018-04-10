@@ -21,6 +21,6 @@ Joe Stagner shows how to display the product list in the Tailspin Spyworks sampl
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-display-the-product-list)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-category-menu.md)
-[Next](tailspin-spyworks-display-per-product-details.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-category-menu.md)
+> [Next](tailspin-spyworks-display-per-product-details.md)

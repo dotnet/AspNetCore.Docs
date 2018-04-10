@@ -138,6 +138,6 @@ The content view page in Listing 5 overrides the `<asp:ContentPlaceHolder>` tag 
 
 This tutorial provided you with a basic introduction to view master pages and view content pages. You learned how to create new view master pages and create view content pages based on them. We also examined how you can modify the content of a view master page from a particular view content page.
 
->[!div class="step-by-step"]
-[Previous](using-the-tagbuilder-class-to-build-html-helpers-vb.md)
-[Next](passing-data-to-view-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-tagbuilder-class-to-build-html-helpers-vb.md)
+> [Next](passing-data-to-view-master-pages-vb.md)

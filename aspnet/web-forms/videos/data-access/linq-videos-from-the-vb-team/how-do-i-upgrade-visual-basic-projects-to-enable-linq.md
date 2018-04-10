@@ -21,6 +21,6 @@ Visual Basic programmers will learn about the new multi-targeting feature and ho
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-upgrade-visual-basic-projects-to-enable-linq)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-perform-group-and-aggregate-queries.md)
-[Next](how-do-i-get-started-with-linq-to-xml.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-perform-group-and-aggregate-queries.md)
+> [Next](how-do-i-get-started-with-linq-to-xml.md)

@@ -95,6 +95,6 @@ Our database contains a table named "ShoppingCart". When we generated an Entity 
 
 It's also worth noting that we will be creating a simple shopping cart and embedding the shopping cart logic with the shopping cart display. We might also choose to implement our shopping cart in a completely separate Business Layer.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-3.md)
-[Next](tailspin-spyworks-part-5.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-3.md)
+> [Next](tailspin-spyworks-part-5.md)

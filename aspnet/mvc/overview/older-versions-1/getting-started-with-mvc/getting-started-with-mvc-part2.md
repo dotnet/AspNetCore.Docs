@@ -72,6 +72,6 @@ Run your application and visit `http://localhost:xx/HelloWorld/Welcome?name=Scot
 
 In both these examples the controller has been doing all the work, and has been returning HTML directly. Ordinarily we don't want our Controllers returning HTML directly - since that ends up being very cumbersome to code. Instead we'll typically use a separate View template file to help generate the HTML response. Let's look at how we can do this. Close your browser and return to the IDE.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part1.md)
-[Next](getting-started-with-mvc-part3.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part1.md)
+> [Next](getting-started-with-mvc-part3.md)

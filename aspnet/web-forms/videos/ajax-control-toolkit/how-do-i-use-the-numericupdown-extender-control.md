@@ -21,6 +21,6 @@ In this video we examine the NumericUpDown extender control from the ASP.NET AJA
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-numericupdown-extender-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-pagingbulletedlist-extender-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-pagingbulletedlist-extender-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)

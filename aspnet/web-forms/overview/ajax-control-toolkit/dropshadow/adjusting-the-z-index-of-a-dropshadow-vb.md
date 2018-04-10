@@ -63,6 +63,6 @@ Before: The menu entry is not visible ([Click to view full-size image](adjusting
 
 After: The menu entry appears ([Click to view full-size image](adjusting-the-z-index-of-a-dropshadow-vb/_static/image6.png))
 
->[!div class="step-by-step"]
-[Previous](manipulating-dropshadow-properties-from-client-code-cs.md)
-[Next](manipulating-dropshadow-properties-from-client-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](manipulating-dropshadow-properties-from-client-code-cs.md)
+> [Next](manipulating-dropshadow-properties-from-client-code-vb.md)

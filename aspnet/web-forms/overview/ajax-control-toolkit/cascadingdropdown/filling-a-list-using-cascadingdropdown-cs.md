@@ -63,5 +63,5 @@ Loading the page in the browser will trigger the list to be filled with three ve
 
 The list is filled automatically ([Click to view full-size image](filling-a-list-using-cascadingdropdown-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](using-cascadingdropdown-with-a-database-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-cascadingdropdown-with-a-database-cs.md)

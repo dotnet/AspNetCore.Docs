@@ -21,6 +21,6 @@ In this video we see how to use ASP.NET AJAX to implement the paging pattern, wh
 
 [&#9654; Watch video (27 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-ajax-paging-pattern)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-the-predictive-fetch-pattern-for-ajax.md)
-[Next](how-do-i-implement-the-ajax-incremental-page-display-pattern.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-the-predictive-fetch-pattern-for-ajax.md)
+> [Next](how-do-i-implement-the-ajax-incremental-page-display-pattern.md)
