@@ -1,6 +1,6 @@
 ## Call the Web API with jQuery
 
-In this section, an HTML page is added that uses AJAX to call the Web API. jQuery makes the AJAX requests and updates the page with the results. Add an HTML page with the following:
+In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. Add an HTML page with the following:
 
 [!code-html[Main](samples/sample3.html)]
 
