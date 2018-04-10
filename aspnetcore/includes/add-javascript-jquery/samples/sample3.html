@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Product App</title>
+</head>
+<body>
+  <div>
+    <h2>All ToDos</h2>
+    <ul id="todos" />
+  </div>
+  <div>
+    <h2>Search by ID</h2>
+    <input type="text" id="prodId" size="5" />
+    <input type="button" value="Search" onclick="find();" />
+    <p id="product" />
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  <script>
+    var uri = 'api/todo';
+
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+            // On success, 'data' contains a list of todo.
+            $.each(data, function (key, item) {
+              // Add a list item for the todo.
+              $('<li>', { text: formatItem(item) }).appendTo($('#todos'));
+            });
+          });
+    });
+
+    function formatItem(item) {
+      return item.Name + ': $' + item.Price;
+    }
+
+    function find() {
+      var id = $('#todoId').val();
+      $.getJSON(uri + '/' + id)
+          .done(function (data) {
+            $('#todo').text(formatItem(data));
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#todo').text('Error: ' + err);
+          });
+    }
+  </script>
+</body>
+</html>

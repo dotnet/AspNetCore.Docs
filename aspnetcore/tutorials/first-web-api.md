@@ -94,5 +94,7 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 
 [!INCLUDE [last part of web API](../includes/webApi/end.md)]
 
-[!INCLUDE [next steps](../includes/webApi/next.md)]
+[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
+
+[!INCLUDE[next steps](../includes/webApi/next.md)]
 

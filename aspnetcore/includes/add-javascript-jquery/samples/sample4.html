@@ -1,0 +1,11 @@
+$(document).ready(function () {
+    // Send an AJAX request
+    $.getJSON(apiUrl)
+        .done(function (data) {
+            // On success, 'data' contains a list of todos.
+            $.each(data, function (key, item) {
+                // Add a list item for the todo.
+                $('<li>', { text: formatItem(item) }).appendTo($('#todos'));
+            });
+        });
+});
