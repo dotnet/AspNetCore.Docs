@@ -84,6 +84,6 @@ If you were using an older release of the Toolkit and now need to move to a late
 - Binaries - Delete the old version of the AjaxControlToolkit.dll assembly from your website Bin folder.
 - Toolbox Items - Delete the AJAX Control Toolkit tab and follow the steps above to re-create the tab with the new version of the AjaxControlToolkit.dll assembly.
 
->[!div class="step-by-step"]
-[Previous](creating-a-custom-ajax-control-toolkit-control-extender-cs.md)
-[Next](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-custom-ajax-control-toolkit-control-extender-cs.md)
+> [Next](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)

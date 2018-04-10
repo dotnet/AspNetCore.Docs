@@ -21,6 +21,6 @@ In this video we see how you can automate testing of your web applications using
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-testing-web-applications-with-team-system)
 
->[!div class="step-by-step"]
-[Previous](introduction-to-unit-testing-with-team-system.md)
-[Next](introduction-to-load-testing-web-applications-with-team-system.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-to-unit-testing-with-team-system.md)
+> [Next](introduction-to-load-testing-web-applications-with-team-system.md)

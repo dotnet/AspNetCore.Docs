@@ -87,6 +87,6 @@ If, on the other hand, you are using IIS with Anonymous authentication disabled 
 
 This tutorial explained how you can use Windows authentication in the context of an ASP.NET MVC application. You learned how to enable Windows authentication within your application's web configuration file and how to configure authentication with IIS. Finally, you learned how to use the &lt;Authorize&gt; attribute to restrict access to controller actions to particular Windows users or groups.
 
->[!div class="step-by-step"]
-[Previous](authenticating-users-with-forms-authentication-vb.md)
-[Next](preventing-javascript-injection-attacks-vb.md)
+> [!div class="step-by-step"]
+> [Previous](authenticating-users-with-forms-authentication-vb.md)
+> [Next](preventing-javascript-injection-attacks-vb.md)

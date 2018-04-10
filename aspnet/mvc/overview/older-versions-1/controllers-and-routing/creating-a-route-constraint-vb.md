@@ -72,6 +72,6 @@ But not the following URLs:
 
 These browser requests will be handled by another route or, if there are no matching routes, a *The resource could not be found* error will be returned.
 
->[!div class="step-by-step"]
-[Previous](creating-custom-routes-vb.md)
-[Next](creating-a-custom-route-constraint-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-routes-vb.md)
+> [Next](creating-a-custom-route-constraint-vb.md)

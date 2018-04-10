@@ -278,9 +278,9 @@ This section of the document describes new features, changes, and known issues w
 > If you uninstall the .NET Framework version 4 and then reinstall it, ASP.NET Web Pages with Razor syntax is disabled. Pages with the *.cshtml* extension do not run correctly. ASP.NET Web Pages registers an assembly in the machine root *Web.config* file, and removing the .NET Framework removes that file. Reinstalling the .NET Framework installs a new version of the configuration file, but does not add the reference for the ASP.NET Web Pages assembly.
 > 
 > **Workaround** After reinstalling the .NET Framework, reinstall ASP.NET Web Pages with Razor syntax. This adds the following element to the *Web.config* file in the machine root, which is typically in the following location:  
->   
+> 
 > `C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config (32-bit)`  
->   
+> 
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
 > 
 > [!code-xml[Main](beta3/samples/sample6.xml)]
@@ -297,9 +297,9 @@ This section of the document describes new features, changes, and known issues w
 #### Issue: Extensionless URLs do not find .cshtml/.vbhtml files on IIS 7 or IIS 7.5
 
 > On IIS 7 or IIS 7.5, requests with a URL like the following are not able to find pages that have the *.cshtml* or *.vbhtml* extension:  
->   
+> 
 > `http://www.example.com/ExampleSite/ExampleFile`  
->   
+> 
 > The issue arises because URL rewriting is not enabled by default for IIS 7 or IIS 7.5. The likeliest scenario is that you do not see the problem when testing locally using IIS Express, but you experience it when you deploy your website to a hosting website.
 > 
 > **Workaround**
@@ -361,21 +361,21 @@ This section of the document describes new features, changes, and known issues w
 > 
 > **Workaround**  
 > Use the `Encryption Mode` property of the `SqlCeConnection` class to encrypt SQL Server Compact 4.0 database files. The following example shows how to create an encrypted SQL Server Compact 4.0 database using the `Encryption Mode` property:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample11.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample12.vb)]
 > 
 > To change the encryption mode of an existing SQL Server Compact 4.0 database, do the following:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample13.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample14.vb)]
 > 
 > To encrypt an unencrypted SQL Server Compact 4.0 database, do the following:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample15.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample16.vb)]
 
 
@@ -532,7 +532,7 @@ This section of the document describes new features, changes, and known issues w
 > Explicitly set the data type for parameters such as `SqlDbType` or `DbType`. This is critical in the case of BLOB data types (`image` and `ntext`). Use code like the following:
 > 
 > [!code-sql[Main](beta3/samples/sample20.sql)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample21.vb)]
 
 

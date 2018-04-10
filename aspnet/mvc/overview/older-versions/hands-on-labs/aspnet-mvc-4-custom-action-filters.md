@@ -134,14 +134,14 @@ In this task you will create a custom filter attribute class that will contain t
 
 1. Open the **Begin** solution located at **\Source\Ex01-LoggingActions\Begin** folder.
 
-    1. You will need to download some missing NuGet packages before you continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. You will need to download some missing NuGet packages before you continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
-    > 
-    > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > 
+      > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Add a new C# class into the **Filters** folder and name it *CustomActionFilter.cs*. This folder will store all the custom filters.
 3. Open **CustomActionFilter.cs** and add a reference to **System.Web.Mvc** and **MvcMusicStore.Models** namespaces:
 
@@ -180,10 +180,10 @@ It is also possible to intercept a specific controller method.
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample5.cs)]
 
-    > [!NOTE]
-    > When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
-    > 
-    > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample6.cs)]
+   > [!NOTE]
+   > When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
+   > 
+   > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample6.cs)]
 
 <a id="Ex1Task3"></a>
 
@@ -199,14 +199,14 @@ In this task, you will test that the logging filter is working. You will start t
 
     *Log tracker status before page activity*
 
-    > [!NOTE]
-    > By default, it will always show one item that is generated when retrieving the existing genres for the menu.
-    > 
-    > For simplicity purposes we're cleaning up the **ActionLog** table each time the application runs so it will only show the logs of each particular task's verification.
-    > 
-    > You might need to remove the following code from the **Session\_Start** method (in the **Global.asax** class), in order to save an historical log for all the actions executed within the Store Controller.
-    > 
-    > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample7.cs)]
+   > [!NOTE]
+   > By default, it will always show one item that is generated when retrieving the existing genres for the menu.
+   > 
+   > For simplicity purposes we're cleaning up the **ActionLog** table each time the application runs so it will only show the logs of each particular task's verification.
+   > 
+   > You might need to remove the following code from the **Session\_Start** method (in the **Global.asax** class), in order to save an historical log for all the actions executed within the Store Controller.
+   > 
+   > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample7.cs)]
 3. Click one of the **Genres** from the menu and perform some actions there, like browsing an available album.
 4. Browse to **/ActionLog** and if the log is empty press **F5** to refresh the page. Check that your visits were tracked:
 
@@ -373,7 +373,7 @@ By completing this Hands-On Lab you have learned how to extend an action filter 
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 
@@ -517,14 +517,14 @@ If your application makes use of SQL Server databases you will need to create a 
     *Web deploy configuration*
 5. Configure the database connection as follows:
 
-    - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
-    - In **User name** type your server administrator login name.
-    - In **Password** type your server administrator login password.
-    - Type a new database name.
+   - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
+   - In **User name** type your server administrator login name.
+   - In **Password** type your server administrator login password.
+   - Type a new database name.
 
-    ![Configuring destination connection string](aspnet-mvc-4-custom-action-filters/_static/image33.png "Configuring destination connection string")
+     ![Configuring destination connection string](aspnet-mvc-4-custom-action-filters/_static/image33.png "Configuring destination connection string")
 
-    *Configuring destination connection string*
+     *Configuring destination connection string*
 6. Then click **OK**. When prompted to create the database click **Yes**.
 
     ![Creating the database](aspnet-mvc-4-custom-action-filters/_static/image34.png "Creating the database string")

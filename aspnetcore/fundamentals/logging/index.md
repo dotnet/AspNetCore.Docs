@@ -42,8 +42,7 @@ ASP.NET Core doesn't provide async logger methods because logging should be so f
 
 ## How to add providers
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
 To use a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
@@ -54,8 +53,7 @@ The default project template enables logging with the [CreateDefaultBuilder](/do
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
 To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
@@ -67,8 +65,7 @@ ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI)
 > [!NOTE]
 > The sample application for this article adds logging providers in the `Configure` method of the `Startup` class. If you want to get log output from code that executes earlier, add logging providers in the `Startup` class constructor instead. 
 
----
-
+* * *
 You'll find information about each [built-in logging provider](#built-in-logging-providers) and links to [third-party logging providers](#third-party-logging-providers) later in the article.
 
 ## Sample logging output
@@ -91,7 +88,7 @@ info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
       Request finished in 148.889ms 404
 ```
- 
+
 These logs were created by going to `http://localhost:5000/api/todo/0`, which triggers execution of both `ILogger` calls shown in the preceding section.
 
 Here's an example of the same logs as they appear in the Debug window when you run the sample application in Visual Studio:
@@ -261,8 +258,7 @@ System.Exception: Item not found exception.
 
 ## Log filtering
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 You can specify a minimum log level for a specific provider and category or for all providers or all categories. Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored. 
 
 If you want to suppress all logs, you can specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
@@ -310,7 +306,7 @@ The following algorithm is used for each provider when an `ILogger` is created f
 * From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
 * If multiple rules are selected take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
- 
+
 For example, suppose you have the preceding list of rules and you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
 
 * For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that's the one selected.
@@ -343,8 +339,7 @@ You can write code in a filter function to apply filtering rules. A filter funct
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.
 
 The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
@@ -361,8 +356,7 @@ If you want to use filtering to prevent all logs from being written for a partic
 
 The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It doesn't affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
 
----
-
+* * *
 ## Log scopes
 
 You can group a set of logical operations within a *scope* in order to attach the same data to each log that's created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
@@ -373,8 +367,7 @@ A scope is an `IDisposable` type that's returned by the `ILogger.BeginScope<TSta
 
 The following code enables scopes for the console provider:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 In *Program.cs*:
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_Scopes&highlight=4)]
@@ -382,14 +375,12 @@ In *Program.cs*:
 > [!NOTE]
 > Configuring the `IncludeScopes` console logger option is required to enable scope-based logging. Configuration of `IncludeScopes` using *appsettings* configuration files will be available with the release of ASP.NET Core 2.1.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 In *Startup.cs*:
 
 [!code-csharp[](index/sample/Startup.cs?name=snippet_Scopes&highlight=6)]
 
----
-
+* * *
 Each log message includes the scoped information:
 
 ```
@@ -417,14 +408,12 @@ ASP.NET Core ships the following providers:
 
 The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 ```csharp
 logging.AddConsole()
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 ```csharp
 loggerFactory.AddConsole()
 ```
@@ -445,8 +434,7 @@ This code refers to the `Logging` section of the *appSettings.json* file:
 
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
----
-
+* * *
 <a id="debug"></a>
 ### The Debug provider
 

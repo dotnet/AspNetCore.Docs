@@ -21,5 +21,5 @@ In this video, part 3 of 3, Joe Stagner demonstrates how to return a filtered se
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-work-with-datasets-and-filters-from-an-asp-application)
 
->[!div class="step-by-step"]
-[Previous](how-to-manually-bind-a-dataset-to-a-datagrid.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-manually-bind-a-dataset-to-a-datagrid.md)

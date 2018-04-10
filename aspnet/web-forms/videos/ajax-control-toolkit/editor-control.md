@@ -21,6 +21,6 @@ This video will demonstrate how to use the new Editor WYSIWYG Editor control fro
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/editor-control)
 
->[!div class="step-by-step"]
-[Previous](combo-box.md)
-[Next](editor-control-custom.md)
+> [!div class="step-by-step"]
+> [Previous](combo-box.md)
+> [Next](editor-control-custom.md)

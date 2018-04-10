@@ -152,6 +152,6 @@ The next topic, [Configuring a TFS Build Server for Web Deployment](configuring-
 
 For more comprehensive information on working with source control in TFS, see [Using Version Control](https://msdn.microsoft.com/library/ms181368.aspx).
 
->[!div class="step-by-step"]
-[Previous](creating-a-team-project-in-tfs.md)
-[Next](configuring-a-tfs-build-server-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-team-project-in-tfs.md)
+> [Next](configuring-a-tfs-build-server-for-web-deployment.md)

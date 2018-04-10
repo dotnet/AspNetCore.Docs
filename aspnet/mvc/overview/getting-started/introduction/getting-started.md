@@ -17,16 +17,15 @@ Getting Started with ASP.NET MVC 5
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[consider RP](../../../../includes/razor.md)]
+[!INCLUDE [consider RP](../../../../includes/razor.md)]
 
- 
  This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2017](https://www.visualstudio.com/). Final Source for tutorial located on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie/MvcMovie)
- 
- 
+
+
  This tutorial was written by [Scott Guthrie](https://weblogs.asp.net/scottgu/) (twitter[@scottgu](https://twitter.com/scottgu) ), [Scott Hanselman](http://www.hanselman.com/blog/) (twitter: [@shanselman](https://twitter.com/shanselman) ), and [Rick Anderson](https://twitter.com/RickAndMSFT) ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) )
- 
+
  You need an Azure account to deploy this app to Azure:
- 
+
  - You can [open an Azure account for free](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A443DD604) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
  - You can [activate MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
 
@@ -37,9 +36,9 @@ Start by installing and running [Visual Studio 2017](https://www.visualstudio.co
 
 Visual Studio is an IDE, or integrated development environment. Just like you use Microsoft Word to write documents, you'll use an IDE to create applications. In Visual Studio there's a list along the bottom showing various options available to you. There's also a menu that provides another way to perform tasks in the IDE. (For example, instead of selecting **New Project** from the **Start** page, you can use the menu and select **File** &gt; **New Project**.)
 
-   
+
 ![](getting-started/_static/image1.png)  
- 
+
 
 ## Creating Your First Application
 
@@ -78,5 +77,5 @@ You need an Azure account to deploy this solution to Azure. If you do not alread
 - [Open an Azure account for free](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A443DD604) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
 - [Activate MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
 
->[!div class="step-by-step"]
-[Next](adding-a-controller.md)
+> [!div class="step-by-step"]
+> [Next](adding-a-controller.md)

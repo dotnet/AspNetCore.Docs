@@ -21,6 +21,6 @@ Visual Basic developers will learn how to work with XML in Visual Basic using XM
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-linq-to-xml)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-upgrade-visual-basic-projects-to-enable-linq.md)
-[Next](how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-upgrade-visual-basic-projects-to-enable-linq.md)
+> [Next](how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md)

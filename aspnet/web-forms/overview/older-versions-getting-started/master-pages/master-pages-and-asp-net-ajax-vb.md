@@ -265,6 +265,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](interacting-with-the-content-page-from-the-master-page-vb.md)
-[Next](specifying-the-master-page-programmatically-vb.md)
+> [!div class="step-by-step"]
+> [Previous](interacting-with-the-content-page-from-the-master-page-vb.md)
+> [Next](specifying-the-master-page-programmatically-vb.md)

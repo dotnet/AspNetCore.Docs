@@ -21,5 +21,5 @@ In this video you will gain some insight on how you can configure the visual aes
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-dynamic-data-custom-form-formatting)
 
->[!div class="step-by-step"]
-[Previous](how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.md)

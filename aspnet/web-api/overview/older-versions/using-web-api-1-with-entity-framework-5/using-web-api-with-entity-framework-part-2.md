@@ -79,6 +79,6 @@ In Solution Explorer, expand the App\_Start folder and open the file named WebAp
 
 This code sets the JSON formatter to preserve object references, and removes the XML formatter from the pipeline entirely. (You can configure the XML formatter to preserve object references, but it's a little more work, and we only need JSON for this application. For more information, see [Handling Circular Object References](../../formats-and-model-binding/json-and-xml-serialization.md#handling_circular_object_references).)
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-1.md)
-[Next](using-web-api-with-entity-framework-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-1.md)
+> [Next](using-web-api-with-entity-framework-part-3.md)

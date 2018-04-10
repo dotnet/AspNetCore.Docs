@@ -225,6 +225,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Liz Shulok. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](examining-the-events-associated-with-inserting-updating-and-deleting-vb.md)
-[Next](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-events-associated-with-inserting-updating-and-deleting-vb.md)
+> [Next](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md)

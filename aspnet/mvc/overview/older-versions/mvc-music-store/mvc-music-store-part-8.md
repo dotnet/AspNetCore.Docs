@@ -156,6 +156,6 @@ After loading up your shopping cart, you can click on the Remove from cart link 
 We've built out a working shopping cart which allows unregistered users to add items to their cart. In the following section, we'll allow them to register and complete the checkout process.
 
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-7.md)
-[Next](mvc-music-store-part-9.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-7.md)
+> [Next](mvc-music-store-part-9.md)

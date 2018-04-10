@@ -75,5 +75,5 @@ The series includes four tutorial sets. Each focuses on different aspects of web
 
 This set of tutorials uses a sample solution with a realistic level of complexity, together with a fictional enterprise deployment scenario, to provide a reference implementation and to give the tasks and walkthroughs a common context. The next topic, [Enterprise Web Deployment: Scenario Overview](enterprise-web-deployment-scenario-overview.md), introduces the scenario and the sample solution. From there you can work through the tutorials and topics that most closely match your needs.
 
->[!div class="step-by-step"]
-[Next](enterprise-web-deployment-scenario-overview.md)
+> [!div class="step-by-step"]
+> [Next](enterprise-web-deployment-scenario-overview.md)

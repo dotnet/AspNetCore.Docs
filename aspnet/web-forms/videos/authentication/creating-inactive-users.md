@@ -21,6 +21,6 @@ In this video Joe Stagner walks through creating inactive users in the ASP.NET m
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-inactive-users)
 
->[!div class="step-by-step"]
-[Previous](simple-web-service-authentication.md)
-[Next](sql-injection-defense.md)
+> [!div class="step-by-step"]
+> [Previous](simple-web-service-authentication.md)
+> [Next](sql-injection-defense.md)

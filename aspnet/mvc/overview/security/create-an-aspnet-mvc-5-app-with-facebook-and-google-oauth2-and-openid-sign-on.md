@@ -113,9 +113,9 @@ To connect to authentication providers like Google and Facebook, you will need t
 > For current Google OAuth instructions, see [Configuring Google authentication in ASP.NET Core](/aspnet/core/security/authentication/social/google-logins).
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
-1. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
-1. In the left tab, click **Credentials**.
-1. Click **Create credentials** then **OAuth client ID**. 
+2. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
+3. In the left tab, click **Credentials**.
+4. Click **Create credentials** then **OAuth client ID**. 
 
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300/` unless you've created other SSL projects)
@@ -126,7 +126,7 @@ To connect to authentication providers like Google and Facebook, you will need t
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image15.png)  
   
- The image below shows the enabled APIs.  
+   The image below shows the enabled APIs.  
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image16.png)
 7. From the Google APIs API Manager, visit the **Credentials** tab to obtain the **Client ID**. Download to save a JSON file with application secrets. Copy and paste the **ClientId** and **ClientSecret** into the `UseGoogleAuthentication` method found in the *Startup.Auth.cs* file in the *App_Start* folder. The **ClientId** and **ClientSecret** values shown below are samples and don't work.
@@ -169,7 +169,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
     ![Create new app](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image22.png)
 4. Enter an **App Name** and **Category**, then click **Create App**.
 
-    This must be unique across Facebook. The **App Namespace** is the part of the URL that your App will use to access the Facebook application for authentication (for example, https://apps.facebook.com/{App Namespace}). If you don't specify an **App Namespace**, the **App ID** will be used for the URL. The **App ID** is a long system-generated number that you will see in the next step.
+    This must be unique across Facebook. The <strong>App Namespace</strong> is the part of the URL that your App will use to access the Facebook application for authentication (for example, https://apps.facebook.com/{App Namespace}). If you don't specify an <strong>App Namespace</strong>, the <strong>App ID</strong> will be used for the URL. The <strong>App ID</strong> is a long system-generated number that you will see in the next step.
 
     ![Create New App dialog](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image23.png)
 5. Submit the standard security check.

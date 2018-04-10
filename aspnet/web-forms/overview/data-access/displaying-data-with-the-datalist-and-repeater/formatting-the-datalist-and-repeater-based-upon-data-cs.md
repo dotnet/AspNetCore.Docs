@@ -45,7 +45,7 @@ The following steps outline the data binding process for the DataList control.
 1. The DataList s [`DataBinding` event](https://msdn.microsoft.com/library/system.web.ui.control.databinding.aspx) fires
 2. The data is bound to the DataList  
   
- For each record in the data source 
+   For each record in the data source 
 
     1. Create a `DataListItem` object
     2. Fire the [`ItemCreated` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.itemcreated.aspx)
@@ -201,6 +201,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Yaakov Ellis, Randy Schmidt, and Liz Shulok. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-data-with-the-datalist-and-repeater-controls-cs.md)
-[Next](showing-multiple-records-per-row-with-the-datalist-control-cs.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-data-with-the-datalist-and-repeater-controls-cs.md)
+> [Next](showing-multiple-records-per-row-with-the-datalist-control-cs.md)

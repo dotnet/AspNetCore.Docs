@@ -139,10 +139,10 @@ Now that you have created a web app and database for the staging environment, yo
 9. 1. Select **Update database**.
 
         The **Remote connection string** box directly below **DefaultConnection** is filled in with the connection string from the .publishsettings file.The connection string includes SQL Server credentials, which are stored in plain text in the *.pubxml* file. If you prefer not to store them permanently there, you can remove them from the publish profile after the database is deployed and store them in Azure instead. For more information, see [How to keep your ASP.NET database connection strings secure when deploying to Azure from Source](http://www.hanselman.com/blog/HowToKeepYourASPNETDatabaseConnectionStringsSecureWhenDeployingToAzureFromSource.aspx) on Scott Hanselman's blog.
-    2. Click **Configure database updates**.
-    3. In the **Configure Database Updates** dialog box, click **Add SQL Script**.
-    4. In the **Add SQL Script** box, navigate to the *aspnet-data-prod.sql* script that you saved earlier in the solution folder, and then click **Open**.
-    5. Close the **Configure Database Updates** dialog box.
+      2. Click **Configure database updates**.
+      3. In the **Configure Database Updates** dialog box, click **Add SQL Script**.
+      4. In the **Add SQL Script** box, navigate to the *aspnet-data-prod.sql* script that you saved earlier in the solution folder, and then click **Open**.
+      5. Close the **Configure Database Updates** dialog box.
 10. Under **SchoolContext** in the **Databases** section, select **Execute Code First Migrations (runs on application start)**.
 
     Visual Studio displays **Execute Code First Migrations** instead of **Update Database** for `DbContext` classes. If you want to use the dbDacFx provider instead of Migrations to deploy a database that you access by using a `DbContext` class, see [How do I deploy a Code First database without Migrations?](https://msdn.microsoft.com/library/ee942158.aspx#deploy_code_first_without_migrations) in the Web Deployment FAQ for Visual Studio and ASP.NET on MSDN.
@@ -291,11 +291,11 @@ In the next tutorial, you'll update application code and deploy the change to th
 
 > [!NOTE]
 > While your application is in use in the production environment you should be implementing a recovery plan. That is, you should be periodically backing up your databases from the production app to a secure storage location, and you should be keeping several generations of such backups. When you update the database, you should make a backup copy from immediately before the change. Then, if you make a mistake and don't discover it until after you have deployed it to production, you will still be able to recover the database to the state it was in before it became corrupted. For more information, see [Azure SQL Database Backup and Restore](https://msdn.microsoft.com/library/windowsazure/jj650016.aspx).
-
-
+> 
+> 
 > [!NOTE]
 > In this tutorial the SQL Server edition that you are deploying to is Azure SQL Database. While the deployment process is similar to other editions of SQL Server, a real production application might require special code for Azure SQL Database in some scenarios. For more information, see [Working with Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdb) and [Choosing between SQL Server and Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdbchoosing).
-
->[!div class="step-by-step"]
-[Previous](setting-folder-permissions.md)
-[Next](deploying-a-code-update.md)
+> 
+> [!div class="step-by-step"]
+> [Previous](setting-folder-permissions.md)
+> [Next](deploying-a-code-update.md)

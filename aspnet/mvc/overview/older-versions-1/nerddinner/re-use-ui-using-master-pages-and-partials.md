@@ -132,6 +132,6 @@ Partials and master pages provide very flexible options that enable you to clean
 
 Let's now revisit the listing scenario we built earlier and enable scalable paging support.
 
->[!div class="step-by-step"]
-[Previous](use-viewdata-and-implement-viewmodel-classes.md)
-[Next](implement-efficient-data-paging.md)
+> [!div class="step-by-step"]
+> [Previous](use-viewdata-and-implement-viewmodel-classes.md)
+> [Next](implement-efficient-data-paging.md)

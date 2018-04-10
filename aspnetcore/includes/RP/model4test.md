@@ -4,7 +4,7 @@
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
- ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
+  ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
 
 <a name="scaffold"></a>
 

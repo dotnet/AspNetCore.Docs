@@ -21,5 +21,5 @@ In this video you will learn the imperative JavaScript syntax for Microsoft clie
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-imperative-javascript-syntax-for-microsoft-client-side-controls)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-quick-hit-the-scriptloader.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-quick-hit-the-scriptloader.md)

@@ -21,6 +21,6 @@ Watch a demonstration of using the ASP.NET AJAX DynamicPopulate extender to dyna
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-dynamicpopulate-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-draggable-panel-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-filteredtextbox-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-draggable-panel-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-filteredtextbox-extender.md)

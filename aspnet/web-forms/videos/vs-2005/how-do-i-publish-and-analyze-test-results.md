@@ -21,6 +21,6 @@ Visual Studio Team System enables you to chart changes in a project's code quali
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-publish-and-analyze-test-results)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-generic-tests.md)
-[Next](how-do-i-discover-application-changes-prior-to-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-generic-tests.md)
+> [Next](how-do-i-discover-application-changes-prior-to-deployment.md)

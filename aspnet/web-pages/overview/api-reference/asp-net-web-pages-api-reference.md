@@ -687,7 +687,7 @@ Sends an email message.
 
 ### `WebMail.SmtpServer`
 
-Sets the SMTP server name. Normally you set this property in the*\_AppStart* page.
+Sets the SMTP server name. Normally you set this property in the<em>\_AppStart</em> page.
 
 [!code-html[Main](asp-net-web-pages-api-reference/samples/sample105.html)]
 

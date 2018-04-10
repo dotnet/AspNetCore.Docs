@@ -21,6 +21,6 @@ The NoBot control from the ASP.NET AJAX Control Toolkit helps prevent certain ty
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-nobot-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-listsearch-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-listsearch-extender.md)

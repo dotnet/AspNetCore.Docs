@@ -193,6 +193,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Dennis Patterson, David Suru, and Randy Schmidt. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](adding-validation-controls-to-the-datalist-s-editing-interface-cs.md)
-[Next](an-overview-of-editing-and-deleting-data-in-the-datalist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-validation-controls-to-the-datalist-s-editing-interface-cs.md)
+> [Next](an-overview-of-editing-and-deleting-data-in-the-datalist-vb.md)

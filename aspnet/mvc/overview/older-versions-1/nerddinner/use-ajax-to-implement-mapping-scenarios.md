@@ -188,6 +188,6 @@ Clicking the Dinner title either in the bubble or on the right-hand side in the 
 
 We've now implemented all the application functionality of our NerdDinner application. Let's now look at how we can enable automated unit testing of it.
 
->[!div class="step-by-step"]
-[Previous](use-ajax-to-deliver-dynamic-updates.md)
-[Next](enable-automated-unit-testing.md)
+> [!div class="step-by-step"]
+> [Previous](use-ajax-to-deliver-dynamic-updates.md)
+> [Next](enable-automated-unit-testing.md)

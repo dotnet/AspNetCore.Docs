@@ -355,6 +355,6 @@ After we finished writing enough code to satisfy the requirements expressed by t
 
 In the next iteration -- the final iteration -- we rewrite our application to take advantage of Ajax. By taking advantage of Ajax, we'll improve the responsiveness and performance of the Contact Manager application.
 
->[!div class="step-by-step"]
-[Previous](iteration-5-create-unit-tests-vb.md)
-[Next](iteration-7-add-ajax-functionality-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-5-create-unit-tests-vb.md)
+> [Next](iteration-7-add-ajax-functionality-vb.md)

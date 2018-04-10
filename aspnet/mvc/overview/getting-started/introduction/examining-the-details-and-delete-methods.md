@@ -17,7 +17,7 @@ Examining the Details and Delete Methods
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this part of the tutorial, you'll examine the automatically generated `Details` and `Delete` methods.
 
@@ -66,5 +66,5 @@ Feedback is welcome.
 — [Rick Anderson](https://blogs.msdn.com/rickAndy) twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT)  
 — [Scott Hanselman](http://www.hanselman.com/blog/) twitter: [@shanselman](https://twitter.com/shanselman)
 
->[!div class="step-by-step"]
-[Previous](adding-validation.md)
+> [!div class="step-by-step"]
+> [Previous](adding-validation.md)

@@ -21,6 +21,6 @@ In this episode Rob Conery does a public code review of the Storefront Applicati
 
 [&#9654; Watch video (37 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-15-public-code-review)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-14-rich-client-interaction.md)
-[Next](aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-14-rich-client-interaction.md)
+> [Next](aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)

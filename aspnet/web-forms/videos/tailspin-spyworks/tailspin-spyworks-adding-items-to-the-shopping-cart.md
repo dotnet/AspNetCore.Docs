@@ -21,6 +21,6 @@ Joe Stagner builds the Add to Cart function for the Tailspin Spyworks sample Web
 
 [&#9654; Watch video (24 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-adding-items-to-the-shopping-cart)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-display-per-product-details.md)
-[Next](tailspin-spyworks-display-shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-display-per-product-details.md)
+> [Next](tailspin-spyworks-display-shopping-cart.md)

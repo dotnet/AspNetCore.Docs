@@ -78,6 +78,6 @@ In this example, the reason why Elmah was unable to save log files was fairly ob
 
 For more information about how to grant permissions to application pool identities, see [Application Pool Identities](https://www.iis.net/learn/manage/configuring-security/application-pool-identities) and [Secure Content in IIS Through File System ACLs](https://www.iis.net/learn/get-started/planning-for-security/secure-content-in-iis-through-file-system-acls) on the IIS.net site.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md)
-[Next](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md)
+> [Next](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md)

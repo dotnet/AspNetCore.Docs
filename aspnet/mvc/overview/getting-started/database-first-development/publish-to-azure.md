@@ -161,5 +161,5 @@ For an introductory example of Code First development, see [Getting Started with
 
 For a more advanced example, see [Creating an Entity Framework Data Model for an ASP.NET MVC 4 App](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Note that the DbContext API that you use for working with data in Database First is the same as the API you use for working with data in Code First. Even if you intend to use Database First, you can learn how to handle more complex scenarios such as reading and updating related data, handling concurrency conflicts, and so forth from a Code First tutorial. The only difference is in how the database, context class, and entity classes are created.
 
->[!div class="step-by-step"]
-[Previous](enhancing-data-validation.md)
+> [!div class="step-by-step"]
+> [Previous](enhancing-data-validation.md)

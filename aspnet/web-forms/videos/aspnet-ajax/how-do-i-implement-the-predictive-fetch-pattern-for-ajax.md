@@ -21,6 +21,6 @@ Demonstrates an implementation of the Predictive Fetch pattern for AJAX, where t
 
 [&#9654; Watch video (24 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-predictive-fetch-pattern-for-ajax)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-timer-control.md)
-[Next](how-do-i-implement-the-ajax-paging-pattern.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-timer-control.md)
+> [Next](how-do-i-implement-the-ajax-paging-pattern.md)

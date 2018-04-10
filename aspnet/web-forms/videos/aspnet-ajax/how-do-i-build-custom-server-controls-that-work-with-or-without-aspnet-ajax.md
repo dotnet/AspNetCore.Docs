@@ -21,6 +21,6 @@ Do you have an idea for a custom server control that should be able to work with
 
 [&#9654; Watch video (19 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-build-custom-server-controls-that-work-with-or-without-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-create-an-aspnet-ajax-extender-from-scratch.md)
-[Next](how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-create-an-aspnet-ajax-extender-from-scratch.md)
+> [Next](how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.md)

@@ -21,6 +21,6 @@ In this video you will learn about Visual Studio's new web project starter templ
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/visual-studio-2010-quick-hit-new-web-project-template)
 
->[!div class="step-by-step"]
-[Previous](visual-studio-2010-quick-hit-multi-monitor-support.md)
-[Next](visual-studio-2010-quick-hit-new-multi-targeting.md)
+> [!div class="step-by-step"]
+> [Previous](visual-studio-2010-quick-hit-multi-monitor-support.md)
+> [Next](visual-studio-2010-quick-hit-new-multi-targeting.md)

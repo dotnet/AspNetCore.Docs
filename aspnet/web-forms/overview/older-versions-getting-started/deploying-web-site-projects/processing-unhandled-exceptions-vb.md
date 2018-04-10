@@ -162,6 +162,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Working with the ASP.NET `Global.asax` File](http://articles.techrepublic.com.com/5100-10878_11-5771721.html)
 - [Working with `HttpApplication` Instances](https://msdn.microsoft.com/library/a0xez8f2.aspx)
 
->[!div class="step-by-step"]
-[Previous](displaying-a-custom-error-page-vb.md)
-[Next](logging-error-details-with-asp-net-health-monitoring-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-a-custom-error-page-vb.md)
+> [Next](logging-error-details-with-asp-net-health-monitoring-vb.md)

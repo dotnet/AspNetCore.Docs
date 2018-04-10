@@ -81,23 +81,23 @@ In this procedure, you create two pages. The first page has a form that lets use
 
     Modify the following email related settings in the code:
 
-    - Set `your-SMTP-host` to the name of the SMTP server that you have access to.
-    - Set `your-user-name-here` to the user name for your SMTP server account.
-    - Set `your-account-password` to the password for your SMTP server account.
-    - Set `your-email-address-here` to your own email address. This is the email address that the message is sent from. (Some email providers don't let you specify a different `From` address and will use your user name as the `From` address.)
+   - Set `your-SMTP-host` to the name of the SMTP server that you have access to.
+   - Set `your-user-name-here` to the user name for your SMTP server account.
+   - Set `your-account-password` to the password for your SMTP server account.
+   - Set `your-email-address-here` to your own email address. This is the email address that the message is sent from. (Some email providers don't let you specify a different `From` address and will use your user name as the `From` address.)
 
-    > [!TIP] 
-    > 
-    > <a id="configuring_email_settings"></a>
-    > ### Configuring Email Settings
-    > 
-    > It can be a challenge sometimes to make sure you have the right settings for the SMTP server, port number, and so on. Here are a few tips:
-    > 
-    > - The SMTP server name is often something like `smtp.provider.com` or `smtp.provider.net`. However, if you publish your site to a hosting provider, the SMTP server name at that point might be `localhost`. This is because after you've published and your site is running on the provider's server, the email server might be local from the perspective of your application. This change in server names might mean you have to change the SMTP server name as part of your publishing process.
-    > - The port number is usually 25. However, some providers require you to use port 587 or some other port.
-    > - Make sure that you use the right credentials. If you've published your site to a hosting provider, use the credentials that the provider has specifically indicated are for email. These might be different from the credentials you use to publish.
-    > - Sometimes you don't need credentials at all. If you're sending email using your personal ISP, your email provider might already know your credentials. After you publish, you might need to use different credentials than when you test on your local computer.
-    > - If your email provider uses encryption, you have to set `WebMail.EnableSsl` to `true`.
+     > [!TIP] 
+     > 
+     > <a id="configuring_email_settings"></a>
+     > ### Configuring Email Settings
+     > 
+     > It can be a challenge sometimes to make sure you have the right settings for the SMTP server, port number, and so on. Here are a few tips:
+     > 
+     > - The SMTP server name is often something like `smtp.provider.com` or `smtp.provider.net`. However, if you publish your site to a hosting provider, the SMTP server name at that point might be `localhost`. This is because after you've published and your site is running on the provider's server, the email server might be local from the perspective of your application. This change in server names might mean you have to change the SMTP server name as part of your publishing process.
+     > - The port number is usually 25. However, some providers require you to use port 587 or some other port.
+     > - Make sure that you use the right credentials. If you've published your site to a hosting provider, use the credentials that the provider has specifically indicated are for email. These might be different from the credentials you use to publish.
+     > - Sometimes you don't need credentials at all. If you're sending email using your personal ISP, your email provider might already know your credentials. After you publish, you might need to use different credentials than when you test on your local computer.
+     > - If your email provider uses encryption, you have to set `WebMail.EnableSsl` to `true`.
 4. Run the *EmailRequest.cshtml* page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.)
 5. Enter your name and a problem description, and then click the **Submit** button. You're redirected to the *ProcessRequest.cshtml* page, which confirms your message and which sends you an email message. 
 

@@ -117,9 +117,9 @@ There are two general techniques used to efficiently associate a row index with 
 - **Using SQL Server 2005 s `ROW_NUMBER()` Keyword** new to SQL Server 2005, the `ROW_NUMBER()` keyword associates a ranking with each returned record based on some ordering. This ranking can be used as a row index for each row.
 - **Using a Table Variable and `SET ROWCOUNT`** SQL Server s [`SET ROWCOUNT` statement](https://msdn.microsoft.com/library/ms188774.aspx) can be used to specify how many total records a query should process before terminating; [table variables](http://www.sqlteam.com/item.asp?ItemID=9454) are local T-SQL variables that can hold tabular data, akin to [temporary tables](http://www.sqlteam.com/item.asp?ItemID=2029). This approach works equally well with both Microsoft SQL Server 2005 and SQL Server 2000 (whereas the `ROW_NUMBER()` approach only works with SQL Server 2005).  
   
- The idea here is to create a table variable that has an `IDENTITY` column and columns for the primary keys of the table whose data is being paged through. Next, the contents of the table whose data is being paged through is dumped into the table variable, thereby associating a sequential row index (via the `IDENTITY` column) for each record in the table. Once the table variable has been populated, a `SELECT` statement on the table variable, joined with the underlying table, can be executed to pull out the particular records. The `SET ROWCOUNT` statement is used to intelligently limit the number of records that need to be dumped into the table variable.  
+  The idea here is to create a table variable that has an `IDENTITY` column and columns for the primary keys of the table whose data is being paged through. Next, the contents of the table whose data is being paged through is dumped into the table variable, thereby associating a sequential row index (via the `IDENTITY` column) for each record in the table. Once the table variable has been populated, a `SELECT` statement on the table variable, joined with the underlying table, can be executed to pull out the particular records. The `SET ROWCOUNT` statement is used to intelligently limit the number of records that need to be dumped into the table variable.  
   
- This approach s efficiency is based on the page number being requested, as the `SET ROWCOUNT` value is assigned the value of Start Row Index plus the Maximum Rows. When paging through low-numbered pages such as the first few pages of data this approach is very efficient. However, it exhibits default paging-like performance when retrieving a page near the end.
+  This approach s efficiency is based on the page number being requested, as the `SET ROWCOUNT` value is assigned the value of Start Row Index plus the Maximum Rows. When paging through low-numbered pages such as the first few pages of data this approach is very efficient. However, it exhibits default paging-like performance when retrieving a page near the end.
 
 This tutorial implements custom paging using the `ROW_NUMBER()` keyword. For more information on using the table variable and `SET ROWCOUNT` technique, see [A More Efficient Method for Paging Through Large Result Sets](http://www.4guysfromrolla.com/webtech/042606-1.shtml).
 
@@ -183,7 +183,7 @@ After creating the stored procedure, take a moment to test it out. Right-click o
 
 ![Enter a Value for the @startRowIndex and @maximumRows Parameters](efficiently-paging-through-large-amounts-of-data-cs/_static/image7.png)
 
-**Figure 7**: Enter a Value for the @startRowIndex and @maximumRows Parameters
+<strong>Figure 7</strong>: Enter a Value for the @startRowIndex and @maximumRows Parameters
 
 
 After choosing these input parameters values, the Output window will show the results. Figure 8 shows the results when passing in 10 for both the `@startRowIndex` and `@maximumRows` parameters.
@@ -374,6 +374,6 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](paging-and-sorting-report-data-cs.md)
-[Next](sorting-custom-paged-data-cs.md)
+> [!div class="step-by-step"]
+> [Previous](paging-and-sorting-report-data-cs.md)
+> [Next](sorting-custom-paged-data-cs.md)

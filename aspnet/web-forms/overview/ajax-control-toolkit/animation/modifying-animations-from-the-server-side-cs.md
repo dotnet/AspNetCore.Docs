@@ -57,6 +57,6 @@ Finally, add the `AnimationExtender` control to the current page, within the `<f
 
 The animation is created using server-side C#/VB code ([Click to view full-size image](modifying-animations-from-the-server-side-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](triggering-an-animation-in-another-control-cs.md)
-[Next](executing-animations-using-client-side-code-cs.md)
+> [!div class="step-by-step"]
+> [Previous](triggering-an-animation-in-another-control-cs.md)
+> [Next](executing-animations-using-client-side-code-cs.md)

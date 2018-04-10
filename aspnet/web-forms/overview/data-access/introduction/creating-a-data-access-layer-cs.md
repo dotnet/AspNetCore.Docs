@@ -79,7 +79,7 @@ All code that is specific to the underlying data source such as creating a conne
 
 These methods, when invoked, will connect to the database, issue the appropriate query, and return the results. How we return these results is important. These methods could simply return a DataSet or DataReader populated by the database query, but ideally these results should be returned using *strongly-typed objects*. A strongly-typed object is one whose schema is rigidly defined at compile time, whereas the opposite, a loosely-typed object, is one whose schema is not known until runtime.
 
-For example, the DataReader and the DataSet (by default) are loosely-typed objects since their schema is defined by the columns returned by the database query used to populate them. To access a particular column from a loosely-typed DataTable we need to use syntax like: ***DataTable*.Rows[*index*]["*columnName*"]**. The DataTable's loose typing in this example is exhibited by the fact that we need to access the column name using a string or ordinal index. A strongly-typed DataTable, on the other hand, will have each of its columns implemented as properties, resulting in code that looks like: ***DataTable*.Rows[*index*].*columnName***.
+For example, the DataReader and the DataSet (by default) are loosely-typed objects since their schema is defined by the columns returned by the database query used to populate them. To access a particular column from a loosely-typed DataTable we need to use syntax like: <strong><em>DataTable</em>.Rows[<em>index</em>]["<em>columnName</em>"]</strong>. The DataTable's loose typing in this example is exhibited by the fact that we need to access the column name using a string or ordinal index. A strongly-typed DataTable, on the other hand, will have each of its columns implemented as properties, resulting in code that looks like: <strong><em>DataTable</em>.Rows[<em>index</em>].*columnName</strong>*.
 
 To return strongly-typed objects, developers can either create their own custom business objects or use Typed DataSets. A business object is implemented by the developer as a class whose properties typically reflect the columns of the underlying database table the business object represents. A Typed DataSet is a class generated for you by Visual Studio based on a database schema and whose members are strongly-typed according to this schema. The Typed DataSet itself consists of classes that extend the ADO.NET DataSet, DataTable, and DataRow classes. In addition to strongly-typed DataTables, Typed DataSets now also include TableAdapters, which are classes with methods for populating the DataSet's DataTables and propagating modifications within the DataTables back to the database.
 
@@ -228,7 +228,7 @@ We are first prompted about whether we want to access the database using an ad-h
 **Figure 15**: Choose to Create a **SELECT** Statement Which Returns Rows ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image41.png))
 
 
-The next step is to define the SQL query used to access the data. Since we want to return only those products that belong to a particular category, I use the same **SELECT** statement from **GetProducts()**, but add the following **WHERE** clause: **WHERE CategoryID = @CategoryID**. The **@CategoryID** parameter indicates to the TableAdapter wizard that the method we're creating will require an input parameter of the corresponding type (namely, a nullable integer).
+The next step is to define the SQL query used to access the data. Since we want to return only those products that belong to a particular category, I use the same <strong>SELECT</strong> statement from <strong>GetProducts()</strong>, but add the following <strong>WHERE</strong> clause: <strong>WHERE CategoryID = @CategoryID</strong>. The <strong>@CategoryID</strong> parameter indicates to the TableAdapter wizard that the method we're creating will require an input parameter of the corresponding type (namely, a nullable integer).
 
 
 [![Enter a Query to Only Return Products in a Specified Category](creating-a-data-access-layer-cs/_static/image43.png)](creating-a-data-access-layer-cs/_static/image42.png)
@@ -236,7 +236,7 @@ The next step is to define the SQL query used to access the data. Since we want 
 **Figure 16**: Enter a Query to Only Return Products in a Specified Category ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image44.png))
 
 
-In the final step we can choose which data access patterns to use, as well as customize the names of the methods generated. For the Fill pattern, let's change the name to **FillByCategoryID** and for the return a DataTable return pattern (the **Get*X*** methods), let's use **GetProductsByCategoryID**.
+In the final step we can choose which data access patterns to use, as well as customize the names of the methods generated. For the Fill pattern, let's change the name to <strong>FillByCategoryID</strong> and for the return a DataTable return pattern (the <strong>Get*X</strong>* methods), let's use <strong>GetProductsByCategoryID</strong>.
 
 
 [![Choose the Names for the TableAdapter Methods](creating-a-data-access-layer-cs/_static/image46.png)](creating-a-data-access-layer-cs/_static/image45.png)
@@ -398,48 +398,48 @@ Take a few minutes to create the following TableAdapters and methods using the f
 
 - **ProductsTableAdapter**
 
-    - **GetProducts**: 
+  - **GetProducts**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample10.sql)]
-    - **GetProductsByCategoryID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample10.sql)]
+  - **GetProductsByCategoryID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample11.sql)]
-    - **GetProductsBySupplierID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample11.sql)]
+  - **GetProductsBySupplierID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample12.sql)]
-    - **GetProductByProductID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample12.sql)]
+  - **GetProductByProductID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample13.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample13.sql)]
 - **CategoriesTableAdapter**
 
-    - **GetCategories**: 
+  - **GetCategories**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample14.sql)]
-    - **GetCategoryByCategoryID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample14.sql)]
+  - **GetCategoryByCategoryID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample15.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample15.sql)]
 - **SuppliersTableAdapter**
 
-    - **GetSuppliers**: 
+  - **GetSuppliers**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample16.sql)]
-    - **GetSuppliersByCountry**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample16.sql)]
+  - **GetSuppliersByCountry**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample17.sql)]
-    - **GetSupplierBySupplierID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample17.sql)]
+  - **GetSupplierBySupplierID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample18.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample18.sql)]
 - **EmployeesTableAdapter**
 
-    - **GetEmployees**: 
+  - **GetEmployees**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample19.sql)]
-    - **GetEmployeesByManager**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample19.sql)]
+  - **GetEmployeesByManager**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample20.sql)]
-    - **GetEmployeeByEmployeeID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample20.sql)]
+  - **GetEmployeeByEmployeeID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample21.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample21.sql)]
 
 
 [![The DataSet Designer After the Four TableAdapters Have Been Added](creating-a-data-access-layer-cs/_static/image84.png)](creating-a-data-access-layer-cs/_static/image83.png)
@@ -538,5 +538,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Ron Green, Hilton Giesenow, Dennis Patterson, Liz Shulok, Abel Gomez, and Carlos Santos. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](creating-a-business-logic-layer-cs.md)
+> [!div class="step-by-step"]
+> [Next](creating-a-business-logic-layer-cs.md)

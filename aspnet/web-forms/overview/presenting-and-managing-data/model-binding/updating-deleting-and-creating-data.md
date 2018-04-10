@@ -128,6 +128,6 @@ In this tutorial, you enabled updating, deleting, and creating data. You ensured
 
 In the next [tutorial](sorting-paging-and-filtering-data.md) in this series, you will enable sorting, paging, and filtering data.
 
->[!div class="step-by-step"]
-[Previous](retrieving-data.md)
-[Next](sorting-paging-and-filtering-data.md)
+> [!div class="step-by-step"]
+> [Previous](retrieving-data.md)
+> [Next](sorting-paging-and-filtering-data.md)

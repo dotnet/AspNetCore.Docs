@@ -21,5 +21,5 @@ In this video you will learn how to use the RedirectPermanent helper method to i
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-permanent-redirect)
 
->[!div class="step-by-step"]
-[Next](aspnet-4-quick-hit-imperative-webforms-routing.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-4-quick-hit-imperative-webforms-routing.md)

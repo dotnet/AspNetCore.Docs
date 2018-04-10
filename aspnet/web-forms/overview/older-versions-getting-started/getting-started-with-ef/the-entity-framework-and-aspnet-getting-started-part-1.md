@@ -209,5 +209,5 @@ The Entity Framework uses XML to store information about the database, the data 
 
 You've now created a website, a database, and a data model. In the next walkthrough you'll begin working with data using the data model and the ASP.NET `EntityDataSource` control.
 
->[!div class="step-by-step"]
-[Next](the-entity-framework-and-aspnet-getting-started-part-2.md)
+> [!div class="step-by-step"]
+> [Next](the-entity-framework-and-aspnet-getting-started-part-2.md)

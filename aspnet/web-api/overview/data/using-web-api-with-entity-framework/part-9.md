@@ -39,6 +39,6 @@ The submit handler on the form is bound to the `addBook` function:
 
 The `addBook` function reads the current values of the data-bound form inputs to create a JSON object. Then it POSTs the JSON object to `/api/books`.
 
->[!div class="step-by-step"]
-[Previous](part-8.md)
-[Next](part-10.md)
+> [!div class="step-by-step"]
+> [Previous](part-8.md)
+> [Next](part-10.md)

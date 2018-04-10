@@ -21,6 +21,6 @@ There are a number of continuous integration tools that work on top of Team Foun
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-continuous-integration-with-team-foundation)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-discover-application-changes-prior-to-deployment.md)
-[Next](how-do-i-automate-testing-using-team-build.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-discover-application-changes-prior-to-deployment.md)
+> [Next](how-do-i-automate-testing-using-team-build.md)

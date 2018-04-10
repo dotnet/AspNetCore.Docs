@@ -216,6 +216,6 @@ For more information about how to handle sensitive information that should not b
 
 For information about other methods for keeping sensitive information out of source control, see [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 
->[!div class="step-by-step"]
-[Previous](automate-everything.md)
-[Next](continuous-integration-and-continuous-delivery.md)
+> [!div class="step-by-step"]
+> [Previous](automate-everything.md)
+> [Next](continuous-integration-and-continuous-delivery.md)

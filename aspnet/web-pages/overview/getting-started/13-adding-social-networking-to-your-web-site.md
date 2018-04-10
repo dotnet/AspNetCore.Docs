@@ -52,10 +52,10 @@ To display these glyphs, add the `LinkSharecode` helper to a page. People who vi
     [!code-cshtml[Main](13-adding-social-networking-to-your-web-site/samples/sample1.cshtml)]
 
     In this example, when the `LinkShare` helper runs, the page title is passed as a parameter, which in turn passes the page title to the social networking site. However, you could pass in any string you want. This example also specifies which social networking sites to include in the list. You can specify the social networking sites that are relevant to your site.
-- Run the *ListLinkShare.cshtml* page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.)
-- Click a glyph for one of the sites that you're signed up for. The link takes you to the page on the selected social network site where you can share a link. For example, if you click the Reddit link, you're taken to the `submit to reddit` page on the Reddit website.
+2. Run the *ListLinkShare.cshtml* page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.)
+3. Click a glyph for one of the sites that you're signed up for. The link takes you to the page on the selected social network site where you can share a link. For example, if you click the Reddit link, you're taken to the `submit to reddit` page on the Reddit website.
 
-    ![Picture 2](13-adding-social-networking-to-your-web-site/_static/image2.jpg)
+     ![Picture 2](13-adding-social-networking-to-your-web-site/_static/image2.jpg)
 
 <a id="Adding_a_Twitter_Feed"></a>
 ## Adding a Twitter Feed

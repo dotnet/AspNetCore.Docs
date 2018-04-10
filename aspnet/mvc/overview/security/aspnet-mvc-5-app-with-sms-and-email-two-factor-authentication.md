@@ -48,44 +48,44 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
 1. **Creating a User Account with an SMS provider**  
   
- Create a [Twilio](https://www.twilio.com/try-twilio) or an [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) account.
+   Create a [Twilio](https://www.twilio.com/try-twilio) or an [ASPSMS](https://www.aspsms.com/asp.net/identity/testcredits/) account.
 2. **Installing additional packages or adding service references**  
   
- Twilio:  
- In the Package Manager Console, enter the following command:  
+   Twilio:  
+   In the Package Manager Console, enter the following command:  
     `Install-Package Twilio`  
   
- ASPSMS:  
- The following service reference needs to be added:  
+   ASPSMS:  
+   The following service reference needs to be added:  
   
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image2.png)  
   
- Address:  
+   Address:  
     `https://webservice.aspsms.com/aspsmsx2.asmx?WSDL`  
   
- Namespace:  
+   Namespace:  
     `ASPSMSX2`
 3. **Figuring out SMS Provider User credentials**  
   
- Twilio:  
- From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth token**.  
+   Twilio:  
+   From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth token**.  
   
- ASPSMS:  
- From your account settings, navigate to **Userkey** and copy it together with your self-defined **Password**.  
+   ASPSMS:  
+   From your account settings, navigate to **Userkey** and copy it together with your self-defined **Password**.  
   
- We will later store these values in the *web.config* file within the keys `"SMSAccountIdentification"` and `"SMSAccountPassword"` .
+   We will later store these values in the *web.config* file within the keys `"SMSAccountIdentification"` and `"SMSAccountPassword"` .
 4. **Specifying SenderID / Originator**  
   
- Twilio:  
- From the **Numbers** tab, copy your Twilio phone number.  
+   Twilio:  
+   From the **Numbers** tab, copy your Twilio phone number.  
   
- ASPSMS:  
- Within the **Unlock Originators** Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks).  
+   ASPSMS:  
+   Within the **Unlock Originators** Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks).  
   
- We will later store this value in the *web.config* file within the key `"SMSAccountFrom"` .
+   We will later store this value in the *web.config* file within the key `"SMSAccountFrom"` .
 5. **Transferring SMS provider credentials into app**  
   
- Make the credentials and sender phone number available to the app. To keep things simple we will store these values in the *web.config* file. When we deploy to Azure, we can store the values securely in the **app settings** section on the web site configure tab. 
+   Make the credentials and sender phone number available to the app. To keep things simple we will store these values in the *web.config* file. When we deploy to Azure, we can store the values securely in the **app settings** section on the web site configure tab. 
 
     [!code-xml[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample1.xml?highlight=8-10)]
 
@@ -93,9 +93,9 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
     > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 6. **Implementation of data transfer to SMS provider**  
   
- Configure the `SmsService`  class in the *App\_Start\IdentityConfig.cs* file.  
+   Configure the `SmsService`  class in the *App\_Start\IdentityConfig.cs* file.  
   
- Depending on the used SMS provider activate either the **Twilio** or the **ASPSMS** section: 
+   Depending on the used SMS provider activate either the **Twilio** or the **ASPSMS** section: 
 
     [!code-csharp[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample2.cs)]
 7. Update the *Views\Manage\Index.cshtml* Razor view: (note: don't just remove the comments in the exiting code, use the code below.)  

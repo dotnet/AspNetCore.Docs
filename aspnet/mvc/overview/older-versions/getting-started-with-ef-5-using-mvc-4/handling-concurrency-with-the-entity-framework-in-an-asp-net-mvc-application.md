@@ -229,6 +229,6 @@ This completes the introduction to handling concurrency conflicts. For informati
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)

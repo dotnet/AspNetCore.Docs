@@ -305,6 +305,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Michael Emmings and Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](building-an-interface-to-select-one-user-account-from-many-cs.md)
-[Next](unlocking-and-approving-user-accounts-cs.md)
+> [!div class="step-by-step"]
+> [Previous](building-an-interface-to-select-one-user-account-from-many-cs.md)
+> [Next](unlocking-and-approving-user-accounts-cs.md)

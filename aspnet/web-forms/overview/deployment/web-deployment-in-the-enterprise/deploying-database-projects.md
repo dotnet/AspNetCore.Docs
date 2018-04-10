@@ -88,7 +88,7 @@ In this case:
 - The **/a** (or **/Action**) switch specifies what you want VSDBCMD to do. You can set this to **Import** or **Deploy**. The **Import** option is used to generate a .dbschema file from an existing database, and the **Deploy** option is used to deploy a .dbschema file to a target database.
 - The **/manifest** (or **/ManifestFile**) switch identifies the .deploymanifest file you want to deploy. If you wanted to use the .dbschema file instead, you'd use the **/model** (or **/ModelFile**) switch.
 - The **/cs** (or **/ConnectionString**) switch provides the connection string for the target database server. Note that this doesn't include the name of the database&#x2014;VSDBCMD needs to connect to the server to create the database; it doesn't need to connect to an individual database. If your .deploymanifest file includes a connection string, you can omit this switch. If you use the switch anyway, the switch value will override the .deploymanifest value.
-- The **/p:TargetDatabase** property provides the name you want to assign to the target database on creation. This overrides the value of the **TargetDatabase** property in the .deploymanifest file. You can use the **/p:** *[property name]*syntax to set a wide variety of deployment properties and to override any SQLCMD variables declared in your .sqlcmdvars file.
+- The <strong>/p:TargetDatabase</strong> property provides the name you want to assign to the target database on creation. This overrides the value of the <strong>TargetDatabase</strong> property in the .deploymanifest file. You can use the <strong>/p:</strong> <em>[property name]</em>syntax to set a wide variety of deployment properties and to override any SQLCMD variables declared in your .sqlcmdvars file.
 - The **/dd+** (or **/DeployToDatabase+**) switch indicates that you want to create a deployment and deploy it to the target environment. If you specify **/dd-**, or omit the switch, VSDBCMD will generate a deployment script but will not deploy it to the target environment. This switch is often the source of confusion and is explained in more detail in the next section.
 - The **/script** (or **/DeploymentScriptFile**) switch specifies where you want to generate the deployment script. This value does not affect the deployment process.
 
@@ -145,6 +145,6 @@ These topics on MSDN provide broader guidance and background information on Visu
 - [How to: Prepare a Database for Deployment From a Command Prompt by Using VSDBCMD.EXE](https://msdn.microsoft.com/library/dd193258.aspx)
 - [An Overview of Database Build and Deployment](https://msdn.microsoft.com/library/aa833165.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-web-packages.md)
-[Next](creating-and-running-a-deployment-command-file.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-web-packages.md)
+> [Next](creating-and-running-a-deployment-command-file.md)

@@ -93,6 +93,6 @@ The first list is filled automatically ([Click to view full-size image](using-ca
 
 The second list is filled according to the selection in the first list ([Click to view full-size image](using-cascadingdropdown-with-a-database-cs/_static/image6.png))
 
->[!div class="step-by-step"]
-[Previous](filling-a-list-using-cascadingdropdown-cs.md)
-[Next](presetting-list-entries-with-cascadingdropdown-cs.md)
+> [!div class="step-by-step"]
+> [Previous](filling-a-list-using-cascadingdropdown-cs.md)
+> [Next](presetting-list-entries-with-cascadingdropdown-cs.md)

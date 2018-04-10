@@ -126,6 +126,6 @@ We'll add a few rows of Dinner data that we can use later as we start implementi
 
 We've finished creating our database. Let's now create model classes that we can use to query and update it.
 
->[!div class="step-by-step"]
-[Previous](create-a-new-aspnet-mvc-project.md)
-[Next](build-a-model-with-business-rule-validations.md)
+> [!div class="step-by-step"]
+> [Previous](create-a-new-aspnet-mvc-project.md)
+> [Next](build-a-model-with-business-rule-validations.md)

@@ -21,6 +21,6 @@ This video demonstrates the use of the ListSearch extender control from the ASP.
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-listsearch-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-nobot-control.md)
-[Next](how-do-i-use-the-pagingbulletedlist-extender-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-nobot-control.md)
+> [Next](how-do-i-use-the-pagingbulletedlist-extender-control.md)

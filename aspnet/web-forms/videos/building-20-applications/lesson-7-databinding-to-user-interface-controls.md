@@ -21,6 +21,6 @@ In this lesson, you will learn how to display data in your ASP.NET2.0 web applic
 
 [&#9654; Watch video (22 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-7-databinding-to-user-interface-controls)
 
->[!div class="step-by-step"]
-[Previous](lesson-6-working-with-stylesheets-and-master-pages.md)
-[Next](lesson-8-working-with-the-gridview-and-formview.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-6-working-with-stylesheets-and-master-pages.md)
+> [Next](lesson-8-working-with-the-gridview-and-formview.md)

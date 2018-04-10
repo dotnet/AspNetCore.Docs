@@ -21,6 +21,6 @@ SQL Server beginners will walkthrough the entire workflow of creating a database
 
 [&#9654; Watch video (65 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/connecting-your-web-application-to-sql-server-2005-express-edition)
 
->[!div class="step-by-step"]
-[Previous](understanding-security-and-network-connectivity.md)
-[Next](using-sql-server-management-studio.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-security-and-network-connectivity.md)
+> [Next](using-sql-server-management-studio.md)

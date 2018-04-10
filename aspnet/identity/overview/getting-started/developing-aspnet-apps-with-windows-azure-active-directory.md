@@ -47,7 +47,7 @@ This tutorial will show you how to create an ASP.NET application that is configu
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image4.png)  
   
- Save the password, you will be required to change the password after the first log in. The following image shows the new admin account. You must use the Azure Active Directory to log into your app, not the Microsoft account also shown on this page.  
+   Save the password, you will be required to change the password after the first log in. The following image shows the new admin account. You must use the Azure Active Directory to log into your app, not the Microsoft account also shown on this page.  
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image5.png)
 
@@ -60,11 +60,11 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image6.png)
 3. On the **Change Authentication** dialog, select **Organizational Accounts**. These options can be used to automatically register your application with Azure AD as well as automatically configure your application to integrate with Azure AD. You don't have to use the **Change Authentication** dialog to register and configure your application, but it makes it much easier. If you are using Visual Studio 2012 for example, you can still manually register the application in the Azure Management Portal and update its configuration to integrate with Azure AD.  
- In the drop-down menus, select **Cloud - Single Organization** and **Single Sign On, Read directory data**. Enter the domain for your Azure AD directory, for example (in the images below) *aricka0yahoo.onmicrosoft.com*, and then click **OK**. You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
+   In the drop-down menus, select **Cloud - Single Organization** and **Single Sign On, Read directory data**. Enter the domain for your Azure AD directory, for example (in the images below) *aricka0yahoo.onmicrosoft.com*, and then click **OK**. You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image7.png)  
   
- The following image shows the domain name from the Azure portal.  
+   The following image shows the domain name from the Azure portal.  
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image8.png)  
 
@@ -89,11 +89,11 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image13.png)  
   
- If you get the error:  
- Value cannot be null or empty. Parameter name: linkText   
+   If you get the error:  
+   Value cannot be null or empty. Parameter name: linkText   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image14.png)  
   
- see the [debug](#dbg) section at the end of the tutorial.
+   see the [debug](#dbg) section at the end of the tutorial.
 
 ## Basics of the Graph API
 

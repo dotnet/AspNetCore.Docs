@@ -21,6 +21,6 @@ This video demonstrates the basics of the Tabs control from the ASP.NET AJAX Con
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-tabs-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-resizablecontrol-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-slideshow-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-resizablecontrol-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-slideshow-extender.md)

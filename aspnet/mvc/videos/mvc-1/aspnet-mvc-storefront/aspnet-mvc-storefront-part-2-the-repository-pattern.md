@@ -21,6 +21,6 @@ Rob Conery walks through Repository implementation and writes out the first main
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-2-the-repository-pattern)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-1-architectural-discussion-and-overview.md)
-[Next](aspnet-mvc-storefront-part-3-pipes-and-filters.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-1-architectural-discussion-and-overview.md)
+> [Next](aspnet-mvc-storefront-part-3-pipes-and-filters.md)

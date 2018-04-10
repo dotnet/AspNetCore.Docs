@@ -21,6 +21,6 @@ Using an existing web application, I will show you how to use Visual Studio 2008
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/javascript-debugging-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Previous](javascript-intellisense-support-in-visual-studio-2008.md)
-[Next](multi-targeting-support-in-visual-studio-2008.md)
+> [!div class="step-by-step"]
+> [Previous](javascript-intellisense-support-in-visual-studio-2008.md)
+> [Next](multi-targeting-support-in-visual-studio-2008.md)

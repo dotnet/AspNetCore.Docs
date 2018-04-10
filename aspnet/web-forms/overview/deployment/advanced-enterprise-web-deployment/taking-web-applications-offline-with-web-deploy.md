@@ -170,6 +170,6 @@ For more information on the packaging and deployment process, see [Building and 
 
 If you publish your web applications directly from Visual Studio, rather than using the custom MSBuild project file approach described in these tutorials, you'll need to use a slightly different approach to take your application offline during the publishing process. For more information, see [How to take your web app offline during publishing](https://go.microsoft.com/?linkid=9805135) (blog post).
 
->[!div class="step-by-step"]
-[Previous](excluding-files-and-folders-from-deployment.md)
-[Next](running-windows-powershell-scripts-from-msbuild-project-files.md)
+> [!div class="step-by-step"]
+> [Previous](excluding-files-and-folders-from-deployment.md)
+> [Next](running-windows-powershell-scripts-from-msbuild-project-files.md)

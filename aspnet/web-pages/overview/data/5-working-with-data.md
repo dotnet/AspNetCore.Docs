@@ -356,7 +356,7 @@ This section shows how to let users delete a product from the *Product* database
 6. Click the **Delete** link for one of the products. The *DeleteProduct.cshtml* page is displayed to confirm that you want to delete that record.
 7. Click the **Delete** button. The product record is deleted and the page is refreshed with an updated product listing.
 
-> [!TIP] 
+> [!TIP]
 > 
 > <a id="SB_ConnectingToADatabase"></a>
 > ### Connecting to a Database

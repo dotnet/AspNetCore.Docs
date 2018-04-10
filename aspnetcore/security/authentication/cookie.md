@@ -22,8 +22,7 @@ For information on migrating cookie-based authentication from ASP.NET Core 1.x t
 
 ## Configuration
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 If you aren't using the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), install version 2.0+ of the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) NuGet package.
 
 In the `ConfigureServices` method, create the Authentication Middleware service with the `AddAuthentication` and `AddCookie` methods:
@@ -73,8 +72,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware/index) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
 
 Install the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) NuGet package in your project. This package contains the cookie middleware.
@@ -119,8 +117,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 });
 ```
 
----
-
+* * *
 ## Cookie Policy Middleware
 
 [Cookie Policy Middleware](/dotnet/api/microsoft.aspnetcore.cookiepolicy.cookiepolicymiddleware) enables cookie policy capabilities in an app. Adding the middleware to the app processing pipeline is order sensitive; it only affects components registered after it in the pipeline.
@@ -162,14 +159,12 @@ The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect your
 
 To create a cookie holding user information, you must construct a [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal). The user information is serialized and stored in the cookie. 
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Create a [ClaimsIdentity](/dotnet/api/system.security.claims.claimsidentity) with any required [Claim](/dotnet/api/system.security.claims.claim)s and call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
 
 [!code-csharp[](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1.signinasync?view=aspnetcore-1.1) to sign in the user:
 
 ```csharp
@@ -178,22 +173,19 @@ await HttpContext.Authentication.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
----
-
+* * *
 `SignInAsync` creates an encrypted cookie and adds it to the current response. If you don't specify an `AuthenticationScheme`, the default scheme is used.
 
 Under the covers, the encryption used is ASP.NET Core's [Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) system. If you're hosting app on multiple machines, load balancing across apps, or using a web farm, then you must [configure data protection](xref:security/data-protection/configuration/overview) to use the same key ring and app identifier.
 
 ## Signing out
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signoutasync?view=aspnetcore-2.0):
 
 [!code-csharp[](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1.signoutasync?view=aspnetcore-1.1):
 
 ```csharp
@@ -201,8 +193,7 @@ await HttpContext.Authentication.SignOutAsync(
     CookieAuthenticationDefaults.AuthenticationScheme);
 ```
 
----
-
+* * *
 If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider. Otherwise, the default scheme is used.
 
 ## Reacting to back-end changes

@@ -87,7 +87,7 @@ The default ASP.NET MVC routing rules are registered within the "RegisterRoutes"
 
 The "routes.MapRoute()" method call above registers a default routing rule that maps incoming URLs to controller classes using the URL format: "/{controller}/{action}/{id}" – where "controller" is the name of the controller class to instantiate, "action" is the name of a public method to invoke on it, and "id" is an optional parameter embedded within the URL that can be passed as an argument to the method. The third parameter passed to the "MapRoute()" method call is a set of default values to use for the controller/action/id values in the event that they are not present in the URL (Controller = "Home", Action="Index", Id="").
 
-Below is a table that demonstrates how a variety of URLs are mapped using the default "*/{controllers}/{action}/{id}"*route rule:
+Below is a table that demonstrates how a variety of URLs are mapped using the default "<em>/{controllers}/{action}/{id}"</em>route rule:
 
 | **URL** | **Controller Class** | **Action Method** | **Parameters Passed** |
 | --- | --- | --- | --- |
@@ -296,6 +296,6 @@ We now have a nice Dinner browsing experience built.
 
 Let's now enable CRUD (Create, Read, Update, Delete) data form editing support.
 
->[!div class="step-by-step"]
-[Previous](build-a-model-with-business-rule-validations.md)
-[Next](provide-crud-create-read-update-delete-data-form-entry-support.md)
+> [!div class="step-by-step"]
+> [Previous](build-a-model-with-business-rule-validations.md)
+> [Next](provide-crud-create-read-update-delete-data-form-entry-support.md)

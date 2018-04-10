@@ -123,7 +123,7 @@ The first thing the script does is create the web app by calling the `New-AzureW
 
 ### Create the storage account
 
-Then the main script runs the *New-AzureStorage.ps1* script, specifying "*&lt;websitename&gt;*storage" for the storage account name, and the same data center location as the web app.
+Then the main script runs the <em>New-AzureStorage.ps1</em> script, specifying "<em>&lt;websitename&gt;</em>storage" for the storage account name, and the same data center location as the web app.
 
 [!code-powershell[Main](automate-everything/samples/sample4.ps1?highlight=3)]
 
@@ -259,6 +259,6 @@ In the [next chapter](source-control.md) we'll look at source code and explain w
 - [Using Windows PowerShell Scripts to Publish to Dev and Test Environments](https://msdn.microsoft.com/library/azure/dn642480.aspx). MSDN documentation that explains how to use publish scripts that Visual Studio automatically generates for web projects.
 - [PowerShell Tools for Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597). Visual Studio extension that adds language support for Windows PowerShell in Visual Studio.
 
->[!div class="step-by-step"]
-[Previous](introduction.md)
-[Next](source-control.md)
+> [!div class="step-by-step"]
+> [Previous](introduction.md)
+> [Next](source-control.md)

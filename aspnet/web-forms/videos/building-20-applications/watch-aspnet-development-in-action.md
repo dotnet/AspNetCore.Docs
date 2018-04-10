@@ -21,5 +21,5 @@ Watch how easy it is to build a "to do" task list application from scratch using
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/watch-aspnet-development-in-action)
 
->[!div class="step-by-step"]
-[Previous](lesson-8-working-with-the-gridview-and-formview.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-8-working-with-the-gridview-and-formview.md)

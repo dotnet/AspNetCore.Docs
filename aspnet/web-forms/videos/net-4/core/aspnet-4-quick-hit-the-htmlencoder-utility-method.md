@@ -21,5 +21,5 @@ In this video you will learn about the HtmlEncoder utility method.
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-the-htmlencoder-utility-method)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-predictable-client-ids.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-predictable-client-ids.md)

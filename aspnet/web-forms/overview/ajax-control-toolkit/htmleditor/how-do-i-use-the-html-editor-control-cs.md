@@ -106,5 +106,5 @@ Imagine, for example, that you are creating a blog application. In this situatio
 
 In this tutorial, you were provided with a brief overview of the HTML Editor control included in the AJAX Control Toolkit. You learned how to use the HTML Editor to accept rich content from a user and submit the content to the server. We also discussed how you can customize the toolbar buttons that are displayed by the HTML Editor. Finally, you learned how to avoid Cross-Site Scripting Attacks when using the HTML Editor to accept potentially malicious input.
 
->[!div class="step-by-step"]
-[Next](how-do-i-use-the-html-editor-control-vb.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-use-the-html-editor-control-vb.md)

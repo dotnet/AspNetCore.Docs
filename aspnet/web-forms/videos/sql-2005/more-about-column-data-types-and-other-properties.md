@@ -21,6 +21,6 @@ SQL Server beginners will explore data integrity, learn which data types to use 
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/more-about-column-data-types-and-other-properties)
 
->[!div class="step-by-step"]
-[Previous](understanding-database-tables-and-records.md)
-[Next](designing-relational-database-tables.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-database-tables-and-records.md)
+> [Next](designing-relational-database-tables.md)

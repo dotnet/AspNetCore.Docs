@@ -21,5 +21,5 @@ Visual Basic programmers will learn how to write simple LINQ queries over object
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-linq)
 
->[!div class="step-by-step"]
-[Next](how-do-i-perform-group-and-aggregate-queries.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-perform-group-and-aggregate-queries.md)

@@ -160,6 +160,6 @@ For additional web development best practices, see the following resources:
 - [The Fix It Sample Application - Best Practices](the-fix-it-sample-application.md#bestpractices). The appendix to this e-book lists a number of best practices that were implemented in the Fix It application.
 - [Web Developer Checklist](http://webdevchecklist.com/asp.net)
 
->[!div class="step-by-step"]
-[Previous](continuous-integration-and-continuous-delivery.md)
-[Next](single-sign-on.md)
+> [!div class="step-by-step"]
+> [Previous](continuous-integration-and-continuous-delivery.md)
+> [Next](single-sign-on.md)

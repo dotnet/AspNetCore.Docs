@@ -21,6 +21,6 @@ This video will explore the application structure of your generated ASP.NET Dyna
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/begin-editing-the-templates-in-aspnet-dynamic-data-applications)
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-dynamic-data.md)
-[Next](begin-modifying-dynamic-data-applications-with-url-routing.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-dynamic-data.md)
+> [Next](begin-modifying-dynamic-data-applications-with-url-routing.md)

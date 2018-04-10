@@ -59,6 +59,6 @@ If you attempt to invoke the CompanySecrets() controller action by typing /Work/
 
 **Figure 01**: Invoking a NonAction method([Click to view full-size image](creating-an-action-cs/_static/image2.png))
 
->[!div class="step-by-step"]
-[Previous](creating-a-controller-cs.md)
-[Next](asp-net-mvc-routing-overview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-controller-cs.md)
+> [Next](asp-net-mvc-routing-overview-vb.md)

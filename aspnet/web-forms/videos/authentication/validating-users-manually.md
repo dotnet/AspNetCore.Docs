@@ -21,6 +21,6 @@ In this video Joe Stagner shows you how to create your own web form and process 
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/validating-users-manually)
 
->[!div class="step-by-step"]
-[Previous](creating-user-accounts-programmatically.md)
-[Next](validating-users-with-the-login-control.md)
+> [!div class="step-by-step"]
+> [Previous](creating-user-accounts-programmatically.md)
+> [Next](validating-users-with-the-login-control.md)

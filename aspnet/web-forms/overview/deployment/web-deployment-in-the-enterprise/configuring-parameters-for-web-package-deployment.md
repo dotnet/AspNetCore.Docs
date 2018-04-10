@@ -143,6 +143,6 @@ For information on how to create web packages, see [Building and Packaging Web A
 
 For more general information on parameterization in Web Deploy, see [Web Deploy Parameterization in Action](https://go.microsoft.com/?linkid=9805119) (blog post).
 
->[!div class="step-by-step"]
-[Previous](building-and-packaging-web-application-projects.md)
-[Next](deploying-web-packages.md)
+> [!div class="step-by-step"]
+> [Previous](building-and-packaging-web-application-projects.md)
+> [Next](deploying-web-packages.md)

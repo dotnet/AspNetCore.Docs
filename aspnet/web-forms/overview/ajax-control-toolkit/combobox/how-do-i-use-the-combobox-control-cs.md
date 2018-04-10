@@ -167,5 +167,5 @@ You use the ComboBox AutoCompleteMode property to specify what happens when some
 
 In this tutorial, you learned how to use the ComboBox control to display a fixed set of items. We bound the ComboBox control both to a static set of items and to a database table. Finally, you learned how to modify the behavior of the ComboBox by setting its DropDownStyle and AutoCompleteMode properties.
 
->[!div class="step-by-step"]
-[Next](how-do-i-use-the-combobox-control-vb.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-use-the-combobox-control-vb.md)

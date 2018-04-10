@@ -21,6 +21,6 @@ In this video we will build on an existing style sheet and enhance it with eleme
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-working-with-visual-studio-2008-net-framework.md)
-[Next](how-do-i-advance-cascading-style-sheet-features-and-management.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-working-with-visual-studio-2008-net-framework.md)
+> [Next](how-do-i-advance-cascading-style-sheet-features-and-management.md)

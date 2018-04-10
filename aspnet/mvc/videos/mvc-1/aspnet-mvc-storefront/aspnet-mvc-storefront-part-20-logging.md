@@ -21,6 +21,6 @@ In this episode I plug in logging - something that probably should have been imp
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-20-logging)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)
-[Next](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)
+> [Next](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)

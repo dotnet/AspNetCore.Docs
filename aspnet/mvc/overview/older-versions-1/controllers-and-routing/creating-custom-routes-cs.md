@@ -68,6 +68,6 @@ Notice that the Entry() method in Listing 2 accepts a parameter of type DateTime
 
 The goal of this tutorial was to demonstrate how you can create a custom route. You learned how to add a custom route to the route table in the Global.asax file that represents blog entries. We discussed how to map requests for blog entries to a controller named ArchiveController and a controller action named Entry().
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-controllers-overview-cs.md)
-[Next](creating-a-route-constraint-cs.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-controllers-overview-cs.md)
+> [Next](creating-a-route-constraint-cs.md)

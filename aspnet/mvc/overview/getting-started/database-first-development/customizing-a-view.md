@@ -36,6 +36,6 @@ Browse to the Students/Index view again and select **Details** for one of the st
 
 ![student with enrollment](customizing-a-view/_static/image1.png)
 
->[!div class="step-by-step"]
-[Previous](changing-the-database.md)
-[Next](enhancing-data-validation.md)
+> [!div class="step-by-step"]
+> [Previous](changing-the-database.md)
+> [Next](enhancing-data-validation.md)

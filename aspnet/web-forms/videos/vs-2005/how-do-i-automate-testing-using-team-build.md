@@ -21,6 +21,6 @@ In this video we learn how to use Visual Studio Team System to define the automa
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-automate-testing-using-team-build)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-continuous-integration-with-team-foundation.md)
-[Next](how-do-i-deploy-a-web-application-during-a-team-build.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-continuous-integration-with-team-foundation.md)
+> [Next](how-do-i-deploy-a-web-application-during-a-team-build.md)

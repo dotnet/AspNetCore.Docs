@@ -14,7 +14,7 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
+[!INCLUDE [RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.
 
@@ -30,7 +30,7 @@ EF Core 2.0 is the latest version of EF but doesn't yet have all the features of
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs.md)]
+[!INCLUDE [](~/includes/net-core-prereqs.md)]
 
 ## Troubleshooting
 
@@ -306,7 +306,7 @@ Right-click the **Student** table and click **View Data** to see the columns tha
 
 ![Student table in SSOX](intro/_static/ssox-student-table.png)
 
-The *.mdf* and *.ldf* database files are in the *C:\Users\\<yourusername>* folder.
+The <em>.mdf</em> and <em>.ldf</em> database files are in the <em>C:\Users\\<yourusername></em> folder.
 
 Because you're calling `EnsureCreated` in the initializer method that runs on app start, you could now make a change to the `Student` class, delete the database, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, you'll see a new `EmailAddress` column in the re-created table.
 
@@ -358,5 +358,5 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 You've now created a simple application that uses the Entity Framework Core and SQL Server Express LocalDB to store and display data. In the following tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
 
->[!div class="step-by-step"]
-[Next](crud.md)
+> [!div class="step-by-step"]
+> [Next](crud.md)

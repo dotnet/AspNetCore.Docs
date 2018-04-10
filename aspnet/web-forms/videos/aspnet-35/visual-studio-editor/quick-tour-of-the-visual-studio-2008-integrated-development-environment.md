@@ -21,6 +21,6 @@ Take a tour of the new features and changes to the IDE in Visual Studio 2008. Se
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/quick-tour-of-the-visual-studio-2008-integrated-development-environment)
 
->[!div class="step-by-step"]
-[Previous](intellisense-for-jscript-and-aspnet-ajax.md)
-[Next](creating-and-modifying-a-css-file.md)
+> [!div class="step-by-step"]
+> [Previous](intellisense-for-jscript-and-aspnet-ajax.md)
+> [Next](creating-and-modifying-a-css-file.md)

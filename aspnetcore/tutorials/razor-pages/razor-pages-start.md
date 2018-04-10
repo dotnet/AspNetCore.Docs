@@ -26,7 +26,7 @@ There are three versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 
@@ -35,7 +35,7 @@ There are three versions of this tutorial:
   ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
 
-  [!INCLUDE[install 2.0](../../includes/dotnetcore-on-dotnetfx-vs.md)]
+  [!INCLUDE [install 2.0](../../includes/dotnetcore-on-dotnetfx-vs.md)]
 
 The Visual Studio template creates a starter project:
 
@@ -48,7 +48,7 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 * Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
-[!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
+[!INCLUDE [razor-pages-start](../../includes/RP/razor-pages-start.md)]
 
->[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/model)
+> [!div class="step-by-step"]
+> [Next: Adding a model](xref:tutorials/razor-pages/model)

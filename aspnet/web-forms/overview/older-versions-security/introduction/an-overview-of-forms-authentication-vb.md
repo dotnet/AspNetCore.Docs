@@ -471,6 +471,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Alicja Maziarz, John Suru, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4guysfromrolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](security-basics-and-asp-net-support-vb.md)
-[Next](forms-authentication-configuration-and-advanced-topics-vb.md)
+> [!div class="step-by-step"]
+> [Previous](security-basics-and-asp-net-support-vb.md)
+> [Next](forms-authentication-configuration-and-advanced-topics-vb.md)

@@ -21,6 +21,6 @@ SQL Server Reporting Services allows you to design and deploy nicely formatted a
 
 [&#9654; Watch video (32 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-reporting-services)
 
->[!div class="step-by-step"]
-[Previous](using-sql-server-management-studio.md)
-[Next](building-and-customizing-reports-in-business-intelligence-development-studio.md)
+> [!div class="step-by-step"]
+> [Previous](using-sql-server-management-studio.md)
+> [Next](building-and-customizing-reports-in-business-intelligence-development-studio.md)

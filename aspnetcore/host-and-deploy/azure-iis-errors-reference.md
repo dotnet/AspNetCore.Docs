@@ -25,7 +25,7 @@ Collect the following information:
 
 Compare the information to the following common errors. If a match is found, follow the troubleshooting advice.
 
-[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+[!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 ## Installer unable to obtain VC++ Redistributable
 

@@ -21,6 +21,6 @@ I don't like the complexity that's crept into my application. Not sure how else 
 
 [&#9654; Watch video (46 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-22-restructuring-rerouting-and-paypal.md)
-[Next](aspnet-mvc-storefront-part-24-finis.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-22-restructuring-rerouting-and-paypal.md)
+> [Next](aspnet-mvc-storefront-part-24-finis.md)

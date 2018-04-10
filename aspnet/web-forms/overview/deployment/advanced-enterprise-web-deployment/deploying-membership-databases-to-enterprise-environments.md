@@ -63,6 +63,6 @@ This topic described some of the challenges you may face when you need to provis
 
 For more guidance and examples of how to use VSDBCMD, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx) and [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/library/dd172135.aspx). For more information on using aspnet\_regsql.exe to create membership databases, see [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/library/ms229862(v=vs.100).aspx). For more general guidance on deploying membership databases, see [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/library/ff361972(v=vs.100).aspx).
 
->[!div class="step-by-step"]
-[Previous](deploying-database-role-memberships-to-test-environments.md)
-[Next](excluding-files-and-folders-from-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-database-role-memberships-to-test-environments.md)
+> [Next](excluding-files-and-folders-from-deployment.md)

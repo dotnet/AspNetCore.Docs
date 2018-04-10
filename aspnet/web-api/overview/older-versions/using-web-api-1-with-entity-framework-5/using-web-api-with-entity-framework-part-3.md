@@ -97,6 +97,6 @@ Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first reque
 
 [!code-console[Main](using-web-api-with-entity-framework-part-3/samples/sample6.cmd)]
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-2.md)
-[Next](using-web-api-with-entity-framework-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-2.md)
+> [Next](using-web-api-with-entity-framework-part-4.md)

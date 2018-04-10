@@ -21,6 +21,6 @@ Rob Conery works with Damien Guard to refactor the database to deal with test da
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-5-globalization)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-4-linq-to-sql-spike.md)
-[Next](aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-4-linq-to-sql-spike.md)
+> [Next](aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work.md)
