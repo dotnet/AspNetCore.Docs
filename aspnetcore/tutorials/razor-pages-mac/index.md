@@ -3,6 +3,7 @@ title: Create a Razor Pages web app with ASP.NET Core on macOS with Visual Studi
 author: rick-anderson
 description: Create a Razor Pages web app with ASP.NET Core and EF Core.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 07/26/2017
 ms.prod: aspnet-core
