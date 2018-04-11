@@ -222,7 +222,7 @@
 ## [Introduction](xref:signalr/introduction)
 ## [Get started](xref:signalr/get-started)
 ## [Hubs](xref:signalr/hubs)
-## [JavaScript Client](xref:signalr/javascript-client)
+## [JavaScript client](xref:signalr/javascript-client)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
