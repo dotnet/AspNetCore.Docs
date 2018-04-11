@@ -59,7 +59,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 
 [!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
-:::monikerRange: '>= aspnetcore-2.0'
+::: moniker range=">= aspnetcore-2.1"
 
 <a name="setcompatibilityversion"></a>
 ### SetCompatibilityVersion
@@ -81,10 +81,9 @@ The following code sets the compatibility mode to ASP.NET Core 2.1, except for t
 
 ASP.NET Core 2.1 and later applications that don't call `.SetCompatibilityVersion`
 
+The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) contains all the compatibility options you can set.
 
-<!--
 Consider ASP.NET Core 3.0, which is not scheduled on the [ASP.NET Core Schedule and Roadmap](https://github.com/aspnet/Home/wiki/Roadmap). At some future date, there will be an ASP.NET Core 3.0 version. Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x.
--->
 
 ::: moniker-end
 
