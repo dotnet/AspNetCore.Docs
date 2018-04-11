@@ -221,7 +221,7 @@ Tip: Routes are evaluated in the order in which they're configured. Consequently
 
 ## Creating a new project
 
-JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
@@ -234,11 +234,8 @@ A list of available SPA templates is displayed:
 | Templates                                 | Short Name | Language | Tags        |
 |:------------------------------------------|:-----------|:---------|:------------|
 | MVC ASP.NET Core with Angular             | angular    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Aurelia             | aurelia    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Knockout.js         | knockout   | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js            | react      | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
