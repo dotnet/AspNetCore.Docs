@@ -5,7 +5,7 @@ description: Discover how the Startup class in ASP.NET Core configures services 
 manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/08/2017
+ms.date: 4/13/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -58,6 +58,35 @@ The web host may configure some services before `Startup` methods are called. De
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
+
+:::monikerRange: '>= aspnetcore-2.0'
+
+<a name="setcompatibilityversion"></a>
+### SetCompatibilityVersion
+
+The `SetCompatibilityVersion` method allows an app to opt-in or opt-out to potentially breaking changes in ASP.NET Core APIs. By opting in, you get the latest behavior, and the long term behavior of ASP.NET Core.
+
+The following code sets the compatibility mode to ASP.NET Core 2.1:
+
+[!code-csharp[Main](startup/sampleCompatibility/Startup.cs?name=snippet1)]
+
+Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking changes introduced in ASP.NET Core 2.1 and later 2.x versions . This protection does not extend to the next major version.
+
+The following code sets the compatibility mode to ASP.NET Core 2.1, except for the following behavoirs:
+
+* [AllowCombiningAuthorizeFilters](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
+* [InputFormatterExceptionPolicy](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
+
+[!code-csharp[Main](startup/sampleCompatibility/Startup2.cs?name=snippet1)]
+
+ASP.NET Core 2.1 and later applications that don't call `.SetCompatibilityVersion`
+
+
+<!--
+Consider ASP.NET Core 3.0, which is not scheduled on the [ASP.NET Core Schedule and Roadmap](https://github.com/aspnet/Home/wiki/Roadmap). At some future date, there will be an ASP.NET Core 3.0 version. Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x.
+-->
+
+::: moniker-end
 
 ## Services available in Startup
 
