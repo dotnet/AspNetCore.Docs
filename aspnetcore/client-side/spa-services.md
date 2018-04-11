@@ -221,7 +221,7 @@ Tip: Routes are evaluated in the order in which they're configured. Consequently
 
 ## Creating a new project
 
-JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React and Redux.
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
