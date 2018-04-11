@@ -16,7 +16,7 @@ uid: signalr/introduction
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
-[!INCLUDE [2.1 preview notice](../includes/includes/2.1.md)]
+[!INCLUDE [2.1 preview notice](../includes/2.1.md)]
 
 ## What is SignalR?
 

@@ -17,7 +17,7 @@ uid: signalr/hubs
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[!INCLUDE [2.1 preview notice](../includes/includes/2.1.md)]
+[!INCLUDE [2.1 preview notice](../includes/2.1.md)]
 
 ## What is a SignalR hub
 
