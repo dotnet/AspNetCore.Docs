@@ -90,14 +90,3 @@ The framework includes built-in attribute-based filters that you can subclass. F
 The following code applies the `AddHeader` attribute:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
-
-The following filter attributes can be overloaded:
-
-* `ActionFilterAttribute`
-* `ExceptionFilterAttribute`
-* `ResultFilterAttribute`
-* `FormatFilterAttribute`
-* `ServiceFilterAttribute`
-* `TypeFilterAttribute`
-
-`TypeFilterAttribute` and `ServiceFilterAttribute` are explained in [Dependency injection and filters](xref:mvc/controllers/filters#dependency-injection).
