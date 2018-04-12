@@ -14,13 +14,9 @@ namespace PageFilter.Filters
             _value = value;
         }
 
-        public override async Task OnResultExecutionAsync(
-            ResultExecutingContext context,
-            ResultExecutionDelegate next)
+        public override void OnResultExecuting(ResultExecutingContext context)
         {
-            context.HttpContext.Response.Headers.Add(
-                            _name, new string[] { _value });
-            await next.Invoke();
+            context.HttpContext.Response.Headers.Add(_name, new string[] { _value });
         }
     }
 }
