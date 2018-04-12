@@ -33,7 +33,7 @@ This tutorial demonstrates the following SignalR development tasks:
 
 > [!NOTE]
 > The sample code in this article uses modern ECMAScript 6 features that aren't supported in IE 11.
-> To convert the sample for IE 11 and older browser support, use the [Babel](https://babeljs.io/repl) transpiler.
+> To convert the sample for IE 11 and older browser support, use [Babel](https://babeljs.io/repl).
 
 # Prerequisites
 
