@@ -72,7 +72,7 @@ ASP.NET Core 2.1 preview1 or later implements HSTS with the `UseHsts` extension 
 
 [!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
 
-`UseHsts` not recommend in development because calling `UseHsts` excludes the local loopback address.
+`UseHsts` not recommend in development because the HSTS header is highly cachable by browsers. By default, UseHsts excludes the local loopback address.
 
 The following code:
 
@@ -81,6 +81,7 @@ The following code:
 * Sets the preload parameter of the Strict-Transport-Security header. Preload is not part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains. 
 * Explicitly sets the max-age parameter of the Strict-Transport-Security header to to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
+* Adds `example.com` to the list of hosts to exclude.
 
 `UseHsts` excludes the following loopback hosts:
 
@@ -88,5 +89,4 @@ The following code:
 * `127.0.0.1` : The IPv4 loopback address.
 * `[::1]` : The IPv6 loopback address.
 
-
-
+The preceding example shows how to add additional hosts.
