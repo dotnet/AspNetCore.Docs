@@ -75,8 +75,6 @@ See [Sub-application configuration](xref:host-and-deploy/iis/index#sub-applicati
 | `stdoutLogFile` | <p>Optional string attribute.</p><p>Specifies the relative or absolute file path for which **stdout** and **stderr** from the process specified in **processPath** are logged. Relative paths are relative to the root of the site. Any path starting with `.` are relative to the site root and all other paths are treated as absolute paths. Any folders provided in the path must exist in order for the module to create the log file. Using underscore delimiters, a timestamp, process ID, and file extension (*.log*) are added to the last segment of the **stdoutLogFile** path. If `.\logs\stdout` is supplied as a value, an example stdout log is saved as *stdout_20180205194132_1934.log* in the *logs* folder when saved on 2/5/2018 at 19:41:32 with a process ID of 1934.</p> | `aspnetcore-stdout` |
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
-[!INCLUDE[](~/includes/2.1.md)]
-
 | Attribute | Description | Default |
 | --------- | ----------- | :-----: |
 | `arguments` | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p>| |
