@@ -91,3 +91,10 @@ The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microso
 The following code applies the `AddHeader` attribute:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
+
+<a name="auth"></a>
+## Authorize filter attribute
+
+The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.0) attribute can be applied to a `PageModel`:
+
+[!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilterModel.cshtml.cs?name=snippet1&highlight=7)]
