@@ -72,14 +72,14 @@ The following code sets the compatibility mode to ASP.NET Core 2.1:
 
 Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking changes introduced in ASP.NET Core 2.1 and later 2.x versions . This protection does not extend to the next major version.
 
+The default compatibility for ASP.NET Core 2.1 and later  2.x applications that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
+
 The following code sets the compatibility mode to ASP.NET Core 2.1, except for the following behavoirs:
 
 * [AllowCombiningAuthorizeFilters](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
 * [InputFormatterExceptionPolicy](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
 
 [!code-csharp[Main](startup/sampleCompatibility/Startup2.cs?name=snippet1)]
-
-ASP.NET Core 2.1 and later applications that don't call `.SetCompatibilityVersion`
 
 The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)class contains all the compatibility options you can set.
 
