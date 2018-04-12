@@ -19,19 +19,22 @@ namespace PageFilter.Pages
             _logger.LogDebug("IndexModel/OnGet");
         }
         
-        public override void OnPageHandlerSelected(PageHandlerSelectedContext context)
+        public override void OnPageHandlerSelected(
+                                    PageHandlerSelectedContext context)
         {
             _logger.LogDebug("IndexModel/OnPageHandlerSelected");          
         }
 
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
+        public override void OnPageHandlerExecuting(
+                                    PageHandlerExecutingContext context)
         {
             Message = "Message set in handler executing";
             _logger.LogDebug("IndexModel/OnPageHandlerExecuting");
         }
 
 
-        public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)
+        public override void OnPageHandlerExecuted(
+                                    PageHandlerExecutedContext context)
         {
             _logger.LogDebug("IndexModel/OnPageHandlerExecuted");
         }

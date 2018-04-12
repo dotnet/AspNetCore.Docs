@@ -12,8 +12,9 @@ namespace PageFilter
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-          //      .UseStartup<StartupSync>();
-           .UseStartup<Startup>();
+             //      .UseStartup<StartupSync>();
+              .UseStartup<Startup>();
+         //.UseStartup<Startup2>();
 
     }
 }

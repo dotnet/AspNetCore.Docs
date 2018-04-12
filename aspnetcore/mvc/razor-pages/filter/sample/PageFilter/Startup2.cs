@@ -1,4 +1,3 @@
-#region snippet1
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,10 +7,10 @@ using PageFilter.Filters;
 
 namespace PageFilter
 {
-    public class Startup
+    public class Startup2
     {
         ILogger _logger;
-        public Startup(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public Startup2(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger<GlobalFiltersLogger>();
             Configuration = configuration;
@@ -22,10 +21,13 @@ namespace PageFilter
         #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new SampleAsyncPageFilter(_logger));
-            });
+            services.AddMvc()
+               .AddRazorPagesOptions(options =>
+               {
+                   options.Conventions.AddFolderApplicationModelConvention(
+                       "/subFolder",
+                       model => model.Filters.Add(new SampleAsyncPageFilter(_logger)));
+               });
         }
         #endregion
 
@@ -49,4 +51,3 @@ namespace PageFilter
         }
     }
 }
-#endregion

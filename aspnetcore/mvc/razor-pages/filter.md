@@ -59,6 +59,10 @@ The following code shows the complete `Startup` class:
 
 [!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet1)]
 
+The following code adds calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
+
+[!code-csharp[Main](filter/sample/PageFilter/Startup2.cs?name=snippet2)]
+
 The following code implements the synchronous `IPageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
@@ -67,11 +71,14 @@ The following code enables the `SamplePageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
+::: moniker range=">= aspnetcore-2.1"
 ## Implement Razor Page filters by overriding filter methods
 
 The following code overrides the synchronous Razor Page filters:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
+
+::: moniker-end
 
 <a name="ifa"></a>
 ## Implement a filter attribute
