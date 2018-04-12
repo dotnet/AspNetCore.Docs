@@ -3,6 +3,7 @@ title: Filter methods for Razor Pages in ASP.NET Core
 author: Rick-Anderson
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/5/2018
 ms.prod: asp.net-core
@@ -59,7 +60,7 @@ The following code shows the complete `Startup` class:
 
 [!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet1)]
 
-The following code adds calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
+The following code calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
 
 [!code-csharp[Main](filter/sample/PageFilter/Startup2.cs?name=snippet2)]
 
@@ -83,7 +84,7 @@ The following code overrides the synchronous Razor Page filters:
 <a name="ifa"></a>
 ## Implement a filter attribute
 
-The framework includes built-in attribute-based filters that you can subclass. For example, the following [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter adds a header to the response:
+The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter can be subclassed. The following filter adds a header to the response:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
