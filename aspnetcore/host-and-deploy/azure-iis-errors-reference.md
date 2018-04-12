@@ -37,7 +37,7 @@ Compare the information to the following common errors. If a match is found, fol
 
 Troubleshooting:
 
-* If the system doesn't have Internet access while installing the server hosting bundle, this exception occurs when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, the server may not receive the .NET Core runtime required to host a framework-dependent deployment (FDD). If hosting an FDD, confirm that the runtime is installed in Programs &amp; Features. If needed, obtain a runtime installer from [.NET All Downloads](https://www.microsoft.com/net/download/all). After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* If the system doesn't have Internet access while installing the Hosting Bundle, this exception occurs when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, the server may not receive the .NET Core runtime required to host a framework-dependent deployment (FDD). If hosting an FDD, confirm that the runtime is installed in Programs &amp; Features. If needed, obtain a runtime installer from [.NET All Downloads](https://www.microsoft.com/net/download/all). After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 ## OS upgrade removed the 32-bit ASP.NET Core Module
 
@@ -45,7 +45,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any AppPool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle). Select **Repair** when the installer is run.
+* Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any AppPool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Core Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Select **Repair** when the installer is run.
 
 ## Platform conflicts with RID
 
@@ -109,11 +109,11 @@ Troubleshooting:
 
 * Confirm that the proper role is enabled. See [IIS Configuration](xref:host-and-deploy/iis/index#iis-configuration).
 
-* Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** isn't present in the list of installed programs, install the module. See [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle).
+* Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** isn't present in the list of installed programs, install the module. See [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
 * Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.
 
-## Incorrect processPath, missing PATH variable, hosting bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
+## Incorrect processPath, missing PATH variable, Hosting Bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
@@ -133,7 +133,7 @@ Troubleshooting:
 
 * An FDD may have been deployed and .NET Core installed without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
-* An FDD may have been deployed without installing the .NET Core runtime on the hosting system. If the .NET Core runtime hasn't been installed, run the **.NET Core Windows Server Hosting bundle installer** on the system. See [Install the .NET Core Windows Server Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-windows-server-hosting-bundle). If attempting to install the .NET Core runtime on a system without an Internet connection, obtain the runtime from [.NET All Downloads](https://www.microsoft.com/net/download/all) and run the hosting bundle installer to install the ASP.NET Core Module. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* An FDD may have been deployed without installing the .NET Core runtime on the hosting system. If the .NET Core runtime hasn't been installed, run the **.NET Core Hosting Bundle installer** on the system. See [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). If attempting to install the .NET Core runtime on a system without an Internet connection, obtain the runtime from [.NET All Downloads](https://www.microsoft.com/net/download/all) and run the Hosting Bundle installer to install the ASP.NET Core Module. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 * An FDD may have been deployed and the *Microsoft Visual C++ 2015 Redistributable (x64)* isn't installed on the system. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840).
 
