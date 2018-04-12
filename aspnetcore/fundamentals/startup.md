@@ -64,7 +64,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 <a name="setcompatibilityversion"></a>
 ### SetCompatibilityVersion
 
-The `SetCompatibilityVersion` method allows an app to opt-in or opt-out to potentially breaking changes in ASP.NET Core APIs. By opting in, you get the latest behavior, and the long term behavior of ASP.NET Core.
+The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of breaking changes in ASP.NET Core APIs. By opting in, you get the latest behavior, and the long term behavior of ASP.NET Core.
 
 The following code sets the compatibility mode to ASP.NET Core 2.1:
 
@@ -81,7 +81,7 @@ The following code sets the compatibility mode to ASP.NET Core 2.1, except for t
 
 ASP.NET Core 2.1 and later applications that don't call `.SetCompatibilityVersion`
 
-The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) contains all the compatibility options you can set.
+The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)class contains all the compatibility options you can set.
 
 Consider ASP.NET Core 3.0, which is not scheduled on the [ASP.NET Core Schedule and Roadmap](https://github.com/aspnet/Home/wiki/Roadmap). At some future date, there will be an ASP.NET Core 3.0 version. Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x.
 
