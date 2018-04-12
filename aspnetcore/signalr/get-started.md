@@ -31,6 +31,10 @@ This tutorial demonstrates the following SignalR development tasks:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+> [!NOTE]
+> The sample code in this article uses modern ECMAScript 6 features that aren't supported in IE 11.
+> To convert the sample for IE 11 and older browser support, use the [Babel](https://babeljs.io/repl) transpiler.
+
 # Prerequisites
 
 Install the following software:
