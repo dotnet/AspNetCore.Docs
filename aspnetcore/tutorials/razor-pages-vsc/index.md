@@ -20,7 +20,7 @@ This series explains the basics of building a Razor Pages web app with ASP.NET C
 
 1. [Get started with Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 2. [Add a model to a Razor Pages app](xref:tutorials/razor-pages-vsc/model)
-3. [Scaffolded Razor Pages]         (xref:tutorials/razor-pages-vsc/page)
+3. [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 4. [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
 5. [Update the pages](xref:tutorials/razor-pages-vsc/da1)
 6. [Add search](xref:tutorials/razor-pages-vsc/search)
