@@ -97,4 +97,4 @@ The following code applies the `AddHeader` attribute:
 
 The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.0) attribute can be applied to a `PageModel`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?name=snippet1&highlight=7)]
