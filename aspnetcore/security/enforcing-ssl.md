@@ -73,7 +73,7 @@ ASP.NET Core 2.1 preview1 or later implements HSTS with the `UseHsts` extension 
 
 [!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
 
-`UseHsts` not recommend in development because the HSTS header is highly cachable by browsers. By default, UseHsts excludes the local loopback address.
+`UseHsts` is not recommend in development because the HSTS header is highly cachable by browsers. By default, UseHsts excludes the local loopback address.
 
 The following code:
 
@@ -106,12 +106,17 @@ To opt-out of HTTPS:
 
 Uncheck the **Configure for HTTPS** checkbox.
 
+![Entity diagram](enforcing-ssl/_static/out.png)
+
+
 #	[.NET Core CLI](#tab/netcore-cli) 
 
 Use the `--no-https` option. For example
 
 ```cli
 dotnet new razor --no-https
+```
 
-----------------------
+------
+
 ::: moniker-end
