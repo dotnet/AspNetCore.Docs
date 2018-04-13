@@ -23,7 +23,7 @@ For these scenarios, the Data Protection system offers a rich configuration API.
 
 > [!WARNING]
 > Similar to configuration files, the data protection key ring should be protected using appropriate permissions. While you can choose to encrypt keys at rest, this does not protect against attackers being able to create new keys. Attackers being able to create new keys can impact your application’s security. The storage location you configure Data Protection to use should have its access limited to the application itself, similar to the way you would choose to protect configuration files. For example, if you choose to store your key ring on disk, you should use file system permissions to ensure only the identity your web application runs under has read, write and create access to that directory. If you chose to use Azure Table Storage only the web application should have the ability to read, write or create new entries in the table store etc.
-
+>
 > The extension method [AddDataProtection](/dotnet/api/microsoft.extensions.dependencyinjection.dataprotectionservicecollectionextensions.adddataprotection) returns an [IDataProtectionBuilder](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionbuilder). `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
 
 ## PersistKeysToFileSystem
