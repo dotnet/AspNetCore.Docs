@@ -153,7 +153,7 @@ You may need to display some kind of notification, alert, or error message to yo
 
 ### Navbars and menus
 
-Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of <ul> elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
+Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of `<ul>` elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
 
 ![themed tabstrips](bootstrap/_static/theme-tabstrips.png)
 
