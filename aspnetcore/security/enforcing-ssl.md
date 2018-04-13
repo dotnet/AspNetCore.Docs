@@ -40,7 +40,7 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 The following code:
 
-[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=18-99)]
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
 
 * Sets `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
@@ -76,7 +76,7 @@ ASP.NET Core 2.1 preview1 or later implements HSTS with the `UseHsts` extension 
 
 The following code:
 
-[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=11-16)]
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=5-12)]
 
 * Sets the preload parameter of the Strict-Transport-Security header. Preload is not part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains. 
