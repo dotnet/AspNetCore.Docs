@@ -27,7 +27,7 @@ This document shows how to:
 
 ## Require HTTPS
 
-# [ASP.NET Core 2.1](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.1"
 
 [!INCLUDE[](~/includes/2.1.md)]
 
@@ -40,12 +40,12 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 The following code:
 
-[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=18-22)]
+[!code-csharp[sample](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=18-99)]
 
 * Sets `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
 
-# [ASP.NET Core 1.x and 2.0](#tab/aspnetcore1x)
+::: moniker range="< aspnetcore-2.1"
 
 The [RequireHttpsAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.RequireHttpsAttribute) is used to require HTTPS. `[RequireHttpsAttribute]` can decorate controllers or methods, or can be applied globally. To apply the attribute globally, add the following code to `ConfigureServices` in `Startup`:
 
@@ -60,11 +60,11 @@ For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewri
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the
 `[RequireHttps]` attribute to all controllers/Razor Pages isn't considered as secure as requiring HTTPS globally. You can't guarantee the `[RequireHttps]` attribute is applied when new controllers and Razor Pages are added.
 
--------------------
+::: moniker-end
 
+::: moniker range=">= aspnetcore-2.1"
 <a name="hsts"></a>
 ## HTTP Strict Transport Security Protocol (HSTS)
-
 
 Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that is specified by a web application through the use of a special response header. Once a supported browser receives this header that browser will prevent any communications from being sent over HTTP to the specified domain and will instead send all communications over HTTPS. It also prevents HTTPS click through prompts on browsers.
 
@@ -90,3 +90,4 @@ The following code:
 * `[::1]` : The IPv6 loopback address.
 
 The preceding example shows how to add additional hosts.
+::: moniker-end
