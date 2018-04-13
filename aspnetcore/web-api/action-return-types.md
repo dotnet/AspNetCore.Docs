@@ -19,9 +19,13 @@ By [Scott Addie](https://github.com/scottaddie)
 
 ASP.NET Core offers the following options for Web API controller action return types:
 
+::: moniker range="<= aspnetcore-2.0"
 * [Specific type](#specific-type)
 * [IActionResult](#iactionresult-type)
+::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
+* [Specific type](#specific-type)
+* [IActionResult](#iactionresult-type)
 * [ActionResult\<T>](#actionresultt-type)
 ::: moniker-end
 
