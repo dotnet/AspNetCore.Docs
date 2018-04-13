@@ -46,6 +46,9 @@ The following code:
 * Sets `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
 
+::: moniker-end
+
+
 ::: moniker range="< aspnetcore-2.1"
 
 The [RequireHttpsAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.RequireHttpsAttribute) is used to require HTTPS. `[RequireHttpsAttribute]` can decorate controllers or methods, or can be applied globally. To apply the attribute globally, add the following code to `ConfigureServices` in `Startup`:
