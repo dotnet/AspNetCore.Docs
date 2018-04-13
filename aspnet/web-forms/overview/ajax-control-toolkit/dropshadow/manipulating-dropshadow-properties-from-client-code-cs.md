@@ -57,6 +57,6 @@ The JavaScript function `changeOpacity()` must then first find the `DropShadowEx
 
 The opacity is changed on the client side ([Click to view full-size image](manipulating-dropshadow-properties-from-client-code-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](adjusting-the-z-index-of-a-dropshadow-cs.md)
-[Next](adjusting-the-z-index-of-a-dropshadow-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adjusting-the-z-index-of-a-dropshadow-cs.md)
+> [Next](adjusting-the-z-index-of-a-dropshadow-vb.md)

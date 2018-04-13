@@ -21,6 +21,6 @@ Demonstrates using the ToggleButton extender control to modify the behavior and 
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-togglebutton-extender)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-hovermenu-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-dropshadow-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-hovermenu-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-dropshadow-extender.md)

@@ -21,6 +21,6 @@ The AJAX Timer control enables a portion of an ASP.NET web page to be dynamicall
 
 [&#9654; Watch video (6 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-timer-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-roundedcorners-extender.md)
-[Next](how-do-i-implement-the-predictive-fetch-pattern-for-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-roundedcorners-extender.md)
+> [Next](how-do-i-implement-the-predictive-fetch-pattern-for-ajax.md)

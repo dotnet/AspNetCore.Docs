@@ -21,5 +21,5 @@ This introduction covers the questions and terminology SQL Server beginners need
 
 [&#9654; Watch video (28 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-a-database)
 
->[!div class="step-by-step"]
-[Next](understanding-database-tables-and-records.md)
+> [!div class="step-by-step"]
+> [Next](understanding-database-tables-and-records.md)

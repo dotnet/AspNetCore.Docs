@@ -21,6 +21,6 @@ In this video Chris Pels shows how to use model binders to bind form data to com
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-work-with-model-binders-in-an-mvc-application)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-create-a-custom-html-helper-for-an-mvc-application.md)
-[Next](how-do-i-use-httpverbs-attributes-in-an-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-create-a-custom-html-helper-for-an-mvc-application.md)
+> [Next](how-do-i-use-httpverbs-attributes-in-an-mvc-application.md)

@@ -21,6 +21,6 @@ This video demonstrates how simple it is to add Microsoft ASP.NET AJAX functiona
 
 [&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-aspnet-ajax-enable-an-existing-web-service)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-add-aspnet-ajax-features-to-an-existing-web-application.md)
-[Next](how-do-i-use-the-aspnet-ajax-client-library-controls.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-add-aspnet-ajax-features-to-an-existing-web-application.md)
+> [Next](how-do-i-use-the-aspnet-ajax-client-library-controls.md)

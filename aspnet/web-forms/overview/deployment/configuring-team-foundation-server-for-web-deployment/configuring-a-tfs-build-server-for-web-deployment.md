@@ -111,6 +111,6 @@ At this point, your build server is ready to start building and deploying your w
 
 For more general guidance on working with Team Build, see [Administering Team Foundation Build](https://msdn.microsoft.com/library/ms252495.aspx).
 
->[!div class="step-by-step"]
-[Previous](adding-content-to-source-control.md)
-[Next](creating-a-build-definition-that-supports-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](adding-content-to-source-control.md)
+> [Next](creating-a-build-definition-that-supports-deployment.md)

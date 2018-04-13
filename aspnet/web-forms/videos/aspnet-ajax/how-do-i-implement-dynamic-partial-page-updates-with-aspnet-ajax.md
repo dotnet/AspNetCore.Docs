@@ -21,6 +21,6 @@ In this video you will learn how to add dynamic partial-page updates to your ASP
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-get-started-with-aspnet-ajax.md)
-[Next](how-do-i-make-client-side-network-callbacks-with-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-get-started-with-aspnet-ajax.md)
+> [Next](how-do-i-make-client-side-network-callbacks-with-aspnet-ajax.md)

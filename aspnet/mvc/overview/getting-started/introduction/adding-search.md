@@ -17,7 +17,7 @@ Search
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 ## Adding a Search Method and Search View
 
@@ -152,6 +152,6 @@ Run the application and browse to */Movies/Index*. Try a search by genre, by mov
 
 In this section you created a search action method and view that let users search by movie title and genre. In the next section, you'll look at how to add a property to the `Movie` model and how to add an initializer that will automatically create a test database.
 
->[!div class="step-by-step"]
-[Previous](examining-the-edit-methods-and-edit-view.md)
-[Next](adding-a-new-field.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-edit-methods-and-edit-view.md)
+> [Next](adding-a-new-field.md)

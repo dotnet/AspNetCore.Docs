@@ -168,10 +168,10 @@ To test the client app:
 
 3. Run the client app. The following output is produced:
 
- ```console
- Created at http://localhost:64195/api/products/4
-Name: Gizmo     Price: 100.0    Category: Widgets
-Updating price...
-Name: Gizmo     Price: 80.0     Category: Widgets
-Deleted (HTTP Status = 204)
-```
+   ```console
+   Created at http://localhost:64195/api/products/4
+   Name: Gizmo     Price: 100.0    Category: Widgets
+   Updating price...
+   Name: Gizmo     Price: 80.0     Category: Widgets
+   Deleted (HTTP Status = 204)
+   ```

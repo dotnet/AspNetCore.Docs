@@ -258,6 +258,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](interacting-with-the-master-page-from-the-content-page-vb.md)
-[Next](master-pages-and-asp-net-ajax-vb.md)
+> [!div class="step-by-step"]
+> [Previous](interacting-with-the-master-page-from-the-content-page-vb.md)
+> [Next](master-pages-and-asp-net-ajax-vb.md)

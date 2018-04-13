@@ -3,6 +3,7 @@ title: Add a new field to a Razor Page in ASP.NET Core
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/07/2017
 ms.prod: aspnet-core
@@ -99,6 +100,6 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
 
->[!div class="step-by-step"]
-[Previous: Adding Search](xref:tutorials/razor-pages/search)
-[Next: Adding Validation](xref:tutorials/razor-pages/validation)
+> [!div class="step-by-step"]
+> [Previous: Adding Search](xref:tutorials/razor-pages/search)
+> [Next: Adding Validation](xref:tutorials/razor-pages/validation)

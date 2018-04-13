@@ -21,6 +21,6 @@ SQL Server beginners will learn about ADO.NET objects and execution of SQL state
 
 [&#9654; Watch video (40 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/manipulating-database-data)
 
->[!div class="step-by-step"]
-[Previous](designing-relational-database-tables.md)
-[Next](more-structured-query-language.md)
+> [!div class="step-by-step"]
+> [Previous](designing-relational-database-tables.md)
+> [Next](more-structured-query-language.md)

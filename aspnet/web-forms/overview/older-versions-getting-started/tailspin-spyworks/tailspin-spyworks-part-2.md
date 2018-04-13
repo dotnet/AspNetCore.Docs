@@ -52,6 +52,6 @@ Save and build.
 
 Now we are ready to add our first feature – a product category menu.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-1.md)
-[Next](tailspin-spyworks-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-1.md)
+> [Next](tailspin-spyworks-part-3.md)

@@ -21,6 +21,6 @@ Visual Studio Team System provides the tools necessary to practice Test-Driven D
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-practice-test-driven-development)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-write-code-more-quickly-with-unit-tests.md)
-[Next](how-do-i-load-test-a-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-write-code-more-quickly-with-unit-tests.md)
+> [Next](how-do-i-load-test-a-web-application.md)

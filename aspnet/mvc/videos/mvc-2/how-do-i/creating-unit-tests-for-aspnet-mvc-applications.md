@@ -21,6 +21,6 @@ Learn how to create unit tests for controller actions. In this tutorial, Stephen
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-unit-tests-for-aspnet-mvc-applications)
 
->[!div class="step-by-step"]
-[Previous](preventing-javascript-injection-attacks.md)
-[Next](creating-custom-html-helpers.md)
+> [!div class="step-by-step"]
+> [Previous](preventing-javascript-injection-attacks.md)
+> [Next](creating-custom-html-helpers.md)

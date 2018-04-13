@@ -178,6 +178,6 @@ For guidance on signing Windows PowerShell scripts and managing execution polici
 
 For more information on using custom MSBuild project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md).
 
->[!div class="step-by-step"]
-[Previous](taking-web-applications-offline-with-web-deploy.md)
-[Next](troubleshooting-the-packaging-process.md)
+> [!div class="step-by-step"]
+> [Previous](taking-web-applications-offline-with-web-deploy.md)
+> [Next](troubleshooting-the-packaging-process.md)

@@ -21,6 +21,6 @@ The Slider control from the ASP.NET AJAX Control Toolkit provides a simple and e
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-slider-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-confirmbutton-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-autocomplete-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-confirmbutton-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-autocomplete-control.md)

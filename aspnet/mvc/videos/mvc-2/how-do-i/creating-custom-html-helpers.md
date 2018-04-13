@@ -21,6 +21,6 @@ Create new HTML Helpers to make it easier to generate view content. Stephen Walt
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-custom-html-helpers)
 
->[!div class="step-by-step"]
-[Previous](creating-unit-tests-for-aspnet-mvc-applications.md)
-[Next](creating-model-classes-with-linq-to-sql.md)
+> [!div class="step-by-step"]
+> [Previous](creating-unit-tests-for-aspnet-mvc-applications.md)
+> [Next](creating-model-classes-with-linq-to-sql.md)

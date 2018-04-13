@@ -160,6 +160,6 @@ The image below shows the same data displayed with the default culture (English 
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
->[!div class="step-by-step"]
-[Previous](adding-a-new-field-to-the-movie-model-and-table.md)
-[Next](examining-the-details-and-delete-methods.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-new-field-to-the-movie-model-and-table.md)
+> [Next](examining-the-details-and-delete-methods.md)

@@ -177,6 +177,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Randy Schmidt. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)
-[Next](master-detail-filtering-acess-two-pages-datalist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)
+> [Next](master-detail-filtering-acess-two-pages-datalist-vb.md)

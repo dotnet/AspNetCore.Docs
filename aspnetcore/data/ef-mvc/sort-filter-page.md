@@ -243,6 +243,6 @@ Run the app and go to the About page. The count of students for each enrollment 
 
 In this tutorial, you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you'll learn how to handle data model changes by using migrations.
 
->[!div class="step-by-step"]
-[Previous](crud.md)
-[Next](migrations.md)  
+> [!div class="step-by-step"]
+> [Previous](crud.md)
+> [Next](migrations.md)  

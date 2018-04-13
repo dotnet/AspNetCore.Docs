@@ -21,6 +21,6 @@ This session focuses on the basic background necessary to understand ASP.NET and
 
 [&#9654; Watch video (61 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20)
 
->[!div class="step-by-step"]
-[Previous](migrating-from-classic-asp-to-aspnet.md)
-[Next](intro-to-aspnet-for-jsp-developers-building-applications.md)
+> [!div class="step-by-step"]
+> [Previous](migrating-from-classic-asp-to-aspnet.md)
+> [Next](intro-to-aspnet-for-jsp-developers-building-applications.md)

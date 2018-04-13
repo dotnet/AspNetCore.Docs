@@ -207,5 +207,5 @@ This completes the overview to what's new in the Entity Framework and this Conti
 - [What's New in ADO.NET](https://msdn.microsoft.com/library/ex6y04yf.aspx) MSDN topic on new features in version 4 of the Entity Framework.
 - [Announcing the release of Entity Framework 4](https://blogs.msdn.com/b/efdesign/archive/2010/04/12/announcing-the-release-of-entity-framework-4.aspx) The Entity Framework development team's blog post about new features in version 4.
 
->[!div class="step-by-step"]
-[Previous](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)

@@ -55,5 +55,5 @@ Now every item in the data source displays a popup to the right (`PopupPosition`
 
 The hover menu appears next to each item in the repeater ([Click to view full-size image](using-hovermenu-with-a-repeater-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](using-hovermenu-with-a-repeater-control-vb.md)
+> [!div class="step-by-step"]
+> [Next](using-hovermenu-with-a-repeater-control-vb.md)

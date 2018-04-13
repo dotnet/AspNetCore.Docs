@@ -702,7 +702,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 22. Change the ID of the SqlDataSource control to **Details**.
 23. From the SqlDataSource Tasks menu, choose **Configure Data Source**.
 24. Choose **Northwind** from the dropdown and click **Next**.
-25. Select **Products** from the **Name** dropdown and check the **\*** checkbox in the **Columns** listbox.
+25. Select <strong>Products</strong> from the <strong>Name</strong> dropdown and check the <strong>\</strong>* checkbox in the <strong>Columns</strong> listbox.
 26. Click the **WHERE** button.
 27. Select **ProductID** from the **Column** dropdown.
 28. Select **=** in the Operator dropdown.

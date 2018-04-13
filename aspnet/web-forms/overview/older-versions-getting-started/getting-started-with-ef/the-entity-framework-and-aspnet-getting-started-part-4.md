@@ -160,6 +160,6 @@ Select an instructor that has a course assigned, and then select the course.
 
 You have now seen a few ways to work with related data. In the following tutorial, you'll learn how to add relationships between existing entities, how to remove relationships, and how to add a new entity that has a relationship to an existing entity.
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-3.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-5.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-3.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-5.md)

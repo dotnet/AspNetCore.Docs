@@ -72,6 +72,6 @@ Lets run the application now.
 
 Note that our product category menu is now displayed and when we hover over one of the category menu items we can see the menu item link points to a page we have yet to implement named ProductsList.aspx and that we have built a dynamic query string argument that contains the category id.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-2.md)
-[Next](tailspin-spyworks-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-2.md)
+> [Next](tailspin-spyworks-part-4.md)

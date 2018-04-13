@@ -45,7 +45,7 @@ After Kestrel picks up a request from the module, the request is pushed into the
 The ASP.NET Core Module has a few other functions. The module can:
 
 * Set environment variables for the worker process.
-* Log `stdout` output to file storage for troubleshooting startup issues.
+* Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
 ## How to install and use the ASP.NET Core Module

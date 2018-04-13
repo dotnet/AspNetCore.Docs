@@ -113,5 +113,5 @@ Next, we examined how you can test the contents of `View Data`. You learned how 
 
 Finally, we discussed how you can test whether different types of action results are returned from a controller action. You learned how to test whether a controller returns a `ViewResult` or a `RedirectToRouteResult`.
 
->[!div class="step-by-step"]
-[Previous](creating-unit-tests-for-asp-net-mvc-applications-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-unit-tests-for-asp-net-mvc-applications-cs.md)

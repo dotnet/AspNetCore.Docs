@@ -150,6 +150,6 @@ We can update our view template to conditionally show/hide the Edit and Delete l
 
 Let's now look at how we can enable authenticated users to RSVP for dinners using AJAX.
 
->[!div class="step-by-step"]
-[Previous](implement-efficient-data-paging.md)
-[Next](use-ajax-to-deliver-dynamic-updates.md)
+> [!div class="step-by-step"]
+> [Previous](implement-efficient-data-paging.md)
+> [Next](use-ajax-to-deliver-dynamic-updates.md)

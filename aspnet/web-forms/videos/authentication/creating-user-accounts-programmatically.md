@@ -21,6 +21,6 @@ In this video, Joe Stagner demonstrates how to create a custom create user web f
 
 [&#9654; Watch video (19 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-user-accounts-programmatically)
 
->[!div class="step-by-step"]
-[Previous](creating-user-accounts-with-the-create-user-wizard.md)
-[Next](validating-users-manually.md)
+> [!div class="step-by-step"]
+> [Previous](creating-user-accounts-with-the-create-user-wizard.md)
+> [Next](validating-users-manually.md)

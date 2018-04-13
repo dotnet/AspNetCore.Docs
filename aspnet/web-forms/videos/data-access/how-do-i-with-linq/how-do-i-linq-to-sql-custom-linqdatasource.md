@@ -21,6 +21,6 @@ The LinqDataSource control can be customized declaritively, as shown in Part 5, 
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-custom-linqdatasource)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-linqdatasource.md)
-[Next](how-do-i-linq-to-sql-using-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-linqdatasource.md)
+> [Next](how-do-i-linq-to-sql-using-stored-procedures.md)

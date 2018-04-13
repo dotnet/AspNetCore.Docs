@@ -21,6 +21,6 @@ In this video Chris Pels shows how to organize and pass data to partial views in
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-work-with-data-in-aspnet-mvc-partial-views)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.md)
-[Next](how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.md)
+> [Next](how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views.md)

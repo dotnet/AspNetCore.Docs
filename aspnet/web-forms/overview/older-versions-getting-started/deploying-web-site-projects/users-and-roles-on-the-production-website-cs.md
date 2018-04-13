@@ -114,6 +114,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Web Site Administration Tool Overview](https://msdn.microsoft.com/library/yy40ytx0.aspx)
 - [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 
->[!div class="step-by-step"]
-[Previous](precompiling-your-website-cs.md)
-[Next](asp-net-hosting-options-vb.md)
+> [!div class="step-by-step"]
+> [Previous](precompiling-your-website-cs.md)
+> [Next](asp-net-hosting-options-vb.md)

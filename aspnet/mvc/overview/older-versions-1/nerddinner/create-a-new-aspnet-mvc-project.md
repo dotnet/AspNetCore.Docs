@@ -131,6 +131,6 @@ Later in this tutorial we'll talk more about automated testing and add additiona
 
 We've now got a basic application structure in place. Let's now [create a database to store our application data](create-a-database.md).
 
->[!div class="step-by-step"]
-[Previous](introducing-the-nerddinner-tutorial.md)
-[Next](create-a-database.md)
+> [!div class="step-by-step"]
+> [Previous](introducing-the-nerddinner-tutorial.md)
+> [Next](create-a-database.md)

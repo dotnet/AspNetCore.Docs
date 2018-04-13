@@ -55,6 +55,6 @@ Loading the page in the browser will fill the dropdown list with three vendors, 
 
 The list is filled and preselected automatically ([Click to view full-size image](presetting-list-entries-with-cascadingdropdown-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-cascadingdropdown-with-a-database-vb.md)
-[Next](using-auto-postback-with-cascadingdropdown-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-cascadingdropdown-with-a-database-vb.md)
+> [Next](using-auto-postback-with-cascadingdropdown-vb.md)

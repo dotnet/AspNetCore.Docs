@@ -21,5 +21,5 @@ You will get a quick overview of the inclusion of ASP.NET AJAX into Visual Studi
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-ajax-support-in-visual-studio-2008)
 
->[!div class="step-by-step"]
-[Next](adding-ajax-functionality-to-an-existing-aspnet-page.md)
+> [!div class="step-by-step"]
+> [Next](adding-ajax-functionality-to-an-existing-aspnet-page.md)

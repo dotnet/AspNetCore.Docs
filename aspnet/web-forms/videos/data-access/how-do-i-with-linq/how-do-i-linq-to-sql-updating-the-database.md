@@ -21,6 +21,6 @@ In this video I demonstrated how to create, update and delete records through LI
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-updating-the-database)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-querying-the-database.md)
-[Next](how-do-i-linq-to-sql-linqdatasource.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-querying-the-database.md)
+> [Next](how-do-i-linq-to-sql-linqdatasource.md)

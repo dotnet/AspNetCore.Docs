@@ -275,9 +275,9 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
     The assembly binding element in the modified web.config should appear as follows:
 
     [!code-xml[Main](mvc4-beta-release-notes/samples/sample12.xml)]
-- **The "Add Controller" item template in Visual Basic projects generates an incorrect namespace when invoked****from inside an area.** When you add a controller to an area in an ASP.NET MVC project that uses Visual Basic, the item template inserts the wrong namespace into the controller. The result is a "file not found" error when you navigate to any action in the controller.  
+- <strong>The "Add Controller" item template in Visual Basic projects generates an incorrect namespace when invoked</strong><strong>from inside an area.</strong> When you add a controller to an area in an ASP.NET MVC project that uses Visual Basic, the item template inserts the wrong namespace into the controller. The result is a "file not found" error when you navigate to any action in the controller.  
   
- The generated namespace omits everything after the root namespace. For example, the namespace generated is *RootNamespace* but should be *RootNamespace.Areas.AreaName.Controllers* .
+  The generated namespace omits everything after the root namespace. For example, the namespace generated is *RootNamespace* but should be *RootNamespace.Areas.AreaName.Controllers* .
 - **Breaking changes in the Razor View Engine.** As part of a rewrite of the Razor parser, the following types were removed from *System.Web.Mvc.Razor*: 
 
     - *ModelSpan*
@@ -285,7 +285,7 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
     - *MvcCSharpRazorCodeGenerator*
     - *MvcVBRazorCodeParser*
 
- The following methods were also removed: 
+  The following methods were also removed: 
 
     - *MvcCSharpRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
     - *MvcWebPageRazorHost.DecorateCodeGenerator(System.Web.Razor.Generator.RazorCodeGenerator)*
@@ -300,15 +300,15 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
 
     **Required updates**
 
-    1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*.
+  1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*.
 
-        [!code-xml[Main](mvc4-beta-release-notes/samples/sample14.xml)]
-    2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
-    3. Locate the following assembly references: 
+      [!code-xml[Main](mvc4-beta-release-notes/samples/sample14.xml)]
+  2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
+  3. Locate the following assembly references: 
 
-        [!code-xml[Main](mvc4-beta-release-notes/samples/sample15.xml)]
+      [!code-xml[Main](mvc4-beta-release-notes/samples/sample15.xml)]
 
-        Replace them with the following:
+      Replace them with the following:
 
-        [!code-xml[Main](mvc4-beta-release-notes/samples/sample16.xml)]
-    4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
+      [!code-xml[Main](mvc4-beta-release-notes/samples/sample16.xml)]
+  4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.

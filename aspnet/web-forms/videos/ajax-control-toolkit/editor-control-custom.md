@@ -21,6 +21,6 @@ In this video Joe demonstrates how to create a new class, derived from the AJAX 
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/editor-control-custom)
 
->[!div class="step-by-step"]
-[Previous](editor-control.md)
-[Next](create-a-new-custom-extender.md)
+> [!div class="step-by-step"]
+> [Previous](editor-control.md)
+> [Next](create-a-new-custom-extender.md)

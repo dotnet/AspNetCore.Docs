@@ -1,5 +1,5 @@
 ---
-title: Create a Web API with ASP.NET Core and VS Code
+title: Create a Web API with ASP.NET Core and Visual Studio Code
 author: rick-anderson
 description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
 manager: wpickett
@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/web-api-vsc
 ---
 
-# Create a Web API with ASP.NET Core and VS Code
+# Create a Web API with ASP.NET Core and Visual Studio Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -25,11 +25,11 @@ There are 3 versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE[template files](../includes/webApi/intro.md)]
+[!INCLUDE [template files](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-vscode.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create the project
 
@@ -82,17 +82,19 @@ Add a `TodoContext` class in the *Models* folder:
 
 [!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
 
 ## Add a controller
 
 In the *Controllers* folder, create a class named `TodoController`. Add the following code:
 
-[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
 In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
+
+[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
 
 [!INCLUDE[last part of web API](../includes/webApi/end.md)]
 
@@ -107,6 +109,5 @@ In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/t
   - [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   - [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
-[!INCLUDE[next steps](../includes/webApi/next.md)]
-
+[!INCLUDE [next steps](../includes/webApi/next.md)]
 

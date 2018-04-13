@@ -107,12 +107,12 @@ In this task, you will create a new controller called **StoreManagerController**
 
 1. Open the **Begin** solution located at **Source/Ex1-CreatingTheStoreManagerController/Begin/** folder.
 
-    1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Add a new controller. To do this, right-click the **Controllers** folder within the Solution Explorer, select **Add** and then the **Controller** command. Change the **Controller** **Name** to **StoreManagerController** and make sure the option **MVC controller with empty read/write actions** is selected. Click **Add**.
 
     ![Add controller dialog](aspnet-mvc-4-helpers-forms-and-validation/_static/image1.png "Add controller dialog")
@@ -226,14 +226,14 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
 
 1. Open the **Begin** solution located at **Source/Ex2-AddingAnHTMLHelper/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open StoreManager's Index View. To do this, in the Solution Explorer expand the **Views** folder, then the **StoreManager** and open the **Index.cshtml** file.
-3. Add the following code below the **@model** directive to define the **Truncate** helper method.
+3. Add the following code below the <strong>@model</strong> directive to define the <strong>Truncate</strong> helper method.
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.cshtml)]
 
@@ -283,12 +283,12 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
 
 1. Open the **Begin** solution located at **Source/Ex3-CreatingTheEditView/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. Replace the **HTTP-GET Edit** action method with the following code to retrieve the appropriate **Album** as well as the **Genres** and **Artists** lists.
 
@@ -420,12 +420,12 @@ In this task, you will implement the HTTP-GET version of the Create action metho
 
 1. Open the **Begin** solution located at **Source/Ex4-AddingACreateView/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. Replace the **Create** action method code with the following:
 
@@ -519,12 +519,12 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
 1. Open the **Begin** solution located at **Source/Ex5-HandlingDeletion/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. The Delete controller action is exactly the same as the previous Store Details controller action: it queries the **album** object from the database using the **id** provided in the URL and returns the appropriate **View**. To do this, replace the HTTP-GET **Delete** action method code with the following:
 
@@ -608,12 +608,12 @@ This is a little more complex in cases like this application where the Entity Da
 
 1. Open the **Begin** solution located at **Source/Ex6-AddingValidation/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **Album.cs** from the **Models** folder.
 3. Replace **Album.cs** content with the highlighted code, so that it looks like the following:
 
@@ -674,12 +674,12 @@ In this task, you will run the application before including jQuery in order to c
 
 1. Open the **Begin** solution located at **Source/Ex7-UnobtrusivejQueryValidation/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Press **F5** to run the application.
 3. The project starts in the Home page. Browse **/StoreManager/Create** and click **Create** without filling the form to verify that you get validation messages:
 
@@ -734,24 +734,24 @@ In this task, you will test that the **StoreManager** create view template perfo
 
     [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.html)]
 
-    > [!NOTE]
-    > For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
-    > 
-    > - Data-val
-    > - Data-val-number
-    > - Data-val-range
-    > - Data-val-range-min / Data-val-range-max
-    > - Data-val-required
-    > - Data-val-length
-    > - Data-val-length-max / Data-val-length-min
-    > 
-    > All the data values are filled with model **Data Annotation**. Then, all the logic that works at server side can be run at client side. For example, Price attribute has the following data annotation in the model:
-    > 
-    > [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.cs)]
-    > 
-    > After using Unobtrusive jQuery, the generated code is:
-    >  
-    > [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.html)]
+   > [!NOTE]
+   > For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
+   > 
+   > - Data-val
+   > - Data-val-number
+   > - Data-val-range
+   > - Data-val-range-min / Data-val-range-max
+   > - Data-val-required
+   > - Data-val-length
+   > - Data-val-length-max / Data-val-length-min
+   > 
+   > All the data values are filled with model **Data Annotation**. Then, all the logic that works at server side can be run at client side. For example, Price attribute has the following data annotation in the model:
+   > 
+   > [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.cs)]
+   > 
+   > After using Unobtrusive jQuery, the generated code is:
+   > 
+   > [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.html)]
 
 * * *
 
@@ -778,7 +778,7 @@ By completing this Hands-On Lab you have learned how to enable users to change t
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 

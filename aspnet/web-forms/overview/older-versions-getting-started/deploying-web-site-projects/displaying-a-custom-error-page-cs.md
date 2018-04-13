@@ -168,6 +168,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Handling and Throwing Exceptions](https://msdn.microsoft.com/library/5b2yeyab.aspx)
 - [Properly Using Custom Error Pages in ASP.NET](http://professionalaspnet.com/archive/2007/09/30/Properly-Using-Custom-Error-Pages-in-ASP.NET.aspx)
 
->[!div class="step-by-step"]
-[Previous](strategies-for-database-development-and-deployment-cs.md)
-[Next](processing-unhandled-exceptions-cs.md)
+> [!div class="step-by-step"]
+> [Previous](strategies-for-database-development-and-deployment-cs.md)
+> [Next](processing-unhandled-exceptions-cs.md)

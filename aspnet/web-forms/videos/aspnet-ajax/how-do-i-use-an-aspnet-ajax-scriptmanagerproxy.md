@@ -21,6 +21,6 @@ Learn how a ScriptManagerProxy enables a content page to pass references to the 
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-an-aspnet-ajax-scriptmanagerproxy)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-client-library-controls.md)
-[Next](how-do-i-use-the-aspnet-ajax-roundedcorners-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-client-library-controls.md)
+> [Next](how-do-i-use-the-aspnet-ajax-roundedcorners-extender.md)

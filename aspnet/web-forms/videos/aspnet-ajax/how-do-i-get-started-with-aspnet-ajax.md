@@ -21,5 +21,5 @@ Note that ASP.NET AJAX is included as part of .NET 3.5, so the installation part
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Next](how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax.md)

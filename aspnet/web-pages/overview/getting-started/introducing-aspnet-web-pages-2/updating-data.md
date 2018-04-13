@@ -103,7 +103,7 @@ Once you know about the `format` property, it's easier to understand how the new
 
 The column consists *only* of the markup that renders the link, plus some information (the ID) that's extracted from the database record for the row.
 
-> [!TIP] 
+> [!TIP]
 > 
 > **Named Parameters and Positional Parameters for a Method**
 > 
@@ -306,6 +306,6 @@ In the next tutorial, you'll see how to delete a movie record.
 - [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../../getting-started/introducing-razor-syntax-c.md)
 - [SQL UPDATE Statement](http://www.w3schools.com/sql/sql_update.asp) on the W3Schools site
 
->[!div class="step-by-step"]
-[Previous](entering-data.md)
-[Next](deleting-data.md)
+> [!div class="step-by-step"]
+> [Previous](entering-data.md)
+> [Next](deleting-data.md)

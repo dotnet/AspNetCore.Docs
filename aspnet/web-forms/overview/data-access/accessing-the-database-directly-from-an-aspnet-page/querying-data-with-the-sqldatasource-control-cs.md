@@ -257,5 +257,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Susan Connery, Bernadette Leigh, and David Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](using-parameterized-queries-with-the-sqldatasource-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-parameterized-queries-with-the-sqldatasource-cs.md)

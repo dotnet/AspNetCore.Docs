@@ -67,6 +67,6 @@ Run your application and visit /Movies/Create again, and click Create without en
 
 This is looking good! Let's now add one additional column to the database.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part6.md)
-[Next](getting-started-with-mvc-part8.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part6.md)
+> [Next](getting-started-with-mvc-part8.md)

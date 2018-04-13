@@ -21,6 +21,6 @@ In this video you will learn about Visual Studio's code search view hierarchy.
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/visual-studio-2010-quick-hit-code-search-view-hierarchy)
 
->[!div class="step-by-step"]
-[Previous](visual-studio-2010-quick-hit-code-optimized-profile.md)
-[Next](visual-studio-2010-quick-hit-intellisense-smart-lists.md)
+> [!div class="step-by-step"]
+> [Previous](visual-studio-2010-quick-hit-code-optimized-profile.md)
+> [Next](visual-studio-2010-quick-hit-intellisense-smart-lists.md)

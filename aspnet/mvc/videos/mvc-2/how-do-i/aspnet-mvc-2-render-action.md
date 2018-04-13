@@ -21,6 +21,6 @@ In this video you'll learn how to use Html.RenderAction to write the results of 
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-2-render-action)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-2-areas.md)
-[Next](5-minute-introduction-to-aspnet-mvc.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-2-areas.md)
+> [Next](5-minute-introduction-to-aspnet-mvc.md)

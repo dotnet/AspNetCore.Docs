@@ -53,7 +53,8 @@
         "ManagedReference": "Content",
         "RestApi": "Content"
       },
-      "template_folder": "_themes"
+      "template_folder": "_themes",
+      "moniker_ranges": [">= aspnetcore-1.0"]
     }
   ],
   "notification_subscribers": [],

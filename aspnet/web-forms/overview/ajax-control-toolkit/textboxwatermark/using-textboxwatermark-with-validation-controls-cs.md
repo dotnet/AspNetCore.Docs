@@ -51,6 +51,6 @@ Finally, add some server-side code to output the text in the field if no validat
 
 The validator complains that there is no text in the field ([Click to view full-size image](using-textboxwatermark-with-validation-controls-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-textboxwatermark-in-a-formview-cs.md)
-[Next](using-textboxwatermark-in-a-formview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-textboxwatermark-in-a-formview-cs.md)
+> [Next](using-textboxwatermark-in-a-formview-vb.md)

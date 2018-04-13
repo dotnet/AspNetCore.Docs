@@ -102,11 +102,11 @@ Next, you need to give the user permission to create new team sites in the Share
 
     ![](creating-a-team-project-in-tfs/_static/image9.png)
 
-    > [!NOTE]
-    > You may receive an **HTTP 404 Not Found** error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
-    > [*site collection URL*]/\_layouts/permsetup.aspx  
-    > For example:  
-    > http://tfs/sites/Fabrikam%20Web%20Projects/\_layouts/permsetup.aspx
+   > [!NOTE]
+   > You may receive an <strong>HTTP 404 Not Found</strong> error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
+   > [<em>site collection URL</em>]/\_layouts/permsetup.aspx  
+   > For example:  
+   > http://tfs/sites/Fabrikam%20Web%20Projects/\_layouts/permsetup.aspx
 8. On the **Set Up Groups for this Site** page, add the user who will create team projects to the **Owners** group, and then click **OK**.
 
     ![](creating-a-team-project-in-tfs/_static/image10.png)
@@ -197,6 +197,6 @@ The next topic, [Adding Content to Source Control](adding-content-to-source-cont
 
 For broader guidance on creating team projects in TFS, see [Create a Team Project](https://msdn.microsoft.com/library/ms181477(v=VS.100).aspx). For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/library/dd547204.aspx). For more information on adding users to team projects, see [Add Users to Team Projects](https://msdn.microsoft.com/library/bb558971.aspx).
 
->[!div class="step-by-step"]
-[Previous](configuring-team-foundation-server-for-web-deployment.md)
-[Next](adding-content-to-source-control.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-team-foundation-server-for-web-deployment.md)
+> [Next](adding-content-to-source-control.md)

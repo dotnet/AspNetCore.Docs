@@ -72,6 +72,6 @@ Notice that you must import the namespace associated with the Image helper at th
 
 [!code-aspx[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample3.aspx)]
 
->[!div class="step-by-step"]
-[Previous](creating-custom-html-helpers-cs.md)
-[Next](creating-page-layouts-with-view-master-pages-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-html-helpers-cs.md)
+> [Next](creating-page-layouts-with-view-master-pages-cs.md)

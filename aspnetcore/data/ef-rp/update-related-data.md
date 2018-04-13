@@ -15,7 +15,7 @@ uid: data/ef-rp/update-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 This tutorial demonstrates updating related data. If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part7).
 
@@ -226,6 +226,6 @@ The preceding code makes the following changes:
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/read-related-data)
-[Next](xref:data/ef-rp/concurrency)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/read-related-data)
+> [Next](xref:data/ef-rp/concurrency)

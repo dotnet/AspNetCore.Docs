@@ -21,6 +21,6 @@ With the DropDown control extender from the ASP.NET AJAX Control Toolkit, you ca
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-dropdown-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-configure-the-aspnet-ajax-calendar-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-maskededit-controls.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-configure-the-aspnet-ajax-calendar-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-maskededit-controls.md)

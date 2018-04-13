@@ -47,15 +47,15 @@ To deploy to IIS on your development computer, you must have IIS and Web Deploy 
 
     To run Web Platform Installer to install IIS and Web Deploy, use the following link. If you already have installed IIS, Web Deploy or any of their required components, the Web Platform Installer installs only what is missing.
 
-    - [Install IIS and Web Deploy using WebPI](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy)
+   - [Install IIS and Web Deploy using WebPI](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy)
 
-    You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.5 is installed by performing the following steps:
+     You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.5 is installed by performing the following steps:
 
-    1. Open **Control Panel**, **Programs and Features**, **Turn Windows features on or off**.
-    2. Expand **Internet Information Services**, **World Wide Web Services**, and **Application Development Features**.
-    3. Make sure that **ASP.NET 4.5** is selected.
+   - Open **Control Panel**, **Programs and Features**, **Turn Windows features on or off**.
+   - Expand **Internet Information Services**, **World Wide Web Services**, and **Application Development Features**.
+   - Make sure that **ASP.NET 4.5** is selected.
 
-        ![Select ASP.NET 4.5](deploying-to-iis/_static/image1.png)
+      ![Select ASP.NET 4.5](deploying-to-iis/_static/image1.png)
 
 After installing IIS, run **IIS Manager** to make sure that the .NET Framework version 4 is assigned to the default application pool.
 
@@ -332,6 +332,6 @@ For information about running IIS or IIS Express in Visual Studio, see the follo
 
 For information about what issues might arise when your application runs in medium trust, see [Hosting ASP.NET Applications in Medium Trust](http://www.4guysfromrolla.com/articles/100307-1.aspx) on the 4 Guys from Rolla site.
 
->[!div class="step-by-step"]
-[Previous](project-properties.md)
-[Next](setting-folder-permissions.md)
+> [!div class="step-by-step"]
+> [Previous](project-properties.md)
+> [Next](setting-folder-permissions.md)

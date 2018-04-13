@@ -272,7 +272,7 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
 
     ![Create with Database link in Management Portal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
 
- The **New Web Site - Custom Create** wizard opens.
+   The **New Web Site - Custom Create** wizard opens.
 3. In the **New Web Site** step of the wizard, enter a string in the **URL** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the suffix that you see next to the text box. The illustration shows "ConU", but that URL is probably taken so you will have to choose a different one.
 
     ![Create with Database link in Management Portal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
@@ -292,11 +292,11 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
   
     ![Database Settings step of New Web Site - Create with Database wizard](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image16.png)  
 
- The following image shows using an existing SQL Server and Login.   
+    The following image shows using an existing SQL Server and Login.   
   
     ![Database Settings step of New Web Site - Create with Database wizard](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image17.png)  
   
- The Management Portal returns to the Web Sites page, and the **Status** column shows that the site is being created. After a while (typically less than a minute), the **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the **Web Sites** icon, and the number of databases appears next to the **SQL Databases** icon.
+    The Management Portal returns to the Web Sites page, and the **Status** column shows that the site is being created. After a while (typically less than a minute), the **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the **Web Sites** icon, and the number of databases appears next to the **SQL Databases** icon.
 
 ## Deploy the application to Windows Azure
 
@@ -349,16 +349,16 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
   
     ![StartPreview button in the Preview tab](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image29.png)  
   
- The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.  
+    The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.  
   
     ![StartPreview file output](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image30.png)
 12. Click **Publish**.  
- Visual Studio begins the process of copying the files to the Windows Azure server.
+    Visual Studio begins the process of copying the files to the Windows Azure server.
 13. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.  
   
     ![Output window reporting successful deployment](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image31.png)
 14. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.  
- The application you created is now running in the cloud. Click the Students tab.  
+    The application you created is now running in the cloud. Click the Students tab.  
   
     ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image32.png)
 
@@ -390,6 +390,6 @@ In this tutorial you've seen how to create a data model and implement basic CRUD
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
-[Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+> [Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)

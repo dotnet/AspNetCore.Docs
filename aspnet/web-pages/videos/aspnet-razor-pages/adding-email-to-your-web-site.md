@@ -21,6 +21,6 @@ Adding Email to Your Web Site (Part 1)
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adding-email-to-your-web-site)
 
->[!div class="step-by-step"]
-[Previous](working-with-video.md)
-[Next](adding-search-to-your-web-site.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-video.md)
+> [Next](adding-search-to-your-web-site.md)

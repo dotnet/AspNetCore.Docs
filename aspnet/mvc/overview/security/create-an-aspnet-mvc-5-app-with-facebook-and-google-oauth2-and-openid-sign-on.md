@@ -29,7 +29,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 <a id="start"></a>
 ## Getting Started
 
-Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install Visual Studio [2013 Update 3](https://go.microsoft.com/fwlink/?LinkId=390521) or higher. For help with Dropbox, GitHub, Linkedin, Instagram, buffer, salesforce, STEAM, Stack Exchange, Tripit, twitch, Twitter, Yahoo and more, see this [one stop guide](http://www.oauthforaspnet.com/).
+Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install Visual Studio [2013 Update 3](https://go.microsoft.com/fwlink/?LinkId=390521) or higher. For help with Dropbox, GitHub, Linkedin, Instagram, Buffer, Salesforce, STEAM, Stack Exchange, Tripit, Twitch, Twitter, Yahoo!, and more, see this [sample project](https://github.com/matthewdunsdon/oauthforaspnet).
 
 > [!NOTE]
 > You must install Visual Studio [2013 Update 3](https://go.microsoft.com/fwlink/?LinkId=390521) or higher to use Google OAuth 2 and to debug locally without SSL warnings.
@@ -113,9 +113,9 @@ To connect to authentication providers like Google and Facebook, you will need t
 > For current Google OAuth instructions, see [Configuring Google authentication in ASP.NET Core](/aspnet/core/security/authentication/social/google-logins).
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
-1. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
-1. In the left tab, click **Credentials**.
-1. Click **Create credentials** then **OAuth client ID**. 
+2. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
+3. In the left tab, click **Credentials**.
+4. Click **Create credentials** then **OAuth client ID**. 
 
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300/` unless you've created other SSL projects)
@@ -126,7 +126,7 @@ To connect to authentication providers like Google and Facebook, you will need t
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image15.png)  
   
- The image below shows the enabled APIs.  
+   The image below shows the enabled APIs.  
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image16.png)
 7. From the Google APIs API Manager, visit the **Credentials** tab to obtain the **Client ID**. Download to save a JSON file with application secrets. Copy and paste the **ClientId** and **ClientSecret** into the `UseGoogleAuthentication` method found in the *Startup.Auth.cs* file in the *App_Start* folder. The **ClientId** and **ClientSecret** values shown below are samples and don't work.
@@ -143,8 +143,8 @@ To connect to authentication providers like Google and Facebook, you will need t
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image18.png)
 
     > [!NOTE]
-    > If you miss any of the steps above you will get a HTTP 401 error. Recheck your steps above. If you miss a required setting (for example **product name**), add the missing item and save, it can take a few minutes for authentication to work.
-10. You will be redirected to the google site where you will enter your credentials.   
+    > If you miss any of the steps above you will get a HTTP 401 error. Recheck your steps above. If you miss a required setting (for example **product name**), add the missing item and save; it can take a few minutes for authentication to work.
+10. You will be redirected to the Google site where you will enter your credentials.   
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image19.png)
 11. After you enter your credentials, you will be prompted to give permissions to the web application you just created:
@@ -169,7 +169,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
     ![Create new app](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image22.png)
 4. Enter an **App Name** and **Category**, then click **Create App**.
 
-    This must be unique across Facebook. The **App Namespace** is the part of the URL that your App will use to access the Facebook application for authentication (for example, https://apps.facebook.com/{App Namespace}). If you don't specify an **App Namespace**, the **App ID** will be used for the URL. The **App ID** is a long system-generated number that you will see in the next step.
+    This must be unique across Facebook. The <strong>App Namespace</strong> is the part of the URL that your App will use to access the Facebook application for authentication (for example, https://apps.facebook.com/{App Namespace}). If you don't specify an <strong>App Namespace</strong>, the <strong>App ID</strong> will be used for the URL. The <strong>App ID</strong> is a long system-generated number that you will see in the next step.
 
     ![Create New App dialog](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image23.png)
 5. Submit the standard security check.

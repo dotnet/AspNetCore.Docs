@@ -83,7 +83,7 @@ using NJsonSchema;
 
 In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-cs[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-cs[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swagger/v1/swagger.json` to view the Swagger specification.
 
@@ -141,28 +141,24 @@ You can generate the code in other ways, more suited to your workflow:
 
 XML comments are enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio-xml)
-
+#### [Visual Studio](#tab/visual-studio-xml/)
 * Right-click the project in **Solution Explorer** and select **Properties**
 * Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml)
-
+#### [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section:
 
 ![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
 
-# [Visual Studio Code](#tab/visual-studio-code-xml)
-
+#### [Visual Studio Code](#tab/visual-studio-code-xml/)
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
 
----
-
+* * *
 ## Data annotations
 
 NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the best practice for Web API actions is to return [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult). Consequently, NSwag can't infer what your action is doing and what it returns. Consider the following example:

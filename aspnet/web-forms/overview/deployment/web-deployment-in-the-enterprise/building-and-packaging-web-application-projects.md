@@ -54,8 +54,8 @@ This target uses the **MSBuild** task to build various projects. Notice the **De
 The **Package** target is defined in the *Microsoft.Web.Publishing.targets* file. Essentially, this target takes the build output of your web application project and turns it into a web deployment package that can be published to an IIS web server.
 
 > [!NOTE]
-> To view a project file (for example, *ContactManager.Mvc.csproj*) in Visual Studio 2010, you first need to unload the project from your solution. In the **Solution Explorer** window, right-click the project node, and then click **Unload Project**. Right-click the project node again, and then click **Edit***[project file]*). The project file will open in its raw XML form. Remember to reload the project when you're done.  
-> For more information on MSBuild targets, tasks, and **Import** statements, see [Understanding the Project File](understanding-the-project-file.md). For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
+> To view a project file (for example, <em>ContactManager.Mvc.csproj</em>) in Visual Studio 2010, you first need to unload the project from your solution. In the <strong>Solution Explorer</strong> window, right-click the project node, and then click <strong>Unload Project</strong>. Right-click the project node again, and then click <strong>Edit</strong><em>[project file]</em>). The project file will open in its raw XML form. Remember to reload the project when you're done.  
+> For more information on MSBuild targets, tasks, and <strong>Import</strong> statements, see [Understanding the Project File](understanding-the-project-file.md). For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
 
 ## What Is a Web Deployment Package?
@@ -99,6 +99,6 @@ The next topics in this tutorial, [Configuring Parameters for Web Package Deploy
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"]
-[Previous](understanding-the-build-process.md)
-[Next](configuring-parameters-for-web-package-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-the-build-process.md)
+> [Next](configuring-parameters-for-web-package-deployment.md)

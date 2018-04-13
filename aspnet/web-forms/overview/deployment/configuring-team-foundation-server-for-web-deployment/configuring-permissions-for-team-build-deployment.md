@@ -88,5 +88,5 @@ At this point, you should understand the permissions required, together with the
 
 For more information on configuring Windows server environments to support remote deployment, see [Configuring Server Environments for Web Deployment](../configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](deploying-a-specific-build.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-specific-build.md)

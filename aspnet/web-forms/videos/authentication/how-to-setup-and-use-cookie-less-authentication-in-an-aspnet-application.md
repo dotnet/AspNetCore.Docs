@@ -21,6 +21,6 @@ Joe Stagner utilizes the previous code example to demonstrate how to use cookie-
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-to-setup-and-use-cookie-less-authentication-in-an-aspnet-application)
 
->[!div class="step-by-step"]
-[Previous](how-to-change-the-forms-authentication-properties.md)
-[Next](asp-forms-login-relocation.md)
+> [!div class="step-by-step"]
+> [Previous](how-to-change-the-forms-authentication-properties.md)
+> [Next](asp-forms-login-relocation.md)

@@ -53,7 +53,7 @@ The following Razor markup:
 Generates the following HTML:
 
 ```html
- <label for="Movie_Title">Title</label>
+<label for="Movie_Title">Title</label>
 ```
 
 The `asp-for` attribute is made available by the `For` property in the [LabelTagHelper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.labeltaghelper?view=aspnetcore-2.0). See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
@@ -184,7 +184,7 @@ The at (`@`) symbol tells Razor this is the start of code. The next two paramete
 new {@class="caption"}
 ```
 
-Is an anonymous object used to represent attributes. Because **class** is a reserved keyword in C#, you use the `@` symbol to force C# to interpret "@class=" as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
+Is an anonymous object used to represent attributes. Because <strong>class</strong> is a reserved keyword in C#, you use the `@` symbol to force C# to interpret "@class=" as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
 
 Using the `LabelTagHelper`, the same markup can be written as:
 

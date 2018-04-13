@@ -112,8 +112,8 @@ The ASP.NET SQL Server Setup Wizard enables you to select a SQL Server database 
 
 > [!NOTE]
 > If you don't want to use the ASP.NET SQL Server Setup Wizard, then you can find SQL scripts for adding the application services database objects in the following folder:
-
-
+> 
+> 
 > C:\Windows\Microsoft.NET\Framework\v2.0.50727
 
 
@@ -147,6 +147,6 @@ After you create the required login, you need to map the login to a database use
 
 In this tutorial, you learned how to use Forms authentication when building an ASP.NET MVC application. First, you learned how to create new users and roles by taking advantage of the Web Site Administration Tool. Next, you learned how to use the [Authorize] attribute to prevent unauthorized users from invoking controller actions. Finally, you learned how to configure your MVC application to store user and role information in a production database.
 
->[!div class="step-by-step"]
-[Previous](preventing-javascript-injection-attacks-cs.md)
-[Next](authenticating-users-with-windows-authentication-vb.md)
+> [!div class="step-by-step"]
+> [Previous](preventing-javascript-injection-attacks-cs.md)
+> [Next](authenticating-users-with-windows-authentication-vb.md)

@@ -120,5 +120,5 @@ ASP.NET MVC makes use of some basic naming conventions for folder names:
 
 These folders are included even in an Empty ASP.NET MVC application because the ASP.NET MVC framework by default uses a "convention over configuration" approach and makes some default assumptions based on folder naming conventions. For instance, controllers look for views in the Views folder by default without you having to explicitly specify this in your code. Sticking with the default conventions reduces the amount of code you need to write, and can also make it easier for other developers to understand your project. We'll explain these conventions more as we build our application.
 
->[!div class="step-by-step"]
-[Next](mvc-music-store-part-2.md)
+> [!div class="step-by-step"]
+> [Next](mvc-music-store-part-2.md)

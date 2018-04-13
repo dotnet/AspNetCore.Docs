@@ -15,7 +15,7 @@ uid: data/ef-rp/complex-data-model
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -572,12 +572,12 @@ The code in the updated `DbInitializer` adds seed data for the new entities. To 
 
 * Alternatively, delete the DB using:
 
-	* **SQL Server Object Explorer** (SSOX).
-	* The `database drop` CLI command:
+  * **SQL Server Object Explorer** (SSOX).
+  * The `database drop` CLI command:
 
-   ```console
-   dotnet ef database drop
-   ```
+    ```console
+    dotnet ef database drop
+    ```
 
 Run `database update` in the command window:
 
@@ -643,6 +643,6 @@ A production app would:
 
 The next tutorial covers related data.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/migrations)
-[Next](xref:data/ef-rp/read-related-data)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/migrations)
+> [Next](xref:data/ef-rp/read-related-data)

@@ -156,6 +156,6 @@ In order for an automated deployment to succeed as part of a build process, you'
 
 For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/library/ms181722.aspx).
 
->[!div class="step-by-step"]
-[Previous](configuring-a-tfs-build-server-for-web-deployment.md)
-[Next](deploying-a-specific-build.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-tfs-build-server-for-web-deployment.md)
+> [Next](deploying-a-specific-build.md)

@@ -34,14 +34,12 @@ cd my-new-app
 
 Run the app from either Visual Studio or the .NET Core CLI:
 
-# [Visual Studio](#tab/visual-studio)
-
+#### [Visual Studio](#tab/visual-studio/)
 Open the generated *.csproj* file, and run the app as normal from there.
 
 The build process restores npm dependencies on the first run, which can take several minutes. Subsequent builds are much faster.
 
-# [.NET Core CLI](#tab/netcore-cli)
-
+#### [.NET Core CLI](#tab/netcore-cli/)
 Ensure you have an environment variable called `ASPNETCORE_Environment` with a value of `Development`. On Windows (in non-PowerShell prompts), run `SET ASPNETCORE_Environment=Development`. On Linux or macOS, run `export ASPNETCORE_Environment=Development`.
 
 Run [dotnet build](/dotnet/core/tools/dotnet-build) to verify the app builds correctly. On the first run, the build process restores npm dependencies, which can take several minutes. Subsequent builds are much faster.
@@ -54,10 +52,9 @@ Now listening on: http://localhost:<port>
 
 Navigate to this URL in a browser.
 
-The app starts up an instance of the Angular CLI server in the background. A message similar to the following is logged: *NG Live Development Server is listening on localhost:&lt;otherport&gt;, open your browser on http://localhost:&lt;otherport&gt;/*. Ignore this message&mdash;it's **not** the URL for the combined ASP.NET Core and Angular CLI app.
+The app starts up an instance of the Angular CLI server in the background. A message similar to the following is logged: <em>NG Live Development Server is listening on localhost:&lt;otherport&gt;, open your browser on http://localhost:&lt;otherport&gt;/</em>. Ignore this message&mdash;it's <strong>not</strong> the URL for the combined ASP.NET Core and Angular CLI app.
 
----
-
+* * *
 The project template creates an ASP.NET Core app and an Angular app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The Angular app, residing in the *ClientApp* subdirectory, is intended to be used for all UI concerns.
 
 ## Add pages, images, styles, modules, etc.

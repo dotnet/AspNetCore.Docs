@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/first-mvc-app/search
 ---
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/search1.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/search1.md)]
 
 You can quickly rename the `searchString` parameter to `id` with the **rename** command. Right click on `searchString` **> Rename**.
 
@@ -25,7 +25,7 @@ Change the parameter to `id` and all occurrences of `searchString` change to `id
 
 ![Code editor showing the variable has been changed to id](search/_static/rename3.png)
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/search2.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/search2.md)]
 
 Notice how intelliSense helps us update the markup.
 
@@ -37,8 +37,8 @@ Notice the distinctive font in the `<form>` tag. That distinctive font indicates
 
 ![form tag with purple text](search/_static/th_font.png)
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/search3.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/search3.md)]
 
->[!div class="step-by-step"]
-[Previous](controller-methods-views.md)
-[Next](new-field.md)  
+> [!div class="step-by-step"]
+> [Previous](controller-methods-views.md)
+> [Next](new-field.md)  

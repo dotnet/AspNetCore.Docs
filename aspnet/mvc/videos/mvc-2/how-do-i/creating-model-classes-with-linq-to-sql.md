@@ -21,6 +21,6 @@ Learn how to create data access classes by taking advantage of Microsoft LINQ to
 
 [&#9654; Watch video (24 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-model-classes-with-linq-to-sql)
 
->[!div class="step-by-step"]
-[Previous](creating-custom-html-helpers.md)
-[Next](displaying-a-table-of-database-data.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-html-helpers.md)
+> [Next](displaying-a-table-of-database-data.md)

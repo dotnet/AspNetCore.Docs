@@ -58,5 +58,5 @@ Moving the slider triggers a postback ([Click to view full-size image](using-the
 
 Afterwards, the date of this change is written in the label ([Click to view full-size image](using-the-slider-control-with-auto-postback-cs/_static/image6.png))
 
->[!div class="step-by-step"]
-[Next](databinding-the-slider-control-cs.md)
+> [!div class="step-by-step"]
+> [Next](databinding-the-slider-control-cs.md)

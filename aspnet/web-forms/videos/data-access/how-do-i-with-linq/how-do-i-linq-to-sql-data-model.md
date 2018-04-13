@@ -21,6 +21,6 @@ LINQ to SQL relies on an object-to-relational model set of classes that map to y
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-data-model)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-overview.md)
-[Next](how-do-i-linq-to-sql-querying-the-database.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-overview.md)
+> [Next](how-do-i-linq-to-sql-querying-the-database.md)

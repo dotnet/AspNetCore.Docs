@@ -21,6 +21,6 @@ SQL Server beginners will learn to differentiate between SQL Server database fil
 
 [&#9654; Watch video (40 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-security-and-network-connectivity)
 
->[!div class="step-by-step"]
-[Previous](more-structured-query-language.md)
-[Next](connecting-your-web-application-to-sql-server-2005-express-edition.md)
+> [!div class="step-by-step"]
+> [Previous](more-structured-query-language.md)
+> [Next](connecting-your-web-application-to-sql-server-2005-express-edition.md)

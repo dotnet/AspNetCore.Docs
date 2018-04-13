@@ -19,6 +19,6 @@ by [Scott Hanselman](https://github.com/shanselman)
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-45-web-forms-strong-typed-data-controls)
 
->[!div class="step-by-step"]
-[Previous](aspnet-45-web-forms-model-binding.md)
-[Next](aspnet-vnext-videos-bundling-and-minification.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-45-web-forms-model-binding.md)
+> [Next](aspnet-vnext-videos-bundling-and-minification.md)

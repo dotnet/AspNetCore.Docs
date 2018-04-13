@@ -83,7 +83,7 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
   
     ![](account-confirmation-and-password-recovery-with-aspnet-identity/_static/image10.png)  
   
- At this point the email has not been confirmed.
+   At this point the email has not been confirmed.
 
 The default data store for ASP.NET Identity is Entity Framework, but you can configure it to use other data stores and to add additional fields. See [Additional Resources](#addRes) section at the end of this tutorial.
 
@@ -147,7 +147,7 @@ In this section, you'll use NuGet to download a more complete sample we will wor
 
     [!code-console[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample4.cmd)]
 
- In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email. The `Identity.Samples` package installs the code we will be working with.
+   In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email. The `Identity.Samples` package installs the code we will be working with.
 3. Set the [project to use SSL](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
 4. Test local account creation by running the app, clicking on the **Register** link, and posting the registration form.
 5. Click the demo email link, which simulates email confirmation.

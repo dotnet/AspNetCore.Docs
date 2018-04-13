@@ -222,5 +222,5 @@ This topic forms part of a series of tutorials that provide guidance on various 
 - [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial provides guidance on how to integrate deployment logic into TFS build processes.
 - [Advanced Enterprise Web Deployment](../advanced-enterprise-web-deployment/advanced-enterprise-web-deployment.md). This tutorial provides guidance on how to meet some of the more complex deployment challenges that organizations face.
 
->[!div class="step-by-step"]
-[Previous](enterprise-web-deployment-scenario-overview.md)
+> [!div class="step-by-step"]
+> [Previous](enterprise-web-deployment-scenario-overview.md)

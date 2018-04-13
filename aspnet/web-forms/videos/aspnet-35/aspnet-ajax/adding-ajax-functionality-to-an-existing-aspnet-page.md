@@ -21,6 +21,6 @@ Using AJAX in ASP.NET pages can increase performance and improve the overall use
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/adding-ajax-functionality-to-an-existing-aspnet-page)
 
->[!div class="step-by-step"]
-[Previous](aspnet-ajax-support-in-visual-studio-2008.md)
-[Next](creating-and-using-an-ajax-enabled-web-service-in-a-web-site.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-ajax-support-in-visual-studio-2008.md)
+> [Next](creating-and-using-an-ajax-enabled-web-service-in-a-web-site.md)

@@ -21,6 +21,6 @@ An in-depth tutorial on building an application with ASP.NET MVC. In this video 
 
 [&#9654; Watch video (80 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner)
 
->[!div class="step-by-step"]
-[Previous](displaying-a-table-of-database-data.md)
-[Next](why-aspnet-mvc-3-minute-overview-video-for-decision-makers.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-a-table-of-database-data.md)
+> [Next](why-aspnet-mvc-3-minute-overview-video-for-decision-makers.md)

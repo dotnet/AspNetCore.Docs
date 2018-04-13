@@ -21,6 +21,6 @@ In this video you will learn how to use the compressionEnabled configuration opt
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-easy-state-compression)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-selective-view-state.md)
-[Next](how-do-i-use-the-viewstatemode-property-for-managing-viewstate.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-selective-view-state.md)
+> [Next](how-do-i-use-the-viewstatemode-property-for-managing-viewstate.md)

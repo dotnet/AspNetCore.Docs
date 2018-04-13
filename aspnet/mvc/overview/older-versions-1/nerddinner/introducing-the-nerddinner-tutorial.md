@@ -83,5 +83,5 @@ Now that we've covered what NerdDinner is, let's roll up our sleeves and write s
 
 We'll begin by using File-&gt;New Project within Visual Studio to create the NerdDinner application.
 
->[!div class="step-by-step"]
-[Next](create-a-new-aspnet-mvc-project.md)
+> [!div class="step-by-step"]
+> [Next](create-a-new-aspnet-mvc-project.md)

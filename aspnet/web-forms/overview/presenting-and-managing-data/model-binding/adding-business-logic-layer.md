@@ -93,5 +93,5 @@ Run the application and notice that all of the pages function as they had previo
 
 In this tutorial, you re-structured your application to use a data access layer and business logic layer. You specified that the data controls use an object that is not the current page for data operations.
 
->[!div class="step-by-step"]
-[Previous](using-query-string-values-to-retrieve-data.md)
+> [!div class="step-by-step"]
+> [Previous](using-query-string-values-to-retrieve-data.md)

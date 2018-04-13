@@ -21,5 +21,5 @@ Meet the new ASP.NET and Web Tools 2012.2 release! This release includes a pile 
 
 [&#9654; Watch video (26 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-and-web-tools-20122)
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-the-next-version-of-aspnet.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-the-next-version-of-aspnet.md)

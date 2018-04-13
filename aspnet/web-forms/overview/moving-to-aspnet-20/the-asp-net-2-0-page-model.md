@@ -595,11 +595,13 @@ Use the IsStartupScriptRegistered method to determine if a script has already be
 
 Here are some of the other useful methods of the ClientScriptManager class.
 
-| **GetCallbackEventReference** | See script callbacks earlier in this module. |
-| --- | --- |
-| **GetPostBackClientHyperlink** | Gets a JavaScript reference (javascript:&lt;call&gt;) that can be used to post back from a client-side event. |
-| **GetPostBackEventReference** | Gets a string that can be used to initiate a post back from the client. |
-| **GetWebResourceUrl** | Returns a URL to a resource that is embedded in an assembly. Must be used in conjunction with **RegisterClientScriptResource**. |
-| **RegisterClientScriptResource** | Registers a Web resource with the page. These are resources embedded in an assembly and handled by the new WebResource.axd handler. |
-| **RegisterHiddenField** | Registers a hidden form field with the page. |
-| **RegisterOnSubmitStatement** | Registers client-side code that executes when the HTML form is submitted. |
+
+|  <strong>GetCallbackEventReference</strong>   |                                                 See script callbacks earlier in this module.                                                 |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+|  <strong>GetPostBackClientHyperlink</strong>  |                Gets a JavaScript reference (javascript:&lt;call&gt;) that can be used to post back from a client-side event.                 |
+|  <strong>GetPostBackEventReference</strong>   |                                   Gets a string that can be used to initiate a post back from the client.                                    |
+|      <strong>GetWebResourceUrl</strong>       | Returns a URL to a resource that is embedded in an assembly. Must be used in conjunction with <strong>RegisterClientScriptResource</strong>. |
+| <strong>RegisterClientScriptResource</strong> |     Registers a Web resource with the page. These are resources embedded in an assembly and handled by the new WebResource.axd handler.      |
+|     <strong>RegisterHiddenField</strong>      |                                                 Registers a hidden form field with the page.                                                 |
+|  <strong>RegisterOnSubmitStatement</strong>   |                                  Registers client-side code that executes when the HTML form is submitted.                                   |
+

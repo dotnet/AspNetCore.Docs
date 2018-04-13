@@ -21,6 +21,6 @@ In this video you will learn about the RenderOuterTable property for templated c
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-table-free-templated-controls)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists.md)
-[Next](aspnet-4-quick-hit-tableless-menu-control.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists.md)
+> [Next](aspnet-4-quick-hit-tableless-menu-control.md)

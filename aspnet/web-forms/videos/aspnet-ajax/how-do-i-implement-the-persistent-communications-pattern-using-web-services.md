@@ -21,6 +21,6 @@ In a traditional Web site the browser and the server do not maintain an ongoing 
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-persistent-communications-pattern-using-web-services)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-localize-an-aspnet-ajax-application.md)
-[Next](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-localize-an-aspnet-ajax-application.md)
+> [Next](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)

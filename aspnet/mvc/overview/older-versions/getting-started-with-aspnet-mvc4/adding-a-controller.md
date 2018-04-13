@@ -69,6 +69,6 @@ Run your application and browse to the example URL (`http://localhost:xxxx/Hello
 
 In both these examples the controller has been doing the &quot;VC&quot; portion of MVC — that is, the view and controller work. The controller is returning HTML directly. Ordinarily you don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look next at how we can do this.
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-mvc-4.md)
-[Next](adding-a-view.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-mvc-4.md)
+> [Next](adding-a-view.md)

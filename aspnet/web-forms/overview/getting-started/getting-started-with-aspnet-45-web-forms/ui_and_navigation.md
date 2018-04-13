@@ -49,7 +49,7 @@ You'll continue this tutorial series by modifying the *Default.aspx* page. You w
     [!code-aspx[Main](ui_and_navigation/samples/sample2.aspx)]
 5. Save the *Default.aspx* page by selecting **Save Default.aspx** from the **File** menu.
 
- The resulting *Default.aspx* page will appear as follows: 
+   The resulting *Default.aspx* page will appear as follows: 
 
 [!code-aspx[Main](ui_and_navigation/samples/sample3.aspx)]
 
@@ -161,7 +161,7 @@ In this tutorial, you will change look and feel of the Wingtip Toys application 
 2. Right-click the *bootstrap.css* file and rename it to *bootstrap-original.css*.
 3. Rename the *bootstrap.min.css* to *bootstrap-original.min.css*.
 4. In **Solution Explorer**, right-click the *Content* folder and select **Open Folder in File Explorer**.  
- The File Explorer will be displayed. You will save a downloaded bootstrap CSS files to this location.
+   The File Explorer will be displayed. You will save a downloaded bootstrap CSS files to this location.
 5. In your browser, go to [http://Bootswatch.com](http://bootswatch.com/).
 6. Scroll the browser window until you see the Cerulean theme. 
 
@@ -171,9 +171,9 @@ In this tutorial, you will change look and feel of the Wingtip Toys application 
 
     ![UI and Navigation - Solution Explorer](ui_and_navigation/_static/image6.png)
 
- You will see the two new CSS files in the **Content** folder, but notice that the icon next to each file name is grayed out. This means that the file has not yet been added to the project.
+   You will see the two new CSS files in the **Content** folder, but notice that the icon next to each file name is grayed out. This means that the file has not yet been added to the project.
 9. Right-click the *bootstrap.css* and the *bootstrap.min.css* files and select **Include In Project**.   
- When you run the Wingtip Toys application later in this tutorial, the new UI will be displayed.
+   When you run the Wingtip Toys application later in this tutorial, the new UI will be displayed.
 
 > [!NOTE] 
 > 
@@ -287,6 +287,6 @@ In this tutorial of the series you have added some basic UI, graphics, pages, an
 [ASP.NET Web Server Controls Overview](https://msdn.microsoft.com/library/zsyt68f1.aspx)   
 [CSS Tutorial](http://www.w3schools.com/css/default.asp)
 
->[!div class="step-by-step"]
-[Previous](create_the_data_access_layer.md)
-[Next](display_data_items_and_details.md)
+> [!div class="step-by-step"]
+> [Previous](create_the_data_access_layer.md)
+> [Next](display_data_items_and_details.md)

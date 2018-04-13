@@ -57,7 +57,7 @@ Collectively, these infrastructure components enhance both the development workf
 
 To work with SpaServices, install the following:
 * [Node.js](https://nodejs.org/) (version 6 or later) with npm
-    * To verify these components are installed and can be found, run the following from the command line:
+  * To verify these components are installed and can be found, run the following from the command line:
 
     ```console
     node -v && npm -v
@@ -65,7 +65,8 @@ To work with SpaServices, install the following:
 
 Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node.js is installed and available in the server environments.
 
-* [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+* [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
+
   * If you're on Windows using Visual Studio 2017, the SDK is installed by selecting the **.NET Core cross-platform development** workload.
 
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
@@ -220,7 +221,7 @@ Tip: Routes are evaluated in the order in which they're configured. Consequently
 
 ## Creating a new project
 
-JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
@@ -233,11 +234,8 @@ A list of available SPA templates is displayed:
 | Templates                                 | Short Name | Language | Tags        |
 |:------------------------------------------|:-----------|:---------|:------------|
 | MVC ASP.NET Core with Angular             | angular    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Aurelia             | aurelia    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Knockout.js         | knockout   | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js            | react      | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
