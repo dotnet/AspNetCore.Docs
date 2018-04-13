@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/23/2018
+ms.date: 04/13/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -45,21 +45,29 @@ An inventory of the Partial Tag Helper attributes follows.
 
 The `name` attribute is required. It indicates the name or the path of the partial view to be rendered. When a partial view name is provided, the [view discovery](xref:mvc/views/overview#view-discovery) process is initiated. That process is bypassed when an explicit path is provided.
 
-The following markup uses an explicit path, indicating that *_ProductPartial.cshtml* is to be loaded from the *Shared* folder. Using the [asp-for](#asp-for) attribute, a model is passed to the partial view for binding.
+The following markup uses an explicit path, indicating that *_ProductPartial.cshtml* is to be loaded from the *Shared* folder. Using the [for](#for) attribute, a model is passed to the partial view for binding.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Name)]
 
-## asp-for
+## for
 
-The `asp-for` attribute assigns a [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) to be evaluated against the current model. A `ModelExpression` infers the `@Model.` syntax. For example, `asp-for="Product"` can be used instead of `asp-for="@Model.Product"`. This default inference behavior is overridden by using the `@` symbol to define an inline expression.
+The `for` attribute assigns a [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) to be evaluated against the current model. A `ModelExpression` infers the `@Model.` syntax. For example, `for="Product"` can be used instead of `for="@Model.Product"`. This default inference behavior is overridden by using the `@` symbol to define an inline expression. The `for` attribute can't be used with the [model](#model) attribute.
 
 The following markup loads *_ProductPartial.cshtml*:
 
-[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_AspFor)]
+[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_For)]
 
 The partial view is bound to the associated page model's `Product` property:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
+
+## model
+
+The `model` attribute assigns a model instance to pass to the partial view. The `model` attribute can't be used with the [for](#for) attribute.
+
+In the following markup, a new `Product` object is instantiated and passed to the `model` attribute for binding:
+
+[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Model)]
 
 ## view-data
 
