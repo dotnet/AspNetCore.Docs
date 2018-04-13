@@ -25,6 +25,7 @@ This document shows how to:
 >* Not listen on HTTP.
 >* Close the connection with status code 400 (Bad Request) and not serve the request.
 
+<a name="require"></a>
 ## Require HTTPS
 
 ::: moniker range=">= aspnetcore-2.1"
@@ -90,4 +91,27 @@ The following code:
 * `[::1]` : The IPv6 loopback address.
 
 The preceding example shows how to add additional hosts.
+::: moniker-end
+
+
+::: moniker range=">= aspnetcore-2.1"
+<a name="https"></a>
+## Opt-out of HTTPS on project creation
+
+The ASP.NET Core 2.1 and later web application templates (from Visual Studio or the dotnet command line) enable [HTTPS redirection](#require) and [HSTS](#hsts). For deployments that don't require HTTPS, you can opt-out of HTTPS. For example, some backend services where HTTPS is being handled externally at the edge, using HTTPS at each node is not needed.
+
+To opt-out of HTTPS:
+
+# [Visual Studio](#tab/visual-studio) 
+
+Uncheck the **Configure for HTTPS** checkbox.
+
+#	[.NET Core CLI](#tab/netcore-cli) 
+
+Use the `--no-https` option. For example
+
+```cli
+dotnet new razor --no-https
+
+----------------------
 ::: moniker-end
