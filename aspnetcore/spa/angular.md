@@ -193,17 +193,17 @@ At the same time, there are significant drawbacks to enabling SSR. It adds compl
 
 ## Live Reloading
 
-When utilizing `UseAngularCliServer` in development mode, `ng serve` will by default enable live reload. Live reload will watch for changes in your client application, trigger a build, and refresh the browser. Angular CLI assumes the `sockjs` endpoint it uses to trigger the browser refresh will be at the path `/sockjs-node`. However if you are [branching the middleware chain](xref:fundamentals/middleware/index#use-run-and-map), e.g. using `Map` to proxy your client application at anything other than the root server path, you will need to configure the `sockjs` endpoint using the `live-reload-client` (aka `public-host`) option. Note that this argument requires a fully qualified URL.
+When utilizing `UseAngularCliServer` in development mode, `ng serve` enables live reload by default. Live reload watches for changes in your client app, triggers a build, and refreshes the browser. Angular CLI assumes the `sockjs` endpoint it uses to trigger the browser refresh is at the path `/sockjs-node`. If you're [branching the middleware chain](xref:fundamentals/middleware/index#use-run-and-map) (for example, using `Map` to proxy your client app at anything other than the root server path) configure the `sockjs` endpoint using the `live-reload-client` (also known as `public-host`) option. Note that this argument requires a fully qualified URL.
 
-e.g. When branching to `myapp`:
+For example, when branching to `myapp`:
 
 ```json
-  "scripts": {
+"scripts": {
     "start": "ng serve --extract-css --live-reload-client=http://localhost:5000/myapp/sockjs-node/",
-  }
+}
 ```
 
-If you are also utilizing pre-rendering via `UseSpaPrerendering`, you will need to update the `ExcludeUrls` in your rendering options as well:
+If you're utilizing pre-rendering via `UseSpaPrerendering`, update the `ExcludeUrls` in your rendering options as well:
 
 ```csharp
 options.ExcludeUrls = new[] { "/myapp/sockjs-node" };
