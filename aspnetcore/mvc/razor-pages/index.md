@@ -415,6 +415,7 @@ services.AddMvc()
 ## See also
 
 * [Introduction to ASP.NET Core](xref:index)
+* [Razor syntax](xref:mvc/views/razor)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)

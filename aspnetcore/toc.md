@@ -142,11 +142,12 @@
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
 
+# [Razor Pages](xref:mvc/razor-pages/index)
+## [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
+## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
+## [Razor SDK](xref:mvc/razor-pages/sdk)
+
 # [MVC](mvc/overview.md)
-## [Razor Pages](xref:mvc/razor-pages/index)
-### [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
-### [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
-### [Razor SDK](xref:mvc/razor-pages/sdk)
 ## [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
