@@ -143,7 +143,6 @@
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
 
 # [Razor Pages](xref:mvc/razor-pages/index)
-## [Razor syntax](xref:mvc/views/razor)
 ## [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
 ## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
 ## [Razor SDK](xref:mvc/razor-pages/sdk)
