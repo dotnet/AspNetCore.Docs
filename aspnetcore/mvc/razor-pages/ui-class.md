@@ -16,7 +16,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains.
 
-[!INCLUDE[](~/includes/2.1-required.md)]
+This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
+
 [!INCLUDE[](~/includes/2.1.md)]
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -87,18 +88,20 @@ Razor views, pages, controllers, page models, and data models can be built in a 
 
 ### Package the Razor UI class library
 
-    ``` CLI
+The following command packages the Razor UI class library into a NuGet package.
+
+    ```CLI
     cd ..
     dotnet pack RazorUIClassLib
     ```
     
-    Ignore the warning message "A stable release of a package should not have a prerelease dependency."
+    Ignore the warning message "A stable release of a package should not have a prerelease dependency." The warning will not happen when relased packages are used.
 
 * Create a new web app and add a package reference to the Razor UI class library package
 
     ``` CLI
     dotnet new razor -o WebApp2
-    dotnet add WebApp2 package RazorUIClassLib --source <current path>/RazorUIClassLib/bin/Debug
+    dotnet add WebApp2 package RazorUIClassLib --source {path}/RazorUIClassLib/bin/Debug
     ```
     
 * Run  the app:
@@ -112,22 +115,10 @@ Razor views, pages, controllers, page models, and data models can be built in a 
 
 Publish the package to NuGet to make it publicaly avaliable.
 
+## Override views, partial views, and pages
 
+When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp2, and the Test page in the WebApp2 will take precedence over the Test page in the NuGet package.  The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the Class UI version.
 
-    
-    
-    
-    
-------------------------------------------------------------------------
-    * Create a *Pages* directory in the class library.
-    * Add Razor Pages to the *Pages* directory. For example, add the Contact page and page model (*Contact.cshtml, Contact.cshtml.cs*) from a Razor Pages project. You can create a Razor pages project with the following command:
-    
-        ```cli
-        dotnet new razor -o RazorPagesApp
-        ```
-    * Optional: Add a *Pages/_ViewImports.cshtml* file to contain the `namespace` for the Razor Pages.
-    
-    
 ## References are supported for the Razor UI class library:
 
 The following references are supported for the Razor UI class library:
@@ -136,6 +127,4 @@ The following references are supported for the Razor UI class library:
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.PrecompiledViews.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## Override views, partial views, and pages
 
-When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the Class UI version.
