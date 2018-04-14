@@ -87,13 +87,13 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 ### Package the Razor UI class library
 
-The following command packages the Razor UI class library into a NuGet package.
+The following command packages the Razor UI class library into a NuGet package:
 
     ``` CLI
     cd ..
     dotnet pack RazorUIClassLib
     ```
-    
+
     Ignore the warning message "A stable release of a package should not have a prerelease dependency." The warning will not happen when relased packages are used.
 
 * Create a new web app and add a package reference to the Razor UI class library package
