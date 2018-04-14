@@ -14,7 +14,7 @@ uid: mvc/razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains.
+Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. 
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
