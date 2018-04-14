@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor Pages UI in a class library.
 manager: wpickett
 ms.author: riande
-ms.date: 3/31/2018
+ms.date: 4/31/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: advanced
@@ -85,8 +85,9 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 * Browse to `/test` to see the page from the Razor UI class library.
 
-### Package the Razor UI class library
+## Package the Razor UI class library
 
+* The following command packages the Razor UI class library:
 
     ``` CLI
     cd ..
@@ -117,7 +118,7 @@ Publish the package to NuGet to make it publicaly avaliable.
 
 ## Override views, partial views, and pages
 
-When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp2, and the Test page in the WebApp2 will take precedence over the Test page in the NuGet package.  The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the Class UI version.
+When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp2, and the Test page in the WebApp2 will take precedence over the Test page in the NuGet package.  The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the RazorUIClassLib version.
 
 ## References are supported for the Razor UI class library:
 
