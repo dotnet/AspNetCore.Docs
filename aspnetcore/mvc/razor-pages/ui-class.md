@@ -90,6 +90,12 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 The following command packages the Razor UI class library into a NuGet package:
 
     ``` CLI
+    Bogus command test
+    ```
+
+Stuff
+
+    ``` CLI
     cd ..
     dotnet pack RazorUIClassLib
     ```
@@ -102,6 +108,8 @@ The following command packages the Razor UI class library into a NuGet package:
     dotnet new razor -o WebApp2
     dotnet add WebApp2 package RazorUIClassLib --source {path}/RazorUIClassLib/bin/Debug
     ```
+
+    Ignore the `NotFound` info messages for `razoruiclasslib/index.json` from your default NuGet sources. 
     
 * Run  the app:
 
