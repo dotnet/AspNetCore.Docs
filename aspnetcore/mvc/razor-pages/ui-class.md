@@ -85,7 +85,29 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 * Browse to `/test` to see the page from the Razor UI class library.
 
+    ``` CLI
+    Bogus command test
+    ```
+
+Stuff
+
+    ``` CLI
+    cd ..
+    dotnet pack RazorUIClassLib
+    ```
+
 ### Package the Razor UI class library
+
+    ``` CLI
+    Bogus command test
+    ```
+
+Stuff
+
+    ``` CLI
+    cd ..
+    dotnet pack RazorUIClassLib
+    ```
 
 The following command packages the Razor UI class library into a NuGet package:
 
