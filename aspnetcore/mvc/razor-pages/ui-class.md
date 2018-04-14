@@ -58,7 +58,6 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
     The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
 
-
 ### Use the Razor UI library
 
 * Create a Razor Pages web app. For example:
@@ -90,7 +89,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 The following command packages the Razor UI class library into a NuGet package.
 
-    ```CLI
+    ``` CLI
     cd ..
     dotnet pack RazorUIClassLib
     ```
