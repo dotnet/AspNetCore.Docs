@@ -106,7 +106,7 @@ If you have a problem using the preview site extension, open an issue on [GitHub
 
 ![Azure App blade with preceding steps](index/_static/x1.png)
 
-* Select **ASP.NET Core Runtime Extensions**.
+* Select **ASP.NET Core 2.1 (x86) Runtime** or **ASP.NET Core 2.1 (x64) Runtime**.
 * Select **OK** > **OK**.
 
 When the add operations completes, the latest .NET Core 2.1 preview is installed. You can verify the installation by running `dotnet --info` in the console. From the App Service blade:
