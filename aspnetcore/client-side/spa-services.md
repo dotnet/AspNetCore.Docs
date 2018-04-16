@@ -287,7 +287,7 @@ Using the Angular application as an example, two Jasmine test cases are already 
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Open the command prompt at the project root, and run the following command:
+Open the command prompt in the *ClientApp* directory. Run the following command:
 
 ```console
 npm test
