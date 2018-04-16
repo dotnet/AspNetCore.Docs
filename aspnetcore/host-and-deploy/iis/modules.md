@@ -5,7 +5,7 @@ description: Discover active and inactive IIS modules for ASP.NET Core apps and 
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2018
+ms.date: 04/04/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -19,8 +19,10 @@ ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of th
 
 ## Native modules
 
-| Module | .NET Core Active | ASP.NET Core Option |
-| ------ | :--------------: | ------------------- |
+The table indicates native IIS modules that are functional on reverse proxy requests to ASP.NET Core apps.
+
+| Module | Functional with ASP.NET Core apps | ASP.NET Core Option |
+| ------ | :-------------------------------: | ------------------- |
 | **Anonymous Authentication**<br>`AnonymousAuthenticationModule` | Yes | |
 | **Basic Authentication**<br>`BasicAuthenticationModule` | Yes | |
 | **Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule` | Yes | |
@@ -57,21 +59,23 @@ ASP.NET Core apps are hosted by IIS in a reverse proxy configuration. Some of th
 
 ## Managed modules
 
-| Module                  | .NET Core Active | ASP.NET Core Option |
-| ----------------------- | :--------------: | ------------------- |
-| AnonymousIdentification | No               | |
-| DefaultAuthentication   | No               | |
-| FileAuthorization       | No               | |
-| FormsAuthentication     | No               | [Cookie Authentication Middleware](xref:security/authentication/cookie) |
-| OutputCache             | No               | [Response Caching Middleware](xref:performance/caching/middleware) |
-| Profile                 | No               | |
-| RoleManager             | No               | |
-| ScriptModule-4.0        | No               | |
-| Session                 | No               | [Session Middleware](xref:fundamentals/app-state) |
-| UrlAuthorization        | No               | |
-| UrlMappingsModule       | No               | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | No               | [ASP.NET Core Identity](xref:security/authentication/identity) |
-| WindowsAuthentication   | No               | |
+Managed modules are *not* functional with hosted ASP.NET Core apps when the app pool's .NET CLR version is set to **No Managed Code**. ASP.NET Core offers middleware alternatives in several cases.
+
+| Module                  | ASP.NET Core Option |
+| ----------------------- | ------------------- |
+| AnonymousIdentification | |
+| DefaultAuthentication   | |
+| FileAuthorization       | |
+| FormsAuthentication     | [Cookie Authentication Middleware](xref:security/authentication/cookie) |
+| OutputCache             | [Response Caching Middleware](xref:performance/caching/middleware) |
+| Profile                 | |
+| RoleManager             | |
+| ScriptModule-4.0        | |
+| Session                 | [Session Middleware](xref:fundamentals/app-state) |
+| UrlAuthorization        | |
+| UrlMappingsModule       | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| WindowsAuthentication   | |
 
 ## IIS Manager application changes
 
@@ -83,7 +87,7 @@ If an IIS module is configured at the server level that must be disabled for an 
 
 ### Module deactivation
 
-Many modules offer a configuration setting that allows them to be disabled without removing the module from the app. This is the simplest and quickest way to deactivate a module. For example, the IIS URL Rewrite Module can be disabled with the **\<httpRedirect>** element in *web.config*:
+Many modules offer a configuration setting that allows them to be disabled without removing the module from the app. This is the simplest and quickest way to deactivate a module. For example, the HTTP Redirection Module can be disabled with the **\<httpRedirect>** element in *web.config*:
 
 ```xml
 <configuration>
@@ -117,22 +121,6 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
    </configuration>
    ```
 
-For an IIS installation with the default modules installed, use the following **\<module>** section to remove the default modules.
-
-```xml
-<modules>
-  <remove name="CustomErrorModule" />
-  <remove name="DefaultDocumentModule" />
-  <remove name="DirectoryListingModule" />
-  <remove name="HttpCacheModule" />
-  <remove name="HttpLoggingModule" />
-  <remove name="ProtocolSupportModule" />
-  <remove name="RequestFilteringModule" />
-  <remove name="StaticCompressionModule" /> 
-  <remove name="StaticFileModule" /> 
-</modules>
-```
-
 An IIS module can also be removed with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:
 
 ```console
@@ -150,6 +138,10 @@ For example, remove the `DynamicCompressionModule` from the Default Web Site:
 The only modules required to run an ASP.NET Core app are the Anonymous Authentication Module and the ASP.NET Core Module.
 
 ![IIS Manager open to Modules with the minimum module configuration shown](modules/_static/modules.png)
+
+The URI Caching Module (`UriCacheModule`) allows IIS to cache website configuration at the URL level. Without this module, IIS must read and parse configuration on every request, even when the same URL is repeatedly requested. Parsing the configuration every request results in a significant performance penalty. *Although the URI Caching Module isn't strictly required for a hosted ASP.NET Core app to run, we recommend that the URI Caching Module be enabled for all ASP.NET Core deployments.*
+
+The HTTP Caching Module (`HttpCacheModule`) implements the IIS output cache and also the logic for caching items in the HTTP.sys cache. Without this module, content is no longer cached in kernel mode, and cache profiles are ignored. Removing the HTTP Caching Module usually has adverse effects on performance and resource usage. *Although the HTTP Caching Module isn't strictly required for a hosted ASP.NET Core app to run, we recommend that the HTTP Caching Module be enabled for all ASP.NET Core deployments.*
 
 ## Additional resources
 
