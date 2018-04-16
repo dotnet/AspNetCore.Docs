@@ -21,7 +21,7 @@ uid: tutorials/first-mvc-app/adding-view
 
   * In the search box in the upper-right, enter *view*
 
-  * Tap **MVC View Page**
+  * Tap **Razor View**
 
   * In the **Name** box, change the name if necessary to *Index.cshtml*.
 
