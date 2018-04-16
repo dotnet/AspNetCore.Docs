@@ -289,7 +289,7 @@ The app has the following file/folder structure:
 * */Pages*
 
   * *Index.cshtml*
-  * */Customer*
+  * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
