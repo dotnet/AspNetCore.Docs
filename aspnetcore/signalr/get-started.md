@@ -38,7 +38,7 @@ Install the following software:
 # [Visual Studio](#tab/visual-studio)
 
 * [.NET Core 2.1.0 Preview 2 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview2) or later
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.6 or later with the **ASP.NET and web development** workload
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
 * [npm](https://www.npmjs.com/get-npm)
 
 # [Visual Studio Code](#tab/visual-studio-code)
