@@ -19,6 +19,7 @@ The following links provide troubleshooting guidance:
 * [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
 * [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
 * [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
+* [YouTube: Diagnosing issues in ASP.NET Core Applications](https://www.youtube.com/watch?v=RYI0DHoIVaA)
 
 <a name="sdk"></a>
 ## .NET Core SDK warnings
