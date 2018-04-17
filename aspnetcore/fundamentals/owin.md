@@ -129,10 +129,9 @@ namespace Microsoft.AspNetCore.Hosting
 }
 ```
 
-With this in place, all that's required to run an ASP.NET application using this custom server is to call the extension in *Program.cs*:
+With this in place, invoke the extension in *Program.cs* to run an ASP.NET Core app using this custom server:
 
 ```csharp
-
 using System;
 using System.Collections.Generic;
 using System.IO;
