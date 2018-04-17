@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRCoreChat.Hubs;
+using SignalRChat.Hubs;
 
-
-namespace SignalRCoreChat
+namespace SignalRChat
 {
     public class Startup
     {
@@ -27,12 +26,12 @@ namespace SignalRCoreChat
 
             services.AddMvc();
 
-            services.AddCors(options => options.AddPolicy("CorsPolicy", 
-            builder => 
-            {
-                builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:55830");
-            }));
+            //services.AddCors(options => options.AddPolicy("CorsPolicy", 
+            //builder => 
+            //{
+            //    builder.AllowAnyMethod().AllowAnyHeader()
+            //           .WithOrigins("http://localhost:55830");
+            //}));
 
             services.AddSignalR();
         }
@@ -51,10 +50,9 @@ namespace SignalRCoreChat
             }
 
             app.UseHttpsRedirection();
-
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseCors("CorsPolicy");
+            //app.UseCors("CorsPolicy");
             app.UseSignalR(routes => 
             {
                 routes.MapHub<ChatHub>("/chathub");
