@@ -1,3 +1,4 @@
+<!-- comment out until fixed. See https://github.com/aspnet/Docs/issues/6004
 ## Call the Web API with jQuery
 
 In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. Add an HTML page with the following:
@@ -21,3 +22,4 @@ To get a ToDo by ID, send an HTTP GET request to &quot;/api/todo/*id*&quot;, whe
 [!code-javascript[Main](samples/sample5.js)]
 
 The `getJSON` function is still invoked to send the AJAX request, but this time the ID is included in the request URI. The response from this request is a JSON representation of a single ToDo item.
+-->
