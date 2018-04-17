@@ -27,6 +27,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 * Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc).
 * Update the *.csproj* file and change the SDK to `Microsoft.NET.SDK.Razor`.
 * Add Razor files to the class library.
+* Build and package the class library.
 
 The following references are supported for the Razor UI class library:
 
