@@ -111,7 +111,6 @@ namespace HttpClientFactorySample
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseMvc();
