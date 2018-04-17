@@ -23,7 +23,8 @@ namespace ChangeTokenSample.Utilities
                             return System.Security.Cryptography.SHA1.Create().ComputeHash(fs);
                         }
                     }
-                    else {
+                    else 
+                    {
                         throw new FileNotFoundException();
                     }
                 }
