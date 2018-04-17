@@ -81,7 +81,7 @@ The following code sets the compatibility mode to ASP.NET Core 2.1, except for t
 
 [!code-csharp[Main](startup/sampleCompatibility/Startup2.cs?name=snippet1)]
 
-The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)class contains all the compatibility options you can set.
+The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class contains all the compatibility options you can set.
 
 Consider ASP.NET Core 3.0, which is not scheduled on the [ASP.NET Core Schedule and Roadmap](https://github.com/aspnet/Home/wiki/Roadmap). At some future date, there will be an ASP.NET Core 3.0 version. Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x.
 
