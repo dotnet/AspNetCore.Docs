@@ -73,16 +73,13 @@ You can configure other actions to take place within the OWIN pipeline.
 > Multiple calls to `UseOwin` is discouraged for performance reasons. OWIN components will operate best if grouped together.
 
 ```csharp
-app.UseOwin(pipeline =>
+app.UseOwin(async (pipeline) =>
 {
-    pipeline(next =>
+    pipeline(async (next) =>
     {
         // do something before
-        return OwinHello.ContinueWith((t)=>
-        {
-            // do something after
-        });
-        
+        await OwinHello(new OwinEnvironment(HttpContext));
+        // do something after
     });
 });
 ```
