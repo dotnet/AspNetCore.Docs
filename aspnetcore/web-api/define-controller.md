@@ -83,10 +83,10 @@ This default behavior is disabled with the following code in *Startup.ConfigureS
 
 Inference rules are applied for the default data sources of action parameters. The binding source attributes behave as follows:
 
-* [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as [IFormCollection](/dotnet/api/microsoft.aspnetcore.http.iformcollection) and [CancellationToken](/dotnet/api/system.threading.cancellationtoken). The binding source inference code ignores those special types. If you decide to explicitly apply the `[FromBody]` attribute, multiple occurrences of it in the same action results in an exception.
-* [[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection).
-* [[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute) is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
-* [[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute) is inferred for anything else.
+* **[[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute)** is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as [IFormCollection](/dotnet/api/microsoft.aspnetcore.http.iformcollection) and [CancellationToken](/dotnet/api/system.threading.cancellationtoken). The binding source inference code ignores those special types. If you decide to explicitly apply the `[FromBody]` attribute, multiple occurrences of it in the same action results in an exception.
+* **[[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute)** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection).
+* **[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
+* **[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)** is inferred for anything else.
 
 For example, the `[FromBody]` attribute is implied for the `Product` parameter:
 
@@ -100,7 +100,7 @@ The default inference rules are disabled with the following code in *Startup.Con
 
 ### Multipart/form-data request inference
 
-When an action parameter is annotated with the [[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute, the `multipart/form-data` request format is inferred.
+When an action parameter is annotated with the [[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute, the `multipart/form-data` request constraint is inferred.
 
 The default behavior is disabled with the following code in *Startup.ConfigureServices*:
 
