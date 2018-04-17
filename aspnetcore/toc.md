@@ -180,8 +180,8 @@
 ### [Custom model binding](mvc/advanced/custom-model-binding.md)
 
 # [Web API](xref:web-api/index)
-## [Controller action return types](xref:web-api/action-return-types)
 ## [Define a controller](xref:web-api/define-controller)
+## [Controller action return types](xref:web-api/action-return-types)
 ## [Advanced](xref:web-api/advanced/index)
 ### [Custom formatters](xref:web-api/advanced/custom-formatters)
 ### [Format response data](xref:web-api/advanced/formatting)

@@ -116,3 +116,5 @@ Actions are inaccessible via convention-based routes defined via [UseMvc](/dotne
 ::: moniker-end
 
 ## Additional resources
+
+[Controller action return types in ASP.NET Core Web API](xref:web-api/action-return-types)
