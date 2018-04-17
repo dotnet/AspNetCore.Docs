@@ -226,6 +226,7 @@
 ## [Get started](xref:signalr/get-started)
 ## [Hubs](xref:signalr/hubs)
 ## [JavaScript client](xref:signalr/javascript-client)
+## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
