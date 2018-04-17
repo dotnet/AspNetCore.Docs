@@ -237,7 +237,7 @@ See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:ho
 
 Use any of several methods to move the app to the hosting system, such as manual copy, Xcopy, Robocopy, or PowerShell.
 
-For more information on ASP.NET Core deployment to IIS, see the linked content in the [Deployment resources for IIS administrators](#deployment-resources-for-iis-administrators) section at the end of this topic.
+For more information on ASP.NET Core deployment to IIS, see the [Deployment resources for IIS administrators](#deployment-resources-for-iis-administrators) section.
 
 ## Browse the website
 
