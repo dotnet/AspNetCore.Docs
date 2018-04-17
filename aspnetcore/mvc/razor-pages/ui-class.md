@@ -14,7 +14,7 @@ uid: mvc/razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence.
+Razor views, pages, controllers, page models, and data models can be built into a class library project, and packaged and reused. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
@@ -32,7 +32,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 The following references are supported for the Razor UI class library:
 
 * Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package).
-* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.PrecompiledViews.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## Walkthrough: Create a class library containing Razor UI
@@ -107,7 +107,11 @@ The following references are supported for the Razor UI class library:
     dotnet pack RazorUIClassLib
     ```
 
-    Ignore the warning message "A stable release of a package should not have a prerelease dependency." The warning will not happen when relased packages are used.
+    Ignore the warning message:
+
+    "A stable release of a package should not have a prerelease dependency.  Either modify the version spec of dependency `"Microsoft.AspNetCore.Mvc [2.1.0-preview, )`" or update the version field in the nuspec." 
+    
+    The preceding warning will not occur when released packages are used.
 
 * Create a new web app and add a package reference to the Razor UI class library package
 
@@ -127,7 +131,7 @@ The following references are supported for the Razor UI class library:
 
 * Browse to `/test` to see the page from the Razor UI class library.
 
-Publish the package to NuGet to make it publicaly avaliable.
+Publish the package to NuGet to make it publicly available.
 
 ## Override views, partial views, and pages
 
