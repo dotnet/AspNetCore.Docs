@@ -75,10 +75,10 @@ You can configure other actions to take place within the OWIN pipeline.
 ```csharp
 app.UseOwin(pipeline =>
 {
-    pipeline(next =>
+    pipeline(async (next) =>
     {
         // do something before
-        return OwinHello;
+        await OwinHello(new OwinEnvironment(HttpContext));
         // do something after
     });
 });
@@ -92,7 +92,7 @@ OWIN-based servers can host ASP.NET applications. One such server is [Nowin](htt
 
 [!code-csharp[](owin/sample/src/NowinSample/Program.cs?highlight=15)]
 
-`IServer` is an interface that requires an `Features` property and a `Start` method.
+`IServer` is an interface that requires a `Features` property and a `Start` method.
 
 `Start` is responsible for configuring and starting the server, which in this case is done through a series of fluent API calls that set addresses parsed from the IServerAddressesFeature. Note that the fluent configuration of the `_builder` variable specifies that requests will be handled by the `appFunc` defined earlier in the method. This `Func` is called on each request to process incoming requests.
 
@@ -129,10 +129,9 @@ namespace Microsoft.AspNetCore.Hosting
 }
 ```
 
-With this in place, all that's required to run an ASP.NET application using this custom server to call the extension in *Program.cs*:
+With this in place, invoke the extension in *Program.cs* to run an ASP.NET Core app using this custom server:
 
 ```csharp
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -217,7 +216,7 @@ This [sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals
 
 ## OWIN environment
 
-You can construct a OWIN environment using the `HttpContext`.
+You can construct an OWIN environment using the `HttpContext`.
 
 ```csharp
 
