@@ -14,7 +14,7 @@ uid: mvc/razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. 
+Razor views, pages, controllers, page models, and data models can be built in a class library project, and packaged and re-used. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
@@ -24,13 +24,25 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 ## Create a class library containing Razor UI
 
-* Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc). For example, run 
+* Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc).
+* Update the *.csproj* file and change the SDK to `Microsoft.NET.SDK.Razor`.
+* Add Razor files to the class library.
+
+The following references are supported for the Razor UI class library:
+
+* Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package).
+* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.PrecompiledViews.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+* *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+
+## Walkthrough: Create a class library containing Razor UI
+
+* Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc). For example, run
 
     ```cli
     dotnet new classlib -f netstandard2.0 -o RazorUIClassLib
     dotnet add RazorUIClassLib package Microsoft.AspNetCore.Mvc -v 2.1.0-preview2-final
     ```
-    
+
     See [dotnet new](/dotnet/core/tools/dotnet-new) for more information.
 
 * Update the *.csproj* file and change the SDK to `Microsoft.NET.SDK.Razor`:
@@ -103,8 +115,8 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
     dotnet add WebApp2 package RazorUIClassLib --source {path}/RazorUIClassLib/bin/Debug
     ```
 
-    Ignore the `NotFound` info messages for `razoruiclasslib/index.json` from your default NuGet sources. 
-    
+    Ignore the `NotFound` info messages for `razoruiclasslib/index.json` from your default NuGet sources.
+
 * Run  the app:
 
     ``` CLI
@@ -119,13 +131,3 @@ Publish the package to NuGet to make it publicaly avaliable.
 ## Override views, partial views, and pages
 
 When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp2, and the Test page in the WebApp2 will take precedence over the Test page in the NuGet package.  The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the RazorUIClassLib version.
-
-## References are supported for the Razor UI class library:
-
-The following references are supported for the Razor UI class library:
-
-* Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package).
-* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.PrecompiledViews.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
-* *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
-
-
