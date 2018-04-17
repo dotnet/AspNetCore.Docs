@@ -47,7 +47,7 @@ To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hostin
 
 The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) method is:
 
-* Optional.
+* Optional
 * Called by the web host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
 
