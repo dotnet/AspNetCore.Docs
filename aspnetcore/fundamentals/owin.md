@@ -73,7 +73,7 @@ You can configure other actions to take place within the OWIN pipeline.
 > Multiple calls to `UseOwin` is discouraged for performance reasons. OWIN components will operate best if grouped together.
 
 ```csharp
-app.UseOwin(async (pipeline) =>
+app.UseOwin(pipeline =>
 {
     pipeline(async (next) =>
     {
