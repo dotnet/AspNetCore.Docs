@@ -66,7 +66,7 @@ The following sections describe convenience features added by the attribute.
 
 ### Automatic HTTP 400 responses
 
-Validation errors automatically trigger an HTTP 400 response. Code such as the following becomes unnecessary:
+Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary:
 
 ```csharp
 if (!ModelState.IsValid)
@@ -91,7 +91,7 @@ For example, the `[FromBody]` attribute is implied for the `Product` parameter:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_CreateAsync)]
 
-Inheriting from `ControllerBase` is necessary in the preceding example, since access to the [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtAction_System_String_System_Object_System_Object_) method is required.
+The preceding action requires access to the [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtAction_System_String_System_Object_System_Object_) method. For this reason only, the controller to which the action belongs inherits from `ControllerBase`.
 
 The default inference rules are disabled with the following code in *Startup.ConfigureServices*:
 
