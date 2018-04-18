@@ -86,7 +86,7 @@ The default inference rules are disabled with the following code in *Startup.Con
 
 ### Multipart/form-data request inference
 
-When an action parameter is annotated with the [[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute, the `multipart/form-data` request constraint is inferred.
+When an action parameter is annotated with the [[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute, the `multipart/form-data` request content type is inferred.
 
 The default behavior is disabled with the following code in *Startup.ConfigureServices*:
 
