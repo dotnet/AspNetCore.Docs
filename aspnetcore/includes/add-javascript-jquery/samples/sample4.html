@@ -1,26 +1,11 @@
 $(document).ready(function () {
-    getData();
-});
-
-function getData() {
-    $.ajax({
-        type: 'GET',
-        url: uri,
-        success: function (data) {
-            $('#todos').empty();
-            getCount(data.length);
+    // Send an AJAX request
+    $.getJSON(apiUrl)
+        .done(function (data) {
+            // On success, 'data' contains a list of todos.
             $.each(data, function (key, item) {
-                var checked = '';
-                if (item.isComplete) {
-                    checked = 'checked'
-                }
-
-                $('<tr><td><input disabled=true type="checkbox" ' + checked + '></td><td>' + item.name + '</td>' +
-                    '<td><button onclick="editItem(' + item.id + ')">Edit</button></td><td><button onclick="deleteItem(' + item.id + ')">' +
-                    'Delete</button ></td></tr>').appendTo($('#todos'));
+                // Add a list item for the todo.
+                $('<li>', { text: formatItem(item) }).appendTo($('#todos'));
             });
-
-            todos = data;
-        }
-    });
-};
+        });
+});
