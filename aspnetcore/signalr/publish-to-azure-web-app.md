@@ -42,7 +42,7 @@ Visual Studio completes the following tasks:
 * Publishes the app.
 * Launches a browser, with the published web app loaded.
 
-The app name is used in the first section of the web app's URL. For example, an app named `SignalRChattR` shows as *https://signalrchattr.azurewebsites.net* in the site's URL.
+Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like *https://signalrchattr.azurewebsites.net*.
 
 ![Appname-azurewebsites-net](publish-to-azure-web-app/_static/app-azurewebsites-net.png)
 
@@ -53,7 +53,7 @@ The app name is used in the first section of the web app's URL. For example, an 
 
 ASP.NET Core SignalR apps that are published as an Azure Web App must have [WebSockets](xref:fundamentals/websockets) and [ARR Affinity](https://en.wikipedia.org/wiki/Application_Request_Routing) enabled. To configure and manage the published app, use the [Azure Portal](https://portal.azure.com).
 
-In the Azure portal, navigate to **App Settings** in your web app. Set **WebSockets** to **On**, and verify **ARR Affinity** is **On**.
+In the Azure portal, navigate to **App Settings** for your web app. Set **WebSockets** to **On**, and verify **ARR Affinity** is **On**.
 
 ![Azure Web app settings in the Azure portal](publish-to-azure-web-app/_static/azure-web-app-settings.png)
 
