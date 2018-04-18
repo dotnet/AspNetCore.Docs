@@ -238,6 +238,8 @@ See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:ho
 
 Use any of several methods to move the app to the hosting system, such as manual copy, Xcopy, Robocopy, or PowerShell.
 
+For more information on ASP.NET Core deployment to IIS, see the [Deployment resources for IIS administrators](#deployment-resources-for-iis-administrators) section.
+
 ## Browse the website
 
 ![The Microsoft Edge browser has loaded the IIS startup page.](index/_static/browsewebsite.png)
@@ -405,13 +407,34 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 For more information, see the [icacls](/windows-server/administration/windows-commands/icacls) topic.
 
+## Deployment resources for IIS administrators
+
+Learn about IIS in-depth in the IIS documentation.  
+[IIS documentation](/iis)
+
+Learn about .NET Core app deployment models.  
+[.NET Core application deployment](/dotnet/core/deploying/)
+
+Learn how the ASP.NET Core Module allows the Kestrel web server to use IIS or IIS Express as a reverse proxy server.  
+[ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
+
+Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.  
+[ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
+
+Learn about the directory structure of published ASP.NET Core apps.  
+[Directory structure](xref:host-and-deploy/directory-structure)
+
+Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.  
+[IIS modules](xref:host-and-deploy/iis/troubleshoot)
+
+Learn how to diagnose problems with IIS deployments of ASP.NET Core apps.  
+[Troubleshoot](xref:host-and-deploy/iis/troubleshoot)
+
+Distinguish common errors when hosting ASP.NET Core apps on IIS.  
+[Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
+
 ## Additional resources
 
-* [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
-* [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
-* [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
-* [Introduction to ASP.NET Core](../index.md)
+* [Introduction to ASP.NET Core](xref:index)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
-* [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)
+* [Windows Server technical content library](/windows-server/windows-server)
