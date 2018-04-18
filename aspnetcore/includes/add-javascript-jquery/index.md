@@ -1,23 +1,25 @@
-## Calling the Web API with Javascript and jQuery
+<!-- comment out until fixed. See https://github.com/aspnet/Docs/issues/6004
+## Call the Web API with jQuery
 
-In this section, an HTML page is added that uses AJAX to call the web API. jQuery is used to make the AJAX calls and to update the page with the results. Add an HTML page with the following:
+In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. Add an HTML page with the following:
 
 [!code-html[Main](samples/sample3.html)]
 
-There are several ways to get jQuery. For this example, the library is loaded from [http://jquery.com/](http://jquery.com/).
+There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN.
 
-### Getting a List of ToDos
+### Get a list of ToDos
 
 To get a list of ToDos, send an HTTP GET request to &quot;/api/todo&quot;.
 
-The jQuery [getJSON](http://api.jquery.com/jQuery.getJSON/) function sends an AJAX request to the Api, which returns a JSON structured item, representing an object or array. The `done` function specifies a callback that is called if the request succeeds. In the callback, we update the DOM with the Todo information.
+The jQuery [getJSON](https://api.jquery.com/jQuery.getJSON/) function sends an AJAX request to the API, which returns JSON representing an object or array. The `done` function specifies a callback that is called if the request succeeds. In the callback, the DOM is updated with the ToDo information.
 
-[!code-html[Main](samples/sample4.html)]
+[!code-javascript[Main](samples/sample4.html)]
 
-### Getting a ToDo By ID
+### Get a ToDo by ID
 
 To get a ToDo by ID, send an HTTP GET request to &quot;/api/todo/*id*&quot;, where *id* is the ToDo ID.
 
 [!code-javascript[Main](samples/sample5.js)]
 
-We still call `getJSON` to send the AJAX request, but this time we put the ID in the request URI. The response from this request is a JSON representation of a single Todo.
+The `getJSON` function is still invoked to send the AJAX request, but this time the ID is included in the request URI. The response from this request is a JSON representation of a single ToDo item.
+-->
