@@ -26,7 +26,7 @@ ASP.NET Core offers the following options for creating a Web API controller:
 ::: moniker range=">= aspnetcore-2.1"
 * [Derive class from Controller](#derive-class-from-controller)
 * [Derive class from ControllerBase](#derive-class-from-controllerbase)
-* [Decorate class with ApiControllerAttribute](#decorate-class-with-apicontrollerattribute)
+* [Annotate class with ApiControllerAttribute](#annotate-class-with-apicontrollerattribute)
 ::: moniker-end
 
 This document explains when it's most appropriate to use each option.
@@ -37,7 +37,7 @@ Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) c
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
 
-In the preceding controller, the `Index` action returns the associated MVC view at *Views/Orders/Index.cshtml*. The `GetById` and `CreateAsync` actions respond to HTTP GET and POST requests, respectively.
+In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/api/microsoft.aspnetcore.mvc.viewresult) representing the associated MVC view at *Views/Orders/Index.cshtml*. The `GetById` and `CreateAsync` actions respond to HTTP GET and POST requests, respectively.
 
 ## Derive class from ControllerBase
 
