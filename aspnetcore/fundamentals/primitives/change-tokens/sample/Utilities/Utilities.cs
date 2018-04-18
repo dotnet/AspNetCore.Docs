@@ -72,6 +72,10 @@ namespace ChangeTokenSample.Utilities
                             return await fileStreamReader.ReadToEndAsync();
                         }
                     }
+                    else 
+                    {
+                        throw new FileNotFoundException();
+                    }
                 }
                 catch (IOException ex)
                 {
