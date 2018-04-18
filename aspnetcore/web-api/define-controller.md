@@ -5,7 +5,7 @@ description: Learn about the options for defining a controller class in an ASP.N
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/17/2018
+ms.date: 04/18/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -54,6 +54,8 @@ public class ProductsController : ControllerBase
 {
 }
 ```
+
+An added benefit of using `ControllerBase` over `Controller` is that only Web API-specific members are displayed in IntelliSense.
 
 ::: moniker range=">= aspnetcore-2.1"
 ## Decorate class with ApiControllerAttribute
