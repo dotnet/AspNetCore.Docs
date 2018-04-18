@@ -3,6 +3,7 @@ title: Update the generated pages in an ASP.NET Core app
 author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/07/2017
 ms.prod: asp.net-core

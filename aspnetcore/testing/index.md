@@ -19,3 +19,4 @@ uid: testing/index
 * [Debug ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 * [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 * [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
+* [YouTube: Diagnosing issues in ASP.NET Core Applications](https://www.youtube.com/watch?v=RYI0DHoIVaA)

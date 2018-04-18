@@ -3,6 +3,7 @@ title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/12/2017
 ms.prod: asp.net-core
@@ -288,7 +289,7 @@ The app has the following file/folder structure:
 * */Pages*
 
   * *Index.cshtml*
-  * */Customer*
+  * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
@@ -414,6 +415,7 @@ services.AddMvc()
 ## See also
 
 * [Introduction to ASP.NET Core](xref:index)
+* [Razor syntax](xref:mvc/views/razor)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)

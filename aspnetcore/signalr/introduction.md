@@ -3,6 +3,7 @@ title: Introduction to ASP.NET Core SignalR
 author: rachelappel
 description: Learn how the ASP.NET Core SignalR library simplifies adding real-time web functionality to apps.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 03/07/2018
@@ -14,6 +15,9 @@ uid: signalr/introduction
 # Introduction to ASP.NET Core SignalR
 
 By [Rachel Appel](https://twitter.com/rachelappel)
+
+
+[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
 
 ## What is SignalR?
 

@@ -3,6 +3,7 @@ title: Working with SQLite and and Razor Pages
 author: rick-anderson
 description: Using SQLite with Razor Pages
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 1/27/2018
 ms.prod: aspnet-core

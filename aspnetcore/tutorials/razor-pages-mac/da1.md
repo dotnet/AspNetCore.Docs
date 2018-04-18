@@ -3,6 +3,7 @@ title: Update the generated pages
 author: rick-anderson
 description: Update the generated pages with better display.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/07/2017
 ms.prod: asp.net-core
