@@ -48,7 +48,7 @@ Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controlle
 A benefit of deriving from `ControllerBase` instead of `Controller` is that IntelliSense displays only Web API-specific members.
 
 ::: moniker range=">= aspnetcore-2.1"
-## Decorate class with ApiControllerAttribute
+## Annotate class with ApiControllerAttribute
 
 ASP.NET Core 2.1 introduces the `[ApiController]` attribute to denote a Web API controller class. For example:
 
@@ -60,7 +60,7 @@ This attribute is commonly coupled with either `ControllerBase` or `Controller`.
 
 Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary in your actions:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?range=38-41)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?range=46-49)]
 
 This default behavior is disabled with the following code in *Startup.ConfigureServices*:
 
