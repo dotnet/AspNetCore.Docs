@@ -33,7 +33,7 @@ This document explains when it's most appropriate to use each option.
 
 ## Derive class from Controller
 
-Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class when your controller needs to support MVC views in addition to Web API actions.
+Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class when your controller needs to support presentation layer concerns in addition to Web API actions. Examples of presentation layer concerns include returning MVC views or [invoking view components](xref:mvc/views/view-components#invoking-a-view-component-directly-from-a-controller).
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
 
@@ -41,7 +41,7 @@ In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/a
 
 ## Derive class from ControllerBase
 
-Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class when your controller doesn't need to support MVC views. For example, the following controller only supports Web API actions:
+Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class when your controller doesn't need to return MVC views or [invoke view components]((xref:mvc/views/view-components#invoking-a-view-component-directly-from-a-controller)). For example, the following controller only supports Web API actions:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 
@@ -54,7 +54,9 @@ ASP.NET Core 2.1 introduces the `[ApiController]` attribute to denote a Web API 
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-This attribute is commonly coupled with either `ControllerBase` or `Controller`. The following sections describe convenience features added by the attribute.
+This attribute is commonly coupled with either `ControllerBase` or `Controller` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file). `Controller` provides access to methods such as [Json](/dotnet/api/microsoft.aspnetcore.mvc.controller.json) and [View](/dotnet/api/microsoft.aspnetcore.mvc.controller.view).
+
+The following sections describe convenience features added by the attribute.
 
 ### Automatic HTTP 400 responses
 
@@ -77,12 +79,6 @@ Inference rules are applied for the default data sources of action parameters. T
 * **[[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute)** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection).
 * **[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
 * **[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)** is inferred for anything else.
-
-For example, the `[FromBody]` attribute is implied for the `Product` parameter:
-
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=4)]
-
-The preceding action requires access to the [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtAction_System_String_System_Object_System_Object_) method. For this reason only, the controller to which the action belongs inherits from `ControllerBase`.
 
 The default inference rules are disabled with the following code in *Startup.ConfigureServices*:
 
