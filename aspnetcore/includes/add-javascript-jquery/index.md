@@ -22,4 +22,5 @@ To get a ToDo by ID, send an HTTP GET request to &quot;/api/todo/*id*&quot;, whe
 [!code-javascript[Main](samples/sample5.js)]
 
 The `getJSON` function is still invoked to send the AJAX request, but this time the ID is included in the request URI. The response from this request is a JSON representation of a single ToDo item.
+
 -->
