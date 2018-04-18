@@ -1,52 +1,181 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-  <title>Product App</title>
+    <meta charset="UTF-8">
+    <title>ToDo CRUD</title>
+    <style>
+        input[type='submit'], button, [aria-label] {
+            cursor: pointer;
+        }
+
+        #spoiler {
+            display: none;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #0066CC;
+            color: white;
+        }
+
+        td {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-  <div>
-    <h2>All ToDos</h2>
-    <ul id="todos" />
-  </div>
-  <div>
-    <h2>Search by ID</h2>
-    <input type="text" id="prodId" size="5" />
-    <input type="button" value="Search" onclick="find();" />
-    <p id="product" />
-  </div>
+    <center><h1>ToDo CRUD</h1></center>
+    <h3>Add</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="text" id="add-name" placeholder="New Todo">
+        <input type="submit" value="Add">
+    </form>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
-  <script>
-    var uri = 'api/todo';
+    <div id="spoiler">
+        <h3>Edit</h3>
+        <form class="my-form">
+            <input type="hidden" id="edit-id">
+            <input type="checkbox" id="edit-isComplete">
+            <input type="text" id="edit-name">
+            <input type="submit" value="Edit" /> <a onclick="CloseInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
 
-    $(document).ready(function () {
-      // Send an AJAX request
-      $.getJSON(uri)
-          .done(function (data) {
-            // On success, 'data' contains a list of todo.
-            $.each(data, function (key, item) {
-              // Add a list item for the todo.
-              $('<li>', { text: formatItem(item) }).appendTo($('#todos'));
+    <p id="counter"></p>
+
+    <table>
+        <tr>
+            <th>Is Complete</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script>
+        var uri = 'api/todo';
+        var todos = null
+        function getCount(data) {
+            var el = $('#counter');
+            var name = 'todo';
+            if (data) {
+                if (data > 1) {
+                    name = 'todos';
+                }
+                el.text(data + ' ' + name);
+            } else {
+                el.html('No ' + name);
+            }
+        };
+
+        $(document).ready(function () {
+            getData();
+        });
+
+        function getData() {
+            $.ajax({
+                type: 'GET',
+                url: uri,
+                success: function (data) {
+                    $('#todos').empty();
+                    getCount(data.length);
+                    $.each(data, function (key, item) {
+                        var checked = '';
+                        if (item.isComplete) {
+                            checked = 'checked'
+                        }
+
+                        $('<tr><td><input disabled=true type="checkbox" ' + checked + '></td><td>' + item.name + '</td>' +
+                            '<td><button onclick="editItem(' + item.id + ')">Edit</button></td><td><button onclick="deleteItem(' + item.id + ')">' +
+                            'Delete</button ></td></tr>').appendTo($('#todos'));
+                    });
+
+                    todos = data;
+                }
             });
-          });
-    });
+        };
 
-    function formatItem(item) {
-      return item.Name + ': $' + item.Price;
-    }
+        function addItem() {
+            var item = {
+                'name': $('#add-name').val(),
+                'isComplete': false
+            };
 
-    function find() {
-      var id = $('#todoId').val();
-      $.getJSON(uri + '/' + id)
-          .done(function (data) {
-            $('#todo').text(formatItem(data));
-          })
-          .fail(function (jqXHR, textStatus, err) {
-            $('#todo').text('Error: ' + err);
-          });
-    }
-  </script>
+            $.ajax(
+                {
+                    type: "post",
+                    accepts: "application/json",
+                    url: uri,
+                    contentType: "application/json",
+                    data: JSON.stringify(item),
+                    success: function (result) {
+                        getData();
+                        $('#add-name').val('');
+                    }
+                }
+            );
+        };
+
+        function deleteItem(id) {
+            $.ajax({
+                url: uri + '/' + id,
+                type: 'DELETE',
+                success: function (result) {
+                    getData();
+                }
+            });
+        };
+
+        function editItem(id) {
+            $.each(todos, function (key, item) {
+                if (item.id === id) {
+                    var editName = $('#edit-name');
+                    editName.val(item.name);
+
+                    var editId = $('#edit-id');
+                    editId.val(item.id);
+
+                    var editIsComplete = $('#edit-isComplete');
+                    editIsComplete.val(item.isComplete);
+                }
+            });
+            $('#spoiler').css({ 'display': "block" })
+        };
+
+        $('.my-form').on('submit', function () {
+            var item = {
+                'name': $('#edit-name').val(),
+                'isComplete': $('#edit-isComplete').is(":checked"),
+                'id': $('#edit-id').val()
+            };
+
+            $.ajax({
+                url: uri + '/' + $('#edit-id').val(),
+                type: 'PUT',
+                accepts: "application/json",
+                contentType: "application/json",
+                data: JSON.stringify(item),
+                success: function (result) {
+                    getData();
+                }
+            });
+            CloseInput();
+            return false;
+        });
+
+        function CloseInput() {
+            $('#spoiler').css({'display': "none"})
+        }
+    </script>
 </body>
 </html>
