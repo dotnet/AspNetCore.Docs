@@ -30,7 +30,7 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Product> GetProducts()
+        public List<Product> GetProducts()
         {
             return _context.Products.ToList();
         }

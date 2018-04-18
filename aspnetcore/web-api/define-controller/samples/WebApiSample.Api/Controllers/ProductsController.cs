@@ -21,7 +21,7 @@ namespace WebApiSample.Api.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public ActionResult<List<Product>> Get()
         {
             return _repository.GetProducts();
         }

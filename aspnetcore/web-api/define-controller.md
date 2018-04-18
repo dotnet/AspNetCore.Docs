@@ -15,9 +15,7 @@ uid: web-api/define-controller
 
 By [Scott Addie](https://github.com/scottaddie)
 
-::: moniker range=">= aspnetcore-2.1"
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/define-controller/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-::: moniker-end
 
 ASP.NET Core offers the following options for creating a Web API controller:
 
@@ -35,27 +33,19 @@ This document explains when it's most appropriate to use each option.
 
 ## Derive class from Controller
 
-Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class when your controller needs to support MVC views in addition to Web API actions. For example:
+Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class when your controller needs to support MVC views in addition to Web API actions.
 
-```csharp
-[Route("api/[controller]")]
-public class ProductsController : Controller
-{
-}
-```
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
+
+In the preceding controller, the `Index` action returns the associated MVC view at *Views/Orders/Index.cshtml*. The `GetById` and `CreateAsync` actions respond to HTTP GET and POST requests, respectively.
 
 ## Derive class from ControllerBase
 
-Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class when your controller doesn't need to support MVC views. For example:
+Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class when your controller doesn't need to support MVC views. For example, the following controller only supports Web API actions:
 
-```csharp
-[Route("api/[controller]")]
-public class ProductsController : ControllerBase
-{
-}
-```
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 
-An added benefit of using `ControllerBase` over `Controller` is that only Web API-specific members are displayed in IntelliSense.
+A benefit of deriving from `ControllerBase` instead of `Controller` is that IntelliSense displays only Web API-specific members.
 
 ::: moniker range=">= aspnetcore-2.1"
 ## Decorate class with ApiControllerAttribute
@@ -64,18 +54,13 @@ ASP.NET Core 2.1 introduces the `[ApiController]` attribute to denote a Web API 
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-The following sections describe convenience features added by the attribute.
+This attribute is commonly coupled with either `ControllerBase` or `Controller`. The following sections describe convenience features added by the attribute.
 
 ### Automatic HTTP 400 responses
 
-Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary:
+Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary in your actions:
 
-```csharp
-if (!ModelState.IsValid)
-{
-    return BadRequest(ModelState);
-}
-```
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?range=38-41)]
 
 This default behavior is disabled with the following code in *Startup.ConfigureServices*:
 
@@ -92,7 +77,7 @@ Inference rules are applied for the default data sources of action parameters. T
 
 For example, the `[FromBody]` attribute is implied for the `Product` parameter:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_CreateAsync)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=4)]
 
 The preceding action requires access to the [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtAction_System_String_System_Object_System_Object_) method. For this reason only, the controller to which the action belongs inherits from `ControllerBase`.
 
@@ -114,9 +99,16 @@ Attribute routing becomes a requirement. For example:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=1)]
 
-Actions are inaccessible via convention-based routes defined via [UseMvc](/dotnet/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions.usemvc#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvc_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_Microsoft_AspNetCore_Routing_IRouteBuilder__) in *Startup.Configure*.
+Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined in [UseMvc](/dotnet/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions.usemvc#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvc_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_Microsoft_AspNetCore_Routing_IRouteBuilder__) or by [UseMvcWithDefaultRoute](/dotnet/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions.usemvcwithdefaultroute#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_) in *Startup.Configure*.
 ::: moniker-end
 
 ## Additional resources
 
-[Controller action return types in ASP.NET Core Web API](xref:web-api/action-return-types)
+::: moniker range=">= aspnetcore-2.1"
+* [Controller action return types in ASP.NET Core Web API](xref:web-api/action-return-types)
+* [Routing to controller actions in ASP.NET Core](xref:mvc/controllers/routing)
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+* [Routing to controller actions in ASP.NET Core](xref:mvc/controllers/routing)
+::: moniker-end
