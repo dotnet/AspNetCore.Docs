@@ -23,37 +23,7 @@ Add an HTML page to the project by following these steps:
 
 [!code-html[Main](samples/sample3.html)]
 
-A change to the ASP.NET Core project's launch settings may be required to test this HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project. Remove the `launchUrl` variable to force the app to open at the project root default file, which is *index.html*.
-
-```json
-{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:1277/",
-      "sslPort": 0
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "WebApplication1": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:1278/"
-    }
-  }
-}
-```
+A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 
 There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample is a complete CRUD example of calling the API with jQuery. There are additional features in this sample to make the experience richer. Below are explanations around the calls to the API.
 
