@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ToDo CRUD</title>
+    <title>To-do CRUD</title>
     <style>
         input[type='submit'], button, [aria-label] {
             cursor: pointer;
@@ -33,10 +33,10 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    <center><h1>ToDo CRUD</h1></center>
+    <center><h1>To-do CRUD</h1></center>
     <h3>Add</h3>
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New Todo">
+        <input type="text" id="add-name" placeholder="New to-do">
         <input type="submit" value="Add">
     </form>
 
@@ -46,7 +46,7 @@
             <input type="hidden" id="edit-id">
             <input type="checkbox" id="edit-isComplete">
             <input type="text" id="edit-name">
-            <input type="submit" value="Edit" /> <a onclick="CloseInput()" aria-label="Close">&#10006;</a>
+            <input type="submit" value="Edit" /> <a onclick="closeInput()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 
@@ -64,13 +64,13 @@
 
     <script>
         var uri = 'api/todo';
-        var todos = null
+        var todos = null;
         function getCount(data) {
             var el = $('#counter');
-            var name = 'todo';
+            var name = 'to-do';
             if (data) {
                 if (data > 1) {
-                    name = 'todos';
+                    name = 'to-dos';
                 }
                 el.text(data + ' ' + name);
             } else {
@@ -92,12 +92,12 @@
                     $.each(data, function (key, item) {
                         var checked = '';
                         if (item.isComplete) {
-                            checked = 'checked'
+                            checked = 'checked';
                         }
 
                         $('<tr><td><input disabled=true type="checkbox" ' + checked + '></td><td>' + item.name + '</td>' +
                             '<td><button onclick="editItem(' + item.id + ')">Edit</button></td><td><button onclick="deleteItem(' + item.id + ')">' +
-                            'Delete</button ></td></tr>').appendTo($('#todos'));
+                            'Delete</button></td></tr>').appendTo($('#todos'));
                     });
 
                     todos = data;
@@ -111,19 +111,17 @@
                 'isComplete': false
             };
 
-            $.ajax(
-                {
-                    type: "post",
-                    accepts: "application/json",
-                    url: uri,
-                    contentType: "application/json",
-                    data: JSON.stringify(item),
-                    success: function (result) {
-                        getData();
-                        $('#add-name').val('');
-                    }
+            $.ajax({
+                type: 'post',
+                accepts: 'application/json',
+                url: uri,
+                contentType: 'application/json',
+                data: JSON.stringify(item),
+                success: function (result) {
+                    getData();
+                    $('#add-name').val('');
                 }
-            );
+            });
         };
 
         function deleteItem(id) {
@@ -149,32 +147,32 @@
                     editIsComplete.val(item.isComplete);
                 }
             });
-            $('#spoiler').css({ 'display': "block" })
+            $('#spoiler').css({ 'display': 'block' });
         };
 
         $('.my-form').on('submit', function () {
             var item = {
                 'name': $('#edit-name').val(),
-                'isComplete': $('#edit-isComplete').is(":checked"),
+                'isComplete': $('#edit-isComplete').is(':checked'),
                 'id': $('#edit-id').val()
             };
 
             $.ajax({
                 url: uri + '/' + $('#edit-id').val(),
                 type: 'PUT',
-                accepts: "application/json",
-                contentType: "application/json",
+                accepts: 'application/json',
+                contentType: 'application/json',
                 data: JSON.stringify(item),
                 success: function (result) {
                     getData();
                 }
             });
-            CloseInput();
+            closeInput();
             return false;
         });
 
-        function CloseInput() {
-            $('#spoiler').css({'display': "none"})
+        function closeInput() {
+            $('#spoiler').css({ 'display': 'none' });
         }
     </script>
 </body>
