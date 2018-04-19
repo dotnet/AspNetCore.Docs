@@ -78,7 +78,7 @@ Inference rules are applied for the default data sources of action parameters. T
 
 * **[[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute)** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection).
 * **[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
-* **[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)** is inferred for anything else.
+* **[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)** is inferred for any other action parameters.
 
 The default inference rules are disabled with the following code in *Startup.ConfigureServices*:
 
