@@ -1,6 +1,6 @@
 ## Call the Web API with jQuery
 
-In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. To add an HTML page in ASP.NET Core, the `ApplicationBuilder` needs to be configured to use static files and the default files used on the web. For more information on this, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
+In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. To add an HTML page in ASP.NET Core, the project needs to be configured to use static files and the default files used on the web. For more information on this, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -16,13 +16,10 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-In this example, adding a simple *index.html* page to the project's *wwwroot* directory is all that's needed.
+Add an *index.html* page to the project's *wwwroot* directory by following these steps:
 
-![Add New File](_static/add-new-file.png)
-
-![Add New Html](_static/add-html.png)
-
-Add an HTML page with the following:
+* Right-click the *wwwroot* directory, and select **Add** > **New Item**.
+* Select the **HTML Page** item template, and name the file *index.html*. It should contain the following:
 
 [!code-html[Main](samples/sample3.html)]
 
