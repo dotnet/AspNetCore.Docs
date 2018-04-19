@@ -29,7 +29,7 @@ There are several ways to get jQuery. In the preceding snippet, the library is l
 
 To get a list of ToDos, send an HTTP GET request to */api/todo*.
 
-The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of Http interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` option specifies a callback function that is called if the request succeeds. In the callback, the DOM is updated with the ToDo information.
+The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of Http interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the ToDo information.
 
 [!code-javascript[Main](samples/sample4.html)]
 
