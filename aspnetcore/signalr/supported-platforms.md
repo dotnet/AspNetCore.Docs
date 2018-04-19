@@ -3,6 +3,7 @@ title: ASP.NET Core SignalR supported platforms
 author: rachelappel
 description: Supported platforms for ASP.NET Core SignalR 
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 04/20/2018
@@ -29,9 +30,9 @@ The SignalR for ASP.NET Core JavaScript client supports the following browsers:
 | Microsoft Internet Explorer | 11 |
 | Microsoft Edge | current |
 | Mozilla Firefox | current |
-| Google Chrome | current; includes Android |
-| Safari | current; includes iOS |
+| Google Chrome; includes Android | current |
+| Safari; includes iOS | current |
  
 ### .NET Client support
 
-Any .NET platform that supports [.NET Standard 2.0.](https://docs.microsoft.com/dotnet/standard/net-standard)
+Any server platform supported by ASP.NET Core. When using IIS, the WebSockets transport requires IIS 8.0 or higher, on Windows Server 2012 or higher. Other transports are supported on all platforms.
