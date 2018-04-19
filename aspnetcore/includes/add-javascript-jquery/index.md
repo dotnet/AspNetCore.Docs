@@ -23,11 +23,7 @@ Add an HTML page to the project by following these steps:
 
 [!code-html[Main](samples/sample3.html)]
 
-A change to the ASP.NET Core project's launch settings may be required to test this HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project.
-
-![Launch Settings](_static/launch-settings.png)
-
-Remove the `launchUrl` variable to force the app to open at the project root default file, which is *index.html*.
+A change to the ASP.NET Core project's launch settings may be required to test this HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project. Remove the `launchUrl` variable to force the app to open at the project root default file, which is *index.html*.
 
 ```json
 {
@@ -63,9 +59,9 @@ There are several ways to get jQuery. In the preceding snippet, the library is l
 
 ### Get a list of ToDos
 
-To get a list of ToDos, send an HTTP GET request to &quot;/api/todo&quot;.
+To get a list of ToDos, send an HTTP GET request to */api/todo*.
 
-The jQuery [ajax](http://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of Http interaction, sending an Http request to the specified `url`. `GET` is used as the `type`. The `success` option specifies a callback function that is called if the request succeeds. In the callback, the DOM is updated with the ToDo information.
+The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of Http interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` option specifies a callback function that is called if the request succeeds. In the callback, the DOM is updated with the ToDo information.
 
 [!code-javascript[Main](samples/sample4.html)]
 
