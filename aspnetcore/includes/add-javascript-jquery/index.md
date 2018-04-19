@@ -1,6 +1,8 @@
 ## Call the Web API with jQuery
 
-In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response. To add an HTML page in ASP.NET Core, the project needs to be configured to use static files and the default files used on the web. For more information on this, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
+In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response.
+
+Configure the project to serve static files and to enable default file mapping. This is accomplished by invoking the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) extension methods in *Startup.Configure*. For more information, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
