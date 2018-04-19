@@ -25,28 +25,28 @@ A change to the ASP.NET Core project's launch settings may be required to test t
 
 There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample is a complete CRUD example of calling the API with jQuery. There are additional features in this sample to make the experience richer. Below are explanations around the calls to the API.
 
-### Get a list of ToDos
+### Get a list of to-do items
 
-To get a list of ToDos, send an HTTP GET request to */api/todo*.
+To get a list of to-do items, send an HTTP GET request to */api/todo*.
 
-The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of Http interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the ToDo information.
+The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of HTTP interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
 
 [!code-javascript[Main](samples/sample4.html)]
 
-### Add a ToDo
+### Add a to-do item
 
-To add a ToDo, send an HTTP POST request to */api/todo/*. The request body should contain a ToDo object. The [ajax](https://api.jquery.com/jquery.ajax/) function is using `POST` to call the API. For `POST` and `PUT` requests, the request body represents the data sent to the API. The API is expecting a JSON request body. The `accepts` and `contentType` options are set to `application/json` to classify the media type being received and sent, respectively. The data is converted to a JSON object using [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
+To add a to-do item, send an HTTP POST request to */api/todo/*. The request body should contain a to-do object. The [ajax](https://api.jquery.com/jquery.ajax/) function is using `POST` to call the API. For `POST` and `PUT` requests, the request body represents the data sent to the API. The API is expecting a JSON request body. The `accepts` and `contentType` options are set to `application/json` to classify the media type being received and sent, respectively. The data is converted to a JSON object using [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
 
 [!code-javascript[Main](samples/sample5.js)]
 
-### Update a ToDo
+### Update a to-do item
 
-Updating a ToDo is very similar to adding one, since both rely on a request body. The only real difference between the two in this case is that the `url` changes to add the **id** of the item, and the `type` is `PUT`.
+Updating a to-do item is very similar to adding one, since both rely on a request body. The only real difference between the two in this case is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
 
 [!code-javascript[Main](samples/sample6.js)]
 
-### Delete a ToDo
+### Delete a to-do item
 
-Deleting a ToDo is done by setting the `type` on the ajax call to `DELETE` and specifing the item's ID in the url.
+Deleting a to-do item is accomplished by setting the `type` on the ajax call to `DELETE` and specifing the item's unique identifier in the url.
 
 [!code-javascript[Main](samples/sample6.js)]
