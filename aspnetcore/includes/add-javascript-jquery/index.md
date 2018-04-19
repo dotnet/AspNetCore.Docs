@@ -7,10 +7,6 @@ Configure the project to serve static files and to enable default file mapping. 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
     app.UseDefaultFiles();
     app.UseStaticFiles();
 
