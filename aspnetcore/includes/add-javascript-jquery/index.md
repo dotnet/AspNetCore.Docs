@@ -67,13 +67,13 @@ The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX re
 
 ### Add a ToDo
 
-To add a ToDo, send an HTTP POST request to &quot;/api/todo/&quot;, where the request body contains a ToDo object. The [ajax](https://api.jquery.com/jquery.ajax/) in this case is using `POST` to call the Api. For `POST` and `PUT`, a body is sent in the request, which represents the data sent to the Api. Since the Api is expecting a JSON body, the `accepts` and `contentType` options are set tpo `application/json` to specify how the data is being sent. Lastly, the data is converted to a JSON object using [`JSON.stringify()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). If the Api returns a success, we call the above mentioned getData() function to update our table.
+To add a ToDo, send an HTTP POST request to */api/todo/*. The request body should contain a ToDo object. The [ajax](https://api.jquery.com/jquery.ajax/) function is using `POST` to call the API. For `POST` and `PUT` requests, the request body represents the data sent to the API. The API is expecting a JSON request body. The `accepts` and `contentType` options are set to `application/json` to classify the media type being received and sent, respectively. The data is converted to a JSON object using [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
 
 [!code-javascript[Main](samples/sample5.js)]
 
 ### Update a ToDo
 
-Updating a ToDo is very similar to adding one, since both rely on a body to be added to the request. The only real difference between the two in this case is that the `url` changes to add the **id** of the item, and the `type` is `PUT`.
+Updating a ToDo is very similar to adding one, since both rely on a request body. The only real difference between the two in this case is that the `url` changes to add the **id** of the item, and the `type` is `PUT`.
 
 [!code-javascript[Main](samples/sample6.js)]
 
