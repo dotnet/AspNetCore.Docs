@@ -16,10 +16,10 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Add an *index.html* page to the project's *wwwroot* directory by following these steps:
+Add an HTML page to the project by following these steps:
 
-* Right-click the *wwwroot* directory, and select **Add** > **New Item**.
-* Select the **HTML Page** item template, and name the file *index.html*. It should contain the following:
+* Right-click the *wwwroot* directory, and select **Add** > **New Item** > **HTML Page**.
+* Name the file *index.html*, and include the following markup in the file:
 
 [!code-html[Main](samples/sample3.html)]
 
