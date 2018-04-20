@@ -74,7 +74,7 @@ We recommend you test your application using the latest version (`CompatibilityV
 
 Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1 MVC and later 2.x versions. This protection:
 
-* Does not apply to all 2.1 and later changes, it's targeted to potentially breaking ASP.NET Core MVC runtime changes.
+* Does not apply to all 2.1 and later changes, it's targeted to potentially breaking ASP.NET Core runtime behavior changes in the MVC subsystem.
 * Does not extend to the next major version.
 
 The default compatibility for ASP.NET Core 2.1 and later 2.x applications that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
