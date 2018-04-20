@@ -53,24 +53,27 @@ The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.con
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
 
-The web host may configure some services before `Startup` methods are called. Details are available in the [Hosting](xref:fundamentals/hosting) topic. 
+The web host may configure some services before `Startup` methods are called. Details are available in the [Hosting](xref:fundamentals/hosting) topic.
 
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1" 
 
 <a name="setcompatibilityversion"></a>
-### SetCompatibilityVersion
+### SetCompatibilityVersion for runtime
 
-The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of breaking changes in ASP.NET Core APIs. By opting in, you get the latest behavior, and the long term behavior of ASP.NET Core.
+The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking changes in ASP.NET MVC Core runtime. Thesse changes are generally in how the MVC subsystems behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long term behavior of ASP.NET Core runtime.
 
 The following code sets the compatibility mode to ASP.NET Core 2.1:
 
 [!code-csharp[Main](startup/sampleCompatibility/Startup.cs?name=snippet1)]
 
-Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking changes introduced in ASP.NET Core 2.1 and later 2.x versions . This protection does not extend to the next major version.
+Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking changes introduced in ASP.NET Core 2.1 and later 2.x versions for MVC APIs. This protection:
+
+* Does not apply to all 2.1 and later changes, it's targed to MVC API changes.
+* Does not extend to the next major version.
 
 The default compatibility for ASP.NET Core 2.1 and later  2.x applications that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
 
@@ -81,9 +84,16 @@ The following code sets the compatibility mode to ASP.NET Core 2.1, except for t
 
 [!code-csharp[Main](startup/sampleCompatibility/Startup2.cs?name=snippet1)]
 
-The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class contains all the compatibility options you can set.
+The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of what changed and why the changes are an improvment for most users.
 
-Consider ASP.NET Core 3.0, which is not scheduled on the [ASP.NET Core Schedule and Roadmap](https://github.com/aspnet/Home/wiki/Roadmap). At some future date, there will be an ASP.NET Core 3.0 version. Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x.
+The comments in the [CompatibilitySwitch](https://github.com/aspnet/Mvc/blob/747420e5aa7cc2c7834cfb9731510286ded6fc03/src/Microsoft.AspNetCore.Mvc.Core/Infrastructure/CompatibilitySwitch.cs#L9) provide more information on the breaking changes and instructions on how to implement a behavior change and corresponding compatibility switch.
+
+We recommend you test your application using the latest version. We anticpate that most applications will not have breaking changes using the latest version. For apps that encounter breaking changes, using the appropriate compatibility switchs:
+
+* Allows you to use the latest release and opt out of specific breaking changes.
+* Give you time to update your app so it works with the latest changes.
+
+At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x. We feel these are positive changes that benefit all users. By introducing them now, most apps can benefit now, and the others will have time to update their applications.
 
 ::: moniker-end
 
@@ -99,7 +109,7 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 [!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Startup.cs?range=28-48&highlight=5,6,10,13,15)]
 
-Each `Use` extension method adds a middleware component to the request pipeline. For instance, the `UseMvc` extension method adds the [Routing Middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler. 
+Each `Use` extension method adds a middleware component to the request pipeline. For instance, the `UseMvc` extension method adds the [Routing Middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
 
 Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate. If short-circuiting doesn't occur along the middleware chain, each middleware has a second chance to process the request before it's sent to the client.
 
