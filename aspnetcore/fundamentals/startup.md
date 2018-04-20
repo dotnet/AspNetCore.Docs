@@ -64,7 +64,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 <a name="setcompatibilityversion"></a>
 ### SetCompatibilityVersion for ASP.NET Core MVC runtime
 
-The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking changes in the ASP.NET MVC Core runtime. These potentially breaking changes are generally in how the MVC subsystem behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long-term behavior of ASP.NET Core runtime.
+The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking changes introduced in the ASP.NET MVC Core 2.1 and later runtime. These potentially breaking changes are generally in how the MVC subsystem behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long-term behavior of ASP.NET Core runtime.
 
 The following code sets the compatibility mode to ASP.NET Core 2.1:
 
@@ -95,7 +95,7 @@ The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore
 
 The comments in the [CompatibilitySwitch](https://github.com/aspnet/Mvc/blob/747420e5aa7cc2c7834cfb9731510286ded6fc03/src/Microsoft.AspNetCore.Mvc.Core/Infrastructure/CompatibilitySwitch.cs#L9) provide more information on the breaking changes and instructions on how to implement a behavior change and corresponding compatibility switch.
 
-At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x. We feel these are positive changes benefitting nearly all users. By introducing them now, most apps can benefit now, and the others will have time to update their applications.
+At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Applications targeting ASP.NET Core 3.0 will not be able to opt-out of breaking changes introduced in ASP.NET Core 2.x. We feel these are positive changes benefitting nearly all users. By introducing these changes now, most apps can benefit now, and the others will have time to update their applications.
 
 ::: moniker-end
 
