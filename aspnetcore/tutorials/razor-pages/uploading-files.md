@@ -55,16 +55,35 @@ To avoid code duplication for processing uploaded schedule files, add a static h
 
 ### Save the file to disk
 
-The sample app saves the file's content into a database field. To save the file's content to disk, use a [FileStream](/dotnet/api/system.io.filestream):
+The sample app saves uploaded files into database fields. To save a file to disk or a network share, use a [FileStream](/dotnet/api/system.io.filestream). The following example copies a file held by `FileUpload.UploadPublicSchedule` to a `FileStream` in an `OnPostAsync` method. The `FileStream` writes the file to disk or a network share at the `<PATH-AND-FILE-NAME>` provided:
 
 ```csharp
-using (var fileStream = new FileStream(filePath, FileMode.Create))
+public async Task<IActionResult> OnPostAsync()
 {
-    await formFile.CopyToAsync(fileStream);
+    // Perform an initial check to catch FileUpload class attribute violations.
+    if (!ModelState.IsValid)
+    {
+        return Page();
+    }
+
+    var filePath = "<PATH-AND-FILE-NAME>";
+
+    using (var fileStream = new FileStream(filePath, FileMode.Create))
+    {
+        await FileUpload.UploadPublicSchedule.CopyToAsync(fileStream);
+    }
+
+    return RedirectToPage("./Index");
 }
 ```
 
 The worker process must have write permissions to the location specified by `filePath`.
+
+> [!WARNING]
+> The code sample provides no server-side protection against malicious file uploads. For information on reducing the attack surface area when accepting files from users, see the following resources:
+>
+> * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+> * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 ### Save the file to Azure Blob Storage
 
