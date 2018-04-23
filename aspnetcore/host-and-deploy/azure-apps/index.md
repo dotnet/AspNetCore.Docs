@@ -90,13 +90,12 @@ For more information, see [Key storage providers](xref:security/data-protection/
 
 ASP.NET Core preview apps can be deployed to Azure App Service with the following approaches:
 
-* [Install the preview site extension](#site-x)
-* [Deploy the app self contained](#self)
-* [Use Docker with Web Apps for containers](#docker)
+* [Install the preview site extension](#install-the-preview-site-extension)
+* [Deploy the app self-contained](#deploy-the-app-self-contained)
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 
-If you have a problem using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
+If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
-<a name="site-x"></a>
 ### Install the preview site extension
 
 * From the Azure portal, navigate to the App Service blade.
@@ -107,9 +106,9 @@ If you have a problem using the preview site extension, open an issue on [GitHub
 ![Azure App blade with preceding steps](index/_static/x1.png)
 
 * Select **ASP.NET Core 2.1 (x86) Runtime** or **ASP.NET Core 2.1 (x64) Runtime**.
-* Select **OK** > **OK**.
+* Select **OK**. Select **OK** again.
 
-When the add operations completes, the latest .NET Core 2.1 preview is installed. You can verify the installation by running `dotnet --info` in the console. From the App Service blade:
+When the add operations completes, the latest .NET Core 2.1 preview is installed. Verify the installation by running `dotnet --info` in the console. From the App Service blade:
 
 * Enter "con" in the search box.
 * Select **Console**.
@@ -121,26 +120,24 @@ The preceding image was current at the time this was written. You may see a diff
 
 The `dotnet --info` displays the the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
 
-#### Use the preview site extension with an ARM template
+**Use the preview site extension with an ARM template**
 
-If you are using an ARM template to create and deploy applications you can use the `siteextensions` resource type to add the site extension to a Web App. For example:
+If an ARM template is being used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
 
 [!code-json[Main](index/sample/arm.json?highlight=2)]
 
-<a name="self"></a>
-### Deploy the app self contained
+### Deploy the app self-contained
 
-You can deploy a [self-contained app](/dotnet/core/deploying/#self-contained-deployments-scd) that carries the preview runtime with it when being deployed. When deploying a self contained app:
+A [self-contained app](/dotnet/core/deploying/#self-contained-deployments-scd) can be deployed that carries the preview runtime in the deployment. When deploying a self-contained app:
 
-* You don’t need to prepare your site.
-* Requires you to publish your application differently than you would when deploying an app once the SDK is installed on the server.
+* The site doesn't need to be prepared.
+* The app must be published differently than when publishing for a framework-dependent deployment with the shared runtime and host on the server.
 
-Self-contained apps are an option for all .NET Core applications.
+Self-contained apps are an option for all ASP.NET Core apps.
 
-<a name="docker"></a>
 ### Use Docker with Web Apps for containers
 
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest 2.1 preview Docker images. You can use them as your base image and deploy to Web Apps for Containers as you normally would.
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest 2.1 preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ## Additional resources
 
