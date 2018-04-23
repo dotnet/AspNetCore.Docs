@@ -90,14 +90,14 @@ For more information, see [Key storage providers](xref:security/data-protection/
 
 ASP.NET Core preview apps can be deployed to Azure App Service with the following approaches:
 
-* [Install the preview site extention](#site-x)
+* [Install the preview site extension](#site-x)
 * [Deploy the app self contained](#self)
 * [Use Docker with Web Apps for containers](#docker)
 
 If you have a problem using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
 <a name="site-x"></a>
-### Install the preview site extention
+### Install the preview site extension
 
 * From the Azure portal, navigate to the App Service blade.
 * Enter "ex" in the search box.
@@ -121,7 +121,7 @@ The preceding image was current at the time this was written. You may see a diff
 
 The `dotnet --info` displays the the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
 
-#### Use the preview site extention with an ARM template
+#### Use the preview site extension with an ARM template
 
 If you are using an ARM template to create and deploy applications you can use the `siteextensions` resource type to add the site extension to a Web App. For example:
 
