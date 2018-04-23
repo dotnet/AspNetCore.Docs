@@ -108,7 +108,7 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 * Select **ASP.NET Core 2.1 (x86) Runtime** or **ASP.NET Core 2.1 (x64) Runtime**.
 * Select **OK**. Select **OK** again.
 
-When the add operations completes, the latest .NET Core 2.1 preview is installed. Verify the installation by running `dotnet --info` in the console. From the App Service blade:
+When the add operations complete, the latest .NET Core 2.1 preview is installed. Verify the installation by running `dotnet --info` in the console. From the **App Service** blade:
 
 * Enter "con" in the search box.
 * Select **Console**.
@@ -122,7 +122,7 @@ The `dotnet --info` displays the the path to the site extension where the Previe
 
 **Use the preview site extension with an ARM template**
 
-If an ARM template is being used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
+If an ARM template is used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
 
 [!code-json[Main](index/sample/arm.json?highlight=2)]
 
