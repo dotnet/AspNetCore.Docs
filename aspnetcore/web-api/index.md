@@ -38,7 +38,7 @@ Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) c
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
 ::: moniker-end
-::: moniker range="<= aspnetcore2.0"
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
 :::moniker-end
 
@@ -51,7 +51,7 @@ Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controlle
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 ::: moniker-end
-::: moniker range="<= aspnetcore2.0"
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 ::: moniker-end
 
