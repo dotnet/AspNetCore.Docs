@@ -3,6 +3,7 @@ title: Publish an ASP.NET Core SignalR app to Azure Web App
 author: rachelappel 
 description: Publish an ASP.NET Core SignalR app to Azure Web App
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 04/20/2018
@@ -42,23 +43,19 @@ Visual Studio completes the following tasks:
 * Publishes the app.
 * Launches a browser, with the published web app loaded.
 
-Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like https://signalrchattr.azurewebsites.net.
+Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like `https://signalrchattr.azurewebsites.net`.
 
-![Appname-azurewebsites-net](publish-to-azure-web-app/_static/app-azurewebsites-net.png)
-
-If an HTTP 502.2 error occurs, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/?view=aspnetcore-2.1#deploy-aspnet-core-preview-release-to-azure-app-service) to resolve it.
+If an HTTP 502.2 error occurs, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index?view=aspnetcore-2.1#site-x) to resolve it.
 
 ## Configure SignalR web app
 
-ASP.NET Core SignalR apps that are published as an Azure Web App must have [WebSockets](xref:fundamentals/websockets) and [ARR Affinity](https://en.wikipedia.org/wiki/Application_Request_Routing) enabled. To configure and manage the published app, use the [Azure Portal](https://portal.azure.com).
+ASP.NET Core SignalR apps that are published as an Azure Web App must have [ARR Affinity](https://en.wikipedia.org/wiki/Application_Request_Routing) enabled. [WebSockets](xref:fundamentals/websockets) should be enabled, to allow the WebSockets transport to function.
 
 In the Azure portal, navigate to **App Settings** for your web app. Set **WebSockets** to **On**, and verify **ARR Affinity** is **On**.
 
 ![Azure Web app settings in the Azure portal](publish-to-azure-web-app/_static/azure-web-app-settings.png)
 
-## Test the app
-
-Return to the browser window that launched when the app was published and refresh the page. The app shows in the browser.
+ WebSockets and other transports [are limited based on the App Service Plan](https://docs.microsoft.com/azure/azure-subscription-service-limits#app-service-limits).
 
 ## Related resources
 
