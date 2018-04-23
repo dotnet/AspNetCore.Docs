@@ -6,6 +6,8 @@ namespace WebApiSample.DataAccess.Models
     {
         public int Id { get; set; }
 
+        public bool IsDiscontinued { get; set; }
+
         [Required]
         public string Name { get; set; }
 

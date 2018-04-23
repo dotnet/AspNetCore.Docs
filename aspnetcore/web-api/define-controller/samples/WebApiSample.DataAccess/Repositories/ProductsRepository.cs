@@ -18,6 +18,7 @@ namespace WebApiSample.DataAccess.Repositories
                 _context.Products.AddRange(
                     new Product
                     {
+                        IsDiscontinued = true,
                         Name = "Learning ASP.NET Core",
                         Description = "A best-selling book covering the fundamentals of ASP.NET Core"
                     },
@@ -28,6 +29,15 @@ namespace WebApiSample.DataAccess.Repositories
                     });
                 _context.SaveChanges();
             }
+        }
+
+        public List<Product> GetDiscontinuedProducts()
+        {
+            var products = (from p in _context.Products
+                            where p.IsDiscontinued
+                            select p).ToList();
+
+            return products;
         }
 
         public List<Product> GetProducts()
