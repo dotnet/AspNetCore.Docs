@@ -81,7 +81,7 @@ A binding source attribute defines an action parameter's expected binding source
 |**[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)**   | Route data from the current request |
 |**[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices)** | The request service injected as an action parameter |
 
-Without the `[ApiController]` attribute, binding source attributes are explicitly defined. In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's querystring. The `[FromBody]` attribute indicates that the `product` parameter value is provided in the request body.
+Without the `[ApiController]` attribute, binding source attributes are explicitly defined. In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string. The `[FromBody]` attribute indicates that the `product` parameter value is provided in the request body.
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3,22)]
 
