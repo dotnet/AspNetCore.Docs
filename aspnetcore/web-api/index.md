@@ -46,7 +46,7 @@ In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/a
 
 ## Derive class from ControllerBase
 
-Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that doesn't need to support HTML and Razor. For example, the following controller only supports Web API actions:
+Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that doesn't need to support HTML and Razor. For example, the following controller only supports web API actions:
 
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
