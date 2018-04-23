@@ -27,55 +27,54 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 * Create an ASP.NET Core MVC web app
 
-   * [Web app with Visual Studio for Windows](first-mvc-app/index.md)
-   * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
-   * [Web app with Visual Studio Code on macOS or Linux](first-mvc-app-xplat/index.md)
+   * [Web app with Visual Studio for Windows](xref:tutorials/first-mvc-app/index)
+   * [Web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+   * [Web app with Visual Studio Code on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index)
 
-* [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [Create Tag Helpers](../mvc/views/tag-helpers/authoring.md)
-* [Create a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)
-* [Develop ASP.NET Core apps using dotnet watch](dotnet-watch.md)
+* [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](xref:data/ef-mvc/index)
+* [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Create a simple view component](xref:mvc/views/view-components#walkthrough-creating-a-simple-view-component)
+* [Develop ASP.NET Core apps using dotnet watch](xref:tutorials/dotnet-watch)
 
 ## Build Web APIs
 * Create a Web API with ASP.NET Core
 
-  * [Web API with Visual Studio for Windows](first-web-api.md)
+  * [Web API with Visual Studio for Windows](xref:tutorials/first-web-api)
   * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-  * [Web API with Visual Studio Code](web-api-vsc.md)
+  * [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
 
 * [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
   * [Get started with NSwag](xref:tutorials/get-started-with-nswag)
   * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 
-* [Create backend web services for native mobile apps](../mobile/native-mobile-backend.md)
+* [Create backend web services for native mobile apps](xref:mobile/native-mobile-backend)
 
 ## Data access and storage
 * [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
-* [Get started with ASP.NET Core MVC and EF Core using Visual Studio](../data/ef-mvc/index.md)
-* [ASP.NET Core MVC with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
-* [ASP.NET Core MVC with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
+* [Get started with ASP.NET Core MVC and EF Core using Visual Studio](xref:data/ef-mvc/index)
+* [ASP.NET Core MVC with EF Core - new database](/ef/core/get-started/aspnetcore/new-db)
+* [ASP.NET Core MVC with EF Core - existing database](/ef/core/get-started/aspnetcore/existing-db)
 
 ## Authentication and authorization
-* [Enable authentication using Facebook, Google, and other external providers](../security/authentication/social/index.md)
-* [Account confirmation and password recovery](../security/authentication/accconfirm.md)
-* [Two-factor authentication with SMS](../security/authentication/2fa.md)
+* [Enable authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index)
+* [Account confirmation and password recovery](xref:security/authentication/accconfirm)
+* [Two-factor authentication with SMS](xref:security/authentication/2fa)
 
 ## Client-side development
-* [Use Gulp](../client-side/using-gulp.md)
-* [Use Grunt](../client-side/using-grunt.md)
-* [Manage client-side packages with Bower](../client-side/bower.md)
-* [Build responsive sites with Bootstrap](../client-side/bootstrap.md)
+* [Use Gulp](xref:client-side/using-gulp)
+* [Use Grunt](xref:client-side/using-grunt)
+* [Manage client-side packages with Bower](xref:client-side/bower)
+* [Build responsive sites with Bootstrap](xref:client-side/bootstrap)
 
 ## Test
-* [Unit testing in .NET Core using dotnet test](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
+* [Unit testing in .NET Core using dotnet test](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-## Publish and deploy
-* [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
-* [Deploy an ASP.NET Core web app to Azure using the command line](publish-to-azure-webapp-using-cli.md)
+## Host and deploy
+* [Deploy an ASP.NET Core web app to Azure using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+* [Deploy an ASP.NET Core web app to Azure using the command line](xref:tutorials/publish-to-azure-webapp-using-cli)
 * [Publish to an Azure Web App with continuous deployment](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
-* [Deploy an ASP.NET container to a remote Docker host](https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
-* [ASP.NET Core on Nano Server](nano-server.md)
-* [ASP.NET Core and Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-add-a-web-frontend)
+* [Deploy an ASP.NET container to a remote Docker host](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
+* [ASP.NET Core and Azure Service Fabric](/azure/service-fabric/service-fabric-add-a-web-frontend)
 
 <a name="download"></a> 
 ## How to download a sample
