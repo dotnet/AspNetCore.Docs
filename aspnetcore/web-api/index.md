@@ -70,7 +70,7 @@ This default behavior is disabled with the following code in *Startup.ConfigureS
 
 ### Binding source parameter inference
 
-A binding source attribute defines an action parameter's expected binding source. The following binding source attributes exist:
+A binding source attribute defines the location at which an action parameter's value is found. The following binding source attributes exist:
 
 |Attribute|Binding source |
 |---------|---------|
