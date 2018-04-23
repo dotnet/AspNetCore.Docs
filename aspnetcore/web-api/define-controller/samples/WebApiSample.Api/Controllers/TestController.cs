@@ -5,6 +5,7 @@ namespace WebApiSample.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]
     public class TestController : Controller
     {

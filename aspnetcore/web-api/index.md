@@ -35,7 +35,12 @@ This document explains when it's most appropriate to use each option.
 
 Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class in a controller that needs to support HTML and Razor in addition to web API actions. Examples that require `Controller` inheritance include returning MVC views or [invoking view components](xref:mvc/views/view-components#invoking-a-view-component-directly-from-a-controller).
 
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
+::: moniker-end
+::: moniker range="<= aspnetcore2.0"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
+:::moniker-end
 
 In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/api/microsoft.aspnetcore.mvc.viewresult) representing the associated MVC view at *Views/Orders/Index.cshtml*. The `GetById` and `CreateAsync` actions respond to HTTP GET and POST requests, respectively.
 
@@ -43,7 +48,12 @@ In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/a
 
 Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that doesn't need to support HTML and Razor. For example, the following controller only supports Web API actions:
 
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
+::: moniker-end
+::: moniker range="<= aspnetcore2.0"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
+::: moniker-end
 
 A benefit of deriving from `ControllerBase` instead of `Controller` is that IntelliSense displays only web API-specific members.
 

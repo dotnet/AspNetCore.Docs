@@ -23,9 +23,16 @@ namespace WebApiSample.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ProductsRepository>();
+            services.AddScoped<PetsRepository>();
+            services.AddScoped<OrdersRepository>();
+
             services.AddDbContext<ProductContext>(opt =>
                 opt.UseInMemoryDatabase("ProductInventory"));
-            
+            services.AddDbContext<PetContext>(opt =>
+                opt.UseInMemoryDatabase("PetInventory"));
+            services.AddDbContext<OrderContext>(opt =>
+                opt.UseInMemoryDatabase("Orders"));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>

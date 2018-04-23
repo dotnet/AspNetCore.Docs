@@ -44,7 +44,7 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Pet> GetPets()
+        public List<Pet> GetPets()
         {
             return _context.Pets.ToList();
         }
