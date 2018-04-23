@@ -70,19 +70,30 @@ This default behavior is disabled with the following code in *Startup.ConfigureS
 
 ### Binding source parameter inference
 
+The following binding source attributes exist:
+
+|Attribute|Binding source |
+|---------|---------|
+|**[[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute)**     | Request body |
+|**[[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute)**     | Form data in the request body |
+|**[[FromHeader]](/dotnet/api/microsoft.aspnetcore.mvc.fromheaderattribute)** | Request header |
+|**[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)**   | Request query string parameter |
+|**[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)**   | Route data from the current request |
+|**[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices)** | The request service injected as an action parameter |
+
 Without the `[ApiController]` attribute, binding source attributes are explicitly defined to configure each parameter's binding source. In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's querystring. The `[FromBody]` attribute indicates that the `product` parameter value is provided in the request body.
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3,22)]
 
 Inference rules are applied for the default data sources of action parameters. These rules configure the binding sources you're otherwise likely to manually apply to the action parameters. The binding source attributes behave as follows:
 
-* **[[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute)** is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as [IFormCollection](/dotnet/api/microsoft.aspnetcore.http.iformcollection) and [CancellationToken](/dotnet/api/system.threading.cancellationtoken). The binding source inference code ignores those special types. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action signatures cause an exception:
+* **[FromBody]** is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as [IFormCollection](/dotnet/api/microsoft.aspnetcore.http.iformcollection) and [CancellationToken](/dotnet/api/system.threading.cancellationtoken). The binding source inference code ignores those special types. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action signatures cause an exception:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/TestController.cs?name=snippet_ActionsCausingExceptions)]
 
-* **[[FromForm]](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute)** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection). It's not inferred for any simple or user-defined types.
-* **[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
-* **[[FromQuery]](/dotnet/api/microsoft.aspnetcore.mvc.fromqueryattribute)** is inferred for any other action parameters.
+* **[FromForm]** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection). It's not inferred for any simple or user-defined types.
+* **[FromRoute]** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
+* **[FromQuery]** is inferred for any other action parameters.
 
 The default inference rules are disabled with the following code in *Startup.ConfigureServices*:
 
