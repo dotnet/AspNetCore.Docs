@@ -36,7 +36,7 @@ Learn how to use page [route and app model provider convention](xref:mvc/control
 | [Default page app model provider](#replace-the-default-page-app-model-provider) | Replace the default page model provider to change the conventions for handler names. |
 ::: moniker-end
 
-Razor Pages conventions are added and configured using the [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) extension method. The following convention examples are explained later in this topic:
+Razor Pages conventions are added and configured using the [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) extension method to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc) on the service collection in the `Startup` class. The following convention examples are explained later in this topic:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
