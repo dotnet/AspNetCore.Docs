@@ -42,12 +42,11 @@ Visual Studio completes the following tasks:
 * Publishes the app.
 * Launches a browser, with the published web app loaded.
 
-Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like *https://signalrchattr.azurewebsites.net*.
+Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like https://signalrchattr.azurewebsites.net.
 
 ![Appname-azurewebsites-net](publish-to-azure-web-app/_static/app-azurewebsites-net.png)
 
-> [!NOTE]
-> If an HTTP 502.2 error occurs, it is because some ASP.NET Core components haven't been loaded. To resolve this error, complete the steps later in the *Add ASP.NET Core Runtime extensions* section of this article.
+If an HTTP 502.2 error occurs, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/?view=aspnetcore-2.1#deploy-aspnet-core-preview-release-to-azure-app-service) to resolve it.
 
 ## Configure SignalR web app
 
@@ -57,25 +56,9 @@ In the Azure portal, navigate to **App Settings** for your web app. Set **WebSoc
 
 ![Azure Web app settings in the Azure portal](publish-to-azure-web-app/_static/azure-web-app-settings.png)
 
-## Add ASP.NET Core Runtime extensions</a>
+## Test the app
 
-ASP.NET Core 2.1 Preview apps published on Azure Web Apps require the *ASP.NET Core Runtime Extensions*. To install the extensions, navigate to the **Extensions** page of the app. Select **Add**, and locate **ASP.NET Core Runtime Extensions** in the list. 
-
-![Add ASP.NET Core Runtime extensions](publish-to-azure-web-app/_static/aspnet-core-runtime-extensions-add.png)
-
-Choose the extension, and select **OK**. Accept the legal terms, and select **OK**.
-
-![ASP.NET Core Runtime extensions](publish-to-azure-web-app/_static/aspnet-core-runtime-extensions.png)
-
-Verify that **ASP.NET Core Runtime Extensions** appears in the list of installed extensions.
-
-![Azure Web App extensions list](publish-to-azure-web-app/_static/aspnet-core-runtime-extensions-list.png)
-
-## Verify successful deployment
-
-Open a web browser and navigate to *{appname}.azurewebsites.net* to verify the app runs.
-
-![Appname-azurewebsites-net](publish-to-azure-web-app/_static/app-azurewebsites-net.png)
+Return to the browser window that launched when the app was published and refresh the page. The app shows in the browser.
 
 ## Related resources
 
