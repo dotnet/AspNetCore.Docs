@@ -55,7 +55,7 @@ To avoid code duplication for processing uploaded schedule files, add a static h
 
 ### Save the file to disk
 
-The sample app saves uploaded files into database fields. To save a file to disk or a network share, use a [FileStream](/dotnet/api/system.io.filestream). The following example copies a file held by `FileUpload.UploadPublicSchedule` to a `FileStream` in an `OnPostAsync` method. The `FileStream` writes the file to disk or a network share at the `<PATH-AND-FILE-NAME>` provided:
+The sample app saves uploaded files into database fields. To save a file to disk, use a [FileStream](/dotnet/api/system.io.filestream). The following example copies a file held by `FileUpload.UploadPublicSchedule` to a `FileStream` in an `OnPostAsync` method. The `FileStream` writes the file to disk at the `<PATH-AND-FILE-NAME>` provided:
 
 ```csharp
 public async Task<IActionResult> OnPostAsync()
@@ -79,7 +79,12 @@ public async Task<IActionResult> OnPostAsync()
 
 The worker process must have write permissions to the location specified by `filePath`.
 
+> [!NOTE]
+> The `filePath` *must* include the file name. If the file name isn't provided, an [UnauthorizedAccessException](/dotnet/api/system.unauthorizedaccessexception) is thrown at runtime.
+
 > [!WARNING]
+> Never persist uploaded files in the same directory tree as the app.
+>
 > The code sample provides no server-side protection against malicious file uploads. For information on reducing the attack surface area when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
