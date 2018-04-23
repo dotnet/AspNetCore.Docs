@@ -19,14 +19,6 @@ namespace WebApiSample.Api.Controllers
             _repository = repository;
         }
 
-        #region snippet_Get
-        [HttpGet]
-        public ActionResult<List<Product>> Get()
-        {
-            return _repository.GetProducts();
-        }
-        #endregion
-
         #region snippet_GetById
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
@@ -42,7 +34,25 @@ namespace WebApiSample.Api.Controllers
         }
         #endregion
 
-        #region snippet_CreateAsync
+        #region snippet_BindingSourceAttributes
+        [HttpGet]
+        public ActionResult<List<Product>> Get([FromQuery] bool discontinuedOnly = false)
+        {
+            List<Product> products = null;
+
+            if (discontinuedOnly)
+            {
+                products = _repository.GetDiscontinuedProducts();
+            }
+            else
+            {
+                products = _repository.GetProducts();
+            }
+
+            return products;
+        }
+        #endregion
+
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -53,6 +63,5 @@ namespace WebApiSample.Api.Controllers
             return CreatedAtAction(nameof(GetById), 
                 new { id = product.Id }, product);
         }
-        #endregion
     }
 }

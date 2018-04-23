@@ -51,6 +51,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
             return Ok(products);
         }
+        #endregion
 
         [HttpPost]
         [ProducesResponseType(typeof(Product), 201)]
@@ -67,6 +68,5 @@ namespace WebApiSample.Api.Pre21.Controllers
             return CreatedAtAction(nameof(GetById),
                 new { id = product.Id }, product);
         }
-        #endregion
     }
 }
