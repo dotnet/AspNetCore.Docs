@@ -483,37 +483,6 @@ To configure PerfView for collecting events logged by this provider, add the str
 
 ![Perfview Additional Providers](index/_static/perfview-additional-providers.png)
 
-Capturing events on Nano Server requires some additional setup:
-
-* Connect PowerShell remoting to the Nano Server:
-
-  ```powershell
-  Enter-PSSession [name]
-  ```
-
-* Create an ETW session:
-
-  ```powershell
-  New-EtwTraceSession -Name "MyAppTrace" -LocalFilePath C:\trace.etl
-  ```
-
-* Add ETW providers for [CLR](/dotnet/framework/performance/clr-etw-providers), ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is `3ac73b97-af73-50e9-0822-5da4367920d0`. 
-
-  ```powershell
-  Add-EtwTraceProvider -Guid "{e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}" -SessionName MyAppTrace
-  Add-EtwTraceProvider -Guid "{3ac73b97-af73-50e9-0822-5da4367920d0}" -SessionName MyAppTrace
-  ```
-
-* Run the site and do whatever actions you want tracing information for.
-
-* Stop the tracing session when you're finished:
-
-  ```powershell
-  Stop-EtwTraceSession -Name "MyAppTrace"
-  ```
-
-The resulting *C:\trace.etl* file can be analyzed with PerfView as on other editions of Windows.
-
 <a id="eventlog"></a>
 ### The Windows EventLog provider
 

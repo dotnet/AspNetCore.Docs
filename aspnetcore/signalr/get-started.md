@@ -62,14 +62,16 @@ Install the following software:
 
    ![New Project dialog in Visual Studio](get-started/_static/signalr-new-project-choose-type.png)
 
-3. Right-click the project in **Solution Explorer** > **Add** > **New Item** > **npm Configuration File**. Name the file *package.json*.
+Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its server libraries as part of its **ASP.NET Core Web Application** template. However, the JavaScript client library for SignalR must be installed using *npm*.
 
-4. Run the following command in the **Package Manager Console** window, from the project root:
+3. Run the following commands in the **Package Manager Console** window, from the project root:
 
     ```console
+      npm init -y
       npm install @aspnet/signalr
-    ```
-5. Copy the <em>signalr.js</em> file from <em>node_modules\\@aspnet\signalr\dist\browser</em> to the <em>wwwroot\lib</em> folder in your project.
+    ```     
+
+4. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *lib* folder in your project.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
