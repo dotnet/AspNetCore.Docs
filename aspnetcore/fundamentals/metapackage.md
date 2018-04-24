@@ -1,5 +1,5 @@
 ---
-title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x and later
+title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage includes all supported ASP.NET Core and Entity Framework Core packages, along with their dependencies.
 manager: wpickett
@@ -12,7 +12,10 @@ ms.topic: article
 uid: fundamentals/metapackage
 ---
 
-# Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x
+# Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
+
+> [!NOTE]
+> We recommend applications targeting ASP.NET Core 2.1 and later use the Microsoft.AspNetCore.App](xref:fundamentals/metapackage-all) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
@@ -33,3 +36,27 @@ You can use the package trimming process to remove packages that you don't use. 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
 [!code-xml[](../mvc/views/view-compilation/sample/MvcRazorCompileOnPublish2.csproj?highlight=9)]
+
+<a name="migrate"></a>
+## Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App
+
+The following packages are direct dependencies of `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
+
+* Microsoft.Data.Sqlite
+* Microsoft.Data.Sqlite.Core
+* Microsoft.EntityFrameworkCore.Sqlite
+* Microsoft.EntityFrameworkCore.Sqlite.Core
+* Microsoft.Extensions.Caching.Redis
+* Microsoft.AspNetCore.DataProtection.AzureStorage
+* Microsoft.Extensions.Configuration.AzureKeyVault
+* Microsoft.AspNetCore.DataProtection.AzureKeyVault
+* Microsoft.AspNetCore.Identity.Service.AzureKeyVault
+* Microsoft.AspNetCore.AzureKeyVault.HostingStartup
+* Microsoft.AspNetCore.ApplicationInsights.HostingStartup
+
+To move from `Microsoft.AspNetCore.All` to `Microsoft.AspNetCore.App`, if your app uses any APIs from the above packages, or packages brought in by those packages, add references to those packages in your project.
+
+Any dependencies of the preceding packages that otherwise aren't dependencies of `Microsoft.AspNetCore.App` are not included implicitly. For example:
+
+* `StackExchange.Redis` as a dependency of `Microsoft.Extensions.Caching.Redis`
+* `Microsoft.ApplicationInsights` as a dependency of `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`
