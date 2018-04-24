@@ -335,19 +335,7 @@ Note the handler names provided in *Index.cshtml* match the `DeleteAllMessages` 
 
 MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
 
-The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. It surrounds the execution of a page handler method. It allows you to process custom code at stages of page handler method execution. Here's an example from the sample app:
-
-[!code-csharp[](razor-pages-convention-features/sample/Filters/ReplaceRouteValueFilterAttribute.cs?name=snippet1)]
-
-This filter checks for a `globalTemplate` route value of "TriggerValue" and swaps in "ReplacementValue".
-
-The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel`:
-
-[!code-csharp[](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=10-12&highlight=1)]
-
-Request the Page3 page from the sample app with at `localhost:5000/OtherPages/Page3/TriggerValue`. Notice how the filter replaces the route value:
-
-![Request to OtherPages/Page3 with a TriggerValue route segment results in the filter replacing the route value with ReplacementValue.](razor-pages-convention-features/_static/otherpages-page3-filter-replacement-value.png)
+The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:mvc/razor-pages/filter).
 
 ## See also
 
