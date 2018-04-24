@@ -45,7 +45,7 @@ The fastest way to view the schema for ASP.NET Core 2 Identity is to create a ne
 
     ![Change Auth](identity/_static/change-auth.png)
 
-ASP.NET Core 2 Identity uses [Entity Framework Core](https://docs.microsoft.com/ef/core) to interact with the database that holds the Authentication data. In order for the newly created application to work, there needs to be a database to store this data. After creating a new application, the fastest way to inspect the schema in a database environment is to Migrate the Entity Framework Code First Schema to a database hosted either locally or elsewhere. Please review the documentation specified above for more information if interested. To create a database with the Identity Core Schema, run the following command `Package Manager Console`, which is located in **Tools** > **Nuget Package Manager** > **Package Manager Console**
+ASP.NET Core 2 Identity uses [Entity Framework Core](https://docs.microsoft.com/ef/core) to interact with the database that holds the Authentication data. In order for the newly created application to work, there needs to be a database to store this data. After creating a new application, the fastest way to inspect the schema in a database environment is to create the database using Entity Framework migrations. This process will create a database either locally or elsewhere that mimics that schema. Please review the documentation specified above for more information if interested. To create a database with the Identity Core Schema, run the following command `Package Manager Console`, which is located in **Tools** > **Nuget Package Manager** > **Package Manager Console**
 
    ![Package Manager Console](identity/_static/package-manage-console.png)
 
@@ -61,13 +61,13 @@ Package Manager Console allows us to run Entity Framework commands inside of Vis
 }
 ````
 
-This command will "Seed" the database specified with the schema and any data needed for intialization of the application. The following image is the table structure that is created with the above steps.
+This command will build the database specified with the schema and any data needed for intialization of the application. The following image is the table structure that is created with the above steps.
 
    ![Identity Tables](identity/_static/identity-tables.png)
 
 ## Migrating the Schema
 
-Observing the table structure for both Membership and Core Identity shows there are subtle differences in the table names, and upon further investigation, the fields on said tables is different as well. The pattern has changed substantially for Authentication/Authorization with ASP.NET and ASP.NET Core applications. The key objects that are still used with Identity are **Users** and **Roles**. Here are mapping table for **Users**, **Roles** and **UserRoles**.
+Observing the table structure for both Membership and Core Identity shows there are subtle differences in the table names, and upon further investigation, the fields on the tables is different as well. The pattern has changed substantially for Authentication/Authorization with ASP.NET and ASP.NET Core applications. The key objects that are still used with Identity are **Users** and **Roles**. Here are mapping table for **Users**, **Roles** and **UserRoles**.
 
 ### Users
 
@@ -82,7 +82,7 @@ Observing the table structure for both Membership and Core Identity shows there 
 |PhoneNumber | string | aspnet_Users.MobileAlias | string
 |LockoutEnabled | bit | aspnet_Membership.IsLockedOut | bit
 
-**Note**: Not all the fields are one-to-one relationships from Membership to Identity Core. The above table takes the default Membership User Schema and maps it to Identity Core Schema. If there are other custom fields that were used for Membership, those will need to be mapped manually. In this mapping, there is no map for Passwords, as both password criteria and Password Salts will not migrate between the two. **It is reccommended to leave the password blank and notify the user they will need to reset thier password.** LockoutEnd in Core Identity should be set to some date in the future if the user is locked out(this will be shown in the migration script).
+**Note**: Not all the fields are one-to-one relationships from Membership to Identity Core. The above table takes the default Membership User Schema and maps it to Identity Core Schema. If there are other custom fields that were used for Membership, those will need to be mapped manually. In this mapping, there is no map for Passwords, as both password criteria and Password Salts will not migrate between the two. **It is reccommended to leave the password null and notify the user they will need to reset thier password.** LockoutEnd in Core Identity should be set to some date in the future if the user is locked out(this will be shown in the migration script).
 
 ## Roles
 
