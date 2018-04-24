@@ -7,7 +7,7 @@ namespace WebApiSample.Api.Controllers
     [Route("api/[controller]")]
     [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]
-    public class TestController : Controller
+    public class TestController : ControllerBase
     {
         #region snippet_ActionsCausingExceptions
         // Don't do this. All of the following actions result in an exception.
