@@ -5,7 +5,7 @@ description: Learn about the features available for building a web API in ASP.NE
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/23/2018
+ms.date: 04/24/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -17,36 +17,11 @@ By [Scott Addie](https://github.com/scottaddie)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/define-controller/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-ASP.NET Core offers the following options for creating a web API controller:
-
-::: moniker range="<= aspnetcore-2.0"
-* [Derive class from Controller](#derive-class-from-controller)
-* [Derive class from ControllerBase](#derive-class-from-controllerbase)
-::: moniker-end
-::: moniker range=">= aspnetcore-2.1"
-* [Derive class from Controller](#derive-class-from-controller)
-* [Derive class from ControllerBase](#derive-class-from-controllerbase)
-* [Annotate class with ApiControllerAttribute](#annotate-class-with-apicontrollerattribute)
-::: moniker-end
-
-This document explains when it's most appropriate to use each option.
-
-## Derive class from Controller
-
-Inherit from the [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class in a controller that needs to support HTML and Razor in addition to web API actions. Examples that require `Controller` inheritance include returning MVC views or [invoking view components](xref:mvc/views/view-components#invoking-a-view-component-directly-from-a-controller).
-
-::: moniker range=">= aspnetcore-2.1"
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
-::: moniker-end
-::: moniker range="<= aspnetcore-2.0"
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/OrdersController.cs?name=snippet_OrdersController&highlight=1)]
-:::moniker-end
-
-In the preceding controller, the `Index` action returns a [ViewResult](/dotnet/api/microsoft.aspnetcore.mvc.viewresult) representing the associated MVC view at *Views/Orders/Index.cshtml*. The `GetById` and `CreateAsync` actions respond to HTTP GET and POST requests, respectively.
+This document explains how to build a web API in ASP.NET Core and when it's most appropriate to use each option.
 
 ## Derive class from ControllerBase
 
-Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that doesn't need to support HTML and Razor. For example, the following controller only supports web API actions:
+Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that's intended to serve as a web API. For example:
 
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
@@ -55,7 +30,7 @@ Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controlle
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 ::: moniker-end
 
-A benefit of deriving from `ControllerBase` instead of `Controller` is that IntelliSense displays only web API-specific members.
+The `ControllerBase` class provides access to numerous properties and methods. In the preceding example, some such methods include [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest) and [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction). These methods are invoked within action methods to return HTTP 400 and 201 status codes, respectively. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property, also provided by `ControllerBase`, is accessed to perform request model validation.
 
 ::: moniker range=">= aspnetcore-2.1"
 ## Annotate class with ApiControllerAttribute
@@ -64,7 +39,11 @@ ASP.NET Core 2.1 introduces the `[ApiController]` attribute to denote a web API 
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-This attribute is commonly coupled with either `ControllerBase` or `Controller` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file). `Controller` provides access to methods such as [Json](/dotnet/api/microsoft.aspnetcore.mvc.controller.json) and [View](/dotnet/api/microsoft.aspnetcore.mvc.controller.view). Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute.
+This attribute is commonly coupled with `ControllerBase` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file).
+
+Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:
+
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/MyBaseController.cs?name=snippet_ControllerSignature)]
 
 The following sections describe convenience features added by the attribute.
 
