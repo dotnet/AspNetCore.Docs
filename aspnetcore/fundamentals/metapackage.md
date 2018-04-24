@@ -3,7 +3,7 @@ title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage includes all supported ASP.NET Core and Entity Framework Core packages, along with their dependencies.
 manager: wpickett
-monikerRange: '= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/20/2017
 ms.prod: asp.net-core
@@ -36,6 +36,14 @@ You can use the package trimming process to remove packages that you don't use. 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
 [!code-xml[](../mvc/views/view-compilation/sample/MvcRazorCompileOnPublish2.csproj?highlight=9)]
+
+::: moniker range=">= aspnetcore-2.1"
+# Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.1 and later version range locking
+
+`Microsoft.AspNetCore.All` 2.1 and later specifies package dependency ranges. The package dependency ranges ensure that only the excact version specified for each dependency is allowed. Any other dependency that attempts to lift a version for a component beyond what is specified in the meta-package will result in a NuGet warning, which the Microsoft.NET.Sdk will elevate to an error by default. 
+
+::: moniker-end
+
 
 <a name="migrate"></a>
 ## Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App

@@ -34,7 +34,7 @@ Using the the `Microsoft.AspNetCore.App` metapackage provides version restrictio
 
 Applications that use the `Microsoft.AspNetCore.App` metapackage automatically take advantage of the .NET Core shared framework. When you use the `Microsoft.AspNetCore.App` metapackage, **no** assets from the referenced ASP.NET Core NuGet packages are deployed with the application &mdash; the .NET Core shared framework contains these assets. The assets in the shared framework are precompiled to improve application startup time. For more information, see "shared framework" in [.NET Core distribution packaging](/dotnet/core/build/distribution-packaging).
 
-You can use the package trimming process to remove packages that you don't use. Trimmed packages are excluded in published application output.
+Packages in the .NET Core shared framework are excluded in published application output.
 
 The following *.csproj* file references the `Microsoft.AspNetCore.App` metapackage for ASP.NET Core:
 
