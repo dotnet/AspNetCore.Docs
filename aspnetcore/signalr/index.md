@@ -16,5 +16,5 @@ uid: signalr/index
 * [Get started](xref:signalr/get-started)
 * [Introduction](xref:signalr/introduction)
 * [Hubs](xref:signalr/hubs)
-* [JavaScript Client](xref:signalr/javascript-client)
-* [Supported Platforms](xref:signalr/supported-platforms)
+* [JavaScript client](xref:signalr/javascript-client)
+* [Supported platforms](xref:signalr/supported-platforms)

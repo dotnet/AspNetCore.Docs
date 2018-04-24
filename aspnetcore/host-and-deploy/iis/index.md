@@ -20,9 +20,7 @@ By [Luke Latham](https://github.com/guardrex) and [Rick Anderson](https://twitte
 The following operating systems are supported:
 
 * Windows 7 or later
-* Windows Server 2008 R2 or later&#8224;
-
-&#8224;Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core apps on Nano Server IIS. For instructions specific to Nano Server, see the [ASP.NET Core with IIS on Nano Server](xref:tutorials/nano-server) tutorial.
+* Windows Server 2008 R2 or later
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
