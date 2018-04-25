@@ -118,15 +118,15 @@ Navigate to the `Todo` controller at `http://localhost:port/api/todo`:
 
 ## Implement the other CRUD operations
 
-We'll add `Create`, `Update`, and `Delete` methods to the controller. These are variations on a theme, so I'll just show the code and highlight the main differences. Build the project after adding or changing code.
+We'll add `Create`, `Update`, and `Delete` methods to the controller. These methods are variations on a theme, so I'll just show the code and highlight the main differences. Build the project after adding or changing code.
 
 ### Create
 
 [!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-This is an HTTP POST method, indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+The preceding method responds to an HTTP POST, as indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
-The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+The `CreatedAtRoute` method returns a 201 response. It's the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ### Use Postman to send a Create request
 
@@ -154,7 +154,7 @@ The `CreatedAtRoute` method returns a 201 response, which is the standard respon
 
 ![Headers tab of the Postman console](first-web-api/_static/pmget.png)
 
-You can use the Location header URI to access the resource you just created. Recall the `GetById` method created the `"GetTodo"` named route:
+You can use the Location header URI to access the resource you created. Recall the `GetById` method created the `"GetTodo"` named route:
 
 ```csharp
 [HttpGet("{id}", Name = "GetTodo")]

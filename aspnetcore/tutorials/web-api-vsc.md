@@ -48,7 +48,7 @@ Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startu
 
 ![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes](web-api-vsc/_static/vsc_restore.png)
 
-Press **Debug** (F5) to build and run the program. In a browser, navigate to http://localhost:5000/api/values. The following is displayed:
+Press **Debug** (F5) to build and run the program. In a browser, navigate to http://localhost:5000/api/values. The following output is displayed:
 
 ```json
 ["value1","value2"]
