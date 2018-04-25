@@ -15,11 +15,11 @@ uid: signalr/publish-to-azure-web-app
 
 # Publish an ASP.NET Core SignalR app to an Azure Web App
 
-[Azure Web App](https://docs.microsoft.com/azure/app-service/app-service-web-overview) is a [Microsoft cloud computing](https://azure.microsoft.com/) platform service for hosting web apps, including ASP.NET Core.
+[Azure Web App](/azure/app-service/app-service-web-overview) is a [Microsoft cloud computing](https://azure.microsoft.com/) platform service for hosting web apps, including ASP.NET Core.
 
 ## Publish the app
 
-Visual Studio provides built-in tools for publishing to an Azure Web App. Visual Studio Code user can use [Azure CLI](https://docs.microsoft.com/cli/azure) commands to publish apps to Azure. This article covers publishing using  the tools in Visual Studio. To publish an app using Azure CLI, see [Publish an ASP.NET Core app to Azure with command line tools](xref:tutorials/publish-to-azure-webapp-using-cli).
+Visual Studio provides built-in tools for publishing to an Azure Web App. Visual Studio Code user can use [Azure CLI](/cli/azure) commands to publish apps to Azure. This article covers publishing using  the tools in Visual Studio. To publish an app using Azure CLI, see [Publish an ASP.NET Core app to Azure with command line tools](xref:tutorials/publish-to-azure-webapp-using-cli).
 
 Right-click on the project in **Solution Explorer** and select **Publish**. Confirm that **Create new** is checked in the **Pick a publish target** dialog, and select **Publish**.
 
@@ -55,7 +55,7 @@ In the Azure portal, navigate to **App Settings** for your web app. Set **WebSoc
 
 ![Azure Web app settings in the Azure portal](publish-to-azure-web-app/_static/azure-web-app-settings.png)
 
- WebSockets and other transports [are limited based on the App Service Plan](https://docs.microsoft.com/azure/azure-subscription-service-limits#app-service-limits).
+ WebSockets and other transports [are limited based on the App Service Plan](/azure/azure-subscription-service-limits#app-service-limits).
 
 ## Related resources
 
