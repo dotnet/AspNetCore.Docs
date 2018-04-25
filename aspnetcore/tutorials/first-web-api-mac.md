@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://gi
 
 In this tutorial, build a web API for managing a list of "to-do" items. The UI isn't constructed.
 
-There are 3 versions of this tutorial:
+There are three versions of this tutorial:
 
 * macOS: Web API with Visual Studio for Mac (This tutorial)
 * Windows: [Web API with Visual Studio for Windows](xref:tutorials/first-web-api)
