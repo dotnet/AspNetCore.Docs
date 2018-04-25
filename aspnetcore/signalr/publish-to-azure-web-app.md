@@ -19,7 +19,7 @@ uid: signalr/publish-to-azure-web-app
 
 ## Publish the app
 
-Visual Studio provides built-in tools for publishing to an Azure Web App. Visual Studio Code user can use [Azure CLI](/cli/azure) commands to publish apps to Azure. This article covers publishing using  the tools in Visual Studio. To publish an app using Azure CLI, see [Publish an ASP.NET Core app to Azure with command line tools](xref:tutorials/publish-to-azure-webapp-using-cli).
+Visual Studio provides built-in tools for publishing to an Azure Web App. Visual Studio Code user can use [Azure CLI](/cli/azure) commands to publish apps to Azure. This article covers publishing using the tools in Visual Studio. To publish an app using Azure CLI, see [Publish an ASP.NET Core app to Azure with command line tools](xref:tutorials/publish-to-azure-webapp-using-cli).
 
 Right-click on the project in **Solution Explorer** and select **Publish**. Confirm that **Create new** is checked in the **Pick a publish target** dialog, and select **Publish**.
 
