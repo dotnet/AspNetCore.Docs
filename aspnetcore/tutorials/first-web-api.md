@@ -4,7 +4,7 @@ author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 manager: wpickett
 ms.author: riande
-ms.date: 08/15/2017
+ms.date: 04/25/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -46,7 +46,7 @@ In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **API**
 
 In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
 
-```
+```json
 ["value1","value2"]
 ```
 
@@ -94,7 +94,6 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 
 [!INCLUDE [last part of web API](../includes/webApi/end.md)]
 
-[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
+[!INCLUDE[Javascript Jquery](../includes/webApi/add-javascript-jquery/index.md)]
 
 [!INCLUDE[next steps](../includes/webApi/next.md)]
-

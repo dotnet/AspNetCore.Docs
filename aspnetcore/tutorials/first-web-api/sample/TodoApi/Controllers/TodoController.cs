@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using TodoApi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using TodoApi.Models;
 
 #region TodoController
 namespace TodoApi.Controllers
@@ -29,12 +29,13 @@ namespace TodoApi.Controllers
         {
             return _context.TodoItems.ToList();
         }
+        #endregion
 
         #region snippet_GetByID
         [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(long id)
         {
-            var item = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var item = _context.TodoItems.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -42,7 +43,7 @@ namespace TodoApi.Controllers
             return new ObjectResult(item);
         }
         #endregion
-        #endregion
+
         #region snippet_Create
         [HttpPost]
         public IActionResult Create([FromBody] TodoItem item)
@@ -68,7 +69,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
 
-            var todo = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var todo = _context.TodoItems.Find(id);
             if (todo == null)
             {
                 return NotFound();
@@ -87,7 +88,7 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.TodoItems.FirstOrDefault(t => t.Id == id);
+            var todo = _context.TodoItems.Find(id);
             if (todo == null)
             {
                 return NotFound();
@@ -100,4 +101,3 @@ namespace TodoApi.Controllers
         #endregion
     }
 }
-

@@ -1,10 +1,10 @@
 #if NEVER
 // This controller is used only for documenation. 
 #region snippet_todo1
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using TodoApi.Models;
+using System.Collections.Generic;
 using System.Linq;
+using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {

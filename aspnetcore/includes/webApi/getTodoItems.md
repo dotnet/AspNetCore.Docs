@@ -3,10 +3,10 @@
 The preceding code:
 
 * Defines an empty controller class. In the next sections, methods are added to implement the API.
-* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 * The constructor adds an item to the in-memory database if one doesn't exist.
 
-## Getting to-do items
+## Get to-do items
 
 To get to-do items, add the following methods to the `TodoController` class.
 
@@ -19,7 +19,7 @@ These methods implement the two GET methods:
 
 Here is an example HTTP response for the `GetAll` method:
 
-```
+```json
 [
   {
     "id": 1,
@@ -27,9 +27,9 @@ Here is an example HTTP response for the `GetAll` method:
     "isComplete": false
   }
 ]
-   ```
+```
 
-Later in the tutorial I'll show how the HTTP response can be viewed with [Postman](https://www.getpostman.com/) or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
+Later in the tutorial, I'll show how the HTTP response can be viewed with [Postman](https://www.getpostman.com/) or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
 
 ### Routing and URL paths
 

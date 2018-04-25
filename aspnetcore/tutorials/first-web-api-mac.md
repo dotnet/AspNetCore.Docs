@@ -5,7 +5,7 @@ description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
 manager: wpickett
 ms.author: riande
-ms.date: 09/15/2017
+ms.date: 04/25/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -49,19 +49,19 @@ Enter **TodoApi** for the **Project Name**, and then select Create.
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error.  Change the URL to `http://localhost:port/api/values`. The `ValuesController` data will be displayed:
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:port/api/values`. The `ValuesController` data is displayed:
 
-```
+```json
 ["value1","value2"]
 ```
 
 ### Add support for Entity Framework Core
 
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
-* From the **Project** menu, select **Add NuGet Packages**. 
+* From the **Project** menu, select **Add NuGet Packages**.
 
-  *  Alternately, you can right-click **Dependencies**, and then select **Add Packages**.
+  * Alternately, you can right-click **Dependencies**, and then select **Add Packages**.
 
 * Enter `EntityFrameworkCore.InMemory` in the search box.
 * Select `Microsoft.EntityFrameworkCore.InMemory`, and then select **Add Package**.
@@ -104,15 +104,15 @@ Replace the generated code with the following (and add closing braces):
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number. You get an HTTP 404 (Not Found) error.  Change the URL to `http://localhost:port/api/values`. The `ValuesController` data will be displayed:
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:port/api/values`. The `ValuesController` data is displayed:
 
-```
+```json
 ["value1","value2"]
 ```
 
-Navigate to the `Todo` controller at`http://localhost:port/api/todo`:
+Navigate to the `Todo` controller at `http://localhost:port/api/todo`:
 
-```
+```json
 [{"key":1,"name":"Item1","isComplete":false}]
 ```
 
@@ -124,9 +124,9 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These are 
 
 [!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-This is an HTTP POST method, indicated by the [`[HttpPost]`](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [`[FromBody]`](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+This is an HTTP POST method, indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
-The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ### Use Postman to send a Create request
 
@@ -139,12 +139,12 @@ The `CreatedAtRoute` method returns a 201 response, which is the standard respon
 * Select the **Body** radio button
 * Select the **raw** radio button
 * Set the type to JSON
-* In the key-value editor, enter a Todo item such as
+* In the key-value editor, enter a to-do item such as:
 
 ```json
 {
-	"name":"walk dog",
-	"isComplete":true
+    "name":"walk dog",
+    "isComplete":true
 }
 ```
 
@@ -165,7 +165,7 @@ public IActionResult GetById(string id)
 
 [!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
-`Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+`Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
 
 ```json
 {
@@ -181,11 +181,11 @@ public IActionResult GetById(string id)
 
 [!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
 
-The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
 
-[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
+[!INCLUDE[Javascript Jquery](../includes/webApi/add-javascript-jquery/index.md)]
 
 ## Next steps
 
