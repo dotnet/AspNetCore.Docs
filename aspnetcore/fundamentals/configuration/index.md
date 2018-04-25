@@ -311,7 +311,7 @@ Example command:
 dotnet run key1=value1 -key2=value2 --key3=value3 /key4=value4
 ```
 
-Note: If `-key1` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
+Note: If `-key2` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
 
 **Sequence of two arguments**
 
