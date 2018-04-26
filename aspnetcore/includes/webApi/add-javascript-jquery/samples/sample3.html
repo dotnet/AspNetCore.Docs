@@ -33,7 +33,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    <center><h1>To-do CRUD</h1></center>
+    <h1>To-do CRUD</h1>
     <h3>Add</h3>
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
         <input type="text" id="add-name" placeholder="New to-do">
@@ -63,11 +63,11 @@
     </table>
 
     <script>
-        var uri = 'api/todo';
-        var todos = null;
+        const uri = 'api/todo';
+        let todos = null;
         function getCount(data) {
-            var el = $('#counter');
-            var name = 'to-do';
+            const el = $('#counter');
+            let name = 'to-do';
             if (data) {
                 if (data > 1) {
                     name = 'to-dos';
@@ -76,7 +76,7 @@
             } else {
                 el.html('No ' + name);
             }
-        };
+        }
 
         $(document).ready(function () {
             getData();
@@ -90,29 +90,28 @@
                     $('#todos').empty();
                     getCount(data.length);
                     $.each(data, function (key, item) {
-                        var checked = '';
-                        if (item.isComplete) {
-                            checked = 'checked';
-                        }
+                        const checked = (item.isComplete ? 'checked' : '');
 
-                        $('<tr><td><input disabled=true type="checkbox" ' + checked + '></td><td>' + item.name + '</td>' +
-                            '<td><button onclick="editItem(' + item.id + ')">Edit</button></td><td><button onclick="deleteItem(' + item.id + ')">' +
-                            'Delete</button></td></tr>').appendTo($('#todos'));
+                        $('<tr><td><input disabled="true" type="checkbox" ' + checked + '></td>' +
+                          '<td>' + item.name + '</td>' + 
+                          '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
+                          '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
+                          '</tr>').appendTo($('#todos'));
                     });
 
                     todos = data;
                 }
             });
-        };
+        }
 
         function addItem() {
-            var item = {
+            const item = {
                 'name': $('#add-name').val(),
                 'isComplete': false
             };
 
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 accepts: 'application/json',
                 url: uri,
                 contentType: 'application/json',
@@ -122,7 +121,7 @@
                     $('#add-name').val('');
                 }
             });
-        };
+        }
 
         function deleteItem(id) {
             $.ajax({
@@ -132,26 +131,21 @@
                     getData();
                 }
             });
-        };
+        }
 
         function editItem(id) {
             $.each(todos, function (key, item) {
                 if (item.id === id) {
-                    var editName = $('#edit-name');
-                    editName.val(item.name);
-
-                    var editId = $('#edit-id');
-                    editId.val(item.id);
-
-                    var editIsComplete = $('#edit-isComplete');
-                    editIsComplete.val(item.isComplete);
+                    $('#edit-name').val(item.name);
+                    $('#edit-id').val(item.id);
+                    $('#edit-isComplete').val(item.isComplete);
                 }
             });
             $('#spoiler').css({ 'display': 'block' });
-        };
+        }
 
         $('.my-form').on('submit', function () {
-            var item = {
+            const item = {
                 'name': $('#edit-name').val(),
                 'isComplete': $('#edit-isComplete').is(':checked'),
                 'id': $('#edit-id').val()
