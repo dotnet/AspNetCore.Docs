@@ -44,7 +44,7 @@ In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **API**
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
 
 ```json
 ["value1","value2"]
@@ -90,7 +90,7 @@ Replace the class with the following code:
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:port/api/todo`.
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`.
 
 [!INCLUDE [last part of web API](../includes/webApi/end.md)]
 

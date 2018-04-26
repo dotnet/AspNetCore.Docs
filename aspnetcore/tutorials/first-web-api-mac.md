@@ -49,7 +49,7 @@ Enter **TodoApi** for the **Project Name**, and then select Create.
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:port/api/values`. The `ValuesController` data is displayed:
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
 
 ```json
 ["value1","value2"]
@@ -104,13 +104,13 @@ Replace the generated code with the following (and add closing braces):
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:port/api/values`. The `ValuesController` data is displayed:
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>`, where `<port>` is a randomly chosen port number. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
 
 ```json
 ["value1","value2"]
 ```
 
-Navigate to the `Todo` controller at `http://localhost:port/api/todo`:
+Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`:
 
 ```json
 [{"key":1,"name":"Item1","isComplete":false}]

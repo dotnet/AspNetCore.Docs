@@ -1,5 +1,5 @@
 #if NEVER
-// This controller is used only for documenation. 
+// This controller is used only for documentation purposes.
 #region snippet_todo1
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

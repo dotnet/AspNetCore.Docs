@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,8 @@
             <input type="hidden" id="edit-id">
             <input type="checkbox" id="edit-isComplete">
             <input type="text" id="edit-name">
-            <input type="submit" value="Edit" /> <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            <input type="submit" value="Edit" />
+            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 
@@ -93,7 +94,7 @@
                         const checked = (item.isComplete ? 'checked' : '');
 
                         $('<tr><td><input disabled="true" type="checkbox" ' + checked + '></td>' +
-                          '<td>' + item.name + '</td>' + 
+                          '<td>' + item.name + '</td>' +
                           '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
                           '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
                           '</tr>').appendTo($('#todos'));
