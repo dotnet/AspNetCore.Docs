@@ -45,7 +45,7 @@ Visual Studio completes the following tasks:
 
 Notice the format of the URL for the app is *{app name}.azurewebsites.net*. For example, an app named `SignalRChattR` has a URL that looks like `https://signalrchattr.azurewebsites.net`.
 
-If an HTTP 502.2 error occurs, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index?view=aspnetcore-2.1#site-x) to resolve it.
+If an HTTP 502.2 error occurs, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index) to resolve it.
 
 ## Configure SignalR web app
 
