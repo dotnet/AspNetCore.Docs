@@ -68,7 +68,7 @@ Install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) data
 
 ### Add a model class
 
-A model is an object that represents the data in your application. In this case, the only model is a to-do item.
+A model is an object representing the data in your app. In this case, the only model is a to-do item.
 
 Add a folder named *Models*. In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 

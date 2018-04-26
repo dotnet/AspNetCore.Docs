@@ -6,10 +6,7 @@ Configure the project to serve static files and to enable default file mapping. 
 
 [!code-csharp[](../../../tutorials/first-web-api/samples/2.0/TodoApi/Startup2.cs?name=snippet_Configure&highlight=3-4)]
 
-Add an HTML page to the project by following these steps:
-
-* Right-click the *wwwroot* directory, and select **Add** > **New Item** > **HTML Page**.
-* Name the file *index.html*, and replace its contents with the following markup:
+Add an HTML file, named *index.html*, to the project's *wwwroot* directory. Replace its contents with the following markup:
 
 [!code-html[](../../../tutorials/first-web-api/samples/2.0/TodoApi/wwwroot/index.html)]
 
