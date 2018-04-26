@@ -57,7 +57,7 @@ The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each me
 * Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) isn't case sensitive.
 * If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. See [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes) for more information.
 
-In the `GetById` method:
+In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
 
 ::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
@@ -66,8 +66,6 @@ In the `GetById` method:
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 ::: moniker-end
 
-`"{id}"` is a placeholder variable for the ID of the `todo` item. When `GetById` is invoked, it assigns the value of "{id}" in the URL to the method's `id` parameter.
-
 ### Return values
 
 The `GetAll` method returns a collection of `TodoItem` objects. MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
@@ -75,12 +73,12 @@ The `GetAll` method returns a collection of `TodoItem` objects. MVC automaticall
 ::: moniker range="<= aspnetcore-2.0"
 In contrast, the `GetById` method returns the more general [IActionResult type](xref:web-api/action-return-types#iactionresult-type), which represents a wide range of return types. `GetById` has two different return types:
 
-* If no item matches the requested ID, the method returns a 404 error. Returning `NotFound` returns an HTTP 404 response.
-* Otherwise, the method returns 200 with a JSON response body. Returning `ObjectResult` results in an HTTP 200 response.
+* If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
+* Otherwise, the method returns 200 with a JSON response body. Returning a new [ObjectResult](/dotnet/api/microsoft.aspnetcore.mvc.objectresult) results in an HTTP 200 response.
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
 In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type), which represents a wide range of return types. `GetById` has two different return types:
 
-* If no item matches the requested ID, the method returns a 404 error. Returning `NotFound` returns an HTTP 404 response.
+* If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 ::: moniker-end
