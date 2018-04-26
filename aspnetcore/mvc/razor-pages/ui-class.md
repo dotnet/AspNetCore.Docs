@@ -53,6 +53,8 @@ The following references are supported for a Razor UI class library:
 
 You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test.
 
+In this section, a Rasor Class Library is created. Razor files are added to the Razor Class Libary.
+
 # [Visual Studio](#tab/visual-studio)
 
 VS instructions here.
@@ -70,6 +72,12 @@ dotnet new viewstart -o RazorUIClassLib/Pages
 dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
+The preceding commands:
+
+* Create the `RazorUIClassLib` Razor Class Library (RCL).
+* Create a Razor Test and _Message page, and add them to the RCL.
+* Create two viewstart files and add them to the RCL. 
+
 You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
 
 The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
@@ -84,7 +92,7 @@ Update the Razor Pages. For example:
 
 * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
 
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
 
 `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
 
@@ -113,7 +121,7 @@ VS instructions here.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-* Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
+Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
 ``` CLI
 dotnet new razor -o WebApp1
@@ -123,7 +131,7 @@ dotnet sln add RazorUIClassLib
 dotnet add WebApp1 reference RazorUIClassLib
 ```
 
-* Build and run the web app:
+Build and run the web app:
 
 ``` CLI
 cd WebApp1
@@ -132,7 +140,7 @@ dotnet run
 
 ------
 
-### Test WebApp1
+### Test WebApp1 using the Razor Class Libary
 
 Verify the Razor UI class library is being used.
 
