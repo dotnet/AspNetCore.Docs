@@ -14,6 +14,7 @@ uid: migration/index
 
 ## ASP.NET to ASP.NET Core
 
+* [Migrating from ASP.NET to ASP.NET Core Reference Guide](xref:migration/proper-to-2x/index)
 * [Migrating from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
 * [Migrating from ASP.NET Web API to ASP.NET Core Web API](xref:migration/webapi)
 * [Migrating Configuration](xref:migration/configuration)

@@ -1,7 +1,7 @@
 ---
-title: Migrate from ASP.NET to ASP.NET Core 2.0
+title: Migrating from ASP.NET to ASP.NET Core Reference Guide
 author: isaac2004
-description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core 2.0.
+description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.
 manager: wpickett
 ms.author: scaddie
 ms.date: 08/27/2017
@@ -11,22 +11,22 @@ ms.topic: article
 uid: migration/proper-to-2x/index
 ---
 
-# Migrate from ASP.NET to ASP.NET Core 2.0
+# Migrating from ASP.NET to ASP.NET Core Reference Guide
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET applications to ASP.NET Core 2.0.
+This article serves as a reference guide for migrating ASP.NET applications to ASP.NET Core.
 
 ## Prerequisites
 
 [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
 
 ## Target frameworks
-ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
+ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
 
-Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core 2.0 [metapackage](xref:fundamentals/metapackage). Install the `Microsoft.AspNetCore.All` metapackage in your project:
+Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage). Install the `Microsoft.AspNetCore.All` metapackage in your project:
 
 ```xml
 <ItemGroup>
