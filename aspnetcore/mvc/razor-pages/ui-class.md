@@ -15,6 +15,14 @@ uid: mvc/razor-pages/ui-class
 
 test - remove the following
 
+        [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+    
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+
     ``` CLI
     dotnet new viewimports  -o RazorUIClassLib/Pages
     dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
