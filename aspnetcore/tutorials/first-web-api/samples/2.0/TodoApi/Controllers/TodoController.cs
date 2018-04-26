@@ -7,7 +7,7 @@ using TodoApi.Models;
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
-    public class TodoController : Controller
+    public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
         #endregion
@@ -25,14 +25,13 @@ namespace TodoApi.Controllers
 
         #region snippet_GetAll
         [HttpGet]
-        public IEnumerable<TodoItem> GetAll()
+        public List<TodoItem> GetAll()
         {
             return _context.TodoItems.ToList();
         }
-        #endregion
 
         #region snippet_GetByID
-        [HttpGet("{id}", Name = "GetTodo")]
+        [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
             var item = _context.TodoItems.Find(id);
@@ -42,6 +41,7 @@ namespace TodoApi.Controllers
             }
             return new ObjectResult(item);
         }
+        #endregion
         #endregion
 
         #region snippet_Create
@@ -56,7 +56,7 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
+            return CreatedAtRoute(nameof(GetById), new { id = item.Id }, item);
         }
         #endregion
 

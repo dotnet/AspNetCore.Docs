@@ -80,7 +80,7 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New F
 
 Replace the generated code with:
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -90,7 +90,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 Add a `TodoContext` class to the *Models* folder.
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
 
@@ -122,7 +122,7 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These meth
 
 ### Create
 
-[!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding method responds to an HTTP POST, as indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
@@ -143,8 +143,8 @@ The `CreatedAtRoute` method returns a 201 response. It's the standard response f
 
 ```json
 {
-    "name":"walk dog",
-    "isComplete":true
+  "name":"walk dog",
+  "isComplete":true
 }
 ```
 
@@ -163,7 +163,7 @@ public IActionResult GetById(string id)
 
 ### Update
 
-[!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
 `Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
 
@@ -179,7 +179,7 @@ public IActionResult GetById(string id)
 
 ### Delete
 
-[!code-csharp[](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
 
 The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
@@ -191,6 +191,6 @@ The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-
 
 * [Route to controller actions](xref:mvc/controllers/routing)
 * For information about deploying your API, see [Host and deploy](xref:host-and-deploy/index).
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 * [Postman](https://www.getpostman.com/)
 * [Fiddler](https://www.telerik.com/download/fiddler)

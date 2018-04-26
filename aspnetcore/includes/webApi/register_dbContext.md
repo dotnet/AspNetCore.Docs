@@ -4,7 +4,7 @@ In this step, the database context is registered with the [dependency injection]
 
 Register the DB context with the service container using the built-in support for [dependency injection](xref:fundamentals/dependency-injection). Replace the contents of the *Startup.cs* file with the following code:
 
-[!code-csharp[](../../tutorials/first-web-api/sample/TodoApi/Startup.cs?highlight=2,4,12-13)]
+[!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Startup.cs?highlight=2,4,12-13)]
 
 The preceding code:
 

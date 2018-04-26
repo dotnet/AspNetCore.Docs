@@ -4,14 +4,14 @@ In this section, an HTML page is added that uses jQuery to call the Web API. jQu
 
 Configure the project to serve static files and to enable default file mapping. This is accomplished by invoking the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) extension methods in *Startup.Configure*. For more information, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
 
-[!code-csharp[](../../../tutorials/first-web-api/sample/TodoApi/Startup2.cs?name=snippet_Configure&highlight=3-4)]
+[!code-csharp[](../../../tutorials/first-web-api/samples/2.0/TodoApi/Startup2.cs?name=snippet_Configure&highlight=3-4)]
 
 Add an HTML page to the project by following these steps:
 
 * Right-click the *wwwroot* directory, and select **Add** > **New Item** > **HTML Page**.
 * Name the file *index.html*, and replace its contents with the following markup:
 
-[!code-html[](../../../tutorials/first-web-api/sample/TodoApi/wwwroot/index.html)]
+[!code-html[](../../../tutorials/first-web-api/samples/2.0/TodoApi/wwwroot/index.html)]
 
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 

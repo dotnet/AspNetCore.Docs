@@ -4,7 +4,7 @@ author: rick-anderson
 description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
 manager: wpickett
 ms.author: riande
-ms.date: 04/25/2018
+ms.date: 04/26/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -24,11 +24,11 @@ There are three versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE [template files](../includes/webApi/intro.md)]
+[!INCLUDE[template files](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-vscode.md)]
+[!INCLUDE[prerequisites](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create the project
 
@@ -58,9 +58,18 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
-Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package in the *TodoApi.csproj* file. There's no need to install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
+:::moniker range="<= aspnetcore-2.0"
+Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package reference to the *TodoApi.csproj* file:
 
-[!code-xml[](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=12)]
+[!code-xml[](first-web-api/samples/2.0/TodoApi/TodoApi.csproj?highlight=8)]
+:::moniker-end
+:::moniker range=">= aspnetcore-2.1"
+Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) package reference to the *TodoApi.csproj* file:
+
+[!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?highlight=12)]
+:::moniker-end
+
+There's no need to install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 ## Add a model class
 
@@ -70,7 +79,7 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 
 Add a `TodoItem` class with the following code:
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -80,15 +89,15 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 Add a `TodoContext` class in the *Models* folder:
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
 ## Add a controller
 
 In the *Controllers* folder, create a class named `TodoController`. Add the following code:
 
-[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
@@ -109,4 +118,4 @@ In VS Code, press F5 to launch the app. Navigate to http://localhost:5000/api/to
   * [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   * [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
-[!INCLUDE [next steps](../includes/webApi/next.md)]
+[!INCLUDE[next steps](../includes/webApi/next.md)]
