@@ -1,5 +1,5 @@
 ---
-title:  Reusable Razor UI in class libraries with ASP.NET Core
+title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor Pages UI in a class library.
 manager: wpickett
@@ -12,54 +12,6 @@ ms.topic: advanced
 uid: mvc/razor-pages/ui-class
 ---
 # Create reusable UI using the Razor Class Library project.
-
-test - remove the following
-
-``` CLI
-dotnet new razorclasslib -o RazorUIClassLib
-dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
-dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
-dotnet new viewstart -o RazorUIClassLib/Pages
-dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
-```
-
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
-
-* Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
-
-* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
-
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
-
-    ``` CLI
-    dotnet new viewimports  -o RazorUIClassLib/Pages
-    dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
-
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
-
-    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
-
-    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
-
-  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
-
-    ``` CLI
-    dotnet new razorclasslib -o RazorUIClassLib
-    dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
-    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
-    dotnet new viewstart -o RazorUIClassLib/Pages
-    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
-
-        [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
-
-    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
-
-    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
-
-  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
-
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -94,39 +46,8 @@ See [dotnet new](/dotnet/core/tools/dotnet-new) for more information.
 The following references are supported for a Razor UI class library:
 
 * Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
-* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
+* DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
-
-test - remove the following
-
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
-
-    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
-
-    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
-
-  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
-
-      ``` CLI
-    dotnet new viewimports  -o RazorUIClassLib/Pages
-    dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
-
-    ``` CLI
-    dotnet new razorclasslib -o RazorUIClassLib
-    dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
-    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
-    dotnet new viewstart -o RazorUIClassLib/Pages
-    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
-
-        [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
-
-    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
-
-    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
-
-  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
 
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
@@ -141,46 +62,46 @@ VS instructions here.
 
 From the command line, run the following:
 
-    ``` CLI
-    dotnet new razorclasslib -o RazorUIClassLib
-    dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
-    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
-    dotnet new viewstart -o RazorUIClassLib/Pages
-    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
+``` CLI
+dotnet new razorclasslib -o RazorUIClassLib
+dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
+dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
+dotnet new viewstart -o RazorUIClassLib/Pages
+dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
+```
 
-   You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
+You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
 
-    The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
+The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
 
-* Update the Razor Pages. For example:
+Update the Razor Pages. For example:
 
-    * Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following:
+* Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following:
 
-    [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
 
-    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+* Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
 
-    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
 
-  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
 
-    `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
+`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
 
-    ``` CLI
-    dotnet new viewimports  -o RazorUIClassLib/Pages
-    dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
-    ```
+``` CLI
+dotnet new viewimports -o RazorUIClassLib/Pages
+dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
+```
 
-    * Replace the markup in *RazorUIClassLib/Pages/Test.cshtml* with markup similar to the *Page1.cshtml* file.
-    * Delete the *RazorUIClassLib/Pages/Test.cshtml.cs* file.
+* Replace the markup in *RazorUIClassLib/Pages/Test.cshtml* with markup similar to the *Page1.cshtml* file.
+* Delete the *RazorUIClassLib/Pages/Test.cshtml.cs* file.
 
 
 * Build the class library to verify there are no compiler errors:
 
-    `dotnet build RazorUIClassLib`
+`dotnet build RazorUIClassLib`
 
-    The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
+The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
 
 ------
 
@@ -194,20 +115,20 @@ VS instructions here.
 
 * Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
-    ``` CLI
-    dotnet new razor -o WebApp1
-    dotnet new sln
-    dotnet sln add WebApp1
-    dotnet sln add RazorUIClassLib
-    dotnet add WebApp1 reference RazorUIClassLib
-    ```
+``` CLI
+dotnet new razor -o WebApp1
+dotnet new sln
+dotnet sln add WebApp1
+dotnet sln add RazorUIClassLib
+dotnet add WebApp1 reference RazorUIClassLib
+```
 
 * Build and run the web app:
 
-    ``` CLI
-    cd WebApp1
-    dotnet run
-    ```
+``` CLI
+cd WebApp1
+dotnet run
+```
 
 ------
 
@@ -224,17 +145,17 @@ When a view, partial view, or Razor Page is found in both the web app and the UI
 
 Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 
-<!--
+<!--            DELETE
 
 The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the `RazorUIClassLib` version.
 ## Package the Razor UI class library
 
 * The following command packages the Razor UI class library:
 
-    ``` CLI
-    cd ..
-    dotnet pack RazorUIClassLib
-    ```
+``` CLI
+cd ..
+dotnet pack RazorUIClassLib
+```
 
     Ignore the warning message:
 
