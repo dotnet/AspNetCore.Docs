@@ -187,10 +187,4 @@ The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-
 
 [!INCLUDE[Javascript Jquery](../includes/webApi/add-javascript-jquery/index.md)]
 
-## Next steps
-
-* [Route to controller actions](xref:mvc/controllers/routing)
-* For information about deploying your API, see [Host and deploy](xref:host-and-deploy/index).
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-* [Postman](https://www.getpostman.com/)
-* [Fiddler](https://www.telerik.com/download/fiddler)
+[!INCLUDE[next steps](../includes/webApi/next.md)]
