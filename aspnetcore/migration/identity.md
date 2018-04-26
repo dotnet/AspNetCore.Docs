@@ -12,8 +12,6 @@ uid: migration/identity
 ---
 # Migrate Authentication and Identity to ASP.NET Core
 
-<a name="migration-identity"></a>
-
 By [Steve Smith](https://ardalis.com/)
 
 In the previous article we [migrated configuration from an ASP.NET MVC project to ASP.NET Core MVC](configuration.md). In this article, we migrate the registration, login, and user management features.
@@ -29,16 +27,15 @@ Then, open Startup.cs and update the `ConfigureServices()` method to use Entity 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-  // Add EF services to the services container.
-  services.AddEntityFramework(Configuration)
-    .AddSqlServer()
-    .AddDbContext<ApplicationDbContext>();
+    // Add EF services to the services container.
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-  // Add Identity services to the services container.
-  services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
-  services.AddMvc();
+     services.AddMvc();
 }
 ```
 
@@ -65,18 +62,21 @@ using Microsoft.Data.Entity;
 
 namespace NewMvc6Project.Models
 {
-  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-  {
-    public ApplicationDbContext()
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-      Database.EnsureCreated();
-    }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-      options.UseSqlServer();
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
+        }
     }
-  }
 }
 ```
 
@@ -85,10 +85,12 @@ The ASP.NET Core MVC Starter Web project doesn't include much customization of u
 With these files in place, the Startup.cs file can be made to compile by updating its using statements:
 
 ```csharp
-using Microsoft.Framework.ConfigurationModel;
-using Microsoft.AspNetCore.Hosting;
-using NewMvc6Project.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 ```
 
 Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users.
@@ -112,18 +114,18 @@ Now, add a new MVC View Page called _LoginPartial to the Views/Shared folder:
 Update _LoginPartial.cshtml with the following code (replace all of its contents):
 
 ```cshtml
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
             </li>
         </ul>
     </form>

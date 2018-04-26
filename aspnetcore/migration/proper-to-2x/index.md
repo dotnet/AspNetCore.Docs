@@ -10,7 +10,6 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/proper-to-2x/index
 ---
-
 # Migrating from ASP.NET to ASP.NET Core Reference Guide
 
 By [Isaac Levin](https://isaaclevin.com)
@@ -22,6 +21,7 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 [!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
 
 ## Target frameworks
+
 ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
@@ -37,7 +37,9 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
 
 ## Project structure differences
+
 The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+
 - Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
@@ -45,6 +47,7 @@ The *.csproj* file format has been simplified in ASP.NET Core. Some notable chan
     ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
 
 ## Global.asax file replacement
+
 ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration and filter and area registrations are handled in the *Global.asax* file.
 
 [!code-csharp[](samples/globalasax-sample.cs)]
@@ -61,11 +64,11 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), several extension methods are used to configure the pipeline with support for:
 
-* [BrowserLink](http://vswebessentials.com/features/browserlink)
-* Error pages
-* Static files
-* ASP.NET Core MVC
-* Identity
+- [BrowserLink](http://vswebessentials.com/features/browserlink)
+- Error pages
+- Static files
+- ASP.NET Core MVC
+- Identity
 
 [!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
 
@@ -74,6 +77,7 @@ The host and application have been decoupled, which provides the flexibility of 
 **Note:** For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
 
 ## Storing configurations
+
 ASP.NET supports storing settings. These setting are used, for example, to support the environment to which the applications were deployed. A common practice was to store all custom key-value pairs in the `<appSettings>` section of the *Web.config* file:
 
 [!code-xml[](samples/webconfig-sample.xml)]
@@ -104,9 +108,10 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
 **Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Native dependency injection
+
 An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
-In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices. 
+In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices.
 
 An example of setting up Dependency Injection with Unity is implementing `IDependencyResolver` that wraps a `UnityContainer`:
 
@@ -129,6 +134,7 @@ The repository can be injected anywhere, as was true with Unity.
 **Note:** For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Serving static files
+
 An important part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript, and images. These files need to be saved in the published location of the app (or CDN) and referenced so they can be loaded by a request. This process has changed in ASP.NET Core.
 
 In ASP.NET, static files are stored in various directories and referenced in the views.
@@ -145,4 +151,4 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 
 ## Additional resources
 
-* [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
+- [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)

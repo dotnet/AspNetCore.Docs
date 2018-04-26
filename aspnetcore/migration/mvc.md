@@ -143,8 +143,6 @@ Upon saving the file, Bower will automatically download the dependencies to the 
 
 See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more information.
 
-<a name="migrate-layout-file"></a>
-
 ## Migrate the layout file
 
 * Copy the *_ViewStart.cshtml* file from the old ASP.NET MVC project's *Views* folder into the ASP.NET Core project's *Views* folder. The *_ViewStart.cshtml* file has not changed in ASP.NET Core MVC.
@@ -157,15 +155,15 @@ See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more i
 
 Open *_Layout.cshtml* file and make the following changes (the completed code is shown below):
 
-   * Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load *bootstrap.css* (see below).
+* Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load *bootstrap.css* (see below).
 
-   * Remove `@Scripts.Render("~/bundles/modernizr")`.
+* Remove `@Scripts.Render("~/bundles/modernizr")`.
 
-   * Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). We'll return to it in a future tutorial.
+* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). We'll return to it in a future tutorial.
 
-   * Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
+* Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
 
-   * Replace `@Scripts.Render("~/bundles/bootstrap")` with a `<script>` element (see below)..
+* Replace `@Scripts.Render("~/bundles/bootstrap")` with a `<script>` element (see below)..
 
 The replacement CSS link:
 
