@@ -36,10 +36,10 @@ From a console, run the following commands:
 
 ```console
 dotnet new webapi -o TodoApi
-cd TodoApi
+code TodoApi
 ```
 
-Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startup.cs* file.
+The *TodoApi* folder opens in Visual Studio Code (VS Code). Select the *Startup.cs* file.
 
 * Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'TodoApi'. Add them?"
 * Select **Restore** to the **Info** message "There are unresolved dependencies".
