@@ -43,7 +43,7 @@ Later in the tutorial, I'll show how the HTTP response can be viewed with [Postm
 
 ### Routing and URL paths
 
-The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each method is constructed as follows:
+The `[HttpGet]` attribute denotes a method which responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 

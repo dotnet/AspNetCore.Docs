@@ -61,7 +61,7 @@ Install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) data
 
 * From the **Project** menu, select **Add NuGet Packages**.
 
-  * Alternately, you can right-click **Dependencies**, and then select **Add Packages**.
+  * Alternatively, you can right-click **Dependencies**, and then select **Add Packages**.
 
 * Enter `EntityFrameworkCore.InMemory` in the search box.
 * Select `Microsoft.EntityFrameworkCore.InMemory`, and then select **Add Package**.
