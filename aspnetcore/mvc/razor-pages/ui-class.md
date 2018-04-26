@@ -28,6 +28,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 # [Visual Studio](#tab/visual-studio)
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
+* Select **ASP.NET Core Web Application**.
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
@@ -57,7 +58,41 @@ In this section, a Rasor Class Library is created. Razor files are added to the 
 
 # [Visual Studio](#tab/visual-studio)
 
-VS instructions here.
+Create the Razor Class Libary project:
+
+* From the Visual Studio **File** menu, select **New** > **Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **RazorUIClassLib**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Razor Class Library** > **OK**.
+
+Create the Razor Pages web app:
+
+* From **Solution Explorer**, right click the solution > **Add** >  **New Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **WebApp1**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Web Application** > **OK**.
+
+### Add Razor files and folders to the project.
+
+* Create the *RazorUIClassLib\Pages* and *RazorUIClassLib\Pages\Shared* folders.
+* Add a Razor partial view file name *RazorUIClassLib/Pages/Shared/_Message.cshtml*.
+* Replace the markup of *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following:
+
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+
+* Copy the *_ViewStart.cshtml* file from the WebApp1 project to the following RazorUIClassLib folders:
+
+  * *RazorUIClassLib\Pages\_ViewStart.cshtml*
+  * *RazorUIClassLib\Areas\MyFeature\Pages\_ViewStart.cshtml
+  
+  The [viewstart](xref:mvc/views/layout#running-code-before-each-view) files are required to use the layout of the Razor Pages project.
+  
+* Add a Razor Page *RazorUIClassLib\Pages\Test.cshtml*
+* Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following:
+
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -76,7 +111,7 @@ The preceding commands:
 
 * Create the `RazorUIClassLib` Razor Class Library (RCL).
 * Create a Razor Test and _Message page, and add them to the RCL.
-* Create two viewstart files and add them to the RCL. 
+* Create two [viewstart](xref:mvc/views/layout#running-code-before-each-view) files and add them to the RCL. 
 
 You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
 
@@ -101,6 +136,8 @@ dotnet new viewimports -o RazorUIClassLib/Pages
 dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
+For more information on viewimports, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
+
 * Replace the markup in *RazorUIClassLib/Pages/Test.cshtml* with markup similar to the *Page1.cshtml* file.
 * Delete the *RazorUIClassLib/Pages/Test.cshtml.cs* file.
 
@@ -117,7 +154,13 @@ The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*.
 
 # [Visual Studio](#tab/visual-studio)
 
-VS instructions here.
+* From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**. 
+* From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependendencies** > Project Dependencies**.
+* Check **RazorUIClassLib** as a dependency of **WebApp1**.
+* From **Solution Explorer**, right-click on **WebApp1** and select **Add** > **Reference**.
+* In the **Reference Manager** dialog, check **RazorUIClassLib** > **OK**.
+
+Run the app.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -149,7 +192,7 @@ Verify the Razor UI class library is being used.
 
 ## Override views, partial views, and pages
 
-When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Libary.
+When a view, partial view, or Razor Page is found in both the web app and the Razor Class Library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Libary.
 
 Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 

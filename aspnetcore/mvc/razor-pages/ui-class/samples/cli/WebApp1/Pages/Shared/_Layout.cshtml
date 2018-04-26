@@ -26,13 +26,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">WebApp1</a>
+                <a asp-page="/Page1" asp-area="MyFeature" class="navbar-brand">UIclass</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
+                    <li><a asp-page="/Test">Test</a></li>
+                    <li><a asp-page="/Index" asp-area="MyFeature">MyFeature</a></li>
+
                 </ul>
             </div>
         </div>
