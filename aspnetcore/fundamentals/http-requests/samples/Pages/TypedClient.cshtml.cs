@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HttpClientFactorySample.Pages
 {
+    #region snippet1
     public class TypedClientModel : PageModel
     {
         private readonly GitHubService _gitHubService;
@@ -22,4 +23,5 @@ namespace HttpClientFactorySample.Pages
             LastestIssue = await _gitHubService.GetLatestDocsIssue();
         }
     }
+    #endregion
 }

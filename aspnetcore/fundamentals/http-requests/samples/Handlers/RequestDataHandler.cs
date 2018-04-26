@@ -23,7 +23,8 @@ namespace HttpClientFactorySample.Handlers
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
             CancellationToken cancellationToken)
         {
-            var identifier = Guid.NewGuid();
+            var identifier = Guid.NewGuid(); // some information we want to generate and add per request
+
             _logger.LogInformation($"Starting request {identifier}");
 
             request.Headers.Add(RequestSourceHeaderName, RequestSource);

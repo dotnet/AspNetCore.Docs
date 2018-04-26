@@ -35,9 +35,9 @@ None of them are strictly superior to another. The best approach depends upon th
 
 ### Basic usage
 
-The `IHttpClientFactory` can be used directly in code to access `HttpClient` instances. Register the service with the services provider:
+The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extension method on the `IServiceCollection`, inside the `ConfigureServices` method in Startup.cs.
 
-[!code-csharp[](http-requests/samples/Startup.cs?name=snippet1&highlight=4)]
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet1)]
 
 Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection](xref:fundamentals/dependency-injection) (DI). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
 
@@ -47,48 +47,19 @@ Using `IHttpClientFactory` in this fashion is a great way to refactor an existin
 
 ### Named clients
 
-If an app requires multiple distinct uses of `HttpClient`, each with different configurations, an option is to use **named clients**. Any common configuration for a named `HttpClient` can be specified during registration.
+If an app requires multiple distinct uses of `HttpClient`, each with different configurations, an option is to use **named clients**. Configuration for a named `HttpClient` can be specified during registration in `ConfigureServices`.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHttpClient("github", c =>
-    {
-        c.BaseAddress = new Uri("https://api.github.com/");
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet2)]
 
-        c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json"); // GitHub API versioning
-        c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");   // GitHub requires a user-agent
-    });
-    services.AddHttpClient();
-}
-```
+In the preceding code, `AddHttpClient` is called, providing the name "github". This client has some default configuration applied&mdash;namely the base address and two headers required to work with the GitHub API.
 
-In the preceding code, `AddHttpClient` is called twice: once with the name "github" and once without. The GitHub-specific client has some default configuration applied&mdash;namely the base address and two headers required to work with the GitHub API.
-
-Each time `CreateClient` is called, a new instance of `HttpClient` is created and the configuration function is called.
+Each time `CreateClient` is called, a new instance of `HttpClient` is created and the configuration action is called.
 
 To consume a named client, a string parameter can be passed to `CreateClient`. Specify the name of the client to be created:
 
-```csharp
-public class MyController : Controller
-{
-    IHttpClientFactory _httpClientFactory;
+[!code-csharp[](http-requests/samples/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=14-18)]
 
-    public MyController(IHttpClientFactory httpClientFactory)
-    {
-        _httpClientFactory = httpClientFactory;
-    }
-
-    public IActionResult Index()
-    {
-        var defaultClient = _httpClientFactory.CreateClient();
-        var gitHubClient = _httpClientFactory.CreateClient("github");
-        return View();
-    }
-}
-```
-
-In the preceding code, the `gitHubClient` variable has the `BaseAddress` and `DefaultRequestHeaders` set. The `defaultClient` variable doesn't. This scenario enables different configurations per endpoint/API, for example.
+In the preceding code the request does not need to specify a hostname. I can provide just the path, since the base address configured for the client will be used.
 
 ### Typed clients
 
@@ -96,81 +67,27 @@ Typed clients provide the same capabilities as named clients without the need to
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/GitHub/GitHubService.cs?start=12&end=49)]
+[!code-csharp[](http-requests/samples/GitHub/GitHubService.cs?name=snippet1)]
 
-In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetLatestDocsIssue` method encapsulates the code needed to query for and parse out the latest issue from a repository.
+In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetLatestDocsIssue` method encapsulates the code needed to query for and parse out the latest issue from a GitHub repository.
 
 To register a typed client, the generic `AddHttpClient` extension method can be used within `ConfigureServices`, specifying the typed client class:
 
-[!code-csharp[](http-requests/samples/Startup.cs?range=43)]
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet3)]
 
 The typed client is registered as transient with DI. The typed client can be injected and consumed directly:
 
-```csharp
-public class MyController : Controller
-{
-    private GitHubService _gitHubService;
-
-    public MyController(GitHubService gitHubService)
-    {
-        _gitHubService = gitHubService;
-    }
-
-    public async Task<IActionResult> Index()
-    {
-        var result = await _gitHubService.Client.GetStringAsync("/orgs/octokit/repos");
-        return Ok(result);
-    }
-}
-```
+[!code-csharp[](http-requests/samples/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=9-12,16)]
 
 If preferred, the configuration for a typed client can be specified during registration in `ConfigureServices`, rather than in the typed client's constructor:
 
-[!code-csharp[](http-requests/samples/Startup.cs?start=53&end=59)]
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet4)]
 
 It's possible to entirely encapsulate the `HttpClient` within a typed client. Rather than exposing it as a property, public methods can be provided which call the `HttpClient` instance internally.
 
-```csharp
-public class ValuesService
-{
-    private readonly HttpClient _httpClient;
-    private readonly IMemoryCache _cache;
-    private readonly ILogger<ValuesService> _logger;
+[!code-csharp[](http-requests/samples/GitHub/RepoService.cs?name=snippet1&highlight=3)]
 
-    public ValuesService() { }
-
-    public ValuesService(HttpClient client, IMemoryCache cache, ILogger<ValuesService> logger)
-    {
-        _httpClient = client;
-        _cache = cache;
-        _logger = logger;
-    }
-
-    public async Task<IEnumerable<string>> GetValues()
-    {
-        var result = await _httpClient.GetAsync("api/values");
-        var resultObj = Enumerable.Empty<string>();
-
-        if (result.IsSuccessStatusCode)
-        {
-            resultObj = JsonConvert.DeserializeObject<IEnumerable<string>>(await result.Content.ReadAsStringAsync());
-            _cache.Set("GetValue", resultObj);
-        }
-        else
-        {
-            if (_cache.TryGetValue("GetValue", out resultObj))
-            {
-                _logger.LogWarning("Returning cached values as the values service is unavailable.");
-                return resultObj;
-            }
-            result.EnsureSuccessStatusCode();
-        }        
-        return resultObj;
-    }
-}
-```
-
-In the preceding code, the `HttpClient` is stored as a private field. All access to make external calls goes through the `GetValues` method.
+In the preceding code, the `HttpClient` is stored as a private field. All access to make external calls goes through the `GetRepos` method.
 
 ### Generated clients
 
@@ -229,62 +146,79 @@ public class ValuesController : ControllerBase
 
 ## Outgoing request middleware
 
-`HttpClient` already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `IHttpClientFactory` makes registration of per-named clients more intuitive. It supports registration and chaining of multiple handlers together to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
+`HttpClient` already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `IHttpClientFactory` makes registration of per-named clients more intuitive. It supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
 
 To create a handler, define a class deriving from `DelegatingHandler`. Override the `SendAsync` method to execute code before passing the request to the next handler in the pipeline:
 
-[!code-csharp[Main](http-requests/samples/Handlers/RequestDataHandler.cs?name=snippet1)]
+[!code-csharp[Main](http-requests/samples/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
 
-The preceding code defines a basic handler. It adds a source and request identifier to the headers in the outgoing request.
+The preceding code defines a basic handler. It checks to see if an X-API-KEY header has been included on the request. If the header is missing it can avoid the HTTP call and return a suitable response.
 
-During registration, one or more handlers can be added to the configuration for a `HttpClient`. This task is accomplished via extension methods on the `HttpClientBuilder`.
+During registration, one or more handlers can be added to the configuration for a `HttpClient`. This task is accomplished via extension methods on the `IHttpClientBuilder`.
 
-[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet1&highlight=21-25)]
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet5)]
 
-In the preceding code, the `RequestDataHandler` is registered as a transient service with DI. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
+In the preceding code, the `ValidateHeaderHandler` is registered as a transient service with DI. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
 
-Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request.
+Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
-```csharp
-public static void Configure(IServiceCollection services)
-{
-    services.AddTransient<OuterHandler>();
-    services.AddTransient<InnerHandler>();
+[!code-csharp[](http-requests/samples/Startup.cs?name=snippet6)]
 
-    services.AddHttpClient("example", c =>
-    {
-        c.BaseAddress = new Uri("https://localhost:5000/");
-    })
-    .AddHttpMessageHandler<OuterHandler>() // This handler is on the outside and executes first on the way out and last on the way in.
-    .AddHttpMessageHandler<InnerHandler>(); // This handler is on the inside, closest to the request.
-}
-```
+## Using Polly-based handlers
 
-## Add Polly-based handlers
+`IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-_NOTE: This is still a WIP since the Polly Extensions API is still currently under design._
+Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in a Nuget package called 'Microsoft.Extensions.Http.Polly'. To use the extensions, a PackageReference should be included in the project.
 
-The preceding example demonstrated manually building a simple retry handler. A more robust and feature-rich approach is to leverage a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
+[!code-csharp[](http-requests/samples/HttpClientFactorySample.csproj?highlight=9)]
 
-Extension methods are provided to enable integration and use of Polly policies with configured `HttpClient` instances.
+After restoring this package, extension methods are available to support adding Polly based handlers to clients.
 
-[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet2)]
+### Handling transient faults
 
-The preceding code, used within `ConfigureServices`, demonstrates using the `AddTransientHttpErrorPolicy` extension. The extension provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault. Examples of errors include `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
+The most common faults you may expect to occur when making external HTTP calls will be transient. A convenient extension method called `AddTransientHttpErrorPolicy` is included which allows a policy to be defined that will apply when these common transient errors occur. Examples of errors handled by the policy include `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
 
-Using the `PolicyBuilder`, a `RetryPolicy` is specified. Failed requests matching the preceding criteria are retried up to three times. The created policy is cached indefinitely per named client.
+The `AddTransientHttpErrorPolicy` extension can be used within `ConfigureServices`. The extension provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-Additional extension methods exist which can be used to add Polly-based handlers.
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet7)]
 
-[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet3)]
+In the preceding code a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600ms between attempts.
 
-In the preceding example, two handlers are added. The first uses the `AddPolicyHandler` extension, which allows you to provide an `IAsyncPolicy` directly. It's applied to HTTP requests made from the `HttpClient`.
+### Conditionally adding policies
 
-The second handler is added using a different overload of `AddPolicyHandler`. The overload allows the request to be inspected before determining which policy to apply. If the outgoing request is a GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
+Additional extension methods exist which can be used to add Polly-based handlers. One such extension is `AddPolicyHandler` which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
+
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet8)]
+
+In the preceding code, if the outgoing request is a GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
+
+### Adding multiple Polly handlers
+
+It is quite common to nest Polly policies to provide enhanced functionality: 
+
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet9)]
+
+In the preceding example, two handlers are added. The first uses the `AddTransientHttpErrorPolicy` extension to add a retry policy. This will retry failed requests up to three times. The second call to `AddTransientHttpErrorPolicy` adds a circuit breaker policy. This will block further external requests for thirty seconds if five failed attempts occur sequentially. Circuit breaker policies are stateful. All calls through this client will share the same circuit state.
+
+### Adding policies from the Polly regsitry
+
+An approach to managing regularily used policies is to define them once and register them with a `PolicyRegistry`. An extension method is provided which allows a handler to be added using a policy from the registry:
+
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet10)]
+
+In the preceding code, a PolicyRegistry is added to the `ServiceCollection` and two policies are registered with it. In order to use a policy from the registry the `AddPolicyHandlerFromRegistry` method is used, passing the name of the policy to apply.
+
+Further information about `IHttpClientFactory` and Polly integrations can be found on the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory)
 
 ## HttpClient and lifetime management
 
-Each time `CreateClient` is called on the `IHttpClientFactory`, a new instance of a `HttpClient` is returned. `IHttpClientFactory` creates, and caches, a single `HttpMessageHandler` per named client. The `IHttpClientFactory` may reuse the underlying `HttpMessageHandler` when appropriate. The `HttpMessageHandler` is responsible for creating and maintaining the underlying operating system connection. Reusing the `HttpMessageHandler` avoids creating too many connections on the host machine, which can lead to socket exhaustion.
+Each time `CreateClient` is called on the `IHttpClientFactory`, a new instance of a `HttpClient` is returned. There will be a `HttpMessageHandler` per named client. `IHttpClientFactory` will pool the `HttpMessageHandler` instances created by the factory to reduce resource consumption. A `HttpMessageHandler` instance may be reused from the pool when creating new `HttpClient` instance if its lifetime hasn't expired. 
+
+Pooling of handlers is desirable as each handler typially manages its own underlying HTTP connections; creating more handlers than necessary can result in connection delays. Some handlers also keep connections open indefinitly which can prevent the handler from reacting to DNS changes.
+
+The default handler lifetime is two minutes. This can be overridden on a per named client basis by calling `SetHandlerLifetime` on the `IHttpClientBuilder` that is returned when creating the client:
+
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet11)]
 
 ## Logging
 

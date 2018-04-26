@@ -1,0 +1,14 @@
+﻿@page
+@model HttpClientFactorySample.Pages.NamedClientModel
+@{
+    ViewData["Title"] = "Pull Requests for Docs Repo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<ul>
+    @foreach (var pr in Model.PullRequests)
+    {
+        <li>@pr.Title</li>
+    }
+</ul>
