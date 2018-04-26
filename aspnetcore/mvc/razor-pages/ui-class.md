@@ -30,7 +30,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
-# [.NET Core CLI](#tab/netcore-cli
+# [.NET Core CLI](#tab/netcore-cli)
 
 From the commandline, run `dotnet new razorclasslib`. For example:
 
@@ -56,7 +56,7 @@ You can download the [complete project](https://github.com/aspnet/Docs/tree/mast
 
 VS instructions here.
 
-#	[.NET Core CLI](#tab/netcore-cli
+#	[.NET Core CLI](#tab/netcore-cli)
 
 
 From the command line, run the following:
@@ -75,15 +75,15 @@ From the command line, run the following:
 
 * Update the Razor Pages. For example:
 
-    * Replace the markup in *RazorUIClassLib\Pages\Shared\_Message.cshtml* with the following:
+    * Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following:
     
-    [!code-html[Main](ui-class\samples\cli\RazorUIClassLib\Pages\Shared\_Message.cshtml)]
+    [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
     
-    * Delete the *RazorUIClassLib\Pages\Shared\_Message.cshtml.cs* file.
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
     
-    * Replace the markup in *RazorUIClassLib\Areas\MyFeature\Pages\Page1.cshtml* with the following:
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
     
-    [!code-html[Main](ui-class\samples\cli\RazorUIClassLib\Areas\MyFeature\Pages\Page1.cshtml]
+    [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
     
     `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
     
@@ -92,8 +92,8 @@ From the command line, run the following:
     dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
     ```
 
-    * Replace the markup in *RazorUIClassLib\Pages\Test.cshtml* with markup similar to the *Page1.cshtml* file.
-    * Delete the *RazorUIClassLib\Pages\Test.cshtml.cs* file.
+    * Replace the markup in *RazorUIClassLib/Pages/Test.cshtml* with markup similar to the *Page1.cshtml* file.
+    * Delete the *RazorUIClassLib/Pages/Test.cshtml.cs* file.
     
 
 * Build the class library to verify there are no compiler errors:
@@ -110,7 +110,7 @@ From the command line, run the following:
 
 VS instructions here.
 
-# [.NET Core CLI](#tab/netcore-cli
+# [.NET Core CLI](#tab/netcore-cli)
 
 * Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
@@ -142,7 +142,7 @@ Verify the Razor UI class library is being used.
 
 When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Libary.  
 
-Copy the *RazorUIClassLib\Pages\Shared\_Message.cshtml* partila view to *WebApp1\Pages\Shared\_Message2.cshtml*. Update the markup to indicate the new location.
+Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partila view to *WebApp1/Pages/Shared/_Message2.cshtml*. Update the markup to indicate the new location.
 
 Build and run the app to verify the app's version of the partial is being used.
 
