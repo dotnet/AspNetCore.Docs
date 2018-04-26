@@ -35,7 +35,10 @@ A typical *Program.cs* calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnet
 ```csharp
 public static IWebHost BuildWebHost(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
-        ...
+                .UseKestrel()
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
 ```
 
 The ASP.NET Core Module generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up the dynamic port and configures Kestrel to listen on `http://localhost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls` or [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration). Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified when running the app without IIS.
