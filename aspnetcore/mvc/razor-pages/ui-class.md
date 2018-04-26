@@ -34,7 +34,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 From the commandline, run `dotnet new razorclasslib`. For example:
 
-```cli
+``` CLI
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
@@ -56,12 +56,12 @@ You can download the [complete project](https://github.com/aspnet/Docs/tree/mast
 
 VS instructions here.
 
-#	[.NET Core CLI](#tab/netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 
 From the command line, run the following:
 
-    ```cli
+    ``` CLI
     dotnet new razorclasslib -o RazorUIClassLib
     dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
     dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
@@ -87,7 +87,7 @@ From the command line, run the following:
     
     `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
     
-    ```cli
+    ``` CLI
     dotnet new viewimports  -o RazorUIClassLib/Pages
     dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
     ```
@@ -142,9 +142,7 @@ Verify the Razor UI class library is being used.
 
 When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Libary.  
 
-Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partila view to *WebApp1/Pages/Shared/_Message2.cshtml*. Update the markup to indicate the new location.
-
-Build and run the app to verify the app's version of the partial is being used.
+Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 
 <!-- 
 
