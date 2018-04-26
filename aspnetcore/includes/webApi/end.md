@@ -4,19 +4,31 @@ In the following sections, `Create`, `Update`, and `Delete` methods are added to
 
 ### Create
 
-Add the following `Create` method.
+Add the following `Create` method:
 
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-The preceding code is an HTTP POST method, indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
+
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+::: moniker-end
 
 The `CreatedAtRoute` method:
 
 * Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
+* Uses `nameof(GetById)` to create a URL for retrieving the newly created to-do item. The `nameof(GetById)` code converts the name of the following method to a string.
 
-[!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+::: moniker range="<= aspnetcore-2.0"
+[!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=2)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=2)]
+::: moniker-end
 
 ### Use Postman to send a Create request
 
@@ -46,9 +58,14 @@ The Location header URI can be used to access the new item.
 
 Add the following `Update` method:
 
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+::: moniker-end
 
-`Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
 
 ![Postman console showing 204 (No Content) response](../../tutorials/first-web-api/_static/pmcput.png)
 

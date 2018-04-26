@@ -1,4 +1,9 @@
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+::: moniker-end
 
 The preceding code:
 
