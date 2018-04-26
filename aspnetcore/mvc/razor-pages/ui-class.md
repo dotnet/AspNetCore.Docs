@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: advanced
 uid: mvc/razor-pages/ui-class
 ---
-# Reusable Razor User Interface (UI) in class libraries with ASP.NET Core
+# Create reusable UI using the Razor Class Library project.
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -20,50 +20,81 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 [!INCLUDE[](~/includes/2.1.md)]
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 
-* Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc).
-* Update the *.csproj* file and change the SDK to `Microsoft.NET.SDK.Razor`.
-* Add Razor files to the class library.
-* Build and package the class library.
+# [Visual Studio](#tab/visual-studio) 
 
-The following references are supported for the Razor UI class library:
+* From the Visual Studio **File** menu, select **New** > **Project**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Razor Class Library** > **OK**.
 
-* Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package).
+# [.NET Core CLI](#tab/netcore-cli
+
+From the commandline, run `dotnet new razorclasslib`. For example:
+
+```cli
+dotnet new razorclasslib -o RazorUIClassLib
+```
+
+See [dotnet new](/dotnet/core/tools/dotnet-new) for more information.
+
+------
+
+The following references are supported for a Razor UI class library:
+
+* Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## Walkthrough: Create a class library containing Razor UI
+## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
-* Create a .NET Standard class library and add a package reference to [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc). For example, run
+You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test.
 
-    ```cli
-    dotnet new classlib -f netstandard2.0 -o RazorUIClassLib
-    dotnet add RazorUIClassLib package Microsoft.AspNetCore.Mvc -v 2.1.0-preview2-final
-    ```
+# [Visual Studio](#tab/visual-studio) 
 
-    See [dotnet new](/dotnet/core/tools/dotnet-new) for more information.
+VS instructions here.
 
-* Update the *.csproj* file and change the SDK to `Microsoft.NET.SDK.Razor`:
+#	[.NET Core CLI](#tab/netcore-cli
 
-    [!code-xml[Main](ui-class/sample/RazorUIClassLib/RazorUIClassLib.csproj)]
 
-* Add Razor files and a view imports file to the class library. For example:
+From the command line, run the following:
 
     ```cli
+    dotnet new razorclasslib -o RazorUIClassLib
     dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
-    dotnet new viewimports -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
+    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
+    dotnet new viewstart -o RazorUIClassLib/Pages
+    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
+    ```
+    
+   You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
+    
+    The `viewstart` files are required to use the layout of the Razor Pages project (which is added in the next section).
+
+* Update the Razor Pages. For example:
+
+    * Replace the markup in *RazorUIClassLib\Pages\Shared\_Message.cshtml* with the following:
+    
+    [!code-html[Main](ui-class\samples\cli\RazorUIClassLib\Pages\Shared\_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib\Pages\Shared\_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib\Areas\MyFeature\Pages\Page1.cshtml* with the following:
+    
+    [!code-html[Main](ui-class\samples\cli\RazorUIClassLib\Areas\MyFeature\Pages\Page1.cshtml]
+    
+    `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
+    
+    ```cli
+    dotnet new viewimports  -o RazorUIClassLib/Pages
+    dotnet new viewimports  -o RazorUIClassLib/Areas/MyFeature/Pages
     ```
 
-* Update the Razor Page. For example:
-
-    ```cshtml
-    @page
-
-    <h1>Hello from a Razor UI class library!</h1>
-    ```
+    * Replace the markup in *RazorUIClassLib\Pages\Test.cshtml* with markup similar to the *Page1.cshtml* file.
+    * Delete the *RazorUIClassLib\Pages\Test.cshtml.cs* file.
+    
 
 * Build the class library to verify there are no compiler errors:
 
@@ -71,23 +102,25 @@ The following references are supported for the Razor UI class library:
 
     The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
 
-### Use the Razor UI library
+------
+    
+### Use the Razor UI library from a Razor Pages project
 
-* Create a Razor Pages web app. For example:
+# [Visual Studio](#tab/visual-studio) 
 
-    `dotnet new razor -o WebApp1`
+VS instructions here.
 
-* Create a solution file and add the class library project and the Razor Pages project. For example:
+# [.NET Core CLI](#tab/netcore-cli
+
+* Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
     ``` CLI
+    dotnet new razor -o WebApp1
     dotnet new sln
     dotnet sln add WebApp1
     dotnet sln add RazorUIClassLib
+    dotnet add WebApp1 reference RazorUIClassLib
     ```
-
-* Add a reference from the web app to the class library:
-
-    `dotnet add WebApp1 reference RazorUIClassLib`
 
 * Build and run the web app:
 
@@ -96,8 +129,26 @@ The following references are supported for the Razor UI class library:
     dotnet run
     ```
 
-* Browse to `/test` to see the page from the Razor UI class library.
+------
 
+### Test WebApp1
+
+Verify the Razor UI class library is being used.
+
+* Browse to `/Test`.
+* Browse to `/MyFeature/Page1`.
+
+## Override views, partial views, and pages
+
+When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Libary.  
+
+Copy the *RazorUIClassLib\Pages\Shared\_Message.cshtml* partila view to *WebApp1\Pages\Shared\_Message2.cshtml*. Update the markup to indicate the new location.
+
+Build and run the app to verify the app's version of the partial is being used.
+
+<!-- 
+
+The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the `RazorUIClassLib` version.
 ## Package the Razor UI class library
 
 * The following command packages the Razor UI class library:
@@ -132,7 +183,4 @@ The following references are supported for the Razor UI class library:
 * Browse to `/test` to see the page from the Razor UI class library.
 
 Publish the package to NuGet to make it publicly available.
-
-## Override views, partial views, and pages
-
-When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp2, and the Test page in the WebApp2 will take precedence over the Test page in the NuGet package.  The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the RazorUIClassLib version.
+-->
