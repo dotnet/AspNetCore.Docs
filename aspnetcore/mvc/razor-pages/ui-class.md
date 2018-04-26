@@ -3,6 +3,7 @@ title:  Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor Pages UI in a class library.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/31/2018
 ms.prod: asp.net-core
@@ -48,6 +49,24 @@ The following references are supported for a Razor UI class library:
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*.  See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
+test - remove the following
+
+    ``` CLI
+    dotnet new razorclasslib -o RazorUIClassLib
+    dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
+    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
+    dotnet new viewstart -o RazorUIClassLib/Pages
+    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
+    ```
+
+        [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+    
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+  
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
 You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test.
@@ -71,7 +90,7 @@ From the command line, run the following:
     
    You must use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
     
-    The `viewstart` files are required to use the layout of the Razor Pages project (which is added in the next section).
+    The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
 
 * Update the Razor Pages. For example:
 
@@ -83,7 +102,7 @@ From the command line, run the following:
     
     * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
     
-    [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
     
     `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
     
