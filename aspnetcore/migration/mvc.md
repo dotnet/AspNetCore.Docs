@@ -41,7 +41,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* Install the `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` NuGet packages.
+* By Default, the ASP.NET Core MetaPackage is added to the project, called `Microsoft.AspNetCore.All`. This package contains packages like `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles`.
 
   `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Work with static files](../fundamentals/static-files.md)).
 
@@ -63,7 +63,7 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add a *Controllers* folder.
 
-* Add an **MVC controller class** with the name *HomeController.cs* to the *Controllers* folder.
+* Add an **Controller class** with the name *HomeController.cs* to the *Controllers* folder.
 
 ![Add New Item dialog](mvc/_static/add_mvc_ctl.png)
 
@@ -71,7 +71,7 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add a *Views/Home* folder.
 
-* Add an *Index.cshtml* MVC view page to the *Views/Home* folder.
+* Add an *Index.cshtml* Razor View to the *Views/Home* folder.
 
 ![Add New Item dialog](mvc/_static/view.png)
 
@@ -194,7 +194,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 ## Solving HTTP 500 errors
 
-There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. To get a detailed error message, add the following code:
+There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. By default in ASP.NET Core Applications, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. This is detailed in the following code:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
