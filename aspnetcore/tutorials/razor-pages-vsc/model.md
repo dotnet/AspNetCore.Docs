@@ -1,7 +1,7 @@
 ---
-title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
+title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio Code
 author: rick-anderson
-description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac.
+description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio Code.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
@@ -12,7 +12,7 @@ ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/model
 ---
 
-# Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
+# Add a model to an ASP.NET Core Razor Pages app with Visual Studio Code
 
 [!INCLUDE [model1](../../includes/RP/model1.md)]
 
