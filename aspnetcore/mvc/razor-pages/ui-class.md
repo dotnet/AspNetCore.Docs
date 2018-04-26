@@ -13,6 +13,33 @@ uid: mvc/razor-pages/ui-class
 ---
 # Create reusable UI using the Razor Class Library project.
 
+test - remove the following
+
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+    
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+
+    ``` CLI
+    dotnet new razorclasslib -o RazorUIClassLib
+    dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
+    dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
+    dotnet new viewstart -o RazorUIClassLib/Pages
+    dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
+    ```
+
+        [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+    
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
+
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor views, pages, controllers, page models, and data models can be built into a class library project, and packaged and reused. Applications can include the Razor UI class library and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the UI class library, the Razor markup (*.cshtml* file) in the web app takes precedence.
@@ -50,6 +77,14 @@ The following references are supported for a Razor UI class library:
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
 test - remove the following
+
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+    
+    * Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+    
+    * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following:
+    
+  [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml]
 
     ``` CLI
     dotnet new razorclasslib -o RazorUIClassLib
