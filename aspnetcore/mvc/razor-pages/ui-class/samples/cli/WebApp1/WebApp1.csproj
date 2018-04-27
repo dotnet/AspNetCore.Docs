@@ -16,7 +16,7 @@
 
 
   <ItemGroup>
-    <Content Update="Pages\Shared\_Message.cshtml">
+    <Content Update="Pages\Shared\_Message2.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

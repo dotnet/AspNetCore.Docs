@@ -54,11 +54,36 @@ Add Razor files to the RCL. The RCL can be refrenced by:
 
 You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples vrs. step-by-step instructions.
 
-In this section, a Razor Class Library is created. Razor files are added to the Razor Class Library.
+### Test the download app
+
+# [Visual Studio](#tab/visual-studio) 
+
+Open the *.sln* file in Visual Studio. Run the app.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+From a command prompt in the *cli* directory, build the RCL and web app.
+
+``` CLI
+dotnet build
+```
+
+Move to the *WebApp1* directory and run the app:
+
+``` CLI
+dotnet run
+```
+------
+
+Follow the instructions in [Test WebApp1](#test)
+
+### Create a Razor Class Library
+
+In this section, a Razor Class Library (RCL) is created. Razor files are added to the RCL.
 
 # [Visual Studio](#tab/visual-studio)
 
-Create the Razor Class Library project:
+Create the RCL project:
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
@@ -113,7 +138,7 @@ The preceding commands:
 * Create a Razor Test and _Message page, and add them to the RCL.
 * Create two [viewstart](xref:mvc/views/layout#running-code-before-each-view) files and add them to the RCL.
 
-Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a Razor Class Library and add Razor files.
+Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a RCL and add Razor files.
 
 The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
 
@@ -183,7 +208,9 @@ dotnet run
 
 ------
 
-### Test WebApp1 using the Razor Class Library
+<a name="test"></a>
+
+### Test WebApp1
 
 Verify the Razor UI class library is being used.
 
@@ -195,42 +222,3 @@ Verify the Razor UI class library is being used.
 When a view, partial view, or Razor Page is found in both the web app and the Razor Class Library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Library.
 
 Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
-
-<!--            DELETE
-
-The sample download contains the partial view *Pages/Shared/_Message.cshtml* in both the UI class and the web app. When the app is run, the web app *_Message.cshtml* partial is used. Rename or delete the web apps *_Message.cshtml* to use the `RazorUIClassLib` version.
-## Package the Razor UI class library
-
-* The following command packages the Razor UI class library:
-
-``` CLI
-cd ..
-dotnet pack RazorUIClassLib
-```
-
-    Ignore the warning message:
-
-    "A stable release of a package should not have a prerelease dependency.  Either modify the version spec of dependency `"Microsoft.AspNetCore.Mvc [2.1.0-preview, )`" or update the version field in the nuspec."
-
-    The preceding warning will not occur when released packages are used.
-
-* Create a new web app and add a package reference to the Razor UI class library package
-
-    ``` CLI
-    dotnet new razor -o WebApp2
-    dotnet add WebApp2 package RazorUIClassLib --source {path}/RazorUIClassLib/bin/Debug
-    ```
-
-    Ignore the `NotFound` info messages for `razoruiclasslib/index.json` from your default NuGet sources.
-
-* Run  the app:
-
-    ``` CLI
-    cd WebApp2
-    dotnet run
-    ```
-
-* Browse to `/test` to see the page from the Razor UI class library.
-
-Publish the package to NuGet to make it publicly available.
--->
