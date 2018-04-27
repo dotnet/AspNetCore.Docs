@@ -162,7 +162,11 @@ The `CreatedAtRoute` method returns a 201 response. It's the standard response f
 
 ![Headers tab of the Postman console](first-web-api/_static/pmget.png)
 
-You can use the Location header URI to access the resource you created. Recall that the `Create` method returns [CreatedAtRoute](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdatroute#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtRoute_System_String_System_Object_System_Object_). The first parameter passed to `CreatedAtRoute` represents the name of the route, or method in this case, to use for generating the URL.
+You can use the Location header URI to access the resource you created. The `Create` method returns [CreatedAtRoute](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdatroute#Microsoft_AspNetCore_Mvc_ControllerBase_CreatedAtRoute_System_String_System_Object_System_Object_). The first parameter passed to `CreatedAtRoute` represents the named route to use for generating the URL. Recall that the `GetById` method created the `"GetTodo"` named route:
+
+```csharp
+[HttpGet("{id}", Name = "GetTodo")]
+```
 
 ### Update
 
