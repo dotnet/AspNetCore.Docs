@@ -10,6 +10,10 @@ Add an HTML file, named *index.html*, to the project's *wwwroot* directory. Repl
 
 [!code-html[](../../../tutorials/first-web-api/samples/2.0/TodoApi/wwwroot/index.html)]
 
+Add a JavaScript file, named *site.js*, to the project's *wwwroot* directory. Replace its contents with the following code:
+
+[!code-javascript[](../../../tutorials/first-web-api/samples/2.0/TodoApi/wwwroot/site.js)]
+
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally. Open *launchSettings.json* in the *Properties* directory of the project. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 
 There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample is a complete CRUD example of calling the API with jQuery. There are additional features in this sample to make the experience richer. Below are explanations around the calls to the API.
