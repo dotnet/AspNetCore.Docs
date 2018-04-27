@@ -28,7 +28,20 @@ IaaS is an attractive option for legacy applications, as generally anything that
 
 A cloud computing model which might be less familiar is **Platform as a Service**, or **PaaS**. PaaS services are about providing a development platform, with very little concern to the developer with regard to the underlying infrastructure. PaaS services can be as generalized as [Azure App Service](https://docs.microsoft.com/azure/app-service/), which is a robust web hosting platform similar to Microsoft Internet Information Services, or as specialized as [Azure Service Bus Messaging](https://docs.microsoft.com/azure/service-bus-messaging/), a reliable message broker. 
 
-Many Azure PaaS offerings are similar to Service Bus Messaging in that they are "building blocks" that can be leveraged by any application, whether they are hosted in the Azure, on-premises, or with another cloud provider.  PaaS services like this can be pieced together in various combinations to support virtually any type of application.  Outsourcing pieces of your application to the cloud enables you to bootstrap development of your application quickly, since the functionality of things like authentication, message queuing, blob storage, and SQL or NoSQL databases can be integrated into your application as a dependency rather than new development. 
+Many Azure PaaS offerings are similar to Service Bus Messaging in that they are "building blocks" that can be leveraged by any application, whether they are hosted in the Azure, on-premises, or with another cloud provider.  PaaS services like this can be pieced together in various combinations to support virtually any type of application.  Outsourcing pieces of your application to the cloud enables you to bootstrap development of your application quickly, since the functionality of things like authentication, message queuing, blob storage, and SQL or NoSQL databases can be integrated into your application as a dependency rather than new development.
+
+Other examples of PaaS offerings in Azure are:
+
+* [Azure Storage](https://docs.microsoft.com/azure/storage/)
+* [Azure Search](https://docs.microsoft.com/azure/search/)
+* [Notification Hubs](https://docs.microsoft.com/azure/notification-hubs/)
+* [Service Fabric](https://docs.microsoft.com/azure/service-fabric/)
+* [Azure Container Service](https://docs.microsoft.com/azure/aks/)
+* [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/)
+* [Redis Cache](https://docs.microsoft.com/azure/redis-cache/)
+* [Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/)
+* [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/)
+* [Azure Active Directory B2C](https://docs.microsoft.com/azure/active-directory-b2c/)
 
 PaaS should be given serious consideration for greenfield development of new applications, since there is a considerable value proposition in terms of development time and ongoing maintenance, as well as cost.
 
@@ -36,7 +49,7 @@ The processes presented in this guide will assume the application is at least ho
 
 ### Software as a Service
 
-Virtually everybody uses some type of **Software as a Service** (**SaaS**) application. SaaS is a subscription or ad-based model where software is run from the cloud, usually in a a browser. Office 365, Salesforce, Dropbox, Google Docs, and Gmail are all examples of SaaS. SaaS has no relevance to this guide.
+Virtually everybody uses some type of **Software as a Service** (**SaaS**) application. SaaS is a subscription or ad-based model where software is run from the cloud, usually in a a browser. Office 365, Salesforce, Dropbox, Google Docs, and Gmail are all examples of SaaS. For the purposes of this guide, SaaS is only relevant insofar as Visual Studio Team Services is a SaaS offering we will use extensively.
 
 ## Conclusion
 
