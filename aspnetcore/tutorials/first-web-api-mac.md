@@ -138,16 +138,17 @@ The `CreatedAtRoute` method returns a 201 response. It's the standard response f
 
 ### Use Postman to send a Create request
 
-* Start the app (**Run > Start With Debugging**).
-* Start Postman.
+* Start the app (**Run** > **Start With Debugging**).
+* Open Postman.
 
 ![Postman console](first-web-api/_static/pmc.png)
 
-* Set the HTTP method to `POST`
-* Select the **Body** radio button
-* Select the **raw** radio button
-* Set the type to JSON
-* In the key-value editor, enter a to-do item such as:
+* Update the port number in the localhost URL.
+* Set the HTTP method to *POST*.
+* Click the **Body** tab.
+* Select the **raw** radio button.
+* Set the type to *JSON (application/json)*.
+* Enter a request body with a to-do item resembling the following JSON:
 
 ```json
 {
@@ -156,9 +157,14 @@ The `CreatedAtRoute` method returns a 201 response. It's the standard response f
 }
 ```
 
-* Select **Send**
+* Click the **Send** button.
 
-* Select the Headers tab in the lower pane and copy the **Location** header:
+::: moniker range=">= aspnetcore-2.1"
+> [!TIP]
+> If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
+::: moniker-end
+
+Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
 
 ![Headers tab of the Postman console](first-web-api/_static/pmget.png)
 

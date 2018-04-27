@@ -32,6 +32,9 @@ The `CreatedAtRoute` method:
 
 ### Use Postman to send a Create request
 
+* Start the app.
+* Open Postman.
+
 ![Postman console](../../tutorials/first-web-api/_static/pmc.png)
 
 * Update the port number in the localhost URL.
