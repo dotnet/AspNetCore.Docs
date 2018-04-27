@@ -4,7 +4,8 @@ author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 manager: wpickett
 ms.author: riande
-ms.date: 08/15/2017
+ms.custom: mvc
+ms.date: 04/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -16,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://gi
 
 This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
 
-There are 3 versions of this tutorial:
+There are three versions of this tutorial:
 
 * Windows: Web API with Visual Studio for Windows (This tutorial)
 * macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
@@ -24,45 +25,46 @@ There are 3 versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE [intro to web API](../includes/webApi/intro.md)]
+[!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
 
 ## Create the project
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
 
-Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project `TodoApi` and select **OK**.
+Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project *TodoApi* and select **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
-In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **API** template. Select **OK**. Do **not** select **Enable Docker Support**.
+In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template. Select **OK**. Do **not** select **Enable Docker Support**.
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
 
-```
+```json
 ["value1","value2"]
 ```
 
 ### Add a model class
 
-A model is an object that represents the data in the app. In this case, the only model is a to-do item.
+A model is an object representing the data in the app. In this case, the only model is a to-do item.
 
-Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Note: The model classes go anywhere in the project. The *Models* folder is used by convention for model classes.
+> [!NOTE]
+> The model classes can go anywhere in the project. The *Models* folder is used by convention for model classes.
 
-Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoItem` and select **Add**.
+In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
 
 Update the `TodoItem` class with the following code:
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoItem.cs)]
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -70,31 +72,30 @@ The database generates the `Id` when a `TodoItem` is created.
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
-Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoContext` and select **Add**.
+In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 Replace the class with the following code:
 
-[!code-csharp[](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
 
 ### Add a controller
 
-In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web API Controller Class** template. Name the class `TodoController`.
+In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **API Controller Class** template. Name the class *TodoController*, and click **Add**.
 
 ![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new_controller.png)
 
 Replace the class with the following code:
 
-[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:port/api/todo`.
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`.
 
-[!INCLUDE [last part of web API](../includes/webApi/end.md)]
+[!INCLUDE[last part of web API](../includes/webApi/end.md)]
 
-[!INCLUDE[Javascript Jquery](../includes/add-javascript-jquery/index.md)]
+[!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
 
 [!INCLUDE[next steps](../includes/webApi/next.md)]
-
