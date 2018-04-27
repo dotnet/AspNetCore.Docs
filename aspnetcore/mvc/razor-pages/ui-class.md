@@ -44,7 +44,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new).
 
 ------
 
-The following references are supported for a Razor Class Library:
+Add Razor files to the RCL. The RCL can be refrenced by:
 
 * Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
@@ -52,7 +52,7 @@ The following references are supported for a Razor Class Library:
 
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
-You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test.
+You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples vrs. step-by-step instructions.
 
 In this section, a Razor Class Library is created. Razor files are added to the Razor Class Library.
 
