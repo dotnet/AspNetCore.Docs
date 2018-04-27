@@ -34,7 +34,7 @@ There are three versions of this tutorial:
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
 
-Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project `TodoApi` and select **OK**.
+Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project *TodoApi* and select **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
