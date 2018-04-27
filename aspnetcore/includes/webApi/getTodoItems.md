@@ -74,7 +74,7 @@ The `GetAll` method returns a collection of `TodoItem` objects. MVC automaticall
 In contrast, the `GetById` method returns the more general [IActionResult type](xref:web-api/action-return-types#iactionresult-type), which represents a wide range of return types. `GetById` has two different return types:
 
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
-* Otherwise, the method returns 200 with a JSON response body. Returning a new [ObjectResult](/dotnet/api/microsoft.aspnetcore.mvc.objectresult) results in an HTTP 200 response.
+* Otherwise, the method returns 200 with a JSON response body. Returning [Ok](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.ok) results in an HTTP 200 response.
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
 In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type), which represents a wide range of return types. `GetById` has two different return types:

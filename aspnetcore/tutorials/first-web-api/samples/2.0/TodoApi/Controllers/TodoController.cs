@@ -39,7 +39,7 @@ namespace TodoApi.Controllers
             {
                 return NotFound();
             }
-            return new ObjectResult(item);
+            return Ok(item);
         }
         #endregion
         #endregion
@@ -80,7 +80,7 @@ namespace TodoApi.Controllers
 
             _context.TodoItems.Update(todo);
             _context.SaveChanges();
-            return new NoContentResult();
+            return NoContent();
         }
         #endregion
 
@@ -96,7 +96,7 @@ namespace TodoApi.Controllers
 
             _context.TodoItems.Remove(todo);
             _context.SaveChanges();
-            return new NoContentResult();
+            return NoContent();
         }
         #endregion
     }
