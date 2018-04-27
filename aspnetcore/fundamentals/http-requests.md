@@ -231,3 +231,11 @@ Logging also occurs on the inside of the request handler pipeline. In the case o
 Enabling logging on the outside and inside of the pipeline enables inspection of the changes made by the other pipeline handlers. This may include changes to request headers, for example, or even to the response status code.
 
 By including the name of the client in the log category, it enables log filtering to be applied for specific named clients where necessary.
+
+## Configuring the HttpMessageHandler
+
+It may be necessary to control the configuration of the inner `HttpMessageHandler` used by a client.
+
+A `IHttpClientBuilder` is returned when adding named or typed clients. The `ConfigurePrimaryHttpMessageHandler` extension method can be used to define a delegate which will be used to create and configure the primary `HttpMessageHandler` used by that client:
+
+[!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet12)]

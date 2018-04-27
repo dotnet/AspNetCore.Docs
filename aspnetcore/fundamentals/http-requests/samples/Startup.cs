@@ -112,6 +112,18 @@ namespace HttpClientFactorySample
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5));
             #endregion
 
+            #region snippet12
+            services.AddHttpClient("configured-inner-handler")
+                .ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                    return new HttpClientHandler()
+                    {
+                        AllowAutoRedirect = false,
+                        UseDefaultCredentials = true
+                    };
+                });
+            #endregion
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         
