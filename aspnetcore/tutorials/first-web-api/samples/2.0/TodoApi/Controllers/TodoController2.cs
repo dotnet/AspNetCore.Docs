@@ -1,15 +1,15 @@
 #if NEVER
-// This controller is used only for documenation. 
+// This controller is used only for documentation purposes.
 #region snippet_todo1
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using TodoApi.Models;
+using System.Collections.Generic;
 using System.Linq;
+using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
-    public class TodoController : Controller
+    public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
 

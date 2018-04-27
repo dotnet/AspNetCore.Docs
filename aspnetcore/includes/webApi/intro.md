@@ -10,8 +10,6 @@ This tutorial creates the following API:
 |PUT /api/todo/{id} | Update an existing item &nbsp; | To-do item | None |
 |DELETE /api/todo/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
-<br>
-
 The following diagram shows the basic design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](../../tutorials/first-web-api/_static/architecture.png)
