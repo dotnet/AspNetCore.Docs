@@ -103,7 +103,7 @@ In the *Controllers* folder, create a class named `TodoController`. Replace its 
 
 In VS Code, press F5 to launch the app. Navigate to http://localhost:5000/api/todo (the `Todo` controller we created).
 
-[!INCLUDE[Javascript Jquery](../includes/webApi/add-javascript-jquery/index.md)]
+[!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
 
 [!INCLUDE[last part of web API](../includes/webApi/end.md)]
 

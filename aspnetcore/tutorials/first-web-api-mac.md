@@ -203,6 +203,6 @@ The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
 
-[!INCLUDE[Javascript Jquery](../includes/webApi/add-javascript-jquery/index.md)]
+[!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
 
 [!INCLUDE[next steps](../includes/webApi/next.md)]
