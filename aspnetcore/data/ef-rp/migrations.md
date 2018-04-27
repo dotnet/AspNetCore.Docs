@@ -102,7 +102,7 @@ Migrations calls the `Up` method to implement the data model changes for a migra
 
 The preceding code is for the initial migration. That code was created when the `migrations add InitialCreate` command was run. The migration name parameter ("InitialCreate" in the example) is used for the file name. The migration name can be any valid file name. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, a migration that added a department table might be called "AddDepartmentTable."
 
-If the initial migration is created and the DB exits:
+If the initial migration is created and the DB exists:
 
 * The DB creation code is generated.
 * The DB creation code doesn't need to run because the DB already matches the data model. If the DB creation code is run, it doesn't make any changes because the DB already matches the data model.
