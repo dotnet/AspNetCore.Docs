@@ -66,6 +66,11 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 ::: moniker-end
 
+`Name = "GetTodo"` creates a named route. Named routes:
+
+* Enable the app to create an HTTP link using the route name.
+* Are explained later in the tutorial.
+
 ### Return values
 
 The `GetAll` method returns a collection of `TodoItem` objects. MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.

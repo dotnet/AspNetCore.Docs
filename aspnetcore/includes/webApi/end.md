@@ -21,13 +21,13 @@ The `CreatedAtRoute` method:
 
 * Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* Uses `nameof(GetById)` to create a URL for retrieving the newly created to-do item. The `nameof(GetById)` code converts the name of the following method to a string.
+* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
 
 ::: moniker range="<= aspnetcore-2.0"
-[!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=2)]
+[!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
-[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=2)]
+[!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 ::: moniker-end
 
 ### Use Postman to send a Create request
