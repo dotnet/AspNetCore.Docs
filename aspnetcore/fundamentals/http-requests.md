@@ -21,6 +21,7 @@ An `IHttpClientFactory` can be registered and used to configure and create [Http
 * Provides a central location for naming and configuring logical `HttpClient` instances. For example, a "github" client can be registered and configured to access GitHub. A default client can be registered for other purposes.
 * Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that.
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
+* Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
 ## Consumption patterns
 
@@ -158,7 +159,7 @@ During registration, one or more handlers can be added to the configuration for 
 
 [!code-csharp[](http-requests/samples/Startup.cs?name=snippet5)]
 
-In the preceding code, the `ValidateHeaderHandler` is registered as a transient service with DI. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
+In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as transient. Once registered, `AddHttpMessageHandler` can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -168,7 +169,7 @@ Multiple handlers can be registered in the order that they should execute. Each 
 
 `IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in a Nuget package called 'Microsoft.Extensions.Http.Polly'. To use the extensions, a PackageReference should be included in the project.
+Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in a Nuget package called 'Microsoft.Extensions.Http.Polly'. This package is not included by default by the 'Microsoft.AspNetCore.App' metapackage. To use the extensions, a PackageReference should be explicitly included in the project.
 
 [!code-csharp[](http-requests/samples/HttpClientFactorySample.csproj?highlight=9)]
 
