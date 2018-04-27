@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace KestrelDemo
+namespace KestrelSample
 {
     public class Startup
     {
@@ -24,7 +24,8 @@ namespace KestrelDemo
         {
             loggerFactory.AddConsole();
 
-            var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
+            var serverAddressesFeature = 
+                app.ServerFeatures.Get<IServerAddressesFeature>();
 
             app.UseStaticFiles();
 
@@ -32,7 +33,8 @@ namespace KestrelDemo
             {
                 context.Response.ContentType = "text/html";
                 await context.Response
-                    .WriteAsync("<p>Hosted by Kestrel</p>");
+                    .WriteAsync("<!DOCTYPE html><html lang=\"en\"><head>" +
+                        "<title></title></head><body><p>Hosted by Kestrel</p>");
 
                 if (serverAddressesFeature != null)
                 {
@@ -42,7 +44,8 @@ namespace KestrelDemo
                             "</p>");
                 }
 
-                await context.Response.WriteAsync($"<p>Request URL: {context.Request.GetDisplayUrl()}<p>");
+                await context.Response.WriteAsync("<p>Request URL: " +
+                    $"{context.Request.GetDisplayUrl()}<p></body></html>");
             });
         }
         #endregion

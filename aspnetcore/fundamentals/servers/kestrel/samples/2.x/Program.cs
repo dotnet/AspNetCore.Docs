@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System;
 using System.Net;
 
-namespace KestrelDemo
+namespace KestrelSample
 {
     /// <summary>
     /// Executing the "dotnet run" command in the application folder will run this app.
