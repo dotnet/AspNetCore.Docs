@@ -74,7 +74,8 @@ Add a folder named *Models*. In Solution Explorer, right-click the project. Sele
 
 ![new folder](first-web-api-mac/_static/folder.png)
 
-Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
+> [!NOTE]
+> You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
 Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New File > General > Empty Class**. Name the class `TodoItem`, and then select **New**.
 
