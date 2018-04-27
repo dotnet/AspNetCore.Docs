@@ -60,7 +60,7 @@ The `CreatedAtRoute` method:
 
 Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
 
-![Headers tab of the Postman console](../../tutorials/first-web-api/_static/pmget.png)
+![Headers tab of the Postman console](../../tutorials/first-web-api/_static/pmc2.png)
 
 The Location header URI can be used to access the new item.
 
