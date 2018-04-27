@@ -43,7 +43,7 @@ Other examples of PaaS offerings in Azure are:
 * [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/)
 * [Azure Active Directory B2C](https://docs.microsoft.com/azure/active-directory-b2c/)
 
-PaaS should be given serious consideration for greenfield development of new applications, since there is a considerable value proposition in terms of development time and ongoing maintenance, as well as cost.
+PaaS should be given serious consideration for greenfield development of new applications since there is a considerable value proposition in terms of development time and ongoing maintenance, as well as cost.
 
 The processes presented in this guide will assume the application is at least hosted in Azure App Service, but dependencies on "building block" services will be avoided.
 
