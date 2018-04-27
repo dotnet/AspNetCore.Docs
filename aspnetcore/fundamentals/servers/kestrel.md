@@ -75,10 +75,6 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the temp
 
 [!code-csharp[](kestrel/samples/2.x/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
-To configure Kestrel options, call `UseKestrel` in *Program.cs* as shown in the following example:
-
-[!code-csharp[](kestrel/samples/2.x/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
-
 #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
@@ -391,7 +387,13 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 When the port number is `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
-[!code-csharp[](kestrel/samples/2.x/Startup.cs?name=snippet_Configure&highlight=3-4,17-20)]
+[!code-csharp[](kestrel/samples/2.x/Startup.cs?name=snippet_Port0&highlight=3)]
+
+When the app is run, the console window output indicates the dynamic port where the app can be reached:
+
+```console
+Now listening on: http://127.0.0.1:48508
+```
 
 **UseUrls, --urls command-line argument, urls host configuration key, and ASPNETCORE_URLS environment variable limitations**
 
@@ -527,9 +529,11 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support SSL when configuring U
 
 When the port number is `0` is specified, Kestrel dynamically binds to an available port. Binding to port `0` is allowed for any host name or IP except for `localhost`.
 
-The following example shows how to determine which port Kestrel actually bound at runtime:
+When the app is run, the console window output indicates the dynamic port where the app can be reached:
 
-[!code-csharp[](kestrel/samples/1.x/Startup.cs?name=snippet_Configure)]
+```console
+Now listening on: http://127.0.0.1:48508
+```
 
 **URL prefixes for SSL**
 
