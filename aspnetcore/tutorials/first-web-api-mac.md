@@ -5,7 +5,7 @@ description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
 manager: wpickett
 ms.author: riande
-ms.date: 04/25/2018
+ms.date: 04/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -25,31 +25,31 @@ There are three versions of this tutorial:
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-[!INCLUDE [template files](../includes/webApi/intro.md)]
+[!INCLUDE[template files](../includes/webApi/intro.md)]
 
 See [Introduction to ASP.NET Core MVC on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-macos.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-macos.md)]
 
 ## Create the project
 
-From Visual Studio, select **File > New Solution**.
+From Visual Studio, select **File** > **New Solution**.
 
 ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-Select **.NET Core App >  ASP.NET Core Web API > Next**.
+Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
 
 ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
-Enter **TodoApi** for the **Project Name**, and then select Create.
+Enter *TodoApi* for the **Project Name**, and then click **Create**.
 
 ![config dialog](first-web-api-mac/_static/2.png)
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
+In Visual Studio, select **Run** > **Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:5000`. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
 
 ```json
 ["value1","value2"]
@@ -70,14 +70,14 @@ Install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) data
 
 A model is an object representing the data in your app. In this case, the only model is a to-do item.
 
-Add a folder named *Models*. In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
 ![new folder](first-web-api-mac/_static/folder.png)
 
 > [!NOTE]
 > You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
-Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New File > General > Empty Class**. Name the class `TodoItem`, and then select **New**.
+Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**. Name the class *TodoItem*, and then click **New**.
 
 Replace the generated code with:
 
@@ -93,7 +93,7 @@ Add a `TodoContext` class to the *Models* folder.
 
 [!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
 ## Add a controller
 
@@ -101,11 +101,11 @@ In Solution Explorer, in the *Controllers* folder, add the class `TodoController
 
 Replace the generated code with the following (and add closing braces):
 
-[!INCLUDE [code and get todo items](../includes/webApi/getTodoItems.md)]
+[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>`, where `<port>` is a randomly chosen port number. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
+In Visual Studio, select **Run** > **Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>`, where `<port>` is a randomly chosen port number. You get an HTTP 404 (Not Found) error. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
 
 ```json
 ["value1","value2"]
