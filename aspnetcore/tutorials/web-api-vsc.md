@@ -4,6 +4,7 @@ author: rick-anderson
 description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
 manager: wpickett
 ms.author: riande
+ms.custom: mvc
 ms.date: 04/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet

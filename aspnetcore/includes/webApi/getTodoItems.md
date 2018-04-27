@@ -1,15 +1,15 @@
 ::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+
+The preceding code defines an API controller class without methods. In the next sections, methods are added to implement the API.
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+
+The preceding code defines an API controller class without methods. In the next sections, methods are added to implement the API. The class is annotated with an `[ApiController]` attribute to enable some convenient features. For information on features enabled by the attribute, see [Annotate class with ApiControllerAttribute](xref:web-api/index#annotate-class-with-apicontrollerattribute).
 ::: moniker-end
 
-The preceding code:
-
-* Defines an empty controller class. In the next sections, methods are added to implement the API.
-* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
-* The constructor adds an item to the in-memory database if one doesn't exist.
+The controller's constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller. The constructor adds an item to the in-memory database if one doesn't exist.
 
 ## Get to-do items
 
@@ -43,7 +43,7 @@ Later in the tutorial, I'll show how the HTTP response can be viewed with [Postm
 
 ### Routing and URL paths
 
-The `[HttpGet]` attribute denotes a method which responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The `[HttpGet]` attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 
@@ -54,8 +54,8 @@ The `[HttpGet]` attribute denotes a method which responds to an HTTP GET request
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 ::: moniker-end
 
-* Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) isn't case sensitive.
-* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. See [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes) for more information.
+* Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
 
