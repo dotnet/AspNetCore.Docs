@@ -32,7 +32,7 @@ namespace TodoApi.Controllers
         }
 
         #region snippet_GetByID
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTodo")]
         public ActionResult<TodoItem> GetById(long id)
         {
             var item = _context.TodoItems.Find(id);
@@ -52,7 +52,7 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute(nameof(GetById), new { id = item.Id }, item);
+            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         }
         #endregion
 

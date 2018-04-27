@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ProjectUISubcaption>>= ASP.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_Metapackage> -->

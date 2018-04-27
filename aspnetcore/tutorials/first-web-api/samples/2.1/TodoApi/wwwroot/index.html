@@ -91,7 +91,7 @@
                     $('#todos').empty();
                     getCount(data.length);
                     $.each(data, function (key, item) {
-                        const checked = (item.isComplete ? 'checked' : '');
+                        const checked = item.isComplete ? 'checked' : '';
 
                         $('<tr><td><input disabled="true" type="checkbox" ' + checked + '></td>' +
                           '<td>' + item.name + '</td>' +
