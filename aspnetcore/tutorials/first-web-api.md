@@ -54,12 +54,12 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 
 A model is an object representing the data in the app. In this case, the only model is a to-do item.
 
-Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
 > [!NOTE]
 > The model classes can go anywhere in the project. The *Models* folder is used by convention for model classes.
 
-Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoItem` and select **Add**.
+In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
 
 Update the `TodoItem` class with the following code:
 
@@ -71,7 +71,7 @@ The database generates the `Id` when a `TodoItem` is created.
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
-Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoContext` and select **Add**.
+In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 Replace the class with the following code:
 
@@ -81,7 +81,7 @@ Replace the class with the following code:
 
 ### Add a controller
 
-In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web API Controller Class** template. Name the class `TodoController`.
+In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web API Controller Class** template. Name the class *TodoController*.
 
 ![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new_controller.png)
 
