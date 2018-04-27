@@ -180,7 +180,7 @@ The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*.
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**.
-* From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > Project Dependencies**.
+* From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > **Project Dependencies**.
 * Check **RazorUIClassLib** as a dependency of **WebApp1**.
 * From **Solution Explorer**, right-click on **WebApp1** and select **Add** > **Reference**.
 * In the **Reference Manager** dialog, check **RazorUIClassLib** > **OK**.
