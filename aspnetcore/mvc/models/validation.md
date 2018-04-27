@@ -187,7 +187,7 @@ $.get({
 
 ## IClientModelValidator
 
-You may create client side logic for your custom attribute, and [unobtrusive validation](http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
+You may create client side logic for your custom attribute, and [unobtrusive validation](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html) which creates an adapter to [jquery validation] (http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
 
 [!code-csharp[](validation/sample/ClassicMovieAttribute.cs?range=30-42)]
 
@@ -202,7 +202,7 @@ Attributes that implement this interface can add HTML attributes to generated fi
     id="ReleaseDate" name="ReleaseDate" value="" />
 ```
 
-Unobtrusive validation uses the data in the `data-` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's `validator` object. This is shown in the example below that adds a method named `classicmovie` containing custom client validation code to the jQuery `validator` object.
+Unobtrusive validation uses the data in the `data-` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's `validator` object. This is shown in the example below that adds a method named `classicmovie` containing custom client validation code to the jQuery `validator` object. An explanations of the unobtrusive.adapters.add method can be found [here](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html)
 
 [!code-javascript[](validation/sample/Views/Movies/Create.cshtml?range=71-93)]
 
