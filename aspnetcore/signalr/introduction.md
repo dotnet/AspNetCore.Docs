@@ -1,12 +1,12 @@
 ---
 title: Introduction to ASP.NET Core SignalR
 author: rachelappel
-description: Learn how the ASP.NET Core SignalR library simplifies adding real-time web functionality to apps.
+description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/07/2018
+ms.date: 04/25/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -46,20 +46,17 @@ The connection between the client and server is persistent, unlike an HTTP conne
 
 SignalR abstracts over a number of techniques for building real-time web applications. [WebSockets](https://tools.ietf.org/html/rfc7118) is the optimal transport, but other techniques like Server-Sent Events and Long Polling can be used when those aren't available. SignalR will automatically detect and initialize the appropriate transport based on features supported on the server and client.
 
-## Hubs and Endpoints
+## Hubs
 
-SignalR uses Hubs and Endpoints to communicate between clients and servers. The Hubs API covers the most scenarios.
+SignalR uses hubs to communicate between clients and servers.
 
-A hub is a high-level pipeline built upon the Endpoint API that allows your client and server to call methods on each other. SignalR handles the dispatching across machine boundaries automatically, allowing clients to call methods on the server as easily as local methods, and vice versa. Hubs allow passing strongly-typed parameters to methods, which enables model binding. SignalR provides two built-in hub protocols: a text protocol based on JSON and a binary protocol based on [MessagePack](https://msgpack.org/).  MessagePack generally creates smaller messages than when using JSON. Older browsers must support [XHR level 2](https://caniuse.com/#feat=xhr2) to provide MessagePack protocol support.
+A hub is a high-level pipeline that allows your client and server to call methods on each other. SignalR handles the dispatching across machine boundaries automatically, allowing clients to call methods on the server as easily as local methods, and vice versa. Hubs allow passing strongly-typed parameters to methods, which enables model binding. SignalR provides two built-in hub protocols: a text protocol based on JSON and a binary protocol based on [MessagePack](https://msgpack.org/).  MessagePack generally creates smaller messages than when using JSON. Older browsers must support [XHR level 2](https://caniuse.com/#feat=xhr2) to provide MessagePack protocol support.
 
 Hubs call client-side code by sending messages using the active transport. The messages contain the name and parameters of the client-side method. Objects sent as method parameters are deserialized using the configured protocol. The client tries to match the name to a method in the client-side code. When a match happens, the client method runs using the deserialized parameter data.
 
-Endpoints provide a raw socket-like API, enabling them to read and write from the client. It's up to the developer to handle grouping, broadcasting, and other functions. The Hubs API is built on top of the Endpoints layer.
+## Additional resources
 
-The following diagram shows the relationship between hubs, endpoints, and clients.
-
-![SignalR map](introduction/_static/signalr-core-architecture.png)
-
-## Related resources
-
-[Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
+* [Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
+* [Supported Platforms](xref:signalr/supported-platforms)
+* [Hubs](xref:signalr/hubs)
+* [JavaScript client](xref:signalr/javascript-client)

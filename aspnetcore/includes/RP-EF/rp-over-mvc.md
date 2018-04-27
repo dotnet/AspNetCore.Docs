@@ -3,6 +3,6 @@ This tutorial teaches ASP.NET Core MVC and Entity Framework Core with controller
 * Is easier to follow.
 * Provides more EF Core best practices.
 * Uses more efficient queries.
-* Is more current with the lastest API.
+* Is more current with the latest API.
 * Covers more features.
 * Is the preferred approach for new application development.

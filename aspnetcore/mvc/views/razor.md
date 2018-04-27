@@ -104,19 +104,7 @@ Explicit expressions can be used to concatenate text with an expression result:
 
 Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email address, and `<p>Age@joe.Age</p>` is rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
-
-Explicit expressions can be used to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following markup is **not** valid Razor:
-
-```cshtml
-<p>@GenericMethod<int>()</p>
-```
-
-The preceding code generates a compiler error similar to one of the following:
-
-* The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
-* Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
- 
-  The following markup shows the correct way write this code. The code is written as an explicit expression:
+Explicit expressions can be used to render output from generic methods in *.cshtml* files. The following markup shows how to correct the error shown earlier caused by the brackets of a C# generic. The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>

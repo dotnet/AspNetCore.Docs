@@ -174,7 +174,7 @@ After installing the prerequisites, you are ready to begin creating the new Web 
 
 The download is a <em>.zip</em> file. To see the completed project that this tutorial series creates, find and select the <em>C#</em>folder in the <em>.zip</em> file. Save the <em>C#</em> folderto the folder you use to work with Visual Studio 2013 projects. By default, the Visual Studio 2013 projects folder is the following:
 
-<strong>C:\Users\</strong><strong><em>&lt;username&gt;</em></strong><strong>\Documents\Visual Studio 2013\Projects</strong>
+<strong>C:\Users&#92;</strong><strong><em>&lt;username&gt;</em></strong><strong>\Documents\Visual Studio 2013\Projects</strong>
 
 Rename the ***C#*** folder to ***WingtipToys***.
 

@@ -41,7 +41,7 @@ public class GeoPointModelBinder : IModelBinder
         }
 
         bindingContext.ModelState.AddModelError(
-            bindingContext.ModelName, "Cannot convert value to Location");
+            bindingContext.ModelName, "Cannot convert value to GeoPoint");
         return false;
     }
 }
