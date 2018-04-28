@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -19,16 +17,13 @@ namespace HttpClientFactorySample.GitHub
 
         public async Task<IEnumerable<string>> GetRepos()
         {
-            var result = await _httpClient.GetAsync("aspnet/repos");
+            var response = await _httpClient.GetAsync("aspnet/repos");
 
-            IEnumerable<string> resultObj = null;
+            response.EnsureSuccessStatusCode();
 
-            if (result.IsSuccessStatusCode)
-            {
-                resultObj = JsonConvert.DeserializeObject<IEnumerable<string>>(await result.Content.ReadAsStringAsync()).ToList();
-            }
+            var responseContent = await response.Content.ReadAsStringAsync();
 
-            return resultObj ?? Array.Empty<string>();
+            return JsonConvert.DeserializeObject<IEnumerable<string>>(responseContent);
         }
     }
     #endregion

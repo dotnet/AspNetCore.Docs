@@ -25,7 +25,11 @@ namespace HttpClientFactorySample.GitHub
 
         public async Task<GitHubIssue> GetLatestDocsIssue()
         {
-            using (var stream = await Client.GetStreamAsync("/repos/aspnet/docs/issues?state=open&sort=created&direction=desc"))
+            var response = await Client.GetAsync("/repos/aspnet/docs/issues?state=open&sort=created&direction=desc", HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {
@@ -38,7 +42,7 @@ namespace HttpClientFactorySample.GitHub
                         var issue = serializer.Deserialize<GitHubIssue>(jsonReader);
 
                         if (issue != null)
-                        { 
+                        {
                             return issue; // we only want the first object
                         }
                     }

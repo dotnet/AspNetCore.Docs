@@ -185,7 +185,7 @@ The `AddTransientHttpErrorPolicy` extension can be used within `ConfigureService
 
 In the preceding code a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600ms between attempts.
 
-### Conditionally adding policies
+### Dynamically selecting policies
 
 Additional extension methods exist which can be used to add Polly-based handlers. One such extension is `AddPolicyHandler` which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
 
