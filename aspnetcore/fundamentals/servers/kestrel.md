@@ -173,6 +173,22 @@ For information about Kestrel options and limits, see:
 
 ::: moniker range="= aspnetcore-2.0"
 By default, ASP.NET Core binds to `http://localhost:5000`. Call [Listen](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.listen) or [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.listenunixsocket) methods on [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) to configure URL prefixes and ports for Kestrel. `UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section.
+
+The `urls` host configuration key must come from the host configuration, not the app configuration. Adding a `urls` key and value to *appsettings.json* doesn't affect host configuration because the host is completely initialized by the time the configuration is read from the configuration file. However, a `urls` key in *appsettings.json* can be used with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) on the host builder to configure the host:
+
+```csharp
+var config = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appSettings.json", optional: true, reloadOnChange: true)
+    .Build();
+
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseConfiguration(config)
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .UseStartup<Startup>()
+    .Build();
+```
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
 [!INCLUDE[](~/includes/2.1.md)]
@@ -222,7 +238,6 @@ Configure Kestrel to use HTTPS.
 * `UseHttps(X509Certificate2 serverCertificate)`
 * `UseHttps(X509Certificate2 serverCertificate, Action<HttpsConnectionAdapterOptions> configureOptions)`
 * `UseHttps(Action<HttpsConnectionAdapterOptions> configureOptions)`
-* `UseHttps(HttpsConnectionAdapterOptions httpsOptions)`
 
 `ListenOptions.UseHttps` parameters:
 
@@ -234,7 +249,6 @@ Configure Kestrel to use HTTPS.
 * `allowInvalid` indicates if invalid certificates should be considered, such as self-signed certificates.
 * `location` is the store location to load the certificate from.
 * `serverCertificate` is the X.509 certificate.
-* `httpsOptions` are options to configure HTTPS.
 
 In production, HTTPS must be explicitly configured. At a minimum, a default certificate must be provided.
 
@@ -261,12 +275,12 @@ The value provided using these approaches can be one or more HTTP and HTTPS endp
 
 *Replace the default certificate from configuration*
 
-Call `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` to specify the configuration section. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
+[WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
 In the following *appSettings.json* example:
 
 * Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).
-* **HttpsDefaultCert** indicates use of the cert defined under **Certificates** > **Default** or the development certificate.
+* Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.
 
 ```json
 {
@@ -316,14 +330,14 @@ In the following *appSettings.json* example:
 }
 ```
 
-An alternative to using **Path** and **Password** for the **Certificates** > **Default** certificate specification is to specify the certificate using the certificate store fields:
+An alternative to using **Path** and **Password** for any certificate node is to specify the certificate using certificate store fields. For example, the **Certificates** > **Default** certificate can be specified as:
 
 ```json
 "Default": {
-"Subject": "<subject; required>",
-"Store": "<cert store; defaults to My>",
-"Location": "<location; defaults to CurrentUser>",
-"AllowInvalid": "<true or false; defaults to false>"
+  "Subject": "<subject; required>",
+  "Store": "<cert store; defaults to My>",
+  "Location": "<location; defaults to CurrentUser>",
+  "AllowInvalid": "<true or false; defaults to false>"
 }
 ```
 
@@ -341,10 +355,11 @@ Schema notes:
   serverOptions.Configure(context.Configuration.GetSection("Kestrel"))
       .Endpoint("HTTPS", opt =>
       {
-          opt.ListenOptions.Protocols = HttpProtocols.Http1;
           opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
       });
   ```
+
+  You can also directly access `KestrelServerOptions.ConfigurationLoader` to keep iterating on the existing loader, such as the one provided by `WebHost.CreatedDeafaultBuilder`.
 
 * The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` again with another section. Only the last configuration is used unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
@@ -352,12 +367,12 @@ Schema notes:
 
 *Change the defaults in code*
 
-`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario.
+`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
 ```csharp
 options.ConfigureEndpointDefaults(opt =>
 {
-    opt.Protocols = HttpProtocols.Http1;
+    opt.NoDelay = true;
 });
 
 options.ConfigureHttpsDefaults(httpsOptions =>
