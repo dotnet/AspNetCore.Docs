@@ -1,8 +1,9 @@
 ---
-title: Add app features with a platform-specific configuration in ASP.NET Core
+title: Add app features with a platform-specific configuration in ASP.NET Core with IHostingStartup
 author: guardrex
 description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/07/2017
