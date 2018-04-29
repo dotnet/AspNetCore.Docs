@@ -47,7 +47,10 @@ In this tutorial you will create, review, and run the default project in Visual 
 
     > [!NOTE]
     > The name of the project in this tutorial series is **WingtipToys**. It is recommended that you use this *exact* project name so that the code provided throughout the tutorial series functions as expected.
-6. Next, select the **Web Forms** template and choose the **Create Project** button.  
+
+6. Click the **Change Authentication** button then select **Individual User Accounts** then click **OK**.
+
+7. Next, select the **Web Forms** template and choose the **Create Project** or **OK** button.
 
     ![Create the Project - New Project Template](create-the-project/_static/image3.png)
 
