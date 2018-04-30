@@ -95,7 +95,7 @@ The Kestrel web server has constraint configuration options that are especially 
 * Maximum request body size
 * Minimum request body data rate
 
-Set these and other constraints on the `Limits` property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
+Set these and other constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
 
 **Maximum client connections**
 
@@ -123,7 +123,7 @@ The recommended approach to override the limit in an ASP.NET Core MVC app is to 
 public IActionResult MyActionMethod()
 ```
 
-Here's an example that shows how to configure the constraint for the entire app, every request:
+Here's an example that shows how to configure the constraint for the app on every request:
 
 [!code-csharp[](kestrel/samples/2.x/Program.cs?name=snippet_Limits&highlight=5)]
 
@@ -277,7 +277,7 @@ The value provided using these approaches can be one or more HTTP and HTTPS endp
 
 [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
-In the following *appSettings.json* example:
+In the following *appsettings.json* example:
 
 * Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).
 * Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.
@@ -362,7 +362,7 @@ Schema notes:
   You can also directly access `KestrelServerOptions.ConfigurationLoader` to keep iterating on the existing loader, such as the one provided by `WebHost.CreatedDeafaultBuilder`.
 
 * The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
-* Multiple configurations may be loaded by calling `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` again with another section. Only the last configuration is used unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* Multiple configurations may be loaded by calling `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
 *Change the defaults in code*
@@ -444,7 +444,7 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 **Port 0**
 
-When the port number is `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
+When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
 [!code-csharp[](kestrel/samples/2.x/Startup.cs?name=snippet_Port0&highlight=3)]
 
@@ -470,7 +470,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 **IIS endpoint configuration**
 
-When using IIS, the URL bindings for IIS override bindings set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
 
 #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
