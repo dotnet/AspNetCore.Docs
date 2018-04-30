@@ -411,7 +411,7 @@ WebHost.CreateDefaultBuilder()
                 certs["example.com"] = exampleCert;
                 certs["sub.example.com"] = subExampleCert;
 
-                httpsOptions.ServerCertificateSelector = (features, name) =>
+                httpsOptions.ServerCertificateSelector = (connectionContext, name) =>
                 {
                     if (name != null && certs.TryGetValue(name, out var cert))
                     {
