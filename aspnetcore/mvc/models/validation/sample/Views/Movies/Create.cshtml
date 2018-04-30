@@ -68,7 +68,7 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script type="text/javascript">
-     (function ($) {
+     $(function () {
          $.validator.addMethod('classicmovie',
              function (value, element, params) {
                  // Get element value. Classic genre has value '0'.
@@ -90,6 +90,6 @@
                  options.rules['classicmovie'] = [element, parseInt(options.params['year'])];
                  options.messages['classicmovie'] = options.message;
              });
-     })(jQuery);
+     });
     </script>
 }
