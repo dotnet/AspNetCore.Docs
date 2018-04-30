@@ -21,6 +21,6 @@ The ASP.NET framework provides the ViewState mechanism to automatically maintain
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/the-effects-of-viewstate)
 
->[!div class="step-by-step"]
-[Previous](using-the-load-test-agent.md)
-[Next](how-do-i-integrate-defect-tracking-with-testing.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-load-test-agent.md)
+> [Next](how-do-i-integrate-defect-tracking-with-testing.md)

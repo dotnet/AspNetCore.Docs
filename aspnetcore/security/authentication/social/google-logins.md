@@ -81,8 +81,7 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google Authentication
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
@@ -97,10 +96,9 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 });
 ```
 
-[!INCLUDE[default settings configuration](includes/default-settings.md)]
+[!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
  * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
@@ -118,8 +116,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ```
 
----
-
+* * *
 See the [GoogleOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Sign in with Google

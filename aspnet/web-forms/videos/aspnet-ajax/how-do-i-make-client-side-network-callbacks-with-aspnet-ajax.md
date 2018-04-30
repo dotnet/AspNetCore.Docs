@@ -21,6 +21,6 @@ In this video we see how Microsoft ASP.NET AJAX helps web developers make networ
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-make-client-side-network-callbacks-with-aspnet-ajax)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax.md)
-[Next](how-do-i-add-aspnet-ajax-features-to-an-existing-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax.md)
+> [Next](how-do-i-add-aspnet-ajax-features-to-an-existing-web-application.md)

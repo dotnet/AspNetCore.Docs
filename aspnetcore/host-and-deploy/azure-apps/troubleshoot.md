@@ -15,7 +15,7 @@ uid: host-and-deploy/azure-apps/troubleshoot
 
 By [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
+[!INCLUDE [Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
 
 This article provides instructions on how to diagnose an ASP.NET Core app startup issue using Azure App Service's diagnostic tools. For additional troubleshooting advice, see [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics) and [How to: Monitor Apps in Azure App Service](/azure/app-service/web-sites-monitor) in the Azure documentation.
 

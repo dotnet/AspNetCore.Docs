@@ -21,6 +21,6 @@ Learn how to set up instrumentation for both code coverage and profiling in a de
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-enable-code-coverage-and-profiling-in-production-applications)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-run-unit-tests-against-a-deployed-database.md)
-[Next](web-deployment-projects.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-run-unit-tests-against-a-deployed-database.md)
+> [Next](web-deployment-projects.md)

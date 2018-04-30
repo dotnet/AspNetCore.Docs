@@ -88,6 +88,6 @@ At this point, build the project again. Now go through the same steps to add an 
 
 ![](part-2/_static/image8.png)
 
->[!div class="step-by-step"]
-[Previous](part-1.md)
-[Next](part-3.md)
+> [!div class="step-by-step"]
+> [Previous](part-1.md)
+> [Next](part-3.md)

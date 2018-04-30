@@ -21,6 +21,6 @@ This video introduces ASP.NET Dynamic Data URL routing and shows how to configur
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/begin-modifying-dynamic-data-applications-with-url-routing)
 
->[!div class="step-by-step"]
-[Previous](begin-editing-the-templates-in-aspnet-dynamic-data-applications.md)
-[Next](enable-in-line-editing-in-aspnet-dynamic-data-applications.md)
+> [!div class="step-by-step"]
+> [Previous](begin-editing-the-templates-in-aspnet-dynamic-data-applications.md)
+> [Next](enable-in-line-editing-in-aspnet-dynamic-data-applications.md)

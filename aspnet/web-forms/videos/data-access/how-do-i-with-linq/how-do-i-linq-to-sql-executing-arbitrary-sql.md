@@ -21,5 +21,5 @@ This video shows how to execute any arbitrary SQL through the ExecuteCommand syn
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-executing-arbitrary-sql)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-linq-to-sql-updating-with-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-linq-to-sql-updating-with-stored-procedures.md)

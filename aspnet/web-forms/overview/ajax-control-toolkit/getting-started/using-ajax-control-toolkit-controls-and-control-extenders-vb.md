@@ -101,6 +101,6 @@ Notice that you normally do not drag a control extender onto a page. Instead, yo
 
 A single ASP.NET control can be extended by multiple control extenders. The property sheet for the control being extended will list all of the control extenders associated with the control.
 
->[!div class="step-by-step"]
-[Previous](get-started-with-the-ajax-control-toolkit-vb.md)
-[Next](creating-a-custom-ajax-control-toolkit-control-extender-vb.md)
+> [!div class="step-by-step"]
+> [Previous](get-started-with-the-ajax-control-toolkit-vb.md)
+> [Next](creating-a-custom-ajax-control-toolkit-control-extender-vb.md)

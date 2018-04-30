@@ -21,6 +21,6 @@ When an error occurs during the processing of a postback triggered by an ASP.NET
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel)
 
->[!div class="step-by-step"]
-[Previous](set-up-your-development-environment-for-aspnet-20.md)
-[Next](how-do-i-use-aspnet-ajax-client-templates.md)
+> [!div class="step-by-step"]
+> [Previous](set-up-your-development-environment-for-aspnet-20.md)
+> [Next](how-do-i-use-aspnet-ajax-client-templates.md)

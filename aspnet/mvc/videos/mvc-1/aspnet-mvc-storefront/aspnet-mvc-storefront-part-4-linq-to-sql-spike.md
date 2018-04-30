@@ -21,6 +21,6 @@ Rob creates a "spike" - a bit of functionality to test a thought or inspiration 
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-4-linq-to-sql-spike)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-storefront-part-3-pipes-and-filters.md)
-[Next](aspnet-mvc-storefront-part-5-globalization.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-storefront-part-3-pipes-and-filters.md)
+> [Next](aspnet-mvc-storefront-part-5-globalization.md)

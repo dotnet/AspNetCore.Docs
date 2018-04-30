@@ -21,6 +21,6 @@ ASP.NET 2.0 introduced [Profile properties](https://msdn.microsoft.com/library/a
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-profile-services)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-other-javascript-user-interface-libraries-with-aspnet-ajax.md)
-[Next](how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-other-javascript-user-interface-libraries-with-aspnet-ajax.md)
+> [Next](how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.md)

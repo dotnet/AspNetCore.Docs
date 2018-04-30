@@ -21,6 +21,6 @@ Confused about Models, Views, and Controllers? In this tutorial, Stephen Walther
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-models-views-and-controllers)
 
->[!div class="step-by-step"]
-[Previous](creating-a-movie-database-application-in-15-minutes-with-aspnet-mvc.md)
-[Next](aspnet-mvc-controller-overview.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-movie-database-application-in-15-minutes-with-aspnet-mvc.md)
+> [Next](aspnet-mvc-controller-overview.md)

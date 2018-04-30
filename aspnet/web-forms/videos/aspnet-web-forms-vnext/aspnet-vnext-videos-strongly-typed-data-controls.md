@@ -21,5 +21,5 @@ In this video, Damian Edwards demonstrates strongly typed data controls in Visua
 
 [&#9654; Watch video (1 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-vnext-videos-strongly-typed-data-controls)
 
->[!div class="step-by-step"]
-[Next](aspnet-vnext-videos-model-binding-part-1-selecting-data.md)
+> [!div class="step-by-step"]
+> [Next](aspnet-vnext-videos-model-binding-part-1-selecting-data.md)

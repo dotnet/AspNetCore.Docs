@@ -21,6 +21,6 @@ In this video you will learn how to use the new HTML Encoding shortcut syntax in
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/mvc2-html-encoding)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-httpverbs-attributes-in-an-mvc-application.md)
-[Next](mvc2-stronglytyped-helpers.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-httpverbs-attributes-in-an-mvc-application.md)
+> [Next](mvc2-stronglytyped-helpers.md)

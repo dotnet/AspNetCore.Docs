@@ -105,6 +105,6 @@ Now browsing to /StoreManager brings up a Log On dialog:
 
 After logging on with our new Administrator account, we're able to go to the Album Edit screen as before.
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-6.md)
-[Next](mvc-music-store-part-8.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-6.md)
+> [Next](mvc-music-store-part-8.md)

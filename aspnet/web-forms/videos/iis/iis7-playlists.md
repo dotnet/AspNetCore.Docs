@@ -21,5 +21,5 @@ If you're hosting media files on your web site, play lists will let you define s
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/iis7-playlists)
 
->[!div class="step-by-step"]
-[Previous](bit-rate-throttling.md)
+> [!div class="step-by-step"]
+> [Previous](bit-rate-throttling.md)

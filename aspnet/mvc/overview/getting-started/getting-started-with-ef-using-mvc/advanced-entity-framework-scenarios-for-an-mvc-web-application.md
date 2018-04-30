@@ -339,5 +339,5 @@ Solution
 
 Check the connection string. If you have manually deleted the database, change the name of the database in the construction string.
 
->[!div class="step-by-step"]
-[Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)

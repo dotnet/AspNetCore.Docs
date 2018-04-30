@@ -21,5 +21,5 @@ A SQL Injection vulnerability in your application can ruin your whole day. In th
 
 [&#9654; Watch video (25 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/sql-injection-defense)
 
->[!div class="step-by-step"]
-[Previous](creating-inactive-users.md)
+> [!div class="step-by-step"]
+> [Previous](creating-inactive-users.md)

@@ -21,6 +21,6 @@ Joe Stagner will continue the exploration of ASP.NET authentication by configuri
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/add-custom-data-to-the-authentication-method)
 
->[!div class="step-by-step"]
-[Previous](forms-login-custom-key-configuration.md)
-[Next](use-custom-principal-objects.md)
+> [!div class="step-by-step"]
+> [Previous](forms-login-custom-key-configuration.md)
+> [Next](use-custom-principal-objects.md)

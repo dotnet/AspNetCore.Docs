@@ -110,6 +110,6 @@ In this tutorial, you learned how to incorporate a JQuery widget into a web form
 
 In the next [tutorial](using-query-string-values-to-retrieve-data.md), you will use a query string value when selecting data.
 
->[!div class="step-by-step"]
-[Previous](sorting-paging-and-filtering-data.md)
-[Next](using-query-string-values-to-retrieve-data.md)
+> [!div class="step-by-step"]
+> [Previous](sorting-paging-and-filtering-data.md)
+> [Next](using-query-string-values-to-retrieve-data.md)

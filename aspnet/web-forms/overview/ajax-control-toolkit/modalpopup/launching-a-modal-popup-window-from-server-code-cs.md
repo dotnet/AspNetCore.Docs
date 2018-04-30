@@ -67,5 +67,5 @@ The `$find()` function is looking for a named element on the page and expects th
 
 The modal popup appears when either of the buttons is clicked ([Click to view full-size image](launching-a-modal-popup-window-from-server-code-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](using-modalpopup-with-a-repeater-control-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-modalpopup-with-a-repeater-control-cs.md)

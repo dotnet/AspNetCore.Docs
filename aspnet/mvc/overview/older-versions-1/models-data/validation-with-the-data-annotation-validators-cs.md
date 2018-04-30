@@ -148,6 +148,6 @@ The page in **Figure 6** illustrates the error messages returned when you enter 
 
 In this tutorial, you learned how to take advantage of the Data Annotation Model Binder to perform validation within an ASP.NET MVC application. You learned how to use the different types of validator attributes such as the Required and StringLength attributes. You also learned how to use these attributes when working with the Microsoft Entity Framework.
 
->[!div class="step-by-step"]
-[Previous](validating-with-a-service-layer-cs.md)
-[Next](creating-model-classes-with-the-entity-framework-vb.md)
+> [!div class="step-by-step"]
+> [Previous](validating-with-a-service-layer-cs.md)
+> [Next](creating-model-classes-with-the-entity-framework-vb.md)

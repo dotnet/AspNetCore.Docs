@@ -21,6 +21,6 @@ In this video, Joe Stagner shows how to create users with the Create User Wizard
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-user-accounts-with-the-create-user-wizard)
 
->[!div class="step-by-step"]
-[Previous](changing-membership-settings-in-the-default-membership-schema.md)
-[Next](creating-user-accounts-programmatically.md)
+> [!div class="step-by-step"]
+> [Previous](changing-membership-settings-in-the-default-membership-schema.md)
+> [Next](creating-user-accounts-programmatically.md)

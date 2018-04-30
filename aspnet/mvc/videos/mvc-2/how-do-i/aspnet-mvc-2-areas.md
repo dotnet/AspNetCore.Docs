@@ -21,6 +21,6 @@ In this video you will learn how to use the Areas feature to make it easier to o
 
 [&#9654; Watch video (3 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-2-areas)
 
->[!div class="step-by-step"]
-[Previous](mvc2-template-customization.md)
-[Next](aspnet-mvc-2-render-action.md)
+> [!div class="step-by-step"]
+> [Previous](mvc2-template-customization.md)
+> [Next](aspnet-mvc-2-render-action.md)

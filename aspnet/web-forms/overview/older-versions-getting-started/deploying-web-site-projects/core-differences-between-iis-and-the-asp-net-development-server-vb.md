@@ -135,6 +135,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Using ASP.NET Forums Authentication With All Types of Content on IIS 7](https://blogs.iis.net/bills/archive/2007/05/19/using-asp-net-forms-authentication-with-all-types-of-content-with-iis7-video.aspx) (Video)
 - [Web Servers in Visual Web Developer](https://msdn.microsoft.com/library/58wxa9w5.aspx)
 
->[!div class="step-by-step"]
-[Previous](common-configuration-differences-between-development-and-production-vb.md)
-[Next](deploying-a-database-vb.md)
+> [!div class="step-by-step"]
+> [Previous](common-configuration-differences-between-development-and-production-vb.md)
+> [Next](deploying-a-database-vb.md)

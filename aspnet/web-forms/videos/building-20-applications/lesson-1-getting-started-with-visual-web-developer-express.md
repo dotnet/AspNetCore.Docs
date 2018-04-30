@@ -21,5 +21,5 @@ In this lesson, you will begin to get familiar with Visual Web Developer Express
 
 [&#9654; Watch video (28 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-1-getting-started-with-visual-web-developer-express)
 
->[!div class="step-by-step"]
-[Next](lesson-2-creating-a-web-forms-user-interface.md)
+> [!div class="step-by-step"]
+> [Next](lesson-2-creating-a-web-forms-user-interface.md)

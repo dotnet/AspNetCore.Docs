@@ -71,6 +71,6 @@ See also the following resources:
 - [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1377126361). Book by Jez Humble.
 - [Release It! Design and Deploy Production-Ready Software](https://www.amazon.com/Release-It-Production-Ready-Pragmatic-Programmers/dp/0978739213). Book by Michael T. Nygard.
 
->[!div class="step-by-step"]
-[Previous](source-control.md)
-[Next](web-development-best-practices.md)
+> [!div class="step-by-step"]
+> [Previous](source-control.md)
+> [Next](web-development-best-practices.md)

@@ -21,6 +21,6 @@ This webcast looks at the features of ASP.NET 2.0 that simplify the construction
 
 [&#9654; Watch video (63 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-20-user-interface-elements)
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-20-aspnet-20-fundamentals.md)
-[Next](migrating-from-classic-asp-to-aspnet.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-20-aspnet-20-fundamentals.md)
+> [Next](migrating-from-classic-asp-to-aspnet.md)

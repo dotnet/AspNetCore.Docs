@@ -491,6 +491,6 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 
 You now have a more complex data model and corresponding database. In the following tutorial, you'll learn more about how to access related data.
 
->[!div class="step-by-step"]
-[Previous](migrations.md)
-[Next](read-related-data.md)  
+> [!div class="step-by-step"]
+> [Previous](migrations.md)
+> [Next](read-related-data.md)  

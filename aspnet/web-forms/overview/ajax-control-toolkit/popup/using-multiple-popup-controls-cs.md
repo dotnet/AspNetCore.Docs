@@ -51,5 +51,5 @@ Now whenever you click within a text field, a calendar appears below the field, 
 
 The Calendar appears when the user clicks into the textbox ([Click to view full-size image](using-multiple-popup-controls-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md)
+> [!div class="step-by-step"]
+> [Next](handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md)

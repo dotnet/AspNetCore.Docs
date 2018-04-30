@@ -14,7 +14,7 @@ uid: tutorials/first-mvc-app/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
@@ -24,12 +24,10 @@ There are 3 versions of this tutorial:
 
 ## Install Visual Studio and .NET Core
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+[!INCLUDE [](~/includes/net-core-prereqs.md)]
 
-[!INCLUDE[](~/includes/net-core-prereqs.md)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
+#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
 * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
@@ -43,8 +41,7 @@ Run the installer and select the following workloads:
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
----
-
+* * *
 ## Create a web app
 
 From Visual Studio, select  **File > New > Project**.
@@ -108,5 +105,5 @@ If you were running in debug mode, tap **Shift-F5** to stop debugging.
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
->[!div class="step-by-step"]
-[Next](adding-controller.md)  
+> [!div class="step-by-step"]
+> [Next](adding-controller.md)  

@@ -35,9 +35,11 @@ PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurren
 ## Secure redirection extensions
 This sample includes `WebHostBuilder` configuration for the app to use URLs (**https://localhost:5001**, **https://localhost**) and a test certificate (**testCert.pfx**) to assist you in exploring these redirect methods. Add any of them to the `RewriteOptions()` in **Startup.cs** to study their behavior.
 
-Method | Status Code | Port
---- | :---: | :---:
-`.AddRedirectToHttpsPermanent()` | 301 | null (465)
-`.AddRedirectToHttps()` | 302 | null (465)
-`.AddRedirectToHttps(301)` | 301 | null (465)
-`.AddRedirectToHttps(301, 5001)` | 301 | 5001
+
+|              Method              | Status Code |    Port    |
+|----------------------------------|:-----------:|:----------:|
+| `.AddRedirectToHttpsPermanent()` |     301     | null (465) |
+|     `.AddRedirectToHttps()`      |     302     | null (465) |
+|    `.AddRedirectToHttps(301)`    |     301     | null (465) |
+| `.AddRedirectToHttps(301, 5001)` |     301     |    5001    |
+

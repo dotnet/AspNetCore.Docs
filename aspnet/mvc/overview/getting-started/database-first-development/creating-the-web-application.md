@@ -96,6 +96,6 @@ The **ContosoModel.Context.cs** file contains a class that derives from the **Db
 
 Before proceeding with this tutorial, build the project. In the next section, you will generate code based on the data models, but that section will not work if the project has not been built.
 
->[!div class="step-by-step"]
-[Previous](setting-up-database.md)
-[Next](generating-views.md)
+> [!div class="step-by-step"]
+> [Previous](setting-up-database.md)
+> [Next](generating-views.md)

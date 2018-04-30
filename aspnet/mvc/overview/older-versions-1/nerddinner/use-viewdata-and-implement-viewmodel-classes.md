@@ -122,6 +122,6 @@ Custom-shaped ViewModel classes can provide a great deal of flexibility, and are
 
 Let's now look at how we can use partials and master-pages to re-use and share UI across our application.
 
->[!div class="step-by-step"]
-[Previous](provide-crud-create-read-update-delete-data-form-entry-support.md)
-[Next](re-use-ui-using-master-pages-and-partials.md)
+> [!div class="step-by-step"]
+> [Previous](provide-crud-create-read-update-delete-data-form-entry-support.md)
+> [Next](re-use-ui-using-master-pages-and-partials.md)

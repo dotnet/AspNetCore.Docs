@@ -570,5 +570,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was S ren Jacob Lauritsen. In addition to reviewing this article, S ren also created the Visual C# Express Edition project included in this article s download for manually compiling the managed database objects. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](debugging-stored-procedures-vb.md)
+> [!div class="step-by-step"]
+> [Previous](debugging-stored-procedures-vb.md)

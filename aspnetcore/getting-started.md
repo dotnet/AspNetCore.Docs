@@ -15,7 +15,7 @@ uid: getting-started
 > [!NOTE]
 > These instructions are for the latest version of ASP.NET Core. See [Getting Started with ASP.NET Core 1.1](xref:getting-started-1.1) for the 1.1 version of this document.
 
-1. Install the [!INCLUDE[](~/includes/net-core-sdk-download-link.md)].
+1. Install the [!INCLUDE [](~/includes/net-core-sdk-download-link.md)].
 
 2. Create a new .NET Core project.
 
@@ -25,7 +25,7 @@ uid: getting-started
     dotnet new razor -o aspnetcoreapp
     ```
     
-4. Run the app.
+3. Run the app.
 
     Use the following commands to run the app:
 
@@ -34,13 +34,13 @@ uid: getting-started
     dotnet run
     ```
 
-5. Browse to [http://localhost:5000](http://localhost:5000)
+4. Browse to [http://localhost:5000](http://localhost:5000)
 
-6. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now ":
+5. Open <em>Pages/About.cshtml</em> and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now ":
 
     [!code-html[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
-7. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
+6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
 ### Next steps
 

@@ -21,6 +21,6 @@ Joe Stagner demonstrates how to implement custom identity in principal objects i
 
 [&#9654; Watch video (22 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/use-custom-principal-objects)
 
->[!div class="step-by-step"]
-[Previous](add-custom-data-to-the-authentication-method.md)
-[Next](understanding-aspnet-memberships.md)
+> [!div class="step-by-step"]
+> [Previous](add-custom-data-to-the-authentication-method.md)
+> [Next](understanding-aspnet-memberships.md)

@@ -139,6 +139,6 @@ This topic described how to run "what if" deployments using Web Deploy, VSDBCMD,
 
 For more information on Web Deploy command-line syntax, see [Web Deploy Operation Settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx). For guidance on command-line options when you use the *.deploy.cmd* file, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/library/ff356104.aspx). For guidance on VSDBCMD command-line syntax, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx).
 
->[!div class="step-by-step"]
-[Previous](advanced-enterprise-web-deployment.md)
-[Next](customizing-database-deployments-for-multiple-environments.md)
+> [!div class="step-by-step"]
+> [Previous](advanced-enterprise-web-deployment.md)
+> [Next](customizing-database-deployments-for-multiple-environments.md)

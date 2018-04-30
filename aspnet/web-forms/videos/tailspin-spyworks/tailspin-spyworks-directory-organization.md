@@ -21,6 +21,6 @@ Joe Stagner modifies the default directory structure for the Tailspin Spyworks s
 
 [&#9654; Watch video (4 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-directory-organization)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-intro-ui-and-edm.md)
-[Next](tailspin-spyworks-category-menu.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-intro-ui-and-edm.md)
+> [Next](tailspin-spyworks-category-menu.md)

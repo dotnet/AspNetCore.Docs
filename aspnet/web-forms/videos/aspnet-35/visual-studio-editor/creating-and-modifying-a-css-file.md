@@ -21,5 +21,5 @@ This video introduces the cascading style sheet (CSS) features of Visual Studio 
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/creating-and-modifying-a-css-file)
 
->[!div class="step-by-step"]
-[Previous](quick-tour-of-the-visual-studio-2008-integrated-development-environment.md)
+> [!div class="step-by-step"]
+> [Previous](quick-tour-of-the-visual-studio-2008-integrated-development-environment.md)

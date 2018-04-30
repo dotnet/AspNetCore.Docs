@@ -59,6 +59,6 @@ This way, a postback is only executed when there are actually elements in the li
 
 Selecting a list element causes a postback ([Click to view full-size image](using-auto-postback-with-cascadingdropdown-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](presetting-list-entries-with-cascadingdropdown-cs.md)
-[Next](filling-a-list-using-cascadingdropdown-vb.md)
+> [!div class="step-by-step"]
+> [Previous](presetting-list-entries-with-cascadingdropdown-cs.md)
+> [Next](filling-a-list-using-cascadingdropdown-vb.md)

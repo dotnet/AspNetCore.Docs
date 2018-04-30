@@ -84,9 +84,9 @@ The following example shows how to create a page that renders a map based on an 
         > [!NOTE]
         > If you're using a different version of the jQuery library, just make sure that you're pointing to that version correctly.
     - The call to the `@Maps.GetGoogleHtml` in the body of the page. To map an address, you must pass an address string. The methods for the other map engines work in a similar way (`@Maps.GetYahooHtml`, `@Maps.GetMapQuestHtml`).
-- Run the page and enter an address. The page displays a map, based on Google Maps, that shows the location that you specified.
+3. Run the page and enter an address. The page displays a map, based on Google Maps, that shows the location that you specified.
 
-    ![mapping-1](displaying-maps-in-an-aspnet-web-pages-site/_static/image2.png)
+     ![mapping-1](displaying-maps-in-an-aspnet-web-pages-site/_static/image2.png)
 
 ## Creating a Map Based on Latitude and Longitude Coordinates (Using Bing)
 
@@ -98,12 +98,12 @@ This example shows how to create a map based on coordinates. This example shows 
 2. Replace `your-key-here` with the Bing Maps key that you generated earlier.
 3. Run the *MapCoordinates.cshtml* page, enter latitude and longitude coordinates, and then click the **Map It!** button. (If you don't know any coordinates, try the following. This is a location on the Microsoft Redmond campus.)
 
-    - Latitude: 47.6781005859375
-    - Longitude: -122.158317565918
+   - Latitude: 47.6781005859375
+   - Longitude: -122.158317565918
 
-    The page is displayed using the coordinates that you specified.
+     The page is displayed using the coordinates that you specified.
 
-    ![mapping-3](displaying-maps-in-an-aspnet-web-pages-site/_static/image3.png)
+     ![mapping-3](displaying-maps-in-an-aspnet-web-pages-site/_static/image3.png)
 
 <a id="Additional_Resources"></a>
 ## Additional Resources

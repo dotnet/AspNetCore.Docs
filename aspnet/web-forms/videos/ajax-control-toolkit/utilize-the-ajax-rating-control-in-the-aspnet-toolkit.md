@@ -21,6 +21,6 @@ Joe Stagner demonstrates how to use the Rating Tool that ships with ASP.NET AJAX
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/utilize-the-ajax-rating-control-in-the-aspnet-toolkit)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-the-ajax-toolkit-reorder-control.md)
-[Next](control-extenders.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-the-ajax-toolkit-reorder-control.md)
+> [Next](control-extenders.md)

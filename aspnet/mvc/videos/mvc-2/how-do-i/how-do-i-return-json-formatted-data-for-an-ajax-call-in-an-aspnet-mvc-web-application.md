@@ -21,6 +21,6 @@ In this video Chris Pels shows how to use the JsonResult and Json classes to ret
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application)
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-how-10-minute-technical-video-for-developers.md)
-[Next](how-do-i-work-with-data-in-aspnet-mvc-partial-views.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-how-10-minute-technical-video-for-developers.md)
+> [Next](how-do-i-work-with-data-in-aspnet-mvc-partial-views.md)

@@ -83,5 +83,5 @@ F5 causes Visual Studio to start IIS Express and run your web application. Visua
 
 Right out of the box this default template gives you Home, Contact and About pages. It also provides support to register and log in, and links to Facebook and Twitter. The next step is to change how this application works and learn a little bit about ASP.NET MVC. Close your browser and let's change some code.
 
->[!div class="step-by-step"]
-[Next](adding-a-controller.md)
+> [!div class="step-by-step"]
+> [Next](adding-a-controller.md)

@@ -3,6 +3,7 @@ title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/12/2017
 ms.prod: asp.net-core
@@ -22,7 +23,7 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs.md)]
+[!INCLUDE [](~/includes/net-core-prereqs.md)]
 
 <a name="rpvs17"></a>
 
@@ -288,7 +289,7 @@ The app has the following file/folder structure:
 * */Pages*
 
   * *Index.cshtml*
-  * */Customer*
+  * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
@@ -311,7 +312,7 @@ URL generation for pages supports relative names. The following table shows whic
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
 
-`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path -->
+`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are <em>relative names</em>. The `RedirectToPage` parameter is <em>combined</em> with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page.  page name, not page path -->
 
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
@@ -414,6 +415,7 @@ services.AddMvc()
 ## See also
 
 * [Introduction to ASP.NET Core](xref:index)
+* [Razor syntax](xref:mvc/views/razor)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)

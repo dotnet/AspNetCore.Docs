@@ -56,6 +56,6 @@ The Calendar appears when the user clicks into the textbox ([Click to view full-
 
 Clicking on a date puts it in the textbox ([Click to view full-size image](handling-postbacks-from-a-popup-control-without-an-updatepanel-cs/_static/image6.png))
 
->[!div class="step-by-step"]
-[Previous](handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md)
-[Next](using-multiple-popup-controls-vb.md)
+> [!div class="step-by-step"]
+> [Previous](handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md)
+> [Next](using-multiple-popup-controls-vb.md)

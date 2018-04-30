@@ -21,6 +21,6 @@ The ASP.NET AJAX Control Toolkit provides the MaskedEdit control and the MaskedE
 
 [&#9654; Watch video (17 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-maskededit-controls)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-dropdown-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-dropdown-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender.md)

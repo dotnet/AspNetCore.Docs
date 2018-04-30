@@ -21,6 +21,6 @@ In this video you will learn how to use an expression builder to do WebForms rou
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-imperative-webforms-routing)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-permanent-redirect.md)
-[Next](aspnet-4-quick-hit-declarative-webforms-routing.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-permanent-redirect.md)
+> [Next](aspnet-4-quick-hit-declarative-webforms-routing.md)

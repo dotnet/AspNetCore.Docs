@@ -58,7 +58,7 @@ This tutorial uses Twilio, but you can use any SMS provider.
 2. From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth Token.** You will add them to your app later.
 3. From the **Numbers** tab, copy your Twilio **phone number** as well.
 4. Make the Twilio **Account SID**, **Auth Token** and **phone number** available to the app. To keep things simple you will store these values in the *web.config* file. When you deploy to Azure, you can store the values securely in the **appSettings** section on the web site configure tab. Also, when adding the phone number, only use numbers.   
- Notice that you can also add SendGrid credentials. SendGrid is an email notification service. For details about how to enable SendGrid, see the 'Hook Up SendGrid' section of the tutorial titled [Create a Secure ASP.NET Web Forms App with user registration, email confirmation and password reset.](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md)
+   Notice that you can also add SendGrid credentials. SendGrid is an email notification service. For details about how to enable SendGrid, see the 'Hook Up SendGrid' section of the tutorial titled [Create a Secure ASP.NET Web Forms App with user registration, email confirmation and password reset.](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md)
 
     [!code-xml[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample1.xml?highlight=2,6-10)]
 
@@ -80,7 +80,7 @@ This tutorial uses Twilio, but you can use any SMS provider.
 
     [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample6.cs?highlight=3-4,13)]
 
- By making the above code change, the "Providers" DropDownList containing the authentication options will not be reset to the first value. This will allow the user to successfully select all options to use when authenticating, not just the first.
+   By making the above code change, the "Providers" DropDownList containing the authentication options will not be reset to the first value. This will allow the user to successfully select all options to use when authenticating, not just the first.
 10. In **Solution Explorer**, right-click *Default.aspx* and select **Set As Start Page**.
 11. By testing your app, first build the app (**Ctrl**+**Shift**+**B**) and then run the app (**F5**) and either select **Register** to create a new user account or select **Log in** if the user account has already been registered.
 12. Once you (as the user) have logged in, click on the User ID (email address) in the navigation bar to display the **Manage Account** page (Manage.aspx).  
@@ -89,7 +89,7 @@ This tutorial uses Twilio, but you can use any SMS provider.
     ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image3.png)
 14. Add the phone number where you (as the user) would like to receive SMS messages (text messages) and click the **Submit** button.   
     ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image4.png)  
- At this point, the app will use the credentials from the *Web.config* to contact Twilio. A SMS message (text message) will be sent to the phone associated with the user account. You can verify that the Twilio message was sent by viewing the Twilio dashboard.
+    At this point, the app will use the credentials from the *Web.config* to contact Twilio. A SMS message (text message) will be sent to the phone associated with the user account. You can verify that the Twilio message was sent by viewing the Twilio dashboard.
 15. In a few seconds, the phone associated with the user account will get a text message containing the verification code. Enter the verification code and press **Submit**.  
      ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image5.png)
 

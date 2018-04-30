@@ -104,19 +104,7 @@ Explicit expressions can be used to concatenate text with an expression result:
 
 Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email address, and `<p>Age@joe.Age</p>` is rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
-
-Explicit expressions can be used to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following markup is **not** valid Razor:
-
-```cshtml
-<p>@GenericMethod<int>()</p>
-```
-
-The preceding code generates a compiler error similar to one of the following:
-
- * The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
- 
- The following markup shows the correct way write this code. The code is written as an explicit expression:
+Explicit expressions can be used to render output from generic methods in *.cshtml* files. The following markup shows how to correct the error shown earlier caused by the brackets of a C# generic. The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -228,7 +216,7 @@ Without the `@:` in the code, a Razor runtime error is generated.
 
 Warning: Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
-## Control Structures
+## Control structures
 
 Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
 
@@ -434,6 +422,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 
 Later in this article, the section [Viewing the Razor C# class generated for a view](#viewing-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
+<a name="using"></a>
 ### @using
 
 The `@using` directive adds the C# `using` directive to the generated view:
@@ -466,7 +455,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the &commat;model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### @inherits
 
@@ -512,7 +501,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### @functions
 
-The `@functions` directive enables a Razor Page to add function-level content to a view:
+The `@functions` directive enables a Razor Page to add a C# code block to a view:
 
 ```cshtml
 @functions { // C# Code }
@@ -542,9 +531,9 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 | Directive | Function |
 | --------- | -------- |
-| [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [&commat;addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
+| [&commat;removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [&commat;tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 

@@ -21,6 +21,6 @@ In this lesson, you will learn how to debug and monitor your ASP.NET 2.0 Web app
 
 [&#9654; Watch video (29 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-5-debugging-and-tracing-your-website)
 
->[!div class="step-by-step"]
-[Previous](lesson-4-understanding-web-application-state.md)
-[Next](lesson-6-working-with-stylesheets-and-master-pages.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-4-understanding-web-application-state.md)
+> [Next](lesson-6-working-with-stylesheets-and-master-pages.md)

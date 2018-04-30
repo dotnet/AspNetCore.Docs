@@ -21,6 +21,6 @@ Visual Basic developers will learn how to query their SQL Server database in ord
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-xml-documents-from-sql-data)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md)
-[Next](how-do-i-create-excel-spreadsheets-using-linq-to-xml.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md)
+> [Next](how-do-i-create-excel-spreadsheets-using-linq-to-xml.md)

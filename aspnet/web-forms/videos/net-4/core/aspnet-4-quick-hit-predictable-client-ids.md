@@ -21,6 +21,6 @@ In this video you will learn about the ClientIDMode property, which lets you spe
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-4-quick-hit-predictable-client-ids)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-clean-webconfig-files.md)
-[Next](aspnet-4-quick-hit-the-htmlencoder-utility-method.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-clean-webconfig-files.md)
+> [Next](aspnet-4-quick-hit-the-htmlencoder-utility-method.md)

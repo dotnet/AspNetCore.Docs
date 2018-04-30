@@ -21,6 +21,6 @@ Joe Stagner builds the category menu for the Tailspin Spyworks sample Web Forms 
 
 [&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/tailspin-spyworks-category-menu)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-directory-organization.md)
-[Next](tailspin-spyworks-display-the-product-list.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-directory-organization.md)
+> [Next](tailspin-spyworks-display-the-product-list.md)

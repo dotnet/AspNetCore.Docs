@@ -13,7 +13,9 @@
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
           "_site/**"
-        ]
+        ],
+        "group": "group1",
+        "src": "."
       }
     ],
     "resource": [
@@ -27,7 +29,9 @@
           "aspnet/core/**",
           "**/includes/**",
           "_site/**"
-        ]
+        ],
+        "group": "group1",
+        "src": "."
       }
     ],
     "overwrite": [],
@@ -36,10 +40,23 @@
       "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
       "_navRel": "/foo",
-      "searchScope": ["ASP.NET Core"]
+      "searchScope": [
+        "ASP.NET Core"
+      ],
+      "ms.topic": "conceptual",
+      "feedback_system": "GitHub",
+      "feedback_github_repo": "aspnet/docs",
+      "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md" 
     },
     "fileMetadata": {},
     "template": [],
-    "dest": "_site"
+    "dest": "_site",
+    "markdownEngineName": "markdig",
+    "groups": {
+      "group1": {
+        "dest": "group1-dest",
+        "moniker_range": ">= aspnetcore-1.0"
+      }
+    }
   }
 }

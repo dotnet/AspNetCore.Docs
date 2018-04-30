@@ -21,6 +21,6 @@ This video demonstrates how to work with remotely administering SPECFIC web site
 
 [&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/feature-specific-delegated-management)
 
->[!div class="step-by-step"]
-[Previous](working-with-iis7-deligated-admin.md)
-[Next](troubleshooting-production-aspnet-apps.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-iis7-deligated-admin.md)
+> [Next](troubleshooting-production-aspnet-apps.md)

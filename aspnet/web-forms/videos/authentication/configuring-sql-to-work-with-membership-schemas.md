@@ -21,6 +21,6 @@ In this video Joe Stagner demonstrates how to configure a SQL instance to work w
 
 [&#9654; Watch video (18 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/configuring-sql-to-work-with-membership-schemas)
 
->[!div class="step-by-step"]
-[Previous](understanding-aspnet-memberships.md)
-[Next](changing-membership-settings-in-the-default-membership-schema.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-aspnet-memberships.md)
+> [Next](changing-membership-settings-in-the-default-membership-schema.md)

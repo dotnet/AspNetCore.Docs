@@ -190,6 +190,6 @@ In this tutorial you have created, reviewed and run the default Web Forms applic
 [Web Application Projects versus Web Site Projects](https://msdn.microsoft.com/library/dd547590.aspx)   
 [ASP.NET Web Forms Pages Overview](https://msdn.microsoft.com/library/428509ah.aspx)
 
->[!div class="step-by-step"]
-[Previous](introduction-and-overview.md)
-[Next](create_the_data_access_layer.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-and-overview.md)
+> [Next](create_the_data_access_layer.md)

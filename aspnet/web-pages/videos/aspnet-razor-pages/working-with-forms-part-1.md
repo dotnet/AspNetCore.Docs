@@ -21,6 +21,6 @@ Video accompaniment to the Working with Forms tutorial (Part 1)
 
 [&#9654; Watch video (14 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/working-with-forms-part-1)
 
->[!div class="step-by-step"]
-[Previous](creating-a-consistent-look-part-2.md)
-[Next](working-with-forms-part-2.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-consistent-look-part-2.md)
+> [Next](working-with-forms-part-2.md)

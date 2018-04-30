@@ -147,6 +147,6 @@ You also have the option of passing strongly typed view data from a controller t
 
 This tutorial provided a brief introduction to ASP.NET MVC views, view data, and HTML Helpers. In the first section, you learned how to add new views to your project. You learned that you must add a view to the right folder in order to call it from a particular controller. Next, we discussed the topic of HTML Helpers. You learned how HTML Helpers enable you to easily generate standard HTML content. Finally, you learned how to take advantage of view data to pass data from a controller to a view.
 
->[!div class="step-by-step"]
-[Previous](passing-data-to-view-master-pages-cs.md)
-[Next](creating-custom-html-helpers-vb.md)
+> [!div class="step-by-step"]
+> [Previous](passing-data-to-view-master-pages-cs.md)
+> [Next](creating-custom-html-helpers-vb.md)

@@ -280,6 +280,6 @@ A later chapter in the book will discuss Test Driven Development (TDD), and how 
 
 Some final wrap up comments.
 
->[!div class="step-by-step"]
-[Previous](use-ajax-to-implement-mapping-scenarios.md)
-[Next](nerddinner-wrap-up.md)
+> [!div class="step-by-step"]
+> [Previous](use-ajax-to-implement-mapping-scenarios.md)
+> [Next](nerddinner-wrap-up.md)

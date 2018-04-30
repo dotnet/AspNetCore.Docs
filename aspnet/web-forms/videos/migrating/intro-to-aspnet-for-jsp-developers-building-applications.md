@@ -21,6 +21,6 @@ This webcast looks at both the similarities and differences between building a W
 
 [&#9654; Watch video (62 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-for-jsp-developers-building-applications)
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.md)
-[Next](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.md)
+> [Next](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)

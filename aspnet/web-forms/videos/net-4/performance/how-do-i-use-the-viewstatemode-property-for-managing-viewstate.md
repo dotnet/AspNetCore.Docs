@@ -21,5 +21,5 @@ In this video [Chris Pels](http://www.idevtech.com) shows how to use the ViewSta
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-viewstatemode-property-for-managing-viewstate)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-easy-state-compression.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-easy-state-compression.md)

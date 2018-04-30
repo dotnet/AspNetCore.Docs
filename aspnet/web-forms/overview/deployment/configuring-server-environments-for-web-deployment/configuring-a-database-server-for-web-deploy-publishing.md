@@ -60,8 +60,8 @@ To enable SQL Server to communicate over TCP/IP, use SQL Server Configuration Ma
 1. On the **Start** menu, point to **All Programs**, click **Microsoft SQL Server 2008 R2**, click **Configuration Tools**, and then click **SQL Server Configuration Manager**.
 2. In the tree view pane, expand **SQL Server Network Configuration**, and then click **Protocols for MSSQLSERVER**.
 
-    > [!NOTE]
-    > If you have installed multiple instances of SQL Server, you'll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
+   > [!NOTE]
+   > If you have installed multiple instances of SQL Server, you'll see a <strong>Protocols for</strong><em>[instance name]</em> item for each instance. You need to configure network settings on an instance-by-instance basis.
 3. In the details pane, right-click the **TCP/IP** row, and then click **Enable**.
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image1.png)
@@ -125,7 +125,7 @@ For more information on configuring Windows Firewall for SQL Server, particularl
 
 ## Configure Logins and Database Permissions
 
-When you deploy a web application to Internet Information Services (IIS), the application runs using the identity of the application pool. In a domain environment, application pool identities use the machine account of the server on which they run to access network resources. Machine accounts take the form *[domain name]***\***[machine name]***$**&#x2014;for example, **FABRIKAM\TESTWEB1$**. To allow your web application to access a database across the network, you need to:
+When you deploy a web application to Internet Information Services (IIS), the application runs using the identity of the application pool. In a domain environment, application pool identities use the machine account of the server on which they run to access network resources. Machine accounts take the form <em>[domain name]</em><strong>\</strong><em>[machine name]</em><strong>$</strong>&#x2014;for example, <strong>FABRIKAM\TESTWEB1$</strong>. To allow your web application to access a database across the network, you need to:
 
 - Add a login for the web server machine account to the SQL Server instance.
 - Map the machine account login to any required database roles (typically **db\_datareader** and **db\_datawriter**).
@@ -226,6 +226,6 @@ Your database server should now be ready to accept remote database deployments a
 
 For guidance on deploying database projects, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). For guidance on creating database role memberships by running a post-deployment script, see [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md). For guidance on how to meet the unique deployment challenges that membership databases pose, see [Deploying Membership Databases to Enterprise Environments](../advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments.md).
 
->[!div class="step-by-step"]
-[Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
-[Next](creating-a-server-farm-with-the-web-farm-framework.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+> [Next](creating-a-server-farm-with-the-web-farm-framework.md)

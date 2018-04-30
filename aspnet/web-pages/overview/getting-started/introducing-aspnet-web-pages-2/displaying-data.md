@@ -333,6 +333,6 @@ In the next tutorial, you'll learn how to use Razor and C# code to get user inpu
 
 - [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
 
->[!div class="step-by-step"]
-[Previous](intro-to-web-pages-programming.md)
-[Next](form-basics.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-web-pages-programming.md)
+> [Next](form-basics.md)

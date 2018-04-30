@@ -102,7 +102,7 @@ Build the application using the **Build** &gt;**Build Movie** menu command or by
 
 Now that you've updated the `Model` class, you also need to update the *\Views\Movies\Index.cshtml* and *\Views\Movies\Create.cshtml* view templates in order to display the new `Rating` property in the browser view.
 
-Open the*\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.cshtml* view template looks like:
+Open the<em>\Views\Movies\Index.cshtml</em> file and add a `<th>Rating</th>` column heading just after the <strong>Price</strong> column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated <em>Index.cshtml</em> view template looks like:
 
 [!code-cshtml[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample5.cshtml?highlight=26-28,46-48)]
 
@@ -168,6 +168,6 @@ You could enter the "update-database" command in the **Package Manager Console**
 
 In this section you saw how you can modify model objects and keep the database in sync with the changes. You also learned a way to populate a newly created database with sample data so you can try out scenarios. Next, let's look at how you can add richer validation logic to the model classes and enable some business rules to be enforced.
 
->[!div class="step-by-step"]
-[Previous](examining-the-edit-methods-and-edit-view.md)
-[Next](adding-validation-to-the-model.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-edit-methods-and-edit-view.md)
+> [Next](adding-validation-to-the-model.md)

@@ -375,7 +375,7 @@ In a real application in which the database was being updated in production, you
 
 In the **Web One Click Publish** toolbar, make sure that the **Production** profile is selected, and then click **Publish**.
 
-If you uploaded *app\_offline.htm* before publishing, you have to use the **File Manager** utility in the Cytanium control panel to delete *app\_offline.*htm before you test. You can also at the same time delete the *.sdf* files from the *App\_Data* folder.
+If you uploaded <em>app\_offline.htm</em> before publishing, you have to use the <strong>File Manager</strong> utility in the Cytanium control panel to delete <em>app\_offline.</em>htm before you test. You can also at the same time delete the <em>.sdf</em> files from the <em>App\_Data</em> folder.
 
 You can now open a browser and go to the URL of your public site to test the application the same way you did after deploying to the test environment.
 
@@ -445,6 +445,6 @@ Follow the same procedure to uninstall the **SqlServerCompact** package. (The pa
 
 You have now successfully migrated to SQL Server Express and full SQL Server. In the next tutorial you'll make another database change, and you'll see how to deploy database changes when your test and production databases use SQL Server Express and full SQL Server.
 
->[!div class="step-by-step"]
-[Previous](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md)
-[Next](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12.md)
+> [!div class="step-by-step"]
+> [Previous](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md)
+> [Next](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12.md)

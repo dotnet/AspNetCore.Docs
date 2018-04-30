@@ -21,6 +21,6 @@ In this video you learn how to change the way that data fields are rendered. You
 
 [&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-change-how-my-fields-render)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-enable-inline-gridview-editing.md)
-[Next](how-do-i-handle-business-logic-exceptions.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-enable-inline-gridview-editing.md)
+> [Next](how-do-i-handle-business-logic-exceptions.md)

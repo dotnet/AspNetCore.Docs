@@ -97,6 +97,6 @@ The following screenshot shows the results for the Books table. Notice that EF p
 
 ![](part-3/_static/image9.png)
 
->[!div class="step-by-step"]
-[Previous](part-2.md)
-[Next](part-4.md)
+> [!div class="step-by-step"]
+> [Previous](part-2.md)
+> [Next](part-4.md)

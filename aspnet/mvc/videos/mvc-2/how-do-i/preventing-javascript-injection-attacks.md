@@ -21,6 +21,6 @@ Prevent JavaScript Injection Attacks and Cross-Site Scripting Attacks from happe
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/preventing-javascript-injection-attacks)
 
->[!div class="step-by-step"]
-[Previous](an-introduction-to-url-routing.md)
-[Next](creating-unit-tests-for-aspnet-mvc-applications.md)
+> [!div class="step-by-step"]
+> [Previous](an-introduction-to-url-routing.md)
+> [Next](creating-unit-tests-for-aspnet-mvc-applications.md)

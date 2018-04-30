@@ -14,7 +14,7 @@ uid: data/ef-rp/crud
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
@@ -114,7 +114,7 @@ Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the fo
 <a name="TryUpdateModelAsync"></a>
 ### TryUpdateModelAsync
 
-Examine the [TryUpdateModelAsync](https://docs.microsoft.com/ dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
+Examine the [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
 
 [!code-csharp[](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
 
@@ -238,6 +238,6 @@ Verify the Razor Page contains the correct `@page` directive. For example, The S
 
 Each Razor Page must include the `@page` directive.
 
->[!div class="step-by-step"]
-[Previous](xref:data/ef-rp/intro)
-[Next](xref:data/ef-rp/sort-filter-page)
+> [!div class="step-by-step"]
+> [Previous](xref:data/ef-rp/intro)
+> [Next](xref:data/ef-rp/sort-filter-page)

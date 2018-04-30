@@ -21,6 +21,6 @@ In this video I will demonstrate two simple update techniques. First, using the 
 
 [&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/two-simple-techniques-for-triggering-updates-to-update-panels)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-retrieve-values-from-server-side-ajax-controls.md)
-[Next](use-aspnet-ajax-cascading-drop-down-control-to-access-a-database.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-retrieve-values-from-server-side-ajax-controls.md)
+> [Next](use-aspnet-ajax-cascading-drop-down-control-to-access-a-database.md)

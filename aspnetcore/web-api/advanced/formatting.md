@@ -17,7 +17,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/formatting/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Format-Specific Action Results
 
@@ -178,8 +178,10 @@ public class ProductsController
 
 This route would allow the requested format to be specified as an optional file extension. The `[FormatFilter]` attribute checks for the existence of the format value in the `RouteData` and will map the response format to the appropriate formatter when the response is created.
 
-| Route                      | Formatter                          |
-| -------------------------- | ---------------------------------- |
-| `/products/GetById/5`      | The default output formatter       |
+
+|           Route            |             Formatter              |
+|----------------------------|------------------------------------|
+|   `/products/GetById/5`    |    The default output formatter    |
 | `/products/GetById/5.json` | The JSON formatter (if configured) |
 | `/products/GetById/5.xml`  | The XML formatter (if configured)  |
+

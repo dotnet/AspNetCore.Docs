@@ -240,18 +240,18 @@ There are two ways to run the Fix It app:
 
     Using Visual Studio 2013:
 
-    1. Press F5 to run the FixIt project.
-    2. In **Solution Explorer**, right-click the MyFixItCloudService project, and then click **Debug** -- **Start New Instance**.
+   1. Press F5 to run the FixIt project.
+   2. In **Solution Explorer**, right-click the MyFixItCloudService project, and then click **Debug** -- **Start New Instance**.
 
-    Using Visual Studio 2013 Express for Web:
+      Using Visual Studio 2013 Express for Web:
 
-    1. In Solution Explorer, right-click the FixIt solution and select **Properties**.
-    2. Select **Multiple Startup Projects**..
-    3. In the **Action** dropdown list under MyFixIt and MyFixItCloudService, select **Start**.
-    4. Click **OK**.
-    5. Press F5 to run both projects.
+   3. In Solution Explorer, right-click the FixIt solution and select **Properties**.
+   4. Select **Multiple Startup Projects**..
+   5. In the **Action** dropdown list under MyFixIt and MyFixItCloudService, select **Start**.
+   6. Click **OK**.
+   7. Press F5 to run both projects.
 
-    When you run the MyFixItCloudService project, Visual Studio starts the Azure compute emulator. Depending on your firewall configuration, you might need to allow the emulator through the firewall.
+      When you run the MyFixItCloudService project, Visual Studio starts the Azure compute emulator. Depending on your firewall configuration, you might need to allow the emulator through the firewall.
 
 <a id="deploybase"></a>
 ## How to deploy the base app to Azure App Service Web Apps by using the Windows PowerShell scripts
@@ -280,7 +280,7 @@ These instructions assume you have already downloaded and run the Fix It solutio
     These credentials expire after a period of time and you have to re-run the `Add-AzureAccount` cmdlet. As this e-book is being written, the time limit before credentials expire is 12 hours.
 5. If you have multiple subscriptions, use the Select-AzureSubscription cmdlet to specify the subscription you want to create the test environment in.
 6. Import a management certificate for the same Azure subscription by using the `Get-AzurePublishSettingsFile` and `Import-AzurePublishSettingsFile` cmdlets. The first of these cmdlets downloads a certificate file, and in the second one you specify the location of that file in order to import it. > [!IMPORTANT]
- > Keep the downloaded file in a safe location or delete it when you're done with it, because it contains a certificate that can be used to manage your Azure services.
+   > Keep the downloaded file in a safe location or delete it when you're done with it, because it contains a certificate that can be used to manage your Azure services.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample22.cmd)]
 
@@ -394,5 +394,5 @@ In MyFixItCloudService\ServiceConfiguration.Cloud.cscfg, replace the same two pl
 
 Now you are ready to deploy the cloud service. In Solution Explore, right-click the MyFixItCloudService project and select **Publish**. For more information, see "[Deploy the Application to Azure](https://www.windowsazure.com/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", which is in part 2 of [this tutorial](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36).
 
->[!div class="step-by-step"]
-[Previous](more-patterns-and-guidance.md)
+> [!div class="step-by-step"]
+> [Previous](more-patterns-and-guidance.md)

@@ -21,6 +21,6 @@ This video introduces the Animation extender control from the ASP.NET AJAX Contr
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-aspnet-ajax-passwordstrength-extender.md)
-[Next](how-do-i-use-the-aspnet-ajax-confirmbutton-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-aspnet-ajax-passwordstrength-extender.md)
+> [Next](how-do-i-use-the-aspnet-ajax-confirmbutton-extender.md)

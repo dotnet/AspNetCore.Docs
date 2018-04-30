@@ -106,7 +106,7 @@ By default, the new middleware:
      // ...
     ```
 
-[!INCLUDE[default settings configuration](social/includes/default-settings.md)]
+[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 
 ### Log in with WS-Federation
 

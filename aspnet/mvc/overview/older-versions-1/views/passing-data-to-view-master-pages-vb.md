@@ -112,5 +112,5 @@ In this tutorial, we discussed two approaches to passing view data from a contro
 
 Next, we examined a much better strategy for adding data required by a view master page to view data. Instead of adding the view data in each and every controller action, we added the view data only once within an Application controller. That way, you can avoid duplicate code when passing data to a view master page in an ASP.NET MVC application.
 
->[!div class="step-by-step"]
-[Previous](creating-page-layouts-with-view-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-page-layouts-with-view-master-pages-vb.md)

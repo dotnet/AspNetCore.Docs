@@ -21,6 +21,6 @@ Visual Studio Team System makes it easy to test a Web application by recording a
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/custom-extraction-rules-and-coded-web-tests)
 
->[!div class="step-by-step"]
-[Previous](code-coverage-of-automated-tests.md)
-[Next](the-effects-of-caching.md)
+> [!div class="step-by-step"]
+> [Previous](code-coverage-of-automated-tests.md)
+> [Next](the-effects-of-caching.md)

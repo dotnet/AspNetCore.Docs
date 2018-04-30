@@ -21,5 +21,5 @@ By creating a new website, I will demonstrate the new ListView control. Because 
 
 [&#9654; Watch video (10 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/the-listview-control)
 
->[!div class="step-by-step"]
-[Next](the-datapager-control.md)
+> [!div class="step-by-step"]
+> [Next](the-datapager-control.md)

@@ -21,5 +21,5 @@ Learn how to extend your ASP.NET AJAX applications using the ASP.NET AJAX Contro
 
 [&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit)
 
->[!div class="step-by-step"]
-[Next](how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender.md)
+> [!div class="step-by-step"]
+> [Next](how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender.md)

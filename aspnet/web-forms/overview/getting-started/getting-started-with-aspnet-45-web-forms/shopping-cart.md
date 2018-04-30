@@ -61,7 +61,7 @@ Earlier in this tutorial series, you defined the schema for the category and pro
     ![Shopping Cart - Add New Item Dialog](shopping-cart/_static/image2.png)
 3. Name this new class *CartItem.cs*.
 4. Click **Add**.  
- The new class file is displayed in the editor.
+   The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
     [!code-csharp[Main](shopping-cart/samples/sample1.cs)]
@@ -131,7 +131,7 @@ As mentioned earlier, you will create a processing page named *AddToCart.aspx* t
 #### To create the Add-To-Cart functionality:
 
 1. In **Solution Explorer**, right-click the **WingtipToys**project, click **Add** -&gt; **New Item**.  
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Add a standard new page (Web Form) to the application named *AddToCart.aspx*. 
 
     ![Shopping Cart - Add Web Form](shopping-cart/_static/image4.png)
@@ -149,7 +149,7 @@ As previously mentioned, a user `ID` is used to identify the products that are a
 The *ShoppingCart.aspx* page will display the products that the user has added to their shopping cart. It will also provide the ability to add, remove and update items in the shopping cart.
 
 1. In **Solution Explorer**, right-click **WingtipToys**, click **Add** -&gt; **New Item**.  
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Add a new page (Web Form) that includes a master page by selecting **Web Form using Master Page**. Name the new page *ShoppingCart.aspx*.
 3. Select **Site.Master** to attach the master page to the newly created *.aspx* page.
 4. In the *ShoppingCart.aspx* page, replace the existing markup with the following markup:   
@@ -318,6 +318,6 @@ The shopping cart supports adding, deleting, and updating items that the user ha
 
 [ASP.NET Session State Overview](https://msdn.microsoft.com/library/ms178581.aspx)
 
->[!div class="step-by-step"]
-[Previous](display_data_items_and_details.md)
-[Next](checkout-and-payment-with-paypal.md)
+> [!div class="step-by-step"]
+> [Previous](display_data_items_and_details.md)
+> [Next](checkout-and-payment-with-paypal.md)

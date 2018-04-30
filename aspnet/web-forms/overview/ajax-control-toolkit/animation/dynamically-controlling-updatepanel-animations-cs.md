@@ -60,6 +60,6 @@ Run the file in the browser. Whenever you click on the button, the current time 
 
 The current time is fading in ([Click to view full-size image](dynamically-controlling-updatepanel-animations-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](animating-an-updatepanel-control-cs.md)
-[Next](adding-animation-to-a-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](animating-an-updatepanel-control-cs.md)
+> [Next](adding-animation-to-a-control-vb.md)

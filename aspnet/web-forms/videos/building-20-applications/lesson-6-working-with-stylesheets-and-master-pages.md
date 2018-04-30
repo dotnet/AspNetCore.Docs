@@ -21,6 +21,6 @@ In this lesson, you will begin to learn how style sheets and MasterPages can be 
 
 [&#9654; Watch video (24 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-6-working-with-stylesheets-and-master-pages)
 
->[!div class="step-by-step"]
-[Previous](lesson-5-debugging-and-tracing-your-website.md)
-[Next](lesson-7-databinding-to-user-interface-controls.md)
+> [!div class="step-by-step"]
+> [Previous](lesson-5-debugging-and-tracing-your-website.md)
+> [Next](lesson-7-databinding-to-user-interface-controls.md)

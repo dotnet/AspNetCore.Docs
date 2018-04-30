@@ -301,5 +301,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Next](adding-and-responding-to-buttons-to-a-gridview-vb.md)
+> [!div class="step-by-step"]
+> [Next](adding-and-responding-to-buttons-to-a-gridview-vb.md)

@@ -106,5 +106,5 @@ An editable view of the table data is displayed.
 
 Your database is now set up and populated with data. In the next tutorial, you will create a web application for the database.
 
->[!div class="step-by-step"]
-[Next](creating-the-web-application.md)
+> [!div class="step-by-step"]
+> [Next](creating-the-web-application.md)

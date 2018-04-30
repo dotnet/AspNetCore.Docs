@@ -17,7 +17,7 @@ Adding a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 MVC stands for *model-view-controller*. MVC is a pattern for developing applications that are well architected, testable and easy to maintain. MVC-based applications contain:
 
@@ -110,6 +110,6 @@ For many MVC applications, the default route works fine. You'll learn later in t
 
 In these examples the controller has been doing the &quot;VC&quot; portion of MVC — that is, the view and controller work. The controller is returning HTML directly. Ordinarily you don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look next at how we can do this.
 
->[!div class="step-by-step"]
-[Previous](getting-started.md)
-[Next](adding-a-view.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started.md)
+> [Next](adding-a-view.md)

@@ -18,7 +18,7 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+[!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
 ## Target frameworks
 

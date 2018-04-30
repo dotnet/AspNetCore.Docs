@@ -21,6 +21,6 @@ In this video, Joe Stagner demonstrates different mechanisms that can be added t
 
 [&#9654; Watch video (54 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/simple-web-service-authentication)
 
->[!div class="step-by-step"]
-[Previous](implement-the-registration-verification-pattern.md)
-[Next](creating-inactive-users.md)
+> [!div class="step-by-step"]
+> [Previous](implement-the-registration-verification-pattern.md)
+> [Next](creating-inactive-users.md)

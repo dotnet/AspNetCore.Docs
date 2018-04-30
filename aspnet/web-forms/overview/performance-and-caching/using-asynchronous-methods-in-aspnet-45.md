@@ -60,7 +60,7 @@ In general, use synchronous methods for the following conditions:
 - Simplicity is more important than efficiency.
 - The operations are primarily CPU operations instead of operations that involve extensive disk or network overhead. Using asynchronous methods on CPU-bound operations provides no benefits and results in more overhead.
 
- In general, use asynchronous methods for the following conditions:
+  In general, use asynchronous methods for the following conditions:
 
 - You're calling services that can be consumed through asynchronous methods, and you're using .NET 4.5 or higher.
 - The operations are network-bound or I/O-bound instead of CPU-bound.
@@ -69,7 +69,7 @@ In general, use synchronous methods for the following conditions:
 - When the benefit of switching threads out weights the cost of the context switch. In general, you should make a method asynchronous if the synchronous method blocks the ASP.NET request thread while doing no work. By making the call asynchronous, the ASP.NET request thread is not blocked doing no work while it waits for the web service request to complete.
 - Testing shows that the blocking operations are a bottleneck in site performance and that IIS can service more requests by using asynchronous methods for these blocking calls.
 
- The downloadable sample shows how to use asynchronous methods effectively. The sample provided was designed to provide a simple demonstration of asynchronous programming in ASP.NET 4.5. The sample is not intended to be a reference architecture for asynchronous programming in ASP.NET. The sample program calls [ASP.NET Web API](../../../web-api/index.md) methods which in turn call [Task.Delay](https://msdn.microsoft.com/library/hh139096(VS.110).aspx) to simulate long-running web service calls. Most production applications will not show such obvious benefits to using asynchronous Methods.   
+  The downloadable sample shows how to use asynchronous methods effectively. The sample provided was designed to provide a simple demonstration of asynchronous programming in ASP.NET 4.5. The sample is not intended to be a reference architecture for asynchronous programming in ASP.NET. The sample program calls [ASP.NET Web API](../../../web-api/index.md) methods which in turn call [Task.Delay](https://msdn.microsoft.com/library/hh139096(VS.110).aspx) to simulate long-running web service calls. Most production applications will not show such obvious benefits to using asynchronous Methods.   
   
 Few applications require all methods to be asynchronous. Often, converting a few synchronous methods to asynchronous methods provides the best efficiency increase for the amount of work required.
 
@@ -184,8 +184,8 @@ To realize the benefits of an asynchronous web application, you might need to ma
 
 - Windows 7, Windows Vista, Window 8, and all Windows client operating systems have a maximum of 10 concurrent requests. You'll need a Windows Server operating system to see the benefits of asynchronous methods under high load.
 - Register .NET 4.5 with IIS from an elevated command prompt using the following command:  
- %windir%\Microsoft.NET\Framework64 \v4.0.30319\aspnet\_regiis -i  
- See    [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/library/k6h9cz8h.aspx)
+  %windir%\Microsoft.NET\Framework64 \v4.0.30319\aspnet\_regiis -i  
+  See    [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/library/k6h9cz8h.aspx)
 - You might need to increase the [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) queue limit from the default value of 1,000 to 5,000. If the setting is too low, you may see [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) reject requests with a HTTP 503 status. To change the HTTP.sys queue limit:
 
     - Open IIS manager and navigate to the Application Pools pane.
@@ -194,7 +194,7 @@ To realize the benefits of an asynchronous web application, you might need to ma
     - In the **Advanced Settings** dialog box, change *Queue Length* from 1,000 to 5,000.  
         ![Queue length](using-asynchronous-methods-in-aspnet-45/_static/image5.png)  
   
- Note in the images above, the .NET framework is listed as v4.0, even though the application pool is using .NET 4.5. To understand this discrepancy, see the following:
+  Note in the images above, the .NET framework is listed as v4.0, even though the application pool is using .NET 4.5. To understand this discrepancy, see the following:
 
         - [.NET Versioning and Multi-Targeting - .NET 4.5 is an in-place upgrade to .NET 4.0](http://www.hanselman.com/blog/NETVersioningAndMultiTargetingNET45IsAnInplaceUpgradeToNET40.aspx)
         - [How to set an IIS Application or AppPool to use ASP.NET 3.5 rather than 2.0](http://www.hanselman.com/blog/HowToSetAnIISApplicationOrAppPoolToUseASPNET35RatherThan20.aspx)
