@@ -41,9 +41,9 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* By Default, the ASP.NET Core MetaPackage is added to the project, called `Microsoft.AspNetCore.All`. This package contains packages like `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles`.
+* By default, the ASP.NET Core metapackage is added to the project, called `Microsoft.AspNetCore.All`. This package contains packages like `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles`.
 
-  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Work with static files](../fundamentals/static-files.md)).
+  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET Core runtime is modular, and you must explicitly opt in to serve static files (see [Work with static files](../fundamentals/static-files.md)).
 
 * Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
@@ -196,7 +196,7 @@ There are many problems that can cause a HTTP 500 error message that contain no 
 
   [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 
-See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
+ASP.NET Core will turn unhandled exceptions in a web application to HTTP 500 error responses. Normally, error details are not included in these responses to prevent disclosure of potentially sensitive information about the server. See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
 
 ## Additional resources
 
