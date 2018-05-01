@@ -16,10 +16,10 @@
 
 
   <ItemGroup>
-    <Content Update="Areas\MyFeature\Pages\Index.cshtml">
+    <Content Update="Areas\MyFeature2\Pages\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\MyFeature\Pages\Page1.cshtml">
+    <Content Update="Areas\MyFeature2\Pages\Page1.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\_Message2.cshtml">
