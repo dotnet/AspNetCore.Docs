@@ -1,4 +1,4 @@
-﻿#define DefaultBuilder // or Limits or UnixSocket or FileDescriptor
+﻿#define DefaultBuilder // or any of: Limits UnixSocket FileDescriptor Port0
 
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System;
 using System.Net;
 
-namespace KestrelDemo
+namespace KestrelSample
 {
     /// <summary>
     /// Executing the "dotnet run" command in the application folder will run this app.
@@ -25,14 +25,6 @@ namespace KestrelDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseKestrel(options =>
-                {
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
-                    {
-                        listenOptions.UseHttps("testCert.pfx", "testPassword");
-                    });
-                })
                 .Build();
         #endregion
 #elif UnixSocket
@@ -44,7 +36,7 @@ namespace KestrelDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-        #region snippet_UnixSocket
+                #region snippet_UnixSocket
                 .UseKestrel(options =>
                 {
                     options.ListenUnixSocket("/tmp/kestrel-test.sock");
@@ -53,7 +45,7 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
                 })
-        #endregion
+                #endregion
                 .Build();
 #elif FileDescriptor
         public static void Main(string[] args)
@@ -64,7 +56,7 @@ namespace KestrelDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-        #region snippet_FileDescriptor
+                #region snippet_FileDescriptor
                 .UseKestrel(options =>
                 {
                     var fds = Environment.GetEnvironmentVariable("SD_LISTEN_FDS_START");
@@ -76,7 +68,7 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
                 })
-        #endregion
+                #endregion
                 .Build();
 #elif Limits
         public static void Main(string[] args)
@@ -87,9 +79,10 @@ namespace KestrelDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-        #region snippet_Limits
+                #region snippet_Limits
                 .UseKestrel(options =>
                 {
+                    options.
                     options.Limits.MaxConcurrentConnections = 100;
                     options.Limits.MaxConcurrentUpgradedConnections = 100;
                     options.Limits.MaxRequestBodySize = 10 * 1024;
@@ -103,7 +96,23 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
                 })
-        #endregion
+                #endregion
+               .Build();
+#elif Port0
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                #region snippet_Port0
+                .UseKestrel(options =>
+                {
+                    options.Listen(IPAddress.Loopback, 0);
+                })
+                #endregion
                .Build();
 #endif
     }

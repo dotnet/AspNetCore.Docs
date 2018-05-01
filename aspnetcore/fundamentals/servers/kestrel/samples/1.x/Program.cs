@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace KestrelDemo
+namespace KestrelSample
 {
     /// <summary>
     /// Executing the "dotnet run command in the application folder will run this app.
