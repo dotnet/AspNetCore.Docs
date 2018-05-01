@@ -41,7 +41,12 @@ Select **.NET Core** > **ASP.NET Core Web Application** project template. Name t
 
 In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template. Select **OK**. Do **not** select **Enable Docker Support**.
 
+::: moniker range="<= aspnetcore-2.0"
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project-2.1.png)
+::: moniker-end
 
 ### Launch the app
 
