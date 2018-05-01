@@ -311,7 +311,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 * The `async` keyword tells the compiler to:
 
   * Generate callbacks for parts of the method body.
-  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+  * Automatically create the [Task](/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 

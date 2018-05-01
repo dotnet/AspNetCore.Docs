@@ -16,11 +16,11 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ## Customize the primary key data type
 
-1. Create a custom implementation of the [IdentityUser](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser-1) class. It represents the type to be used for creating user objects. In the following example, the default `string` type is replaced with `Guid`.
+1. Create a custom implementation of the [IdentityUser](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser-1) class. It represents the type to be used for creating user objects. In the following example, the default `string` type is replaced with `Guid`.
 
     [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationUser.cs?highlight=4&range=7-13)]
 
-2. Create a custom implementation of the [IdentityRole](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityrole-1) class. It represents the type to be used for creating role objects. In the following example, the default `string` type is replaced with `Guid`.
+2. Create a custom implementation of the [IdentityRole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityrole-1) class. It represents the type to be used for creating role objects. In the following example, the default `string` type is replaced with `Guid`.
 
     [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationRole.cs?highlight=3&range=7-12)]
 
