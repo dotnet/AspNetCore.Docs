@@ -134,9 +134,9 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 The preceding commands:
 
-* Create the `RazorUIClassLib` Razor Class Library (RCL).
-* Create a Razor Test and _Message page, and adds them to the RCL.
-* Create a [viewstart](xref:mvc/views/layout#running-code-before-each-view) file and it to the RCL.
+* Creates the `RazorUIClassLib` Razor Class Library (RCL).
+* Creates a Razor _Message page, and adds it to the RCL.
+* Creates a [viewstart](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
 
 Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article.
 
@@ -213,6 +213,8 @@ Verify the Razor UI class library is being used.
 
 ## Override views, partial views, and pages
 
-When a view, partial view, or Razor Page is found in both the web app and the Razor Class Library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Library.
+When a view, partial view, or Razor Page is found in both the web app and the Razor Class Library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* to WebApp1, and Page1 in the WebApp1 will take precedence over Page1in the Razor Class Library.
+
+In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFeature* to test precedence.
 
 Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
