@@ -19,7 +19,7 @@ By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://t
 
 [!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
 ## What is a SignalR hub
 
