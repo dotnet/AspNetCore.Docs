@@ -118,7 +118,16 @@ Follow the best practice of organizing the file structure for your views to refl
 
 ## Passing data to views
 
-You can pass data to views using several approaches. The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
+Pass data to views using several approaches:
+
+* Strongly-typed data: viewmodel
+* Weakly-typed data
+  - `ViewData` (`ViewDataAttribute`)
+  - `ViewBag`
+
+### Strongly-typed data (viewmodel)
+
+The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
 
 Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly-typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
@@ -176,12 +185,11 @@ namespace WebApplication1.ViewModels
 > [!NOTE]
 > Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](xref:mvc/models/model-binding) and [validation](xref:mvc/models/validation) for data sent to the app by the user.
 
-
 <a name="VD_VB"></a>
 
-### Weakly-typed data (ViewData and ViewBag)
+### Weakly-typed data (ViewData, ViewData attribute, and ViewBag)
 
-Note: `ViewBag` isn't available in the Razor Pages.
+Note: `ViewBag` isn't available in Razor Pages.
 
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
 
@@ -195,12 +203,11 @@ This collection can be referenced through either the `ViewData` or `ViewBag` pro
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
 
-
 <a name="VD"></a>
 
 **ViewData**
 
-`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).
+`ViewData` is a [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).
 
 The following is an example that sets values for a greeting and an address using `ViewData` in an action:
 
@@ -237,6 +244,46 @@ Work with the data in a view:
     @address.City, @address.State @address.PostalCode
 </address>
 ```
+
+::: moniker range=">= aspnetcore-2.1"
+**ViewData attribute**
+
+Another approach that uses the `ViewDataDictionary` is `ViewDataAttribute`. Properties decorated with `[ViewData]` have their values stored and loaded from the dictionary.
+
+In the following example, the Home controller contains a `Title` property decorated with `[ViewData]`. The `About` method sets the title for the About view:
+
+```csharp
+public class HomeController : Controller
+{
+    [ViewData]
+    public string Title { get; set; }
+
+    public IActionResult About()
+    {
+        Title = "About Us";
+        ViewData["Message"] = "Your application description page.";
+
+        return View();
+    }
+}
+```
+
+In the About view, access the `Title` property as a model property:
+
+```cshtml
+<h1>@Model.Title</h1>
+```
+
+In the layout, the title is read from the ViewData dictionary:
+
+```cshtml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - WebApplication</title>
+    ...
+```
+::: moniker-end
 
 **ViewBag**
 
