@@ -43,8 +43,14 @@ dotnet new razorclasslib -o RazorUIClassLib
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new).
 
 ------
+Add Razor files to the RCL.
 
-Add Razor files to the RCL. The RCL can be refrenced by:
+## Razor Class Library restrictions.
+
+* Razor files must be under the *Areas* folder.
+* The ASP.NET Core runtime does not search for partial files in the RCL */Areas/{FeatureName}/Pages/Shared/* folder.
+
+The RCL can be refrenced by:
 
 * Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
@@ -107,14 +113,10 @@ Create the Razor Pages web app:
 
 [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
 
-* Copy the *_ViewStart.cshtml* file from the WebApp1 project to the following RazorUIClassLib folders:
+* Copy the *_ViewStart.cshtml* file from the WebApp1 project to  *RazorUIClassLib/Areas/MyFeature/Pages/_ViewStart.cshtml*.
 
-  * *RazorUIClassLib/Pages/_ViewStart.cshtml*
-  * *RazorUIClassLib/Areas/MyFeature/Pages/_ViewStart.cshtml
+  The [viewstart](xref:mvc/views/layout#running-code-before-each-view) file is required to use the layout of the Razor Pages project.
 
-  The [viewstart](xref:mvc/views/layout#running-code-before-each-view) files are required to use the layout of the Razor Pages project.
-
-* Add a Razor Page *RazorUIClassLib/Pages/Test.cshtml*
 * Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following code:
 
 [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
@@ -126,21 +128,19 @@ From the command line, run the following:
 
 ``` CLI
 dotnet new razorclasslib -o RazorUIClassLib
-dotnet new page -n Test -na RazorUIClassLib.Pages -o RazorUIClassLib/Pages
 dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
-dotnet new viewstart -o RazorUIClassLib/Pages
 dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
 The preceding commands:
 
 * Create the `RazorUIClassLib` Razor Class Library (RCL).
-* Create a Razor Test and _Message page, and add them to the RCL.
-* Create two [viewstart](xref:mvc/views/layout#running-code-before-each-view) files and add them to the RCL.
+* Create a Razor Test and _Message page, and adds them to the RCL.
+* Create a [viewstart](xref:mvc/views/layout#running-code-before-each-view) file and it to the RCL.
 
-Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article. The preceding commands create a RCL and add Razor files.
+Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article.
 
-The viewstart files are required to use the layout of the Razor Pages project (which is added in the next section).
+The viewstart file is required to use the layout of the Razor Pages project (which is added in the next section).
 
 Update the Razor Pages. For example:
 
@@ -157,15 +157,10 @@ Update the Razor Pages. For example:
 `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including this line, you can add a *_ViewImports.cshtml* file. For example:
 
 ``` CLI
-dotnet new viewimports -o RazorUIClassLib/Pages
 dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
 For more information on viewimports, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
-
-* Replace the markup in *RazorUIClassLib/Pages/Test.cshtml* with markup similar to the *Page1.cshtml* file.
-* Delete the *RazorUIClassLib/Pages/Test.cshtml.cs* file.
-
 
 * Build the class library to verify there are no compiler errors:
 
@@ -214,7 +209,6 @@ dotnet run
 
 Verify the Razor UI class library is being used.
 
-* Browse to `/Test`.
 * Browse to `/MyFeature/Page1`.
 
 ## Override views, partial views, and pages

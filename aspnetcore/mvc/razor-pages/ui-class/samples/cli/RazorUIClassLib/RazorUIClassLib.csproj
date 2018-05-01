@@ -7,4 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-rc1-30661" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\MyFeature\Pages\Shared\_Message.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
