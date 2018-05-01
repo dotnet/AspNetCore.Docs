@@ -50,17 +50,19 @@ Add Razor files to the RCL.
 * Razor files must be under the *Areas* folder.
 * The ASP.NET Core runtime does not search for partial files in the RCL */Areas/{FeatureName}/Pages/Shared/* folder.
 
-The RCL can be refrenced by:
+The RCL can be referenced by:
 
-* Nuget package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
+* NuGet package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * DLLs - for example, *{ProjectName}.dll* and *{ProjectName}.Views.dll*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference). *{ProjectName}.Views.dll* contains the compiled Razor content.
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
-You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples vrs. step-by-step instructions.
+You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
 
 ### Test the download app
+
+If you haven't downloaded the completed app and would rather create the walkthrough project, skip to the [next section](#create-a-razor-class-library).
 
 # [Visual Studio](#tab/visual-studio) 
 
@@ -83,7 +85,7 @@ dotnet run
 
 Follow the instructions in [Test WebApp1](#test)
 
-### Create a Razor Class Library
+## Create a Razor Class Library
 
 In this section, a Razor Class Library (RCL) is created. Razor files are added to the RCL.
 
@@ -107,8 +109,7 @@ Create the Razor Pages web app:
 
 ### Add Razor files and folders to the project.
 
-* Create the *RazorUIClassLib/Pages* and *RazorUIClassLib/Pages/Shared* folders.
-* Add a Razor partial view file name *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
+* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
 * Replace the markup of *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
 [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
@@ -128,17 +129,15 @@ From the command line, run the following:
 
 ``` CLI
 dotnet new razorclasslib -o RazorUIClassLib
-dotnet new page -n _Message -o RazorUIClassLib/Pages/Shared
+dotnet new page -n _Message -np -o RazorUIClassLib/Areas/MyFeature/Pages/Shared
 dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
 The preceding commands:
 
 * Creates the `RazorUIClassLib` Razor Class Library (RCL).
-* Creates a Razor _Message page, and adds it to the RCL.
+* Creates a Razor _Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`. 
 * Creates a [viewstart](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
-
-Use the `-o RazorUIClassLib` option so the namespace will match in the remainder of this article.
 
 The viewstart file is required to use the layout of the Razor Pages project (which is added in the next section).
 
@@ -147,8 +146,6 @@ Update the Razor Pages. For example:
 * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
 [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
-
-* Delete the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml.cs* file.
 
 * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following code:
 
