@@ -108,18 +108,18 @@ Create the Razor Pages web app:
 ### Add Razor files and folders to the project.
 
 * Create the *RazorUIClassLib/Pages* and *RazorUIClassLib/Pages/Shared* folders.
-* Add a Razor partial view file name *RazorUIClassLib/Pages/Shared/_Message.cshtml*.
-* Replace the markup of *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following code:
+* Add a Razor partial view file name *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
+* Replace the markup of *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
 
 * Copy the *_ViewStart.cshtml* file from the WebApp1 project to  *RazorUIClassLib/Areas/MyFeature/Pages/_ViewStart.cshtml*.
 
   The [viewstart](xref:mvc/views/layout#running-code-before-each-view) file is required to use the layout of the Razor Pages project.
 
-* Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following code:
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -144,11 +144,11 @@ The viewstart file is required to use the layout of the Razor Pages project (whi
 
 Update the Razor Pages. For example:
 
-* Replace the markup in *RazorUIClassLib/Pages/Shared/_Message.cshtml* with the following code:
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Pages/Shared/_Message.cshtml)]
+[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
 
-* Delete the *RazorUIClassLib/Pages/Shared/_Message.cshtml.cs* file.
+* Delete the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml.cs* file.
 
 * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following code:
 
@@ -215,4 +215,4 @@ Verify the Razor UI class library is being used.
 
 When a view, partial view, or Razor Page is found in both the web app and the Razor Class Library, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *Pages/Test.cshtml* to WebApp1, and the Test page in the WebApp1 will take precedence over the Test page in the Razor Class Library.
 
-Copy the *RazorUIClassLib/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
+Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
