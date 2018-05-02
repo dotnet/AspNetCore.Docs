@@ -15,12 +15,12 @@ uid: security/authorization/iauthorizationpolicyprovider
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, though, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can use a custom `IAuthorizationPolicyProvider` to fully control how authorization policies are supplied.
+Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can use a custom `IAuthorizationPolicyProvider` to fully control how authorization policies are supplied.
 
 Examples of scenarios where a custom `IAuthorizationPolicyProvider` may be useful include:
 
-* Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through some other mechanism
-* Using a large range of policies (for different room numbers or ages, for example), so it doesn’t make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call
+* Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through some other mechanism.
+* Using a large range of policies (for different room numbers or ages, for example), so it doesn’t make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call.
 
 ## Customizing Policy Retrieval
 
