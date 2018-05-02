@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twi
 
 Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
-Internationalization involves [Globalization](/dotnet/api/system.globalization) and [Localization](https://docs.microsoft.com/dotnet/standard/globalization-localization/localization). Globalization is the process of designing apps that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.
+Internationalization involves [Globalization](/dotnet/api/system.globalization) and [Localization](/dotnet/standard/globalization-localization/localization). Globalization is the process of designing apps that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.
 
 Localization is the process of adapting a globalized app, which you have already processed for localizability, to a particular culture/locale. For more information see **Globalization and localization terms** near the end of this document.
 
@@ -306,7 +306,7 @@ You can't plug in the *_SelectLanguagePartial.cshtml* to sample code for this pr
 
 The process of localizing your app also requires a basic understanding of relevant character sets commonly used in modern software development and an understanding of the issues associated with them. Although all computers store text as numbers (codes), different systems store the same text using different numbers. The localization process refers to translating the app user interface (UI) for a specific culture/locale.
 
-[Localizability](https://docs.microsoft.com/dotnet/standard/globalization-localization/localizability-review) is an intermediate process for verifying that a globalized app is ready for localization.
+[Localizability](/dotnet/standard/globalization-localization/localizability-review) is an intermediate process for verifying that a globalized app is ready for localization.
 
 The [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format for the culture name is `<languagecode2>-<country/regioncode2>`, where `<languagecode2>` is the language code and `<country/regioncode2>` is the subculture code. For example, `es-CL` for Spanish (Chile), `en-US` for English (United States), and `en-AU` for English (Australia). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) is a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region. See [Language Culture Name](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
 
@@ -326,6 +326,6 @@ Terms:
 ## Additional resources
 
 * [Localization.StarterWeb project](https://github.com/aspnet/entropy) used in the article.
-* [Resource Files in Visual Studio](https://docs.microsoft.com/cpp/windows/resource-files-visual-studio)
-* [Resources in .resx Files](https://docs.microsoft.com/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Resource Files in Visual Studio](/cpp/windows/resource-files-visual-studio)
+* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
