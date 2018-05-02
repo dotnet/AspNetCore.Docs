@@ -32,7 +32,7 @@ The `IAuthorizationPolicyProvider` interface contains two APIs. `GetPolicyAsync(
 
 ## Parameterized Authorize Attribute Example
 
-One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](xref:security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an application should be made available to users of *different* ages, though, it might be useful to have many different age-based policies. An alternative to registering all the different age-based policies that the application will need would be to generate the policies dynamically with a custom `IAuthorizationPolicyProvider` and annotate actions with an authorization attribute like `[MinimumAgeAuthorize(20)]`.
+One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](xref:security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an application should be made available to users of *different* ages, though, it might be useful to have many different age-based policies. Instead of registering all the different age-based policies that the application will need individually, you can generate the policies dynamically with a custom `IAuthorizationPolicyProvider` and annotate actions with an authorization attribute like `[MinimumAgeAuthorize(20)]`.
 
 ## Custom Authorization Attributes
 
@@ -65,7 +65,7 @@ internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
 }
 ```
 
-This attribute type has a `Policy` string based on the hard-coded prefix (`"MinimumAge"`) and the integer passed in via the constructor.
+This attribute type has a `Policy` string based on the hard-coded prefix (`"MinimumAge"`) and an integer passed in via the constructor.
 
 You can apply it to actions in the same way as other `Authorize` attributes except that it takes an integer as a parameter.
 
@@ -125,9 +125,9 @@ As with all aspects of custom `IAuthorizationPolicyProvider`s, though, you can c
 
 ## Using a Custom IAuthorizationPolicyProvider
 
-A custom `IAuthorizationPolicyProvider` allows extensibility in how ASP.NET Core applications find authorization policies for given policy names. As with other policy-based authorization scenarios, the policies returned from a custom `IAuthorizationPolicyProvider` will need to have requirements (likely using custom `IAuthorizationRequirement`s). If you use `IAuthorizationRequirement`s, then you will need to register appropriate `AuthorizationHandler`s with dependency injection as always (and as described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers) documentation).
+A custom `IAuthorizationPolicyProvider` allows extensibility in how ASP.NET Core applications find authorization policies for given policy names. As with other policy-based authorization scenarios, the policies returned from a custom `IAuthorizationPolicyProvider` will need to have requirements and you will need to register appropriate `AuthorizationHandler`s with dependency injection (as described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers) documentation).
 
-Custom `IAuthorizationPolicyProvider` types must be registered in the application's dependency injection service collection (in `Startup.ConfigureServices`), as well, to replace the default policy provider.
+You also need to register custom `IAuthorizationPolicyProvider` types in the application's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
 
 ```CSharp
 services.AddTransient<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
