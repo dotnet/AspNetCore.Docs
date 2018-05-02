@@ -7,7 +7,7 @@ namespace HttpClientFactorySample.GitHub
     #region snippet1
     public class RepoService
     {
-        private readonly HttpClient _httpClient; // not exposed publically
+        private readonly HttpClient _httpClient; // not exposed publicly
 
         public RepoService(HttpClient client)
         {

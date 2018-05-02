@@ -1,5 +1,3 @@
-using System;
-using System.Net.Http;
 using HttpClientFactorySample.GitHub;
 using HttpClientFactorySample.Handlers;
 using HttpClientFactorySample.Services;
@@ -9,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
-using Polly.Timeout;
+using System;
+using System.Net.Http;
 
 namespace HttpClientFactorySample
 {

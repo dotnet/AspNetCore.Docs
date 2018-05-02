@@ -262,7 +262,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 
 ![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
-For more information about IntelliSense, see [JavaScript IntelliSense](https://docs.microsoft.com/visualstudio/ide/javascript-intellisense).
+For more information about IntelliSense, see [JavaScript IntelliSense](/visualstudio/ide/javascript-intellisense).
 
 ## Development, staging, and production environments
 

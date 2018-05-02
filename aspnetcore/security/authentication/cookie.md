@@ -157,7 +157,7 @@ The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect your
 
 ## Creating an authentication cookie
 
-To create a cookie holding user information, you must construct a [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal). The user information is serialized and stored in the cookie. 
+To create a cookie holding user information, you must construct a [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal). The user information is serialized and stored in the cookie. 
 
 #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Create a [ClaimsIdentity](/dotnet/api/system.security.claims.claimsidentity) with any required [Claim](/dotnet/api/system.security.claims.claim)s and call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
