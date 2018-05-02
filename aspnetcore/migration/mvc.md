@@ -63,7 +63,7 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add a *Controllers* folder.
 
-* Add an **Controller class** with the name *HomeController.cs* to the *Controllers* folder.
+* Add a **Controller Class** named *HomeController.cs* to the *Controllers* folder.
 
 ![Add New Item dialog](mvc/_static/add_mvc_ctl.png)
 
@@ -71,7 +71,7 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add a *Views/Home* folder.
 
-* Add an *Index.cshtml* Razor View to the *Views/Home* folder.
+* Add a **Razor View** named *Index.cshtml* to the *Views/Home* folder.
 
 ![Add New Item dialog](mvc/_static/view.png)
 
@@ -91,7 +91,7 @@ Run the app.
 
 See [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview) for more information.
 
-Now that we have a minimal working ASP.NET Core project, we can start migrating functionality from the ASP.NET MVC project. We will need to move the following:
+Now that we have a minimal working ASP.NET Core project, we can start migrating functionality from the ASP.NET MVC project. We need to move the following:
 
 * client-side content (CSS, fonts, and scripts)
 
@@ -125,7 +125,7 @@ Note the lack of styling and menu items. We'll fix that in the next section.
 
 ## Static content
 
-In previous versions of  ASP.NET MVC, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* folder. You'll want to copy the static content from your old ASP.NET MVC app to the *wwwroot* folder in your ASP.NET Core project. In this sample conversion:
+In previous versions of ASP.NET MVC, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* folder. You'll want to copy the static content from your old ASP.NET MVC app to the *wwwroot* folder in your ASP.NET Core project. In this sample conversion:
 
 * Copy the *favicon.ico* file from the old MVC project to the *wwwroot* folder in the ASP.NET Core project.
 
@@ -190,15 +190,15 @@ View the site in the browser. It should now load correctly, with the expected st
 
 For information about how to configure bundling and minification, see [Bundling and Minification](../client-side/bundling-and-minification.md).
 
-## Solving HTTP 500 errors
+## Solve HTTP 500 errors
 
-There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. By default in ASP.NET Core Applications, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. This is detailed in the following code:
+There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. This is detailed in the following code:
 
-  [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
+[!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 
 See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
 
 ## Additional resources
 
-* [Client-Side Development](xref:client-side/index)
+* [Client-side development](xref:client-side/index)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
