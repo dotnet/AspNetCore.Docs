@@ -34,7 +34,7 @@ For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core
 
 Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
 
-For more information, see [Runtime store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store)
+For more information, see [Runtime store](/dotnet/core/deploying/runtime-store)
 
 ## .NET Standard 2.0
 
