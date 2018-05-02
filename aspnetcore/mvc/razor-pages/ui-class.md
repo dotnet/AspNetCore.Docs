@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.topic: advanced
 uid: mvc/razor-pages/ui-class
 ---
-# Create reusable UI using the Razor Class Library project.
+# Create reusable UI using the Razor Class Library project in ASP.NET Core.
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

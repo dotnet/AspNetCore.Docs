@@ -132,6 +132,7 @@
 ### [HTTP.sys](fundamentals/servers/httpsys.md)
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+## [Initiate HTTP requests](xref:fundamentals/http-requests)
 ## [Request features](fundamentals/request-features.md)
 ## [Background tasks with hosted services](xref:fundamentals/hosted-services)
 ## [Primitives](xref:fundamentals/primitives/index)
