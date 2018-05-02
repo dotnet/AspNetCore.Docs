@@ -204,6 +204,38 @@ The `OnPostDeleteAsync` method:
 * If the customer contact is found, they're removed from the list of customer contacts. The database is updated.
 * Calls `RedirectToPage` to redirect to the root Index page (`/Index`).
 
+::: moniker range=">= aspnetcore-2.1"
+## Manage HEAD requests with the OnGet handler
+
+Ordinarily, a HEAD handler is created and called for HEAD requests:
+
+```csharp
+public void OnHead()
+{
+    HttpContext.Response.Headers.Add("HandledBy", "Handled by OnHead!");
+}
+```
+
+If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. Opt in to this behavior with the [SetCompatibilityVersion method](xref:fundamentals/startup#setcompatibilityversion-for-aspnet-core-mvc) in `Startup.Configure` for ASP.NET Core 2.1 to 2.x:
+
+```csharp
+services.AddMvc()
+    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+```
+
+`SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`. The behavior is opt-in until the release of ASP.NET Core 3.0 Preview 1 or later. Each major version of ASP.NET Core adopts all of the patch release behaviors of the previous version.
+
+Global opt-in behavior for patch releases 2.1 to 2.x can be avoided with an app configuration that maps HEAD requests to the GET handler. Set the `AllowMappingHeadRequestsToGetHandler` Razor Pages option to `true` without calling `SetCompatibilityVersion` in `Startup.Configure`:
+
+```csharp
+services.AddMvc()
+    .AddRazorPagesOptions(options =>
+    {
+        options.AllowMappingHeadRequestsToGetHandler = true;
+    });
+```
+::: moniker-end
+
 <a name="xsrf"></a>
 
 ## XSRF/CSRF and Razor Pages
@@ -361,6 +393,8 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
+
+
 
 ## Customizing Routing
 

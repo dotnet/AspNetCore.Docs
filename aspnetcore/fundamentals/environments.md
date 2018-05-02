@@ -49,6 +49,22 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 
 [!code-json[](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
 
+::: moniker range=">= aspnetcore-2.1"
+> [!NOTE]
+> The `applicationUrl` property in *launchSettings.json* can specify a list of server URLs. Use a semicolon between the URLs in the list:
+>
+> ```json
+> "WebApplication1": {
+>    "commandName": "Project",
+>    "launchBrowser": true,
+>    "applicationUrl": "https://localhost:5001;http://localhost:5000",
+>    "environmentVariables": {
+>      "ASPNETCORE_ENVIRONMENT": "Development"
+>    }
+> }
+> ```
+::: moniker-end
+
 When the application is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` will be used. The value of `commandName` specifies the web server to launch. `commandName` can be one of :
 
 * IIS Express

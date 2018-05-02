@@ -15,6 +15,10 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
+::: moniker range="= aspnetcore-2.1"
+[!INCLUDE[](~/includes/2.1.md)]
+::: moniker-end
+
 This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
 
 There are three versions of this tutorial:
@@ -33,20 +37,11 @@ There are three versions of this tutorial:
 
 ## Create the project
 
-From Visual Studio, select **File** menu, > **New** > **Project**.
+Follow these steps in Visual Studio:
 
-Select **.NET Core** > **ASP.NET Core Web Application** project template. Name the project *TodoApi* and select **OK**.
-
-![New project dialog](first-web-api/_static/new-project.png)
-
-In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template. Select **OK**. Do **not** select **Enable Docker Support**.
-
-::: moniker range="<= aspnetcore-2.0"
-![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
-::: moniker-end
-::: moniker range=">= aspnetcore-2.1"
-![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project-2.1.png)
-::: moniker-end
+* From the **File** menu, select **New** > **Project**.
+* Select the **ASP.NET Core Web Application** template. Name the project *TodoApi* and click **OK**.
+* In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
 
 ### Launch the app
 
