@@ -15,7 +15,7 @@ en-us/
 
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and  [Jon P Smith](https://twitter.com/thereformedprog)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
@@ -80,13 +80,13 @@ The DB and data model must be configured to support throwing `DbUpdateConcurrenc
 
 ### Detecting concurrency conflicts on a property
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](https://docs.microsoft.com/ef/core/modeling/concurrency#data-annotations).
+Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
 
 The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
 
 ### Detecting concurrency conflicts on a row
 
-To detect concurrency conflicts, a [rowversion](https://docs.microsoft.com/sql/t-sql/data-types/rowversion-transact-sql) tracking column is added to the model.  `rowversion` :
+To detect concurrency conflicts, a [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) tracking column is added to the model.  `rowversion` :
 
 * Is SQL Server specific. Other databases may not provide a similar feature.
 * Is used to determine that an entity has not been changed since it was fetched from the DB. 
@@ -125,7 +125,7 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 [!code-sql[](intro/samples/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT](https://docs.microsoft.com/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
+[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
 
 You can see the T-SQL EF Core generates in the output window of Visual Studio.
 
@@ -303,8 +303,8 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 ### Additional resources
 
-* [Concurrency Tokens in EF Core](https://docs.microsoft.com/ef/core/modeling/concurrency)
-* [Handle concurrency in EF Core](https://docs.microsoft.com/ef/core/saving/concurrency)
+* [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
+* [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/update-related-data)
