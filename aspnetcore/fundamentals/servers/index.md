@@ -19,7 +19,12 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships two server implementations:
 
+::: moniker range="<= aspnetcore-2.0"
 * [Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+* [Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform HTTP server based on managed sockets (`Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets`), a cross-platform asynchronous I/O library. In versions of ASP.NET Core prior to 2.1, Kestrel is based on [libuv](https://github.com/libuv/libuv).
+::: moniker-end
 
 * [HTTP.sys](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
 

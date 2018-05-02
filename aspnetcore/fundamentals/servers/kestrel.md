@@ -1,11 +1,11 @@
 ---
 title: Kestrel web server implementation in ASP.NET Core
 author: tdykstra
-description: Learn about Kestrel, the cross-platform web server for ASP.NET Core based on libuv.
+description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/26/2018
+ms.date: 05/02/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -15,7 +15,14 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
+::: moniker range="<= aspnetcore-2.0"
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that's included by default in ASP.NET Core project templates.
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index) based on managed sockets (`Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets`), a cross-platform asynchronous I/O library. In versions of ASP.NET Core prior to 2.1, Kestrel is based on [libuv](https://github.com/libuv/libuv).
+
+Kestrel is the web server that's included by default in ASP.NET Core project templates.
+::: moniker-end
 
 Kestrel supports the following features:
 
@@ -74,6 +81,27 @@ The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microso
 ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the template code calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), which calls [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel) behind the scenes.
 
 [!code-csharp[](kestrel/samples/2.x/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
+
+::: moniker range=">= aspnetcore-2.1"
+**Default transport changes from Libuv to managed sockets (ASP.NET Core 2.1 or later)**
+
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
+
+* [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/)
+* [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
+
+For ASP.NET Core 2.1 or later projects that require the use of Libuv (the app calls [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv)), update the project to directly reference the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package. Add a dependency for the Libuv transport package to the app's project file:
+
+```xml
+<PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+                  Version="2.1.0" />
+```
+
+> [!NOTE]
+> The [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage doesn't directly reference [Libuv](https://www.nuget.org/packages/Libuv/), but it does directly reference [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/). The Libuv transport package is transitively referenced when the `Microsoft.AspNetCore.All` package is referenced. No action is required by the developer when the `Microsoft.AspNetCore.All` metapackage is used and `UseLibuv` is called in the app. Note that the ASP.NET Core 2.1 or later templates reference the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage by default. The use of the `Microsoft.AspNetCore.All` metapackage isn't recommended for ASP.NET Core 2.1 or later apps.
+>
+> The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage doesn't directly or transitively reference the `Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv` package. The Libuv transport package must be referenced manually when the `Microsoft.AspNetCore.App` metapackage is referenced and `UseLibuv` is called in the app. Use the **\<PackageReference>** element shown earlier to add the Libuv transport package to the app.
+::: moniker-end
 
 #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
