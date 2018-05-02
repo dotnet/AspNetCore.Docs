@@ -59,7 +59,7 @@ The RCL can be referenced by:
 
 For content outside the RCL, the ASP.NET Core runtime does not search for partial files in the RCL.
 
-For example, in the sample download, the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view cannot be referenced in *WebApp1\Pages\About.cshtml*. However, pages in the RCL ( *RazorUIClassLib/* can access *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
+For example, in the sample download, the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view can **not** be referenced in *WebApp1\Pages\About.cshtml*. However, pages in the RCL ( *RazorUIClassLib/* **can** access *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
 
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
@@ -162,7 +162,7 @@ For more information on viewimports, see [Importing Shared Directives](xref:mvc/
 * Build the class library to verify there are no compiler errors:
 
 ``` CLI
-dotnet build RazorUIClassLib```
+dotnet build RazorUIClassLib
 ``
 
 The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
