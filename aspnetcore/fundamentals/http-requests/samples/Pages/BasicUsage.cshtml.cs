@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HttpClientFactorySample.GitHub;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 
 namespace HttpClientFactorySample.Pages
 {
@@ -15,6 +14,8 @@ namespace HttpClientFactorySample.Pages
 
         public IEnumerable<GitHubBranch> Branches { get; private set; }
 
+        public bool GetBranchesError { get; private set; }
+
         public BasicUsageModel(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
@@ -22,7 +23,7 @@ namespace HttpClientFactorySample.Pages
 
         public async Task OnGet()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/aspnet/docs/branches" );
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/aspnet/docs/branches");
             request.Headers.Add("Accept", "application/vnd.github.v3+json");
             request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
 
@@ -32,13 +33,13 @@ namespace HttpClientFactorySample.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                var data = await response.Content.ReadAsStringAsync();
-                Branches = JsonConvert.DeserializeObject<IEnumerable<GitHubBranch>>(data);
+                Branches = await response.Content.ReadAsAsync<IEnumerable<GitHubBranch>>();
             }
             else
             {
+                GetBranchesError = true;
                 Branches = Array.Empty<GitHubBranch>();
-            }
+            }                               
         }
     }
     #endregion

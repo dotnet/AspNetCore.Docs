@@ -48,7 +48,7 @@ Using `IHttpClientFactory` in this fashion is a great way to refactor an existin
 
 ### Named clients
 
-If an app requires multiple distinct uses of `HttpClient`, each with different configurations, an option is to use **named clients**. Configuration for a named `HttpClient` can be specified during registration in `ConfigureServices`.
+If an app requires multiple distinct uses of `HttpClient`, each with a different configuration, an option is to use **named clients**. Configuration for a named `HttpClient` can be specified during registration in `ConfigureServices`.
 
 [!code-csharp[](http-requests/samples/Startup.cs?name=snippet2)]
 
@@ -60,7 +60,7 @@ To consume a named client, a string parameter can be passed to `CreateClient`. S
 
 [!code-csharp[](http-requests/samples/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=14-18)]
 
-In the preceding code, the request doesn't need to specify a hostname. I can provide just the path, since the base address configured for the client is used.
+In the preceding code, the request doesn't need to specify a hostname. It can pass just the path, since the base address configured for the client is used.
 
 ### Typed clients
 

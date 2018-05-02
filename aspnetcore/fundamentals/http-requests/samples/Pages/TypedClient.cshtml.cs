@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using HttpClientFactorySample.GitHub;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,9 +13,11 @@ namespace HttpClientFactorySample.Pages
     {
         private readonly GitHubService _gitHubService;
 
-        public GitHubIssue LastestIssue { get; private set; }
+        public IEnumerable<GitHubIssue> LastestIssues { get; private set; }
 
-        public bool HasIssue => LastestIssue != null;
+        public bool HasIssue => LastestIssues.Any();
+
+        public bool GetIssuesError { get; private set; }
 
         public TypedClientModel(GitHubService gitHubService)
         {
@@ -20,7 +26,15 @@ namespace HttpClientFactorySample.Pages
 
         public async Task OnGet()
         {
-            LastestIssue = await _gitHubService.GetLatestDocsIssue();
+            try
+            {
+                LastestIssues = await _gitHubService.GetAspNetDocsIssues();
+            }
+            catch(HttpRequestException)
+            {
+                GetIssuesError = true;
+                LastestIssues = Array.Empty<GitHubIssue>();
+            }            
         }
     }
     #endregion

@@ -1,13 +1,21 @@
 ﻿@page
 @model BasicUsageModel
 @{
+    ViewData["Title"] = "Branches for Docs Repo";
 }
 
-<h1>Branches for Docs Repo</h1>
+<h1>@ViewData["Title"]</h1>
 
-<ul>
-    @foreach (var branch in Model.Branches)
-    {
-        <li>@branch.Name</li>
-    }
-</ul>
+@if (Model.GetBranchesError)
+{
+    <p>Unable to get branches from GitHub. Please try again later.</p>
+}
+else
+{
+    <ul>
+        @foreach (var branch in Model.Branches)
+        {
+            <li>@branch.Name</li>
+        }
+    </ul>
+}

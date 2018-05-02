@@ -1,8 +1,7 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace HttpClientFactorySample.GitHub
 {
@@ -23,33 +22,15 @@ namespace HttpClientFactorySample.GitHub
             Client = client;
         }
 
-        public async Task<GitHubIssue> GetLatestDocsIssue()
+        public async Task<IEnumerable<GitHubIssue>> GetAspNetDocsIssues()
         {
-            var response = await Client.GetAsync("/repos/aspnet/docs/issues?state=open&sort=created&direction=desc", HttpCompletionOption.ResponseHeadersRead);
+            var response = await Client.GetAsync("/repos/aspnet/docs/issues?state=open&sort=created&direction=desc");
 
             response.EnsureSuccessStatusCode();
 
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                var serializer = new JsonSerializer();
+            var result = await response.Content.ReadAsAsync<IEnumerable<GitHubIssue>>();
 
-                while (await jsonReader.ReadAsync())
-                {
-                    if (jsonReader.TokenType == JsonToken.StartObject)
-                    {
-                        var issue = serializer.Deserialize<GitHubIssue>(jsonReader);
-
-                        if (issue != null)
-                        {
-                            return issue; // we only want the first object
-                        }
-                    }
-                }
-            }
-
-            return null;
+            return result;
         }
     }
     #endregion

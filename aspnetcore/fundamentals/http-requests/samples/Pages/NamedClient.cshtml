@@ -6,9 +6,18 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<ul>
+@if (Model.GetPullRequestsError)
+{
+    <p>Unable to get issues from GitHub. Please try again later.</p>
+}
+else if (Model.HasPullRequests)
+{
     @foreach (var pr in Model.PullRequests)
     {
         <li>@pr.Title</li>
     }
-</ul>
+}
+else
+{
+    <p>No pull requests found.</p>
+}

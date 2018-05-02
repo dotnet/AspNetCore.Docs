@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HttpClientFactorySample.GitHub;
@@ -14,6 +15,10 @@ namespace HttpClientFactorySample.Pages
         private readonly IHttpClientFactory _clientFactory;
 
         public IEnumerable<GitHubPullRequest> PullRequests { get; private set; }
+
+        public bool GetPullRequestsError { get; private set; }
+
+        public bool HasPullRequests => PullRequests.Any();
 
         public NamedClientModel(IHttpClientFactory clientFactory)
         {
@@ -30,11 +35,11 @@ namespace HttpClientFactorySample.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                var data = await response.Content.ReadAsStringAsync();
-                PullRequests = JsonConvert.DeserializeObject<IEnumerable<GitHubPullRequest>>(data);
+                PullRequests = await response.Content.ReadAsAsync<IEnumerable<GitHubPullRequest>>();
             }
             else
             {
+                GetPullRequestsError = true;
                 PullRequests = Array.Empty<GitHubPullRequest>();
             }
         }

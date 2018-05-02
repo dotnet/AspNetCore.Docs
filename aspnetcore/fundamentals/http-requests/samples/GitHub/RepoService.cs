@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace HttpClientFactorySample.GitHub
 {
@@ -21,9 +20,9 @@ namespace HttpClientFactorySample.GitHub
 
             response.EnsureSuccessStatusCode();
 
-            var responseContent = await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsAsync<IEnumerable<string>>();
 
-            return JsonConvert.DeserializeObject<IEnumerable<string>>(responseContent);
+            return result;
         }
     }
     #endregion

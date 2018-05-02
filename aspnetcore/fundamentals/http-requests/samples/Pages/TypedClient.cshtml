@@ -1,14 +1,22 @@
 ﻿@page
 @model TypedClientModel
 @{
+    ViewData["Title"] = "Latest GitHub Issues for ASP.NET Docs";
 }
 
-<h1>Latest GitHub Issue for ASP.NET Docs</h1>
+<h1>@ViewData["Title"]</h1>
 
-@if (Model.HasIssue)
+@if (Model.GetIssuesError)
 {
-    <h2>Title: @Model.LastestIssue.Title</h2>
-    <p><a href="@Model.LastestIssue.Url">View Issue</a></p>
+    <p>Unable to get issues from GitHub. Please try again later.</p>
+}
+else if (Model.HasIssue)
+{
+    @foreach (var issue in Model.LastestIssues)
+    {
+        <h2>Title: @issue.Title</h2>
+        <p><a href="@issue.Url">View Issue</a></p>
+    }
 }
 else
 {
