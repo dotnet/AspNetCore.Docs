@@ -163,7 +163,7 @@ For more information on viewimports, see [Importing Shared Directives](xref:mvc/
 
 ``` CLI
 dotnet build RazorUIClassLib
-``
+```
 
 The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
 
