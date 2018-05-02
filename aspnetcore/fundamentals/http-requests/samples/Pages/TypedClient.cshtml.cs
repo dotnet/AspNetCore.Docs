@@ -13,9 +13,9 @@ namespace HttpClientFactorySample.Pages
     {
         private readonly GitHubService _gitHubService;
 
-        public IEnumerable<GitHubIssue> LastestIssues { get; private set; }
+        public IEnumerable<GitHubIssue> LatestIssues { get; private set; }
 
-        public bool HasIssue => LastestIssues.Any();
+        public bool HasIssue => LatestIssues.Any();
 
         public bool GetIssuesError { get; private set; }
 
@@ -28,12 +28,12 @@ namespace HttpClientFactorySample.Pages
         {
             try
             {
-                LastestIssues = await _gitHubService.GetAspNetDocsIssues();
+                LatestIssues = await _gitHubService.GetAspNetDocsIssues();
             }
             catch(HttpRequestException)
             {
                 GetIssuesError = true;
-                LastestIssues = Array.Empty<GitHubIssue>();
+                LatestIssues = Array.Empty<GitHubIssue>();
             }            
         }
     }
