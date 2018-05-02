@@ -147,7 +147,7 @@ public class ValuesController : ControllerBase
 
 ## Outgoing request middleware
 
-`HttpClient` already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `IHttpClientFactory` makes registration of per-named clients more intuitive. It supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
+`HttpClient` already has the concept of delegating handlers that can be linked together for outgoing HTTP requests. The `IHttpClientFactory` makes it easy to define the handlers to apply for each named client. It supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
 
 To create a handler, define a class deriving from `DelegatingHandler`. Override the `SendAsync` method to execute code before passing the request to the next handler in the pipeline:
 
@@ -177,7 +177,7 @@ After restoring this package, extension methods are available to support adding 
 
 ### Handle transient faults
 
-The most common faults you may expect to occur when making external HTTP calls are transient. A convenient extension method called `AddTransientHttpErrorPolicy` is included, which allows a policy to be defined. The policy applies when these common transient errors occur. Examples of errors handled by the policy include `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
+The most common faults you may expect to occur when making external HTTP calls will be transient. A convenient extension method called `AddTransientHttpErrorPolicy` is included which allows a policy to be defined to handle transient errors. Policies configured with this extension method handle `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
 
 The `AddTransientHttpErrorPolicy` extension can be used within `ConfigureServices`. The extension provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
@@ -213,7 +213,7 @@ Further information about `IHttpClientFactory` and Polly integrations can be fou
 
 ## HttpClient and lifetime management
 
-Each time `CreateClient` is called on the `IHttpClientFactory`, a new instance of a `HttpClient` is returned. There's a `HttpMessageHandler` per named client. `IHttpClientFactory` pools the `HttpMessageHandler` instances created by the factory to reduce resource consumption. A `HttpMessageHandler` instance may be reused from the pool when creating new `HttpClient` instance if its lifetime hasn't expired.
+Each time `CreateClient` is called on the `IHttpClientFactory`, a new instance of a `HttpClient` is returned. There will be a `HttpMessageHandler` per named client. `IHttpClientFactory` will pool the `HttpMessageHandler` instances created by the factory to reduce resource consumption. A `HttpMessageHandler` instance may be reused from the pool when creating a new `HttpClient` instance if its lifetime hasn't expired. 
 
 Pooling of handlers is desirable as each handler typically manages its own underlying HTTP connections; creating more handlers than necessary can result in connection delays. Some handlers also keep connections open indefinitely, which can prevent the handler from reacting to DNS changes.
 
@@ -227,7 +227,7 @@ Clients created via `IHttpClientFactory` record log messages for all requests. Y
 
 The log category used for each client includes the name of the client. A client named "MyNamedClient", for example, logs messages with a category of `System.Net.Http.HttpClient.MyNamedClient.LogicalHandler`. Messages with the suffix of "LogicalHandler" occur on the outside of request handler pipeline. On the request, messages are logged before any other handlers in the pipeline have processed it. On the response, messages are logged after any other pipeline handlers have received the response.
 
-Logging also occurs on the inside of the request handler pipeline. In the "MyNameClient" example, those messages are logged against the log category `System.Net.Http.HttpClient.MyNamedClient.ClientHandler`. For the request, logging occurs after all other handlers have run and immediately before the request is sent out on the network. On the response, this logging includes the state of the response before it passes back through the handler pipeline.
+Logging also occurs on the inside of the request handler pipeline. In the case of the "MyNamedClient" example, those messages are logged against the log category `System.Net.Http.HttpClient.MyNamedClient.ClientHandler`. For the request, this occurs after all other handlers have run and immediately before the request is sent out on the network. On the response, this logging includes the state of the response before it passes back through the handler pipeline.
 
 Enabling logging on the outside and inside of the pipeline enables inspection of the changes made by the other pipeline handlers. This may include changes to request headers, for example, or to the response status code.
 
