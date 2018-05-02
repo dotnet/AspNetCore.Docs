@@ -582,8 +582,6 @@ Some third-party frameworks can do [semantic logging, also known as structured l
 
 Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on `ILoggerFactory`. For more information, see each framework's documentation.
 
-You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.
-
 ## Azure log streaming
 
 Azure log streaming enables you to view log activity in real time from: 
