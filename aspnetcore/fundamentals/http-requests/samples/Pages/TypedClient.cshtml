@@ -12,7 +12,7 @@
 }
 else if (Model.HasIssue)
 {
-    @foreach (var issue in Model.LastestIssues)
+    @foreach (var issue in Model.LatestIssues)
     {
         <h2>Title: @issue.Title</h2>
         <p><a href="@issue.Url">View Issue</a></p>
