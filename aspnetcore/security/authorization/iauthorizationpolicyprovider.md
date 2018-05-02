@@ -15,7 +15,7 @@ uid: security/authorization/iauthorizationpolicyprovider
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Typically when using [policy-based authorization](https://docs.microsoft.com/aspnet/core/security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, though, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, a custom `IAuthorizationPolicyProvider` can be used to fully control how authorization policies are supplied.
+Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, though, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, a custom `IAuthorizationPolicyProvider` can be used to fully control how authorization policies are supplied.
 
 Examples of scenarios where a custom `IAuthorizationPolicyProvider` may be useful include:
 
@@ -32,7 +32,7 @@ The `IAuthorizationPolicyProvider` interface contains two APIs. `GetPolicyAsync(
 
 ## Parameterized Authorize Attribute Example
 
-One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](https://docs.microsoft.com/aspnet/core/security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an application should be made available to users of *different* ages, though, it might be useful to have many different age-based policies. An alternative to registering all the different age-based policies that the application will need would be to generate the policies dynamically with a custom `IAuthorizationPolicyProvider` and annotate actions with an authorization attribute like `[MinimumAgeAuthorize(20)]`.
+One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](xref:security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an application should be made available to users of *different* ages, though, it might be useful to have many different age-based policies. An alternative to registering all the different age-based policies that the application will need would be to generate the policies dynamically with a custom `IAuthorizationPolicyProvider` and annotate actions with an authorization attribute like `[MinimumAgeAuthorize(20)]`.
 
 ## Custom Authorization Attributes
 
@@ -126,7 +126,7 @@ As with all aspects of custom `IAuthorizationPolicyProvider`s, though, this can 
 
 ## Using a Custom IAuthorizationPolicyProvider
 
-A custom `IAuthorizationPolicyProvider` allows extensibility in how ASP.NET Core applications find authorization policies for given policy names. As with other policy-based authorization scenarios, the policies returned from a custom `IAuthorizationPolicyProvider` will need to have requirements (likely using custom `IAuthorizationRequirement`s). If `IAuthorizationRequirement`s are used, then appropriate `AuthorizationHandler`s will need to be registered with dependency injection as always (and as described in [policy-based authorization](https://docs.microsoft.com/aspnet/core/security/authorization/policies#authorization-handlers) documentation).
+A custom `IAuthorizationPolicyProvider` allows extensibility in how ASP.NET Core applications find authorization policies for given policy names. As with other policy-based authorization scenarios, the policies returned from a custom `IAuthorizationPolicyProvider` will need to have requirements (likely using custom `IAuthorizationRequirement`s). If `IAuthorizationRequirement`s are used, then appropriate `AuthorizationHandler`s will need to be registered with dependency injection as always (and as described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers) documentation).
 
 Custom `IAuthorizationPolicyProvider` types must be registered in the application's dependency injection service collection (in `Startup.ConfigureServices`), as well, to replace the default policy provider.
 
