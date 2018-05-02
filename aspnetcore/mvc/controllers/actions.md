@@ -31,7 +31,7 @@ A controller is an instantiable class in which at least one of the following con
 
 A controller class must not have an associated `[NonController]` attribute.
 
-Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). There are a couple approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
+Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). There are a couple of approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
 
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 
@@ -59,7 +59,7 @@ There are two result types within this category: Redirect and HTTP Status Code.
 
 * **HTTP Status Code**
 
-    This type returns an HTTP status code. A couple helper methods of this type are `BadRequest`, `NotFound`, and `Ok`. For example, `return BadRequest();` produces a 400 status code when executed. When methods such as `BadRequest`, `NotFound`, and `Ok` are overloaded, they no longer qualify as HTTP Status Code responders, since content negotiation is taking place.
+    This type returns an HTTP status code. A couple of helper methods of this type are `BadRequest`, `NotFound`, and `Ok`. For example, `return BadRequest();` produces a 400 status code when executed. When methods such as `BadRequest`, `NotFound`, and `Ok` are overloaded, they no longer qualify as HTTP Status Code responders, since content negotiation is taking place.
 
 * **Redirect**
 
