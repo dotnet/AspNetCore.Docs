@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/05/2018
+ms.date: 05/02/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -44,7 +44,7 @@ The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extens
 
 Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection](xref:fundamentals/dependency-injection) (DI). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
 
-[!code-csharp[](http-requests/samples/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=7-10,18)]
+[!code-csharp[](http-requests/samples/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,20)]
 
 Using `IHttpClientFactory` in this fashion is a great way to refactor an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to `CreateClient`.
 
@@ -60,7 +60,7 @@ Each time `CreateClient` is called, a new instance of `HttpClient` is created an
 
 To consume a named client, a string parameter can be passed to `CreateClient`. Specify the name of the client to be created:
 
-[!code-csharp[](http-requests/samples/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=14-18)]
+[!code-csharp[](http-requests/samples/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=20)]
 
 In the preceding code, the request doesn't need to specify a hostname. It can pass just the path, since the base address configured for the client is used.
 
@@ -70,7 +70,7 @@ Typed clients provide the same capabilities as named clients without the need to
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/GitHub/GitHubService.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
 In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetLatestDocsIssue` method encapsulates the code needed to query for and parse out the latest issue from a GitHub repository.
 
@@ -80,7 +80,7 @@ To register a typed client, the generic `AddHttpClient` extension method can be 
 
 The typed client is registered as transient with DI. The typed client can be injected and consumed directly:
 
-[!code-csharp[](http-requests/samples/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=9-12,16)]
+[!code-csharp[](http-requests/samples/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
 
 If preferred, the configuration for a typed client can be specified during registration in `ConfigureServices`, rather than in the typed client's constructor:
 
