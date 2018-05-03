@@ -45,12 +45,6 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
   `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET Core runtime is modular, and you must explicitly opt in to serve static files (see [Work with static files](../fundamentals/static-files.md)).
 
-* Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
-
-  [!code-xml[](mvc/sample/WebApp1.csproj?range=21-23)]
-
-  The `PrepareForPublish` target is needed for acquiring client-side libraries via Bower. We'll talk about that later.
-
 * Open the *Startup.cs* file and change the code to match the following:
 
   [!code-csharp[](mvc/sample/Startup.cs?highlight=13,26-31)]
@@ -131,17 +125,18 @@ In previous versions of ASP.NET MVC, static content was hosted from the root of 
 
 The old ASP.NET MVC project uses [Bootstrap](http://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* folders. The template, which generated the old ASP.NET MVC project, references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). You could copy the *bootstrap.js* and *bootstrap.css* files from the ASP.NET MVC project to the *wwwroot* folder in the new project, but that approach doesn't use the improved mechanism for managing client-side dependencies in ASP.NET Core.
 
-In the new project, we'll add support for Bootstrap (and other client-side libraries) using [Bower](https://bower.io/):
+In the new project, we'll add support for Bootstrap (and other client-side libraries) using CDN:
 
-* Add a [Bower](https://bower.io/) configuration file named *bower.json* to the project root (Right-click on the project, and then **Add > New Item > Bower Configuration File**). Add [Bootstrap](http://getbootstrap.com/) and [jQuery](https://jquery.com/) to the file (see the highlighted lines below).
+* Open **Views > Shared > _Layout.cshtml** and add the following link to css and script tags
 
-  [!code-json[](mvc/sample/bower.json?highlight=5-6)]
+```html
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-Upon saving the file, Bower will automatically download the dependencies to the *wwwroot/lib* folder. You can use the **Search Solution Explorer** box to find the path of the assets:
-
-![jquery assets shown in the Solution Explorer search results](mvc/_static/search.png)
-
-See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more information.
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+```
 
 ## Migrate the layout file
 
