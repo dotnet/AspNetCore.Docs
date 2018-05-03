@@ -99,7 +99,7 @@ Our app is now ready to support authentication and Identity services. It just ne
 
 With Identity services configured for the app and data access configured using Entity Framework and SQL Server, we're ready to add support for registration and login to the app. Recall that [earlier in the migration process](xref:migration/mvc#migrate-layout-file) we commented out a reference to *_LoginPartial* in *_Layout.cshtml*. Now it's time to return to that code, uncomment it, and add in the necessary controllers and views to support login functionality.
 
-Update *_Layout.cshtml*; uncomment the `@Html.Partial` line:
+Uncomment the `@Html.Partial` line in *_Layout.cshtml*:
 
 ```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
