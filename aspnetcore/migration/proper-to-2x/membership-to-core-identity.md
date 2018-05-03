@@ -32,20 +32,12 @@ To migrate existing apps to ASP.NET Core 2.0 Identity, the data in these tables 
 
 ASP.NET Core 2.0 follows the [Identity](/aspnet/identity/index) principle introduced in ASP.NET 4.5. Though the principle is shared, the implementation between the frameworks is different, even between versions of ASP.NET Core (see [Migrate authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)).
 
-The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a new ASP.NET Core 2.0 app using Visual Studio 2017:
+The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a new ASP.NET Core 2.0 app. Follow these steps in Visual Studio 2017:
 
-* In Visual Studio, select **File** > **New** > **Project**.
-* Create a new **ASP.NET Core Web Application**. Name the project *CoreIdentitySample*.
-
-    ![File New Project](identity/_static/filenew.png)
-
+* Select **File** > **New** > **Project**.
+* Create a new **ASP.NET Core Web Application**, and name the project *CoreIdentitySample*.
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**. This template produces a [Razor Pages](xref:mvc/razor-pages/index) app. Before clicking **OK**, click **Change Authentication**.
-
-    ![New Web Core Project](identity/_static/new-web-core.png)
-
 * Choose **Individual User Accounts** for the Identity templates. Finally, click **OK**, then **OK**. Visual Studio creates a project using the ASP.NET Core Identity template.
-
-    ![Change Authentication](identity/_static/change-auth.png)
 
 ASP.NET Core 2.0 Identity uses [Entity Framework Core](/ef/core) to interact with the database storing the authentication data. In order for the newly created app to work, there needs to be a database to store this data. After creating a new app, the fastest way to inspect the schema in a database environment is to create the database using Entity Framework migrations. This process creates a database, either locally or elsewhere, which mimics that schema. Review the preceding documentation for more information.
 
