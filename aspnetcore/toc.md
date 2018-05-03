@@ -113,10 +113,10 @@
 ### [Middleware](xref:fundamentals/middleware/index)
 ### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
 ### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
-## [Work with static files](fundamentals/static-files.md)
+## [Static files](fundamentals/static-files.md)
 ## [Routing](fundamentals/routing.md)
 ## [URL rewriting middleware](fundamentals/url-rewriting.md)
-## [Work with multiple environments](fundamentals/environments.md)
+## [Use multiple environments](fundamentals/environments.md)
 ## [Configuration and options](xref:fundamentals/configuration/index)
 ### [Configuration](xref:fundamentals/configuration/index)
 ### [Options](xref:fundamentals/configuration/options)
@@ -146,9 +146,8 @@
 # [Razor Pages](xref:mvc/razor-pages/index)
 ## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
 ## [Create a Razor Class Library](xref:mvc/razor-pages/ui-class)
-## [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
+## [Route and app conventions](xref:mvc/razor-pages/razor-pages-conventions)
 ## [Razor SDK](xref:mvc/razor-pages/sdk)
-
 
 # [MVC](mvc/overview.md)
 ## [Model binding](mvc/models/model-binding.md)
@@ -258,7 +257,7 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-## [Add app features using a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
+## [Enhance an app with a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
 
 # [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
