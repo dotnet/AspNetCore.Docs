@@ -60,7 +60,7 @@ ApplicationDbContext.cs:
 using Microsoft.AspNetCore.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
-namespace NewMvc6Project.Models
+namespace NewMvcProject.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
