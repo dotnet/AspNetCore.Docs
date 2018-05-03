@@ -248,7 +248,7 @@ Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the f
 
 Add `public int CourseID { get; set; }`
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet1)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_1&highlight=12)]
 
 Examine the updated query:
 
