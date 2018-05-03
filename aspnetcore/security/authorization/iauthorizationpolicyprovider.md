@@ -24,7 +24,7 @@ Examples of scenarios where a custom [IAuthorizationPolicyProvider](/dotnet/api/
 
 ## Customizing policy retrieval
 
-ASP.NET Core apps use an implementation of the `IAuthorizationPolicyProvider` interface to retrieve authorization policies. By default, [DefaultAuthorizationPolicyProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider?view=aspnetcore-2.0) is registered and used. `DefaultAuthorizationPolicyProvider` returns policies from the `AuthorizationOptions` provided in an `IServiceCollection.AddAuthorization` call.
+ASP.NET Core apps use an implementation of the `IAuthorizationPolicyProvider` interface to retrieve authorization policies. By default, [DefaultAuthorizationPolicyProvider](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) is registered and used. `DefaultAuthorizationPolicyProvider` returns policies from the `AuthorizationOptions` provided in an `IServiceCollection.AddAuthorization` call.
 
 You can customize this behavior by registering a different `IAuthorizationPolicyProvider` implementation in the app’s [dependency injection](xref:fundamentals/dependency-injection) container. 
 
@@ -42,7 +42,7 @@ One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `
 ## Custom Authorization Attributes
 
 Authorization policies are always identified by their names, so the custom `MinimumAgeAuthorizeAttribute` described previously needs to map incoming parameters into a string that can be used to retrieve the corresponding authorization policy. You can do this by deriving from `AuthorizeAttribute` and making the `Age` property wrap the
-`AuthorizeAttribute` `Policy` property.
+`AuthorizeAttribute.Policy` property.
 
 ```CSharp
 internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
@@ -83,10 +83,11 @@ public IActionResult RequiresMinimumAge10()
 
 The custom `MinimumAgeAuthorizeAttribute` makes it easy to request authorization policies for any minimum age desired. The next problem to solve is making sure that authorization policies are available for all of those different ages. This is where an `IAuthorizationPolicyProvider` is useful.
 
-When using `MinimumAgeAuthorizationAttribute`, the authorization policy names will follow the pattern `"MinimumAge" + Age`, so the custom `IAuthorizationPolicyProvider` should generate authorization policies by parsing apart the policy name. The policy provider should:
+When using `MinimumAgeAuthorizationAttribute`, the authorization policy names will follow the pattern `"MinimumAge" + Age`, so the custom `IAuthorizationPolicyProvider` should generate authorization policies by:
 
-* Create `AuthorizationPolicy` objects (using `AuthorizationPolicyBuilder`).
-* Populate the AuthorizationPolicy` objects with appropriate authorization requirements. Populate them using `AddRequirements` or, perhaps, `RequireClaim`, `RequireRole`, or `RequireUserName`.
+* Parsing the age from the policy name.
+* Using `AuthorizationPolicyBuiler` to create a new `AuthorizationPolicy`
+* Adding requirements to the policy based on the age with `AuthorizationPolicyBuilder.AddRequirements`. In other scenarios, you might use `RequireClaim`, `RequireRole`, or `RequireUserName` instead.
 
 ```CSharp
 internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
@@ -116,10 +117,7 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
 
 When using custom `IAuthorizationPolicyProvider` implementations, keep in mind that ASP.NET Core only uses one instance of `IAuthorizationPolicyProvider`. If a custom provider isn't able to provide authorization policies for all policy names, it should fall back to a backup provider. Policy names might include those that come from a default policy for `[Authorize]` attributes without a name.
 
-For example, if a particular application needed both custom age policies (as demonstrated previously) and more traditional role-based policy retrieval:
-
-* The custom `IAuthorizationPolicyProvider` could attempt to create policies for a given policy name (as shown above).
-* Call `GetPolicyAsync` on an instance of `DefaultAuthorizationPolicyProvider` if that fails (instead of returning null).
+For example, if an application needed both custom age policies (as demonstrated previously) and more traditional role-based policy retrieval, it could use a custom authorization policy provider that attempts to parse policy names first and then calls into a different policy provider (like `DefaultAuthorizationPolicyProvider`) if the policy name doesn't contain an age.
 
 ## Default policy
 
@@ -139,12 +137,10 @@ As with all aspects of custom `IAuthorizationPolicyProvider`s, though, you can c
 
 ## Using a Custom IAuthorizationPolicyProvider
 
-A custom `IAuthorizationPolicyProvider` allows extensibility in how ASP.NET Core apps find authorization policies for given policy names. As with other policy-based authorization scenarios, the policies returned from a custom `IAuthorizationPolicyProvider`:
+To use custom policies from an `IAuthorizationPolicyProvider`, you must:
 
-* Need to have requirements.
-* Must register appropriate `AuthorizationHandler`s with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)).
-
-You also need to register custom `IAuthorizationPolicyProvider` types in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
+* Register appropriate `AuthorizationHandler`s with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
+* Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
 
 ```CSharp
 services.AddTransient<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
