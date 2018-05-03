@@ -74,5 +74,5 @@ Requiring authorization on the Private page won't work because when both the `Al
 
 ## See also
 
-* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)
+* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-conventions)
 * [PageConventionCollection](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection) class
