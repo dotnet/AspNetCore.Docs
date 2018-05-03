@@ -104,7 +104,7 @@ public void Configure(IApplicationBuilder app)
 
 In the code above, `UseExceptionHandler` is the first middleware component added to the pipeline—therefore, it catches any exceptions that occur in later calls.
 
-The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. See [Work with static files](xref:fundamentals/static-files) for an approach to secure static files.
+The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. See [Static files](xref:fundamentals/static-files) for an approach to secure static files.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

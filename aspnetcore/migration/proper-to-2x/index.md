@@ -141,7 +141,7 @@ In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt
 
 For example, an image asset in the *wwwroot/images* folder is accessible to the browser at a location such as `http://<app>/images/<imageFileName>`.
 
-**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
+**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Static files](xref:fundamentals/static-files).
 
 ## Additional resources
 

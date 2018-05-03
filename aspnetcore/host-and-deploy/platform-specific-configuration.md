@@ -139,7 +139,7 @@ The sample app sets this value to:
 %UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
 ```
 
-For examples of how to set environment variables for various operating systems, see [Work with multiple environments](xref:fundamentals/environments).
+For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
 ## Sample app
 

@@ -103,7 +103,7 @@ For information about using `IHttpClientFactory` to access `HttpClient` instance
 
 Environments, such as "Development" and "Production", are a first-class notion in ASP.NET Core and can be set using environment variables.
 
-For more information, see [Work with multiple environments](xref:fundamentals/environments).
+For more information, see [Use multiple environments](xref:fundamentals/environments).
 
 ## Configuration
 
@@ -139,7 +139,7 @@ For more information, see [File Providers](xref:fundamentals/file-providers).
 
 Static files middleware serves static files, such as HTML, CSS, image, and JavaScript.
 
-For more information, see [Work with static files](xref:fundamentals/static-files).
+For more information, see [Static files](xref:fundamentals/static-files).
 
 ## Hosting
 
