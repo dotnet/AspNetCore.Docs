@@ -46,7 +46,7 @@ ApplicationUser.cs:
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace NewMvc6Project.Models
+namespace NewMvcProject.Models
 {
   public class ApplicationUser : IdentityUser
   {

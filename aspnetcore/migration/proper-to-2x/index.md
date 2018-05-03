@@ -1,7 +1,7 @@
 ---
-title: Migrating from ASP.NET to ASP.NET Core Reference Guide
+title: Migrate from ASP.NET to ASP.NET Core
 author: isaac2004
-description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.
+description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 manager: wpickett
 ms.author: scaddie
 ms.date: 08/27/2017
@@ -10,11 +10,11 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/proper-to-2x/index
 ---
-# Migrating from ASP.NET to ASP.NET Core Reference Guide
+# Migrate from ASP.NET to ASP.NET Core
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET applications to ASP.NET Core.
+This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 
 ## Target frameworks
 
-ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
+ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
 
@@ -64,11 +64,11 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), several extension methods are used to configure the pipeline with support for:
 
-- [BrowserLink](http://vswebessentials.com/features/browserlink)
-- Error pages
-- Static files
-- ASP.NET Core MVC
-- Identity
+* [BrowserLink](http://vswebessentials.com/features/browserlink)
+* Error pages
+* Static files
+* ASP.NET Core MVC
+* Identity
 
 [!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
 
@@ -133,7 +133,7 @@ The repository can be injected anywhere, as was true with Unity.
 
 **Note:** For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
 
-## Serving static files
+## Serve static files
 
 An important part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript, and images. These files need to be saved in the published location of the app (or CDN) and referenced so they can be loaded by a request. This process has changed in ASP.NET Core.
 
