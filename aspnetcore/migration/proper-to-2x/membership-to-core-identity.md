@@ -1,7 +1,7 @@
 ---
-title: Migrate from ASP.NET Membership to ASP.NET Core 2.0 Identity
+title: Migrate from ASP.NET Membership authentication to ASP.NET Core 2.0 Identity
 author: isaac2004
-description: Learn how to migrate existing ASP.NET apps using Membership Authentication to ASP.NET Core 2.0 Identity.
+description: Learn how to migrate existing ASP.NET apps using Membership authentication to ASP.NET Core 2.0 Identity.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
@@ -11,16 +11,16 @@ ms.technology: aspnet
 ms.topic: article
 uid: migration/proper-to-2x/membership-to-core-identity
 ---
-# Migrate from ASP.NET Membership Authentication to ASP.NET Core 2.0 Identity
+# Migrate from ASP.NET Membership authentication to ASP.NET Core 2.0 Identity
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article demonstrates migrating the database schema for ASP.NET apps using Membership Authentication to ASP.NET Core 2.0 Identity.
+This article demonstrates migrating the database schema for ASP.NET apps using Membership authentication to ASP.NET Core 2.0 Identity.
 
 > [!NOTE]
-> This document provides the steps needed to migrate the database schema for ASP.NET Membership-based apps to the database schema used for ASP.NET Core Identity. For more information about migrating from ASP.NET Membership-based Authentication to ASP.NET Identity, see [Migrate an existing app from SQL Membership to ASP.NET Identity](/aspnet/identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity). For more information about ASP.NET Core Identity, see [Introduction to Identity on ASP.NET Core](xref:security/authentication/identity).
+> This document provides the steps needed to migrate the database schema for ASP.NET Membership-based apps to the database schema used for ASP.NET Core Identity. For more information about migrating from ASP.NET Membership-based authentication to ASP.NET Identity, see [Migrate an existing app from SQL Membership to ASP.NET Identity](/aspnet/identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity). For more information about ASP.NET Core Identity, see [Introduction to Identity on ASP.NET Core](xref:security/authentication/identity).
 
-## Review of membership schema
+## Review of Membership schema
 
 Prior to ASP.NET 2.0, developers were tasked with creating the entire authentication and authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) command. After running this command, the following tables were created in the database.
 
@@ -47,7 +47,9 @@ The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a 
 
     ![Change Authentication](identity/_static/change-auth.png)
 
-ASP.NET Core 2.0 Identity uses [Entity Framework Core](/ef/core) to interact with the database storing the authentication data. In order for the newly created app to work, there needs to be a database to store this data. After creating a new app, the fastest way to inspect the schema in a database environment is to create the database using Entity Framework migrations. This process creates a database, either locally or elsewhere, which mimics that schema. Review the preceding documentation for more information. To create a database with the Identity Core schema, run the `Update-Database` command in Visual Studio's **Package Manager Console** (PMC) window&mdash;it's located at **Tools** > **NuGet Package Manager** > **Package Manager Console**. PMC supports running Entity Framework commands.
+ASP.NET Core 2.0 Identity uses [Entity Framework Core](/ef/core) to interact with the database storing the authentication data. In order for the newly created app to work, there needs to be a database to store this data. After creating a new app, the fastest way to inspect the schema in a database environment is to create the database using Entity Framework migrations. This process creates a database, either locally or elsewhere, which mimics that schema. Review the preceding documentation for more information.
+
+To create a database with the ASP.NET Core Identity schema, run the `Update-Database` command in Visual Studio's **Package Manager Console** (PMC) window&mdash;it's located at **Tools** > **NuGet Package Manager** > **Package Manager Console**. PMC supports running Entity Framework commands.
 
 Entity Framework commands use the connection string for the database specified in *appsettings.json*. The following connection string targets a database on *localhost* named *asp-net-core-identity*. In this setting, Entity Framework is configured to use the `DefaultConnection` connection string.
 
@@ -65,7 +67,7 @@ This command builds the database specified with the schema and any data needed f
 
 ## Migrate the schema
 
-There are subtle differences in the table structures and fields for both Membership and ASP.NET Core Identity. The pattern has changed substantially for Authentication/Authorization with ASP.NET and ASP.NET Core apps. The key objects that are still used with Identity are *Users* and *Roles*. Here are mapping tables for *Users*, *Roles*, and *UserRoles*.
+There are subtle differences in the table structures and fields for both Membership and ASP.NET Core Identity. The pattern has changed substantially for authentication/authorization with ASP.NET and ASP.NET Core apps. The key objects that are still used with Identity are *Users* and *Roles*. Here are mapping tables for *Users*, *Roles*, and *UserRoles*.
 
 ### Users
 
