@@ -74,9 +74,10 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 The host and application have been decoupled, which provides the flexibility of moving to a different platform in the future.
 
-**Note:** For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
+> [!NOTE]
+> For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
 
-## Storing configurations
+## Store configurations
 
 ASP.NET supports storing settings. These setting are used, for example, to support the environment to which the applications were deployed. A common practice was to store all custom key-value pairs in the `<appSettings>` section of the *Web.config* file:
 
@@ -105,13 +106,14 @@ There are extensions to this approach to make the process more robust, such as u
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 ````
 
-**Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+> [!NOTE]
+> For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Native dependency injection
 
 An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
-In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices.
+In ASP.NET apps, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices.
 
 An example of setting up Dependency Injection with Unity is implementing `IDependencyResolver` that wraps a `UnityContainer`:
 
@@ -131,7 +133,8 @@ Because Dependency Injection is part of ASP.NET Core, you can add your service i
 
 The repository can be injected anywhere, as was true with Unity.
 
-**Note:** For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
+> [!NOTE]
+> For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Serve static files
 
@@ -143,11 +146,13 @@ In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
-**Note:** If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
+> [!NOTE]
+> If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
 
 For example, an image asset in the *wwwroot/images* folder is accessible to the browser at a location such as `http://<app>/images/<imageFileName>`.
 
-**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
+> [!NOTE]
+> For a more in-depth reference to serving static files in ASP.NET Core, see [Work with static files in ASP.NET Core](xref:fundamentals/static-files).
 
 ## Additional resources
 
