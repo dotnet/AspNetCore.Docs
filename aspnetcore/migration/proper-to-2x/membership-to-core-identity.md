@@ -22,7 +22,7 @@ This article demonstrates migrating the database schema for ASP.NET apps using M
 
 ## Review of membership schema
 
-Prior to ASP.NET 2.0, developers were tasked with creating the entire Authentication and Authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling Security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) command. After running this command, the following tables were created in the database.
+Prior to ASP.NET 2.0, developers were tasked with creating the entire authentication and authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) command. After running this command, the following tables were created in the database.
 
   ![Membership Tables](identity/_static/membership-tables.png)
 
