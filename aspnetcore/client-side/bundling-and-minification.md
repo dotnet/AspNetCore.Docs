@@ -308,5 +308,5 @@ Alternatively, Visual Studio's Task Runner Explorer may be used to bind Gulp tas
 
 * [Use Gulp](xref:client-side/using-gulp)
 * [Use Grunt](xref:client-side/using-grunt)
-* [Work with Multiple Environments](xref:fundamentals/environments)
+* [Use multiple environments](xref:fundamentals/environments)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)

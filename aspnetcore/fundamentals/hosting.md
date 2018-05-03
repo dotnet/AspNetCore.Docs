@@ -182,7 +182,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://www.visualstudio.com/), environment variables may be set in the *launchSettings.json* file. For more information, see [Work with multiple environments](xref:fundamentals/environments).
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://www.visualstudio.com/), environment variables may be set in the *launchSettings.json* file. For more information, see [Use multiple environments](xref:fundamentals/environments).
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -258,7 +258,7 @@ This feature is unavailable in ASP.NET Core 1.x.
 
 ### Prevent Hosting Startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Add app features using a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration) for more information.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. See [Enhance an app with a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration) for more information.
 
 **Key**: preventHostingStartup  
 **Type**: *bool* (`true` or `1`)  
@@ -781,7 +781,7 @@ public class Startup
 ```
 
 > [!NOTE]
-> In addition to the `IsDevelopment` extension method, `IHostingEnvironment` offers `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. See [Work with multiple environments](xref:fundamentals/environments) for details.
+> In addition to the `IsDevelopment` extension method, `IHostingEnvironment` offers `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. See [Use multiple environments](xref:fundamentals/environments) for details.
 
 The `IHostingEnvironment` service can also be injected directly into the `Configure` method for setting up the processing pipeline:
 

@@ -15,7 +15,7 @@ uid: mvc/razor-pages/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)
 
-Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
+Razor Pages is a new aspect of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
@@ -88,7 +88,7 @@ Notes:
 
 ## Writing a basic form
 
-Razor Pages features are designed to make common patterns used with web browsers easy. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
+Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
 For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
 
@@ -143,7 +143,7 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
 > [!NOTE]
-> For security reasons, you must opt in to binding GET request data to page model properties. Verify user input before mapping it to properties. Opting in to this behavior is useful when building features which rely on query string or route values.
+> For security reasons, you must opt in to binding GET request data to page model properties. Verify user input before mapping it to properties. Opting in to this behavior is useful when addressing scenarios which rely on query string or route values.
 >
 > To bind a property on GET requests, set the `[BindProperty]` attribute's `SupportsGet` property to `true`:
 > `[BindProperty(SupportsGet = true)]`
@@ -245,9 +245,9 @@ You don't have to write any code for [antiforgery validation](xref:security/anti
 <a name="layout"></a>
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
-Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
+Pages work with all the capabilities of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
 
-Let's declutter this page by taking advantage of some of those features.
+Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
@@ -333,7 +333,7 @@ The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redi
 * `<a asp-page="/Index">My Index Page</a>`
 * `RedirectToPage("/Index")`
 
-The page name is the path to the page from the root */Pages* folder (including a leading `/`, for example `/Index`). The preceding URL generation samples are much more feature rich than just hardcoding a URL. URL generation uses [routing](xref:mvc/controllers/routing) and can generate and encode parameters according to how the route is defined in the destination path.
+The page name is the path to the page from the root */Pages* folder including a leading `/` (for example, `/Index`). The preceding URL generation samples offer enhanced options and functional capabilities over hardcoding a URL. URL generation uses [routing](xref:mvc/controllers/routing) and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. The following table shows which Index page is selected with different `RedirectToPage` parameters from *Pages/Customers/Create.cshtml*:
 
@@ -452,5 +452,5 @@ services.AddMvc()
 * [Razor syntax](xref:mvc/views/razor)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)
+* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-conventions)
 * [Razor Pages unit and integration tests](xref:testing/razor-pages-testing)
