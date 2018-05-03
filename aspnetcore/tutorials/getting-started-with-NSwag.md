@@ -5,7 +5,7 @@ description: Learn how to use NSwag to generate documentation and help pages for
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/15/2018
+ms.date: 05/03/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -32,7 +32,7 @@ The main reason to use NSwag is the ability to not only introduce the Swagger UI
 
 The NSwag NuGet package can be added with the following approaches:
 
-# [Visual Studio](#tab/visual-studio)
+### [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
 
@@ -46,44 +46,40 @@ The NSwag NuGet package can be added with the following approaches:
   * Enter "NSwag.AspNetCore" in the search box
   * Select the "NSwag.AspNetCore" package from the **Browse** tab and click **Install**
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
 * Set the **Add Packages** window's **Source** drop-down to "nuget.org"
 * Enter NSwag.AspNetCore in the search box
 * Select the NSwag.AspNetCore package from the results pane and click **Add Package**
 
-# [Visual Studio Code](#tab/visual-studio-code)
+### [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
 
 ```console
-dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
+dotnet add TodoApi.csproj package NSwag.AspNetCore
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+### [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command:
 
 ```console
-dotnet add TodoApi.NSwag.csproj package NSwag.AspNetCore
+dotnet add TodoApi.csproj package NSwag.AspNetCore
 ```
 
 ---
 
 ## Add and configure Swagger middleware
 
-Import the following namespaces in the `Info` class:
+Import the following namespaces in the `Startup` class:
 
-```csharp
-using NSwag.AspNetCore;
-using System.Reflection;
-using NJsonSchema;
-```
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_StartupConfigureImports)]
 
 In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-cs[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swagger/v1/swagger.json` to view the Swagger specification.
 
@@ -91,7 +87,7 @@ Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swa
 
 ### Via NSwagStudio
 
-* Install `NSwagStudio` from the official [GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).
+* Install NSwagStudio from the official [GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).
 
 * Launch NSwagStudio. Enter the location of your *swagger.json* or copy it directly:
 
@@ -123,7 +119,7 @@ var foundTodo = await todoClient.GetByIdAsync(1);
 > [!NOTE]
 > You can inject a base URL and/or a HTTP client into the API client. The best practice is to always [reuse the HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).
 
-You can now start implementing your API into client projects easily.
+You can now start implementing your API into client projects.
 
 ### Other ways to generate client code
 
@@ -142,49 +138,35 @@ You can generate the code in other ways, more suited to your workflow:
 XML comments are enabled with the following approaches:
 
 #### [Visual Studio](#tab/visual-studio-xml/)
+
 * Right-click the project in **Solution Explorer** and select **Properties**
 * Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section:
 
 ![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
 
 #### [Visual Studio Code](#tab/visual-studio-code-xml/)
+
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/TodoApi.NSwag/TodoApiNSwag.csproj?range=7-9)]
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/TodoApi.csproj?range=7-9)]
 
-* * *
+---
+
 ## Data annotations
 
 NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the best practice for Web API actions is to return [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult). Consequently, NSwag can't infer what your action is doing and what it returns. Consider the following example:
 
-```csharp
-public IActionResult Create([FromBody] TodoItem item)
-{
-    if (item == null)
-    {
-        return BadRequest();
-    }
-
-    _context.TodoItems.Add(item);
-    _context.SaveChanges();
-
-     return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
-}
-```
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
 The preceding action returns `IActionResult`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute) or [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest). Data annotations are used to tell clients which HTTP response this action is returning. Decorate the action with the following attributes:
 
-```csharp
-[HttpPost]
-[ProducesResponseType(typeof(TodoItem), 201)] // Created
-[ProducesResponseType(typeof(TodoItem), 400)] // BadRequest
-public IActionResult Create([FromBody] TodoItem item)
-```
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. Decorating all actions with these attributes is highly recommended. For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
