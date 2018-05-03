@@ -48,6 +48,7 @@
         var sendButton = document.getElementById("sendButton");
         var sendForm = document.getElementById("sendForm");
         var commsLog = document.getElementById("commsLog");
+        var closeButton = document.getElementById("closeButton");
         var socket;
 
         var scheme = document.location.protocol == "https:" ? "wss" : "ws";
@@ -116,8 +117,7 @@
             commsLog.innerHTML += '<tr>' +
                 '<td class="commslog-client">Client</td>' +
                 '<td class="commslog-server">Server</td>' +
-                '<td class="commslog-data">' + htmlEscape(data) + '</td>'
-            '</tr>';
+                '<td class="commslog-data">' + htmlEscape(data) + '</td></tr>';
         }
 
         connectButton.onclick = function() {
@@ -140,8 +140,7 @@
                 commsLog.innerHTML += '<tr>' +
                     '<td class="commslog-server">Server</td>' +
                     '<td class="commslog-client">Client</td>' +
-                    '<td class="commslog-data">' + htmlEscape(event.data) + '</td>'
-                '</tr>';
+                    '<td class="commslog-data">' + htmlEscape(event.data) + '</td></tr>';
             };
         };
 

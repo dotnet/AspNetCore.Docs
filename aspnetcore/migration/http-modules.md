@@ -14,7 +14,7 @@ uid: migration/http-modules
 
 By [Matt Perdeck](https://www.linkedin.com/in/mattperdeck)
 
-This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](https://docs.microsoft.com/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
+This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
 ## Modules and handlers revisited
 
@@ -24,15 +24,15 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Handlers are:**
 
-   * Classes that implement [IHttpHandler](https://docs.microsoft.com/dotnet/api/system.web.ihttphandler)
+   * Classes that implement [IHttpHandler](/dotnet/api/system.web.ihttphandler)
 
    * Used to handle requests with a given file name or extension, such as *.report*
 
-   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/handlers/) in *Web.config*
+   * [Configured](/iis/configuration/system.webserver/handlers/) in *Web.config*
 
 **Modules are:**
 
-   * Classes that implement [IHttpModule](https://docs.microsoft.com/dotnet/api/system.web.ihttpmodule)
+   * Classes that implement [IHttpModule](/dotnet/api/system.web.ihttpmodule)
 
    * Invoked for every request
 
@@ -40,11 +40,11 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    * Able to add to the HTTP response, or create their own
 
-   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/modules/) in *Web.config*
+   * [Configured](/iis/configuration/system.webserver/modules/) in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 
-   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
+   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
    2. For the same event, the order in which they're configured in *Web.config*.
 
@@ -238,7 +238,7 @@ You saw earlier that the `Invoke` method in your middleware takes a parameter of
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://docs.microsoft.com/dotnet/api/system.web.httpcontext) to the new `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](/dotnet/api/system.web.httpcontext) to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
 ### HttpContext
 

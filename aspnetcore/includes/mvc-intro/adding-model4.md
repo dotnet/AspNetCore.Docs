@@ -1,4 +1,4 @@
-The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container (In the *Startup.cs* file). `services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string. `=>` is a [lambda operator](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/operators/lambda-operator).
+The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container (In the *Startup.cs* file). `services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string. `=>` is a [lambda operator](/dotnet/articles/csharp/language-reference/operators/lambda-operator).
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
@@ -30,9 +30,9 @@ You can also pass in the `id` with a query string as follows:
 
 `http://localhost:1234/movies/details?id=1`
 
-The `id` parameter is defined as a [nullable type](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.
+The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.
 
-A [lambda expression](https://docs.microsoft.com/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `SingleOrDefaultAsync` to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `SingleOrDefaultAsync` to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie

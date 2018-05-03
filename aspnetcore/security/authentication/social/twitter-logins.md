@@ -80,7 +80,7 @@ app.UseTwitterAuthentication(new TwitterOptions()
 ```
 
 * * *
-See the [TwitterOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
+See the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
 
 ## Sign in with Twitter
 

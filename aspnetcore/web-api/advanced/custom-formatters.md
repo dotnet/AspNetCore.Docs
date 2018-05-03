@@ -30,7 +30,7 @@ Here are the steps to create and use a custom formatter:
 
 * Create an output formatter class if you want to serialize data to send to the client.
 * Create an input formatter class if you want to deserialize data received from the client.
-* Add instances of your formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/aspnet/core/api/microsoft.aspnetcore.mvc.mvcoptions).
+* Add instances of your formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
 
 The following sections provide guidance and code examples for each of these steps.
 
@@ -45,11 +45,11 @@ To create a formatter:
   
 ### Derive from the appropriate base class
 
-For text media types (for example, vCard), derive from the [TextInputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
+For text media types (for example, vCard), derive from the [TextInputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=classdef)]
 
-For binary types, derive from the [InputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
+For binary types, derive from the [InputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
 
 ### Specify valid media types and encodings
 
@@ -74,7 +74,7 @@ In some scenarios you have to override `CanWriteResult` instead of `CanWriteType
 * There are derived classes which might be returned at runtime.
 * You need to know at runtime which derived class was returned by the action.
 
-For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
+For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
 
 <a id="read-write"></a>
 ### Override ReadRequestBodyAsync/WriteResponseBodyAsync

@@ -113,10 +113,10 @@
 ### [Middleware](xref:fundamentals/middleware/index)
 ### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
 ### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
-## [Work with static files](fundamentals/static-files.md)
+## [Static files](fundamentals/static-files.md)
 ## [Routing](fundamentals/routing.md)
 ## [URL rewriting middleware](fundamentals/url-rewriting.md)
-## [Work with multiple environments](fundamentals/environments.md)
+## [Use multiple environments](fundamentals/environments.md)
 ## [Configuration and options](xref:fundamentals/configuration/index)
 ### [Configuration](xref:fundamentals/configuration/index)
 ### [Options](xref:fundamentals/configuration/options)
@@ -132,6 +132,7 @@
 ### [HTTP.sys](fundamentals/servers/httpsys.md)
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+## [Initiate HTTP requests](xref:fundamentals/http-requests)
 ## [Request features](fundamentals/request-features.md)
 ## [Background tasks with hosted services](xref:fundamentals/hosted-services)
 ## [Primitives](xref:fundamentals/primitives/index)
@@ -143,8 +144,9 @@
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
 
 # [Razor Pages](xref:mvc/razor-pages/index)
-## [Route and app convention features](xref:mvc/razor-pages/razor-pages-convention-features)
 ## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
+## [Create a Razor Class Library](xref:mvc/razor-pages/ui-class)
+## [Route and app conventions](xref:mvc/razor-pages/razor-pages-conventions)
 ## [Razor SDK](xref:mvc/razor-pages/sdk)
 
 # [MVC](mvc/overview.md)
@@ -255,7 +257,7 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-## [Add app features using a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
+## [Enhance an app with a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
 
 # [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
@@ -356,7 +358,7 @@
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
-# [API Reference](https://docs.microsoft.com/dotnet/api/?view=aspnetcore-2.0)
+# [API Reference](/dotnet/api/?view=aspnetcore-2.0)
 
 # [2.0 release notes](aspnetcore-2.0.md)
 ## [1.1 release notes](aspnetcore-1.1.md)

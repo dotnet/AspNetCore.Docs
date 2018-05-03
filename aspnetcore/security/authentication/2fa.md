@@ -3,6 +3,7 @@ title: Two-factor authentication with SMS in ASP.NET Core
 author: rick-anderson
 description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
 manager: wpickett
+monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/15/2017
 ms.prod: asp.net-core
@@ -14,7 +15,7 @@ uid: security/authentication/2fa
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
-This tutorial applies to ASP.NET Core 1.x only. See [Enable QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+See [Enable QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
 
 This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
 
