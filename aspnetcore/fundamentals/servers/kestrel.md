@@ -82,24 +82,6 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the temp
 
 [!code-csharp[](kestrel/samples/2.x/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
-::: moniker range=">= aspnetcore-2.1"
-**Default transport changes from Libuv to managed sockets (ASP.NET Core 2.1 or later)**
-
-With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
-
-* [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)
-* [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
-
-For ASP.NET Core 2.1 or later projects that use the `Microsoft.AspNetCore.App` metapackage and require the use of Libuv (the app calls [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv)), add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
-
-```xml
-<PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
-                  Version="2.1.0" />
-```
-
-No action is required when the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage is used and `UseLibuv` is called because the Libuv transport package is transitively referenced by the `Microsoft.AspNetCore.All` metapackage. Note that the ASP.NET Core 2.1 or later templates reference the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage by default. The use of the `Microsoft.AspNetCore.All` metapackage isn't recommended for ASP.NET Core 2.1 or later apps.
-::: moniker-end
-
 #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
@@ -513,6 +495,28 @@ For more information on these methods, see [Hosting](xref:fundamentals/hosting).
 When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
 
 * * *
+
+::: moniker range=">= aspnetcore-2.1"
+## Transport configuration
+
+TRANSPORT CONFIG CONTENT HERE
+
+**Default transport changes from Libuv to managed sockets**
+
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
+
+* [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)
+* [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
+
+For ASP.NET Core 2.1 or later projects that use the `Microsoft.AspNetCore.App` metapackage and require the use of Libuv (the app calls [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv)), add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
+
+```xml
+<PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+                  Version="2.1.0" />
+```
+
+No action is required when the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage is used and `UseLibuv` is called because the Libuv transport package is transitively referenced by the `Microsoft.AspNetCore.All` metapackage. Note that the ASP.NET Core 2.1 or later templates reference the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage by default. The use of the `Microsoft.AspNetCore.All` metapackage isn't recommended for ASP.NET Core 2.1 or later apps.
+::: moniker-end
 
 ### URL prefixes
 
