@@ -16,6 +16,7 @@ uid: migration/index
 *   [Migrate from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
 *   [Migrate configuration](xref:migration/configuration)
 *   [Migrate authentication and Identity](xref:migration/identity)
+*   [Migrate ClaimsPrincipal.Current usage](xref:migration/claimsprincipal.current)
 *   [Migrate from ASP.NET Web API](xref:migration/webapi)
 *   [Migrate HTTP modules to middleware](xref:migration/http-modules)
 
