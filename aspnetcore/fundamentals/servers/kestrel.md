@@ -15,14 +15,7 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-::: moniker range="<= aspnetcore-2.0"
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that's included by default in ASP.NET Core project templates.
-::: moniker-end
-::: moniker range=">= aspnetcore-2.1"
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index) based on managed sockets (`Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets`), a cross-platform asynchronous I/O library. In versions of ASP.NET Core prior to 2.1, Kestrel is based on [libuv](https://github.com/libuv/libuv).
-
-Kestrel is the web server that's included by default in ASP.NET Core project templates.
-::: moniker-end
+Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
 Kestrel supports the following features:
 
@@ -498,10 +491,6 @@ When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For
 
 ::: moniker range=">= aspnetcore-2.1"
 ## Transport configuration
-
-TRANSPORT CONFIG CONTENT HERE
-
-**Default transport changes from Libuv to managed sockets**
 
 With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
 
