@@ -101,7 +101,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 ```
 
 * * *
-See the [FacebookOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
+See the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.

@@ -1,7 +1,7 @@
 ---
-title: Add app features with a platform-specific configuration in ASP.NET Core with IHostingStartup
+title: Enhance an app with a platform-specific configuration in ASP.NET Core with IHostingStartup
 author: guardrex
-description: Discover how to add features to an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
+description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.topic: article
 uid: host-and-deploy/platform-specific-configuration
 ---
-# Add app features with a platform-specific configuration in ASP.NET Core
+# Enhance an app with a platform-specific configuration in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding features to an app at startup from an external assembly outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -37,39 +37,39 @@ There are two ways to disable the automatic loading of hosting startup assemblie
 
 When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
 
-Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several features of an app. It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. A future release will offer the ability to selectively disable hosting startup assemblies (see [GitHub issue aspnet/Hosting #1243](https://github.com/aspnet/Hosting/pull/1243)).
+Disabling hosting startup assemblies using the host setting or environment variable disables them globally and may disable several characteristics of an app. It isn't currently possible to selectively disable a hosting startup assembly added by a library unless the library offers its own configuration option. A future release will offer the ability to selectively disable hosting startup assemblies (see [GitHub issue aspnet/Hosting #1243](https://github.com/aspnet/Hosting/pull/1243)).
 
-## Implement IHostingStartup features
+## Implement IHostingStartup
 
 ### Create the assembly
 
-An `IHostingStartup` feature is deployed as an assembly based on a console app without an entry point. The assembly references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
+An `IHostingStartup` enhancement is deployed as an assembly based on a console app without an entry point. The assembly references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
-[!code-xml[](platform-specific-configuration/snapshot_sample/StartupFeature.csproj)]
+[!code-xml[](platform-specific-configuration/snapshot_sample/StartupEnhancement.csproj)]
 
-A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupFeature`, and the class is `StartupFeatureHostingStartup`:
+A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupEnhancement`, and the class is `StartupEnhancementHostingStartup`:
 
-[!code-csharp[](platform-specific-configuration/snapshot_sample/StartupFeature.cs?name=snippet1)]
+[!code-csharp[](platform-specific-configuration/snapshot_sample/StartupEnhancement.cs?name=snippet1)]
 
-A class implements `IHostingStartup`. The class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add features to an app:
+A class implements `IHostingStartup`. The class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app:
 
-[!code-csharp[](platform-specific-configuration/snapshot_sample/StartupFeature.cs?name=snippet2&highlight=3,5)]
+[!code-csharp[](platform-specific-configuration/snapshot_sample/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
 When building an `IHostingStartup` project, the dependencies file (*\*.deps.json*) sets the `runtime` location of the assembly to the *bin* folder:
 
-[!code-json[](platform-specific-configuration/snapshot_sample/StartupFeature1.deps.json?range=2-13&highlight=8)]
+[!code-json[](platform-specific-configuration/snapshot_sample/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
-Only part of the file is shown. The assembly name in the example is `StartupFeature`.
+Only part of the file is shown. The assembly name in the example is `StartupEnhancement`.
 
 ### Update the dependencies file
 
-The runtime location is specified in the *\*.deps.json* file. To active the feature, the `runtime` element must specify the location of the feature's runtime assembly. Prefix the `runtime` location with `lib/netcoreapp2.0/`:
+The runtime location is specified in the *\*.deps.json* file. To active the enhancement, the `runtime` element must specify the location of the enhancement's runtime assembly. Prefix the `runtime` location with `lib/netcoreapp2.0/`:
 
-[!code-json[](platform-specific-configuration/snapshot_sample/StartupFeature2.deps.json?range=2-13&highlight=8)]
+[!code-json[](platform-specific-configuration/snapshot_sample/StartupEnhancement2.deps.json?range=2-13&highlight=8)]
 
 In the sample app, modification of the *\*.deps.json* file is performed by a [PowerShell](/powershell/scripting/powershell-scripting) script. The PowerShell script is automatically triggered by a build target in the project file.
 
-### Feature activation
+### Enhancement activation
 
 **Place the assembly file**
 
@@ -78,16 +78,16 @@ The `IHostingStartup` implementation's assembly file must be *bin*-deployed in t
 For per-user use, place the assembly in the user profile's runtime store at:
 
 ```
-<DRIVE>\Users\<USER>\.dotnet\store\x64\netcoreapp2.0\<FEATURE_ASSEMBLY_NAME>\<FEATURE_VERSION>\lib\netcoreapp2.0\
+<DRIVE>\Users\<USER>\.dotnet\store\x64\netcoreapp2.0\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\netcoreapp2.0\
 ```
 
 For global use, place the assembly in the .NET Core installation's runtime store:
 
 ```
-<DRIVE>\Program Files\dotnet\store\x64\netcoreapp2.0\<FEATURE_ASSEMBLY_NAME>\<FEATURE_VERSION>\lib\netcoreapp2.0\
+<DRIVE>\Program Files\dotnet\store\x64\netcoreapp2.0\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\netcoreapp2.0\
 ```
 
-When deploying the assembly to the runtime store, the symbols file may be deployed as well but isn't required for the feature to work.
+When deploying the assembly to the runtime store, the symbols file may be deployed as well but isn't required for the enhancement to work.
 
 **Place the dependencies file**
 
@@ -96,20 +96,20 @@ The implementation's *\*.deps.json* file must be in an accessible location.
 For per-user use, place the file in the `additonalDeps` folder of the user profile's `.dotnet` settings: 
 
 ```
-<DRIVE>\Users\<USER>\.dotnet\x64\additionalDeps\<FEATURE_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
+<DRIVE>\Users\<USER>\.dotnet\x64\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
 ```
 
 For global use, place the file in the `additonalDeps` folder of the .NET Core installation:
 
 ```
-<DRIVE>\Program Files\dotnet\additionalDeps\<FEATURE_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
+<DRIVE>\Program Files\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\
 ```
 
 Note the version, `2.0.0`, reflects the version of the shared runtime that the target app uses. The shared runtime is shown in the *\*.runtimeconfig.json* file. In the sample app, the shared runtime is specified in the *HostingStartupSample.runtimeconfig.json* file.
 
 **Set environment variables**
 
-Set the following environment variables in the context of the app that uses the feature.
+Set the following environment variables in the context of the app that uses the enhancement.
 
 ASPNETCORE\_HOSTINGSTARTUPASSEMBLIES
 
@@ -130,7 +130,7 @@ If the file is placed in the user profile's *.dotnet* folder for per-user use:
 If the file is placed in the .NET Core installation for global use, provide the full path to the file:
 
 ```
-<DRIVE>\Program Files\dotnet\additionalDeps\<FEATURE_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\<FEATURE_ASSEMBLY_NAME>.deps.json
+<DRIVE>\Program Files\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\2.0.0\<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
 ```
 
 The sample app sets this value to:
@@ -139,7 +139,7 @@ The sample app sets this value to:
 %UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
 ```
 
-For examples of how to set environment variables for various operating systems, see [Work with multiple environments](xref:fundamentals/environments).
+For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
 ## Sample app
 

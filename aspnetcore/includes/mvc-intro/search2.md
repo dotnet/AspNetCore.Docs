@@ -33,7 +33,7 @@ Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlight
 
 [!code-HTML[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 
-The HTML `<form>` tag uses the [Form Tag Helper](../../mvc/views/working-with-forms.md), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
+The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
 ![Index view with the word ghost typed into the Title filter textbox](../../tutorials/first-mvc-app/search/_static/filter.png)
 
@@ -53,6 +53,6 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 ![Network tab of Developer Tools in Microsoft Edge showing a request body with a searchString value of ghost](../../tutorials/first-mvc-app/search/_static/f12_rb.png)
 
-You can see the search parameter and [XSRF](../../security/anti-request-forgery.md) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](../../mvc/views/working-with-forms.md) generates an [XSRF](../../security/anti-request-forgery.md) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
+You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. We'll fix this by specifying the request should be `HTTP GET`.

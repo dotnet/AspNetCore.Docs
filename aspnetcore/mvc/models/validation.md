@@ -50,7 +50,7 @@ Simply reading through the model reveals the rules about data for this app, maki
 
 * `[Url]`: Validates the property has a URL format.
 
-MVC supports any attribute that derives from `ValidationAttribute` for validation purposes. Many useful validation attributes can be found in the [System.ComponentModel.DataAnnotations](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations) namespace.
+MVC supports any attribute that derives from `ValidationAttribute` for validation purposes. Many useful validation attributes can be found in the [System.ComponentModel.DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) namespace.
 
 There may be instances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from `ValidationAttribute` or changing your model to implement `IValidatableObject`.
 
@@ -60,7 +60,7 @@ Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-type
 
 MVC model binding, which isn't concerned with validation and validation attributes, rejects a form field submission containing a missing value or whitespace for a non-nullable type. In the absence of a `BindRequired` attribute on the target property, model binding ignores missing data for non-nullable types, where the form field is absent from the incoming form data.
 
-The [BindRequired attribute](/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
+The [BindRequired attribute](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
 
 When you use a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) (for example, `decimal?` or `System.Nullable<decimal>`) and mark it `Required`, a server-side validation check is performed as if the property were a standard nullable type (for example, a `string`).
 
@@ -187,7 +187,7 @@ $.get({
 
 ## IClientModelValidator
 
-You may create client side logic for your custom attribute, and [unobtrusive validation](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html) which creates an adapter to [jquery validation] (http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
+You may create client side logic for your custom attribute, and [unobtrusive validation](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html) which creates an adapter to [jquery validation](http://jqueryvalidation.org/documentation/) will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the `IClientModelValidator` interface as shown here:
 
 [!code-csharp[](validation/sample/ClassicMovieAttribute.cs?range=30-42)]
 

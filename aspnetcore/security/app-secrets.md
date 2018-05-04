@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://githu
 
 This document shows how you can use the Secret Manager tool in development to keep secrets out of your code. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the [configuration](xref:fundamentals/configuration/index) system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The [configuration](xref:fundamentals/configuration/index) system can read secrets stored with the Secret Manager tool described in this article.
 
-The Secret Manager tool is used only in development. You can safeguard Azure test and production secrets with the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider. See [Azure Key Vault configuration provider](https://docs.microsoft.com/aspnet/core/security/key-vault-configuration) for more information.
+The Secret Manager tool is used only in development. You can safeguard Azure test and production secrets with the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider. See [Azure Key Vault configuration provider](xref:security/key-vault-configuration) for more information.
 
 ## Environment variables
 
