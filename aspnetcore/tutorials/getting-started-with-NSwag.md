@@ -19,10 +19,10 @@ Using [NSwag](https://github.com/RSuter/NSwag) with ASP.NET Core middleware requ
 
 It's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options for code generation:
 
-* Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API
-* Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project
-* Use NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine)
-* Use the [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package
+* Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API.
+* Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project.
+* Use NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine).
+* Use the [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package.
 
 ## Features
 
@@ -35,10 +35,13 @@ The NSwag NuGet package can be added with the following approaches:
 ### [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
+  * Go to **View** > **Other Windows** > **Package Manager Console**
+  * Navigate to the directory in which the *TodoApi.csproj* file exists
+  * Execute the following command:
 
-    ```powershell
-    Install-Package NSwag.AspNetCore
-    ```
+      ```powershell
+      Install-Package NSwag.AspNetCore
+      ```
 
 * From the **Manage NuGet Packages** dialog:
   * Right-click your project in **Solution Explorer** > **Manage NuGet Packages**

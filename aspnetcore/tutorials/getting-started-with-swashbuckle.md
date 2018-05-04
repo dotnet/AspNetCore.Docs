@@ -5,7 +5,7 @@ description: Learn how to add Swashbuckle to your ASP.NET Core project to integr
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/26/2018
+ms.date: 05/04/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -89,7 +89,7 @@ The Swagger UI can be found at `http://localhost:<random_port>/swagger`. Explore
 
 > [!TIP]
 > To serve the Swagger UI at the app's root (`http://localhost:<random_port>/`), set the `RoutePrefix` property to an empty string:
-> 
+>
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
 ## Customize & extend
