@@ -25,15 +25,15 @@ We recommend using a source control system that shows changes. Inspect the chang
 
 ## Scaffold identity into an empty project
 
-[!INCLUDE[](~/includes/scaffold-identity\id-scaffold-dlg.md)]
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 Add the following calls to the `Startup` class:
 
-[!code-csharp[Main](scaffold-identity\sample\StartupEmpty.cs?name=snippet1&highlight=6,20-23)]
+[!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=6,20-23)]
 
 The call to `UseHsts` is recommended but not required. See [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) for more information.
 
-[!INCLUDE[](~/includes/scaffold-identity\migrations.md)]
+[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 ## Scaffold identity into a Razor project without authorization
 
