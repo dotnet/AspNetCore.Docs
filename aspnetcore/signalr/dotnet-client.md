@@ -27,7 +27,7 @@ The code sample in this article is a WPF client.
 The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run `Install-Package` in the **Package Console Manager** window.
 
 ```cmd
-  Install-Package Microsoft.AspNetCore.SignalR.Client
+Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 
 ## Connect to a hub
@@ -40,7 +40,7 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 `InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
 
-[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=49-51)]
+[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=49-50)]
 
 ## Call client methods from hub
 
@@ -60,7 +60,7 @@ Handle errors with a try-catch statement. Inspect the `Exception` object to dete
 
 To enable logging, use the `WithConsoleLogger` when opening a connection. Specify one of the following log levels:
 
-* `LogLevel.Trace`: Traces are detailed messages about anything happening in the app, and may contain sensitive information. Don't use in a production environment.
+* `LogLevel.Trace`: Traces are detailed messages about everything happening in the app, and may contain sensitive information. Don't use in a production environment.
 * `LogLevel.Debug`: Debug logs are used for interactive investigation during development.
 * `LogLevel.Information`: Information logs output the general flow of the application.
 * `LogLevel.Warning`: Warnings highlight an abnormal or unexpected event that hasn't caused app execution to stop.
