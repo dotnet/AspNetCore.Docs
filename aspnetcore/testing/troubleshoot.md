@@ -53,7 +53,7 @@ Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Con
 ### No .NET Core SDKs were detected
 In the **New Project** dialog for ASP.NET Core you may see the following warning: 
 
-**No .NET Core SDKs were detected, please ensure they are included in the environment variable 'PATH'**
+**No .NET Core SDKs were detected, ensure they are included in the environment variable 'PATH'**
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/NoNetCore.png)
 
