@@ -109,7 +109,7 @@ In the data access classes, provide code to perform data operations for your per
 
 [!code-csharp[](identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs?name=createuser&highlight=7)]
 
-The implementation logic for creating the user is in the ``_usersTable.CreateAsync`` method, shown below.
+The implementation logic for creating the user is in the `_usersTable.CreateAsync` method, shown below.
 
 ## Customize the user class
 
@@ -117,7 +117,7 @@ When implementing a storage provider, create a user class which is equivalent to
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
-The `IdentityUser` class defines the properties that the ``UserManager`` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>` and specify a different type. The framework expects the storage implementation to handle data type conversions.
+The `IdentityUser` class defines the properties that the `UserManager` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>` and specify a different type. The framework expects the storage implementation to handle data type conversions.
 
 ## Customize the user store
 
@@ -183,7 +183,7 @@ public class UserStore : IUserStore<IdentityUser>,
 
 ### IdentityUserClaim, IdentityUserLogin, and IdentityUserRole
 
-The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it's more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
+The `Microsoft.AspNet.Identity.EntityFramework` namespace contains implementations of the [IdentityUserClaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it's more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the `UserStore.GetClaimsAsync` method can call the `userClaimTable.FindByUserId(user.Id)` method to execute a query on that table directly and return a list of claims.
 
 ## Customize the role class
 
@@ -195,7 +195,7 @@ The following is an example role class:
 
 ## Customize the role store
 
-You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
+You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
  The [IRoleStore](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
@@ -209,7 +209,7 @@ Once you have implemented a storage provider, you configure your app to use it. 
 1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity` NuGet package.
 1. If the storage provider resides in a separate project or package, add a reference to it.
 1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity` with a using statement for the namespace of your storage provider.
-1. In the ``ConfigureServices`` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
+1. In the `ConfigureServices` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
 1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.
 
