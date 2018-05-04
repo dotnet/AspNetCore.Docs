@@ -24,18 +24,18 @@ Because the destination URL is specified in the querystring of the request, a ma
 
 ### An example attack
 
-A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``. The attack then follows these steps:
+A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: `http://nerddinner.com/Account/LogOn?returnUrl=/Home/About`. The attack then follows these steps:
 
-1. User clicks a link to ``http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn`` (note, second URL is nerddi**n**er, not nerddi**nn**er).
+1. User clicks a link to `http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn` (note, second URL is nerddi**n**er, not nerddi**nn**er).
 2. The user logs in successfully.
-3. The user is redirected (by the site) to ``http://nerddiner.com/Account/LogOn`` (malicious site that looks like real site).
+3. The user is redirected (by the site) to `http://nerddiner.com/Account/LogOn` (malicious site that looks like real site).
 4. The user logs in again (giving malicious site their credentials) and is redirected back to the real site.
 
 The user will likely believe their first attempt to log in failed, and their second one was successful. They will most likely remain unaware their credentials have been compromised.
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, ``/Home/Redirect``. An attacker could create, for example, a link in an email that goes to ``[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login``. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
+In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, `/Home/Redirect`. An attacker could create, for example, a link in an email that goes to `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
 
 ## Protecting against open redirect attacks
 
@@ -43,7 +43,7 @@ When developing web applications, treat all user-provided data as untrustworthy.
 
 ### LocalRedirect
 
-Use the ``LocalRedirect`` helper method from the base `Controller` class:
+Use the `LocalRedirect` helper method from the base `Controller` class:
 
 ```csharp
 public IActionResult SomeAction(string redirectUrl)
@@ -52,7 +52,7 @@ public IActionResult SomeAction(string redirectUrl)
 }
 ```
 
-``LocalRedirect`` will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the ``Redirect`` method.
+`LocalRedirect` will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the `Redirect` method.
 
 ### IsLocalUrl
 
