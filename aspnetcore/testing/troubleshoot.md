@@ -24,7 +24,7 @@ The following links provide troubleshooting guidance:
 <a name="sdk"></a>
 ## .NET Core SDK warnings
 
-### Both the 32 and 64 bit versions of the .NET Core SDK are installed
+### Both the 32 bit and 64 bit versions of the .NET Core SDK are installed
 In the **New Project** dialog for ASP.NET Core, you may see the following warning: 
 
     Both 32 and 64 bit versions of the .NET Core SDK are installed. Only templates from the 64 bit version(s) installed at C:\Program Files\dotnet\sdk\" will be displayed.
@@ -46,7 +46,7 @@ In the **New Project** dialog for ASP.NET Core you may see the following warning
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/multiplelocations.png)
 
-You are seeing this message because you have at least one installation of the .NET Core SDK in a directory outside of *C:\Program Files\dotnet\sdk\*. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
+You see this message when you have at least one installation of the .NET Core SDK in a directory outside of *C:\Program Files\dotnet\sdk\*. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
 Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
 
@@ -60,4 +60,4 @@ In the **New Project** dialog for ASP.NET Core you may see the following warning
 This warning appears when the environment variable `PATH` doesn’t point to any .NET Core SDKs on the machine. To resolve this problem:
 
 * Install or verify the .NET Core SDK is installed.
-* Verify the `PATH` environment variable points to the location the SDK is install. The installer normally sets the `PATH`.
+* Verify the `PATH` environment variable points to the location the SDK is installed. The installer normally sets the `PATH`.
