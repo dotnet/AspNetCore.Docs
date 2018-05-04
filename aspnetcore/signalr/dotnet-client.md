@@ -1,0 +1,73 @@
+---
+title: ASP.NET Core SignalR .NET Client
+author: rachelappel
+description: Information about the ASP.NET Core SignalR .NET Client 
+manager: wpickett
+ms.author: rachelap
+ms.custom: mvc
+ms.date: 05/04/2018
+ms.prod: aspnet-core
+ms.technology: aspnet
+ms.topic: article
+uid: signalr/dotnet-client
+---
+
+# ASP.NET Core SignalR .NET Client
+
+By [Rachel Appel](http://twitter.com/rachelappel)
+
+The ASP.NET Core SignalR .NET client can be used by Xamarin, WPF, Windows Forms, Console, and .NET Core apps. Like the [JavaScript client](xref:signalr/javascript-client), the .NET client enables you to receive and send messages to a hub in real time.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
+The code sample in this article is a WPF client.
+
+## Setup client
+
+The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run `Install-Package` in the **Package Console Manager** window.
+
+```cmd
+  Install-Package Microsoft.AspNetCore.SignalR.Client
+```
+
+## Connect to a hub
+
+To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure the options by inserting any of the `HubConnectionBuilder` methods into `Build`, such as `WithConsoleLogger`. Start the connection with `StartAsync`.
+
+[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?highlight=15-18,34)]
+
+## Call hub methods from client
+
+`InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
+
+[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=49-51)]
+
+## Call client methods from hub
+
+Define methods the hub calls using `connection.On` after building, but before starting the connection.
+
+[!code-csharp[Define client methods](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=23-30)]
+
+The preceding code in `connection.On` runs when server-side code calls it using the `SendAsync` method.
+
+[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?range=8-11)]
+
+## Error handling and logging
+
+Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action after an error occurs.
+
+[!code-csharp[Handle error](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=47-55)]
+
+To enable logging, use the `WithConsoleLogger` when opening a connection. Specify one of the following log levels:
+
+* `LogLevel.Trace`: Traces are detailed messages about anything happening in the app, and may contain sensitive information. Don't use in a production environment.
+* `LogLevel.Debug`: Debug logs are used for interactive investigation during development.
+* `LogLevel.Information`: Information logs output the general flow of the application.
+* `LogLevel.Warning`: Warnings highlight an abnormal or unexpected event that hasn't caused app execution to stop.
+* `LogLevel.Error`: Errors are logged when the current flow of execution is stopped due to a failure.
+* `LogLevel.Critical`: Critical logs are recorded when an unrecoverable, catastrophic application or system crash happens.
+
+## Additional Resources
+
+* [Hubs](xref:signalr/hubs)
+* [JavaScript client](xref:signalr/javascript-client)
