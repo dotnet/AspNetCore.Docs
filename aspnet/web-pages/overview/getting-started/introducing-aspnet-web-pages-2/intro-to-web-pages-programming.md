@@ -202,7 +202,7 @@ Run the page and click **Submit**. This time you not only see a different messag
 
 ### Testing the value of a query string
 
-One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: ``http://localhost:43097/TestRazorPart2.cshtml`?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
+One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: `http://localhost:43097/TestRazorPart2.cshtml?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
 
 At the bottom (but inside) the code block at the top of the page, add the following:
 
