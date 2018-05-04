@@ -353,6 +353,7 @@
 ### [Web API](xref:migration/webapi)
 ### [Configuration](xref:migration/configuration)
 ### [Authentication and Identity](xref:migration/identity)
+### [ClaimsPrincipal.Current](xref:migration/claimsprincipal-current)
 ### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
