@@ -348,12 +348,13 @@
 ## [Response compression middleware](xref:performance/response-compression)
 
 # [Migration](xref:migration/index)
-## [ASP.NET to ASP.NET Core 1.x](xref:migration/mvc)
+## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
+### [MVC](xref:migration/mvc)
+### [Web API](xref:migration/webapi)
 ### [Configuration](xref:migration/configuration)
 ### [Authentication and Identity](xref:migration/identity)
-### [Web API](xref:migration/webapi)
+### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
-## [ASP.NET to ASP.NET Core 2.0](xref:migration/proper-to-2x/index)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 

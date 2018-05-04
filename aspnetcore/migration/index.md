@@ -12,16 +12,17 @@ uid: migration/index
 ---
 # Migration to ASP.NET Core
 
-### ASP.NET to ASP.NET Core 1.x
-*   [Migrate from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
-*   [Migrate configuration](xref:migration/configuration)
-*   [Migrate authentication and Identity](xref:migration/identity)
-*   [Migrate from ASP.NET Web API](xref:migration/webapi)
-*   [Migrate HTTP modules to middleware](xref:migration/http-modules)
+## ASP.NET to ASP.NET Core
 
-### ASP.NET to ASP.NET Core 2.0
-* [ASP.NET to ASP.NET Core 2.0](xref:migration/proper-to-2x/index)
+* [Migrating from ASP.NET to ASP.NET Core Reference Guide](xref:migration/proper-to-2x/index)
+* [Migrating from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
+* [Migrating from ASP.NET Web API to ASP.NET Core Web API](xref:migration/webapi)
+* [Migrating Configuration](xref:migration/configuration)
+* [Migrating Authentication and Identity](xref:migration/identity)
+* [Migrating ASP.NET Membership Data to ASP.NET Core Identity](xref:migration/proper-to-2x/membership-to-core-identity)
+* [Migrating HTTP modules to Middleware](xref:migration/http-modules)
 
-### ASP.NET Core 1.x to 2.0
-*   [Migrate from ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
-*   [Migrate authentication and Identity](xref:migration/1x-to-2x/identity-2x)
+## ASP.NET Core 1.x to 2.0
+
+* [Migrating from ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
+* [Migrating authentication and Identity](xref:migration/1x-to-2x/identity-2x)
