@@ -49,3 +49,15 @@ In the **New Project** dialog for ASP.NET Core you may see the following warning
 You are seeing this message because you have at least one installation of the .NET Core SDK in a directory outside of *C:\Program Files\dotnet\sdk\*. Usually that happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
 Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
+
+### No .NET Core SDKs were detected
+In the **New Project** dialog for ASP.NET Core you may see the following warning appear at the top: 
+
+**No .NET Core SDKs were detected, please ensure they are included in the environment variable 'PATH'**
+
+<insert screenshot here @Phil Henning can you please provide one?>
+
+This warning appears when the environment variable `PATH` doesn’t point to any .NET Core SDKs on the machine. To resolve this problem:
+
+* Install or verify the .NET Core SDK is installed.
+* Verify the `PATH` environment variable points to the location the SDK is install. The installer normally sets the `PATH`.
