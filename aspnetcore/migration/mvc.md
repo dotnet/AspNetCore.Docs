@@ -145,7 +145,7 @@ Open *_Layout.cshtml* file and make the following changes (the completed code is
 
 * Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
 
-* Replace `@Scripts.Render("~/bundles/bootstrap")` with a `<script>` element (see below)..
+* Replace `@Scripts.Render("~/bundles/bootstrap")` with a `<script>` element (see below).
 
 The replacement markup for Bootstrap CSS inclusion:
 
