@@ -37,11 +37,11 @@ By implementing these two APIs, you can customize how authorization policies are
 
 ## Parameterized authorize attribute example
 
-One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](xref:security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an app should be made available to users of *different* ages, it might be useful to have many different age-based policies. Instead of registering all the different age-based policies that the application will need individually, you can generate the policies dynamically with a custom `IAuthorizationPolicyProvider` and annotate actions with an authorization attribute like `[MinimumAgeAuthorize(20)]`.
+One scenario where `IAuthorizationPolicyProvider` is useful is enabling custom `[Authorize]` attributes whose requirements depend on a parameter. For example, in [policy-based authorization](xref:security/authorization/policies) documentation, an age-based (“AtLeast21”) policy was used as a sample. If different controller actions in an app should be made available to users of *different* ages, it might be useful to have many different age-based policies. Instead of registering all the different age-based policies that the application will need in `AuthorizationOptions`, you can generate the policies dynamically with a custom `IAuthorizationPolicyProvider`. To make using the policies easier, you can annotate actions with custom authorization attribute like `[MinimumAgeAuthorize(20)]`.
 
 ## Custom Authorization Attributes
 
-Authorization policies are always identified by their names, so the custom `MinimumAgeAuthorizeAttribute` described previously needs to map incoming parameters into a string that can be used to retrieve the corresponding authorization policy. You can do this by deriving from `AuthorizeAttribute` and making the `Age` property wrap the
+Authorization policies are identified by their names. The custom `MinimumAgeAuthorizeAttribute` described previously needs to map arguments into a string that can be used to retrieve the corresponding authorization policy. You can do this by deriving from `AuthorizeAttribute` and making the `Age` property wrap the
 `AuthorizeAttribute.Policy` property.
 
 ```CSharp
@@ -117,7 +117,10 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
 
 When using custom `IAuthorizationPolicyProvider` implementations, keep in mind that ASP.NET Core only uses one instance of `IAuthorizationPolicyProvider`. If a custom provider isn't able to provide authorization policies for all policy names, it should fall back to a backup provider. Policy names might include those that come from a default policy for `[Authorize]` attributes without a name.
 
-For example, if an application needed both custom age policies (as demonstrated previously) and more traditional role-based policy retrieval, it could use a custom authorization policy provider that attempts to parse policy names first and then calls into a different policy provider (like `DefaultAuthorizationPolicyProvider`) if the policy name doesn't contain an age.
+For example, consider an application needed both custom age policies and more traditional role-based policy retrieval. Such an app could use a custom authorization policy provider that:
+
+* Attempts to parse policy names. 
+* Calls into a different policy provider (like `DefaultAuthorizationPolicyProvider`) if the policy name doesn't contain an age.
 
 ## Default policy
 
@@ -130,7 +133,7 @@ public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
     Task.FromResult(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 ```
 
-As with all aspects of custom `IAuthorizationPolicyProvider`s, though, you can customize this, as needed. In some cases:
+As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customize this, as needed. In some cases:
 
 * Default authorization policies might not be used.
 * Retrieving the default policy can be delegated to a fallback `IAuthorizationPolicyProvider`.
@@ -139,7 +142,7 @@ As with all aspects of custom `IAuthorizationPolicyProvider`s, though, you can c
 
 To use custom policies from an `IAuthorizationPolicyProvider`, you must:
 
-* Register appropriate `AuthorizationHandler`s with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
+* Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
 * Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
 
 ```CSharp
