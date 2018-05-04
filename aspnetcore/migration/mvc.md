@@ -21,13 +21,13 @@ This article shows how to get started migrating an ASP.NET MVC project to [ASP.N
 
 ## Create the starter ASP.NET MVC project
 
-To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it with the name *WebApp1* so the namespace will match the ASP.NET Core project we create in the next step.
+To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project we create in the next step.
 
 ![Visual Studio New Project dialog](mvc/_static/new-project.png)
 
 ![New Web Application dialog: MVC project template selected in ASP.NET templates panel](mvc/_static/new-project-select-mvc-template.png)
 
-*Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio will display the new solution name (*Mvc5*), which will make it easier to tell this project from the next project.
+*Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio displays the new solution name (*Mvc5*), which makes it easier to tell this project from the next project.
 
 ## Create the ASP.NET Core project
 
@@ -37,7 +37,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](mvc/_static/new-project-select-empty-aspnet5-template.png)
 
-* *Optional:* Create a new ASP.NET Core app using the *Web Application* project template. Name the project *WebApp1*, and select an authentication option of **Individual User Accounts**. Rename this app to *FullAspNetCore*. Creating this project will save you time in the conversion. You can look at the template-generated code to see the end result or to copy code to the conversion project. It's also helpful when you get stuck on a conversion step to compare with the template-generated project.
+* *Optional:* Create a new ASP.NET Core app using the *Web Application* project template. Name the project *WebApp1*, and select an authentication option of **Individual User Accounts**. Rename this app to *FullAspNetCore*. Creating this project saves you time in the conversion. You can look at the template-generated code to see the end result or to copy code to the conversion project. It's also helpful when you get stuck on a conversion step to compare with the template-generated project.
 
 ## Configure the site to use MVC
 
@@ -81,7 +81,7 @@ Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 Run the app.
 
-![Web application open in Microsoft Edge](mvc/_static/hello-world.png)
+![Web app open in Microsoft Edge](mvc/_static/hello-world.png)
 
 See [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview) for more information.
 
@@ -99,7 +99,7 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 
 * filters
 
-* Log in/out, identity (This will be done in the next tutorial.)
+* Log in/out, Identity (This is done in the next tutorial.)
 
 ## Controllers and views
 
@@ -107,7 +107,7 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 
 * Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 
-* Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the `About` and `Contact` views, so you'll have to invoke them from the browser (replace **4492** with the port number used in your project).
+* Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views only contain the content in the view files. You won't have the layout file generated links for the `About` and `Contact` views, so you'll have to invoke them from the browser (replace **4492** with the port number used in your project).
 
   * `http://localhost:4492/home/about`
 
@@ -123,20 +123,7 @@ In previous versions of ASP.NET MVC, static content was hosted from the root of 
 
 * Copy the *favicon.ico* file from the old MVC project to the *wwwroot* folder in the ASP.NET Core project.
 
-The old ASP.NET MVC project uses [Bootstrap](http://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* folders. The template, which generated the old ASP.NET MVC project, references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). You could copy the *bootstrap.js* and *bootstrap.css* files from the ASP.NET MVC project to the *wwwroot* folder in the new project, but that approach doesn't use the improved mechanism for managing client-side dependencies in ASP.NET Core.
-
-In the new project, we'll add support for Bootstrap (and other client-side libraries) using a CDN:
-
-* Open **Views > Shared > _Layout.cshtml** and add the following markup
-
-```html
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-```
+The old ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* folders. The template, which generated the old ASP.NET MVC project, references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). You could copy the *bootstrap.js* and *bootstrap.css* files from the ASP.NET MVC project to the *wwwroot* folder in the new project. Instead, we'll add support for Bootstrap (and other client-side libraries) using CDNs in the next section.
 
 ## Migrate the layout file
 
@@ -160,22 +147,26 @@ Open *_Layout.cshtml* file and make the following changes (the completed code is
 
 * Replace `@Scripts.Render("~/bundles/bootstrap")` with a `<script>` element (see below)..
 
-The replacement CSS link:
+The replacement markup for Bootstrap CSS inclusion:
 
 ```html
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
 ```
 
-The replacement script tags:
+The replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 ```html
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 
 The updated *_Layout.cshtml* file is shown below:
 
-[!code-html[](mvc/sample/Views/Shared/_Layout.cshtml?highlight=7,27,39-40)]
+[!code-cshtml[](mvc/sample/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -191,7 +182,7 @@ There are many problems that can cause a HTTP 500 error message that contain no 
 
 [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 
-ASP.NET Core will turn unhandled exceptions in a web application to HTTP 500 error responses. Normally, error details are not included in these responses to prevent disclosure of potentially sensitive information about the server. See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
+ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. See **Using the Developer Exception Page** in [Handle errors](../fundamentals/error-handling.md) for more information.
 
 ## Additional resources
 
