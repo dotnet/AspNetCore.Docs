@@ -123,3 +123,10 @@ dotnet new razor --no-https
 ------
 
 ::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+## How to setup a developer certificate for Docker
+
+See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
+
+::: moniker-end
