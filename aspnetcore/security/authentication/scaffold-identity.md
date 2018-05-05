@@ -13,6 +13,10 @@ uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
 
+<!--
+https://docs.microsoft.com/en-us/dotnet/api/
+-->
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained on the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
@@ -39,11 +43,11 @@ The call to `UseHsts` is recommended but not required. See [HTTP Strict Transpor
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Add the UseAuthentication call to the `Startup` class:
+Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
 [!code-csharp[Main](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
@@ -51,32 +55,32 @@ Add the UseAuthentication call to the `Startup` class:
 
 # [Visual Studio](#tab/visual-studio) 
 
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-# [.NET Core CLI](#tab/netcore-cli)
+Verify the  *Pages\Shared\_Layout.cshtml* file is backed up or can be restored from source control.
 
-TDB
+Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
------- 
+The current scaffolder incorrectly updates the *Pages\Shared\_Layout.cshtml* file. For example, it prepends `/Identity` to each `href` and `src` attribute value. Update the layout file so the only changes are those highlighted below:
 
-## Scaffold identity into a MVC project without authorization
+[!code-csharp[Main](scaffold-identity/sample/RPauth/_Layout.cshtml?highlight=1-4, 40-54)]
 
-# [Visual Studio](#tab/visual-studio) 
+See [@inject](xref:mvc/views/razor#section-4) for more information.
+
+Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correcty layout. If you're using the template generated layout, use the following markup:
+
+```HTML
+@{
+    Layout = "_Layout";
+}
+```
+
+## Scaffold identity into an MVC project without authorization
+
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 
-# [.NET Core CLI](#tab/netcore-cli)
+## Scaffold identity into an MVC project with individual authorization
 
-TDB
-
------- 
-
-## Scaffold identity into a MVC project with individual authorization
-
-# [Visual Studio](#tab/visual-studio) 
-
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-TDB
-
------- 
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
