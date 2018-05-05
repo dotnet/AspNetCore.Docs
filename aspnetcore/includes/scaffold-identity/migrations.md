@@ -1,4 +1,4 @@
-The generated Identity database code requires [Entity Framework Core Migrations]/ef/core/managing-schemas/migrations/). Create a migration and update the database. For example, run the following commands:
+The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). Create a migration and update the database. For example, run the following commands:
 
 # [Visual Studio](#tab/visual-studio) 
 
@@ -10,6 +10,11 @@ Update-Database
 ```
 
 # [.NET Core CLI](#tab/netcore-cli)
+
+```cli
+dotnet ef migrations add CreateIdentitySchema
+dotnet ef database update
+```
 
 ------
 

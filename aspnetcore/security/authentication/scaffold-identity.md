@@ -19,7 +19,7 @@ ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authen
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
-Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete the Identity scaffolding update.
+Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
 
 We recommend using a source control system that shows changes. Inspect the changes after running the Identity scaffolder.
 
@@ -29,7 +29,7 @@ We recommend using a source control system that shows changes. Inspect the chang
 
 Add the following calls to the `Startup` class:
 
-[!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=6,20-23)]
+[!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
 The call to `UseHsts` is recommended but not required. See [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) for more information.
 
@@ -37,14 +37,15 @@ The call to `UseHsts` is recommended but not required. See [HTTP Strict Transpor
 
 ## Scaffold identity into a Razor project without authorization
 
-# [Visual Studio](#tab/visual-studio) 
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.
 
-# [.NET Core CLI](#tab/netcore-cli)
+[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-TDB
+Add the UseAuthentication call to the `Startup` class:
 
------- 
+[!code-csharp[Main](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
 ## Scaffold identity into a Razor project with individual authorization
 
