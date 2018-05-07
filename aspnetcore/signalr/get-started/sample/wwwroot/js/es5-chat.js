@@ -5,7 +5,7 @@
 
 "use strict";
 
-var connection = new signalR.HubConnection("/chathub", { logger: signalR.LogLevel.Information });
+var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 connection.on("ReceiveMessage", function (user, message) {
     var encodedMsg = user + " says " + message;
@@ -18,11 +18,11 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
     connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.error;
+        return console.error(err.toString());
     });
     event.preventDefault();
 });
 
 connection.start().catch(function (err) {
-    return console.error;
+    return console.error(err.toString());
 });
