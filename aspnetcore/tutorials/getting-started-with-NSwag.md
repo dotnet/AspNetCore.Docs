@@ -82,7 +82,7 @@ Import the following namespaces in the `Startup` class:
 
 In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=4,7-10)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
 
 Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swagger/v1/swagger.json` to view the Swagger specification.
 
