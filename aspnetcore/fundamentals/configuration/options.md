@@ -30,7 +30,7 @@ An options class must be non-abstract with a public parameterless constructor. T
 
 [!code-csharp[](options/sample/Models/MyOptions.cs?name=snippet1)]
 
-The `MyOptions` class is added to the service container with [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) and bound to configuration:
+The `MyOptions` class is added to the service container with [Configure&lt;TOptions&gt;(IServiceCollection, IConfiguration)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsconfigurationservicecollectionextensions.configure#Microsoft_Extensions_DependencyInjection_OptionsConfigurationServiceCollectionExtensions_Configure__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_Configuration_IConfiguration_) and bound to configuration:
 
 [!code-csharp[](options/sample/Startup.cs?name=snippet_Example1)]
 
