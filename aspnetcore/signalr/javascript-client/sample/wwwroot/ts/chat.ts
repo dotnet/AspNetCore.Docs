@@ -3,6 +3,7 @@
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
+    .configureLogging(signalR.LogLevel.Information)
     .build();
 
 connection.on("ReceiveMessage", function (user, message) {

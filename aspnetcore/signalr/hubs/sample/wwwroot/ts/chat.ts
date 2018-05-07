@@ -1,4 +1,4 @@
-// The following sample code uses TypeScript and must be compiled to JavaScript
+﻿// The following sample code uses TypeScript and must be compiled to JavaScript
 // before a browser can execute it.
 
 const connection = new signalR.HubConnectionBuilder()
@@ -32,3 +32,4 @@ document.getElementById("sendButton").addEventListener("click", async (event) =>
         console.error(e.toString());
     }
 })();
+

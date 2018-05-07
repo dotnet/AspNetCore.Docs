@@ -1,9 +1,4 @@
-﻿// To use the following code sample:
-// In Pages\Index.cshtml,
-// comment line #26: "<script src="~/js/chat.js"></script>"
-// uncomment line #27: "<script src="~/js/es5-chat.js"></script>"
-
-"use strict";
+﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
