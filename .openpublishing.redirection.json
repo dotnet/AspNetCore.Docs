@@ -331,8 +331,8 @@
         "redirect_document_id": false 
     },
     {
-        "source_path": "aspnetcore/aspnetcore-1.1.md",
-        "redirect_url": "/aspnet/aspnetcore-2.0",
+        "source_path": "aspnetcore/getting-started-1.1.md",
+        "redirect_url": "/aspnet/getting-started",
         "redirect_document_id": false
     },
     {
