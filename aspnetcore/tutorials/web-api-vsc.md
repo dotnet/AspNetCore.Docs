@@ -15,10 +15,6 @@ uid: tutorials/web-api-vsc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-::: moniker range="= aspnetcore-2.1"
-
-::: moniker-end
-
 In this tutorial, build a web API for managing a list of "to-do" items. A UI isn't constructed.
 
 There are three versions of this tutorial:
