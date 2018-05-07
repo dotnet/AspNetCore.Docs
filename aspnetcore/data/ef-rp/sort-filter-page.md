@@ -118,7 +118,7 @@ The preceding code:
 
 Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
-For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
+For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Server defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
@@ -131,7 +131,7 @@ There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a f
 
 ### Add a Search Box to the Student Index View
 
-In *Views/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
+In *Pages/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
@@ -263,7 +263,7 @@ Note: The LINQ `group` command isn't currently supported by EF Core. In the prec
 
 ### Modify the About Razor Page
 
-Replace the code in the *Views/Home/About.cshtml* file with the following code:
+Replace the code in the *Pages/Home/About.cshtml* file with the following code:
 
 [!code-html[](intro/samples/cu/Pages/About.cshtml)]
 
