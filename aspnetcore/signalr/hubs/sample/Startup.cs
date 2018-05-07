@@ -30,7 +30,8 @@ namespace SignalRChat
             builder =>
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:44317");
+                       .WithOrigins("http://localhost:44317")
+                       .AllowCredentials();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
