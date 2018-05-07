@@ -46,7 +46,7 @@ Reference the SignalR JavaScript client in the `<script>` element.
 
 The following code creates and starts a connection. The hub's name is case insensitive.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-11,27)]
+[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-12,28)]
 
 ### Cross-origin connections
 
@@ -63,7 +63,7 @@ JavaScript clients call public methods on hubs by using `connection.invoke`. The
 * The name of the hub method. In the following example, the hub name is `SendMessage`.
 * Any arguments defined in the hub method. In the following example, the argument name is `message`.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=23)]
+[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 ## Call client methods from hub
 
@@ -72,7 +72,7 @@ To receive messages from the hub, define a method using the `connection.on` meth
 * The name of the JavaScript client method. In the following example, the method name is `ReceiveMessage`.
 * Arguments the hub passes to the method. In the following example, the argument value is `message`.
 
-[!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=13-18)]
+[!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=14-19)]
 
 The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
 
@@ -87,7 +87,7 @@ SignalR determines which client method to call by matching the method name and a
 
 Chain a `catch` method to the end of the `connection.start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
 
-[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=27)]
+[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=28)]
 
 Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
