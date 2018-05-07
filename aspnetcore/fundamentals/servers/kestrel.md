@@ -191,8 +191,6 @@ var host = new WebHostBuilder()
 ```
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
-
-
 By default, ASP.NET Core binds to:
 
 * `http://localhost:5000`
