@@ -30,7 +30,7 @@ This document shows how to:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!INCLUDE[](~/includes/2.1.md)]
+
 
 We recommend all ASP.NET Core web apps call `UseHttpsRedirection` to redirect all HTTP requests to HTTPS. If `UseHsts` is called in the app, it must be called before `UseHttpsRedirection`.
 

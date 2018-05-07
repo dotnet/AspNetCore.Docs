@@ -100,7 +100,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 ::: moniker range=">= aspnetcore-2.1"
 **Add a handler model convention to all pages**
 
-[!INCLUDE[](~/includes/2.1.md)]
+
 
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageHandlerModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipagehandlermodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during page handler model construction.
 

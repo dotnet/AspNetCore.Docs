@@ -17,7 +17,7 @@ uid: tutorials/first-web-api-mac
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
 ::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/2.1.md)]
+
 ::: moniker-end
 
 In this tutorial, build a web API for managing a list of "to-do" items. The UI isn't constructed.

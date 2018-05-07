@@ -16,7 +16,7 @@ uid: fundamentals/http-requests
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon)
 
-[!INCLUDE[](~/includes/2.1.md)]
+
 
 An `IHttpClientFactory` can be registered and used to configure and create [HttpClient](/dotnet/api/system.net.http.httpclient) instances in an app. It offers the following benefits:
 
