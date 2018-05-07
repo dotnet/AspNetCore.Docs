@@ -143,16 +143,12 @@ XML comments are enabled with the following approaches:
 #### [Visual Studio](#tab/visual-studio-xml/)
 
 * Right-click the project in **Solution Explorer** and select **Properties**
-* Check the **XML documentation file** box under the **Output** section of the **Build** tab:
-
-![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
+* Check the **XML documentation file** box under the **Output** section of the **Build** tab
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
 
 * Open the **Project Options** dialog > **Build** > **Compiler**
-* Check the **Generate xml documentation** box under the **General Options** section:
-
-![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
+* Check the **Generate xml documentation** box under the **General Options** section
 
 #### [Visual Studio Code](#tab/visual-studio-code-xml/)
 

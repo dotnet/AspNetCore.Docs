@@ -8,6 +8,7 @@ namespace TodoApi.Controllers
 #region snippet_TodoController
     [Produces("application/json")]
     [Route("api/[controller]")]
+    [ApiController]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
@@ -26,8 +27,7 @@ namespace TodoApi.Controllers
 
         #region snippet_GetAll
         [HttpGet]
-        [Produces("application/json", Type = typeof(TodoItem))]
-        public List<TodoItem> GetAll()
+        public ActionResult<List<TodoItem>> GetAll()
         {
             return _context.TodoItems.ToList();
         }
@@ -35,8 +35,7 @@ namespace TodoApi.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}", Name = "GetTodo")]
-        [Produces("application/json", Type = typeof(TodoItem))]
-        public IActionResult GetById(long id)
+        public ActionResult<TodoItem> GetById(long id)
         {
             var item = _context.TodoItems.Find(id);
 
@@ -45,7 +44,7 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            return Ok(item);
+            return item;
         }
         #endregion
         
@@ -69,15 +68,10 @@ namespace TodoApi.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>            
         [HttpPost]
-        [ProducesResponseType(typeof(TodoItem), 201)]
+        [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public IActionResult Create([FromBody] TodoItem item)
+        public ActionResult<TodoItem> Create(TodoItem item)
         {
-            if (item == null)
-            {
-                return BadRequest();
-            }
-
             _context.TodoItems.Add(item);
             _context.SaveChanges();
 
@@ -87,7 +81,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Update
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] TodoItem item)
+        public IActionResult Update(long id, TodoItem item)
         {
             if (item == null || item.Id != id)
             {
