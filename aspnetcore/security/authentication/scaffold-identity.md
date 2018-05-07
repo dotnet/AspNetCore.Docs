@@ -35,7 +35,7 @@ Add the following calls to the `Startup` class:
 
 [!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
-The call to `UseHsts` is recommended but not required. See [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) for more information.
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -51,23 +51,21 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 [!code-csharp[Main](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+
 ## Scaffold identity into a Razor project with individual authorization
-
-# [Visual Studio](#tab/visual-studio) 
-
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 Verify the  *Pages\Shared\_Layout.cshtml* file is backed up or can be restored from source control.
 
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+
+Delete the scaffolder generated layout file and restore the previous version.
+
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
-The current scaffolder incorrectly updates the *Pages\Shared\_Layout.cshtml* file. For example, it prepends `/Identity` to each `href` and `src` attribute value. Update the layout file so the only changes are those highlighted below:
+See [`@inject`](xref:mvc/views/razor#section-4) for more information.
 
-[!code-csharp[Main](scaffold-identity/sample/RPauth/_Layout.cshtml?highlight=1-4, 40-54)]
-
-See [@inject](xref:mvc/views/razor#section-4) for more information.
-
-Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correcty layout. If you're using the template generated layout, use the following markup:
+Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correct layout. If you're using the template generated layout, use the following markup:
 
 ```HTML
 @{
@@ -77,10 +75,22 @@ Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correcty layout. If you
 
 ## Scaffold identity into an MVC project without authorization
 
+Verify the  *Pages\Shared\_Layout.cshtml* file is backed up or can be restored from source control.
+
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
+
+[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
+
+Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
+
+[!code-csharp[Main](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
+
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
 ## Scaffold identity into an MVC project with individual authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
+For many projects, no changes need to be made.
