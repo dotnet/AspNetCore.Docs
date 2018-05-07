@@ -154,7 +154,7 @@ XML comments are enabled with the following approaches:
 
 Manually add the following snippet to the *.csproj* file:
 
-[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/TodoApi.csproj?range=7-9)]
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement)]
 
 ---
 
