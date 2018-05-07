@@ -54,7 +54,7 @@ The first line specifies that when `sortOrder` is null or empty, `NameSort` is s
 
 The `?: operator` is also known as the ternary operator.
 
-These two statements enable the view to set the column heading hyperlinks as follows:
+These two statements enable the page to set the column heading hyperlinks as follows:
 
 | Current sort order | Last Name Hyperlink | Date Hyperlink |
 |:--------------------:|:-------------------:|:--------------:|
@@ -73,7 +73,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 `OnGetAsync` could get verbose with a large number of columns.
 
-### Add column heading hyperlinks to the Student Index view
+### Add column heading hyperlinks to the Student Index page
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
@@ -118,7 +118,7 @@ The preceding code:
 
 Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
-For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
+For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Server defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
@@ -129,9 +129,9 @@ The preceding code would ensure that results are case-insensitive if the code ch
 
 There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
-### Add a Search Box to the Student Index View
+### Add a Search Box to the Student Index page
 
-In *Views/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
+In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
@@ -238,7 +238,7 @@ Step through the debugger.
 
 ## Update the About page to show student statistics
 
-In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
+In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
 * Modify the About Razor Page and page model.
@@ -263,7 +263,7 @@ Note: The LINQ `group` command isn't currently supported by EF Core. In the prec
 
 ### Modify the About Razor Page
 
-Replace the code in the *Views/Home/About.cshtml* file with the following code:
+Replace the code in the *Pages/About.cshtml* file with the following code:
 
 [!code-html[](intro/samples/cu/Pages/About.cshtml)]
 

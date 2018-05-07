@@ -15,7 +15,7 @@ uid: mvc/razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, and data models can be built into a Razor Class Library(RCL). The RCL can be and packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
+Razor views, pages, controllers, page models, and data models can be built into a Razor Class Library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
