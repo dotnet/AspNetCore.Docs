@@ -55,9 +55,9 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into a Razor project with individual authorization
 
-Verify the  *Pages\Shared\_Layout.cshtml* file is backed up or can be restored from source control.
+Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 Delete the scaffolder generated layout file and restore the previous version.
 
@@ -65,7 +65,7 @@ Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.c
 
 See [`@inject`](xref:mvc/views/razor#section-4) for more information.
 
-Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correct layout. If you're using the template generated layout, use the following markup:
+Update *Areas/Identity/Pages/_ViewStart.cshtml* with the correct layout. If you're using the template generated layout, use the following markup:
 
 ```HTML
 @{
@@ -75,9 +75,12 @@ Update *Areas\Identity\Pages\_ViewStart.cshtml* with the correct layout. If you'
 
 ## Scaffold identity into an MVC project without authorization
 
-Verify the  *Pages\Shared\_Layout.cshtml* file is backed up or can be restored from source control.
+
+Verify the *Identity/Pages/_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+
+Restore the previous version of the *Identity/Pages/_ViewStart.cshtml* file.
 
 Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
@@ -91,6 +94,8 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into an MVC project with individual authorization
 
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 
-For many projects, no changes need to be made.
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
+
+Replace the *Pages/Shared/_Layout.cshtml* with the version before scaffolding.
