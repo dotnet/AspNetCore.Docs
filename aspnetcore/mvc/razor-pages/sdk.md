@@ -15,8 +15,6 @@ uid: mvc/razor-pages/sdk
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[](~/includes/2.1.md)]
-
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
 * Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.

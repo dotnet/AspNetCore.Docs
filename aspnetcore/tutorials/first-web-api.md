@@ -15,10 +15,6 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/2.1.md)]
-::: moniker-end
-
 This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
 
 There are three versions of this tutorial:
