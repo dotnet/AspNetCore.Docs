@@ -1,11 +1,11 @@
 ---
 title: Get started with Swashbuckle and ASP.NET Core
 author: zuckerthoben
-description: Learn how to add Swashbuckle to your ASP.NET Core project to integrate the Swagger UI.
+description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/04/2018
+ms.date: 05/07/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -30,14 +30,16 @@ Swashbuckle can be added with the following approaches:
 ### [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
+  * Go to **View** > **Other Windows** > **Package Manager Console**
+  * Navigate to the directory in which the *TodoApi.csproj* file exists
+  * Execute the following command:
 
     ```powershell
     Install-Package Swashbuckle.AspNetCore
     ```
 
 * From the **Manage NuGet Packages** dialog:
-
-  * Right-click your project in **Solution Explorer** > **Manage NuGet Packages**
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
   * Set the **Package source** to "nuget.org"
   * Enter "Swashbuckle.AspNetCore" in the search box
   * Select the "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
@@ -46,8 +48,8 @@ Swashbuckle can be added with the following approaches:
 
 * Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
 * Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Enter Swashbuckle.AspNetCore in the search box
-* Select the Swashbuckle.AspNetCore package from the results pane and click **Add Package**
+* Enter "Swashbuckle.AspNetCore" in the search box
+* Select the "Swashbuckle.AspNetCore" package from the results pane and click **Add Package**
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 

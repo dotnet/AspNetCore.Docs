@@ -1,11 +1,11 @@
 ---
 title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
-description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core Web API app.
+description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/03/2018
+ms.date: 05/07/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -39,12 +39,12 @@ The NSwag NuGet package can be added with the following approaches:
   * Navigate to the directory in which the *TodoApi.csproj* file exists
   * Execute the following command:
 
-      ```powershell
-      Install-Package NSwag.AspNetCore
-      ```
+    ```powershell
+    Install-Package NSwag.AspNetCore
+    ```
 
 * From the **Manage NuGet Packages** dialog:
-  * Right-click your project in **Solution Explorer** > **Manage NuGet Packages**
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
   * Set the **Package source** to "nuget.org"
   * Enter "NSwag.AspNetCore" in the search box
   * Select the "NSwag.AspNetCore" package from the **Browse** tab and click **Install**
@@ -53,8 +53,8 @@ The NSwag NuGet package can be added with the following approaches:
 
 * Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
 * Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Enter NSwag.AspNetCore in the search box
-* Select the NSwag.AspNetCore package from the results pane and click **Add Package**
+* Enter "NSwag.AspNetCore" in the search box
+* Select the "NSwag.AspNetCore" package from the results pane and click **Add Package**
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
@@ -92,7 +92,7 @@ Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swa
 
 * Install NSwagStudio from the official [GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).
 
-* Launch NSwagStudio. Enter the location of your *swagger.json* or copy it directly:
+* Launch NSwagStudio. Enter the location of the *swagger.json* file or copy it directly:
 
 ![NSwagStudio](web-api-help-pages-using-swagger/_static/NSwagStudio.png)
 
@@ -100,7 +100,7 @@ Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swa
 
 * Click **Generate Outputs**.
 
-* Here you see a complete client implementation of the *TodoApi.NSwag* sample in C#:
+* Here's a complete client implementation of the *TodoApi.NSwag* sample in C#:
 
 ![NSwagStudio-Output](web-api-help-pages-using-swagger/_static/NSwagStudio-Output.png)
 
