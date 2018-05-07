@@ -120,6 +120,7 @@
 ## [Configuration and options](xref:fundamentals/configuration/index)
 ### [Configuration](xref:fundamentals/configuration/index)
 ### [Options](xref:fundamentals/configuration/options)
+### [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Logging](xref:fundamentals/logging/index)
 ### [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Handle errors](fundamentals/error-handling.md)
@@ -257,7 +258,6 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-## [Enhance an app with a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
 
 # [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)

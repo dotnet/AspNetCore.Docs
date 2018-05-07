@@ -1,5 +1,5 @@
 ---
-title: Enhance an app with a platform-specific configuration in ASP.NET Core with IHostingStartup
+title: Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
 author: guardrex
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 manager: wpickett
@@ -10,15 +10,15 @@ ms.date: 12/07/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: host-and-deploy/platform-specific-configuration
+uid: fundamentals/configuration/platform-specific-configuration
 ---
-# Enhance an app with a platform-specific configuration in ASP.NET Core
+# Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
 
 By [Luke Latham](https://github.com/guardrex)
 
 An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For example, an external tooling library can use an `IHostingStartup` implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 and later.*
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Discover loaded hosting startup assemblies
 
@@ -33,7 +33,7 @@ The sample app reads the [HostingStartupAssembliesKey](/dotnet/api/microsoft.asp
 There are two ways to disable the automatic loading of hosting startup assemblies:
 
 * Set the [Prevent Hosting Startup](xref:fundamentals/hosting#prevent-hosting-startup) host configuration setting.
-* Set the `ASPNETCORE_preventHostingStartup` environment variable.
+* Set the `ASPNETCORE_PREVENTHOSTINGSTARTUP` environment variable.
 
 When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
 
@@ -143,7 +143,7 @@ For examples of how to set environment variables for various operating systems, 
 
 ## Sample app
 
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
+The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/platform-specific-configuration/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) uses `IHostingStartup` to create a diagnostics tool. The tool adds two middlewares to the app at startup that provide diagnostic information:
 
 * Registered services
 * Address: scheme, host, path base, path, query string
