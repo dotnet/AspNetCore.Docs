@@ -16,8 +16,6 @@ uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 
 By [Scott Addie](https://github.com/scottaddie)
 
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
-
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Overview
