@@ -131,7 +131,7 @@ There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a f
 
 ### Add a Search Box to the Student Index View
 
-In *Pages/Student/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
+In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
@@ -263,7 +263,7 @@ Note: The LINQ `group` command isn't currently supported by EF Core. In the prec
 
 ### Modify the About Razor Page
 
-Replace the code in the *Pages/Home/About.cshtml* file with the following code:
+Replace the code in the *Pages/About.cshtml* file with the following code:
 
 [!code-html[](intro/samples/cu/Pages/About.cshtml)]
 
