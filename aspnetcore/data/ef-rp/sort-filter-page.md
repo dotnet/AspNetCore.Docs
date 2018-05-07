@@ -54,7 +54,7 @@ The first line specifies that when `sortOrder` is null or empty, `NameSort` is s
 
 The `?: operator` is also known as the ternary operator.
 
-These two statements enable the view to set the column heading hyperlinks as follows:
+These two statements enable the page to set the column heading hyperlinks as follows:
 
 | Current sort order | Last Name Hyperlink | Date Hyperlink |
 |:--------------------:|:-------------------:|:--------------:|
@@ -73,7 +73,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 `OnGetAsync` could get verbose with a large number of columns.
 
-### Add column heading hyperlinks to the Student Index view
+### Add column heading hyperlinks to the Student Index page
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
@@ -129,7 +129,7 @@ The preceding code would ensure that results are case-insensitive if the code ch
 
 There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
-### Add a Search Box to the Student Index View
+### Add a Search Box to the Student Index page
 
 In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
@@ -238,7 +238,7 @@ Step through the debugger.
 
 ## Update the About page to show student statistics
 
-In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
+In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
 * Modify the About Razor Page and page model.
