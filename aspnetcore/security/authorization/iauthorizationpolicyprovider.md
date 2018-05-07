@@ -19,8 +19,9 @@ Typically when using [policy-based authorization](xref:security/authorization/po
 
 Examples of scenarios where a custom [IAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider) may be useful include:
 
-* Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through another mechanism.
+* Using an external service to provide policy evaluation.
 * Using a large range of policies (for different room numbers or ages, for example), so it doesn’t make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call.
+* Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through another mechanism.
 
 ## Customizing policy retrieval
 
