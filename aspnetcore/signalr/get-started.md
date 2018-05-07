@@ -16,8 +16,6 @@ uid: signalr/get-started
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
-
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
    ![Solution](get-started/_static/signalr-get-started-finished.png)
