@@ -10,10 +10,10 @@ ms.technology: aspnet
 ms.topic: get-started-article
 uid: getting-started
 ---
+
 # Get Started with ASP.NET Core
 
-> [!NOTE]
-> These instructions are for the latest version of ASP.NET Core. See [Getting Started with ASP.NET Core 1.1](xref:getting-started-1.1) for the 1.1 version of this document.
+::: moniker range=">= aspnetcore-2.0"
 
 1. Install the [!INCLUDE [](~/includes/net-core-sdk-download-link.md)].
 
@@ -49,3 +49,60 @@ For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
 For an introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Introduction](index.md) and [ASP.NET Core Fundamentals](fundamentals/index.md).
 
 An ASP.NET Core app can use the .NET Core or .NET Framework Base Class Library and runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-1.0"
+
+1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
+
+2. Create a folder for a new .NET Core project.
+
+   On macOS and Linux, open a terminal window. On Windows, open a command prompt.
+
+   ```terminal
+   mkdir aspnetcoreapp
+   cd aspnetcoreapp
+   ```
+
+2. If you have installed a later SDK version on your machine, create a *global.json* file to select the 1.0.4 SDK.
+
+   ```json
+   {
+     "sdk": { "version": "1.0.4" }
+   }
+   ```
+
+2. Create a new .NET Core project.
+
+   ```terminal
+   dotnet new web
+   ```
+   
+3.  Restore the packages.
+
+    ```terminal
+    dotnet restore
+    ```
+
+4. Run the app.
+
+   The [dotnet run](/dotnet/core/tools/dotnet-run) command builds the app first if needed.
+
+   ```terminal
+   dotnet run
+   ```
+
+5. Browse to `http://localhost:5000`
+
+<!-- H3 to avoid a single-entry internal TOC -->
+### Next steps
+
+For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
+
+For an introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Introduction](index.md) and [ASP.NET Core Fundamentals](fundamentals/index.md).
+
+An ASP.NET Core app can use the .NET Core or .NET Framework Base Class Library and runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+
+
+::: moniker-end

@@ -19,8 +19,6 @@ Razor views, pages, controllers, page models, and data models can be built into 
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-[!INCLUDE[](~/includes/2.1.md)]
-
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
