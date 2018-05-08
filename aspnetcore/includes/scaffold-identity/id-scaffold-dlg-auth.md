@@ -1,4 +1,4 @@
-Run the Identity scaffolder
+Run the Identity scaffolder:
 
 # [Visual Studio](#tab/visual-studio) 
 
@@ -7,6 +7,7 @@ Run the Identity scaffolder
 * In the **ADD Identity** dialog, select the options you want.
 * Select at least one file to override. You must select at least one file to add your data context.
 * Select your data context class.
+* Select **ADD**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 

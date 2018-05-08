@@ -25,9 +25,11 @@ Applications that do **not** include authentication can apply the scaffolder to 
 
 Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
 
-We recommend using a source control system that shows changes. Inspect the changes after running the Identity scaffolder.
+We recommend using a source control system that shows changes and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
 ## Scaffold identity into an empty project
+
+Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -47,11 +49,18 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHost
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
+In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
 [!code-csharp[Main](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+
+### Layout changes
+
+* Delete the generated *Pages/Shared/_Layout.cshtml* file and restore with the previous version. 
+* Optional: Add the login partial (`_LoginPartial`) to the layout file:
+
+[!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
 ## Scaffold identity into a Razor project with individual authorization
 
@@ -59,28 +68,30 @@ Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored fr
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Delete the scaffolder generated layout file and restore the previous version.
+Delete the scaffolder generated  *Pages/Shared/_Layout.cshtml* fileand restore the previous version.
 
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
-See [`@inject`](xref:mvc/views/razor#section-4) for more information.
-
-Update *Areas/Identity/Pages/_ViewStart.cshtml* with the correct layout. If you're using the template generated layout, use the following markup:
-
-```HTML
-@{
-    Layout = "_Layout";
-}
-```
-
 ## Scaffold identity into an MVC project without authorization
-
-
-Verify the *Identity/Pages/_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Restore the previous version of the *Identity/Pages/_ViewStart.cshtml* file.
+Delete the *Pages/Shared/_Layout.cshtml* file.
+
+Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
+
+* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
+* Add the _LoginPartial to the *Views/Shared/_Layout.cshtml* file:
+
+[!code-html[Main](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
+
+Update the */Areas/Identity/Pages/_ViewStart.cshtml* to use the *Views* folder rather than the *Pages* folder:
+
+```html
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+```
 
 Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
@@ -94,7 +105,7 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into an MVC project with individual authorization
 
-Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
+Verify the *Views/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
