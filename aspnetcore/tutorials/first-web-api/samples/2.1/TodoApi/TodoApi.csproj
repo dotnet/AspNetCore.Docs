@@ -2,17 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ProjectUISubcaption>>= ASP.NET Core 2.1</ProjectUISubcaption>
+    <ProjectUISubcaption>&gt;= ASP.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_Metapackage> -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
   </ItemGroup>
   <!-- </snippet_Metapackage> -->
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
 
 </Project>
