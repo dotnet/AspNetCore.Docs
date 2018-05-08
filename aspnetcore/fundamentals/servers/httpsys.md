@@ -128,7 +128,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
-   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information on `UseUrls`, `urls`, and `ASPNETCORE_URLS`, see [Hosting](xref:fundamentals/hosting).
+   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information on `UseUrls`, `urls`, and `ASPNETCORE_URLS`, see the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
 
    HTTP.sys uses the [HTTP Server API UrlPrefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
@@ -174,4 +174,4 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 * [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [Hosting](xref:fundamentals/hosting)
+* [Host in ASP.NET Core](xref:fundamentals/host/index)

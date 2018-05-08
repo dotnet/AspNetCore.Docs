@@ -271,7 +271,7 @@ Specify URLs using the:
 * `urls` host configuration key.
 * `UseUrls` extension method.
 
-For more information, see [Server URLs](xref:fundamentals/hosting#server-urls) and [Overriding configuration](xref:fundamentals/hosting#overriding-configuration).
+For more information, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
@@ -484,7 +484,7 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure URL prefixe
 * `urls` host configuration key
 * ASP.NET Core configuration system, including `ASPNETCORE_URLS` environment variable
 
-For more information on these methods, see [Hosting](xref:fundamentals/hosting).
+For more information on these methods, see [Hosting](xref:fundamentals/host/index).
 
 **IIS endpoint configuration**
 

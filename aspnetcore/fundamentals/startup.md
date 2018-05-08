@@ -41,7 +41,7 @@ The `Startup` class constructor accepts dependencies defined by the host. A comm
 
 An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate startup class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#startup-conventions).
 
-To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/hosting) topic. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
+To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/host/index) topic. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
 ## The ConfigureServices method
 
@@ -53,7 +53,7 @@ The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.con
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
 
-The web host may configure some services before `Startup` methods are called. Details are available in the [Hosting](xref:fundamentals/hosting) topic.
+The web host may configure some services before `Startup` methods are called. Details are available in the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
 
 For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
 
@@ -159,7 +159,7 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 ## Additional resources
 
-* [Hosting](xref:fundamentals/hosting)
+* [Hosting](xref:fundamentals/host/index)
 * [Use multiple environments](xref:fundamentals/environments)
 * [Middleware](xref:fundamentals/middleware/index)
 * [Logging](xref:fundamentals/logging/index)

@@ -59,7 +59,7 @@ If `UseUrls` is called in an ASP.NET Core 1.0 app, call it **before** calling `U
 
 ---
 
-For more information on hosting, see [Hosting in ASP.NET Core](xref:fundamentals/hosting).
+For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
 ### IIS options
 
