@@ -165,7 +165,17 @@ You can generate the client code in other ways, more suited to your workflow:
 
 * [T4 templates](https://github.com/NSwag/NSwag/wiki/T4)
 
-## Customization
+## Customize
+
+### API info and description
+
+In the `Startup.Configure` method, a configuration action passed to the `UseSwagger` method adds information such as the author, license, and description:
+
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup2.cs?name=snippet_UseSwagger)]
+
+The Swagger UI displays the version's information:
+
+![Swagger UI with version information](web-api-help-pages-using-swagger/_static/custom-info-nswag.png)
 
 ### XML comments
 
