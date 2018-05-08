@@ -133,6 +133,9 @@ namespace MyNamespace
         // code omitted for brevity
 ```
 
+> [!TIP]
+> The C# client code is generated based on settings defined in the **Settings** tab of the **CSharp Client** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
+
 * Copy the generated C# code into a file in a client project (for example, a [Xamarin.Forms](/xamarin/xamarin-forms/) app).
 * Start consuming the API:
 
