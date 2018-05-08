@@ -105,10 +105,10 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into an MVC project with individual authorization
 
-Verify the *Areas\Identity\Pages\_ViewStart.cshtml* file is backed up or can be restored from source control.
+Verify the *Areas/Identity/Pages/_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Delete the *Pages/Shared folder and the files in that folder.
+Delete the *Pages/Shared* folder and the files in that folder.
 
-Replace the *Areas\Identity\Pages\_ViewStart.cshtml* file with the pervious version (before scaffolding).
+Replace the *Areas/Identity/Pages/_ViewStart.cshtml* file with the pervious version (before scaffolding).
