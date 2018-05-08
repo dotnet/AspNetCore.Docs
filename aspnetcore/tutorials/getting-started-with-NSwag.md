@@ -205,7 +205,7 @@ NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), a
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-The preceding action returns `ActionResult<T>`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute) or [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest). Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
+The preceding action returns `ActionResult<T>`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute). Since the controller is decorated with the [ApiController](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute?view=aspnetcore-2.1) attribute, a [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest) response is possible too. See [Automatic HTTP 400 responses](xref:web-api#automatic-http-400-responses) for more info. Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 ::: moniker-end

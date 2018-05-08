@@ -68,11 +68,11 @@ namespace TodoApi.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         #region snippet_CreateActionAttributes
-        [HttpPost]
         [ProducesResponseType(201)]     // Created
         [ProducesResponseType(400)]     // BadRequest
         #endregion snippet_CreateActionAttributes
         #region snippet_CreateAction
+        [HttpPost]
         public ActionResult<TodoItem> Create(TodoItem item)
         {
             _context.TodoItems.Add(item);
