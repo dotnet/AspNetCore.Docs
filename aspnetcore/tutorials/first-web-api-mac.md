@@ -112,7 +112,7 @@ In Visual Studio, select **Run** > **Start With Debugging** to launch the app. V
 ["value1","value2"]
 ```
 
-Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`:
+Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`. The following JSON is returned:
 
 ```json
 [{"key":1,"name":"Item1","isComplete":false}]
