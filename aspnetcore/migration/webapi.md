@@ -112,6 +112,37 @@ Once these changes have been made and unused using statements removed, the migra
 
 You should now be able to run the migrated project and browse to */api/products*; and, you should see the full list of 3 products. Browse to */api/products/1* and you should see the first product.
 
+## Microsoft.AspNetCore.Mvc.WebApiCompatShim
+
+A useful tool when migrating ASP.NET Web API projects to ASP.NET Core is the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) library. The compatibility shim extends ASP.NET Core to allow a number of different Web API 2 conventions to be used. The sample ported previously in this document is simple enough that the compatibility shim was not necessary but, for larger projects, it can be useful for temporarily bridging the API gap between ASP.NET Core and ASP.NET Web API 2.
+
+Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim include:
+
+* Adds an `ApiController` type so that controllers' base types don't need to be updated.
+* Enables Web API-style model binding. ASP.NET Core MVC model binding functions similarly to MVC 5, by default. The compatibility shim changes this to be more similar to Web API 2 model binding conventions (complex types are automatically bound from the request body).
+* Extends model binding so that controller actions can take parameters of type `HttpRequestMessage`.
+* Adds message formatters allowing actions to return results of type `HttpResponseMessage`.
+* Adds additional response methods that Web API 2 actions may have used to serve responses:
+    * HttpResponseMessage generators 
+        * `CreateResponse<T>`
+        * `CreateErrorResponse`
+    * Action result methods
+        * `BadResuestErrorMessageResult`
+        * `ExceptionResult`
+        * `InternalServerErrorResult`
+        * `InvalidModelStateResult`
+        * `NegotiatedContentResult`
+        * `ResponseMessageResult`
+* Adds an instance of `IContentNegotiator` to the app's DI container and makes content negotiation-related types from [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) available. This includes types like `DefaultContentNegotiator`, `MediaTypeFormatter`, etc.
+
+Note that the Web API compatibility shim is meant to be used as a temporary measure to facilitate migrating large Web API projects to ASP.NET Core. Over time, projects should be updated to use ASP.NET Core patterns instead of relying on the compatibility shim. 
+
+To use the compatibility shim, you need to:
+
+* Reference the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) NuGet package.
+* Register the compatibility shim's services with the app's DI container by calling `services.AddWebApiConventions()` in the application's `Startup.ConfigureServices` method.
+* Define Web API-specific routes using `MapWebApiRoute` on the `IRouteBuilder` in the application's `IApplicationBuilder.UseMvc` call.
+
 ## Summary
 
 Migrating a simple ASP.NET Web API project to ASP.NET Core MVC is fairly straightforward, thanks to the built-in support for Web APIs in ASP.NET Core MVC. The main pieces every ASP.NET Web API project will need to migrate are routes, controllers, and models, along with updates to the types used by  controllers and actions.
