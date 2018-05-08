@@ -540,6 +540,7 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 ### Razor keywords
 
 * page (Requires ASP.NET Core 2.0 and later)
+* namespace
 * functions
 * inherits
 * model
@@ -569,7 +570,6 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 ### Reserved keywords not used by Razor
 
-* namespace
 * class
 
 ## Viewing the Razor C# class generated for a view
