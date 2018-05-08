@@ -57,7 +57,7 @@ When creating a new instance of `UserManager` or `RoleManager` you provide the t
 
 ### Users
 
-Registered users of your web site. The [IdentityUser](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser) type may be extended or used as an example for your own custom type. You don't need to inherit from a particular type to implement your own custom identity storage solution.
+Registered users of your web site. The [IdentityUser](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuser) type may be extended or used as an example for your own custom type. You don't need to inherit from a particular type to implement your own custom identity storage solution.
 
 ### User Claims
 
@@ -65,11 +65,11 @@ A set of statements (or [Claims](/dotnet/api/system.security.claims.claim)) abou
 
 ### User Logins
 
-Information about the external authentication provider (like Facebook or a Microsoft account) to use when logging in a user. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)
+Information about the external authentication provider (like Facebook or a Microsoft account) to use when logging in a user. [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin)
 
 ### Roles
 
-Authorization groups for your site. Includes the role Id and role name (like "Admin" or "Employee"). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identityrole)
+Authorization groups for your site. Includes the role Id and role name (like "Admin" or "Employee"). [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityrole)
 
 ## The data access layer
 
@@ -81,11 +81,11 @@ The data access layer provides the logic to save the data from ASP.NET Core Iden
 
 ### Context class
 
-Encapsulates the information to connect to your persistence mechanism and execute queries. Several data classes require an instance of this class, typically provided through dependency injection. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identitydbcontext-1).
+Encapsulates the information to connect to your persistence mechanism and execute queries. Several data classes require an instance of this class, typically provided through dependency injection. [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identitydbcontext-1).
 
 ### User Storage
 
-Stores and retrieves user information (such as user name and password hash). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user information (such as user name and password hash). [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### Role Storage
 
@@ -93,15 +93,15 @@ Stores and retrieves role information (such as the role name). [Example](/dotnet
 
 ### UserClaims Storage
 
-Stores and retrieves user claim information (such as the claim type and value). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user claim information (such as the claim type and value). [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### UserLogins Storage
 
-Stores and retrieves user login information (such as an external authentication provider). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user login information (such as an external authentication provider). [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### UserRole Storage
 
-Stores and retrieves which roles are assigned to which users. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves which roles are assigned to which users. [Example](/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 **TIP:** Only implement the classes you intend to use in your app.
 
@@ -109,15 +109,15 @@ In the data access classes, provide code to perform data operations for your per
 
 [!code-csharp[](identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs?name=createuser&highlight=7)]
 
-The implementation logic for creating the user is in the ``_usersTable.CreateAsync`` method, shown below.
+The implementation logic for creating the user is in the `_usersTable.CreateAsync` method, shown below.
 
 ## Customize the user class
 
-When implementing a storage provider, create a user class which is equivalent to the [`IdentityUser` class](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser).
+When implementing a storage provider, create a user class which is equivalent to the [`IdentityUser` class](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuser).
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
-The `IdentityUser` class defines the properties that the ``UserManager`` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>` and specify a different type. The framework expects the storage implementation to handle data type conversions.
+The `IdentityUser` class defines the properties that the `UserManager` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>` and specify a different type. The framework expects the storage implementation to handle data type conversions.
 
 ## Customize the user store
 
@@ -183,7 +183,7 @@ public class UserStore : IUserStore<IdentityUser>,
 
 ### IdentityUserClaim, IdentityUserLogin, and IdentityUserRole
 
-The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it's more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
+The `Microsoft.AspNet.Identity.EntityFramework` namespace contains implementations of the [IdentityUserClaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it's more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the `UserStore.GetClaimsAsync` method can call the `userClaimTable.FindByUserId(user.Id)` method to execute a query on that table directly and return a list of claims.
 
 ## Customize the role class
 
@@ -195,7 +195,7 @@ The following is an example role class:
 
 ## Customize the role store
 
-You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
+You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
  The [IRoleStore](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
@@ -209,7 +209,7 @@ Once you have implemented a storage provider, you configure your app to use it. 
 1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity` NuGet package.
 1. If the storage provider resides in a separate project or package, add a reference to it.
 1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity` with a using statement for the namespace of your storage provider.
-1. In the ``ConfigureServices`` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
+1. In the `ConfigureServices` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
 1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.
 
@@ -235,5 +235,5 @@ public void ConfigureServices(IServiceCollection services)
 
 ## References
 
-- [Custom Storage Providers for ASP.NET Identity](https://docs.microsoft.com/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
+- [Custom Storage Providers for ASP.NET Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 - [ASP.NET Core Identity](https://github.com/aspnet/identity) - This repository includes links to community maintained store providers.

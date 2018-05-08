@@ -3,6 +3,7 @@ title: What's new in ASP.NET Core 1.1
 author: rick-anderson
 description: Learn about the new features in ASP.NET Core 1.1.
 manager: wpickett
+monikerRange: '= aspnetcore-1.1'
 ms.author: riande
 ms.date: 02/14/2017
 ms.prod: aspnet-core

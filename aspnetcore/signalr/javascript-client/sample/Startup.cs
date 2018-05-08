@@ -30,7 +30,8 @@ namespace SignalRChat
             builder => 
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:55830");
+                       .WithOrigins("http://localhost:55830")
+                       .AllowCredentials();
             }));
 
             services.AddSignalR();

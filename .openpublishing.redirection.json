@@ -182,7 +182,7 @@
     },
     {
         "source_path": "aspnetcore/hosting/ihostingstartup.md",
-        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
+        "redirect_url": "/aspnet/core/fundamentals/configuration/platform-specific-configuration",
         "redirect_document_id": false
     },
     {
@@ -317,7 +317,7 @@
     },
     {
         "source_path": "aspnetcore/host-and-deploy/ihostingstartup.md",
-        "redirect_url": "/aspnet/core/host-and-deploy/platform-specific-configuration",
+        "redirect_url": "/aspnet/core/fundamentals/configuration/platform-specific-configuration",
         "redirect_document_id": false
     },
     {
@@ -331,6 +331,11 @@
         "redirect_document_id": false 
     },
     {
+        "source_path": "aspnetcore/getting-started-1.1.md",
+        "redirect_url": "/aspnet/getting-started",
+        "redirect_document_id": false
+    },
+    {
         "source_path": "aspnetcore/mvc/models/formatting.md",
         "redirect_url": "/aspnet/core/web-api/advanced/formatting",
         "redirect_document_id": false
@@ -338,6 +343,11 @@
     {
         "source_path": "aspnetcore/mvc/advanced/custom-formatters.md",
         "redirect_url": "/aspnet/core/web-api/advanced/custom-formatters",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/host-and-deploy/platform-specific-configuration.md",
+        "redirect_url": "/aspnet/core/fundamentals/configuration/platform-specific-configuration",
         "redirect_document_id": false
     }
   ] 

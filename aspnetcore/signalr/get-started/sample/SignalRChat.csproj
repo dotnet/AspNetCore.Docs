@@ -5,27 +5,21 @@
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Properties\PublishProfiles\SignalRChat20180409114932 - Web Deploy.pubxml" />
-    <None Remove="Properties\PublishProfiles\SignalRChat20180410122408 - Web Deploy.pubxml" />
-    <None Remove="Properties\PublishProfiles\SignalRChattR - Web Deploy.pubxml" />
-    <None Remove="Properties\PublishProfiles\SignalRChattRR - Web Deploy.pubxml" />
-  </ItemGroup>
-
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview1-final" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.0-rc1-final" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-28291" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
+
+  <Target Name="CopySignalR" BeforeTargets="AfterBuild">
+    <ItemGroup>
+      <SignalRJSClientFiles Include="$(MSBuildThisFileDirectory)node_modules\@aspnet\signalr\dist\browser\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SignalRJSClientFiles)" DestinationFolder="$(MSBuildThisFileDirectory)wwwroot\lib\signalr" />
+  </Target>
 
 </Project>

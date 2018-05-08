@@ -17,8 +17,6 @@ uid: signalr/hubs
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
-
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
 ## What is a SignalR hub
@@ -71,7 +69,7 @@ Each property or method in the preceding tables returns an object with a `SendAs
 
 ## Send messages to clients
 
-To make calls to specific clients, use the properties of the `Clients` object. In the following In the following example, the `SendMessageToCaller` method demonstrates sending a message to the connection that invoked the hub method. The `SendMessageToGroups` method sends a message to the groups stored in a `List` named `groups`.
+To make calls to specific clients, use the properties of the `Clients` object. In the following example, the `SendMessageToCaller` method demonstrates sending a message to the connection that invoked the hub method. The `SendMessageToGroups` method sends a message to the groups stored in a `List` named `groups`.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
 
@@ -85,7 +83,7 @@ The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` v
 
 Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object.
 
-[!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=22)]
+[!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
 ## Related resources
 

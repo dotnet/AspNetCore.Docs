@@ -44,7 +44,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    # [.NET Core CLI](#tab/netcore-cli)
 
-   If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This command creates a new project with the same Identity template code Visual Studio creates.
+   If using the .NET Core CLI, create the new project using `dotnet new mvc --auth Individual`. This command creates a new project with the same Identity template code Visual Studio creates.
 
    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which persists the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
 
@@ -83,30 +83,30 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    ![Apply Migrations Web Page](identity/_static/apply-migrations.png)
 
-   Alternately, you can test using ASP.NET Core Identity with your app without a persistent database by using an in-memory database. To use an in-memory database, add the ``Microsoft.EntityFrameworkCore.InMemory`` package to your app and modify your app's call to ``AddDbContext`` in ``ConfigureServices`` as follows:
+   Alternately, you can test using ASP.NET Core Identity with your app without a persistent database by using an in-memory database. To use an in-memory database, add the `Microsoft.EntityFrameworkCore.InMemory` package to your app and modify your app's call to `AddDbContext` in `ConfigureServices` as follows:
 
    ```csharp
    services.AddDbContext<ApplicationDbContext>(options =>
        options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
    ```
 
-   When the user clicks the **Register** link, the ``Register`` action is invoked on ``AccountController``. The ``Register`` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to ``AccountController`` by dependency injection):
+   When the user clicks the **Register** link, the `Register` action is invoked on `AccountController`. The `Register` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to `AccountController` by dependency injection):
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
 
-   If the user was created successfully, the user is logged in by the call to ``_signInManager.SignInAsync``.
+   If the user was created successfully, the user is logged in by the call to `_signInManager.SignInAsync`.
 
    **Note:** See [account confirmation](xref:security/authentication/accconfirm#prevent-login-at-registration) for steps to prevent immediate login at registration.
 
 4. Log in.
 
-   Users can sign in by clicking the **Log in** link at the top of the site, or they may be navigated to the Login page if they attempt to access a part of the site that requires authorization. When the user submits the form on the Login page, the ``AccountController`` ``Login`` action is called.
+   Users can sign in by clicking the **Log in** link at the top of the site, or they may be navigated to the Login page if they attempt to access a part of the site that requires authorization. When the user submits the form on the Login page, the `AccountController` `Login` action is called.
 
-   The ``Login`` action calls ``PasswordSignInAsync`` on the ``_signInManager`` object (provided to ``AccountController`` by dependency injection).
+   The `Login` action calls `PasswordSignInAsync` on the `_signInManager` object (provided to `AccountController` by dependency injection).
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
 
-   The base ``Controller`` class exposes a ``User`` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
+   The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
 
 5. Log out.
 
@@ -144,7 +144,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     The default *ASP.NET Core Web Application* project template allows users to access any action in the application without having to login. To verify that ASP.NET Identity works, add an`[Authorize]` attribute to the `About` action of the `Home` Controller.
 
-    ```cs
+    ```csharp
     [Authorize]
     public IActionResult About()
     {
@@ -161,7 +161,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the [dotnet run](/dotnet/core/tools/dotnet-run) command to run the app:
 
-    ```cs
+    ```csharp
     dotnet run 
     ```
 

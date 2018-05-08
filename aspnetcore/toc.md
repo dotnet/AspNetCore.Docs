@@ -120,6 +120,7 @@
 ## [Configuration and options](xref:fundamentals/configuration/index)
 ### [Configuration](xref:fundamentals/configuration/index)
 ### [Options](xref:fundamentals/configuration/options)
+### [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Logging](xref:fundamentals/logging/index)
 ### [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Handle errors](fundamentals/error-handling.md)
@@ -230,7 +231,7 @@
 ## [JavaScript client](xref:signalr/javascript-client)
 ## [.NET client](xref:signalr/dotnet-client)
 ## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-## [Supported Platforms](xref:signalr/supported-platforms)
+## [Supported platforms](xref:signalr/supported-platforms)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
@@ -258,7 +259,6 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-## [Enhance an app with a platform-specific configuration](xref:host-and-deploy/platform-specific-configuration)
 
 # [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
@@ -349,12 +349,14 @@
 ## [Response compression middleware](xref:performance/response-compression)
 
 # [Migration](xref:migration/index)
-## [ASP.NET to ASP.NET Core 1.x](xref:migration/mvc)
+## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
+### [MVC](xref:migration/mvc)
+### [Web API](xref:migration/webapi)
 ### [Configuration](xref:migration/configuration)
 ### [Authentication and Identity](xref:migration/identity)
-### [Web API](xref:migration/webapi)
+### [ClaimsPrincipal.Current](xref:migration/claimsprincipal-current)
+### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
-## [ASP.NET to ASP.NET Core 2.0](xref:migration/proper-to-2x/index)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
