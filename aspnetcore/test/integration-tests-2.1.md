@@ -10,7 +10,7 @@ ms.date: 04/27/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: test/integration-tests
+uid: test/integration-tests2
 ---
 # Integration tests in ASP.NET Core
 
