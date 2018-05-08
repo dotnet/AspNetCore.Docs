@@ -68,7 +68,7 @@ Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored fr
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Delete the scaffolder generated  *Pages/Shared/_Layout.cshtml* fileand restore the previous version.
+Delete the scaffolder generated  *Pages/Shared/_Layout.cshtml* file and restore the previous version.
 
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
@@ -105,8 +105,10 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into an MVC project with individual authorization
 
-Verify the *Views/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
+Verify the *Areas\Identity\Pages\_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Replace the *Pages/Shared/_Layout.cshtml* with the version before scaffolding.
+Delete the *Pages/Shared folder and the files in that folder.
+
+Replace the *Areas\Identity\Pages\_ViewStart.cshtml* file with the pervious version (before scaffolding).
