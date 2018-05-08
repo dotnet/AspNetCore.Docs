@@ -5,7 +5,7 @@ description: Learn how to add Swashbuckle to your ASP.NET Core web API project t
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/07/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article

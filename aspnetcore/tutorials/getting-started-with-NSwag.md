@@ -1,11 +1,11 @@
 ---
 title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
-description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API app.
+description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/07/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -84,7 +84,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
 
-Launch the app. Navigate to `/swagger` to view the Swagger UI. Navigate to `/swagger/v1/swagger.json` to view the Swagger specification.
+Launch the app. Navigate to `http://localhost:<random_port>/swagger` to view the Swagger UI. Navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to view the Swagger specification.
 
 ## Code generation
 
@@ -137,7 +137,7 @@ namespace MyNamespace
 > The C# client code is generated based on settings defined in the **Settings** tab of the **CSharp Client** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
 
 * Copy the generated C# code into a file in a client project (for example, a [Xamarin.Forms](/xamarin/xamarin-forms/) app).
-* Start consuming the API:
+* Start consuming the web API:
 
 ```csharp
 var todoClient = new TodoClient();
@@ -155,11 +155,9 @@ var foundTodo = await todoClient.GetByIdAsync(1);
 > [!NOTE]
 > You can inject a base URL and/or a HTTP client into the API client. The best practice is to always [reuse the HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).
 
-You can now start implementing your API into client projects.
-
 ### Other ways to generate client code
 
-You can generate the code in other ways, more suited to your workflow:
+You can generate the client code in other ways, more suited to your workflow:
 
 * [MSBuild](https://www.nuget.org/packages/NSwag.MSBuild/)
 
