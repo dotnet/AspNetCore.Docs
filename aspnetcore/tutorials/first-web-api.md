@@ -5,7 +5,7 @@ description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article

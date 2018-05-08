@@ -6,7 +6,7 @@ helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Serv
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
