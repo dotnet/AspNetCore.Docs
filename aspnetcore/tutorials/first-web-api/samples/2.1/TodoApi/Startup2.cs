@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TodoApi.Models;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace TodoApi
 {
@@ -23,7 +22,8 @@ namespace TodoApi
         {
             services.AddDbContext<TodoContext>(opt => 
                 opt.UseInMemoryDatabase("TodoList"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
 #region snippet_Configure

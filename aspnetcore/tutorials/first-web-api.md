@@ -74,7 +74,7 @@ Replace the class with the following code:
 
 [!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
 
-[!INCLUDE [Register the database context](../includes/webApi/register_dbContext.md)]
+[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
 ### Add a controller
 
