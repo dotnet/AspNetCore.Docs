@@ -31,7 +31,7 @@ In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 [!code-csharp[](../migration/webapi/sample/ProductsApp/App_Start/WebApiConfig.cs?highlight=15,16,17,18,19,20)]
 
 
-This class configures [attribute routing](https://docs.microsoft.com/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format */api/{controller}/{id}*, with *{id}* being optional.
+This class configures [attribute routing](https://docs.microsoft.com/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format */api/{controller}/{id}*, with *{id}* being optional.
 
 The *ProductsApp* project includes just one simple controller, which inherits from `ApiController` and exposes two methods:
 
@@ -114,12 +114,14 @@ You should now be able to run the migrated project and browse to */api/products*
 
 ## Microsoft.AspNetCore.Mvc.WebApiCompatShim
 
-A useful tool when migrating ASP.NET Web API projects to ASP.NET Core is the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) library. The compatibility shim extends ASP.NET Core to allow a number of different Web API 2 conventions to be used. The sample ported previously in this document is simple enough that the compatibility shim was not necessary but, for larger projects, it can be useful for temporarily bridging the API gap between ASP.NET Core and ASP.NET Web API 2.
+A useful tool when migrating ASP.NET Web API projects to ASP.NET Core is the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) library. The compatibility shim extends ASP.NET Core to allow a number of different Web API 2 conventions to be used. The sample ported previously in this document is basic enough that the compatibility shim was not necessary. For larger projects, using the compatibility shim can be useful for temporarily bridging the API gap between ASP.NET Core and ASP.NET Web API 2.
+
+The Web API compatibility shim is meant to be used as a temporary measure to facilitate migrating large Web API projects to ASP.NET Core. Over time, projects should be updated to use ASP.NET Core patterns instead of relying on the compatibility shim. 
 
 Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim include:
 
 * Adds an `ApiController` type so that controllers' base types don't need to be updated.
-* Enables Web API-style model binding. ASP.NET Core MVC model binding functions similarly to MVC 5, by default. The compatibility shim changes this to be more similar to Web API 2 model binding conventions (complex types are automatically bound from the request body).
+* Enables Web API-style model binding. ASP.NET Core MVC model binding functions similarly to MVC 5, by default. The compatibility shim changes model binding to be more similar to Web API 2 model binding conventions. For example, complex types are automatically bound from the request body.
 * Extends model binding so that controller actions can take parameters of type `HttpRequestMessage`.
 * Adds message formatters allowing actions to return results of type `HttpResponseMessage`.
 * Adds additional response methods that Web API 2 actions may have used to serve responses:
@@ -135,7 +137,6 @@ Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim inc
         * `ResponseMessageResult`
 * Adds an instance of `IContentNegotiator` to the app's DI container and makes content negotiation-related types from [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) available. This includes types like `DefaultContentNegotiator`, `MediaTypeFormatter`, etc.
 
-Note that the Web API compatibility shim is meant to be used as a temporary measure to facilitate migrating large Web API projects to ASP.NET Core. Over time, projects should be updated to use ASP.NET Core patterns instead of relying on the compatibility shim. 
 
 To use the compatibility shim, you need to:
 
