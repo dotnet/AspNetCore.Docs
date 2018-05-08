@@ -160,6 +160,14 @@ WantedBy=multi-user.target
 
 **Note:** If the user *www-data* is not used by the configuration, the user defined here must be created first and given proper ownership for files.
 
+>[!NOTE]
+>Some values (for example, SQL connection strings) must be escaped for the configuration providers to read the environment variables. Use the following command to generate a properly escaped value for use in the configuration file:
+>
+> ```console
+> systemd-escape "<value-to-escape>"
+> ```
+
+
 Save the file and enable the service.
 
 ```bash
