@@ -6,7 +6,7 @@ helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Serv
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -112,7 +112,7 @@ In Visual Studio, select **Run** > **Start With Debugging** to launch the app. V
 ["value1","value2"]
 ```
 
-Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`:
+Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`. The following JSON is returned:
 
 ```json
 [{"key":1,"name":"Item1","isComplete":false}]

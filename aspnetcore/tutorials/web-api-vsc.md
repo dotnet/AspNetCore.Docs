@@ -5,7 +5,7 @@ description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC a
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
