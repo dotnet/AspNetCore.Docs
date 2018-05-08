@@ -167,7 +167,6 @@ WantedBy=multi-user.target
 > systemd-escape "<value-to-escape>"
 > ```
 
-
 Save the file and enable the service.
 
 ```bash
