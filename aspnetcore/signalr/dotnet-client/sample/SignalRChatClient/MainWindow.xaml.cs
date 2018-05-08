@@ -12,10 +12,10 @@ namespace SignalRChatClient
         {
             InitializeComponent();
 
-            connection = new HubConnectionBuilder()                
+            connection = new HubConnectionBuilder()
             .WithUrl("https://localhost:44317/ChatHub")
-            .WithConsoleLogger(LogLevel.Error)            
-            .Build();            
+            .ConfigureLogging(logging => logging.AddConsole())      
+            .Build();        
         }
 
         private async void connectButton_Click(object sender, RoutedEventArgs e)

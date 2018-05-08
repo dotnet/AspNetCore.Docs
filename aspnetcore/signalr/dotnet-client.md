@@ -3,9 +3,10 @@ title: ASP.NET Core SignalR .NET Client
 author: rachelappel
 description: Information about the ASP.NET Core SignalR .NET Client 
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/04/2018
+ms.date: 05/08/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -16,11 +17,11 @@ uid: signalr/dotnet-client
 
 By [Rachel Appel](http://twitter.com/rachelappel)
 
-The ASP.NET Core SignalR .NET client can be used by Xamarin, WPF, Windows Forms, Console, and .NET Core apps. Like the [JavaScript client](xref:signalr/javascript-client), the .NET client enables you to receive and send messages to a hub in real time.
+The ASP.NET Core SignalR .NET client can be used by Xamarin, WPF, Windows Forms, Console, and .NET Core apps. Like the [JavaScript client](xref:signalr/javascript-client), the .NET client enables you to receive and send and receive messages to a hub in real time.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-The code sample in this article is a WPF client.
+The code sample in this article is a WPF app that uses the ASP.NET Core SignalR .NET client.
 
 ## Setup client
 
@@ -54,20 +55,16 @@ The preceding code in `connection.On` runs when server-side code calls it using 
 
 ## Error handling and logging
 
-Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action after an error occurs.
+Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action to take after an error occurs.
 
 [!code-csharp[Handle error](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=47-55)]
 
-To enable logging, use the `WithConsoleLogger` when opening a connection. Specify one of the following log levels:
+To enable logging, use `ConfigureLogging` when opening a connection.
 
-* `LogLevel.Trace`: Traces are detailed messages about everything happening in the app, and may contain sensitive information. Don't use in a production environment.
-* `LogLevel.Debug`: Debug logs are used for interactive investigation during development.
-* `LogLevel.Information`: Information logs output the general flow of the application.
-* `LogLevel.Warning`: Warnings highlight an abnormal or unexpected event that hasn't caused app execution to stop.
-* `LogLevel.Error`: Errors are logged when the current flow of execution is stopped due to a failure.
-* `LogLevel.Critical`: Critical logs are recorded when an unrecoverable, catastrophic application or system crash happens.
+[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=15-18)]
 
 ## Additional Resources
 
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
+* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
