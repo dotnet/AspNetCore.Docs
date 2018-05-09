@@ -208,7 +208,7 @@ The `OnPostDeleteAsync` method:
 
 ## Mark Page properties as required
 
-Properties on a `PageModel1 can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
+Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
