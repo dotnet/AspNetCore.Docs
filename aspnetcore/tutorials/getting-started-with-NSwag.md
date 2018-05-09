@@ -167,6 +167,8 @@ You can generate the client code in other ways, more suited to your workflow:
 
 ## Customize
 
+Swagger provides options for documenting the object model to ease consumption of the web API.
+
 ### API info and description
 
 In the `Startup.Configure` method, a configuration action passed to the `UseSwagger` method adds information such as the author, license, and description:
