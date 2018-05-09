@@ -230,7 +230,7 @@ services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
 
-`SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`. The behavior is opt-in until the release of ASP.NET Core 3.0 Preview 1 or later. Each major version of ASP.NET Core adopts all of the patch release behaviors of the previous version.
+`SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
 Rather than opting in to all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts-in to the mapping HEAD requests to the GET handler.
 
