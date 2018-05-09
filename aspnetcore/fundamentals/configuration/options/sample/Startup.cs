@@ -25,7 +25,7 @@ namespace UsingOptionsSample
 
             #region snippet_Example1
             // Example #1: Basic options
-            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Register the Configuration instance which MyOptions binds against.
             services.Configure<MyOptions>(Configuration);
             #endregion
 
