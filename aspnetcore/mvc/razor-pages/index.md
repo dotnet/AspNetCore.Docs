@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 09/12/2017
+ms.date: 5/12/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -205,6 +205,13 @@ The `OnPostDeleteAsync` method:
 * Calls `RedirectToPage` to redirect to the root Index page (`/Index`).
 
 ::: moniker range=">= aspnetcore-2.1"
+
+## Mark Page properties as required
+
+Properties on a `PageModel1 can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
+
+[!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
+
 ## Manage HEAD requests with the OnGet handler
 
 Ordinarily, a HEAD handler is created and called for HEAD requests:
@@ -225,7 +232,8 @@ services.AddMvc()
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`. The behavior is opt-in until the release of ASP.NET Core 3.0 Preview 1 or later. Each major version of ASP.NET Core adopts all of the patch release behaviors of the previous version.
 
-Global opt-in behavior for patch releases 2.1 to 2.x can be avoided with an app configuration that maps HEAD requests to the GET handler. Set the `AllowMappingHeadRequestsToGetHandler` Razor Pages option to `true` without calling `SetCompatibilityVersion` in `Startup.Configure`:
+Rather than opting in to all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to behaviors. The following code opt-in to the mapping HEAD requests to the GET handler.
+
 
 ```csharp
 services.AddMvc()
