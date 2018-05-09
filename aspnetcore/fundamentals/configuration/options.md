@@ -30,7 +30,7 @@ An options class must be non-abstract with a public parameterless constructor. T
 
 [!code-csharp[](options/sample/Models/MyOptions.cs?name=snippet1)]
 
-The `MyOptions` class is added to the service container with [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) and bound to configuration:
+The `MyOptions` class is added to the service container with [Configure&lt;TOptions&gt;(IServiceCollection, IConfiguration)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsconfigurationservicecollectionextensions.configure#Microsoft_Extensions_DependencyInjection_OptionsConfigurationServiceCollectionExtensions_Configure__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_Configuration_IConfiguration_) and bound to configuration:
 
 [!code-csharp[](options/sample/Startup.cs?name=snippet_Example1)]
 
@@ -172,7 +172,7 @@ Named options support with [IConfigureNamedOptions](/dotnet/api/microsoft.extens
 
 *Requires ASP.NET Core 2.0 or later.*
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with the [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method:
+*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with the [OptionsServiceCollectionExtensions.Configure&lt;TOptions&gt;(IServiceCollection, String, Action&lt;TOptions&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configure) which in turn calls the extension method [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method:
 
 [!code-csharp[](options/sample/Startup.cs?name=snippet_Example6)]
 

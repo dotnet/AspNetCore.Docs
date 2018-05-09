@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/16/2018
+ms.date: 05/09/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
@@ -15,8 +15,6 @@ uid: signalr/get-started
 # Get started with SignalR on ASP.NET Core
 
 By [Rachel Appel](https://twitter.com/rachelappel)
-
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
 
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
@@ -37,13 +35,13 @@ Install the following software:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [.NET Core 2.1.0 Preview 2 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview2) or later
+* [.NET Core 2.1.0 RC 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1) or later
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
 * [npm](https://www.npmjs.com/get-npm)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [.NET Core 2.1.0 Preview 2 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview2) or later
+* [.NET Core 2.1.0 RC 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1) or later
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 * [npm](https://www.npmjs.com/get-npm)
@@ -131,7 +129,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 2. Configure routes to your hubs using `UseSignalR`.
 
 
-   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=36,56-59)]
+   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=37,57-60)]
 
 
 ## Create the SignalR client code

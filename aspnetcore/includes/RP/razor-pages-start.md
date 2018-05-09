@@ -10,7 +10,7 @@ The following table lists the files and folders in the project. For this tutoria
 
 | File or folder              | Purpose |
 | ----------------- | ------------ | 
-| wwwroot | Contains static files. See [Work with static files](xref:fundamentals/static-files). |
+| wwwroot | Contains static files. See [Static files](xref:fundamentals/static-files). |
 | Pages | Folder for [Razor Pages](xref:mvc/razor-pages/index). | 
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
 | *Program.cs* | [Hosts](xref:fundamentals/hosting) the ASP.NET Core app.|

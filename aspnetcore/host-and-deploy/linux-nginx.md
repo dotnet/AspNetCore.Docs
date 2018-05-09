@@ -180,6 +180,13 @@ WantedBy=multi-user.target
 **Note:** If the user *www-data* isn't used by the configuration, the user defined here must be created first and given proper ownership for files.
 **Note:** Linux has a case-sensitive file system. Setting ASPNETCORE_ENVIRONMENT to "Production" results in searching for the configuration file *appsettings.Production.json*, not *appsettings.production.json*.
 
+> [!NOTE]
+> Some values (for example, SQL connection strings) must be escaped for the configuration providers to read the environment variables. Use the following command to generate a properly escaped value for use in the configuration file:
+>
+> ```console
+> systemd-escape "<value-to-escape>"
+> ```
+
 Save the file and enable the service.
 
 ```bash

@@ -100,13 +100,13 @@ When the environment is set to `Staging`, the following `Configure` method reads
 
 [!code-csharp[](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 
-The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Work with multiple environments](xref:fundamentals/environments).
+The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Use multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
 * [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot) can reload configuration data when it changes.
 * Configuration keys are **not** case-sensitive.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to work with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to use multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
 * For hierarchical config values specified in environment variables, a colon (`:`) may not work on all platforms. Double underscore (`__`) is supported by all platforms.
 * When interacting with the configuration API, a colon (`:`) works on all platforms.
 
@@ -408,6 +408,10 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 
 To access configuration within `ConfigureServices` or `Configure` during startup, see the examples in the [Application startup](xref:fundamentals/startup) topic.
 
+## Adding configuration from an external assembly
+
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration).
+
 ## Access configuration in a Razor Page or MVC view
 
 To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](/dotnet/api/microsoft.extensions.configuration) and inject [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) into the page or view.
@@ -463,7 +467,7 @@ In an MVC view:
 ## Additional resources
 
 * [Options](xref:fundamentals/configuration/options)
-* [Work with Multiple Environments](xref:fundamentals/environments)
+* [Use multiple environments](xref:fundamentals/environments)
 * [Safe storage of app secrets in development](xref:security/app-secrets)
 * [Hosting in ASP.NET Core](xref:fundamentals/hosting)
 * [Dependency Injection](xref:fundamentals/dependency-injection)
