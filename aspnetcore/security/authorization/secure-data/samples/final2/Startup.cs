@@ -100,7 +100,7 @@ namespace ContactManager
 
             app.UseAuthentication();
 
-            app.UseMvcWithDefaultRoute();           
+            app.UseMvc();           
         }
     }
 }
