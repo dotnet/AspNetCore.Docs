@@ -248,7 +248,7 @@ Work with the data in a view:
 ::: moniker range=">= aspnetcore-2.1"
 **ViewData attribute**
 
-Another approach that uses the `ViewDataDictionary` is `ViewDataAttribute`. Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the dictionary.
+Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the dictionary.
 
 In the following example, the Home controller contains a `Title` property decorated with `[ViewData]`. The `About` method sets the title for the About view:
 
