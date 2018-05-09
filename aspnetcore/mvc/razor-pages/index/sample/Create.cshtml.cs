@@ -12,7 +12,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        [Required(ErrorMessage ="Color is required")]
+        [Required(ErrorMessage = "Color is required")]
         public string Color { get; set; }
 
         public IActionResult OnPostAsync()
