@@ -232,7 +232,8 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-**Note:** The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
+> [!NOTE]
+> The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 
 We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
@@ -264,7 +265,8 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive for the code behind file.
 
-**Note:** `@namespace` also works with conventional Razor views.
+> [!NOTE]
+> `@namespace` also works with conventional Razor views.
 
 The original *Pages/Create.cshtml* view file:
 
