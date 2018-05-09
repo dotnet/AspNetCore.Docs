@@ -189,6 +189,7 @@ var host = new WebHostBuilder()
     .UseStartup<Startup>()
     .Build();
 ```
+
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
 [!INCLUDE[](~/includes/2.1.md)]
@@ -213,10 +214,10 @@ Call [Listen](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserver
 
 ASP.NET Core 2.1 `KestrelServerOptions` configuration:
 
-**ConfigureEndpointDefaults(Action<ListenOptions>)**  
+**ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)**  
 Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
-**ConfigureHttpsDefaults(Action<HttpsConnectionAdapterOptions>)**  
+**ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)**  
 Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
 **Configure(IConfiguration)**  
@@ -424,6 +425,7 @@ WebHost.CreateDefaultBuilder()
         });
     });
 ```
+
 ::: moniker-end
 
 **Bind to a TCP socket**
@@ -490,6 +492,7 @@ When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For
 * * *
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## Transport configuration
 
 With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
@@ -497,12 +500,31 @@ With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer b
 * [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)
 * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
 
-For ASP.NET Core 2.1 or later projects that use the `Microsoft.AspNetCore.App` metapackage and require the use of Libuv (the app calls [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv)), add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
+For ASP.NET Core 2.1 or later projects that use the `Microsoft.AspNetCore.App` metapackage and require the use of Libuv:
 
-```xml
-<PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
-                  Version="2.1.0" />
-```
+* Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
+
+    ```xml
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+                    Version="2.1.0" />
+    ```
+
+* Call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv):
+
+    ```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseLibuv()
+                .UseStartup<Startup>();
+    }
+    ```
 
 No action is required when the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage is used and `UseLibuv` is called because the Libuv transport package is transitively referenced by the `Microsoft.AspNetCore.All` metapackage. Note that the ASP.NET Core 2.1 or later templates reference the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage by default. The use of the `Microsoft.AspNetCore.All` metapackage isn't recommended for ASP.NET Core 2.1 or later apps.
 ::: moniker-end
@@ -523,7 +545,6 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support SSL when configuring U
 
   `0.0.0.0` is a special case that binds to all IPv4 addresses.
 
-
 * IPv6 address with port number
 
   ```
@@ -531,7 +552,6 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support SSL when configuring U
   ```
 
   `[::]` is the IPv6 equivalent of IPv4 `0.0.0.0`.
-
 
 * Host name with port number
 
