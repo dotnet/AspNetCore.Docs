@@ -7,3 +7,5 @@
 * Update the database:
 
 	`dotnet ef database update`
+
+* Enable SSL in the project
