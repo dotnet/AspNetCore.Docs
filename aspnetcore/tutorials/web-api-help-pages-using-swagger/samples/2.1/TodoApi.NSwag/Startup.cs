@@ -1,29 +1,29 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
-using TodoApi.Models;
+#region snippet_StartupConfigureImports
+using NJsonSchema;
 using NSwag.AspNetCore;
 using System.Reflection;
-using NJsonSchema;
+#endregion
+using TodoApi.Models;
 
 namespace TodoApi
 {
     public class Startup
     {
         #region snippet_ConfigureServices
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
-            services.AddMvc();
+            services.AddDbContext<TodoContext>(opt => 
+                opt.UseInMemoryDatabase("TodoList"));
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
-
         #endregion snippet_ConfigureServices
 
         #region snippet_Configure
-
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
@@ -31,12 +31,12 @@ namespace TodoApi
             // Enable the Swagger UI middleware and the Swagger generator
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
             {
-                settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
+                settings.GeneratorSettings.DefaultPropertyNameHandling = 
+                    PropertyNameHandling.CamelCase;
             });
 
             app.UseMvc();
         }
-
         #endregion snippet_Configure
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TodoApi.Models;
 
-#region snippet_TodoController
 namespace TodoApi.Controllers
 {
+#region snippet_TodoController
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class TodoController : ControllerBase
@@ -27,7 +27,7 @@ namespace TodoApi.Controllers
         #region snippet_GetAll
         [HttpGet]
         [Produces("application/json", Type = typeof(TodoItem))]
-        public IEnumerable<TodoItem> GetAll()
+        public List<TodoItem> GetAll()
         {
             return _context.TodoItems.ToList();
         }
@@ -45,7 +45,7 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            return new ObjectResult(item);
+            return Ok(item);
         }
         #endregion
         
@@ -107,7 +107,7 @@ namespace TodoApi.Controllers
             _context.TodoItems.Update(todo);
             _context.SaveChanges();
 
-            return new NoContentResult();
+            return NoContent();
         }
         #endregion
 
@@ -129,7 +129,7 @@ namespace TodoApi.Controllers
             _context.TodoItems.Remove(todo);
             _context.SaveChanges();
 
-            return new NoContentResult();
+            return NoContent();
         }
         #endregion
     }
