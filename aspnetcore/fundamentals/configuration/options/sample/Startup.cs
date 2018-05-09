@@ -10,7 +10,7 @@ namespace UsingOptionsSample
     {
         public Startup(IConfiguration config)
         {
-            // Configruation from appsettings.json has already been loaded by
+            // Configuration from appsettings.json has already been loaded by
             // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
             // the configuration into the Configuration property.
             Configuration = config;
@@ -25,7 +25,7 @@ namespace UsingOptionsSample
 
             #region snippet_Example1
             // Example #1: Basic options
-            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Register the Configuration instance which MyOptions binds against.
             services.Configure<MyOptions>(Configuration);
             #endregion
 
