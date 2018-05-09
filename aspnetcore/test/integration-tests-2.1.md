@@ -97,6 +97,15 @@ The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) do
 
 There's virtually no difference between the configuration for tests of Razor Pages apps and MVC apps. The only difference is in how the tests are named. In a Razor Pages app, tests of page endpoints are usually named after the page model class (for example, `IndexPageTests` to test component integration for the Index page). In an MVC app, tests are usually organized by controller classes and named after the controllers they test.
 
+## Test app prerequisites
+
+The test project must:
+
+* Have a package reference for [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/).
+* Use the Web SDK in the project file (`<Project Sdk="Microsoft.NET.Sdk.Web">`).
+
+These prerequesities can be seen in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples/). Inspect the *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* file.
+
 ## Customize the web host and create a client
 
 There are two approaches for customizing the web host of the SUT, and both approaches can be used independently or together in the same test app:
@@ -204,17 +213,7 @@ Call the `UseSolutionRelativeContentRoot` extension method using *ONE* of the fo
 
 ## Disable shadow copying (xUnit only)
 
-xUnit shadow copying causes the tests to execute in a different folder than the output folder. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) uses xUnit and disables shadow copying. For more information, see [Configuring xUnit.net with JSON](https://xunit.github.io/docs/configuring-with-json.html).
-
-In the project file, add an **\<ItemGroup>** to disable shadow copying:
-
-```xml
-<ItemGroup>
-  <Content Include="xunit.runner.json" 
-           CopyToOutputDirectory="Always" 
-           CopyToPublishDirectory="PreserveNewest" />
-</ItemGroup>
-```
+xUnit shadow copying causes the tests to execute in a different folder than the output folder. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) uses xUnit and disables shadow copying by including an *xunit.runner.json* file with the correct configuration setting. For more information, see [Configuring xUnit.net with JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Add the *xunit.runner.json* file to root of the test project with the following content:
 
