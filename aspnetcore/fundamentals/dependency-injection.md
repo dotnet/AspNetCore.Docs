@@ -348,7 +348,7 @@ When working with dependency injection, keep the following recommendations in mi
 
 Like all sets of recommendations, you may encounter situations where ignoring one is required. We have found exceptions to be rare -- mostly very special cases within the framework itself.
 
-Remember, dependency injection is an *alternative* to static/global object access patterns. You won't be able to realize the benefits of DI if you mix it with static object access.
+Dependency injection is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
 ## Additional resources
 
