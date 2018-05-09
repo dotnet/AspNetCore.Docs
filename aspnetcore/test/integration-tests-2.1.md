@@ -88,7 +88,7 @@ The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
 * Copies the dependencies file (*\*.deps*) from the SUT into the test project's *bin* folder.
 * Sets the content root to the SUT's project root so that static files and views are found when tests are executed.
-* Provides a class, `WebApplicationFactory<TStartup>`, to streamline bootstrapping the SUT with `TestServer`.
+* Provides a class, [WebApplicationFactory&lt;TEntryPoint&gt;](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1), to streamline bootstrapping the SUT with `TestServer`.
 
 The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentation describes how to set up a test project and test runner, along with detailed instructions on how to run tests and recommendations for how to name tests and test classes.
 
@@ -144,14 +144,14 @@ The preceding example shows the creation of a single custom `WebApplicationFacto
 
 ## Client options
 
-The the following table shows the default `WebApplicationFactoryClientOptions` available when creating `HttpClient` instances.
+The the following table shows the default [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) available when creating `HttpClient` instances.
 
 | Option | Description | Default |
 | ------ | ----------- | ------- |
-| `AllowAutoRedirect` | Gets or sets whether or not `HttpClient` instances should automatically follow redirect responses. | `true` |
-| `BaseAddress` | Gets or sets the base address of `HttpClient` instances. | `http://localhost` |
-| `HandleCookies` | Gets or sets whether `HttpClient` instances should handle cookies. | `true` |
-| `MaxAutomaticRedirections` | Gets or sets the maximum number of redirect responses that `HttpClient` instances should follow. | 7 |
+| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Gets or sets whether or not `HttpClient` instances should automatically follow redirect responses. | `true` |
+| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Gets or sets the base address of `HttpClient` instances. | `http://localhost` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Gets or sets whether `HttpClient` instances should handle cookies. | `true` |
+| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Gets or sets the maximum number of redirect responses that `HttpClient` instances should follow. | 7 |
 
 Create the `WebApplicationFactoryClientOptions` class and pass it to the `CreateClient` method (default values are shown in the code example):
 
@@ -168,11 +168,11 @@ _client = testWebAppFactory.CreateClient(clientOptions);
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app content root path by searching for a `WebApplicationFactoryContentRootAttribute` on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*\*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app content root path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*\*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 In most cases, it isn't necessary to explicitly set the app content root, as the search logic usually finds the correct content root at runtime. In special scenarios where the content root isn't found using the built-in search algorithm, the app content root can be specified explicitly or by using custom logic. To set the app content root in those scenarios, call the `UseSolutionRelativeContentRoot` extension method from the [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost) package. Supply the solution's relative path and optional solution file name or glob pattern (default = `*.sln`).
 
-Call the `UseSolutionRelativeContentRoot` extension method using *ONE* of the following approaches:
+Call the [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testhost.webhostbuilderextensions.usesolutionrelativecontentroot) extension method using *ONE* of the following approaches:
 
 * When configuring test classes on a [per-test class basis (shown earlier in this topic)](#per-test-class-configuration), provide a custom configuration with the [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) provided to the `WebApplicationFactory`:
 
@@ -191,7 +191,7 @@ Call the `UseSolutionRelativeContentRoot` extension method using *ONE* of the fo
     }
     ```
 
-* When configuring test classes with [WebApplicationFactory implementations (shown earlier in this topic)](#customize-the-web-host-and-create-a-client), inherit from `WebApplicationFactory` and override `ConfigureWebHost`:
+* When configuring test classes with [WebApplicationFactory implementations (shown earlier in this topic)](#customize-the-web-host-and-create-a-client), inherit from `WebApplicationFactory` and override [ConfigureWebHost(IWebHostBuilder)](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost):
 
     ```csharp
     using Microsoft.AspNetCore.TestHost;
