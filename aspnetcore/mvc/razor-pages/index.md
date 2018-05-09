@@ -206,7 +206,7 @@ The `OnPostDeleteAsync` method:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Mark Page properties as required
+## Mark page properties required
 
 Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 
@@ -232,7 +232,7 @@ services.AddMvc()
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
-Rather than opting in to all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts-in to the mapping HEAD requests to the GET handler.
+Rather than opting into all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts into the mapping HEAD requests to the GET handler.
 
 
 ```csharp
