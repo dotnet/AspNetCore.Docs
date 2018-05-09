@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 04/06/2018
+ms.date: 05/09/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -52,7 +52,7 @@ Typically, browsers load connections from the same domain as the requested page.
 
 To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class.
 
-[!code-csharp[Cross-origin connections](javascript-client/sample/Startup.cs?highlight=29-34,55)]
+[!code-csharp[Cross-origin connections](javascript-client/sample/Startup.cs?highlight=29-35,56)]
 
 ## Call hub methods from client
 
@@ -94,9 +94,9 @@ Setup client-side log tracing by passing a logger and type of event to log when 
 * `signalR.LogLevel.Information` : Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace` : Trace messages. Logs everything, including data transported between hub and client.
 
-Use the `configureLogging` method on `HubConnectionBuilder` to configure the log level. Messages are logged to the Browser Console.
+Use the `configureLogging` method on `HubConnectionBuilder` to configure the log level. Messages are logged to the browser console.
 
-[!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=11)]
+[!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
 ## Related resources
 
