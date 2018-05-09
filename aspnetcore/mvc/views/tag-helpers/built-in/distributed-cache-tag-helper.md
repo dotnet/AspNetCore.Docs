@@ -38,7 +38,7 @@ See Cache Tag Helper for definitions. Distributed Cache Tag Helper inherits from
 |----------------	|----------------	|
 | string    | "my-distributed-cache-unique-key-101" 	|
 
-The required `name` attribute is used as a key to that cache stored for each instance of a Distributed Cache Tag Helper.  Unlike the basic Cache Tag Helper that assigns a key to each Cache Tag Helper instance based on the Razor page name and location of the tag helper in the razor page, the Distributed Cache Tag Helper only bases it's key on the attribute `name`
+The required `name` attribute is used as a key to that cache stored for each instance of a Distributed Cache Tag Helper.  Unlike the basic Cache Tag Helper that assigns a key to each Cache Tag Helper instance based on the Razor page name and location of the tag helper in the razor page, the Distributed Cache Tag Helper only bases its key on the attribute `name`
 
 Usage Example:
 
@@ -50,7 +50,7 @@ Usage Example:
 
 ## Distributed Cache Tag Helper IDistributedCache Implementations
 
-There are two implementations of `IDistributedCache` built in to ASP.NET Core.  One is based on **Sql Server** and the other is based on **Redis**. Details of these implementations can be found at the resource referenced below named "Working with a distributed cache". Both implementations involve setting an instance of `IDistributedCache` in ASP.NET Core's **startup.cs**.
+There are two implementations of `IDistributedCache` built in to ASP.NET Core.  One is based on **Sql Server** and the other is based on **Redis**. Details of these implementations can be found at the resource referenced below named "Work with a distributed cache". Both implementations involve setting an instance of `IDistributedCache` in ASP.NET Core's **startup.cs**.
 
 There are no tag attributes specifically associated with using any specific implementation of `IDistributedCache`.
 
