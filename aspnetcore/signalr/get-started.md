@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/16/2018
+ms.date: 05/09/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
@@ -129,7 +129,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 2. Configure routes to your hubs using `UseSignalR`.
 
 
-   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=36,56-59)]
+   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=37,57-60)]
 
 
 ## Create the SignalR client code
