@@ -201,7 +201,7 @@ Manually add the following snippet to the *.csproj* file:
 
 ---
 
-## Data annotations
+### Data annotations
 
 ::: moniker range="<= aspnetcore-2.0"
 NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult). Consequently, NSwag can't infer what your action is doing and what it returns. Consider the following example:
