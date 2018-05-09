@@ -319,7 +319,7 @@ Relative name linking is useful when building sites with a complex structure. If
 ::: moniker range=">= aspnetcore-2.1"
 ## ViewData attribute
 
-Data can be passed to a page with `ViewDataAttribute`. Properties decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
+Data can be passed to a page with `ViewDataAttribute`. Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
 
 In the following example, the `AboutModel` contains a `Title` property decorated with `[ViewData]`. The `Title` property is set to the title of the About page:
 
