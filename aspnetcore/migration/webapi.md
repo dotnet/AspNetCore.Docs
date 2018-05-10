@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC. 
 manager: wpickett
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 05/10/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -125,10 +125,10 @@ Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim inc
 * Extends model binding so that controller actions can take parameters of type `HttpRequestMessage`.
 * Adds message formatters allowing actions to return results of type `HttpResponseMessage`.
 * Adds additional response methods that Web API 2 actions may have used to serve responses:
-    * HttpResponseMessage generators 
+    * HttpResponseMessage generators:
         * `CreateResponse<T>`
         * `CreateErrorResponse`
-    * Action result methods
+    * Action result methods:
         * `BadResuestErrorMessageResult`
         * `ExceptionResult`
         * `InternalServerErrorResult`
@@ -136,7 +136,6 @@ Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim inc
         * `NegotiatedContentResult`
         * `ResponseMessageResult`
 * Adds an instance of `IContentNegotiator` to the app's DI container and makes content negotiation-related types from [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) available. This includes types like `DefaultContentNegotiator`, `MediaTypeFormatter`, etc.
-
 
 To use the compatibility shim, you need to:
 
