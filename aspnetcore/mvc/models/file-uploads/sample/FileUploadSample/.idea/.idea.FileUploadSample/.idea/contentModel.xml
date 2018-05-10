@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_FileUploadSample.-1106940900.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p=".bowerrc" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="backup" t="Include">
+        <e p="project.json" t="Include" />
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="bower.json" t="Include" />
+      <e p="bundleconfig.json" t="Include" />
+      <e p="Controllers" t="Include">
+        <e p="HomeController.cs" t="Include" />
+        <e p="ProfileController.cs" t="Include" />
+        <e p="StreamingController.cs" t="Include" />
+        <e p="UploadFilesController.cs" t="Include" />
+      </e>
+      <e p="FileUploadSample.csproj" t="IncludeRecursive" />
+      <e p="FileUploadSample.sln" t="IncludeFlat" />
+      <e p="Filters" t="Include">
+        <e p="DisableFormValueModelBindingAttribute.cs" t="Include" />
+        <e p="GenerateAntiforgeryTokenCookieForAjaxAttribute.cs" t="Include" />
+      </e>
+      <e p="models" t="Include">
+        <e p="Profile.cs" t="Include" />
+        <e p="User.cs" t="Include" />
+      </e>
+      <e p="MultipartRequestHelper.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.0" t="Include">
+            <e p="FileUploadSample.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="ViewModels" t="Include">
+        <e p="ProfileEditViewModel.cs" t="Include" />
+        <e p="UploadedData.cs" t="Include" />
+      </e>
+      <e p="Views" t="Include">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+        <e p="Home" t="Include">
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="Profile" t="Include">
+          <e p="Edit.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="Shared" t="Include">
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="Error.cshtml" t="Include" />
+        </e>
+        <e p="Streaming" t="Include">
+          <e p="Index.cshtml" t="Include" />
+        </e>
+      </e>
+      <e p="web.config" t="Include" />
+      <e p="wwwroot" t="Include">
+        <e p="_references.js" t="Include" />
+        <e p="css" t="Include">
+          <e p="site.css" t="Include" />
+          <e p="site.min.css" t="Include" />
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="js" t="Include">
+          <e p="app.js" t="Include" />
+        </e>
+      </e>
+    </e>
+  </component>
+</project>

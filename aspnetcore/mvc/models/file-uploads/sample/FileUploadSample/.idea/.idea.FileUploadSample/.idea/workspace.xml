@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f6e4a3ce-b983-4c07-a767-cdf19f3e500b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/Controllers/StreamingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/StreamingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUploadSample.sln" beforeDir="false" afterPath="$PROJECT_DIR$/FileUploadSample.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUploadSample.xproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MultipartRequestHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MultipartRequestHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.json" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="FileUploadSample.csproj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FileUploadSample.csproj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StreamingController.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Controllers/StreamingController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="45" column="18" lean-forward="true" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+              <folding>
+                <marker date="1525984087000" expanded="false" signature="6:468" ph="..." />
+                <marker date="1525984087000" expanded="true" signature="508:6778" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="560:6776" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="639:753" ph="/* Get the default form options so that we can use them to set the default limits for ... */" />
+                <marker date="1525984087000" expanded="true" signature="911:961" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="1065:1112" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="1122:6235" ph="snippet1" />
+                <marker date="1525984087000" expanded="true" signature="1147:1591" ph="/* 1. Disable the form value model binding here to take control of handling ... */" />
+                <marker date="1525984087000" expanded="true" signature="1768:6216" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="1863:1990" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="2004:2098" ph="/* Used to accumulate all the form url encoded key value pairs in the ... */" />
+                <marker date="1525984087000" expanded="true" signature="2579:5332" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="2851:5111" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="2963:3388" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="3139:3366" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="3491:5093" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="3538:3802" ph="/* Content-Disposition: form-data; name=&quot;key&quot; ... */" />
+                <marker date="1525984087000" expanded="true" signature="4260:5071" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="4560:4674" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="4848:5045" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="5129:5255" ph="/* Drains any remaining section body that has not been consumed and ... */" />
+                <marker date="1525984087000" expanded="true" signature="5783:5939" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="5838:5925" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="6003:6166" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="6306:6770" ph="{...}" />
+                <marker date="1525984087000" expanded="true" signature="6477:6574" ph="/* UTF-7 is insecure and should not be honored. UTF-8 will succeed in ... */" />
+                <marker date="1525984087000" expanded="true" signature="6655:6721" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Startup.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Startup.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-72">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+              <folding>
+                <marker date="1525978015000" expanded="false" signature="6:155" ph="..." />
+                <marker date="1525978015000" expanded="true" signature="183:1089" ph="{...}" />
+                <marker date="1525978015000" expanded="true" signature="210:1087" ph="{...}" />
+                <marker date="1525978015000" expanded="true" signature="225:537" ph="snippet1" />
+                <marker date="1525978015000" expanded="true" signature="308:518" ph="{...}" />
+                <marker date="1525978015000" expanded="true" signature="779:1081" ph="{...}" />
+                <marker date="1525978015000" expanded="true" signature="918:995" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DisableFormValueModelBindingAttribute.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Filters/DisableFormValueModelBindingAttribute.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+              <folding>
+                <marker date="1525980314000" expanded="false" signature="6:98" ph="..." />
+                <marker date="1525980314000" expanded="true" signature="134:726" ph="{...}" />
+                <marker date="1525980314000" expanded="true" signature="141:724" ph="snippet1" />
+                <marker date="1525980314000" expanded="true" signature="316:705" ph="{...}" />
+                <marker date="1525980314000" expanded="true" signature="396:606" ph="{...}" />
+                <marker date="1525980314000" expanded="true" signature="679:699" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Controllers/StreamingController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/UploadFilesController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/ProfileController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Filters/DisableFormValueModelBindingAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MultipartRequestHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EFB16004-6B99-4B59-AC42-0A0A9729FA14/a0/e48b2f76/ContentDispositionHeaderValue.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Views/Home/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/web.config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/Streaming/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Views/Home/Index.cshtml" />
+        <option value="$PROJECT_DIR$/Extensions/ListExtensions.cs" />
+        <option value="$PROJECT_DIR$/Filters/DisableFormValueModelBindingAttribute.cs" />
+        <option value="$PROJECT_DIR$/MultipartRequestHelper.cs" />
+        <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/FileUploadSample.csproj" />
+        <option value="$PROJECT_DIR$/Controllers/StreamingController.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1280" />
+    <option name="height" value="742" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="FileUploadSample" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="FileUploadSample" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Controllers" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="FileUploadSample" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Filters" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="FileUploadSample" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="FileUploadSample (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="FileUploadSample" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Streaming" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/bin/Debug/net461/FileUploadSample.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs>
+        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+        <env name="ASPNETCORE_URLS" value="http://localhost:5001" />
+      </envs>
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/FileUploadSample.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETFramework,Version=v4.6.1" />
+      <browser url="http://localhost:5000" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f6e4a3ce-b983-4c07-a767-cdf19f3e500b" name="Default" comment="" />
+      <created>1525978858221</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1525978858221</updated>
+      <workItem from="1525978885679" duration="4510000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4510000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1280" height="742" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50080776" side_tool="true" weight="0.32868218" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="REST Client" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32868218" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32868218" />
+      <window_info anchor="bottom" id="NuGet" sideWeight="0.49919224" weight="0.32868218" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2536349" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" weight="0.32868218" />
+      <window_info anchor="right" id="Database" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" isUnityUI="false" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Extensions/ListExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileUploadSample.sln">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EFB16004-6B99-4B59-AC42-0A0A9729FA14/a0/e48b2f76/ContentDispositionHeaderValue.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Properties/launchSettings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appsettings.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Home/Index.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+          <folding>
+            <marker date="1525979120000" expanded="true" signature="0:41" ph="@..." />
+            <marker date="1525979120000" expanded="true" signature="64:683" ph="&lt;div.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="86:676" ph="&lt;section.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="104:661" ph="&lt;form.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="228:467" ph="&lt;div.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="269:448" ph="&lt;div.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="480:645" ph="&lt;div.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="521:626" ph="&lt;div.../&gt;" />
+            <marker date="1525979120000" expanded="true" signature="714:893" ph="&lt;ul.../&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MultipartRequestHelper.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+          <folding>
+            <marker date="1525980487000" expanded="false" signature="6:64" ph="..." />
+            <marker date="1525980487000" expanded="true" signature="92:2150" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="141:2148" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="156:305" ph="/* Content-Type: multipart/form-data; boundary=&quot;----WebKitFormBoundarymx2fSWqWSd0OxQqq&quot; ... */" />
+            <marker date="1525980487000" expanded="true" signature="397:905" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="550:660" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="708:865" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="976:1148" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="1256:1629" ph="{...}" />
+            <marker date="1525980487000" expanded="true" signature="1733:2142" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/UploadFilesController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="30" />
+          <folding>
+            <marker date="1525978015000" expanded="false" signature="6:164" ph="..." />
+            <marker date="1525978015000" expanded="true" signature="204:1115" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="258:1113" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="273:1107" ph="snippet1" />
+            <marker date="1525978015000" expanded="true" signature="392:1088" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="599:891" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="654:877" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="755:859" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="905:1010" ph="/* process uploaded files ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/project.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileUploadSample.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/ProfileController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-237">
+          <folding>
+            <marker date="1525978015000" expanded="false" signature="6:247" ph="..." />
+            <marker date="1525978015000" expanded="true" signature="287:2325" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="337:2323" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="524:598" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="634:840" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="732:829" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="877:932" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="969:1196" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="1047:1149" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="1298:2316" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="1394:2198" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="1425:1878" ph="/* don't rely on or trust the FileName property without validation ... */" />
+            <marker date="1525978015000" expanded="true" signature="2012:2184" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Streaming/Index.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <folding>
+            <marker date="1525978015000" expanded="true" signature="36:80" ph="@..." />
+            <marker date="1525978015000" expanded="true" signature="139:1922" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="164:1915" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="201:338" ph="&lt;ul.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="218:324" ph="&lt;li.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="347:1904" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="365:550" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="434:531" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="581:762" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="648:743" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="793:990" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="868:971" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1021:1253" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1113:1234" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1284:1377" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1408:1519" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1532:1889" ph="&lt;div.../&gt;" />
+            <marker date="1525978015000" expanded="true" signature="1924:2080" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Filters/DisableFormValueModelBindingAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <marker date="1525980314000" expanded="false" signature="6:98" ph="..." />
+            <marker date="1525980314000" expanded="true" signature="134:726" ph="{...}" />
+            <marker date="1525980314000" expanded="true" signature="141:724" ph="snippet1" />
+            <marker date="1525980314000" expanded="true" signature="316:705" ph="{...}" />
+            <marker date="1525980314000" expanded="true" signature="396:606" ph="{...}" />
+            <marker date="1525980314000" expanded="true" signature="679:699" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1525978015000" expanded="false" signature="6:52" ph="..." />
+            <marker date="1525978015000" expanded="true" signature="80:454" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="107:452" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="160:446" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <marker date="1525978015000" expanded="false" signature="6:155" ph="..." />
+            <marker date="1525978015000" expanded="true" signature="183:1089" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="210:1087" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="225:537" ph="snippet1" />
+            <marker date="1525978015000" expanded="true" signature="308:518" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="779:1081" ph="{...}" />
+            <marker date="1525978015000" expanded="true" signature="918:995" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/StreamingController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="45" column="18" lean-forward="true" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding>
+            <marker date="1525984087000" expanded="false" signature="6:468" ph="..." />
+            <marker date="1525984087000" expanded="true" signature="508:6778" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="560:6776" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="639:753" ph="/* Get the default form options so that we can use them to set the default limits for ... */" />
+            <marker date="1525984087000" expanded="true" signature="911:961" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="1065:1112" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="1122:6235" ph="snippet1" />
+            <marker date="1525984087000" expanded="true" signature="1147:1591" ph="/* 1. Disable the form value model binding here to take control of handling ... */" />
+            <marker date="1525984087000" expanded="true" signature="1768:6216" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="1863:1990" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="2004:2098" ph="/* Used to accumulate all the form url encoded key value pairs in the ... */" />
+            <marker date="1525984087000" expanded="true" signature="2579:5332" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="2851:5111" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="2963:3388" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="3139:3366" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="3491:5093" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="3538:3802" ph="/* Content-Disposition: form-data; name=&quot;key&quot; ... */" />
+            <marker date="1525984087000" expanded="true" signature="4260:5071" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="4560:4674" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="4848:5045" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="5129:5255" ph="/* Drains any remaining section body that has not been consumed and ... */" />
+            <marker date="1525984087000" expanded="true" signature="5783:5939" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="5838:5925" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="6003:6166" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="6306:6770" ph="{...}" />
+            <marker date="1525984087000" expanded="true" signature="6477:6574" ph="/* UTF-7 is insecure and should not be honored. UTF-8 will succeed in ... */" />
+            <marker date="1525984087000" expanded="true" signature="6655:6721" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
