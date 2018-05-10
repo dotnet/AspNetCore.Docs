@@ -16,9 +16,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Introducing view components
+## View components
 
-New to ASP.NET Core MVC, view components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. A view component:
+View components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. This article was written using ASP.NET Core MVC, but view components also work with Razor Pages.
+
+A view component:
 
 * Renders a chunk rather than a whole response.
 * Includes the same separation-of-concerns and testability benefits found between a controller and view.

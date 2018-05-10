@@ -29,7 +29,7 @@ The *publish* directory represents the *content root path*, also called the *app
 
 The *wwwroot* directory, if present, only contains static assets.
 
-The stdout *logs* directory can be created the deployment using one of the following two approaches:
+The stdout *logs* directory can be created for the deployment using one of the following two approaches:
 
 * Add the following `<Target>` element to the project file:
 

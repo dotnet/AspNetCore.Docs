@@ -16,8 +16,6 @@ uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 
 By [Scott Addie](https://github.com/scottaddie)
 
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
-
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Overview
@@ -84,4 +82,4 @@ In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether 
 ## Additional resources
 
 * [Partial views](xref:mvc/views/partial)
-* [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#weakly-typed-data-viewdata-and-viewbag)
+* [Weakly typed data (ViewData, ViewData attribute, and ViewBag)](xref:mvc/views/overview#weakly-typed-data-viewdata-viewdata-attribute-and-viewbag)

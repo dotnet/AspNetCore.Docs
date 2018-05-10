@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Instructors
 {
+#region snippet_1
     public class IndexModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -57,6 +58,7 @@ namespace ContosoUniversity.Pages.Instructors
             }
 #endregion
         }
+#endregion
 #endregion
     }
 }

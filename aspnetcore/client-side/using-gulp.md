@@ -321,7 +321,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
     Notice that the stylesheet links point to the unminified versions of the CSS files.
 
-For more information related to environments in ASP.NET Core, see [Work with multiple environments](../fundamentals/environments.md).
+For more information related to environments in ASP.NET Core, see [Use multiple environments](../fundamentals/environments.md).
 
 ## Task and module details
 

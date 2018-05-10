@@ -29,9 +29,6 @@ This document shows how to:
 ## Require HTTPS
 
 ::: moniker range=">= aspnetcore-2.1"
-
-[!INCLUDE[](~/includes/2.1.md)]
-
 We recommend all ASP.NET Core web apps call `UseHttpsRedirection` to redirect all HTTP requests to HTTPS. If `UseHsts` is called in the app, it must be called before `UseHttpsRedirection`.
 
 The following code calls `UseHttpsRedirection` in the `Startup` class:
@@ -121,5 +118,12 @@ dotnet new razor --no-https
 ```
 
 ------
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+## How to setup a developer certificate for Docker
+
+See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
 
 ::: moniker-end

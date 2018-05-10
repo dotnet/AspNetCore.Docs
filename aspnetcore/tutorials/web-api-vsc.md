@@ -5,7 +5,7 @@ description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC a
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -14,10 +14,6 @@ uid: tutorials/web-api-vsc
 # Create a Web API with ASP.NET Core and Visual Studio Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
-
-::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/2.1.md)]
-::: moniker-end
 
 In this tutorial, build a web API for managing a list of "to-do" items. A UI isn't constructed.
 

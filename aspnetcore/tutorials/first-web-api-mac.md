@@ -6,7 +6,7 @@ helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Serv
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2018
+ms.date: 05/08/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -15,10 +15,6 @@ uid: tutorials/first-web-api-mac
 # Create a Web API with ASP.NET Core and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
-
-::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/2.1.md)]
-::: moniker-end
 
 In this tutorial, build a web API for managing a list of "to-do" items. The UI isn't constructed.
 
@@ -116,7 +112,7 @@ In Visual Studio, select **Run** > **Start With Debugging** to launch the app. V
 ["value1","value2"]
 ```
 
-Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`:
+Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`. The following JSON is returned:
 
 ```json
 [{"key":1,"name":"Item1","isComplete":false}]
