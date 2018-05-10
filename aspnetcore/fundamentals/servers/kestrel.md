@@ -525,6 +525,23 @@ For ASP.NET Core 2.1 or later projects that use the `Microsoft.AspNetCore.App` m
     }
     ```
 
+    ```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseLibuv()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
+    }
+    ```
+
 No action is required when the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage is used and `UseLibuv` is called because the Libuv transport package is transitively referenced by the `Microsoft.AspNetCore.All` metapackage. Note that the ASP.NET Core 2.1 or later templates reference the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage by default. The use of the `Microsoft.AspNetCore.All` metapackage isn't recommended for ASP.NET Core 2.1 or later apps.
 ::: moniker-end
 
