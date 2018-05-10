@@ -47,11 +47,13 @@ The following *.csproj* file references the `Microsoft.AspNetCore.App` metapacka
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
 
 ```
+
+The preceding markup doesn't specify a version number for the `Microsoft.AspNetCore.App` NuGet package. The ASP.NET Core 2.1+ templates generate this markup without a version number. Not specifying a version is convent early in development when you want the latest version. Most teams will add a version number when deploying the app to ensure that development, test, and production are all using the same version. With a fixed version number, updates to the host will not cause the app to use a newer version of the NuGet package.
 
 If your application previously used `Migrating from Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
