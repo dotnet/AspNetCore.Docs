@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace WebAppSession.Controllers
@@ -17,6 +17,12 @@ namespace WebAppSession.Controllers
             HttpContext.Session.SetString(SessionKeyName, "Rick");
             HttpContext.Session.SetInt32(SessionKeyYearsMember, 3);
             return RedirectToAction(nameof(SessionNameYears));
+        }
+
+        public IActionResult About()
+        {
+            HttpContext.Session.SetString(SessionKeyName, "John Doe");
+            return View();
         }
 
         public IActionResult SessionNameYears()
