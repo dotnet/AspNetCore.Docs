@@ -18,7 +18,7 @@ ASP.NET Core apps configure and launch a *host*. The host is responsible for app
 
 ## Setting up a host
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder). This is typically performed in the app's entry point, the `Main` method. In the project templates, `Main` is located in *Program.cs*. A typical *Program.cs* calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) to start setting up a host:
 
 [!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main)]
@@ -44,7 +44,7 @@ For more information on app configuration, see [Configuration in ASP.NET Core](x
 > [!NOTE]
 > As an alternative to using the static `CreateDefaultBuilder` method, creating a host from [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) is a supported approach with ASP.NET Core 2.x. For more information, see the ASP.NET Core 1.x tab.
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder). Creating a host is typically performed in the app's entry point, the `Main` method. In the project templates, `Main` is located in *Program.cs*:
 
 [!code-csharp[](../common/samples/WebApplication1/Program.cs)]
@@ -69,7 +69,7 @@ var host = new WebHostBuilder()
 host.Run();
 ```
 
-* * *
+---
 
 When setting up a host, [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure?view=aspnetcore-1.1) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.configureservices?view=aspnetcore-1.1) methods can be provided. If a `Startup` class is specified, it must define a `Configure` method. For more information, see [Application Startup in ASP.NET Core](startup.md). Multiple calls to `ConfigureServices` append to one another. Multiple calls to `Configure` or `UseStartup` on the `WebHostBuilder` replace previous settings.
 
@@ -95,7 +95,7 @@ This setting controls the capture of startup errors.
 
 When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -103,7 +103,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -111,7 +111,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Content Root
 
@@ -125,7 +125,7 @@ This setting determines where ASP.NET Core begins searching for content files, s
 
 The content root is also used as the base path for the [Web Root setting](#web-root). If the path doesn't exist, the host fails to start.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -133,7 +133,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -141,7 +141,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Detailed Errors
 
@@ -155,7 +155,7 @@ Determines if detailed errors should be captured.
 
 When enabled (or when the <a href="#environment">Environment</a> is set to `Development`), the app captures detailed exceptions.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -163,7 +163,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -171,7 +171,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Environment
 
@@ -185,7 +185,7 @@ Sets the app's environment.
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://www.visualstudio.com/), environment variables may be set in the *launchSettings.json* file. For more information, see [Use multiple environments](xref:fundamentals/environments).
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -193,7 +193,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -201,7 +201,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Hosting Startup Assemblies
 
@@ -217,7 +217,7 @@ A semicolon-delimited string of hosting startup assemblies to load on startup. T
 
 Although the configuration value defaults to an empty string, the hosting startup assemblies always include the app's assembly. When hosting startup assemblies are provided, they're added to the app's assembly for loading when the app builds its common services during startup.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -225,11 +225,11 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 This feature is unavailable in ASP.NET Core 1.x.
 
-* * *
+---
 
 ### Prefer Hosting URLs
 
@@ -243,7 +243,7 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 This feature is new in ASP.NET Core 2.0.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -251,11 +251,11 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 This feature is unavailable in ASP.NET Core 1.x.
 
-* * *
+---
 
 ### Prevent Hosting Startup
 
@@ -269,7 +269,7 @@ Prevents the automatic loading of hosting startup assemblies, including hosting 
 
 This feature is new in ASP.NET Core 2.0.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -277,11 +277,11 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 This feature is unavailable in ASP.NET Core 1.x.
 
-* * *
+---
 
 ### Server URLs
 
@@ -295,7 +295,7 @@ Indicates the IP addresses or host addresses with ports and protocols that the s
 
 Set to a semicolon-separated (;) list of URL prefixes to which the server should respond. For example, `http://localhost:123`. Use "\*" to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, `http://*:5000`). The protocol (`http://` or `https://`) must be included with each URL. Supported formats vary between servers.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -305,7 +305,7 @@ WebHost.CreateDefaultBuilder(args)
 
 Kestrel has its own endpoint configuration API. For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#endpoint-configuration).
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -313,7 +313,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Shutdown Timeout
 
@@ -334,7 +334,7 @@ During the timeout period, hosting:
 
 If the timeout period expires before all of the hosted services stop, any remaining active services are stopped when the app shuts down. The services stop even if they haven't finished processing. If services require additional time to stop, increase the timeout.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -342,11 +342,11 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 This feature is unavailable in ASP.NET Core 1.x.
 
-* * *
+---
 
 ### Startup Assembly
 
@@ -360,7 +360,7 @@ Determines the assembly to search for the `Startup` class.
 
 The assembly by name (`string`) or type (`TStartup`) can be referenced. If multiple `UseStartup` methods are called, the last one takes precedence.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -374,7 +374,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -388,7 +388,7 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ### Web Root
 
@@ -400,7 +400,7 @@ Sets the relative path to the app's static assets.
 **Set using**: `UseWebRoot`  
 **Environment variable**: `ASPNETCORE_WEBROOT`
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -408,7 +408,7 @@ WebHost.CreateDefaultBuilder(args)
     ...
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 var host = new WebHostBuilder()
@@ -416,13 +416,13 @@ var host = new WebHostBuilder()
     ...
 ```
 
-* * *
+---
 
 ## Overriding configuration
 
 Use [Configuration](xref:fundamentals/configuration/index) to configure the host. In the following example, host configuration is optionally specified in a *hosting.json* file. Any configuration loaded from the *hosting.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with `UseConfiguration`.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 *hosting.json*:
 
@@ -463,7 +463,7 @@ public class Program
 }
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 *hosting.json*:
 
@@ -502,7 +502,7 @@ public class Program
 }
 ```
 
-* * *
+---
 
 > [!NOTE]
 > The [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) extension method isn't currently capable of parsing a configuration section returned by `GetSection` (for example, `.UseConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:urls`, `section:environment`). The `UseConfiguration` method expects the keys to match the `WebHostBuilder` keys (for example, `urls`, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
@@ -515,7 +515,7 @@ dotnet run --urls "http://*:8080"
 
 ## Starting the host
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 **Run**
 
@@ -686,7 +686,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 
 Produces the same result as **StartWith(Action<IApplicationBuilder> app)**, except the app responds on `http://localhost:8080`.
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 **Run**
 
@@ -729,7 +729,7 @@ using (host)
 }
 ```
 
-* * *
+---
 
 ## IHostingEnvironment interface
 
