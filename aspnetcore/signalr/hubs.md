@@ -31,7 +31,7 @@ The SignalR middleware requires some services, which are configured by calling `
 
 When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling `app.UseSignalR` in the `Startup.Configure` method.
 
-[!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=56-59)]
+[!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=57-60)]
 
 ## Create and use hubs
 
@@ -87,4 +87,6 @@ Exceptions thrown in your hub methods are sent to the client that invoked the me
 
 ## Related resources
 
-[Intro to ASP.NET Core SignalR](xref:signalr/introduction)
+* [Intro to ASP.NET Core SignalR](xref:signalr/introduction)
+* [JavaScript client](xref:signalr/javascript-client)
+* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
