@@ -43,7 +43,7 @@ uid: getting-started
 [!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-1.0"
+::: moniker range="<= aspnetcore-1.1"
 
 1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
 
