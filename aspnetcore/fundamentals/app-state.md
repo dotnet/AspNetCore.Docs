@@ -61,13 +61,13 @@ Choosing a TempData provider involves several considerations, such as:
 
 ### Configure the TempData provider
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 The cookie-based TempData provider is enabled by default. The following `Startup` class code configures the session-based TempData provider:
 
 [!code-csharp[](app-state/sample/src/WebAppSessionDotNetCore2.0App/StartupTempDataSession.cs?name=snippet_TempDataSession&highlight=4,6,11)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 The following `Startup` class code configures the session-based TempData provider:
 
@@ -116,15 +116,17 @@ The `Microsoft.AspNetCore.Session` package provides middleware for managing sess
 
 The following code shows how to set up the in-memory session provider.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 [!code-csharp[](app-state/sample/src/WebAppSessionDotNetCore2.0App/Startup.cs?highlight=11-19,24)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 [!code-csharp[](app-state/sample/src/WebAppSession/Startup.cs?highlight=11-19,24)]
 
 ---
+
+You can reference Session from `HttpContext` once it's installed and configured.
 
 If you try to access `Session` before `UseSession` has been called, the exception `InvalidOperationException: Session has not been configured for this application or request` is thrown.
 
@@ -142,11 +144,11 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override session defaults, use `SessionOptions`:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 [!code-csharp[](app-state/sample/src/WebAppSessionDotNetCore2.0App/StartupCopy.cs?name=snippet1&highlight=8-12)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 [!code-csharp[](app-state/sample/src/WebAppSession/StartupCopy.cs?name=snippet1&highlight=8-12)]
 
@@ -236,26 +238,27 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
 
 1. Define a service containing the data (for example, a class named `MyAppData`).
 
-```csharp
-public class MyAppData
-{
-    // Declare properties/methods/etc.
-}
-```
-
-1. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`).
-1. Consume the data service class in each controller:
-
-```csharp
-public class MyController : Controller
-{
-    public MyController(MyAppData myService)
+    ```csharp
+    public class MyAppData
     {
-        // Do something with the service (read some data from it,
-        // store it in a private field/property, etc.)
-    }
-}
-```
+        // Declare properties/methods/etc.
+    } 
+    ```
+
+2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`).
+
+3. Consume the data service class in each controller:
+
+    ```csharp
+    public class MyController : Controller
+    {
+        public MyController(MyAppData myService)
+        {
+            // Do something with the service (read some data from it, 
+            // store it in a private field/property, etc.)
+        }
+    } 
+    ```
 
 ## Common errors when working with session
 

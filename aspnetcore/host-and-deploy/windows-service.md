@@ -41,13 +41,15 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
    * If the code calls `UseContentRoot`, use a path to the publish location instead of `Directory.GetCurrentDirectory()`.
 
-   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
    [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=3-4,7,12)]
 
-   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
    [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOnly&highlight=3-4,8,14)]
 
-   * * *
+   ---
 
 3. Publish the app to a folder. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
 
@@ -72,13 +74,16 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 It's easier to test and debug when running outside of a service, so it's customary to add code that calls `RunAsService` only under certain conditions. For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOrConsole)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOrConsole)]
 
-* * *
+---
+
 ## Handle stopping and starting events
 
 To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following additional changes:
@@ -93,13 +98,16 @@ To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following
 
 3. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of `RunAsService`:
 
-   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
    [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=24)]
 
-   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
    [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=HandleStopStart&highlight=26)]
 
-   * * *
+   ---
+
 If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the `Services` property of `IWebHost`:
 
 [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]

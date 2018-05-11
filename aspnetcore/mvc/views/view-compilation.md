@@ -26,7 +26,8 @@ Precompilation considerations:
 
 To deploy precompiled views:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 If your project targets .NET Framework, include a package reference to [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/):
 
 ```xml
@@ -39,10 +40,13 @@ The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish`
 
 [!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
-Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
+Set `MvcRazorCompileOnPublish` to `true` and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
 [!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=5,12)]
+
+---
 
 Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) with the [.NET Core CLI publish command](/dotnet/core/tools/dotnet-publish). For example, execute the following command at the project root:
 
