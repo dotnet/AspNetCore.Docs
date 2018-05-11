@@ -415,7 +415,7 @@ The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attrib
 public string Message { get; set; }
 ```
 
-See [TempData](xref:fundamentals/app-state#temp) for more information.
+See [TempData](xref:fundamentals/app-state#tempdata) for more information.
 
 <a name="mhpp"></a>
 ## Multiple handlers per page

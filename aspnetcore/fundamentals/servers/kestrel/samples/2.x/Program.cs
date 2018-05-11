@@ -82,7 +82,6 @@ namespace KestrelSample
                 #region snippet_Limits
                 .UseKestrel(options =>
                 {
-                    options.
                     options.Limits.MaxConcurrentConnections = 100;
                     options.Limits.MaxConcurrentUpgradedConnections = 100;
                     options.Limits.MaxRequestBodySize = 10 * 1024;
