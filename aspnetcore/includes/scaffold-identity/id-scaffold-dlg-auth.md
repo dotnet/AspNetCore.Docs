@@ -33,10 +33,12 @@ Run the following command to list the Identity scaffolder options:
 dotnet aspnet-codegenerator identity -h
 ```
 
-In the project folder, run the Identity scaffolder with the options you want. For example, to setup identity with the default UI and the minimum number of files, run the following command:
+In the project folder, run the Identity scaffolder with the options you want. For example, to setup identity with the default UI and the minimum number of files, run the following command. Use the correct fully qualified name for your DB context:
 
 ```cli
-dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
+dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
+
+
 
 -------------

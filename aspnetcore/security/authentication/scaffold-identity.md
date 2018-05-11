@@ -75,6 +75,14 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
 ## Scaffold identity into a Razor project with individual authorization
 
+<!--
+dotnet new razor -au Individual -o RPauth
+cd RPauth
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet restore
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
+-->
+
 Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
@@ -83,6 +91,16 @@ Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored fr
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
 ## Scaffold identity into an MVC project without authorization
+
+<!--
+dotnet new mvc -o MvcNo
+cd MvcNo
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet restore
+dotnet aspnet-codegenerator identity --useDefaultUI
+dotnet ef migrations add CreateIdentitySchema
+dotnet ef database update
+-->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -104,10 +122,16 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 ## Scaffold identity into an MVC project with individual authorization
 
+<!--
+dotnet new mvc -au Individual -o MvcAuth
+cd MvcAuth
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet restore
+dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --files Account.Register
+-->
+
 Verify the *Areas/Identity/Pages/_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 Delete the *Pages/Shared* folder and the files in that folder.
-
-Replace the *Areas/Identity/Pages/_ViewStart.cshtml* file with the pervious version (before scaffolding).
