@@ -587,7 +587,7 @@ using (var host = WebHost.Start("http://localhost:8080", app => app.Response.Wri
 
 Produces the same result as **Start(RequestDelegate app)**, except the app responds on `http://localhost:8080`.
 
-**Start(Action<IRouteBuilder> routeBuilder)**
+**Start(Action&lt;IRouteBuilder&gt; routeBuilder)**
 
 Use an instance of `IRouteBuilder` ([Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/)) to use routing middleware:
 
@@ -621,7 +621,7 @@ Use the following browser requests with the example:
 
 `WaitForShutdown` blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
 
-**Start(string url, Action<IRouteBuilder> routeBuilder)**
+**Start(string url, Action&lt;IRouteBuilder&gt; routeBuilder)**
 
 Use a URL and an instance of `IRouteBuilder`:
 
@@ -642,9 +642,9 @@ using (var host = WebHost.Start("http://localhost:8080", router => router
 }
 ```
 
-Produces the same result as **Start(Action<IRouteBuilder> routeBuilder)**, except the app responds at `http://localhost:8080`.
+Produces the same result as **Start(Action&lt;IRouteBuilder&gt; routeBuilder)**, except the app responds at `http://localhost:8080`.
 
-**StartWith(Action<IApplicationBuilder> app)**
+**StartWith(Action&lt;IApplicationBuilder&gt; app)**
 
 Provide a delegate to configure an `IApplicationBuilder`:
 
@@ -665,7 +665,7 @@ using (var host = WebHost.StartWith(app =>
 
 Make a request in the browser to `http://localhost:5000` to receive the response "Hello World!" `WaitForShutdown` blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
 
-**StartWith(string url, Action<IApplicationBuilder> app)**
+**StartWith(string url, Action&lt;IApplicationBuilder&gt; app)**
 
 Provide a URL and a delegate to configure an `IApplicationBuilder`:
 
@@ -684,7 +684,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 }
 ```
 
-Produces the same result as **StartWith(Action<IApplicationBuilder> app)**, except the app responds on `http://localhost:8080`.
+Produces the same result as **StartWith(Action&lt;IApplicationBuilder&gt; app)**, except the app responds on `http://localhost:8080`.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
