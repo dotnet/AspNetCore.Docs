@@ -5,6 +5,7 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
+  * In the RC1 version you must select select your existing layout page, or your layout file will be overwritten with incorrect markup.
 * Select at least one file to override. You must select at least one file to add your data context.
 * Select your data context class.
 * Select **ADD**.

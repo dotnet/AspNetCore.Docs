@@ -58,8 +58,7 @@ In the `Configure` method of the `Startup` class, call [UseAuthentication](https
 
 ### Layout changes
 
-* Delete the generated *Pages/Shared/_Layout.cshtml* file and restore with the previous version. 
-* Optional: Add the login partial (`_LoginPartial`) to the layout file:
+Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
@@ -77,22 +76,11 @@ Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.c
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Delete the *Pages/Shared/_Layout.cshtml* file.
-
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
-
-* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
-* Add the _LoginPartial to the *Views/Shared/_Layout.cshtml* file:
 
 [!code-html[Main](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
-Update the */Areas/Identity/Pages/_ViewStart.cshtml* to use the *Views* folder rather than the *Pages* folder:
-
-```html
-@{
-    Layout = "/Views/Shared/_Layout.cshtml";
-}
-```
+* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
 Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 

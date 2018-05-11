@@ -5,12 +5,13 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-* Select the **+** button to create a new **Data context class**.
+  * In the RC1 version you must select select your existing layout page, or your layout file will be overwritten with incorrect markup.
+  * Select the **+** button to create a new **Data context class**.
 * Select **ADD**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-If you have not previously installed the `dotnet-aspnet-codegenerator`, install it now:
+If you have not previously installed the ASP.NET scaffolder, install it now:
 
 ```cli
 dotnet tool install -g dotnet-aspnet-codegenerator --version 2.1.0-rc1-final
@@ -21,6 +22,7 @@ Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](ht
 
 ```cli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet restore
 ```
 
 Run the following command to list the Identity scaffolder options:
