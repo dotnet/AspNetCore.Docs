@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to choose between ASP.NET and ASP.NET Core.
 manager: wpickett
 ms.author: riande
-ms.date: 03/14/2018
+ms.date: 05/11/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -20,14 +20,16 @@ ASP.NET Core is an open-source, cross-platform framework for building modern, cl
 
 ## ASP.NET
 
-ASP.NET is a mature framework that provides all the services needed to build enterprise-class, server-based web apps on Windows.
+ASP.NET is a mature framework that provides all the services needed to build enterprise-grade, server-based web apps on Windows.
 
-## Which one is right for me?
+## Framework selection
+
+Review the table below to determine which framework is most appropriate for your needs.
 
 | ASP.NET Core | ASP.NET |
 |---|---|
 |Build for Windows, macOS, or Linux|Build for Windows|
-|[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x. See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), or [Web Pages](/aspnet/web-pages)|
+|[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x. See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/), or [Web Pages](/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
 |Develop with Visual Studio, [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with Visual Studio using C#, VB, or F#|
 |Higher performance than ASP.NET|Good performance|
@@ -35,7 +37,6 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 
 ## ASP.NET Core scenarios
 
-<!-- update link to Razor Pages mvc movie series when done -->
 * [Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x.
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
