@@ -6,9 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace UserSecrets
 {
+    #region snippet_StartupClass
     public class Startup
     {
-        string _testSecret = null;
+        private string _testSecret = null;
+        
+        #region snippet_StartupConstructor
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder();
@@ -20,6 +23,7 @@ namespace UserSecrets
 
             Configuration = builder.Build();
         }
+        #endregion snippet_StartupConstructor
 
         public IConfigurationRoot Configuration { get; }
 
@@ -37,4 +41,5 @@ namespace UserSecrets
             });
         }
     }
+    #endregion snippet_StartupClass
 }
