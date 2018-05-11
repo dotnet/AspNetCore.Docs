@@ -15,6 +15,9 @@ uid: security/authentication/scaffold-identity
 
 <!--
 https://docs.microsoft.com/en-us/dotnet/api/
+
+
+Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
 -->
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -25,15 +28,13 @@ Applications that do **not** include authentication can apply the scaffolder to 
 
 Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
 
-We recommend using a source control system that shows changes and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
+We recommend using a source control system that shows file differances and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
 ## Scaffold identity into an empty project
 
-Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
-
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Add the following calls to the `Startup` class:
+Add the following highlighted calls to the `Startup` class:
 
 [!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 

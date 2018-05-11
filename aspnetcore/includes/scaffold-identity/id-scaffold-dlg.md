@@ -10,4 +10,30 @@ Run the Identity scaffolder:
 
 # [.NET Core CLI](#tab/netcore-cli)
 
+If you have not previously installed the `dotnet-aspnet-codegenerator`, install it now:
+
+```cli
+dotnet tool install -g dotnet-aspnet-codegenerator --version 2.1.0-rc1-final
+```
+
+
+Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
+
+```cli
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+```
+
+Run the following command to list the Identity scaffolder options:
+
+
+```cli
+dotnet aspnet-codegenerator identity -h
+```
+
+In the project folder, run the Identity scaffolder with the options you want. For example, to setup identity with the default UI and the minimum number of files, run the following command:
+
+```cli
+dotnet aspnet-codegenerator identity --useDefaultUI
+```
+
 -------------

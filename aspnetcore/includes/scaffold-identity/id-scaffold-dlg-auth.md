@@ -11,4 +11,10 @@ Run the Identity scaffolder:
 
 # [.NET Core CLI](#tab/netcore-cli)
 
+If you have not previously installed the `dotnet-aspnet-codegenerator`, install it now:
+
+```cli
+dotnet-aspnet-codegenerator
+```
+
 -------------
