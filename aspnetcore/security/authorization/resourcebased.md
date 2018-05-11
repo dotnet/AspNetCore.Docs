@@ -91,7 +91,7 @@ Register the requirement and handler in the `Startup.ConfigureServices` method:
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD (**C**reate, **R**ead, **U**pdate, **D**elete) operations, use the [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD (Create, Read, Update, Delete) operations, use the [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_OperationsClass)]
 
