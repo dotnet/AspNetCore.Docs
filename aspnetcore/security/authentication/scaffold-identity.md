@@ -68,7 +68,6 @@ Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored fr
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Delete the scaffolder generated  *Pages/Shared/_Layout.cshtml* file and restore the previous version.
 
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
