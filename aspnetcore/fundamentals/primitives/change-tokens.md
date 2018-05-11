@@ -103,7 +103,7 @@ The constructor of the implemented class, `ConfigurationMonitor`, registers a ca
 
 [!code-csharp[](change-tokens/sample/Extensions/ConfigurationMonitor.cs?name=snippet2)]
 
-`config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a reference to the Iconfiguration monitor instance that is used to access the monitoring state. Two properties are used:
+`config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a reference to the `IConfigurationMonitor` instance that is used to access the monitoring state. Two properties are used:
 
 * `MonitoringEnabled` indicates if the callback should run its custom code.
 * `CurrentState` describes the current monitoring state for use in the UI.
