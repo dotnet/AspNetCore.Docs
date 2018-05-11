@@ -44,6 +44,17 @@ Add the following highlighted calls to the `Startup` class:
 
 ## Scaffold identity into a Razor project without authorization
 
+<!--
+dotnet new razor -o RPno
+cd RPno
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet restore
+dotnet aspnet-codegenerator identity --useDefaultUI
+dotnet ef migrations add CreateIdentitySchema
+dotnet ef database update
+-->
+
+
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.

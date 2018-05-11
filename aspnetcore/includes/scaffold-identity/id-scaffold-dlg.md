@@ -5,7 +5,9 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-  * In the RC1 version you must select select your existing layout page, or your layout file will be overwritten with incorrect markup.
+  * In the RC1 version you must select select your existing layout page, or your layout file will be overwritten with incorrect markup. For example
+  `~/Pages/Shared/_Layout.cshtml` for Razor Pages 
+  `~/Views/Shared/_Layout.cshtml` for MVC projects 
   * Select the **+** button to create a new **Data context class**.
 * Select **ADD**.
 
