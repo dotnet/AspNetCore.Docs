@@ -196,7 +196,6 @@ var compositeChangeToken =
 
 * [Cache in-memory](xref:performance/caching/memory)
 * [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
