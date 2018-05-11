@@ -47,64 +47,80 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 
 # [Visual Studio](#tab/visual-studio/)
 
-Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. Add the highlighted line to the *.csproj* file, and save to restore the associated NuGet package:
+* Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
+* Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
 
 [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
-Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file, as highlighted in the following sample:
-
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?highlight=4)]
-
-Saving the modified *.csproj* file also opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the following code:
-
-```json
-{
-  "MySecret": "<value_of_my_secret>"
-}
-```
-
-# [Visual Studio Code](#tab/visual-studio-code/)
-
-Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run [dotnet restore](/dotnet/core/tools/dotnet-restore). You can use the same steps to install the Secret Manager Tool using for the command line.
-
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=10)]
-
-Test the Secret Manager tool by running the following command:
+* Run the following command in the **Package Manager Console** window to validate the tool installation:
 
 ```console
 dotnet user-secrets -h
 ```
 
-The Secret Manager tool displays usage, options, and command help.
+# [Visual Studio Code](#tab/visual-studio-code/)
+
+* Add the highlighted element to the *.csproj* file:
+
+[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=10)]
+
+* Run [dotnet restore](/dotnet/core/tools/dotnet-restore) to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
+* Run the following command in the **Integrated Terminal** to validate the tool installation:
+
+```console
+dotnet user-secrets -h
+```
+
+---
+
+Once installed, the Secret Manager tool displays usage, options, and command help.
 
 > [!NOTE]
 > You must be in the same directory as the *.csproj* file to run tools defined in the *.csproj* file's `DotNetCliToolReference` elements.
 
-The Secret Manager tool operates on project-specific configuration settings that are stored in your user profile. To use user secrets, a `UserSecretsId` element must be defined in the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
+## Store a secret
+
+The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, a `UserSecretsId` element must be defined in the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
+
+# [Visual Studio](#tab/visual-studio/)
+
+Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
+
+[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?highlight=4)]
+
+Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the following code:
+
+```json
+{
+  "MySecret": "<secret_value>"
+}
+```
+
+# [Visual Studio Code](#tab/visual-studio-code/)
 
 Add a `UserSecretsId` element to the *.csproj* file:
 
 [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
-Use the Secret Manager tool to set a secret. Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. Run the following command:
+Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. Run the following command to define a secret and its value:
 
 ```console
-dotnet user-secrets set MySecret ValueOfMySecret
+dotnet user-secrets set <secret_name> <secret_value>
 ```
 
-You can run the Secret Manager tool from other directories too. Use the `--project` option to supply the *.csproj* file path:
+You can run the Secret Manager tool from other directories too. Use the `--project` option to supply the *.csproj* file path. For example:
 
 ```console
-dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\webapp1
+dotnet user-secrets set <secret_name> <secret_value> --project C:\work\WebApp1\src\webapp1
 ```
-
-The Secret Manager tool can also list, remove, and clear app secrets.
 
 ---
 
-## Access user secrets via configuration
+The Secret Manager tool can also list, remove, and clear app secrets.
 
-You access Secret Manager secrets through the configuration system. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
+## Access a secret
+
+You access Secret Manager secrets through the configuration system. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 
 ::: moniker range="<= aspnetcore-1.1"
 Add the user secrets configuration source to the `Startup` constructor:
