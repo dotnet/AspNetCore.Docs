@@ -50,11 +50,6 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `All` | Calls a method on all connected clients |
 | `Caller` | Calls a method on the client that invoked the hub method |
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
-
-Additionally, the `Hub` class contains the following methods:
-
-| Method | Description |
-| ------ | ----------- |
 | `AllExcept` | Calls a method on all connected clients except for the specified connections |
 | `Client` | Calls a method on a specific connected client |
 | `Clients` | Calls a method on specific connected clients |
