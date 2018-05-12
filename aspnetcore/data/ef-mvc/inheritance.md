@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10
-author: tdykstra
+author: rick-anderson
 description: This tutorial will show you how to implement inheritance in the data model, using Entity Framework Core in an ASP.NET Core application.
 manager: wpickett
 ms.author: tdykstra
