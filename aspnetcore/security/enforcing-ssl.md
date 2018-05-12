@@ -119,9 +119,19 @@ dotnet new razor --no-https
 
 ------
 
-::: moniker-end
+<a name="cert"></a>
+## Install and trust the ASP.NET Core HTTPS development certificate
 
-::: moniker range=">= aspnetcore-2.1"
+Install the [.NET Core SDK](https://www.microsoft.com/net/download/all). 
+
+The first time you create a ASP.NET Core project, the ASP.NET Core HTTPS development certificate will be installed. The certificate is installed, but not trusted. To trust the certificate on Windows or MacOS, run the following command:
+
+```cli
+dotnet dev-certs https --trust
+```
+
+To establishing trust on other platforms, refer to the platform specific documentation.
+
 ## How to setup a developer certificate for Docker
 
 See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
