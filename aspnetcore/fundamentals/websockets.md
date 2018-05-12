@@ -1,9 +1,9 @@
 ---
 title: WebSockets support in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn how to get started with WebSockets in ASP.NET Core.
 manager: wpickett
-ms.author: tdykstra
+ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 02/15/2018
 ms.prod: aspnet-core
