@@ -33,7 +33,8 @@ public class NamespaceRoutingConvention : IControllerModelConvention
         // This makes your routes roughly line up with the folder structure of your project.
         //
         var namespc = controller.ControllerType.Namespace;
-
+        if (namespc == null)
+            return;
         var template = new StringBuilder();
         template.Append(namespc, _baseNamespace.Length + 1,
                         namespc.Length - _baseNamespace.Length - 1);
