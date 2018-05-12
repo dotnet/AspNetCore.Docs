@@ -19,13 +19,12 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships two server implementations:
 
-* [Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
-
+* [Kestrel](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
 * [HTTP.sys](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
 
 ## Kestrel
 
-Kestrel is the web server that's included by default in ASP.NET Core new-project templates. 
+Kestrel is the default web server included in ASP.NET Core project templates.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

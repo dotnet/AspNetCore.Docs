@@ -35,7 +35,7 @@ namespace FiltersSample.Controllers
         public IActionResult CultureFromRouteData()
         {
             return Content($"CurrentCulture:{CultureInfo.CurrentCulture.Name},"
-                + "CurrentUICulture:{CultureInfo.CurrentUICulture.Name}");
+                + $"CurrentUICulture:{CultureInfo.CurrentUICulture.Name}");
         }
         #endregion
     }

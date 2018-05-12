@@ -24,10 +24,12 @@ There are 3 versions of this tutorial:
 
 ## Install Visual Studio and .NET Core
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!INCLUDE [](~/includes/net-core-prereqs.md)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
 * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
@@ -41,7 +43,8 @@ Run the installer and select the following workloads:
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
-* * *
+---
+
 ## Create a web app
 
 From Visual Studio, select  **File > New > Project**.
@@ -56,7 +59,6 @@ Complete the **New Project** dialog:
 * Tap **OK**
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
-
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
