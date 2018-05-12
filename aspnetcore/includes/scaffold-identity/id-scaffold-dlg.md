@@ -5,7 +5,7 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-  * In the RC1 version you must select select your existing layout page, or your layout file will be overwritten with incorrect markup. For example
+  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. For example
   `~/Pages/Shared/_Layout.cshtml` for Razor Pages 
   `~/Views/Shared/_Layout.cshtml` for MVC projects 
   * Select the **+** button to create a new **Data context class**.
@@ -18,7 +18,6 @@ If you have not previously installed the ASP.NET scaffolder, install it now:
 ```cli
 dotnet tool install -g dotnet-aspnet-codegenerator --version 2.1.0-rc1-final
 ```
-
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
 
@@ -39,5 +38,4 @@ In the project folder, run the Identity scaffolder with the options you want. Fo
 ```cli
 dotnet aspnet-codegenerator identity --useDefaultUI
 ```
-
 -------------

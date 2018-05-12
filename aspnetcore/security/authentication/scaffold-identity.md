@@ -13,13 +13,6 @@ uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
 
-<!--
-https://docs.microsoft.com/en-us/dotnet/api/
-
-
-Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
--->
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained on the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
@@ -45,9 +38,13 @@ Add the following highlighted calls to the `Startup` class:
 ## Scaffold identity into a Razor project without authorization
 
 <!--
-dotnet new razor -o RPno
-cd RPno
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+set projNam=RPnoAuth
+set projType=razor
+set version=2.1.0-rc1-final
+
+dotnet new %projType% -o %projNam%
+cd %projNam%
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v %version%
 dotnet restore
 dotnet aspnet-codegenerator identity --useDefaultUI
 dotnet ef migrations add CreateIdentitySchema
@@ -83,19 +80,19 @@ dotnet restore
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
 -->
 
-Verify the *Pages/Shared/_Layout.cshtml* file is backed up or can be restored from source control.
-
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
-
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
 ## Scaffold identity into an MVC project without authorization
 
 <!--
-dotnet new mvc -o MvcNo
-cd MvcNo
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+set projNam=MvcNoAuth
+set projType=mvc
+set version=2.1.0-rc1-final
+
+dotnet new %projType% -o %projNam%
+cd %projNam%
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v %version%
 dotnet restore
 dotnet aspnet-codegenerator identity --useDefaultUI
 dotnet ef migrations add CreateIdentitySchema
@@ -129,8 +126,6 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc
 dotnet restore
 dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --files Account.Register
 -->
-
-Verify the *Areas/Identity/Pages/_ViewStart.cshtml* file is backed up or can be restored from source control.
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
