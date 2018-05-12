@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
-author: tdykstra
+author: rick-anderson
 description: 
 manager: wpickett
 ms.author: tdykstra

@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core in a Windows Service
-author: tdykstra
+author: rick-anderson
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 manager: wpickett
 ms.author: tdykstra

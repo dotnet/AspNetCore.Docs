@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Module
-author: tdykstra
+author: rick-anderson
 description: Learn how the ASP.NET Core Module allows the Kestrel web server to use IIS or IIS Express as a reverse proxy server.
 manager: wpickett
 ms.author: tdykstra
