@@ -26,10 +26,10 @@ Precompilation considerations:
 To deploy precompiled views:
 
 # [ASP.NET Core 2.1](#tab/aspnetcore21/)
-Build and publish time compilation of Razor files is enabled by default by the Razor Sdk. Editing Razor files after they are updated is supported at build time. By default, only the compiled Views.dll and no cshtml files are deployed with your application. 
+Build and publish time compilation of Razor files is enabled by default by the Razor Sdk. Editing Razor files after they are updated is supported at build time. By default, only the compiled *Views.dll* and no cshtml files are deployed with your application. 
     
 > [!IMPORTANT]
-> Razor Sdk is only effective when no precompilation specific properties are set in your project file. For instance, setting `MvcRazorCompileOnPublish` in your *.csproj* file will disable the Razor Sdk.
+> The Razor Sdk is only effective when no precompilation specific properties are set in your project file. For instance, setting `MvcRazorCompileOnPublish` in your *.csproj* file will disable the Razor Sdk.
 
 # [ASP.NET Core 2.0](#tab/aspnetcore20/)
 
@@ -41,7 +41,7 @@ If your project targets .NET Framework, include a package reference to [Microsof
 
 If your project targets .NET Core, no changes are necessary.
 
-The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default, which means this node can be safely removed from the *.csproj* file.
+The ASP.NET Core 2.x project templates implicitly sets `MvcRazorCompileOnPublish` to `true` by default, which means this node can be safely removed from the *.csproj* file.
     
 > [!IMPORTANT]
 > Razor view precompilation in not available when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0. 
