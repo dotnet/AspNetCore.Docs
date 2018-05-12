@@ -212,6 +212,8 @@ Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/sys
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
+See [Model validation](xref:mvc/models/validation) for more information.
+
 ## Manage HEAD requests with the OnGet handler
 
 Ordinarily, a HEAD handler is created and called for HEAD requests:
