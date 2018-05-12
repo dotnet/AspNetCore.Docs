@@ -1,9 +1,9 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 manager: wpickett
-ms.author: tdykstra
+ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 03/13/2018
 ms.prod: asp.net-core

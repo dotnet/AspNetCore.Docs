@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
-author: tdykstra
+author: rick-anderson
 description: 
 manager: wpickett
-ms.author: tdykstra
+ms.author: rick-anderson
 ms.date: 03/15/2017
 ms.prod: asp.net-core
 ms.technology: aspnet

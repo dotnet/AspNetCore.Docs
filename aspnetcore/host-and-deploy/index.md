@@ -1,6 +1,6 @@
 ---
 title: Host and deploy ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn how to set up hosting environments and deploy ASP.NET Core apps.
 manager: wpickett
 ms.author: riande

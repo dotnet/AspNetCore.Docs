@@ -3,7 +3,7 @@ title: Logging in ASP.NET Core
 author: ardalis
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 manager: wpickett
-ms.author: tdykstra
+ms.author: rick-anderson
 ms.date: 12/15/2017
 ms.prod: asp.net-core
 ms.technology: aspnet

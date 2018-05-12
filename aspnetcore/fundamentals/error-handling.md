@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core
 author: ardalis
 description: Discover how to handle errors in ASP.NET Core applications.
 manager: wpickett
-ms.author: tdykstra
+ms.author: rick-anderson
 ms.custom: H1Hack27Feb2017
 ms.date: 11/30/2016
 ms.prod: asp.net-core
