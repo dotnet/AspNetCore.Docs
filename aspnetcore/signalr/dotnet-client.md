@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/08/2018
+ms.date: 05/14/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -25,9 +25,9 @@ The code sample in this article is a WPF app that uses the ASP.NET Core SignalR 
 
 ## Setup client
 
-The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run `Install-Package` in the **Package Console Manager** window.
+The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run the following command in the **Package Manager Console** window:
 
-```cmd
+```powershell
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 
@@ -63,7 +63,7 @@ To enable logging, use `ConfigureLogging` when opening a connection.
 
 [!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=15-18)]
 
-## Additional Resources
+## Additional resources
 
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
