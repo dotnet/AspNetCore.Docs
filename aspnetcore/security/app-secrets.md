@@ -98,7 +98,18 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 > [!NOTE]
 > You must be in the same directory as the *.csproj* file to run tools defined in the *.csproj* file's `DotNetCliToolReference` elements.
 
-## Store a secret
+## How the Secret Manager tool works
+
+The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
+
+* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
+
+Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details are subject to change. For example, the secret values aren't encrypted, but could be in the future.
+
+## Set a secret
 
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, a `UserSecretsId` element must be defined in the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
@@ -136,8 +147,6 @@ dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
 
 ---
 
-The Secret Manager tool can also list, remove, and clear app secrets.
-
 ## Access a secret
 
 The ASP.NET Core configuration system allows you to access Secret Manager secrets. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
@@ -157,16 +166,71 @@ User secrets can be retrieved via the `Configuration` API:
 [!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 ::: moniker-end
 
-## How the Secret Manager tool works
+## List the secrets
 
-The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
+Assume the app's *secrets.json* file contains the following:
 
-* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
-* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+```json
+{
+  "MoviesApiKey": "12345",
+  "MoviesConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+}
+```
 
-In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
+Run the following command from the directory in which the *.csproj* file exists:
 
-Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details are subject to change. For example, the secret values aren't encrypted, but could be in the future.
+```console
+dotnet user-secrets list
+```
+
+The following output appears:
+
+```console
+MoviesConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true
+MoviesApiKey = 12345
+```
+
+## Remove a single secret
+
+Run the following command from the directory in which the *.csproj* file exists:
+
+```console
+dotnet user-secrets remove MoviesConnectionString
+```
+
+The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+
+```json
+{
+  "MoviesApiKey": "12345"
+}
+```
+
+Running `dotnet user-secrets list` displays the following message:
+
+```console
+MoviesApiKey = 12345
+```
+
+## Remove all secrets
+
+Run the following command from the directory in which the *.csproj* file exists:
+
+```console
+dotnet user-secrets clear
+```
+
+All user secrets for the app have been deleted from the *secrets.json* file:
+
+```json
+{}
+```
+
+Running `dotnet user-secrets list` displays the following message:
+
+```console
+No secrets configured for this application.
+```
 
 ## Additional resources
 
