@@ -45,6 +45,8 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 
 ## Install the Secret Manager tool
 
+The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of the .NET Core SDK. If you're using an earlier version of the .NET Core SDK, install the tool with the instructions below.
+
 # [Visual Studio](#tab/visual-studio/)
 
 * Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
@@ -73,7 +75,7 @@ dotnet user-secrets -h
 
 ---
 
-The Secret Manager tool displays usage, options, and command help:
+The Secret Manager tool displays sample usage, options, and command help:
 
 ```console
 Usage: dotnet user-secrets [options] [command]
@@ -168,7 +170,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## List the secrets
 
-Assume the app's *secrets.json* file contains the following:
+Assume the app's *secrets.json* file contains the following content:
 
 ```json
 {
