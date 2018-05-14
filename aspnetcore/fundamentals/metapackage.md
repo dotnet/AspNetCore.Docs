@@ -1,5 +1,5 @@
 ---
-title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
+title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0 and later
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage includes all supported ASP.NET Core and Entity Framework Core packages, along with their dependencies.
 manager: wpickett
@@ -37,30 +37,26 @@ The following *.csproj* file references the `Microsoft.AspNetCore.All` metapacka
 
 [!code-xml[](../mvc/views/view-compilation/sample/MvcRazorCompileOnPublish2.csproj?highlight=9)]
 
-::: moniker range=">= aspnetcore-2.1"
-# Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.1 and later version range locking
-
-`Microsoft.AspNetCore.All` 2.1 and later specifies package dependency ranges. The package dependency ranges ensure that only the excact version specified for each dependency is allowed. Any other dependency that attempts to lift a version for a component beyond what is specified in the meta-package will result in a NuGet warning, which the Microsoft.NET.Sdk will elevate to an error by default. 
-
-::: moniker-end
-
-
 <a name="migrate"></a>
 ## Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App
 
-The following packages are direct dependencies of `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
+The following packages included in `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
 
-* Microsoft.Data.Sqlite
-* Microsoft.Data.Sqlite.Core
-* Microsoft.EntityFrameworkCore.Sqlite
-* Microsoft.EntityFrameworkCore.Sqlite.Core
-* Microsoft.Extensions.Caching.Redis
-* Microsoft.AspNetCore.DataProtection.AzureStorage
-* Microsoft.Extensions.Configuration.AzureKeyVault
-* Microsoft.AspNetCore.DataProtection.AzureKeyVault
-* Microsoft.AspNetCore.Identity.Service.AzureKeyVault
-* Microsoft.AspNetCore.AzureKeyVault.HostingStartup
-* Microsoft.AspNetCore.ApplicationInsights.HostingStartup
+* `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`
+* `Microsoft.AspNetCore.AzureAppServices.HostingStartup`
+* `Microsoft.AspNetCore.AzureAppServicesIntegration`
+* `Microsoft.AspNetCore.DataProtection.AzureKeyVault`
+* `Microsoft.AspNetCore.DataProtection.AzureStorage`
+* `Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv`
+* `Microsoft.AspNetCore.SignalR.Redis`
+* `Microsoft.Data.Sqlite`
+* `Microsoft.Data.Sqlite.Core`
+* `Microsoft.EntityFrameworkCore.Sqlite`
+* `Microsoft.EntityFrameworkCore.Sqlite.Core`
+* `Microsoft.Extensions.Caching.Redis`
+* `Microsoft.Extensions.Configuration.AzureKeyVault`
+* `Microsoft.Extensions.Logging.AzureAppServices`
+* `Microsoft.VisualStudio.Web.BrowserLink`
 
 To move from `Microsoft.AspNetCore.All` to `Microsoft.AspNetCore.App`, if your app uses any APIs from the above packages, or packages brought in by those packages, add references to those packages in your project.
 
