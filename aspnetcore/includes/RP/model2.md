@@ -7,7 +7,7 @@ The `ID` field is required by the database for the primary key.
 <a name="dc"></a>
 ### Add a database context class
 
-Add the following  *MovieContext.cs* class to the *Models* folder:  
+Add the following *MovieContext.cs* class to the *Models* folder:  
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Models/MovieContext.cs)]
 
