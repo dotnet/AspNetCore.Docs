@@ -1,6 +1,6 @@
 ---
 title: Kestrel web server implementation in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 manager: wpickett
 ms.author: tdykstra
