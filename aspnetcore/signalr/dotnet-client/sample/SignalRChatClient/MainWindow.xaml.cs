@@ -7,7 +7,7 @@ namespace SignalRChatClient
 {
     public partial class MainWindow : Window
     {
-        static HubConnection connection;
+        HubConnection connection;
         public MainWindow()
         {
             InitializeComponent();
