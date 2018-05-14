@@ -51,7 +51,8 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `Caller` | Calls a method on the client that invoked the hub method |
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
-Additionally, the `Hub` class contains the following methods:
+
+Additionally, `Hub.Clients` contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
