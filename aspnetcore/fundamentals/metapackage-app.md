@@ -18,7 +18,7 @@ This feature requires ASP.NET Core 2.1 and later targeting .NET Core 2.1 and lat
 
 The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) metapackage for ASP.NET Core includes:
 
-* All supported packages by the ASP.NET Core team except a few that that contain third party dependencies like Redis.
+* All supported packages by the ASP.NET Core team except those that contain third party dependencies.
 * All supported packages by the Entity Framework Core. 
 * Internal dependencies used by ASP.NET Core and Entity Framework Core.
 * 3rd-party dependencies used by ASP.NET Core and Entity Framework Core deemed necessary to ensure the major frameworks features function.
