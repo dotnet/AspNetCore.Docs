@@ -1,4 +1,4 @@
+<connectionStrings>
 <add name="MovieDBContext" 
-   connectionString="Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=aspnet-MvcMovie;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\Movies.mdf" 
-   providerName="System.Data.SqlClient" 
-/>
+     connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True" providerName="System.Data.SqlClient" />
+</connectionStrings>
