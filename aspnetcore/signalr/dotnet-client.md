@@ -33,7 +33,7 @@ Install-Package Microsoft.AspNetCore.SignalR.Client
 
 ## Connect to a hub
 
-To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure the options by inserting any of the `HubConnectionBuilder` methods into `Build`, such as `WithConsoleLogger`. Start the connection with `StartAsync`.
+To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure the options by inserting any of the `HubConnectionBuilder` methods into `Build`, such as `ConfigureLogging`. Start the connection with `StartAsync`.
 
 [!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?highlight=15-18,34)]
 
@@ -59,7 +59,11 @@ Handle errors with a try-catch statement. Inspect the `Exception` object to dete
 
 [!code-csharp[Handle error](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=47-55)]
 
-To enable logging, use `ConfigureLogging` when opening a connection.
+To enable logging, use `ConfigureLogging` when opening a connection. The `Microsoft.Extensions.Logging.Console` package is required for logging.
+
+```powershell
+Install-Package Microsoft.AspNetCore.SignalR.Client
+```
 
 [!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=15-18)]
 
