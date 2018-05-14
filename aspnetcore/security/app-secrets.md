@@ -120,7 +120,7 @@ The Secret Manager tool can also list, remove, and clear app secrets.
 
 ## Access a secret
 
-You access Secret Manager secrets through the configuration system. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
+The ASP.NET Core configuration system allows you to access Secret Manager secrets. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 
 ::: moniker range="<= aspnetcore-1.1"
 Add the user secrets configuration source to the `Startup` constructor:
@@ -141,13 +141,10 @@ User secrets can be retrieved via the `Configuration` API:
 
 The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. In the current version, the values are stored in a [JSON](https://json.org/) configuration file in the user profile directory:
 
-* Windows: `%APPDATA%\microsoft\UserSecrets\<userSecretsId>\secrets.json`
+* Windows: `%APPDATA%\microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
 
-* Linux: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
-
-* macOS: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
-
-The value of `userSecretsId` comes from the value specified in the *.csproj* file.
+In the preceding file paths, replace `<user_secrets_id>` with the `<UserSecretsId>` value specified in the *.csproj* file.
 
 Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details are subject to change. For example, the secret values aren't encrypted, but could be in the future.
 
