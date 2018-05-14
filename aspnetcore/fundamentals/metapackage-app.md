@@ -9,7 +9,7 @@ ms.date: 09/20/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
-uid: fundamentals/metapackage-all
+uid: fundamentals/metapackage-app
 ---
 
 # Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1
@@ -44,7 +44,6 @@ The following *.csproj* file references the `Microsoft.AspNetCore.App` metapacka
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
