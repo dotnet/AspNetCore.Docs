@@ -5,7 +5,7 @@ description: Learn how to safely store sensitive information as app secrets duri
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2018
+ms.date: 05/14/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -111,7 +111,7 @@ dotnet user-secrets set <secret_name> <secret_value>
 You can run the Secret Manager tool from other directories too. Use the `--project` option to supply the *.csproj* file path. For example:
 
 ```console
-dotnet user-secrets set <secret_name> <secret_value> --project C:\work\WebApp1\src\webapp1
+dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
 ```
 
 ---
@@ -139,12 +139,12 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## How the Secret Manager tool works
 
-The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. In the current version, the values are stored in a [JSON](https://json.org/) configuration file in the user profile directory:
+The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
 
-* Windows: `%APPDATA%\microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
 * Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
 
-In the preceding file paths, replace `<user_secrets_id>` with the `<UserSecretsId>` value specified in the *.csproj* file.
+In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
 
 Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details are subject to change. For example, the secret values aren't encrypted, but could be in the future.
 
