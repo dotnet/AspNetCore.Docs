@@ -119,43 +119,43 @@ The Secret Manager tool operates on project-specific configuration settings stor
 
 Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
 
-::: moniker range="<= aspnetcore-1.1"
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
-::: moniker-end
-::: moniker range=">= aspnetcore-2.0"
-[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-::: moniker-end
+    ::: moniker range="<= aspnetcore-1.1"
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+    ::: moniker-end
+    ::: moniker range=">= aspnetcore-2.0"
+    [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+    ::: moniker-end
 
 Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the following code:
 
-```json
-{
-  "MySecret": "<secret_value>"
-}
-```
+    ```json
+    {
+      "MySecret": "<secret_value>"
+    }
+    ```
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
 Add a `UserSecretsId` element to the *.csproj* file:
 
-::: moniker range="<= aspnetcore-1.1"
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
-::: moniker-end
-::: moniker range=">= aspnetcore-2.0"
-[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-::: moniker-end
+    ::: moniker range="<= aspnetcore-1.1"
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+    ::: moniker-end
+    ::: moniker range=">= aspnetcore-2.0"
+    [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+    ::: moniker-end
 
 Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. Run the following command to define a secret and its value:
 
-```console
-dotnet user-secrets set <secret_name> <secret_value>
-```
+    ```console
+    dotnet user-secrets set <secret_name> <secret_value>
+    ```
 
 You can run the Secret Manager tool from other directories too. Use the `--project` option to supply the *.csproj* file path. For example:
 
-```console
-dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
-```
+    ```console
+    dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
+    ```
 
 ---
 
