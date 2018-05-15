@@ -16,7 +16,7 @@ By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guar
 
 This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:mvc/razor-pages/index).
 
-In the **M**odel-**V**iew-**C**ontroller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
+In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
 In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a *Views* folder at the root of the app:
 
@@ -32,7 +32,7 @@ Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and 
 
 ## Benefits of using views
 
-Views help to establish a [**S**eparation **o**f **C**oncerns (SoC) design](http://deviq.com/separation-of-concerns/) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
+Views help to establish a [Separation of Concerns (SoC) design](http://deviq.com/separation-of-concerns/) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
 
 * The app is easier to maintain because it's better organized. Views are generally grouped by app feature. This makes it easier to find related views when working on a feature.
 * The parts of the app are loosely coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
@@ -118,7 +118,16 @@ Follow the best practice of organizing the file structure for your views to refl
 
 ## Passing data to views
 
-You can pass data to views using several approaches. The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
+Pass data to views using several approaches:
+
+* Strongly-typed data: viewmodel
+* Weakly-typed data
+  - `ViewData` (`ViewDataAttribute`)
+  - `ViewBag`
+
+### Strongly-typed data (viewmodel)
+
+The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
 
 Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly-typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
@@ -157,7 +166,7 @@ public IActionResult Contact()
 }
 ```
 
-There are no restrictions on the model types that you can provide to a view. We recommend using **P**lain **O**ld **C**LR **O**bject (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the *Models* folder or a separate *ViewModels* folder at the root of the app. The *Address* viewmodel used in the example above is a POCO viewmodel stored in a file named *Address.cs*:
+There are no restrictions on the model types that you can provide to a view. We recommend using Plain Old CLR Object (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the *Models* folder or a separate *ViewModels* folder at the root of the app. The *Address* viewmodel used in the example above is a POCO viewmodel stored in a file named *Address.cs*:
 
 ```csharp
 namespace WebApplication1.ViewModels
@@ -173,15 +182,13 @@ namespace WebApplication1.ViewModels
 }
 ```
 
-> [!NOTE]
-> Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](xref:mvc/models/model-binding) and [validation](xref:mvc/models/validation) for data sent to the app by the user.
-
+Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](xref:mvc/models/model-binding) and [validation](xref:mvc/models/validation) for data sent to the app by the user.
 
 <a name="VD_VB"></a>
 
-### Weakly-typed data (ViewData and ViewBag)
+### Weakly-typed data (ViewData, ViewData attribute, and ViewBag)
 
-Note: `ViewBag` isn't available in the Razor Pages.
+`ViewBag` *isn't available in Razor Pages.*
 
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
 
@@ -194,7 +201,6 @@ In addition to strongly-typed views, views have access to a *weakly-typed* (also
 This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly-typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection.
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
-
 
 <a name="VD"></a>
 
@@ -238,9 +244,49 @@ Work with the data in a view:
 </address>
 ```
 
+::: moniker range=">= aspnetcore-2.1"
+**ViewData attribute**
+
+Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the dictionary.
+
+In the following example, the Home controller contains a `Title` property decorated with `[ViewData]`. The `About` method sets the title for the About view:
+
+```csharp
+public class HomeController : Controller
+{
+    [ViewData]
+    public string Title { get; set; }
+
+    public IActionResult About()
+    {
+        Title = "About Us";
+        ViewData["Message"] = "Your application description page.";
+
+        return View();
+    }
+}
+```
+
+In the About view, access the `Title` property as a model property:
+
+```cshtml
+<h1>@Model.Title</h1>
+```
+
+In the layout, the title is read from the ViewData dictionary:
+
+```cshtml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - WebApplication</title>
+    ...
+```
+::: moniker-end
+
 **ViewBag**
 
-Note: `ViewBag` isn't available in the Razor Pages.
+`ViewBag` *isn't available in Razor Pages.*
 
 `ViewBag` is a [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
 
@@ -273,7 +319,7 @@ public IActionResult SomeAction()
 
 **Using ViewData and ViewBag simultaneously**
 
-Note: `ViewBag` isn't available in the Razor Pages.
+`ViewBag` *isn't available in Razor Pages.*
 
 Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collection, you can use both `ViewData` and `ViewBag` and mix and match between them when reading and writing values.
 

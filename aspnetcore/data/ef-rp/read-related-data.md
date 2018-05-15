@@ -97,7 +97,7 @@ Update the `OnGetAsync` method with the following code:
 
 The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
 
-Update *Views/Courses/Index.cshtml* with the following highlighted markup:
+Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
 [!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 

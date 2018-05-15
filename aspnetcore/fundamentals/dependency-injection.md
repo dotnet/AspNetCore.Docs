@@ -346,13 +346,15 @@ When working with dependency injection, keep the following recommendations in mi
 
 * Avoid static access to `HttpContext`.
 
-> [!NOTE]
-> Like all sets of recommendations, you may encounter situations where ignoring one is required. We have found exceptions to be rare -- mostly very special cases within the framework itself.
+Like all sets of recommendations, you may encounter situations where ignoring one is required. We have found exceptions to be rare -- mostly very special cases within the framework itself.
 
-Remember, dependency injection is an *alternative* to static/global object access patterns. You won't be able to realize the benefits of DI if you mix it with static object access.
+Dependency injection is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
 ## Additional resources
 
+* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [Dependency injection into controllers](xref:mvc/controllers/dependency-injection)
+* [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 * [Application Startup](xref:fundamentals/startup)
 * [Test and debug](xref:testing/index)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)

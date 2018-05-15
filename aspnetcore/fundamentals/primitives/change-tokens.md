@@ -103,7 +103,7 @@ The constructor of the implemented class, `ConfigurationMonitor`, registers a ca
 
 [!code-csharp[](change-tokens/sample/Extensions/ConfigurationMonitor.cs?name=snippet2)]
 
-`config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a string that describes the monitoring state. Two properties are used:
+`config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a reference to the `IConfigurationMonitor` instance that is used to access the monitoring state. Two properties are used:
 
 * `MonitoringEnabled` indicates if the callback should run its custom code.
 * `CurrentState` describes the current monitoring state for use in the UI.
@@ -111,7 +111,6 @@ The constructor of the implemented class, `ConfigurationMonitor`, registers a ca
 The `InvokeChanged` method is similar to the earlier approach, except that it:
 
 * Doesn't run its code unless `MonitoringEnabled` is `true`.
-* Sets the `CurrentState` property string to a descriptive message that records the time that the code ran.
 * Notes the current `state` in its `WriteConsole` output.
 
 [!code-csharp[](change-tokens/sample/Extensions/ConfigurationMonitor.cs?name=snippet3)]
@@ -196,7 +195,6 @@ var compositeChangeToken =
 
 * [Cache in-memory](xref:performance/caching/memory)
 * [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Response Caching Middleware](xref:performance/caching/middleware)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)

@@ -54,7 +54,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
 
-   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
 
    These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
@@ -63,7 +64,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
 
-   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-33)]
 
    These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
@@ -72,7 +74,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configure&highlight=21)]
 
-   * * *
+   ---
+
    For more information about the application start up process, see [Application Startup](xref:fundamentals/startup).
 
 3. Create a user.
@@ -121,13 +124,16 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
    Identity has some default behaviors that can be overridden in the app's startup class. `IdentityOptions` don't need to be configured when using the default behaviors. The following code sets several password strength options:
 
-   #### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
 
-   #### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-33)]
 
-   * * *
+   ---
+
    For more information about how to configure Identity, see [Configure Identity](xref:security/authentication/identity-configuration).
 
    You also can configure the data type of the primary key, see [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).

@@ -185,6 +185,13 @@ WantedBy=multi-user.target
 > [!NOTE]
 > **User** &mdash; If the user *apache* isn't used by the configuration, the user must be created first and given proper ownership for files.
 
+> [!NOTE]
+> Some values (for example, SQL connection strings) must be escaped for the configuration providers to read the environment variables. Use the following command to generate a properly escaped value for use in the configuration file:
+>
+> ```console
+> systemd-escape "<value-to-escape>"
+> ```
+
 Save the file and enable the service:
 
 ```bash

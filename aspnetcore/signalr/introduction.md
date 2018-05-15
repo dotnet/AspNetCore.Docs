@@ -16,9 +16,6 @@ uid: signalr/introduction
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
-
-[!INCLUDE [2.1 preview notice](~/includes/2.1.md)]
-
 ## What is SignalR?
 
 ASP.NET Core SignalR is a library that simplifies adding real-time web functionality to apps. Real-time web functionality enables server-side code to push content to clients instantly.

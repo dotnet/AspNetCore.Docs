@@ -53,7 +53,7 @@ for ($port = 44300; $port -lt 44400; $port++)
     Write-Output $command
     $command | netsh
     
-    $command = "http add sslcert ipport=0.0.0.0:$port certhash="+$($certificate.Thumbprint)+" appid={214124cd-d05b-4309-9af9-9caa44b2b74a}"
+    $command = "http add sslcert ipport=0.0.0.0:$port certhash="+$($certificate.Thumbprint)+" appid=""{214124cd-d05b-4309-9af9-9caa44b2b74a}"""
     Write-Output $command
     $command | netsh
 }

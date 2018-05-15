@@ -27,11 +27,11 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 The SignalR middleware requires some services, which are configured by calling `services.AddSignalR`.
 
-[!code-csharp[Configure service](hubs/sample/startup.cs?range=37)]
+[!code-csharp[Configure service](hubs/sample/startup.cs?range=38)]
 
 When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling `app.UseSignalR` in the `Startup.Configure` method.
 
-[!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=56-59)]
+[!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=57-60)]
 
 ## Create and use hubs
 
@@ -51,7 +51,8 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `Caller` | Calls a method on the client that invoked the hub method |
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
-Additionally, the `Hub` class contains the following methods:
+
+Additionally, `Hub.Clients` contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
@@ -87,4 +88,6 @@ Exceptions thrown in your hub methods are sent to the client that invoked the me
 
 ## Related resources
 
-[Intro to ASP.NET Core SignalR](xref:signalr/introduction)
+* [Intro to ASP.NET Core SignalR](xref:signalr/introduction)
+* [JavaScript client](xref:signalr/javascript-client)
+* [Publish to Azure](xref:signalr/publish-to-azure-web-app)

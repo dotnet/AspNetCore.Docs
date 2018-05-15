@@ -36,7 +36,8 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 
 ## Installing the Secret Manager tool
 
-#### [Visual Studio](#tab/visual-studio/)
+# [Visual Studio](#tab/visual-studio/)
+
 Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. 
 Add the highlighted line to the *.csproj* file, and save to restore the associated NuGet package:
 
@@ -54,7 +55,8 @@ Saving the modified *.csproj* file also opens a `secrets.json` file in the text 
 }
 ```
 
-#### [Visual Studio Code](#tab/visual-studio-code/)
+# [Visual Studio Code](#tab/visual-studio-code/)
+
 Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run [dotnet restore](/dotnet/core/tools/dotnet-restore). You can use the same steps to install the Secret Manager Tool using for the command line.
 
 [!code-xml[](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
@@ -90,7 +92,8 @@ dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\w
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.
 
-* * *
+---
+
 ## Accessing user secrets via configuration
 
 You access Secret Manager secrets through the configuration system. Add the `Microsoft.Extensions.Configuration.UserSecrets` package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).

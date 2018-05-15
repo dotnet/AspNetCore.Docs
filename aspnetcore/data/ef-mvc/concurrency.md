@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
-author: tdykstra
+author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 manager: wpickett
 ms.author: tdykstra

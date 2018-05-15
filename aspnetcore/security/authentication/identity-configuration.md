@@ -57,15 +57,18 @@ var result = await _signInManager.PasswordSignInAsync(
 
 By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long. [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) can be changed in `Startup.ConfigureServices`.
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 ASP.NET Core 2.0 added the [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requireduniquechars) property. Otherwise, the options are the same as ASP.NET Core 1.x.
 
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-65,84)]
 
-* * *
+---
+
 [IdentityOptions.Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) specifies the [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) with the properties shown in the table.
 
 | Property | Description | Default |
@@ -117,15 +120,17 @@ ASP.NET Core 2.0 added the [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcor
 
 Configure the app's cookie in `Startup.ConfigureServices`:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?name=snippet_configurecookie)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-59,72-80,84)]
 
-* * *
-[CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions) has the following properties:
+---
 
+[CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions) has the following properties:
 
 |                                                               Property                                                               |                                                                                                                                                           Description                                                                                                                                                            |
 |--------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

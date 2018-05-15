@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 03/16/2018
+ms.date: 05/09/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
@@ -65,8 +65,8 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
 3. Run the following commands in the **Package Manager Console** window, from the project root:
 
     ```console
-      npm init -y
-      npm install @aspnet/signalr
+    npm init -y
+    npm install @aspnet/signalr
     ```     
 
 4. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *lib* folder in your project.
@@ -76,14 +76,14 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
 1. From the **Integrated Terminal**, run the following command:
 
     ```console
-      dotnet new razor -o SignalRChat
+    dotnet new razor -o SignalRChat
     ```
 
 2. Install the JavaScript client library using *npm*.
 
-    ```
-      npm init -y
-      npm install @aspnet/signalr
+    ```console
+    npm init -y
+    npm install @aspnet/signalr
     ```
 
 3. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *lib* folder in your project.
@@ -129,7 +129,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 2. Configure routes to your hubs using `UseSignalR`.
 
 
-   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=36,56-59)]
+   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=37,57-60)]
 
 
 ## Create the SignalR client code
@@ -162,7 +162,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. Choose either browser, enter a name and message, and click the **Send** button. The name and message are displayed on both pages instantly.
 
------
+---
 
   ![Solution](get-started/_static/signalr-get-started-finished.png)
 
