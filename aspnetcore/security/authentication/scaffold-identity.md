@@ -21,7 +21,9 @@ Applications that do **not** include authentication can apply the scaffolder to 
 
 Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
 
-We recommend using a source control system that shows file differances and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
+When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory. The *ScaffoldingReadme.txt* file contains general instructions on what's need to complete the Identity scaffolding update. This document contains more complete instructions than the read the *ScaffoldingReadme.txt* file.
+
+We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
 ## Scaffold identity into an empty project
 
@@ -35,7 +37,7 @@ Add the following highlighted calls to the `Startup` class:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## Scaffold identity into a Razor project without authorization
+## Scaffold identity into a Razor project without existing authorization
 
 <!--
 set projNam=RPnoAuth
@@ -54,7 +56,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:host-and-deploy/platform-specific-configuration).
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -83,7 +85,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
 
-## Scaffold identity into an MVC project without authorization
+## Scaffold identity into an MVC project without existing authorization
 
 <!--
 set projNam=MvcNoAuth
@@ -107,7 +109,7 @@ Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.c
 
 * Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. See [IHostingStartup](xref:host-and-deploy/platform-specific-configuration) for more information.
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, seeIHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 

@@ -18,4 +18,4 @@ dotnet ef database update
 
 ------
 
-The `Add-Migration` name is arbitrary, "CreateIdentitySchema" describes the migration.
+The "CreateIdentitySchema" name parameter for the `Add-Migration` command is arbitrary. `"CreateIdentitySchema" describes the migration.
