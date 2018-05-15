@@ -186,7 +186,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may contain a password for the connecting user ID:
 
-[!code-csharp[](app-secrets/samples/2.1/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](app-secrets/samples/2.1/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 A more secure approach is to store the password as a secret. For example:
 
@@ -196,7 +196,7 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Replace the password in *appsettings.json* with a placeholder. In the following example, `{0}` is used as the placeholder to form a [Composite Format String](/dotnet/standard/base-types/composite-formatting?view=netcore-2.0#composite-format-string).
 
-[!code-csharp[](app-secrets/samples/2.1/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](app-secrets/samples/2.1/UserSecrets/appsettings.json?highlight=3)]
 
 The secret's value can be injected into the placeholder to complete the connection string:
 
