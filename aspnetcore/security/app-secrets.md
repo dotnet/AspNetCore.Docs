@@ -134,14 +134,7 @@ Right-click the project in Solution Explorer, and select **Manage User Secrets**
 
 Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the key-value pairs to be stored. For example:
 
-  ```json
-  {
-    "Movies": {
-      "ServiceApiKey": "12345",
-      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
-    }
-  }
-  ```
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -189,18 +182,34 @@ User secrets can be retrieved via the `Configuration` API:
 [!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 ::: moniker-end
 
+## String replacement with secrets
+
+Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may contain a password for the connecting user ID:
+
+[!code-csharp[](app-secrets/samples/2.1/UserSecrets/appsettings-unsecure.json?highlight=3)]
+
+A more secure approach is to store the password as a secret. For example:
+
+```console
+dotnet user-secrets set "DbPassword" "pass123"
+```
+
+Replace the password in *appsettings.json* with a placeholder. In the following example, `{0}` is used as the placeholder to form a [Composite Format String](/dotnet/standard/base-types/composite-formatting?view=netcore-2.0#composite-format-string).
+
+[!code-csharp[](app-secrets/samples/2.1/UserSecrets/appsettings.json?highlight=3)]
+
+The secret's value can be injected into the placeholder to complete the connection string:
+
+::: moniker range="<= aspnetcore-1.1"
+[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=23-25)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
+[!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-16)]
+::: moniker-end
+
 ## List the secrets
 
-Assume the app's *secrets.json* file contains the following two secrets:
-
-```json
-{
-  "Movies": {
-    "ServiceApKey": "12345",
-    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
-  }
-}
-```
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
 Run the following command from the directory in which the *.csproj* file exists:
 
@@ -219,16 +228,7 @@ In the preceding example, a colon in the key names denotes the object hierarchy 
 
 ## Remove a single secret
 
-Assume the app's *secrets.json* file contains the following two secrets:
-
-```json
-{
-  "Movies": {
-    "ServiceApKey": "12345",
-    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
-  }
-}
-```
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
 Run the following command from the directory in which the *.csproj* file exists:
 
@@ -254,16 +254,7 @@ Movies:ServiceApiKey = 12345
 
 ## Remove all secrets
 
-Assume the app's *secrets.json* file contains the following two secrets:
-
-```json
-{
-  "Movies": {
-    "ServiceApKey": "12345",
-    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
-  }
-}
-```
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
 Run the following command from the directory in which the *.csproj* file exists:
 
