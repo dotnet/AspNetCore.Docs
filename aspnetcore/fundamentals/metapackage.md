@@ -27,7 +27,7 @@ The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCo
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the `Microsoft.AspNetCore.All` package. The default project templates targeting ASP.NET Core 2.0 use this package.
 
-The version number of the `Microsoft.AspNetCore.All` metapackage represents the ASP.NET Core version and Entity Framework Core version (aligned with the .NET Core version).
+The version number of the `Microsoft.AspNetCore.All` metapackage represents the ASP.NET Core version and Entity Framework Core version.
 
 Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the [.NET Core Runtime Store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store). The Runtime Store contains all the runtime assets needed to run ASP.NET Core 2.x applications. When you use the `Microsoft.AspNetCore.All` metapackage, **no** assets from the referenced ASP.NET Core NuGet packages are deployed with the application &mdash; the .NET Core Runtime Store contains these assets. The assets in the Runtime Store are precompiled to improve application startup time.
 
@@ -40,7 +40,7 @@ The following *.csproj* file references the `Microsoft.AspNetCore.All` metapacka
 <a name="migrate"></a>
 ## Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App
 
-The following packages included in `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
+The following packages are included in `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
 
 * `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`
 * `Microsoft.AspNetCore.AzureAppServices.HostingStartup`
