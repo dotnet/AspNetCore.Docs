@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/14/2018
+ms.date: 05/18/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -33,39 +33,31 @@ Install-Package Microsoft.AspNetCore.SignalR.Client
 
 ## Connect to a hub
 
-To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure the options by inserting any of the `HubConnectionBuilder` methods into `Build`, such as `ConfigureLogging`. Start the connection with `StartAsync`.
+To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `Build`. Start the connection with `StartAsync`.
 
-[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?highlight=15-18,34)]
+[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?highlight=15-17,33)]
 
 ## Call hub methods from client
 
 `InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
 
-[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=49-50)]
+[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=48-49)]
 
 ## Call client methods from hub
 
 Define methods the hub calls using `connection.On` after building, but before starting the connection.
 
-[!code-csharp[Define client methods](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=23-30)]
+[!code-csharp[Define client methods](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=22-29)]
 
 The preceding code in `connection.On` runs when server-side code calls it using the `SendAsync` method.
 
-[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?range=8-11)]
+[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?highlight=8-11)]
 
 ## Error handling and logging
 
 Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action to take after an error occurs.
 
-[!code-csharp[Handle error](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=47-55)]
-
-To enable logging, use `ConfigureLogging` when opening a connection. The `Microsoft.Extensions.Logging.Console` package is required for logging.
-
-```powershell
-Install-Package Microsoft.AspNetCore.SignalR.Client
-```
-
-[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=15-18)]
+[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=46-54)]
 
 ## Additional resources
 

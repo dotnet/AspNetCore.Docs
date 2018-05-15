@@ -14,7 +14,6 @@ namespace SignalRChatClient
 
             connection = new HubConnectionBuilder()
             .WithUrl("https://localhost:44317/ChatHub")
-            .ConfigureLogging(logging => logging.AddConsole())      
             .Build();        
         }
 
