@@ -21,6 +21,8 @@ namespace UserSecrets
                 builder.AddUserSecrets<Startup>();
             }
 
+            builder.AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
         #endregion snippet_StartupConstructor
