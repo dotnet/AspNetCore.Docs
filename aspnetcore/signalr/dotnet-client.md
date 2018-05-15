@@ -51,7 +51,7 @@ Define methods the hub calls using `connection.On` after building, but before st
 
 The preceding code in `connection.On` runs when server-side code calls it using the `SendAsync` method.
 
-[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?highlight=8-11)]
+[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?range=8-11)]
 
 ## Error handling and logging
 
