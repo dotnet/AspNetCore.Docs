@@ -58,7 +58,7 @@ The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of t
 * Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
 * Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package:
 
-    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=13-14)]
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 
 * Run the following command in the **Package Manager Console** window to validate the tool installation:
 
@@ -70,7 +70,7 @@ The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of t
 
 * Add the highlighted element to the *.csproj* file:
 
-    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=13-14)]
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 
 * Run [dotnet restore](/dotnet/core/tools/dotnet-restore) in the **Integrated Terminal** to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
 * Run the following command in the **Integrated Terminal** to validate the tool installation:
@@ -126,7 +126,7 @@ The Secret Manager tool operates on project-specific configuration settings stor
 Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
 
   ::: moniker range="<= aspnetcore-1.1"
-  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
   ::: moniker-end
   ::: moniker range=">= aspnetcore-2.0"
   [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
@@ -148,7 +148,7 @@ Saving the modified *.csproj* file opens a *secrets.json* file in the text edito
 Add a `UserSecretsId` element to the *.csproj* file:
 
   ::: moniker range="<= aspnetcore-1.1"
-  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
   ::: moniker-end
   ::: moniker range=">= aspnetcore-2.0"
   [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
@@ -183,7 +183,7 @@ Add the user secrets configuration source to the `Startup` constructor:
 User secrets can be retrieved via the `Configuration` API:
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=21)]
+[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=23)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
 [!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
