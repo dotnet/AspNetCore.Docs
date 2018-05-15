@@ -3,9 +3,9 @@ title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
 description: Learn how to safely store sensitive information as app secrets during development of an ASP.NET Core app.
 manager: wpickett
-ms.author: riande
+ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/14/2018
+ms.date: 05/15/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -29,15 +29,13 @@ This document demonstrates using the Secret Manager tool in development to keep 
 
 ## Environment variables
 
-To avoid storing app secrets in code or in local configuration files, store secrets in environment variables.
+To avoid storing app secrets in code or in local configuration files, store secrets in environment variables. Environment variables can be used to override configuration values for all previously specified configuration sources.
 
 ::: moniker range="<= aspnetcore-1.1"
 Configure the reading of environment variable values by calling [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) in the `Startup` constructor:
 
 [!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=10)]
 ::: moniker-end
-
-Environment variables can be used to override configuration values for all previously specified configuration sources.
 
 Imagine an ASP.NET Core web app with Individual User Accounts enabled. A default connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may contain the database connection string with sensitive credentials.
 
