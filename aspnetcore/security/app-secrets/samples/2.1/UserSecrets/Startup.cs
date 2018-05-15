@@ -9,7 +9,7 @@ namespace UserSecrets
     #region snippet_StartupClass
     public class Startup
     {
-        private string _testSecret = null;
+        private string _moviesApiKey = null;
 
         public Startup(IConfiguration configuration)
         {
@@ -20,12 +20,12 @@ namespace UserSecrets
 
         public void ConfigureServices(IServiceCollection services)
         {
-            _testSecret = Configuration["MySecret"];
+            _moviesApiKey = Configuration["MoviesApiKey"];
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            var result = string.IsNullOrEmpty(_testSecret) ? "Null" : "Not Null";
+            var result = string.IsNullOrEmpty(_moviesApiKey) ? "Null" : "Not Null";
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync($"Secret is {result}");

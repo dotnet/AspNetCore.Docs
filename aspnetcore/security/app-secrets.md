@@ -132,11 +132,14 @@ Right-click the project in Solution Explorer, and select **Manage User Secrets**
   [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
   ::: moniker-end
 
-Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the following code:
+Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the key-value pairs to be stored. For example:
 
   ```json
   {
-    "MySecret": "<secret_value>"
+    "Movies": {
+      "ServiceApiKey": "12345",
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
   }
   ```
 
@@ -151,16 +154,18 @@ Add a `UserSecretsId` element to the *.csproj* file:
   [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
   ::: moniker-end
 
-Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. Run the following command to define a secret and its value:
+Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. The `set` command defines a secret and its value. For example:
 
   ```console
-  dotnet user-secrets set <secret_name> <secret_value>
+  dotnet user-secrets set "Movies:ServiceApiKey" "12345"
   ```
 
-You can run the Secret Manager tool from other directories too. Use the `--project` option to supply the *.csproj* file path. For example:
+In the preceding example, the colon denotes that `Movies` is an object literal containing a `ServiceApiKey` property.
+
+The Secret Manager tool can be used from other directories too. Use the `--project` option to supply the file system path at which the *.csproj* file exists. For example:
 
   ```console
-  dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
+  dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
   ```
 
 ---
@@ -186,12 +191,14 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## List the secrets
 
-Assume the app's *secrets.json* file contains the following content:
+Assume the app's *secrets.json* file contains the following two secrets:
 
 ```json
 {
-  "MoviesApiKey": "12345",
-  "MoviesConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+  "Movies": {
+    "ServiceApKey": "12345",
+    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
 }
 ```
 
@@ -204,33 +211,59 @@ dotnet user-secrets list
 The following output appears:
 
 ```console
-MoviesConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true
-MoviesApiKey = 12345
+Movies:ServiceApiKey = 12345
+Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true
 ```
 
+In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
+
 ## Remove a single secret
+
+Assume the app's *secrets.json* file contains the following two secrets:
+
+```json
+{
+  "Movies": {
+    "ServiceApKey": "12345",
+    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
+```
 
 Run the following command from the directory in which the *.csproj* file exists:
 
 ```console
-dotnet user-secrets remove MoviesConnectionString
+dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
 The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
-  "MoviesApiKey": "12345"
+  "Movies": {
+    "ServiceApiKey": "12345"
+  }
 }
 ```
 
 Running `dotnet user-secrets list` displays the following message:
 
 ```console
-MoviesApiKey = 12345
+Movies:ServiceApiKey = 12345
 ```
 
 ## Remove all secrets
+
+Assume the app's *secrets.json* file contains the following two secrets:
+
+```json
+{
+  "Movies": {
+    "ServiceApKey": "12345",
+    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
+```
 
 Run the following command from the directory in which the *.csproj* file exists:
 
