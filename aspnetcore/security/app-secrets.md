@@ -45,33 +45,33 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 
 ## Install the Secret Manager tool
 
-The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of the .NET Core SDK. If you're using an earlier version of the .NET Core SDK, install the tool with the instructions below.
+The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of the .NET Core SDK. If you're using an earlier version of the .NET Core SDK, install the tool with the following instructions.
 
 # [Visual Studio](#tab/visual-studio/)
 
 * Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
-* Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
+* Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package:
 
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=10)]
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=13-14)]
 
 * Run the following command in the **Package Manager Console** window to validate the tool installation:
 
-```console
-dotnet user-secrets -h
-```
+    ```console
+    dotnet user-secrets -h
+    ```
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
 * Add the highlighted element to the *.csproj* file:
 
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=10)]
+    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-before.csproj?highlight=13-14)]
 
-* Run [dotnet restore](/dotnet/core/tools/dotnet-restore) to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
+* Run [dotnet restore](/dotnet/core/tools/dotnet-restore) in the **Integrated Terminal** to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
 * Run the following command in the **Integrated Terminal** to validate the tool installation:
 
-```console
-dotnet user-secrets -h
-```
+    ```console
+    dotnet user-secrets -h
+    ```
 
 ---
 
@@ -119,7 +119,12 @@ The Secret Manager tool operates on project-specific configuration settings stor
 
 Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
 
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?highlight=4)]
+::: moniker range="<= aspnetcore-1.1"
+[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
+[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
 
 Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the following code:
 
@@ -133,7 +138,12 @@ Saving the modified *.csproj* file opens a *secrets.json* file in the text edito
 
 Add a `UserSecretsId` element to the *.csproj* file:
 
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?highlight=4)]
+::: moniker range="<= aspnetcore-1.1"
+[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets-after.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
+[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
 
 Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. Run the following command to define a secret and its value:
 
@@ -151,7 +161,7 @@ dotnet user-secrets set <secret_name> <secret_value> --project <folder_path>
 
 ## Access a secret
 
-The ASP.NET Core configuration system allows you to access Secret Manager secrets. Add the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package and run [dotnet restore](/dotnet/core/tools/dotnet-restore).
+The ASP.NET Core configuration system allows you to access Secret Manager secrets. If targeting .NET Core 1.x or .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
 
 ::: moniker range="<= aspnetcore-1.1"
 Add the user secrets configuration source to the `Startup` constructor:
