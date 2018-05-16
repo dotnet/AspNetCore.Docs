@@ -264,8 +264,9 @@
 
 # [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
-### [Community OSS authentication options](xref:security/authentication/community)
 ### [Introduction to Identity](xref:security/authentication/identity)
+### [Scaffold Identity](xref:security/authentication/scaffold-identity)
+### [Community OSS authentication options](xref:security/authentication/community)
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Configure primary key type for Identity](xref:security/authentication/identity-primary-key-configuration)
