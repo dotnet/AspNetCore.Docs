@@ -29,6 +29,8 @@ This tutorial demonstrates the following SignalR development tasks:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+Check the CSS folder *~/lib/bootstrap/dist/css* to ensure that there is a local copy of bootstrap.cs. If your downloaded project doesn't include a local copy of bootstrap.cs, you will have to add it manually. The *_Layout.cshtml* is configured to use a local copy of this CSS file when the environment is set to *Development*. When not in Development, this CSS file will be loaded from a CDN. 
+
 # Prerequisites
 
 Install the following software:
