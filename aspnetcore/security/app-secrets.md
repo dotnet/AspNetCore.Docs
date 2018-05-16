@@ -63,31 +63,25 @@ The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. 
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
-* Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package:
+Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package:
 
-    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
-
-* Run the following command in the **Package Manager Console** window to validate the tool installation:
-
-    ```console
-    dotnet user-secrets -h
-    ```
+  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add the highlighted element to the *.csproj* file:
+Add the highlighted element to the *.csproj* file:
 
-    [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
+  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 
-* Run [dotnet restore](/dotnet/core/tools/dotnet-restore) in the **Integrated Terminal** to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
-* Run the following command in the **Integrated Terminal** to validate the tool installation:
-
-    ```console
-    dotnet user-secrets -h
-    ```
+Run [dotnet restore](/dotnet/core/tools/dotnet-restore) in the **Integrated Terminal** to install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package.
 
 ---
+
+Run the following in a command shell to validate the tool installation:
+
+```console
+dotnet user-secrets -h
+```
 
 The Secret Manager tool displays sample usage, options, and command help:
 
