@@ -1,11 +1,11 @@
 ---
 title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
-description: Learn how to safely store sensitive information as app secrets during development of an ASP.NET Core app.
+description: Learn how to store and retrieve sensitive information as app secrets during the development of an ASP.NET Core app.
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/15/2018
+ms.date: 05/16/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -22,14 +22,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://githu
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/app-secrets/samples/2.1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 ::: moniker-end
 
-This document demonstrates using the Secret Manager tool in development to keep secrets out of your code. You should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development or test mode. You can instead use the [configuration](xref:fundamentals/configuration/index) system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The [configuration](xref:fundamentals/configuration/index) system can read secrets stored with the Secret Manager tool.
-
-> [!IMPORTANT]
-> The Secret Manager tool is used only in development. You can safeguard Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+This document explains techniques for storing and retrieving sensitive data during the development of an ASP.NET Core app. You should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development or test mode. You can store and protect Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 ## Environment variables
 
-To avoid storing app secrets in code or in local configuration files, store secrets in environment variables. Environment variables can be used to override configuration values for all previously specified configuration sources.
+Environment variables are used to avoid storage of app secrets in code or in local configuration files. Environment variables override configuration values for all previously specified configuration sources.
 
 ::: moniker range="<= aspnetcore-1.1"
 Configure the reading of environment variable values by calling [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) in the `Startup` constructor:
@@ -37,23 +34,23 @@ Configure the reading of environment variable values by calling [AddEnvironmentV
 [!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=10)]
 ::: moniker-end
 
-Imagine an ASP.NET Core web app with Individual User Accounts enabled. A default connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may contain the database connection string with sensitive credentials.
+Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
 
 > [!WARNING]
-> Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, then environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may still be required.
+> Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may be required.
 
 ## Secret Manager
 
-The Secret Manager tool stores sensitive data for development work outside of your project tree. The Secret Manager tool is a project tool that can be used to store secrets for a .NET Core project during development. With the Secret Manager tool, app secrets can be associated with a specific project and shared across multiple projects.
+The Secret Manager tool stores sensitive data during the development of an ASP.NET Core project. In this context, a piece of sensitive data is an app secret. App secrets are stored in a separate location from the project tree. The app secrets are associated with a specific project or shared across several projects. The app secrets aren't checked into source control.
 
 > [!WARNING]
 > The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
 ## Install the Secret Manager tool
 
-The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of the .NET Core SDK. If you're using an earlier version of the .NET Core SDK, install the tool with the following instructions.
+The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. For earlier versions of the .NET Core SDK, tool installation is necessary. Refer to the following instructions.
 
-# [Visual Studio](#tab/visual-studio/)
+# [Visual Studio](#tab/visual-studio)
 
 * Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu.
 * Add the highlighted element to the *.csproj* file, and save to restore the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package:
@@ -66,7 +63,7 @@ The Secret Manager tool is bundled with the .NET Core CLI as of version 2.1 of t
     dotnet user-secrets -h
     ```
 
-# [Visual Studio Code](#tab/visual-studio-code/)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Add the highlighted element to the *.csproj* file:
 
@@ -115,13 +112,13 @@ The Secret Manager tool abstracts away the implementation details, such as where
 
 In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
 
-Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details are subject to change. For example, the secret values aren't encrypted, but could be in the future.
+Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
 
 ## Set a secret
 
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, a `UserSecretsId` element must be defined in the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
-# [Visual Studio](#tab/visual-studio/)
+# [Visual Studio](#tab/visual-studio)
 
 Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
 
@@ -136,7 +133,7 @@ Saving the modified *.csproj* file opens a *secrets.json* file in the text edito
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
 
-# [Visual Studio Code](#tab/visual-studio-code/)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Add a `UserSecretsId` element to the *.csproj* file:
 
@@ -153,7 +150,7 @@ Using the **Integrated Terminal**, navigate to the directory in which the *.cspr
   dotnet user-secrets set "Movies:ServiceApiKey" "12345"
   ```
 
-In the preceding example, the colon denotes that `Movies` is an object literal containing a `ServiceApiKey` property.
+In the preceding example, the colon denotes that `Movies` is an object literal with a `ServiceApiKey` property.
 
 The Secret Manager tool can be used from other directories too. Use the `--project` option to supply the file system path at which the *.csproj* file exists. For example:
 
@@ -163,9 +160,17 @@ The Secret Manager tool can be used from other directories too. Use the `--proje
 
 ---
 
+## Set multiple secrets
+
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *secrets.json* file's contents are piped to the `set` command:
+
+```console
+type .\secrets.json | dotnet user-secrets set
+```
+
 ## Access a secret
 
-The ASP.NET Core configuration system allows you to access Secret Manager secrets. If targeting .NET Core 1.x or .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If targeting .NET Core 1.x or .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
 
 ::: moniker range="<= aspnetcore-1.1"
 Add the user secrets configuration source to the `Startup` constructor:
@@ -184,7 +189,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## String replacement with secrets
 
-Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may contain a password for the specified user:
+Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
 
 [!code-json[](app-secrets/samples/2.1/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
@@ -277,3 +282,4 @@ No secrets configured for this application.
 ## Additional resources
 
 * <xref:fundamentals/configuration/index>
+* <xref:security/key-vault-configuration>
