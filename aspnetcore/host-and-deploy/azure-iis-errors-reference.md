@@ -193,7 +193,7 @@ Troubleshooting
   * The IIS Integration middleware is referencedby calling the `UseIISIntegration` method on the app's `WebHostBuilder` (ASP.NET Core 1.x)
   * The apps uses the `CreateDefaultBuilder` method (ASP.NET Core 2.x).
   
-  See [Hosting in ASP.NET Core](xref:fundamentals/hosting) for details.
+  See [Host in ASP.NET Core](xref:fundamentals/host/index) for details.
 
 ## Sub-application includes a \<handlers\> section
 

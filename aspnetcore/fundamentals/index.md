@@ -151,7 +151,7 @@ For more information, see [Static files](xref:fundamentals/static-files).
 
 ASP.NET Core apps configure and launch a *host*, which is responsible for app startup and lifetime management.
 
-For more information, see [Hosting](xref:fundamentals/hosting).
+For more information, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
 ## Session and application state
 
@@ -185,7 +185,7 @@ For more information, see [Request Features](xref:fundamentals/request-features)
 
 Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface.
 
-For more information, see [Background tasks with hosted services](xref:fundamentals/hosted-services).
+For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
 ## Open Web Interface for .NET (OWIN)
 
