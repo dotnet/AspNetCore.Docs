@@ -98,49 +98,32 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 
 ## Set a secret
 
-The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, a `UserSecretsId` element must be defined in the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
+The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, define a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
-# [Visual Studio](#tab/visual-studio)
+::: moniker range="<= aspnetcore-1.1"
+[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
+[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+::: moniker-end
 
-Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file:
+> [!TIP]
+> In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the *.csproj* file. Visual Studio opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
+> [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
 
-  ::: moniker range="<= aspnetcore-1.1"
-  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-  ::: moniker-end
-  ::: moniker range=">= aspnetcore-2.0"
-  [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-  ::: moniker-end
+Define an app secret consisting of a key and its value. The secret is associated with the project's `UserSecretsId` value. For example, run the following command from the directory in which the *.csproj* file exists:
 
-Saving the modified *.csproj* file opens a *secrets.json* file in the text editor. Replace the contents of the *secrets.json* file with the key-value pairs to be stored. For example:
-
-[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Add a `UserSecretsId` element to the *.csproj* file:
-
-  ::: moniker range="<= aspnetcore-1.1"
-  [!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-  ::: moniker-end
-  ::: moniker range=">= aspnetcore-2.0"
-  [!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
-  ::: moniker-end
-
-Using the **Integrated Terminal**, navigate to the directory in which the *.csproj* file exists. The `set` command defines a secret and its value. For example:
-
-  ```console
-  dotnet user-secrets set "Movies:ServiceApiKey" "12345"
-  ```
+```console
+dotnet user-secrets set "Movies:ServiceApiKey" "12345"
+```
 
 In the preceding example, the colon denotes that `Movies` is an object literal with a `ServiceApiKey` property.
 
 The Secret Manager tool can be used from other directories too. Use the `--project` option to supply the file system path at which the *.csproj* file exists. For example:
 
-  ```console
-  dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
-  ```
-
----
+```console
+dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
+```
 
 ## Set multiple secrets
 
