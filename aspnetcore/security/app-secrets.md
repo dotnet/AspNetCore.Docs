@@ -46,6 +46,17 @@ The Secret Manager tool stores sensitive data during the development of an ASP.N
 > [!WARNING]
 > The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
+## How the Secret Manager tool works
+
+The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
+
+* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
+
+Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
+
 ## Install the Secret Manager tool
 
 The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. For earlier versions of the .NET Core SDK, tool installation is necessary. Refer to the following instructions.
@@ -102,17 +113,6 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 
 > [!NOTE]
 > You must be in the same directory as the *.csproj* file to run tools defined in the *.csproj* file's `DotNetCliToolReference` elements.
-
-## How the Secret Manager tool works
-
-The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
-
-* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
-* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
-
-In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
-
-Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
 
 ## Set a secret
 
