@@ -28,7 +28,7 @@ This article describes [Visual Studio](https://www.visualstudio.com/vs/) support
 
 ![Windows Features showing Internet Information Services check box checked as a black square (not a checkmark) indicating that some of the IIS features are enabled](development-time-iis-support/_static/enable_iis.png)
 
-If the IIS installation requires a restart, restart the system.
+The IIS installation may require a system restart.
 
 ## Configure IIS
 
@@ -61,7 +61,7 @@ For a new project, select the check box to **Configure for HTTPS** in the **New 
 
 ![New ASP.NET Core Web Application window with the Configure for HTTPS check box selected.](development-time-iis-support/_static/new-app.png)
 
-In an existing project, use Https Redirection Middleware in `Startup.Configure` by calling the [UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection) extension method:
+In an existing project, use HTTPS Redirection Middleware in `Startup.Configure` by calling the [UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection) extension method:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
