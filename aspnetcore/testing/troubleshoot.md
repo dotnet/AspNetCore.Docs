@@ -61,3 +61,15 @@ This warning appears when the environment variable `PATH` doesn’t point to any
 
 * Install or verify the .NET Core SDK is installed.
 * Verify the `PATH` environment variable points to the location the SDK is installed. The installer normally sets the `PATH`.
+
+::: moniker range=">= aspnetcore-2.1"
+
+### Use of IHtmlHelper.Partial may result in application deadlocks
+
+In ASP.NET Core 2.1 and later, calling `Html.Partial` results in an analyzer warning due to the potential for deadlocks. The warning message is:
+
+*Use of IHtmlHelper.Partial may result in application deadlocks. Consider using `<partial>` Tag Helper or `IHtmlHelper.PartialAsync`.*
+
+Calls to `@Html.Partial` should be replaced by `@await Html.PartialAsync` or the partial tag helper `<partial name="_Partial" />`.
+
+::: moniker-end

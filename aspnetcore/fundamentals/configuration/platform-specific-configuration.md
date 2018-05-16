@@ -32,7 +32,7 @@ The sample app reads the [HostingStartupAssembliesKey](/dotnet/api/microsoft.asp
 
 There are two ways to disable the automatic loading of hosting startup assemblies:
 
-* Set the [Prevent Hosting Startup](xref:fundamentals/hosting#prevent-hosting-startup) host configuration setting.
+* Set the [Prevent Hosting Startup](xref:fundamentals/host/web-host#prevent-hosting-startup) host configuration setting.
 * Set the `ASPNETCORE_PREVENTHOSTINGSTARTUP` environment variable.
 
 When either the host setting or the environment variable is set to `true` or `1`, hosting startup assemblies aren't automatically loaded. If both are set, the host setting controls the behavior.
@@ -115,7 +115,7 @@ ASPNETCORE\_HOSTINGSTARTUPASSEMBLIES
 
 Only hosting startup assemblies are scanned for the `HostingStartupAttribute`. The assembly name of the implementation is provided in this environment variable. The sample app sets this value to `StartupDiagnostics`.
 
-The value can also be set using the [Hosting Startup Assemblies](xref:fundamentals/hosting#hosting-startup-assemblies) host configuration setting.
+The value can also be set using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
 
 DOTNET\_ADDITIONAL\_DEPS
 

@@ -67,7 +67,7 @@ public CharactersController(ICharacterRepository characterRepository, string tit
 
 ## Using framework-provided services
 
-The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/hosting)):
+The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/host/index)):
 
 | Service Type | Lifetime |
 | ----- | ------- |
@@ -230,7 +230,7 @@ The root service provider is created when [BuildServiceProvider](/dotnet/api/mic
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-For more information, see [Scope validation in the Hosting topic](xref:fundamentals/hosting#scope-validation).
+For more information, see [Scope validation in the Web Host topic](xref:fundamentals/host/web-host#scope-validation).
 
 ## Request Services
 
@@ -240,7 +240,7 @@ The services available within an ASP.NET request from `HttpContext` are exposed 
 
 Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
-Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Test and debug](../testing/index.md)) and are more loosely coupled.
+Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Test and debug](xref:testing/index)) and are more loosely coupled.
 
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.

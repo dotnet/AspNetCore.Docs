@@ -349,6 +349,16 @@
         "source_path": "aspnetcore/host-and-deploy/platform-specific-configuration.md",
         "redirect_url": "/aspnet/core/fundamentals/configuration/platform-specific-configuration",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/hosting.md",
+        "redirect_url": "/aspnet/core/fundamentals/host/index",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/hosted-services.md",
+        "redirect_url": "/aspnet/core/fundamentals/host/hosted-services",
+        "redirect_document_id": false
     }
   ] 
 }

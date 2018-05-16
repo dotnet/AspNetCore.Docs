@@ -79,7 +79,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * Configure URLs and ports to listen on 
 
-  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseURLs` extension method, the `urls` command-line argument or the ASP.NET Core configuration system. For more information, see [Hosting](../../fundamentals/hosting.md).
+  By default, ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseURLs` extension method, the `urls` command-line argument or the ASP.NET Core configuration system. For more information, see [Host in ASP.NET Core(xref:fundamentals/host/index).
 
   Web Listener uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to WebListener.
 
@@ -174,4 +174,4 @@ For more information, see the following resources:
 
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/weblistener/sample)
 * [WebListener source code](https://github.com/aspnet/HttpSysServer/)
-* [Hosting](../hosting.md)
+* [Hosting](xref:fundamentals/host/index)

@@ -473,6 +473,6 @@ In an MVC view:
 * [Options](xref:fundamentals/configuration/options)
 * [Use multiple environments](xref:fundamentals/environments)
 * [Safe storage of app secrets in development](xref:security/app-secrets)
-* [Hosting in ASP.NET Core](xref:fundamentals/hosting)
+* [Host in ASP.NET Core](xref:fundamentals/host/index)
 * [Dependency Injection](xref:fundamentals/dependency-injection)
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
