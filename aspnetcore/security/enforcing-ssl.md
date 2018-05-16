@@ -124,7 +124,7 @@ dotnet new razor --no-https
 
 Install the [.NET Core SDK](https://www.microsoft.com/net/download/all). 
 
-The first time you create an ASP.NET Core project using `dotnet new`, the ASP.NET Core HTTPS development certificate will be installed, but not trusted. To trust the certificate on Windows or MacOS, run the following command:
+The first time you create an ASP.NET Core project using `dotnet new`, the ASP.NET Core HTTPS development certificate is installed, but not trusted. To trust the certificate on Windows or MacOS, run the following command:
 
 ```cli
 dotnet dev-certs https --trust
