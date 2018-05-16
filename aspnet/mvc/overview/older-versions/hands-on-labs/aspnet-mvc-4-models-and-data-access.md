@@ -230,12 +230,14 @@ In this task, you will update the StoreController class so that, instead of usin
 
 ~~~
 [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample2.cs)]
+~~~
 
 > [!NOTE]
 > You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
 > 
 > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/library/bb397926&amp;#040;v=vs.110&amp;#041;.aspx).
-~~~
+
+
 3. Update **Index** action method to retrieve all the genres.
 
     (Code Snippet - *Models And Data Access - Ex1 Store Index*)
