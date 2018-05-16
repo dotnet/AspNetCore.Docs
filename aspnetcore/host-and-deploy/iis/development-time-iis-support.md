@@ -137,3 +137,4 @@ If an untrusted development certificate is used, the browser may require you to 
 * [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
 * [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 * [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
+* [Enforce HTTPS](xref:security/enforcing-ssl)
