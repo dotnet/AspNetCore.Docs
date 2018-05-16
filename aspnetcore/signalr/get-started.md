@@ -126,9 +126,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
    `services.AddSignalR` adds SignalR as part of the [middleware](xref:fundamentals/middleware/index) pipeline.
 
-2. Before you can use the code sample shown in the Startup.cs file, you will also need to add the BrowserLink package via Nuget. Simply right-click on your project in Solution Explorer, and click Manage NuGet Packages to browse for and install the package named "Microsoft.VisualStudio.Web.BrowserLink".
+1. To use the sample, BrowserLink is required. Add the BrowserLink package with NuGet by right-clicking on the project in **Solution Explorer** > **Manage NuGet Packages**. Browse to and install the package named `Microsoft.VisualStudio.Web.BrowserLink`.
 
-3. Configure routes to your hubs using `UseSignalR`.
+1. Configure routes to your hubs using `UseSignalR`.
 
 
    [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=37,57-60)]
