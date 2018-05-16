@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 5/15/2018
+ms.date: 5/16/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
