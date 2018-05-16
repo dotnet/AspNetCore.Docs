@@ -18,7 +18,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 .NET apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), see the [Web Host](xref:fundamentals/host/web-host) topic.
 
-The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios for ASP.NET Core. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting ASP.NET Core capabilities, such as configuration, dependency injection, and logging.
+The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection, and logging.
 
 The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). The Generic Host is under development to replace the Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
 
@@ -45,7 +45,7 @@ The Generic Host library is available in the [Microsoft.Extensions.Hosting names
 
 ### Configuration builder
 
-Host builder configuration is created by calling [ConfigureHostConfiguration(Action&lt;IConfigurationBuilder&gt;)](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configurehostconfiguration) on the [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) implementation. `ConfigureHostConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the host. The configuration builder initializes the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment) for use in the app's build process. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
+Host builder configuration is created by calling [ConfigureHostConfiguration](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configurehostconfiguration) on the [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) implementation. `ConfigureHostConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the host. The configuration builder initializes the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment) for use in the app's build process. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
 
 *hostsettings.json*:
 
@@ -56,7 +56,7 @@ Example `HostBuilder` configuration using `ConfigureHostConfiguration`:
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureHostConfiguration)]
 
 > [!NOTE]
-> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:environment`). The `AddConfiguration` method expects the keys to match the `HostBuilder` keys (for example, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host.
+> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:environment`). The `AddConfiguration` method expects the keys to match the `HostBuilder` keys (for example, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
 
 ### Extension method configuration
 
@@ -92,7 +92,11 @@ The environment can be set to any value. Framework-defined values include `Devel
 
 ## ConfigureAppConfiguration
 
-App builder configuration is created by calling [ConfigureAppConfiguration(Action&lt;IConfigurationBuilder&gt;)](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configureappconfiguration) on the [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) implementation. `ConfigureAppConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the app. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last. The configuration created by `ConfigureAppConfiguration` is available at [Configuration](/dotnet/api/microsoft.extensions.hosting.hostbuildercontext.configuration) for subsequent operations and in [Services](/dotnet/api/microsoft.extensions.hosting.ihost.services).
+App builder configuration is created by calling [ConfigureAppConfiguration](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configureappconfiguration) on the [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) implementation. `ConfigureAppConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the app. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last. The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](/dotnet/api/microsoft.extensions.hosting.hostbuildercontext.configuration) for subsequent operations and in [Services](/dotnet/api/microsoft.extensions.hosting.ihost.services).
+
+Example app configuration using `ConfigureAppConfiguration`:
+
+[!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureAppConfiguration)]
 
 *appsettings.json*:
 
@@ -106,16 +110,12 @@ App builder configuration is created by calling [ConfigureAppConfiguration(Actio
 
 [!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.Production.json)]
 
-Example app configuration using `ConfigureAppConfiguration`:
-
-[!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureAppConfiguration)]
-
 > [!NOTE]
-> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:Logging:LogLevel:Default`). The `AddConfiguration` method expects an exact match to configuration keys (for example, `Logging:LogLevel:Default`). The presence of the section name on the keys prevents the section's values from configuring the app.
+> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:Logging:LogLevel:Default`). The `AddConfiguration` method expects an exact match to configuration keys (for example, `Logging:LogLevel:Default`). The presence of the section name on the keys prevents the section's values from configuring the app. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
 
 ## ConfigureServices
 
-[ConfigureServices(IHostBuilder, Action&lt;IServiceCollection&gt;)](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.configureservices) adds services to the app's [dependency injection](xref:fundamentals/dependency-injection) container. `ConfigureServices` can be called multiple times with additive results.
+[ConfigureServices](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.configureservices) adds services to the app's [dependency injection](xref:fundamentals/dependency-injection) container. `ConfigureServices` can be called multiple times with additive results.
 
 A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. For more information, see the [Background tasks with hosted services](xref:fundamentals/host/hosted-services) topic.
 
@@ -131,7 +131,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundament
 
 ### UseConsoleLifetime
 
-[UseConsoleLifetime](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.useconsolelifetime) listens for `Ctrl+C`/SIGINT or SIGTERM and calls [StopApplication](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.stopapplication) to start the shutdown process. `UseConsoleLifetime` unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
+[UseConsoleLifetime](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.useconsolelifetime) listens for `Ctrl+C`/SIGINT or SIGTERM and calls [StopApplication](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.stopapplication) to start the shutdown process. `UseConsoleLifetime` unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync). [ConsoleLifetime](/dotnet/api/microsoft.extensions.hosting.internal.consolelifetime) is pre-registered as the default lifetime implementation. The last lifetime registered is used.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -139,7 +139,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundament
 
 To support plugging in other containers, the host can accept an [IServiceProviderFactory](/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderfactory-1). Providing a factory isn't part of the DI container registration but is instead a host intrinsic used to create the concrete DI container. [UseServiceProviderFactory(IServiceProviderFactory&lt;TContainerBuilder&gt;)](/dotnet/api/microsoft.extensions.hosting.hostbuilder.useserviceproviderfactory) overrides the default factory used to create the app's service provider.
 
-Custom container configuration is managed by the [ConfigureContainer(Action&lt;HostBuilderContext, TContainerBuilder&gt;)](/dotnet/api/microsoft.extensions.hosting.hostbuilder.configurecontainer) method. `ConfigureContainer` provides a strongly-typed experience for configuring the container on top of the underlying host API. `ConfigureContainer` can be called multiple times with additive results.
+Custom container configuration is managed by the [ConfigureContainer](/dotnet/api/microsoft.extensions.hosting.hostbuilder.configurecontainer) method. `ConfigureContainer` provides a strongly-typed experience for configuring the container on top of the underlying host API. `ConfigureContainer` can be called multiple times with additive results.
 
 Create a service container for the app:
 
@@ -173,14 +173,15 @@ The [IHost](/dotnet/api/microsoft.extensions.hosting.ihost) implementation is re
 
 ### Run
 
-[Run(IHost)](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.run) runs the app and blocks the calling thread until the host is shut down:
+[Run](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.run) runs the app and blocks the calling thread until the host is shut down:
 
 ```csharp
 public class Program
 {
     public void Main(string[] args)
     {
-        var host = new HostBuilder();
+        var host = new HostBuilder()
+            .Build();
 
         host.Run();
     }
@@ -196,7 +197,8 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = new HostBuilder();
+        var host = new HostBuilder()
+            .Build();
 
         await host.RunAsync();
     }
@@ -205,14 +207,15 @@ public class Program
 
 ### RunConsoleAsync
 
-[RunConsoleAsync(IHostBuilder, CancellationToken)](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.runconsoleasync) enables console support, builds and starts the host, and waits for `Ctrl+C`/SIGINT or SIGTERM to shut down.
+[RunConsoleAsync](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.runconsoleasync) enables console support, builds and starts the host, and waits for `Ctrl+C`/SIGINT or SIGTERM to shut down.
 
 ```csharp
 public class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = new HostBuilder();
+        var host = new HostBuilder()
+            .Build();
 
         await host.RunConsoleAsync();
     }
@@ -221,9 +224,9 @@ public class Program
 
 ### Start and StopAsync
 
-[Start(IHost)](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.start) starts the host synchronously.
+[Start](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.start) starts the host synchronously.
 
-[StopAsync(IHost, TimeSpan)](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.stopasync) attempts to stop the host within the provided timeout.
+[StopAsync](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.stopasync) attempts to stop the host within the provided timeout.
 
 ```csharp
 public class Program
@@ -269,7 +272,7 @@ public class Program
 
 ### WaitForShutdown
 
-[WaitForShutdown(IHost)](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.waitforshutdown) blocks the calling thread until a shutdown is triggered (`Ctrl+C`/SIGINT or SIGTERM is issued):
+[WaitForShutdown](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.waitforshutdown) is triggered via the [IHostLifetime](/dotnet/api/microsoft.extensions.hosting.ihostlifetime), such as [ConsoleLifetime](/dotnet/api/microsoft.extensions.hosting.internal.consolelifetime) (listens for `Ctrl+C`/SIGINT or SIGTERM). `WaitForShutdown` calls [StopAsync](/dotnet/api/microsoft.extensions.hosting.ihost.stopasync).
 
 ```csharp
 public class Program
@@ -291,7 +294,7 @@ public class Program
 
 ### WaitForShutdownAsync
 
-[WaitForShutdownAsync(IHost, CancellationToken)](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.waitforshutdownasync) returns a `Task` that completes when shutdown is triggered via the given token.
+[WaitForShutdownAsync](/dotnet/api/microsoft.extensions.hosting.hostingabstractionshostextensions.waitforshutdownasync) returns a `Task` that completes when shutdown is triggered via the given token and calls [StopAsync](/dotnet/api/microsoft.extensions.hosting.ihost.stopasync).
 
 ```csharp
 public class Program
@@ -334,13 +337,15 @@ public class Program
 
     public async Task StopAsync()
     {
-        await _host.StopAsync(TimeSpan.FromSeconds(5));
-        _host.Dispose();
+        using (_host)
+        {
+            await _host.StopAsync(TimeSpan.FromSeconds(5));
+        }
     }
 }
 ```
 
-[IHostLifetime.WaitForStartAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostlifetime.waitforstartasync) is called at the start of [StartAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihost.startasync), which waits until it's complete before continuing. This can be used to delay startup until signaled by an external event.
+[IHostLifetime.WaitForStartAsync](/dotnet/api/microsoft.extensions.hosting.ihostlifetime.waitforstartasync) is called at the start of [StartAsync](/dotnet/api/microsoft.extensions.hosting.ihost.startasync), which waits until it's complete before continuing. This can be used to delay startup until signaled by an external event.
 
 ## IHostingEnvironment interface
 
