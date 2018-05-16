@@ -140,6 +140,7 @@
 ### [Change tokens](xref:fundamentals/primitives/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
 ## [WebSockets](fundamentals/websockets.md)
+## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
