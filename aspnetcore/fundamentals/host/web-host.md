@@ -4,7 +4,8 @@ author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
 manager: wpickett
 ms.author: riande
-ms.date: 05/14/2018
+ms.custom: mvc
+ms.date: 05/16/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -16,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. This topic covers the ASP.NET Core Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), which is useful for hosting web apps. For coverage of the .NET Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), see the [Generic Host](xref:fundamentals/host/generic-host) topic.
 
-## Setting up a host
+## Set up a host
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
