@@ -13,7 +13,7 @@ uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://scottaddie.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
 
 ::: moniker range="<= aspnetcore-1.1"
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/app-secrets/samples/1.1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -67,9 +67,9 @@ The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. 
 
 * Execute the following command in a command shell to validate the tool installation:
 
-```console
-dotnet user-secrets -h
-```
+  ```console
+  dotnet user-secrets -h
+  ```
 
 The Secret Manager tool displays sample usage, options, and command help:
 
