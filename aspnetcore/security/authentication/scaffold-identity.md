@@ -108,7 +108,7 @@ Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.c
 
 * Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, seeIHostingStartup.
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
