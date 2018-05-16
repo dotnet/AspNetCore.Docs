@@ -10,14 +10,14 @@ Run the Identity scaffolder:
  For example
   `~/Pages/Shared/_Layout.cshtml` for Razor Pages 
   `~/Views/Shared/_Layout.cshtml` for MVC projects 
-* To use your existing data contentext, select at least one file to override. You must select at least one file to add your data context. 
+* To use your existing data context, select at least one file to override. You must select at least one file to add your data context. 
   * Select your data context class.
   * Select **ADD**.
 * To create a new user context and possibly create a custom user class for Identity:
   * Select the **+** button to create a new **Data context class**.
   * Select **ADD**.
   
-Note: If you're creating an new user context, you don't have to select a file to override.
+Note: If you're creating a new user context, you don't have to select a file to override.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
