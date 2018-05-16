@@ -12,8 +12,6 @@ uid: fundamentals/host/index
 ---
 # Host in ASP.NET Core
 
-[!INCLUDE[](~/includes/2.1.md)]
-
 .NET apps configure and launch a *host*. The host is responsible for app startup and lifetime management. Two host APIs are available for use:
 
 * [Web Host](xref:fundamentals/host/web-host) &ndash; Suitable for hosting web apps.
