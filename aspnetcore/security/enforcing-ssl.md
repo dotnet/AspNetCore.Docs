@@ -130,7 +130,7 @@ The first time you create a ASP.NET Core project, the ASP.NET Core HTTPS develop
 dotnet dev-certs https --trust
 ```
 
-To establishing trust on other platforms, refer to the platform specific documentation.
+To establish trust on other platforms, refer to the platform specific documentation.
 
 ## How to setup a developer certificate for Docker
 
