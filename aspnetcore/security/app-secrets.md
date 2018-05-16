@@ -57,6 +57,7 @@ In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId
 
 Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
 
+::: moniker range="<= aspnetcore-2.0"
 ## Install the Secret Manager tool
 
 The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. For .NET Core SDK 2.0 and earlier, tool installation is necessary.
@@ -95,6 +96,7 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 
 > [!NOTE]
 > You must be in the same directory as the *.csproj* file to run tools defined in the *.csproj* file's `DotNetCliToolReference` elements.
+::: moniker-end
 
 ## Set a secret
 
@@ -127,10 +129,16 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *secrets.json* file's contents are piped to the `set` command:
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command on Windows:
 
 ```console
-type .\secrets.json | dotnet user-secrets set
+type .\input.json | dotnet user-secrets set
+```
+
+Use the following command on macOS and Linux:
+
+```console
+cat ./input.json | dotnet user-secrets set
 ```
 
 ## Access a secret
