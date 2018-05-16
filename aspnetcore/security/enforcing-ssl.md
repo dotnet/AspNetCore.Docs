@@ -130,7 +130,7 @@ The first time you create an ASP.NET Core project using `dotnet new`, the ASP.NE
 dotnet dev-certs https --trust
 ```
 
-To establish trust on other platforms, refer to the platform specific documentation.
+To establish trust on other platforms, refer to the platform specific documentation. Uninstalling the the NET Core SDK does not revoke the certificates trust.
 
 ## How to setup a developer certificate for Docker
 
