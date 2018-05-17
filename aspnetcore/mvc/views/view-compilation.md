@@ -56,9 +56,9 @@ A *<project_name>.PrecompiledViews.dll* file, containing the compiled Razor file
 ![Razor views inside DLL](view-compilation/_static/razor-views-in-dll.png)
 ::: moniker-end
 ::: moniker range="<= aspnetcore-1.1"
-Set `MvcRazorCompileOnPublish` to `true` and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
+Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/) NuGet package. The following *.csproj* sample highlights these settings:
 
-[!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=5,12)]
+[!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=4,10)]
 ::: moniker-end
 
 ## Additional resources
