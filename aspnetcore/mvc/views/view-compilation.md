@@ -1,9 +1,10 @@
 ---
 title: Razor file compilation and precompilation in ASP.NET Core
 author: rick-anderson
-description: Learn how to enable Razor file compilation and precompilation in ASP.NET Core apps.
+description: Learn about the benefits of precompiling Razor files and how to accomplish Razor file precompilation in an ASP.NET Core app.
 manager: wpickett
 ms.author: riande
+ms.custom: mvc
 ms.date: 05/17/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
@@ -14,14 +15,15 @@ uid: mvc/views/view-compilation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-A Razor file is compiled at runtime when the associated Razor Page or view is invoked. ASP.NET Core 2.1 and later compile views at build and publish time using the [Razor SDK](xref:mvc/razor-pages/sdk). In ASP.NET Core 1.1, and ASP.NET Core 2.0, views can optionally be compiled at publish and deployed with the app&mdash;using the precompilation tool.
+A Razor file is compiled at runtime, when the associated Razor Page or view is invoked. ASP.NET Core 2.1 and later compile views at build and publish time using the [Razor SDK](xref:mvc/razor-pages/sdk). In ASP.NET Core 1.1 and ASP.NET Core 2.0, views can optionally be compiled at publish and deployed with the app&mdash;using the precompilation tool.
 
 ## Precompilation considerations
 
 The following are side effects of precompiling Razor files:
 
-* Precompiling views results in a smaller published bundle and faster startup time.
-* You can't edit Razor files after you precompile views. The edited views won't be present in the published bundle.
+* A smaller published bundle
+* A faster startup time
+* You can't edit Razor files&mdash;the associated Razor Pages or views are absent from the published bundle.
 
 ## Deploy precompiled views
 
@@ -62,3 +64,7 @@ Set `MvcRazorCompileOnPublish` to `true` and include a package reference to `Mic
 
 [!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 ::: moniker-end
+
+## Additional resources
+
+* <xref:mvc/razor-pages/sdk>
