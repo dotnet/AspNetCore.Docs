@@ -42,11 +42,11 @@ For purposes of this guide, we'll be using a pre-built ASP.NET Core application.
     dotnet run
     ```
     
-    ![The dotnet run command is successful](media\03-dotnet-run.png)
+    ![The dotnet run command is successful](./media/03-dotnet-run.png)
 
 5. Open a browser and navigate to `http://localhost:5000`. The app allows you to type or paste a syndication feed URL and view a list of news items.
     
-     ![The application displaying the contents of an RSS feed](media\03-app-in-browser.png)
+     ![The application displaying the contents of an RSS feed](./media/03-app-in-browser.png)
     
 6. When you are satisfied the app is working correctly, shut it down by pressing `Ctrl+C` in the command line window.
 
@@ -108,16 +108,16 @@ Visual Studio's publishing tools streamline the deployment of ASP.NET Core apps 
 3. Press **Ctrl-Shift-B** to build the application.
 4. In Solution Explorer, right-click on the project, and select **Publish**.
     
-    ![Right-click, Publish](media\03-publish.png)
+    ![Right-click, Publish](./media/03-publish.png)
 5. Visual Studio can create a new App Service resource, but we're going to publish this update over the existing deployment. In the **Pick a publish target** dialog, select **App Service** from the list on the left, and then select **Select Existing**. Click **Publish**.
 6. In the **App Service** dialog, ensure that the Microsoft or Organizational account used to create your Azure subscription is displayed in the upper right. If it's not, click the drop down and add it.
 7. Ensure the correct Azure **Subscription** is selected. For **View**, select **Resource Group**. Expand the **AzureTutorial** resource group and then select the existing web app. Click **OK**.
     
-    ![Publish App Service dialog](media\03-publish-dialog.png)
+    ![Publish App Service dialog](./media/03-publish-dialog.png)
 
 Visual Studio builds and deploys the application to Azure. Browse to the web app URL and note that the change to the `<H2>` is live.
 
-![The application with the changed title](media\03-app-v2.png)
+![The application with the changed title](./media/03-app-v2.png)
 
 ## Deployment slots
 
@@ -161,7 +161,7 @@ Deployment slots are used to stage changes without affecting the running product
 
 6. After deployment completes, open two browser windows or tabs. In one, navigate to the original web app URL. In the other, navigate to the staging web app URL. Note that the production URL displays V2 of the app, while the staging URL displays V3.
     
-    ![Comparing the browser windows](media\03-ready-to-swap.png)
+    ![Comparing the browser windows](./media/03-ready-to-swap.png)
 
 7. Swap the staging and production deployment slots. Note that the first command is only necessary if the Cloud Shell timed out since you last used it.
     
@@ -176,7 +176,7 @@ Deployment slots are used to stage changes without affecting the running product
 
 8. Refresh the two browsers. Note that the V2 and V3 versions have swapped.
     
-    ![Comparing the browser windows now that they've swapped](media\03-swapped.png)
+    ![Comparing the browser windows now that they've swapped](./media/03-swapped.png)
 
 ## Summary
 
@@ -193,7 +193,7 @@ In this section, you:
 In the next section, you'll learn how to build a continuous integration environment with Azure and Visual Studio Team Services.
 
 ## Additional Reading
-[Web Apps overview](https://docs.microsoft.com/azure/app-service/app-service-web-overview)
-[Build a .NET Core and SQL Database web app in Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
-[Configure deployment credentials for Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-deployment-credentials)
-[Set up staging environments in Azure App Service](https://docs.microsoft.com/azure/app-service/web-sites-staged-publishing)
+* [Web Apps overview](https://docs.microsoft.com/azure/app-service/app-service-web-overview)
+* [Build a .NET Core and SQL Database web app in Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+* [Configure deployment credentials for Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-deployment-credentials)
+* [Set up staging environments in Azure App Service](https://docs.microsoft.com/azure/app-service/web-sites-staged-publishing)
