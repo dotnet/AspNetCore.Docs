@@ -34,13 +34,9 @@ Build- and publish-time compilation of Razor files is enabled by default by the 
 > The Razor SDK is effective only when no precompilation-specific properties are set in the project file. For instance, setting the *.csproj* file's `MvcRazorCompileOnPublish` property to `true` disables the Razor SDK.
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
-If your project targets .NET Framework, include a package reference to [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/):
+If your project targets .NET Framework, install the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/) NuGet package:
 
-```xml
-<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation"
-                  Version="2.0.0"
-                  PrivateAssets="All" />
-```
+[!code-xml[](view-compilation/sample/DotNetFrameworkProject.csproj?name=snippet_ViewCompilationPackage)]
 
 If your project targets .NET Core, no changes are necessary.
 
