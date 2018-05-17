@@ -47,7 +47,7 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 ["value1","value2"]
 ```
 
-Internet Explorer prompts for the download of a *values.json* file.
+If using Internet Explorer, you'll be prompted to save a *values.json* file.
 
 ### Add a model class
 
