@@ -149,25 +149,25 @@ A batch of secrets can be set by piping JSON to the `set` command. In the follow
 
 Open a command shell, and execute the following command:
 
-```console
-type .\input.json | dotnet user-secrets set
-```
+  ```console
+  type .\input.json | dotnet user-secrets set
+  ```
 
 # [macOS](#tab/macos)
 
 Open a command shell, and execute the following command:
 
-```console
-cat ./input.json | dotnet user-secrets set
-```
+  ```console
+  cat ./input.json | dotnet user-secrets set
+  ```
 
 # [Linux](#tab/linux)
 
 Open a command shell, and execute the following command:
 
-```console
-cat ./input.json | dotnet user-secrets set
-```
+  ```console
+  cat ./input.json | dotnet user-secrets set
+  ```
 
 ---
 
