@@ -53,16 +53,19 @@ The Secret Manager tool abstracts away the implementation details, such as where
 # [Windows](#tab/windows)
 
 File system path:
+
 `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
 
 # [macOS](#tab/macos)
 
 File system path:
+
 `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
 
 # [Linux](#tab/linux)
 
 File system path:
+
 `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
 
 ---
