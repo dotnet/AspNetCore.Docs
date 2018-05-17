@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 5/15/2018
+ms.date: 5/16/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -55,7 +55,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:host-and-deploy/platform-specific-configuration).
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -82,7 +82,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:host-and-deploy/platform-specific-configuration).
+Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Scaffold identity into an MVC project without existing authorization
 
