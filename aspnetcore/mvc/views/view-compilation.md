@@ -36,12 +36,13 @@ The following are side effects of precompiling Razor files:
 
 ## Deploy precompiled files
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1"
 Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. Editing Razor files after they're updated is supported at build time. By default, only the compiled *Views.dll* and no *.cshtml* files are deployed with your app.
 
 > [!IMPORTANT]
 > The Razor SDK is effective only when no precompilation-specific properties are set in the project file. For instance, setting the *.csproj* file's `MvcRazorCompileOnPublish` property to `true` disables the Razor SDK.
 ::: moniker-end
+
 ::: moniker range="= aspnetcore-2.0"
 If your project targets .NET Framework, install the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/) NuGet package:
 
@@ -49,11 +50,19 @@ If your project targets .NET Framework, install the [Microsoft.AspNetCore.Mvc.Ra
 
 If your project targets .NET Core, no changes are necessary.
 
-The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default. Consequently, this node can be safely removed from the *.csproj* file.
+The ASP.NET Core 2.x project templates implicitly set the `MvcRazorCompileOnPublish` property to `true` by default. Consequently, this element can be safely removed from the *.csproj* file.
 
 > [!IMPORTANT]
 > Razor file precompilation is unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0.
+::: moniker-end
 
+::: moniker range="= aspnetcore-1.1"
+Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/) NuGet package. The following *.csproj* sample highlights these settings:
+
+[!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=4,10)]
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) with the [.NET Core CLI publish command](/dotnet/core/tools/dotnet-publish). For example, execute the following command at the project root:
 
 ```console
@@ -64,14 +73,20 @@ A *<project_name>.PrecompiledViews.dll* file, containing the compiled Razor file
 
 ![Razor views inside DLL](view-compilation/_static/razor-views-in-dll.png)
 ::: moniker-end
-::: moniker range="<= aspnetcore-1.1"
-Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation/) NuGet package. The following *.csproj* sample highlights these settings:
-
-[!code-xml[](view-compilation/sample/MvcRazorCompileOnPublish.csproj?highlight=4,10)]
-::: moniker-end
 
 ## Additional resources
 
-* <xref:mvc/razor-pages/index>
-* <xref:mvc/razor-pages/sdk>
+::: moniker range="= aspnetcore-1.1"
 * <xref:mvc/views/overview>
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+* <xref:mvc/razor-pages/index>
+* <xref:mvc/views/overview>
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+* <xref:mvc/razor-pages/index>
+* <xref:mvc/views/overview>
+* <xref:mvc/razor-pages/sdk>
+::: moniker-end
