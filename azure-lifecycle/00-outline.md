@@ -17,6 +17,7 @@ The purpose of this book (or set of docs, or whatever else this project becomes)
     * Right-click > publish scenario.
     * Git Push method
     * FTP method
+    * Deployment slots
 
 4. DevOps and CI/CD toolchain 
     * Putting the app in a local Git or GitHub repo and tying it to Azure for CI

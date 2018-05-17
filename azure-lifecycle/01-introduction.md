@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature CI/CD DevOps toolchain.
+Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature CI/CD toolchain.
 
 ### Who this guide is for
 
@@ -10,50 +10,37 @@ You should be an experienced ASP.NET developer (200-300 level). You don't need t
 
 ### What this guide doesn't cover
 
-This guide is focused on an end-to-end DevOps experience for .NET developers. It will not be an exhaustive guide to all things Azure, nor will it focus extensively on .NET APIs for Azure services. The emphasis is all around continuous integration, deployment, monitoring, and debugging. Near the end of the guide we will make some recommendations for next steps, which will include some suggestions for Azure platform services that will be useful for ASP.NET developers.
+This guide is focused on an end-to-end continuous deployment experience for .NET developers. It will not be an exhaustive guide to all things Azure, nor will it focus extensively on .NET APIs for Azure services. The emphasis is all around continuous integration, deployment, monitoring, and debugging. Near the end of the guide we will make some recommendations for next steps, which will include some suggestions for Azure platform services that will be useful for ASP.NET developers.
 
-## Understanding cloud computing as a developer
+## Table of Contents
 
-In many ways, developing for the cloud is very similar to developing on-premise applications. The most obvious difference is that the application code runs somewhere else. Getting a little deeper, however, things can get very complicated very quickly. For that reason, it's important to understand the different models of cloud computing.
+### [Tools and Downloads](02-tools-and-downloads.md)
 
-%TODO% IaaS vs PaaS vs SaaS diagram like [this](https://stack247.files.wordpress.com/2015/05/azure-on-premises-vs-iaas-vs-paas-vs-saas.png)
+Find out where to obtain the tools used in this guide.
 
-### Infrastructure as a Service
+### [Deploying to App Service](03-deploying-to-app-service.md)
 
-The most familiar model of cloud computing for many developers is **Infrastructure as a Service**, or **IaaS**. In **IaaS** deployments, the customer is simply running a virtual machine on the service provider's hardware. While the cloud service provider is providing the physical infrastructure for network connectivity, physical storage, and a hypervisor to host the VM, the customer is responsible for the configuration and maintenance of the guest operating system within the VM, the virtual network configuration, and all the application code running within the VM.
+Learn the various methods for deploying an ASP.NET Core app to Azure App Service.
 
-IaaS is an attractive option for legacy applications, as generally anything that can be run on a VM on-premise can be run in a VM in a cloud data center just as well with few, if any, modifications.
+### [Continuous Integration](04-cicd.md)
 
-### Platform as a Service
+Build an end-to-end continuous integration solution for your ASP.NET Core app with GitHub, VSTS, and Azure.
 
-A cloud computing model which might be less familiar is **Platform as a Service**, or **PaaS**. PaaS services are about providing a development platform, with very little concern to the developer with regard to the underlying infrastructure. PaaS services can be as generalized as [Azure App Service](https://docs.microsoft.com/azure/app-service/), which is a robust web hosting platform similar to Microsoft Internet Information Services, or as specialized as [Azure Service Bus Messaging](https://docs.microsoft.com/azure/service-bus-messaging/), a reliable message broker. 
+### [Monitoring and Debugging](05-monitoring.md)
 
-Many Azure PaaS offerings are similar to Service Bus Messaging in that they are "building blocks" that can be leveraged by any application, whether they are hosted in the Azure, on-premises, or with another cloud provider.  PaaS services like this can be pieced together in various combinations to support virtually any type of application.  Outsourcing pieces of your application to the cloud enables you to bootstrap development of your application quickly, since the functionality of things like authentication, message queuing, blob storage, and SQL or NoSQL databases can be integrated into your application as a dependency rather than new development.
+Use Azure's tools to monitor, troubleshoot, and tune your application.
 
-Other examples of PaaS offerings in Azure are:
+### [Best Practices](06-best-practices.md)
 
-* [Azure Storage](https://docs.microsoft.com/azure/storage/)
-* [Azure Search](https://docs.microsoft.com/azure/search/)
-* [Notification Hubs](https://docs.microsoft.com/azure/notification-hubs/)
-* [Service Fabric](https://docs.microsoft.com/azure/service-fabric/)
-* [Azure Container Service](https://docs.microsoft.com/azure/aks/)
-* [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/)
-* [Redis Cache](https://docs.microsoft.com/azure/redis-cache/)
-* [Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/)
-* [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/)
-* [Azure Active Directory B2C](https://docs.microsoft.com/azure/active-directory-b2c/)
+A collection of best practices for cloud development.
 
-PaaS should be given serious consideration for greenfield development of new applications since there is a considerable value proposition in terms of development time and ongoing maintenance, as well as cost. Additionally, when infrastructure is abstracted behind a platform, well-designed applications can scale on demand or by automated rules.
+### [Next steps](07-next-steps.md)
 
-The processes presented in this guide will assume the application is at least hosted in Azure App Service, but dependencies on "building block" services will be avoided.
-
-### Software as a Service
-
-Virtually everybody uses some type of **Software as a Service** (**SaaS**) application. SaaS is a subscription or ad-based model where software is run from the cloud, usually in a a browser. Office 365, Salesforce, Dropbox, Google Docs, and Gmail are all examples of SaaS. For the purposes of this guide, SaaS is only relevant insofar as Visual Studio Team Services is a SaaS offering we will use extensively.
+Other learning paths for the ASP.NET Core developer learning Azure.
 
 ## Conclusion
 
-This guide will prepare you to build a continuous integration development lifecycle built around ASP.NET and Azure PaaS products.
+This guide will prepare you to build a continuous integration development lifecycle built around ASP.NET Core and Azure App Service.
 
 ## Additional reading
 
