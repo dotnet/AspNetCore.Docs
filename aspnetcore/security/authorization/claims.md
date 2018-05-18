@@ -96,6 +96,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+### Adding Generic Claim Check
+
+If the claim value is not single value or you need to peform some transformation(s) on it or etc., you can use `RequireAssertion()`.  See [this documentation](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-2.0#using-a-func-to-fulfill-a-policy) for additional details.
+
 ## Multiple Policy Evaluation
 
 If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
