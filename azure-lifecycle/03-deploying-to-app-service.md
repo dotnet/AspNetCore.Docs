@@ -147,7 +147,7 @@ Deployment slots are used to stage changes without affecting the running product
     echo Staging web app URL: http://$webappname-staging.azurewebsites.net
     ```
 
-3. In a text editor or Visual Studio, modify *Pages/Index.cshtml* again so that the `<h2>` element reads `<h2>Simple Feed Reader - V2</h2>` and save the file.
+3. In a text editor or Visual Studio, modify *Pages/Index.cshtml* again so that the `<h2>` element reads `<h2>Simple Feed Reader - V3</h2>` and save the file.
 
 4. Commit the file to the local Git repo, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using command line on your local machine:
     
