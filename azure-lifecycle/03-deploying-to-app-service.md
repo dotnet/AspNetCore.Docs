@@ -2,11 +2,11 @@
 
 ## Overview
 
-Deploying a web app to Azure App Service can be done multiple ways, either manually or by an automated process. This section of the guide will discuss deployment methods that can be initiated manually or by script.
+[Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done multiple ways, either manually or by an automated process. This section of the guide will discuss deployment methods that can be initiated manually or by script.
 
 In this section, you will:
 
-* Download and built the sample app.
+* Download and build the sample app.
 * Create an Azure App Service Web App using the Azure Cloud Shell.
 * Deploy the sample app to Azure using Git.
 * Deploy a change to the app using Visual Studio.
@@ -16,7 +16,11 @@ In this section, you will:
 
 ## Download and test the app
 
-For purposes of this guide, we'll be using a pre-built ASP.NET Core application. [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/) is a Razor Pages application that uses the `Microsoft.SyndicationFeed.ReaderWriter` API to retrieve an RSS/Atom feed and display the news items in a list. From the command line, download the code, build the project, and run it as follows:
+The application used in this guide is a pre-built ASP.NET Core application, [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/). It's a Razor Pages application that uses the `Microsoft.SyndicationFeed.ReaderWriter` API to retrieve an RSS/Atom feed and display the news items in a list.
+
+Feel free to review the code, but it's important to understand that there's nothing special about this app. It's just a simple ASP.NET Core app for illustrative purposes.
+
+From the command line, download the code, build the project, and run it as follows:
 
 1. Clone the code to a folder on your local machine.
     
@@ -52,7 +56,7 @@ For purposes of this guide, we'll be using a pre-built ASP.NET Core application.
 
 ## Creating the Azure App Service Web App
 
-[Azure App Service](https://docs.microsoft.com/azure/app-service/) is a web hosting platform. To deploy the app, you'll need to create an App Service [Web App](https://docs.microsoft.com/azure/app-service/app-service-web-overview), after which you'll deploy from your local maching using Git.
+To deploy the app, you'll need to create an App Service [Web App](https://docs.microsoft.com/azure/app-service/app-service-web-overview), after which you'll deploy from your local maching using Git.
 
 1. Log into the [Azure Cloud Shell](https://shell.azure.com/bash). Note: On first login, Cloud Shell will prompt to create a storage account for configuration files. Accept the defaults or provide a unique name.
 
@@ -83,7 +87,7 @@ For purposes of this guide, we'll be using a pre-built ASP.NET Core application.
 
     # Copy the result of the following command into a browser to see the blank web app.
     echo Web app URL: http://$webappname.azurewebsites.net
-    ```
+    ```    
 
 3. Using a command prompt on your local machine, navigate to the web app's project folder (e.g., `.\simple-feed-reader\SimpleFeedReader`) and execute the following commands:
     
@@ -99,9 +103,15 @@ For purposes of this guide, we'll be using a pre-built ASP.NET Core application.
 
 4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed.  Additional changes can be committed to the local Git repo and pushed to Azure the same way.
 
+> Note: The `webappname` variable used in the Cloud Shell script above is also used in Cloud Shell scripts later in this section. If you disconnect from Cloud Shell and need to start a new session, you can either set the `webappname` variable manually, or you can populate it automatically by looking up the name of the web app with this script:
+>    
+>    ```azure-cli
+>    webappname=$(az webapp list --resource-group AzureTutorial --query [].name --output tsv)
+>    ```
+
 ## Deployment with Visual Studio
 
-Visual Studio's publishing tools streamline the deployment of ASP.NET Core apps to Azure.
+Having deployed the app using command line tools, let's use Visual Studio's integrated tools to deploy an update to the app. Behind the scenes, Visual Studio accomplishes the same thing as the command line tools, but within Visual Studio's familiar UI.
 
 1. Open *SimpleFeedReader.sln* in Visual Studio.
 2. In Solution Explorer, open *Pages\Index.cshtml* and change `<h2>Simple Feed Reader</h2>` to `<h2>Simple Feed Reader - V2</h2>`.
@@ -127,12 +137,7 @@ Deployment slots are used to stage changes without affecting the running product
 2. Use the following script to create the staging slot. Make sure to take note of the *Staging Git deployment URL* and the *Staging web app URL* displayed in the output.
     
     ```azure-cli
-    # Lookup the name of the web app we previously created in the AzureTutorial resource group.
-    # You will need to do this before running any scripts that use $webappname if the Cloud Shell 
-    # disconnects due to inactivity 
-    webappname=$(az webapp list --resource-group AzureTutorial --query [].name --output tsv)
-
-    #Create a deployment slot with the name "staging".
+    # Create a deployment slot with the name "staging".
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     
     # Configure local Git and get deployment URL
@@ -140,8 +145,10 @@ Deployment slots are used to stage changes without affecting the running product
 
     # Copy the result of the following command into a browser to see the staging slot.
     echo Staging web app URL: http://$webappname-staging.azurewebsites.net
+    ```
 
 3. In a text editor or Visual Studio, modify *Pages/Index.cshtml* again so that the `<h2>` element reads `<h2>Simple Feed Reader - V2</h2>` and save the file.
+
 4. Commit the file to the local Git repo, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using command line on your local machine:
     
     ```bash
@@ -159,22 +166,18 @@ Deployment slots are used to stage changes without affecting the running product
     
     Wait while Azure builds and deploys the app.
 
-6. After deployment completes, open two browser windows or tabs. In one, navigate to the original web app URL. In the other, navigate to the staging web app URL. Note that the production URL displays V2 of the app, while the staging URL displays V3.
+6. To verify that V3 has been deployed to the staging slot, open two browser windows or tabs. In one, navigate to the original web app URL. In the other, navigate to the staging web app URL. Note that the production URL displays V2 of the app, while the staging URL displays V3.
     
     ![Comparing the browser windows](./media/03-ready-to-swap.png)
 
-7. Swap the staging and production deployment slots. Note that the first command is only necessary if the Cloud Shell timed out since you last used it.
+7. Swap the staging and production deployment slots. 
     
     ```azure-cli
-    # Lookup the name of the web app we previously created in the AzureTutorial resource group.
-    # You will need to do this before running any scripts that use $webappname if the Cloud Shell 
-    # disconnects due to inactivity 
-    webappname=$(az webapp list --resource-group AzureTutorial --query [].name --output tsv)
-    
     # Swap the verified/warmed up staging slot into production.
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
+    ```
 
-8. Refresh the two browsers. Note that the V2 and V3 versions have swapped.
+8. To verify that the swap occurred, refresh the two browsers. Note that the V2 and V3 versions have swapped.
     
     ![Comparing the browser windows now that they've swapped](./media/03-swapped.png)
 
