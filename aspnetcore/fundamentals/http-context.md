@@ -1,15 +1,20 @@
 ---
 title: Accessing HttpContext in .NET Core
 author: coderandhiker
+ms.author: riande
+manager: wpickett
 description: Learn how to access HttpContext using .NET Core
+ms.date: 05/22/2018
 ms.topic: article
+ms.prod: aspnet-core
+uid: fundamentals/http-context
 ---
 
-# Using IHttpContextAccessor to manage HttpContext
+# Use IHttpContextAccessor to manage HttpContext
 
-Working with the current HttpContext within a .NET Core application is made possible through the `IHttpContextAccessor` interface and its default implementation `HttpContextAccessor`.  
+ASP.NET Core applications access the HttpContext hrough the [IHttpContextAccessor](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor?view=aspnetcore-2.0) interface and its default implementation [HttpContextAccessor](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor.httpcontext?view=aspnetcore-2.0). 
 
-## Using HttpContext ASP.NET Core MVC from controllers and middleware
+## Use the HttpContext from Razor Pages, controllers, and middleware
 
 If you need to access the current context from a controller, you can access it by using the `HttpContext` property exposed by the `ControllerBase` class from which the `Controller` class is derived.
 
