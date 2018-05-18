@@ -96,9 +96,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Adding Generic Claim Check
+### Add a generic claim check
 
-If the claim value is not a single value or you need to peform some transformation(s) on it or etc., you can use `RequireAssertion()`.  See [this documentation](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies#using-a-func-to-fulfill-a-policy) for additional details.
+If the claim value isn't a single value or a transformation is required, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). For more information, see [Using a func to fulfill a policy](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
 
 ## Multiple Policy Evaluation
 
