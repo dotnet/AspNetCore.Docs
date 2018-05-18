@@ -166,10 +166,7 @@ In this task, you will create the controller classes in which API methods will r
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Class*)
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
 4. In the **ContactController** class, select the word **string** in method definition of the **Get** method, and type the word *Contact*. Once the word is typed in, an indicator will appear at the beginning of the word **Contact**. Either hold down the **Ctrl** key and press the period (.) key or click the icon using your mouse to open up the assistance dialog in the code editor, to automatically fill in the **using** directive for the Models namespace.
 
     ![Using Intellisense assistance for namespace declarations](build-restful-apis-with-aspnet-web-api/_static/image12.png)
@@ -217,10 +214,7 @@ This task will demonstrate how to extract functionality into a Service layer to 
     *Creating a class file to contain the code for the Contact Repository service layer*
 4. Add a using directive to the **ContactRepository.cs** file to include the models namespace.
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
 5. Add the following highlighted code to the **ContactRepository.cs** file to implement GetAllContacts method.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Repository*)
@@ -229,10 +223,7 @@ This task will demonstrate how to extract functionality into a Service layer to 
 6. Open the **ContactController.cs** file if it is not already open.
 7. Add the following using statement to the namespace declaration section of the file.
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
 8. Add the following highlighted code to the **ContactController.cs** class to add a private field to represent the instance of the repository, so that the rest of the class members can make use of the service implementation.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Controller*)
@@ -351,16 +342,10 @@ In this task, you will modify the default Index view of the web application to s
 3. Open the **Index.cshtml** file located at **Views/Home** folder.
 4. Replace the HTML code within the div element with id **body** so that it looks like the following code.
 
-
-~~~
-[!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
-~~~
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
 5. Add the following Javascript code at the bottom of the file to perform the HTTP request to the Web API.
 
-
-~~~
-[!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
-~~~
+    [!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
 6. Open the **ContactController.cs** file if it is not already open.
 7. Place a breakpoint on the **Get** method of the **ContactController** class.
 
@@ -395,17 +380,11 @@ In this task, you will continue to modify the Index view of the MVC application.
 
     (Code Snippet - *Web API Lab - Ex03 - Post Method*)
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
 3. Open the **Index.cshtml** file in Visual Studio if it is not already open.
 4. Add the HTML code below to the file just after the unordered list you added in the previous task.
 
-
-~~~
-[!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
-~~~
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
 5. Within the script element at the bottom of the document, add the following highlighted code to handle button-click events, which will post the data to the Web API using an HTTP POST call.
 
     [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample17.html)]

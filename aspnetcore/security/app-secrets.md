@@ -50,8 +50,25 @@ The Secret Manager tool stores sensitive data during the development of an ASP.N
 
 The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
 
-* Windows: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
-* Linux & macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+# [Windows](#tab/windows)
+
+File system path:
+
+`%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+
+# [macOS](#tab/macos)
+
+File system path:
+
+`~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+# [Linux](#tab/linux)
+
+File system path:
+
+`~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+---
 
 In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the *.csproj* file.
 
@@ -129,17 +146,33 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command on Windows:
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command.
 
-```console
-type .\input.json | dotnet user-secrets set
-```
+# [Windows](#tab/windows)
 
-Use the following command on macOS and Linux:
+Open a command shell, and execute the following command:
 
-```console
-cat ./input.json | dotnet user-secrets set
-```
+  ```console
+  type .\input.json | dotnet user-secrets set
+  ```
+
+# [macOS](#tab/macos)
+
+Open a command shell, and execute the following command:
+
+  ```console
+  cat ./input.json | dotnet user-secrets set
+  ```
+
+# [Linux](#tab/linux)
+
+Open a command shell, and execute the following command:
+
+  ```console
+  cat ./input.json | dotnet user-secrets set
+  ```
+
+---
 
 ## Access a secret
 
