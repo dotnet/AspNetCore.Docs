@@ -154,7 +154,7 @@ You can combine local and social accounts by clicking on your email link. In the
 
 ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image5.png)
 
-Click on the **Manage** link. Note the 0 External logins (social) associated with this account.
+Click on the **Manage** link. Note the **External Logins: 0** associated with this account.
 
 ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image6.png)
 
