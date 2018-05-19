@@ -11,7 +11,7 @@ uid: fundamentals/http-context
 ---
 # Use IHttpContextAccessor to manage HttpContext
 
-ASP.NET Core applications access the HttpContext through the [IHttpContextAccessor](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor?view=aspnetcore-2.0) interface and its default implementation [HttpContextAccessor](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor.httpcontext?view=aspnetcore-2.0).
+ASP.NET Core applications access the HttpContext through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor?view=aspnetcore-2.0) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor.httpcontext?view=aspnetcore-2.0).
 
 ## Use the HttpContext from Razor Pages, controllers, and middleware
 
