@@ -9,9 +9,9 @@ namespace RazorPagesProject.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly AppDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public IndexModel(AppDbContext db)
+        public IndexModel(ApplicationDbContext db)
         {
             _db = db;
         }

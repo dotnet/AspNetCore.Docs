@@ -2,10 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-RazorPagesProject-A2A24AFF-A836-4FB3-8BB5-D566CB2C7EEA</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0-rc1-30682" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-rc1-30682" PrivateAssets="All" />
+  </ItemGroup>
+
+
 </Project>

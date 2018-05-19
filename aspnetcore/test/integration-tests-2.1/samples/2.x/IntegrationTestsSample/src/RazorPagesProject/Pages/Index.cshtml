@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-8">
 
-        <form method="post">
+        <form id="addMessage" method="post">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Add a message</h3>
@@ -21,7 +21,7 @@
                         <span asp-validation-for="Message.Text" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button type="submit" asp-page-handler="AddMessage" class="btn btn-default">Add Message</button>
+                        <button id="addMessageBtn" type="submit" asp-page-handler="AddMessage" class="btn btn-default">Add Message</button>
                     </div>
                 </div>
             </div>
@@ -33,10 +33,10 @@
 <div class="row">
     <div class="col-md-8">
 
-        <form method="post">
+        <form id="messages" method="post">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
-                    <button type="submit" asp-page-handler="DeleteAllMessages" class="pull-right btn btn-danger">Clear All</button>
+                    <button id="deleteAllBtn" type="submit" asp-page-handler="DeleteAllMessages" class="pull-right btn btn-danger">Clear All</button>
                     <h3 class="panel-title" style="line-height:2.1">Messages</h3>
                 </div>
                 <div class="panel-body">
@@ -44,7 +44,7 @@
                         @foreach (var message in Model.Messages)
                         {
                             <li>
-                                <button type="submit" class="btn btn-danger" style="margin-bottom:2px" asp-page-handler="DeleteMessage" asp-route-id="@message.Id">Delete</button>
+                                <button id="deleteBtn@(message.Id)" type="submit" class="btn btn-danger" style="margin-bottom:2px" asp-page-handler="DeleteMessage" asp-route-id="@message.Id">Delete</button>
                                 @message.Text
                             </li>
                         }
@@ -59,14 +59,14 @@
 <div class="row">
     <div class="col-md-8">
 
-        <form method="post">
+        <form id="analyze" method="post">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Analyze Messages</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <button type="submit" asp-page-handler="AnalyzeMessages" class="btn btn-default">Analyze</button>
+                        <button id="analyzeBtn" type="submit" asp-page-handler="AnalyzeMessages" class="btn btn-default">Analyze</button>
                     </div>
                     <div class="form-group">
                         @Model.MessageAnalysisResult

@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/18/2018
+ms.date: 05/24/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -21,14 +21,9 @@ Integration tests ensure that an app's components function correctly at a level 
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
-The process to set up a project for integration testing is virtually the same for Razor Pages and MVC projects. The only significant difference is in the naming of test classes:
-
-* When testing a Razor Pages project, the test classes are usually named after the page model classes that they test.
-* When testing an MVC project, the test classes are usually named after the controllers that they test.
-
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages apps, see the following topics:
+The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
@@ -36,19 +31,22 @@ The sample app is a Razor Pages app and assumes a basic understanding of Razor P
 
 ## Introduction to integration tests
 
-Integration tests evaluate an app's components on a broader level than [unit tests](/dotnet/core/testing/). Unit tests are used to test individual software components or the logic inside individual methods. Integration tests are used to test the app's infrastructure and whole framework, often including the following components:
+Integration tests evaluate an app's components on a broader level than [unit tests](/dotnet/core/testing/). Unit tests are used to test isolated software components, such as individual class methods. Integration tests confirm that two or more app components work together to produce an expected result, possibly including every component required to fully process a request.
+
+These broader tests are used to test the app's infrastructure and whole framework, often including the following components:
 
 * Database
 * File system
-* Network resources
+* Network appliances
 * Request-response pipeline
 
-Unit tests use fabricated components, known as *fakes* or *mock objects*, in place of infrastructure components. Integration tests use the actual components that the app uses in production. Integration tests confirm that the whole app works as expected.
+Unit tests use fabricated components, known as *fakes* or *mock objects*, in place of infrastructure components.
 
-Integration tests usually:
+In contrast to unit tests, integration tests:
 
-* Require more code and data processing than unit tests require.
-* Take longer to run than unit tests.
+* Use the actual components that the app uses in production.
+* Require more code and data processing.
+* Take longer to run.
 
 Therefore, limit the use of integration tests to the most important infrastructure scenarios. If a behavior can be tested using either a unit test or an integration test, choose the unit test.
 
@@ -62,35 +60,36 @@ Therefore, limit the use of integration tests to the most important infrastructu
 
 Integration tests in ASP.NET Core require the following:
 
-* A test project is used to contain and execute the tests. The test project has a reference to the tested ASP.NET Core project, called the *system under test* (SUT). _"SUT" is used throughout this topic to reference the tested app._
-* The test project creates a test web host for the SUT and uses a test server client to handle requests and responses.
+* A test project is used to contain and execute the tests. The test project has a reference to the tested ASP.NET Core project, called the *system under test* (SUT). _"SUT" is used throughout this topic to refer to the tested app._
+* The test project creates a test web host for the SUT and uses a test server client to handle requests and responses to the SUT.
 * A test runner is used to execute the tests and report the test results.
 
-Integration tests follow a sequence of events:
+Integration tests follow a sequence of events that include the usual *Arrange*, *Act*, and *Assert* test steps:
 
-1. The SUT's web host is configured, and a test server client is created to submit requests to the app.
-1. The test app prepares a request, and the client submits the request.
-1. The SUT responds, and the client provides the response to the test method logic.
-1. The *actual* response is validated as a *pass* or *fail* based on an *expected* response.
-1. The testing process continues until all of the tests are executed.
+1. The SUT's web host is configured.
+1. A test server client is created to submit requests to the app.
+1. The *Arrange* test step is executed: The test app prepares a request.
+1. The *Act* test step is executed: The client submits the request and receives the response.
+1. The *Assert* test step is executed: The *actual* response is validated as a *pass* or *fail* based on an *expected* response.
+1. The process continues until all of the tests are executed.
 1. The test results are reported.
 
-Usually, the test web host is configured differently than the app's normal web host for the test runs. For example, a different database or different app settings might be used for testing. Customizing the host is described in the [Customize the web host and create a client](#customize-the-web-host-and-create-a-client) section.
+Usually, the test web host is configured differently than the app's normal web host for the test runs. For example, a different database or different app settings might be used for the tests.
 
 Infrastructure components, such as the test web host and in-memory test server ([TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver)), are provided or managed by the [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) package. Use of this package streamlines test creation and execution.
 
 The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
 * Copies the dependencies file (*\*.deps*) from the SUT into the test project's *bin* folder.
-* Sets the content root to the SUT's project root so that static files and views are found when tests are executed.
-* Provides a class, [WebApplicationFactory&lt;TEntryPoint&gt;](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1), to streamline bootstrapping the SUT with `TestServer`.
+* Sets the content root to the SUT's project root so that static files and pages/views are found when tests are executed.
+* Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the SUT with `TestServer`.
 
 The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentation describes how to set up a test project and test runner, along with detailed instructions on how to run tests and recommendations for how to name tests and test classes.
 
 > [!NOTE]
 > When creating a test project for an app, separate the unit tests from the integration tests into different projects. This helps ensure that infrastructure testing components aren't accidently included in the unit tests. Separation of unit and integration tests also allows control over which set of tests are run.
 
-There's virtually no difference between the configuration for tests of Razor Pages apps and MVC apps. The only difference is in how the tests are named. In a Razor Pages app, tests of page endpoints are usually named after the page model class (for example, `IndexPageTests` to test component integration for the Index page). In an MVC app, tests are usually organized by controller classes and named after the controllers they test.
+There's virtually no difference between the configuration for tests of Razor Pages apps and MVC apps. The only difference is in how the tests are named. In a Razor Pages app, tests of page endpoints are usually named after the page model class (for example, `IndexPageTests` to test component integration for the Index page). In an MVC app, tests are usually organized by controller classes and named after the controllers they test (for example, `HomeControllerTests` to test component integration for the Home controller).
 
 ## Test app prerequisites
 
@@ -101,63 +100,89 @@ The test project must:
 
 These prerequesities can be seen in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples/). Inspect the *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* file.
 
-## Customize the web host and create a client
+## Basic tests with the default WebApplicationFactory
 
-There are two approaches for customizing the web host of the SUT, and both approaches can be used independently or together in the same test app:
+[WebApplicationFactory&lt;TEntryPoint&gt;](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) is used to create a [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
-* [Per-test class configuration](#per-test-class-configuration) &ndash; Configures the SUT web host in each test class constructor.
-* [Custom WebApplicationFactory implementations](#custom-webapplicationfactory-implementations) &ndash; Configures the SUT web host for each test class using a `WebApplicationFactory` implementation. Several implementations can be created and used across the app's test classes.
+Test classes implement a *class fixture* interface (`IClassFixture`) to indicate the class contains tests and provide shared object instances across the tests in the class.
 
-In the examples that follow, database seeding is performed by an `InitializeDbForTests` method. The sample app implements this method. The method is described further in the [Integration tests sample: Test app organization](#test-app-organization) section.
+### Basic test of app endpoints
 
-### Test clients
+The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an [HttpClient](/dotnet/api/system.net.http.httpclient) to a test method, `Request_EndpointsReturnOKAndCorrectContentType`. The method checks if the response status code is successful (status codes in the range 200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
-Two types of `WebApplicationFactory` clients are available for tests:
+[CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
 
-* [CreateDefaultClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createdefaultclient) creates an instance of [HttpClient](/dotnet/api/system.net.http.httpclient) that can be used to send [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) to the server.
+[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-  ```csharp
-  _client = webAppFactory.CreateDefaultClient();
-  ```
+### Test a secure endpoint
 
-* [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) creates an instance of [HttpClient](/dotnet/api/system.net.http.httpclient) that automatically follows redirects and handles cookies.
+Another test in the `BasicTests` class checks that a secure endpoint redirects an unauthenticated user to the app's Login page.
 
-  ```csharp
-  _client = webAppFactory.CreateClient();
-  ```
+In the SUT, the `/SecurePage` page uses an [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) convention to apply an [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) to the page. For more information, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
-In the examples that follow, individual page handler methods are checked before they redirect. Therefore, the tests use `CreateDefaultClient`, which creates an `HttpClient` that doesn't follow redirects. If test requirements call for checking responses after redirects or require cookie handling, use `CreateClient` instead.
+[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
-### Per-test class configuration
+In the `SecurePageRequiresAnAuthenticatedUser` test, a [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) is set to disallow redirects by setting [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) to `false`:
 
-The test web host can be configured on a per-test class basis. A typical example configures the SUT's services, especially database access. The code example that follows is used in the sample app (*IndexPageTests.cs*) and performs the following steps:
+[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet2)]
 
-* Create a new service provider. The service provider is used to override and add services to the test host.
-* Add a database context (AppDbContext) using an in-memory database for testing. If required, other services can be added and configured here.
-* Build the service provider.
-* Create a service provider scope.
-* Ensure the database is created and seed the database with test data.
-* Create an `HttpClient` to submit requests against the test host.
+By disallowing the client to follow the redirect, the following checks can be made:
 
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
+* The status code returned by the SUT can be checked against the expected [HttpStatusCode.Redirect](/dotnet/api/system.net.httpstatuscode) result, not the final status code after the redirect to the Login page, which would be [HttpStatusCode.OK](/dotnet/api/system.net.httpstatuscode).
+* The `Location` header value in the response headers is checked to confirm that it starts with `http://localhost/Identity/Account/Login`, not the final Login page response, where the `Location` header wouldn't be present.
 
-### Custom WebApplicationFactory implementations
+For more information on `WebApplicationFactoryClientOptions`, see the [Client options](#client-options) section.
 
-Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factory implementations. These implementations can be used throughout the test classes. The code example that follows is used in the sample app (*IndexPageTests2.cs*) and performs the same configuration shown earlier in the [Per-test class configuration](#per-test-class-configuration) section:
+## Customize WebApplicationFactory
 
-1. Inherit from `WebApplicationFactory` and override `ConfigureWebHost`:
+Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
 
-    [!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests2.cs?name=snippet1)]
+1. Inherit from `WebApplicationFactory` and override [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). The [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) allows the configuration of the service collection with [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices):
 
-1. Use the custom `WebApplicationFactory` in test classes:
+   [!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
-    [!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests2.cs?name=snippet2)]
+   Database seeding in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) is performed by the `InitializeDbForTests` method. The method is described in the [Integration tests sample: Test app organization](#test-app-organization) section.
 
-The preceding example shows the creation of a single custom `WebApplicationFactory` implementation (`CustomWebApplicationFactory`). Multiple factories can be created using this approach. Each test class fixture can specify any of the available `WebApplicationFactory` instances that are created.
+2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
+
+   [!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
+
+   The sample app's client is configured to prevent the `HttpClient` from following redirects. As explained in the [Test a secure endpoint](#test-a-secure-endpoint) section, this permits tests to check the result of the app's first response. The first response is a redirect in many of these tests with a `Location` header.
+
+3. A typical test uses the `HttpClient` and helper methods to process the request and the response:
+
+   [!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
+
+Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
+
+1. Make a request for the page.
+1. Parse the antiforgery cookie and request validation token from the response.
+1. Make the POST request with the antiforgery cookie and request validation token in place.
+
+The `SendAsync` helper extension methods (*Helpers/HttpClientExtensions.cs*) and the `GetDocumentAsync` helper method (*Helpers/HtmlHelpers.cs*) in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples/) use the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery check with the following methods:
+
+* `GetDocumentAsync` &ndash; Receives the [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) and returns an `IHtmlDocument`. `GetDocumentAsync` uses a factory that prepares a *virtual response* based on the original `HttpResponseMessage`. For more information, see the [AngleSharp documentation](https://github.com/AngleSharp/AngleSharp#documentation).
+* `SendAsync` extension methods for the `HttpClient` compose an [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) and call [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) to submit requests to the SUT. Overloads for `SendAsync` accept the HTML form (`IHtmlFormElement`) and the following:
+  - Submit button of the form (`IHtmlElement`)
+  - Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
+  - Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
+
+> [!NOTE]
+> [AngleSharp](https://anglesharp.github.io/) is a third-party parsing library used for demonstration purposes in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](http://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
+
+## Customize the client with WithWebHostBuilder
+
+When additional configuration is required within a test method, [WithWebHostBuilder](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.withwebhostbuilder) creates a new `WebApplicationFactory` with an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) that is further customized by configuration.
+
+The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) demonstrates the use of `WithWebHostBuilder`. This test performs a record delete in the database by triggering a form submission in the SUT.
+
+Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is seeded in this test method to ensure that a record is present for the SUT to delete. Selecting the `deleteBtn1` button of the `messages` form in the SUT is simulated in the request to the SUT:
+
+[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
 
 ## Client options
 
-The the following table shows the default [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) available when creating `HttpClient` instances.
+The following table shows the default [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) available when creating `HttpClient` instances.
 
 | Option | Description | Default |
 | ------ | ----------- | ------- |
@@ -176,7 +201,7 @@ clientOptions.BaseAddress = new Uri("http://localhost");
 clientOptions.HandleCookies = true;
 clientOptions.MaxAutomaticRedirections = 7;
 
-_client = testWebAppFactory.CreateClient(clientOptions);
+_client = _factory.CreateClient(clientOptions);
 ```
 
 ## How the test infrastructure infers the app content root path
@@ -187,46 +212,42 @@ In most cases, it isn't necessary to explicitly set the app content root, as the
 
 Call the [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testhost.webhostbuilderextensions.usesolutionrelativecontentroot) extension method using *ONE* of the following approaches:
 
-* When configuring test classes on a [per-test class basis (shown earlier in this topic)](#per-test-class-configuration), provide a custom configuration with the [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) provided to the `WebApplicationFactory`:
+* When configuring test classes with `WebApplicationFactory`, provide a custom configuration with the [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder):
 
-    ```csharp
-    using Microsoft.AspNetCore.TestHost;
+   ```csharp
+   public IndexPageTests(
+       WebApplicationFactory<RazorPagesProject.Startup> factory)
+   {
+       var _factory = factory.WithWebHostBuilder(builder =>
+       {
+           builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
 
-    public IndexPageTests(
-        WebApplicationFactory<RazorPagesProject.Startup> webAppFactory)
-    {
-        var testWebAppFactory = webAppFactory.WithWebHostBuilder(builder =>
-        {
-            builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
+           ...
+       });
+   }
+   ```
 
-            ...
-        });
-    }
-    ```
+* When configuring test classes with a custom `WebApplicationFactory`, inherit from `WebApplicationFactory` and override [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost):
 
-* When configuring test classes with [WebApplicationFactory implementations (shown earlier in this topic)](#customize-the-web-host-and-create-a-client), inherit from `WebApplicationFactory` and override [ConfigureWebHost(IWebHostBuilder)](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost):
+   ```csharp
+   public class CustomWebApplicationFactory<TStartup>
+       : WebApplicationFactory<RazorPagesProject.Startup>
+   {
+       protected override void ConfigureWebHost(IWebHostBuilder builder)
+       {
+           builder.ConfigureServices(services =>
+           {
+               builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
 
-    ```csharp
-    using Microsoft.AspNetCore.TestHost;
+               ...
+           });
+       }
+   }
+   ```
 
-    public class CustomWebApplicationFactory<TStartup>
-        : WebApplicationFactory<RazorPagesProject.Startup>
-    {
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.ConfigureServices(services =>
-            {
-                builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
+## Disable shadow copying
 
-                ...
-            });
-        }
-    }
-    ```
-
-## Disable shadow copying (xUnit only)
-
-xUnit shadow copying causes the tests to execute in a different folder than the output folder. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) uses xUnit and disables shadow copying by including an *xunit.runner.json* file with the correct configuration setting. For more information, see [Configuring xUnit.net with JSON](https://xunit.github.io/docs/configuring-with-json.html).
+Shadow copying causes the tests to execute in a different folder than the output folder. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests-2.1/samples) uses xUnit and disables shadow copying for xUnit by including an *xunit.runner.json* file with the correct configuration setting. For more information, see [Configuring xUnit.net with JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Add the *xunit.runner.json* file to root of the test project with the following content:
 
@@ -260,6 +281,7 @@ The SUT is a Razor Pages message system with the following characteristics:
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
 * The app contains a data access layer (DAL) in its database context class, `AppDbContext` (*Data/AppDbContext.cs*).
 * If the database is empty on app startup, the message store is initialized with three messages.
+* The app includes a `/SecurePage` that can only be accessed by an authenticated user.
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.github.io/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
@@ -271,8 +293,9 @@ The test app is a console app inside the *tests/RazorPagesProject.Tests* folder.
 
 | Test app folder | Description |
 | --------------- | ----------- |
-| *IntegrationTests* | *IndexPageTests.cs* contains the integration tests for the Index page using a [per-test class configuration](#per-test-class-configuration) approach. *IndexPageTests2.cs* contains the integration tests for the Index page using a [custom WebApplicationFactory implementations](#custom-webapplicationfactory-implementations) approach. |
-| *Utilities* | *Utilities.cs* contains the:<ul><li>`InitializeDbForTests` method used to seed the database with test data for each test.</li><li>`GetRequestContentAsync` method used to prepare the `HttpClient` and content for requests that are sent to the SUT during integration tests.</li></ul> |
+| *BasicTests* | *BasicTests.cs* contains test methods for routing, accessing a secure page by an unauthenticated user, and obtaining a GitHub user profile and checking the profile's user login. |
+| *IntegrationTests* | *IndexPageTests.cs* contains the integration tests for the Index page using custom `WebApplicationFactory` class. |
+| *Helpers/Utilities* | <ul><li>*Utilities.cs* contains the `InitializeDbForTests` method used to seed the database with test data.</li><li>*HtmlHelpers.cs* provides a method to return an AngleSharp `IHtmlDocument` for use by the test methods.</li><li>*HttpClientExtensions.cs* provide overloads for `SendAsync` to submit requests to the SUT.</li></ul> |
 
 The test framework is [xUnit](https://xunit.github.io/). Integration tests are conducted using the [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), which includes the [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Because the [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) package is used to configure the test host and test server, the `TestHost` and `TestServer` packages don't require direct package references in the test app's project file or developer configuration in the test app.
 
@@ -282,43 +305,7 @@ Integration tests usually require a small dataset in the database prior to the t
 
 The sample app seeds the database with three messages in *Utilities.cs* that tests can use when they execute:
 
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Utilities/Utilities.cs?name=snippet1)]
-
-### Integration tests of the SUT
-
-An integration test example from the sample app checks the result of requesting the Index page of the SUT (*tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](integration-tests-2.1/sample_snapshot/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
-
-There's no Arrange step. The `GetAsync` method is called on the `HttpClient` to send a GET request to the endpoint. The test asserts that the result is a *200 OK* status code.
-
-Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
-
-1. Make a request for the page.
-1. Parse the antiforgery cookie and request validation token from the response.
-1. Make the POST request with the antiforgery cookie and request validation token in place.
-
-The `Post_AddMessageHandler_ReturnsRedirectToRoot` test method:
-
-* Prepares a message and the `HttpClient`.
-* Makes a POST request to the app.
-* Checks the response is a redirect back to the Index page.
-
-`Post_AddMessageHandler_ReturnsRedirectToRoot` method (*tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
-
-The `GetRequestContentAsync` utility method manages preparing the client with the antiforgery cookie and request verification token. Note how the method receives an `IDictionary` that permits the calling test method to pass in data for the request to encode along with the request verification token (*tests/RazorPagesProject.Tests/Utilities/Utilities.cs*):
-
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Utilities/Utilities.cs?name=snippet2&highlight=1-2,8-9,29)]
-
-Integration tests can also pass bad data to the app to test the app's response behavior. The SUT limits message length to 200 characters (*src/RazorPagesProject/Data/Message.cs*):
-
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Data/Message.cs?name=snippet1&highlight=7)]
-
-The `Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong` test `Message` explicitly passes in text with 201 "X" characters. This results in a `ModelState` error. The POST doesn't redirect back to the Index page. It returns a *200 OK* response with a `null` `Location` header (*tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4&highlight=7,16-17)]
+[!code-csharp[](integration-tests-2.1/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
 
 ## Additional resources
 
@@ -377,7 +364,7 @@ After the `Microsoft.AspNetCore.TestHost` package is included in the test projec
 
 This test is using the Arrange-Act-Assert pattern. The Arrange step is performed in the constructor, which creates an instance of `TestServer`. A configured [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) is used to create a `TestHost`. The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configure) method from the SUT's `Startup` class is passed to the `WebHostBuilder`. This method is used to configure the request pipeline of the `TestServer` identically to how the SUT's server is configured.
 
-In the Act portion of the test, a request is made to the `TestServer` instance for the `/` (root) path. The response is read back into a string. The actual  (returned) string is compared with the expected string of "Hello World!" If actual string and the expected string match, the test passes. Otherwise, the test fails.
+In the Act portion of the test, a request is made to the `TestServer` instance for the `/` (root) path. The response is read back into a string. The actual (returned) string is compared with the expected string of "Hello World!" If actual string and the expected string match, the test passes. Otherwise, the test fails.
 
 Add a couple of additional integration tests to confirm that the app's prime checking functionality works:
 

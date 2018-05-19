@@ -13,11 +13,11 @@ namespace RazorPagesProject
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var db = services.GetRequiredService<AppDbContext>();
+                var db = services.GetRequiredService<ApplicationDbContext>();
                 var logger = services.GetRequiredService<ILogger<Program>>();
 
                 db.Database.EnsureCreated();

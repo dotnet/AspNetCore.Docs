@@ -1,16 +1,17 @@
 ---
-title: Test and debug in ASP.NET Core
-author: ardalis
+title: Test, debug, and troubleshoot in ASP.NET Core
+author: guardrex
 description: Links to resources for testing and debugging ASP.NET Core applications.
 manager: wpickett
 ms.author: riande
-ms.date: 11/20/2017
+ms.custom: mvc
+ms.date: 05/24/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
 uid: test/index
 ---
-# Test and debug in ASP.NET Core
+# Test, debug, and troubleshoot in ASP.NET Core
 
 * [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * [Integration tests](xref:test/integration-tests)
@@ -20,3 +21,4 @@ uid: test/index
 * [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 * [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 * [YouTube: Diagnosing issues in ASP.NET Core Applications](https://www.youtube.com/watch?v=RYI0DHoIVaA)
+* [Troubleshoot](xref:test/troubleshoot)

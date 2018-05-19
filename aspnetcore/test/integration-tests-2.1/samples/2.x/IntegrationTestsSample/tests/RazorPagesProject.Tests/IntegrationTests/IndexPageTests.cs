@@ -3,183 +3,186 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AngleSharp.Dom.Html;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit;
 using RazorPagesProject.Data;
+using RazorPagesProject.Tests.Helpers;
 
-namespace RazorPagesProject.Tests.IntegrationTests
+namespace RazorPagesProject.Tests
 {
-    public class IndexPageTests : IClassFixture<WebApplicationFactory<RazorPagesProject.Startup>>
+    #region snippet1
+    public class IndexPageTests : IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
     {
         private readonly HttpClient _client;
+        private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> _factory;
 
-        #region snippet1
         public IndexPageTests(
-            WebApplicationFactory<RazorPagesProject.Startup> webAppFactory)
+            CustomWebApplicationFactory<RazorPagesProject.Startup> factory)
         {
-            var testWebAppFactory = webAppFactory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
+            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
                 {
-                    // Create a new service provider.
-                    var serviceProvider = new ServiceCollection()
-                        .AddEntityFrameworkInMemoryDatabase()
-                        .BuildServiceProvider();
-
-                    // Add a database context (AppDbContext) using an in-memory 
-                    // database for testing.
-                    services.AddDbContext<AppDbContext>(options => 
-                        {
-                            options.UseInMemoryDatabase("InMemoryDbForTests");
-                            options.UseInternalServiceProvider(serviceProvider);
-                        });
-
-                    // Build the service provider.
-                    var sp = services.BuildServiceProvider();
-
-                    // Create a scope to obtain a reference to the database
-                    // context (AppDbContext).
-                    using (var scope = sp.CreateScope())
-                    {
-                        var scopedServices = scope.ServiceProvider;
-                        var db = scopedServices.GetRequiredService<AppDbContext>();
-                        var logger = scopedServices
-                            .GetRequiredService<ILogger<IndexPageTests>>();
-
-                        // Ensure the database is created.
-                        db.Database.EnsureCreated();
-
-                        try
-                        {
-                            // Seed the database with test data.
-                            Utilities.InitializeDbForTests(db);
-                        }
-                        catch (Exception ex)
-                        {
-                            logger.LogError(ex, $"An error occurred seeding the " +
-                                "database with test messages. Error: {ex.Message}");
-                        }
-                    }
+                    AllowAutoRedirect = false
                 });
-            });
-
-            // Create an HttpClient to submit requests against the test host.
-            _client = testWebAppFactory.CreateDefaultClient();
-        }
-
-        [Fact]
-        public async Task Request_ReturnsSuccess()
-        {
-            // Act
-            var response = await _client.GetAsync("/");
-
-            // Assert
-            response.EnsureSuccessStatusCode();
+            _factory = factory;
         }
         #endregion
 
+        #region snippet2
         [Fact]
         public async Task Post_DeleteAllMessagesHandler_ReturnsRedirectToRoot()
         {
             // Arrange
-            var content = await Utilities.GetRequestContentAsync(_client, "/", new Dictionary<string, string>());
+            var defaultPage = await _client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
-            var response = await _client.PostAsync("?handler=DeleteAllMessages", content);
+            var response = await _client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='messages']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='deleteAllBtn']"));
 
             // Assert
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/", response.Headers.Location.OriginalString);
-        }
-
-        #region snippet3
-        [Fact]
-        public async Task Post_AddMessageHandler_ReturnsRedirectToRoot()
-        {
-            // Arrange
-            var data = new Dictionary<string, string>()
-            {
-                { "Message.Text", "Test message to add." }
-            };
-            var content = await Utilities.GetRequestContentAsync(_client, "/", data);
-
-            // Act
-            var response = await _client.PostAsync("?handler=AddMessage", content);
-
-            // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.Equal("/", response.Headers.Location.OriginalString);
         }
         #endregion
+
+        #region snippet3
+        [Fact]
+        public async Task Post_DeleteMessageHandler_ReturnsRedirectToRoot()
+        {
+            // Arrange
+            var client = _factory.WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureServices(services =>
+                    {
+                        var serviceProvider = services.BuildServiceProvider();
+
+                        using (var scope = serviceProvider.CreateScope())
+                        {
+                            var scopedServices = scope.ServiceProvider;
+                            var db = scopedServices
+                                .GetRequiredService<ApplicationDbContext>();
+                            var logger = scopedServices
+                                .GetRequiredService<ILogger<IndexPageTests>>();
+
+                            try
+                            {
+                                Utilities.InitializeDbForTests(db);
+                            }
+                            catch (Exception ex)
+                            {
+                                logger.LogError(ex, "An error occurred seeding " +
+                                    "the database with test messages. Error: " +
+                                    ex.Message);
+                            }
+                        }
+                    });
+                })
+                .CreateClient(new WebApplicationFactoryClientOptions
+                    {
+                        AllowAutoRedirect = false
+                    });
+            var defaultPage = await client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+
+            //Act
+            var response = await client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='messages']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='deleteBtn1']"));
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal("/", response.Headers.Location.OriginalString);
+        }
+        #endregion
+
+        [Fact]
+        public async Task Post_AddMessageHandler_ReturnsRedirectToRoot()
+        {
+            // Arrange
+            var defaultPage = await _client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+            var messageText = "Test message to add.";
+
+            // Act
+            var response = await _client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
+                new Dictionary<string, string> {
+                    ["Message.Text"] = messageText
+                });
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal("/", response.Headers.Location.OriginalString);
+        }
 
         [Fact]
         public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText()
         {
             // Arrange
-            var data = new Dictionary<string, string>()
-            {   
-                { "Message.Text", string.Empty }
-            };
-            var content = await Utilities.GetRequestContentAsync(_client, "/", data);
+            var defaultPage = await _client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+            var messageText = string.Empty;
 
             // Act
-            var response = await _client.PostAsync("?handler=AddMessage", content);
+            var response = await _client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
+                new Dictionary<string, string> {
+                    ["Message.Text"] = messageText
+                });
 
             // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
             // A ModelState failure returns to Page (200-OK) and doesn't redirect.
             response.EnsureSuccessStatusCode();
             Assert.Null(response.Headers.Location?.OriginalString);
         }
 
-        #region snippet4
         [Fact]
         public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong()
         {
             // Arrange
-            var data = new Dictionary<string, string>()
-            {   
-                { "Message.Text", new string('X', 201) }
-            };
-            var content = await Utilities.GetRequestContentAsync(_client, "/", data);
+            var defaultPage = await _client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+            var messageText = new string('X', 201);
 
             // Act
-            var response = await _client.PostAsync("?handler=AddMessage", content);
+            var response = await _client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
+                new Dictionary<string, string> {
+                    ["Message.Text"] = messageText
+                });
 
             // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
             // A ModelState failure returns to Page (200-OK) and doesn't redirect.
             response.EnsureSuccessStatusCode();
             Assert.Null(response.Headers.Location?.OriginalString);
-        }
-        #endregion
-
-        [Fact]
-        public async Task Post_DeleteMessageHandler_ReturnsRedirectToRoot()
-        {
-            // Arrange
-            var recId = 1;
-            var content = await Utilities.GetRequestContentAsync(_client, "/", new Dictionary<string, string>());
-
-            //Act
-            var response = await _client.PostAsync($"?id={recId}&handler=DeleteMessage", content);
-
-            // Assert
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/", response.Headers.Location.OriginalString);
         }
 
         [Fact]
         public async Task Post_AnalyzeMessagesHandler_ReturnsRedirectToRoot()
         {
             // Arrange
-            var content = await Utilities.GetRequestContentAsync(_client, "/", new Dictionary<string, string>());
+            var defaultPage = await _client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
-            var response = await _client.PostAsync("?handler=AnalyzeMessages", content);
+            var response = await _client.SendAsync(
+                (IHtmlFormElement)content.QuerySelector("form[id='analyze']"),
+                (IHtmlButtonElement)content.QuerySelector("button[id='analyzeBtn']"));
 
             // Assert
+            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.Equal("/", response.Headers.Location.OriginalString);
         }
