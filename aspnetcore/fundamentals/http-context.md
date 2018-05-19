@@ -1,13 +1,15 @@
 ---
-title: Accessing HttpContext in .NET Core
+title: Accessing HttpContext in ASP.NET Core
 author: coderandhiker
-ms.author: riande
+description: Learn how to access HttpContext in ASP.NET Core.
 manager: wpickett
-description: Learn how to access HttpContext using .NET Core
+ms.author: riande
+ms.custom: mvc
 ms.date: 05/22/2018
-ms.topic: article
 ms.prod: aspnet-core
-uid: fundamentals/http-context
+ms.technology: aspnet
+ms.topic: article
+uid: fundamentals/httpcontext
 ---
 # Use IHttpContextAccessor to manage HttpContext
 
@@ -56,7 +58,7 @@ public class MyCustomMiddleware
 
 ## Use HttpContext from custom components
 
-For other framework and custom components that need access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container.  The dependency injection container will supply the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
+For other framework and custom components that need access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container. The dependency injection container will supply the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -93,7 +95,7 @@ public class UserRepository : IUserRepository
 
 ## Work with libraries and ported code
 
-Registering IHttpContextAccessor in the application startup using the built-in dependency injection framework is the preferred approach to accessing HttpContext.  In scenarios where it is not feasible to refactor to this approach, it is possible to simulate the behavior of `System.Web.HttpContext` from ASP.NET 4.x.
+Registering IHttpContextAccessor in the application startup using the built-in dependency injection framework is the preferred approach to accessing HttpContext. In scenarios where it is not feasible to refactor to this approach, it is possible to simulate the behavior of `System.Web.HttpContext` from ASP.NET 4.x.
 
 Register `IHttpContextAccessor` as a dependency in the `ConfigureServices` method.
 
