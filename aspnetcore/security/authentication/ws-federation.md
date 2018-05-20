@@ -108,6 +108,8 @@ By default, the new middleware:
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 
+Use the [AddWsFederation(AuthenticationBuilder, String, String, Action&lt;WsFederationOptions&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.wsfederationextensions.addwsfederation#Microsoft_Extensions_DependencyInjection_WsFederationExtensions_AddWsFederation_Microsoft_AspNetCore_Authentication_AuthenticationBuilder_System_String_System_Action_Microsoft_AspNetCore_Authentication_WsFederation_WsFederationOptions__) overload to register the [WsFederationHandler](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationhandler) using the given authentication scheme, display name, and options configuration.
+
 ### Log in with WS-Federation
 
 Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
