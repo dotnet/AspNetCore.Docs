@@ -34,7 +34,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 ### _CookieConsentPartial.cshtml partial view
 
-The following code shows the *_CookieConsentPartial.cshtml* partial view:
+The *_CookieConsentPartial.cshtml* partial view:
 
 
 This partial:
