@@ -51,7 +51,7 @@ Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment
 dotnet publish --configuration Release --runtime ubuntu.16.04-x64
 ```
 
-Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, FTP).
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, FTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
 
 Test the app:
 

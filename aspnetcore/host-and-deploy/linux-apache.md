@@ -24,10 +24,10 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 
 ## Publish the app
 
-Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) in Release configuration for the CentOS 7 runtime (`centos.7-x64`). Copy the contents of the *bin/Release/netcoreapp2.0/centos.7-x64/publish* folder to the server using SCP, FTP, or other file transfer method.
+Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) in Release configuration for the CentOS 7 runtime (`centos.7-x64`). Copy the contents of the *bin/Release/netcoreapp2.0/centos.7-x64/publish* folder to the server using SCP, FTP, or other file transfer method. It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
 
 > [!NOTE]
-> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server. 
+> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
 
 ## Configure a proxy server
 
@@ -150,7 +150,6 @@ sudo systemctl enable httpd
 ## Monitoring the app
 
 Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`.  However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
-
 
 ### Create the service file
 
