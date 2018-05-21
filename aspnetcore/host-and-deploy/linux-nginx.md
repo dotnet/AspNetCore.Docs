@@ -57,12 +57,12 @@ Test the app:
 
 1. From the command line, run the app: `dotnet <app_assembly>.dll`.
 1. In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux locally.
- 
+
 ## Configure a reverse proxy server
 
 A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core app.
 
-### Why use a reverse proxy server?
+### Use a reverse proxy server
 
 Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
