@@ -93,7 +93,7 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 
 ## Next steps
 
-See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
+See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The application reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD
