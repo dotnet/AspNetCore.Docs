@@ -15,12 +15,7 @@ uid: security/app-secrets
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
 
-::: moniker range="<= aspnetcore-1.1"
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/app-secrets/samples/1.1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-::: moniker-end
-::: moniker range=">= aspnetcore-2.0"
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/app-secrets/samples/2.1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-::: moniker-end
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/app-secrets/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 This document explains techniques for storing and retrieving sensitive data during the development of an ASP.NET Core app. You should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development or test mode. You can store and protect Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
@@ -31,7 +26,7 @@ Environment variables are used to avoid storage of app secrets in code or in loc
 ::: moniker range="<= aspnetcore-1.1"
 Configure the reading of environment variable values by calling [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) in the `Startup` constructor:
 
-[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=10)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=10)]
 ::: moniker-end
 
 Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
@@ -81,7 +76,7 @@ The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. 
 
 Install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package in your ASP.NET Core project:
 
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
+[!code-xml[](app-secrets/samples/1.x/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 
 Execute the following command in a command shell to validate the tool installation:
 
@@ -120,10 +115,10 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile. To use user secrets, define a `UserSecretsId` element within a `PropertyGroup` of the *.csproj* file. The value of `UserSecretsId` is arbitrary, but is unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-xml[](app-secrets/samples/1.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](app-secrets/samples/1.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
-[!code-xml[](app-secrets/samples/2.1/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](app-secrets/samples/2.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 ::: moniker-end
 
 > [!TIP]
@@ -176,34 +171,39 @@ Open a command shell, and execute the following command:
 
 ## Access a secret
 
-::: moniker range=">= aspnetcore-2.0"
-The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If your project targets .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
-
-As of ASP.NET Core 2.0, the user secrets configuration source is automatically added in development mode. An explicit call to [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets#Microsoft_Extensions_Configuration_UserSecretsConfigurationExtensions_AddUserSecrets__1_Microsoft_Extensions_Configuration_IConfigurationBuilder_), in the `Startup` class, is unnecessary.
-::: moniker-end
-
 ::: moniker range="<= aspnetcore-1.1"
 The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. Install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
 
-Add the user secrets configuration source to the `Startup` constructor:
+Add the user secrets configuration source with a call to [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets) in the `Startup` constructor:
 
-[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=5-8)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=5-8)]
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
+The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If your project targets the .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+
+In ASP.NET Core 2.0 or later, the user secrets configuration source is automatically added in development mode when the project calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) to initialize a new instance of the host with preconfigured defaults. `CreateDefaultBuilder` calls [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets) when the [EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname) is [Development](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development):
+
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
+
+When `CreateDefaultBuilder` isn't called during host construction, add the user secrets configuration source with a call to [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets) in the `Startup` constructor:
+
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=5-8)]
 ::: moniker-end
 
 User secrets can be retrieved via the `Configuration` API:
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=23)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=23)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
-[!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 ::: moniker-end
 
 ## String replacement with secrets
 
 Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
 
-[!code-json[](app-secrets/samples/2.1/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 A more secure approach is to store the password as a secret. For example:
 
@@ -213,15 +213,15 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Replace the password in *appsettings.json* with a placeholder. In the following example, `{0}` is used as the placeholder to form a [Composite Format String](/dotnet/standard/base-types/composite-formatting#composite-format-string).
 
-[!code-json[](app-secrets/samples/2.1/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
 The secret's value can be injected into the placeholder to complete the connection string:
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=23-25)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=23-25)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
-[!code-csharp[](app-secrets/samples/2.1/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-16)]
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-16)]
 ::: moniker-end
 
 ## List the secrets
