@@ -17,7 +17,7 @@ Media Formatters in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
-This tutorial shows how support additional media formats in ASP.NET Web API.
+This tutorial shows how to support additional media formats in ASP.NET Web API.
 
 ## Internet Media Types
 

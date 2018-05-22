@@ -176,9 +176,15 @@ Open a command shell, and execute the following command:
 
 ## Access a secret
 
-The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If targeting .NET Core 1.x or .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+::: moniker range=">= aspnetcore-2.0"
+The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If your project targets .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+
+As of ASP.NET Core 2.0, the user secrets configuration source is automatically added in development mode. An explicit call to [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets#Microsoft_Extensions_Configuration_UserSecretsConfigurationExtensions_AddUserSecrets__1_Microsoft_Extensions_Configuration_IConfigurationBuilder_), in the `Startup` class, is unnecessary.
+::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
+The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. Install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+
 Add the user secrets configuration source to the `Startup` constructor:
 
 [!code-csharp[](app-secrets/samples/1.1/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=5-8)]
