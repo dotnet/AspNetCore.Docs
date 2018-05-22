@@ -39,11 +39,16 @@ Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment
 Copy the ASP.NET Core app to the server using whatever tool integrates into the organization's workflow (for example, SCP, FTP). Test the app, for example:
 
 * From the command line, run `dotnet <app_assembly>.dll`.
-* In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux. 
- 
+* In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux.
+
 ## Configure a reverse proxy server
 
 A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core app.
+
+::: moniker range=">= aspnetcore-2.0"
+> [!NOTE]
+> Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+::: moniker-end
 
 ### Why use a reverse proxy server?
 
