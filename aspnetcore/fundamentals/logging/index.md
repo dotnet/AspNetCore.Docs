@@ -582,7 +582,7 @@ Here are some third-party logging frameworks that work with ASP.NET Core:
 
 * [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
 
-* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client-side events in your server-side log.
+* [JSNLog](https://github.com/mperdeck/jsnlog) - logs JavaScript exceptions and other client-side events in your server-side log.
 
 * [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
 
