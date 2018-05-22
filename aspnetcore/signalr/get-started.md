@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/09/2018
+ms.date: 05/22/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
