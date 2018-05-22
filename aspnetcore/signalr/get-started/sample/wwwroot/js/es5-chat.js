@@ -1,6 +1,11 @@
-﻿"use strict";
+﻿// To use the following code sample:
+// In Pages\Index.cshtml,
+// comment line #26: "<script src="~/js/chat.js"></script>"
+// uncomment line #27: "<script src="~/js/es5-chat.js"></script>"
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+"use strict";
+
+var connection = new signalR.HubConnection("/chathub", { logger: signalR.LogLevel.Information });
 
 connection.on("ReceiveMessage", function (user, message) {
     var encodedMsg = user + " says " + message;
@@ -13,11 +18,11 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
     connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.error(err.toString());
+        return console.error;
     });
     event.preventDefault();
 });
 
 connection.start().catch(function (err) {
-    return console.error(err.toString());
+    return console.error;
 });
