@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RPCC.Data;
+using RPauth.Data;
 
-namespace RPCC
+namespace RPauth
 {
+    #region snippet1
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -19,27 +20,17 @@ namespace RPCC
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services 
+        // to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var checkConsentNeeded = Configuration["CheckNotConsentNeeded"];
-            bool bConverted = bool.TryParse(checkConsentNeeded, out bool bcheckConsentNotNeeded);
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies 
                 // is needed for a given request.
-                // CheckConsentNeeded set via configuration for demo purposes only.         
-                options.CheckConsentNeeded = context => !bcheckConsentNotNeeded;
+                options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            #region snippet1
-            // The Tempdata provider cookie is not essential. Make it essential
-            // so Tempdata is functional when tracking is disabled.
-            services.Configure<CookieTempDataProviderOptions>(options => {
-                options.Cookie.IsEssential = true;
-            });
-            #endregion
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -47,9 +38,12 @@ namespace RPCC
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
+        // This method gets called by the runtime. Use this method to configure the 
+        // HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -68,7 +62,9 @@ namespace RPCC
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
             app.UseMvc();
         }
     }
+    #endregion
 }
