@@ -8,6 +8,8 @@ Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce 
 
 You should be an experienced ASP.NET developer (200-300 level). You don't need to know anything about Azure, as we'll cover that in this introduction. This guide may also be useful for DevOps engineers who are more focused on operations than development.
 
+This guide targets Windows developers. However, Linux and macOS is fully supported by .NET Core. To adapt this guide for Linux/macOS, watch for callouts for Linux/macOS differences.
+
 ### What this guide doesn't cover
 
 This guide is focused on an end-to-end continuous deployment experience for .NET developers. It will not be an exhaustive guide to all things Azure, nor will it focus extensively on .NET APIs for Azure services. The emphasis is all around continuous integration, deployment, monitoring, and debugging. Near the end of the guide we will make some recommendations for next steps, which will include some suggestions for Azure platform services that will be useful for ASP.NET developers.
