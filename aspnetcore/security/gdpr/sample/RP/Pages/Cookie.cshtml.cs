@@ -15,6 +15,7 @@ namespace RPCC.Pages
         {
         }
 
+        #region snippet1
         public IActionResult OnPostCreateEssentialAsync()
         {
             HttpContext.Response.Cookies.Append(Constants.EssentialSec, 
@@ -25,6 +26,7 @@ namespace RPCC.Pages
 
             return RedirectToPage("./Index");
         }
+        #endregion
 
         public IActionResult OnPostCreateAsync()
         {

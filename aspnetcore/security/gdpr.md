@@ -73,6 +73,12 @@ The Tempdata provider cookie is not essential. If tracking is disabled, the Temp
 
 [!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet1)]
 
+## Essential cookies
+
+If tracking is disabled, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
+
+[!code-csharp[Main](gdpr/sample/RP/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
+
 ## Additional Resources
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/en-us/trustcenter/Privacy/GDPR)
