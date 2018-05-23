@@ -37,7 +37,7 @@ You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Ngi
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-We recommend using Kestrel with a reverse proxy server unless Kestrel is only exposed to an internal network.
+We recommend using Kestrel with a reverse proxy server if your application is Internet facing, however direct use of Kestrel without a proxy is a supported scenario.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
