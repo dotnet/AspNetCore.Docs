@@ -70,7 +70,7 @@ The following sample:
 - Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when the sliding expiration is continuously renewed.
 - Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
 - Sets the cache priority to `CacheItemPriority.NeverRemove`. 
-- Sets a [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
+- Set [PostEvictionDelegate] (https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.postevictiondelegate), which is called after items are removed from the cache. The callback runs in a different thread than the code that removes the entry from the cache.
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_et&highlight=14-20)]
 
