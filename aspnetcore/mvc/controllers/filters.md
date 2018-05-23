@@ -62,7 +62,7 @@ Synchronous filters that can run code both before and after their pipeline stage
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleActionFilter.cs?name=snippet1)]
 
-Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterType*ExecutionDelegate delegate which executes the filter's pipeline stage. For example, `ActionExecutionDelegate` calls the action method, and you can execute code before and after you call it.
+Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterType*ExecutionDelegate delegate which executes the filter's pipeline stage. For example, `ActionExecutionDelegate` calls the action method or next action filter, and you can execute code before and after you call it.
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleAsyncActionFilter.cs?highlight=6,8-10,13)]
 
@@ -168,7 +168,7 @@ If you have the same 3 Action filters shown in the preceding example but set the
 | 5 | Controller | 1  | `OnActionExecuted` |
 | 6 | Method | 0  | `OnActionExecuted` |
 
-The `Order` property trumps scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. Fir built-in filters, scope determines order unless you set `Order` to a non-zero value.
+The `Order` property trumps scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless you set `Order` to a non-zero value.
 
 ## Cancellation and short circuiting
 

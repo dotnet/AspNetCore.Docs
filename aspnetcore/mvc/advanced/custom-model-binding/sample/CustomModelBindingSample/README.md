@@ -1,6 +1,6 @@
 # Custom Model Binding Demo
 
-Test `ByteArrayModelBinder` by running the app and POSTing a base64-encoded string to the `ImageController` endpoint (`/api/image/`). Specify the file and filename proparties in the request body as form-data (using [Postman](https://www.getpostman.com/) or a similar tool). You can use [this sample string](Base64String.txt). The result is saved in the *wwwroot/images/upload* folder with the filename specified.
+Test `ByteArrayModelBinder` by running the app and POSTing a base64-encoded string to the `ImageController` endpoint (`/api/image/`). Specify the file and filename properties in the request body as form-data (using [Postman](https://www.getpostman.com/) or a similar tool). You can use [this sample string](Base64String.txt). The result is saved in the *wwwroot/images/upload* folder with the filename specified.
 
 To test the custom binding example, try the following endpoints:
 
