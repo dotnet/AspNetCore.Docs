@@ -19,12 +19,26 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 
 ## Prerequisites
 
-1. Server running CentOS 7 with a standard user account with sudo privilege
-2. ASP.NET Core app
+1. Server running CentOS 7 with a standard user account with sudo privilege.
+1. Install the .NET Core runtime on the server.
+   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
+   1. Select the latest non-preview runtime from the list under **Runtime**.
+   1. Select and follow the instructions for CentOS/Oracle.
+1. An existing ASP.NET Core app.
 
-## Publish the app
+## Publish and copy over the app
 
-Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) in Release configuration for the CentOS 7 runtime (`centos.7-x64`). Copy the contents of the *bin/Release/netcoreapp2.0/centos.7-x64/publish* folder to the server using SCP, FTP, or other file transfer method. It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
+Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (*bin/Release/netcoreapp2.x/publish*) that can run on the server:
+
+```console
+dotnet publish --configuration Release
+```
+
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
+
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
 
 > [!NOTE]
 > Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.

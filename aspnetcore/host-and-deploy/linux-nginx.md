@@ -15,7 +15,7 @@ uid: host-and-deploy/linux-nginx
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server.
+This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
 > [!NOTE]
 > For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
@@ -29,18 +29,18 @@ This guide:
 
 ## Prerequisites
 
-1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege
+1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
 1. Install the .NET Core runtime on the server.
    1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
    1. Select the latest non-preview runtime from the list under **Runtime**.
    1. Select and follow the instructions for Ubuntu that match the Ubuntu version of the server.
-1. An existing ASP.NET Core app
+1. An existing ASP.NET Core app.
 
-## Copy over the app
+## Publish and copy over the app
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a directory (*bin/Release/netcoreapp2.x/publish*) that can run on the server:
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (*bin/Release/netcoreapp2.x/publish*) that can run on the server:
 
 ```console
 dotnet publish --configuration Release
@@ -49,6 +49,9 @@ dotnet publish --configuration Release
 The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
 
 Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
+
+> [!NOTE]
+> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
 
 Test the app:
 
