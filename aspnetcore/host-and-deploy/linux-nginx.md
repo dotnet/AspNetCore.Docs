@@ -5,7 +5,7 @@ description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forw
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2018
+ms.date: 05/22/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -30,28 +30,25 @@ This guide:
 ## Prerequisites
 
 1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege
+1. Install the .NET Core runtime on the server.
+   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
+   1. Select the latest non-preview runtime from the list under **Runtime**.
+   1. Select and follow the instructions for Ubuntu that match the Ubuntu version of the server.
 1. An existing ASP.NET Core app
 
 ## Copy over the app
 
-Configure the app for a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
+Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-Specify the RID, `ubuntu.16.04-x64` in the project file (*.csproj*):
-
-```xml
-<PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RuntimeIdentifier>ubuntu.16.04-x64</RuntimeIdentifier>
-</PropertyGroup>
-```
-
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a self-contained directory that can run on the server:
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a directory (*bin/Release/netcoreapp2.x/publish*) that can run on the server:
 
 ```console
-dotnet publish --configuration Release --runtime ubuntu.16.04-x64
+dotnet publish --configuration Release
 ```
 
-Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, FTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
+
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
 
 Test the app:
 
