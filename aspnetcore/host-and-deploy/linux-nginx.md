@@ -1,11 +1,11 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
-description: Describes how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
+description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2018
+ms.date: 05/22/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -15,10 +15,10 @@ uid: host-and-deploy/linux-nginx
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 Server.
+This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
 > [!NOTE]
-> For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
+> For Ubuntu 14.04, *supervisord* is recommended as a solution for monitoring the Kestrel process. *systemd* isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 This guide:
 
@@ -29,23 +29,40 @@ This guide:
 
 ## Prerequisites
 
-1. Access to an Ubuntu 16.04 Server with a standard user account with sudo privilege
-1. An existing ASP.NET Core app
+1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
+1. Install the .NET Core runtime on the server.
+   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
+   1. Select the latest non-preview runtime from the list under **Runtime**.
+   1. Select and follow the instructions for Ubuntu that match the Ubuntu version of the server.
+1. An existing ASP.NET Core app.
 
-## Copy over the app
+## Publish and copy over the app
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the dev environment to package an app into a self-contained directory that can run on the server.
+Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-Copy the ASP.NET Core app to the server using whatever tool integrates into the organization's workflow (for example, SCP, FTP). Test the app, for example:
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
 
-* From the command line, run `dotnet <app_assembly>.dll`.
-* In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux. 
- 
+```console
+dotnet publish --configuration Release
+```
+
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
+
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
+
+> [!NOTE]
+> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
+
+Test the app:
+
+1. From the command line, run the app: `dotnet <app_assembly>.dll`.
+1. In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux locally.
+
 ## Configure a reverse proxy server
 
 A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core app.
 
-### Why use a reverse proxy server?
+### Use a reverse proxy server
 
 Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
@@ -94,20 +111,28 @@ Additional configuration might be required for apps hosted behind proxy servers 
 
 ### Install Nginx
 
+Use `apt-get` to install Nginx. The installer creates a *systemd* init script that runs Nginx as daemon on system startup. 
+
 ```bash
-sudo apt-get install nginx
+sudo -s
+nginx=stable # use nginx=development for latest development version
+add-apt-repository ppa:nginx/$nginx
+apt-get update
+apt-get install nginx
 ```
 
-> [!NOTE]
-> If optional Nginx modules will be installed, building Nginx from source might be required.
+The Ubuntu Personal Package Archive (PPA) is maintained by volunteers and isn't distributed by [nginx.org](https://nginx.org/). For more information, see [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
-Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
+> [!NOTE]
+> If optional Nginx modules are required, building Nginx from source might be required.
+
+Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
 sudo service nginx start
 ```
 
-Verify a browser displays the default landing page for Nginx.
+Verify a browser displays the default landing page for Nginx. The landing page is reachable at `http://<server_IP_address>/index.nginx-debian.html`.
 
 ### Configure Nginx
 
@@ -122,7 +147,7 @@ server {
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
-        proxy_set_header   Host $http_host;
+        proxy_set_header   Host $host;
         proxy_cache_bypass $http_upgrade;
     }
 }
@@ -144,6 +169,21 @@ With the preceding configuration file and default server, Nginx accepts public t
 > Failure to specify a proper [server_name directive](https://nginx.org/docs/http/server_names.html) exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
 
 Once the Nginx configuration is established, run `sudo nginx -t` to verify the syntax of the configuration files. If the configuration file test is successful, force Nginx to pick up the changes by running `sudo nginx -s reload`.
+
+To directly run the app on the server:
+
+1. Navigate to the app's directory.
+1. Run the app's executable: `./<app_executable>`.
+
+If a permissions error occurs, change the permissions:
+
+```console
+chmod u+x <app_executable>
+```
+
+If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm that port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
+
+When done testing the app, shut the app down with `Ctrl+C` at the command prompt.
 
 ## Monitoring the app
 
@@ -253,20 +293,6 @@ sudo ufw allow 443/tcp
 
 ### Securing Nginx
 
-The default distribution of Nginx doesn't enable SSL. To enable additional security features, build from source.
-
-#### Download the source and install the build dependencies
-
-```bash
-# Install the build dependencies
-sudo apt-get update
-sudo apt-get install build-essential zlib1g-dev libpcre3-dev libssl-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev
-
-# Download Nginx 1.10.0 or latest
-wget http://www.nginx.org/download/nginx-1.10.0.tar.gz
-tar zxf nginx-1.10.0.tar.gz
-```
-
 #### Change the Nginx response name
 
 Edit *src/http/ngx_http_header_filter_module.c*:
@@ -276,20 +302,9 @@ static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
 
-#### Configure the options and build
+#### Configure options
 
-The PCRE library is required for regular expressions. Regular expressions are used in the location directive for the ngx_http_rewrite_module. The http_ssl_module adds HTTPS protocol support.
-
-Consider using a web app firewall like *ModSecurity* to harden the app.
-
-```bash
-./configure
---with-pcre=../pcre-8.38
---with-zlib=../zlib-1.2.8
---with-http_ssl_module
---with-stream
---with-mail=dynamic
-```
+Configure the server with additional required modules. Consider using a web app firewall, such as [ModSecurity](https://www.modsecurity.org/), to harden the app.
 
 #### Configure SSL
 
@@ -331,3 +346,7 @@ sudo nano /etc/nginx/nginx.conf
 ```
 
 Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
+
+## Additional resources
+
+* [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
