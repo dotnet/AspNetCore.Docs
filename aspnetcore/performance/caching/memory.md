@@ -61,7 +61,8 @@ The following code calls [Get](/dotnet/api/microsoft.extensions.caching.memory.c
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 
-See [IMemoryCache methods](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) for a description of the cache methods.
+See [IMemoryCache Method] (/ dotnet / api / microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions Method] (/ dotnet / api / microsoft.extensions.caching.memory.cacheextensions) .
+For a description of the + cache method, see [IMemoryCache Method] (https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions Method] (https: // docs. microsoft.com/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions)
 
 ## Using MemoryCacheEntryOptions
 
