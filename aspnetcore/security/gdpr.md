@@ -19,7 +19,9 @@ ASP.NET Core provides APIs and templates to help meet some of the [UE General Da
 
 * The project templates include extension points and stubbed markup you can replace with your privacy and cookie use policy.
 * A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user has not consented to data collection and the app is set with [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_CookiePolicyOptions_CheckConsentNeeded) to `true`, non-essential cookies will not be sent to the browser.
-* Cookies can be marked as essential. Essential cookies are sent to the browser even when the user has not consented.
+* Cookies can be marked as essential. Essential cookies are sent to the browser even when the user has not consented and tracking is disabled.
+* [TempData and Session cookies](#tempdata) are not functional when tracking is disabled.
+* The [Identity manage](#pd) page provides a link to download and delete user data.
 
 The [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr) file for testing instructions.
 
@@ -29,9 +31,20 @@ The [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gd
 
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
-* The *_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper).
 * [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions?view=aspnetcore-2.0) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_CookiePolicyAppBuilderExtensions_UseCookiePolicy_Microsoft_AspNetCore_Builder_IApplicationBuilder_) are set in `Startup`.
+* The *_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper).
 * The *Pages/Privacy.cshtml* provides a page to detail your site's privacy policy. The *_CookieConsentPartial.cshtml* file generates a link to the privacy page.
+* For applications created with individual user accounts, the manage page provides links to download and delete [personal user data](#pd).
+
+### CookiePolicyOptions and UseCookiePolicy
+
+[CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions?view=aspnetcore-2.0) are initialized in the `Startup` class `ConfigureServices` method:
+
+[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
+
+[UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_CookiePolicyAppBuilderExtensions_UseCookiePolicy_Microsoft_AspNetCore_Builder_IApplicationBuilder_) is called in the `Startup` class `Configure` method:
+
+[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=49)]
 
 ### _CookieConsentPartial.cshtml partial view
 
@@ -45,37 +58,37 @@ This partial:
 * Provides an HTML `<p>` element to summarize your privacy and cookie use policy.
 * Provides a link to *Pages/Privacy.cshtml* where you can detail your site's privacy policy.
 
-### CookiePolicyOptions and UseCookiePolicy
+## Essential cookies
 
-[CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions?view=aspnetcore-2.0) are initialized in the `Startup` class `ConfigureServices` method:
+If consent has not been given, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
 
-[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
+[!code-csharp[Main](gdpr/sample/RP/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
 
-[UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_CookiePolicyAppBuilderExtensions_UseCookiePolicy_Microsoft_AspNetCore_Builder_IApplicationBuilder_) is called in the `Startup` class `Configure` method:
+<a name="tempdata"></a>
 
-[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=49)]
-
-## Personal data
-
-ASP.NET Core applications created with indiviual user accounts include code to download and delete personal data.
-
-Select the the user name and then select **Personal data**:
-
-![Manage personal data page](gdpr/_static/pd.png)
-
-To generate the `Account/Manage` code, see [Scaffold Identity](xref:security/authentication/scaffold-identity).
-
-## Tempdata provider cookie is not essential
+## Tempdata provider and session state cookies are not essential
 
 The [Tempdata provider](xref:fundamentals/app-state#tempdata) cookie is not essential. If tracking is disabled, the Tempdata provider is not functional. To enable the Tempdata provider when tracking is disabled, mark the TempData cookie as essential in `ConfigureServices`:
 
 [!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet1)]
 
-## Essential cookies
+[Session state](xref:fundamentals/app-state) cookies are not essential. Session state is not functional when tracking is disabled.
 
-If tracking is disabled, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
+<a name="pd"></a>
 
-[!code-csharp[Main](gdpr/sample/RP/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
+## Personal data
+
+ASP.NET Core applications created with individual user accounts include code to download and delete personal data.
+
+Select the user name and then select **Personal data**:
+
+![Manage personal data page](gdpr/_static/pd.png)
+
+Notes:
+
+* To generate the `Account/Manage` code, see [Scaffold Identity](xref:security/authentication/scaffold-identity).
+* Delete and download only impact the default identity data. Apps the create custom user data must be extended to delete/download the custom user data. GitHub issue [How to add/delete custom user data to Identity](https://github.com/aspnet/Docs/issues/6226) tracks a proposed article on creating custom/deleting/downloading custom user data. If you'd like to see that topic prioritized, leave a thumbs up reaction in the issue.
+* Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/b4fc72c944e0589a7e1f076794d7e5d8dcf163bf/src/EF/IdentityUserContext.cs#L152).
 
 ## Additional Resources
 
