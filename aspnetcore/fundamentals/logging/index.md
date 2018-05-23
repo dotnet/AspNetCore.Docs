@@ -578,21 +578,22 @@ The provider only works when your project runs in the Azure environment. It has 
 
 ## Third-party logging providers
 
-Here are some third-party logging frameworks that work with ASP.NET Core:
+Third-party logging frameworks that work with ASP.NET Core:
 
-* [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
+* [elmah.io](https://elmah.io/) ([GitHub repo](https://github.com/elmahio/Elmah.Io.Extensions.Logging))
+* [JSNLog](http://jsnlog.com/) ([GitHub repo](https://github.com/mperdeck/jsnlog))
+* [Loggr](http://loggr.net/) ([GitHub repo](https://github.com/imobile3/Loggr.Extensions.Logging))
+* [NLog](http://nlog-project.org/) ([GitHub repo](https://github.com/NLog/NLog.Extensions.Logging))
+* [Serilog](https://serilog.net/) ([GitHub repo](https://github.com/serilog/serilog-extensions-logging))
 
-* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client-side events in your server-side log.
+Some third-party frameworks can perform [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
-* [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
+Using a third-party framework is similar to using one of the built-in providers:
 
-* [NLog](https://github.com/NLog/NLog.Extensions.Logging) - provider for the NLog library
+1. Add a NuGet package to your project.
+1. Call an extension method on `ILoggerFactory`.
 
-* [Serilog](https://github.com/serilog/serilog-extensions-logging) - provider for the Serilog library
-
-Some third-party frameworks can do [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
-
-Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on `ILoggerFactory`. For more information, see each framework's documentation.
+For more information, see each framework's documentation.
 
 ## Azure log streaming
 
