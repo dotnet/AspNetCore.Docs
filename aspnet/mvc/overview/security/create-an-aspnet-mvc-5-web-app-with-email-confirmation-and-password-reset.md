@@ -57,7 +57,7 @@ You generally want to prevent new users from posting any data to your web site b
 
 Although this tutorial only shows how to add email notification through [SendGrid](http://sendgrid.com/), you can send email using SMTP and other mechanisms (see [additional resources](#addRes)).
 
-1. In the Package Manager Console, enter the following the following command: 
+1. In the Package Manager Console, enter the following command: 
 
     [!code-console[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample1.cmd)]
 2. Go to the [Azure SendGrid sign up page](https://go.microsoft.com/fwlink/?linkid=271033&clcid=0x409) and register for a free SendGrid account. Configure SendGrid by adding code similar to the following in *App_Start/IdentityConfig.cs*:
@@ -103,7 +103,7 @@ Create a `Views\Shared\Info.cshtml` file and add the following razor markup:
 
 [!code-cshtml[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample8.cshtml)]
 
-Add the [Authorize attribute](https://msdn.microsoft.com/library/system.web.mvc.authorizeattribute(v=vs.118).aspx) to the `Contact` action method of the Home controller. You can use click on the **Contact** link to verify anonymous users don't have access and authenticated users do have access.
+Add the [Authorize attribute](https://msdn.microsoft.com/library/system.web.mvc.authorizeattribute(v=vs.118).aspx) to the `Contact` action method of the Home controller. You can click on the **Contact** link to verify anonymous users don't have access and authenticated users do have access.
 
 [!code-csharp[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample9.cs?highlight=1)]
 
@@ -143,7 +143,7 @@ Update the Register method to use the new helper:
 
 [!code-csharp[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample15.cs?highlight=17)]
 
-Update the Login method to resend the password when if the user account has not been confirmed:
+Update the Login method to resend the password if the user account has not been confirmed:
 
 [!code-csharp[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample16.cs?highlight=20)]
 
@@ -154,7 +154,7 @@ You can combine local and social accounts by clicking on your email link. In the
 
 ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image5.png)
 
-Click on the **Manage** link. Note the 0 external (social logins) associated with this account.
+Click on the **Manage** link. Note the **External Logins: 0** associated with this account.
 
 ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image6.png)
 

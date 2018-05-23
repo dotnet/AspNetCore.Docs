@@ -5,7 +5,7 @@ description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2018
+ms.date: 05/17/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -46,6 +46,8 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 ```json
 ["value1","value2"]
 ```
+
+If using Internet Explorer, you'll be prompted to save a *values.json* file.
 
 ### Add a model class
 
