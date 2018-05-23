@@ -90,6 +90,28 @@ Notes:
 * Delete and download only impact the default identity data. Apps the create custom user data must be extended to delete/download the custom user data. GitHub issue [How to add/delete custom user data to Identity](https://github.com/aspnet/Docs/issues/6226) tracks a proposed article on creating custom/deleting/downloading custom user data. If you'd like to see that topic prioritized, leave a thumbs up reaction in the issue.
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/b4fc72c944e0589a7e1f076794d7e5d8dcf163bf/src/EF/IdentityUserContext.cs#L152).
 
+## Encryption at rest
+
+Some databases and storage mechanisms allow for encryption at rest. Encryption at rest:
+
+* Encrypts stored data automatically.
+* Encrypts without configuration, programming, or other work for the software that accesses the data.
+* Is the easiest and safest option.
+* Lets the database manage keys and encryption.
+
+For example:
+
+* Microsoft SQL and Azure SQL provide [Transparent Data Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-2017) (TDE).
+* [SQL Azure encrypts the database by default](https://azure.microsoft.com/en-us/updates/newly-created-azure-sql-databases-encrypted-by-default/)
+* [Azure Blobs, Files, Table, and Queue Storage are encrypted by default](https://azure.microsoft.com/en-us/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
+
+For databases that don't provide built-in encryption at rest you may be able to use disk encryption to provide the same protection. For example:
+
+* [Bitlocker for windows server](https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
+* Linux:
+  * [eCryptfs](https://launchpad.net/ecryptfs)
+  * [EncFS](https://github.com/vgough/encfs).
+
 ## Additional Resources
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/en-us/trustcenter/Privacy/GDPR)
