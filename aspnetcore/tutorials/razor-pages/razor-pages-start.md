@@ -54,7 +54,7 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range="= aspnetcore-2.0"
 
 ## Prerequisites
 
