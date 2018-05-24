@@ -28,7 +28,7 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 The sample app is provided in two versions:
 
 * Web Host &ndash; The Web Host is useful for hosting web apps. The example code shown in this topic is from the Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
-* Generic Host &ndash; The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic. When running the Generic Host sample in [Visual Studio Code](https://code.visualstudio.com/), set the **console** value of the console configuration in *.vscode/launch.json* to either `externalTerminal` or `integratedTerminal`. Use of the `internalConsole` is incompatible with console keystroke input that the app uses to enqueue background work items.
+* Generic Host &ndash; The Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
 
 ::: moniker-end
 

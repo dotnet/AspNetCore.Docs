@@ -59,7 +59,7 @@ namespace BackgroundTasksSample
                 await host.WaitForShutdownAsync();
             }
         }
-        
+
         private static void StartMonitorLoop(IHost host)
         {
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
@@ -79,8 +79,6 @@ namespace BackgroundTasksSample
 
             while (!cancellationToken.IsCancellationRequested)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-
                 var keyStroke = Console.ReadKey();
 
                 if (keyStroke.Key == ConsoleKey.W)
@@ -92,8 +90,6 @@ namespace BackgroundTasksSample
 
                         for (int delayLoop = 0; delayLoop < 3; delayLoop++)
                         {
-                            cancellationToken.ThrowIfCancellationRequested();
-
                             backgroundTaskLogger.LogInformation(
                                 $"Queued Background Task {guid} is running. {delayLoop}/3");
                             await Task.Delay(TimeSpan.FromSeconds(5), token);
