@@ -41,6 +41,7 @@ In this section, you'll complete the following tasks:
 1. Create a memorable name for the new team project. Enter a unique string in the textbox.
 2. Select the **Git** radio button to enable source control with Git.
 3. Click the **Continue** button. Wait for your project to be created.
+4. Note the name of the team project, as it's needed to build the release definition.
 
 ## Configure access to your GitHub repository
 
@@ -54,7 +55,36 @@ In this section, you'll complete the following tasks:
 ## Create a build definition
 
 1. Select **ASP.NET Core** from the list of build definition templates. Click the **Apply** button.
-2. A build definition appears with a list of tasks to be executed.
+2. The **Tasks** tab displays the tasks necessary to complete the ASP.NET Core build. Notice that the first four tasks are calling into the .NET Core CLI.
+3. Click the **Triggers** tab, and check the **Enable continuous integration** checkbox. Any time code is pushed to the *master* branch, the build is triggered as a result of this change.
+4. Click the **Save & queue** button. The build definition is saved, and a modal dialog appears.
+5. Select *Hosted VS2017* from the **Agent queue** drop-down, and click the **Save & queue** button. The build process has been triggered.
+6. Click the build number link to view the build's progress.
+7. Upon completion, the build has produced a *.zip* file containing the assets to be published. The release definition, to be created in the next section, is responsible for deploying those assets to Azure.
+
+## Create a release definition
+
+1. Click the **Releases** tab within the **Build and Release** page of the VSTS team project.
+2. Click the **New definition** button.
+3. Click the **Azure App Service Deployment** template, and click the **Apply** button.
+
+## Configure the release environment
+
+1. The release definition's **Pipeline** designer page appears. Click the existing **Environment 1** box. A blade appears with the environment's details. Replace the default name in the **Environment name** textbox with **Production**.
+2. Click the **Tasks** tab.
+3. Select the subscription, from the **Azure subscription** drop-down, under which the web app was deployed. Click the **Authorize** button to configure the required Azure service endpoint.
+4. Once authorization succeeds, select *Web App* from the **App type** drop-down.
+5. Select *mywebapp<unique_id>* from the **App service name** drop-down.
+6. Click the **Save** button. Enter a comment, if desired, and click the **Save** button.
+
+## Configure the release artifact
+
+1. Click the **Add artifact** box in the **Artifacts** box of the **Pipeline** tab.
+2. Select the *Build* option from the **Source type** section.
+3. Select the team project from the **Project** drop-down.
+4. Select the build definition which was created in the previous section. This makes the association between the release definition and build definition. It allows the release definition to access any artifacts produced by the build definition.
+5. Select *Latest* from the **Default version** drop-down. This option causes the latest build's artifacts to deploy.
+6. Keep the default **Source alias** value, and click the **Add** button.
 
 ## Summary
 
