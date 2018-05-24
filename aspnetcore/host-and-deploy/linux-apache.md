@@ -19,15 +19,29 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 
 ## Prerequisites
 
-1. Server running CentOS 7 with a standard user account with sudo privilege
-2. ASP.NET Core app
+1. Server running CentOS 7 with a standard user account with sudo privilege.
+1. Install the .NET Core runtime on the server.
+   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
+   1. Select the latest non-preview runtime from the list under **Runtime**.
+   1. Select and follow the instructions for CentOS/Oracle.
+1. An existing ASP.NET Core app.
 
-## Publish the app
+## Publish and copy over the app
 
-Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) in Release configuration for the CentOS 7 runtime (`centos.7-x64`). Copy the contents of the *bin/Release/netcoreapp2.0/centos.7-x64/publish* folder to the server using SCP, FTP, or other file transfer method.
+Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
+
+```console
+dotnet publish --configuration Release
+```
+
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
+
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/aspnetcore/hellomvc*).
 
 > [!NOTE]
-> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server. 
+> Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
 
 ## Configure a proxy server
 
@@ -38,6 +52,11 @@ A proxy server is one which forwards client requests to another server instead o
 Because requests are forwarded by reverse proxy, use the Forwarded Headers Middleware from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
 When using any type of authentication middleware, the Forwarded Headers Middleware must run first. This ordering ensures that the authentication middleware can consume the header values and generate correct redirect URIs.
+
+::: moniker range=">= aspnetcore-2.0"
+> [!NOTE]
+> Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+::: moniker-end
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -152,7 +171,6 @@ sudo systemctl enable httpd
 ## Monitoring the app
 
 Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`.  However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
-
 
 ### Create the service file
 

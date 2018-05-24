@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information as app secret
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/16/2018
+ms.date: 05/23/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -43,7 +43,7 @@ The Secret Manager tool stores sensitive data during the development of an ASP.N
 
 ## How the Secret Manager tool works
 
-The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a [JSON](https://json.org/) configuration file in a system-protected user profile folder on the local machine:
+The Secret Manager tool abstracts away the implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a JSON configuration file in a system-protected user profile folder on the local machine:
 
 # [Windows](#tab/windows)
 
@@ -72,9 +72,18 @@ Don't write code that depends on the location or format of data saved with the S
 ::: moniker range="<= aspnetcore-2.0"
 ## Install the Secret Manager tool
 
-The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1. For .NET Core SDK 2.0 and earlier, tool installation is necessary.
+The Secret Manager tool is bundled with the .NET Core CLI as of .NET Core SDK 2.1.300. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
 
-Install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package in your ASP.NET Core project:
+> [!TIP]
+> Run `dotnet --version` from a command shell to see the installed .NET Core SDK version number.
+
+A warning is displayed if the .NET Core SDK being used includes the tool:
+
+```console
+The tool 'Microsoft.Extensions.SecretManager.Tools' is now included in the .NET Core SDK. Information on resolving this warning is available at (https://aka.ms/dotnetclitools-in-box).
+```
+
+Install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) NuGet package in your ASP.NET Core project. For example:
 
 [!code-xml[](app-secrets/samples/1.x/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=13-14)]
 

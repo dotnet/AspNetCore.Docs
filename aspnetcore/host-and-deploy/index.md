@@ -17,9 +17,9 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 
 * Publish the app to a folder on the hosting server.
 * Set up a process manager that starts the app when requests arrive and restarts the app after it crashes or the server reboots.
-* Set up a reverse proxy that forwards requests to the app.
+* If configuration of a reverse proxy is desired, set up a reverse proxy that forwards requests to the app.
 
-## Publish to a folder 
+## Publish to a folder
 
 The [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) CLI command compiles app code and copies the files needed to run the app into a *publish* folder. When deploying from Visual Studio, the [dotnet publish](/dotnet/core/tools/dotnet-publish) step happens automatically before the files are copied to the deployment destination.
 
@@ -46,7 +46,9 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) web server, [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#when-to-use-kestrel-with-a-reverse-proxy).
+If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) web server, [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
+
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
