@@ -69,6 +69,7 @@ In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId
 
 Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
 
+::: moniker range="<= aspnetcore-2.0"
 ## Install the Secret Manager tool
 
 The Secret Manager tool is bundled with the .NET Core CLI as of .NET Core SDK 2.1.300. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
@@ -116,6 +117,7 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 
 > [!NOTE]
 > You must be in the same directory as the *.csproj* file to run tools defined in the *.csproj* file's `DotNetCliToolReference` elements.
+::: moniker-end
 
 ## Set a secret
 
