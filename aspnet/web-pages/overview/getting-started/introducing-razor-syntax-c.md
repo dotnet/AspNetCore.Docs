@@ -338,7 +338,6 @@ To convert the values to integers, you call the `AsInt` method. If the conversio
 
 The following table lists some common conversion and test methods for variables.
 
-
 :::row:::
     :::column:::
         <strong>Method</strong>

@@ -20,7 +20,7 @@ Windows authentication can be configured for ASP.NET Core apps hosted with IIS, 
 
 Windows authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is best suited to intranet environments in which users, client applications, and web servers belong to the same Windows domain.
 
-[Learn more about Windows authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
+[Learn more about Windows authentication and installing it for IIS](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
 
 ## Enable Windows authentication in an ASP.NET Core app
 
@@ -79,17 +79,20 @@ Launch the app to verify Windows authentication is working.
 
 ## Enable Windows authentication with HTTP.sys or WebListener
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 Although Kestrel doesn't support Windows authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program2x.cs?highlight=9-14)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
 
-* * *
+---
+
 ## Work with Windows authentication
 
 The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the disallowed and allowed configuration states of anonymous access.

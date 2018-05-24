@@ -3,6 +3,7 @@ title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.0.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 07/10/2017
 ms.prod: aspnet-core
@@ -34,7 +35,7 @@ For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core
 
 Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
 
-For more information, see [Runtime store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store)
+For more information, see [Runtime store](/dotnet/core/deploying/runtime-store)
 
 ## .NET Standard 2.0
 

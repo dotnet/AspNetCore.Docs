@@ -42,7 +42,8 @@ ASP.NET Core doesn't provide async logger methods because logging should be so f
 
 ## How to add providers
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
 To use a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
@@ -53,7 +54,8 @@ The default project template enables logging with the [CreateDefaultBuilder](/do
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
 To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
@@ -65,7 +67,8 @@ ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI)
 > [!NOTE]
 > The sample application for this article adds logging providers in the `Configure` method of the `Startup` class. If you want to get log output from code that executes earlier, add logging providers in the `Startup` class constructor instead. 
 
-* * *
+---
+
 You'll find information about each [built-in logging provider](#built-in-logging-providers) and links to [third-party logging providers](#third-party-logging-providers) later in the article.
 
 ## Sample logging output
@@ -258,7 +261,8 @@ System.Exception: Item not found exception.
 
 ## Log filtering
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 You can specify a minimum log level for a specific provider and category or for all providers or all categories. Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored. 
 
 If you want to suppress all logs, you can specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
@@ -339,7 +343,8 @@ You can write code in a filter function to apply filtering rules. A filter funct
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.
 
 The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
@@ -356,7 +361,8 @@ If you want to use filtering to prevent all logs from being written for a partic
 
 The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It doesn't affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
 
-* * *
+---
+
 ## Log scopes
 
 You can group a set of logical operations within a *scope* in order to attach the same data to each log that's created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
@@ -367,7 +373,8 @@ A scope is an `IDisposable` type that's returned by the `ILogger.BeginScope<TSta
 
 The following code enables scopes for the console provider:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 In *Program.cs*:
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_Scopes&highlight=4)]
@@ -375,12 +382,14 @@ In *Program.cs*:
 > [!NOTE]
 > Configuring the `IncludeScopes` console logger option is required to enable scope-based logging. Configuration of `IncludeScopes` using *appsettings* configuration files will be available with the release of ASP.NET Core 2.1.
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 In *Startup.cs*:
 
 [!code-csharp[](index/sample/Startup.cs?name=snippet_Scopes&highlight=6)]
 
-* * *
+---
+
 Each log message includes the scoped information:
 
 ```
@@ -408,12 +417,14 @@ ASP.NET Core ships the following providers:
 
 The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 ```csharp
 logging.AddConsole()
 ```
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 ```csharp
 loggerFactory.AddConsole()
 ```
@@ -434,7 +445,8 @@ This code refers to the `Logging` section of the *appSettings.json* file:
 
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
-* * *
+---
+
 <a id="debug"></a>
 ### The Debug provider
 
@@ -482,37 +494,6 @@ A good way to collect and view logs is to use the [PerfView utility](https://www
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
 
 ![Perfview Additional Providers](index/_static/perfview-additional-providers.png)
-
-Capturing events on Nano Server requires some additional setup:
-
-* Connect PowerShell remoting to the Nano Server:
-
-  ```powershell
-  Enter-PSSession [name]
-  ```
-
-* Create an ETW session:
-
-  ```powershell
-  New-EtwTraceSession -Name "MyAppTrace" -LocalFilePath C:\trace.etl
-  ```
-
-* Add ETW providers for [CLR](/dotnet/framework/performance/clr-etw-providers), ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is `3ac73b97-af73-50e9-0822-5da4367920d0`. 
-
-  ```powershell
-  Add-EtwTraceProvider -Guid "{e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}" -SessionName MyAppTrace
-  Add-EtwTraceProvider -Guid "{3ac73b97-af73-50e9-0822-5da4367920d0}" -SessionName MyAppTrace
-  ```
-
-* Run the site and do whatever actions you want tracing information for.
-
-* Stop the tracing session when you're finished:
-
-  ```powershell
-  Stop-EtwTraceSession -Name "MyAppTrace"
-  ```
-
-The resulting *C:\trace.etl* file can be analyzed with PerfView as on other editions of Windows.
 
 <a id="eventlog"></a>
 ### The Windows EventLog provider
@@ -597,23 +578,22 @@ The provider only works when your project runs in the Azure environment. It has 
 
 ## Third-party logging providers
 
-Here are some third-party logging frameworks that work with ASP.NET Core:
+Third-party logging frameworks that work with ASP.NET Core:
 
-* [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
+* [elmah.io](https://elmah.io/) ([GitHub repo](https://github.com/elmahio/Elmah.Io.Extensions.Logging))
+* [JSNLog](http://jsnlog.com/) ([GitHub repo](https://github.com/mperdeck/jsnlog))
+* [Loggr](http://loggr.net/) ([GitHub repo](https://github.com/imobile3/Loggr.Extensions.Logging))
+* [NLog](http://nlog-project.org/) ([GitHub repo](https://github.com/NLog/NLog.Extensions.Logging))
+* [Serilog](https://serilog.net/) ([GitHub repo](https://github.com/serilog/serilog-extensions-logging))
 
-* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client-side events in your server-side log.
+Some third-party frameworks can perform [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
-* [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
+Using a third-party framework is similar to using one of the built-in providers:
 
-* [NLog](https://github.com/NLog/NLog.Extensions.Logging) - provider for the NLog library
+1. Add a NuGet package to your project.
+1. Call an extension method on `ILoggerFactory`.
 
-* [Serilog](https://github.com/serilog/serilog-extensions-logging) - provider for the Serilog library
-
-Some third-party frameworks can do [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
-
-Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on `ILoggerFactory`. For more information, see each framework's documentation.
-
-You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.
+For more information, see each framework's documentation.
 
 ## Azure log streaming
 

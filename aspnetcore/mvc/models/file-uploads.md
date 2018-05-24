@@ -42,7 +42,7 @@ In order to support file uploads, HTML forms must specify an `enctype` of `multi
 
 ![File upload form](file-uploads/_static/upload-form.png)
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using the [IFormFile](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.iformfile) interface. `IFormFile` has the following structure:
+The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using the [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) interface. `IFormFile` has the following structure:
 
 ```csharp
 public interface IFormFile
@@ -190,7 +190,7 @@ The default setting is `30000000`, which is approximately 28.6MB. The value can 
 </system.webServer>
 ```
 
-This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits\>](https://docs.microsoft.com/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits\>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 ### Null Reference Exception with IFormFile
 

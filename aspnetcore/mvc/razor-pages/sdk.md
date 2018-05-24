@@ -3,6 +3,7 @@ title: ASP.NET Core Razor SDK
 author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/12/2018
 ms.prod: asp.net-core
@@ -13,8 +14,6 @@ uid: mvc/razor-pages/sdk
 # ASP.NET Core Razor SDK
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-[!INCLUDE[](~/includes/2.1.md)]
 
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
@@ -60,7 +59,7 @@ The following properties and items are used to configure inputs and output to th
 | ------------                                  | -------------                                                                 |
 | RazorGenerate                                 | Item elements (*.cshtml* files) that are inputs to code generation targets. |
 | RazorCompile                                  | Item elements (.cs files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled in to the Razor assembly. |
-| RazorAssemblyAttribute                        | Item elements used to code generate attributes for the Razor assembly. For example:  <br />`<RazorAssemblyAttribute ` <br />  `Include="System.Reflection.AssemblyMetadataAttribute"`<br />`  _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
+| RazorTargetAssemblyAttribute                  | Item elements used to code generate attributes for the Razor assembly. For example:  <br />`<RazorAssemblyAttribute ` <br />  `Include="System.Reflection.AssemblyMetadataAttribute"`<br />`  _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
 | RazorEmbeddedResource                         | Item elements added as embedded resources to the generated Razor assembly |
 
 | Property                                      | Description                                                                   |

@@ -16,32 +16,38 @@ uid: fundamentals/index
 
 An ASP.NET Core application is a console app that creates a web server in its `Main` method:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
 The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
 `IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the app in HTTP.sys and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that hosts the app and begins listening for HTTP requests.
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
 The `Main` method uses `WebHostBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
 `WebHostBuilder` provides many optional methods, including `UseIISIntegration` for hosting in IIS and IIS Express and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that hosts the app and begins listening for HTTP requests.
 
-* * *
+---
+
 ## Startup
 
 The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for your app:
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=10&range=6-17)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 [!code-csharp[](../getting-started/sample/aspnetcoreapp/Program.cs?highlight=7&range=6-17)]
 
-* * *
+---
+
 The `Startup` class is where you define the request handling pipeline and where any services needed by the app are configured. The `Startup` class must be public and contain the following methods:
 
 ```csharp
@@ -73,7 +79,7 @@ The content root is the base path to any content used by the app, such as views,
 
 The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files.
 
-## Dependency Injection (Services)
+## Dependency injection (services)
 
 A service is a component that's intended for common consumption in an app. Services are made available through [dependency injection (DI)](xref:fundamentals/dependency-injection). ASP.NET Core includes a native **I**nversion **o**f **C**ontrol (IoC) container that supports [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) by default. You can replace the default native container if you wish. In addition to its loose coupling benefit, DI makes services available throughout your app (for example, [logging](xref:fundamentals/logging/index)).
 
@@ -95,11 +101,15 @@ ASP.NET Core includes a rich set of built-in middleware:
 
 For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
+## Initiate HTTP requests
+
+For information about using `IHttpClientFactory` to access `HttpClient` instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
+
 ## Environments
 
 Environments, such as "Development" and "Production", are a first-class notion in ASP.NET Core and can be set using environment variables.
 
-For more information, see [Work with multiple environments](xref:fundamentals/environments).
+For more information, see [Use multiple environments](xref:fundamentals/environments).
 
 ## Configuration
 
@@ -135,13 +145,13 @@ For more information, see [File Providers](xref:fundamentals/file-providers).
 
 Static files middleware serves static files, such as HTML, CSS, image, and JavaScript.
 
-For more information, see [Work with static files](xref:fundamentals/static-files).
+For more information, see [Static files](xref:fundamentals/static-files).
 
 ## Hosting
 
 ASP.NET Core apps configure and launch a *host*, which is responsible for app startup and lifetime management.
 
-For more information, see [Hosting](xref:fundamentals/hosting).
+For more information, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
 ## Session and application state
 
@@ -175,7 +185,7 @@ For more information, see [Request Features](xref:fundamentals/request-features)
 
 Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface.
 
-For more information, see [Background tasks with hosted services](xref:fundamentals/hosted-services).
+For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
 ## Open Web Interface for .NET (OWIN)
 

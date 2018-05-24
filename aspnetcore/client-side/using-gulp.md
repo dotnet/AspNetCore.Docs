@@ -262,7 +262,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 
 ![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
-For more information about IntelliSense, see [JavaScript IntelliSense](https://docs.microsoft.com/visualstudio/ide/javascript-intellisense).
+For more information about IntelliSense, see [JavaScript IntelliSense](/visualstudio/ide/javascript-intellisense).
 
 ## Development, staging, and production environments
 
@@ -321,7 +321,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
     Notice that the stylesheet links point to the unminified versions of the CSS files.
 
-For more information related to environments in ASP.NET Core, see [Work with multiple environments](../fundamentals/environments.md).
+For more information related to environments in ASP.NET Core, see [Use multiple environments](../fundamentals/environments.md).
 
 ## Task and module details
 

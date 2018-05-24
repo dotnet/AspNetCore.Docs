@@ -76,7 +76,7 @@ The default template uses a set of `<div>` elements to render a top navbar and t
 </button>
 ```
 
-It also includes the application name, which appears in the top left. The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element. You can see how the built-in About page appears using this template:
+It also includes the application name, which appears in the top left. The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element. You can see how the built-in About page appears using this template:
 
 ![about page](bootstrap/_static/about-page-wide.png)
 
@@ -141,7 +141,7 @@ The default button classes and their colors are shown in the figure below.
 
 ### Badges
 
-Badges refer to small, usually numeric callouts next to a navigation item. They can indicate a number of messages or notifications waiting, or the presence of updates. Specifying such badges is as simple as adding a <span> containing the text, with a class of "badge":
+Badges refer to small, usually numeric callouts next to a navigation item. They can indicate a number of messages or notifications waiting, or the presence of updates. Specifying such badges is as simple as adding a `<span>` containing the text, with a class of "badge":
 
 ![themed badges](bootstrap/_static/theme-badges.png)
 
@@ -153,7 +153,7 @@ You may need to display some kind of notification, alert, or error message to yo
 
 ### Navbars and menus
 
-Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of <ul> elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
+Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of `<ul>` elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
 
 ![themed tabstrips](bootstrap/_static/theme-tabstrips.png)
 

@@ -171,7 +171,7 @@ Open the *appsettings.json* file and add a connection string as shown in the fol
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
-The preceding connection string uses `ConnectRetryCount=0` to prevent [SQLClient](https://docs.microsoft.com/dotnet/framework/data/adonet/ef/sqlclient-for-the-entity-framework) from hanging.
+The preceding connection string uses `ConnectRetryCount=0` to prevent [SQLClient](/dotnet/framework/data/adonet/ef/sqlclient-for-the-entity-framework) from hanging.
 
 ### SQL Server Express LocalDB
 
@@ -311,7 +311,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 * The `async` keyword tells the compiler to:
 
   * Generate callbacks for parts of the method body.
-  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+  * Automatically create the [Task](/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 
@@ -327,7 +327,7 @@ Some things to be aware of when writing asynchronous code that uses EF Core:
 
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 
-For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async).
+For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async).
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 

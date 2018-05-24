@@ -24,10 +24,12 @@ There are 3 versions of this tutorial:
 
 ## Install Visual Studio and .NET Core
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!INCLUDE [](~/includes/net-core-prereqs.md)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
 * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
@@ -41,7 +43,8 @@ Run the installer and select the following workloads:
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
-* * *
+---
+
 ## Create a web app
 
 From Visual Studio, select  **File > New > Project**.
@@ -56,7 +59,6 @@ Complete the **New Project** dialog:
 * Tap **OK**
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
-
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -87,7 +89,7 @@ Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 <!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
 ![running app](start-mvc/_static/1.png)
 
-* Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
+* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 

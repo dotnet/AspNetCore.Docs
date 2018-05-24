@@ -161,7 +161,7 @@ The *webpack.config.js* file's `output.publicPath` property tells the middleware
 
 ## Hot Module Replacement
 
-Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the Webpack Dev Middleware service and the browser, which means changes are pushed to the browser.
+Think of Webpack's [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the Webpack Dev Middleware service and the browser, which means changes are pushed to the browser.
 
 ### Prerequisites
 
@@ -221,7 +221,7 @@ Tip: Routes are evaluated in the order in which they're configured. Consequently
 
 ## Creating a new project
 
-JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
@@ -234,11 +234,8 @@ A list of available SPA templates is displayed:
 | Templates                                 | Short Name | Language | Tags        |
 |:------------------------------------------|:-----------|:---------|:------------|
 | MVC ASP.NET Core with Angular             | angular    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Aurelia             | aurelia    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Knockout.js         | knockout   | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js            | react      | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
@@ -290,7 +287,7 @@ Using the Angular application as an example, two Jasmine test cases are already 
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Open the command prompt at the project root, and run the following command:
+Open the command prompt in the *ClientApp* directory. Run the following command:
 
 ```console
 npm test

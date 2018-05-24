@@ -574,10 +574,7 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
 1. Open the **ProductDetails.aspx** page. Add the **Async** attribute in the **Page** element and set it to **true**. This attribute tells ASP.NET to implement the IHttpAsyncHandler interface.
 
-
-~~~
-[!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.aspx)]
-~~~
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.aspx)]
 2. Add a Label at the bottom of the page to show the details of the threads running the page.
 
     [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample36.aspx)]

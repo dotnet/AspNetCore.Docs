@@ -100,13 +100,13 @@ When the environment is set to `Staging`, the following `Configure` method reads
 
 [!code-csharp[](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 
-The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Work with multiple environments](xref:fundamentals/environments).
+The environment is typically set to `Development`, `Staging`, or `Production`. For more information, see [Use multiple environments](xref:fundamentals/environments).
 
 Configuration considerations:
 
 * [IOptionsSnapshot](xref:fundamentals/configuration/options#reload-configuration-data-with-ioptionssnapshot) can reload configuration data when it changes.
 * Configuration keys are **not** case-sensitive.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to work with multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository. Learn more about [how to use multiple environments](xref:fundamentals/environments) and managing [safe storage of app secrets in development](xref:security/app-secrets).
 * For hierarchical config values specified in environment variables, a colon (`:`) may not work on all platforms. Double underscore (`__`) is supported by all platforms.
 * When interacting with the configuration API, a colon (`:`) works on all platforms.
 
@@ -223,13 +223,14 @@ key3=value_from_json_3
 
 ## CommandLine configuration provider
 
-The [CommandLine configuration provider](/aspnet/core/api/microsoft.extensions.configuration.commandline.commandlineconfigurationprovider) receives command-line argument key-value pairs for configuration at runtime.
+The [CommandLine configuration provider](/dotnet/api/microsoft.extensions.configuration.commandline.commandlineconfigurationprovider) receives command-line argument key-value pairs for configuration at runtime.
 
 [View or download the CommandLine configuration sample](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/index/sample/CommandLine)
 
 ### Setup and use the CommandLine configuration provider
 
-#### [Basic Configuration](#tab/basicconfiguration/)
+# [Basic Configuration](#tab/basicconfiguration/)
+
 To activate command-line configuration, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program.cs?highlight=18,21)]
@@ -258,7 +259,8 @@ To override configuration provided by other configuration providers with command
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program2.cs?range=11-16&highlight=1,5)]
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 Typical ASP.NET Core 2.x apps use the static convenience method `CreateDefaultBuilder` to build the host:
 
 [!code-csharp[](index/sample_snapshot//Program.cs?highlight=12)]
@@ -275,12 +277,14 @@ If all the preceding conditions are true, the command-line arguments are overrid
 
 ASP.NET Core 2.x app can use [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) instead of `CreateDefaultBuilder`. When using `WebHostBuilder`, manually set configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder). See the ASP.NET Core 1.x tab for more information.
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Create a [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder) and call the `AddCommandLine` method to use the CommandLine configuration provider. Calling the provider last allows the command-line arguments passed at runtime to override configuration set by the other configuration providers called earlier. Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
 
 [!code-csharp[](index/sample_snapshot//CommandLine/Program2.cs?highlight=11,15,19)]
 
-* * *
+---
+
 ### Arguments
 
 Arguments passed on the command line must conform to one of two formats shown in the following table:
@@ -311,7 +315,7 @@ Example command:
 dotnet run key1=value1 -key2=value2 --key3=value3 /key4=value4
 ```
 
-Note: If `-key1` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
+Note: If `-key2` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
 
 **Sequence of two arguments**
 
@@ -408,6 +412,10 @@ A *web.config* file is required when hosting the app in IIS or IIS Express. Sett
 
 To access configuration within `ConfigureServices` or `Configure` during startup, see the examples in the [Application startup](xref:fundamentals/startup) topic.
 
+## Adding configuration from an external assembly
+
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration).
+
 ## Access configuration in a Razor Page or MVC view
 
 To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](/dotnet/api/microsoft.extensions.configuration) and inject [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) into the page or view.
@@ -463,8 +471,8 @@ In an MVC view:
 ## Additional resources
 
 * [Options](xref:fundamentals/configuration/options)
-* [Work with Multiple Environments](xref:fundamentals/environments)
+* [Use multiple environments](xref:fundamentals/environments)
 * [Safe storage of app secrets in development](xref:security/app-secrets)
-* [Hosting in ASP.NET Core](xref:fundamentals/hosting)
+* [Host in ASP.NET Core](xref:fundamentals/host/index)
 * [Dependency Injection](xref:fundamentals/dependency-injection)
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration)

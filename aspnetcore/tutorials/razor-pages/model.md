@@ -3,6 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 07/27/2017
 ms.prod: aspnet-core
@@ -32,7 +33,7 @@ Add a connection string to the *appsettings.json* file.
 <a name="reg"></a>
 ###  Register the database context
 
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the [ConfigureServices method of the Startup class](xref:fundamentals/startup#the-startup-class) (*Startup.cs*):
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=3-5,7-9)]
 
@@ -54,7 +55,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, enter the following commands:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.3
 Add-Migration Initial
 Update-Database
 ```

@@ -21,7 +21,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ![Contextual menu](adding-controller/_static/add_controller.png)
 
-* Select **MVC Controller Class**
+* Select **Controller Class**
 * In the **Add New Item** dialog, enter **HelloWorldController**.
 
 ![Add MVC controller and name it](adding-controller/_static/ac.png)

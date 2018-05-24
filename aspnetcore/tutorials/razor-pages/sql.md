@@ -3,6 +3,7 @@ title: Work with SQL Server LocalDB and ASP.NET Core
 author: rick-anderson
 description: Explains working with SQL Server LocalDB and ASP.NET Core.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/07/2017
 ms.prod: aspnet-core

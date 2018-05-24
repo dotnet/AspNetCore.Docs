@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
-author: tdykstra
+author: rick-anderson
 description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
 manager: wpickett
 ms.author: tdykstra
@@ -188,7 +188,7 @@ For more information about EF Core, see the [Entity Framework Core documentation
 
 For information on how to deploy a web app, see [Host and deploy](xref:host-and-deploy/index).
 
-For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.microsoft.com/aspnet/core/).
+For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](xref:index).
 
 ## Acknowledgments
 

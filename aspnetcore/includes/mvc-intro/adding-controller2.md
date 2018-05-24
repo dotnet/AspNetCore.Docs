@@ -12,7 +12,7 @@ Run the app in non-debug mode and append "HelloWorld" to the path in the address
 
 ![Browser window showing an application response of This is my default action](../../tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
-MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](../../mvc/controllers/routing.md) used by MVC uses a format like this to determine what code to invoke:
+MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC uses a format like this to determine what code to invoke:
 
 `/[Controller]/[ActionName]/[Parameters]`
 
@@ -36,13 +36,13 @@ The preceding code:
 
 * Uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter.
 * Uses`HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). 
-* Uses [Interpolated Strings](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings).
+* Uses [Interpolated Strings](/dotnet/articles/csharp/language-reference/keywords/interpolated-strings).
 
 Run your app and browse to:
 
    `http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in  the URL. The MVC [model binding](../../mvc/models/model-binding.md) system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See [Model Binding](../../mvc/models/model-binding.md) for more information.
+(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in  the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](../../tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 

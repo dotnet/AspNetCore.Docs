@@ -10,7 +10,7 @@ ms.technology: aspnet
 ms.topic: article
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
-# Key encryption At rest in ASP.NET Core
+# Key encryption at rest in ASP.NET Core
 
 <a name="data-protection-implementation-key-encryption-at-rest"></a>
 

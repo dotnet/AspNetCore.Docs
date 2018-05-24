@@ -212,7 +212,7 @@ You can check whether a service is running in multiple different ways, using var
 
 By default, the Remote Agent Service listens on TCP port 80, at this URL:
 
-http://[<em>server name</em>]/MSDEPLOYAGENTSERVICE
+<http://servername.com/MSDEPLOYAGENTSERVICE>
 
 In most cases, you won't need to configure any additional firewall rules for the Remote Agent Service because web servers typically listen for HTTP requests on port 80. If you customized your installation to listen on a nonstandard port, you'll need to configure firewall exceptions as required.
 

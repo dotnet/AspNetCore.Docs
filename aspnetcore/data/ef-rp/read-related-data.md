@@ -97,7 +97,7 @@ Update the `OnGetAsync` method with the following code:
 
 The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
 
-Update *Views/Courses/Index.cshtml* with the following highlighted markup:
+Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
 [!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -245,6 +245,10 @@ Click on the **Select** link. The row style changes.
 Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
+
+Add `public int CourseID { get; set; }`
+
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_1&highlight=12)]
 
 Examine the updated query:
 
