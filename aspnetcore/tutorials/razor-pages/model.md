@@ -24,9 +24,9 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 Replace the contents of the `Movie` class with the following code:
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie21\Models\Movie1.cs?name=snippet)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
 
-The `[Column(TypeName = "decimal(18, 2)")]` DataAnnotation is required so Entity Framework Core can correctly map `Price` to currency in the database.
+The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 ## Scaffold the movie model
 
@@ -82,11 +82,7 @@ dotnet ef database update
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
-
-[!INCLUDE [model 4windows](~/includes/RP/model4Win.md)]
-
-[!INCLUDE [model 4](~/includes/RP/model4tbl.md)]
+The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 If you get the error:
 
@@ -157,7 +153,7 @@ The `Install-Package` command installs the tooling required to run the scaffoldi
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE [model 4windows](~/includes/RP/model4Win.md)]
 
