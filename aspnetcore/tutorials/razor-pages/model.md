@@ -22,9 +22,37 @@ In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **
 
 Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!INCLUDE [model 2](~/includes/RP/model2.md)]
+Replace the contents of the `Movie` class with the following code:
+
+[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie21\Models\Movie1.cs?name=snippet)]
+
+The `[Column(TypeName = "decimal(18, 2)")]` DataAnnotation is required so Entity Framework Core can correctly map `Price` to currency in the database.
 
 ## Scaffold the movie model
+
+In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
+
+Create a *Pages/Movies* folder:
+
+* In **Solution Explorer**, right click on the *Pages* folder > **Add** > **New Folder**.
+* Name the folder *Movies*
+
+In **Solution Explorer**, right click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+
+![Image from the previous instructions.](model/_static/sca.png)
+
+In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
+
+![Image from the previous instructions.](model/_static/add_scaffold.png)
+
+Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+
+* In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
+* In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.
+* In the **Data context class** drop down,  select **RazorPagesMovie.Models.RazorPagesMovieContext**
+* Select **Add**.
+
+![Image from the previous instructions.](model/_static/arp.png)
 
 <a name="pmc"></a>
 ## Perform initial migration
@@ -40,7 +68,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, enter the following commands:
 
-```powershell
+```PMC
 Add-Migration Initial
 Update-Database
 ```
@@ -48,12 +76,9 @@ Update-Database
 Alternatively, the following .NET Core CLI commands can be used:
 
 ```console
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet ef migrations add Initial
 dotnet ef database update
 ```
-
-The `Install-Package` command installs the tooling required to run the scaffolding engine.
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
@@ -63,10 +88,15 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 [!INCLUDE [model 4](~/includes/RP/model4tbl.md)]
 
+If you get the error:
+
+SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
+Login failed for user 'User-name'.
+
+You missed the [migrations step](#pmc).
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
-
 
 [!INCLUDE [model1](~/includes/RP/model1.md)]
 
