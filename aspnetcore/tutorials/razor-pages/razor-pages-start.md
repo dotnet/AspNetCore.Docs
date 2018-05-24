@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is recommended for web workloads in ASP.NET Core.
 manager: wpickett
 ms.author: riande
-ms.date: 12/22/2017
+ms.date: 5/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -13,6 +13,9 @@ uid: tutorials/razor-pages/razor-pages-start
 # Get started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+
+[!INCLUDE [](~/includes/RP/2.1/recommend2.1.md)]
 
 This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is the recommended way to build UI for web apps in ASP.NET Core.
 
