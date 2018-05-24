@@ -1,4 +1,4 @@
-﻿#if NEVER
+﻿#if AddAModel_first
 #region snippet
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +11,6 @@ namespace RazorPagesMovie.Models
         public string Title { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
-        [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
     }
 }

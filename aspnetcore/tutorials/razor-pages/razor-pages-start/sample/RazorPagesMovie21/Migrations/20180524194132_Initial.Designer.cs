@@ -10,7 +10,7 @@ using RazorPagesMovie.Models;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    [Migration("20180524042224_Initial")]
+    [Migration("20180524194132_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,8 +29,7 @@ namespace RazorPagesMovie.Migrations
 
                     b.Property<string>("Genre");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<decimal>("Price");
 
                     b.Property<DateTime>("ReleaseDate");
 

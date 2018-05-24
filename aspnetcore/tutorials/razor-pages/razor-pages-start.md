@@ -14,7 +14,6 @@ uid: tutorials/razor-pages/razor-pages-start
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-
 [!INCLUDE [](~/includes/RP/2.1/recommend2.1.md)]
 
 This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is the recommended way to build UI for web apps in ASP.NET Core.
