@@ -75,7 +75,7 @@ In this section, you'll complete the following tasks:
 3. Select the subscription, from the **Azure subscription** drop-down, under which the web app was deployed. Click the **Authorize** button to configure the required Azure service endpoint.
 4. Once authorization succeeds, select *Web App* from the **App type** drop-down.
 5. Select *mywebapp<unique_id>* from the **App service name** drop-down.
-6. Click the **Save** button. Enter a comment, if desired, and click the **Save** button.
+6. Click the **Save** button. A modal dialog appears. Enter a comment, if desired, and click the **OK** button.
 
 ## Configure the release artifact
 
@@ -85,6 +85,9 @@ In this section, you'll complete the following tasks:
 4. Select the build definition which was created in the previous section. This makes the association between the release definition and build definition. It allows the release definition to access any artifacts produced by the build definition.
 5. Select *Latest* from the **Default version** drop-down. This option causes the latest build's artifacts to deploy.
 6. Keep the default **Source alias** value, and click the **Add** button.
+7. Click the **Continuous deployment trigger** lightning bolt icon in the **Artifacts** box. Change the toggle button to *Enabled*. This change causes a new release each time the associated build produces new artifacts.
+8. Create a new build branch filter by clicking the **Add** button in the **Build branch filters** section. Select *Include* from the **Type** drop-down. Select *master* from the **Build branch** drop-down. With this filter, a release is triggered only for a successful build of the GitHub repository's *master* branch.
+9. Click the **Save** button to preserve changes made to the release definition. A modal dialog appears. Enter a comment, if desired, and click the **OK** button.
 
 ## Summary
 
