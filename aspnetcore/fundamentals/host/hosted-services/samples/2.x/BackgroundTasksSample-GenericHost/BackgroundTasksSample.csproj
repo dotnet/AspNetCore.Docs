@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.0-rtm-30722" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.1.0-rtm-30722" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.0-rtm-30722" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.0-rtm-30722" />
