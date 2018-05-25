@@ -93,12 +93,37 @@ Click the **OK** button on the **Configure Continuous Delivery** panel. A new VS
 
 ## Examine the VSTS DevOps pipeline
 
-<!-- TODO
-NOTES:
-A build definition was created with the name *mywebapp<unique_number> - CI*. A release definition was created with the name *mywebapp<unique_number> - CD*.
+### Build definition
 
-Upon completion, the build has produced a *.zip* file including the assets to be published. The release definition, to be created in the next section, deploys those assets to Azure.
--->
+A build definition was created with the name *mywebapp<unique_number> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
+
+<!-- TODO -->
+
+### Release definition
+
+A release definition was created with the name *mywebapp<unique_number> - CD*:
+
+![release definition overview](media/04/release-definition-overview.png)
+
+The two major components of the release definition are the **Artifacts** and the **Environments**. Clicking the box in the **Artifacts** section reveals the following panel:
+
+![release definition artifacts](media/04/release-definition-artifacts.png)
+
+The **Source (Build definition)** value represents the build definition to which this release definition is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for release to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release definition tasks:
+
+![release definition tasks](media/04/release-definition-tasks.png)
+
+The release definition consists of two tasks: *Deploy Azure App Service to Slot* and *Manage Azure App Service - Slot Swap*. Clicking the first task reveals the following task configuration:
+
+![release definition deploy task](media/04/release-definition-task1.png)
+
+The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox contains the path to the *.zip* file to be extracted and deployed to the *staging* slot of the *mywebapp14997* web app.
+
+Clicking the slot swap task reveals the following task configuration:
+
+![release definition slot swap task](media/04/release-definition-task2.png)
+
+As was seen in the previous task, the necessary subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
 ## Summary
 
