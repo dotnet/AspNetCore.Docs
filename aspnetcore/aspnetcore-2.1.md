@@ -1,5 +1,5 @@
 ---
-title: What's new in ASP.NET Core 2.01
+title: What's new in ASP.NET Core 2.1
 author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 manager: wpickett
@@ -9,6 +9,7 @@ ms.date: 5/29/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
+ms.custom: mvc
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
@@ -162,7 +163,7 @@ For more information, see [.NET Generic Host](xref:fundamentals/host/generic)
 
 ## Updated SPA templates
 
-In ASP.NET Core 2.1, the Single Page Application Templates for Angular, React, and React with Redux have been updated to account for changes in the architecture of each framework. 
+n ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux have been updated to use the standard project structures and build systems for each framework. The Angular template is now based on Angular CLI, and the React templates are now based on create-react-app.
 For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa)
 
 ## Microsoft.AspNetCore.App package
@@ -175,10 +176,6 @@ The `existing Microsoft.AspNetCore.All` meta-package will continue to be made av
 
 See [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion-for-asp.net-core-mvc). The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of the potential breaking changes and why the changes are an improvement for most users.
 
-## Other documentation updates for 2.0
-
-* TO DO add more
-
 ## Migrate from 2.0 to 2.1
 
 See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
@@ -186,5 +183,3 @@ See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
 ## Additional Information
 
 For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0).
-
-To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).
