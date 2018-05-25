@@ -29,7 +29,7 @@ namespace BackgroundTasksSample.Services
 
         private void DoWork(object state)
         {
-            _logger.LogInformation("1: Timed Background Service is working.");
+            _logger.LogInformation("Timed Background Service is working.");
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

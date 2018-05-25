@@ -15,10 +15,10 @@ namespace BackgroundTasksSample.Services
         private readonly ILogger _logger;
 
         public QueuedHostedService(IBackgroundTaskQueue taskQueue, 
-            ILoggerFactory loggerFactory)
+            ILogger<QueuedHostedService> logger)
         {
             TaskQueue = taskQueue;
-            _logger = loggerFactory.CreateLogger<QueuedHostedService>();
+            _logger = logger;
         }
 
         public IBackgroundTaskQueue TaskQueue { get; }

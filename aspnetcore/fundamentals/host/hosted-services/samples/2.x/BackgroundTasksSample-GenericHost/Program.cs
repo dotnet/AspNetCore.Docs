@@ -1,11 +1,10 @@
-using System;
-using System.Threading;
 using System.Threading.Tasks;
-using BackgroundTasksSample.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using BackgroundTasksSample.Services;
+using System.Threading;
 
 namespace BackgroundTasksSample
 {
@@ -53,52 +52,13 @@ namespace BackgroundTasksSample
                 await host.StartAsync();
 
                 // Monitor for new background queue work items
-                StartMonitorLoop(host);
+
+                // WORKS: var monitorLoop = new MonitorLoop(host);
+                var monitorLoop = new MonitorLoop();
+                monitorLoop.StartMonitorLoop();
 
                 // Wait for the host to shutdown
                 await host.WaitForShutdownAsync();
-            }
-        }
-
-        private static void StartMonitorLoop(IHost host)
-        {
-            var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
-            var backgroundTaskQueue = host.Services.GetRequiredService<IBackgroundTaskQueue>();
-            var backgroundTaskLogger = loggerFactory.CreateLogger<IBackgroundTaskQueue>();
-            var applicationLifetime = host.Services.GetRequiredService<IApplicationLifetime>();
-
-            // Run a console user input loop in a background thread
-            Task.Run(() => MonitorLoop(backgroundTaskQueue, backgroundTaskLogger, applicationLifetime.ApplicationStopping));
-        }
-
-        private static void MonitorLoop(IBackgroundTaskQueue backgroundTaskQueue, ILogger backgroundTaskLogger, CancellationToken cancellationToken)
-        {
-            Console.WriteLine();
-            Console.WriteLine("Tap W to add a work item to the background queue ...");
-            Console.WriteLine();
-
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                var keyStroke = Console.ReadKey();
-
-                if (keyStroke.Key == ConsoleKey.W)
-                {
-                    // Enqueue a background work item
-                    backgroundTaskQueue.QueueBackgroundWorkItem(async token =>
-                    {
-                        var guid = Guid.NewGuid().ToString();
-
-                        for (int delayLoop = 0; delayLoop < 3; delayLoop++)
-                        {
-                            backgroundTaskLogger.LogInformation(
-                                $"Queued Background Task {guid} is running. {delayLoop}/3");
-                            await Task.Delay(TimeSpan.FromSeconds(5), token);
-                        }
-
-                        backgroundTaskLogger.LogInformation(
-                            $"Queued Background Task {guid} is complete. 3/3");
-                    });
-                }
             }
         }
     }
