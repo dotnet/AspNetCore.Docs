@@ -162,6 +162,18 @@ ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. The n
 
 The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For additional details, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
 
+## Razor Pages search for Razor assets
+
+In 2.1, Razor Pages searche for Razor assets (such as layouts and partials) in these directorys in the listed order:
+
+1. Current Pages folder.
+1. */Pages/Shared/*
+1. */Views/Shared/*
+
+## Razor Pages in an area
+
+Razor Pages supports areas. To see an example of this, create a new Razor Pages web app with individual user accounts. A  Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+
 ## Potentially breaking changes
 
 See [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion). The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of the potential breaking changes and why the changes are an improvement for most users.
