@@ -6,9 +6,9 @@
 //
 // See Es5-chat.js for a Babel transpiled version of the following code:
 
-const connection = new signalR.HubConnection(
-    "/chathub",
-    { logger: signalR.LogLevel.Information });
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/chatHub")
+    .build();
 
 connection.on("ReceiveMessage", (user, message) => {
     const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
