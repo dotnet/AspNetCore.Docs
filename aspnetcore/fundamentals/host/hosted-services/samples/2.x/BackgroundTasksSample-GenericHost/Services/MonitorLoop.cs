@@ -1,28 +1,17 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-//using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using BackgroundTasksSample.Services;
 
-namespace BackgroundTasksSample
+namespace BackgroundTasksSample.Services
 {
     public class MonitorLoop
     {
         private readonly IBackgroundTaskQueue _taskQueue;
         private readonly ILogger _logger;
         private readonly CancellationToken _cancellationToken;
-/*
-        WORKS:
-        public MonitorLoop(IHost host)
-        {
-            _taskQueue = host.Services.GetService<IBackgroundTaskQueue>();
-            _logger = host.Services.GetService<ILogger<MonitorLoop>>();
-            var applicationLifetime = host.Services.GetRequiredService<IApplicationLifetime>();
-            _cancellationToken = applicationLifetime.ApplicationStopping;
-        }
-*/
+
         public MonitorLoop(IBackgroundTaskQueue taskQueue, ILogger<MonitorLoop> logger, IApplicationLifetime applicationLifetime)
         {
             _taskQueue = taskQueue;

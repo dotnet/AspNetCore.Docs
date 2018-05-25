@@ -28,6 +28,7 @@ namespace BackgroundTasksSample
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddLogging();
+                    services.AddSingleton<MonitorLoop>();
 
                     #region snippet1
                     services.AddHostedService<TimedHostedService>();
@@ -52,9 +53,7 @@ namespace BackgroundTasksSample
                 await host.StartAsync();
 
                 // Monitor for new background queue work items
-
-                // WORKS: var monitorLoop = new MonitorLoop(host);
-                var monitorLoop = new MonitorLoop();
+                var monitorLoop = host.Services.GetRequiredService<MonitorLoop>();
                 monitorLoop.StartMonitorLoop();
 
                 // Wait for the host to shutdown
