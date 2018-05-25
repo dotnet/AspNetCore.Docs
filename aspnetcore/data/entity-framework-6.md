@@ -89,3 +89,5 @@ This article has provided basic guidance for using Entity Framework 6 in an ASP.
 ## Additional resources
 
 * [Entity Framework - Code-Based Configuration](https://msdn.microsoft.com/data/jj680699.aspx)
+* [Link1](xref:to/nowhere)
+* [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
