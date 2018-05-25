@@ -9,7 +9,7 @@ Azure has multiple interfaces for provisioning and managing resources, such as t
 The following subscriptions are required:
 
 * Azure &mdash; If you don't have an account, [get a free trial](https://azure.microsoft.com/free/).
-* Visual Studio Team Services (VSTS) &mdash; If you don't have an account, [get started for free](https://go.microsoft.com/fwlink/?LinkId=307137).
+* Visual Studio Team Services (VSTS) &mdash; We'll create this in Chapter 4.
 * GitHub &mdash; If you don't have an account, [sign up for free](https://github.com/join).
 
 The following tools are required:
