@@ -7,12 +7,12 @@ In the previous chapter, you created a local Git repository containing the Simpl
 In this section, you'll complete the following tasks:
 
 * Publish the app's code to GitHub
-* Create a Team Project in VSTS
-* Configure access to your GitHub repository
+* Create a VSTS account
+* Create a team project in VSTS
 * Create a build definition
 * Create a release definition
 * Commit changes to GitHub and automatically deploy to Azure
-* Examine the VSTS CI/CD pipeline
+* Examine the VSTS DevOps pipeline
 
 ## Publish the app's code to GitHub
 
@@ -38,7 +38,7 @@ In this section, you'll complete the following tasks:
     ```
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
 
-## Prepare the web app for CI/CD
+## Configure the DevOps pipeline
 
 1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp<unique_number>/staging)* Web App.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
@@ -91,7 +91,7 @@ Click the **OK** button on the **Configure Continuous Delivery** panel. A new VS
 
 <!-- TODO -->
 
-## Examine the VSTS CI/CD pipeline
+## Examine the VSTS DevOps pipeline
 
 <!-- TODO
 NOTES:
