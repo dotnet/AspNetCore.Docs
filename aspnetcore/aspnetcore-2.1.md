@@ -136,7 +136,7 @@ For more information, see the [Announcement on GitHub](https://github.com/aspnet
 
 In ASP.NET Core 2.1, improved support for OpenAPI specification(previously known as **Swagger**)) has been added to Web API. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController] attribute has also been added as the way to opt-in to Web API-specific conventions and behaviors.
 
-For more information, see [Build wbe APIs with ASP.NET Core](xref:web-api)
+For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index)
 
 ## IHttpClientFactory
 
@@ -159,26 +159,27 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This Builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc).
 
-For more information, see [.NET Generic Host](xref:fundamentals/host/generic)
+For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host)
 
 ## Updated SPA templates
 
 n ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux have been updated to use the standard project structures and build systems for each framework. The Angular template is now based on Angular CLI, and the React templates are now based on create-react-app.
-For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa)
+For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
 
 ## Microsoft.AspNetCore.App package
 
-ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. The new meta-package differs from the existing meta-package in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](fundamentals/metapackage-app).
+ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. The new meta-package differs from the existing meta-package in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
 
 The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For additional details, see https://github.com/aspnet/Announcements/issues/287.
 
 ## Potentially breaking changes
 
-See [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion-for-asp.net-core-mvc). The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of the potential breaking changes and why the changes are an improvement for most users.
+See [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion). The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of the potential breaking changes and why the changes are an improvement for most users.
 
 ## Migrate from 2.0 to 2.1
 
-See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
+<!-- This needs to be updated to the specific doc -->
+See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/index).
 
 ## Additional Information
 
