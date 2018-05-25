@@ -58,15 +58,15 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 
 ### On by default
 
-To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel will listen on https://localhost:5001 when a local development certificate is present. A certificate will be created:
+To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel will listen on `https://localhost:5001` when a local development certificate is present. A certificate will be created:
 
 * When the .NET Core SDK is installed.  Run `dotnet dev-certs https --trust`.
-* By manually set up using the new `dev-certs` tool. 
+* By manually set up using the new `dev-certs` tool.
 
 The project templates have updated to:
 
 * [Require HTTPS](xref:security/enforcing-ssl#require-https) by default.
-* Include HTTPS redirection and [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts).
+* Include [HTTPS redirection](xref:security/enforcing-ssl#require-https) and [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts).
 
 ### HTTPS redirection and enforcement
 
@@ -76,24 +76,14 @@ Use of HTTPS can be further enforced using [HTTP Strict Transport Security Proto
 
 ### Configuration for production
 
-In production, HTTPS must be explicitly configured. In 2.1 default configuration schema for configuring HTTPS for Kestrel has been added. Applications can be configured to use:
+In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Applications can be configured to use:
 
 * Multiple endpoints including the URLs.
 * The certificate to use for HTTPS either from a file on disk or from a certificate store.
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements:
-
-* The project templates include extension points and stubbed markup you can replace with your privacy and cookie use policy.
-* A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user has not consented to data collection and the app is set with [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_CookiePolicyOptions_CheckConsentNeeded) to `true`, non-essential cookies will not be sent to the browser.
-* Cookies can be marked as essential. Essential cookies are sent to the browser even when the user has not consented and tracking is disabled.
-* [TempData and Session cookies](xref:security/gdpr#tempdata) are not functional when tracking is disabled.
-* The [Identity manage](xref:security/gdpr#pd) page provides a link to download and delete user data.
-
-A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) file for testing instructions.
-
-For more information, see [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr)
+ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## MVC functional testing
 
@@ -163,14 +153,14 @@ For more information, see [.NET Generic Host](xref:fundamentals/host/generic-hos
 
 ## Updated SPA templates
 
-n ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux have been updated to use the standard project structures and build systems for each framework. The Angular template is now based on Angular CLI, and the React templates are now based on create-react-app.
+In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux have been updated to use the standard project structures and build systems for each framework. The Angular template is now based on Angular CLI, and the React templates are now based on create-react-app.
 For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
 
 ## Microsoft.AspNetCore.App package
 
 ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. The new meta-package differs from the existing meta-package in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
 
-The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For additional details, see https://github.com/aspnet/Announcements/issues/287.
+The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For additional details, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
 
 ## Potentially breaking changes
 
