@@ -1,4 +1,6 @@
-﻿#define DefaultBuilder // or any of: Limits UnixSocket FileDescriptor Port0
+﻿#define DefaultBuilder
+// or any of: Limits TCPSocket UnixSocket FileDescriptor Port0
+// TCPSocket UnixSocket FileDescriptor Limits require a PFX X.509 certificate
 
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +27,26 @@ namespace KestrelSample
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .Build();
+        #endregion
+#elif TCPSocket
+        #region snippet_TCPSocket
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseKestrel(options =>
+                {
+                    options.Listen(IPAddress.Loopback, 8000);
+                    options.Listen(IPAddress.Loopback, 8001, listenOptions =>
+                    {
+                        listenOptions.UseHttps("testCert.pfx", "testPassword");
+                    });
+                })
                 .Build();
         #endregion
 #elif UnixSocket

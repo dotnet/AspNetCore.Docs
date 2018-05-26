@@ -3,6 +3,7 @@ title: Use the Angular project template with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/21/2018
@@ -14,8 +15,12 @@ uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
 
+::: moniker range="= aspnetcore-2.0"
+
 > [!NOTE]
 > This documentation isn't about the Angular project template included in ASP.NET Core 2.0. It's about the newer Angular template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
+
+::: moniker-end
 
 The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular and the Angular CLI to implement a rich, client-side user interface (UI).
 
@@ -54,7 +59,8 @@ Now listening on: http://localhost:<port>
 
 Navigate to this URL in a browser.
 
-The app starts up an instance of the Angular CLI server in the background. A message similar to the following is logged: <em>NG Live Development Server is listening on localhost:&lt;otherport&gt;, open your browser on http://localhost:&lt;otherport&gt;/</em>. Ignore this message&mdash;it's <strong>not</strong> the URL for the combined ASP.NET Core and Angular CLI app.
+The app starts up an instance of the Angular CLI server in the background. A message similar to the following is logged: 
+*NG Live Development Server is listening on localhost:&lt;otherport&gt;, open your browser on http://localhost:&lt;otherport&gt;/*. Ignore this message&mdash;it's **not** the URL for the combined ASP.NET Core and Angular CLI app.
 
 ---
 
@@ -132,7 +138,7 @@ In the *Startup* class, *after* the line that configures `spa.Options.SourcePath
 
 [!code-csharp[](sample/AngularServerSideRendering/Startup.cs?name=snippet_Call_UseSpa&highlight=5-12)]
 
-In development mode, this code attempts to build the SSR bundle by running the script `build:ssr`, which is defined in *ClientApp\package.json*. This builds an Angular app named `ssr`, which isn't yet defined. 
+In development mode, this code attempts to build the SSR bundle by running the script `build:ssr`, which is defined in *ClientApp\package.json*. This builds an Angular app named `ssr`, which isn't yet defined.
 
 At the end of the `apps` array in *ClientApp/.angular-cli.json*, define an extra app with name `ssr`. Use the following options:
 
@@ -144,7 +150,7 @@ Add a new file called *tsconfig.server.json* inside *ClientApp/src* (alongside t
 
 [!code-json[](sample/AngularServerSideRendering/ClientApp/src/tsconfig.server.json)]
 
-This file configures Angular's AoT compiler to look for a module called `app.server.module`. Add this by creating a new file at *ClientApp/src/app/app.server.module.ts* (alongside the existing *app.module.ts*) containing the following: 
+This file configures Angular's AoT compiler to look for a module called `app.server.module`. Add this by creating a new file at *ClientApp/src/app/app.server.module.ts* (alongside the existing *app.module.ts*) containing the following:
 
 [!code-typescript[](sample/AngularServerSideRendering/ClientApp/src/app/app.server.module.ts)]
 
@@ -154,7 +160,7 @@ Recall that the new `ssr` entry in *.angular-cli.json* referenced an entry point
 
 [!code-typescript[](sample/AngularServerSideRendering/ClientApp/src/main.server.ts)]
 
-This file's code is what ASP.NET Core executes for each request when it runs the `UseSpaPrerendering` middleware that you added to the *Startup* class. It deals with receiving `params` from the .NET code (such as the URL being requested), and making calls to Angular SSR APIs to get the resulting HTML. 
+This file's code is what ASP.NET Core executes for each request when it runs the `UseSpaPrerendering` middleware that you added to the *Startup* class. It deals with receiving `params` from the .NET code (such as the URL being requested), and making calls to Angular SSR APIs to get the resulting HTML.
 
 Strictly-speaking, this is sufficient to enable SSR in development mode. It's essential to make one final change so that your app works correctly when published. In your app's main *.csproj* file, set the `BuildServerSideRenderer` property value to `true`:
 
