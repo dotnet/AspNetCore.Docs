@@ -1,10 +1,20 @@
 {
-    "iisSettings": {
-        "windowsAuthentication": true,
-        "anonymousAuthentication": false,
-        "iisExpress": {
-            "applicationUrl": "http://localhost:52171/",
-            "sslPort": 0
-        }
-    } // additional options trimmed
+  "iisSettings": {
+    "windowsAuthentication": true,
+    "anonymousAuthentication": false,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:52171/",
+      "sslPort": 0
+    }
+  }, 
+  "profiles": {
+    "WinAuth": {
+      "commandName": "Http.Sys",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:52172/"
+    }
+  }
 }
