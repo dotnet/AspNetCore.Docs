@@ -6,7 +6,7 @@ using System;
 using System.Security.Principal;
 using System.Text;
 
-namespace WebApplication9
+namespace WinAuth
 {
     public class Startup
     {
