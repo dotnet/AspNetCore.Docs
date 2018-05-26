@@ -76,6 +76,7 @@ Using Visual Studio or the .NET Core CLI, publish the app to the destination fol
 Learn more about [publishing to IIS](xref:host-and-deploy/iis/index).
 
 Launch the app to verify Windows authentication is working.
+
 >[!NOTE] If you receive the error "Failed to start monitoring changes to <location> because access is denied,” give read access to
 >`Authenticated Users` in the security tab of the publish directory. 
 
