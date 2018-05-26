@@ -58,7 +58,7 @@ The following properties and items are used to configure inputs and output to th
 | Items                                         | Description                                                                   |
 | ------------                                  | -------------                                                                 |
 | RazorGenerate                                 | Item elements (*.cshtml* files) that are inputs to code generation targets. |
-| RazorCompile                                  | Item elements (.cs files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled in to the Razor assembly. |
+| RazorCompile                                  | Item elements (.cs files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled into the Razor assembly. |
 | RazorTargetAssemblyAttribute                  | Item elements used to code generate attributes for the Razor assembly. For example:  <br />`<RazorAssemblyAttribute ` <br />  `Include="System.Reflection.AssemblyMetadataAttribute"`<br />`  _Parameter1="BuildSource" _Parameter2="https://docs.asp.net/">` |
 | RazorEmbeddedResource                         | Item elements added as embedded resources to the generated Razor assembly |
 
