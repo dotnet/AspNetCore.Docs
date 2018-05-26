@@ -12,11 +12,7 @@ namespace RazorPagesMovie.Pages
 
         public void OnGet()
         {
-            Message = "Your zzzcontact page.";
-            foreach (var cookie in Request.Cookies.Keys)
-            {
-                Response.Cookies.Delete(cookie);
-            }
+            Message = "Your contact page.";
         }
     }
 }
