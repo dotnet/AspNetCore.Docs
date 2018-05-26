@@ -87,6 +87,11 @@ To specify the CORS policy for a specific controller add the `[EnableCors]` attr
 
 [!code-csharp[](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=EnableOnController)]
 
+> [!NOTE]
+> Actions with a route defined by `[HttpGet]`, `[HttpPost]`, `[HttpHead]`, `[HttpPut]`, `[HttpDelete]` will not function as expected with `[EnableCors]` due to the way these attributes create Routes which restrict the Method specified in the name of the Attribute. Read more about [Action Constraints](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.0#understanding-iactionconstraint]. `[EnableCors]` must be used along with `[Route]` on the action, controller, or both.
+
+It is also possible to define routes using [HttpMethodRouteConstraint](https://github.com/aspnet/Routing/blob/dev/src/Microsoft.AspNetCore.Routing/Constraints/HttpMethodRouteConstraint.cs) when [defining non-attribute routes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing) to allow both the desired "regular" HTTP method, plus also the OPTIONS HTTP method. 
+
 ### Globally
 
 You can enable CORS globally for all controllers by adding the `CorsAuthorizationFilterFactory` filter to the global filter collection:
