@@ -16,7 +16,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range="= aspnetcore-2.0"
 
-We recommend you follow the [ASP.NET Core 2.1 version](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) of this tutorial. It's **much** easier to follow and covers more features.
+We recommend you follow the ASP.NET Core 2.1 version of this tutorial. It's **much** easier to follow and covers more features. Select **ASP.NET Core 2.1** in the version selector.
+
+![Version selector in TOC](razor-pages-start/_static/v21.png)
 
 ::: moniker-end
 
