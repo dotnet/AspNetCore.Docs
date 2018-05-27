@@ -10,6 +10,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+    #region snippet2
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesMovieContext _context;
@@ -71,4 +72,5 @@ namespace RazorPagesMovie.Pages.Movies
             return _context.Movie.Any(e => e.ID == id);
         }
     }
+    #endregion
 }

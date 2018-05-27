@@ -1,6 +1,6 @@
 The default template creates **RazorPagesMovie**, **Home**, **About** and **Contact** links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.
 
-![Home or Index page](../../tutorials/razor-pages/razor-pages-start/_static/home2.png)
+![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/home2.png)
 
 Test the links. The **RazorPagesMovie** and **Home** links go to the Index page. The **About** and **Contact** links go to the `About` and `Contact` pages, respectively.
 

@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range="= aspnetcore-2.0"
 
-We recommend you follow the [ASP.NET Core 2.1 version](xref:tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) of this tutorial. It's easier to follow and covers more features.
+We recommend you follow the [ASP.NET Core 2.1 version](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) of this tutorial. It's **much** easier to follow and covers more features.
 
  [view link#](#?view=aspnetcore-2.1)
 
@@ -42,7 +42,7 @@ There are three versions of this tutorial:
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
- ![new ASP.NET Core Web Application](razor-pages-start/_static/np2.1.png)
+ ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
 * Select **ASP.NET Core 2.1** in the dropdown, and then select **Web Application**.
 
  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.1.png)

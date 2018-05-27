@@ -23,9 +23,15 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
+::: moniker range="= aspnetcore-2.0"
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
+::: moniker-end
 
-Right click on a red squiggly line > ** Quick Actions and Refactorings**.
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
+::: moniker-end
+
+Right click on a red squiggly line > **Quick Actions and Refactorings**.
 
   ![Contextual menu shows **> Quick Actions and Refactorings**.](da1/qa.png)
 
@@ -35,7 +41,7 @@ Select `using System.ComponentModel.DataAnnotations;`
 
   Visual studio adds `using System.ComponentModel.DataAnnotations;`.
 
-[!INCLUDE [model1](../../includes/RP/da2.md)]
+[!INCLUDE [model1](~/includes/RP/da2.md)]
 
 > [!div class="step-by-step"]
 > [Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
