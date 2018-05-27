@@ -165,7 +165,7 @@ Within the `UserStore` class, you use the data access classes that you created t
 - **IUserLockoutStore**  
  The [IUserLockoutStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserlockoutstore-1) interface defines the methods you implement to store information about locking an account. It contains methods for tracking failed access attempts and lockouts.
 - **IQueryableUserStore**  
- The [IQueryableUserStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) interface defines the members implement to provide a queryable user store.
+ The [IQueryableUserStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) interface defines the members you implement to provide a queryable user store.
 
 You implement only the interfaces that are needed in your app. For example:
 
