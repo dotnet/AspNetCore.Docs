@@ -1,4 +1,4 @@
-﻿#define MovieDateRating
+﻿//#define MovieDateRating
 #if MovieDateRating
 using System;
 using System.ComponentModel.DataAnnotations;

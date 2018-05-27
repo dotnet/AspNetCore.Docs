@@ -38,6 +38,10 @@ There are three versions of this tutorial:
 
 [!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
+::: moniker range=">= aspnetcore-2.1"
+
+::: moniker-end
+
 ## Create a Razor web app
 
 * From the Visual Studio **File** menu, select **New** > **Project**.

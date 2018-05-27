@@ -80,8 +80,9 @@ dotnet ef database update
 
 Ignore the following warning message, you fix that in the next tutorial:
 
-Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+`Microsoft.EntityFrameworkCore.Model.Validation[30000]`
+
+      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.*
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
@@ -154,8 +155,9 @@ dotnet ef database update
 
 Ignore the following message:
 
-    Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'
+    `Microsoft.EntityFrameworkCore.Model.Validation[30000]`
+
+      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'*
 
 You fix that in the next tutorial.
 
