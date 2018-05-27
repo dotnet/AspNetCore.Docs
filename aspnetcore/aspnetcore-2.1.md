@@ -5,11 +5,11 @@ description: Learn about the new features in ASP.NET Core 2.1.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
+ms.custom: mvc
 ms.date: 5/29/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-ms.custom: mvc
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
