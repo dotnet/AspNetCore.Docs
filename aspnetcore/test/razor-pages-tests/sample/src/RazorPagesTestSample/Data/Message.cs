@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RazorPagesTestingSample.Data
+namespace RazorPagesTestSample.Data
 {
     #region snippet1
     public class Message

@@ -28,7 +28,7 @@ namespace RazorPagesProject.Tests.IntegrationTests
         [InlineData("/About")]
         [InlineData("/Privacy")]
         [InlineData("/Contact")]
-        public async Task Request_EndpointsReturnOKAndCorrectContentType(string url)
+        public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -37,7 +37,7 @@ namespace RazorPagesProject.Tests.IntegrationTests
             var response = await client.GetAsync(url);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
             Assert.Equal("text/html; charset=utf-8", 
                 response.Content.Headers.ContentType.ToString());
         }
@@ -45,7 +45,7 @@ namespace RazorPagesProject.Tests.IntegrationTests
 
         #region snippet2
         [Fact]
-        public async Task SecurePageRequiresAnAuthenticatedUser()
+        public async Task Get_SecurePageRequiresAnAuthenticatedUser()
         {
             // Arrange
             var client = _factory.CreateClient(

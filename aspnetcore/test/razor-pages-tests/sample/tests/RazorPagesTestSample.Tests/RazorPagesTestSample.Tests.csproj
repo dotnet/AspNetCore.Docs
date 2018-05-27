@@ -22,7 +22,7 @@
   </Target>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\RazorPagesTestingSample\RazorPagesTestingSample.csproj" />
+    <ProjectReference Include="..\..\src\RazorPagesTestSample\RazorPagesTestSample.csproj" />
   </ItemGroup>
 
   <ItemGroup>

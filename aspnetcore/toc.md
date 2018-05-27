@@ -194,7 +194,7 @@
 # [Test, debug, and troubleshoot](xref:test/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:test/integration-tests)
-## [Razor Pages testing](xref:test/razor-pages-tests)
+## [Razor Pages unit tests](xref:test/razor-pages-tests)
 ## [Test controllers](xref:mvc/controllers/testing)
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)

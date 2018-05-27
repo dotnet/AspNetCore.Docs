@@ -1,7 +1,7 @@
 ---
-title: Razor Pages unit and integration tests in ASP.NET Core
+title: Razor Pages unit tests in ASP.NET Core
 author: guardrex
-description: Learn how to create unit and integration tests for Razor Pages apps.
+description: Learn how to create unit tests for Razor Pages apps.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -11,23 +11,22 @@ ms.technology: aspnet
 ms.topic: article
 uid: test/razor-pages-tests
 ---
-# Razor Pages unit and integration tests in ASP.NET Core
+# Razor Pages unit tests in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-ASP.NET Core supports unit and integration testing of Razor Pages apps. Testing the data access layer (DAL), page models, and integrated page components helps ensure:
+ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access layer (DAL) and page models help ensure:
 
 * Parts of a Razor Pages app work independently and together as a unit during app construction.
 * Classes and methods have limited scopes of responsibility.
 * Additional documentation exists on how the app should behave.
 * Regressions, which are errors brought about by updates to the code, are found during automated building and deployment.
 
-This topic assumes that you have a basic understanding of Razor Pages apps, unit testing, and integration testing. If you're unfamiliar with Razor Pages apps or testing concepts, see the following topics:
+This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Integration tests](xref:test/integration-tests)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tests/razor-pages-tests/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -36,9 +35,9 @@ The sample project is composed of two apps:
 | App         | Project folder                        | Description |
 | ----------- | ------------------------------------- | ----------- |
 | Message app | *src/RazorPagesTestSample*            | Allows a user to add, delete one, delete all, and analyze messages. |
-| Test app    | *tests/RazorPagesTestSample.Tests*    | Used to test the message app.<ul><li>Unit tests: Data access layer (DAL), Index page model</li><li>Integration tests: Index page</li></ul> |
+| Test app    | *tests/RazorPagesTestSample.Tests*    | Used to unit test the message app: Data access layer (DAL) and Index page model. |
 
-The tests can be run using the built-in testing features of an IDE, such as [Visual Studio](https://www.visualstudio.com/vs/). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
+The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://www.visualstudio.com/vs/). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
 
 ```console
 dotnet test
@@ -52,9 +51,9 @@ The message app is a simple Razor Pages message system with the following charac
 * A message is described by the `Message` class (*Data/Message.cs*) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
 * The app contains a data access layer (DAL) in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
-* If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in testing.
+* If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in tests.
 
-&#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for testing with MSTest. This topic uses the [xUnit](https://xunit.github.io/) testing framework. Testing concepts and test implementations across different testing frameworks are similar but not identical.
+&#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.github.io/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
 Although the app doesn't use the [repository pattern](http://martinfowler.com/eaaCatalog/repository.html) and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design), [Implementing the Repository and Unit of Work Patterns in an ASP.NET MVC Application](/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application), and [Test controller logic](/aspnet/core/mvc/controllers/testing) (the sample implements the repository pattern).
 
@@ -62,15 +61,14 @@ Although the app doesn't use the [repository pattern](http://martinfowler.com/ea
 
 The test app is a console app inside the *tests/RazorPagesTestSample.Tests* folder.
 
-| Test app folder    | Description |
-| ------------------ | ----------- |
-| *IntegrationTests* | <ul><li>*IndexPageTests.cs* contains the integration tests for the Index page.</li><li>*TestFixture.cs* creates the test host to test the message app.</li></ul> |
-| *UnitTests*        | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
-| *Utilities*        | *Utilities.cs* contains the:<ul><li>`TestingDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test.</li><li>`GetRequestContentAsync` method used to prepare the `HttpClient` and content for requests that are sent to the message app during integration testing.</li></ul>
+| Test app folder | Description |
+| --------------- | ----------- |
+| *UnitTests*     | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
+| *Utilities*     | Contains the `TestingDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
 
-The test framework is [xUnit](https://xunit.github.io/). The object mocking framework is [Moq](https://github.com/moq/moq4). Integration tests are conducted using the ASP.NET Core Test Host.
+The test framework is [xUnit](https://xunit.github.io/). The object mocking framework is [Moq](https://github.com/moq/moq4).
 
-## Unit testing the data access layer (DAL)
+## Unit tests of the data access layer (DAL)
 
 The message app has a DAL with four methods contained in the `AppDbContext` class (*src/RazorPagesTestSample/Data/AppDbContext.cs*). Each method has one or two unit tests in the test app.
 
@@ -141,14 +139,14 @@ A similar test method, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNotFo
 
 [!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/UnitTests/DataAccessLayerTest.cs?name=snippet4)]
 
-## Unit testing the page model methods
+## Unit tests of the page model methods
 
-Another set of unit tests is responsible for testing page model methods. In the message app, the Index page models are found in the `IndexModel` class in *src/RazorPagesTestSample/Pages/Index.cshtml.cs*.
+Another set of unit tests is responsible for tests of page model methods. In the message app, the Index page models are found in the `IndexModel` class in *src/RazorPagesTestSample/Pages/Index.cshtml.cs*.
 
 | Page model method | Function |
-| ----------------- | -------- | 
+| ----------------- | -------- |
 | `OnGetAsync` | Obtains the messages from the DAL for the UI using the `GetMessagesAsync` method. |
-| `OnPostAddMessageAsync` | If the `ModelState` is valid, calls `AddMessageAsync` to add a message to the database. | 
+| `OnPostAddMessageAsync` | If the `ModelState` is valid, calls `AddMessageAsync` to add a message to the database. |
 | `OnPostDeleteAllMessagesAsync` | Calls `DeleteAllMessagesAsync` to delete all of the messages in the database. |
 | `OnPostDeleteMessageAsync` | Executes `DeleteMessageAsync` to delete a message with the `Id` specified. |
 | `OnPostAnalyzeMessagesAsync` | If one or more messages are in the database, calculates the average number of words per message. |
@@ -185,50 +183,12 @@ Other tests in this group create page model objects that include the `DefaultHtt
 
 [!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet4&highlight=11,26,29,32)]
 
-## Integration testing the app
-
-The integration tests focus on testing that the app's components work together. Integration tests are conducted using the ASP.NET Core Test Host. Full request-response lifecycle processing is tested. These tests assert that the page produces the correct status code and `Location` header, if set.
-
-An integration testing example from the sample checks the result of requesting the Index page of the message app (*tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
-
-There's no Arrange step. The `GetAsync` method is called on the `HttpClient` to send a GET request to the endpoint. The test asserts that the result is a 200-OK status code.
-
-Any POST request to the message app must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
-
-1. Make a request for the page.
-1. Parse the antiforgery cookie and request validation token from the response.
-1. Make the POST request with the antiforgery cookie and request validation token in place.
-
-The `Post_AddMessageHandler_ReturnsRedirectToRoot` test method:
-
-* Prepares a message and the `HttpClient`.
-* Makes a POST request to the app.
-* Checks the response is a redirect back to the Index page.
-
-`Post_AddMessageHandler_ReturnsRedirectToRoot ` method (*tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
-
-The `GetRequestContentAsync` utility method manages preparing the client with the antiforgery cookie and request verification token. Note how the method receives an `IDictionary` that permits the calling test method to pass in data for the request to encode along with the request verification token (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*):
-
-[!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet2&highlight=1-2,8-9,29)]
-
-Integration tests can also pass bad data to the app to test the app's response behavior. The message app limits message length to 200 characters (*src/RazorPagesTestSample/Data/Message.cs*):
-
-[!code-csharp[](razor-pages-tests/sample/src/RazorPagesTestSample/Data/Message.cs?name=snippet1&highlight=7)]
-
-The `Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong` test `Message` explicitly passes in text with 201 "X" characters. This results in a `ModelState` error. The POST doesn't redirect back to the Index page. It returns a 200-OK with a `null` `Location` header (*tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs*):
-
-[!code-csharp[](razor-pages-tests/sample/tests/RazorPagesTestSample.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3&highlight=7,16-17)]
-
-## See also
+## Additional resources
 
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Integration tests](xref:test/integration-tests)
 * [Test controllers](xref:mvc/controllers/testing)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
+* [Integration tests](xref:test/integration-tests)
 * [xUnit.net](https://xunit.github.io/)
 * [Getting started with xUnit.net (.NET Core/ASP.NET Core)](https://xunit.github.io/docs/getting-started-dotnet-core)
 * [Moq](https://github.com/moq/moq4)

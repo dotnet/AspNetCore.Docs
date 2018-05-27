@@ -4,9 +4,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using RazorPagesTestingSample.Data;
+using RazorPagesTestSample.Data;
 
-namespace RazorPagesTestingSample
+namespace RazorPagesTestSample
 {
     public class Program
     {
@@ -18,7 +18,6 @@ namespace RazorPagesTestingSample
             {
                 var services = scope.ServiceProvider;
                 var db = services.GetRequiredService<AppDbContext>();
-                var logger = services.GetRequiredService<ILogger<Program>>();
 
                 db.Database.EnsureCreated();
 
@@ -30,6 +29,7 @@ namespace RazorPagesTestingSample
                     }
                     catch (Exception ex)
                     {
+                        var logger = services.GetRequiredService<ILogger<Program>>();
                         logger.LogError(ex, $"An error occurred seeding the database. Error: {ex.Message}");
                     }
                 }

@@ -18,7 +18,6 @@ namespace RazorPagesProject
             {
                 var services = scope.ServiceProvider;
                 var db = services.GetRequiredService<ApplicationDbContext>();
-                var logger = services.GetRequiredService<ILogger<Program>>();
 
                 db.Database.EnsureCreated();
 
@@ -30,6 +29,7 @@ namespace RazorPagesProject
                     }
                     catch (Exception ex)
                     {
+                        var logger = services.GetRequiredService<ILogger<Program>>();
                         logger.LogError(ex, $"An error occurred seeding the database. Error: {ex.Message}");
                     }
                 }

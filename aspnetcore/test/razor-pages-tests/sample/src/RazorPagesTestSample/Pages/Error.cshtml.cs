@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorPagesTestingSample.Pages
+namespace RazorPagesTestSample.Pages
 {
     public class ErrorModel : PageModel
     {

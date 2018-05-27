@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
-using RazorPagesTestingSample.Pages;
-using RazorPagesTestingSample.Data;
+using RazorPagesTestSample.Pages;
+using RazorPagesTestSample.Data;
 
-namespace RazorPagesTestingSample.Tests.UnitTests
+namespace RazorPagesTestSample.Tests.UnitTests
 {
     public class IndexPageTests
     {

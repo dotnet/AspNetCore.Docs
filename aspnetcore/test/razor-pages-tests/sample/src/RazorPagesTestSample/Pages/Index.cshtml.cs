@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorPagesTestingSample.Data;
+using RazorPagesTestSample.Data;
 
-namespace RazorPagesTestingSample.Pages
+namespace RazorPagesTestSample.Pages
 {
     public class IndexModel : PageModel
     {

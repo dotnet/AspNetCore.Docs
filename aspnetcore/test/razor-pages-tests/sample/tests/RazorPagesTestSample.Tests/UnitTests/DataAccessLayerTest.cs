@@ -3,16 +3,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-using RazorPagesTestingSample.Data;
+using RazorPagesTestSample.Data;
 
-namespace RazorPagesTestingSample.Tests.UnitTests
+namespace RazorPagesTestSample.Tests.UnitTests
 {
     public class DataAccessLayerTest
     {
         [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()
         {
-            using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 // Arrange
                 var expectedMessages = AppDbContext.GetSeedingMessages();
@@ -33,7 +33,7 @@ namespace RazorPagesTestingSample.Tests.UnitTests
         [Fact]
         public async Task AddMessageAsync_MessageIsAdded()
         {
-            using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 // Arrange
                 var recId = 10;
@@ -51,7 +51,7 @@ namespace RazorPagesTestingSample.Tests.UnitTests
         [Fact]
         public async Task DeleteAllMessagesAsync_MessagesAreDeleted()
         {
-            using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 // Arrange
                 var seedMessages = AppDbContext.GetSeedingMessages();
@@ -69,7 +69,7 @@ namespace RazorPagesTestingSample.Tests.UnitTests
         [Fact]
         public async Task DeleteMessageAsync_MessageIsDeleted_WhenMessageIsFound()
         {
-            using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 #region snippet1
                 // Arrange
@@ -100,7 +100,7 @@ namespace RazorPagesTestingSample.Tests.UnitTests
         [Fact]
         public async Task DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNotFound()
         {
-            using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 // Arrange
                 var expectedMessages = AppDbContext.GetSeedingMessages();
