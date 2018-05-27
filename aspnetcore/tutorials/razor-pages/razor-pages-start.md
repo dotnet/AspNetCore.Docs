@@ -37,10 +37,7 @@ There are three versions of this tutorial:
 ## Prerequisites
 
 [!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
-::: moniker-end
+[.Net Core 2.1 SDK](https://github.com/aspnet/Home/wiki/2.1.0-Early-Access-Downloads)
 
 ## Create a Razor web app
 

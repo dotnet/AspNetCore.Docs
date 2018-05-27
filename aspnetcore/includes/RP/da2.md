@@ -82,7 +82,7 @@ Examine the *Pages/Movies/Edit.cshtml.cs* file:
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie21/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 
 ::: moniker-end
 [!code-csharp[]

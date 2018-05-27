@@ -35,6 +35,9 @@ Update the `Movie` class to take advantage of the `Required`, `StringLength`, `R
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+<!--
+D:\GH\5\Docs\aspnetcore\tutorials\razor-pages\razor-pages-start\sample\RazorPagesMovie21\Models\MovieDateRatingDA.cs
+-->
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDA.cs
 )]
 
