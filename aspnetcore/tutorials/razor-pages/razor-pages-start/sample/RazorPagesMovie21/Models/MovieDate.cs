@@ -1,5 +1,4 @@
-﻿//#define First
-#if First
+﻿#if Neve
 
 // No includes so you get red lines
 #region snippet_1

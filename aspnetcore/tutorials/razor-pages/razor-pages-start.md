@@ -18,8 +18,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 We recommend you follow the [ASP.NET Core 2.1 version](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) of this tutorial. It's **much** easier to follow and covers more features.
 
- [view link#](#?view=aspnetcore-2.1)
-
 ::: moniker-end
 
 This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is the recommended way to build UI for web apps in ASP.NET Core.
