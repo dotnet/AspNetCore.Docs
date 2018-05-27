@@ -85,42 +85,42 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. See [GDPR support in ASP.NET Core](xref:security/gdpr) for more information.  A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
-## MVC functional testing
+## Integration tests
 
-In ASP.NET Core 2.1, a text fixture has been provided to better handle the complexity of performing functional tests against an MVC app using [TestServer](xref:testing/integration-testing), such as:
+A new package is introduced that streamlines test creation and execution. The [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) package handles the following tasks:
 
-* Copying the .deps file from your project into the test assembly bin folder.
-* Setting the content root the application's project root so that static files and views can be found.
-* Setting up the application on TestServer
+* Copies the dependencies file (*\*.deps*) from the tested app into the test project's *bin* folder.
+* Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
+* Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the tested app with [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
-An implementation of the new test fixture with [xUnit](https://xunit.github.io/) would look like this
+The following test uses [xUnit](https://xunit.github.io/) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
 ```csharp
-using Xunit;
-namespace MyApplication.FunctionalTests
+public class BasicTests 
+    : IClassFixture<WebApplicationFactory<RazorPagesProject.Startup>>
 {
-    public class MyApplicationFunctionalTests : IClassFixture<WebApplicationTestFixture<Startup>>
+    private readonly HttpClient _client;
+        
+    public BasicTests(WebApplicationFactory<RazorPagesProject.Startup> factory)
     {
-        public MyApplicationFunctionalTests(WebApplicationTestFixture<Startup> fixture)
-        {
-            Client = fixture.Client;
-        }
+        _client = factory.CreateClient();
+    }
 
-        public HttpClient Client { get; }
+    [Fact]
+    public async Task GetHomePage()
+    {
+        // Act
+        var response = await _client.GetAsync("/");
 
-        [Fact]
-        public async Task GetHomePage()
-        {
-            // Arrange & Act
-            var response = await Client.GetAsync("/");
-            // Assert
-            Assert.Equal(HttpStatusCodes.OK, response.StatusCode);
-        }
+        // Assert
+        response.EnsureSuccessStatusCode(); // Status Code 200-299
+        Assert.Equal("text/html; charset=utf-8", 
+            response.Content.Headers.ContentType.ToString());
     }
 }
 ```
 
-For more information, see the [Announcement on GitHub](https://github.com/aspnet/announcements/issues/275)
+For more information, see the [Integration tests](xref:test/integration-tests) topic.
 
 ## [ApiController], ActionResult
 
