@@ -88,7 +88,7 @@ To specify the CORS policy for a specific controller add the `[EnableCors]` attr
 [!code-csharp[](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=EnableOnController)]
 
 > [!NOTE]
-> Actions with a route defined by `[HttpGet]`, `[HttpPost]`, `[HttpHead]`, `[HttpPut]`, and `[HttpDelete]` don't function as expected with `[EnableCors]` due to the way these attributes create routes that restrict the method specified in the name of the attribute. `[EnableCors]` must be used along with `[Route]` on the action, controller, or both. For more information on action constraints, see [Understanding IActionConstraint](xref:mvc/controllers/routing#understanding-iactionconstraint). 
+> Actions that use the `[HttpGet]` attribute, and similar `[Http-VERB]` attributes, can result in unexpected behavior when using `[EnableCors]`. When a CORS preflight is required, these routes may not be matched and result in a *404 Not Found*. See [Understanding IActionConstraint](xref:mvc/controllers/routing#understanding-iactionconstraint). Instead of using `[Http-VERB]` attributes, use `[Route]` with `[EnableCors]`.
 
 It's also possible to define routes using [HttpMethodRouteConstraint](/dotnet/api/microsoft.aspnetcore.routing.constraints.httpmethodrouteconstraint) when [defining non-attribute routes](xref:fundamentals/routing) to enforce the desired regular HTTP method and the OPTIONS HTTP method. 
 
