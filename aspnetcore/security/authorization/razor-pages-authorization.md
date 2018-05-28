@@ -4,6 +4,7 @@ author: guardrex
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
 manager: wpickett
 ms.author: riande
+ms.custom: mvc
 ms.date: 10/27/2017
 ms.prod: asp.net-core
 ms.technology: aspnet
@@ -27,6 +28,13 @@ Use the [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pag
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
 An [AuthorizePage overload](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage#Microsoft_Extensions_DependencyInjection_PageConventionCollectionExtensions_AuthorizePage_Microsoft_AspNetCore_Mvc_ApplicationModels_PageConventionCollection_System_String_System_String_) is available if you need to specify an authorization policy.
+
+::: moniker range=">= aspnetcore-2.1"
+
+> [!NOTE]
+> An `AuthorizeFilter` can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see [Authorize filter attribute](xref:mvc/razor-pages/filter#authorize-filter-attribute).
+
+::: moniker-end
 
 ## Require authorization to access a folder of pages
 
