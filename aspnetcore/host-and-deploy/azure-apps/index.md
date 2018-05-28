@@ -105,18 +105,20 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 
 ![Azure App blade with preceding steps](index/_static/x1.png)
 
-* Select **ASP.NET Core 2.1 (x86) Runtime** or **ASP.NET Core 2.1 (x64) Runtime**.
+* Select either the x86 or x64 runtime, whichever is appropriate for your app.
 * Select **OK**. Select **OK** again.
 
-When the add operations complete, the latest .NET Core 2.1 preview is installed. Verify the installation by running `dotnet --info` in the console. From the **App Service** blade:
+When the add operations complete, the latest .NET Core preview is installed. Verify the installation by running `dotnet --info` in the console. From the **App Service** blade:
 
 * Enter "con" in the search box.
 * Select **Console**.
 * Enter `dotnet --info` in the console.
 
+If version `2.1.300-preview1-008174` is the latest preview release, the following output is obtained by running `dotnet --info` at the command prompt:
+
 ![Azure App blade with preceding steps](index/_static/cons.png)
 
-The preceding image was current at the time this was written. You may see a different version.
+The version of ASP.NET Core shown in the preceding image, `2.1.300-preview1-008174`, is an example. The latest preview version of ASP.NET Core at the time the site extension is configured appears when you execute `dotnet --info`.
 
 The `dotnet --info` displays the the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
 
@@ -137,7 +139,7 @@ Self-contained apps are an option for all ASP.NET Core apps.
 
 ### Use Docker with Web Apps for containers
 
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest 2.1 preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ## Additional resources
 
