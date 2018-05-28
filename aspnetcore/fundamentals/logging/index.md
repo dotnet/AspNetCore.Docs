@@ -28,7 +28,7 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 ## How to create logs
 
-To create logs, get an `ILogger` object from the [dependency injection](xref:fundamentals/dependency-injection) container:
+To create logs, implement an [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) object from the [dependency injection](xref:fundamentals/dependency-injection) container:
 
 [!code-csharp[](index/sample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 
@@ -58,14 +58,14 @@ The default project template enables logging with the [CreateDefaultBuilder](/do
 
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
-To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
+To use a provider, install its NuGet package and call the provider's extension method on an instance of [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory), as shown in the following example:
 
 [!code-csharp[](index/sample//Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
 ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider. 
 
 > [!NOTE]
-> The sample application for this article adds logging providers in the `Configure` method of the `Startup` class. If you want to get log output from code that executes earlier, add logging providers in the `Startup` class constructor instead. 
+> The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/sample) adds logging providers in the `Startup.Configure` method. If you want to obtain log output from code that executes earlier, add logging providers in the `Startup` class constructor.
 
 ---
 
@@ -367,7 +367,7 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 You can group a set of logical operations within a *scope* in order to attach the same data to each log that's created as part of that set. For example, you might want every log created as part of processing a transaction to include the transaction ID.
 
-A scope is an `IDisposable` type that's returned by the `ILogger.BeginScope<TState>` method and lasts until it's disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
+A scope is an `IDisposable` type that's returned by the [ILogger.BeginScope&lt;TState&gt;](/dotnet/api/microsoft.extensions.logging.ilogger.beginscope) method and lasts until it's disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
 
 [!code-csharp[](index/sample//Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
@@ -405,15 +405,14 @@ warn: TodoApi.Controllers.TodoController[4000]
 
 ASP.NET Core ships the following providers:
 
-* [Console](#console)
-* [Debug](#debug)
-* [EventSource](#eventsource)
-* [EventLog](#eventlog)
-* [TraceSource](#tracesource)
-* [Azure App Service](#appservice)
+* [Console](#console-provider)
+* [Debug](#debug-provider)
+* [EventSource](#eventsource-provider)
+* [EventLog](#windows-eventlog-provider)
+* [TraceSource](#tracesource-provider)
+* [Azure App Service](#azure-app-service-provider)
 
-<a id="console"></a>
-### The console provider
+### Console provider
 
 The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
 
@@ -447,8 +446,7 @@ The settings shown limit framework logs to warnings while allowing the app to lo
 
 ---
 
-<a id="debug"></a>
-### The Debug provider
+### Debug provider
 
 The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) provider package writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class (`Debug.WriteLine` method calls).
 
@@ -470,8 +468,7 @@ loggerFactory.AddDebug()
 
 ---
 
-<a id="eventsource"></a>
-### The EventSource provider
+### EventSource provider
 
 For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package can implement event tracing. On Windows, it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform, but there are no event collection and display tools yet for Linux or macOS. 
 
@@ -495,8 +492,7 @@ To configure PerfView for collecting events logged by this provider, add the str
 
 ![Perfview Additional Providers](index/_static/perfview-additional-providers.png)
 
-<a id="eventlog"></a>
-### The Windows EventLog provider
+### Windows EventLog provider
 
 The [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog) provider package sends log output to the Windows Event Log.
 
@@ -516,8 +512,7 @@ loggerFactory.AddEventLog()
 
 ---
 
-<a id="tracesource"></a>
-### The TraceSource provider
+### TraceSource provider
 
 The [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) provider package uses the [System.Diagnostics.TraceSource](/dotnet/api/system.diagnostics.tracesource) libraries and providers.
 
@@ -543,16 +538,15 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 
 [!code-csharp[](index/sample/Startup.cs?name=snippet_TraceSource&highlight=9-12)]
 
-<a id="appservice"></a>
-### The Azure App Service provider
+### Azure App Service provider
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1 or later.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If targeting .NET Core, you don't have to install the provider package or explicitly call `AddAzureWebAppDiagnostics`. The provider is automatically available to your app when you deploy the app to Azure App Service.
+If targeting .NET Core, don't install the provider package or explicitly call [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics). The provider is automatically available to the app when the app is deployed to Azure App Service.
 
-If targeting .NET Framework, add the provider package to your project and invoke `AddAzureWebAppDiagnostics`:
+If targeting .NET Framework, add the provider package to the project and invoke `AddAzureWebAppDiagnostics`:
 
 ```csharp
 logging.AddAzureWebAppDiagnostics();
@@ -564,17 +558,17 @@ logging.AddAzureWebAppDiagnostics();
 loggerFactory.AddAzureWebAppDiagnostics();
 ```
 
-An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs) with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of the one that you provide when you call an `ILogger` method.)
+An [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) overload lets you pass in [AzureAppServicesDiagnosticsSettings](/dotnet/api/microsoft.extensions.logging.azureappservices.azureappservicesdiagnosticssettings) with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of the one that you provide when you call an `ILogger` method.)
 
 ---
 
-When you deploy to an App Service app, your application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. 
+When you deploy to an App Service app, the app honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 ![Azure logging settings](index/_static/azure-logging-settings.png)
 
-The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs).
+The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](/dotnet/api/microsoft.extensions.logging.azureappservices.azureappservicesdiagnosticssettings).
 
-The provider only works when your project runs in the Azure environment. It has no effect when you run locally &mdash; it doesn't write to local files or local development storage for blobs.
+The provider only works when the project runs in the Azure environment. It has no effect when the project is run locally&mdash;it doesn't write to local files or local development storage for blobs.
 
 ## Third-party logging providers
 
@@ -599,22 +593,21 @@ For more information, see each framework's documentation.
 
 Azure log streaming enables you to view log activity in real time from: 
 
-* The application server 
+* The application server
 * The web server
-* Failed request tracing 
+* Failed request tracing
 
-To configure Azure log streaming: 
+To configure Azure log streaming:
 
 * Navigate to the **Diagnostics Logs** page from your application's portal page
-* Set **Application Logging (Filesystem)** to on. 
+* Set **Application Logging (Filesystem)** to on.
 
 ![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
 
-Navigate to the **Log Streaming** page to view application messages. They're logged by application through the `ILogger` interface. 
+Navigate to the **Log Streaming** page to view application messages. They're logged by application through the `ILogger` interface.
 
 ![Azure portal application log streaming](index/_static/azure-log-streaming.png)
 
-
-## See also
+## Additional resources
 
 [High-performance logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
