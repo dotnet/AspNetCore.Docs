@@ -40,16 +40,6 @@ For more information, see [Create reusable UI using the Razor Class Library proj
 
 ## Identity UI library & scaffolding
 
-### Identity as a library
-
-ASP.NET Core Identity provides a framework for setting up authentication and identity concerns for a website.
-
-For ASP.NET Core 2.1, a default identity UI implementation as a library will be provided. The default identity UI can be added to an app by enabling it in `Startup`:
-
-[!code-csharp[Main](aspnetcore-2.1/sample/Startup.cs?name=snippet&highlight=15,39)]
-
-### Identity scaffolder
-
 ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
@@ -65,7 +55,7 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 
 ### On by default
 
-To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A certificate will be created:
+To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A certificate is created:
 
 * When the .NET Core SDK is installed. Run `dotnet dev-certs https --trust`.
 * By manually setup using the new `dev-certs` tool.
@@ -137,10 +127,10 @@ For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index)
 
 ## IHttpClientFactory
 
-The new `HttpClientFactory` type can be registered and used to configure and consume instances of `HttpClient` in applications. `HttpClient` already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory will:
+ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easier to configure and consume instances of `HttpClient` in applications. `HttpClient` already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory:
 
-* Make registering of instances of `HttpClient` per named client more intuitive.
-* Implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
+* Makes registering of instances of `HttpClient` per named client more intuitive.
+* Implements a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 
 For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests)
 
