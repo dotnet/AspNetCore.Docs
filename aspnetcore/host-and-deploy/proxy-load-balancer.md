@@ -20,7 +20,7 @@ In the recommended configuration for ASP.NET Core, the app is hosted using IIS/A
 * When HTTPS requests are proxied over HTTP, the original scheme (HTTPS) is lost and must be forwarded in a header.
 * Because an app receives a request from the proxy and not its true source on the Internet or corporate network, the originating client IP address must also be forwarded in a header.
 
-This information may be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geoloation.
+This information may be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geolocation.
 
 ## Forwarded headers
 
