@@ -124,7 +124,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
 ## Deployment with Visual Studio
 
-> *Note: This section applies to Windows only. Linux/macOS users should make the change described in step 2 below, save the file, and then commit the change to the local repo with `git commit`. Finally, push the change with `git push` as in the first section.*
+> *Note: This section applies to Visual Studio and Windows only. Linux/macOS users or users without Visual Studio should make the change described in step 2 below, save the file, and then commit the change to the local repo with `git commit`. Finally, push the change with `git push` as in the first section.*
 
 Having deployed the app using command line tools, let's use Visual Studio's integrated tools to deploy an update to the app. Behind the scenes, Visual Studio accomplishes the same thing as the command line tools, but within Visual Studio's familiar UI. *Note: 
 
