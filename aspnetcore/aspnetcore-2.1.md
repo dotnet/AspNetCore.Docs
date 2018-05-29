@@ -134,16 +134,14 @@ ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easie
 
 For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests)
 
-## Kestrel on Sockets
+## Kestrel transport configuration
 
-In ASP.NET Core 2.1, a new socket transport has been added to Kestrel. An application can be configured to use this new transport by adding the `.UseSockets()` extension to the `HostBuilder`
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv) and depend on either of the following packages:
 
-```csharp
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-    .UseSockets()
-    .UseStartup<Startup>()
- ```
+* [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)
+* [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
+
+For more information, see [Kestrel web server implementation: Transport configuration](xref:fundamentals/servers/kestrel#transport-configuration).
 
 ## Generic host builder
 
