@@ -57,11 +57,6 @@ To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabl
 * As part of the .NET Core SDK first-run experience, when you use the SDK for the first time. Run `dotnet dev-certs https --trust` to trust the certificate.
 * Manually using the using the new `dev-certs` tool.
 
-The project templates have updated to:
-
-* [Require HTTPS](xref:security/enforcing-ssl#require-https) by default.
-* Include [HTTPS redirection](xref:security/enforcing-ssl#require-https) and [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts).
-
 ### HTTPS redirection and enforcement
 
 Web apps typically need to listen on both HTTP and HTTPS, but then redirect all HTTP traffic to HTTPS. In 2.1, specialized HTTPS redirection middleware that intelligently redirects based on the presence of configuration or bound server ports has been introduced.
