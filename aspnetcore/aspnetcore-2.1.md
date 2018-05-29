@@ -20,8 +20,8 @@ This article highlights the most significant changes in ASP.NET Core 2.1, with l
 
 SignalR has been rewritten for ASP.NET Core 2.1. ASP.NET Core SignalR includes a number of improvements:
 
-* A simplified scale-out mode.
-* A new JavaScript client with no jQuery dependence.
+* A simplified scale-out model.
+* A new JavaScript client with no jQuery dependency.
 * A new compact binary protocol based on MessagePack.
 * Support for custom protocols.
 * A new streaming response model.
