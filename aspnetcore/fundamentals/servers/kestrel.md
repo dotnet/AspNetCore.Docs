@@ -828,7 +828,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 ```
 
 > [!NOTE]
-> Don't use Host Filtering Middleware and [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) ([ForwardedHeadersOptions.AllowedHosts](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.allowedhosts)) simultaneously. Host Filtering Middleware is appropriate when Kestrel is used as an edge server. Forwarded Headers Middleware is appropriate for reverse proxy server and load balancer host configurations.
+> [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) has an [ForwardedHeadersOptions.AllowedHosts](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.allowedhosts) option. Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios. Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate for reverse proxy server and load balancer host configurations. Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as an edge server.
 >
 > For more information on Forwarded Headers Middleware, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
