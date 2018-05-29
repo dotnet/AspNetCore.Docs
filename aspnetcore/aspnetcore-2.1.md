@@ -34,7 +34,7 @@ For more information, see [ASP.NET Core SignalR](xref:signalr/index)
 ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a library and share it across multiple projects. The new Razor SDK enables building Razor files into a class library project that can be packaged into a NuGet package. Views and pages in libraries are automatically discovered and can be overridden by the application. By integrating Razor compilation into the build:
 
 * The app startup time is significantly faster.
-* Fast updates to  Razor views and pages at runtime are still available as part of an iterative development workflow.
+* Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
 For more information, see [ASP.NET Core Razor SDK](xref:mvc/razor-pages/sdk)
 
@@ -42,12 +42,7 @@ For more information, see [ASP.NET Core Razor SDK](xref:mvc/razor-pages/sdk)
 
 ### Identity as a library
 
-ASP.NET Core Identity provides a framework for setting up authentication and identity concerns for a website. ASP.NET Cor Identity includes:
-
-* User registration
-* Managing passwords
-* Two-factor authentication
-* Social logins and much more
+ASP.NET Core Identity provides a framework for setting up authentication and identity concerns for a website.
 
 For ASP.NET Core 2.1, a default identity UI implementation as a library will be provided. The default identity UI can be added to an app by enabling it in `Startup`:
 
@@ -63,16 +58,16 @@ For more information, see [Scaffold Identity in ASP.NET Core projects](xref:secu
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is more important than ever before. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers are starting to enforce that many new and existing web features must only be used from a secure context (Chromium, Mozilla). GDPR requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS during development can also help prevent related issues before deployment, like insecure links. For more information, see:
+With the increased focus on security and privacy, enabling HTTPS for web apps is very important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers (Chromium, Mozilla)are starting to enforce that web features must only be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS during development can help prevent related issues before deployment (for example, insecure links). For more information, see:
 
 * [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [Require HTTPS](xref:security/enforcing-ssl#require-https)
 
 ### On by default
 
-To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel will listen on `https://localhost:5001` when a local development certificate is present. A certificate will be created:
+To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A certificate will be created:
 
-* When the .NET Core SDK is installed.  Run `dotnet dev-certs https --trust`.
+* When the .NET Core SDK is installed. Run `dotnet dev-certs https --trust`.
 * By manually setup using the new `dev-certs` tool.
 
 The project templates have updated to:
@@ -84,7 +79,7 @@ The project templates have updated to:
 
 Web apps typically need to listen on both HTTP and HTTPS, but then redirect all HTTP traffic to HTTPS. ASP.NET Core 2.0 has URL rewrite middleware that can be used for this purpose, but there are challenges to configure this redirection. In 2.1, specialized HTTPS redirection middleware that intelligently redirects based on the presence of configuration or bound server ports has been introduced.
 
-Use of HTTPS can be further enforced using [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts). HSTS  instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
+Use of HTTPS can be further enforced using [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts). HSTS instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
 
 ### Configuration for production
 
@@ -95,13 +90,13 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr).  A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
 A new package is introduced that streamlines test creation and execution. The [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) package handles the following tasks:
 
-* Copies the dependencies file (*\*.deps*) from the tested app into the test project's *bin* folder.
+* Copies the dependency file (*\*.deps*) from the tested app into the test project's *bin* folder.
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the tested app with [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
@@ -177,7 +172,7 @@ For more information, see [Use the Single Page Application templates with ASP.NE
 
 ## Microsoft.AspNetCore.App package
 
-ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. `Microsoft.AspNetCore.App` from `Microsoft.AspNetCore.All` in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
+ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. `Microsoft.AspNetCore.App` from `Microsoft.AspNetCore.All` in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
 
 The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
 
@@ -191,7 +186,7 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to
 
 ## Razor Pages in an area
 
-Razor Pages supports areas. To see an example of this, create a new Razor Pages web app with individual user accounts. A  Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+Razor Pages supports areas. To see an example of this, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
 ## Potentially breaking changes
 
