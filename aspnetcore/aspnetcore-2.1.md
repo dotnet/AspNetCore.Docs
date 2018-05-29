@@ -72,7 +72,7 @@ Use of HTTPS can be further enforced using [HTTP Strict Transport Security Proto
 
 In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Applications can be configured to use:
 
-* Multiple endpoints including the URLs.
+* Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 * The certificate to use for HTTPS either from a file on disk or from a certificate store.
 
 ## GDPR
