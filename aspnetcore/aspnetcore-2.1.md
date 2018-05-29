@@ -18,7 +18,14 @@ This article highlights the most significant changes in ASP.NET Core 2.1, with l
 
 ## SignalR
 
-SignalR has been ported to ASP.NET Core 2.1 to support real-time web scenarios. ASP.NET Core SignalR will also include a number of improvements, including a simplified scale-out model, a new JavaScript client with no jQuery dependency, a new compact binary protocol based on MessagePack, support for custom protocols, a new streaming response model, and support for clients based on bare WebSockets.
+SignalR has been rewritten for ASP.NET Core 2.1. ASP.NET Core SignalR includes a number of improvements:
+
+* A simplified scale-out mode.
+* A new JavaScript client with no jQuery dependence.
+* A new compact binary protocol based on MessagePack.
+* Support for custom protocols.
+* A new streaming response model.
+* Support for clients based on bare WebSockets.
 
 For more information, see [ASP.NET Core SignalR](xref:signalr/index)
 
@@ -35,9 +42,14 @@ For more information, see [ASP.NET Core Razor SDK](xref:mvc/razor-pages/sdk)
 
 ### Identity as a library
 
-ASP.NET Core Identity provides a framework for setting up authentication and identity concerns for a website, including user registration, managing passwords, two-factor authentication, social logins and much more.
+ASP.NET Core Identity provides a framework for setting up authentication and identity concerns for a website. ASP.NET Cor Identity includes:
 
-For ASP.NET Core 2.1 a default identity UI implementation as a library will be provided. The default identity UI can be added to an app by enabling it in `Startup`:
+* User registration
+* Managing passwords
+* Two-factor authentication
+* Social logins and much more
+
+For ASP.NET Core 2.1, a default identity UI implementation as a library will be provided. The default identity UI can be added to an app by enabling it in `Startup`:
 
 [!code-csharp[Main](aspnetcore-2.1/sample/Startup.cs?name=snippet&highlight=15,39)]
 
@@ -51,7 +63,7 @@ For more information, see [Scaffold Identity in ASP.NET Core projects](xref:secu
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is more important than ever before. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers are starting to enforce that many new and existing web features must only be used from a secure context (Chromium, Mozilla). GDPR requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS during development can also help prevent related issues before deployment, like insecure links. For more information see:
+With the increased focus on security and privacy, enabling HTTPS for web apps is more important than ever before. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers are starting to enforce that many new and existing web features must only be used from a secure context (Chromium, Mozilla). GDPR requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS during development can also help prevent related issues before deployment, like insecure links. For more information, see:
 
 * [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [Require HTTPS](xref:security/enforcing-ssl#require-https)
@@ -61,7 +73,7 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel will listen on `https://localhost:5001` when a local development certificate is present. A certificate will be created:
 
 * When the .NET Core SDK is installed.  Run `dotnet dev-certs https --trust`.
-* By manually set up using the new `dev-certs` tool.
+* By manually setup using the new `dev-certs` tool.
 
 The project templates have updated to:
 
@@ -83,7 +95,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. See [GDPR support in ASP.NET Core](xref:security/gdpr) for more information.  A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [UE General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr).  A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -124,13 +136,16 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ## [ApiController], ActionResult
 
-In ASP.NET Core 2.1, improved support for OpenAPI specification(previously known as **Swagger**)) has been added to Web API. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController] attribute has also been added as the way to opt-in to Web API-specific conventions and behaviors.
+In ASP.NET Core 2.1, improved support for OpenAPI specification(previously known as **Swagger**)) has been added to Web API. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController] attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
 For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index)
 
 ## IHttpClientFactory
 
-The new `HttpClientFactory` type can be registered and used to configure and consume instances of HttpClient in applications. HttpClient already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory will make registering of these per named client more intuitive as well as implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
+The new `HttpClientFactory` type can be registered and used to configure and consume instances of `HttpClient` in applications. `HttpClient` already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory will:
+
+* Make registering of instances of `HttpClient` per named client more intuitive.
+* Implement a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 
 For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests)
 
@@ -147,24 +162,28 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 ## Generic host builder
 
-In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This Builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc).
+In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This Builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
 
 For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host)
 
 ## Updated SPA templates
 
-In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux have been updated to use the standard project structures and build systems for each framework. The Angular template is now based on Angular CLI, and the React templates are now based on create-react-app.
+In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux:
+
+* Are updated to use the standard project structures and build systems for each framework.
+
+The Angular template is based on Angular CLI, and the React templates are based on create-react-app.
 For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
 
 ## Microsoft.AspNetCore.App package
 
-ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. The new meta-package differs from the existing meta-package in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
+ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. `Microsoft.AspNetCore.App` from `Microsoft.AspNetCore.All` in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams to just those deemed necessary to ensure the major framework features function. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
 
-The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For additional details, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
+The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
 
 ## Razor Pages search for Razor assets
 
-In 2.1, Razor Pages searche for Razor assets (such as layouts and partials) in these directorys in the listed order:
+In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to following directorys in the listed order:
 
 1. Current Pages folder.
 1. */Pages/Shared/*
