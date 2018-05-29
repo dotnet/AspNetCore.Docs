@@ -36,7 +36,7 @@ ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a librar
 * The app startup time is significantly faster.
 * Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
-For more information, see [ASP.NET Core Razor SDK](xref:mvc/razor-pages/sdk)
+For more information, see [Create reusable UI using the Razor Class Library project](xref:mvc/razor-pages/ui-class)
 
 ## Identity UI library & scaffolding
 
@@ -157,7 +157,7 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 ## Generic host builder
 
-In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This Builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
+In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
 
 For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host)
 
@@ -170,11 +170,12 @@ In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, a
 The Angular template is based on Angular CLI, and the React templates are based on create-react-app.
 For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
 
+<!-- 
 ## Microsoft.AspNetCore.App package
 
 ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. `Microsoft.AspNetCore.App` from `Microsoft.AspNetCore.All` in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
 
-The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/287).
+The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/287). -->
 
 ## Razor Pages search for Razor assets
 
@@ -188,14 +189,10 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to
 
 Razor Pages supports areas. To see an example of this, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
-## Potentially breaking changes
-
-See [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion). The [MvcOptions](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of the potential breaking changes and why the changes are an improvement for most users.
-
 ## Migrate from 2.0 to 2.1
 
 <!-- This needs to be updated to the specific doc -->
-See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/index).
+See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/index) and [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion).
 
 ## Additional Information
 
