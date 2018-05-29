@@ -40,7 +40,7 @@ For more information, see [Create reusable UI using the Razor Class Library proj
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -48,14 +48,16 @@ For more information, see [Scaffold Identity in ASP.NET Core projects](xref:secu
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is very important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production.
+With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl).
 
 ### On by default
 
 To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A development certificate is created:
 
-* As part of the .NET Core SDK first-run experience, when you use the SDK for the first time. Run `dotnet dev-certs https --trust` to trust the certificate.
-* Manually using the using the new `dev-certs` tool.
+* As part of the .NET Core SDK first-run experience, when you use the SDK for the first time. 
+* Manually using the new `dev-certs` tool.
+
+Run `dotnet dev-certs https --trust` to trust the certificate.
 
 ### HTTPS redirection and enforcement
 
@@ -113,7 +115,7 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ## [ApiController], ActionResult
 
-ASP.NET Core 2.1 add new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController] attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
+ASP.NET Core 2.1 add new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
 For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index)
 
@@ -150,13 +152,6 @@ In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, a
 The Angular template is based on Angular CLI, and the React templates are based on create-react-app.
 For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
 
-<!-- 
-## Microsoft.AspNetCore.App package
-
-ASP.NET Core 2.1 introduces a new `Microsoft.AspNetCore.App` meta-package. `Microsoft.AspNetCore.App` from `Microsoft.AspNetCore.All` in that it reduces the number of dependencies of packages not owned or supported by the ASP.NET or .NET teams. For more information, see [Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1](xref:fundamentals/metapackage-app).
-
-The `existing Microsoft.AspNetCore.All` meta-package will continue to be made available throughout the 2.x lifecycle. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/287). -->
-
 ## Razor Pages search for Razor assets
 
 In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to following directorys in the listed order:
@@ -167,7 +162,7 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to
 
 ## Razor Pages in an area
 
-Razor Pages supports areas. To see an example of this, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
 ## Migrate from 2.0 to 2.1
 
