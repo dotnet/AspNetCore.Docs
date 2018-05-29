@@ -55,7 +55,7 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
 
 ## Javascript Encoding using Razor
 
-There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
+There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert  values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
 ```none
 @{
@@ -223,4 +223,4 @@ The general accepted practice is that encoding takes place at the point of outpu
 
 ## Validation as an XSS prevention technique
 
-Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
+Validation can be a useful tool in limiting XSS attacks. For example, a numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
