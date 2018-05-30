@@ -42,7 +42,9 @@ Create a new directory for the web application, create a new ASP.NET Core MVC ap
 
 # [Windows](#tab/windows)
 
-```cmd
+::: moniker range=">= aspnetcore-2.1"
+
+```console
 REM Create a new ASP.NET Core MVC application
 dotnet new webapp -o MyApplication
 
@@ -53,7 +55,26 @@ REM Run the application
 dotnet run
 ```
 
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+```console
+REM Create a new ASP.NET Core MVC application
+dotnet new razor -o MyApplication
+
+REM Change to the new directory that was just created
+cd MyApplication
+
+REM Run the application
+dotnet run
+```
+
+::: moniker-end
+
 # [Other](#tab/other)
+
+::: moniker range=">= aspnetcore-2.1"
 
 ```bash
 # Create a new ASP.NET Core MVC application
@@ -65,6 +86,23 @@ cd MyApplication
 # Run the application
 dotnet run
 ```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+```bash
+# Create a new ASP.NET Core MVC application
+dotnet new razor -o MyApplication
+
+# Change to the new directory that was just created
+cd MyApplication
+
+# Run the application
+dotnet run
+```
+
+::: moniker-end
 
 ---
 
