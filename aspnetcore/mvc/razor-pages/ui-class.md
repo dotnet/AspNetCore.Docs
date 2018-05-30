@@ -183,8 +183,6 @@ Run the app.
 
 Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
-::: moniker range=">= aspnetcore-2.1"
-
 ```console
 dotnet new webapp -o WebApp1
 dotnet new sln
@@ -192,20 +190,6 @@ dotnet sln add WebApp1
 dotnet sln add RazorUIClassLib
 dotnet add WebApp1 reference RazorUIClassLib
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-```console
-dotnet new razor -o WebApp1
-dotnet new sln
-dotnet sln add WebApp1
-dotnet sln add RazorUIClassLib
-dotnet add WebApp1 reference RazorUIClassLib
-```
-
-::: moniker-end
 
 Build and run the web app:
 
