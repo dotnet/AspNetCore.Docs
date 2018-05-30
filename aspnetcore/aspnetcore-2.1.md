@@ -52,7 +52,7 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 
 ### On by default
 
-To facilitate secure website development, HTTPS in ASP.NET Core 2.1 is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A development certificate is created:
+To facilitate secure website development, HTTPS  is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A development certificate is created:
 
 * As part of the .NET Core SDK first-run experience, when you use the SDK for the first time. 
 * Manually using the new `dev-certs` tool.
@@ -134,13 +134,13 @@ With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer b
 
 ## Generic host builder
 
-In ASP.NET Core 2.1, the Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
+The Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
 
 For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host)
 
 ## Updated SPA templates
 
-In ASP.NET Core 2.1, the Single Page Application templates for Angular, React, and React with Redux:
+The Single Page Application templates for Angular, React, and React with Redux:
 
 * Are updated to use the standard project structures and build systems for each framework.
 
