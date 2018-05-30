@@ -112,7 +112,7 @@ The *Pages/Create.cshtml.cs* page model:
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
-The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows you to manage page dependencies through [dependency injection](xref:fundamentals/dependency-injection) and to [unit test](xref:testing/razor-pages-testing) the pages.
+The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows you to manage page dependencies through [dependency injection](xref:fundamentals/dependency-injection) and to [unit test](xref:test/razor-pages-tests) the pages.
 
 The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
@@ -499,4 +499,4 @@ services.AddMvc()
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-conventions)
-* [Razor Pages unit and integration tests](xref:testing/razor-pages-testing)
+* [Razor Pages unit tests](xref:test/razor-pages-tests)

@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/09/2018
+ms.date: 05/29/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -100,5 +100,7 @@ Use the `configureLogging` method on `HubConnectionBuilder` to configure the log
 
 ## Related resources
 
-* [ASP.NET Core SignalR Hubs](xref:signalr/hubs)
+* [Hubs](xref:signalr/hubs)
+* [.NET client](xref:signalr/dotnet-client)
+* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Enable Cross-Origin Requests (CORS) in ASP.NET Core](xref:security/cors)
