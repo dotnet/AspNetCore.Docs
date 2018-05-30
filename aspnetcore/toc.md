@@ -1,3 +1,5 @@
+# [What's new](xref:aspnetcore-2.1)
+
 # [Introduction](index.md)
 
 # [Get started](getting-started.md)
@@ -362,7 +364,6 @@
 
 # [Migration](xref:migration/index)
 ## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
-## [What's new in ASP.NET Core 2.1](xref:aspnetcore-2.1)
 ## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
 ### [MVC](xref:migration/mvc)
 ### [Web API](xref:migration/webapi)
