@@ -74,7 +74,8 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 ## Scaffold identity into a Razor project with individual authorization
 
 <!--
-dotnet new razor -au Individual -o RPauth
+Use >=2.1: dotnet new webapp -au Individual -o RPauth
+Use = 2.0: dotnet new razor -au Individual -o RPauth
 cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
 dotnet restore

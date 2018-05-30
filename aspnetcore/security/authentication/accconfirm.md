@@ -31,10 +31,23 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
+::: moniker range=">= aspnetcore-2.1"
+
+```console
+dotnet new webapp --auth Individual -o WebPWrecover
+cd WebPWrecover
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 ```console
 dotnet new razor --auth Individual -o WebPWrecover
 cd WebPWrecover
 ```
+
+::: moniker-end
 
 * `--auth Individual` specifies the Individual User Accounts project template.
 * On Windows, add the `-uld` option. It specifies LocalDB should be used instead of SQLite.
