@@ -75,21 +75,9 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
 
 1. From the **Integrated Terminal**, run the following command:
 
-::: moniker range=">= aspnetcore-2.1"
-
     ```console
     dotnet new webapp -o SignalRChat
     ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-    ```console
-    dotnet new razor -o SignalRChat
-    ```
-
-::: moniker-end
 
 2. Install the JavaScript client library using *npm*.
 
