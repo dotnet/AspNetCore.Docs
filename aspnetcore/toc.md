@@ -1,6 +1,6 @@
-# [What's new](xref:aspnetcore-2.1)
-
 # [Introduction](index.md)
+
+# [What's new](xref:aspnetcore-2.1)
 
 # [Get started](getting-started.md)
 ## [Create a web app](xref:mvc/razor-pages/index)
