@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/29/2018
+ms.date: 05/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -27,24 +27,24 @@ SignalR has been rewritten for ASP.NET Core 2.1. ASP.NET Core SignalR includes a
 * A new streaming response model.
 * Support for clients based on bare WebSockets.
 
-For more information, see [ASP.NET Core SignalR](xref:signalr/index)
+For more information, see [ASP.NET Core SignalR](xref:signalr/index).
 
 ## Razor class libraries
 
-ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a library and share it across multiple projects. The new Razor SDK enables building Razor files into a class library project that can be packaged into a NuGet package. Views and pages in libraries are automatically discovered and can be overridden by the application. By integrating Razor compilation into the build:
+ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a library and share it across multiple projects. The new Razor SDK enables building Razor files into a class library project that can be packaged into a NuGet package. Views and pages in libraries are automatically discovered and can be overridden by the app. By integrating Razor compilation into the build:
 
 * The app startup time is significantly faster.
 * Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
-For more information, see [Create reusable UI using the Razor Class Library project](xref:mvc/razor-pages/ui-class)
+For more information, see [Create reusable UI using the Razor Class Library project](xref:mvc/razor-pages/ui-class).
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Applications that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:mvc/razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
-Applications that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
+Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
-For more information, see [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity)
+For more information, see [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity).
 
 ## HTTPS
 
@@ -54,7 +54,7 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 
 To facilitate secure website development, HTTPS  is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A development certificate is created:
 
-* As part of the .NET Core SDK first-run experience, when you use the SDK for the first time. 
+* As part of the .NET Core SDK first-run experience, when you use the SDK for the first time.
 * Manually using the new `dev-certs` tool.
 
 Run `dotnet dev-certs https --trust` to trust the certificate.
@@ -67,7 +67,7 @@ Use of HTTPS can be further enforced using [HTTP Strict Transport Security Proto
 
 ### Configuration for production
 
-In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Applications can be configured to use:
+In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Apps can be configured to use:
 
 * Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 * The certificate to use for HTTPS either from a file on disk or from a certificate store.
@@ -87,11 +87,11 @@ A new package is introduced that streamlines test creation and execution. The [M
 The following test uses [xUnit](https://xunit.github.io/) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
 ```csharp
-public class BasicTests 
+public class BasicTests
     : IClassFixture<WebApplicationFactory<RazorPagesProject.Startup>>
 {
     private readonly HttpClient _client;
-        
+
     public BasicTests(WebApplicationFactory<RazorPagesProject.Startup> factory)
     {
         _client = factory.CreateClient();
@@ -105,7 +105,7 @@ public class BasicTests
 
         // Assert
         response.EnsureSuccessStatusCode(); // Status Code 200-299
-        Assert.Equal("text/html; charset=utf-8", 
+        Assert.Equal("text/html; charset=utf-8",
             response.Content.Headers.ContentType.ToString());
     }
 }
@@ -115,18 +115,18 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ## [ApiController], ActionResult
 
-ASP.NET Core 2.1 add new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an application to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
+ASP.NET Core 2.1 add new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
-For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index)
+For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index).
 
 ## IHttpClientFactory
 
-ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easier to configure and consume instances of `HttpClient` in applications. `HttpClient` already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory:
+ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easier to configure and consume instances of `HttpClient` in apps. `HttpClient` already has the concept of delegating handlers that could be linked together for outgoing HTTP requests. The factory:
 
 * Makes registering of instances of `HttpClient` per named client more intuitive.
 * Implements a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 
-For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests)
+For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests).
 
 ## Kestrel transport configuration
 
@@ -134,22 +134,20 @@ With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer b
 
 ## Generic host builder
 
-The Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for applications that do not process HTTP requests (Messaging, background tasks, etc.).
+The Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for apps that don't process HTTP requests (Messaging, background tasks, etc.).
 
-For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host)
+For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host).
 
 ## Updated SPA templates
 
-The Single Page Application templates for Angular, React, and React with Redux:
+The Single Page Application templates for Angular, React, and React with Redux are updated to use the standard project structures and build systems for each framework.
 
-* Are updated to use the standard project structures and build systems for each framework.
-
-The Angular template is based on Angular CLI, and the React templates are based on create-react-app.
-For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index)
+The Angular template is based on the Angular CLI, and the React templates are based on create-react-app.
+For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index).
 
 ## Razor Pages search for Razor assets
 
-In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in to following directorys in the listed order:
+In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in the following directories in the listed order:
 
 1. Current Pages folder.
 1. */Pages/Shared/*
@@ -163,6 +161,6 @@ Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example o
 
 See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21).
 
-## Additional Information
+## Additional information
 
-For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0).
+For the complete list of changes, see the [ASP.NET Core 2.1 Release Notes](https://github.com/aspnet/Home/releases/tag/2.1.0).
