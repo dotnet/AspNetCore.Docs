@@ -112,21 +112,9 @@ Uncheck the **Configure for HTTPS** checkbox.
 
 Use the `--no-https` option. For example
 
-::: moniker range=">= aspnetcore-2.1"
-
 ```console
 dotnet new webapp --no-https
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-```console
-dotnet new razor --no-https
-```
-
-::: moniker-end
 
 ---
 
