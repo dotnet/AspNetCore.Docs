@@ -163,4 +163,4 @@ See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21).
 
 ## Additional information
 
-For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0).
+For the complete list of changes, see the [ASP.NET Core 2.1 Release Notes](https://github.com/aspnet/Home/releases/tag/2.1.0).
