@@ -1,6 +1,8 @@
 # [Introduction](index.md)
 
 # [What's new](xref:aspnetcore-2.1)
+# [What's new](xref:aspnetcore-2.0)
+# [What's new](xref:aspnetcore-1.1)
 
 # [Get started](getting-started.md)
 ## [Create a web app](xref:mvc/razor-pages/index)
@@ -375,11 +377,6 @@
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
-# [API Reference](/dotnet/api/?view=aspnetcore-2.0)
-
-# [2.0 release notes](aspnetcore-2.0.md)
-## [1.1 release notes](aspnetcore-1.1.md)
-## [Earlier release notes](https://github.com/aspnet/home/releases)
-## [VS 2015/project.json docs](https://docs.microsoft.com/dotnet/articles/project-json)
+# [API reference](/dotnet/api/?view=aspnetcore-2.0)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
