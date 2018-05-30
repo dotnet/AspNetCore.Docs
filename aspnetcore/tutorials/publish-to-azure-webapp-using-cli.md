@@ -41,9 +41,10 @@ To complete this tutorial, you'll need:
 Create a new directory for the web application, create a new ASP.NET Core MVC application, and then run the website locally.
 
 # [Windows](#tab/windows)
+
 ```cmd
 REM Create a new ASP.NET Core MVC application
-dotnet new razor -o MyApplication
+dotnet new webapp -o MyApplication
 
 REM Change to the new directory that was just created
 cd MyApplication
@@ -53,9 +54,10 @@ dotnet run
 ```
 
 # [Other](#tab/other)
+
 ```bash
 # Create a new ASP.NET Core MVC application
-dotnet new razor -o MyApplication
+dotnet new webapp -o MyApplication
 
 # Change to the new directory that was just created
 cd MyApplication
@@ -63,6 +65,7 @@ cd MyApplication
 # Run the application
 dotnet run
 ```
+
 ---
 
 ![Command line output](publish-to-azure-webapp-using-cli/_static/new_prj.png)

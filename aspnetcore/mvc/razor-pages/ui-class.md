@@ -184,7 +184,7 @@ Run the app.
 Create a Razor Pages web app and a solution file containing the Razor Pages app and the Razor Class Library:
 
 ``` CLI
-dotnet new razor -o WebApp1
+dotnet new webapp -o WebApp1
 dotnet new sln
 dotnet sln add WebApp1
 dotnet sln add RazorUIClassLib

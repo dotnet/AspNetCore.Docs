@@ -22,7 +22,7 @@ uid: getting-started
    On macOS and Linux, open a terminal window. On Windows, open a command prompt. Enter the following command:
 
     ```terminal
-    dotnet new razor -o aspnetcoreapp
+    dotnet new webapp -o aspnetcoreapp
     ```
 
 3. Run the app with the following commands:

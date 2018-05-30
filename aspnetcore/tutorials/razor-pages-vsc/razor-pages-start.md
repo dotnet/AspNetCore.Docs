@@ -26,7 +26,7 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 From a terminal, run the following commands:
 
 ```console
-dotnet new razor -o RazorPagesMovie
+dotnet new webapp -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```

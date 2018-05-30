@@ -32,7 +32,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```console
-dotnet new razor --auth Individual -o WebPWrecover
+dotnet new webapp --auth Individual -o WebPWrecover
 cd WebPWrecover
 ```
 

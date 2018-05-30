@@ -300,7 +300,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   * Name it "ContactManager" so your namespace matches the namespace used in the sample.
 
   ```console
-  dotnet new razor -o ContactManager -au Individual -uld
+  dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
   * `-uld` specifies LocalDB instead of SQLite

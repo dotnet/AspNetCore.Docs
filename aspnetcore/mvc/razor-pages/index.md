@@ -35,17 +35,17 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Run `dotnet new razor` from the command line.
+Run `dotnet new webapp` from the command line.
 
 Open the generated *.csproj* file from Visual Studio for Mac.
 
 # [Visual Studio Code](#tab/visual-studio-code) 
 
-Run `dotnet new razor` from the command line.
+Run `dotnet new webapp` from the command line.
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
-Run `dotnet new razor` from the command line.
+Run `dotnet new webapp` from the command line.
 
 ---
 
