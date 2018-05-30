@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
-ms.date: 05/18/2018
+ms.date: 05/29/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
@@ -23,7 +23,7 @@ The ASP.NET Core SignalR .NET client can be used by Xamarin, WPF, Windows Forms,
 
 The code sample in this article is a WPF app that uses the ASP.NET Core SignalR .NET client.
 
-## Setup client
+## Install the SignalR .NET client package
 
 The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run the following command in the **Package Manager Console** window:
 

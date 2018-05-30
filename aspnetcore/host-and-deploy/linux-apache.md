@@ -49,9 +49,9 @@ A reverse proxy is a common setup for serving dynamic web apps. The reverse prox
 
 A proxy server is one which forwards client requests to another server instead of fulfilling requests itself. A reverse proxy forwards to a fixed destination, typically on behalf of arbitrary clients. In this guide, Apache is configured as the reverse proxy running on the same server that Kestrel is serving the ASP.NET Core app.
 
-Because requests are forwarded by reverse proxy, use the Forwarded Headers Middleware from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
+Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-When using any type of authentication middleware, the Forwarded Headers Middleware must run first. This ordering ensures that the authentication middleware can consume the header values and generate correct redirect URIs.
+Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware. As a general rule, Forwarded Headers Middleware should run before other middleware except diagnostics and error handling middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
 
 ::: moniker range=">= aspnetcore-2.0"
 > [!NOTE]
@@ -130,13 +130,17 @@ Complete!
 > [!NOTE]
 > In this example, the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. To verify where Apache is installed, run `whereis httpd` from a command prompt.
 
-### Configure Apache for reverse proxy
+### Configure Apache
 
 Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
 
 Create a configuration file, named *hellomvc.conf*, for the app:
 
 ```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
 <VirtualHost *:80>
     ProxyPreserveHost On
     ProxyPass / http://127.0.0.1:5000/
@@ -274,7 +278,7 @@ sudo firewall-cmd --add-port=443/tcp --permanent
 
 Reload the firewall settings. Check the available services and ports in the default zone. Options are available by inspecting `firewall-cmd -h`.
 
-```bash 
+```bash
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
 ```
@@ -298,6 +302,7 @@ To configure Apache for SSL, the *mod_ssl* module is used. When the *httpd* modu
 ```bash
 sudo yum install mod_ssl
 ```
+
 To enforce SSL, install the `mod_rewrite` module to enable URL rewriting:
 
 ```bash
@@ -307,6 +312,10 @@ sudo yum install mod_rewrite
 Modify the *hellomvc.conf* file to enable URL rewriting and secure communication on port 443:
 
 ```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
 <VirtualHost *:80>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
@@ -376,7 +385,7 @@ sudo nano /etc/httpd/conf/httpd.conf
 
 Add the line `Header set X-Content-Type-Options "nosniff"`. Save the file. Restart Apache.
 
-### Load Balancing 
+### Load Balancing
 
 This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing multiple instances of the web apps behind the Apache proxy server.
 
@@ -387,6 +396,10 @@ sudo yum install mod_proxy_balancer
 In the configuration file shown below, an additional instance of the `hellomvc` app is setup to run on port 5001. The *Proxy* section is set with a balancer configuration with two members to load balance *byrequests*.
 
 ```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
 <VirtualHost *:80>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
@@ -419,6 +432,7 @@ In the configuration file shown below, an additional instance of the `hellomvc` 
 ```
 
 ### Rate Limits
+
 Using *mod_ratelimit*, which is included in the *httpd* module, the bandwidth of clients can be limited:
 
 ```bash
@@ -434,3 +448,7 @@ The example file limits bandwidth as 600 KB/sec under the root location:
     </Location>
 </IfModule>
 ```
+
+## Additional resources
+
+* [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)

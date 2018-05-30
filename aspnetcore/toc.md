@@ -198,15 +198,15 @@
 ### [Custom formatters](xref:web-api/advanced/custom-formatters)
 ### [Format response data](xref:web-api/advanced/formatting)
 
-# [Test, debug, and troubleshoot](xref:testing/index)
+# [Test, debug, and troubleshoot](xref:test/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-## [Integration tests](xref:testing/integration-testing)
-## [Razor Pages testing](xref:testing/razor-pages-testing)
+## [Integration tests](xref:test/integration-tests)
+## [Razor Pages unit tests](xref:test/razor-pages-tests)
 ## [Test controllers](xref:mvc/controllers/testing)
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
-## [Troubleshoot](xref:testing/troubleshoot)
+## [Troubleshoot](xref:test/troubleshoot)
 
 # [Data access with EF Core and Azure](data/index.md)
 ## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
@@ -361,6 +361,8 @@
 ## [Response compression middleware](xref:performance/response-compression)
 
 # [Migration](xref:migration/index)
+## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
+## [What's new in ASP.NET Core 2.1](xref:aspnetcore-2.1)
 ## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
 ### [MVC](xref:migration/mvc)
 ### [Web API](xref:migration/webapi)
