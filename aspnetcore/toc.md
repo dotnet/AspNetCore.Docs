@@ -1,5 +1,9 @@
 # [Introduction](index.md)
 
+# [What's new](xref:aspnetcore-2.1)
+# [What's new](xref:aspnetcore-2.0)
+# [What's new](xref:aspnetcore-1.1)
+
 # [Get started](getting-started.md)
 ## [Create a web app](xref:mvc/razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
@@ -362,7 +366,6 @@
 
 # [Migration](xref:migration/index)
 ## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
-## [What's new in ASP.NET Core 2.1](xref:aspnetcore-2.1)
 ## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
 ### [MVC](xref:migration/mvc)
 ### [Web API](xref:migration/webapi)
@@ -374,11 +377,6 @@
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
-# [API Reference](/dotnet/api/?view=aspnetcore-2.0)
-
-# [2.0 release notes](aspnetcore-2.0.md)
-## [1.1 release notes](aspnetcore-1.1.md)
-## [Earlier release notes](https://github.com/aspnet/home/releases)
-## [VS 2015/project.json docs](https://docs.microsoft.com/dotnet/articles/project-json)
+# [API reference](/dotnet/api/?view=aspnetcore-2.0)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
