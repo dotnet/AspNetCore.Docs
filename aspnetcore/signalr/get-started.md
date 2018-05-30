@@ -41,7 +41,7 @@ Install the following software:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [[.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 * [npm](https://www.npmjs.com/get-npm)
