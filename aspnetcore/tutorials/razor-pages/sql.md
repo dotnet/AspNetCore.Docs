@@ -17,9 +17,22 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://tw
 
 The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
+::: moniker range="= aspnetcore-2.0"
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=7-8)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+
+For more information on the methods used in `ConfigureServices`, see:
+
+* [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
+* [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion-for-aspnet-core-mvc)
+
+::: moniker-end
+
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file. The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
 
@@ -50,7 +63,17 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
+::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/SeedData.cs?name=snippet_1)]
+
+::: moniker-end
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
@@ -63,11 +86,32 @@ if (context.Movie.Any())
 <a name="si"></a>
 ### Add the seed initializer
 
-Add the seed initializer to the end of the `Main` method in the *Program.cs* file:
+In *Program.cs*, modify the `Main` method to do the following:
+
+* Get a DB context instance from the dependency injection container.
+* Call the seed method, passing to it the context.
+* Dispose the context when the seed method completes.
+
+The following code shows the updated *Program.cs* file.
+
+::: moniker range="= aspnetcore-2.0"
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Program.cs)]
 
-Test the app
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Program.cs)]
+
+::: moniker-end
+
+A production app would not call `Database.Migrate`. It's added to the preceeding code to prevent the following exception when `Update-Database` has not been run:
+
+SqlException: Cannot open database "RazorPagesMovieContext-21" requested by the login. The login failed.
+Login failed for user 'user name'.
+
+### Test the app
 
 * Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
