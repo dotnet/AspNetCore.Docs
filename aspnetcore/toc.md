@@ -361,6 +361,7 @@
 ## [Response compression middleware](xref:performance/response-compression)
 
 # [Migration](xref:migration/index)
+## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
 ## [What's new in ASP.NET Core 2.1](xref:aspnetcore-2.1)
 ## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
 ### [MVC](xref:migration/mvc)

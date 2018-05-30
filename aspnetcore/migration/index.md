@@ -27,3 +27,7 @@ uid: migration/index
 
 * [Migrate from ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 * [Migrate authentication and Identity](xref:migration/1x-to-2x/identity-2x)
+
+## ASP.NET Core 2.0 to 2.1
+
+* [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
