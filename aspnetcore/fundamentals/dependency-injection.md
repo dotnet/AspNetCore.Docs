@@ -240,7 +240,7 @@ The services available within an ASP.NET request from `HttpContext` are exposed 
 
 Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
-Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Test and debug](xref:testing/index)) and are more loosely coupled.
+Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see [Test and debug](xref:test/index)) and are more loosely coupled.
 
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
@@ -356,7 +356,7 @@ Dependency injection is an *alternative* to static/global object access patterns
 * [Dependency injection into controllers](xref:mvc/controllers/dependency-injection)
 * [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 * [Application Startup](xref:fundamentals/startup)
-* [Test and debug](xref:testing/index)
+* [Test and debug](xref:test/index)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)

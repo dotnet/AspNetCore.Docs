@@ -143,9 +143,9 @@ Many developers write code to implement the repository and unit of work patterns
 
 * EF includes features for implementing TDD without writing repository code.
 
-For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
+For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Test with InMemory](https://docs.microsoft.com/ef/core/miscellaneous/testing/in-memory).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Test with InMemory](/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 
