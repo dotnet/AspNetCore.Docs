@@ -20,13 +20,13 @@ By [Cam Soper](https://twitter.com/camsoper)
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-This tutorial will show you how to build and deploy an ASP.NET Core application to Microsoft Azure App Service using command line tools.  When finished, you'll have a web application built in ASP.NET MVC Core hosted as an Azure App Service Web App.  This tutorial is written using Windows command line tools, but can be applied to macOS and Linux environments, as well.  
+This tutorial will show you how to build and deploy an ASP.NET Core app to Microsoft Azure App Service using command line tools. When finished, you'll have a Razor Pages web app built in ASP.NET Core hosted as an Azure App Service Web App. This tutorial is written using Windows command line tools, but can be applied to macOS and Linux environments, as well.
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create an Azure App Service website using Azure CLI
-> * Deploy an ASP.NET Core application to Azure App Service using the Git command line tool
+> * Deploy an ASP.NET Core app to Azure App Service using the Git command line tool
 
 ## Prerequisites
 
@@ -36,22 +36,22 @@ To complete this tutorial, you'll need:
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 * [Git](https://www.git-scm.com/) command line client
 
-## Create a web application
+## Create a web app
 
-Create a new directory for the web application, create a new ASP.NET Core MVC application, and then run the website locally.
+Create a new directory for the web app, create a new ASP.NET Core Razor Pages app, and then run the website locally.
 
 # [Windows](#tab/windows)
 
 ::: moniker range=">= aspnetcore-2.1"
 
 ```console
-REM Create a new ASP.NET Core MVC application
+REM Create a new ASP.NET Core Razor Pages app
 dotnet new webapp -o MyApplication
 
 REM Change to the new directory that was just created
 cd MyApplication
 
-REM Run the application
+REM Run the app
 dotnet run
 ```
 
@@ -60,13 +60,13 @@ dotnet run
 ::: moniker range="= aspnetcore-2.0"
 
 ```console
-REM Create a new ASP.NET Core MVC application
+REM Create a new ASP.NET Core Razor Pages app
 dotnet new razor -o MyApplication
 
 REM Change to the new directory that was just created
 cd MyApplication
 
-REM Run the application
+REM Run the app
 dotnet run
 ```
 
@@ -77,13 +77,13 @@ dotnet run
 ::: moniker range=">= aspnetcore-2.1"
 
 ```bash
-# Create a new ASP.NET Core MVC application
+# Create a new ASP.NET Core Razor Pages app
 dotnet new webapp -o MyApplication
 
 # Change to the new directory that was just created
 cd MyApplication
 
-# Run the application
+# Run the app
 dotnet run
 ```
 
@@ -92,13 +92,13 @@ dotnet run
 ::: moniker range="= aspnetcore-2.0"
 
 ```bash
-# Create a new ASP.NET Core MVC application
+# Create a new ASP.NET Core Razor Pages app
 dotnet new razor -o MyApplication
 
 # Change to the new directory that was just created
 cd MyApplication
 
-# Run the application
+# Run the app
 dotnet run
 ```
 
@@ -108,10 +108,9 @@ dotnet run
 
 ![Command line output](publish-to-azure-webapp-using-cli/_static/new_prj.png)
 
-Test the application by browsing to http://localhost:5000.
+Test the app by browsing to `http://localhost:5000`.
 
 ![The website running locally](publish-to-azure-webapp-using-cli/_static/app_test.png)
-
 
 ## Create the Azure App Service instance
 
@@ -138,14 +137,15 @@ Before deployment, set the account-level deployment credentials using the follow
 az webapp deployment user set --user-name <desired user name> --password <desired password>
 ```
 
-A deployment URL is needed to deploy the application using Git.  Retrieve the URL like this.
+A deployment URL is needed to deploy the app using Git. Retrieve the URL like this.
 
 ```azurecli-interactive
 az webapp deployment source config-local-git -n $webappname -g DotNetAzureTutorial --query [url] -o tsv
 ```
+
 Note the displayed URL ending in `.git`. It's used in the next step.
 
-## Deploy the application using Git
+## Deploy the app using Git
 
 You're ready to deploy from your local machine using Git.
 
@@ -153,6 +153,7 @@ You're ready to deploy from your local machine using Git.
 > It's safe to ignore any warnings from Git about line endings.
 
 # [Windows](#tab/windows)
+
 ```cmd
 REM Initialize the local Git repository
 git init
@@ -171,6 +172,7 @@ git push azure master
 ```
 
 # [Other](#tab/other)
+
 ```bash
 # Initialize the local Git repository
 git init
@@ -187,15 +189,16 @@ git remote add azure <THE GIT URL YOU NOTED EARLIER>
 # Push the local repository to the remote
 git push azure master
 ```
+
 ---
 
-Git prompts for the deployment credentials that were set earlier. After authenticating, the application will be pushed to the remote location, built, and deployed.
+Git prompts for the deployment credentials that were set earlier. After authenticating, the app will be pushed to the remote location, built, and deployed.
 
 ![Git deployment output](publish-to-azure-webapp-using-cli/_static/post_deploy.png)
 
-## Test the application
+## Test the app
 
-Test the application by browsing to `https://<web app name>.azurewebsites.net`.  To display the address in the Cloud Shell (or Azure CLI), use the following:
+Test the app by browsing to `https://<web app name>.azurewebsites.net`. To display the address in the Cloud Shell (or Azure CLI), use the following:
 
 ```azurecli-interactive
 az webapp show -n $webappname -g DotNetAzureTutorial --query defaultHostName -o tsv
@@ -217,7 +220,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create an Azure App Service website using Azure CLI
-> * Deploy an ASP.NET Core application to Azure App Service using the Git command line tool
+> * Deploy an ASP.NET Core app to Azure App Service using the Git command line tool
 
 Next, learn to use the command line to deploy an existing web app that uses CosmosDB.
 
