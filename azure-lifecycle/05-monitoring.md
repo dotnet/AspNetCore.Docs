@@ -1,6 +1,6 @@
 # Overview
 
-The app has been deployed and a DevOps pipeline has been established. Now that the application is in production, it's important to understand how to monitor and troubleshoot the app.
+Having deployed the app and built a DevOps pipeline, it's important to understand how to monitor and troubleshoot the app.
 
 In this section, you'll complete the following tasks:
 
@@ -9,12 +9,12 @@ In this section, you'll complete the following tasks:
 * Connect the web app with Application Insights for application profiling
 * Turn on logging and learn where to download logs
 * Stream logs in real time
-* Learn where to set up near real time alerts
+* Learn where to set up alerts
 * Learn about remote debugging Azure App Service web apps.
 
 ## Basic monitoring and troubleshooting
 
-App Service Web Apps are easily monitored in real time. The Azure portal renders metrics in easy-to-understand charts and graphs.
+App Service web apps are easily monitored in real time. The Azure portal renders metrics in easy-to-understand charts and graphs.
 
 1. Sign into the [Azure portal](https://portal.azure.com).
 
@@ -36,7 +36,7 @@ App Service Web Apps are easily monitored in real time. The Azure portal renders
 
     ![Self-service tools](./media/05/wizards.png)
     
-    * **Diagnose and solve problems** is a self-service troubleshooter that presents a step-by-step wizard for diagnosing and resolving issues.
+    * **Diagnose and solve problems** is a self-service troubleshooter. 
     * **Application Insights** is for profiling performance and application behavior, and is discussed later in this section.
     * **App Service Advisor** makes recommendations to tune your app experience.
 
@@ -58,11 +58,11 @@ App Service Web Apps are easily monitored in real time. The Azure portal renders
 
 3. For **Runtime/Framework**, select **ASP.NET Core**. Accept the default settings.
 4. Select **OK**. If prompted to confirm, select **Continue**.
-5. After the resource has been created, click the name of Application Insights resource to navigate directly to the Application Insights blade.
+5. After the resource has been created, click the name of Application Insights resource to navigate directly to the Application Insights page.
     
         ![New Application Insights resource is ready](./media/05/new-app-insights-done.png)
 
-As the app is used, data accumulates in near real time. Select **Refresh** to reload the blade with new data.
+As the app is used, data accumulates. Select **Refresh** to reload the blade with new data.
 
 Application Insights provides useful server-side information with no additional configuration, but to get the most value from Application Insights, be sure to [instrument your application with the Application Insights SDK](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core). When properly configured, Application Insights provides end-to-end monitoring across the web server and browser. For more information, see the [Application Insights documentation](https://docs.microsoft.com/azure/application-insights/app-insights-overview).
 
@@ -71,7 +71,7 @@ Application Insights provides useful server-side information with no additional 
 
 Web server and application logs are disabled by default in Azure App Service, but are easily enabled.
 
-1. Navigate to the App Service blade.
+1. Navigate to the App Service settings.
 2. In the menu to the left, scroll down to the **Monitoring** section and select **Diagnostics logs**.
     
     ![Diagnostic logs link](./media/05/logging.png)
@@ -88,7 +88,7 @@ ASP.NET Core and web server (App Service) logs will be generated for the web app
 
 Application and web server logs can be streamed in real time through the portal.
 
-1. Navigate to the App Service blade.
+1. Navigate to the App Service settings.
 2. In the menu to the left, scroll down to the **Monitoring** section and select **Log stream**.
     
     ![Log stream link](./media/05/log-stream.png)
@@ -101,13 +101,13 @@ Azure Monitor also provides [real time alerts](https://docs.microsoft.com/azure/
 
 > *Note: Currently alerting on web app metrics is only available in the Alerts (classic) service.*
 
-The [Alerts (classic) service](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitor-quick-resource-metric-alert-portal) can be found in Azure Monitor or under the **Monitoring** section of the App Service blade.
+The [Alerts (classic) service](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitor-quick-resource-metric-alert-portal) can be found in Azure Monitor or under the **Monitoring** section of the App Service settings.
 
 ![Alerts (classic) link](./media/05/alerts.png)
 
 ## Live debugging
 
-Azure App Service can be [debugged remotely with Visual Studio](https://docs.microsoft.com/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) when logs don't provide enough information. However, this requires the application to be compiled with debug symbols, and should not be done in production except as a last resort.
+Azure App Service can be [debugged remotely with Visual Studio](https://docs.microsoft.com/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) when logs don't provide enough information. However, remote debugging requires the application to be compiled with debug symbols, and should not be done in production except as a last resort.
 
 ## Conclusion
 
@@ -118,7 +118,7 @@ In this section, you completed the following tasks:
 * Connect the web app with Application Insights for application profiling
 * Turn on logging and learn where to download logs
 * Stream logs in real time
-* Learn where to set up near real time alerts
+* Learn where to set up alerts
 * Learn about remote debugging Azure App Service web apps.
 
 ## Additional reading
