@@ -102,7 +102,7 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 1. Select the web app.
 1. Enter "ex" in the search box or scroll down the list of management panes to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.
-1. Select "Add".
+1. Select **Add**.
 1. Select **ASP.NET Core Extensions**.
 1. Select **OK** to accept the legal terms.
 1. Select **OK** to install the extension.
