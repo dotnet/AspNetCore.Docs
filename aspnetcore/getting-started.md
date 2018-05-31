@@ -5,7 +5,7 @@ description: A quick tutorial that creates and runs a simple Hello World app usi
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/10/2018
+ms.date: 05/31/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
@@ -25,20 +25,34 @@ uid: getting-started
     dotnet new webapp -o aspnetcoreapp
     ```
 
-3. Run the app with the following commands:
+3. Trust the HTTPS development certificate:
+
+    ```terminal
+    dotnet dev-certs https --trust
+    ```
+
+    The preceding command displays the following dialog:
+
+    ![Security warning dialog](getting-started/_static/cert.png)
+
+    Select **Yes** if you agree to trust the development certificate.
+
+4. Run the app with the following commands:
 
     ```terminal
     cd aspnetcoreapp
     dotnet run
     ```
 
-4. Browse to [http://localhost:5000](http://localhost:5000).
+5. Browse to [http://localhost:5001](http://localhost:5001).
 
-5. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
+    Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.c
+
+6. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
 
     [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
-6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
+6. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes.
 
 [!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
 
