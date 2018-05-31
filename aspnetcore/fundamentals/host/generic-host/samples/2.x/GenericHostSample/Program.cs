@@ -22,7 +22,6 @@ namespace GenericHostSample
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
                     configApp.AddEnvironmentVariables();
-                    configApp.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
