@@ -13,7 +13,38 @@ uid: getting-started
 ---
 # Get started with ASP.NET Core
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
+
+1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
+
+2. Create a new .NET Core project.
+
+   On macOS and Linux, open a terminal window. On Windows, open a command prompt. Enter the following command:
+
+    ```terminal
+    dotnet new webapp -o aspnetcoreapp
+    ```
+
+3. Run the app with the following commands:
+
+    ```terminal
+    cd aspnetcoreapp
+    dotnet run
+    ```
+
+4. Browse to [http://localhost:5000](http://localhost:5000).
+
+5. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
+
+    [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+
+6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
+
+[!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
 
 1. Install the [!INCLUDE[](~/includes/net-core-sdk-download-link.md)].
 
@@ -41,6 +72,7 @@ uid: getting-started
 6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
 [!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
+
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"

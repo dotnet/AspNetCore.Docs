@@ -108,16 +108,15 @@ Uncheck the **Configure for HTTPS** checkbox.
 
 ![Entity diagram](enforcing-ssl/_static/out.png)
 
-
 #	[.NET Core CLI](#tab/netcore-cli) 
 
 Use the `--no-https` option. For example
 
-```cli
-dotnet new razor --no-https
+```console
+dotnet new webapp --no-https
 ```
 
-------
+---
 
 ::: moniker-end
 

@@ -13,17 +13,16 @@ namespace HostingStartupSample
             Console.WriteLine("DOTNET_ADDITIONAL_DEPS: " +
                 Environment.GetEnvironmentVariable("DOTNET_ADDITIONAL_DEPS"));
 
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 // To scan the assembly for HostingStartupAttributes, the
                 // ApplicationName must be set. This can be done with
                 // UseSetting, Configure, or UseStartup.
                 // .UseSetting(WebHostDefaults.ApplicationKey, "HostingStartupSample")
                 // .Configure(_ => { })
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
     }
 }

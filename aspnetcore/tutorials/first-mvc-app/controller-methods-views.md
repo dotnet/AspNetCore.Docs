@@ -21,30 +21,14 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](start-mvc/sample/MvcMovie21/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,3,12-13,17)]
+::: moniker-end
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
+::: moniker-end
 
-Right click on a red squiggly line **> Quick Actions and Refactorings**.
-
-  ![Contextual menu shows **> Quick Actions and Refactorings**.](controller-methods-views/_static/qa.png)
-
-
-Tap `using System.ComponentModel.DataAnnotations;`
-
-  ![using System.ComponentModel.DataAnnotations at top of list](controller-methods-views/_static/da.png)
-
-  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
-
-Let's remove the `using` statements that are not needed. They show up by default in a light grey font. Right click anywhere in the *Movie.cs* file **> Remove and Sort Usings**.
-
-![Remove and Sort Usings](controller-methods-views/_static/rm.png)
-
-The updated code:
-
-[!code-csharp[](./start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1)]
-
-<!-- include start -->
-
-[!INCLUDE [adding-model](../../includes/mvc-intro/controller-methods-views.md)]
+[!INCLUDE [adding-model](~/includes/mvc-intro/controller-methods-views.md)]
 
 > [!div class="step-by-step"]
 > [Previous](working-with-sql.md)

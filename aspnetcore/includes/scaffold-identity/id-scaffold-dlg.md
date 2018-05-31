@@ -16,13 +16,13 @@ Run the Identity scaffolder:
 If you have not previously installed the ASP.NET scaffolder, install it now:
 
 ```cli
-dotnet tool install -g dotnet-aspnet-codegenerator --version 2.1.0-rc1-final
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
 
 ```cli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet restore
 ```
 

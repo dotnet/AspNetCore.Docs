@@ -1,9 +1,9 @@
 {
   "targets": {
-    ".NETCoreApp,Version=v2.0": {
+    ".NETCoreApp,Version=v2.1": {
       "StartupEnhancement/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0"
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.1.0"
         },
         "runtime": {
           "StartupEnhancement.dll": {}
