@@ -26,7 +26,7 @@ There are 3 versions of this tutorial:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!INCLUDE [](~/includes/net-core-prereqs.md)]
+[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a web app
 
@@ -77,7 +77,7 @@ In the next part of this tutorial, we'll learn about MVC and start writing some 
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.0"
+::: moniker range="<= aspnetcore-2.0"
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
