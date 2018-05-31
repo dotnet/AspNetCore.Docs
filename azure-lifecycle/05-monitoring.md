@@ -82,7 +82,7 @@ Web server and application logs are disabled by default in Azure App Service, bu
 1. Set the desired **Retention Period**.
 1. Select **Save**.
 
-ASP.NET Core and web server (App Service) logs will be generated for the web app. They can be downloaded using the FTP/FTPS information displayed (the password is the same as the deployment credentials in Chapter 3). The logs can also be [downloaded with PowerShell or Azure CLI](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#download). Logs can also be [viewed in Application Insights](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
+ASP.NET Core and web server (App Service) logs will be generated for the web app. They can be downloaded using the FTP/FTPS information displayed (the password is the same as the deployment credentials created earlier in this guide). The logs can be [streamed directly to your local machine with PowerShell or Azure CLI](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#download). Logs can also be [viewed in Application Insights](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
 
 
 ## Log streaming
