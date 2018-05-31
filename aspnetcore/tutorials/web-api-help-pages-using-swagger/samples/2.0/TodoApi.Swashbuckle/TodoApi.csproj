@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ProjectUISubcaption>Swashbuckle</ProjectUISubcaption>
+    <ProjectUISubcaption>Swashbuckle - ASP.NET Core 2.0</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_SuppressWarnings> -->
