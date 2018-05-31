@@ -15,7 +15,7 @@ uid: getting-started
 
 ::: moniker range=">= aspnetcore-2.1"
 
-1. Install the [!INCLUDE[](~/includes/net-core-sdk-download-link.md)].
+1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
 
 2. Create a new .NET Core project.
 
