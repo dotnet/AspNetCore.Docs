@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,12 +15,14 @@ namespace GenericHostSample
                 .ConfigureHostConfiguration(configHost =>
                 {
                     configHost.AddEnvironmentVariables();
+                    configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile("hostsettings.json", optional: true);
                     configHost.AddCommandLine(args);
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
                     configApp.AddEnvironmentVariables();
+                    configApp.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
