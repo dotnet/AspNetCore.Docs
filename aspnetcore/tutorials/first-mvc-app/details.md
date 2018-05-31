@@ -68,7 +68,5 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure using Visual Studio.  The app can also be published from the [command line](xref:tutorials/publish-to-azure-webapp-using-cli).
 
-Thanks for completing this introduction to ASP.NET Core MVC. 
-
 > [!div class="step-by-step"]
 > [Previous](validation.md)

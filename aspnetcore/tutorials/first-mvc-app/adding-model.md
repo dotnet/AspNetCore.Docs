@@ -110,8 +110,8 @@ Update-Database
 
 Ignore the following error message, we fix it in the next tutorial:
 
-Microsoft.EntityFrameworkCore.Model.Validation[30000]  
-      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+*Microsoft.EntityFrameworkCore.Model.Validation[30000]*  
+      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.*
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.0"
