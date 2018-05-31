@@ -63,7 +63,7 @@ Only part of the file is shown. The assembly name in the example is `StartupEnha
 
 ### Update the dependencies file
 
-The runtime location is specified in the *\*.deps.json* file. To active the enhancement, the `runtime` element must specify the location of the enhancement's runtime assembly. Prefix the `runtime` location with `lib/netcoreapp2.1/`:
+The runtime location is specified in the *\*.deps.json* file. To active the enhancement, the `runtime` element must specify the location of the enhancement's runtime assembly. Prefix the `runtime` location with `lib/<TARGET_FRAMEWORK_MONIKER>/`:
 
 [!code-json[](platform-specific-configuration/snapshot_sample/StartupEnhancement2.deps.json?range=2-13&highlight=8)]
 
@@ -78,13 +78,13 @@ The `IHostingStartup` implementation's assembly file must be *bin*-deployed in t
 For per-user use, place the assembly in the user profile's runtime store at:
 
 ```
-<DRIVE>\Users\<USER>\.dotnet\store\x64\netcoreapp2.1\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\netcoreapp2.1\
+<DRIVE>\Users\<USER>\.dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
 
 For global use, place the assembly in the .NET Core installation's runtime store:
 
 ```
-<DRIVE>\Program Files\dotnet\store\x64\netcoreapp2.1\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\netcoreapp2.1\
+<DRIVE>\Program Files\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
 
 When deploying the assembly to the runtime store, the symbols file may be deployed as well but isn't required for the enhancement to work.
