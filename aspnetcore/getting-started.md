@@ -50,7 +50,7 @@ uid: getting-started
 
 6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
-    [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+    [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9)]
 
 7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes.
 
