@@ -108,6 +108,8 @@
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
 
+## [Develop apps using a file watcher](xref:tutorials/dotnet-watch)
+
 ## [Create backend services for mobile apps](mobile/native-mobile-backend.md)
 
 # [Fundamentals](fundamentals/index.md)

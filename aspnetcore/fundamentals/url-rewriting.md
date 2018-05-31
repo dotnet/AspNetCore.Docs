@@ -17,15 +17,16 @@ By [Luke Latham](https://github.com/guardrex) and [Mikael Mengistu](https://gith
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses are not tightly linked. There are several scenarios where URL rewriting is valuable:
-* Moving or replacing server resources temporarily or permanently while maintaining stable locators for those resources
-* Splitting request processing across different apps or across areas of one app
-* Removing, adding, or reorganizing URL segments on incoming requests
-* Optimizing public URLs for Search Engine Optimization (SEO)
-* Permitting the use of friendly public URLs to help people predict the content they will find by following a link
-* Redirecting insecure requests to secure endpoints
-* Preventing image hotlinking
 
-You can define rules for changing the URL in several ways, including regex, Apache mod_rewrite module rules, IIS Rewrite Module rules, and using custom rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+* Moving or replacing server resources temporarily or permanently while maintaining stable locators for those resources.
+* Splitting request processing across different apps or across areas of one app.
+* Removing, adding, or reorganizing URL segments on incoming requests.
+* Optimizing public URLs for Search Engine Optimization (SEO).
+* Permitting the use of friendly public URLs to help people predict the content they will find by following a link.
+* Redirecting insecure requests to secure endpoints.
+* Preventing image hotlinking.
+
+You can define rules for changing the URL in several ways, including Regex, Apache mod_rewrite module rules, IIS Rewrite Module rules, and using custom rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
 
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, you should limit the number and complexity of rules.
@@ -122,8 +123,8 @@ The part of the expression contained within parentheses is called a *capture gro
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There's only one captured group in the redirect rule regex in the sample app, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
-<a name="url-redirect-to-secure-endpoint"></a>
 ### URL redirect to a secure endpoint
+
 Use `AddRedirectToHttps` to redirect HTTP requests to the same host and path using HTTPS (`https://`). If the status code isn't supplied, the middleware defaults to 302 (Found). If the port isn't supplied, the middleware defaults to `null`, which means the protocol changes to `https://` and the client accesses the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 
 ```csharp
@@ -148,13 +149,16 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted.
+> [!NOTE]
+> When redirecting to HTTPS on port 443 without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
 
-Original Request using `AddRedirectToHttps(301, 5001)`: `/secure`
+The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
+
+Original Request using `AddRedirectToHttps(301, 5001)`: `http://localhost:5000/secure`
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
 
-Original Request using `AddRedirectToHttpsPermanent`: `/secure`
+Original Request using `AddRedirectToHttpsPermanent`: `http://localhost:5000/secure`
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
@@ -249,6 +253,7 @@ Original Request: `/apache-mod-rules-redirect/1234`
 ##### Supported server variables
 
 The middleware supports the following Apache mod_rewrite server variables:
+
 * CONN_REMOTE_ADDR
 * HTTP_ACCEPT
 * HTTP_CONNECTION
@@ -320,6 +325,7 @@ If you have an active IIS Rewrite Module with server-level rules configured that
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 The middleware released with ASP.NET Core 2.x doesn't support the following IIS URL Rewrite Module features:
+
 * Outbound Rules
 * Custom Server Variables
 * Wildcards
@@ -328,6 +334,7 @@ The middleware released with ASP.NET Core 2.x doesn't support the following IIS 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The middleware released with ASP.NET Core 1.x doesn't support the following IIS URL Rewrite Module features:
+
 * Global Rules
 * Outbound Rules
 * Rewrite Maps
@@ -342,6 +349,7 @@ The middleware released with ASP.NET Core 1.x doesn't support the following IIS 
 #### Supported server variables
 
 The middleware supports the following IIS URL Rewrite Module server variables:
+
 * CONTENT_LENGTH
 * CONTENT_TYPE
 * HTTP_ACCEPT

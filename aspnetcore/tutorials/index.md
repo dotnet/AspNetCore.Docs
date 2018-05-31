@@ -34,7 +34,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](xref:data/ef-mvc/index)
 * [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Create a simple view component](xref:mvc/views/view-components#walkthrough-creating-a-simple-view-component)
-* [Develop ASP.NET Core apps using dotnet watch](xref:tutorials/dotnet-watch)
+* [Develop apps using a file watcher](xref:tutorials/dotnet-watch)
 
 ## Build Web APIs
 * Create a Web API with ASP.NET Core

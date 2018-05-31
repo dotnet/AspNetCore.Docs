@@ -35,17 +35,47 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+::: moniker range=">= aspnetcore-2.1"
+
+Run `dotnet new webapp` from the command line.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 Run `dotnet new razor` from the command line.
+
+::: moniker-end
 
 Open the generated *.csproj* file from Visual Studio for Mac.
 
 # [Visual Studio Code](#tab/visual-studio-code) 
 
+::: moniker range=">= aspnetcore-2.1"
+
+Run `dotnet new webapp` from the command line.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 Run `dotnet new razor` from the command line.
+
+::: moniker-end
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
+::: moniker range=">= aspnetcore-2.1"
+
+Run `dotnet new webapp` from the command line.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 Run `dotnet new razor` from the command line.
+
+::: moniker-end
 
 ---
 

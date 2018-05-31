@@ -11,7 +11,7 @@ ms.topic: get-started-article
 uid: tutorials/first-mvc-app/validation
 ---
 
-[!INCLUDE [validation](../../includes/mvc-intro/validation.md)]
+[!INCLUDE [validation](~/includes/mvc-intro/validation.md)]
 
 > [!div class="step-by-step"]
 > [Previous](new-field.md)

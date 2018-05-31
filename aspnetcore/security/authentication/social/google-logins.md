@@ -99,6 +99,8 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.

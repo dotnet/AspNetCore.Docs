@@ -41,3 +41,7 @@ Here are set up instructions for some other common OAuth providers. Third-party 
 * Set up **SoundCloud** sign in: [https://soundcloud.com/you/apps/new](https://soundcloud.com/you/apps/new). See [official steps](https://developers.soundcloud.com/blog/we-love-oauth-2).
 
 * Set up **VK** sign in: [https://vk.com/apps?act=manage](https://vk.com/apps?act=manage). See [official steps](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites).
+
+## Multiple authentication providers
+
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
