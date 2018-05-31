@@ -31,12 +31,7 @@ The purpose of this book (or set of docs, or whatever else this project becomes)
     * Debugging
     * Application Insights
 
-6. Best practices we didn’t cover (learning paths, not content)
-    * Keeping secrets in Key Vault
-    * Using Redis for caching and session state
-    * Using Azure CDN for content distribution
-
-7.	Next Steps – Learning paths for additional topics
+6.	Next Steps – Learning paths for additional topics
     * Azure storage
     * Databases
     * Azure functions
