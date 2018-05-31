@@ -18,11 +18,11 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 
 1. Sign into the [Azure portal](https://portal.azure.com).
 
-2. In the **Search** bar at the top of the page, type the first few characters of your web app's name. There will be multiple results with the same name. Select the *App Service* result with the globe icon.
+1. In the **Search** bar at the top of the page, type the first few characters of your web app's name. There will be multiple results with the same name. Select the *App Service* result (denoted by a globe icon) for your web app.
     
     ![Search results](./media/05/search.png)
 
-3. The *Overview* tab displays useful "at-a-glance" information, including graphs displaying recent metrics.
+1. The *Overview* tab displays useful "at-a-glance" information, including graphs displaying recent metrics.
 
     ![Overview panel](./media/05/overview.png)
 
@@ -48,17 +48,18 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 
 [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) is an Azure service for analyzing the performance and stability of web apps and how users use them. The data from Application Insights is broader and deeper than that of Azure Monitor, and can provide developers and administrators with key information for improving apps. Application Insights can be added to an Azure App Service resource without code changes.
 
+1. Navigate to the App Service settings in the Azure portal.
 1. From the *Overview* tab, select the *Application Insights* tile.
     
     ![Application Insights tile](./media/05/app-insights.png)
 
-2. Select **Create new resource**. Leave the default name and select the location for the Application Insights resource. It doesn't need to be the same location as your web app.
+1. Select **Create new resource**. Leave the default name and select the location for the Application Insights resource. It doesn't need to be the same location as your web app.
     
     ![Application Insights setup](./media/05/new-app-insights.png)
 
-3. For **Runtime/Framework**, select **ASP.NET Core**. Accept the default settings.
-4. Select **OK**. If prompted to confirm, select **Continue**.
-5. After the resource has been created, click the name of Application Insights resource to navigate directly to the Application Insights page.
+1. For **Runtime/Framework**, select **ASP.NET Core**. Accept the default settings.
+1. Select **OK**. If prompted to confirm, select **Continue**.
+1. After the resource has been created, click the name of Application Insights resource to navigate directly to the Application Insights page.
     
         ![New Application Insights resource is ready](./media/05/new-app-insights-done.png)
 
@@ -71,15 +72,15 @@ Application Insights provides useful server-side information with no additional 
 
 Web server and application logs are disabled by default in Azure App Service, but are easily enabled.
 
-1. Navigate to the App Service settings.
-2. In the menu to the left, scroll down to the **Monitoring** section and select **Diagnostics logs**.
+1. Navigate to the App Service settings in the Azure portal.
+1. In the menu to the left, scroll down to the **Monitoring** section and select **Diagnostics logs**.
     
     ![Diagnostic logs link](./media/05/logging.png)
 
-3. Turn on **Application Logging (Filesystem). If prompted, click the box to install the extensions to enable application logging in the web app.
-4. Set **Web server logging** to **File System**.
-5. Set the desired **Retention Period**.
-6. Select **Save**.
+1. Turn on **Application Logging (Filesystem). If prompted, click the box to install the extensions to enable application logging in the web app.
+1. Set **Web server logging** to **File System**.
+1. Set the desired **Retention Period**.
+1. Select **Save**.
 
 ASP.NET Core and web server (App Service) logs will be generated for the web app. They can be downloaded using the FTP/FTPS information displayed (the password is the same as the deployment credentials in Chapter 3). The logs can also be [downloaded with PowerShell or Azure CLI](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#download). Logs can also be [viewed in Application Insights](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
 
@@ -89,11 +90,11 @@ ASP.NET Core and web server (App Service) logs will be generated for the web app
 Application and web server logs can be streamed in real time through the portal.
 
 1. Navigate to the App Service settings.
-2. In the menu to the left, scroll down to the **Monitoring** section and select **Log stream**.
+1. In the menu to the left, scroll down to the **Monitoring** section and select **Log stream**.
     
     ![Log stream link](./media/05/log-stream.png)
 
-Logs can also be [streamed via Azure CLI or Azure PowerShell](, including through the Cloud Shell.
+Logs can also be [streamed via Azure CLI or Azure PowerShell](https://docs.microsoft.com/azure/app-service/web-sites-enable-diagnostic-log#streamlogs), including through the Cloud Shell.
  
 ## Alerts
 
