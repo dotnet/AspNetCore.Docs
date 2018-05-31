@@ -148,6 +148,7 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        #region snippet_delete
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -176,6 +177,7 @@ namespace MvcMovie.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
         private bool MovieExists(int id)
         {
