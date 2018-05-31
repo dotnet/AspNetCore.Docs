@@ -69,7 +69,11 @@ if (context.Movie.Any())
 <a name="si"></a>
 ### Add the seed initializer
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
+::: moniker-end
+::: moniker range="<= aspnetcore-2.0"
+[!code-csharp[]# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
@@ -82,6 +86,7 @@ Add the seed initializer to the end of the `Configure` method in the *Startup.cs
 [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
 
 ---
+::: moniker-end
 
 Test the app
 

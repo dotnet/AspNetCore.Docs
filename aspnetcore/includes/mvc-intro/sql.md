@@ -43,7 +43,6 @@ Add the seed initializer to the `Main` method in the *Program.cs* file:
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Program.cs?highlight=6,16-32)]
 ::: moniker-end
 
-
 ### Test the app
 
 Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
