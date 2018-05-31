@@ -85,7 +85,6 @@ Examine the *Pages/Movies/Edit.cshtml.cs* file:
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 
 ::: moniker-end
-[!code-csharp[]
 
 When an HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 

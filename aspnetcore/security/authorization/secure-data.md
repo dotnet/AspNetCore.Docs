@@ -299,9 +299,21 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace matches the namespace used in the sample.
 
+::: moniker range=">= aspnetcore-2.1"
+
+  ```console
+  dotnet new webapp -o ContactManager -au Individual -uld
+  ```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
   ```console
   dotnet new razor -o ContactManager -au Individual -uld
   ```
+
+::: moniker-end
 
   * `-uld` specifies LocalDB instead of SQLite
 

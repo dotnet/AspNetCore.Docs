@@ -42,7 +42,7 @@ Add the following highlighted calls to the `Startup` class:
 <!--
 set projNam=RPnoAuth
 set projType=razor
-set version=2.1.0-rc1-final
+set version=2.1.0
 
 dotnet new %projType% -o %projNam%
 cd %projNam%
@@ -74,9 +74,10 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 ## Scaffold identity into a Razor project with individual authorization
 
 <!--
-dotnet new razor -au Individual -o RPauth
+Use >=2.1: dotnet new webapp -au Individual -o RPauth
+Use = 2.0: dotnet new razor -au Individual -o RPauth
 cd RPauth
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet restore
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
 -->
@@ -89,7 +90,7 @@ Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.c
 <!--
 set projNam=MvcNoAuth
 set projType=mvc
-set version=2.1.0-rc1-final
+set version=2.1.0
 
 dotnet new %projType% -o %projNam%
 cd %projNam%
@@ -123,7 +124,7 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 <!--
 dotnet new mvc -au Individual -o MvcAuth
 cd MvcAuth
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v "2.1.0-rc1-final"
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet restore
 dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --files Account.Register
 -->
