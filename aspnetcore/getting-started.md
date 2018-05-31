@@ -48,11 +48,11 @@ uid: getting-started
 
     Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.c
 
-6. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
+6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
     [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
-6. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes.
+7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes.
 
 [!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
 
