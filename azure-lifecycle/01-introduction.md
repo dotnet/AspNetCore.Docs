@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature CI/CD toolchain.
+Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature DevOps toolchain.
 
 ### Who this guide is for
 
@@ -32,11 +32,7 @@ Build an end-to-end continuous integration solution for your ASP.NET Core app wi
 
 Use Azure's tools to monitor, troubleshoot, and tune your application.
 
-### [Best Practices](06-best-practices.md)
-
-A collection of best practices for cloud development.
-
-### [Next steps](07-next-steps.md)
+### [Next steps](06-next-steps.md)
 
 Other learning paths for the ASP.NET Core developer learning Azure.
 
