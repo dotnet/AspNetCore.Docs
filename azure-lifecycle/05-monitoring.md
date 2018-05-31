@@ -77,7 +77,7 @@ Web server and application logs are disabled by default in Azure App Service, bu
     
     ![Diagnostic logs link](./media/05/logging.png)
 
-1. Turn on **Application Logging (Filesystem). If prompted, click the box to install the extensions to enable application logging in the web app.
+1. Turn on **Application Logging (Filesystem)**. If prompted, click the box to install the extensions to enable application logging in the web app.
 1. Set **Web server logging** to **File System**.
 1. Set the desired **Retention Period**.
 1. Select **Save**.
