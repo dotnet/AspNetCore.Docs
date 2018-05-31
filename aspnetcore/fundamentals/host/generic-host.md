@@ -221,10 +221,9 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = new HostBuilder()
-            .Build();
+        var hostBuilder = new HostBuilder();
 
-        await host.RunConsoleAsync();
+        await hostBuilder.RunConsoleAsync();
     }
 }
 ```
