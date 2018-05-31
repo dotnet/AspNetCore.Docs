@@ -18,7 +18,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ## Create the app in Facebook
 
-*  Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
+* Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
 * Tap the **Add a New App** button in the upper right corner to create a new App ID.
 
@@ -82,6 +82,8 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 ```
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
+
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 

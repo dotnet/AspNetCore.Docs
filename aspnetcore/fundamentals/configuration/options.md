@@ -44,7 +44,7 @@ The following page model uses [constructor dependency injection](xref:fundamenta
 
 The sample's *appsettings.json* file specifies values for `option1` and `option2`:
 
-[!code-json[](options/sample/appsettings.json)]
+[!code-json[](options/sample/appsettings.json?highlight=2-3)]
 
 When the app is run, the page model's `OnGet` method returns a string showing the option class values:
 
@@ -94,7 +94,7 @@ In the following code, a third `IConfigureOptions<TOptions>` service is added to
 
 [!code-csharp[](options/sample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) metapackage, the package is automatically included.
+The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage, the package is automatically included.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 

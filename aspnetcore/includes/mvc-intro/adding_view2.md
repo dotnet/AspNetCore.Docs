@@ -1,14 +1,14 @@
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
-[!code-HTML[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index.cshtml)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index.cshtml)]
 
 Navigate to `http://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file, MVC defaulted to using the *Index.cshtml* view file in the */Views/HelloWorld* folder. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
-![Browser window](../../tutorials/first-mvc-app/adding-view/_static/hell_template.png)
+![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
 If your browser window is small (for example on a mobile device), you might need to toggle (tap) the [Bootstrap navigation button](http://getbootstrap.com/components/#navbar) in the upper right to see the **Home**, **About**, and **Contact** links.
 
-![Browser window highlighting the Bootstrap navigation button](../../tutorials/first-mvc-app/adding-view/_static/1.png)
+![Browser window highlighting the Bootstrap navigation button](~/tutorials/first-mvc-app/adding-view/_static/1.png)
 
 ## Changing views and layout pages
 
@@ -20,16 +20,21 @@ Tap the menu links (**MvcMovie**, **Home**, **About**). Each page shows the same
 
 In the title element, change `MvcMovie` to `Movie App`. Change the anchor text in the layout template from `MvcMovie` to `Movie App` and the controller from `Home` to `Movies` as highlighted below:
 
-Note: The ASP.NET Core 2.0 version is slightly different. It doesn't contain `@inject ApplicationInsights` and `@Html.Raw(JavaScriptSnippet.FullScript)`.
+::: moniker range="<= aspnetcore-2.0"
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
 
-[!code-html[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout21.cshtml?highlight=6,29)]
+::: moniker-end
 
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
 
 Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**: 
 
-![About tab](../../tutorials/first-mvc-app/adding-view/_static/about2.png)
+![About tab](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
 Tap the **Contact** link and notice that the title and anchor text also display **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
 
@@ -75,7 +80,7 @@ Save your change and navigate to `http://localhost:xxxx/HelloWorld`. Notice that
 
 Also notice how the content in the *Index.cshtml* view template was merged with the *Views/Shared/_Layout.cshtml* view template and a single HTML response was sent to the browser. Layout templates make it really easy to make changes that apply across all of the pages in your application. To learn more see [Layout](xref:mvc/views/layout).
 
-![Movie List view](../../tutorials/first-mvc-app/adding-view/_static/hell3.png)
+![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hell3.png)
 
 Our little bit of "data" (in this case the "Hello from our View Template!" message) is hard-coded, though. The MVC application has a "V" (view) and you've got a "C" (controller), but no "M" (model) yet.
 
@@ -89,7 +94,7 @@ Currently, the `Welcome` method in the `HelloWorldController` class takes a `nam
 
 Return to the *HelloWorldController.cs* file and change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object, which means you can put whatever you want in to it; the `ViewData` object has no defined properties until you put something inside it. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 
-[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
 
 The `ViewData` dictionary object contains data that will be passed to the view. 
 
@@ -97,7 +102,7 @@ Create a Welcome view template named *Views/HelloWorld/Welcome.cshtml*.
 
 You'll create a loop in the *Welcome.cshtml* view template that displays "Hello" `NumTimes`. Replace the contents of *Views/HelloWorld/Welcome.cshtml* with the following:
 
-[!code-html[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
 
 Save your changes and browse to the following URL:
 
@@ -105,7 +110,7 @@ Save your changes and browse to the following URL:
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding) . The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![About view showing a Welcome label and the phrase Hello Rick shown four times](../../tutorials/first-mvc-app/adding-view/_static/rick2.png)
+![About view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
 In the sample above, we used the `ViewData` dictionary to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [ViewModel vs ViewData vs ViewBag vs TempData vs Session in MVC](http://www.mytecbits.com/microsoft/dot-net/viewmodel-viewdata-viewbag-tempdata-mvc) for more information.
 

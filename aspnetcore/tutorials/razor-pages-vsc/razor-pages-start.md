@@ -25,11 +25,25 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 From a terminal, run the following commands:
 
+::: moniker range=">= aspnetcore-2.1"
+
+```console
+dotnet new webapp -o RazorPagesMovie
+cd RazorPagesMovie
+dotnet run
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 ```console
 dotnet new razor -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```
+
+::: moniker-end
 
 The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 

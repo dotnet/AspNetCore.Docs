@@ -12,19 +12,31 @@ uid: tutorials/first-mvc-app/adding-model
 ---
 # Add a model to an ASP.NET Core MVC app
 
-[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model1.md)]
-
-Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model1.md)]
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
 Build the project to verify you don't have any errors. You now have a **M**odel in your **M**VC app.
 
 ## Scaffolding a controller
+
+::: moniker range=">= aspnetcore-2.1"
+
+In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
+
+![view of above step](adding-model/_static/add_controller21.png)
+
+In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
+
+![Add Scaffold dialog](adding-model/_static/add_scaffold21.png)
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
 
@@ -38,6 +50,8 @@ If the **Add MVC Dependencies** dialog appears:
 In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
 ![Add Scaffold dialog](adding-model/_static/add_scaffold2.png)
+
+::: moniker-end
 
 Complete the **Add Controller** dialog:
 
@@ -62,7 +76,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 
 If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
 
-```
+``` error
 An unhandled exception occurred while processing the request.
 
 SqlException: Cannot open database "MvcMovieContext-<GUID removed>" requested by the login. The login failed.
@@ -88,6 +102,20 @@ From the **Tools** menu, select **NuGet Package Manager > Package Manager Consol
 
 In the PMC, enter the following commands:
 
+::: moniker range=">= aspnetcore-2.1"
+``` PMC
+Add-Migration Initial
+Update-Database
+```
+
+Ignore the following error message, we fix it in the next tutorial:
+
+*Microsoft.EntityFrameworkCore.Model.Validation[30000]*  
+      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.*
+
+::: moniker-end
+::: moniker range="<= aspnetcore-2.0"
+
 ``` PMC
 Install-Package Microsoft.EntityFrameworkCore.Tools
 Add-Migration Initial
@@ -95,6 +123,8 @@ Update-Database
 ```
 
 **Note:** If you receive an error with the `Install-Package` command, open NuGet Package Manager and search for the `Microsoft.EntityFrameworkCore.Tools` package. This allows you to install the package or check if it's already installed. Alternatively, see the [CLI approach](#cli) if you have problems with the PMC.
+
+::: moniker-end
 
 The `Add-Migration` command creates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
@@ -109,23 +139,28 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
   ```console
   dotnet ef migrations add Initial
   dotnet ef database update
-  ```     
-  
+  ```
+
   If you run the app and get the error:
-  
+
   ```text
   SqlException: Cannot open database "Movie" requested by the login.
   The login failed.
   Login failed for user 'user name'.
   ```
 
-You probably have not run ` dotnet ef database update`.
-  
-[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model3.md)]
+You probably have not run `dotnet ef database update`.
 
-[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model3.md)]
 
-[!INCLUDE [adding-model](../../includes/mvc-intro/adding-model4.md)]
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Startup.cs?name=ConfigureServices&highlight=13-99)]
+::: moniker-end
+::: moniker range="<= aspnetcore-2.0"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+::: moniker-end
+
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model4.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 

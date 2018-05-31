@@ -87,6 +87,8 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
