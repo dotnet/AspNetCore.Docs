@@ -12,8 +12,6 @@ uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
-<a name="security-authentication-social-logins"></a>
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial demonstrates how to build an ASP.NET Core 2.x app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
@@ -73,13 +71,15 @@ Use the following topics to configure your application to use the respective pro
 * [Microsoft](xref:security/authentication/microsoft-logins) instructions
 * [Other provider](xref:security/authentication/otherlogins) instructions
 
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
 ## Optionally set password
 
 When you register with an external login provider, you don't have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
 
 To create a password and sign in using your email that you set during the sign in process with external providers:
 
-* Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
+* Tap the **Hello &lt;email alias&gt;** link at the top right corner to navigate to the **Manage** view.
 
 ![Web application Manage view](index/_static/pass1a.png)
 

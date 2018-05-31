@@ -69,6 +69,8 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
