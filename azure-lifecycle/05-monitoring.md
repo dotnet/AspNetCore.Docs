@@ -61,7 +61,7 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 1. Select **OK**. If prompted to confirm, select **Continue**.
 1. After the resource has been created, click the name of Application Insights resource to navigate directly to the Application Insights page.
     
-        ![New Application Insights resource is ready](./media/05/new-app-insights-done.png)
+    ![New Application Insights resource is ready](./media/05/new-app-insights-done.png)
 
 As the app is used, data accumulates. Select **Refresh** to reload the blade with new data.
 
