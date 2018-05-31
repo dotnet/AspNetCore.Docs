@@ -24,6 +24,7 @@ namespace MvcMovie.Controllers
             return View(await _context.Movie.ToListAsync());
         }
 
+        #region snippet_details
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -41,6 +42,7 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
+        #endregion
 
         // GET: Movies/Create
         public IActionResult Create()
