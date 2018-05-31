@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovie;
 
-namespace RazorPagesMovie
+namespace MvcMovie
 {
     public class Program
     {

@@ -1,5 +1,8 @@
-﻿#if Start
+﻿//#define AddAModel_first
+#if AddAModel_first
+#region snippet
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcMovie.Models
 {
@@ -12,4 +15,5 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
     }
 }
+#endregion
 #endif
