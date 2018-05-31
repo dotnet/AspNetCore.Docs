@@ -1,3 +1,5 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -22,4 +24,9 @@ h3 {
 
 .panel-body {
     font-size: 16px;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
 }

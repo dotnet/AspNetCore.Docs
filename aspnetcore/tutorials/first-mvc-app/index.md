@@ -12,13 +12,14 @@ uid: tutorials/first-mvc-app/index
 ---
 # Create a web app with ASP.NET Core MVC on Windows with Visual Studio
 
-[!INCLUDE [consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](~/includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
 * Windows: This series
 * macOS: [Create an ASP.NET Core MVC app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
 * macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)
+
 The tutorial series includes the following:
 
 1. [Get started](start-mvc.md)
