@@ -115,7 +115,7 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ## [ApiController], ActionResult
 
-ASP.NET Core 2.1 add new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
+ASP.NET Core 2.1 adds new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
 For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index).
 
