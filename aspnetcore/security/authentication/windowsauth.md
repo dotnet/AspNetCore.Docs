@@ -51,7 +51,7 @@ Alternatively, these two properties can be configured in the *launchSettings.jso
 
 ## Enable Windows authentication with IIS
 
-IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module flows Windows authentication to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
+IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module allows Windows authentication to flow to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
 
 ### Create a new IIS site
 
