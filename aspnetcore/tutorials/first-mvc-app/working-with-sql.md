@@ -74,7 +74,7 @@ if (context.Movie.Any())
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.0"
 
-#[ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
