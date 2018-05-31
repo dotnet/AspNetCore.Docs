@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/adding-model
 ---
 # Add a model to an ASP.NET Core MVC app
 
-[!INCLUDE [adding-model](~/includess/mvc-intro/adding-model1.md)]
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model1.md)]
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
@@ -151,7 +151,7 @@ You can perform the preceeding steps using the command-line interface (CLI) rath
 
 You probably have not run `dotnet ef database update`.
 
-[!INCLUDE [adding-model](~/includess/mvc-intro/adding-model3.md)]
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model3.md)]
 
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Startup.cs?name=ConfigureServices&highlight=13-99)]
@@ -160,7 +160,7 @@ You probably have not run `dotnet ef database update`.
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
 ::: moniker-end
 
-[!INCLUDE [adding-model](~/includess/mvc-intro/adding-model4.md)]
+[!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model4.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
