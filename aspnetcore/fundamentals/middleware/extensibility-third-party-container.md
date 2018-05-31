@@ -56,7 +56,7 @@ An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*
 
 The middleware is registered in the request processing pipeline in `Startup.Configure`:
 
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=12)]
+[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=13)]
 
 ## Additional resources
 

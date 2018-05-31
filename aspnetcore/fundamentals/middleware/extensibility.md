@@ -64,11 +64,11 @@ public static IApplicationBuilder UseIMiddlewareMiddleware(
 
 The factory-activated middleware is added to the built-in container in *Startup.cs*:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=12)]
 
 Both middlewares are registered in the request processing pipeline in `Configure`:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=12-13)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=13-14)]
 
 ## IMiddlewareFactory
 
