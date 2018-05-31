@@ -40,6 +40,8 @@ In a web browser, navigate to `http://localhost:<port number>/api/math/sum?a=4&b
 
 Navigate to the product API (`http://localhost:<port number>/api/math/product?a=4&b=5`). It returns `9`, not `20` as you'd expect. That problem is fixed later in the tutorial.
 
+::: moniker range="<= aspnetcore-2.0"
+
 ## Add `dotnet watch` to a project
 
 The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NET Core SDK. The following steps are required when using an earlier version of the .NET Core SDK.
@@ -57,6 +59,8 @@ The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NE
     ```console
     dotnet restore
     ```
+
+::: moniker-end
 
 ## Run .NET Core CLI commands using `dotnet watch`
 
