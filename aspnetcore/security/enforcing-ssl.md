@@ -48,8 +48,8 @@ The following mechanisms set the port automatically:
 * The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
   - Kestrel or HTTP.sys is used directly with HTTPS endpoints.
   - Only **one port** is used by the app.
-* Visual Studio is used with:
-  - The `ASPNETCORE_HTTPS_PORT` environment variable set.
+* Visual Studio is used:
+  - *launchSettings.json* sets the `ASPNETCORE_HTTPS_PORT` environment variable.
   - IIS Express has HTTPS enabled.
 
 > [!NOTE]
