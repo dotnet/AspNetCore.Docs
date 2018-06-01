@@ -65,9 +65,7 @@ uid: getting-started
     dotnet run
     ```
 
-5. Browse to [http://localhost:5001](http://localhost:5001).
-
-    Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+5. Browse to [http://localhost:5001](http://localhost:5001).  Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
