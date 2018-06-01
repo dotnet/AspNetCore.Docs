@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ProjectUISubcaption>Swashbuckle</ProjectUISubcaption>
+    <ProjectUISubcaption>Swashbuckle - ASP.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_SuppressWarnings> -->
@@ -13,7 +13,7 @@
   <!-- </snippet_SuppressWarnings> -->
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
