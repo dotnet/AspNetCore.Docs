@@ -19,7 +19,7 @@ uid: getting-started
 
 2. Create a new .NET Core project.
 
-   On macOS and Linux, open a terminal window. On Windows, open a command prompt. Enter the following command:
+   Open a command shell. Enter the following command:
 
     ```terminal
     dotnet new webapp -o aspnetcoreapp
@@ -27,15 +27,38 @@ uid: getting-started
 
 3. Trust the HTTPS development certificate:
 
+[Windows](#tab/windows)
+
     ```terminal
     dotnet dev-certs https --trust
     ```
 
-    The preceding command displays the following dialog:
+    The preceding command displays the following dialog on Windows:
 
     ![Security warning dialog](getting-started/_static/cert.png)
 
     Select **Yes** if you agree to trust the development certificate.
+
+[macOS](#tab/macos)
+
+    ```terminal
+    dotnet dev-certs https --trust
+    ```
+
+    The preceding command displays the following:
+
+    *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*  
+    `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`  
+    *This command might prompt you for your password to install the certificate on the system keychain.  
+    Password:*
+
+    Enter you password if you agree to trust the development certificate.
+
+[Linux](#tab/linux)
+
+    See the Linux platform documentation.
+
+---
 
 4. Run the app with the following commands:
 
@@ -46,7 +69,7 @@ uid: getting-started
 
 5. Browse to [http://localhost:5001](http://localhost:5001).
 
-    Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.c
+    Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
