@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -11,7 +13,13 @@ namespace HttpSysSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         #region snippet1
@@ -39,9 +47,13 @@ namespace HttpSysSample
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
+            // Enable HTTPS Redirection Middleware when hosting the app securely.
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseMvc();
         }
         #endregion
