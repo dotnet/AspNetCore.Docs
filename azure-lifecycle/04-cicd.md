@@ -106,7 +106,35 @@ Click the **Deploy: Configure deployment** option, and follow these steps:
 
 ## Commit changes to GitHub and automatically deploy to Azure
 
-<!-- TODO -->
+1. Open *SimpleFeedReader.sln* in Visual Studio.
+1. In Solution Explorer, open *Pages\Index.cshtml*. Change `<h2>Simple Feed Reader - V3</h2>` to `<h2>Simple Feed Reader - V4</h2>`.
+1. Press **Ctrl**+**Shift**+**B** to build the app.
+1. Commit the file to the GitHub repository. Use either the **Changes** page in Visual Studio's *Team Explorer* tab, or execute the following using the local machine's command shell:
+
+    ```console
+    git commit -a -m "upgraded to V4"
+    ```
+1. Push the change in the *master* branch to *origin* remote of your GitHub repository:
+
+    ```console
+    git push origin master
+    ```
+
+The commit appears in the GitHub repository's *master* branch:
+
+![GitHub commit in master branch](media/04/github-commit.png)
+
+The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
+
+![enable continuous integration](media/04/enable-ci.png)
+
+Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
+
+![queued build](media/04/build-queued.png)
+
+Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
+
+![updated app](media/04/updated-app-v4.png)
 
 ## Examine the VSTS DevOps pipeline
 
@@ -119,7 +147,7 @@ The build definition's **Tasks** tab lists the individual steps being used. Ther
 ![build definition tasks](media/04/build-definition-tasks.png)
 
 1. **Restore** &mdash; Executes the `dotnet restore` command to restore the app's NuGet packages. The default package feed used is nuget.org.
-1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug release is needed.
+1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug configuration is needed.
 1. **Test** &mdash; Executes the `dotnet test --configuration Release` command to run the app's unit tests. This step currently serves no purpose, as no unit tests were written.
 1. **Publish** &mdash; Executes the `dotnet publish --configuration Release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
 1. **Publish Artifact** &mdash; Publishes the *.zip* file produced by the **Publish** task. The task accepts the *.zip* file location as a parameter, which is the predefined variable `$(build.artifactstagingdirectory)`. The *.zip* file is published as a folder named *drop*.
