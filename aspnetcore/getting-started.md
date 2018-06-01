@@ -17,9 +17,7 @@ uid: getting-started
 
 1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
 
-2. Create a new ASP.NET Core project.
-
-   Open a command shell. Enter the following command:
+2. Create an ASP.NET Core project. Open a command shell and enter the following command:
 
     ```console
     dotnet new webapp -o aspnetcoreapp
@@ -60,7 +58,7 @@ uid: getting-started
 
 ---
 
-4. Run the app with the following commands:
+4. Run the app:
 
     ```console
     cd aspnetcoreapp
