@@ -27,7 +27,7 @@ uid: getting-started
 
 3. Trust the HTTPS development certificate:
 
-[Windows](#tab/windows)
+# [Windows](#tab/windows)
 
     ```terminal
     dotnet dev-certs https --trust
@@ -39,7 +39,7 @@ uid: getting-started
 
     Select **Yes** if you agree to trust the development certificate.
 
-[macOS](#tab/macos)
+# [macOS](#tab/macos)
 
     ```terminal
     dotnet dev-certs https --trust
@@ -54,7 +54,7 @@ uid: getting-started
 
     Enter you password if you agree to trust the development certificate.
 
-[Linux](#tab/linux)
+# [Linux](#tab/linux)
 
     See the Linux platform documentation.
 
