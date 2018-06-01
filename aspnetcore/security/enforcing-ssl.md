@@ -55,7 +55,7 @@ The following mechanisms set the port automatically:
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured.
 
-The port is configured manually via the following approaches:
+The port is configured manually using any of the following approaches:
 
 * The `ASPNETCORE_HTTPS_PORT` environment variable is set.
 * The `http_port` host configuration key is set (for example, via *hostsettings.json* or a command line argument).
