@@ -379,6 +379,6 @@
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
-# [API reference](/dotnet/api/?view=aspnetcore-2.0)
+# [API reference](/dotnet/api/?view=aspnetcore-2.1)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
