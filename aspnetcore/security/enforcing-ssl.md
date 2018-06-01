@@ -60,15 +60,16 @@ The following mechanisms set the port automatically:
 The port can be configured by setting the:
 
 * `ASPNETCORE_HTTPS_PORT` environment variable.
-* URL with the `ASPNETCORE_URLS` environment variable.
 * `http_port` host configuration key (for example, via *hostsettings.json* or a command line argument).
 * [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
+
+> [!NOTE]
+> The port can be configured indirectly by setting the URL with the `ASPNETCORE_URLS` environment variable. The environment variable configures the server, and then the middleware indirectly discovers the HTTPS port via `IServerAddressesFeature`.
 
 If no port is set:
 
 * Requests aren't redirected.
 * The middleware logs a warning.
-* The middleware is disabled.
 
 ::: moniker-end
 
