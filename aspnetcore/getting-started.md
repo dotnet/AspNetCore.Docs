@@ -5,7 +5,7 @@ description: A quick tutorial that creates and runs a simple Hello World app usi
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2018
+ms.date: 5/31/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: get-started-article
