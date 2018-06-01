@@ -49,8 +49,8 @@ The following mechanisms set the port automatically:
   - Kestrel or HTTP.sys is used directly with HTTPS endpoints (also applies to running the app with Visual Studio Code's debugger).
   - Only **one port** is used by the app.
 * Visual Studio is used:
-  - *launchSettings.json* sets the `ASPNETCORE_HTTPS_PORT` environment variable.
   - IIS Express has HTTPS enabled.
+  - *launchSettings.json* sets the `sslPort` for IIS Express.
 
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured.
@@ -58,6 +58,7 @@ The following mechanisms set the port automatically:
 The port is configured manually using any of the following approaches:
 
 * The `ASPNETCORE_HTTPS_PORT` environment variable is set.
+* The URL is set with the `ASPNETCORE_URLS` environment variable.
 * The `http_port` host configuration key is set (for example, via *hostsettings.json* or a command line argument).
 * The [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) is set. See the preceding example that shows how to set the port to 5001.
 
