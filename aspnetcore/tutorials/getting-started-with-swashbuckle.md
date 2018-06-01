@@ -104,7 +104,7 @@ The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the AP
 >
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
-## Customize & extend
+## Customize and extend
 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
