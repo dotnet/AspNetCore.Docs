@@ -31,7 +31,7 @@ uid: getting-started
     dotnet dev-certs https --trust
     ```
 
-    The preceding command displays the following dialog on Windows:
+    The preceding command displays the following dialog:
 
     ![Security warning dialog](getting-started/_static/cert.png)
 
@@ -43,7 +43,7 @@ uid: getting-started
     dotnet dev-certs https --trust
     ```
 
-    The preceding command displays the following:
+    The preceding command displays the following message:
 
     *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*
     `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
@@ -71,7 +71,7 @@ uid: getting-started
 
     [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9)]
 
-7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes.
+7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
 
 [!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
 
