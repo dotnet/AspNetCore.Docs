@@ -17,7 +17,7 @@ uid: getting-started
 
 1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
 
-2. Create a new .NET Core project.
+2. Create an .NET Core project.
 
    Open a command shell. Enter the following command:
 
@@ -60,7 +60,7 @@ uid: getting-started
 
 ---
 
-4. Run the app with the following commands:
+4. Run the app:
 
     ```terminal
     cd aspnetcoreapp
