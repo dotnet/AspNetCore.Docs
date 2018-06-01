@@ -87,7 +87,7 @@ uid: getting-started
 
 2. Create a new ASP.NET Core project.
 
-   On macOS and Linux, open a terminal window. On Windows, open a command prompt. Enter the following command:
+   Open a command shell. Enter the following command:
 
     ```console
     dotnet new razor -o aspnetcoreapp
@@ -118,7 +118,7 @@ uid: getting-started
 
 2. Create a folder for a new ASP.NET Core project.
 
-   On macOS and Linux, open a terminal window. On Windows, open a command prompt.
+   Open a command shell. Enter the following commands:
 
    ```console
    mkdir aspnetcoreapp
