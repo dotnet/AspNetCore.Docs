@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the previous chapter, you created a local Git repository containing the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct a Visual Studio Team Services (VSTS) DevOps pipeline. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a release to the Azure Web App's staging slot.
+In the previous chapter, you created a local Git repository for the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct a Visual Studio Team Services (VSTS) DevOps pipeline. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a deployment to the Azure Web App's staging slot.
 
 In this section, you'll complete the following tasks:
 
@@ -40,9 +40,12 @@ In this section, you'll complete the following tasks:
 
 ## Configure the DevOps pipeline
 
-1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp<unique_number>/staging)* Web App.
+1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp<unique_number>/staging)* Web App. The Web App can be quickly located by entering *mywebapp<unique_number>/staging* in the portal's search box:
+
+    ![staging Web App search term](media/04/portal-search-box.png)
+
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
-1. Navigate to the *mywebapp<unique_number>* App Service.
+1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Click **Continuous Delivery (Preview)**:
 
@@ -83,7 +86,7 @@ Click the **Deploy: Configure deployment** option, and follow these steps:
 
     ![Configure deployment panel](media/04/configure-deployment-panel.png)
 
-Click the **OK** button on the **Configure Continuous Delivery** panel. A new VSTS account is created and is accessible at `https://<account_name>.visualstudio.com` after a few minutes. A build definition and a release definition were created within a new team project named *MyFirstProject*. Additionally, a build was triggered. When the build succeeds, a release to the production environment is triggered. Click the **Build triggered** link to monitor the build's progress.
+Click the **OK** button on the **Configure Continuous Delivery** panel. A new VSTS account is created and is accessible at `https://<account_name>.visualstudio.com` after waiting a few minutes. A build definition and a release definition were created within a new team project named *MyFirstProject*. Additionally, a build was triggered. When the build succeeds, a deployment to the production environment is triggered. Click the **Build triggered** link to monitor the build's progress.
 
 ![Build triggered link](media/04/build-triggered-link.png)
 
@@ -109,7 +112,7 @@ The two major components of the release definition are the **Artifacts** and the
 
 ![release definition artifacts](media/04/release-definition-artifacts.png)
 
-The **Source (Build definition)** value represents the build definition to which this release definition is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for release to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release definition tasks:
+The **Source (Build definition)** value represents the build definition to which this release definition is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for deployment to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release definition tasks:
 
 ![release definition tasks](media/04/release-definition-tasks.png)
 
@@ -117,13 +120,13 @@ The release definition consists of two tasks: *Deploy Azure App Service to Slot*
 
 ![release definition deploy task](media/04/release-definition-task1.png)
 
-The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox contains the path to the *.zip* file to be extracted and deployed to the *staging* slot of the *mywebapp14997* web app.
+The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp14997* web app.
 
 Clicking the slot swap task reveals the following task configuration:
 
 ![release definition slot swap task](media/04/release-definition-task2.png)
 
-As was seen in the previous task, the necessary subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
+The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
 ## Summary
 
