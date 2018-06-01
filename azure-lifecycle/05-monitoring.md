@@ -16,11 +16,7 @@ In this section, you'll complete the following tasks:
 
 App Service web apps are easily monitored in real time. The Azure portal renders metrics in easy-to-understand charts and graphs.
 
-1. Sign into the [Azure portal](https://portal.azure.com).
-
-1. In the **Search** bar at the top of the page, type the first few characters of your web app's name. There will be multiple results with the same name. Select the *App Service* result (denoted by a globe icon) for your web app.
-    
-    ![Search results](./media/05/search.png)
+1. Open the [Azure portal](https://portal.azure.com), and then navigate to the *mywebapp\<unique_number\>* App Service.
 
 1. The *Overview* tab displays useful "at-a-glance" information, including graphs displaying recent metrics.
 
@@ -48,7 +44,7 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 
 [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) is an Azure service for analyzing the performance and stability of web apps and how users use them. The data from Application Insights is broader and deeper than that of Azure Monitor, and can provide developers and administrators with key information for improving apps. Application Insights can be added to an Azure App Service resource without code changes.
 
-1. Navigate to the App Service settings in the Azure portal.
+1. Open the [Azure portal](https://portal.azure.com), and then navigate to the *mywebapp\<unique_number\>* App Service.
 1. From the *Overview* tab, select the *Application Insights* tile.
     
     ![Application Insights tile](./media/05/app-insights.png)
@@ -74,7 +70,7 @@ Application Insights provides useful server-side information with no additional 
 
 Web server and application logs are disabled by default in Azure App Service, but are easily enabled.
 
-1. Navigate to the App Service settings in the Azure portal.
+1. Open the [Azure portal](https://portal.azure.com), and then navigate to the *mywebapp\<unique_number\>* App Service.
 1. In the menu to the left, scroll down to the **Monitoring** section and select **Diagnostics logs**.
     
     ![Diagnostic logs link](./media/05/logging.png)
@@ -91,7 +87,7 @@ ASP.NET Core and web server (App Service) logs will be generated for the web app
 
 Application and web server logs can be streamed in real time through the portal.
 
-1. Navigate to the App Service settings.
+1. Open the [Azure portal](https://portal.azure.com), and then navigate to the *mywebapp\<unique_number\>* App Service.
 1. In the menu to the left, scroll down to the **Monitoring** section and select **Log stream**.
     
     ![Log stream link](./media/05/log-stream.png)
