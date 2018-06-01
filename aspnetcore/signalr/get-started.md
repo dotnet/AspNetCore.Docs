@@ -96,7 +96,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**.
+1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*. 
 
 2. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
