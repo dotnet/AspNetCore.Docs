@@ -114,7 +114,29 @@ Click the **Deploy: Configure deployment** option, and follow these steps:
 
 A build definition was created with the name *mywebapp<unique_number> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
 
-<!-- TODO -->
+The build definition's **Tasks** tab lists the individual steps being used. There are 5 build tasks.
+
+![build definition tasks](media/04/build-definition-tasks.png)
+
+1. **Restore** &mdash; Executes the `dotnet restore` command to restore the app's NuGet packages. The default package feed used is nuget.org.
+1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug release is desired.
+1. **Test** &mdash; Executes the `dotnet test --configuration Release` command to run the app's unit tests. This step currently serves no purpose, as no unit tests were written.
+1. **Publish** &mdash; Executes the `dotnet publish --configuration Release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
+1. **Publish Artifact** &mdash; Publishes the *.zip* file produced by the **Publish** task. The task accepts the *.zip* file location as a parameter, which is the predefined variable `$(build.artifactstagingdirectory)`. The *.zip* file is published as a folder named *drop*.
+
+Click the build definition's **Summary** link to view a history of builds with the definition:
+
+![build definition history](media/04/build-definition-summary.png)
+
+On the resulting page, click the link corresponding to the unique build number:
+
+![build definition summary page](media/04/build-definition-completed.png)
+
+A summary of this specific build is displayed. Click the **Artifacts** tab, and notice the *drop* folder produced by the build is listed:
+
+![build definition artifacts - drop folder](media/04/build-definition-artifacts.png)
+
+Use the **Download** and **Explore** links to inspect the published artifacts.
 
 ### Release definition
 
@@ -141,10 +163,6 @@ Clicking the slot swap task reveals the following task configuration:
 ![release definition slot swap task](media/04/release-definition-task2.png)
 
 The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
-
-## Summary
-
-<!-- TODO -->
 
 ## Additional reading
 
