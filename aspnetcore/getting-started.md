@@ -17,11 +17,11 @@ uid: getting-started
 
 1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
 
-2. Create a new .NET Core project.
+2. Create a new ASP.NET Core project.
 
    Open a command shell. Enter the following command:
 
-    ```terminal
+    ```console
     dotnet new webapp -o aspnetcoreapp
     ```
 
@@ -29,7 +29,7 @@ uid: getting-started
 
 # [Windows](#tab/windows)
 
-    ```terminal
+    ```console
     dotnet dev-certs https --trust
     ```
 
@@ -41,18 +41,18 @@ uid: getting-started
 
 # [macOS](#tab/macos)
 
-    ```terminal
+    ```console
     dotnet dev-certs https --trust
     ```
 
     The preceding command displays the following:
 
-    *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*  
-    `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`  
-    *This command might prompt you for your password to install the certificate on the system keychain.  
+    *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*
+    `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+    *This command might prompt you for your password to install the certificate on the system keychain.
     Password:*
 
-    Enter you password if you agree to trust the development certificate.
+    Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
 
@@ -62,7 +62,7 @@ uid: getting-started
 
 4. Run the app with the following commands:
 
-    ```terminal
+    ```console
     cd aspnetcoreapp
     dotnet run
     ```
@@ -85,17 +85,17 @@ uid: getting-started
 
 1. Install the [!INCLUDE[](~/includes/net-core-sdk-download-link.md)].
 
-2. Create a new .NET Core project.
+2. Create a new ASP.NET Core project.
 
-   On macOS and Linux, open a terminal window. On Windows, open a command prompt. Enter the following command:
+   Open a command shell. Enter the following command:
 
-    ```terminal
+    ```console
     dotnet new razor -o aspnetcoreapp
     ```
 
 3. Run the app with the following commands:
 
-    ```terminal
+    ```console
     cd aspnetcoreapp
     dotnet run
     ```
@@ -116,11 +116,11 @@ uid: getting-started
 
 1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
 
-2. Create a folder for a new .NET Core project.
+2. Create a folder for a new ASP.NET Core project.
 
-   On macOS and Linux, open a terminal window. On Windows, open a command prompt.
+   Open a command shell. Enter the following commands:
 
-   ```terminal
+   ```console
    mkdir aspnetcoreapp
    cd aspnetcoreapp
    ```
@@ -133,21 +133,21 @@ uid: getting-started
    }
    ```
 
-4. Create a new .NET Core project.
+4. Create a new ASP.NET Core project.
 
-   ```terminal
+   ```console
    dotnet new web
    ```
 
 5. Restore the packages.
 
-    ```terminal
+    ```console
     dotnet restore
     ```
 
 6. Run the app.
 
-   ```terminal
+   ```console
    dotnet run
    ```
 
