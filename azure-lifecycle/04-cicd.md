@@ -64,7 +64,9 @@ Click the **Source code: Choose repository** option, and follow these steps:
 1. Select *GitHub* from the **Code repository** drop-down.
 1. Select *<GitHub_username>/simple-feed-reader* from the **Repository** drop-down.
 1. Select *master* from the **Branch** drop-down.
-1. Click the **OK** button to save your selections.
+1. Click the **OK** button to save your selections:
+
+    ![select code source](media/04/configure-cd-source.png)
 
 ### Configure Continuous Delivery
 
@@ -72,9 +74,11 @@ Click the **Build: Configure Continuous Delivery** option, and follow these step
 
 1. Select *ASP.NET Core* from the **Web Application framework** drop-down. This selection is important. It determines the build definition template to be used.
 1. Click the *Create new* option of the **Visual Studio Team Service account** toggle button.
-1. Enter a unique name in the **Account name** textbox.
+1. Enter a unique name in the **Account name** textbox. A green checkmark indicates the name isn't already being used.
 1. Select the region closest to you from the **Location** drop-down.
-1. Click the **OK** button to save your selections.
+1. Click the **OK** button to save your selections:
+
+    ![select build options](media/04/configure-cd-build.png)
 
 ### Configure deployment
 
@@ -86,9 +90,19 @@ Click the **Deploy: Configure deployment** option, and follow these steps:
 
     ![Configure deployment panel](media/04/configure-deployment-panel.png)
 
-Click the **OK** button on the **Configure Continuous Delivery** panel. A new VSTS account is created and is accessible at `https://<account_name>.visualstudio.com` after waiting a few minutes. A build definition and a release definition were created within a new team project named *MyFirstProject*. Additionally, a build was triggered. When the build succeeds, a deployment to the production environment is triggered. Click the **Build triggered** link to monitor the build's progress.
+1. Click the **OK** button on the **Configure Continuous Delivery** panel. Wait several minutes for completion.
 
-![Build triggered link](media/04/build-triggered-link.png)
+    ![DevOps pipeline construction in progress](media/04/configure-cd-waiting.png)
+
+    The following things are occurring during this waiting period:
+
+    * A new VSTS account is created and is accessible at `https://<account_name>.visualstudio.com`. A confirmation email is sent with the details.
+    * A build definition and a release definition are created within a new team project named *MyFirstProject*.
+    * A build of the app is triggered. When the build succeeds, a deployment to the production environment is triggered.
+
+1. Click the **Build triggered** link to monitor the build's progress.
+
+    ![Build triggered link](media/04/build-triggered-link.png)
 
 ## Commit changes to GitHub and automatically deploy to Azure
 
