@@ -192,13 +192,15 @@ ASP.NET Core ships with the following middleware components, as well as a descri
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
 | [ForwardedHeaders/HttpOverrides](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: Scheme, Host, ClientIP, Method). |
+| [HTTPS Redirection Middleware](xref:security/enforcing-ssl#require-https) | Redirect all HTTP requests to HTTPS (ASP.NET Core 2.1 or later). | Before components that consume the URL. |
+| [HTTP Strict Transport Security (HSTS) Middleware](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware (ASP.NET Core 2.1 or later). | Before components that consume the URL. When called with HTTPS Redirection Middleware, call HSTS Middleware before [UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection). |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [RequestLocalization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
 | [Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. |
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches files. |
-| [URL Rewriting ](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
+| [URL Rewriting](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
 
 <a name="middleware-writing-middleware"></a>
