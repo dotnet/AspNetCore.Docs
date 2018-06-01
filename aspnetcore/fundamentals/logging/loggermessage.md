@@ -14,7 +14,7 @@ uid: fundamentals/logging/loggermessage
 
 By [Luke Latham](https://github.com/guardrex)
 
-[LoggerMessage](/dotnet/api/microsoft.extensions.logging.loggermessage) features create cacheable delegates that require fewer object allocations and reduced computational overhead than [logger extension methods](/dotnet/api/Microsoft.Extensions.Logging.LoggerExtensions), such as `LogInformation`, `LogDebug`, and `LogError`. For high-performance logging scenarios, use the `LoggerMessage` pattern.
+[LoggerMessage](/dotnet/api/microsoft.extensions.logging.loggermessage) features create cacheable delegates that require fewer object allocations and reduced computational overhead compared to [logger extension methods](/dotnet/api/Microsoft.Extensions.Logging.LoggerExtensions), such as `LogInformation`, `LogDebug`, and `LogError`. For high-performance logging scenarios, use the `LoggerMessage` pattern.
 
 `LoggerMessage` provides the following performance advantages over Logger extension methods:
 
