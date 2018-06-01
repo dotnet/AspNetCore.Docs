@@ -30,7 +30,7 @@ This document shows how to:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-We recommend all ASP.NET Core web apps call HTTPS Redirection Middleware ([UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection)) to redirect all HTTP requests to HTTPS. If HTTP Strict Transport Security (HSTS) Middleware ([UseHsts](/dotnet/api/microsoft.aspnetcore.builder.hstsbuilderextensions.usehsts)) is called in the app, it must be called before `UseHttpsRedirection`.
+We recommend all ASP.NET Core web apps call HTTPS Redirection Middleware ([UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection)) to redirect all HTTP requests to HTTPS.
 
 The following code calls `UseHttpsRedirection` in the `Startup` class:
 
@@ -43,11 +43,23 @@ The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode).
 * Sets the HTTPS port to 5001.
 
-To specify an HTTPS port:
+The following mechanisms set the port automatically:
 
-* Set [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
-* Set the `HTTPS_PORT` environment variable.
-* The middleware uses the port or ports defined by [IServerAddressesFeature.Addresses](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature.addresses).
+* The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
+  - Kestrel or HTTP.sys is used directly with HTTPS endpoints.
+  - Only **one port** is used by the app.
+* Visual Studio is used with:
+  - The `ASPNETCORE_HTTPS_PORT` environment variable set.
+  - IIS Express has HTTPS enabled.
+
+> [!NOTE]
+> When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured.
+
+The port is configured manually via the following approaches:
+
+* The `ASPNETCORE_HTTPS_PORT` environment variable is set.
+* The `http_port` host configuration key is set (for example, via *hostsettings.json* or a command line argument).
+* The [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) is set. See the preceding example that shows how to set the port to 5001.
 
 If no port is set:
 
