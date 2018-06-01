@@ -40,6 +40,8 @@ The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
 
+The preceding highlighted code:
+
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode).
 * Sets the HTTPS port to 5001.
 
@@ -55,12 +57,12 @@ The following mechanisms set the port automatically:
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured.
 
-The port is configured manually using any of the following approaches:
+The port can be configured by setting the:
 
-* The `ASPNETCORE_HTTPS_PORT` environment variable is set.
-* The URL is set with the `ASPNETCORE_URLS` environment variable.
-* The `http_port` host configuration key is set (for example, via *hostsettings.json* or a command line argument).
-* The [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) is set. See the preceding example that shows how to set the port to 5001.
+* `ASPNETCORE_HTTPS_PORT` environment variable.
+* URL with the `ASPNETCORE_URLS` environment variable.
+* `http_port` host configuration key (for example, via *hostsettings.json* or a command line argument).
+* [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
 
 If no port is set:
 
