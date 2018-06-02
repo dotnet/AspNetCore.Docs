@@ -17,7 +17,7 @@ namespace KestrelSample
     {
 #if Default
         #region snippet_Configure
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
             var serverAddressesFeature = 
                 app.ServerFeatures.Get<IServerAddressesFeature>();
@@ -45,13 +45,13 @@ namespace KestrelSample
         }
         #endregion
 #elif Limits
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
             var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
 
             app.UseStaticFiles();
 
-        #region snippet_Limits
+            #region snippet_Limits
             app.Run(async (context) =>
             {
                 context.Features.Get<IHttpMaxRequestBodySizeFeature>()
@@ -62,7 +62,7 @@ namespace KestrelSample
                 context.Features.Get<IHttpMinResponseDataRateFeature>()
                     .MinDataRate = new MinDataRate(bytesPerSecond: 100, 
                         gracePeriod: TimeSpan.FromSeconds(10));
-        #endregion
+            #endregion
                 context.Response.ContentType = "text/html";
                 await context.Response
                     .WriteAsync("<!DOCTYPE html><html lang=\"en\"><head>" +
