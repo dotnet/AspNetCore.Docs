@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Distributed;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace DistCacheSample
 {
@@ -30,17 +28,18 @@ namespace DistCacheSample
                 startTimeString = Encoding.UTF8.GetString(value);
             }
 
-            httpContext.Response.Headers.Append("Last-Server-Start-Time", startTimeString);
+            httpContext.Response.Headers.Append(
+                "Last-Server-Start-Time", startTimeString);
 
             await _next.Invoke(httpContext);
         }
     }
 
-
-    // Extension method used to add the middleware to the HTTP request pipeline.
+    // Add the middleware to the HTTP request pipeline.
     public static class StartTimeHeaderExtensions
     {
-        public static IApplicationBuilder UseStartTimeHeader(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseStartTimeHeader(
+            this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<StartTimeHeader>();
         }
