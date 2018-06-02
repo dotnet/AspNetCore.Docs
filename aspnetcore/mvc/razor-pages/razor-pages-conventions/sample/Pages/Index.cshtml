@@ -20,7 +20,8 @@
                 <input asp-for="Message.Text" class="form-control">
             </div>
             <div class="form-group">
-                <button type="submit" asp-page-handler="PostMessage" class="btn btn-default">Add Message</button>
+                <button type="submit" asp-page-handler="PostMessage" 
+                        class="btn btn-default">Add Message</button>
             </div>
         </form>
     </div>
@@ -50,7 +51,8 @@
                     <li>
                         @message.Text
                         <button type="submit" asp-page-handler="DeleteMessage" 
-                            asp-route-id="@message.Id">delete</button>
+                            class="btn btn-danger" 
+                            asp-route-id="@message.Id">Delete</button>
                     </li>
                 }
             </ol>

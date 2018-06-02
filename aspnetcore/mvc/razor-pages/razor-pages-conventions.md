@@ -100,8 +100,6 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 ::: moniker range=">= aspnetcore-2.1"
 **Add a handler model convention to all pages**
 
-
-
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageHandlerModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipagehandlermodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during page handler model construction.
 
 ```csharp
@@ -337,6 +335,6 @@ MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by
 
 The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:mvc/razor-pages/filter).
 
-## See also
+## Additional resources
 
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)

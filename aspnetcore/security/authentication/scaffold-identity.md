@@ -71,7 +71,7 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## Scaffold identity into a Razor project with individual authorization
+## Scaffold identity into a Razor project with authorization
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -119,7 +119,7 @@ Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.a
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## Scaffold identity into an MVC project with individual authorization
+## Scaffold identity into an MVC project with authorization
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth

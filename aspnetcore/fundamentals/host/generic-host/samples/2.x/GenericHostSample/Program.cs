@@ -14,18 +14,18 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureHostConfiguration(configHost =>
                 {
-                    configHost.AddEnvironmentVariables(prefix: "ASPNETCORE_");
                     configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile("hostsettings.json", optional: true);
+                    configHost.AddEnvironmentVariables(prefix: "ASPNETCORE_");
                     configHost.AddCommandLine(args);
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
-                    configApp.AddEnvironmentVariables(prefix: "ASPNETCORE_");
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
                         optional: true);
+                    configApp.AddEnvironmentVariables(prefix: "ASPNETCORE_");
                     configApp.AddCommandLine(args);
                 })
                 .ConfigureServices((hostContext, services) =>

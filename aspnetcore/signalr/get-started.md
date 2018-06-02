@@ -69,7 +69,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     npm install @aspnet/signalr
     ```     
 
-4. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *lib* folder in your project.
+4. Create a new folder named "signalr" inside the  *lib* folder in your project. Then copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -96,7 +96,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**.
+1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*. 
 
 2. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
