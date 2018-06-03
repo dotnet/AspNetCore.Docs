@@ -7,14 +7,11 @@ namespace CookieAuthCore
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseEnvironment("Development")
-                .UseUrls("http://localhost:5001")
-                .Build();
+                .UseStartup<Startup>();
     }
 }

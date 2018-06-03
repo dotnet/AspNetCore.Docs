@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CookieAuthCore.Data;
@@ -15,6 +15,12 @@ namespace CookieAuthCore
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDB"));
 
@@ -22,7 +28,8 @@ namespace CookieAuthCore
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizePage("/Contact");
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #region snippet1
             services.AddDataProtection()
@@ -49,9 +56,12 @@ namespace CookieAuthCore
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseMvc();
         }
