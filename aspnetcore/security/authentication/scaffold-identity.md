@@ -57,6 +57,9 @@ dotnet ef database update
 
 Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
+<a name="efm"></a>
+### Migrations, UseAuthentication, and layout
+
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
