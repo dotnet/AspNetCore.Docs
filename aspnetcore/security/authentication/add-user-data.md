@@ -56,12 +56,11 @@ dotnet new webapp -o WebApp1
 * In the **ADD Identity** dialog, the following options:
   * Select your existing layout  file  `~/Pages/Shared/_Layout.cshtml`
   * Select the following files to override:
-    *
+    * **Account/Register**
+    * **Account/Manage/Index.cshtml**
   * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if you named the project **WebApp1**) > **Add**.
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if you named the project **WebApp1**) > **Add**.
 * Select **ADD**.
-
-![Add Identity dialog](add-user-data/_static/dlg.png)
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -97,7 +96,7 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.
 * Add `<partial name="_LoginPartial" />` to the layout file.
-* Test the appL
+* Test the app:
   * Register a user
   * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
   * Select the **Personal Data** tab.
@@ -110,7 +109,10 @@ Update the `IdentityUser` derrived class with custom properties. If you named yo
 
 [!code-csharp[Main](add-user-data/sample/Areas/Identity/Data/WebApp1User.cs)]
 
-Properies decorated with the [PersonalData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are included in the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* and *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Pages data.
+Properies decorated with the [PersonalData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
+
+* Deleted by the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page. 
+* Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
 
 ### Update the Account/Manage/Index.cshtml page
 
@@ -126,8 +128,36 @@ Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,44,45)]
+[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,43,44,)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
 [!code-html[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+
+### Add a migration for the custom user data
+
+# [Visual Studio](#tab/visual-studio) 
+
+In the Visual Studio **Package Manager Console**:
+
+```PMC
+Add-Migration CustomUserData
+Update-Database
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+```cli
+dotnet ef migrations add CustomUserData
+dotnet ef database update
+```
+
+------
+
+## Test create, view, download, delete custom user data
+
+Test the app:
+
+* Register a new user.
+* View the custom user data on the `/Identity/Account/Manage` page.
+* Download and view the users personal data from the the `/Identity/Account/Manage/PersonalData` page.
