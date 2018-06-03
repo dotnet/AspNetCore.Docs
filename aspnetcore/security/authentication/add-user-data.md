@@ -26,8 +26,6 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/add-user-data/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-D:/GH/1/Docs/
-
 ## Prerequisites
 
 [!INCLUDE [](~/includes/2.1-SDK.md)]
@@ -73,7 +71,7 @@ If you have not previously installed the ASP.NET scaffolder, install it now:
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
+Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (/*.csproj) file. Run the following command in the project directory:
 
 ```cli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
@@ -99,4 +97,37 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.
 * Add `<partial name="_LoginPartial" />` to the layout file.
-* Run the app and register a user.
+* Test the appL
+  * Register a user
+  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
+  * Select the **Personal Data** tab.
+  * Select the **Download** button and examined the *PersonalData.json* file.
+  * Test the **Delete** button, which deletes the logged on user.
+
+## Add custom user data to the Identity DB
+
+Update the `IdentityUser` derrived class with custom properties. If you named your project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+
+[!code-csharp[Main](add-user-data/sample/Areas/Identity/Data/WebApp1User.cs)]
+
+Properies decorated with the [PersonalData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are included in the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* and *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Pages data.
+
+### Update the Account/Manage/Index.cshtml page
+
+Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
+
+[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,87-95)]
+
+Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
+
+[!code-html[Main](add-user-data/sample/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=34-41)]
+
+### Update the Account/Register.cshtml page
+
+Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
+
+[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,44,45)]
+
+Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
+
+[!code-html[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]

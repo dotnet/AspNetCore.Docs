@@ -32,7 +32,7 @@ namespace WebApp1.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-
+        #region snippet
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -65,17 +65,6 @@ namespace WebApp1.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-        }
-
-        public void OnGet(string returnUrl = null)
-        {
-            Input = new InputModel
-            {
-                DOB = DateTime.Now.AddYears(-21),
-                Email = "rick@example.com",
-                Name = "Rick Anderson"
-            };
-            ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -115,6 +104,18 @@ namespace WebApp1.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+        #endregion
+
+        public void OnGet(string returnUrl = null)
+        {
+            Input = new InputModel
+            {
+                DOB = DateTime.Now.AddYears(-21),
+                Email = "rick@example.com",
+                Name = "Rick Anderson"
+            };
+            ReturnUrl = returnUrl;
         }
     }
 }

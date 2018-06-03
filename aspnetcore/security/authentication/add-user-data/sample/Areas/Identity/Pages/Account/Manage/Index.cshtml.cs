@@ -12,6 +12,7 @@ using WebApp1.Areas.Identity.Data;
 
 namespace WebApp1.Areas.Identity.Pages.Account.Manage
 {
+    #region snippet
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<WebApp1User> _userManager;
@@ -34,7 +35,6 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
-
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -168,4 +168,5 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
     }
+    #endregion
 }
