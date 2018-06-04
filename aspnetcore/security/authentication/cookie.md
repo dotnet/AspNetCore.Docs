@@ -18,23 +18,27 @@ As you've seen in the earlier authentication topics, [ASP.NET Core Identity](xre
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/cookie/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+For demonstration purposes in the sample app, the user account for the hypothetical user, Maria Rodriguez, is hardcoded into the app. Use the Email username "maria.rodriguez@contoso.com" and any password to sign in the user. The user is authenticated in the `AuthenticateUser` method in the *Pages/Account/Login.cshtml.cs* file. In a real-world example, the user would be authenticated against a database.
+
 For information on migrating cookie-based authentication from ASP.NET Core 1.x to 2.0, see [Migrate Authentication and Identity to ASP.NET Core 2.0 topic (Cookie-based Authentication)](xref:migration/1x-to-2x/identity-2x#cookie-based-authentication).
+
+To use ASP.NET Core Identity, see the [Introduction to Identity](xref:security/authentication/identity) topic.
 
 ## Configuration
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
-If you aren't using the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), install version 2.0+ of the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) NuGet package.
+If the app doesn't use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), create a package reference in the project file for the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) package (version 2.1.0 or later).
 
 In the `ConfigureServices` method, create the Authentication Middleware service with the `AddAuthentication` and `AddCookie` methods:
 
-[!code-csharp[](cookie/sample/Startup.cs?name=snippet1)]
+[!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
 `AuthenticationScheme` passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
 
 In the `Configure` method, use the `UseAuthentication` method to invoke the Authentication Middleware that sets the `HttpContext.User` property. Call the `UseAuthentication` method before calling `UseMvcWithDefaultRoute` or `UseMvc`:
 
-[!code-csharp[](cookie/sample/Startup.cs?name=snippet2)]
+[!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet2)]
 
 **AddCookie Options**
 
@@ -158,7 +162,7 @@ The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect your
 | SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
 | SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
-## Creating an authentication cookie
+## Create an authentication cookie
 
 To create a cookie holding user information, you must construct a [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal). The user information is serialized and stored in the cookie. 
 
@@ -166,7 +170,7 @@ To create a cookie holding user information, you must construct a [ClaimsPrincip
 
 Create a [ClaimsIdentity](/dotnet/api/system.security.claims.claimsidentity) with any required [Claim](/dotnet/api/system.security.claims.claim)s and call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
 
-[!code-csharp[](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet1)]
+[!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
@@ -184,13 +188,13 @@ await HttpContext.Authentication.SignInAsync(
 
 Under the covers, the encryption used is ASP.NET Core's [Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) system. If you're hosting app on multiple machines, load balancing across apps, or using a web farm, then you must [configure data protection](xref:security/data-protection/configuration/overview) to use the same key ring and app identifier.
 
-## Signing out
+## Sign out
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signoutasync?view=aspnetcore-2.0):
 
-[!code-csharp[](cookie/sample/Pages/Account/Login.cshtml.cs?name=snippet2)]
+[!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
@@ -205,7 +209,7 @@ await HttpContext.Authentication.SignOutAsync(
 
 If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider. Otherwise, the default scheme is used.
 
-## Reacting to back-end changes
+## React to back-end changes
 
 Once a cookie is created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie authentication system has no knowledge of this, and a user stays logged in as long as their cookie is valid.
 
@@ -417,7 +421,7 @@ await HttpContext.Authentication.SignInAsync(
 
 ---
 
-## See also
+## Additional resources
 
 * [Auth 2.0 Changes / Migration Announcement](https://github.com/aspnet/Announcements/issues/262)
 * [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
