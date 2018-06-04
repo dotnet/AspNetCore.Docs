@@ -28,7 +28,7 @@ The following table describes the `HubConnection` options for configuring the cl
 | `HandshakeTimeout`  | If the server doesn't respond to the initial handshake message within this time interval, the connection closes |
 | `PingInterval` (added in 2.2) | If the client hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open |
 
-### [HubOptions] (https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Core/HubOptions.cs)
+### [HubOptions](https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Core/HubOptions.cs)
 
 The following table describes the `HubOptions` options for configuring the hub:
 
