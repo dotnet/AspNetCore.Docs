@@ -27,6 +27,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
+* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
@@ -38,7 +39,7 @@ From the commandline, run `dotnet new razorclasslib`. For example:
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
-For more information, see [dotnet new](/dotnet/core/tools/dotnet-new).
+For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
 ------
 Add Razor files to the RCL.
