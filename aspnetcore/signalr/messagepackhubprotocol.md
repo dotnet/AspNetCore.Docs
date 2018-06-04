@@ -1,7 +1,7 @@
 ---
-title: Use hubs in ASP.NET Core SignalR
+title: Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 author: 
-description: Learn how to use hubs in ASP.NET Core SignalR.
+description: Learn how to add MessagePack Hub Protocol to ASP.NET Core SignalR.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: 
@@ -23,18 +23,34 @@ MessagePack is a binary serialization format that is fast and compact. It is use
 
 ## Configure MessagePack on the Server
 
-To enable the MessagePack Hub Protocol on the server you will first need to reference the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app's .csproj. Next add `.AddMessagePackProtocol()` to the  `AddSignalR()` call and now the server will support MessagePack. Note: Json is supported by default, adding MessagePack is addative so both will be supported at the same time.
+To enable the MessagePack Hub Protocol on the server you will first need to install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. Next add `.AddMessagePackProtocol()` to the  `AddSignalR()` call and now the server will support MessagePack.
+
+> [!NOTE]
+> Json is supported by default, adding MessagePack is addative so both will be supported at the same time.
 
 ```csharp
 services.AddSignalR()
     .AddMessagePackProtocol();
 ```
 
+If you want to customize how MessagePack will format your data `.AddMessagePackProtocol()` takes a func for configuring options. A property named `FormatterResolvers` is exposed in the options and this is a list of resolvers that are used by MessagePack to determine the format your messages will be in. For more information on how the resolvers work visit the MessagePack library we use at [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp). Or you can use attributes on the objects you want to serialize to define how they should be handled.
+
+```csharp
+services.AddSignalR()
+    .AddMessagePackProtocol(options =>
+    {
+        options.FormatterResolvers = new List<MessagePack.IFormatterResolver>()
+        {
+            MessagePack.Resolvers.StandardResolver.Instance
+        };
+    });
+```
+
 ## Configure MessagePack on the Client
 
 ### C# Client
 
-The C# Client will also need to reference the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package to get support for MessagePack. On the `HubConnectionBuilder` add the `.AddMessagePackProtocol()` call.
+The C# Client will also need to install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package to get support for MessagePack. On the `HubConnectionBuilder` add the `.AddMessagePackProtocol()` call.
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
@@ -72,6 +88,6 @@ const connection = new signalR.HubConnectionBuilder()
 
 ## Related resources
 
-* [Intro to ASP.NET Core SignalR](xref:signalr/introduction)
+* [Get Started](xref:signalr/get-started)
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
