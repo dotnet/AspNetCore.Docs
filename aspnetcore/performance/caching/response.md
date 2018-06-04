@@ -108,15 +108,17 @@ The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactor
 
 This header is only written when the `VaryByHeader` property is set. It's set to the `Vary` property's value. The following sample uses the `VaryByHeader` property:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](response/samples/1.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
 
----
+::: moniker-end
 
 You can view the response headers with your browser's network tools. The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is refreshed:
 
@@ -133,15 +135,17 @@ If `NoStore` is `false` and `Location` is `None`, `Cache-Control` and `Pragma` a
 
 You typically set `NoStore` to `true` on error pages. For example:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet1&highlight=1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](response/samples/1.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet1&highlight=1)]
 
----
+::: moniker-end
 
 This results in the following headers:
 
@@ -159,15 +163,17 @@ To enable caching, `Duration` must be set to a positive value and `Location` mus
 
 Below is an example showing the headers produced by setting `Duration` and leaving the default `Location` value:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_duration&highlight=1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](response/samples/1.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_duration&highlight=1)]
 
----
+::: moniker-end
 
 This produces the following header:
 
@@ -181,27 +187,31 @@ Instead of duplicating `ResponseCache` settings on many controller action attrib
 
 Setting up a cache profile:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](response/samples/1.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
----
+::: moniker-end
 
 Referencing a cache profile:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_controller&highlight=1,4)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](response/samples/1.x/ResponseCacheSample/Controllers/HomeController.cs?name=snippet_controller&highlight=1,4)]
 
----
+::: moniker-end
 
 The `ResponseCache` attribute can be applied both to actions (methods) and controllers (classes). Method-level attributes override the settings specified in class-level attributes.
 
