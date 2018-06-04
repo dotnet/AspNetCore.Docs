@@ -3,6 +3,7 @@ title: Response Caching Middleware in ASP.NET Core
 author: guardrex
 description: Learn how to configure and use Response Caching Middleware in ASP.NET Core.
 manager: wpickett
+monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/26/2017
@@ -14,23 +15,23 @@ uid: performance/caching/middleware
 
 By [Luke Latham](https://github.com/guardrex) and [John Luo](https://github.com/JunTaoLuo)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download ASP.NET Core 2.1 sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](xref:performance/caching/response).
 
 ## Package
 
-To include the middleware in a project, add a reference to the [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package (ASP.NET Core 2.0 or later when targeting .NET Core).
+To include the middleware in your project, add a reference to the [Microsoft.AspNetCore.ResponseCompression](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package or use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), which is available for use in ASP.NET Core 2.1 or later.
 
 ## Configuration
 
 In `ConfigureServices`, add the middleware to the service collection.
 
-[!code-csharp[](middleware/sample/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=9)]
 
 Configure the app to use the middleware with the `UseResponseCaching` extension method, which adds the middleware to the request processing pipeline. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request. In the code example that follows, [CacheControlHeaderValue](/dotnet/api/microsoft.net.http.headers.cachecontrolheadervalue) and [HeaderNames](/dotnet/api/microsoft.net.http.headers.headernames) require a `using` statement for the [Microsoft.Net.Http.Headers](/dotnet/api/microsoft.net.http.headers) namespace.
 
-[!code-csharp[](middleware/sample/Startup.cs?name=snippet2&highlight=3,7-12)]
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17,21-28)]
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
@@ -41,10 +42,10 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 
 The middleware offers three options for controlling response caching.
 
-| Option                | Default Value |
-| --------------------- | ------------- |
-| UseCaseSensitivePaths | Determines if responses are cached on case-sensitive paths.</p><p>The default value is `false`. |
-| MaximumBodySize       | The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` (64 MB). |
+| Option                | Description |
+| --------------------- | ----------- |
+| UseCaseSensitivePaths | Determines if responses are cached on case-sensitive paths. The default value is `false`. |
+| MaximumBodySize       | The largest cacheable size for the response body in bytes. The default value is `64 * 1024 * 1024` (64 MB). |
 | SizeLimit             | The size limit for the response cache middleware in bytes. The default value is `100 * 1024 * 1024` (100 MB). |
 
 The following example configures the middleware to:
