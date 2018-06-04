@@ -63,7 +63,7 @@ As the app is used, data accumulates. Select **Refresh** to reload the blade wit
 
 ![Application Insights overview tab](./media/05/app-insights-overview.png)
 
-Application Insights provides useful server-side information with no additional configuration, but to get the most value from Application Insights, be sure to [instrument your app with the Application Insights SDK](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core). When properly configured, the service provides end-to-end monitoring across the web server and browser, including client-side performance. For more information, see the [Application Insights documentation](https://docs.microsoft.com/azure/application-insights/app-insights-overview).
+Application Insights provides useful server-side information with no additional configuration. To get the most value from Application Insights, [instrument your app with the Application Insights SDK](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core). When properly configured, the service provides end-to-end monitoring across the web server and browser, including client-side performance. For more information, see the [Application Insights documentation](https://docs.microsoft.com/azure/application-insights/app-insights-overview).
 
 ## Logging
 
