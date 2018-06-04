@@ -40,7 +40,7 @@ In this section, you'll complete the following tasks:
 
 ## Configure the DevOps pipeline
 
-1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp<unique_number>/staging)* Web App. The Web App can be quickly located by entering *mywebapp<unique_number>/staging* in the portal's search box:
+1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *mywebapp\<unique_number\>/staging* in the portal's search box:
 
     ![staging Web App search term](media/04/portal-search-box.png)
 
@@ -62,7 +62,7 @@ In this section, you'll complete the following tasks:
 Click the **Source code: Choose repository** option, and follow these steps:
 
 1. Select *GitHub* from the **Code repository** drop-down.
-1. Select *<GitHub_username>/simple-feed-reader* from the **Repository** drop-down.
+1. Select *\<GitHub_username\>/simple-feed-reader* from the **Repository** drop-down.
 1. Select *master* from the **Branch** drop-down.
 1. Click the **OK** button to save your selections:
 
@@ -140,7 +140,7 @@ Once the build succeeds, a deployment to Azure occurs. Navigate to the app in th
 
 ### Build definition
 
-A build definition was created with the name *mywebapp<unique_number> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
+A build definition was created with the name *mywebapp\<unique_number\> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
 
 The build definition's **Tasks** tab lists the individual steps being used. There are five build tasks.
 
@@ -168,7 +168,7 @@ Use the **Download** and **Explore** links to inspect the published artifacts.
 
 ### Release definition
 
-A release definition was created with the name *mywebapp<unique_number> - CD*:
+A release definition was created with the name *mywebapp\<unique_number\> - CD*:
 
 ![release definition overview](media/04/release-definition-overview.png)
 
@@ -184,7 +184,7 @@ The release definition consists of two tasks: *Deploy Azure App Service to Slot*
 
 ![release definition deploy task](media/04/release-definition-task1.png)
 
-The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp14997* web app.
+The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp\<unique_number\>* web app.
 
 Clicking the slot swap task reveals the following task configuration:
 
