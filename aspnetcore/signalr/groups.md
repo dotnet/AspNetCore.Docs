@@ -1,10 +1,10 @@
 ---
 title: Manage users and groups in SignalR
-author: 
-description: 
+author: rachelappel
+description: Overview of ASP.NET Core SignalR User and Group management.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
-ms.author: 
+ms.author: rachelap
 ms.custom: mvc
 ms.date: 06/04/2018
 ms.prod: aspnet-core
@@ -14,6 +14,12 @@ uid: signalr/groups
 ---
 
 # Manage users and groups in SignalR
+
+By [Brennan Conroy](https://github.com/BrennanConroy)
+
+Users and groups are how SignalR exposes connection management.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
 ## Users?
 
@@ -33,23 +39,12 @@ public Task SendPrivateMessage(string user, string message)
 
 The user identifier can be customized by creating your own `IUserIdProvider`, and registering it in `ConfigureServices`.
 
-```csharp
-public class CustomUserIdProvider : IUserIdProvider
-{
-    public virtual string GetUserId(HubConnectionContext connection)
-    {
-        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
-    }
-}
-```
+[!code-csharp[UserIdProvider](groups/sample/customuseridprovider.cs?range=4-10)]
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ... other services ...
-    services.AddSingleton<IUserIdProvider, CustomUserIdProvider>());
-}
-```
+[!code-csharp[Configure service](groups/sample/startup.cs?range=39-41)]
+
+> [!NOTE]
+> AddSignalR() must be called before registering your custom SignalR services.
 
 ## Groups?
 
