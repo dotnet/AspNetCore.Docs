@@ -17,11 +17,11 @@ uid: signalr/groups
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-Users and groups are how SignalR exposes connection management.
+Users and groups is how SignalR exposes connection management.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
-## Users?
+## What are users?
 
 SignalR allows you to send messages to all connections associated with a specific user. By default SignalR will use the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. Multiple connections can be associated with the same user. For example, you can be connected on your desktop, your phone, and your laptop. If you send to the user all three connections will receive the message.
 
@@ -46,7 +46,7 @@ The user identifier can be customized by creating your own `IUserIdProvider`, an
 > [!NOTE]
 > AddSignalR() must be called before registering your custom SignalR services.
 
-## Groups?
+## What are groups?
 
 A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. This makes groups ideal for something like a chat application, where each room can be represented as a group. Connections can be added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
 
