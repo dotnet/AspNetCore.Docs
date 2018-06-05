@@ -128,7 +128,7 @@ Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,43,44,)]
+[!code-csharp[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,43,44)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
