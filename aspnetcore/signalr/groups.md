@@ -17,9 +17,12 @@ uid: signalr/groups
 
 ## Users?
 
-A user is one or more connections associated with an identifier. By default SignalR will use the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection. There can be multiple connections for a single user. For example you can be connected on your desktop, your phone, and your laptop. If you send to the user all three connections will receive the message.
+SignalR allows you to send messages to all connections associated with a specific user. By default SignalR will use the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. Multiple connections can be associated with the same user. For example, you can be connected on your desktop, your phone, and your laptop. If you send to the user all three connections will receive the message.
 
-You can send a message to a specific user by passing the user identifier to the `User(...)` function in your hub method as shown in the following example. One important aspect to note is that the user identifier is case-sensitive.
+You can send a message to a specific user by passing the user identifier to the `User(...)` function in your hub method as shown in the following example.
+
+> [!NOTE]
+> The user identifier is case-sensitive.
 
 ```csharp
 public Task SendPrivateMessage(string user, string message)
@@ -28,29 +31,29 @@ public Task SendPrivateMessage(string user, string message)
 }
 ```
 
-The user identifier can be customized by creating your own `IUserIdProvider`.
+The user identifier can be customized by creating your own `IUserIdProvider`, and registering it in `ConfigureServices`.
 
 ```csharp
 public class CustomUserIdProvider : IUserIdProvider
 {
     public virtual string GetUserId(HubConnectionContext connection)
     {
-        // Be careful when using ClaimTypes.Name.
-        // If your app allows non-unique names then the identifier will apply to everyone that uses that name.
-        return connection.User?.FindFirst(ClaimTypes.Name)?.Value;
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
     }
 }
 ```
 
-And injecting it into the Apps DI container.
-
 ```csharp
-services.AddSingleton(typeof(IUserIdProvider), typeof(CustomUserIdProvider));
+public void ConfigureServices(IServiceCollection services)
+{
+    // ... other services ...
+    services.AddSingleton<IUserIdProvider, CustomUserIdProvider>());
+}
 ```
 
 ## Groups?
 
-A group is a collection of connections that can be broadcast to. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be subscribed to multiple groups, one example would be for a chat app to have a group per chat room so only connections interested in certain rooms would be a part of those groups. Group management can be done in the hub via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
+A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. This makes groups ideal for something like a chat application, where each room can be represented as a group. Connections can be added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
 
 ```csharp
 public async Task AddToGroup(string groupName)
@@ -68,7 +71,10 @@ public async Task RemoveFromGroup(string groupName)
 }
 ```
 
-Group membership is not preserved when a connection reconnects, the connection will need to resubscribe or the aplication will need to keep track of each connections subscriptions. It is also not possible to count the number of members per group as the app can be scaled out and wont know about the other servers subscription information. Just like user identifiers, group names are case-sensitive.
+Group membership is not preserved when a connection reconnects, the connection will need to rejoin then group when it is re-established. It is not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
+
+> [!NOTE]
+> Group names are case-sensitive.
 
 ## Related resources
 
