@@ -113,6 +113,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 ---
 
 If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
+For the purpose of this tutorial you must comment out `app.UseHttpsRedirection();` in your startup or NGinx will end up redirecting to the secure site when the CORE middelware redirects rather than proxying between your host name and the local insecure site. 
 
 Additional configuration might be required for apps hosted behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
