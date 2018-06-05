@@ -13,14 +13,12 @@ uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
 
-https://docs.microsoft.com/en-us
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This article shows how to:
 
 * Add custom user data to an ASP.NET Core web app.
-* Decorade the custom user data model with the [PersonalData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
+* Decorade the custom user data model with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
 
@@ -32,12 +30,13 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ## Create a Razor web app
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to match the namespace of the [download sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/add-user-data/sample) code.
+* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/add-user-data/sample) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 2.1** in the dropdown
 * Select **Web Application**  > **OK**
+* Build and run the project.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -49,16 +48,16 @@ dotnet new webapp -o WebApp1
 
 ## Run the Identity scaffolder
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, the following options:
-  * Select your existing layout  file  `~/Pages/Shared/_Layout.cshtml`
+  * Select your existing layout  file  *~/Pages/Shared/_Layout.cshtml*
   * Select the following files to override:
     * **Account/Register**
-    * **Account/Manage/Index.cshtml**
-  * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if you named the project **WebApp1**) > **Add**.
+    * **Account/Manage/Index**
+  * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if you named the project **WebApp1**).
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if you named the project **WebApp1**) > **Add**.
 * Select **ADD**.
 
@@ -73,7 +72,7 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
 ```cli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design 
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
@@ -109,9 +108,9 @@ Update the `IdentityUser` derrived class with custom properties. If you named yo
 
 [!code-csharp[Main](add-user-data/sample/Areas/Identity/Data/WebApp1User.cs)]
 
-Properies decorated with the [PersonalData](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
+Properies decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
 
-* Deleted by the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page. 
+* Deleted by the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page.
 * Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
 
 ### Update the Account/Manage/Index.cshtml page
@@ -134,9 +133,11 @@ Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following hig
 
 [!code-html[Main](add-user-data/sample/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
+Build the project.
+
 ### Add a migration for the custom user data
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 In the Visual Studio **Package Manager Console**:
 
