@@ -13,7 +13,7 @@ uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
 
-By [Tom Dykstra](https://github.com/tdykstra)
+By [Tom Dykstra](https://github.com/tdykstra) and [Luke Latham](https://github.com/guardrex)
 
 An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app can automatically start after reboots and crashes without requiring human intervention.
 
@@ -58,29 +58,75 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
 1. Publish the app to a folder. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
 
-1. Create and start the service.
+   To publish the sample app from the command line, run the following command in a console window from the project folder:
 
-   Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start the service.
+   ```console
+   dotnet publish --configuration Release --output c:\\svc
+   ```
 
-   The service is:
+   The double-backslash escapes a backslash in the command-line argument for the output path. The project is published to the *c:\\svc* folder.
+
+1. Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. Use the `sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"` command. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character that starts the path is required.**
+
+   For the sample app and command that follows, the service is:
 
    * Named **MyService**.
-   * Published to `c:\svc`.
+   * Published to *c:\\svc* folder.
    * Has an app executable named *AspNetCoreService.exe*.
 
    ```console
    sc create MyService binPath= "c:\svc\aspnetcoreservice.exe"
+   ```
+
+   **Make sure the space is present between the `binPath=` argument and its value.**
+
+1. Start the service with the `sc start <SERVICE_NAME>` command.
+
+   To start the sample app service, use the following command:
+
+   ```console
    sc start MyService
    ```
 
-   The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote that starts the path is required.**
+   The command takes a few seconds to start the service.
 
-   When these commands finish, browse to the same path as when running an app as a console app (by default, `http://localhost:5000`, which redirects to `https://localhost:5001` when using [HTTPS Redirection Middleware](xref:security/enforcing-ssl)):
+1. The `sc query <SERVICE_NAME>` command can be used to check the status of the service to determine its status:
 
-   The following command can be used to check the status of the service at a command prompt:
+   * `START_PENDING`
+   * `RUNNING`
+   * `STOP_PENDING`
+   * `STOPPED`
+
+   Use the following command to check the status of the sample app service:
 
    ```console
    sc query MyService
+   ```
+
+1. When the service is in the `RUNNING` state and if the service is a web app, browse the app at its path (by default, `http://localhost:5000`, which redirects to `https://localhost:5001` when using [HTTPS Redirection Middleware](xref:security/enforcing-ssl)).
+
+   For the sample app service, browse the app at `http://localhost:5000`.
+
+1. Stop the service with the `sc stop <SERVICE_NAME>` command.
+
+   The following command stops the sample app service:
+
+   ```console
+   sc stop MyService
+   ```
+
+1. After a short delay to stop a service, uninstall the service with the `sc delete <SERVICE_NAME>` command.
+
+   Check the status of the sample app service:
+
+   ```console
+   sc query MyService
+   ```
+
+   When the sample app service is in the `STOPPED` state, use the following command to uninstall the sample app service:
+
+   ```console
+   sc delete MyService
    ```
 
 ## Provide a way to run outside of a service
