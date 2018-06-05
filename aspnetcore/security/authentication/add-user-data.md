@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 This article shows how to:
 
 * Add custom user data to an ASP.NET Core web app.
-* Decorade the custom user data model with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
+* Decorate the custom user data model with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
 
@@ -104,11 +104,11 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derrived class with custom properties. If you named your project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named your project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
 
 [!code-csharp[Main](add-user-data/sample/Areas/Identity/Data/WebApp1User.cs)]
 
-Properies decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
+Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
 
 * Deleted by the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page.
 * Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
@@ -161,4 +161,4 @@ Test the app:
 
 * Register a new user.
 * View the custom user data on the `/Identity/Account/Manage` page.
-* Download and view the users personal data from the the `/Identity/Account/Manage/PersonalData` page.
+* Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
