@@ -17,3 +17,11 @@ uid: security/authentication/azure-active-directory/index
 * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 * [An ASP.NET Core web API with Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/)
 
+## Samples
+
+* [Integrating Azure AD V2 into an ASP.NET Core web app](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2):
+  * An ASP.NET Core 2.0 Web App which lets sign-in users with work and school or Microsoft personal accounts.
+  * See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5000)
+* [Calling a ASP.NET Core Web API from a WPF application using Azure AD V2](https://github.com/azure-samples/active-directory-dotnet-native-aspnetcore-v2):
+  * Calls an ASP.NET Core Web API from a WPF application using Azure AD V2.
+  * See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5001)
