@@ -113,6 +113,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 ---
 
 If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
+When using a `dotnet new` template and not [configuring Nginx for HTTPS](#configure-ssl), disable the [HTTPS Redirection Middleware](xref:security/enforcing-ssl) (`app.UseHttpsRedirection();`) in `Startup.Configure`. Either remove the line or comment it out. If the middleware is active but Nginx  forwards the request to an insecure localhost, the web app won't be reachable after the redirect to the secure endpoint because the reverse redirection to the public address won't occur. Only host production apps which are not on the same server or internal network as Nginx using [Nginx configured for HTTPS](#configure-ssl).
 
 Additional configuration might be required for apps hosted behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
