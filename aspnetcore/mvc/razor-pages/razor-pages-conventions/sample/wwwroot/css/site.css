@@ -11,6 +11,10 @@ h2 {
     font-size: 24px
 }
 
+ol li {
+    margin-top: 5px;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

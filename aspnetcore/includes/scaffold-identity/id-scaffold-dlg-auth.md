@@ -1,6 +1,6 @@
 Run the Identity scaffolder:
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
@@ -8,15 +8,15 @@ Run the Identity scaffolder:
   * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing _Layout.cshtml file is selected, it is **not** overwritten.
 
  For example
-  `~/Pages/Shared/_Layout.cshtml` for Razor Pages 
-  `~/Views/Shared/_Layout.cshtml` for MVC projects 
-* To use your existing data context, select at least one file to override. You must select at least one file to add your data context. 
+  `~/Pages/Shared/_Layout.cshtml` for Razor Pages
+  `~/Views/Shared/_Layout.cshtml` for MVC projects
+* To use your existing data context, select at least one file to override. You must select at least one file to add your data context.
   * Select your data context class.
   * Select **ADD**.
 * To create a new user context and possibly create a custom user class for Identity:
   * Select the **+** button to create a new **Data context class**.
   * Select **ADD**.
-  
+
 Note: If you're creating a new user context, you don't have to select a file to override.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -30,7 +30,7 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
 
 ```cli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
@@ -45,4 +45,5 @@ In the project folder, run the Identity scaffolder with the options you want. Fo
 ```cli
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
+
 -------------

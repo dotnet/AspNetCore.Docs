@@ -2,11 +2,11 @@
 // or any of: Limits TCPSocket UnixSocket FileDescriptor Port0
 // TCPSocket UnixSocket FileDescriptor Limits require a PFX X.509 certificate
 
+using System;
+using System.Net;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using System;
-using System.Net;
 
 namespace KestrelSample
 {
@@ -21,22 +21,21 @@ namespace KestrelSample
         #region snippet_DefaultBuilder
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
         #endregion
 #elif TCPSocket
         #region snippet_TCPSocket
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseKestrel(options =>
@@ -46,16 +45,15 @@ namespace KestrelSample
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
-                })
-                .Build();
+                });
         #endregion
 #elif UnixSocket
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_UnixSocket
@@ -66,16 +64,15 @@ namespace KestrelSample
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
-                })
+                });
                 #endregion
-                .Build();
 #elif FileDescriptor
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_FileDescriptor
@@ -89,16 +86,15 @@ namespace KestrelSample
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
-                })
+                });
                 #endregion
-                .Build();
 #elif Limits
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Limits
@@ -116,25 +112,23 @@ namespace KestrelSample
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
-                })
+                });
                 #endregion
-               .Build();
 #elif Port0
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Port0
                 .UseKestrel(options =>
                 {
                     options.Listen(IPAddress.Loopback, 0);
-                })
+                });
                 #endregion
-               .Build();
 #endif
     }
 }
