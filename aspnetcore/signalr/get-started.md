@@ -69,7 +69,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     npm install @aspnet/signalr
     ```     
 
-4. Create a new folder named "signalr" inside the  *lib* folder in your project. Then copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
+4. Create a new folder named "signalr" inside the  *lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -86,7 +86,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     npm install @aspnet/signalr
     ```
 
-3. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to the *lib* folder in your project.
+3. Create a new folder named "signalr" inside the  *lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
 -----
 
@@ -134,15 +134,16 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 ## Create the SignalR client code
 
-1. Replace the content in *Pages\Index.cshtml* with the following code:
+1. Add a JavaScript file, named *chat.js*, to the *wwwroot\js* folder. Add the following code to it:
+
+   [!code-javascript[Index](get-started/sample/wwwroot/js/chat.js)]
+
+2. Replace the content in *Pages\Index.cshtml* with the following code:
 
    [!code-cshtml[Index](get-started/sample/Pages/Index.cshtml)]
 
    The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
 
-2. Add a JavaScript file, named *chat.js*, to the *wwwroot\js* folder. Add the following code to it:
-
-   [!code-javascript[Index](get-started/sample/wwwroot/js/chat.js)]
 
 ## Run the app
 

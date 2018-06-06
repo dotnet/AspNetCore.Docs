@@ -3,6 +3,7 @@ title: Background tasks with hosted services in ASP.NET Core
 author: guardrex
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/15/2018
@@ -40,7 +41,7 @@ Hosted services implement the [IHostedService](/dotnet/api/microsoft.extensions.
 
 * [StopAsync(CancellationToken)](/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called.
 
-The hosted service is a singleton that's activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable](/dotnet/api/system.idisposable) is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
+The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When [IDisposable](/dotnet/api/system.idisposable) is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
 ## Timed background tasks
 
@@ -48,9 +49,21 @@ A timed background task makes use of the [System.Threading.Timer](/dotnet/api/sy
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/TimedHostedService.cs?name=snippet1&highlight=15-16,30,37)]
 
-The service is registered in `Startup.ConfigureServices`:
+::: moniker range=">= aspnetcore-2.1"
+
+The service is registered in `Startup.ConfigureServices` with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+The service is registered in `Startup.ConfigureServices`:
+
+[!code-csharp[](hosted-services/samples-snapshot/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 ## Consuming a scoped service in a background task
 
@@ -64,9 +77,21 @@ The hosted service creates a scope to resolve the scoped background task service
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=29-36)]
 
-The services are registered in `Startup.ConfigureServices`:
+::: moniker range=">= aspnetcore-2.1"
+
+The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet2)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+The services are registered in `Startup.ConfigureServices`:
+
+[!code-csharp[](hosted-services/samples-snapshot/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet2)]
+
+::: moniker-end
 
 ## Queued background tasks
 
@@ -78,9 +103,21 @@ In `QueueHostedService`, background tasks (`workItem`) in the queue are dequeued
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
 
-The services are registered in `Startup.ConfigureServices`:
+::: moniker range=">= aspnetcore-2.1"
+
+The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet3)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+The services are registered in `Startup.ConfigureServices`:
+
+[!code-csharp[](hosted-services/samples-snapshot/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet3)]
+
+::: moniker-end
 
 In the Index page model class, the `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`:
 

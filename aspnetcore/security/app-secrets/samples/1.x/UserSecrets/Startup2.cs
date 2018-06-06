@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.SqlClient;
 
 namespace UserSecrets
 {
@@ -14,14 +15,17 @@ namespace UserSecrets
         
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json",
+                             optional: false,
+                             reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
             {
                 builder.AddUserSecrets<Startup>();
             }
-
-            builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
@@ -30,9 +34,10 @@ namespace UserSecrets
 
         public void ConfigureServices(IServiceCollection services)
         {
-            _connection = string.Format(
-                Configuration.GetConnectionString("Movies"),
-                Configuration["DbPassword"]);
+            var builder = new SqlConnectionStringBuilder(
+                Configuration.GetConnectionString("Movies"));
+            builder.Password = Configuration["DbPassword"];
+            _connection = builder.ConnectionString;
         }
 
         public void Configure(IApplicationBuilder app)
