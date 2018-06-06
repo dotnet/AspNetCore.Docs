@@ -210,7 +210,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## String replacement with secrets
 
-Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
+Storing passwords in plain text is insecure. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
