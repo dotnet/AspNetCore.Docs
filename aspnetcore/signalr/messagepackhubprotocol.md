@@ -21,21 +21,21 @@ This article assumes the reader is familiar with the topics covered in [Get Star
 
 ## What is MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) is a binary serialization format that is fast and compact. It's useful when performance and bandwidth are a concern because it creates smaller packets compared to [JSON](https://www.json.org/). Because it's a binary format, messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has added built-in support for the MessagePack format, and provides APIs for the client and server to use.
+[MessagePack](https://msgpack.org/index.html) is a binary serialization format that is fast and compact. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). Because it's a binary format, messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
 
 ## Configure MessagePack on the server
 
 To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. Add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
 
 > [!NOTE]
-> Json is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
+> JSON is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
 
 ```csharp
 services.AddSignalR()
     .AddMessagePackProtocol();
 ```
 
-To customize how MessagePack will format your data, `AddMessagePackProtocol` takes a Func for configuring options. A property named `FormatterResolvers` is exposed in the options. The `FormatterResolvers` is a list of resolvers that are used by MessagePack to determine the format messages will be in. For more information on how the resolvers work, visit the MessagePack library at [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp). Attributes can be used on the objects you want to serialize to define how they should be handled.
+To customize how MessagePack will format your data, `AddMessagePackProtocol` takes a delegate for configuring options. In that delegate, the `FormatterResolvers` property can be used to configure MessagePack serialization options. For more information on how the resolvers work, visit the MessagePack library at [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp). Attributes can be used on the objects you want to serialize to define how they should be handled.
 
 ```csharp
 services.AddSignalR()
@@ -61,6 +61,9 @@ var hubConnection = new HubConnectionBuilder()
                         .Build();
 ```
 
+> [!NOTE]
+> This `AddMessagePackProtocol` call takes a delegate for configuring options just like the server.
+
 ### JavaScript client
 
 MessagePack support for the Javascript client is provided by the `@aspnet/signalr-protocol-msgpack` NPM package.
@@ -69,9 +72,10 @@ MessagePack support for the Javascript client is provided by the `@aspnet/signal
 npm install @aspnet/signalr-protocol-msgpack
 ```
 
-After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. When using the MessagePack library via a browser `<script>` tag, the msgpack5 library must be referenced directly as well, it can be found in the *node_modules\msgpack5\dist\msgpack5.js* file.
+After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. When using the MessagePack library via a browser `<script>` tag. The msgpack5 library must be referenced directly as well, it can be found in the *node_modules\msgpack5\dist\msgpack5.js* file.
 
-When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack.
+> [!NOTE]
+> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
