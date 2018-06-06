@@ -283,7 +283,7 @@ Using a template is generally the simplest approach to routing. Constraints and 
 
 Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in routing implementations, such as `Route`, match requests.
 
-## Resevered routing names
+## Reserved routing names
 
 The following keywords are reserved names and can't be used as route names or parameters:
 
