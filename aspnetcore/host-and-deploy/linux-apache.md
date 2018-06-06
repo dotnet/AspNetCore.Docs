@@ -403,7 +403,7 @@ In the configuration file shown below, an additional instance of the `hellomvc` 
 <VirtualHost *:80>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/ [R,L]
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 </VirtualHost>
 
 <VirtualHost *:443>
