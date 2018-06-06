@@ -23,9 +23,9 @@ Users and groups is how SignalR exposes connection management.
 
 ## What are users?
 
-SignalR allows you to send messages to all connections associated with a specific user. By default SignalR will use the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. Multiple connections can be associated with the same user. For example, you can be connected on your desktop, your phone, and your laptop. If you send to the user all three connections will receive the message.
+SignalR allows you to send messages to all connections associated with a specific user. By default SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. Multiple connections can be associated with the same user. For example, you can be connected on your desktop, your phone, and your laptop. If a message is sent to the user all three connections will receive the message.
 
-You can send a message to a specific user by passing the user identifier to the `User(...)` function in your hub method as shown in the following example.
+Send a message to a specific user by passing the user identifier to the `User` function in your hub method as shown in the following example:
 
 > [!NOTE]
 > The user identifier is case-sensitive.
@@ -37,14 +37,14 @@ public Task SendPrivateMessage(string user, string message)
 }
 ```
 
-The user identifier can be customized by creating your own `IUserIdProvider`, and registering it in `ConfigureServices`.
+The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
 
 [!code-csharp[UserIdProvider](groups/sample/customuseridprovider.cs?range=4-10)]
 
 [!code-csharp[Configure service](groups/sample/startup.cs?range=21-22,39-42)]
 
 > [!NOTE]
-> AddSignalR() must be called before registering your custom SignalR services.
+> AddSignalR must be called before registering your custom SignalR services.
 
 ## What are groups?
 
@@ -52,7 +52,7 @@ A group is a collection of connections associated with a name. Messages can be s
 
 [!code-csharp[Hub methods](groups/sample/hubs/chathub.cs?range=15-27)]
 
-Group membership is not preserved when a connection reconnects, the connection will need to rejoin then group when it is re-established. It is not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
+Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
 
 > [!NOTE]
 > Group names are case-sensitive.
