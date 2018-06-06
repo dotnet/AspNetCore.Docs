@@ -35,7 +35,7 @@ services.AddSignalR()
     .AddMessagePackProtocol();
 ```
 
-To customize how MessagePack will format your data, `AddMessagePackProtocol` takes a Func for configuring options. A property named `FormatterResolvers` is exposed in the options. The `FormatterResolvers` is a list of resolvers that are used by MessagePack to determine the format messages will be in. For more information on how the resolvers work, visit the MessagePack library at [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp). Use attributes on the objects you want to serialize to define how they should be handled.
+To customize how MessagePack will format your data, `AddMessagePackProtocol` takes a Func for configuring options. A property named `FormatterResolvers` is exposed in the options. The `FormatterResolvers` is a list of resolvers that are used by MessagePack to determine the format messages will be in. For more information on how the resolvers work, visit the MessagePack library at [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp). Attributes can be used on the objects you want to serialize to define how they should be handled.
 
 ```csharp
 services.AddSignalR()
