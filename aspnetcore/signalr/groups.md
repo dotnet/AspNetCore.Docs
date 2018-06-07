@@ -17,13 +17,13 @@ uid: signalr/groups
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-Users and groups is how SignalR exposes connection management.
+SignalR allows messages to be sent to named groups of connections, as well as to all connections associated with a specific user.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
-## What are users?
+## Users in SignalR
 
-SignalR allows you to send messages to all connections associated with a specific user. By default SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. Multiple connections can be associated with the same user. For example, you can be connected on your desktop, your phone, and your laptop. If a message is sent to the user all three connections will receive the message.
+SignalR allows you to send messages to all connections associated with a specific user. By default SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. A single user can have multiple connections to a SignalR application. For example, a user could be connected on their desktop as well as their phone. Each device has a separate SignalR connection, but they are all associated with the same user. If a message is sent to the user, all of the connections associated with that user will receive the message.
 
 Send a message to a specific user by passing the user identifier to the `User` function in your hub method as shown in the following example:
 
@@ -46,7 +46,7 @@ The user identifier can be customized by creating an `IUserIdProvider`, and regi
 > [!NOTE]
 > AddSignalR must be called before registering your custom SignalR services.
 
-## What are groups?
+## Groups in SignalR
 
 A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. This makes groups ideal for something like a chat application, where each room can be represented as a group. Connections can be added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
 
