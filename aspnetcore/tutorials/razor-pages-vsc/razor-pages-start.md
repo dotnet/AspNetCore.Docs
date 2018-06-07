@@ -28,7 +28,7 @@ From a terminal, run the following commands:
 ::: moniker range=">= aspnetcore-2.1"
 
 ```console
-dotnet new webapp -o RazorPagesMovie
+dotnet new razor -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```
