@@ -25,7 +25,7 @@ This article assumes the reader is familiar with the topics covered in [Get Star
 
 ## Configure MessagePack on the server
 
-To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. Add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
+To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the Startup.cs file add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
 
 > [!NOTE]
 > JSON is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
@@ -72,10 +72,10 @@ MessagePack support for the Javascript client is provided by the `@aspnet/signal
 npm install @aspnet/signalr-protocol-msgpack
 ```
 
-After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. When using the MessagePack library via a browser `<script>` tag. The msgpack5 library must be referenced directly as well, it can be found in the *node_modules\msgpack5\dist\msgpack5.js* file.
+After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. In a browser the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack.
+> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -91,6 +91,9 @@ const connection = new signalR.HubConnectionBuilder()
     .withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
     .build();
 ```
+
+> [!NOTE]
+> At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
 ## Related resources
 
