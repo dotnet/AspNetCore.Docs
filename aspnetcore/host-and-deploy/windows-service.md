@@ -19,19 +19,6 @@ An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Ser
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Prerequisites
-
-* The app must run on the .NET Framework Common Language Runtime (CLR). In the project file, specify appropriate values for [TargetFramework](/nuget/schema/target-frameworks) and [RuntimeIdentifier](/dotnet/articles/core/rid-catalog):
-
-  [!code-xml[](windows-service/sample/AspNetCoreService.csproj?range=3-6)]
-
-  To create a project in Visual Studio suitable for modification into a Windows Service app, use the **ASP.NET Core Application** template:
-    1. Select **File** > **New** > **Project**.
-    1. Select the **ASP.NET Core Web Application** template. Name the app and select **OK**.
-    1. In the first drop-down, select **.NET Framework**. Leave **Web Application** selected. Select **OK**.
-
-* If the app receives requests from the Internet (not just from an internal network), it must use the [HTTP.sys](xref:fundamentals/servers/httpsys) web server (formerly known as [WebListener](xref:fundamentals/servers/weblistener) for ASP.NET Core 1.x apps) rather than [Kestrel](xref:fundamentals/servers/kestrel). Use of IIS in a reverse proxy server configuration with Kestrel is an option for edge deployments. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
-
 ## Get started
 
 The following minimum changes are required to set up an existing ASP.NET Core project to run in a service:
@@ -61,10 +48,8 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    To publish the sample app from the command line, run the following command in a console window from the project folder:
 
    ```console
-   dotnet publish --configuration Release --output c:\\svc
+   dotnet publish --configuration Release --output c:\svc
    ```
-
-   The double-backslash escapes a backslash in the command-line argument for the output path. The project is published to the *c:\\svc* folder.
 
 1. Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. Use the `sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"` command. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character that starts the path is required.**
 
