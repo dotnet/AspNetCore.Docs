@@ -16,7 +16,7 @@ uid: signalr/configuration
 
 ## [JSON]( https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Protocols.Json/JsonHubProtocolOptions.cs)/[MessagePack](https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Protocols.MessagePack/MessagePackHubProtocolOptions.cs) serialization options
 
-MessagePack is a binary serialization format that provides serialization options for server and client.
+MessagePack is a binary serialization format that provides serialization options for server and client. 
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection
@@ -26,7 +26,7 @@ var connection = new HubConnectionBuilder()
     .AddJsonHubProtocol(options => {
         // options.PayloadSerializerSettings is a JSON.NET JsonSerializerSettings used to 
         // configure how the payload is serialized
-        // Example: PascalCase JSON (we are camelCase by default)
+        // Example: PascalCase JSON (camelCase by default)
         options.PayloadSerializerSettings.ContractResolver = new DefaultContractResolver();
     })
     .Build();
@@ -66,10 +66,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### [HubOptions<T>](https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Core/HubOptions.cs)
+Strongly-typed [HubOptions<T>](https://github.com/aspnet/SignalR/blob/dev/src/Microsoft.AspNetCore.SignalR.Core/HubOptions.cs) can be configured as follows: 
 
 ```csharp
-  services.AddSignalR().AddHubOptions<ChatHub>(options =>
+  services.AddSignalR().AddHubOptions<HubName>(options =>
   {
       options.EnableDetailedErrors = true;
   }
@@ -91,18 +91,26 @@ The following table describes the `HttpConnectionDispatcherOptions` options:
 | `CloseTimeout`  | TimeSpan to set how long to wait for a clean WebSocket close when connection is being terminated  |
 | `SubProtocolSelector` | A delegate the hub calls and passes a list of `Sec-WebSocket-Protocol` values from the request header. A delegate returns the chosen `Sec-WebSocket-Protocol`. |
 
-```csharp
-var connection = new HubConnectionBuilder()
-    .WithUrl("/url", HttpTransportType.WebSockets | HttpTransportType.ServerSentEvents)
-    .Build();
-```
+The following code samples demonstrate setting the connection options:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("/url", options => {
+    .WithUrl("...", HttpTransportType.WebSockets | HttpTransportType.ServerSentEvents)
+    .Build();
+
+var connection = new HubConnectionBuilder()
+    .WithUrl("...", options => {
         options.AccessTokenProvider = async () => {
             // Get access token and return it.
         };
+    });
+    .Build();
+
+var connection = new HubConnectionBuilder()
+    .WithUrl("...", options => {
+        options.Headers["Foo"] = "Bar";
+        options.Cookies.Add(new Cookie(...));
+        options.ClientCertificates.Add(...);
     });
     .Build();
 ```
