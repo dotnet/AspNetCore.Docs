@@ -17,7 +17,7 @@ uid: signalr/streaming
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-Stream data from server to clients using the streaming API.
+Streaming is a way for clients to subscribe to a stream of data from the server on demand.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/streaming/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
