@@ -73,7 +73,7 @@ You can implement interfaces for multiple filter stages in a single class. For e
 
 ### IFilterFactory
 
-`IFilterFactory` implements `IFilterMetadata`. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the `CreateInstance` method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements [IFilterMetadata](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifiltermetadata). Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 You can implement `IFilterFactory` on your own attribute implementations as another approach to creating filters:
 
