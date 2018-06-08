@@ -305,6 +305,8 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
+  [!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"

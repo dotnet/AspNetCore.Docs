@@ -186,6 +186,8 @@ dotnet sln add RazorUIClassLib
 dotnet add WebApp1 reference RazorUIClassLib
 ```
 
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 Build and run the web app:
 
 ```console

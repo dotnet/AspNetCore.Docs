@@ -44,7 +44,9 @@ The project sample is created from a Razor Pages web app, but the instructions a
 dotnet new webapp -o WebApp1
 ```
 
-------
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
+---
 
 ## Run the Identity scaffolder
 
