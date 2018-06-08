@@ -31,7 +31,7 @@ Each configuration value maps to a string key. There's built-in binding support 
 
 The options pattern uses options classes to represent groups of related settings. For more information on using the options pattern, see the [Options](xref:fundamentals/configuration/options) topic.
 
-[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## JSON configuration
 
@@ -225,7 +225,7 @@ key3=value_from_json_3
 
 The [CommandLine configuration provider](/dotnet/api/microsoft.extensions.configuration.commandline.commandlineconfigurationprovider) receives command-line argument key-value pairs for configuration at runtime.
 
-[View or download the CommandLine configuration sample](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/index/sample/CommandLine)
+[View or download the CommandLine configuration sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample/CommandLine)
 
 ### Setup and use the CommandLine configuration provider
 
