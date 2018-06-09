@@ -480,7 +480,7 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 You can change the query string `?handler=JoinList` in the URL to a route segment `/JoinList` by specifying the route template `@page "{handler?}"`.
 
-If you don't like the query string `?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL.  You can customize the route by adding a route template enclosed in double quotes after the `@page` directive.
+If you don't like the query string `?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in double quotes after the `@page` directive.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
