@@ -108,8 +108,79 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 `dotnet watch` detects the file change and reruns the tests. The console output indicates the tests passed.
 
-## dotnet-watch in GitHub
+## Customize what files to be watched
 
-dotnet-watch is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch).
+By default, `dotnet-watch` will track all `**/*.cs`, `*.csproj`, and `**/*.resx` files for changes. More items can be added to the watchlist by editing the csproj file. Items can be added individually, or by using glob patterns.
+
+```xml
+<ItemGroup>
+    <!-- extends watching group to include *.js files -->
+    <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+</ItemGroup>
+````
+
+## Opt-out of files to be watched
+
+`dotnet-watch` can be configured to ignore it's default settings. To ignore specific files, add the `Watch="false"` attribute an item’s definition in the `.csproj` file.
+
+```xml
+<ItemGroup>
+    <!-- exclude Generated.cs from dotnet-watch -->
+    <Compile Include="Generated.cs" Watch="false" />
+
+    <!-- exclude Strings.resx from dotnet-watch -->
+    <EmbeddedResource Include="Strings.resx" Watch="false" />
+
+    <!-- exclude changes in this referenced project -->
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" Watch="false" />
+</ItemGroup>
+````
+
+## Custom watch projects
+
+`dotnet-watch` is not restricted to C# projects. Custom watch projects can be created  to do handle different scenarios. The below scenario assumes the following project layout
+
+````
+test/
+    UnitTests/UnitTests.csproj
+    IntegrationTests/IntegrationTests.csproj
+````
+
+If the goal is to watch both projects, this can be done by creating a custom project file configured to watch both projects
+
+```xml
+<Project ToolsVersion="15.0">
+
+    <ItemGroup>
+        <TestProjects Include="**\*.csproj" />
+        <Watch Include="**\*.cs" />
+    </ItemGroup>
+
+    <Target Name="Test">
+        <MSBuild Targets="VSTest" Projects="@(TestProjects)" />
+    </Target>
+
+    <ItemGroup>
+        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
+    </ItemGroup>
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft.Common.targets"/>
+
+</Project>
+````
+
+To initiate `dotnet watch` on both projects, execute the following
+
+```bash
+cd test\
+dotnet restore watch.proj
+dotnet watch msbuild /t:Test
+````
+
+This will watch all test projects, and execute VSTest when any file changes.
+
+## `dotnet-watch` in GitHub
+
+`dotnet-watch` is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch).
 
 The [MSBuild section](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch#msbuild) of the [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) explains how dotnet-watch can be configured from the MSBuild project file being watched. The [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) has information on dotnet-watch not covered in this tutorial.
