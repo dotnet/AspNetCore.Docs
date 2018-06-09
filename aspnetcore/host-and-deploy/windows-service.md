@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core in a Windows Service
-author: rick-anderson
+author: guardrex
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 manager: wpickett
 ms.author: tdykstra
@@ -13,7 +13,7 @@ uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.com/tdykstra)
 
 An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app can automatically start after reboots and crashes without requiring human intervention.
 
@@ -51,13 +51,15 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    dotnet publish --configuration Release --output c:\svc
    ```
 
-1. Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. Use the `sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"` command. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character that starts the path is required.**
+1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service (`sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"`). The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character that starts the path is required.**
 
    For the sample app and command that follows, the service is:
 
    * Named **MyService**.
    * Published to *c:\\svc* folder.
    * Has an app executable named *AspNetCoreService.exe*.
+
+   Open a command shell with administrative privileges and run the following command:
 
    ```console
    sc create MyService binPath= "c:\svc\aspnetcoreservice.exe"
