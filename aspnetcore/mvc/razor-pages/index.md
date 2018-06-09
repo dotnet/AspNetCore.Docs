@@ -487,7 +487,7 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 The `?` following `handler` means the route parameter is optional.
 
-You can use `@page` to add additional segments and parameters to a page's route. Whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
+You can use `@page` to append segments and parameters to a page's default route. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
 
 ## Configuration and settings
 
