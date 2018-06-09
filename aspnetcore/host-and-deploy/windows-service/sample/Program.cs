@@ -19,7 +19,6 @@ namespace AspNetCoreService
             var host = WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(pathToContentRoot)
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             host.RunAsService();
@@ -27,26 +26,29 @@ namespace AspNetCoreService
         #endregion
 #endif
 #if ServiceOrConsole
-#region ServiceOrConsole
+        #region ServiceOrConsole
         public static void Main(string[] args)
         {
-            bool isService = true;
+            var isService = true;
+
             if (Debugger.IsAttached || args.Contains("--console"))
             {
                 isService = false;
             }
 
             var pathToContentRoot = Directory.GetCurrentDirectory();
+
             if (isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
             }
 
-            var host = WebHost.CreateDefaultBuilder(args)
+            var webHostArgs = args.Where(arg => arg != "--console").ToArray();
+
+            var host = WebHost.CreateDefaultBuilder(webHostArgs)
                 .UseContentRoot(pathToContentRoot)
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             if (isService)
@@ -58,29 +60,32 @@ namespace AspNetCoreService
                 host.Run();
             }
         }
-#endregion
+        #endregion
 #endif
 #if HandleStopStart
-#region HandleStopStart
+        #region HandleStopStart
         public static void Main(string[] args)
         {
-            bool isService = true;
+            var isService = true;
+
             if (Debugger.IsAttached || args.Contains("--console"))
             {
                 isService = false;
             }
 
             var pathToContentRoot = Directory.GetCurrentDirectory();
+
             if (isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
             }
 
+            var webHostArgs = args.Where(arg => arg != "--console").ToArray();
+
             var host = WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(pathToContentRoot)
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             if (isService)
@@ -92,7 +97,7 @@ namespace AspNetCoreService
                 host.Run();
             }
         }
-#endregion
+        #endregion
 #endif
     }
 }
