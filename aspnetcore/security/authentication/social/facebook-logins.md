@@ -42,6 +42,9 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
 
+> [!NOTE]
+> The URI */signin-facebook*/ is set as the default callback for Facebook authentication Provider. You can change the default callback URI while configuring the Facebook authentication middleware via *CallbackPath* property of FacebookOptions class.
+
 * Click **Save Changes**.
 
 * Click the **Dashboard** link in the left navigation. 
