@@ -33,7 +33,7 @@ namespace AspNetCoreService
     #endregion
 #endif
 #if Logging
-#region Logging
+    #region Logging
     internal class CustomWebHostService : WebHostService
     {
         private ILogger _logger;
@@ -61,6 +61,6 @@ namespace AspNetCoreService
             base.OnStopping();
         }
     }
-#endregion
+    #endregion
 #endif
 }

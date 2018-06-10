@@ -21,7 +21,6 @@ namespace AspNetCoreService
                 .UseContentRoot(pathToContentRoot)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             host.RunAsService();
@@ -29,16 +28,18 @@ namespace AspNetCoreService
         #endregion
 #endif
 #if ServiceOrConsole
-#region ServiceOrConsole
+        #region ServiceOrConsole
         public static void Main(string[] args)
         {
-            bool isService = true;
+            var isService = true;
+
             if (Debugger.IsAttached || args.Contains("--console"))
             {
                 isService = false;
             }
 
             var pathToContentRoot = Directory.GetCurrentDirectory();
+
             if (isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
@@ -50,7 +51,6 @@ namespace AspNetCoreService
                 .UseContentRoot(pathToContentRoot)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             if (isService)
@@ -62,19 +62,21 @@ namespace AspNetCoreService
                 host.Run();
             }
         }
-#endregion
+        #endregion
 #endif
 #if HandleStopStart
-#region HandleStopStart
+        #region HandleStopStart
         public static void Main(string[] args)
         {
-            bool isService = true;
+            var isService = true;
+
             if (Debugger.IsAttached || args.Contains("--console"))
             {
                 isService = false;
             }
 
             var pathToContentRoot = Directory.GetCurrentDirectory();
+
             if (isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
@@ -86,7 +88,6 @@ namespace AspNetCoreService
                 .UseContentRoot(pathToContentRoot)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             if (isService)
@@ -98,7 +99,7 @@ namespace AspNetCoreService
                 host.Run();
             }
         }
-#endregion
+        #endregion
 #endif
     }
 }

@@ -79,6 +79,8 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     dotnet new webapp -o SignalRChat
     ```
 
+    [!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 2. Install the JavaScript client library using *npm*.
 
     ```console
@@ -88,7 +90,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
 
 3. Create a new folder named "signalr" inside the  *lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
------
+---
 
 ## Create the SignalR Hub
 

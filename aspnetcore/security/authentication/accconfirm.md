@@ -38,6 +38,8 @@ dotnet new webapp --auth Individual -o WebPWrecover
 cd WebPWrecover
 ```
 
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
