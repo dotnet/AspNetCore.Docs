@@ -17,24 +17,27 @@ uid: signalr/streaming
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-Streaming is useful for scenarios when you don't have all the data to send to the client yet, but will get it over time and want to update the client whenever new data is available.
+ASP.NET Core SignalR supports streaming return values of server methods. This is useful for scenarios where fragments of data will come in over time. When a return value is streamed to the client, each fragment is sent to the client as soon as it is available, rather than waiting for all the data to become available.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/streaming/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Set up the hub
 
-A hub method automatically becomes a streaming hub method when it returns a variant of `ChannelReader`. For example, return values of `ChannelReader<int>` and `Task<ChannelReader<string>>` are streaming methods. Below is a sample that shows the basics of streaming data to the client. Everytime data is written to the `ChannelReader` the client is notified of the new data. At the end, the `ChannelReader` is completed to tell the client the stream is closed.
+A hub method automatically becomes a streaming hub method when it returns a `ChannelReader<T>` or a `Task<ChannelReader<T>>`. Below is a sample that shows the basics of streaming data to the client. Whenever an object is written to the `ChannelReader` that object is immediately sent to the client. At the end, the `ChannelReader` is completed to tell the client the stream is closed.
 
-[!code-javascript[Streaming hub method](streaming/sample/hubs/streamhub.cs?range=10-29)]
+[!code-javascript[Streaming hub method](streaming/sample/hubs/streamhub.cs?range=10-34)]
 
 ## .NET client
 
-`StreamAsChannelAsync` on the `HubConnection` calls streaming methods on the hub. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. Set the generic in `StreamAsChannelAsync` based on the type returned from the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
+The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a streaming method. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
 
 ```csharp
 var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
+
+// Wait asynchronously for data to become available
 while (await channel.WaitToReadAsync())
 {
+    // Read all currently available data synchronously, before waiting for more data
     while (channel.TryRead(out var count))
     {
         Console.WriteLine($"{count}");
@@ -53,7 +56,7 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 `connection.stream` returns an `IStreamResult` which contains a `subscribe` method. Pass an `IStreamSubscriber` to `subscribe` and set the `next`, `error`, and `complete` callbacks to get notifications from the `stream` invocation.
 
-[!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=16-32)]
+[!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=16-33)]
 
 To end the stream from the client call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
 

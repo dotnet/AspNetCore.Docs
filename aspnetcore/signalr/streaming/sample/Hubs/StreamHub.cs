@@ -13,18 +13,23 @@ namespace SignalRChat.Hubs
         {
             var channel = Channel.CreateUnbounded<int>();
 
-            Task.Run(async () =>
-            {
-                for (var i = 0; i < count; i++)
-                {
-                    await channel.Writer.WriteAsync(i);
-                    await Task.Delay(delay);
-                }
-
-                channel.Writer.TryComplete();
-            });
+            // We don't want to await WriteItems, otherwise we'd end up waiting 
+            // for all the items to be written before returning the channel back to
+            // the client.
+            _ = WriteItems(channel.Writer, count, delay);
 
             return channel.Reader;
+        }
+
+        private async Task WriteItems(ChannelWriter<int> writer, int count, int delay)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                await channel.Writer.WriteAsync(i);
+                await Task.Delay(delay);
+            }
+
+            channel.Writer.TryComplete();
         }
     }
 }
