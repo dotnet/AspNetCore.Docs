@@ -110,18 +110,24 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 ## Customize what files to be watched
 
-By default, `dotnet-watch` will track all `**/*.cs`, `*.csproj`, and `**/*.resx` files for changes. More items can be added to the watchlist by editing the csproj file. Items can be added individually, or by using glob patterns.
+By default, `dotnet-watch` tracks all files matching the following glob patterns:
+
+* `**/*.cs`
+* `*.csproj`
+* `**/*.resx`
+
+More items can be added to the watch list by editing the *.csproj* file. Items can be specified individually or by using glob patterns.
 
 ```xml
 <ItemGroup>
     <!-- extends watching group to include *.js files -->
     <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
 </ItemGroup>
-````
+```
 
 ## Opt-out of files to be watched
 
-`dotnet-watch` can be configured to ignore it's default settings. To ignore specific files, add the `Watch="false"` attribute an item’s definition in the `.csproj` file.
+`dotnet-watch` can be configured to ignore its default settings. To ignore specific files, add the `Watch="false"` attribute to an item's definition in the *.csproj* file:
 
 ```xml
 <ItemGroup>
@@ -134,23 +140,20 @@ By default, `dotnet-watch` will track all `**/*.cs`, `*.csproj`, and `**/*.resx`
     <!-- exclude changes in this referenced project -->
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" Watch="false" />
 </ItemGroup>
-````
+```
 
 ## Custom watch projects
 
-`dotnet-watch` is not restricted to C# projects. Custom watch projects can be created  to do handle different scenarios. The below scenario assumes the following project layout
+`dotnet-watch` isn't restricted to C# projects. Custom watch projects can be created to handle different scenarios. Consider the following project layout:
 
-````
-test/
-    UnitTests/UnitTests.csproj
-    IntegrationTests/IntegrationTests.csproj
-````
+* **test/**
+  * *UnitTests/UnitTests.csproj*
+  * *IntegrationTests/IntegrationTests.csproj*
 
-If the goal is to watch both projects, this can be done by creating a custom project file configured to watch both projects
+If the goal is to watch both projects, create a custom project file configured to watch both projects:
 
 ```xml
 <Project>
-
     <ItemGroup>
         <TestProjects Include="**\*.csproj" />
         <Watch Include="**\*.cs" />
@@ -160,19 +163,18 @@ If the goal is to watch both projects, this can be done by creating a custom pro
         <MSBuild Targets="VSTest" Projects="@(TestProjects)" />
     </Target>
 
-    <Import Project="$(MSBuildExtensionsPath)\Microsoft.Common.targets"/>
-
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft.Common.targets" />
 </Project>
-````
+```
 
-To initiate `dotnet watch` on both projects, execute the following
+To start file watching on both projects, execute the following commands:
 
 ```bash
 cd test\
 dotnet watch msbuild /t:Test
-````
+```
 
-This will watch all test projects, and execute VSTest when any file changes.
+VSTest executes when any file changes in either test project.
 
 ## `dotnet-watch` in GitHub
 
