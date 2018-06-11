@@ -25,7 +25,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 A hub method automatically becomes a streaming hub method when it returns a `ChannelReader<T>` or a `Task<ChannelReader<T>>`. Below is a sample that shows the basics of streaming data to the client. Whenever an object is written to the `ChannelReader` that object is immediately sent to the client. At the end, the `ChannelReader` is completed to tell the client the stream is closed.
 
-> ![NOTE]
+> [!NOTE]
 > Write to the `ChannelReader` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
 
 [!code-javascript[Streaming hub method](streaming/sample/hubs/streamhub.cs?range=10-34)]
@@ -59,7 +59,7 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 `connection.stream` returns an `IStreamResult` which contains a `subscribe` method. Pass an `IStreamSubscriber` to `subscribe` and set the `next`, `error`, and `complete` callbacks to get notifications from the `stream` invocation.
 
-[!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=16-33)]
+[!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=19-36)]
 
 To end the stream from the client call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
 
