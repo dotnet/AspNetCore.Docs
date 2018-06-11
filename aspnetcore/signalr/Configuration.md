@@ -91,7 +91,10 @@ The following table describes the `HttpConnectionDispatcherOptions` options:
 | `CloseTimeout`  | TimeSpan to set how long to wait for a clean WebSocket close when connection is being terminated  |
 | `SubProtocolSelector` | A delegate the hub calls and passes a list of `Sec-WebSocket-Protocol` values from the request header. A delegate returns the chosen `Sec-WebSocket-Protocol`. |
 
-The following code samples demonstrate setting the connection options:
+
+### HubConnectionBuilder
+
+The `HubConnectionBuilder` API is available for both C# and TypeScript clients. The following code samples demonstrate setting connection options with the `HubConnectionBuilder`:
 
 ```csharp
 var connection = new HubConnectionBuilder()
