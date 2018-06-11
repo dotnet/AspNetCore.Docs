@@ -33,6 +33,8 @@ cd RazorPagesMovie
 dotnet run
 ```
 
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"

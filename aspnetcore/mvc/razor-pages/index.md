@@ -39,6 +39,8 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 Run `dotnet new webapp` from the command line.
 
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -55,6 +57,8 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 Run `dotnet new webapp` from the command line.
 
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -68,6 +72,8 @@ Run `dotnet new razor` from the command line.
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
+
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -470,17 +476,19 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
 
-
-
 ## Customizing Routing
+
+You can change the query string `?handler=JoinList` in the URL to a route segment `/JoinList` by specifying the route template `@page "{handler?}"`.
 
 If you don't like the query string `?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in double quotes after the `@page` directive.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
-The preceding route puts the handler name in the URL path instead of the query string. The `?` following `handler` means the route parameter is optional.
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH/JoinListUC`.
 
-You can use `@page` to add additional segments and parameters to a page's route. Whatever's there's **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
+The `?` following `handler` means the route parameter is optional.
+
+You can use `@page` to append segments and parameters to a page's default route. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
 
 ## Configuration and settings
 

@@ -210,7 +210,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 ## String replacement with secrets
 
-Storing passwords in plain text is risky. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
+Storing passwords in plain text is insecure. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
@@ -220,17 +220,17 @@ A more secure approach is to store the password as a secret. For example:
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Replace the password in *appsettings.json* with a placeholder. In the following example, `{0}` is used as the placeholder to form a [Composite Format String](/dotnet/standard/base-types/composite-formatting#composite-format-string).
+Remove the `Password` key-value pair from the connection string in *appsettings.json*. For example:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
-The secret's value can be injected into the placeholder to complete the connection string:
+The secret's value can be set on a [SqlConnectionStringBuilder](/dotnet/api/system.data.sqlclient.sqlconnectionstringbuilder) object's [Password](/dotnet/api/system.data.sqlclient.sqlconnectionstringbuilder.password) property to complete the connection string:
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=23-25)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=26-29)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-16)]
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
 ::: moniker-end
 
 ## List the secrets

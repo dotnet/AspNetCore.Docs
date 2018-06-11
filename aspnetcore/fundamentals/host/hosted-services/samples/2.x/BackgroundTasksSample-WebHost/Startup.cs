@@ -20,16 +20,16 @@ namespace BackgroundTasksSample
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #region snippet1
-            services.AddSingleton<IHostedService, TimedHostedService>();
+            services.AddHostedService<TimedHostedService>();
             #endregion
 
             #region snippet2
-            services.AddSingleton<IHostedService, ConsumeScopedServiceHostedService>();
+            services.AddHostedService<ConsumeScopedServiceHostedService>();
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
             #endregion
 
             #region snippet3
-            services.AddSingleton<IHostedService, QueuedHostedService>();
+            services.AddHostedService<QueuedHostedService>();
             services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
             #endregion
         }
