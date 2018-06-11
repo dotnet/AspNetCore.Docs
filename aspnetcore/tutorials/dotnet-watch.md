@@ -149,7 +149,7 @@ test/
 If the goal is to watch both projects, this can be done by creating a custom project file configured to watch both projects
 
 ```xml
-<Project ToolsVersion="15.0">
+<Project>
 
     <ItemGroup>
         <TestProjects Include="**\*.csproj" />
@@ -160,10 +160,6 @@ If the goal is to watch both projects, this can be done by creating a custom pro
         <MSBuild Targets="VSTest" Projects="@(TestProjects)" />
     </Target>
 
-    <ItemGroup>
-        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
-    </ItemGroup>
-
     <Import Project="$(MSBuildExtensionsPath)\Microsoft.Common.targets"/>
 
 </Project>
@@ -173,7 +169,6 @@ To initiate `dotnet watch` on both projects, execute the following
 
 ```bash
 cd test\
-dotnet restore watch.proj
 dotnet watch msbuild /t:Test
 ````
 
@@ -182,5 +177,3 @@ This will watch all test projects, and execute VSTest when any file changes.
 ## `dotnet-watch` in GitHub
 
 `dotnet-watch` is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch).
-
-The [MSBuild section](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-watch#msbuild) of the [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) explains how dotnet-watch can be configured from the MSBuild project file being watched. The [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/dotnet-watch/README.md) has information on dotnet-watch not covered in this tutorial.
