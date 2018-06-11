@@ -199,3 +199,21 @@ At the same time, there are significant drawbacks to enabling SSR. It adds compl
         // Call browser-specific APIs here
     }
     ```
+
+## Live reloading
+
+When utilizing `UseAngularCliServer` in development mode, `ng serve` enables live reload by default. Live reload watches for changes in your client app, triggers a build, and refreshes the browser. Angular CLI assumes the SockJS endpoint it uses to trigger the browser refresh is at the path `/sockjs-node`. If you [branch the middleware chain](xref:fundamentals/middleware/index#use-run-and-map) (for example, using `Map` to proxy your client app at anything other than the root server path), configure the SockJS endpoint using the `live-reload-client` (also known as `public-host`) option. This argument requires a fully qualified URL.
+
+For example, when branching to `myapp`:
+
+```json
+"scripts": {
+    "start": "ng serve --extract-css --live-reload-client=http://localhost:5000/myapp/sockjs-node/",
+}
+```
+
+If you're using pre-rendering via `UseSpaPrerendering`, update the `ExcludeUrls` property in your rendering options:
+
+```csharp
+options.ExcludeUrls = new[] { "/myapp/sockjs-node" };
+```
