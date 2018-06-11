@@ -167,10 +167,9 @@ If the goal is to watch both projects, create a custom project file configured t
 </Project>
 ```
 
-To start file watching on both projects, execute the following commands:
+To start file watching on both projects, change to the *test* folder. Execute the following command:
 
-```bash
-cd test\
+```console
 dotnet watch msbuild /t:Test
 ```
 
