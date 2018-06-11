@@ -21,3 +21,4 @@ uid: signalr/index
 * [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Supported platforms](xref:signalr/supported-platforms)
+* [Configuration](xref:signalr/configuration)
