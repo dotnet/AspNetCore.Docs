@@ -17,7 +17,7 @@ uid: signalr/groups
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-SignalR allows messages to be sent to named groups of connections, as well as to all connections associated with a specific user.
+SignalR allows messages to be sent to all connections associated with a specific user, as well as to named groups of connections.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
