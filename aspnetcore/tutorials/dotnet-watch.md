@@ -108,7 +108,7 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 `dotnet watch` detects the file change and reruns the tests. The console output indicates the tests passed.
 
-## Customize what files to be watched
+## Customize files list to watch
 
 By default, `dotnet-watch` tracks all files matching the following glob patterns:
 
