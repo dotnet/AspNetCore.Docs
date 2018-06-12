@@ -21,9 +21,9 @@ The SignalR Hub is the core abstraction for sending messages to clients connecti
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
-## Using the HubContext
+## Getting and Using the HubContext
 
-In ASP.NET Core SignalR you can get access to an instance of HubContext via dependency injection. You can get an instance of HubContext<YourHubType> in ana MVC Controller or middleware this way. In previous versions of SignalR you would do this by explicitly asking for an instance of HubContext via a connection manager but that has been replaced in favor of our dependency injection approach.
+In ASP.NET Core SignalR you can get access to an instance of HubContext via dependency injection. You can get an instance of `HubContext<YourHubType>` in an MVC Controller or middleware this way. In previous versions of SignalR you would do this by explicitly asking for an instance of HubContext via a ConnectionManager but that has been replaced in favor of our dependency injection approach.
 
 Getting an instance of HubContext in a Controller
 
