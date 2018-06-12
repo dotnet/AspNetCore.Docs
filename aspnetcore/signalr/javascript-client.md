@@ -74,7 +74,7 @@ To receive messages from the hub, define a method using the `connection.on` meth
 
 The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
 
-[!code-javascript[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
+[!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 

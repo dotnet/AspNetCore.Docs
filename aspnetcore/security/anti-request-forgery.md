@@ -38,11 +38,13 @@ An example of a CSRF attack:
 1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
 1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
 
-When the user selects the button to submit the form, the malicious site could:
+In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 
 * Run a script that automatically submits the form.
-* Sends a form submission as an AJAX request. 
-* Use a hidden form with CSS. 
+* Send the form submission as an AJAX request.
+* Hide the form using CSS.
+
+These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
 Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
 
