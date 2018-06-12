@@ -21,7 +21,7 @@ This article explains how to configure Response Caching Middleware in an ASP.NET
 
 ## Package
 
-To include the middleware in your project, add a reference to the [Microsoft.AspNetCore.ResponseCompression](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package or use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), which is available for use in ASP.NET Core 2.1 or later.
+To include the middleware in your project, add a reference to the [Microsoft.AspNetCore.ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), which is available for use in ASP.NET Core 2.1 or later.
 
 ## Configuration
 
