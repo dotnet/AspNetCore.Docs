@@ -107,7 +107,7 @@ For example:
 
 For databases that don't provide built-in encryption at rest you may be able to use disk encryption to provide the same protection. For example:
 
-* [Bitlocker for windows server](https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
+* [BitLocker for Windows Server](https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:
   * [eCryptfs](https://launchpad.net/ecryptfs)
   * [EncFS](https://github.com/vgough/encfs).
