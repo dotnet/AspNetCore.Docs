@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Notify";
+}
+<script src="~/lib/signalr.js"></script>
+<h2>Notify</h2>
+<ul id="messages-list"></ul>
+
+<script src="/lib/signalr/signalr.js"></script>
+    <script type="text/javascript">
+
+        var messagesList = document.getElementById("messages-list");
+
+        function appendMessage(content) {
+            var li = document.createElement("li");
+            li.innerText = content;
+            messagesList.appendChild(li);
+        }
+
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/notificationHub")
+            .build();
+
+
+        connection.on("notify", function (message) {
+            appendMessage(message)
+        });
+
+
+
+        connection.start();
+        
+    </script>
+
+ 
