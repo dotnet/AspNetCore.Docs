@@ -49,14 +49,16 @@ namespace SignalRNotify
                 app.UseHsts();
             }
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<NotificationHub>("/notificationHub");
-            });
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<NotificationHub>("/notificationHub");
+            });
 
             app.UseMvc(routes =>
             {

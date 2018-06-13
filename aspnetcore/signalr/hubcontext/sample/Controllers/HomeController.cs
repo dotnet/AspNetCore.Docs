@@ -11,7 +11,7 @@ namespace SignalRNotify.Controllers
 {
     public class HomeController : Controller
     {
-        IHubContext<NotificationHub> _hubContext;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
         public HomeController(IHubContext<NotificationHub> hubContext)
         {
@@ -20,12 +20,12 @@ namespace SignalRNotify.Controllers
 
         public IActionResult Index()
         {
-            _hubContext.Clients.All.SendAsync("notify", $"Home page loaded at: {DateTime.Now}");
+            _hubContext.Clients.All.SendAsync("Notify", $"Home page loaded at: {DateTime.Now}");
             return View();
         }
 
         [Route("notification")]
-        public IActionResult Test()
+        public IActionResult Notify()
         {
             return View();
         }
