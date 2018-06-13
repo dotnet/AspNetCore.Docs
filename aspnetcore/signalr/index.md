@@ -19,7 +19,9 @@ uid: signalr/index
 * [JavaScript client](xref:signalr/javascript-client)
 * [.NET client](xref:signalr/dotnet-client)
 * [Users and Groups](xref:signalr/groups)
-* [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Configuration](xref:signalr/configuration)
+* [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Streaming](xref:signalr/streaming)
 * [Supported platforms](xref:signalr/supported-platforms)
+
