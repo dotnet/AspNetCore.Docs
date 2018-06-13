@@ -88,7 +88,7 @@ There are three distinct steps to complete. After completing the steps in the fo
 
     ![Enable continuous integration settings](media/04/vsts-enable-ci.png)
 
-    These settings cause a build to trigger when any change is pushed to the *master* branch of the GitHub repository. This is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
+    These settings cause a build to trigger when any change is pushed to the *master* branch of the GitHub repository. Continuous integration is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
 
 1. Click the **Save & queue** button, and select the **Save** option:
 
@@ -124,7 +124,7 @@ There are three distinct steps to complete. After completing the steps in the fo
 1. Select *MyFirstProject* from the **Project** drop-down.
 1. Select the build definition name, *MyFirstProject-ASP.NET Core-CI*, from the **Source (Build definition)** drop-down.
 1. Select *Latest* from the **Default version** drop-down. This option builds the artifacts produced by the latest run of the build definition.
-1. Click the **Add** button. The **Artifacts** section updates to reflect the changes.
+1. Click the **Add** button. The **Artifacts** section updates to display the changes.
 1. Click the **1 phase, 2 tasks** link in the **Environment 1** box:
 
     ![Release definition - Environment 1 link.png](media/04/vsts-environment1-link.png)
@@ -136,6 +136,11 @@ There are three distinct steps to complete. After completing the steps in the fo
 1. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
 1. Select *AzureTutorial* from the **Resource group** drop-down.
 1. Select *staging* from the **Slot** drop-down.
+1. Click the **Save** button.
+1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
+
+    ![Release definition name](media/04/vsts-release-definition-name.png)
+
 1. Click the **Save** button.
 
 ## Commit changes to GitHub and automatically deploy to Azure
