@@ -125,6 +125,14 @@ There are three distinct steps to complete. After completing the steps in the fo
 1. Select the build definition name, *MyFirstProject-ASP.NET Core-CI*, from the **Source (Build definition)** drop-down.
 1. Select *Latest* from the **Default version** drop-down. This option builds the artifacts produced by the latest run of the build definition.
 1. Click the **Add** button. The **Artifacts** section updates to display the changes.
+1. Click the lightning bolt icon to enable continuous deployments:
+
+    ![Release definition Artifacts - lightning bolt icon](media/04/vsts-artifacts-lightning-bolt.png)
+
+    With this option enabled, a deployment occurs each time a new build is available.
+1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
+1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's *master* branch.
+1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
 1. Click the **1 phase, 2 tasks** link in the **Environment 1** box:
 
     ![Release definition - Environment 1 link.png](media/04/vsts-environment1-link.png)
