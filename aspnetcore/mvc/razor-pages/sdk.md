@@ -84,6 +84,6 @@ The Razor SDK defines two primary targets:
 * `RazorCompile` - Compiles generated *.cs* files in to a Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
 
 ### Runtime compilation of Razor views
-* By default, Razor SDK compiles does not publish reference assemblies required to perform runtime compilation. This would result in compilation failures, if your application model relies on runtime compilation - for instance if it uses embedded views or changing views for published applications. Set `CopyRefAssembliesToPublishDirectory` to true to continue publishing reference assemblies.
+* By default, Razor SDK does not publish reference assemblies required to perform runtime compilation. This would result in compilation failures, if your application model relies on runtime compilation - for instance if it uses embedded views or changing views for published applications. Set `CopyRefAssembliesToPublishDirectory` to true to continue publishing reference assemblies.
 
 * For web applications, ensure your application is targeting `Microsoft.NET.Sdk.Web` SDK.
