@@ -5,7 +5,7 @@ description: Discover topics that pertain to ASP.NET Core SignalR.
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
-ms.date: 05/25/2018
+ms.date: 06/13/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -18,8 +18,9 @@ uid: signalr/index
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [.NET client](xref:signalr/dotnet-client)
-* [Users and Groups](xref:signalr/groups)
-* [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
+* [Users and groups](xref:signalr/groups)
+* [Configuration](xref:signalr/configuration)
+* [MessagePack hub protocol](xref:signalr/messagepackhubprotocol)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Streaming](xref:signalr/streaming)
 * [Supported platforms](xref:signalr/supported-platforms)
