@@ -21,7 +21,7 @@ The SignalR Hub is the core abstraction for sending messages to clients connecte
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
-## Get an instance of `HubContext
+## Get an instance of `HubContext`
 
 In ASP.NET Core SignalR you can get access to an instance of IHubContext via dependency injection. You can inject an instance of IHubContext<YourHubType> into a Controller, Middleware or other DI service and use it to send messages to clients..
 
