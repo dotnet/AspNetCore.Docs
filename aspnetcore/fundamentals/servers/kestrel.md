@@ -204,7 +204,7 @@ By default, ASP.NET Core binds to:
 A development certificate is created:
 
 * When the [.NET Core SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-dev-certs) is used to create a certificate.
+* The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.
 
 Some browsers require that you grant explicit permission to the browser to trust the local development certificate.
 
