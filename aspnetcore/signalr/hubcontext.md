@@ -13,7 +13,7 @@ ms.topic: article
 uid: signalr/HubContext
 ---
 
-# Sending Messages From Outside a `Hub`
+# Sending Messages From Outside a Hub
 
 By [Mikael Mengistu](https://github.com/mikaelm12)
 
@@ -38,16 +38,15 @@ Now with access to an instance of HubContext, we can call our hub methods as if 
 
 [!code-csharp[HubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
-
 ### Getting an instance of `HubContext` in Middleware
 Access the HubContext within the Middleware pipeline like so.
 
 ```csharp
-           app.Use(next => (context) =>
-            {
-                var hubContext = (IHubContext<YourHubType>)context.RequestServices.GetServices<IHubContext<YourHubType>>();
-		...
-	    }
+app.Use(next => (context) =>
+{
+	var hubContext = (IHubContext<YourHubType>)context.RequestServices.GetServices<IHubContext<YourHubType>>();
+	...
+}
 ```
 
 
