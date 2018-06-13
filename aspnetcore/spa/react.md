@@ -30,7 +30,7 @@ The template is equivalent to creating both an ASP.NET Core project to act as an
 
 ::: moniker range="= aspnetcore-2.0"
 
-If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index?view=aspnetcore-2.0#installation).
+If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
 
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
