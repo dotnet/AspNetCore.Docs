@@ -7,6 +7,7 @@ In the previous chapter, you created a local Git repository for the Simple Feed 
 In this section, you'll complete the following tasks:
 
 * Publish the app's code to GitHub
+* Disconnect local Git deployment
 * Create a VSTS account
 * Create a team project in VSTS
 * Create a build definition
@@ -38,71 +39,135 @@ In this section, you'll complete the following tasks:
     ```
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
 
-## Configure the DevOps pipeline
+## Disconnect local Git deployment
 
-1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *mywebapp\<unique_number\>/staging* in the portal's search box:
+Remove the local Git deployment with the following steps. VSTS both replaces and augments that functionality.
+
+1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *staging* in the portal's search box:
 
     ![staging Web App search term](media/04/portal-search-box.png)
 
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
-1. Click **Continuous Delivery (Preview)**:
 
-    ![Continuous Delivery (Preview) button](media/04/cd-preview.png)
+## Create a VSTS account
 
-1. Click the **Configure** button. A **Configure Continuous Delivery** panel appears:
+1. Open a browser, and navigate to the [VSTS account creation page](https://go.microsoft.com/fwlink/?LinkId=307137).
+1. Type a unique name into the **Pick a memorable name** textbox to form the URL for accessing your VSTS account.
+1. Select the **Git** radio button, since the code is hosted in a GitHub repository.
+1. Click the **Continue** button. After a short wait, an account and a team project, named *MyFirstProject*, are created.
 
-    ![Configure Continuous Delivery panel](media/04/configure-cd.png)
+    ![VSTS account creation page](media/04/vsts-account-creation.png)
 
-1. Navigate to the sections listed below to complete the configuration. No modifications are needed to the **Setup load test** section.
+1. Open the confirmation email indicating that the VSTS account and project are ready for use. Click the **Start your project** button:
 
-### Choose repository
+    ![Start your project button](media/04/vsts-start-project.png)
 
-Click the **Source code: Choose repository** option, and follow these steps:
+1. A browser opens to *\<account_name\>.visualstudio.com*. Click the *MyFirstProject* link to begin configuring the project's DevOps pipeline.
 
-1. Select *GitHub* from the **Code repository** drop-down.
-1. Select *\<GitHub_username\>/simple-feed-reader* from the **Repository** drop-down.
-1. Select *master* from the **Branch** drop-down.
-1. Click the **OK** button to save your selections:
+## Configure the DevOps pipeline
 
-    ![select code source](media/04/configure-cd-source.png)
+There are three distinct steps to complete. Completing the steps in the following three sections results in an operational DevOps pipeline.
 
-### Configure Continuous Delivery
+### Grant VSTS access to the GitHub repository
 
-Click the **Build: Configure Continuous Delivery** option, and follow these steps:
+1. Expand the **or build code from an external repository** accordion. Click the **Setup Build** button:
 
-1. Select *ASP.NET Core* from the **Web Application framework** drop-down. This selection is important. It determines the build definition template to be used.
-1. Click the *Create new* option of the **Visual Studio Team Service account** toggle button.
-1. Enter a unique name in the **Account name** textbox. A green checkmark indicates the name isn't already being used.
-1. Select the region closest to you from the **Location** drop-down.
-1. Click the **OK** button to save your selections:
+    ![Setup Build button](media/04/vsts-setup-build.png)
 
-    ![select build options](media/04/configure-cd-build.png)
+1. Select the **GitHub** option from the **Select a source** section:
 
-### Configure deployment
+    ![Select a source - GitHub](media/04/vsts-select-source.png)
 
-Click the **Deploy: Configure deployment** option, and follow these steps:
+1. Authorization is required before VSTS can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox. For example:
 
-1. Click the *YES* option of the **Deploy to staging** toggle button. Without this change, the default behavior is to deploy to production.
-1. In the **Deployment slot** section, select the *Use existing* radio button. Select *staging* from the drop-down.
-1. Click the **OK** button to save your selections.
+    ![GitHub connection name](media/04/vsts-repo-authz.png)
 
-    ![Configure deployment panel](media/04/configure-deployment-panel.png)
+1. If two-factor authentication is enabled on your GitHub account, a personal access token is required. In that case, click the **Authorize with a GitHub personal access token** link. See the [official GitHub personal access token creation instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for help. Only the *repo* scope of permissions is needed. Otherwise, click the **Authorize using OAuth** button.
+1. When prompted, sign in to your GitHub account. Then select Authorize to grant access to your VSTS account. If successful, a new service endpoint is created.
+1. Click the ellipsis button next to the **Repository** button. Select the *<GitHub_username>/simple-feed-reader* repository from the list. Click the **Select** button.
+1. Select the *master* branch from the **Default branch for manual and scheduled builds** drop-down. Click the **Continue** button. The template selection page appears.
 
-1. Click the **OK** button on the **Configure Continuous Delivery** panel. Wait several minutes for completion.
+### Create the build definition
 
-    ![DevOps pipeline construction in progress](media/04/configure-cd-waiting.png)
+1. From the template selection page, enter *ASP.NET Core* in the search box:
 
-    The following things are occurring during this waiting period:
+    ![ASP.NET Core search on template page](media/04/vsts-template-selection.png)
 
-    * A new VSTS account is created and is accessible at `https://<account_name>.visualstudio.com`. A confirmation email is sent with the details.
-    * A build definition and a release definition are created within a new team project named *MyFirstProject*.
-    * A build of the app is triggered. When the build succeeds, a deployment to the production environment is triggered.
+1. The template search results appear. Hover over the **ASP.NET Core** template, and click the **Apply** button.
+1. The **Tasks** tab of the build definition appears. Click the **Triggers** tab.
+1. Check the **Enable continuous integration** box. Under the **Branch filters** section, confirm that the **Type** drop-down is set to *Include*. Set the **Branch specification** drop-down to *master*.
 
-1. Click the **Build triggered** link to monitor the build's progress.
+    ![Enable continuous integration settings](media/04/vsts-enable-ci.png)
 
-    ![Build triggered link](media/04/build-triggered-link.png)
+    These settings cause a build to trigger when any change is pushed to the *master* branch of the GitHub repository. Continuous integration is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
+
+1. Click the **Save & queue** button, and select the **Save** option:
+
+    ![Save button](media/04/vsts-save-build.png)
+
+1. The following modal dialog appears:
+
+    ![Save build definition - modal dialog](media/04/vsts-save-modal.png)
+
+    Use the default folder of *\\*, and click the **Save** button.
+
+### Create the release definition
+
+1. Click the **Releases** tab of your team project. Click the **New definition** button.
+
+    ![Releases tab - New definition button](media/04/vsts-new-release-definition.png)
+
+    The template selection pane appears.
+
+1. From the template selection page, enter *App Service* in the search box:
+
+    ![Release definition template search box](media/04/vsts-release-template-search.png)
+
+1. The template search results appear. Hover over the **Azure App Service Deployment with Slot** template, and click the **Apply** button. The **Pipeline** tab of the release definition appears.
+
+    ![Release definition Pipeline tab](media/04/vsts-release-definition-pipeline.png)
+
+1. Click the **Add** button in the **Artifacts** box. The **Add artifact** panel appears:
+
+    ![Release definition - Add artifact panel](media/04/vsts-release-add-artifact.png)
+
+1. Select the **Build** tile from the **Source type** section. This type allows for the linking of the release definition to the build definition.
+1. Select *MyFirstProject* from the **Project** drop-down.
+1. Select the build definition name, *MyFirstProject-ASP.NET Core-CI*, from the **Source (Build definition)** drop-down.
+1. Select *Latest* from the **Default version** drop-down. This option builds the artifacts produced by the latest run of the build definition.
+1. Replace the text in the **Source alias** textbox with *Drop*.
+1. Click the **Add** button. The **Artifacts** section updates to display the changes.
+1. Click the lightning bolt icon to enable continuous deployments:
+
+    ![Release definition Artifacts - lightning bolt icon](media/04/vsts-artifacts-lightning-bolt.png)
+
+    With this option enabled, a deployment occurs each time a new build is available.
+1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
+1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's *master* branch.
+1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
+1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
+
+   ![Release definition - Environment name textbox](media/04/vsts-environment-name-textbox.png)
+
+1. Click the **1 phase, 2 tasks** link in the **Production** box:
+
+    ![Release definition - Production environment link.png](media/04/vsts-production-link.png)
+
+    The **Tasks** tab of the environment appears.
+1. Click the **Deploy Azure App Service to Slot** task. Its settings appear in a panel to the right.
+1. Select the Azure subscription associated with the App Service from the **Azure subscription** drop-down. Once selected, click the **Authorize** button.
+1. Select *Web App* from the **App type** drop-down.
+1. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
+1. Select *AzureTutorial* from the **Resource group** drop-down.
+1. Select *staging* from the **Slot** drop-down.
+1. Click the **Save** button.
+1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
+
+    ![Release definition name](media/04/vsts-release-definition-name.png)
+
+1. Click the **Save** button.
 
 ## Commit changes to GitHub and automatically deploy to Azure
 
@@ -114,33 +179,33 @@ Click the **Deploy: Configure deployment** option, and follow these steps:
     ```console
     git commit -a -m "upgraded to V4"
     ```
-1. Push the change in the *master* branch to *origin* remote of your GitHub repository:
+1. Push the change in the *master* branch to the *origin* remote of your GitHub repository:
 
     ```console
     git push origin master
     ```
 
-The commit appears in the GitHub repository's *master* branch:
+    The commit appears in the GitHub repository's *master* branch:
 
-![GitHub commit in master branch](media/04/github-commit.png)
+    ![GitHub commit in master branch](media/04/github-commit.png)
 
-The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
+    The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
 
-![enable continuous integration](media/04/enable-ci.png)
+    ![enable continuous integration](media/04/enable-ci.png)
 
-Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
+1. Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
 
-![queued build](media/04/build-queued.png)
+    ![queued build](media/04/build-queued.png)
 
-Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
+1. Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
 
-![updated app](media/04/updated-app-v4.png)
+    ![updated app](media/04/updated-app-v4.png)
 
 ## Examine the VSTS DevOps pipeline
 
 ### Build definition
 
-A build definition was created with the name *mywebapp\<unique_number\> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
+A build definition was created with the name *MyFirstProject-ASP.NET Core-CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
 
 The build definition's **Tasks** tab lists the individual steps being used. There are five build tasks.
 
@@ -168,7 +233,7 @@ Use the **Download** and **Explore** links to inspect the published artifacts.
 
 ### Release definition
 
-A release definition was created with the name *mywebapp\<unique_number\> - CD*:
+A release definition was created with the name *MyFirstProject-ASP.NET Core-CD*:
 
 ![release definition overview](media/04/release-definition-overview.png)
 
@@ -196,3 +261,4 @@ The subscription, resource group, service type, web app name, and deployment slo
 
 * [Build your ASP.NET Core app](https://docs.microsoft.com/vsts/build-release/apps/aspnet/build-aspnet-core)
 * [Build and deploy to an Azure Web App](https://docs.microsoft.com/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp)
+* [Define a CI build process for your GitHub repository](https://docs.microsoft.com/vsts/pipelines/build/ci-build-github)
