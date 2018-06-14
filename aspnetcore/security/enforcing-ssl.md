@@ -74,7 +74,7 @@ If no port is set:
 > [!NOTE]
 > An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 >
-> When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware described in this topic.
+> When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this topic.
 
 ::: moniker-end
 
