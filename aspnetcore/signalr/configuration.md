@@ -14,14 +14,11 @@ uid: signalr/configuration
 
 # ASP.NET Core SignalR configuration
 
-## JSON/MessagePack Serialization Options
+## JSON/MessagePack serialization options
 
-ASP.NET Core SignalR supports two protocols for encoding messages, JSON and MessagePack. Each protocol has configuration options that can be used to configure serialization.
-JSON Serialization Options
+ASP.NET Core SignalR supports two protocols for encoding messages, [JSON][https://www.json.org/] and [MessagePack][https://msgpack.org/index.html]. Each protocol has serialization configuration options.
 
-JSON serialization can be configured on both the Server and .NET Client by providing a delegate to the AddJsonHubProtocol method. The options object received by that delegate has a PayloadSerializedSettings which is a JSON.NET JsonSerializerSettings object that can be used to configure serialization of arguments and return values
-
-On the server, add `AddJsonHubProtocol` to the `AddSignalR` call in `ConfigureServices`. Use PascalCase property names instead of the default camelCase names. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
+JSON serialization can be configured on both the server and .NET Client. The following is an example of server-side configuration:
 
 ```csharp
     services.AddSignalR()
@@ -32,23 +29,28 @@ On the server, add `AddJsonHubProtocol` to the `AddSignalR` call in `ConfigureSe
 }
 ```
 
-On a .NET client, the same `AddJsonHubProtocol` extension method exists on `HubConnectionBuilder`. The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
+The preceding code adds add `AddJsonHubProtocol` to the `AddSignalR` call in `ConfigureServices`. Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET `JsonSerializerSettings` object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
+
+> [!NOTE] It's possible to use PascalCase property names instead of the default camelCase names.
+>
+
+On a .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
 
 ```csharp
 // At the top of the file:
 using Microsoft.Extensions.DependencyInjection;
 
 // When constructing your connection:
-var connection = new HubConnectionBuilder();
-    .AddJsonHubProtocol(options => {
-        options.PayloadSerializerSettings.ContractResolver = 
-            new DefaultContractResolver();
-    });
+var connection = new HubConnectionBuilder()
+.AddJsonHubProtocol(options => {
+    options.PayloadSerializerSettings.ContractResolver = 
+        new DefaultContractResolver();
+});
 ```
 
 ### MessagePack Serialization Options
 
-MessagePack serialization can be configured by providing a delegate to the `AddMessagePackProtocol` call. See [MessagePack in SignalR](xref:signalr/messagepack) for more details.
+MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepack) for more details.
 
 > [!NOTE]
 > It's not possible to configure JSON or MessagePack serialization in the JavaScript client at this time.
@@ -60,9 +62,9 @@ The following table describes the `HubOptions` options for configuring the hub:
 | Option | Description |
 | ------ | ----------- |
 | `HandshakeTimeout` | If the client doesn't send an initial handshake message within this time interval, the connection will be closed |
-| `KeepAliveInterval` | If the server hasn't sent a message within this interval, a ping message will is sent automatically to keep the connection open |
+| `KeepAliveInterval` | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open |
 | `SupportedProtocols` | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
-| `EnableDetailedErrors` | If true, sends detailed error messages to the client when exceptions occur. This may contain sensitive data and is `false` by default |
+| `EnableDetailedErrors` | If true, sends detailed error messages to the client when exceptions occur. The detailed error messages may contain sensitive data, and are `false` by default |
 
 The `HubOptions` are configured in the `ConfigureServices` method of the `Startup` class, as shown in the following code sample:
 
@@ -86,13 +88,13 @@ Strongly-typed [HubOptions<T>](https://docs.microsoft.com/en-us/dotnet/api/micro
   }
 ```
 
-### HttpConnectionDispatcherOptions
+### HttpConnectionDispatcherOptions - Options related to the transport layer.
 
-Options related to the transport layer. Use these to restrict the transports that can be used by SignalR clients, as well as to configure advanced settings related to memory buffer management. These options are configured by passing a delegate to `MapHub<T>`.
+Options related to the transport layer. Use these to restrict the transports that can be used by SignalR clients, as well as to configure advanced settings related to memory buffer management. The transport options are configured by passing a delegate to `MapHub<T>`.
 
 | Option | Description |
 | ------ | ----------- |
-| `ApplicationMaxBufferSize`  | The maximum number of bytes the connection (transport) can buffer when invoking methods from the client, before blocking and waiting for the application to consume enough bytes to allow writing again.  |
+| `ApplicationMaxBufferSize`  | The maximum number of bytes the connection (transport) can buffer. It buffers when invoking methods from the client, before blocking and waiting for the application to allow writing again. |
 | `AuthorizationData` | A pre-populated list of `IAuthorizeData` gathered from the `Authorize` attributes used on the `Hub<T>`. |
 | `LongPolling`  | Gets the LongPolling options object that has a settable `PollTimeout` property. Setting the `PollTimeOut` sets the wait time before ending a poll request. |
 | `TransportMaxBufferSize`  | The maximum number of bytes the application. For example, `Clients.All.SendAsync` can buffer when writing to a single connection before blocking and waiting for the connection to consume enough bytes to allow writing again. |
@@ -126,7 +128,7 @@ var connection = new HubConnectionBuilder()
         options.AccessTokenProvider = async () => {
             // Get access token and return it.
         };
-    });
+    })
     .Build();
 
 // Creates a connection, and sets headers, cookies, and client certificates.
@@ -135,7 +137,7 @@ var connection = new HubConnectionBuilder()
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(...));
         options.ClientCertificates.Add(...);
-    });
+    })
     .Build();
 ```
 
@@ -147,7 +149,8 @@ const connection = new signalR.HubConnectionBuilder()
     .withUrl("url")
     .build();
 
-// Sets the transport type. Transport types are defined in preceding table
+// Sets the transport type.
+// Transport types are lsited in `HttpConnectionDispatcherOptions`
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("url", HttpTransportType.WebSockets)
     .build();
@@ -159,18 +162,18 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Headers, cookies and client certificates cannot be configured in the JavaScript client due to limitations on browser APIs.
 
 The following table and code sample demonstrate the available `HttpConnectionOptions`.
 
 | Option | Description |
 | ------ | ----------- |
-| `httpClient`  | Class that handles all the GET, POST, and DELETE requests sent by the client. Can override with custom settings. |
-| `transport`  | Specific transport the client should use, or an `ITransport` implementation for a custom transport. |
-| `accessTokenFactory`  | Called for each HTTP request to set the authorization header or for WebSockets to set the `access_token` query string value. |
-| `logMessageContent`  | Log the message content when sending and receiving. Disabled by default. |
-| `skipNegotiation`  | Only use this when `HttpTransportType.WebSockets` is specified. It skips the negotiation step when it not necessary. |
+| `httpClient` | Class that handles all the GET, POST, and DELETE requests sent by the client. Can override with custom settings. |
+| `transport` | Specific transport the client should use, or an `ITransport` implementation for a custom transport. |
+| `accessTokenFactory` | Called for each HTTP request to set the authorization header or for WebSockets to set the `access_token` query string value. |
+| `logMessageContent` | Log the message content when sending and receiving. Disabled by default. |
+| `skipNegotiation` | Only use this when `HttpTransportType.WebSockets` is specified. It skips the negotiation step when it isn't necessary. |
 
 > [!NOTE]
 > All `HttpConnectionOptions` are optional.
