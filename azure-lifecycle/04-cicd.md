@@ -7,6 +7,7 @@ In the previous chapter, you created a local Git repository for the Simple Feed 
 In this section, you'll complete the following tasks:
 
 * Publish the app's code to GitHub
+* Disconnect local Git deployment
 * Create a VSTS account
 * Create a team project in VSTS
 * Create a build definition
@@ -79,7 +80,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     ![Select a source - GitHub](media/04/vsts-select-source.png)
 
-1. Authorization is required before VSTS can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox.
+1. Authorization is required before VSTS can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox. For example:
 
     ![GitHub connection name](media/04/vsts-repo-authz.png)
 
@@ -136,6 +137,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Select *MyFirstProject* from the **Project** drop-down.
 1. Select the build definition name, *MyFirstProject-ASP.NET Core-CI*, from the **Source (Build definition)** drop-down.
 1. Select *Latest* from the **Default version** drop-down. This option builds the artifacts produced by the latest run of the build definition.
+1. Replace the text in the **Source alias** textbox with *Drop*.
 1. Click the **Add** button. The **Artifacts** section updates to display the changes.
 1. Click the lightning bolt icon to enable continuous deployments:
 
@@ -145,9 +147,13 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
 1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's *master* branch.
 1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
-1. Click the **1 phase, 2 tasks** link in the **Environment 1** box:
+1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
 
-    ![Release definition - Environment 1 link.png](media/04/vsts-environment1-link.png)
+   ![Release definition - Environment name textbox](media/04/vsts-environment-name-textbox.png)
+
+1. Click the **1 phase, 2 tasks** link in the **Production** box:
+
+    ![Release definition - Production environment link.png](media/04/vsts-production-link.png)
 
     The **Tasks** tab of the environment appears.
 1. Click the **Deploy Azure App Service to Slot** task. Its settings appear in a panel to the right.
@@ -173,33 +179,33 @@ There are three distinct steps to complete. Completing the steps in the followin
     ```console
     git commit -a -m "upgraded to V4"
     ```
-1. Push the change in the *master* branch to *origin* remote of your GitHub repository:
+1. Push the change in the *master* branch to the *origin* remote of your GitHub repository:
 
     ```console
     git push origin master
     ```
 
-The commit appears in the GitHub repository's *master* branch:
+    The commit appears in the GitHub repository's *master* branch:
 
-![GitHub commit in master branch](media/04/github-commit.png)
+    ![GitHub commit in master branch](media/04/github-commit.png)
 
-The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
+    The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
 
-![enable continuous integration](media/04/enable-ci.png)
+    ![enable continuous integration](media/04/enable-ci.png)
 
-Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
+1. Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
 
-![queued build](media/04/build-queued.png)
+    ![queued build](media/04/build-queued.png)
 
-Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
+1. Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
 
-![updated app](media/04/updated-app-v4.png)
+    ![updated app](media/04/updated-app-v4.png)
 
 ## Examine the VSTS DevOps pipeline
 
 ### Build definition
 
-A build definition was created with the name *mywebapp\<unique_number\> - CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
+A build definition was created with the name *MyFirstProject-ASP.NET Core-CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
 
 The build definition's **Tasks** tab lists the individual steps being used. There are five build tasks.
 
@@ -227,7 +233,7 @@ Use the **Download** and **Explore** links to inspect the published artifacts.
 
 ### Release definition
 
-A release definition was created with the name *mywebapp\<unique_number\> - CD*:
+A release definition was created with the name *MyFirstProject-ASP.NET Core-CD*:
 
 ![release definition overview](media/04/release-definition-overview.png)
 
@@ -255,3 +261,4 @@ The subscription, resource group, service type, web app name, and deployment slo
 
 * [Build your ASP.NET Core app](https://docs.microsoft.com/vsts/build-release/apps/aspnet/build-aspnet-core)
 * [Build and deploy to an Azure Web App](https://docs.microsoft.com/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp)
+* [Define a CI build process for your GitHub repository](https://docs.microsoft.com/vsts/pipelines/build/ci-build-github)
