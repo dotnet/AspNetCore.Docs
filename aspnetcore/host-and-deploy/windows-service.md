@@ -23,7 +23,16 @@ An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Ser
 
 The following minimum changes are required to set up an existing ASP.NET Core project to run in a service:
 
-1. Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
+1. In the project file:
+
+   1. Confirm the presence of the runtime identifier or add it to the **\<PropertyGroup>** that contains the target framework:
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
+   1. Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
 
 1. Make the following changes in `Program.Main`:
 
