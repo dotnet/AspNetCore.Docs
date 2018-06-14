@@ -31,7 +31,6 @@ namespace Web6990
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -42,7 +41,7 @@ namespace Web6990
 
             #region snippet2
             services.AddIdentity<IdentityUser, IdentityRole>()
-           // services.AddDefaultIdentity<IdentityUser>()
+                // services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             #endregion
 
@@ -65,8 +64,10 @@ namespace Web6990
             });
             #endregion
 
+            #region snippet4
             // using Microsoft.AspNetCore.Identity.UI.Services;
             services.AddSingleton<IEmailSender, EmailSender>();
+            #endregion
         }
         #endregion
 

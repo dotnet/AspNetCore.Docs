@@ -147,7 +147,7 @@ To maintain full control of the Identity UI, run the Identity scaffolder and sel
 
 The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
 
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=14-15,18-999)]
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
 The default Identity is replaced in the following code:
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
