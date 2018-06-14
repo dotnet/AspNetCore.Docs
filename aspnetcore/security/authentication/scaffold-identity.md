@@ -138,3 +138,30 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --fil
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 Delete the *Pages/Shared* folder and the files in that folder.
+
+## Create full identity UI source
+
+To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
+
+The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
+
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=14-15,18-999)]
+
+The default Identity is replaced in the following code:
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
+
+The following code configures ASP.NET Core to authorize the Identity pages that require authorization:
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+
+The following the code sets the Identity cookie to use the correct Identity pages path.
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+
+Without the following code:
+
+[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
+
+Navigating to the `/Identity/Account/Manage` generates the following exception:
+
+InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Identity.UI.Services.IEmailSender' while attempting to activate 'Web6990.Areas.Identity.Pages.Account.Manage.IndexModel'.
+
+The preceding code changes will not use the new [GDPR](xref:security/gdpr) UI.
