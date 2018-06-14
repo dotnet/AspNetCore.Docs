@@ -38,6 +38,18 @@ In this section, you'll complete the following tasks:
     ```
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
 
+## Disconnect local Git deployment
+
+The local Git deployment needs to be removed. VSTS both replaces and augments that functionality.
+
+1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *staging* in the portal's search box:
+
+    ![staging Web App search term](media/04/portal-search-box.png)
+
+1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
+1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
+1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
+
 ## Create a VSTS account
 
 1. Open a browser, and navigate to the [VSTS account creation page](https://go.microsoft.com/fwlink/?LinkId=307137).
@@ -55,7 +67,7 @@ In this section, you'll complete the following tasks:
 
 ## Configure the DevOps pipeline
 
-There are three distinct steps to complete. After completing the steps in the following three sections, you'll have an operational DevOps pipeline.
+There are three distinct steps to complete. Completing the steps in the following three sections results in an operational DevOps pipeline.
 
 ### Grant VSTS access to the GitHub repository
 
