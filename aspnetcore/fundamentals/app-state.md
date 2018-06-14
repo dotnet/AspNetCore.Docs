@@ -46,7 +46,7 @@ Be mindful of the [European Union General Data Protection Regulations (GDPR)](ht
 
 ## Session state
 
-Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a dictionary or hash table maintained by the app to persist data across requests from a client. The session data is backed by a cache.
+Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data&mdash;the site should continue to function without the session data.
 
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID, which is sent to the app with each request. The app uses the session ID to fetch the session data. Because the session cookie is specific to the browser, sessions aren't shared across browsers. Session cookies are deleted when the browser session ends. If a cookie is received for an expired session, a new session is created that uses the same session cookie.
 
@@ -55,7 +55,10 @@ The app retains a session for a limited time after the last request. The app eit
 > [!WARNING]
 > Don't store sensitive data in session state. The user might not close the browser and clear the session cookie. Some browsers maintain valid session cookies across browser windows. A session might not be restricted to a single user&mdash;the next user might continue to browse the app with the same session cookie.
 
-The in-memory session provider stores session data in the memory of the server where the app resides. In a server farm scenario where multiple app instances are spread out across multiple servers, use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis or SQL Server distributed cache, which doesn't require sticky sessions. For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
+The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
+
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis or SQL Server distributed cache, which doesn't require sticky sessions. For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
+* The session cookie is encrypted via [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector). Data Protection must be properly configured to read session cookies on each machine. For more information, see [Data Protection in ASP.NET Core](xref:security/data-protection/index) and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
 
 ### Configure session state
 
@@ -113,14 +116,14 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 | Option | Description |
 | ------ | ----------- |
-| [CookieDomain](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiedomain) | Determines the domain used to create the cookie. Is not provided by default. |
-| [CookieHttpOnly](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiehttponly) | Determines if the browser should allow the cookie to be accessed by client-side JavaScript. The default is true, which means the cookie will only be passed to HTTP requests and is not made available to script on the page. |
-| [CookieName](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiename) | Determines the cookie name used to persist the session ID. |
+| [CookieDomain](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiedomain) | Determines the domain used to create the cookie. `CookieDomain` isn't set by default. |
+| [CookieHttpOnly](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiehttponly) | Determines if the browser should allow the cookie to be accessed by client-side JavaScript. The default is `true`, which means the cookie will only be passed to HTTP requests and is not made available to script on the page. |
+| [CookieName](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiename) | Determines the cookie name used to persist the session ID. The default is [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). |
 | [CookiePath](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiepath) | Determines the path used to create the cookie. Defaults to [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). |
-| [CookieSecure](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiesecure) | Determines if the cookie should only be transmitted on HTTPS requests. |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The IdleTimeout indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. |
+| [CookieSecure](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiesecure) | Determines if the cookie should only be transmitted on HTTPS requests. The default is [CookieSecurePolicy.None](/dotnet/api/microsoft.aspnetcore.http.cookiesecurepolicy) (`2`). |
+| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The IdleTimeout indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
 
-Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNet.Session`, and it uses a path of `/`. Because the cookie default doesn't specify a domain, it isn't made available to the client-side script on the page ([HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) defaults to `true`).
+Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNet.Session`, and it uses a path of `/`.
 
 ::: moniker-end
 
@@ -138,13 +141,15 @@ To override cookie session defaults, use `SessionOptions`:
 
 ::: moniker-end
 
-The app uses the [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) property to determine how long a session can be idle before its contents are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](/dotnet/api/microsoft.aspnetcore.session.sessionmiddleware) resets the timeout.
+The app uses the [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](/dotnet/api/microsoft.aspnetcore.session.sessionmiddleware) resets the timeout.
 
 Session state is *non-locking*. If two requests simultaneously attempt to modify the contents of a session, the last request overrides the first. `Session` is implemented as a *coherent session*, which means that all the contents are stored together. When two requests seek to modify different session values, the last request may override session changes made by the first.
 
 ### Set and get Session values
 
-Session state is accessed from a Razor Pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) class or MVC [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class with [HttpContext.Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). This property is an [ISession](/dotnet/api/microsoft.aspnetcore.http.isession) implementation. The following example retreives the session value for the `IndexModel.SessionKeyName` key (`_Name` in the sample app) in a Razor Pages page:
+Session state is accessed from a Razor Pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) class or MVC [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class with [HttpContext.Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). This property is an [ISession](/dotnet/api/microsoft.aspnetcore.http.isession) implementation.
+
+The following example retreives the session value for the `IndexModel.SessionKeyName` key (`_Name` in the sample app) in a Razor Pages page:
 
 ```csharp
 @page
@@ -169,6 +174,8 @@ The following example shows how to set and get an integer and a string:
 [!code-csharp[](app-state/samples/1.x/SessionSample/Controllers/HomeController.cs?name=snippet1&highlight=10-11,18-19)]
 
 ::: moniker-end
+
+All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. Minimal string and number serializers are provided (see the methods and extension methods of [ISession](/dotnet/api/microsoft.aspnetcore.http.isession)). Complex types must be serialized by the user using another mechanism, such as JSON.
 
 Add the following extension methods to set and get serializable objects:
 
@@ -224,7 +231,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 1. Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app (aside from the size of the data).
 2. Does the app use TempData only sparingly for relatively small amounts of data (up to 500 bytes)? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-3. Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider.
+3. Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see [Data Protection](xref:security/data-protection/index) and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
 
 > [!NOTE]
 > Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. When using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
@@ -320,7 +327,11 @@ This approach also has the advantage of eliminating the use of key strings in th
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see the [Cache responses](xref:performance/caching/index) topic.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items.
+
+Cached data isn't associated with a specific request, user, or session. **Be careful not to cache user-specific data that may be retrieved by other users' requests.**
+
+For more information, see the [Cache responses](xref:performance/caching/index) topic.
 
 ## Dependency Injection
 
