@@ -40,7 +40,7 @@ In this section, you'll complete the following tasks:
 
 ## Disconnect local Git deployment
 
-The local Git deployment needs to be removed. VSTS both replaces and augments that functionality.
+Remove the local Git deployment with the following steps. VSTS both replaces and augments that functionality.
 
 1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *staging* in the portal's search box:
 
