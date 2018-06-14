@@ -16,23 +16,22 @@ uid: signalr/configuration
 
 ## JSON/MessagePack serialization options
 
-ASP.NET Core SignalR supports two protocols for encoding messages, [JSON][https://www.json.org/] and [MessagePack][https://msgpack.org/index.html]. Each protocol has serialization configuration options.
+ASP.NET Core SignalR supports two protocols for encoding messages, [JSON](https://www.json.org/) and [MessagePack](https://msgpack.org/index.html). Each protocol has serialization configuration options.
 
 JSON serialization can be configured on both the server and .NET Client. The following is an example of server-side configuration:
 
 ```csharp
-    services.AddSignalR()
-        .AddJsonHubProtocol(options => {
-            options.PayloadSerializerSettings.ContractResolver = 
-            new DefaultContractResolver();
-        });
-}
+services.AddSignalR()
+    .AddJsonHubProtocol(options => {
+        options.PayloadSerializerSettings.ContractResolver = 
+        new DefaultContractResolver();
+    });
 ```
 
-The preceding code adds add `AddJsonHubProtocol` to the `AddSignalR` call in `ConfigureServices`. Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET `JsonSerializerSettings` object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
+The preceding code adds add `AddJsonHubProtocol` to the [AddSignalR](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) call in [ConfigureServices](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices#Microsoft_AspNetCore_Hosting_IStartup_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET [JsonSerializerSettings](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.formatters.jsonserializersettingsprovider object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
 
-> [!NOTE] It's possible to use PascalCase property names instead of the default camelCase names.
->
+> [!NOTE]
+> It's possible to use PascalCase property names instead of the default camelCase names.
 
 On a .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
 
@@ -104,9 +103,9 @@ Options related to the transport layer. Use these to restrict the transports tha
 | `SubProtocolSelector` | A delegate the hub calls and passes a list of `Sec-WebSocket-Protocol` values from the request header. A delegate returns the chosen `Sec-WebSocket-Protocol`. |
 | AccessTokenProvider | A delegate that is called to get an access token. The token is applied as an HTTP Bearer Authentication header. |
 
-### [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder?view=aspnetcore-2.1)
+### HubConnectionBuilder
 
-The `HubConnectionBuilder` API is available for both C# and TypeScript clients.
+The [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder?view=aspnetcore-2.1) API is available for both C# and TypeScript clients.
 
 | Option | Description |
 | ------ | ----------- |
@@ -175,14 +174,14 @@ The following table and code sample demonstrate the available `HttpConnectionOpt
 | `logMessageContent` | Log the message content when sending and receiving. Disabled by default. |
 | `skipNegotiation` | Only use this when `HttpTransportType.WebSockets` is specified. It skips the negotiation step when it isn't necessary. |
 
-> [!NOTE]
-> All `HttpConnectionOptions` are optional.
-
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("url", IHttpConnectionOptions)
     .build();
 ```
+
+> [!NOTE]
+> All `HttpConnectionOptions` are optional.
 
 Once you have a `HubConnection` there are two settings you can change:
 
