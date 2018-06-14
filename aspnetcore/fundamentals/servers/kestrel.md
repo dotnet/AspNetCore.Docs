@@ -204,7 +204,7 @@ By default, ASP.NET Core binds to:
 A development certificate is created:
 
 * When the [.NET Core SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](https://github.com/aspnet/DotNetTools/tree/dev/src/dotnet-dev-certs) is used to create a certificate.
+* The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.
 
 Some browsers require that you grant explicit permission to the browser to trust the local development certificate.
 
@@ -390,7 +390,10 @@ options.ConfigureHttpsDefaults(httpsOptions =>
 
 Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate.
 
-SNI support requires running on target framework `netcoreapp2.1`. On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
+SNI support requires:
+
+* Running on target framework `netcoreapp2.1`. On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
+* All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
 ```csharp
 WebHost.CreateDefaultBuilder()
