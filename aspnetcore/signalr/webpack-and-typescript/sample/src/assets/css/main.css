@@ -1,0 +1,31 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.messages {
+    min-height: 500px;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+.input-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-zone__input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.message__author {
+    font-weight: bold;
+}
