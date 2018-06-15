@@ -28,7 +28,16 @@ The template is equivalent to creating an ASP.NET Core project to act as an API 
 
 ## Create a new app
 
-If using ASP.NET Core 2.0, ensure you've [installed the updated Angular project template](xref:spa/index#installation). If you have ASP.NET Core 2.1, there's no need to install it.
+::: moniker range="= aspnetcore-2.0"
+
+If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
+
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+
+If you have ASP.NET Core 2.1 installed, there's no need to install the Angular project template.
+
+::: moniker-end
 
 Create a new project from a command prompt using the command `dotnet new angular` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 

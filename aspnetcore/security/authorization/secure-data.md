@@ -106,7 +106,7 @@ If you're using Visual Studio, enable HTTPS.
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
-  Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
+  Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
@@ -134,6 +134,8 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 ```console
 dotnet user-secrets set SeedUserPW <PW>
 ```
+
+If you don't use a strong password, an exception is thrown when `SeedData.Initialize` is called.
 
 Update `Main` to use the test password:
 
@@ -268,7 +270,7 @@ Update the details page model:
 
 If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
-* Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
+* Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
 
 If the app has contacts:
 

@@ -96,7 +96,7 @@ Consider the following *appsettings.Staging.json* file:
 
 [!code-json[](index/sample/appsettings.Staging.json)]
 
-When the environment is set to `Staging`, the following `Configure` method reads the value of `MyConfig`:
+In the following code, `Configure` reads the value of `MyConfig`:
 
 [!code-csharp[](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 
