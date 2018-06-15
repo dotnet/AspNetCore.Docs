@@ -48,9 +48,17 @@ Be mindful of the [European Union General Data Protection Regulations (GDPR)](ht
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data&mdash;the site should continue to function without the session data.
 
-ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID, which is sent to the app with each request. The app uses the session ID to fetch the session data. Because the session cookie is specific to the browser, sessions aren't shared across browsers. Session cookies are deleted when the browser session ends. If a cookie is received for an expired session, a new session is created that uses the same session cookie.
+ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID, which is sent to the app with each request. The app uses the session ID to fetch the session data.
 
-The app retains a session for a limited time after the last request. The app either sets the session timeout or uses the default value of 20 minutes. Session state is ideal for storing user data that's specific to a particular session but where the data doesn't require permanent storage across sessions. Session data is deleted either when the [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) implementation is called or when the session expires. There's no default mechanism to inform app code that a client browser has been closed or when the session cookie is deleted or expired on the client.
+Session state exhibits the following behaviors:
+
+* Because the session cookie is specific to the browser, sessions aren't shared across browsers.
+* Session cookies are deleted when the browser session ends.
+* If a cookie is received for an expired session, a new session is created that uses the same session cookie.
+* Empty sessions aren't retained&mdash;the session must have at least one value set into it to persist the session across requests. When a session isn't retained, a new session ID is generated for each new request.
+* The app retains a session for a limited time after the last request. The app either sets the session timeout or uses the default value of 20 minutes. Session state is ideal for storing user data that's specific to a particular session but where the data doesn't require permanent storage across sessions.
+* Session data is deleted either when the [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) implementation is called or when the session expires.
+* There's no default mechanism to inform app code that a client browser has been closed or when the session cookie is deleted or expired on the client.
 
 > [!WARNING]
 > Don't store sensitive data in session state. The user might not close the browser and clear the session cookie. Some browsers maintain valid session cookies across browser windows. A session might not be restricted to a single user&mdash;the next user might continue to browse the app with the same session cookie.
