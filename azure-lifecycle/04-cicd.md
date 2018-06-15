@@ -26,17 +26,23 @@ In this section, you'll complete the following tasks:
 1. Click the **Create repository** button.
 1. Open your local machine's command shell. Navigate to the directory in which the *simple-feed-reader* Git repository is stored.
 1. Rename the existing *origin* remote to *upstream*. Execute the following command:
+
     ```console
     git remote rename origin upstream
     ```
+
 1. Add a new *origin* remote pointing to your copy of the repository on GitHub. Execute the following command:
+
     ```console
     git remote add origin https://github.com/<GitHub_username>/simple-feed-reader/
     ```
+
 1. Publish your local Git repository to the newly created GitHub repository. Execute the following command:
+
     ```console
     git push -u origin master
     ```
+
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
 
 ## Disconnect local Git deployment
@@ -50,6 +56,13 @@ Remove the local Git deployment with the following steps. VSTS both replaces and
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
+1. Open your local machine's command shell. Navigate to the directory in which the *simple-feed-reader* Git repository is stored.
+1. Remove the two remotes which enabled local Git deployments by executing the following commands:
+
+    ```console
+    git remote remove azure-prod
+    git remote remove azure-staging
+    ```
 
 ## Create a VSTS account
 
