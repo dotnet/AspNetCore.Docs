@@ -57,6 +57,9 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
 
+> [!NOTE]
+> The URI /signin-google is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
+
 * Press TAB to add the **Authorized redirect URIs** entry.
 
 * Tap **Create client ID**, which takes you to the third step, **Set up the OAuth 2.0 consent screen**:
