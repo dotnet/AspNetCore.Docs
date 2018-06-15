@@ -14,7 +14,7 @@ uid: signalr/HubContext
 ---
 # Send messages from outside a hub
 
-By [Mikael Mengistu](https://github.com/mikaelm12)
+By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
 
 The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.
@@ -32,7 +32,7 @@ In ASP.NET Core SignalR, you can access an instance of `IHubContext` via depende
 
 You can inject an instance of `IHubContext` into a controller by adding it to your constructor:
 
-[!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19)]
+[!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
 Now, with access to an instance of `IHubContext`, you can call hub methods as if you were in the hub itself.
 
@@ -48,8 +48,8 @@ app.Use(next => (context) =>
     var hubContext = (IHubContext<MyHub>)context
                         .RequestServices
                         .GetServices<IHubContext<MyHub>>();
-    ...
-})
+    //...
+});
 ```
 
 > [!NOTE]
