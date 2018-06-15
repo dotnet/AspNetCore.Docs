@@ -222,7 +222,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 
 The previous command adds the NuGet packages to the *.csproj file:
 
-[!code-csharp[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
+[!code-xml[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
 
 <a name="scaffold"></a>
 ## Scaffold the model
