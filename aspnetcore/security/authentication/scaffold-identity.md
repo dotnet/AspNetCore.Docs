@@ -158,12 +158,6 @@ The following code configures ASP.NET Core to authorize the Identity pages that 
 The following the code sets the Identity cookie to use the correct Identity pages path.
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Without the following code:
+Register an `IEmailSender` implementation, for example:
 
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
-
-Navigating to the `/Identity/Account/Manage` generates the following exception:
-
-InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Identity.UI.Services.IEmailSender' while attempting to activate 'Web6990.Areas.Identity.Pages.Account.Manage.IndexModel'.
-
-The preceding code changes will not use the new [GDPR](xref:security/gdpr) UI.
