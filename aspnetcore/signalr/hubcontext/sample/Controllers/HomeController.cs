@@ -18,9 +18,9 @@ namespace SignalRNotify.Controllers
             _hubContext = hubContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            _hubContext.Clients.All.SendAsync("Notify", $"Home page loaded at: {DateTime.Now}");
+            await _hubContext.Clients.All.SendAsync("Notify", $"Home page loaded at: {DateTime.Now}");
             return View();
         }
 

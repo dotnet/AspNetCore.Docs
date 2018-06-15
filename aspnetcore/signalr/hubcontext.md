@@ -17,7 +17,7 @@ uid: signalr/HubContext
 By [Mikael Mengistu](https://github.com/mikaelm12)
 
 
-The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notification to clients from outside a hub.
+The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
@@ -49,7 +49,7 @@ app.Use(next => (context) =>
                         .RequestServices
                         .GetServices<IHubContext<MyHub>>();
     ...
-}
+})
 ```
 
 > [!NOTE]
