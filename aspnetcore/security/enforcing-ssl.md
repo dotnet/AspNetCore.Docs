@@ -42,8 +42,8 @@ The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.
 
 The preceding highlighted code:
 
-* Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode).
-* Sets the HTTPS port to 5001.
+* Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) to `Status307TemporaryRedirect`, which is the default value. Production apps should call [UseHsts](#hsts).
+* Sets the HTTPS port to 5001. The default value is 443.
 
 The following mechanisms set the port automatically:
 
@@ -71,6 +71,11 @@ If no port is set:
 * Requests aren't redirected.
 * The middleware logs a warning.
 
+> [!NOTE]
+> An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
+>
+> When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this topic.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.1"
@@ -83,7 +88,7 @@ The preceding highlighted code requires all requests use `HTTPS`; therefore, HTT
 
 [!code-csharp[](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=7-999)]
 
-For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
+For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). The middleware also permits the app to set the status code or the status code and the port when the redirect is executed.
 
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the
 `[RequireHttps]` attribute to all controllers/Razor Pages isn't considered as secure as requiring HTTPS globally. You can't guarantee the `[RequireHttps]` attribute is applied when new controllers and Razor Pages are added.
