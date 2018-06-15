@@ -44,6 +44,9 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 ![Web Platform section](index/_static/MicrosoftRedirectUri.png)
 
+> [!NOTE]
+> The URI /signin-microsoft is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
+
 * Tap **Add URL** to ensure the URL was added.
 
 * Fill out any other application settings if necessary and tap **Save** at the bottom of the page to save changes to app configuration.
