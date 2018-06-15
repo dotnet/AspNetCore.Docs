@@ -115,4 +115,4 @@ For databases that don't provide built-in encryption at rest you may be able to 
 
 ## Additional Resources
 
-* [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
+* [Microsoft.com/GDPR](https://www.microsoft.com/en-us/trustcenter/Privacy/GDPR)
