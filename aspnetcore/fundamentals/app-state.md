@@ -157,6 +157,16 @@ Session state is *non-locking*. If two requests simultaneously attempt to modify
 
 Session state is accessed from a Razor Pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) class or MVC [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) class with [HttpContext.Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). This property is an [ISession](/dotnet/api/microsoft.aspnetcore.http.isession) implementation.
 
+The `ISession` implementation provides several extension methods to set and retreive integer and string values. The extension methods are provided in the [Microsoft.AspNetCore.Http](/dotnet/api/microsoft.aspnetcore.http) namespace (add a `using` statement to gain access to the extension methods) of the [Microsoft.AspNetCore.Http.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions/) package. The package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+`ISession` extension methods:
+
+* [Get(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.get)
+* [GetInt32(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getint32)
+* [GetString(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getstring)
+* [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
+* [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
+
 The following example retreives the session value for the `IndexModel.SessionKeyName` key (`_Name` in the sample app) in a Razor Pages page:
 
 ```csharp
