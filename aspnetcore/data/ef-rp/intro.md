@@ -233,6 +233,7 @@ The previous command adds the NuGet packages to the *.csproj file:
 
  ```console
 dotnet restore
+dotnet tool install --global dotnet-aspnet-codegenerator --version 2.1.0
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
  ```
 
