@@ -76,8 +76,8 @@ When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
 * *launchSettings.json* is read if available. `environmentVariables` settings in *launchSettings.json* override environment variables.
 * The hosting environment is displayed.
 
-
 The following output shows an app started with [dotnet run](/dotnet/core/tools/dotnet-run):
+
 ```bash
 PS C:\Webs\WebApp1> dotnet run
 Using launch settings from C:\Webs\WebApp1\Properties\launchSettings.json...
@@ -93,8 +93,29 @@ The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json*
 
 Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it will detect changes made to its environment.
 
->[!WARNING]
+> [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
+
+When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets the environment to `Development`:
+
+```json
+{
+   "version": "0.2.0",
+   "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+
+            ... additional VS Code configuration settings ...
+
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        }
+    ]
+}
+```
+
+A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run` in the same way as *Properties/launchSettings.json*. When launching an app in development that doesn't have a *launchSettings.json* file, either set the environment with an environment variable or a command-line argument to the `dotnet run` command.
 
 ### Production
 
