@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "webpack --mode=development --watch"
+    "build": "webpack --mode=development --watch",
+    "release": "webpack --mode=production",
+    "publish": "npm run release && dotnet publish -c Release"
   },
   "devDependencies": {
     "clean-webpack-plugin": "~0.1.19",

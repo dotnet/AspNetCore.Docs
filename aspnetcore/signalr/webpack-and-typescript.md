@@ -21,6 +21,30 @@ By [Sébastien Sougnez](https://twitter.com/ssougnez)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/webpack-and-typescript/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+## Prerequisites
+
+* **[NodeJs](https://nodejs.org/en/)** and **npm** must be installed on your system to be able to use **WebPack**.
+
+There is two options to run **WebPack** with **Visual Studio**:
+
+* Either you use an external terminal.
+* Or you can use the **WebPack Task Runner** extension that allows you to see the output of **WebPack** directly in **Visual Studio** and launch the compilation automatically when the project is opened. If you opt for this option, please follow these instructions:
+
+1. Use the **Tools** > **Extensions and updates** menu option then select **Online** in the left pane of the screen.
+2. Type "*WebPack*" and install the extension developed by *Mads Kristesen* by clicking on **Download**.
+
+   ![WebPack Task Runner](webpack-and-typescript/_static/signalr-install-webpack-task-runner.png)
+
+3. Close **Visual Studio** to complete the installation.
+
+> [!NOTE]
+> If you plan on using global **NodeJs** packages, it's better to configure **Visual Studio** to look for them in the **PATH** environment variable before it looks in its installation directory.
+
+1. Use the **Tools** > **Options** menu option and select **Projects and solutions** > **Web Package Management** > **External Web Tools**.
+2. Select the **$(PATH)** value in the list then click on the up arrow to move it at the second place (the first line refers to the local packages). 
+
+    ![Visual Studio Configuration](webpack-and-typescript/_static/signalr-configure-path-visual-studio.png)
+
 ## Create the ASP.NET Core web application
 
 # [Visual Studio](#tab/visual-studio/)
@@ -46,18 +70,25 @@ To be able to bundle all front end related resources (stylesheets, images and **
 1. Run the following command to install the required packages for **WebPack**.
 
     ```console
-    yarn add clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli -D
+    npm install clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli -D
     ```
 
-2. Update your **package.json** file to include a script triggering the bundling.
+2. Update your **package.json** file to include these scripts:
 
-    [!code-javascript[Package](webpack-and-typescript/sample/package.json?range=2-4)]
+    [!code-javascript[Package](webpack-and-typescript/sample/package.json?range=2-6)]
+
+* build: Bundles your front end resources in development mode and watch for file changes.
+* release: Bundles your front end resources in production mode.
+* publish: Run the "release" script to bundle your front end resources in production mode then call the "publish" dotnet CLI command to publish your whole application.
 
 > [!NOTE]
-> This script starts **WebPack** in watch mode, meaning that the bundle gets regenerated as soon as a file of the application changes. Moreover, the **mode** flag defines that production optimizations such as tree-shaking or minification won't be applied. This script should only be used for development purpose. To bundle your application for production, drop the **watch** flag and set the **mode** to **production**.
+> The "build" script starts **WebPack** in watch mode, meaning that the bundle gets regenerated as soon as a file of the application changes. Moreover, the **mode** flag defines that production optimizations such as tree-shaking or minification won't be applied. This script should only be used for development purpose. To bundle your application for production, use the "release" script.
 
 > [!NOTE]
 > As you use Kestrel to host your application, it's not possible to use **webpack-dev-server**.
+
+> [!NOTE]
+> You can run these scripts in an external terminal by typing "*npm run SCRIPT_NAME*" or you can use the **Task Runner Explorer** window in **Visual Studio**.
 
 3. Create a file called **webpack.config.js** in the root of your project to configure the compilation of **WebPack**.
 
@@ -118,7 +149,7 @@ Right now, you have an application that displays a simple form to send messages 
 1. To allow the client to send messages to the server, start by installing the **SignalR** **npm* package:
 
     ```console
-    yarn add @aspnet/signalr -S
+    npm install @aspnet/signalr -S
     ```
 
 2. Add the following lines below the declaration of the **username** constant in the **./src/index.ts** file to be able to receive messages from the server:
