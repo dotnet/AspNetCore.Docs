@@ -1,15 +1,11 @@
 ---
 title: Publish an ASP.NET Core SignalR app to Azure Web App
-author: rachelappel 
+author: rachelappel
 description: Publish an ASP.NET Core SignalR app to Azure Web App
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 04/20/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/publish-to-azure-web-app
 ---
 

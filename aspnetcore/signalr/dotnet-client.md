@@ -1,15 +1,11 @@
 ---
 title: ASP.NET Core SignalR .NET Client
 author: rachelappel
-description: Information about the ASP.NET Core SignalR .NET Client 
-manager: wpickett
+description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 05/29/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/dotnet-client
 ---
 

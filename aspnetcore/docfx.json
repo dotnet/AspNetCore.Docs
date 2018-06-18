@@ -52,6 +52,7 @@
     },
     "fileMetadata": {
       "ms.technology": {
+        "signalr/**/**.md": "aspnetcore-signalr",
         "web-api/**/**.md": "aspnetcore-webapi"
       }
     },
