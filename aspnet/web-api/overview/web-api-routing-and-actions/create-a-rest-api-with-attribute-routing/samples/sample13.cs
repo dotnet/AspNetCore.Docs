@@ -3,7 +3,7 @@
 public async Task<IHttpActionResult> GetBookDetail(int id)
 {
     var book = await (from b in db.Books.Include(b => b.Author)
-                where b.AuthorId == id
+                where b.BookId == id
                 select new BookDetailDto
                 {
                     Title = b.Title,

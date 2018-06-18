@@ -135,6 +135,8 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
+If you don't use a strong password, an exception is thrown when `SeedData.Initialize` is called.
+
 Update `Main` to use the test password:
 
 [!code-csharp[](secure-data/samples/final2/Program.cs?name=snippet)]

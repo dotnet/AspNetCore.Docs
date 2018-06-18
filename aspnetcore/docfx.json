@@ -35,20 +35,26 @@
       }
     ],
     "overwrite": [],
-    "externalReference": [],
+    "externalReference": [],    
     "globalMetadata": {
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
       "_navRel": "/foo",
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "feedback_github_repo": "aspnet/docs",
+      "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md",
+      "feedback_system": "GitHub",
+      "manager": "wpickett",
+      "ms.prod": "aspnet-core",
+      "ms.topic": "conceptual",
       "searchScope": [
         "ASP.NET Core"
-      ],
-      "ms.topic": "conceptual",
-      "feedback_system": "GitHub",
-      "feedback_github_repo": "aspnet/docs",
-      "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md" 
+      ]
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.technology": {
+        "web-api/**/**.md": "aspnetcore-webapi"
+      }
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig",

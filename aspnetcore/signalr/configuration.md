@@ -108,7 +108,7 @@ The following table and code sample demonstrate the available `HttpConnectionOpt
 > [!NOTE]
 > All `HttpConnectionOptions` are optional.
 
-Once you have a [HubConnection](dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection) there are two settings you can change:
+Once you have a [HubConnection](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection?view=aspnetcore-2.1) there are two settings you can change:
 
 | Option | Description |
 | ------ | ----------- |

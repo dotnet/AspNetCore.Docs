@@ -246,6 +246,7 @@
 ## [Hubs](xref:signalr/hubs)
 ## [JavaScript client](xref:signalr/javascript-client)
 ## [.NET client](xref:signalr/dotnet-client)
+## [HubContext](xref:signalr/hubcontext)
 ## [Users and Groups](xref:signalr/groups)
 ## [Configuration](xref:signalr/configuration)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)

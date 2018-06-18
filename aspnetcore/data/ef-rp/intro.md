@@ -222,7 +222,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 
 The previous command adds the NuGet packages to the *.csproj file:
 
-[!code-csharp[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
+[!code-xml[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
 
 <a name="scaffold"></a>
 ## Scaffold the model
@@ -233,6 +233,7 @@ The previous command adds the NuGet packages to the *.csproj file:
 
  ```console
 dotnet restore
+dotnet tool install --global dotnet-aspnet-codegenerator --version 2.1.0
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
  ```
 
