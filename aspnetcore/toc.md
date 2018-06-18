@@ -19,6 +19,7 @@
 ### [Add a new field](xref:tutorials/razor-pages/new-field)
 ### [Add validation](xref:tutorials/razor-pages/validation)
 ### [Upload files](xref:tutorials/razor-pages/uploading-files)
+## [Create a real-time SignalR web app](xref:tutorials/signalr)
 ## [Create an MVC web app](tutorials/first-mvc-app/index.md)
 ### [Get started](tutorials/first-mvc-app/start-mvc.md)
 ### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -30,7 +31,6 @@
 ### [Add a new field](tutorials/first-mvc-app/new-field.md)
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
-## [Create a real-time SignalR web app](xref:tutorials/signalr)
 
 ## [Build Web APIs](xref:web-api/index)
 ### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
