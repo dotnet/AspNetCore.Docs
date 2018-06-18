@@ -18,16 +18,13 @@ uid: signalr/configuration
 
 ASP.NET Core SignalR supports two protocols for encoding messages, [JSON](https://www.json.org/) and [MessagePack](https://msgpack.org/index.html). Each protocol has serialization configuration options.
 
-JSON serialization can be configured on both the server and .NET Client. The following is an example of server-side configuration:
+JSON serialization can be configured on the server using the `AddJsonProtocol` extension method. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The `PayloadSerializerSettings` property on that object is a JSON.NET `JsonSerializerSettings` object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
+
+As an example, you can configure the serializer to use PascalCase names instead of the default camelCase names using the following code:
 
 [!code-csharp[Startup config](configuration/sample/config-startup.cs?range=1-5)]
 
-The preceding code adds add `AddJsonHubProtocol` to the [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) call in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices#Microsoft_AspNetCore_Hosting_IStartup_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET [JsonSerializerSettings](/dotnet/api/microsoft.aspnetcore.mvc.formatters.jsonserializersettingsprovider object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
-
-> [!NOTE]
-> It's possible to use PascalCase property names instead of the default camelCase names.
-
-On a .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
+In the .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to resolve the extension method:
 
 [!code-csharp[HubConnectionBuilder](configuration/sample/addhubjsonprotocol.cs)]
 
@@ -40,7 +37,7 @@ MessagePack serialization can be configured by providing a delegate to the [AddM
 
 ### Configure [HubOptions](/dotnet/api/microsoft.aspnetcore.signalr.huboptions) for SignalR
 
-The following table describes the `HubOptions` options for configuring the hub:
+The following table describes the `HubOptions` options for configuring a hub:
 
 | Option | Description |
 | ------ | ----------- |
@@ -49,11 +46,11 @@ The following table describes the `HubOptions` options for configuring the hub:
 | `SupportedProtocols` | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | If true, sends detailed error messages to the client when exceptions occur. The detailed error messages may contain sensitive data, and are `false` by default. |
 
-The `HubOptions` are configured in the `ConfigureServices` method of the `Startup` class, as shown in the following code sample:
+Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `ConfigureServices`.
 
 [!code-csharp[Startup](configuration/sample/config-startup.cs?range=7-14)]
 
-Strongly-typed [HubOptions<T>](/dotnet/api/microsoft.aspnetcore.signalr.huboptions-1) are as follows:
+Options for a single hub override the global options provided in `AddSignalR`, and can be configured using `AddHubOptions<T>`:
 
 [!code-csharp[HubOptions](configuration/sample/config-startup.cs?range=16-19)]
 
