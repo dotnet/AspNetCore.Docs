@@ -20,72 +20,42 @@ ASP.NET Core SignalR supports two protocols for encoding messages, [JSON](https:
 
 JSON serialization can be configured on both the server and .NET Client. The following is an example of server-side configuration:
 
-```csharp
-services.AddSignalR()
-    .AddJsonHubProtocol(options => {
-        options.PayloadSerializerSettings.ContractResolver = 
-        new DefaultContractResolver();
-    });
-```
+[!code-csharp[Startup config](configuration/sample/config-startup.cs?range=1-5)]
 
-The preceding code adds add `AddJsonHubProtocol` to the [AddSignalR](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) call in [ConfigureServices](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices#Microsoft_AspNetCore_Hosting_IStartup_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET [JsonSerializerSettings](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.formatters.jsonserializersettingsprovider object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
+The preceding code adds add `AddJsonHubProtocol` to the [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) call in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices#Microsoft_AspNetCore_Hosting_IStartup_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Then the code provides a delegate to the `AddJsonHubProtocol` method. The `options` object received by that delegate has a `PayloadSerializedSettings`. The `PayloadSerializedSettings` is a JSON.NET [JsonSerializerSettings](/dotnet/api/microsoft.aspnetcore.mvc.formatters.jsonserializersettingsprovider object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
 
 > [!NOTE]
 > It's possible to use PascalCase property names instead of the default camelCase names.
 
-On a .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
+On a .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to see the method:
 
-```csharp
-// At the top of the file:
-using Microsoft.Extensions.DependencyInjection;
-
-// When constructing your connection:
-var connection = new HubConnectionBuilder()
-.AddJsonHubProtocol(options => {
-    options.PayloadSerializerSettings.ContractResolver = 
-        new DefaultContractResolver();
-});
-```
+[!code-csharp[HubConnectionBuilder](configuration/sample/addhubjsonprotocol.cs)]
 
 ### MessagePack Serialization Options
 
-MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepack) for more details.
+MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepack) for more details.
 
 > [!NOTE]
 > It's not possible to configure JSON or MessagePack serialization in the JavaScript client at this time.
 
-### Configure [HubOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions) for SignalR
+### Configure [HubOptions](/dotnet/api/microsoft.aspnetcore.signalr.huboptions) for SignalR
 
 The following table describes the `HubOptions` options for configuring the hub:
 
 | Option | Description |
 | ------ | ----------- |
-| `HandshakeTimeout` | If the client doesn't send an initial handshake message within this time interval, the connection will be closed |
-| `KeepAliveInterval` | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open |
+| `HandshakeTimeout` | If the client doesn't send an initial handshake message within this time interval, the connection will be closed. |
+| `KeepAliveInterval` | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open. |
 | `SupportedProtocols` | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
-| `EnableDetailedErrors` | If true, sends detailed error messages to the client when exceptions occur. The detailed error messages may contain sensitive data, and are `false` by default |
+| `EnableDetailedErrors` | If true, sends detailed error messages to the client when exceptions occur. The detailed error messages may contain sensitive data, and are `false` by default. |
 
 The `HubOptions` are configured in the `ConfigureServices` method of the `Startup` class, as shown in the following code sample:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSignalR(hubOptions =>
-    {
-        hubOptions.EnableDetailedErrors = true;
-        hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
-    })
-}
-```
+[!code-csharp[Startup](configuration/sample/config-startup.cs?range=7-14)]
 
-Strongly-typed [HubOptions<T>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions-1) can be configured as follows, for example, setting the `EnableDetailedErrors` property:
+Strongly-typed [HubOptions<T>](/dotnet/api/microsoft.aspnetcore.signalr.huboptions-1) are as follows:
 
-```csharp
-  services.AddSignalR().AddHubOptions<HubName>(options =>
-  {
-      options.EnableDetailedErrors = true;
-  }
-```
+[!code-csharp[HubOptions](configuration/sample/config-startup.cs?range=16-19)]
 
 ### HttpConnectionDispatcherOptions - Options related to the transport layer.
 
@@ -98,68 +68,30 @@ Options related to the transport layer. Use these to restrict the transports tha
 | `LongPolling`  | Gets the LongPolling options object that has a settable `PollTimeout` property. Setting the `PollTimeOut` sets the wait time before ending a poll request. |
 | `TransportMaxBufferSize`  | The maximum number of bytes the application. For example, `Clients.All.SendAsync` can buffer when writing to a single connection before blocking and waiting for the connection to consume enough bytes to allow writing again. |
 | `Transports`  | A bitmask that sets a transport. The available `options.Transports` options are as follows: `HttpTransportType.WebSockets`, `HttpTransportType.LongPolling`, and `HttpTransportType.ServerSentEvents` |
-| `WebSockets`  |  Gets the WebSockets options object.  |
-| `CloseTimeout`  | TimeSpan to set how long to wait for a clean WebSocket close when connection is being terminated  |
-| `SubProtocolSelector` | A delegate the hub calls and passes a list of `Sec-WebSocket-Protocol` values from the request header. A delegate returns the chosen `Sec-WebSocket-Protocol`. |
-| AccessTokenProvider | A delegate that is called to get an access token. The token is applied as an HTTP Bearer Authentication header. |
+| `WebSockets`*  |  Gets the WebSockets options object.  |
+| `CloseTimeout`*  | TimeSpan to set how long to wait for a clean WebSocket close when connection is being terminated.  |
+| `SubProtocolSelector`* | A delegate the hub calls and passes a list of `Sec-WebSocket-Protocol` values from the request header. A delegate returns the chosen `Sec-WebSocket-Protocol`. |
+| `AccessTokenProvider`* | A delegate that is called to get an access token. The token is applied as an HTTP Bearer Authentication header. |
+
+ Items in the table marked with an asterisk (*) are specific to WebSockets.
 
 ### HubConnectionBuilder
 
-The [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder?view=aspnetcore-2.1) API is available for both C# and TypeScript clients.
+The [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder) API is available for both C# and TypeScript clients.
 
 | Option | Description |
 | ------ | ----------- |
 | Headers | HTTP headers to be applied to all HTTP requests. |
 | Cookies | Cookies to be sent with each HTTP request. |
-| ClientCertificates | TLS client certificates to send when connecting over HTTP (not supported in Xamarin) |
+| ClientCertificates | TLS client certificates to send when connecting over HTTPS (not supported in Xamarin). |
 
-The following code samples demonstrate the C# setting connection options with the `HubConnectionBuilder`:
+The following code samples demonstrate the C# setting connection options with `HubConnectionBuilder`:
 
-```csharp
-// Creates a connection and restricts transports to WebSockets and Server Sent Events.
-var connection = new HubConnectionBuilder()
-    .WithUrl("url", HttpTransportType.WebSockets | HttpTransportType.ServerSentEvents)
-    .Build();
-
-// Creates a connection with a JSON Web Token.
-var connection = new HubConnectionBuilder()
-    .WithUrl("url", options => {
-        options.AccessTokenProvider = async () => {
-            // Get access token and return it.
-        };
-    })
-    .Build();
-
-// Creates a connection, and sets headers, cookies, and client certificates.
-var connection = new HubConnectionBuilder()
-    .WithUrl("url", options => {
-        options.Headers["Foo"] = "Bar";
-        options.Cookies.Add(new Cookie(...));
-        options.ClientCertificates.Add(...);
-    })
-    .Build();
-```
+[!code-csharp[HubConnectionBuilder](configuration/sample/hubconnectionbuilder.cs?)]
 
 The following code samples demonstrate setting connection options with the `HubConnectionBuilder` in JavaScript:
 
-```javascript
-// Creates a basic connection
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("url")
-    .build();
-
-// Sets the transport type.
-// Transport types are lsited in `HttpConnectionDispatcherOptions`
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("url", HttpTransportType.WebSockets)
-    .build();
-
-// Sets the protocol such as Messagepack
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("url")
-    .withHubProtocol(IHubProtocol)
-    .build();
-```
+[!code-javascript[HubConnectionBuilder in JavaScript](configuration/sample/hubconnectionbuilder.js?range=1-16)]
 
 > [!NOTE]
 > Headers, cookies and client certificates cannot be configured in the JavaScript client due to limitations on browser APIs.
@@ -174,26 +106,19 @@ The following table and code sample demonstrate the available `HttpConnectionOpt
 | `logMessageContent` | Log the message content when sending and receiving. Disabled by default. |
 | `skipNegotiation` | Only use this when `HttpTransportType.WebSockets` is specified. It skips the negotiation step when it isn't necessary. |
 
-```javascript
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("url", IHttpConnectionOptions)
-    .build();
-```
+[!code-javascript[HttpConnectionOptions in JavaScript](configuration/sample/hubconnectionbuilder.js?range=19-21)]
 
 > [!NOTE]
 > All `HttpConnectionOptions` are optional.
 
-Once you have a `HubConnection` there are two settings you can change:
+Once you have a [HubConnection](dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection) there are two settings you can change:
 
 | Option | Description |
 | ------ | ----------- |
 | `serverTimeoutInMilliseconds` | Closes the connection if time since last message received is greater than this value. |
 | `keepAliveIntervalInMilliseconds` | SignalR 1.1: The interval at which the client sends pings to the server to keep the server from closing the connection. |
 
-```javascript
-hubConnection.serverTimeoutInMilliseconds = 5 * 1000; // 5 seconds
-hubConnection.keepAliveIntervalInMilliseconds = 10 * 1000; // 10 seconds
-```
+[!code-javascript[JS settings](configuration/sample/hubconnectionbuilder.js?range=24-25)]
 
 ## Additional Resources
 
