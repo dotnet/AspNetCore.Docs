@@ -14,7 +14,6 @@ uid: signalr/index
 # ASP.NET Core SignalR
 
 * [Introduction](xref:signalr/introduction)
-* [Get started](xref:signalr/get-started)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [.NET client](xref:signalr/dotnet-client)

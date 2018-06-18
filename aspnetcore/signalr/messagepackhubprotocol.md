@@ -17,7 +17,7 @@ uid: signalr/messagepackhubprotocol
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-This article assumes the reader is familiar with the topics covered in [Get Started](xref:signalr/get-started).
+This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
 ## What is MessagePack?
 
@@ -97,6 +97,6 @@ const connection = new signalR.HubConnectionBuilder()
 
 ## Related resources
 
-* [Get Started](xref:signalr/get-started)
+* [Get Started](xref:tutorials/signalr)
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)

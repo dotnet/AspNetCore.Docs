@@ -53,7 +53,7 @@ Hubs call client-side code by sending messages using the active transport. The m
 
 ## Additional resources
 
-* [Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
+* [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
