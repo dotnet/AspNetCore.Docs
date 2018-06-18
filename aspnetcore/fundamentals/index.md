@@ -101,9 +101,13 @@ ASP.NET Core includes a rich set of built-in middleware:
 
 For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
+::: moniker range=">= aspnetcore-2.1"
+
 ## Initiate HTTP requests
 
 For information about using `IHttpClientFactory` to access `HttpClient` instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
+
+::: moniker-end
 
 ## Environments
 
@@ -121,7 +125,7 @@ For more information, see [Configuration](xref:fundamentals/configuration/index)
 
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers support sending logs to one or more destinations. Third-party logging frameworks can be used.
 
-[Logging](xref:fundamentals/logging/index)
+For more information, see [Logging](xref:fundamentals/logging/index)
 
 ## Error handling
 
