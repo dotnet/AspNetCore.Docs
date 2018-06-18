@@ -48,6 +48,9 @@ Be mindful of the [European Union General Data Protection Regulations (GDPR)](ht
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data&mdash;the site should continue to function without the session data.
 
+> [!NOTE]
+> Session state isn't supported in [SignalR apps](xref:signalr/index).
+
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID, which is sent to the app with each request. The app uses the session ID to fetch the session data.
 
 Session state exhibits the following behaviors:
