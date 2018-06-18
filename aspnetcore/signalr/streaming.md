@@ -2,14 +2,10 @@
 title: Use streaming in ASP.NET Core SignalR
 author: rachelappel
 description: 
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 06/07/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/streaming
 ---
 

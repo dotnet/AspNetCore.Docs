@@ -2,13 +2,9 @@
 title: ASP.NET Core SignalR
 author: rachelappel
 description: Discover topics that pertain to ASP.NET Core SignalR.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.date: 06/18/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/index
 ---
 # ASP.NET Core SignalR

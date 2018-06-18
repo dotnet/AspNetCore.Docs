@@ -2,14 +2,10 @@
 title: Manage users and groups in SignalR
 author: rachelappel
 description: Overview of ASP.NET Core SignalR User and Group management.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 06/04/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/groups
 ---
 
