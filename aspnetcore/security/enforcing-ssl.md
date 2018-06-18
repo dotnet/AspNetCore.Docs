@@ -106,7 +106,7 @@ ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. T
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
 
-`UseHsts` is not recommend in development because the HSTS header is highly cachable by browsers. By default, UseHsts excludes the local loopback address.
+`UseHsts` isn't recommended in development because the HSTS header is highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
 The following code:
 
