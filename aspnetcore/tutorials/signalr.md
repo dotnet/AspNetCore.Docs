@@ -10,7 +10,7 @@ ms.date: 05/22/2018
 ms.prod: aspnet-core
 ms.topic: tutorial
 ms.technology: aspnet
-uid: signalr/get-started
+uid: tutorials/signalr
 ---
 # Get started with SignalR on ASP.NET Core
 
@@ -18,7 +18,7 @@ By [Rachel Appel](https://twitter.com/rachelappel)
 
 This tutorial teaches the basics of building a real-time app using SignalR for ASP.NET Core.
 
-   ![Solution](get-started/_static/signalr-get-started-finished.png)
+   ![Solution](signalr/_static/signalr-get-started-finished.png)
 
 This tutorial demonstrates the following SignalR development tasks:
 
@@ -54,11 +54,11 @@ Install the following software:
 
 1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Name the project *SignalRChat*.
 
-   ![New Project dialog in Visual Studio](get-started/_static/signalr-new-project-dialog.png)
+   ![New Project dialog in Visual Studio](signalr/_static/signalr-new-project-dialog.png)
 
 2. Select **Web Application** to create a project using Razor Pages. Then select **OK**. Be sure that **ASP.NET Core 2.1** is selected from the framework selector, though SignalR runs on older versions of .NET.
 
-   ![New Project dialog in Visual Studio](get-started/_static/signalr-new-project-choose-type.png)
+   ![New Project dialog in Visual Studio](signalr/_static/signalr-new-project-choose-type.png)
 
 Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its server libraries as part of its **ASP.NET Core Web Application** template. However, the JavaScript client library for SignalR must be installed using *npm*.
 
@@ -67,7 +67,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     ```console
     npm init -y
     npm install @aspnet/signalr
-    ```     
+    ```
 
 4. Create a new folder named "signalr" inside the  *lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
@@ -98,13 +98,13 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*. 
+1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*.
 
 2. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
 3. Create the `SendMessage` method that sends a message to all connected chat clients. Notice it returns a [Task](https://msdn.microsoft.com/library/system.threading.tasks.task(v=vs.110).aspx), because SignalR is asynchronous. Asynchronous code scales better.
 
-   [!code-csharp[Startup](get-started/sample/Hubs/ChatHub.cs)]
+   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -116,7 +116,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 4. Add a `SendMessage` method to the class. The `SendMessage` method sends a message to all connected chat clients. Notice it returns a [Task](/dotnet/api/system.threading.tasks.task), because SignalR is asynchronous. Asynchronous code scales better.
 
-   [!code-csharp[Startup](get-started/sample/Hubs/ChatHub.cs?range=6-12)]
+   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs?range=6-12)]
 
 -----
 
@@ -130,22 +130,19 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 2. Configure routes to your hubs using `UseSignalR`.
 
-
-   [!code-csharp[Startup](get-started/sample/Startup.cs?highlight=37,57-60)]
-
+   [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=37,57-60)]
 
 ## Create the SignalR client code
 
 1. Add a JavaScript file, named *chat.js*, to the *wwwroot\js* folder. Add the following code to it:
 
-   [!code-javascript[Index](get-started/sample/wwwroot/js/chat.js)]
+   [!code-javascript[Index](signalr/sample/wwwroot/js/chat.js)]
 
 2. Replace the content in *Pages\Index.cshtml* with the following code:
 
-   [!code-cshtml[Index](get-started/sample/Pages/Index.cshtml)]
+   [!code-cshtml[Index](signalr/sample/Pages/Index.cshtml)]
 
    The preceding HTML displays name and message fields, and a submit button. Notice the script references at the bottom: a reference to SignalR and *chat.js*.
-
 
 ## Run the app
 
@@ -167,8 +164,8 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 ---
 
-  ![Solution](get-started/_static/signalr-get-started-finished.png)
+  ![Solution](signalr/_static/signalr-get-started-finished.png)
 
 ## Related resources
 
-[Introduction to ASP.NET Core SignalR](introduction.md)
+[Introduction to ASP.NET Core SignalR](xref:signalr/introduction)

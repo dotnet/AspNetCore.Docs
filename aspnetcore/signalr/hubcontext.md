@@ -56,6 +56,6 @@ app.Use(next => (context) =>
 
 ## Related resources
 
-* [Get started](xref:signalr/get-started)
+* [Get started](xref:tutorials/signalr)
 * [Hubs](xref:signalr/hubs)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
