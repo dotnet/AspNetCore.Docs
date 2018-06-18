@@ -22,7 +22,7 @@
                     <p>Session values can be passed to the view or page by the model with <code>@@Model.&lt;PropertyName&gt;</code>:</p>
                     <p><b>Name:</b> @Model.SessionInfo_Name <b>Age:</b> @Model.SessionInfo_Age</p>
                     <hr>
-                    <p>Session can be accessed directly with <code>@@HttpContext.Session.GetString(&lt;key&gt;)</code>. The view or page sets <code>@@using Microsoft.AspNetCore.Http</code> to gain access to the <code>GetString</code> and <code>GetInt32</code> extension methods. The following values are rendered directly from session:</p>
+                    <p>Session can be accessed directly with <code>@@HttpContext.Session.GetString(&lt;key&gt;)</code>. The view or page sets <code>@@using Microsoft.AspNetCore.Http</code> to gain access to the <code>GetString</code> and <code>GetInt32</code> extension methods, which are provided by the <code>Microsoft.AspNetCore.Http.Extensions</code> package. The following values are rendered directly from session:</p>
                     <p><b>Name:</b> @HttpContext.Session.GetString(IndexModel.SessionKeyName) <b>Age:</b> @HttpContext.Session.GetInt32(IndexModel.SessionKeyAge).ToString()</p>
                 </div>
             </div>
