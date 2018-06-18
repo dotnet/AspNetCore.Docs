@@ -30,7 +30,7 @@
 ### [Add a new field](tutorials/first-mvc-app/new-field.md)
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
-## [Create a SignalR web app](xref:tutorials/signalr)
+## [Create a real-time SignalR web app](xref:tutorials/signalr)
 
 ## [Build Web APIs](xref:web-api/index)
 ### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)

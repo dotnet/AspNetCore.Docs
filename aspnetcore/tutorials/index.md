@@ -31,7 +31,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
    * [Web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
    * [Web app with Visual Studio Code on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index)
 
-* [Create a SignalR web app](xref:tutorials/signalr)
+* [Create a real-time SignalR web app](xref:tutorials/signalr)
 * [Get started with ASP.NET Core and Entity Framework Core using Visual Studio](xref:data/ef-mvc/index)
 * [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Create a simple view component](xref:mvc/views/view-components#walkthrough-creating-a-simple-view-component)
