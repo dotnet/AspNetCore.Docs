@@ -10,7 +10,7 @@ ms.date: 06/13/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-uid: signalr/HubContext
+uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
 
