@@ -58,4 +58,10 @@ Specifying a version number on the `Microsoft.AspNetCore.App` reference does **n
 
 The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages) is not a traditional package that is updated from NuGet. Similar to `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App` represents a shared runtime, which has special versioning semantics handled outside of NuGet. For more information, see [Packages, metapackages and frameworks](/dotnet/core/packages).
 
+`<Project Sdk` must be set to `Microsoft.NET.Sdk.Web` to use the implicit version `Microsoft.AspNetCore.App`.  When `<Project Sdk="Microsoft.NET.Sdk">` is used, the following warnings are generated:
+
+*Warning NU1604: Project dependency Microsoft.AspNetCore.App does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+
+*Warning NU1602: [Project Name] does not provide an inclusive lower bound for dependency Microsoft.AspNetCore.App. An approximate best match of Microsoft.AspNetCore.App 2.1.0 was resolved.*
+
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
