@@ -35,7 +35,7 @@ MessagePack serialization can be configured by providing a delegate to the [AddM
 > [!NOTE]
 > It's not possible to configure JSON or MessagePack serialization in the JavaScript client at this time.
 
-### Configure [HubOptions](/dotnet/api/microsoft.aspnetcore.signalr.huboptions) for SignalR
+## Configure server options
 
 The following table describes the `HubOptions` options for configuring a hub:
 
@@ -54,9 +54,7 @@ Options for a single hub override the global options provided in `AddSignalR`, a
 
 [!code-csharp[HubOptions](configuration/sample/config-startup.cs?range=16-19)]
 
-### HttpConnectionDispatcherOptions - Options related to the transport layer.
-
-Options related to the transport layer. Use these to restrict the transports that can be used by SignalR clients, as well as to configure advanced settings related to memory buffer management. The transport options are configured by passing a delegate to `MapHub<T>`.
+Use `HttpConnectionDispatcherOptions` to restrict the transports that can be used by SignalR clients, as well as to configure advanced settings related to memory buffer management. The transport options are configured by passing a delegate to `MapHub<T>`.
 
 | Option | Description |
 | ------ | ----------- |
@@ -72,9 +70,11 @@ Options related to the transport layer. Use these to restrict the transports tha
 
  Items in the table marked with an asterisk (*) are specific to WebSockets.
 
-### HubConnectionBuilder
+## Configuring client options
 
-The [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder) API is available for both C# and TypeScript clients.
+## JavaScript client
+
+The [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder) API is available for both C# and JavaScript clients.
 
 | Option | Description |
 | ------ | ----------- |
@@ -82,16 +82,16 @@ The [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubco
 | Cookies | Cookies to be sent with each HTTP request. |
 | ClientCertificates | TLS client certificates to send when connecting over HTTPS (not supported in Xamarin). |
 
-The following code samples demonstrate the C# setting connection options with `HubConnectionBuilder`:
-
-[!code-csharp[HubConnectionBuilder](configuration/sample/hubconnectionbuilder.cs?)]
-
 The following code samples demonstrate setting connection options with the `HubConnectionBuilder` in JavaScript:
 
 [!code-javascript[HubConnectionBuilder in JavaScript](configuration/sample/hubconnectionbuilder.js?range=1-16)]
 
 > [!NOTE]
 > Headers, cookies and client certificates cannot be configured in the JavaScript client due to limitations on browser APIs.
+
+[!code-javascript[HttpConnectionOptions in JavaScript](configuration/sample/hubconnectionbuilder.js?range=19-21)]
+
+## .NET client
 
 The following table and code sample demonstrate the available `HttpConnectionOptions`.
 
@@ -103,10 +103,12 @@ The following table and code sample demonstrate the available `HttpConnectionOpt
 | `logMessageContent` | Log the message content when sending and receiving. Disabled by default. |
 | `skipNegotiation` | Only use this when `HttpTransportType.WebSockets` is specified. It skips the negotiation step when it isn't necessary. |
 
-[!code-javascript[HttpConnectionOptions in JavaScript](configuration/sample/hubconnectionbuilder.js?range=19-21)]
-
 > [!NOTE]
 > All `HttpConnectionOptions` are optional.
+
+The following code samples demonstrate the C# setting connection options with `HubConnectionBuilder`:
+
+[!code-csharp[HubConnectionBuilder](configuration/sample/hubconnectionbuilder.cs?)]
 
 Once you have a [HubConnection](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection?view=aspnetcore-2.1) there are two settings you can change:
 
