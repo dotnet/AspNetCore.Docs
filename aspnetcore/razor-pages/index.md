@@ -336,7 +336,7 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the `PageModel` class. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive to the `PageModel` class.
+The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the `PageModel` class.
 
 `@namespace` *also works with conventional Razor views.*
 
