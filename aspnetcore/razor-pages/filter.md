@@ -2,13 +2,9 @@
 title: Filter methods for Razor Pages in ASP.NET Core
 author: Rick-Anderson
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/5/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: content
 uid: mvc/razor-pages/filter
 ---
 # Filter methods for Razor Pages in ASP.NET Core

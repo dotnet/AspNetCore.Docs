@@ -2,13 +2,9 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI in a class library.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/31/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: advanced
 uid: mvc/razor-pages/ui-class
 ---
 # Create reusable UI using the Razor Class Library project in ASP.NET Core.
