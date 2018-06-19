@@ -476,7 +476,15 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
 
-## Customizing Routing
+## Custom routes
+
+Use the `@page` directive to:
+
+* Specify a custom route to a page. For example, the route to the About page can be set to `/Some/Other/Path` with `@page "/Some/Other/Path"`.
+* Append segments to a page's default route. For example, an "item" segment can be added to a page's default route with `@page "item"`.
+* Append parameters to a page's default route. For example, an ID parameter, `id`, can be required for a page with `@page "{id}"`.
+
+A root-relative path designated by a tilde (`~`) at the beginning of the path is supported. For example, `@page "~/Some/Other/Path"` is the same as `@page "/Some/Other/Path"`.
 
 You can change the query string `?handler=JoinList` in the URL to a route segment `/JoinList` by specifying the route template `@page "{handler?}"`.
 
@@ -487,8 +495,6 @@ If you don't like the query string `?handler=JoinList` in the URL, you can chang
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH/JoinListUC`.
 
 The `?` following `handler` means the route parameter is optional.
-
-You can use `@page` to append segments and parameters to a page's default route. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) isn't supported.
 
 ## Configuration and settings
 
