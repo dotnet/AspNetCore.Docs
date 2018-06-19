@@ -179,7 +179,7 @@ Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query on the *Pages/Instructors/Index.cshtml* page:
+Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
