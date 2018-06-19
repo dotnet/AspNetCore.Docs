@@ -55,7 +55,7 @@ While there are synchronous equivalents of `Html.PartialAsync` (`Html.Partial`) 
 
 When referencing a partial view, you can refer to its location in several ways:
 
-```cshtml
+```aspx-csharp
 // Uses a view in current folder with this name
 // If none is found, searches the Shared folder
 @await Html.PartialAsync("ViewName")
@@ -85,13 +85,13 @@ When a partial view is instantiated, it gets a copy of the parent view's `ViewDa
 
 You can pass an instance of `ViewDataDictionary` to the partial view:
 
-```cshtml
+```aspx-csharp
 @await Html.PartialAsync("PartialName", customViewData)
 ```
 
 You can also pass a model into a partial view. This can be the page's view model or a custom object. You can pass a model to `PartialAsync` or `RenderPartialAsync`:
 
-```cshtml
+```aspx-csharp
 @await Html.PartialAsync("PartialName", viewModel)
 ```
 
