@@ -5,7 +5,7 @@ description: Learn about the web host in ASP.NET Core, which is responsible for 
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2018
+ms.date: 06/19/2018
 ms.prod: asp.net-core
 ms.technology: aspnet
 ms.topic: article
@@ -41,7 +41,10 @@ public class Program
 
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and configures the server using the app's hosting configuration providers. For the Kestrel default options, see [the Kestrel options section of Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel#kestrel-options).
 * Sets the content root to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
-* Loads optional [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) from:
+* Loads [host configuration](#host-configuration-values) from:
+  * Environment variables.
+  * Command-line arguments.
+* Loads app configuration from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
