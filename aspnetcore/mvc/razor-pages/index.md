@@ -188,7 +188,7 @@ The home page (*Index.cshtml*):
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
-The code behind *Index.cshtml.cs* file:
+The associated `PageModel` class (*Index.cshtml.cs*):
 
 [!code-cs[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
@@ -332,7 +332,7 @@ The directive sets the namespace for the page. The `@model` directive doesn't ne
 
 When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace supplies the prefix for the generated namespace in the Page that imports the `@namespace` directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
-For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:
+For example, the `PageModel` class *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:
 
 [!code-cs[](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
 
@@ -340,7 +340,7 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive for the code behind file.
+The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the `PageModel` class. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive to the `PageModel` class.
 
 `@namespace` *also works with conventional Razor views.*
 
