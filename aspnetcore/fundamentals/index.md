@@ -157,11 +157,11 @@ ASP.NET Core apps configure and launch a *host*, which is responsible for app st
 
 For more information, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
-## Session and application state
+## Session and app state
 
-Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app.
+ASP.NET Core offers several approaches to preserve session and app state while the user browses a web app.
 
-For more information, see [Session and application state](xref:fundamentals/app-state).
+For more information, see [Session and app state](xref:fundamentals/app-state).
 
 ## Servers
 
