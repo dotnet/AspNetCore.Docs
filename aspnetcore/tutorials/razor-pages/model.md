@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 manager: wpickett
 ms.author: riande
-ms.date: 5/30/2018
+ms.date: 05/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: get-started-article

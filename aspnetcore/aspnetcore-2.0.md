@@ -22,7 +22,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 For more information, see the introduction and tutorial:
 
-* [Introduction to Razor Pages](xref:mvc/razor-pages/index)
+* [Introduction to Razor Pages](xref:razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## ASP.NET Core metapackage

@@ -2,14 +2,10 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI in a class library.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 4/31/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: advanced
-uid: mvc/razor-pages/ui-class
+ms.date: 04/31/2018
+uid: razor-pages/ui-class
 ---
 # Create reusable UI using the Razor Class Library project in ASP.NET Core.
 
@@ -19,7 +15,7 @@ Razor views, pages, controllers, page models, [View components](xref:mvc/views/v
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 
@@ -56,7 +52,7 @@ The RCL can be referenced by:
 
 ## Walkthrough: Create a Razor Class Library project and use from a Razor Pages project
 
-You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
+You can download the [complete project](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
 
 ### Test the download app
 

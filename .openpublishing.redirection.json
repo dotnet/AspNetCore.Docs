@@ -66,11 +66,6 @@
         "redirect_document_id": false 
     },
     {
-        "source_path": "aspnetcore/razor-pages/index.md",
-        "redirect_url": "/aspnet/core/mvc/razor-pages/",
-        "redirect_document_id": false
-    },
-    {
         "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
         "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
         "redirect_document_id": false
@@ -383,6 +378,31 @@
     {
         "source_path": "aspnetcore/signalr/get-started.md",
         "redirect_url": "/aspnet/core/tutorials/signalr",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/filter.md",
+        "redirect_url": "/aspnet/core/razor-pages/filter",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/index.md",
+        "redirect_url": "/aspnet/core/razor-pages/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/razor-pages-conventions.md",
+        "redirect_url": "/aspnet/core/razor-pages/razor-pages-conventions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/sdk.md",
+        "redirect_url": "/aspnet/core/razor-pages/sdk",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/ui-class.md",
+        "redirect_url": "/aspnet/core/razor-pages/ui-class",
         "redirect_document_id": false
     }
   ] 

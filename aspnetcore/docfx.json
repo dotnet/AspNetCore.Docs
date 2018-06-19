@@ -52,6 +52,7 @@
     },
     "fileMetadata": {
       "ms.technology": {
+        "razor-pages/**/**.md": "aspnetcore-razorpages",
         "signalr/**/**.md": "aspnetcore-signalr",
         "web-api/**/**.md": "aspnetcore-webapi"
       }

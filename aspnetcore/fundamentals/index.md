@@ -73,7 +73,7 @@ For more information, see [Application startup](xref:fundamentals/startup).
 
 ## Content root
 
-The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:mvc/razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
+The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
 
 ## Web root
 

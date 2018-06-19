@@ -5,7 +5,7 @@ description: Shows how to add a new field to a Razor Page with Entity Framework 
 manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 5/30/2018
+ms.date: 05/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: get-started-article
