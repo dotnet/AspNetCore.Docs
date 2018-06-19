@@ -66,11 +66,6 @@
         "redirect_document_id": false 
     },
     {
-        "source_path": "aspnetcore/razor-pages/index.md",
-        "redirect_url": "/aspnet/core/mvc/razor-pages/",
-        "redirect_document_id": false
-    },
-    {
         "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
         "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
         "redirect_document_id": false
