@@ -2,12 +2,8 @@
 title: Cache Tag Helper in ASP.NET Core MVC
 author: pkellner
 description: Shows how to work with Cache Tag Helper
-manager: wpickett
 ms.author: riande
 ms.date: 02/14/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
