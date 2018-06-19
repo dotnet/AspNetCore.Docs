@@ -2,12 +2,8 @@
 title: Image Tag Helper in ASP.NET Core
 author: pkellner
 description: Shows how to work with Image Tag Helper
-manager: wpickett
 ms.author: riande
 ms.date: 02/14/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core
