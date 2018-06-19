@@ -10,7 +10,7 @@ ms.date: 05/30/2018
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-uid: aspnetcore-2.1
+uid: release-notes/aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
 

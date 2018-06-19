@@ -9,7 +9,7 @@ ms.date: 02/14/2017
 ms.prod: aspnet-core
 ms.technology: aspnet
 ms.topic: article
-uid: aspnetcore-1.1
+uid: release-notes/aspnetcore-1.1
 ---
 
 # What's new in ASP.NET Core 1.1

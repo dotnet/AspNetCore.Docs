@@ -54,6 +54,7 @@
       "ms.technology": {
         "mvc/**/**.md": "aspnetcore-mvc",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
+        "release-notes/**/**.md": "aspnetcore-releasenotes",
         "signalr/**/**.md": "aspnetcore-signalr",
         "web-api/**/**.md": "aspnetcore-webapi"
       }
