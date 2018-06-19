@@ -70,7 +70,7 @@ Use `HttpConnectionDispatcherOptions` to restrict the transports that can be use
 
  Items in the table marked with an asterisk (*) are specific to WebSockets.
 
-## Configuring client options
+## Configure client options
 
 ## JavaScript client
 
