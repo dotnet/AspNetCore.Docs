@@ -150,12 +150,11 @@ The following highlighted code shows the changes to replace the default Identity
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
 The default Identity is replaced in the following code:
+
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-The following code configures ASP.NET Core to authorize the Identity pages that require authorization:
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+The following the code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):
 
-The following the code sets the Identity cookie to use the correct Identity pages path.
 [!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
 Register an `IEmailSender` implementation, for example:
