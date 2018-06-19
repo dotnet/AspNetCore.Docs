@@ -273,7 +273,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Add the following markup to the end of the *Pages/Courses/Index.cshtml* Razor Page:
+Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
 [!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
