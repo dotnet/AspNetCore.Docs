@@ -2,19 +2,15 @@
 title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
-manager: wpickett
 ms.author: riande
 ms.date: 12/12/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
 By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
 
-This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:mvc/razor-pages/index).
+This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
 
 In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 

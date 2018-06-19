@@ -132,7 +132,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf).
+> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 

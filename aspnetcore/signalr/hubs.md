@@ -2,14 +2,10 @@
 title: Use hubs in ASP.NET Core SignalR
 author: rachelappel
 description: Learn how to use hubs in ASP.NET Core SignalR.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 05/01/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/hubs
 ---
 

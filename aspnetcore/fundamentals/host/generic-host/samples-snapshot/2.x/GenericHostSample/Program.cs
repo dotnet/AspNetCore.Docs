@@ -24,8 +24,9 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureHostConfiguration(configHost =>
                 {
-                    configHost.AddEnvironmentVariables();
+                    configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile("hostsettings.json", optional: true);
+                    configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configHost.AddCommandLine(args);
                 })
             #endregion
@@ -40,11 +41,12 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
-                    configApp.AddEnvironmentVariables();
+                    configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
                         optional: true);
+                    configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configApp.AddCommandLine(args);
                 })
             #endregion

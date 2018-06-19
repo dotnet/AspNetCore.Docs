@@ -2,14 +2,10 @@
 title: Manage users and groups in SignalR
 author: rachelappel
 description: Overview of ASP.NET Core SignalR User and Group management.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 06/04/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/groups
 ---
 
@@ -59,6 +55,6 @@ Group membership isn't preserved when a connection reconnects. The connection ne
 
 ## Related resources
 
-* [Get started](xref:signalr/get-started)
+* [Get started](xref:tutorials/signalr)
 * [Hubs](xref:signalr/hubs)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)

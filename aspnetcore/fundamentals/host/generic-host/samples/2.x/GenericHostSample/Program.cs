@@ -16,7 +16,7 @@ namespace GenericHostSample
                 {
                     configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile("hostsettings.json", optional: true);
-                    configHost.AddEnvironmentVariables(prefix: "ASPNETCORE_");
+                    configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configHost.AddCommandLine(args);
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
@@ -25,7 +25,7 @@ namespace GenericHostSample
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
                         optional: true);
-                    configApp.AddEnvironmentVariables(prefix: "ASPNETCORE_");
+                    configApp.AddEnvironmentVariables(prefix: "PREFIX_");
                     configApp.AddCommandLine(args);
                 })
                 .ConfigureServices((hostContext, services) =>

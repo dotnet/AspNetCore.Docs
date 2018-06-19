@@ -2,22 +2,18 @@
 title: ASP.NET Core SignalR
 author: rachelappel
 description: Discover topics that pertain to ASP.NET Core SignalR.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
-ms.date: 05/25/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 06/18/2018
 uid: signalr/index
 ---
 # ASP.NET Core SignalR
 
 * [Introduction](xref:signalr/introduction)
-* [Get started](xref:signalr/get-started)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [.NET client](xref:signalr/dotnet-client)
+* [HubContext](xref:signalr/hubcontext)
 * [Users and Groups](xref:signalr/groups)
 * [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
