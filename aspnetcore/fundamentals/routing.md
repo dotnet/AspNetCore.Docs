@@ -287,10 +287,11 @@ Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in r
 
 The following keywords are reserved names and can't be used as route names or parameters:
 
-* `page`
-* `controller`
 * `action`
 * `area`
+* `controller`
+* `handler`
+* `page`
 
 ## Route constraint reference
 
