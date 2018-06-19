@@ -17,7 +17,7 @@ When you need to configure custom page routes for individual pages, configure ro
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](xref:mvc/razor-pages/index#custom-routes).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-conventions/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ::: moniker range="= aspnetcore-2.0"
 | Scenario | The sample demonstrates ... |
@@ -71,7 +71,7 @@ The sample app adds a `{globalTemplate?}` route template to all of the pages in 
 > [!NOTE]
 > The `Order` property for the `AttributeRouteModel` is set to `-1`. This ensures that this template is given priority for the first route data value position when a single route value is provided and also that it would have priority over automatically generated Razor Pages routes. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = -1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
-Razor Pages options, such as adding [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions), are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-conventions/sample/).
+Razor Pages options, such as adding [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions), are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/sample/).
 
 [!code-csharp[](razor-pages-conventions/sample/Startup.cs?name=snippet1)]
 
