@@ -1,7 +1,7 @@
 ---
 title: Session and app state in ASP.NET Core
 author: rick-anderson
-description: Discover approaches to preserving session and app state between requests.
+description: Discover approaches to preserve session and app state between requests.
 manager: wpickett
 ms.author: riande
 ms.custom: mvc
@@ -36,7 +36,7 @@ State can be stored using several approaches. Each approach is described later i
 
 ## Cookies
 
-Cookies store data across requests. Because cookies are sent with every request, their size should be kept to a minimum. Ideally, only an identifier should be stored in a cookie with the data stored by the app. Most browsers restrict cookie size to 4096 bytes, and only a limited number of cookies are available for each domain.
+Cookies store data across requests. Because cookies are sent with every request, their size should be kept to a minimum. Ideally, only an identifier should be stored in a cookie with the data stored by the app. Most browsers restrict cookie size to 4096 bytes. Only a limited number of cookies are available for each domain.
 
 Because cookies are subject to tampering, they must be validated by the app. Cookies can be deleted by users and expire on clients. However, cookies are generally the most durable form of data persistence on the client.
 
@@ -73,11 +73,21 @@ The in-memory cache provider stores session data in the memory of the server whe
 
 ### Configure session state
 
+::: moniker range=">= aspnetcore-2.0"
+
 The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package, which is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
 
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
+
+::: moniker-end
+
 * Any of the [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
-* a call to [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
-* a call to [UseSession](/dotnet/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_) in `Configure`.
+* A call to [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
+* A call to [UseSession](/dotnet/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_) in `Configure`.
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
@@ -116,7 +126,7 @@ To override session defaults, use [SessionOptions](/dotnet/api/microsoft.aspnetc
 | Option | Description |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookie) | Determines the settings used to create the cookie. [Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) defaults to [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). [Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) defaults to [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). [SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite) defaults to [SameSiteMode.Lax](/dotnet/api/microsoft.aspnetcore.http.samesitemode) (`1`). [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) defaults to `true`. [IsEssential](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.isessential) defaults to `false`. |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The IdleTimeout indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
+| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The `IdleTimeout` indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
 | [IOTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.iotimeout) | The maximim amount of time allowed to load a session from the store or to commit it back to the store. Note this may only apply to asynchronous operations. This timeout can be disabled using [InfiniteTimeSpan](/dotnet/api/system.threading.timeout.infinitetimespan). The default is 1 minute. |
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNetCore.Session`, and it uses a path of `/`. Because the cookie default doesn't specify a domain, it isn't made available to the client-side script on the page (because [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) defaults to `true`).
@@ -128,11 +138,11 @@ Session uses a cookie to track and identify requests from a single browser. By d
 | Option | Description |
 | ------ | ----------- |
 | [CookieDomain](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiedomain) | Determines the domain used to create the cookie. `CookieDomain` isn't set by default. |
-| [CookieHttpOnly](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiehttponly) | Determines if the browser should allow the cookie to be accessed by client-side JavaScript. The default is `true`, which means the cookie will only be passed to HTTP requests and is not made available to script on the page. |
+| [CookieHttpOnly](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiehttponly) | Determines if the browser should allow the cookie to be accessed by client-side JavaScript. The default is `true`, which means the cookie is only passed to HTTP requests and isn't made available to script on the page. |
 | [CookieName](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiename) | Determines the cookie name used to persist the session ID. The default is [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). |
 | [CookiePath](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiepath) | Determines the path used to create the cookie. Defaults to [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). |
 | [CookieSecure](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookiesecure) | Determines if the cookie should only be transmitted on HTTPS requests. The default is [CookieSecurePolicy.None](/dotnet/api/microsoft.aspnetcore.http.cookiesecurepolicy) (`2`). |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The IdleTimeout indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
+| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The `IdleTimeout` indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNet.Session`, and it uses a path of `/`.
 
@@ -180,7 +190,7 @@ The `ISession` implementation provides several extension methods to set and retr
 * [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
 * [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
 
-The following example retreives the session value for the `IndexModel.SessionKeyName` key (`_Name` in the sample app) in a Razor Pages page:
+The following example retrieves the session value for the `IndexModel.SessionKeyName` key (`_Name` in the sample app) in a Razor Pages page:
 
 ```csharp
 @page
@@ -386,7 +396,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
     }
     ```
 
-3. Consume the data service class in each page model:
+3. Consume the data service class:
 
     ::: moniker range=">= aspnetcore-2.0"
 
