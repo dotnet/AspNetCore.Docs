@@ -484,7 +484,7 @@ Use the `@page` directive to:
 * Append segments to a page's default route. For example, an "item" segment can be added to a page's default route with `@page "item"`.
 * Append parameters to a page's default route. For example, an ID parameter, `id`, can be required for a page with `@page "{id}"`.
 
-A root-relative path designated by a tilde (`~`) at the beginning of the path is supported. For example, `@page "~/Some/Other/Path"` is supported and has the same effect as `@page "/Some/Other/Path"`.
+A root-relative path designated by a tilde (`~`) at the beginning of the path is supported. For example, `@page "~/Some/Other/Path"` is the same as `@page "/Some/Other/Path"`.
 
 You can change the query string `?handler=JoinList` in the URL to a route segment `/JoinList` by specifying the route template `@page "{handler?}"`.
 
