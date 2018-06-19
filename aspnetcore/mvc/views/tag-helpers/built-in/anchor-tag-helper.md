@@ -267,4 +267,4 @@ The generated HTML:
 ## Additional resources
 
 * [Areas](xref:mvc/controllers/areas)
-* [Intro to Razor Pages](xref:mvc/razor-pages/index)
+* [Intro to Razor Pages](xref:razor-pages/index)

@@ -36,7 +36,7 @@ The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a 
 
 * Select **File** > **New** > **Project**.
 * Create a new **ASP.NET Core Web Application**, and name the project *CoreIdentitySample*.
-* Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**. This template produces a [Razor Pages](xref:mvc/razor-pages/index) app. Before clicking **OK**, click **Change Authentication**.
+* Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**. This template produces a [Razor Pages](xref:razor-pages/index) app. Before clicking **OK**, click **Change Authentication**.
 * Choose **Individual User Accounts** for the Identity templates. Finally, click **OK**, then **OK**. Visual Studio creates a project using the ASP.NET Core Identity template.
 
 ASP.NET Core 2.0 Identity uses [Entity Framework Core](/ef/core) to interact with the database storing the authentication data. In order for the newly created app to work, there needs to be a database to store this data. After creating a new app, the fastest way to inspect the schema in a database environment is to create the database using Entity Framework migrations. This process creates a database, either locally or elsewhere, which mimics that schema. Review the preceding documentation for more information.

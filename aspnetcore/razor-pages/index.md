@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 5/12/2018
-uid: mvc/razor-pages/index
+uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
 
@@ -538,5 +538,5 @@ services.AddMvc()
 * [Razor syntax](xref:mvc/views/razor)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-conventions)
+* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)

@@ -5,7 +5,7 @@ description: Discover how route and app model provider conventions help you cont
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 04/12/2018
-uid: mvc/razor-pages/razor-pages-conventions
+uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
 
@@ -333,7 +333,7 @@ Note the handler names provided in *Index.cshtml* match the `DeleteAllMessages` 
 
 MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
 
-The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:mvc/razor-pages/filter).
+The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter)) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 ## Additional resources
 

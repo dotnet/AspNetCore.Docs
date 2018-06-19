@@ -25,7 +25,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE [](~/includes/net-core-prereqs.md)]
 
-Familiarity with [Razor Pages](xref:mvc/razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
+Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
 ## Troubleshooting
 

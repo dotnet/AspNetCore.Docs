@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 4/12/2018
-uid: mvc/razor-pages/sdk
+uid: razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK
 
