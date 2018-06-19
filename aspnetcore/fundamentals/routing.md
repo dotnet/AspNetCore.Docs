@@ -282,7 +282,17 @@ Using a template is generally the simplest approach to routing. Constraints and 
 
 Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in routing implementations, such as `Route`, match requests.
 
-## Route Constraint Reference
+## Reserved routing names
+
+The following keywords are reserved names and can't be used as route names or parameters:
+
+* `action`
+* `area`
+* `controller`
+* `handler`
+* `page`
+
+## Route constraint reference
 
 Route constraints execute when a `Route` has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a simple yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the `HttpMethodRouteConstraint` can accept or reject a request based on its HTTP verb.
 
