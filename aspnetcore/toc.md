@@ -5,7 +5,7 @@
 # [What's new](xref:aspnetcore-1.1)
 
 # [Get started](getting-started.md)
-## [Create a web app](xref:mvc/razor-pages/index)
+## [Create a web app](xref:razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
 
 # [Tutorials](tutorials/index.md)
@@ -19,6 +19,7 @@
 ### [Add a new field](xref:tutorials/razor-pages/new-field)
 ### [Add validation](xref:tutorials/razor-pages/validation)
 ### [Upload files](xref:tutorials/razor-pages/uploading-files)
+## [Create a real-time SignalR web app](xref:tutorials/signalr)
 ## [Create an MVC web app](tutorials/first-mvc-app/index.md)
 ### [Get started](tutorials/first-mvc-app/start-mvc.md)
 ### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -153,11 +154,11 @@
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
 
-# [Razor Pages](xref:mvc/razor-pages/index)
-## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
-## [Create a Razor Class Library](xref:mvc/razor-pages/ui-class)
-## [Route and app conventions](xref:mvc/razor-pages/razor-pages-conventions)
-## [Razor SDK](xref:mvc/razor-pages/sdk)
+# [Razor Pages](xref:razor-pages/index)
+## [Filter methods for Razor Pages](xref:razor-pages/filter)
+## [Create a Razor Class Library](xref:razor-pages/ui-class)
+## [Route and app conventions](xref:razor-pages/razor-pages-conventions)
+## [Razor SDK](xref:razor-pages/sdk)
 
 # [MVC](xref:mvc/overview)
 ## [Model binding](xref:mvc/models/model-binding)
@@ -242,7 +243,6 @@
 
 # [SignalR](xref:signalr/index)
 ## [Introduction](xref:signalr/introduction)
-## [Get started](xref:signalr/get-started)
 ## [Hubs](xref:signalr/hubs)
 ## [JavaScript client](xref:signalr/javascript-client)
 ## [.NET client](xref:signalr/dotnet-client)

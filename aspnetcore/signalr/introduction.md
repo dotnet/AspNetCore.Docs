@@ -2,14 +2,10 @@
 title: Introduction to ASP.NET Core SignalR
 author: rachelappel
 description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 04/25/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/introduction
 ---
 # Introduction to ASP.NET Core SignalR
@@ -53,7 +49,7 @@ Hubs call client-side code by sending messages using the active transport. The m
 
 ## Additional resources
 
-* [Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
+* [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)

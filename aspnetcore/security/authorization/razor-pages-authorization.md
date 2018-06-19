@@ -34,7 +34,7 @@ An [AuthorizePage overload](/dotnet/api/microsoft.extensions.dependencyinjection
 ::: moniker range=">= aspnetcore-2.1"
 
 > [!NOTE]
-> An `AuthorizeFilter` can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see [Authorize filter attribute](xref:mvc/razor-pages/filter#authorize-filter-attribute).
+> An `AuthorizeFilter` can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see [Authorize filter attribute](xref:razor-pages/filter#authorize-filter-attribute).
 
 ::: moniker-end
 
@@ -84,5 +84,5 @@ Requiring authorization on the Private page won't work because when both the `Al
 
 ## Additional resources
 
-* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-conventions)
+* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
 * [PageConventionCollection](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection) class
