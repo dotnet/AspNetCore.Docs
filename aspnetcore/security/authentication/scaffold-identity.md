@@ -31,7 +31,7 @@ We recommend using a source control system that shows file differences and allow
 
 Add the following highlighted calls to the `Startup` class:
 
-[!code-csharp[Main](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
+[!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -65,7 +65,7 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more i
 
 In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
-[!code-csharp[Main](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
+[!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -111,7 +111,7 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
 
-[!code-html[Main](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
+[!code-html[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
 * Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
@@ -121,7 +121,7 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 
 Call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
-[!code-csharp[Main](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
+[!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -147,17 +147,16 @@ To maintain full control of the Identity UI, run the Identity scaffolder and sel
 
 The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
 
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
+[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
 The default Identity is replaced in the following code:
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-The following code configures ASP.NET Core to authorize the Identity pages that require authorization:
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-The following the code sets the Identity cookie to use the correct Identity pages path.
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+The following the code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):
+
+[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
 Register an `IEmailSender` implementation, for example:
 
-[!code-csharp[Main](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
+[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
