@@ -2,13 +2,9 @@
 title: Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 and later
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.App metapackage includes all supported ASP.NET Core and Entity Framework Core packages.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/20/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1
@@ -57,5 +53,11 @@ The implicit version is set to `major.minor.0` for portable apps. The shared fra
 Specifying a version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version "2.1.1" is specified, but "2.1.3" is installed. In that case, the app will use "2.1.3". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
 The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages) is not a traditional package that is updated from NuGet. Similar to `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App` represents a shared runtime, which has special versioning semantics handled outside of NuGet. For more information, see [Packages, metapackages and frameworks](/dotnet/core/packages).
+
+`<Project Sdk` must be set to `Microsoft.NET.Sdk.Web` to use the implicit version `Microsoft.AspNetCore.App`.  When `<Project Sdk="Microsoft.NET.Sdk">` is used, the following warnings are generated:
+
+*Warning NU1604: Project dependency Microsoft.AspNetCore.App does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+
+*Warning NU1602: [Project Name] does not provide an inclusive lower bound for dependency Microsoft.AspNetCore.App. An approximate best match of Microsoft.AspNetCore.App 2.1.0 was resolved.*
 
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).

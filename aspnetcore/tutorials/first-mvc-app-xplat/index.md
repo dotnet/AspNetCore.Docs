@@ -2,12 +2,8 @@
 title: Create an ASP.NET Core MVC app with Visual Studio Code
 author: rick-anderson
 description: Learn about the table of contents for the ASP.NET Core MVC app with Visual Studio Code tutorial.
-manager: wpickett
 ms.author: riande
 ms.date: 05/17/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/index
 ---
 # Create an ASP.NET Core MVC app with Visual Studio Code

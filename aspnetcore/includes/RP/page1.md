@@ -107,7 +107,7 @@ The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
 [!code-cshtml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_ViewStart.cshtml)]
 
-The preceding markup sets the layout file to *Pages/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:mvc/razor-pages/index#layout) for more information.
+The preceding markup sets the layout file to *Pages/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
 ### Update the layout
 

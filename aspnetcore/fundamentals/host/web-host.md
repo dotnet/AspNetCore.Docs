@@ -2,13 +2,9 @@
 title: ASP.NET Core Web Host
 author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/16/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 06/19/2018
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -41,7 +37,10 @@ public class Program
 
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and configures the server using the app's hosting configuration providers. For the Kestrel default options, see [the Kestrel options section of Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel#kestrel-options).
 * Sets the content root to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
-* Loads optional [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) from:
+* Loads [host configuration](#host-configuration-values) from:
+  * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
+  * Command-line arguments.
+* Loads app configuration from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
@@ -50,6 +49,41 @@ public class Program
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
 * When running behind IIS, enables [IIS integration](xref:host-and-deploy/iis/index). Configures the base path and port the server listens on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [the IIS options section of Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index#iis-options).
 * Sets [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
+
+The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by [ConfigureAppConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configureappconfiguration), [ConfigureLogging](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configurelogging), and other methods and extension methods of [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). A few examples follow:
+
+* [ConfigureAppConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configureappconfiguration) is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the *appsettings.xml* file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
+
+    ```csharp
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config.AddXmlFile("appsettings.xml", optional: true, reloadOnChange: true);
+        })
+        ...
+    ```
+
+* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level ([SetMinimumLevel](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.setminimumlevel)) to [LogLevel.Warning](/dotnet/api/microsoft.extensions.logging.loglevel). This setting overrides the settings in *appsettings.Development.json* (`LogLevel.Debug`) and *appsettings.Production.json* (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
+
+    ```csharp
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureLogging(logging => 
+        {
+            logging.SetMinimumLevel(LogLevel.Warning);
+        })
+        ...
+    ```
+
+* The following call to [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel) overrides the default [Limits.MaxRequestBodySize](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestbodysize) of 30,000,000 bytes established when Kestrel was configured by `CreateDefaultBuilder`:
+
+    ```csharp
+    WebHost.CreateDefaultBuilder(args)
+        .UseKestrel(options =>
+        {
+            options.Limits.MaxRequestBodySize = 20000000;
+        });
+        ...
+    ```
 
 The *content root* determines where the host searches for content files, such as MVC view files. When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
@@ -106,7 +140,7 @@ When setting up a host, [Configure](/dotnet/api/microsoft.aspnetcore.hosting.web
 [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) relies on the following approaches to set the host configuration values:
 
 * Host builder configuration, which includes environment variables with the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_ENVIRONMENT`.
-* Explicit methods, such as [HostingAbstractionsWebHostBuilderExtensions.UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot).
+* Extensions such as [UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot) and [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) (see the [Override configuration](#override-configuration) section).
 * [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting) and the associated key. When setting a value with `UseSetting`, the value is set as a string regardless of the type.
 
 The host uses whichever option sets a value last. For more information, see [Override configuration](#override-configuration) in the next section.
@@ -428,33 +462,25 @@ var host = new WebHostBuilder()
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure the host. In the following example, host configuration is optionally specified in a *hosting.json* file. Any configuration loaded from the *hosting.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with `UseConfiguration`.
+Use [Configuration](xref:fundamentals/configuration/index) to configure the web host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-*hosting.json*:
-
-```json
-{
-    urls: "http://*:5005"
-}
-```
-
-Overriding the configuration provided by `UseUrls` with *hosting.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
 
 ```csharp
 public class Program
 {
     public static void Main(string[] args)
     {
-        BuildWebHost(args).Run();
+        CreateWebHostBuilder(args).Build().Run();
     }
 
-    public static IWebHost BuildWebHost(string[] args)
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("hosting.json", optional: true)
+            .AddJsonFile("hostsettings.json", optional: true)
             .AddCommandLine(args)
             .Build();
 
@@ -471,9 +497,7 @@ public class Program
 }
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-*hosting.json*:
+*hostsettings.json*:
 
 ```json
 {
@@ -481,7 +505,9 @@ public class Program
 }
 ```
 
-Overriding the configuration provided by `UseUrls` with *hosting.json* config first, command-line argument config second:
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -490,7 +516,7 @@ public class Program
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("hosting.json", optional: true)
+            .AddJsonFile("hostsettings.json", optional: true)
             .AddCommandLine(args)
             .Build();
 
@@ -510,12 +536,22 @@ public class Program
 }
 ```
 
+*hostsettings.json*:
+
+```json
+{
+    urls: "http://*:5005"
+}
+```
+
 ---
 
 > [!NOTE]
 > The [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) extension method isn't currently capable of parsing a configuration section returned by `GetSection` (for example, `.UseConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:urls`, `section:environment`). The `UseConfiguration` method expects the keys to match the `WebHostBuilder` keys (for example, `urls`, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
+>
+> `UseConfiguration` only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hosting.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
 
 ```console
 dotnet run --urls "http://*:8080"

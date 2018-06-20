@@ -2,12 +2,8 @@
 title: ASP.NET Core tutorials
 author: rick-anderson
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/xplat
 ---
 # ASP.NET Core tutorials
@@ -16,9 +12,9 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Build web apps
 
-[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a new Web UI app with ASP.NET Core 2.0 and later.
+[Razor Pages](xref:razor-pages/index) is the recommended approach to create a new Web UI app with ASP.NET Core 2.0 and later.
 
-* [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
+* [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
 * Create a Razor Pages web app with ASP.NET Core
 
    * [Razor Pages on macOS](xref:tutorials/razor-pages-mac/index)

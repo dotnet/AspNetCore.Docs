@@ -2,12 +2,8 @@
 title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
 author: rick-anderson
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/update-related-data
 ---
 

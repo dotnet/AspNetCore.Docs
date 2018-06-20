@@ -1,11 +1,8 @@
 ---
 title: Short survey of other authentication providers
 author: rick-anderson
-manager: wpickett
 ms.author: riande
 ms.date: 11/03/2016
-ms.prod: asp.net-core
-ms.topic: article
 uid: security/authentication/otherlogins
 ---
 # Short survey of other authentication providers

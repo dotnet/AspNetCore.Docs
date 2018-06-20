@@ -2,12 +2,8 @@
 title: Build beautiful, responsive sites with Bootstrap and ASP.NET Core
 author: ardalis
 description: Learn how to use Bootstrap for developing responsive web apps with ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bootstrap
 ---
 # Build beautiful, responsive sites with Bootstrap and ASP.NET Core

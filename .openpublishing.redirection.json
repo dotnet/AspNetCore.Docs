@@ -66,11 +66,6 @@
         "redirect_document_id": false 
     },
     {
-        "source_path": "aspnetcore/razor-pages/index.md",
-        "redirect_url": "/aspnet/core/mvc/razor-pages/",
-        "redirect_document_id": false
-    },
-    {
         "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
         "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
         "redirect_document_id": false
@@ -213,11 +208,6 @@
     {
         "source_path": "aspnetcore/choosing-the-right-dotnet.md",
         "redirect_url": "/dotnet/standard/choosing-core-framework-server",
-        "redirect_document_id": false
-    },
-    {
-        "source_path": "aspnetcore/getting-started/index.md",
-        "redirect_url": "/aspnet/core/getting-started",
         "redirect_document_id": false
     },
     {
@@ -379,6 +369,81 @@
         "source_path": "aspnetcore/testing/troubleshoot.md",
         "redirect_url": "/aspnet/core/test/troubleshoot",
         "redirect_document_id": false
-    }
+    },
+    {
+        "source_path": "aspnetcore/signalr/get-started.md",
+        "redirect_url": "/aspnet/core/tutorials/signalr",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/filter.md",
+        "redirect_url": "/aspnet/core/razor-pages/filter",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/index.md",
+        "redirect_url": "/aspnet/core/razor-pages/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/razor-pages-conventions.md",
+        "redirect_url": "/aspnet/core/razor-pages/razor-pages-conventions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/sdk.md",
+        "redirect_url": "/aspnet/core/razor-pages/sdk",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/razor-pages/ui-class.md",
+        "redirect_url": "/aspnet/core/razor-pages/ui-class",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-1.1.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-1.1",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-2.0.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.0",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-2.1.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.1",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/choose-aspnet-framework.md",
+        "redirect_url": "/aspnet/core/fundamentals/choose-aspnet-framework",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started.md",
+        "redirect_url": "/aspnet/core/getting-started/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/angular.md",
+        "redirect_url": "/aspnet/core/client-side/spa/angular",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/index.md",
+        "redirect_url": "/aspnet/core/client-side/spa/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react-with-redux.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react-with-redux",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react",
+        "redirect_document_id": false
+    }    
   ] 
 }

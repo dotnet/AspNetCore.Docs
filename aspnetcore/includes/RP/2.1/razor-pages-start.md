@@ -9,9 +9,9 @@ Test the links. The **RazorPagesMovie** and **Home** links go to the Index page.
 The following table lists the files and folders in the project. For this tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.
 
 | File or folder | Purpose |
-| -------------- | ------- | 
+| -------------- | ------- |
 | *wwwroot* | Contains static assets. See [Static files](xref:fundamentals/static-files). |
-| *Pages* | Folder for [Razor Pages](xref:mvc/razor-pages/index). | 
+| *Pages* | Folder for [Razor Pages](xref:razor-pages/index). |
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
 | *Program.cs* | Configures the [host](xref:fundamentals/host/index) of the ASP.NET Core app. |
 | *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup). |

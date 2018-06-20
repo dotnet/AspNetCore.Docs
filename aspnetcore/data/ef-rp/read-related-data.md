@@ -2,12 +2,8 @@
 title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
 author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
-manager: wpickett
 ms.author: riande
 ms.date: 11/05/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-rp/read-related-data
 ---
 
@@ -179,7 +175,7 @@ Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query on the *Pages/Instructors/Index.cshtml* page:
+Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -273,7 +269,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Add the following markup to the end of the *Pages/Courses/Index.cshtml* Razor Page:
+Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
 [!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 

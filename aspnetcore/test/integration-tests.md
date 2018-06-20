@@ -2,13 +2,9 @@
 title: Integration tests in ASP.NET Core
 author: guardrex
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -23,7 +19,7 @@ This topic assumes a basic understanding of unit tests. If unfamiliar with test 
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
 
-* [Introduction to Razor Pages](xref:mvc/razor-pages/index)
+* [Introduction to Razor Pages](xref:razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 

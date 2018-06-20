@@ -2,13 +2,9 @@
 title: ASP.NET Core Module configuration reference
 author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/15/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference

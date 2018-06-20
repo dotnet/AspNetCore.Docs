@@ -2,12 +2,8 @@
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 author: rick-anderson
 description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 

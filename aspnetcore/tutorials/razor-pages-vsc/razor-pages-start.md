@@ -2,20 +2,16 @@
 title: Get started with ASP.NET Core Razor Pages in Visual Studio Code
 author: rick-anderson
 description: Learn the basics of building an ASP.NET Core Razor Pages web app with Visual Studio Code.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/razor-pages-start
 ---
 # Get started with ASP.NET Core Razor Pages in Visual Studio Code
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you complete [Introduction to Razor Pages](xref:mvc/razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
+This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you complete [Introduction to Razor Pages](xref:razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
 
 ## Prerequisites
 

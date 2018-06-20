@@ -35,20 +35,57 @@
       }
     ],
     "overwrite": [],
-    "externalReference": [],
+    "externalReference": [],    
     "globalMetadata": {
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
       "_navRel": "/foo",
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "feedback_github_repo": "aspnet/docs",
+      "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md",
+      "feedback_system": "GitHub",
+      "ms.prod": "aspnet-core",
       "searchScope": [
         "ASP.NET Core"
-      ],
-      "ms.topic": "conceptual",
-      "feedback_system": "GitHub",
-      "feedback_github_repo": "aspnet/docs",
-      "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md" 
+      ]
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.technology": {
+        "client-side/**/**.md": "aspnetcore-clientside",
+        "data/**/**.md": "aspnetcore-data",
+        "fundamentals/**/**.md": "aspnetcore-fundamentals",
+        "getting-started/**/**.md": "aspnetcore-getstarted",
+        "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
+        "migration/**/**.md": "aspnetcore-migration",
+        "mobile/**/**.md": "aspnetcore-mobile",
+        "mvc/**/**.md": "aspnetcore-mvc",
+        "performance/**/**.md": "aspnetcore-performance",
+        "razor-pages/**/**.md": "aspnetcore-razorpages",
+        "release-notes/**/**.md": "aspnetcore-releasenotes",
+        "security/**/**.md": "aspnetcore-security",
+        "signalr/**/**.md": "aspnetcore-signalr",
+        "test/**/**.md": "aspnetcore-test",
+        "tutorials/**/**.md": "aspnetcore-tutorials",
+        "web-api/**/**.md": "aspnetcore-webapi"
+      },
+      "ms.topic": {
+        "client-side/**/**.md": "conceptual",
+        "data/**/**.md": "conceptual",
+        "fundamentals/**/**.md": "conceptual",
+        "getting-started/**/**.md": "conceptual",
+        "host-and-deploy/**/**.md": "conceptual",
+        "migration/**/**.md": "conceptual",
+        "mobile/**/**.md": "conceptual",
+        "mvc/**/**.md": "conceptual",
+        "performance/**/**.md": "conceptual",
+        "razor-pages/**/**.md": "conceptual",
+        "release-notes/**/**.md": "conceptual",
+        "security/**/**.md": "conceptual",
+        "signalr/**/**.md": "conceptual",
+        "test/**/**.md": "conceptual",
+        "tutorials/**/**.md": "tutorial",
+        "web-api/**/**.md": "conceptual"
+      }
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig",
