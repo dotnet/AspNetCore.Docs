@@ -57,6 +57,7 @@
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
+        "performance/**/**.md": "aspnetcore-performance",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
         "release-notes/**/**.md": "aspnetcore-releasenotes",
         "signalr/**/**.md": "aspnetcore-signalr",
