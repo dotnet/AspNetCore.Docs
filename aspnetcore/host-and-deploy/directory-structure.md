@@ -2,13 +2,9 @@
 title: ASP.NET Core directory structure
 author: guardrex
 description: Learn about the directory structure of published ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/09/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
