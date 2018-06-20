@@ -2,12 +2,8 @@
 title: Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
 author: rick-anderson
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
-manager: wpickett
 ms.author: riande
 ms.date: 11/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-rp/update-related-data
 ---
 

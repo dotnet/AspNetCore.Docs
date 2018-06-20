@@ -52,6 +52,7 @@
     },
     "fileMetadata": {
       "ms.technology": {
+        "data/**/**.md": "aspnetcore-data",
         "mvc/**/**.md": "aspnetcore-mvc",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
         "release-notes/**/**.md": "aspnetcore-releasenotes",
