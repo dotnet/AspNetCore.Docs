@@ -2,13 +2,9 @@
 title: ASP.NET Core Web Host
 author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/19/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
