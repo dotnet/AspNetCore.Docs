@@ -2,12 +2,8 @@
 title: ASP.NET Core MVC with EF Core - tutorial series
 author: rick-anderson
 description: 
-manager: wpickett
 ms.author: tdykstra
 ms.date: 10/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/index
 ---
 # ASP.NET Core MVC with EF Core - tutorial series
