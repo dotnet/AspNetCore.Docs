@@ -79,7 +79,7 @@ Open *Pages/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted. (All the markup is *not* displayed.)
 
-[!code-html[](intro/samples/cu21/Pages/_Layout.cshtml?highlight=6,29,35-38,47&name=snippet)]
+[!code-html[](intro/samples/cu21/Pages/Shared/_Layout.cshtml?highlight=6,29,35-38,47&name=snippet)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
