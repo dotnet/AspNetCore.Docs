@@ -2,13 +2,9 @@
 title: Manage client-side packages with Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 02/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bower
 ---
 # Manage client-side packages with Bower in ASP.NET Core
