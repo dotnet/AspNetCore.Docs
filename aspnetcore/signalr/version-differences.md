@@ -18,21 +18,17 @@ SignalR for ASP.NET Core is not compatible with previous versions of SignalR. Th
 
 ## Feature differences
 
-### Simplified connection model
-
-In the previous version of SignalR, the client tries to start a connection to the server. If it fails, it tries using a different transport. The client fails to start the connection when it can't connect to the server with any of the available transports. This feature is no longer supported with in ASP.NET Core SignalR.
-
 ### Automatic reconnects
 
 Automatic reconnects are no longer supported. Previously, SignalR tried to reconnect to the server if the connection was dropped. Now, if the client is disconnected the user must explicitly start a new connection if they want to reconnect.
 
 ### Protocol support
 
-ASP.NET Core SignalR supports binary, text, and custom protocols. [MessagePack](xref:signalr/messagepackhubprotocol) is a binary serialization format that is fast and compact.
+ASP.NET Core SignalR supports JSON, binary, text, and custom protocols. [MessagePack](xref:signalr/messagepackhubprotocol) is a binary serialization format that is fast and compact.
 
 ### Use SignalR with Websockets
 
-SignalR now supports writing code that accesses the [WebSockets](xref:fundamentals/websockets) API directly.
+SignalR now supports using [WebSockets](xref:fundamentals/websockets) to work directly with a socket connection.
 
 ## Differences on the server
 
@@ -81,11 +77,11 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 
 ### JavaScript client method syntax
 
-The JavaScript syntax has changed from the previous version of SignalR. Rather than using the `$connection` object, create a new instance of a `signalR.HubConnectionBuilder` to connect to a hub.
+The JavaScript syntax has changed from the previous version of SignalR. Rather than using the `$connection` object, create a connection using the `HubConnectionBuilder` API.
 
 [!code-javascript[JavaScript connection](version-differences/sample/code.js?range=1-3)]
 
-Use `connection.on` to specify the client method that the hub calls.
+Use `connection.on` to specify client methods that the hub can call.
 
 [!code-javascript[JavaScript client method](version-differences/sample/code.js?range=5-9)]
 
