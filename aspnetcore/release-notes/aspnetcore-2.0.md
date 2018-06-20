@@ -4,11 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.0.
 manager: wpickett
 monikerRange: '= aspnetcore-2.0'
-ms.author: riande
 ms.date: 07/10/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: aspnetcore-2.0
 ---
 
