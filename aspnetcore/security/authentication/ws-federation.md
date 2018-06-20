@@ -2,13 +2,9 @@
 title: Authenticate users with WS-Federation in ASP.NET Core
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/27/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core

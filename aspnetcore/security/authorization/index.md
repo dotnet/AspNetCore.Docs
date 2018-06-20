@@ -2,13 +2,9 @@
 title: Authorization in ASP.NET Core
 author: rick-anderson
 description: Discover ASP.NET Core authorization topics that explain how to provide rights and privileges to app users.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/19/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/index
 ---
 
