@@ -318,6 +318,7 @@
 ### [Role-based authorization](xref:security/authorization/roles)
 ### [Claims-based authorization](xref:security/authorization/claims)
 ### [Policy-based authorization](xref:security/authorization/policies)
+### [Authorization policy providers](xref:security/authorization/iauthorizationpolicyprovider)
 ### [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 ### [Resource-based authorization](xref:security/authorization/resourcebased)
 ### [View-based authorization](xref:security/authorization/views)

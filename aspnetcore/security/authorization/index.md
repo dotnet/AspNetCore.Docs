@@ -28,7 +28,7 @@ uid: security/authorization/index
 
 * [Policy-based authorization](xref:security/authorization/policies)
 
-* [Custom authorization policy providers](xref:security/authorization/iauthorizationpolicyprovider)
+* [Authorization policy providers](xref:security/authorization/iauthorizationpolicyprovider)
 
 * [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 
