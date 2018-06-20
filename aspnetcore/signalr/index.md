@@ -19,3 +19,4 @@ uid: signalr/index
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Streaming](xref:signalr/streaming)
 * [Supported platforms](xref:signalr/supported-platforms)
+* [Version Differences](xref:signalr/version-differences)
