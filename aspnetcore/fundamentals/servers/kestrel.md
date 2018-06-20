@@ -449,12 +449,12 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Port0&highlight=3)]
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
 
 When the app is run, the console window output indicates the dynamic port where the app can be reached:
 
 ```console
-Now listening on: http://127.0.0.1:48508
+Listening on the following addresses: http://127.0.0.1:48508
 ```
 
 **UseUrls, --urls command-line argument, urls host configuration key, and ASPNETCORE_URLS environment variable limitations**
