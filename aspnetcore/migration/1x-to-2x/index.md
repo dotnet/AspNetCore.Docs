@@ -2,12 +2,8 @@
 title: Migrate from ASP.NET Core 1.x to 2.0
 author: scottaddie
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
-manager: wpickett
 ms.author: scaddie
 ms.date: 10/03/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0
