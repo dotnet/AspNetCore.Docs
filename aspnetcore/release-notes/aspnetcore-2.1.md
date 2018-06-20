@@ -6,7 +6,7 @@ manager: wpickett
 monikerRange: '= aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 05/30/2018
-uid: release-notes/aspnetcore-2.1
+uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
 
