@@ -15,7 +15,7 @@ The following subscriptions are required:
 The following tools are required:
 
 * [Git](https://git-scm.com/downloads)
-* [.NET Core SDK](https://www.microsoft.com/net/download/) &mdash; Version 2.0 or later is required to build and run the sample app. If Visual Studio is installed with the **.NET Core cross-platform development** workload, the .NET Core SDK is already installed.
+* [.NET Core SDK](https://www.microsoft.com/net/download/) &mdash; Version 2.1.300 or later is required to build and run the sample app. If Visual Studio is installed with the **.NET Core cross-platform development** workload, the .NET Core SDK is already installed.
 
     Verify your .NET Core SDK installation. Open a command shell, and run the following command:
 
