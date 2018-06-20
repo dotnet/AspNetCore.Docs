@@ -33,7 +33,7 @@ In the .NET client, the same `AddJsonHubProtocol` extension method exists on [Hu
 
 ### MessagePack Serialization Options
 
-MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepack) for more details.
+MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepackhubprotocol) for more details.
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -88,10 +88,10 @@ Client options can be configured on the `HubConnectionBuilder` type (available i
 
 ### Configure logging
 
-Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging#how-to-add-providers) documentation for more information.
+Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging/index#how-to-add-providers) documentation for more information.
 
 > [!NOTE]
-> In order to register Logging providers, you must install the necessary packages. See the [Built-in logging providers](xref:fundamentals/logging#built-in-logging-providers) section of the docs for a full list.
+> In order to register Logging providers, you must install the necessary packages. See the [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers) section of the docs for a full list.
 
 For example, to configure the console logger (after installing the `Microsoft.Extensions.Logging.Console` NuGet package):
 
@@ -231,7 +231,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 ## Additional Resources
 
-* [Get started](xref:signalr/get-started)
+* [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [.NET client](xref:signalr/dotnet-client)
