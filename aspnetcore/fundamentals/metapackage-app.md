@@ -2,13 +2,9 @@
 title: Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 and later
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.App metapackage includes all supported ASP.NET Core and Entity Framework Core packages.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/20/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1

@@ -2,13 +2,9 @@
 title: Open Web Interface for .NET (OWIN) with ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core

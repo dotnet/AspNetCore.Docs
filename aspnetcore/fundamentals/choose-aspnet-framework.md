@@ -2,12 +2,8 @@
 title: Choose between ASP.NET and ASP.NET Core
 author: rick-anderson
 description: Learn how to choose between ASP.NET and ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 05/11/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET and ASP.NET Core

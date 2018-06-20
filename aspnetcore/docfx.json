@@ -53,6 +53,7 @@
     "fileMetadata": {
       "ms.technology": {
         "data/**/**.md": "aspnetcore-data",
+        "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",

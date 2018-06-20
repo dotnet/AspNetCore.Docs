@@ -2,13 +2,8 @@
 title: Detect changes with change tokens in ASP.NET Core
 author: guardrex
 description: Learn how to use change tokens to track changes.
-manager: wpickett
 ms.author: riande
 ms.date: 11/10/2017
-ms.devlang: csharp
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/primitives/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
