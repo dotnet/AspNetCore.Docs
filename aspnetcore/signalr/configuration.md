@@ -93,7 +93,7 @@ Logging is configured in the .NET Client using the `ConfigureLogging` method. Lo
 > [!NOTE]
 > In order to register Logging providers, you must install the necessary packages. See the [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers) section of the docs for a full list.
 
-For example, to configure the console logger (after installing the `Microsoft.Extensions.Logging.Console` NuGet package):
+For example, to enable Console logging, install the `Microsoft.Extensions.Logging.Console` NuGet package and call the `AddConsole` extension method:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -114,7 +114,7 @@ let connection = new signalR.HubConnectionBuilder()
 ```
 
 > [!NOTE]
-> To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method
+> To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
 Log levels available to the JavaScript client are listed below. Setting the log level to one of these values will enable logging of messages at **or above** that level.
 
