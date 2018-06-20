@@ -256,6 +256,8 @@
 ### [.NET client](xref:signalr/dotnet-client)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Configuration](xref:signalr/configuration)
+## [Authentication and Authorization](xref:signalr/authn-and-authz)
+## [Security Considerations](xref:signalr/security)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
 ## [Differences between SignalR versions](xref:signalr/version-differences)
