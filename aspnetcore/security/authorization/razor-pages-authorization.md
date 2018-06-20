@@ -2,13 +2,9 @@
 title: Razor Pages authorization conventions in ASP.NET Core
 author: guardrex
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/razor-pages-authorization
 ---
 # Razor Pages authorization conventions in ASP.NET Core
