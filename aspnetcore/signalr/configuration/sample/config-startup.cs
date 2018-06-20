@@ -13,7 +13,7 @@ public void ConfigureServices(IServiceCollection services)
     })
 }
 
-services.AddSignalR().AddHubOptions<HubName>(options =>
+services.AddSignalR().AddHubOptions<MyHub>(options =>
 {
     options.EnableDetailedErrors = true;
 }
