@@ -211,11 +211,6 @@
         "redirect_document_id": false
     },
     {
-        "source_path": "aspnetcore/getting-started/index.md",
-        "redirect_url": "/aspnet/core/getting-started",
-        "redirect_document_id": false
-    },
-    {
         "source_path": "aspnetcore/getting-started/installing-on-linux.md",
         "redirect_url": "/aspnet/core/getting-started",
         "redirect_document_id": false
