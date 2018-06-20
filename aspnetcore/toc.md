@@ -4,7 +4,7 @@
 # [What's new](xref:aspnetcore-2.0)
 # [What's new](xref:aspnetcore-1.1)
 
-# [Get started](getting-started.md)
+# [Get started](xref:getting-started)
 ## [Create a web app](xref:razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
 

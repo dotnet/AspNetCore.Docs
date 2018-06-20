@@ -2,13 +2,9 @@
 title: Get started with ASP.NET Core
 author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/31/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 05/31/2018
 uid: getting-started
 ---
 # Get started with ASP.NET Core
@@ -35,7 +31,7 @@ uid: getting-started
 
     The preceding command displays the following dialog:
 
-    ![Security warning dialog](getting-started/_static/cert.png)
+    ![Security warning dialog](_static/cert.png)
 
     Select **Yes** if you agree to trust the development certificate.
 
@@ -70,7 +66,7 @@ uid: getting-started
 
 6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
-    [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9)]
+    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
 
 7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
 
@@ -101,7 +97,7 @@ uid: getting-started
 
 5. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
 
-    [!code-cshtml[](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
 6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
