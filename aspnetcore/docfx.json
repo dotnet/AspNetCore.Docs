@@ -43,7 +43,6 @@
       "feedback_github_repo": "aspnet/docs",
       "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md",
       "feedback_system": "GitHub",
-      "manager": "wpickett",
       "ms.prod": "aspnet-core",
       "ms.topic": "conceptual",
       "searchScope": [
@@ -54,6 +53,7 @@
       "ms.technology": {
         "data/**/**.md": "aspnetcore-data",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
+        "getting-started/**/**.md": "aspnetcore-getstarted",
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
