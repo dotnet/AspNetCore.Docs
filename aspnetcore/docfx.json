@@ -50,6 +50,7 @@
     },
     "fileMetadata": {
       "ms.technology": {
+        "client-side/**/**.md": "aspnetcore-clientside",
         "data/**/**.md": "aspnetcore-data",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "getting-started/**/**.md": "aspnetcore-getstarted",
@@ -67,6 +68,7 @@
         "web-api/**/**.md": "aspnetcore-webapi"
       },
       "ms.topic": {
+        "client-side/**/**.md": "conceptual",
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",
         "getting-started/**/**.md": "conceptual",

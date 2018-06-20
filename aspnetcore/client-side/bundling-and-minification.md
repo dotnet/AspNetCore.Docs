@@ -2,14 +2,9 @@
 title: Bundle and minifiy static assets in ASP.NET Core
 author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2018
-ms.devlang: csharp
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minifiy static assets in ASP.NET Core

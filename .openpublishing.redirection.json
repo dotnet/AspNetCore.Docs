@@ -424,6 +424,26 @@
         "source_path": "aspnetcore/getting-started.md",
         "redirect_url": "/aspnet/core/getting-started/",
         "redirect_document_id": false
-    }
+    },
+    {
+        "source_path": "aspnetcore/spa/angular.md",
+        "redirect_url": "/aspnet/core/client-side/spa/angular",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/index.md",
+        "redirect_url": "/aspnet/core/client-side/spa/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react-with-redux.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react-with-redux",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react",
+        "redirect_document_id": false
+    }    
   ] 
 }
