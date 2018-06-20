@@ -105,7 +105,7 @@ In the following sections, a class for each one of these entities is created.
 
 Create a *Models* folder. In the *Models* folder, create a class file named *Student.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_Intro)]
 
 The `ID` property becomes the primary key column of the database (DB) table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. In `classnameID`, `classname` is the name of the class, so the alternative primary key is `StudentID` in the preceding example.
 
@@ -119,7 +119,7 @@ If a navigation property can hold multiple entities, the navigation property mus
 
 In the *Models* folder, create *Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Intro)]
 
 The `EnrollmentID` property is the primary key. This entity uses the `classnameID` pattern instead of `ID` like the `Student` entity. Typically developers choose one pattern and use it throughout the data model. In a later tutorial, using ID without classname is shown to make it easier to implement inheritance in the data model.
 
@@ -137,11 +137,60 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 In the *Models* folder, create *Course.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu21/Models/Course.cs?name=snippet_Intro)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the DB generate it.
+
+## Scaffold the student model
+
+In this section, the student model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the student model.
+
+Create a *Pages/Students* folder.
+
+# [Visual Studio](#tab/visual-studio)
+
+* In **Solution Explorer**, right click on the *Pages/Students* folder > **Add** > **New Scaffolded Item**.
+* In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
+
+Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+
+* In the **Model class** drop down, select **Student (ContosoUniversity.Models)**.
+* In the **Data context class** row, select the **+** (plus) sign and accept the generated name **ContosoUniversity.Models.ContosoUniversityContext**.
+* In the **Data context class** drop down,  select **ContosoUniversity.Models.ContosoUniversityContextt**
+* Select **Add**.
+
+See [Scaffold the movie model](xref:tutorials/razor-pages/model?view=aspnetcore-2.1#scaffold-the-movie-model) if you have a problem with the preceding step.
+
+<a name="pmc"></a>
+## Perform initial migration
+
+In this section, you use the Package Manager Console (PMC) to:
+
+* Add an initial migration.
+* Update the database with the initial migration.
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+
+In the PMC, enter the following commands:
+
+```PMC
+Add-Migration Initial
+Update-Database
+```
+# [.NET Core CLI](#tab/netcore-cli)
+
+------
+
+
+
+Alternatively, the following .NET Core CLI commands can be used:
+
+```console
+dotnet ef migrations add Initial
+dotnet ef database update
+```
 
 ## Create the SchoolContext DB context
 
