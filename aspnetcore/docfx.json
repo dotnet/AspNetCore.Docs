@@ -60,6 +60,7 @@
         "razor-pages/**/**.md": "aspnetcore-razorpages",
         "release-notes/**/**.md": "aspnetcore-releasenotes",
         "signalr/**/**.md": "aspnetcore-signalr",
+        "test/**/**.md": "aspnetcore-test",
         "web-api/**/**.md": "aspnetcore-webapi"
       }
     },
