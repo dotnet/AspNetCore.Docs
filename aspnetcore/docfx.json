@@ -54,6 +54,7 @@
       "ms.technology": {
         "data/**/**.md": "aspnetcore-data",
         "migration/**/**.md": "aspnetcore-migration",
+        "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
         "release-notes/**/**.md": "aspnetcore-releasenotes",
