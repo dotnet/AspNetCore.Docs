@@ -16,9 +16,9 @@ In this section, you'll accomplish the following tasks:
 
 ## Download and test the app
 
-The app used in this guide is a pre-built ASP.NET Core app, [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/). It's a Razor Pages app that uses the `Microsoft.SyndicationFeed.ReaderWriter` API to retrieve an RSS/Atom feed and display the news items in a list.
+The app used in this guide is a pre-built ASP.NET Core app, [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/). It's a [Razor Pages](https://docs.microsoft.com/aspnet/core/razor-pages/) app that uses the `Microsoft.SyndicationFeed.ReaderWriter` API to retrieve an RSS/Atom feed and display the news items in a list.
 
-Feel free to review the code, but it's important to understand that there's nothing special about this app. It's just a simple ASP.NET Core app for illustrative purposes.
+Feel free to review the code, but it's important to understand that there's nothing special about this app. It's a basic ASP.NET Core app for illustrative purposes.
 
 From a command shell, download the code, build the project, and run it as follows.
 
@@ -108,7 +108,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
 3. Using a command shell on your local machine, navigate to the web app's project folder (for example, `.\simple-feed-reader\SimpleFeedReader`). Execute the following commands to set up Git to push to the deployment URL:
 
-    a. Add the remote URL to the local repo.
+    a. Add the remote URL to the local repository.
 
     ```console
     git remote add azure-prod <Git_deployment_URL>
@@ -122,11 +122,11 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
     You'll be prompted for the deployment credentials you created earlier. Observe the output in the command shell. Azure builds the ASP.NET Core app remotely.
 
-4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repo with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
+4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repository with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
 
 ## Deployment with Visual Studio
 
-> *Note: This section applies to Windows only. Linux and macOS users should make the change described in step 2 below. Save the file, and commit the change to the local repo with `git commit`. Finally, push the change with `git push`, as in the first section.*
+> *Note: This section applies to Windows only. Linux and macOS users should make the change described in step 2 below. Save the file, and commit the change to the local repository with `git commit`. Finally, push the change with `git push`, as in the first section.*
 
 The app has already been deployed from the command shell. Let's use Visual Studio's integrated tools to deploy an update to the app. Behind the scenes, Visual Studio accomplishes the same thing as the command line tooling, but within Visual Studio's familiar UI.
 
@@ -173,14 +173,14 @@ Deployment slots support the staging of changes without impacting the app runnin
 
 3. In a text editor or Visual Studio, modify *Pages/Index.cshtml* again so that the `<h2>` element reads `<h2>Simple Feed Reader - V3</h2>` and save the file.
 
-4. Commit the file to the local Git repo, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using the local machine's command shell:
+4. Commit the file to the local Git repository, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using the local machine's command shell:
 
     ```console
     git commit -a -m "upgraded to V3"
     ```
 5. Using the local machine's command shell, add the staging deployment URL as a Git remote and push the committed changes:
 
-    a. Add the remote URL for staging to the local repo.
+    a. Add the remote URL for staging to the local repository.
 
     ```console
     git remote add azure-staging <Git_staging_deployment_URL>
