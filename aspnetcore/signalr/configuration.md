@@ -2,13 +2,9 @@
 title: ASP.NET Core SignalR configuration
 author: rachelappel
 description: Configure ASP.NET Core SignalR Apps
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.date: 06/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/configuration
 ---
 
@@ -31,7 +27,7 @@ In the .NET client, the same `AddJsonHubProtocol` extension method exists on [Hu
 > [!NOTE]
 > It's not possible to configure JSON serialization in the JavaScript client at this time.
 
-### MessagePack Serialization Options
+### MessagePack serialization options
 
 MessagePack serialization can be configured by providing a delegate to the [AddMessagePackProtocol](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) call. See [MessagePack in SignalR](xref:signalr/messagepackhubprotocol) for more details.
 
@@ -229,7 +225,7 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-## Additional Resources
+## Additional resources
 
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Hubs](xref:signalr/hubs)
