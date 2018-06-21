@@ -172,14 +172,14 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     ![build definition Deploy task](media/04/build-definition-deploy-task.png)
 
-    Its settings appear in a panel to the right.
+    The task's settings appear in a panel to the right.
 1. Select the Azure subscription associated with the App Service from the **Azure subscription** drop-down. Once selected, click the **Authorize** button.
-2. Select *Web App* from the **App type** drop-down.
-3. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
-4. Select *AzureTutorial* from the **Resource group** drop-down.
-5. Select *staging* from the **Slot** drop-down.
-6. Click the **Save** button.
-7. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
+1. Select *Web App* from the **App type** drop-down.
+1. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
+1. Select *AzureTutorial* from the **Resource group** drop-down.
+1. Select *staging* from the **Slot** drop-down.
+1. Click the **Save** button.
+1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
 
     ![Release definition name](media/04/vsts-release-definition-name.png)
 
