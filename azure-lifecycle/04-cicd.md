@@ -159,7 +159,6 @@ There are three distinct steps to complete. Completing the steps in the followin
     With this option enabled, a deployment occurs each time a new build is available.
 1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
 1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's *master* branch.
-1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
 1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
 
    ![Release definition - Environment name textbox](media/04/vsts-environment-name-textbox.png)
@@ -169,14 +168,18 @@ There are three distinct steps to complete. Completing the steps in the followin
     ![Release definition - Production environment link.png](media/04/vsts-production-link.png)
 
     The **Tasks** tab of the environment appears.
-1. Click the **Deploy Azure App Service to Slot** task. Its settings appear in a panel to the right.
+1. Click the **Deploy Azure App Service to Slot** task:
+
+    ![build definition Deploy task](media/04/build-definition-deploy-task.png)
+
+    Its settings appear in a panel to the right.
 1. Select the Azure subscription associated with the App Service from the **Azure subscription** drop-down. Once selected, click the **Authorize** button.
-1. Select *Web App* from the **App type** drop-down.
-1. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
-1. Select *AzureTutorial* from the **Resource group** drop-down.
-1. Select *staging* from the **Slot** drop-down.
-1. Click the **Save** button.
-1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
+2. Select *Web App* from the **App type** drop-down.
+3. Select *mywebapp/<unique_number/>* from the **App service name** drop-down.
+4. Select *AzureTutorial* from the **Resource group** drop-down.
+5. Select *staging* from the **Slot** drop-down.
+6. Click the **Save** button.
+7. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
 
     ![Release definition name](media/04/vsts-release-definition-name.png)
 
