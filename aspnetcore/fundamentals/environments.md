@@ -137,7 +137,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 1. In the **SETTINGS** group, select the **Application settings** blade.
 1. In the **Application settings** area, select **Add new setting**.
 1. For **Enter a name**, provide `ASPNETCORE_ENVIRONMENT`. For **Enter a value**, provide the environment (for example, `Staging`).
-1. Select **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
+1. Select the **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
 1. Select **Save** at the top of the blade.
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
@@ -158,7 +158,7 @@ set ASPNETCORE_ENVIRONMENT=Development
 $Env:ASPNETCORE_ENVIRONMENT = "Development"
 ```
 
-These commands only take effect for the current window. When the window is closed, the `ASPNETCORE_ENVIRONMENT` setting reverts to the default setting or machine value. In order to set the value globally in Windows, open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value:
+These commands only take effect for the current window. When the window is closed, the `ASPNETCORE_ENVIRONMENT` setting reverts to the default setting or machine value. To set the value globally in Windows, open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value:
 
 ![System Advanced Properties](environments/_static/systemsetting_environment.png)
 
@@ -186,7 +186,7 @@ Alternatively, set the environment with `export` prior to running the app:
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 
-Machine-level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor and add the following statment:
+Machine-level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor. Add the following statement:
 
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
