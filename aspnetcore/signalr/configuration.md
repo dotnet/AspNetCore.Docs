@@ -61,8 +61,8 @@ Use `HttpConnectionDispatcherOptions` to configure advanced settings related to 
 | `AuthorizationData` | A list of [`IAuthorizeData`](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) objects used to determine if a client is authorized to connect to the hub. By default, this is populated with values from the `Authorize` attributes applied to the Hub class. |
 | `TransportMaxBufferSize` | The maximum number of bytes sent by the app that the server buffers. Increasing this value allows the server to send larger messages, but can negatively impact memory consumption. The default value is 32KB. |
 | `Transports` | A bitmask of `HttpTransportType` values that can restrict the transports a client can use to connect. All transports are enabled by default. |
-| `LongPolling` | Additional options specific to the Long Polling transport |
-| `WebSockets` | Additional options specific to the WebSockets transport |
+| `LongPolling` | Additional options specific to the Long Polling transport. |
+| `WebSockets` | Additional options specific to the WebSockets transport. |
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 
@@ -106,6 +106,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub")
     .configureLogging(signalR.LogLevel.Information)
+    .build();
 ```
 
 > [!NOTE]
@@ -115,13 +116,13 @@ Log levels available to the JavaScript client are listed below. Setting the log 
 
 | Level | Description |
 | ----- | ----------- |
-| `None` | No messages are logged |
-| `Critical` | Messages that indicate a failure in the entire app |
-| `Error` | Messages that indicate a failure in the current operation |
-| `Warning` | Messages that indicate a non-fatal problem |
-| `Information` | Informational messages |
-| `Debug` | Diagnostic messages useful for debugging |
-| `Trace` | Very detailed diagnostic messages designed for diagnosing specific issues |
+| `None` | No messages are logged. |
+| `Critical` | Messages that indicate a failure in the entire app. |
+| `Error` | Messages that indicate a failure in the current operation. |
+| `Warning` | Messages that indicate a non-fatal problem. |
+| `Information` | Informational messages. |
+| `Debug` | Diagnostic messages useful for debugging. |
+| `Trace` | Very detailed diagnostic messages designed for diagnosing specific issues. |
 
 ### Configure allowed transports
 
@@ -217,7 +218,8 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub", {
-        skipNegotiation: true
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
     });
     .build();
 ```
