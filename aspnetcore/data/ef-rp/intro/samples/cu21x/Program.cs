@@ -1,9 +1,11 @@
-﻿#define First
-#if First
-#region snippet
+﻿#define Migrate
+#if Migrate
+
+using ContosoUniversity.Data;                     // DbInitializer
 using ContosoUniversity.Models;                   // SchoolContext
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;              // Migrate
 using Microsoft.Extensions.DependencyInjection;   // CreateScope
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,12 +25,13 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
+                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred creating the DB.");
+                    logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
 
@@ -40,8 +43,9 @@ namespace ContosoUniversity
                 .UseStartup<Startup>();
     }
 }
-#endregion
 #else
+#region snippet
+#endregion
 using ContosoUniversity.Data;                     // DbInitializer
 using ContosoUniversity.Models;                   // SchoolContext
 using Microsoft.AspNetCore;

@@ -169,24 +169,6 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 See [Scaffold the movie model](xref:tutorials/razor-pages/model?view=aspnetcore-2.1#scaffold-the-movie-model) if you have a problem with the preceding step.
 
-<a name="pmc"></a>
-
-## Perform initial migration
-
-In this section, you use the Package Manager Console (PMC) to:
-
-* Add an initial migration.
-* Update the database with the initial migration.
-
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
-
-In the PMC, enter the following commands:
-
-```PMC
-Add-Migration Initial
-Update-Database
-```
-
 # [.NET Core CLI](#tab/netcore-cli)
 
 Run the following commands to scaffold the student model.
@@ -195,19 +177,6 @@ Run the following commands to scaffold the student model.
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
 ```
-
-In this section, you:
-
-* Add an initial migration.
-* Update the database with the initial migration.
-
-Run the following commands:
-
-```console
-dotnet ef migrations add Initial
-dotnet ef database update
-```
-
 ------
 
 The scaffold process created and changed the following files:
@@ -230,13 +199,27 @@ The scaffoding tool automatically created a DB Context and registered it with th
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line were added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=11-)]
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
+## Update main
+
+In *Program.cs*, modify the `Main` method to do the following:
+
+* Get a DB context instance from the dependency injection container.
+* Call the  [EnsureCreated](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated?view=efcore-2.1#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated).
+* Dispose the context when the `EnsureCreated` method completes.
+
+The following code shows the updated *Program.cs* file.
+
+[!code-csharp[](intro/samples/cu21/Program.cs?name=snippet)]
+
+`EnsureCreated` ensures that the database for the context exists. If it exists, no action is taken. If it does not exist then the database and all its schema are created. `EnsureCreated` does not use migrations to create the database. A database that is created with `EnsureCreated` cannot be later updated using migrations. Later in the tutorial we will delete this DB and use migrations.
+
 ### Test the app
 
-Run the app and accept the cookie policy. This app doesn't keep personal information. You can read about the cookie policy UI at [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr).
+Run the app and accept the cookie policy. This app doesn't keep personal information. You can read about the cookie policy at [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr).
 
 * Select the **Students** link and then **Create New**.
 * Test the Edit, Details, and Delete links.
@@ -268,7 +251,7 @@ EF Core creates an empty DB. In this section, a *Initialize* method is written t
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
 
-[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
 The code checks if there are any students in the DB. If there are no students in the DB, the DB is initialized with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
@@ -292,7 +275,7 @@ The first time the app is run, the DB is created and seeded with test data. When
 
 In later tutorials, the DB is updated when the data model changes, without deleting and re-creating the DB.
 
- <a name="test"></a>
+<a name="test"></a>
 
 ### Test the app
 
@@ -304,7 +287,9 @@ Test the **Create**, **Edit**, and **Details** links.
 
 ## View the DB
 
-When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if the DB exists, and creates one if necessary. If there are no Students in the DB, the `Initialize` method adds students.
+When the app is started, `DbInitializer.Initialize` calls [EnsureCreated](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated?view=efcore-2.1#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated). `EnsureCreated` ensures that the database for the context exists. If it exists, no action is taken. If it does not exist then the database and all its schema are created.
+
+If there are no Students in the DB, the `Initialize` method adds students.
 
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
 In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
