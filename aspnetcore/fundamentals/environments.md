@@ -1,39 +1,39 @@
 ---
 title: Use multiple environments in ASP.NET Core
 author: rick-anderson
-description: Learn how ASP.NET Core provides support for controlling app behavior across multiple environments.
+description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
 ms.author: riande
-ms.date: 12/25/2017
+ms.date: 06/21/2018
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core provides support for setting application behavior at runtime with environment variables.
+ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Environments
 
-ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at application startup and stores that value in [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but [three values](/dotnet/api/microsoft.aspnetcore.hosting.environmentname?view=aspnetcore-2.0) are supported by the framework: [Development](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development?view=aspnetcore-2.0), [Staging](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.staging?view=aspnetcore-2.0), and [Production](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.production?view=aspnetcore-2.0). If `ASPNETCORE_ENVIRONMENT` isn't set, it will default to `Production`.
+ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname). You can set `ASPNETCORE_ENVIRONMENT` to any value, but [three values](/dotnet/api/microsoft.aspnetcore.hosting.environmentname) are supported by the framework: [Development](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development), [Staging](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.staging), and [Production](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.production). If `ASPNETCORE_ENVIRONMENT` isn't set, it defaults to `Production`.
 
 [!code-csharp[](environments/sample/WebApp1/Startup.cs?name=snippet)]
 
 The preceding code:
 
-* Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_DeveloperExceptionPageExtensions_UseDeveloperExceptionPage_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseBrowserLink](/dotnet/api/microsoft.aspnetcore.builder.browserlinkextensions.usebrowserlink?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_BrowserLinkExtensions_UseBrowserLink_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
-* Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_ExceptionHandlerExtensions_UseExceptionHandler_Microsoft_AspNetCore_Builder_IApplicationBuilder_) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
+* Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) and [UseBrowserLink](/dotnet/api/microsoft.aspnetcore.builder.browserlinkextensions.usebrowserlink) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
+* Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
 
     * `Staging`
     * `Production`
     * `Staging_2`
 
-The [Environment Tag Helper ](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
+The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
-[!code-html[](environments/sample/WebApp1/Pages/About.cshtml)]
+[!code-cshtml[](environments/sample-snapshot/WebApp1/Pages/About.cshtml)]
 
-Note: On Windows and macOS, environment variables and values are not case sensitive. Linux environment variables and values are **case sensitive** by default.
+On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
 
 ### Development
 
@@ -46,6 +46,7 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 [!code-json[](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
 
 ::: moniker range=">= aspnetcore-2.1"
+
 > [!NOTE]
 > The `applicationUrl` property in *launchSettings.json* can specify a list of server URLs. Use a semicolon between the URLs in the list:
 >
@@ -59,9 +60,10 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 >    }
 > }
 > ```
+
 ::: moniker-end
 
-When the application is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` will be used. The value of `commandName` specifies the web server to launch. `commandName` can be one of :
+When the app is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` is used. The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
 * IIS Express
 * IIS
@@ -87,7 +89,7 @@ The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json*
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
-Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it will detect changes made to its environment.
+Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
 
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
@@ -115,7 +117,7 @@ A *.vscode/launch.json* file in the project isn't read when starting the app wit
 
 ### Production
 
-The production environment should be configured to maximize security, performance, and application robustness. Some common settings that differ from development include:
+The production environment should be configured to maximize security, performance, and app robustness. Some common settings that differ from development include:
 
 * Caching.
 * Client-side resources are bundled, minified, and potentially served from a CDN.
@@ -125,36 +127,42 @@ The production environment should be configured to maximize security, performanc
 
 ## Setting the environment
 
-It's often useful to set a specific environment for testing. If the environment isn't set, it will default to `Production` which disables most debugging features.
+It's often useful to set a specific environment for testing. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
 
-The method for setting the environment depends on the operating system.
+### Azure App Service
 
-### Azure
+To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
-For Azure app service:
+1. Select the app from the **App Services** blade.
+1. In the **SETTINGS** group, select the **Application settings** blade.
+1. In the **Application settings** area, select **Add new setting**.
+1. For **Enter a name**, provide `ASPNETCORE_ENVIRONMENT`. For **Enter a value**, provide the environment (for example, `Staging`).
+1. Select the **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
+1. Select **Save** at the top of the blade.
 
-* Select the **Application settings** blade.
-* Add the key and value in **App settings**.
-
+Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
 ### Windows
-To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used
 
-**Command line**
-```
+To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used:
+
+**Command prompt**
+
+```console
 set ASPNETCORE_ENVIRONMENT=Development
 ```
+
 **PowerShell**
-```
+
+```powershell
 $Env:ASPNETCORE_ENVIRONMENT = "Development"
 ```
 
-These commands take effect only for the current window. When the window is closed, the ASPNETCORE_ENVIRONMENT setting reverts to the default setting or machine value. In order to set the value globally on Windows open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value.
+These commands only take effect for the current window. When the window is closed, the `ASPNETCORE_ENVIRONMENT` setting reverts to the default setting or machine value. To set the value globally in Windows, open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value:
 
 ![System Advanced Properties](environments/_static/systemsetting_environment.png)
 
 ![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png)
-
 
 **web.config**
 
@@ -162,42 +170,45 @@ See the *Setting environment variables* section of the [ASP.NET Core Module conf
 
 **Per IIS Application Pool**
 
-To set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic.
+To set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables &lt;environmentVariables&gt;](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic.
 
 ### macOS
-Setting the current environment for macOS can be done in-line when running the application;
+
+Setting the current environment for macOS can be performed in-line when running the app:
 
 ```bash
 ASPNETCORE_ENVIRONMENT=Development dotnet run
 ```
-or using `export` to set it prior to running the app.
+
+Alternatively, set the environment with `export` prior to running the app:
 
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
 ```
-Machine level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor and add the following statment.
+
+Machine-level environment variables are set in the *.bashrc* or *.bash_profile* file. Edit the file using any text editor. Add the following statement:
 
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 
 ### Linux
-For Linux distros, use the `export` command at the command line for session based variable settings and *bash_profile* file for machine level environment settings.
+
+For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
 
 ### Configuration by environment
 
 See [Configuration by environment](xref:fundamentals/configuration/index#configuration-by-environment) for more information.
 
-<a name="startup-conventions"></a>
-## Environment based Startup class and methods
+## Environment-based Startup class and methods
 
-When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. If a class `Startup{EnvironmentName}` exists, that class will be called for that `EnvironmentName`:
+When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. If a `Startup{EnvironmentName}` class exists, the class is called for that `EnvironmentName`:
 
 [!code-csharp[](environments/sample/WebApp1/StartupDev.cs?name=snippet&highlight=1)]
 
-Note: Calling [WebHostBuilder.UseStartup<TStartup>](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
+[WebHostBuilder.UseStartup<TStartup>](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_StartupBase_Configure_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices?view=aspnetcore-2.0) support environment specific versions of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
+[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
 
 [!code-csharp[](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,37)]
 
@@ -205,4 +216,4 @@ Note: Calling [WebHostBuilder.UseStartup<TStartup>](/dotnet/api/microsoft.aspnet
 
 * [Application startup](xref:fundamentals/startup)
 * [Configuration](xref:fundamentals/configuration/index)
-* [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.0#Microsoft_AspNetCore_Hosting_IHostingEnvironment_EnvironmentName)
+* [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname)

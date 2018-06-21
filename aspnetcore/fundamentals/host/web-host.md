@@ -796,7 +796,7 @@ public class CustomFileReader
 }
 ```
 
-A [convention-based approach](xref:fundamentals/environments#startup-conventions) can be used to configure the app at startup based on the environment. Alternatively, inject the `IHostingEnvironment` into the `Startup` constructor for use in `ConfigureServices`:
+A [convention-based approach](xref:fundamentals/environments#environment-based-startup-class-and-methods) can be used to configure the app at startup based on the environment. Alternatively, inject the `IHostingEnvironment` into the `Startup` constructor for use in `ConfigureServices`:
 
 ```csharp
 public class Startup
