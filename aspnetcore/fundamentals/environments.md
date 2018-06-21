@@ -140,7 +140,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 1. Select **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
 1. Select **Save** at the top of the blade.
 
-A service restart isn't necessary.
+Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
 ### Windows
 
