@@ -2,16 +2,12 @@
 title: Differences between SignalR and SignalR Core
 author: rachelappel
 description: Differences between SignalR and SignalR Core
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
+ms.custom: mvc
 ms.date: 06/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/version-differences
 ---
-
 # Differences between SignalR and ASP.NET Core SignalR
 
 SignalR for ASP.NET Core is not compatible with previous versions of SignalR. This means that you cannot use the old server with the new clients or the old clients with the new server. The following article details the features which have been removed or changed in the ASP.NET Core version of SignalR.
@@ -97,7 +93,7 @@ Use the `HubConnectionBuilder` to create and build an instance of a connection t
 
 [!code-csharp[.NET Client connection](version-differences/sample/code.cs?range=7-9)]
 
-## Additional Resources
+## Additional resources
 
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
