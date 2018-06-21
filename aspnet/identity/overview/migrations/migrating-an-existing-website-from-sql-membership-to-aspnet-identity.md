@@ -111,6 +111,8 @@ With this information we can create SQL statements to create new tables. We can 
 - Run command "Add-migration initial" which creates the initial setup code to create the database in C#/VB.
 - The final step is to run "Update-Database –Script" command that generates the SQL script based on the model classes.
 
+[!INCLUDE[](~/includes/identity/alter-command-exception.md)]
+
 This database generation script can be used as a start where we'll be making additional changes to add new columns and copy data. The advantage of this is that we generate the `_MigrationHistory` table which is used by EntityFramework to modify the database schema when the model classes change for future versions of Identity releases. 
 
 The SQL membership user information had other properties in addition to the ones in the Identity user model class namely email, password attempts, last login date, last lock-out date etc. This is useful information and we would like it to be carried over to the Identity system. This can be done by adding additional properties to the user model and mapping them back to the table columns in the database. We can do this by adding a class that subclasses the `IdentityUser` model. We can add the properties to this custom class and edit the SQL script to add the corresponding columns when creating the table. The code for this class is described further in the article. The SQL script for creating the `AspnetUsers` table after adding the new properties would be
