@@ -43,19 +43,47 @@
       "feedback_github_repo": "aspnet/docs",
       "feedback_product_url": "https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md",
       "feedback_system": "GitHub",
-      "manager": "wpickett",
       "ms.prod": "aspnet-core",
-      "ms.topic": "conceptual",
       "searchScope": [
         "ASP.NET Core"
       ]
     },
     "fileMetadata": {
       "ms.technology": {
+        "client-side/**/**.md": "aspnetcore-clientside",
+        "data/**/**.md": "aspnetcore-data",
+        "fundamentals/**/**.md": "aspnetcore-fundamentals",
+        "getting-started/**/**.md": "aspnetcore-getstarted",
+        "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
+        "migration/**/**.md": "aspnetcore-migration",
+        "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
+        "performance/**/**.md": "aspnetcore-performance",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
+        "release-notes/**/**.md": "aspnetcore-releasenotes",
+        "security/**/**.md": "aspnetcore-security",
         "signalr/**/**.md": "aspnetcore-signalr",
+        "test/**/**.md": "aspnetcore-test",
+        "tutorials/**/**.md": "aspnetcore-tutorials",
         "web-api/**/**.md": "aspnetcore-webapi"
+      },
+      "ms.topic": {
+        "client-side/**/**.md": "conceptual",
+        "data/**/**.md": "conceptual",
+        "fundamentals/**/**.md": "conceptual",
+        "getting-started/**/**.md": "conceptual",
+        "host-and-deploy/**/**.md": "conceptual",
+        "migration/**/**.md": "conceptual",
+        "mobile/**/**.md": "conceptual",
+        "mvc/**/**.md": "conceptual",
+        "performance/**/**.md": "conceptual",
+        "razor-pages/**/**.md": "conceptual",
+        "release-notes/**/**.md": "conceptual",
+        "security/**/**.md": "conceptual",
+        "signalr/**/**.md": "conceptual",
+        "test/**/**.md": "conceptual",
+        "tutorials/**/**.md": "tutorial",
+        "web-api/**/**.md": "conceptual"
       }
     },
     "template": [],

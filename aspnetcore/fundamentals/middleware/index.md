@@ -2,12 +2,8 @@
 title: ASP.NET Core Middleware
 author: rick-anderson
 description: Learn about ASP.NET Core middleware and the request pipeline.
-manager: wpickett
 ms.author: riande
 ms.date: 01/22/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware

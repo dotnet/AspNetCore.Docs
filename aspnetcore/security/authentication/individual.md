@@ -2,12 +2,8 @@
 title: Articles based on ASP.NET Core projects created with individual user accounts
 author: rick-anderson
 description: Discover articles based on ASP.NET Core projects created with individual user accounts.
-manager: wpickett
 ms.author: riande
 ms.date: 11/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts

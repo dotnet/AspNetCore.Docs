@@ -2,12 +2,8 @@
 title: Client-side development in ASP.NET Core
 author: rick-anderson
 description: 
-manager: wpickett
 ms.author: riande
 ms.date: 02/21/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/index
 ---
 # Client-side development in ASP.NET Core

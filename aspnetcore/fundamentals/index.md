@@ -2,13 +2,9 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 09/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: fundamentals/index
 ---
 
