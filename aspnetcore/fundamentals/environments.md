@@ -1,7 +1,7 @@
 ---
 title: Use multiple environments in ASP.NET Core
 author: rick-anderson
-description: Learn how ASP.NET Core provides support for controlling app behavior across multiple environments.
+description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
 manager: wpickett
 ms.author: riande
 ms.date: 12/25/2017
@@ -14,7 +14,7 @@ uid: fundamentals/environments
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core provides support for setting app behavior at runtime with environment variables.
+ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
