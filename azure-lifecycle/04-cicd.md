@@ -57,7 +57,7 @@ Remove the local Git deployment with the following steps. VSTS both replaces and
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Open your local machine's command shell. Navigate to the directory in which the *simple-feed-reader* Git repository is stored.
-1. Remove the two remotes which enabled local Git deployments by executing the following commands:
+1. Remove the two remotes, which enabled local Git deployments, by executing the following commands:
 
     ```console
     git remote remove azure-prod
@@ -213,6 +213,8 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
 
     ![queued build](media/04/build-queued.png)
+
+    A green check mark in the **Status** column of the **Mine** tab indicates a successful build.
 
 1. Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
 
