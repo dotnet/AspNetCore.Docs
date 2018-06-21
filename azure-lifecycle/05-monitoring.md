@@ -116,7 +116,7 @@ In this section, you completed the following tasks:
 * Turn on logging and learn where to download logs
 * Stream logs in real time
 * Learn where to set up alerts
-* Learn about remote debugging Azure App Service web apps.
+* Learn about remote debugging Azure App Service web apps
 
 ## Additional reading
 
