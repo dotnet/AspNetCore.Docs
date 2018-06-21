@@ -169,7 +169,6 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 See [Scaffold the movie model](xref:tutorials/razor-pages/model?view=aspnetcore-2.1#scaffold-the-movie-model) if you have a problem with the preceding step.
 
-
 <a name="pmc"></a>
 
 ## Perform initial migration
@@ -252,7 +251,6 @@ Update *SchoolContext.cs* with the following code:
 
 The highlighted code:
 
-* Updates the `Student` to the plural `Students`.
 * Creates a [DbSet\<TEntity>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a DB table.
@@ -266,25 +264,25 @@ The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweigh
 
 ## Add code to initialize the DB with test data
 
-EF Core creates an empty DB. In this section, a *Seed* method is written to populate it with test data.
+EF Core creates an empty DB. In this section, a *Initialize* method is written to populate it with test data.
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
 
 [!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
-The code checks if there are any students in the DB. If there are no students in the DB, the DB is seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
+The code checks if there are any students in the DB. If there are no students in the DB, the DB is initialized with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
 The `EnsureCreated` method automatically creates the DB for the DB context. If the DB exists, `EnsureCreated` returns without modifying the DB.
 
 In *Program.cs*, modify the `Main` method to do the following:
 
 * Get a DB context instance from the dependency injection container.
-* Call the seed method, passing to it the context.
+* Call the `Initialize` method, passing to it the context.
 * Dispose the context when the seed method completes.
 
 The following code shows the updated *Program.cs* file.
 
-[!code-csharp[](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu21/Program.cs?name=snippet)]
 
 The first time the app is run, the DB is created and seeded with test data. When the data model is updated:
 
@@ -293,54 +291,6 @@ The first time the app is run, the DB is created and seeded with test data. When
 * Run the app and a new seeded DB is created.
 
 In later tutorials, the DB is updated when the data model changes, without deleting and re-creating the DB.
-
-<a name="pmc"></a>
-
-## Add scaffold tooling
-
-In this section, the Package Manager Console (PMC) is used to add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
-
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
-
-In the Package Manager Console (PMC), enter the following commands:
-
-```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
-```
-
-The previous command adds the NuGet packages to the *.csproj file:
-
-[!code-xml[](intro/samples/cu/ContosoUniversity1_csproj.txt?highlight=7-8)]
-
-<a name="scaffold"></a>
-
-## Scaffold the model
-
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following commands:
-
- ```console
-dotnet restore
-dotnet tool install --global dotnet-aspnet-codegenerator --version 2.1.0
-dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
- ```
-
-If you get the error:
-
-  ``` console
-No executable found matching command "dotnet-aspnet-codegenerator"
-  ```
-
-Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-
-Build the project. The build generates errors like the following:
-
- `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
-
- Globally change `_context.Student` to `_context.Students` (that is, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633) in the next release.
-
-[!INCLUDE [model4tbl](../../includes/RP/model4tbl.md)]
 
  <a name="test"></a>
 
