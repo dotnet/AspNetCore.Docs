@@ -2,13 +2,9 @@
 title: Visual Studio Tools for Docker with ASP.NET Core
 author: spboyer
 description: Learn how to use Visual Studio 2017 tooling and Docker for Windows to containerize an ASP.NET Core app.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/12/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core

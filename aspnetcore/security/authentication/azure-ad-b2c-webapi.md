@@ -3,11 +3,7 @@ title: Cloud authentication in web APIs with Azure Active Directory B2C in ASP.N
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core Web API. Test the authenticated web API with Postman.
 ms.author: casoper
-manager: wpickett
 ms.date: 01/25/2018
-ms.topic: tutorial
-ms.technology: aspnet
-ms.prod: asp.net-core
 ms.custom: mvc
 uid: security/authentication/azure-ad-b2c-webapi
 ---

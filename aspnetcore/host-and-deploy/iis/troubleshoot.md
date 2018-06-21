@@ -2,13 +2,9 @@
 title: Troubleshoot ASP.NET Core on IIS
 author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS

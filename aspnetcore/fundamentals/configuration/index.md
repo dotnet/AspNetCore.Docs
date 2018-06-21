@@ -2,13 +2,9 @@
 title: Configuration in ASP.NET Core
 author: rick-anderson
 description: Learn how to use the Configuration API to configure an ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core

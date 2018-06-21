@@ -2,12 +2,8 @@
 title: Use multiple environments in ASP.NET Core
 author: rick-anderson
 description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
-ms.date: 12/25/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 06/21/2018
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core

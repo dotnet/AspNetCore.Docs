@@ -2,12 +2,8 @@
 title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
-manager: wpickett
 ms.author: riande
 ms.date: 01/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core

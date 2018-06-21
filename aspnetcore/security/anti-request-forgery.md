@@ -2,13 +2,9 @@
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 author: steve-smith
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/19/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -132,7 +128,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf).
+> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 

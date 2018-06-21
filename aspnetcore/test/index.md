@@ -2,13 +2,9 @@
 title: Test, debug, and troubleshoot in ASP.NET Core
 author: guardrex
 description: Links to resources for testing and debugging ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: test/index
 ---
 # Test, debug, and troubleshoot in ASP.NET Core

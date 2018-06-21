@@ -2,13 +2,9 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 09/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: fundamentals/index
 ---
 
@@ -73,7 +69,7 @@ For more information, see [Application startup](xref:fundamentals/startup).
 
 ## Content root
 
-The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:mvc/razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
+The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
 
 ## Web root
 

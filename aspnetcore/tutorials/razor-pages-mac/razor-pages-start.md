@@ -2,20 +2,16 @@
 title: Get started with Razor Pages in ASP.NET Core on macOS with Visual Studio for Mac
 author: rick-anderson
 description: Discover how to get started with Razor Pages in ASP.NET Core using Visual Studio for Mac.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 07/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/razor-pages-start
 ---
 # Get started with Razor Pages in ASP.NET Core on macOS with Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you review [Introduction to Razor Pages](xref:mvc/razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
+This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you review [Introduction to Razor Pages](xref:razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
 
 ## Prerequisites
 

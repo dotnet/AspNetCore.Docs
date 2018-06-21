@@ -2,13 +2,9 @@
 title: Authenticate users with WS-Federation in ASP.NET Core
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/27/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
@@ -20,7 +16,7 @@ For ASP.NET Core 2.0 apps, WS-Federation support is provided by [Microsoft.AspNe
 By default, the new middleware:
 
 * Doesn't allow unsolicited logins. This feature of the WS-Federation protocol is vulnerable to XSRF attacks. However, it can be enabled with the `AllowUnsolicitedLogins` option.
-* Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed. This path can be shared with other authentication providers by enabling the `SkipUnrecognizedRequests` option.
+* Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [WsFederationOptions](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions) class. This path can be shared with other authentication providers by enabling the [SkipUnrecognizedRequests](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions.skipunrecognizedrequests) option.
 
 ## Register the app with Active Directory
 

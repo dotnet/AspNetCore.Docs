@@ -4,8 +4,8 @@
 # [What's new](xref:aspnetcore-2.0)
 # [What's new](xref:aspnetcore-1.1)
 
-# [Get started](getting-started.md)
-## [Create a web app](xref:mvc/razor-pages/index)
+# [Get started](xref:getting-started)
+## [Create a web app](xref:razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
 
 # [Tutorials](tutorials/index.md)
@@ -152,13 +152,13 @@
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
-## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
+## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 
-# [Razor Pages](xref:mvc/razor-pages/index)
-## [Filter methods for Razor Pages](xref:mvc/razor-pages/filter)
-## [Create a Razor Class Library](xref:mvc/razor-pages/ui-class)
-## [Route and app conventions](xref:mvc/razor-pages/razor-pages-conventions)
-## [Razor SDK](xref:mvc/razor-pages/sdk)
+# [Razor Pages](xref:razor-pages/index)
+## [Filter methods for Razor Pages](xref:razor-pages/filter)
+## [Create a Razor Class Library](xref:razor-pages/ui-class)
+## [Route and app conventions](xref:razor-pages/razor-pages-conventions)
+## [Razor SDK](xref:razor-pages/sdk)
 
 # [MVC](xref:mvc/overview)
 ## [Model binding](xref:mvc/models/model-binding)
@@ -318,6 +318,7 @@
 ### [Role-based authorization](xref:security/authorization/roles)
 ### [Claims-based authorization](xref:security/authorization/claims)
 ### [Policy-based authorization](xref:security/authorization/policies)
+### [Authorization policy providers](xref:security/authorization/iauthorizationpolicyprovider)
 ### [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 ### [Resource-based authorization](xref:security/authorization/resourcebased)
 ### [View-based authorization](xref:security/authorization/views)

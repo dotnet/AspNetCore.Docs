@@ -2,12 +2,8 @@
 title: Overview of ASP.NET Core Security
 author: rachelappel
 description: Learn about authentication, authorization, and security basics in ASP.NET Core.
-manager: wpickett
 ms.author: rachelap
 ms.date: 11/01/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/index
 ---
 # Overview of ASP.NET Core Security

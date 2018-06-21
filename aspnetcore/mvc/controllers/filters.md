@@ -2,12 +2,8 @@
 title: Filters in ASP.NET Core
 author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
-manager: wpickett
 ms.author: riande
 ms.date: 4/10/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/controllers/filters
 ---
 
@@ -18,10 +14,10 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 *Filters* in ASP.NET Core MVC allow you to run code before or after specific stages in the request processing pipeline.
 
 > [!IMPORTANT]
-> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 and later supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) for Razor Pages. For more information, see [Filter methods for Razor Pages](xref:mvc/razor-pages/filter).
+> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 and later supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) for Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
  Built-in filters handle tasks such as:
- 
+
  * Authorization (preventing access to resources a user isn't authorized for).
  * Ensuring that all requests use HTTPS.
  * Response caching (short-circuiting the request pipeline to return a cached response). 

@@ -3,12 +3,8 @@ title: Factory-based middleware activation in ASP.NET Core
 author: guardrex
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
 ms.author: riande
-manager: wpickett
 ms.custom: mvc
 ms.date: 01/29/2018
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core

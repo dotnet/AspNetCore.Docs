@@ -2,13 +2,9 @@
 title: Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn what tag helpers are and how to use them in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 2/14/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/tag-helpers/intro
 ---
 # Tag Helpers in ASP.NET Core
