@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define first // SortFilterPage // SortFilter //SortOnly // first 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,9 +22,13 @@ namespace ContosoUniversity.Pages.Students
 
         public IList<Student> Student { get;set; }
 
+#if first
+        #region snippet_ScaffoldedIndex
         public async Task OnGetAsync()
         {
             Student = await _context.Student.ToListAsync();
         }
     }
-}
+        #endregion
+#endif
+    }

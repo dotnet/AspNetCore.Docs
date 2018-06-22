@@ -8,6 +8,7 @@ uid: data/ef-rp/intro
 ---
 
 https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1
+https://docs.microsoft.com/en-us
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
@@ -242,9 +243,7 @@ Update *SchoolContext.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_Intro&highlight=12-14)]
 
-The highlighted code:
-
-* Creates a [DbSet\<TEntity>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for each entity set. In EF Core terminology:
+The highlighted code creates a [DbSet\<TEntity>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a DB table.
 * An entity corresponds to a row in the table.
@@ -253,7 +252,7 @@ The highlighted code:
 
 ### SQL Server Express LocalDB
 
-The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
+The connection string specifies [SQL Server LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017). LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
 ## Add code to initialize the DB with test data
 
@@ -267,33 +266,11 @@ The code checks if there are any students in the DB. If there are no students in
 
 The `EnsureCreated` method automatically creates the DB for the DB context. If the DB exists, `EnsureCreated` returns without modifying the DB.
 
-In *Program.cs*, modify the `Main` method to do the following:
+In *Program.cs*, modify the `Main` method to call `Initialize`:
 
-* Get a DB context instance from the dependency injection container.
-* Call the `Initialize` method, passing to it the context.
-* Dispose the context when the seed method completes.
+[!code-csharp[](intro/samples/cu21/Program.cs?name=snippet2&highlight=14-15)]
 
-The following code shows the updated *Program.cs* file.
-
-[!code-csharp[](intro/samples/cu21/Program.cs?name=snippet)]
-
-The first time the app is run, the DB is created and seeded with test data. When the data model is updated:
-
-* Delete the DB.
-* Update the seed method.
-* Run the app and a new seeded DB is created.
-
-In later tutorials, the DB is updated when the data model changes, without deleting and re-creating the DB.
-
-<a name="test"></a>
-
-### Test the app
-
-Run the app and select the **Students** link. Depending on the browser width, the **Students** link appears at the top of the page. If the **Students** link isn't visible, click the navigation icon in the upper right corner.
-
-![Contoso University home page narrow](intro/_static/home-page-narrow.png)
-
-Test the **Create**, **Edit**, and **Details** links.
+Delete any student records and restart the app. If the DB is not initialized, set a break point in `Initialize` to diagnose the problem.
 
 ## View the DB
 
@@ -304,21 +281,22 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The <em>.mdf</em> and <em>.ldf</em> DB files are in the <em>C:\Users\\<yourusername></em> folder.
-
 ## Conventions
 
 The amount of code written in order for EF Core to create a complete DB is minimal because of the use of conventions, or assumptions that EF Core makes.
 
 * The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
-
 * Entity property names are used for column names.
+* Entity properties that are named `ID` or `classnameID` are recognized as primary key (PK) properties.
+* A property that is not a PK is interpreted as a foreign key property if it's named `<navigation property name><primary key property name>` or `<primary key property name>`. For example, `CourseID` and `StudentID` in the `Enrollment` entity:
 
-* Entity properties that are named ID or classnameID are recognized as primary key properties.
+[!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Intro2&highlight=4-5)]
 
-* A property is interpreted as a foreign key property if it's named *<navigation property name><primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can be named *<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
+Conventional behavior can be overridden. For example, the following can be explicitly set:
 
-Conventional behavior can be overridden. For example, the table names can be explicitly specified, as shown earlier in this tutorial. The column names can be explicitly set. Primary keys and foreign keys can be explicitly set.
+* Table name
+* Column name
+* Primary keys and foreign keys.
 
 ## Asynchronous code
 
@@ -328,14 +306,14 @@ A web server has a limited number of threads available, and in high load situati
 
 Asynchronous code does introduce a small amount of overhead at run time. For low traffic situations, the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
 
-In the following code, the `async` keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
+In the following code, the [async](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async) keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to:
 
   * Generate callbacks for parts of the method body.
-  * Automatically create the [Task](/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that's returned. For more information, see [Task Return Type](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+  * Automatically create the [Task](/dotnet/api/system.threading.tasks.task) object that's returned. For more information, see [Task Return Type](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 
@@ -351,7 +329,7 @@ Some things to be aware of when writing asynchronous code that uses EF Core:
 
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 
-For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async).
+For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async) and [Asynchronous programming with async and await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/).
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 ::: moniker-end

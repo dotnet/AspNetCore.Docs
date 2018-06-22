@@ -1,4 +1,4 @@
-﻿#define First
+﻿#define Initialize // First
 #if First
 #region snippet
 using ContosoUniversity.Models;                   // SchoolContext
@@ -41,18 +41,20 @@ namespace ContosoUniversity
     }
 }
 #endregion
-#else
+#endif
+
+#if Initialize
 using ContosoUniversity.Data;                     // DbInitializer
-using ContosoUniversity.Models;                   // SchoolContext
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;              // Migrate
 using Microsoft.Extensions.DependencyInjection;   // CreateScope
 using Microsoft.Extensions.Logging;
 using System;
 
 namespace ContosoUniversity
 {
+    #region snippet2
     public class Program
     {
         public static void Main(string[] args)
@@ -66,12 +68,13 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
+                    // using ContosoUniversity.Data; 
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
+                    logger.LogError(ex, "An error occurred creating the DB.");
                 }
             }
 
@@ -82,5 +85,6 @@ namespace ContosoUniversity
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+    #endregion
 }
 #endif

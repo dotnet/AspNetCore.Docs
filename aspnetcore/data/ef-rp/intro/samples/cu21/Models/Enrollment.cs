@@ -9,6 +9,7 @@ namespace ContosoUniversity.Models
         A, B, C, D, F
     }
 
+    #region snippet_Intro2
     public class Enrollment
     {
         public int EnrollmentID { get; set; }
@@ -19,6 +20,7 @@ namespace ContosoUniversity.Models
         public Course Course { get; set; }
         public Student Student { get; set; }
     }
+    #endregion
 }
 #endregion
 
