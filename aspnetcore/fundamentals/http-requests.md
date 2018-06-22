@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/02/2018
+ms.date: 06/22/2018
 uid: fundamentals/http-requests
 ---
 # Initiate HTTP requests
