@@ -165,7 +165,7 @@ Multiple handlers can be registered in the order that they should execute. Each 
 
 `IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in a NuGet package called 'Microsoft.Extensions.Http.Polly'. This package is not included by default by the 'Microsoft.AspNetCore.App' metapackage. To use the extensions, a PackageReference should be explicitly included in the project.
+Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. This package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the extensions, an explicit `<PackageReference />` should be included in the project.
 
 [!code-csharp[](http-requests/samples/HttpClientFactorySample.csproj?highlight=9)]
 
