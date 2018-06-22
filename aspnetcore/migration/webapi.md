@@ -125,7 +125,7 @@ Compatibility features included in Microsoft.AspNetCore.Mvc.WebApiCompatShim inc
         * `CreateResponse<T>`
         * `CreateErrorResponse`
     * Action result methods:
-        * `BadResuestErrorMessageResult`
+        * `BadRequestErrorMessageResult`
         * `ExceptionResult`
         * `InternalServerErrorResult`
         * `InvalidModelStateResult`
