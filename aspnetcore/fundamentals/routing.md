@@ -145,7 +145,7 @@ routes.MapRoute(
     dataTokens: new { locale = "en-US" });
 ```
 
-This template will match a URL path like `/Products/5` and will extract the values `{ controller = Products, action = Details, id = 5 }` and the data tokens `{ locale = en-US }`.
+This template matches a URL path like `/en-US/Products/5` and extracts the values `{ controller = Products, action = Details, id = 5 }` and the data tokens `{ locale = en-US }`.
 
 ![Locals Windows tokens](routing/_static/tokens.png)
 
