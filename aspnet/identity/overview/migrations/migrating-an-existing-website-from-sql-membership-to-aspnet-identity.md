@@ -111,7 +111,7 @@ With this information we can create SQL statements to create new tables. We can 
 - Run command "Add-migration initial" which creates the initial setup code to create the database in C#/VB.
 - The final step is to run "Update-Database –Script" command that generates the SQL script based on the model classes.
 
-[!INCLUDE[](~/includes/identity/alter-command-exception.md)]
+[!INCLUDE[](../../../includes/identity/alter-command-exception.md)]
 
 This database generation script can be used as a start where we'll be making additional changes to add new columns and copy data. The advantage of this is that we generate the `_MigrationHistory` table which is used by EntityFramework to modify the database schema when the model classes change for future versions of Identity releases. 
 

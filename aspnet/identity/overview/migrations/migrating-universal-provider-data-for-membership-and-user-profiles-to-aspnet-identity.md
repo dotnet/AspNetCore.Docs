@@ -101,7 +101,7 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
 
 Copy the files in the **IdentityModels** and **IdentityAccount** folders from the download source ( [https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations](https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations) ). These have the remaining model classes and the new pages needed for user and role management using the ASP.NET Identity APIs. The approach used is similar to the SQL Membership and the detailed explanation can be found [here](migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md).
 
-[!INCLUDE[](~/includes/identity/alter-command-exception.md)]
+[!INCLUDE[](../../../includes/identity/alter-command-exception.md)]
 
 ## Copying Profile data to the new tables
 
