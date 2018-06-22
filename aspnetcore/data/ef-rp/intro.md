@@ -7,9 +7,6 @@ ms.date: 11/15/2017
 uid: data/ef-rp/intro
 ---
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1
-https://docs.microsoft.com/en-us
-
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
 ::: moniker range="= aspnetcore-2.0"
@@ -78,9 +75,7 @@ dotnet run
 
 ## Set up the site style
 
-A few changes set up the site menu, layout, and home page.
-
-Open *Pages/Shared/_Layout.cshtml* and make the following changes:
+A few changes set up the site menu, layout, and home page. Update *Pages/Shared/_Layout.cshtml* with the following changes:
 
 * Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
 
@@ -203,14 +198,14 @@ Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was
 
 [!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 ## Update main
 
 In *Program.cs*, modify the `Main` method to do the following:
 
 * Get a DB context instance from the dependency injection container.
-* Call the  [EnsureCreated](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated?view=efcore-2.1#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated).
+* Call the  [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated?view=efcore-2.1#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated).
 * Dispose the context when the `EnsureCreated` method completes.
 
 The following code shows the updated *Program.cs* file.
@@ -237,13 +232,13 @@ Run the app and accept the cookie policy. This app doesn't keep personal informa
 
 ## Examine the SchoolContext DB context
 
-The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1). The data context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1). The data context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
 Update *SchoolContext.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_Intro&highlight=12-14)]
 
-The highlighted code creates a [DbSet\<TEntity>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for each entity set. In EF Core terminology:
+The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a DB table.
 * An entity corresponds to a row in the table.
@@ -252,7 +247,7 @@ The highlighted code creates a [DbSet\<TEntity>](https://docs.microsoft.com/en-u
 
 ### SQL Server Express LocalDB
 
-The connection string specifies [SQL Server LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017). LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
+The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017). LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
 ## Add code to initialize the DB with test data
 
@@ -281,23 +276,6 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-## Conventions
-
-The amount of code written in order for EF Core to create a complete DB is minimal because of the use of conventions, or assumptions that EF Core makes.
-
-* The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
-* Entity property names are used for column names.
-* Entity properties that are named `ID` or `classnameID` are recognized as primary key (PK) properties.
-* A property that is not a PK is interpreted as a foreign key property if it's named `<navigation property name><primary key property name>` or `<primary key property name>`. For example, `CourseID` and `StudentID` in the `Enrollment` entity:
-
-[!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Intro2&highlight=4-5)]
-
-Conventional behavior can be overridden. For example, the following can be explicitly set:
-
-* Table name
-* Column name
-* Primary keys and foreign keys.
-
 ## Asynchronous code
 
 Asynchronous programming is the default mode for ASP.NET Core and EF Core.
@@ -306,30 +284,25 @@ A web server has a limited number of threads available, and in high load situati
 
 Asynchronous code does introduce a small amount of overhead at run time. For low traffic situations, the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
 
-In the following code, the [async](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async) keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
+In the following code, the [async](/dotnet/csharp/language-reference/keywords/async) keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to:
-
   * Generate callbacks for parts of the method body.
   * Automatically create the [Task](/dotnet/api/system.threading.tasks.task) object that's returned. For more information, see [Task Return Type](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
-
 * The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
-
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
 Some things to be aware of when writing asynchronous code that uses EF Core:
 
 * Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
-
 * An EF Core context isn't thread safe: don't try to do multiple operations in parallel.
-
 * To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF Core methods that send queries to the DB.
 
-For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async) and [Asynchronous programming with async and await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/).
+For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async) and [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/).
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 ::: moniker-end
