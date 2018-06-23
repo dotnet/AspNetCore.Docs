@@ -68,8 +68,16 @@ The scaffolding tool automatically created a DB Context and registered it with t
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+
+The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/SchoolContext.cs)]
+
+The [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property creates a entity set for the `Movie` model. In EF Core terminology:
+
+* An entity set typically corresponds to a DB table.
+* An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
