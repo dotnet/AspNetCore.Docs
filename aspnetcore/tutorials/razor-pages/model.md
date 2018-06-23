@@ -72,7 +72,7 @@ Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was
 
 The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/SchoolContext.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/RazorPagesMovieContext.cs)]
 
 The [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property creates a entity set for the `Movie` model. In EF Core terminology:
 
