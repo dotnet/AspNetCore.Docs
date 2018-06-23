@@ -74,10 +74,7 @@ The main class that coordinates EF Core functionality for a given data model is 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/RazorPagesMovieContext.cs)]
 
-The [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property creates a entity set for the `Movie` model. In EF Core terminology:
-
-* An entity set typically corresponds to a DB table.
-* An entity corresponds to a row in the table.
+The preceding code creates a  [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
