@@ -48,6 +48,31 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 ![Image from the previous instructions.](model/_static/arp.png)
 
+The scaffold process created and changed the following files:
+
+### Files created
+
+* *Pages/Movies* Create, Delete, Details, Edit, Index. These pages are detailed in the next tutorial.
+* *Data/RazorPagesMovieContext.cs*
+
+### Files updates
+
+* *Startup.cs* : Changes to this file in are detailed the next section.
+* *appsettings.json* : The connection string used to connect to a local database is added.
+
+## Examine the context registered with dependency injection
+
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a db context instance is shown later in the tutorial.
+
+The scaffolding tool automatically created a DB Context and registered it with the dependency injection container.
+
+Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
+
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+
 <a name="pmc"></a>
 ## Perform initial migration
 
@@ -188,4 +213,4 @@ The next tutorial explains the files created by scaffolding.
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
