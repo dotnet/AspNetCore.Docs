@@ -2,14 +2,10 @@
 title: Use ASP.NET Core SignalR with TypeScript and WebPack
 author: ssougnez
 description: How to bundle a web application using SignalR, TypeScript and WebPack.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: ssougnez
 ms.custom: mvc
 ms.date: 06/13/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/webpack-and-typescript
 ---
 
