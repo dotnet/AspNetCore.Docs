@@ -19,7 +19,7 @@ The sample's middleware implementation records the value provided by a query str
 
 In the sample app, a middleware factory is implemented to create an `BuildInjectorActivatedMiddleware` instance. The middleware factory uses the Build container to resolve the middleware:
 
-[!code-csharp[](extensibility-third-party-container-build-build/sample/Middleware/BuildMiddlewareFactory.cs?name=snippet1&highlight=5-8,12)]
+[!code-csharp[](extensibility-third-party-container-build/sample/Middleware/BuildMiddlewareFactory.cs?name=snippet1&highlight=5-8,12)]
 
 ## IMiddleware
 
