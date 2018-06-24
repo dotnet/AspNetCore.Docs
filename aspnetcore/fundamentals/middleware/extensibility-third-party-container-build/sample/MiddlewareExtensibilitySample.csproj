@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Build.DependencyInjection" Version="1.0.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
+</Project>
