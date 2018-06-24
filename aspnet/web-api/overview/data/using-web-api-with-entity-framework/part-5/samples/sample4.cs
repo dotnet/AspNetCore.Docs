@@ -1,4 +1,4 @@
-[ResponseType(typeof(Book))]
+[ResponseType(typeof(BookDTO))]
 public async Task<IHttpActionResult> PostBook(Book book)
 {
     if (!ModelState.IsValid)
