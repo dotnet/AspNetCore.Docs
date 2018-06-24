@@ -27,17 +27,17 @@ namespace MiddlewareExtensibilitySample
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Replace the default middleware factory with the
-            // SimpleInjectorMiddlewareFactory.
+            // BuildMiddlewareFactory.
             services.AddTransient<IMiddlewareFactory>(_ =>
             {
                 return new BuildMiddlewareFactory(_container);
             });
 
-            // Wrap ASP.NET requests in a Simple Injector execution
+            // Wrap ASP.NET requests in a Build execution
             // context.
 
-            // Provide the database context from the Simple
-            // Injector container whenever it's requested from
+            // Provide the database context from the Build
+            // container whenever it's requested from
             // the default service container.
             services.AddScoped(provider => _container.CreateInstance<Lazy<AppDbContext>>().GetInstance());
 
