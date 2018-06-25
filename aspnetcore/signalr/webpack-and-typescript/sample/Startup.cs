@@ -16,7 +16,9 @@ namespace SignalRWebPack
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet_AddSignalR
             services.AddSignalR();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +32,12 @@ namespace SignalRWebPack
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            #region snippet_UseSignalR
             app.UseSignalR(options =>
             {
                 options.MapHub<ChatHub>("/hub");
             });
+            #endregion
         }
     }
 }
