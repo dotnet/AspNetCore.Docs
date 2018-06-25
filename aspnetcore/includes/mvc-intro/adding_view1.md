@@ -1,4 +1,4 @@
-# Adding a view to an ASP.NET Core MVC app
+# Add a view to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

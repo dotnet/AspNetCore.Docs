@@ -6,7 +6,6 @@ ms.author: riande
 ms.date: 09/22/2017
 uid: tutorials/first-mvc-app-mac/adding-model
 ---
-# Add a model to an ASP.NET Core MVC app with Visual Studio for Mac
 
 [!INCLUDE [adding-model](../../includes/mvc-intro/adding-model1.md)]
 
