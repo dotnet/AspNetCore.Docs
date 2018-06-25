@@ -39,7 +39,7 @@ By [Sébastien Sougnez](https://twitter.com/ssougnez)
 If you plan to use global npm packages, configure Visual Studio to look for them in the *PATH* environment variable. By default, Visual Studio uses the version of npm in its installation directory. Follow these instructions in Visual Studio:
 
 1. Navigate to **Tools** > **Options** > **Projects and solutions** > **Web Package Management** > **External Web Tools**.
-2. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list. As an aside, the first entry refers to the project's local packages.
+1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list. As an aside, the first entry refers to the project's local packages.
 
     ![Visual Studio Configuration](webpack-and-typescript/_static/signalr-configure-path-visual-studio.png)
 
@@ -159,7 +159,7 @@ SignalR enables the exchange of messages between a client and a server. Each mes
 
     [!code-typescript[index.ts](webpack-and-typescript/sample/src/index.ts?range=34)]
 
-Sending a message through the "web socket" connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. So here, you send a `newMessage` message with the username and the content of the "input" to the server. If it works, the "input" value is cleaned.
+Sending a message through the web socket connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. So here, you send a `newMessage` message with the username and the content of the "input" to the server. If it works, the "input" value is cleaned.
 
 1. To broadcast received messages to all the connected users once the server receives them, add the following method to the *ChatHub* class:
 
