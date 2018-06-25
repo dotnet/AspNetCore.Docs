@@ -1,162 +1,170 @@
 ---
-title: Use ASP.NET Core SignalR with TypeScript and WebPack
+title: Use ASP.NET Core SignalR with TypeScript and Webpack
 author: ssougnez
-description: How to bundle a web application using SignalR, TypeScript and WebPack.
+description: Learn how to bundle an ASP.NET Core SignalR web app using TypeScript and Webpack.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: ssougnez
+ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/13/2018
+ms.date: 06/25/2018
 uid: signalr/webpack-and-typescript
 ---
-
-# Use ASP.NET Core SignalR with TypeScript and WebPack
+# Use ASP.NET Core SignalR with TypeScript and Webpack
 
 By [Sébastien Sougnez](https://twitter.com/ssougnez)
 
-[WebPack](https://webpack.js.org/) enables developers to easily bundle the client side of a web application. This tutorial teaches how to use it to bundle an application written in TypeScript that communicates with a server through web sockets using SignalR.
+[Webpack](https://webpack.js.org/) enables developers to easily bundle the client-side resources of a web app. This tutorial uses Webpack to bundle an ASP.NET Core SignalR app whose client is written in TypeScript.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/webpack-and-typescript/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/webpack-and-typescript/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Prerequisites
 
-* **[Node.js](https://nodejs.org/)** and npm must be installed on your system to be able to use WebPack.
+# [Visual Studio](#tab/visual-studio)
 
-> [!NOTE]
-> You can use the **Package Manager Console** of Visual Studio to run npm scripts. If you don't see it, just use **View** > **Other Windows** > **Package Manager Console**.
+* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
+* [Node.js](https://nodejs.org/) with npm
 
-> [!NOTE]
-> If you plan on using global Node.js packages, it's better to configure Visual Studio to look for them in the **PATH** environment variable before it looks in its installation directory.
+# [Visual Studio Code](#tab/visual-studio-code)
 
-1. Use the **Tools** > **Options** menu option and select **Projects and solutions** > **Web Package Management** > **External Web Tools**.
-2. Select the **$(PATH)** value in the list then click on the up arrow to move it at the second place (the first line refers to the local packages). 
+* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+* [Node.js](https://nodejs.org/) with npm
+
+---
+
+> [!TIP]
+> You can use Visual Studio's **Package Manager Console** window to run npm scripts. If you don't see it, go to **View** > **Other Windows** > **Package Manager Console**.
+
+If you plan to use global npm packages, configure Visual Studio to look for them in the *PATH* environment variable. By default, Visual Studio uses the version of npm in its installation directory. Follow these instructions in Visual Studio:
+
+1. Navigate to **Tools** > **Options** > **Projects and solutions** > **Web Package Management** > **External Web Tools**.
+2. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list. As an aside, the first entry refers to the project's local packages.
 
     ![Visual Studio Configuration](webpack-and-typescript/_static/signalr-configure-path-visual-studio.png)
 
-## Create the ASP.NET Core web application
+## Create the ASP.NET Core web app
 
-# [Visual Studio](#tab/visual-studio/)
+# [Visual Studio](#tab/visual-studio)
 
-1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Give a meaningful name to the application and validate.
-2. Select **Empty** and ensure that **ASP.NET Core 2.1** is selected from the framework selector.
+1. Use the **File** > **New Project** menu option and choose **ASP.NET Core Web Application**. Use a meaningful name for the app.
+1. Select *ASP.NET Core 2.1* from the framework selector drop-down, and select the **Empty** template.
 
-   ![New Project dialog in Visual Studio](webpack-and-typescript/_static/signalr-create-web-application.png)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-# [Visual Studio Code](#tab/visual-studio-code/)
-
-1. From the **Integrated Terminal**, run the following command:
+Run the following command in the **Integrated Terminal**:
 
     ```console
     dotnet new web -o SignalRWebPack
     ```
+
 ---
 
-## Configure WebPack and TypeScript
+## Configure Webpack and TypeScript
 
-To be able to bundle all front end related resources (stylesheets, images and TypeScript files), you need to install the following packages using your prefered packages manager.
+To bundle the client-side resources (stylesheets, images, and TypeScript), use the following steps.
 
-1. Run the following command to install the required packages for WebPack.
+1. Install the required npm packages by executing the following command from the project root:
 
     ```console
-    npm install clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli -D
+    npm install -D clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli
     ```
 
-2. Update your *package.json* file to include these scripts:
+1. Update the *package.json* file to include the following npm scripts:
 
-    [!code-javascript[Package](webpack-and-typescript/sample/package.json?range=2-6)]
+    [!code-json[package.json](webpack-and-typescript/sample/package.json?range=2-6)]
 
-* build: Bundles your front end resources in development mode and watch for file changes.
-* release: Bundles your front end resources in production mode.
-* publish: Run the "release" script to bundle your front end resources in production mode then call the "publish" dotnet CLI command to publish your whole application.
+    The following list explains each script's purpose:
 
-> [!NOTE]
-> The "build" script starts WebPack in watch mode, meaning that the bundle gets regenerated as soon as a file of the application changes. Moreover, the **mode** flag defines that production optimizations such as tree-shaking or minification won't be applied. This script should only be used for development purpose. To bundle your application for production, use the "release" script.
+    * `build`: Bundles your client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use this script in development.
+    * `release`: Bundles your client-side resources in production mode.
+    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
-> [!NOTE]
-> As you use Kestrel to host your application, it's not possible to use **webpack-dev-server**.
+    As you use Kestrel to host your app, it's not possible to use *webpack-dev-server*.
 
-> [!NOTE]
-> You can run these scripts in an external terminal by typing "*npm run SCRIPT_NAME*" or you can use the **Task Runner Explorer** window in Visual Studio.
+    > [!TIP]
+    > You can run npm scripts in a command shell by typing `npm run <script_name>`. Alternatively, you can use the **Task Runner Explorer** window in Visual Studio.
 
-3. Create a file called *webpack.config.js* in the root of your project to configure the compilation of WebPack.
+1. Create a file named *webpack.config.js*, in the project root, to configure the Webpack compilation:
 
-    [!code-javascript[WebPack](webpack-and-typescript/sample/webpack.config.js)]
+    [!code-javascript[webpack.config.js](webpack-and-typescript/sample/webpack.config.js)]
 
-Here are the things to pay attention to:
+    Here are some configuration details to note:
 
-* The **output** part overrides its default value to emit the bundle in the *wwwroot* directory instead of the *dist* one.
-* **resolve.extensions** must contain ".js" in order to be able to import the "JavaScript" code of SignalR.
+    * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
+    * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
 
-4. Create a file called *index.html* in the folder **./src** to define the template of the homepage.
+1. Create a file named *index.html* in the *./src* folder. It defines the homepage's HTML template.
 
-    [!code-html[Index](webpack-and-typescript/sample/src/index.html)]
+    [!code-html[index.html](webpack-and-typescript/sample/src/index.html)]
 
-5. Create a file called *main.css* in the folder *./src/assets/css* to define the basic CSS classes of the application.
+1. Create a file named *main.css* in the *./src/assets/css* directory. It includes CSS classes for the app.
 
-    [!code-css[CSS](webpack-and-typescript/sample/src/assets/css/main.css)]
+    [!code-css[main.css](webpack-and-typescript/sample/src/assets/css/main.css)]
 
-6. Create a file called *tsconfig.json* in root of your project to configure the TypeScript compilation.
+1. Create a file named *tsconfig.json* in the project root. It configures the TypeScript compilation.
 
-    [!code-javascript[tsconfig](webpack-and-typescript/sample/tsconfig.json)]
+    [!code-json[tsconfig.json](webpack-and-typescript/sample/tsconfig.json)]
 
-This settings defines that the TypeScript source code must be compiled in ES5 compatible "JavaScript" code.
+    These settings cause the TypeScript source code to compile to ECMAScript 5-compatible JavaScript.
 
-7. Create a file called *index.ts* in the *./src* directory.
+1. Create a file named *index.ts* in the *./src* directory.
 
     [!code-typescript[tsconfig](webpack-and-typescript/sample/src/index.ts?range=1,5-8,25-33,35)]
 
-Besides retrieving references to the different elements of the page, two event handled are defined:
+    The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
-* One that fires when the user types something in the **input** to call the **send** function when the user presses the "Enter" key.
-* One that fires when the user clicks on the "Send" button and call the **send** function.
+    * `keyup`: This event fires when the user types something in the textbox identified as `tbMessage`. The `send` function is called when the user presses the **Enter** key.
+    * `click`: This event fires when the user clicks the **Send** button. The `send` function is called.
 
-## Configure the ASP.NET Core application
+## Configure the ASP.NET Core app
 
-1. The current code of the file *Startup.cs* is responsible for displaying "*Hello World!*". Replace the last **app.Run** method call by the following one to ensure that the server is able to find and serve the *index.html* whether the user enters its full URL or just the root URL of the web application.
+1. The code provided in the *Startup.Configure* method displays *Hello World!*. Replace the `app.Run` method call with calls to [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). This code allows the server to locate and serve the *index.html* file, whether the user enters its full URL or the root URL of the web app.
 
     [!code-csharp[Startup](webpack-and-typescript/sample/Startup.cs?range=30,31)]
 
-2. Add the following line in the **ConfigureServices** method to add the SignalR service to your application.
+1. Call [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) in the *Startup.ConfigureServices* method. It adds the SignalR services to your project.
 
     [!code-csharp[Startup](webpack-and-typescript/sample/Startup.cs?range=19)]
 
-2. SignalR needs to be configured to define the available routes and to plug them with a specific hub. Add the following lines at the end of the **Configure** method to defines a "/hub" route plugged to the **ChatHub** class.
+1. Map a route to a specific hub. Add the following lines at the end of the *Startup.Configure* method to define a */hub* assigned to the *ChatHub* class.
 
     [!code-csharp[Startup](webpack-and-typescript/sample/Startup.cs?range=33-36)]
 
-3. Add a file called *./Core/ChatHub.cs* with the following content to create you hub:
+1. Add a file called *./Core/ChatHub.cs*, with the following content, to create your hub:
 
     [!code-csharp[ChatHub](webpack-and-typescript/sample/Core/ChatHub.cs)]
 
-4. Don't forget to add a **using** statement to import the **Core** namespace in the *Startup.cs* file.
+1. Don't forget to add a `using` statement to import the `Core` namespace in the *Startup* file.
 
-## Enable the communication between the client and the server
+## Enable client and server communication
 
-Right now, you have an application that displays a simple form to send messages but nothing happens when you actually try to do so. On the other hand, the server is just listening to a specific route but don't do anything with sent messages. 
+Right now, the app displays a simple form to send messages. Nothing happens when you try to do so. The server is listening to a specific route but doesn't do anything with sent messages.
 
-1. To allow the client to send messages to the server, start by installing the SignalR npm package:
+1. To allow the client to send messages to the server, install the SignalR npm package:
 
     ```console
-    npm install @aspnet/signalr -S
+    npm install -S @aspnet/signalr
     ```
 
-2. Add the following lines below the declaration of the **username** constant in the *./src/index.ts* file to be able to receive messages from the server:
+1. Add the following lines after the declaration of the `username` constant in the *./src/index.ts* file. This change supports the receiving of messages from the server:
 
-    [!code-csharp[Index](webpack-and-typescript/sample/src/index.ts?range=10-23)]
+    [!code-typescript[Index](webpack-and-typescript/sample/src/index.ts?range=10-23)]
 
-The class **HubConnectionBuilder** creates a new builder that you can use to configure the connection to the server. To configure the URL of the hub, you need to use the **withUrl** function.
+The *HubConnectionBuilder* class creates a new builder that you can use to configure the connection to the server. To configure the hub URL, use the `withUrl` function.
 
-The idea behind SignalR is pretty simple, you exchange messages between a client and a server and each message has a specific name. For example, you can have messages with the name "messageReceived" that executes the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the **on** function and you can listen to any number of message names that you want. It is also possible to pass parameters to the message, like the author's name and the content of the message received. Once a the client received a message, a new "div" is created with the author's name and the message content in its "innerHTML" property and added to the main "div" displaying the messages.
+SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, you can have messages with the name `messageReceived` that execute the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. You can listen to any number of message names that you want. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` property. It's added to the main `div` element displaying the messages.
 
-3. Now that the client can receive a message, it needs to be able to send some. For that matter, add the following line in the **send** function of the *./src/index.ts* file:
+1. Now that the client can receive a message, configure it to send messages. Add the following line in the `send` function of the *./src/index.ts* file:
 
-    [!code-csharp[Index](webpack-and-typescript/sample/src/index.ts?range=34)]
+    [!code-typescript[index.ts](webpack-and-typescript/sample/src/index.ts?range=34)]
 
-Sending a message through the "web socket" connection is as easy as using the **send** method with the message name as first parameter and the message data as the rest of the parameters, so here, you just send a "newMessage" message with the username and the content of the "input" to the server and if it works, the "input" value is cleaned.
+Sending a message through the "web socket" connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. So here, you send a `newMessage` message with the username and the content of the "input" to the server. If it works, the "input" value is cleaned.
 
-4. To broadcast received messages to all the connected users as soon as the server receives them, add the following method to the **ChatHub** class:
+1. To broadcast received messages to all the connected users once the server receives them, add the following method to the *ChatHub* class:
 
     [!code-csharp[ChatHub](webpack-and-typescript/sample/Core/ChatHub.cs?range=8-11)]
 
-It's not necessary to have a generic **on** method to receive all the messages, all you need is a method named like the message name. For example, the TypeScript code sends a "newMessage" message, so in the C# code, you just need a **NewMessage** method that expects the data sent by the client.
+It's unnecessary to have a generic `on` method to receive all the messages. All you need is a method named like the message name. For example, the TypeScript code sends a `newMessage` message. In the C# code, you need a `NewMessage` method that expects the data sent by the client.
 
-Here, a call is made to the method **SendAsync** on **Clients.All** to broadcast the received messages to everyone.
+A call is made to the method `SendAsync` on `Clients.All` to broadcast the received messages to everyone.
