@@ -11,12 +11,12 @@ module.exports = {
         publicPath: '/'
     },
     resolve: {
-        extensions: [".js", ".ts", ".tsx"]
+        extensions: [".js", ".ts"]
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 use: "ts-loader"
             },
             {
