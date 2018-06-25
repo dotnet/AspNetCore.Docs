@@ -1,5 +1,5 @@
 ---
-title: Adding Validation to an ASP.NET Core app
+title: Add validation to an ASP.NET Core app
 author: rick-anderson
 description: How to add validation to a simple ASP.NET Core app.
 ms.author: riande
