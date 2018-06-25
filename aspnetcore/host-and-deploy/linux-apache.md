@@ -190,7 +190,7 @@ Description=Example .NET Web API App running on CentOS 7
 WorkingDirectory=/var/aspnetcore/hellomvc
 ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 Restart=always
-# Restart service after 10 seconds if dotnet service crashes
+# Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 SyslogIdentifier=dotnet-example
 User=apache
