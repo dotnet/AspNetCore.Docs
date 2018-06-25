@@ -8,6 +8,11 @@ uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 
+?view=efcore-2.1
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude?view=efcore-2.1#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___
+
+
 ::: moniker range="= aspnetcore-2.0"
 The ASP.NET Core 2.0 version of this tutorial can be found in [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/PDF-6-18-18.pdf).
 ::: moniker-end
@@ -15,11 +20,11 @@ The ASP.NET Core 2.0 version of this tutorial can be found in [this PDF file](ht
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-Note: To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the Razor Pages page models. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
+To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the Razor Pages page models. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
 In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are examined.
 
@@ -51,9 +56,9 @@ In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframewor
 * Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it's returned without a request to the DB.
 * Is simple and concise.
 * Is optimized to look up a single entity.
-* Can have perf benefits in some situations, but they rarely come into play for normal web scenarios.
+* Can have perf benefits in some situations, but they rarely come into play for typical web apps.
 * Implicitly uses [FirstAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) instead of [SingleAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
-But if you want to Include other entities, then Find is no longer appropriate. This means that you may need to abandon Find and move to a query as your app progresses.
+But if you want to `Include` other entities, then `FindAsync` is no longer appropriate. This means that you may need to abandon `FindAsync` and move to a query as your app progresses.
 
 ## Customize the Details page
 
@@ -84,18 +89,17 @@ The scaffolded code for the Students Index page doesn't include the `Enrollments
 
 The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
 
-The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. These methods are examined in detail in the reading-related data tutorial.
+The [Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-2.1) and [ThenInclude](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude?view=efcore-2.1#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. These methods are examined in detail in the reading-related data tutorial.
 
-The `AsNoTracking` method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
+The [AsNoTracking](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.1#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
 ### Display related enrollments on the Details page
 
 Open *Pages/Students/Details.cshtml*. Add the following highlighted code to display a list of enrollments:
 
- <!--2do ricka. if doesn't change, remove dup -->
-[!code-cshtml[](intro/samples/cu/Pages/Students/Details1.cshtml?highlight=32-53)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Details.cshtml?highlight=32-53)]
 
 If code indentation is wrong after the code is pasted, press CTRL-K-D to correct it.
 
@@ -107,14 +111,14 @@ Run the app, select the **Students** tab, and click the **Details** link for a s
 
 Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 <a name="TryUpdateModelAsync"></a>
 ### TryUpdateModelAsync
 
 Examine the [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
 
 In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `emptyStudent` object using the posted form values from the [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) property in the [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0). `TryUpdateModelAsync` only updates the properties listed (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
 
@@ -128,7 +132,7 @@ In the preceding sample:
 
 Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
 
-[!code-csharp[](intro/samples/cu/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
+[!code-csharp[](intro/samples/cu21/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
 Even if the app doesn't have a `Secret` field on the create/update Razor Page, a hacker could set the `Secret` value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. The original code doesn't limit the fields that the model binder uses when it creates a Student instance.
 
@@ -139,21 +143,22 @@ Whatever value the hacker specified for the `Secret` form field is updated in th
 The value "OverPost" is successfully added to the `Secret` property of the inserted row. The app designer never intended the `Secret` property to be set with the Create page.
 
 <a name="vm"></a>
+
 ### View model
 
 A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages page model class and the browser. Consider the following `Student` view model:
 
-[!code-csharp[](intro/samples/cu/Models/StudentVM.cs)]
+[!code-csharp[](intro/samples/cu21/Models/StudentVM.cs)]
 
 View models provide an alternative way to prevent overposting. The view model contains only the properties to view (display) or update.
 
 The following code uses the `StudentVM` view model to create a new student:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
 
 The [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. `SetValues` uses property name matching. The view model type doesn't need to be related to the model type, it just needs to have properties that match.
 
-Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
+Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
 In Razor Pages, the `PageModel` derived class is the view model.
 
@@ -161,7 +166,7 @@ In Razor Pages, the `PageModel` derived class is the view model.
 
 Update the page model for the Edit page. The major changes are highlighted:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync&highlight=20,36)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync&highlight=20,36)]
 
 The code changes are similar to the Create page with a few exceptions:
 
@@ -175,9 +180,9 @@ Create and edit a few student entities.
 
 ## Entity States
 
-The DB context keeps track of whether entities in memory are in sync with their corresponding rows in the DB. The DB context sync information determines what happens when `SaveChanges` is called. For example, when a new entity is passed to the `Add` method, that entity's state is set to `Added`. When `SaveChanges` is called, the DB context issues a SQL INSERT command.
+The DB context keeps track of whether entities in memory are in sync with their corresponding rows in the DB. The DB context sync information determines what happens when [SaveChangesAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.1#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called. For example, when a new entity is passed to the [AddAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync?view=efcore-2.1) method, that entity's state is set to [Added](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entitystate?view=efcore-2.1#Microsoft_EntityFrameworkCore_EntityState_Added). When `SaveChangesAsync` is called, the DB context issues a SQL INSERT command.
 
-An entity may be in one of the following states:
+An entity may be in one of the [following states](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entitystate?view=efcore-2.1):
 
 * `Added`: The entity doesn't yet exist in the DB. The `SaveChanges` method issues an INSERT statement.
 
@@ -197,11 +202,11 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, code is added to implement a custom error message when the call to `SaveChanges` fails. Add a string to contain possible error messages:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet1&highlight=12)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Delete.cshtml.cs?name=snippet1&highlight=12)]
 
 Replace the `OnGetAsync` method with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet_OnGetAsync&highlight=1,9,17-20)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Delete.cshtml.cs?name=snippet_OnGetAsync&highlight=1,9,17-20)]
 
 The preceding code contains the optional parameter `saveChangesError`. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely in the cloud. `saveChangesError`is false when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` (because the delete operation failed), the `saveChangesError` parameter is true.
 
@@ -209,9 +214,9 @@ The preceding code contains the optional parameter `saveChangesError`. `saveChan
 
 Replace the `OnPostAsync` with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](intro/samples/cu21/Pages/Students/Delete.cshtml.cs?name=snippet_OnPostAsync)]
 
-The preceding code retrieves the selected entity, then calls the `Remove` method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated. If `Remove` fails:
+The preceding code retrieves the selected entity, then calls the [Remove](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove?view=efcore-2.1#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated. If `Remove` fails:
 
 * The DB exception is caught.
 * The Delete pages `OnGetAsync` method is called with `saveChangesError=true`.
@@ -220,7 +225,9 @@ The preceding code retrieves the selected entity, then calls the `Remove` method
 
 Add the following highlighted error message to the Delete Razor Page.
 
-[!code-cshtml[](intro/samples/cu/Pages/Students/Delete.cshtml?range=1-13&highlight=10)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Delete.cshtml?name=snippet&highlight=11)]
+
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Delete.cshtml?range=1-13&highlight=10)]
 
 Test Delete.
 

@@ -1,4 +1,5 @@
-﻿@page
+﻿@*<!-- <snippet> -->*@
+@page "{id:int}"
 @model ContosoUniversity.Pages.Students.DeleteModel
 
 @{
@@ -7,10 +8,13 @@
 
 <h2>Delete</h2>
 
+<p class="text-danger">@Model.ErrorMessage</p>
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Student</h4>
     <hr />
+    <!-- </snippet> -->
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Student.LastName)
@@ -31,7 +35,7 @@
             @Html.DisplayFor(model => model.Student.EnrollmentDate)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Student.ID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |

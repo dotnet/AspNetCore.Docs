@@ -49,7 +49,7 @@ namespace ContosoUniversity.Data
             };
             foreach (Course c in courses)
             {
-                context.Courses.Add(c);
+                context.Course.Add(c);
             }
             context.SaveChanges();
 
@@ -90,7 +90,7 @@ namespace ContosoUniversity.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(SchoolContext context)
+        public static void Initialize(School Context context)
         {
             //context.Database.EnsureCreated();
 
