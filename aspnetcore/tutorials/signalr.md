@@ -94,7 +94,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*.
+1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the class `ChatHub` and the file *ChatHub.cs*.
 
 2. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
@@ -106,13 +106,13 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Open the *SignalRChat* folder in Visual Studio Code.
 
-2. Add a class to the project by selecting **File** > **New File** from the menu.
+2. Add a class to the project by selecting **File** > **New File** from the menu. Name the class `ChatHub` and the file *ChatHub.cs*.
 
 3. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data to clients.
 
 4. Add a `SendMessage` method to the class. The `SendMessage` method sends a message to all connected chat clients. Notice it returns a [Task](/dotnet/api/system.threading.tasks.task), because SignalR is asynchronous. Asynchronous code scales better.
 
-   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs?range=6-12)]
+   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
 
 -----
 
