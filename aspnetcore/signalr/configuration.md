@@ -16,13 +16,29 @@ ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https:
 
 JSON serialization can be configured on the server using the [`AddJsonProtocol`](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) extension method, which can be added after [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) in your `Startup.ConfigureServices` method. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The [`PayloadSerializerSettings`](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializersettings) property on that object is a JSON.NET `JsonSerializerSettings` object that can be used to configure serialization of arguments and return values. See the [JSON.NET Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm) for more details.
 
-As an example, configure the serializer to use "PascalCase" property names, instead of the default "camelCase" names, using the following code:
+As an example, to configure the serializer to use "PascalCase" property names, instead of the default "camelCase" names, use the following code:
 
-[!code-csharp[Startup config](configuration/sample/config-startup.cs?range=1-5)]
+```csharp
+services.AddSignalR()
+    .AddJsonHubProtocol(options => {
+        options.PayloadSerializerSettings.ContractResolver = 
+        new DefaultContractResolver();
+    });
+```
 
 In the .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to resolve the extension method:
 
-[!code-csharp[HubConnectionBuilder](configuration/sample/addhubjsonprotocol.cs)]
+```csharp
+// At the top of the file:
+using Microsoft.Extensions.DependencyInjection;
+
+// When constructing your connection:
+var connection = new HubConnectionBuilder()
+.AddJsonHubProtocol(options => {
+    options.PayloadSerializerSettings.ContractResolver = 
+        new DefaultContractResolver();
+});
+```
 
 > [!NOTE]
 > It's not possible to configure JSON serialization in the JavaScript client at this time.
@@ -47,11 +63,25 @@ The following table describes options for configuring SignalR hubs:
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Startup.ConfigureServices`.
 
-[!code-csharp[Startup](configuration/sample/config-startup.cs?range=7-14)]
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSignalR(hubOptions =>
+    {
+        hubOptions.EnableDetailedErrors = true;
+        hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+    })
+}
+```
 
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using [`AddHubOptions<T>`](/dotnet/api/microsoft.extensions.dependencyinjection.huboptionsdependencyinjectionextensions.addhuboptions):
 
-[!code-csharp[HubOptions](configuration/sample/config-startup.cs?range=16-19)]
+```csharp
+services.AddSignalR().AddHubOptions<MyHub>(options =>
+{
+    options.EnableDetailedErrors = true;
+}
+```
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [`MapHub<T>`](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub).
 
@@ -193,10 +223,14 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | ----------- | ----------------- | ----------- |
 | `AccessTokenProvider` | `accessTokenFactory` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
 | `SkipNegotiation` | `skipNegotiation` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
-| `Headers` | Not configurable * | A dictionary of additional HTTP headers to send with every HTTP request. |
+| `ClientCertificats` | Not configurable * | A collection of TLS certificates to send to authenticate requests. |
 | `Cookies` | Not configurable * | A collection of HTTP cookies to send with every HTTP request. |
 | `Credentials` | Not configurable * | Credentials to send with every HTTP request. |
+| `CloseTimeout` | Not configurable * | WebSockets only. The maximum amount of time the client will wait after closing for the server to acknowledge the close request. If the server does not acknowledge the close within this time, the client will disconnect. |
+| `Headers` | Not configurable * | A dictionary of additional HTTP headers to send with every HTTP request. |
+| `HttpMessageHandlerFactory` | Not configurable * | A delegate that can be used to configure or replace the `HttpMessageHandler` used to send HTTP requests. Not used for WebSocket connections. This delegate must return an non-null value, and it receives the default value as a parameter. Either modify settings on that default value and return it, or return a completely new `HttpMessageHandler` instance. |
 | `Proxy` | Not configurable * | An HTTP proxy to use when sending HTTP requests. |
+| `UseDefaultCredentials` | Not configurable * | Set this boolean to send the default credentials for HTTP and WebSockets requests. This enables the use of Windows authentication. |
 | `WebSocketConfiguration` | Not configurable * | A delegate that can be used to configure additional WebSocket options. Receives an instance of [ClientWebSocketOptions](/dotnet/api/system.net.websockets.clientwebsocketoptions) that can be used to configure the options. |
 
 Options marked with an asterisk (*) aren't configurable in the JavaScript client, due to limitations in browser APIs.
