@@ -43,7 +43,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
 * In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.
-* In the **Data context class** drop down,  select **RazorPagesMovie.Models.RazorPagesMovieContext**
+* In the **Data context class** drop down, select **RazorPagesMovie.Models.RazorPagesMovieContext**
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/arp.png)
@@ -57,26 +57,26 @@ The scaffold process created and changed the following files:
 
 ### Files updates
 
-* *Startup.cs* : Changes to this file in are detailed the next section.
-* *appsettings.json* : The connection string used to connect to a local database is added.
+* *Startup.cs*: Changes to this file in are detailed the next section.
+* *appsettings.json*: The connection string used to connect to a local database is added.
 
 ## Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a db context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB Context and registered it with the dependency injection container.
+The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
 
-Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
+Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
-The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
+The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a  [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-2.1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions?view=efcore-2.1) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 <a name="pmc"></a>
 ## Perform initial migration
