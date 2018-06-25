@@ -31,17 +31,17 @@ The stdout *logs* directory can be created for the deployment using one of the f
 
    ```xml
    <Target Name="CreateLogsFolder" AfterTargets="Publish">
-     <MakeDir Directories="$(PublishDir)Logs" 
-              Condition="!Exists('$(PublishDir)Logs')" />
-     <WriteLinesToFile File="$(PublishDir)Logs\.log" 
+     <MakeDir Directories="$(PublishDir)logs" 
+              Condition="!Exists('$(PublishDir)logs')" />
+     <WriteLinesToFile File="$(PublishDir)logs\.log" 
                        Lines="Generated file" 
                        Overwrite="True" 
-                       Condition="!Exists('$(PublishDir)Logs\.log')" />
+                       Condition="!Exists('$(PublishDir)logs\.log')" />
    </Target>
    ```
 
-   The `<MakeDir>` element creates an empty *Logs* folder in the published output. The element uses the `PublishDir` property to determine the target location for creating the folder. Several deployment methods, such as Web Deploy, skip empty folders during deployment. The `<WriteLinesToFile>` element generates a file in the *Logs* folder, which guarantees deployment of the folder to the server. Note that folder creation may still fail if the worker process doesn't have write access to the target folder.
+   The `<MakeDir>` element creates an empty *logs* folder in the published output. The element uses the `PublishDir` property to determine the target location for creating the folder. Several deployment methods, such as Web Deploy, skip empty folders during deployment. The `<WriteLinesToFile>` element generates a file in the *logs* folder, which guarantees deployment of the folder to the server. Note that folder creation may still fail if the worker process doesn't have write access to the target folder.
 
-* Physically create the *Logs* directory on the server in the deployment.
+* Physically create the *logs* directory on the server in the deployment.
 
-The deployment directory requires Read/Execute permissions. The *Logs* directory requires Read/Write permissions. Additional directories where files are written require Read/Write permissions.
+The deployment directory requires Read/Execute permissions. The *logs* directory requires Read/Write permissions. Additional directories where files are written require Read/Write permissions.
