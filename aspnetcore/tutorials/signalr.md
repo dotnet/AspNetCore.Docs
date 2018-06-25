@@ -23,7 +23,7 @@ This tutorial demonstrates the following SignalR development tasks:
 > * Create a SignalR hub to push content to clients.
 > * Modify the `Startup` class and configure the app.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # Prerequisites
 
