@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "wwwroot"),
         filename: "[name].[chunkhash].js",
-        publicPath: '/'
+        publicPath: "/"
     },
     resolve: {
         extensions: [".js", ".ts"]
@@ -34,4 +34,4 @@ module.exports = {
             filename: "css/[name].[chunkhash].css"
         })
     ]
-}
+};
