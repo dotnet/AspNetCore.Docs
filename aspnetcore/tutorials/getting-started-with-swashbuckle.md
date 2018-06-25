@@ -73,7 +73,7 @@ Add the Swagger generator to the services collection in the `Startup.ConfigureSe
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_ConfigureServices&highlight=8-11)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_ConfigureServices&highlight=8-11)]z
 
 ::: moniker-end
 
@@ -90,6 +90,8 @@ Import the following namespace to use the `Info` class:
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_Configure&highlight=4,8-11)]
+
+Please note: The steps described under "Customize and extend" are mandatory, if no SwaggerDoc is defined in services.AddSwaggerGen () the call to / swagger url only generates the error message "Failed to load API definition".
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
