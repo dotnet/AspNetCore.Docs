@@ -12,11 +12,9 @@ uid: 0BE376D3-FE2F-4A30-803A-74C2148FE5E4
 ---
 # Identity model customization
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext?view=aspnetcore-2.1
-
 By [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core applications. Identity is added to your project when "Individual User Accounts" is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model; this article describes how to customize that model.
+ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core applications. Identity is added to your project when "Individual User Accounts" is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model. The article describes how to customize the Identity model.
 
 <a name="identity-migrations"></a>
 
@@ -50,28 +48,28 @@ The preceding steps need to be repeated as changes are made to the model.
 
 The Identity model consists of seven entity types:
 
-* User - represents the user
-* Role - represents a role
-* UserClaim - represents a claim that a user possess
-* UserToken - represents an authentication token for a user
-* UserLogin - associates a user with a login
-* RoleClaim - represents a claim that is granted to all users within a role
-* UserRole - join entity that associates users and roles
+* `User` - represents the user
+* `Role` - represents a role
+* `UserClaim` - represents a claim that a user possess
+* `UserToken` - represents an authentication token for a user
+* `UserLogin` - associates a user with a login
+* `RoleClaim` - represents a claim that is granted to all users within a role
+* `UserRole` - join entity that associates users and roles
 
 ### Entity type relationships
 
 These entity types are related to each other in the following ways:
 
-* Each User can have many UserClaims
-* Each User can have many UserLogins
-* Each User can have many UserTokens
-* Each Role can have many associated RoleClaims
-* Each User can have many associated Roles, and each Role can be associated with many Users
-  * This is a many-to-many relationship, which requires a join table in the database. The join table is represented by the UserRole entity.
+* Each `User` can have many `UserClaims`
+* Each `User` can have many `UserLogins`
+* Each `User` can have many `UserTokens`
+* Each `Role` can have many associated `RoleClaims`
+* Each `User` can have many associated `Roles`, and each `Role` can be associated with many Users
+  * This is a many-to-many relationship, which requires a join table in the database. The join table is represented by the `UserRole` entity.
 
 ### Default model configuration
 
-Identity defines a variety of "context classes" which inherit from [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the OnModelCreating method of the context class. The default configuration is:
+Identity defines a variety of "context classes" which inherit from [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the [OnModelCreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating#Microsoft_EntityFrameworkCore_DbContext_OnModelCreating_Microsoft_EntityFrameworkCore_ModelBuilder_) method of the context class. The default configuration is:
 
 ```CSharp
 builder.Entity<TUser>(b =>
@@ -200,7 +198,7 @@ Identity defines default CLR types for each of the entity types listed above. Th
 
 Rather than using these types directly, the types can be used as base classes for the application's own types. The `DbContext` classes defined by Identity are generic such that different CLR types can be used for one or more of the entity types in the model. These generic types also allow for the type of the User primary key to be changed.
 
-When using Identity with support for roles, an [IdentityDbContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext?view=aspnetcore-2.1) class should be used:
+When using Identity with support for roles, an [IdentityDbContext](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext) class should be used:
 
 ```CSharp
 // Uses all the built-in Identity types
@@ -243,7 +241,7 @@ public abstract class IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRol
 
 ```
 
-It is also possible to use Identity without roles (only claims), in which case an IdentityUserContext class should be used:
+It is also possible to use Identity without roles (only claims), in which case an `IdentityUserContext` class should be used:
 
 
 ```CSharp
@@ -279,13 +277,13 @@ public abstract class IdentityUserContext<TUser, TKey, TUserClaim, TUserLogin, T
 
 ## Customizing the model
 
-The starting point for customizing the model is to derive from the appropriate context type--see the preceding section. This context type is customarily called "ApplicationDbContext" and is created by the ASP.NET Core templates.
+The starting point for customizing the model is to derive from the appropriate context type; see the preceding section. This context type is customarily called `ApplicationDbContext` and is created by the ASP.NET Core templates.
 
 The context is used to configure the model in two ways:
 * By supplying entity and key types for the generic type parameters.
-* By overriding the OnModelCreating method to modify the mapping of these types.
+* By overriding `OnModelCreating` to modify the mapping of these types.
 
-When overriding OnModelCreating, `base.OnModelCreating` should be called first, the overriding configuration should be called last. EF Core generally has a last-one-wins policy for configuration. For example, if the `ToTable` for an entity type is called first with one table name and then again later with a different table name, then the table name in the second call is the one that will be used.
+When overriding `OnModelCreating`, `base.OnModelCreating` should be called first, the overriding configuration should be called next. EF Core generally has a last-one-wins policy for configuration. For example, if the `ToTable` for an entity type is called first with one table name and then again later with a different table name, then the table name in the second call is the one that is used.
 
 ### Using a custom User type
 
@@ -317,11 +315,11 @@ services.AddDefaultIdentity<ApplicationUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ```
 
-There is no need to override `OnModelCreating` here because EF Core will map the `CustomTag` property by convention. However, the database will need to be updated to use the new `CustomTag` column. For more information, see [Identity and EF Core Migrations](#identity-migrations).
+There is no need to override `OnModelCreating` here because EF Core will map the `CustomTag` property by convention. However, the database will need to be updated to get a new `CustomTag` column. To do this, add a migration, and then update the database as described in  [Identity and EF Core Migrations](#identity-migrations).
 
 ### Changing the key type
 
-Changing the type of a primary key (PK) column after the database has been created is problematic on many database systems. Changing the PK typically involves dropping and re-creating the table. Therefore, it is recommended that key types be specified in the initial migration such that the target key types are created when the  database is created.
+Changing the type of a primary key (PK) column after the database has been created is problematic on many database systems. Changing the PK typically involves dropping and re-creating the table. Therefore, it is recommended that key types be specified in the initial migration such that the target key types are created when the database is created.
 
 If the database has been created, then `Drop-Database` (PMC) or `dotnet ef database drop` (.NET Core CLI) can be used to delete it.
 
@@ -370,7 +368,7 @@ services.AddDefaultIdentity<ApplicationUser>()
 
 ### Adding navigation properties
 
-Changing the model configuration for relationships can be a little more tricky than making other changes because care must be taken to replace the existing relationships rather than create a new additional relationships. In particular, the changed relationship must specify the same foreign key property as the existing relationship. For example, the relationship between Users and UserClaims is by default specified as:
+Changing the model configuration for relationships can be a more difficult than making other changes. Care must be taken to replace the existing relationships rather than create a new additional relationships. In particular, the changed relationship must specify the same foreign key property as the existing relationship. For example, the relationship between `Users` and `UserClaims` is by default specified as:
 
 ```CSharp
 builder.Entity<TUser>(b =>
@@ -679,7 +677,7 @@ public class ApplicationDbContext
 
 ### Using composite keys
 
-The preceding sections demonstrated changing the type of key used in the Identity model. Changing the Identity key model to use composite keys is not supported or recommended.  Using a composite key with Identity would involve changing how the Identity manager code interacts with the model, which is an extreme customization and beyond the scope of this document.
+The preceding sections demonstrated changing the type of key used in the Identity model. Changing the Identity key model to use composite keys is not supported or recommended. Using a composite key with Identity would involve changing how the Identity manager code interacts with the model, which is an unsupported customization and beyond the scope of this document.
 
 ### Changing table/column names and facets
 
@@ -789,14 +787,13 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 In this section support for lazy-loading proxies in the Identity model is added. Lazy-loading proxies can be useful since it allows:
 
-* Transparent navigation from one Identity entity to another related entity.
-* There is no need to check whether the related entity has been loaded.
+* Transparent navigation from one Identity entity to another related entity without the need to check whether the related entity has been loaded.
 
 Entity types can be made suitable for lazy-loading in several ways, as described in the [EF Core documentation](/ef/core/querying/related-data#lazy-loading). For simplicity, we will use lazy-loading proxies, which requires:
 
-* Installation of the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/)
-* A call to `.UseLazyLoadingProxies()` inside `AddDbContext`
-* Public entity types with public virtual navigation properties
+* Installation of the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) package.
+* A call to `.UseLazyLoadingProxies()` inside `AddDbContext`.
+* Public entity types with public virtual navigation properties.
 
 Here is an example of calling `.UseLazyLoadingProxies()`:
 
