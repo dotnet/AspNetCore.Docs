@@ -249,6 +249,7 @@
 ## [.NET client](xref:signalr/dotnet-client)
 ## [HubContext](xref:signalr/hubcontext)
 ## [Users and groups](xref:signalr/groups)
+## [Configuration](xref:signalr/configuration)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## [Streaming](xref:signalr/streaming)

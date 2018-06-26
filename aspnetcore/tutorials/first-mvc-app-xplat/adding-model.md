@@ -6,7 +6,6 @@ ms.author: riande
 ms.date: 09/18/2017
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
-# Add a model to an ASP.NET Core MVC app
 
 [!INCLUDE [adding-model1](../../includes/mvc-intro/adding-model1.md)]
 

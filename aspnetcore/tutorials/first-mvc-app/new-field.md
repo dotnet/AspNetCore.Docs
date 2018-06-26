@@ -1,12 +1,12 @@
 ---
-title: Add a new field to an ASP.NET Core app
+title: Add a new field to an ASP.NET Core MVC app
 author: rick-anderson
 description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
 ms.author: riande
 ms.date: 10/14/2016
 uid: tutorials/first-mvc-app/new-field
 ---
-# Add a new field to an ASP.NET Core app
+# Add a new field to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

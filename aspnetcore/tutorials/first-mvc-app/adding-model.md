@@ -6,7 +6,6 @@ ms.author: riande
 ms.date: 12/8/2017
 uid: tutorials/first-mvc-app/adding-model
 ---
-# Add a model to an ASP.NET Core MVC app
 
 [!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model1.md)]
 

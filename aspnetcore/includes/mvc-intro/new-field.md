@@ -1,5 +1,5 @@
 <!-- This include not used by windows version -->
-# Adding a new field
+# Add a new field to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

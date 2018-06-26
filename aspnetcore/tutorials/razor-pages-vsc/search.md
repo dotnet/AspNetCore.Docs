@@ -1,5 +1,5 @@
 ---
-title: Adding search to ASP.NET Core Razor Pages
+title: Add search to an ASP.NET Core Razor Pages app
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
 monikerRange: '>= aspnetcore-2.0'

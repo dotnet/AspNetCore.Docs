@@ -1,5 +1,5 @@
 ---
-title: Working with SQLite and and Razor Pages
+title: Work with SQLite in an ASP.NET Core Razor Pages app
 author: rick-anderson
 description: Using SQLite with Razor Pages
 monikerRange: '>= aspnetcore-2.0'

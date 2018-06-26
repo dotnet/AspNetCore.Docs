@@ -16,8 +16,8 @@ In ASP.NET Core, the published application directory, *publish*, is comprised of
 
 | App Type | Directory Structure |
 | -------- | ------------------- |
-| [Framework-dependent Deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>logs&dagger; (optional unless required to receive stdout logs)</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*\.dll files</li><li>\<assembly-name>.deps.json</li><li>\<assembly-name>.dll</li><li>\<assembly-name>.pdb</li><li>\<assembly-name>.PrecompiledViews.dll</li><li>\<assembly-name>.PrecompiledViews.pdb</li><li>\<assembly-name>.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
-| [Self-contained Deployment](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>logs&dagger; (optional unless required to receive stdout logs)</li><li>refs&dagger;</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>\<assembly-name>.deps.json</li><li>\<assembly-name>.exe</li><li>\<assembly-name>.pdb</li><li>\<assembly-name>.PrecompiledViews.dll</li><li>\<assembly-name>.PrecompiledViews.pdb</li><li>\<assembly-name>.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
+| [Framework-dependent Deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>Logs&dagger; (optional unless required to receive stdout logs)</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*\.dll files</li><li>\<assembly-name>.deps.json</li><li>\<assembly-name>.dll</li><li>\<assembly-name>.pdb</li><li>\<assembly-name>.PrecompiledViews.dll</li><li>\<assembly-name>.PrecompiledViews.pdb</li><li>\<assembly-name>.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
+| [Self-contained Deployment](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Logs&dagger; (optional unless required to receive stdout logs)</li><li>refs&dagger;</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>\<assembly-name>.deps.json</li><li>\<assembly-name>.exe</li><li>\<assembly-name>.pdb</li><li>\<assembly-name>.PrecompiledViews.dll</li><li>\<assembly-name>.PrecompiledViews.pdb</li><li>\<assembly-name>.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
 
 &dagger;Indicates a directory
 
@@ -25,7 +25,7 @@ The *publish* directory represents the *content root path*, also called the *app
 
 The *wwwroot* directory, if present, only contains static assets.
 
-The stdout *logs* directory can be created for the deployment using one of the following two approaches:
+The stdout *Logs* directory can be created for the deployment using one of the following two approaches:
 
 * Add the following `<Target>` element to the project file:
 
