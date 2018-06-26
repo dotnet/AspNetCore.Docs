@@ -5,11 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="snippets\index1.ts" />
+    <None Remove="snippets\index2.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="snippets\index1.ts" />
+    <TypeScriptCompile Include="snippets\index2.ts" />
   </ItemGroup>
 
 </Project>

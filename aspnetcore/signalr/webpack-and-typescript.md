@@ -5,7 +5,7 @@ description: Learn how to bundle an ASP.NET Core SignalR web app using TypeScrip
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/25/2018
+ms.date: 06/26/2018
 uid: signalr/webpack-and-typescript
 ---
 # Use ASP.NET Core SignalR with TypeScript and Webpack
@@ -72,11 +72,9 @@ To bundle the client-side resources (stylesheets, images, and TypeScript), use t
     npm init -y
     ```
 
-1. Add the following property to the *package.json* file. It prevents package installation warnings which would otherwise occur in the next step.
+1. Add the highlighted property to the *package.json* file. It prevents package installation warnings in the next step.
 
-    ```json
-    "private": true,
-    ```
+    [!code-json[package.json](webpack-and-typescript/sample/snippets/package1.json?highlight=4)]
 
 1. Install the required npm packages. Execute the following command from the project root:
 
@@ -132,9 +130,11 @@ To bundle the client-side resources (stylesheets, images, and TypeScript), use t
 
 ## Configure the ASP.NET Core app
 
-1. The code provided in the `Startup.Configure` method displays *Hello World!*. Replace the `app.Run` method call with calls to [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). This code allows the server to locate and serve the *index.html* file, whether the user enters its full URL or the root URL of the web app.
+1. The code provided in the `Startup.Configure` method displays *Hello World!*. Replace the `app.Run` method call with calls to [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_).
 
     [!code-csharp[Startup](webpack-and-typescript/sample/Startup.cs?name=snippet_UseStaticDefaultFiles)]
+
+    The preceding code allows the server to locate and serve the *index.html* file, whether the user enters its full URL or the root URL of the web app.
 
 1. Call [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) in the `Startup.ConfigureServices` method. It adds the SignalR services to your project.
 
