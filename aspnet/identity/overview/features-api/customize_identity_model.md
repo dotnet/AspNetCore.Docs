@@ -14,7 +14,7 @@ uid: 0BE376D3-FE2F-4A30-803A-74C2148FE5E4
 
 By [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core applications. Identity is added to your project when "Individual User Accounts" is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model. The article describes how to customize the Identity model.
+ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core applications. Identity is added to your project when "Individual User Accounts" is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model. This article describes how to customize the Identity model.
 
 <a name="identity-migrations"></a>
 
