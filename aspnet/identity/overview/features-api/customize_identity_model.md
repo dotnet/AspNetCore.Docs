@@ -6,8 +6,6 @@ manager: elipton
 ms.author: avickers
 ms.date: 04/12/2018
 ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: 0BE376D3-FE2F-4A30-803A-74C2148FE5E4
 ---
 # Identity model customization
