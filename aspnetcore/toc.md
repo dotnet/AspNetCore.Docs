@@ -254,6 +254,7 @@
 ## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## [Streaming](xref:signalr/streaming)
 ## [Supported platforms](xref:signalr/supported-platforms)
+## [Differences between SignalR versions](xref:signalr/version-differences)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
