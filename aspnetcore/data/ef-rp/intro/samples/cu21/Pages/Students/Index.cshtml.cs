@@ -1,4 +1,4 @@
-﻿#define SortOnly // SortFilterPage // SortFilter //SortOnly // first 
+﻿#define SortFilter // SortFilterPage // SortFilter //SortOnly // first 
 
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -85,7 +85,7 @@ namespace ContosoUniversity.Pages.Students
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             CurrentFilter = searchString;
 
-            IQueryable<Student> studentIQ = from s in _context.Students
+            IQueryable<Student> studentIQ = from s in _context.Student
                                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
