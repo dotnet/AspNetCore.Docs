@@ -36,7 +36,7 @@ Migrations are added and applied using:
 
 ASP.NET Core has a development-time error page handler that can be used to apply migrations when the application is run. For production applications, it is often more appropriate to generate SQL scripts from the migrations and deploy these to the database as part of a controlled application and database deployment.
 
-When a new application using Identity is created, steps 1 and 2 above have already been completed. That is, the initial data model already exists, and the initial migration has been added to the project. The initial migration still needs to be applied to the database.
+When a new application using Identity is created, steps 1 and 2 above have already been completed. That is, the initial data model already exists, and the initial migration has been added to the project. The initial migration still needs to be applied to the database. The initial migration can be done by running the Update-Database (PMC), the dotnet ef database update (.NET Core CLI) command, or by using the error page when the application is run.
 
 The preceding steps need to be repeated as changes are made to the model.
 
