@@ -236,8 +236,8 @@ Step through the debugger.
 
 In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
-* Create a view model class for the data used by the **About** Page.
-* Modify the About Razor Page and page model.
+* Create a view model for the data used by the **About** Page.
+* Update the About page to use the view model.
 
 ### Create the view model
 
