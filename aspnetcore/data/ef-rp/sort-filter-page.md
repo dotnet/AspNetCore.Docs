@@ -7,6 +7,11 @@ ms.date: 6/31/2017
 uid: data/ef-rp/sort-filter-page
 ---
 
+::: moniker range="= aspnetcore-2.0"
+The ASP.NET Core 2.0 version of this tutorial can be found in [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/PDF-6-18-18.pdf).
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
+
 # Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
@@ -274,6 +279,7 @@ If you run into problems you can't solve, download the [completed app for this s
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 
 In the next tutorial, the app uses migrations to update the data model.
+::: moniker-end
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/crud)
