@@ -1,6 +1,6 @@
 ﻿// This code exists only for inclusion in the associated doc.
 // <snippet_IndexTsPhase1File>
-import "./assets/css/main.css";
+import "./css/main.css";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
 const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");

@@ -116,15 +116,17 @@ To bundle the client-side resources (stylesheets, images, and TypeScript), use t
     * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
     * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
 
+1. Create a new *src* directory in the project root. Its purpose is to store the project's client-side assets.
+
 1. Create a file named *index.html*, in the *src* directory, with the following content. It defines the homepage's HTML template.
 
     [!code-html[index.html](signalr-typescript-webpack/sample/src/index.html)]
 
-1. Create a file named *main.css*, in the *src/assets/css* directory, with the following content. It includes CSS classes for the app.
+1. Create a file named *main.css*, in a new *src/css* directory, with the following content. It includes CSS classes for the app.
 
-    [!code-css[main.css](signalr-typescript-webpack/sample/src/assets/css/main.css)]
+    [!code-css[main.css](signalr-typescript-webpack/sample/src/css/main.css)]
 
-1. Create a file named *tsconfig.json*, in the project root, with the following content. It configures the TypeScript compiler to produce ECMAScript 5-compatible JavaScript.
+1. Create a file named *tsconfig.json*, in the *src* directory, with the following content. It configures the TypeScript compiler to produce ECMAScript 5-compatible JavaScript.
 
     [!code-json[tsconfig.json](signalr-typescript-webpack/sample/tsconfig.json)]
 
@@ -153,7 +155,9 @@ To bundle the client-side resources (stylesheets, images, and TypeScript), use t
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/Startup.cs?name=snippet_UseSignalR)]
 
-1. Create a file named *ChatHub.cs* in a new *Hubs* directory. Use the following code to create your hub:
+1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
+
+1. Create a file named *ChatHub.cs* in the *Hubs* directory. Use the following code to create your hub:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
@@ -192,6 +196,16 @@ Right now, the app displays a simple form to send messages. Nothing happens when
     It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
     In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method on [Clients.All](/dotnet/api/microsoft.aspnetcore.signalr.ihubclients-1.all). The received messages are sent to all clients connected to the hub.
+
+## Test the app
+
+1. Execute the following command in the project root:
+
+    ```console
+    npm run release
+    ```
+
+    
 
 ## Additional resources
 
