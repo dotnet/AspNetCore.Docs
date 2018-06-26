@@ -199,13 +199,29 @@ Right now, the app displays a simple form to send messages. Nothing happens when
 
 ## Test the app
 
+Confirm that the app works with the following steps.
+
+1. Build the project by executing the following command in the project root:
+
+    ```console
+    dotnet build
+    ```
+
 1. Execute the following command in the project root:
 
     ```console
     npm run release
     ```
 
-    
+    Webpack copies the generated, optimized files to the *wwwroot* directory. These files are used when the app runs in the next step.
+
+1. Run the app by executing the following command in the project root:
+
+    ```console
+    dotnet run
+    ```
+
+1. Open a browser to `https://localhost:<port_number>`. Enter some text in the **Message** text box, and click the **Send** button.
 
 ## Additional resources
 
