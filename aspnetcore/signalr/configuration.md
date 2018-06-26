@@ -223,12 +223,12 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | ----------- | ----------------- | ----------- |
 | `AccessTokenProvider` | `accessTokenFactory` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
 | `SkipNegotiation` | `skipNegotiation` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
-| `ClientCertificats` | Not configurable * | A collection of TLS certificates to send to authenticate requests. |
+| `ClientCertificates` | Not configurable * | A collection of TLS certificates to send to authenticate requests. |
 | `Cookies` | Not configurable * | A collection of HTTP cookies to send with every HTTP request. |
 | `Credentials` | Not configurable * | Credentials to send with every HTTP request. |
-| `CloseTimeout` | Not configurable * | WebSockets only. The maximum amount of time the client will wait after closing for the server to acknowledge the close request. If the server does not acknowledge the close within this time, the client will disconnect. |
+| `CloseTimeout` | Not configurable * | WebSockets only. The maximum amount of time the client waits after closing for the server to acknowledge the close request. If the server doesn't acknowledge the close within this time, the client disconnects. |
 | `Headers` | Not configurable * | A dictionary of additional HTTP headers to send with every HTTP request. |
-| `HttpMessageHandlerFactory` | Not configurable * | A delegate that can be used to configure or replace the `HttpMessageHandler` used to send HTTP requests. Not used for WebSocket connections. This delegate must return an non-null value, and it receives the default value as a parameter. Either modify settings on that default value and return it, or return a completely new `HttpMessageHandler` instance. |
+| `HttpMessageHandlerFactory` | Not configurable * | A delegate that can be used to configure or replace the `HttpMessageHandler` used to send HTTP requests. Not used for WebSocket connections. This delegate must return a non-null value, and it receives the default value as a parameter. Either modify settings on that default value and return it, or return a completely new `HttpMessageHandler` instance. |
 | `Proxy` | Not configurable * | An HTTP proxy to use when sending HTTP requests. |
 | `UseDefaultCredentials` | Not configurable * | Set this boolean to send the default credentials for HTTP and WebSockets requests. This enables the use of Windows authentication. |
 | `WebSocketConfiguration` | Not configurable * | A delegate that can be used to configure additional WebSocket options. Receives an instance of [ClientWebSocketOptions](/dotnet/api/system.net.websockets.clientwebsocketoptions) that can be used to configure the options. |
