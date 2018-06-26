@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRWebPack.Core;
+#region snippet_HubsNamespace
+using SignalRWebPack.Hubs;
+#endregion
 
 namespace SignalRWebPack
 {
@@ -29,8 +31,10 @@ namespace SignalRWebPack
                 app.UseDeveloperExceptionPage();
             }
 
+            #region snippet_UseStaticDefaultFiles
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            #endregion
 
             #region snippet_UseSignalR
             app.UseSignalR(options =>
