@@ -14,6 +14,15 @@ By [Sébastien Sougnez](https://twitter.com/ssougnez) and [Scott Addie](https://
 
 [Webpack](https://webpack.js.org/) enables developers to easily bundle the client-side resources of a web app. This tutorial uses Webpack to bundle an ASP.NET Core SignalR app whose client is written in TypeScript.
 
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Scaffold a starter ASP.NET Core SignalR app
+> * Configure the SignalR TypeScript client
+> * Configure bundling of client-side resources
+> * Configure the SignalR server
+> * Enable communication between client and server
+
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/webpack-and-typescript/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Prerequisites
@@ -183,3 +192,8 @@ Right now, the app displays a simple form to send messages. Nothing happens when
     It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
     In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method on [Clients.All](/dotnet/api/microsoft.aspnetcore.signalr.ihubclients-1.all). The received messages are sent to all clients connected to the hub.
+
+## Additional resources
+
+* <xref:signalr/javascript-client>
+* <xref:signalr/hubs>
