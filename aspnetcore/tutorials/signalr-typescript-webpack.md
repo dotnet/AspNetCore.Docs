@@ -128,7 +128,7 @@ To bundle the client-side resources (stylesheets, images, and TypeScript), use t
 
 1. Create a file named *tsconfig.json*, in the *src* directory, with the following content. It configures the TypeScript compiler to produce ECMAScript 5-compatible JavaScript.
 
-    [!code-json[tsconfig.json](signalr-typescript-webpack/sample/tsconfig.json)]
+    [!code-json[tsconfig.json](signalr-typescript-webpack/sample/src/tsconfig.json)]
 
 1. Create a file named *index.ts*, in the *src* directory, with the following content.
 
