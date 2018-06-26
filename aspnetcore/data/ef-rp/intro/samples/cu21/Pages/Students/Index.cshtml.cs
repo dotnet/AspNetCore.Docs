@@ -1,4 +1,4 @@
-﻿#define SortFilter // SortFilterPage // SortFilter //SortOnly // first 
+﻿#define SortFilterPage // SortFilterPage // SortFilter //SortOnly // first 
 
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -136,7 +136,7 @@ namespace ContosoUniversity.Pages.Students
 
             CurrentFilter = searchString;
 
-            IQueryable<Student> studentIQ = from s in _context.Students
+            IQueryable<Student> studentIQ = from s in _context.Student
                                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
