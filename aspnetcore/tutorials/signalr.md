@@ -25,7 +25,7 @@ This tutorial demonstrates the following SignalR development tasks:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-# Prerequisites
+## Prerequisites
 
 Install the following software:
 
