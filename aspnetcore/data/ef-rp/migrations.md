@@ -9,6 +9,7 @@ uid: data/ef-rp/migrations
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
+::: moniker range=">= aspnetcore-2.1"
 
 # Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
 
@@ -185,7 +186,6 @@ Solution: Run `dotnet ef database update`
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 ::: moniker-end
-
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/sort-filter-page)
