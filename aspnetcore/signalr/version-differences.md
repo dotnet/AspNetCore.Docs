@@ -24,27 +24,26 @@ Automatic reconnects are no longer supported. Previously, SignalR tried to recon
 
 ### Protocol support
 
-ASP.NET Core SignalR supports JSON, binary, text, and custom protocols. [MessagePack](xref:signalr/messagepackhubprotocol) is a binary serialization format that is fast and compact.
-
-### Use SignalR with Websockets
-
-SignalR now supports using [WebSockets](xref:fundamentals/websockets) to work directly with a socket connection.
+ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on MessagePack [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
 
 ## Differences on the server
 
 The SignalR server-side libraries are included in the `Microsoft.AspNetCore.App` package that is part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
 
-SignalR is an ASP.NET Core middleware, so it must be configured in the `Startup` class by calling `AddSignalR`.
+SignalR is an ASP.NET Core middleware, so it must be configured by calling `AddSignalR` in `Startup.ConfigureServices`.
 
 ```csharp
 services.AddSignalR();
+```
+
+To configure routing, map routes to hubs inside the `UseSignalR` method call in the `Startup.Configure` method.
+
+```csharp
 app.UseSignalR(routes =>
 {
     routes.MapHub<ChatHub>("/hub");
 });
 ```
-
-Method calls are async by default.
 
 ### Sticky sessions now required
 
@@ -52,7 +51,7 @@ Because of how scale-out worked in the previous versions of SignalR, clients cou
 
 ### Single hub per connection
 
-The ability to connect to multiple hubs is no longer supported.
+In ASP.NET Core SignalR, the connection model has been simplified. Connections are made directly to a single hub, rather than a single connection being used to share access to multiple hubs.
 
 ### Streaming
 
@@ -107,6 +106,10 @@ After creating the client method, start the hub connection. Chain a `catch` meth
 connection.start().catch(err => console.error(err.toString()));
 ```
 
+### Hub proxies
+
+Hub proxies are no longer automatically generated. Instead, the method name is passed into the `invoke` API as a string.
+
 ### .NET and other clients
 
 The `Microsoft.AspNetCore.SignalR.Client` NuGet package contains the .NET client libraries for ASP.NET Core SignalR.
@@ -115,8 +118,8 @@ Use the `HubConnectionBuilder` to create and build an instance of a connection t
 
 ```csharp
 connection = new HubConnectionBuilder()
-.WithUrl("url")
-.Build();
+    .WithUrl("url")
+    .Build();
 ```
 
 ## Additional Resources
