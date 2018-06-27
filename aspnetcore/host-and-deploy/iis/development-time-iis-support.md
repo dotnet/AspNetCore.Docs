@@ -2,13 +2,9 @@
 title: Development-time IIS support in Visual Studio for ASP.NET Core
 author: shirhatti
 description: Discover support for debugging ASP.NET Core apps when running behind IIS on Windows Server.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core

@@ -12,7 +12,7 @@
   <!-- </snippet_DocumentationFileElement> -->
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="NSwag.AspNetCore" Version="11.17.3" />
   </ItemGroup>
 

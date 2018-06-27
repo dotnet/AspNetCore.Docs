@@ -2,12 +2,8 @@
 title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 08/02/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -55,7 +51,10 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
-* Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
+* Enter your development URI with `/signin-google` appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at `/signin-google` route to implement the OAuth flow.
+
+> [!NOTE]
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
 
 * Press TAB to add the **Authorized redirect URIs** entry.
 

@@ -1,14 +1,10 @@
 ---
 title: Configuration in ASP.NET Core
 author: rick-anderson
-description: Use the Configuration API to configure an ASP.NET Core app by multiple methods.
-manager: wpickett
+description: Learn how to use the Configuration API to configure an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -96,7 +92,7 @@ Consider the following *appsettings.Staging.json* file:
 
 [!code-json[](index/sample/appsettings.Staging.json)]
 
-When the environment is set to `Staging`, the following `Configure` method reads the value of `MyConfig`:
+In the following code, `Configure` reads the value of `MyConfig`:
 
 [!code-csharp[](index/sample/StartupConfig.cs?name=snippet&highlight=3,4)]
 

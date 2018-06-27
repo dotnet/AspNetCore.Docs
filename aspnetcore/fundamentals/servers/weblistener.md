@@ -2,12 +2,8 @@
 title: WebListener web server implementation in ASP.NET Core
 author: rick-anderson
 description: Learn about WebListener, a web server for ASP.NET Core on Windows that can be used for direct connection to the Internet without IIS.
-manager: wpickett
 ms.author: riande
 ms.date: 03/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/servers/weblistener
 ---
 # WebListener web server implementation in ASP.NET Core

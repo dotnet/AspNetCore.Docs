@@ -2,13 +2,9 @@
 title: Razor Pages unit tests in ASP.NET Core
 author: guardrex
 description: Learn how to create unit tests for Razor Pages apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/27/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
@@ -24,7 +20,7 @@ ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access l
 
 This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
-* [Introduction to Razor Pages](xref:mvc/razor-pages/index)
+* [Introduction to Razor Pages](xref:razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 

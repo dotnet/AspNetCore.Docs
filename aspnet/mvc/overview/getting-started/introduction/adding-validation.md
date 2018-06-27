@@ -51,7 +51,7 @@ When this command finishes, Visual Studio opens the class file that defines the 
 
 [!code-csharp[Main](adding-validation/samples/sample3.cs)]
 
-The `Genre` field is are no longer nullable (that is, you must enter a value). The `Rating` field has a maximum length of 5 and `Title` has a maximum length of 60. The minimum length of 3 on `Title` and the range on `Price` did not create schema changes.
+The `Genre` field is no longer nullable (that is, you must enter a value). The `Rating` field has a maximum length of 5 and `Title` has a maximum length of 60. The minimum length of 3 on `Title` and the range on `Price` did not create schema changes.
 
 Examine the Movie schema:
 

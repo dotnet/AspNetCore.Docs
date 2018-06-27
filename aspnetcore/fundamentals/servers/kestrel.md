@@ -2,13 +2,9 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: rick-anderson
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
-manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/02/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -390,7 +386,10 @@ options.ConfigureHttpsDefaults(httpsOptions =>
 
 Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate.
 
-SNI support requires running on target framework `netcoreapp2.1`. On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
+SNI support requires:
+
+* Running on target framework `netcoreapp2.1`. On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
+* All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
 ```csharp
 WebHost.CreateDefaultBuilder()
@@ -450,12 +449,12 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Port0&highlight=3)]
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
 
 When the app is run, the console window output indicates the dynamic port where the app can be reached:
 
 ```console
-Now listening on: http://127.0.0.1:48508
+Listening on the following addresses: http://127.0.0.1:48508
 ```
 
 **UseUrls, --urls command-line argument, urls host configuration key, and ASPNETCORE_URLS environment variable limitations**

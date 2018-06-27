@@ -2,14 +2,10 @@
 title: Use streaming in ASP.NET Core SignalR
 author: rachelappel
 description: 
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 06/07/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/streaming
 ---
 
@@ -28,7 +24,7 @@ A hub method automatically becomes a streaming hub method when it returns a `Cha
 > [!NOTE]
 > Write to the `ChannelReader` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
 
-[!code-csharp[Streaming hub method](streaming/sample/hubs/streamhub.cs?range=10-34)]
+[!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.cs?range=10-34)]
 
 ## .NET client
 

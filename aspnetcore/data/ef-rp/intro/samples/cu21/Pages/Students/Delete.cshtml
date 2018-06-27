@@ -1,0 +1,42 @@
+﻿@page "{id:int}"
+@model ContosoUniversity.Pages.Students.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<p class="text-danger">@Model.ErrorMessage</p>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FirstMidName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstMidName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.EnrollmentDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.EnrollmentDate)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Student.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

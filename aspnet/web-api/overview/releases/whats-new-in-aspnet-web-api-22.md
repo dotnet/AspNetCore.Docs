@@ -125,7 +125,7 @@ For example, string literals can be used in the OData resource paths as paramete
 
 When services receive such requests the hosts will un-escape those escape sequences before passing them to the Web API runtime. This protects against attacks like the following:  
   
- http://www.contoso.com/..%2F..%2F/Windows/System32/cmd.exe?/c+dir+c:
+`http://www.contoso.com/..%2F..%2F/Windows/System32/cmd.exe?/c+dir+c:`
 
 This causes the Web API OData stack to return a 404 error (Not Found). To prevent this error, your client should use the double escape sequences for slash (%252F) and backslash (%255C). This does not happen for query strings such as /Employees?$filter=Name eq 'Name%2F'
 

@@ -2,12 +2,8 @@
 title: Logging in ASP.NET Core
 author: ardalis
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 12/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -486,7 +482,7 @@ loggerFactory.AddEventSourceLogger()
 
 ---
 
-A good way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
+A good way to collect and view logs is to use the [PerfView utility](https://github.com/Microsoft/perfview). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
 
@@ -575,6 +571,7 @@ The provider only works when the project runs in the Azure environment. It has n
 Third-party logging frameworks that work with ASP.NET Core:
 
 * [elmah.io](https://elmah.io/) ([GitHub repo](https://github.com/elmahio/Elmah.Io.Extensions.Logging))
+* [Gelf](http://docs.graylog.org/en/2.3/pages/gelf.html) ([GitHub repo](https://github.com/mattwcole/gelf-extensions-logging))
 * [JSNLog](http://jsnlog.com/) ([GitHub repo](https://github.com/mperdeck/jsnlog))
 * [Loggr](http://loggr.net/) ([GitHub repo](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](http://nlog-project.org/) ([GitHub repo](https://github.com/NLog/NLog.Extensions.Logging))
@@ -607,6 +604,10 @@ To configure Azure log streaming:
 Navigate to the **Log Streaming** page to view application messages. They're logged by application through the `ILogger` interface.
 
 ![Azure portal application log streaming](index/_static/azure-log-streaming.png)
+
+## Azure Application Insights trace logging
+
+The [Application Insights](https://azure.microsoft.com/services/application-insights/) SDK is capable of collecting trace telemetry from logs generated via the ASP.NET Core logging infrastructure. For more information, see [Microsoft/ApplicationInsights-aspnetcore Wiki: Logging](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Logging).
 
 ## Additional resources
 

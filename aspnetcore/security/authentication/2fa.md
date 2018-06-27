@@ -2,13 +2,9 @@
 title: Two-factor authentication with SMS in ASP.NET Core
 author: rick-anderson
 description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
-manager: wpickett
 monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core

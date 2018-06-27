@@ -2,13 +2,9 @@
 title: Custom Authorization Policy Providers in ASP.NET Core
 author: mjrousos
 description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NET Core app to dynamically generate authorization policies.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/iauthorizationpolicyprovider
 ---
 # Custom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 

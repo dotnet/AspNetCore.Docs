@@ -104,9 +104,9 @@ Next, you need to give the user permission to create new team sites in the Share
 
    > [!NOTE]
    > You may receive an <strong>HTTP 404 Not Found</strong> error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
-   > [<em>site collection URL</em>]/\_layouts/permsetup.aspx  
+   > `[site_collection_URL]/_layouts/permsetup.aspx`
    > For example:  
-   > http://tfs/sites/Fabrikam%20Web%20Projects/\_layouts/permsetup.aspx
+   > `http://tfs/sites/Fabrikam%20Web%20Projects/_layouts/permsetup.aspx` 
 8. On the **Set Up Groups for this Site** page, add the user who will create team projects to the **Owners** group, and then click **OK**.
 
     ![](creating-a-team-project-in-tfs/_static/image10.png)

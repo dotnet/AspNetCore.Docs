@@ -2,13 +2,9 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 09/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: fundamentals/index
 ---
 
@@ -73,7 +69,7 @@ For more information, see [Application startup](xref:fundamentals/startup).
 
 ## Content root
 
-The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:mvc/razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
+The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
 
 ## Web root
 
@@ -101,9 +97,13 @@ ASP.NET Core includes a rich set of built-in middleware:
 
 For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
+::: moniker range=">= aspnetcore-2.1"
+
 ## Initiate HTTP requests
 
 For information about using `IHttpClientFactory` to access `HttpClient` instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
+
+::: moniker-end
 
 ## Environments
 
@@ -121,7 +121,7 @@ For more information, see [Configuration](xref:fundamentals/configuration/index)
 
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers support sending logs to one or more destinations. Third-party logging frameworks can be used.
 
-[Logging](xref:fundamentals/logging/index)
+For more information, see [Logging](xref:fundamentals/logging/index)
 
 ## Error handling
 
@@ -153,11 +153,11 @@ ASP.NET Core apps configure and launch a *host*, which is responsible for app st
 
 For more information, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
-## Session and application state
+## Session and app state
 
-Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app.
+ASP.NET Core offers several approaches to preserve session and app state while the user browses a web app.
 
-For more information, see [Session and application state](xref:fundamentals/app-state).
+For more information, see [Session and app state](xref:fundamentals/app-state).
 
 ## Servers
 

@@ -34,7 +34,7 @@ namespace UserSecrets
 
         public void ConfigureServices(IServiceCollection services)
         {
-            _moviesApiKey = Configuration["MoviesApiKey"];
+            _moviesApiKey = Configuration["Movies:ServiceApiKey"];
         }
 
         public void Configure(IApplicationBuilder app)

@@ -2,13 +2,9 @@
 title: Host ASP.NET Core on Linux with Apache
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 author: spboyer
-manager: wpickett
 ms.author: spboyer
 ms.custom: mvc
 ms.date: 03/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -194,7 +190,7 @@ Description=Example .NET Web API App running on CentOS 7
 WorkingDirectory=/var/aspnetcore/hellomvc
 ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 Restart=always
-# Restart service after 10 seconds if dotnet service crashes
+# Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 SyslogIdentifier=dotnet-example
 User=apache
@@ -319,7 +315,7 @@ Modify the *hellomvc.conf* file to enable URL rewriting and secure communication
 <VirtualHost *:80>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/ [R,L]
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 </VirtualHost>
 
 <VirtualHost *:443>
@@ -403,7 +399,7 @@ In the configuration file shown below, an additional instance of the `hellomvc` 
 <VirtualHost *:80>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/ [R,L]
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 </VirtualHost>
 
 <VirtualHost *:443>

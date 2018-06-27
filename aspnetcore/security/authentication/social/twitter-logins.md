@@ -2,12 +2,8 @@
 title: Twitter external login setup with ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 11/01/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/twitter-logins
 ---
 # Twitter external login setup with ASP.NET Core
@@ -26,7 +22,10 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ![Create an application page](index/_static/TwitterCreate.png)
 
-* Enter your development URI with */signin-twitter* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at */signin-twitter* route to implement the OAuth flow.
+* Enter your development URI with `/signin-twitter` appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.
+
+> [!NOTE]
+> The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) class.
 
 * Fill out the rest of the form and tap **Create your Twitter application**. New application details are displayed:
 
