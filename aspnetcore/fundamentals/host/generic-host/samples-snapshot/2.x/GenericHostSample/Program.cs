@@ -123,21 +123,7 @@ namespace GenericHostSample
         {
             #region snippet_ContainerConfiguration
             var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
-                .ConfigureContainer<ServiceContainer>((hostContext, container) =>
-                {
-                })
-            #endregion
-                .Build();
-
-            await host.RunAsync();
-        }
-
-        public static async Task Main9(string[] args)
-        {
-            #region snippet_ContainerConfiguration
-            var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
+                .UseServiceProviderFactory<ServiceContainer>(new ServiceContainerFactory())
                 .ConfigureContainer<ServiceContainer>((hostContext, container) =>
                 {
                 })
