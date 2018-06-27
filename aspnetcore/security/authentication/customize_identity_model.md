@@ -5,7 +5,7 @@ description: This article describes how to customize the underlying Entity Frame
 ms.author: avickers
 ms.date: 04/12/2018
 ms.prod: asp.net-core
-uid: identity/overview/features-api/customize_identity_model
+uid: security/authentication/customize_identity_model
 ---
 # Identity model customization
 

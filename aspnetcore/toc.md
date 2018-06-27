@@ -287,6 +287,8 @@
 ### [Introduction to Identity](xref:security/authentication/identity)
 ### [Scaffold Identity](xref:security/authentication/scaffold-identity)
 ### [Add custom user data to Identity](xref:security/authentication/add-user-data)
+### [Customize Identity](xref:security/authentication/customize_identity_model)
+
 ### [Community OSS authentication options](xref:security/authentication/community)
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
