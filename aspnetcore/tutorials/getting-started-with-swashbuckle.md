@@ -91,7 +91,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_Configure&highlight=4,8-11)]
 
-Please note: The steps described under "Customize and extend" are mandatory, if no SwaggerDoc is defined in services.AddSwaggerGen () the call to / swagger url only generates the error message "Failed to load API definition".
+Note: The steps described under "Customize and extend" are mandatory, if no SwaggerDoc is defined in services.AddSwaggerGen () the call to / swagger url only generates the error message "Failed to load API definition".
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
