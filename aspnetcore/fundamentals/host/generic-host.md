@@ -388,7 +388,7 @@ For more information, see [Use multiple environments](xref:fundamentals/environm
 | [ApplicationStopped](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.applicationstopped) | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
 | [ApplicationStopping](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.applicationstopping) | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
 
-Constructor-inject the `IApplicationLifetime` service into any class. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses contructor injection into a `LifetimeEventsHostedService` class (an `IHostedService` implementation) to register the events.
+Constructor-inject the `IApplicationLifetime` service into any class. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an `IHostedService` implementation) to register the events.
 
 *LifetimeEventsHostedService.cs*:
 
