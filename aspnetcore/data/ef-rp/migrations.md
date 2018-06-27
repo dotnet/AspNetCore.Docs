@@ -32,18 +32,6 @@ This approach to keeping the DB in sync with the data model works well until you
 
 Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
-## Entity Framework Core NuGet packages for migrations
-
-To work with migrations, use the **Package Manager Console** (PMC) or the command-line interface (CLI). These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
-
-The EF Core tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. **Note:** This package must be installed by editing the *.csproj* file. The`install-package` command or the package manager GUI cannot be used to install this package. Edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
-
-The following markup shows the updated *.csproj* file with the EF Core CLI tools highlighted:
-
-[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?highlight=12)]
-  
-The version numbers in the preceding example were current when the tutorial was written. Use the same version for the EF Core CLI tools found in the other packages.
-
 ## Drop the database
 
 Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
@@ -78,6 +66,7 @@ Build the project and create the first migration.
 
 ```PMC
 Add-Migration InitialCreate
+Update-Database
 ```
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -121,7 +110,6 @@ Remove-Migration
 # [.NET Core CLI](#tab/netcore-cli)
 
 ```console
-dotnet ef migrations add InitialCreate
 dotnet ef migrations remove
 ```
 
