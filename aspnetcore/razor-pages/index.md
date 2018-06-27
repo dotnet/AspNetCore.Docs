@@ -292,10 +292,13 @@ Pages work with all the capabilities of the Razor view engine. Layouts, partials
 Let's declutter this page by taking advantage of some of those capabilities.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
 
 ::: moniker-end
+
 ::: moniker range="= aspnetcore-2.0"
+
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
 ::: moniker-end
@@ -313,15 +316,18 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-::: moniker range="= aspnetcore-2.0"
-The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
-::: moniker-end
 ::: moniker range=">= aspnetcore-2.1"
+
 The layout is in the *Shared/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Shared/Pages* folder can be used from any Razor page under the *Pages* folder.
+
+The layout file should go in the *Pages/Shared* folder.
+
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
-The layout file should go in the *Pages/Shared* folder.
+::: moniker range="= aspnetcore-2.0"
+
+The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
+
 ::: moniker-end
 
 We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
