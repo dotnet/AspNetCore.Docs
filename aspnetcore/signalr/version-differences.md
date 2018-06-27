@@ -1,7 +1,7 @@
 ---
-title: Differences between SignalR and SignalR Core
+title: Differences between SignalR and ASP.NET Core SignalR
 author: rachelappel
-description: Differences between SignalR and SignalR Core
+description: Differences between SignalR and ASP.NET Core SignalR 
 manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
@@ -24,7 +24,7 @@ Automatic reconnects are no longer supported. Previously, SignalR tried to recon
 
 ### Protocol support
 
-ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on MessagePack [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
+ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
 
 ## Differences on the server
 
@@ -47,7 +47,7 @@ app.UseSignalR(routes =>
 
 ### Sticky sessions now required
 
-Because of how scale-out worked in the previous versions of SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Now, once the client connects to the server it needs to interact with this server for the duration of the connection.
+Because of how scale-out worked in the previous versions of SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Now, once the client connects to the server it needs to interact with the same server for the duration of the connection.
 
 ### Single hub per connection
 
