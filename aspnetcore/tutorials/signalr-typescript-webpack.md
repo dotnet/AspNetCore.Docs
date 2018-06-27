@@ -213,7 +213,7 @@ Confirm that the app works with the following steps.
     npm run release
     ```
 
-    Webpack copies the generated, optimized files to the *wwwroot* directory. These files are used when the app runs in the next step.
+    Webpack copies the generated, optimized files to the *wwwroot* directory. These files are served when running the app in the next step.
 
 1. Run the app by executing the following command in the project root:
 
