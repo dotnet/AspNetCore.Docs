@@ -55,7 +55,7 @@
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "getting-started/**/**.md": "aspnetcore-getstarted",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
-        "index.md": "aspnetcore-index",
+        "index.md": "aspnetcore",
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
