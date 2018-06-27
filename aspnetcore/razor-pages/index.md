@@ -313,10 +313,10 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.0"
 The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 ::: moniker-end
-::: moniker range="= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
 The layout is in the *Shared/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Shared/Pages* folder can be used from any Razor page under the *Pages* folder.
 ::: moniker-end
 
