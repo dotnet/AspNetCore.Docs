@@ -11,7 +11,7 @@ uid: getting-started
 
 ::: moniker range=">= aspnetcore-2.1"
 
-1. Install the [!INCLUDE[](~/includes/2.1-SDK.md)].
+1. Install the [!INCLUDE [](~/includes/2.1-SDK.md)].
 
 2. Create an ASP.NET Core project. Open a command shell and enter the following command:
 
@@ -19,7 +19,7 @@ uid: getting-started
     dotnet new webapp -o aspnetcoreapp
     ```
 
-    [!INCLUDE[](~/includes/webapp-alias-notice.md)]
+    [!INCLUDE [](~/includes/webapp-alias-notice.md)]
 
 3. Trust the HTTPS development certificate:
 
@@ -70,13 +70,13 @@ uid: getting-started
 
 7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
 
-[!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
+[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-1. Install the [!INCLUDE[](~/includes/net-core-sdk-download-link.md)].
+1. Install the [!INCLUDE [](~/includes/net-core-sdk-download-link.md)].
 
 2. Create a new ASP.NET Core project.
 
@@ -101,7 +101,7 @@ uid: getting-started
 
 6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
-[!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
+[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
 
 ::: moniker-end
 
@@ -148,5 +148,5 @@ uid: getting-started
 
 7. Browse to `http://localhost:5000`.
 
-[!INCLUDE[next steps](~/includes/getting-started/next-steps.md)]
+[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
 ::: moniker-end
