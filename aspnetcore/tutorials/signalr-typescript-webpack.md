@@ -12,14 +12,14 @@ uid: tutorials/signalr-typescript-webpack
 
 By [Sébastien Sougnez](https://twitter.com/ssougnez) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-[Webpack](https://webpack.js.org/) enables developers to bundle and build the client-side resources of a web app. This tutorial demonstrates using Webpack in an ASP.NET Core SignalR web app whose client is written in TypeScript.
+[Webpack](https://webpack.js.org/) enables developers to bundle and build the client-side resources of a web app. This tutorial demonstrates using Webpack in an ASP.NET Core SignalR web app whose client is written in [TypeScript](https://www.typescriptlang.org/).
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Scaffold a starter ASP.NET Core SignalR app
 > * Configure the SignalR TypeScript client
-> * Configure bundling of client-side resources
+> * Configure a build pipeline using Webpack
 > * Configure the SignalR server
 > * Enable communication between client and server
 
@@ -33,14 +33,12 @@ Install the following software:
 
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
-* [Node.js](https://nodejs.org/) with npm
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [.NET Core CLI](#tab/netcore-cli)
 
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [C# extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
-* [Node.js](https://nodejs.org/) with npm
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 ---
 
@@ -61,7 +59,7 @@ Visual Studio configuration is completed. It's time to create the project.
 1. Name the project *SignalRWebPack*, and click the **OK** button.
 1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 2.1* from the framework selector drop-down. Select the **Empty** template, and click the **OK** button.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command in the **Integrated Terminal**:
 
@@ -73,7 +71,7 @@ dotnet new web -o SignalRWebPack
 
 ## Configure Webpack and TypeScript
 
-To bundle the client-side resources (stylesheets, images, and TypeScript), use the following steps.
+The following steps configure the conversion of TypeScript to JavaScript and the bundling of client-side resources.
 
 1. Execute the following command in the project root to create a *package.json* file:
 
@@ -201,19 +199,30 @@ Right now, the app displays a simple form to send messages. Nothing happens when
 
 Confirm that the app works with the following steps.
 
+# [.NET Core CLI](#tab/netcore-cli)
+
 1. Build the project by executing the following command in the project root:
 
     ```console
     dotnet build
     ```
 
-1. Execute the following command in the project root:
+1. Run Webpack in *release* mode by executing the following command in the project root:
 
     ```console
     npm run release
     ```
 
-    Webpack copies the generated, optimized files to the *wwwroot* directory. These files are served when running the app in the next step.
+    Webpack completed the following tasks:
+
+    * Converted the TypeScript to JavaScript&mdash;a process known as *transpilation*.
+    * Mangled the generated JavaScript to reduce file size&mdash;a process known as *minification*.
+    * Copied the processed JavaScript, CSS, and HTML files from *src* to the *wwwroot* directory.
+    * Injected the following elements into the *wwwroot/index.html* file:
+        * A `<link>` tag, referencing the *wwwroot/main.\<hash\>.css* file. This tag is placed immediately before the closing `</head>` tag.
+        * A `<script>` tag, referencing the minified *wwwroot/main.\<hash\>.js* file. This tag is placed immediately before the closing `</body>` tag.
+
+    The files in the *wwwroot* directory are served when running the app in the next step.
 
 1. Run the app by executing the following command in the project root:
 
@@ -221,7 +230,15 @@ Confirm that the app works with the following steps.
     dotnet run
     ```
 
+    The web server starts the app and makes it available on localhost.
+
 1. Open a browser to `https://localhost:<port_number>`. Enter some text in the **Message** text box, and click the **Send** button.
+
+# [Visual Studio](#tab/visual-studio)
+
+<!-- TODO -->
+
+---
 
 ## Additional resources
 
