@@ -2,12 +2,8 @@
 title: Cache responses in ASP.NET Core
 author: ardalis
 description: Learn how to use caching to improve the performance of ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: performance/caching/index
 ---
 # Cache responses in ASP.NET Core

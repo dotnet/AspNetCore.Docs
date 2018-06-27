@@ -2,13 +2,9 @@
 title: Cache in-memory in ASP.NET Core
 author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
