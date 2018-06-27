@@ -2,13 +2,9 @@
 title: Differences between SignalR and ASP.NET Core SignalR
 author: rachelappel
 description: Differences between SignalR and ASP.NET Core SignalR 
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.date: 06/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/version-differences
 ---
 
@@ -122,7 +118,7 @@ connection = new HubConnectionBuilder()
     .Build();
 ```
 
-## Additional Resources
+## Additional resources
 
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
