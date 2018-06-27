@@ -123,7 +123,7 @@ namespace GenericHostSample
         {
             #region snippet_ContainerConfiguration
             var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
+                .UseServiceProviderFactory<ServiceContainer>(new ServiceContainerFactory())
                 .ConfigureContainer<ServiceContainer>((hostContext, container) =>
                 {
                 })
@@ -137,7 +137,7 @@ namespace GenericHostSample
         {
             #region snippet_ContainerConfiguration
             var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
+                .UseServiceProviderFactory<ServiceContainer>(new ServiceContainerFactory())
                 .ConfigureContainer<ServiceContainer>((hostContext, container) =>
                 {
                 })
