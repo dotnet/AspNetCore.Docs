@@ -2,6 +2,7 @@
 using ContosoUniversity.Models;                   // SchoolContext
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;   // CreateScope
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,6 +22,8 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
+                    context.Database.Migrate();
+
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
