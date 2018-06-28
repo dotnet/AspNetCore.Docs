@@ -26,7 +26,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(["wwwroot"]),
+        new CleanWebpackPlugin(["wwwroot/*"]),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         }),
