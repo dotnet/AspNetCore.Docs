@@ -10,7 +10,7 @@ uid: data/ef-mvc/intro
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
 
-::: moniker range="> aspnetcore-2.0"
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

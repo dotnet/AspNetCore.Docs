@@ -1,4 +1,4 @@
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.0"
 
 This tutorial has not been upgraded to ASP.NET Core 2.1. The ASP.NET Core 2.0 version of this tutorial is available by selecting **2.0** above the table of contents or at the top of the page:
 
