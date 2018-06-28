@@ -83,7 +83,7 @@ The custom `MinimumAgeAuthorizeAttribute` makes it easy to request authorization
 When using `MinimumAgeAuthorizationAttribute`, the authorization policy names will follow the pattern `"MinimumAge" + Age`, so the custom `IAuthorizationPolicyProvider` should generate authorization policies by:
 
 * Parsing the age from the policy name.
-* Using `AuthorizationPolicyBuiler` to create a new `AuthorizationPolicy`
+* Using `AuthorizationPolicyBuilder` to create a new `AuthorizationPolicy`
 * Adding requirements to the policy based on the age with `AuthorizationPolicyBuilder.AddRequirements`. In other scenarios, you might use `RequireClaim`, `RequireRole`, or `RequireUserName` instead.
 
 ```CSharp
