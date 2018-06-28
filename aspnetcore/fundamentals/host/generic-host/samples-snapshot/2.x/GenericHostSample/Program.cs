@@ -41,12 +41,12 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
-                    configHost.SetBasePath(Directory.GetCurrentDirectory());
+                    configApp.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
                         optional: true);
-                    configHost.AddEnvironmentVariables(prefix: "PREFIX_");
+                    configApp.AddEnvironmentVariables(prefix: "PREFIX_");
                     configApp.AddCommandLine(args);
                 })
             #endregion
