@@ -1,4 +1,4 @@
-::: moniker range="= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
 
 This tutorial has not been upgraded to ASP.NET Core 2.1. The ASP.NET Core 2.0 version of this tutorial is available by selecting **2.0** above the table of contents or at the top of the page:
 
@@ -17,3 +17,5 @@ The 2.0 tutorial teaches ASP.NET Core MVC and Entity Framework Core with control
 
 If you choose this tutorial over the [Razor Pages](xref:data/ef-rp/intro) version, let us know why in [this GitHub discussion](https://github.com/aspnet/Docs/issues/6146).
 ::: moniker-end
+
+![Browser window highlighting the Bootstrap navigation button](~/includes/RP-EF/21version.png)
