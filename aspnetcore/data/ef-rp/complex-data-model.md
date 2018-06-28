@@ -584,6 +584,7 @@ In the **Package Manager Console** (PMC), run the following command:
 
 ```PMC
 Drop-Database
+Update-Database
 ```
 
 Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
@@ -605,8 +606,8 @@ Run the app. Running the app runs the `DbInitializer.Initialize` method. The `Db
 
 Open the DB in SSOX:
 
-* Expand the **Tables** node. The created tables are displayed.
 * If SSOX was opened previously, click the **Refresh** button.
+* Expand the **Tables** node. The created tables are displayed.
 
 ![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
 
@@ -627,7 +628,7 @@ When migrations are run with existing data, there may be FK constraints that are
 
 The *{timestamp}_ComplexDataModel.cs* file contains the following code:
 
-[!code-csharp[](intro/samples/cu21/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
 
 The preceding code adds a non-nullable `DepartmentID` FK to the `Course` table. The DB from the previous tutorial contains rows in `Course`, so that table cannot be updated by migrations.
 
