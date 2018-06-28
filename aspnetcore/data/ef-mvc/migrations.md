@@ -9,6 +9,10 @@ uid: data/ef-mvc/migrations
 
 # ASP.NET Core MVC with EF Core - Migrations - 4 of 10
 
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
+
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
@@ -29,7 +33,7 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 
 [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=2)]
   
-(The version numbers in this example were current when the tutorial was written.) 
+(The version numbers in this example were current when the tutorial was written.)
 
 ## Change the connection string
 
@@ -149,14 +153,15 @@ The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.T
 
 **Important:** This isn't the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
-For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet). 
+For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet).
 
 For more information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell).
 
 ## Summary
 
 In this tutorial, you've seen how to create and apply your first migration. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model. Along the way you'll create and apply additional migrations.
+::: moniker-end
 
 > [!div class="step-by-step"]
 > [Previous](sort-filter-page.md)
-> [Next](complex-data-model.md)  
+> [Next](complex-data-model.md)

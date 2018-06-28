@@ -9,6 +9,10 @@ uid: data/ef-mvc/read-related-data
 
 # ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10
 
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
+
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
@@ -233,6 +237,8 @@ Run the app, go to the Instructors Index page now and you'll see no difference i
 
 You've now used eager loading with one query and with multiple queries to read related data into navigation properties. In the next tutorial you'll learn how to update related data.
 
+::: moniker-end
+
 >[!div class="step-by-step"]
 >[Previous](complex-data-model.md)
->[Next](update-related-data.md)  
+>[Next](update-related-data.md)
