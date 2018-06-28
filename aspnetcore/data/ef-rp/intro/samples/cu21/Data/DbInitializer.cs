@@ -1,4 +1,4 @@
-﻿#define Intro // Final // or Final // or Intro
+﻿#define Final // Final // or Final // or Intro
 
 #if Intro
 #region snippet_Intro
@@ -90,7 +90,7 @@ namespace ContosoUniversity.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(School Context context)
+        public static void Initialize(SchoolContext context)
         {
             //context.Database.EnsureCreated();
 
@@ -320,13 +320,13 @@ namespace ContosoUniversity.Data
 
             foreach (Enrollment e in enrollments)
             {
-                var enrollmentInDataBase = context.Enrollments.Where(
+                var enrollmentInDataBase = context.Enrollment.Where(
                     s =>
                             s.Student.ID == e.StudentID &&
                             s.Course.CourseID == e.CourseID).SingleOrDefault();
                 if (enrollmentInDataBase == null)
                 {
-                    context.Enrollments.Add(e);
+                    context.Enrollment.Add(e);
                 }
             }
             context.SaveChanges();
