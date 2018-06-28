@@ -32,8 +32,8 @@ Install the following software:
 # [Visual Studio](#tab/visual-studio)
 
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -46,7 +46,7 @@ Install the following software:
 
 # [Visual Studio](#tab/visual-studio)
 
-Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm in its installation directory. Follow these instructions in Visual Studio:
+Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
 
 1. Navigate to **Tools** > **Options** > **Projects and solutions** > **Web Package Management** > **External Web Tools**.
 1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list. As an aside, the first entry refers to the project's local packages.
