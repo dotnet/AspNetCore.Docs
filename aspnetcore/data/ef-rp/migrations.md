@@ -7,15 +7,15 @@ ms.date: 6/31/2017
 uid: data/ef-rp/migrations
 ---
 
+# Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
+
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
 ::: moniker range=">= aspnetcore-2.1"
 
-# Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
-
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 

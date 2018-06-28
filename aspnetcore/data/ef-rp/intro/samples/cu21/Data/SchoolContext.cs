@@ -1,4 +1,4 @@
-﻿#define Intro // BeforeInheritance //Intro // AfterInheritance // or Intro or TableNames or BeforeInheritance
+﻿#define BeforeInheritance // BeforeInheritance //Intro // AfterInheritance // or Intro or TableNames or BeforeInheritance
 
 #if Intro
 #region snippet_Intro
@@ -52,7 +52,7 @@ namespace ContosoUniversity.Data
 using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContosoUniversity.Data
+namespace ContosoUniversity.Models
 {
     public class SchoolContext : DbContext
     {
