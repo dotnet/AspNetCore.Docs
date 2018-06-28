@@ -5,7 +5,7 @@ description: Learn how to configure Webpack to bundle and build an ASP.NET Core 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/27/2018
+ms.date: 06/28/2018
 uid: tutorials/signalr-typescript-webpack
 ---
 # Use ASP.NET Core SignalR with TypeScript and Webpack
@@ -67,6 +67,8 @@ Run the following command in the **Integrated Terminal**:
 dotnet new web -o SignalRWebPack
 ```
 
+An empty ASP.NET Core web app is created in a *SignalRWebPack* directory.
+
 ---
 
 ## Configure Webpack and TypeScript
@@ -89,7 +91,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     npm install -D clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli
     ```
 
-1. Replace the `scripts` property of the *package.json* file with the following:
+1. Replace the `scripts` property of the *package.json* file with the following snippet:
 
     ```json
     "scripts": {
@@ -124,7 +126,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     [!code-css[main.css](signalr-typescript-webpack/sample/src/css/main.css)]
 
-1. Create a file named *tsconfig.json*, in the *src* directory, with the following content. It configures the TypeScript compiler to produce ECMAScript 5-compatible JavaScript.
+1. Create a file named *tsconfig.json*, in the *src* directory, with the following content. It configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
     [!code-json[tsconfig.json](signalr-typescript-webpack/sample/src/tsconfig.json)]
 
@@ -199,32 +201,25 @@ Right now, the app displays a simple form to send messages. Nothing happens when
 
 Confirm that the app works with the following steps.
 
+# [Visual Studio](#tab/visual-studio)
+
+1. Run Webpack in *release* mode. Using the **Package Manager Console** window, execute the following command in the project root:
+
+    [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
+
+1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The *wwwroot/index.html* file is served at `http://localhost:<port_number>`.
+
+1. Open another browser instance (any browser). Paste the URL in the address bar.
+
+1. Choose either browser, type something in the **Message** text box, and click the **Send** button. The unique user name and message are displayed on both pages instantly.
+
 # [.NET Core CLI](#tab/netcore-cli)
-
-1. Build the project by executing the following command in the project root:
-
-    ```console
-    dotnet build
-    ```
 
 1. Run Webpack in *release* mode by executing the following command in the project root:
 
-    ```console
-    npm run release
-    ```
+    [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-    Webpack completed the following tasks:
-
-    * Converted the TypeScript to JavaScript&mdash;a process known as *transpilation*.
-    * Mangled the generated JavaScript to reduce file size&mdash;a process known as *minification*.
-    * Copied the processed JavaScript, CSS, and HTML files from *src* to the *wwwroot* directory.
-    * Injected the following elements into the *wwwroot/index.html* file:
-        * A `<link>` tag, referencing the *wwwroot/main.\<hash\>.css* file. This tag is placed immediately before the closing `</head>` tag.
-        * A `<script>` tag, referencing the minified *wwwroot/main.\<hash\>.js* file. This tag is placed immediately before the closing `</body>` tag.
-
-    The files in the *wwwroot* directory are served when running the app in the next step.
-
-1. Run the app by executing the following command in the project root:
+1. Build and run the app by executing the following command in the project root:
 
     ```console
     dotnet run
@@ -232,11 +227,11 @@ Confirm that the app works with the following steps.
 
     The web server starts the app and makes it available on localhost.
 
-1. Open a browser to `https://localhost:<port_number>`. Enter some text in the **Message** text box, and click the **Send** button.
+1. Open a browser to `http://localhost:<port_number>`. The *wwwroot/index.html* file is served. Copy the URL from the address bar.
 
-# [Visual Studio](#tab/visual-studio)
+1. Open another browser instance (any browser). Paste the URL in the address bar.
 
-<!-- TODO -->
+1. Choose either browser, type something in the **Message** text box, and click the **Send** button. The unique user name and message are displayed on both pages instantly.
 
 ---
 
