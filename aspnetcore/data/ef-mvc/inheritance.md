@@ -9,6 +9,10 @@ uid: data/ef-mvc/inheritance
 
 # ASP.NET Core MVC with EF Core - Inheritance - 9 of 10
 
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
+
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
@@ -45,7 +49,7 @@ TPC and TPH inheritance patterns generally deliver better performance than TPT i
 
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
 
-> [!TIP] 
+> [!TIP]
 > Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
 
 ## Create the Person class
@@ -116,7 +120,7 @@ dotnet ef database update
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
-> [!NOTE] 
+> [!NOTE]
 > It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the `database drop` CLI command.
 
 ## Test with inheritance implemented
@@ -135,6 +139,8 @@ Right-click the Person table, and then click **Show Table Data** to see the disc
 
 You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://docs.microsoft.com/ef/core/modeling/inheritance). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
 
+::: moniker-end
+
 > [!div class="step-by-step"]
 > [Previous](concurrency.md)
-> [Next](advanced.md)  
+> [Next](advanced.md)

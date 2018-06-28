@@ -1,12 +1,16 @@
 ---
 title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 author: rick-anderson
-description: 
+description:
 ms.author: tdykstra
 ms.date: 03/15/2017
 uid: data/ef-mvc/crud
 ---
 # ASP.NET Core MVC with EF Core - CRUD - 2 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -14,7 +18,7 @@ The Contoso University sample web application demonstrates how to create ASP.NET
 
 In the previous tutorial, you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
-> [!NOTE] 
+> [!NOTE]
 > It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about repositories with EF, see [the last tutorial in this series](advanced.md).
 
 In this tutorial, you'll work with the following web pages:
@@ -177,7 +181,7 @@ As a result of these changes, the method signature of the HttpPost `Edit` method
 
 ### Alternative HttpPost Edit code: Create and attach
 
-The recommended HttpPost edit code ensures that only changed columns get updated and preserves data in properties that you don't want included for model binding. However, the read-first approach requires an extra database read, and can result in more complex code for handling concurrency conflicts. An alternative is to attach an entity created by the model binder to the EF context and mark it as modified. (Don't update your project with this code, it's only shown to illustrate an optional approach.) 
+The recommended HttpPost edit code ensures that only changed columns get updated and preserves data in properties that you don't want included for model binding. However, the read-first approach requires an extra database read, and can result in more complex code for handling concurrency conflicts. An alternative is to attach an entity created by the model binder to the EF context and mark it as modified. (Don't update your project with this code, it's only shown to illustrate an optional approach.)
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_CreateAndAttach)]
 
@@ -287,6 +291,8 @@ For more information, see [Tracking vs. No-Tracking](https://docs.microsoft.com/
 
 You now have a complete set of pages that perform simple CRUD operations for Student entities. In the next tutorial you'll expand the functionality of the **Index** page by adding sorting, filtering, and paging.
 
+::: moniker-end
+
 > [!div class="step-by-step"]
 > [Previous](intro.md)
-> [Next](sort-filter-page.md)  
+> [Next](sort-filter-page.md)

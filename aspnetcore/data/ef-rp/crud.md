@@ -3,14 +3,13 @@ title: Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 author: rick-anderson
 description: Shows how to create,read,update,delete with EF Core
 ms.author: riande
-ms.date: 10/15/2017
+ms.date: 6/31/2017
 uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 
-::: moniker range="= aspnetcore-2.0"
-The ASP.NET Core 2.0 version of this tutorial can be found in [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/PDF-6-18-18.pdf).
-::: moniker-end
+[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
+
 ::: moniker range=">= aspnetcore-2.1"
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -42,6 +41,7 @@ The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframew
 * `FirstOrDefaultAsync` doesn't throw if there's more than one entity that fits the filter part.
 
 <a name="FindAsync"></a>
+
 ### FindAsync
 
 In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) can be used in place of `FirstOrDefaultAsync`.
@@ -51,8 +51,9 @@ In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframewor
 * Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it's returned without a request to the DB.
 * Is simple and concise.
 * Is optimized to look up a single entity.
-* Can have perf benefits in some situations, but they rarely come into play for typical web apps.
+* Can have perf benefits in some situations, but they rarely happens for typical web apps.
 * Implicitly uses [FirstAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) instead of [SingleAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
+
 But if you want to `Include` other entities, then `FindAsync` is no longer appropriate. This means that you may need to abandon `FindAsync` and move to a query as your app progresses.
 
 ## Customize the Details page
@@ -109,6 +110,7 @@ Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the fo
 [!code-csharp[](intro/samples/cu21/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 <a name="TryUpdateModelAsync"></a>
+
 ### TryUpdateModelAsync
 
 Examine the [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
@@ -119,10 +121,11 @@ In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `empty
 
 In the preceding sample:
 
-* The second argument (` "student", // Prefix`) is the prefix uses to look up values. It's not case sensitive.
+* The second argument (`"student", // Prefix`) is the prefix uses to look up values. It's not case sensitive.
 * The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding#how-model-binding-works).
 
 <a id="overpost"></a>
+
 ### Overposting
 
 Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
