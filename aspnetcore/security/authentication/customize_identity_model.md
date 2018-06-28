@@ -2,9 +2,9 @@
 title: Identity model customization
 author: ajcvickers
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: avickers
 ms.date: 04/12/2018
-ms.prod: asp.net-core
 uid: security/authentication/customize_identity_model
 ---
 # Identity model customization

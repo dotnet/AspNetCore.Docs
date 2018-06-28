@@ -39,7 +39,7 @@ Update the `Movie` class to take advantage of the `Required`, `StringLength`, `R
 Validation attributes specify behavior that's enforced on model properties:
 
 * The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
-* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` and `Rating` must use only letters (whitespace, numbers, and special characters aren't allowed).
+* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` must start with one or more capital letters and follow with zero or more letters, single or double quotes, whitespace characters, or dashes. `Rating` must start with one or more capital letters and follow with zero or more letters, numbers, single or double quotes, whitespace characters, or dashes.
 * The `Range` attribute constrains a value to a specified range.
 * The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
 
