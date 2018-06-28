@@ -16,7 +16,7 @@ connection.on("messageReceived", (username: string, message: string) => {
     let messageContainer = document.createElement("div");
 
     messageContainer.innerHTML =
-        `<div class="message__author">${username}</div><div>${message}</div>`;
+        `<div class="message-author">${username}</div><div>${message}</div>`;
 
     divMessages.appendChild(messageContainer);
     divMessages.scrollTop = divMessages.scrollHeight;

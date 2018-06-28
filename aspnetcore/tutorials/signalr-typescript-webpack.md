@@ -237,6 +237,8 @@ Confirm that the app works with the following steps.
 
 ---
 
+![message displayed in both browser windows](signalr-typescript-webpack/_static/browsers-message-broadcast.png)
+
 ## Additional resources
 
 * <xref:signalr/javascript-client>
