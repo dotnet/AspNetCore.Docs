@@ -580,6 +580,8 @@ When migrations are run with existing data, there may be FK constraints that are
 
 The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
+# [Visual Studio](#tab/visual-studio)
+
 In the **Package Manager Console** (PMC), run the following command:
 
 ```PMC
