@@ -67,7 +67,7 @@ Run the following command in the **Integrated Terminal**:
 dotnet new web -o SignalRWebPack
 ```
 
-An empty ASP.NET Core web app is created in a *SignalRWebPack* directory.
+An empty ASP.NET Core web app, targeting .NET Core, is created in a *SignalRWebPack* directory.
 
 ---
 
