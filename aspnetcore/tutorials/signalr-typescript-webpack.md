@@ -167,7 +167,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 ## Enable client and server communication
 
-Right now, the app displays a simple form to send messages. Nothing happens when you try to do so. The server is listening to a specific route but doesn't do anything with sent messages.
+The app currently displays a simple form to send messages. Nothing happens when you try to do so. The server is listening to a specific route but does nothing with sent messages.
 
 1. Execute the following command at the project root. It installs the [SignalR TypeScript client](https://www.npmjs.com/package/@aspnet/signalr), which allows the client to send messages to the server.
 
@@ -181,13 +181,13 @@ Right now, the app displays a simple form to send messages. Nothing happens when
 
     In the preceding code, the `HubConnectionBuilder` class creates a new builder for configuring the connection to the server. The `withUrl` function configures the hub URL.
 
-    SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, you can have messages with the name `messageReceived` that execute the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. You can listen to any number of message names that you want. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` property. It's added to the main `div` element displaying the messages.
+    SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, you can have messages with the name `messageReceived` that execute the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. You can listen to any number of message names. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
 
 1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/src/index.ts?highlight=34-35)]
 
-    Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. So here, you send a `newMessage` message with the username and the content of the "input" to the server. If it works, the "input" value is cleaned.
+    Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
 1. Add the highlighted method to the `ChatHub` class. It broadcasts received messages to all connected users once the server receives them.
 
