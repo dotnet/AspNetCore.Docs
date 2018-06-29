@@ -20,6 +20,7 @@
 ### [Add validation](xref:tutorials/razor-pages/validation)
 ### [Upload files](xref:tutorials/razor-pages/uploading-files)
 ## [Create a real-time SignalR web app](xref:tutorials/signalr)
+## [Create a SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Create an MVC web app](tutorials/first-mvc-app/index.md)
 ### [Get started](tutorials/first-mvc-app/start-mvc.md)
 ### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -253,6 +254,7 @@
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## [Streaming](xref:signalr/streaming)
+## [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## [Differences between SignalR versions](xref:signalr/version-differences)
 
