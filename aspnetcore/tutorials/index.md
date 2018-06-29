@@ -22,6 +22,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
    * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
 
 * [Create a real-time SignalR web app](xref:tutorials/signalr)
+* [Create a SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 
 * Create an ASP.NET Core MVC web app
 
