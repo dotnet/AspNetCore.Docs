@@ -62,7 +62,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    * Named **MyService**.
    * Published to the *c:\\svc* folder.
-   * Has an app executable named *AspNetCoreService.exe*.
+   * Represented by an app executable named *AspNetCoreService.exe*.
 
    Open a command shell with administrative privileges and run the following command:
 
@@ -77,7 +77,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    * Named **MyService**.
    * Created from a project that sets a target framework to `netcoreapp2.1`.
    * Published to the *c:\\my_services\\AspNetCoreService\\bin\\Release\\netcoreapp2.1\\publish* folder.
-   * Has an app executable named *AspNetCoreService.exe*.
+   * Represented by an app executable named *AspNetCoreService.exe*.
 
    Open a command shell with administrative privileges and run the following command:
 
