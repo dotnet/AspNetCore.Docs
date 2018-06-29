@@ -47,7 +47,7 @@ namespace SignalRAuthenticationSample
                 })
                 .AddJwtBearer(options =>
                 {
-                    // Configure JWT Bearer Auth to expect the security key we generated above
+                    // Configure JWT Bearer Auth to expect our security key
                     options.TokenValidationParameters =
                         new TokenValidationParameters
                         {
