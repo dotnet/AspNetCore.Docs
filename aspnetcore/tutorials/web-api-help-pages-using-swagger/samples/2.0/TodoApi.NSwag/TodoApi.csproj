@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ProjectUISubcaption>NSwag</ProjectUISubcaption>
+    <ProjectUISubcaption>NSwag - ASP.NET Core 2.0</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_DocumentationFileElement> -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <!-- </snippet_DocumentationFileElement> -->
 
