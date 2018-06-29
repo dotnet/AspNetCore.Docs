@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/15/2018
+ms.date: 06/28/2018
 uid: fundamentals/websockets
 ---
 
@@ -42,7 +42,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 Use WebSockets to work directly with a socket connection. For example, use WebSockets for the best possible performance with a real-time game.
 
-[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps, and uses the WebSockets protocol whenever possible. SignalR is useful for most development scenarios.
+[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
 ## How to use WebSockets
 
