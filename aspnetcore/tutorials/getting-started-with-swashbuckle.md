@@ -140,7 +140,8 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Manually add the highlighted lines to the *.csproj* file:
+* From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
+* Manually add the highlighted lines to the *.csproj* file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
