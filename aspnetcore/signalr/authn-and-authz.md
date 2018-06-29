@@ -50,7 +50,7 @@ In standard Web APIs, bearer tokens are sent via an HTTP header. However, due to
 
 ### Windows Authentication
 
-If you have configured [Windows Authentication](xref:security/windowsauth) in your application, SignalR can use that authentication to secure Hubs. However, in order to send messages to individual users, you need to add a custom User ID provider, because the Windows Authentication system does not provide the "Name Identifier" claim that SignalR uses to determine the user name. To do this, add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
+If you have configured [Windows Authentication](xref:security/authentication/windowsauth) in your application, SignalR can use that authentication to secure Hubs. However, in order to send messages to individual users, you need to add a custom User ID provider, because the Windows Authentication system does not provide the "Name Identifier" claim that SignalR uses to determine the user name. To do this, add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
 ```csharp
 public class NameUserIdProvider : IUserIdProvider
