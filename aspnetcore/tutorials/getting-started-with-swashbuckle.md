@@ -120,13 +120,38 @@ XML comments can be enabled with the following approaches:
 
 # [Visual Studio](#tab/visual-studio-xml/)
 
-* Right-click the project in **Solution Explorer** and select **Properties**
-* Check the **XML documentation file** box under the **Output** section of the **Build** tab
+::: moniker range=">= aspnetcore-2.0"
+
+* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
+* Manually add the highlighted lines to the *.csproj* file:
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
+* Right-click the project in **Solution Explorer** and select **Properties**.
+* Check the **XML documentation file** box under the **Output** section of the **Build** tab.
+
+::: moniker-end
 
 # [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
 
+::: moniker range=">= aspnetcore-2.0"
+
+Manually add the highlighted lines to the *.csproj* file:
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
 * Open the **Project Options** dialog > **Build** > **Compiler**
 * Check the **Generate xml documentation** box under the **General Options** section
+
+::: moniker-end
 
 # [Visual Studio Code](#tab/visual-studio-code-xml/)
 
@@ -168,9 +193,9 @@ Suppress warnings by defining a semicolon-delimited list of warning codes to ign
 
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
-::: moniker range="<= aspnetcore-1.1"
+::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup1x.cs?name=snippet_ConfigureServices&highlight=30-32)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup.cs?name=snippet_ConfigureServices&highlight=31-33)]
 
 ::: moniker-end
 
@@ -180,13 +205,13 @@ Configure Swagger to use the generated XML file. For Linux or non-Windows operat
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range="<= aspnetcore-1.1"
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup.cs?name=snippet_ConfigureServices&highlight=31-33)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup1x.cs?name=snippet_ConfigureServices&highlight=30-32)]
 
 ::: moniker-end
 
-In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the Web API project. This approach ensures that the generated XML file name matches the project name. The [AppContext.BaseDirectory](/dotnet/api/system.appcontext.basedirectory#System_AppContext_BaseDirectory) property is used to construct a path to the XML file.
+In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the Web API project. The [AppContext.BaseDirectory](/dotnet/api/system.appcontext.basedirectory#System_AppContext_BaseDirectory) property is used to construct a path to the XML file.
 
 Adding triple-slash comments to an action enhances the Swagger UI by adding the description to the section header. Add a [\<summary>](/dotnet/csharp/programming-guide/xmldoc/summary) element above the `Delete` action:
 
