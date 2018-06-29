@@ -1,11 +1,11 @@
 ---
 title: Use ASP.NET Core SignalR with TypeScript and Webpack
 author: ssougnez
-description: Learn how to configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
+description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/28/2018
+ms.date: 06/29/2018
 uid: tutorials/signalr-typescript-webpack
 ---
 # Use ASP.NET Core SignalR with TypeScript and Webpack
@@ -81,9 +81,11 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     npm init -y
     ```
 
-1. Add the highlighted property to the *package.json* file. It prevents package installation warnings in the next step.
+1. Add the highlighted property to the *package.json* file:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/snippets/package1.json?highlight=4)]
+
+    Setting the `private` property to `true` prevents package installation warnings in the next step.
 
 1. Install the required npm packages. Execute the following command from the project root:
 
@@ -109,30 +111,38 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     * `release`: Bundles your client-side resources in production mode.
     * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
-1. Create a file named *webpack.config.js*, in the project root, with the following content. Its purpose is to configure the Webpack compilation.
+1. Create a file named *webpack.config.js*, in the project root, with the following content:
 
     [!code-javascript[webpack.config.js](signalr-typescript-webpack/sample/webpack.config.js)]
 
-    Some configuration details to note:
+    The preceding file configures the Webpack compilation. Some configuration details to note:
 
     * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
     * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
 
 1. Create a new *src* directory in the project root. Its purpose is to store the project's client-side assets.
 
-1. Create a file named *index.html*, in the *src* directory, with the following content. It defines the homepage's HTML template.
+1. Create *src/index.html* with the following content.
 
     [!code-html[index.html](signalr-typescript-webpack/sample/src/index.html)]
 
-1. Create a file named *main.css*, in a new *src/css* directory, with the following content. It includes CSS classes for the app.
+    The preceding HTML defines the homepage's boilerplate markup.
+
+1. Create a new *src/css* directory. Its purpose is to store the project's *.css* files.
+
+1. Create *src/css/main.css* with the following content:
 
     [!code-css[main.css](signalr-typescript-webpack/sample/src/css/main.css)]
 
-1. Create a file named *tsconfig.json*, in the *src* directory, with the following content. It configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
+    The preceding *main.css* file styles the app.
+
+1. Create *src/tsconfig.json* with the following content:
 
     [!code-json[tsconfig.json](signalr-typescript-webpack/sample/src/tsconfig.json)]
 
-1. Create a file named *index.ts*, in the *src* directory, with the following content.
+    The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
+
+1. Create *src/index.ts* with the following content:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/snippets/index1.ts?name=snippet_IndexTsPhase1File)]
 
@@ -159,7 +169,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
 
-1. Create a file named *ChatHub.cs* in the *Hubs* directory. Use the following code to create your hub:
+1. Create hub *Hubs/ChatHub.cs* with the following code:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
@@ -171,17 +181,19 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 The app currently displays a simple form to send messages. Nothing happens when you try to do so. The server is listening to a specific route but does nothing with sent messages.
 
-1. Execute the following command at the project root. It installs the [SignalR TypeScript client](https://www.npmjs.com/package/@aspnet/signalr), which allows the client to send messages to the server.
+1. Execute the following command at the project root:
 
     ```console
     npm install @aspnet/signalr
     ```
 
-1. Add the highlighted code to the *src/index.ts* file. This code supports receiving messages from the server.
+    The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@aspnet/signalr), which allows the client to send messages to the server.
+
+1. Add the highlighted code to the *src/index.ts* file:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/snippets/index2.ts?name=snippet_IndexTsPhase2File&highlight=2,9-23)]
 
-    In the preceding code, the `HubConnectionBuilder` class creates a new builder for configuring the connection to the server. The `withUrl` function configures the hub URL.
+    The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
     SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, you can have messages with the name `messageReceived` that execute the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. You can listen to any number of message names. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
 
@@ -191,11 +203,11 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
     Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
-1. Add the highlighted method to the `ChatHub` class. It broadcasts received messages to all connected users once the server receives them.
+1. Add the highlighted method to the `ChatHub` class:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/Hubs/ChatHub.cs?highlight=8-11)]
 
-    It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
+    The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
     In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method on [Clients.All](/dotnet/api/microsoft.aspnetcore.signalr.ihubclients-1.all). The received messages are sent to all clients connected to the hub.
 
