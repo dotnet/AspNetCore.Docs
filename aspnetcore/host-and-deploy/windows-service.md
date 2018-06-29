@@ -75,7 +75,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    For a service published in the project folder (published without specifying the `--output` option), use the path to the *publish* folder to create the service. In the following example, the service is:
    
    * Named **MyService**.
-   * Created from a project that sets a target framework to `netcoreapp2.1`.
+   * Created from a project that sets the target framework to `netcoreapp2.1`.
    * Published to the *c:\\my_services\\AspNetCoreService\\bin\\Release\\netcoreapp2.1\\publish* folder.
    * Represented by an app executable named *AspNetCoreService.exe*.
 
