@@ -8,6 +8,7 @@
   <!-- <snippet_DocumentationFileElement> -->
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <!-- </snippet_DocumentationFileElement> -->
 
