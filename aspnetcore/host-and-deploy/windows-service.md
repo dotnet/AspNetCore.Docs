@@ -69,6 +69,21 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    ```console
    sc create MyService binPath= "c:\svc\aspnetcoreservice.exe"
    ```
+   
+   **Make sure the space is present between the `binPath=` argument and its value.**
+   
+   For a service published in the project folder (published without specifying the `--output` option), use the path to the *publish* folder to create the service. In the following example, the service is:
+   
+   * Named **MyService**.
+   * Created from a project that sets a target framework to `netcoreapp2.1`.
+   * Published to *c:\\my_services\\AspNetCoreService\\bin\\Release\\netcoreapp2.1\\publish* folder.
+   * Has an app executable named *AspNetCoreService.exe*.
+
+   Open a command shell with administrative privileges and run the following command:
+
+   ```console
+   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\netcoreapp2.1\publish"
+   ```
 
    **Make sure the space is present between the `binPath=` argument and its value.**
 
