@@ -31,7 +31,7 @@ When using the .NET Client, or when your SignalR Hubs are located on a different
 
 In the JavaScript client, the token can be provided using the `accessTokenFactory` option.
 
-[!code-javascript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.js?range=63-65)]
+[!code-javascript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=63-65)]
 
 In the .NET client, there is a simlar `AccessTokenProvider` property that can be used to configure this:
 
@@ -46,7 +46,7 @@ var connection = new HubConnectionBuilder()
 
 In standard Web APIs, bearer tokens are sent via an HTTP header. However, due to security limitations imposed by browsers, the browser client is not able to set these headers when using the WebSockets or Server-Sent Events transports. When using those transports, the token is transmitted as a query string parameter. In order to support this on the server, additional configuration is required:
 
-[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?range=42-80)]
+[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?range=33-34,42-80,90)]
 
 ### Windows Authentication
 
@@ -83,7 +83,7 @@ public void ConfigureServices(IServiceCollection services)
 
 By default, all methods in a Hub can be called by an unauthenticated user. In order to require authentication, apply the [`Authorize`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.1) attribute to the Hub:
 
-[!code-csharp[Restrict a Hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,33)]
+[!code-csharp[Restrict a Hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,32)]
 
 You can use the constructor arguments and properties of the `Authorize` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
 
