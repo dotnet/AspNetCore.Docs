@@ -93,7 +93,12 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     npm install -D -E clean-webpack-plugin@0.1.19 css-loader@0.28.11 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.4.0 ts-loader@4.4.1 typescript@2.9.2 webpack@4.12.0 webpack-cli@3.0.6
     ```
 
-    Exact versions of npm packages, which are known to work, are installed.
+    Some command details to note:
+
+    * A version number follows the `@` sign for each package name. npm installs those specific package versions.
+    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.12.0"` is used instead of `"webpack": "^4.12.0"`. This option prevents unintended upgrades to newer package versions.
+
+    See the official [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
 
 1. Replace the `scripts` property of the *package.json* file with the following snippet:
 
@@ -107,7 +112,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     Some explanation of the scripts:
 
-    * `build`: Bundles your client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use this script in development.
+    * `build`: Bundles your client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use `build` in development.
     * `release`: Bundles your client-side resources in production mode.
     * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
