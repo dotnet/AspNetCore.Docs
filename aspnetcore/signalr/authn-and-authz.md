@@ -13,6 +13,8 @@ uid: signalr/authn-and-authz
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/ ) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+
 ## Authenticate users connecting to a SignalR Hub
 
 SignalR can be used with [ASP.NET Core Authentication](xref:security/authentication/index) to associate a User with each connection. In a Hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user?view=aspnetcore-2.1) property. Once a connection is authenticated, it is possible to invoke methods on all connections associated with a specific user. See [Manage users and groups in SignalR](xref:signalr/groups) for more information.
