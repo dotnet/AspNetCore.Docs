@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <!-- <snippet_SuppressWarnings> -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <!-- </snippet_SuppressWarnings> -->
 
