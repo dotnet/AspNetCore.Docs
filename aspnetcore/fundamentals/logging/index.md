@@ -75,7 +75,7 @@ You'll find information about each [built-in logging provider](#built-in-logging
 
 Each of the preceding examples in the [How to add providers](#how-to-add-providers) section loads logging provider configuration from the `Logging` section of app settings files. The following example shows the contents of a typical *appsettings.Development.json* file:
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
 
 ```json
 {
@@ -97,7 +97,7 @@ Each of the preceding examples in the [How to add providers](#how-to-add-provide
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+::: moniker range="< aspnetcore-2.1"
 
 ```json
 {
