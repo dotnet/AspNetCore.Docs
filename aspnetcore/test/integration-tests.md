@@ -229,11 +229,10 @@ Call the [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testh
    {
        protected override void ConfigureWebHost(IWebHostBuilder builder)
        {
+           builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
            builder.ConfigureServices(services =>
            {
-               builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
-
-               ...
+            ...
            });
        }
    }
