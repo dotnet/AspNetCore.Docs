@@ -199,17 +199,23 @@ For more information, see [Open Web Interface for .NET (OWIN)](xref:fundamentals
 
 For more information, see [WebSockets](xref:fundamentals/websockets).
 
+::: moniker range=">= aspnetcore-2.1"
 ## Microsoft.AspNetCore.App metapackage
 
-The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) metapackage for ASP.NET Core 2.1 and later includes:
+The [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage simplifies package management. See [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage for more information.
 
-* Does not include third-party dependencies except for [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/), [Remotion.Linq](https://www.nuget.org/packages/Remotion.Linq/), and [IX-Async](https://www.nuget.org/packages/System.Interactive.Async/). These 3rd-party dependencies are deemed necessary to ensure the major frameworks features function.
-* Includes all supported packages by the ASP.NET Core team except those that contain third-party dependencies (other than those previously mentioned).
-* Includes all supported packages by the Entity Framework Core team except those that contain third-party dependencies (other than those previously mentioned).
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
+## Microsoft.AspNetCore.All metapackage
 
-All the features of ASP.NET Core 2.1 and later and Entity Framework Core 2.1 and later are included in the `Microsoft.AspNetCore.App` package.
+The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
-For more information, see [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). If you are using ASP.NET Core 2.0, you can use [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). We recommend applications targeting ASP.NET Core 2.1 and later use the former.
+* All supported packages by the ASP.NET Core team.
+* All supported packages by the Entity Framework Core.
+* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
+::: moniker-end
+
+For more information, see [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
 
 ## .NET Core vs. .NET Framework runtime
 
