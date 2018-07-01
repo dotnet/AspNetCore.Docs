@@ -7,14 +7,13 @@ using Microsoft.Extensions.Logging;
 namespace BackgroundTasksSample.Services
 {
     #region snippet1
-    
     public class QueuedHostedService : BackgroundService
     {
-        private CancellationTokenSource _shutdown = new CancellationTokenSource();
         private Task _backgroundTask;
         private readonly ILogger _logger;
 
-        public QueuedHostedService(IBackgroundTaskQueue taskQueue, ILoggerFactory loggerFactory)
+        public QueuedHostedService(IBackgroundTaskQueue taskQueue,
+            ILoggerFactory loggerFactory)
         {
             TaskQueue = taskQueue;
             _logger = loggerFactory.CreateLogger<QueuedHostedService>();
@@ -24,20 +23,21 @@ namespace BackgroundTasksSample.Services
 
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (false == stoppingToken.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
-                var workItem = await TaskQueue.DequeueAsync(stoppingToken);
+                var workItem = 
+                    await TaskQueue.DequeueAsync(stoppingToken);
                 try
                 {
-                    await workItem(this._shutdown.Token);
+                    await workItem(stoppingToken);
                 }
                 catch (Exception ex)
                 {
-                    this._logger.LogError(ex, $"Error occurred executing {nameof(workItem)}.");
+                    this._logger.LogError(ex,
+                        $"Error occurred executing {nameof(workItem)}.");
                 }
             }
         }
     }
-    
     #endregion
 }
