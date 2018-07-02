@@ -122,9 +122,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. To configure a SignalR project, modify the project's `Startup.ConfigureServices` method.
 
-   `services.AddSignalR` adds SignalR as part of the [middleware](xref:fundamentals/middleware/index) pipeline.
+   `services.AddSignalR` makes the SignalR services available to the [dependency injection](xref:fundamentals/dependency-injection) system.
 
-2. Configure routes to your hubs using `UseSignalR`.
+1. Configure routes to your hubs with `UseSignalR` in the `Configure` method. `app.UseSignalR` adds SignalR to the [middleware](xref:fundamentals/middleware/index) pipeline.
 
    [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=37,57-60)]
 
