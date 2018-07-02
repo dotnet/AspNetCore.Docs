@@ -3,6 +3,7 @@ title: Partial views in ASP.NET Core
 author: ardalis
 description: Learn how a partial view is a view that's rendered within another view and when they should be used in ASP.NET Core apps.
 ms.author: riande
+ms.custom: mvc
 ms.date: 07/02/2018
 uid: mvc/views/partial
 ---
@@ -41,9 +42,11 @@ Within a view page, there are several ways to render a partial view. The best pr
 
 ### Partial Tag Helper
 
-The [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) requires ASP.NET Core 2.1 or later. It renders asynchronously and uses an HTML-like syntax:
+The Partial Tag Helper requires ASP.NET Core 2.1 or later. It renders asynchronously and uses an HTML-like syntax:
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/About.cshtml?name=snippet_PartialTagHelper)]
+
+See <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper> for more information.
 
 ::: moniker-end
 
@@ -116,7 +119,7 @@ You can pass an instance of `ViewDataDictionary` and a view model to a partial v
 
 The following markup shows the *Views/Articles/Read.cshtml* view, which contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. Use the highlighted `ViewDataDictionary` constructor overload to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?snippet_PartialAsync&highlight=2-5)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=16-19)]
 
 *Views/Shared/_AuthorPartial*:
 
@@ -132,4 +135,18 @@ At runtime, the partials are rendered into the parent view, which itself is rend
 
 ## Additional resources
 
+::: moniker range=">= aspnetcore-2.1"
+
+* <xref:mvc/views/razor>
+* <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
+* <xref:mvc/views/view-components>
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+* <xref:mvc/views/razor>
+* <xref:mvc/views/view-components>
+
+::: moniker-end
