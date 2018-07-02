@@ -2,14 +2,10 @@
 title: Razor file compilation and precompilation in ASP.NET Core
 author: rick-anderson
 description: Learn about the benefits of precompiling Razor files and how to accomplish Razor file precompilation in an ASP.NET Core app.
-manager: wpickett
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/17/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core

@@ -2,14 +2,10 @@
 title: Get started with SignalR on ASP.NET Core
 author: rachelappel
 description: In this tutorial, you create an app using SignalR for ASP.NET Core.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: rachelap
 ms.custom: mvc
 ms.date: 05/22/2018
-ms.prod: aspnet-core
-ms.topic: tutorial
-ms.technology: aspnet
 uid: tutorials/signalr
 ---
 # Get started with SignalR on ASP.NET Core
@@ -27,9 +23,9 @@ This tutorial demonstrates the following SignalR development tasks:
 > * Create a SignalR hub to push content to clients.
 > * Modify the `Startup` class and configure the app.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/get-started/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-# Prerequisites
+## Prerequisites
 
 Install the following software:
 
@@ -98,7 +94,7 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the file *ChatHub*.
+1. Add a class to the project by choosing **File** > **New** > **File** and selecting **Visual C# Class**. Name the class `ChatHub` and the file *ChatHub.cs*.
 
 2. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
 
@@ -110,13 +106,13 @@ A hub is a class that serves as a high-level pipeline that allows the client and
 
 1. Open the *SignalRChat* folder in Visual Studio Code.
 
-2. Add a class to the project by selecting **File** > **New File** from the menu.
+2. Add a class to the project by selecting **File** > **New File** from the menu. Name the class `ChatHub` and the file *ChatHub.cs*.
 
 3. Inherit from `Microsoft.AspNetCore.SignalR.Hub`. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data to clients.
 
 4. Add a `SendMessage` method to the class. The `SendMessage` method sends a message to all connected chat clients. Notice it returns a [Task](/dotnet/api/system.threading.tasks.task), because SignalR is asynchronous. Asynchronous code scales better.
 
-   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs?range=6-12)]
+   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
 
 -----
 
@@ -126,9 +122,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
 1. To configure a SignalR project, modify the project's `Startup.ConfigureServices` method.
 
-   `services.AddSignalR` adds SignalR as part of the [middleware](xref:fundamentals/middleware/index) pipeline.
+   `services.AddSignalR` makes the SignalR services available to the [dependency injection](xref:fundamentals/dependency-injection) system.
 
-2. Configure routes to your hubs using `UseSignalR`.
+1. Configure routes to your hubs with `UseSignalR` in the `Configure` method. `app.UseSignalR` adds SignalR to the [middleware](xref:fundamentals/middleware/index) pipeline.
 
    [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=37,57-60)]
 

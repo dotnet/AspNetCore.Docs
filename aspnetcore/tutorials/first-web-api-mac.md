@@ -2,14 +2,9 @@
 title: Create a Web API with ASP.NET Core and Visual Studio for Mac
 author: rick-anderson
 description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
-helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/08/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-web-api-mac
 ---
 # Create a Web API with ASP.NET Core and Visual Studio for Mac

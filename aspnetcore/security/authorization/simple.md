@@ -2,12 +2,8 @@
 title: Simple authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
@@ -69,5 +65,5 @@ public class AccountController : Controller
 
 This would allow only authenticated users to the `AccountController`, except for the `Login` action, which is accessible by everyone, regardless of their authenticated or unauthenticated / anonymous status.
 
->[!WARNING]
-> `[AllowAnonymous]` bypasses all authorization statements. If you apply combine `[AllowAnonymous]` and any `[Authorize]` attribute then the Authorize attributes will always be ignored. For example if you apply `[AllowAnonymous]` at the controller level any `[Authorize]` attributes on the same controller, or on any action within it will be ignored.
+> [!WARNING]
+> `[AllowAnonymous]` bypasses all authorization statements. If you combine `[AllowAnonymous]` and any `[Authorize]` attribute, the `[Authorize]` attributes are ignored. For example if you apply `[AllowAnonymous]` at the controller level, any `[Authorize]` attributes on the same controller (or on any action within it) is ignored.

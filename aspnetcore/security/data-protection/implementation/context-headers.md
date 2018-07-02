@@ -2,12 +2,8 @@
 title: Context headers in ASP.NET Core
 author: rick-anderson
 description: Learn implementation details of ASP.NET Core Data Protection context headers.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/context-headers
 ---
 # Context headers in ASP.NET Core

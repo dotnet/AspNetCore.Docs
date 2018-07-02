@@ -101,6 +101,8 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
 
 Copy the files in the **IdentityModels** and **IdentityAccount** folders from the download source ( [https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations](https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations) ). These have the remaining model classes and the new pages needed for user and role management using the ASP.NET Identity APIs. The approach used is similar to the SQL Membership and the detailed explanation can be found [here](migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md).
 
+[!INCLUDE[](../../../includes/identity/alter-command-exception.md)]
+
 ## Copying Profile data to the new tables
 
 As mentioned earlier, we need to deserialize the xml data in the Profiles tables and store it in the columns of the AspNetUsers table. The new columns were created in the users table in the previous step so all that is left is to populate those columns with the necessary data. To do this, we will use a console application which is run once to populate the newly created columns in the users table.

@@ -2,12 +2,8 @@
 title: Handle requests with controllers in ASP.NET Core MVC
 author: ardalis
 description: 
-manager: wpickett
 ms.author: riande
 ms.date: 07/03/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/controllers/actions
 ---
 # Handle requests with controllers in ASP.NET Core MVC

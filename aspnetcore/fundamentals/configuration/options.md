@@ -2,13 +2,9 @@
 title: Options pattern in ASP.NET Core
 author: guardrex
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/28/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
@@ -51,6 +47,20 @@ When the app is run, the page model's `OnGet` method returns a string showing th
 ```html
 option1 = value1_from_json, option2 = -1
 ```
+
+> [!NOTE]
+> When using a custom [ConfigurationBuilder](/dotnet/api/system.configuration.configurationbuilder) to load options configuration from a settings file, confirm that the base path is set correctly:
+>
+> ```csharp
+> var configBuilder = new ConfigurationBuilder()
+>    .SetBasePath(Directory.GetCurrentDirectory())
+>    .AddJsonFile("appsettings.json", optional: true);
+> var config = configBuilder.Build();
+>
+> services.Configure<MyOptions>(config);
+> ```
+>
+> Explicitly setting the base path isn't required when loading options configuration from the settings file via [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).
 
 ## Configure simple options with a delegate
 
