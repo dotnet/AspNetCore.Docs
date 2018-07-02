@@ -251,7 +251,7 @@ To demonstrate the difference between the lifetime and registration options, con
 
 ::: moniker-end
 
-These interfaces are implemented using a single class, `Operation`, which accepts a `Guid` in its constructor or uses a new `Guid` if none is provided:
+The interfaces are implemented in the `Operation` class. The `Operation` constructor generates a GUID if one isn't supplied:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -265,7 +265,11 @@ These interfaces are implemented using a single class, `Operation`, which accept
 
 ::: moniker-end
 
-An `OperationService` is registered that depends on each of the other `Operation` types. `OperationService` makes it clear if transient services are created when requested or merely mirroring the `OperationsId` of the `IOperationTransient` service:
+An `OperationService` is registered that depends on each of the other `Operation` types. When `OperationService` is requested via dependency injection, it receives either a new instance of each service or an existing instance based on how the dependent service is registered.
+
+* If transient services are created when requested, the `OperationsId` of the `IOperationTransient` service is different than the `OperationsId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationsId`.
+* If scoped services are created per request, the `OperationsId` of the `IOperationScoped` service is the same as that of `OperationService` within a request. Across requests, both services share a different `OperationsId` value.
+* If singleton and singleton-instance services are created once and used across all requests and all services, the `OperationsId` is constant across all service requests.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -283,13 +287,13 @@ In `Startup.ConfigureServices`, each type is added to the container according to
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=12-16)]
+[!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=12-15,18)]
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[!code-csharp[](dependency-injection/samples/1.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=6-10)]
+[!code-csharp[](dependency-injection/samples/1.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=6-9,12)]
 
 ::: moniker-end
 
@@ -297,7 +301,7 @@ The `IOperationSingletonInstance` service is using a specific instance with a kn
 
 ::: moniker range=">= aspnetcore-2.1"
 
-To demonstrate the object lifetimes within and between individual requests to the app, the sample app's `IndexModel` requests each kind of `IOperation` type as well as the `OperationService`. The page then displays all of the page model class's and service's `OperationId` values through property assignments:
+The sample app demonstrates object lifetimes within and between individual requests. The sample app's `IndexModel` requests each kind of `IOperation` type and the `OperationService`. The page then displays all of the page model class's and service's `OperationId` values through property assignments:
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=7-11,14-18,21-25)]
 
@@ -305,13 +309,13 @@ To demonstrate the object lifetimes within and between individual requests to th
 
 ::: moniker range="<= aspnetcore-2.0"
 
-To demonstrate the object lifetimes within and between individual requests to the app, the sample app includes an `OperationsController` that requests each kind of `IOperation` type as well as the `OperationService`. The `Index` action sets the services into the `ViewBag` for display of the service's `OperationId` values:
+The sample app demonstrates object lifetimes within and between individual requests. The sample app includes an `OperationsController` that requests each kind of `IOperation` type and the `OperationService`. The `Index` action sets the services into the `ViewBag` for display of the service's `OperationId` values:
 
 [!code-csharp[](dependency-injection/samples/1.x/DependencyInjectionSample/Controllers/OperationsController.cs?name=snippet1)]
 
 ::: moniker-end
 
-Two requests are made with the following result:
+Two following output shows the results of two requests:
 
 **First request:**
 
@@ -351,7 +355,7 @@ Observe which of the `OperationId` values vary within a request and between requ
 * *Scoped* objects are the same within a request but different across requests.
 * *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `ConfigureServices`.
 
-## Resolve a scoped service within the app scope
+## Call services from main
 
 Create an [IServiceScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescope) with [IServiceScopeFactory.CreateScope](/dotnet/api/microsoft.extensions.dependencyinjection.iservicescopefactory.createscope) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
 
@@ -382,10 +386,14 @@ public static void Main(string[] args)
 
 ## Scope validation
 
-When the app is running in the Development environment on ASP.NET Core 2.0 or later, the default service provider performs checks to verify that:
+::: moniker range=">= aspnetcore-2.0"
+
+When the app is running in the Development environment, the default service provider performs checks to verify that:
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
+
+::: moniker-end
 
 The root service provider is created when [BuildServiceProvider](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectioncontainerbuilderextensions.buildserviceprovider) is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
@@ -406,11 +414,15 @@ Generally, the app shouldn't use these properties directly. Instead, request the
 
 ## Design services for dependency injection
 
-Design services to use dependency injection to obtain their dependencies. Avoid the use of stateful, static method calls (a bad practice known as [static cling](https://deviq.com/static-cling/)) and the direct instantiation of dependent classes within services. Direct instantiation "glues" the code to a particular implementation. It may help to remember the phrase, [New is Glue](https://ardalis.com/new-is-glue), when choosing whether to instantiate a type or to request it via dependency injection. By following the [SOLID Principles of Object Oriented Design](https://deviq.com/solid/), app classes naturally tend to be small, well-factored, and easily tested.
+Best practices are to:
+
+* Design services to use dependency injection to obtain their dependencies.
+* Avoid stateful, static method calls (a practice known as [static cling](https://deviq.com/static-cling/)).
+* Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
+
+By following the [SOLID Principles of Object Oriented Design](https://deviq.com/solid/), app classes naturally tend to be small, well-factored, and easily tested.
 
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](https://deviq.com/single-responsibility-principle/). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](https://deviq.com/separation-of-concerns/).
-
-With regard to data access specifically, an Entity Framework Core `DbContext` can be injected into Razor Pages page models and MVC controllers. However, some developers prefer to use a repository interface to the database rather than injecting the database context directly. Using an interface to encapsulate the data access logic in one place can minimize code changes when the database changes. For more information, see [Repository pattern](xref:fundamentals/repository-pattern).
 
 ### Disposal of services
 
@@ -472,8 +484,7 @@ The built-in service container is meant to serve the basic needs of the framewor
     }
     ```
 
-    > [!NOTE]
-    > When using a third-party dependency injection container, change `Startup.ConfigureServices` so that it returns `IServiceProvider` instead of `void`.
+    To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
 
 3. Configure Autofac in `DefaultModule`:
 
