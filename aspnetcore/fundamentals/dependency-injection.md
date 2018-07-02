@@ -78,7 +78,7 @@ public class HomeController : Controller
 
 ::: moniker-end
 
-The class creates and directly depends on the `MyDependency` instance. However, it's a bad practice to hardcode the dependency in this way for the following reasons:
+The class creates and directly depends on the `MyDependency` instance. Code dependencies (such as the previous example) are problematic and should be avoided for the following reasons:
 
 * To replace `MyDependency` with a different implementation, the class must be modified.
 * If `MyDependency` has dependencies, they must be configured by the class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered across the app.
@@ -225,35 +225,11 @@ Services can be resolved by two mechanisms:
 * `IServiceProvider`
 * [ActivatorUtilities](/dotnet/api/microsoft.extensions.dependencyinjection.activatorutilities)
 
-When services are resolved by `IServiceProvider` or `ActivatorUtilities`, constructor injection requires a *public* constructor. Otherwise, the app throws an [InvalidOperationException](/dotnet/api/system.invalidoperationexception):
+Constructors can accept arguments that aren't provided by dependency injection, but the arguments must assign default values.
 
-> A suitable constructor for type '&lt;TYPE&gt;' couldn't be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
+When services are resolved by `IServiceProvider` or `ActivatorUtilities`, constructor injection requires a *public* constructor.
 
-When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, the app throws an `InvalidOperationException`:
-
-> Multiple constructors accepting all given argument types have been found in type '&lt;TYPE&gt;'. There should only be one applicable constructor.
-
-Constructors can accept arguments that aren't provided by dependency injection, but these must support default values.
-
-The following code throws an `InvalidOperationException` because the runtime is unable to resolve the `item` string:
-
-```csharp
-public HomeController(IMyDependency myDependency, string item)
-{
-    _myDependency = myDependency;
-    _item = item;
-}
-```
-
-The following code runs without an exception:
-
-```csharp
-public HomeController(IMyDependency myDependency, string message = "Jelly Baby")
-{
-    _myDependency = myDependency;
-    _item = item;
-}
-```
+When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection.
 
 ## Entity Framework contexts
 
@@ -261,7 +237,7 @@ Entity Framework contexts should be added to the service container using the sco
 
 ## Lifetime and registration options
 
-To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a unique identifier, `OperationId`. Depending on how the lifetime of a service is configured, the container provides either the same or a different instance of the service to the requesting class.
+To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a unique identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
 
 ::: moniker range=">= aspnetcore-2.1"
 
