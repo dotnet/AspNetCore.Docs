@@ -19,7 +19,7 @@ By [Scott Addie](https://github.com/scottaddie)
 The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in Razor Pages and MVC apps. Consider that it:
 
 * Requires ASP.NET Core 2.1 or later.
-* Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#referencing-a-partial-view).
+* Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#reference-a-partial-view).
 * Renders the partial view asynchronously.
 
 The HTML Helper options for rendering a partial view include:

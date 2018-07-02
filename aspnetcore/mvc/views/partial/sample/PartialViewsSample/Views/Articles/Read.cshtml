@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using PartialViewsSample.ViewModels
+@model Article
+
+<h2>@Model.Title</h2>
+@*Pass the author's name to Views\Shared\_AuthorPartial.cshtml*@
+@await Html.PartialAsync("AuthorPartial", Model.AuthorName)
+@Model.PublicationDate
+
+@*Loop over the Sections and pass in a section and additional ViewData
+  to the strongly typed Views\Articles\_ArticleSection.cshtml partial view.*@
+@{ var index = 0;
+    @foreach (var section in Model.Sections)
+    {
+        <!-- <snippet_PartialAsync> -->
+        @await Html.PartialAsync("_ArticleSection", section,
+                                 new ViewDataDictionary(this.ViewData)
+                                 {
+                                     { "index", index }
+                                 })
+        <!-- </snippet_PartialAsync> -->
+        index++;
+    }
+}

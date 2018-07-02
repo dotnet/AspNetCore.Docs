@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<!-- <snippet_PartialAsync> -->
+@await Html.PartialAsync("_AuthorPartial")
+<!-- </snippet_PartialAsync> -->
+
+<!-- <snippet_RenderPartialAsync> -->
+@{
+    await Html.RenderPartialAsync("_AuthorPartial");
+}
+<!-- </snippet_RenderPartialAsync> -->
+
+<!-- <snippet_PartialTagHelper> -->
+<partial name="_AuthorPartial" />
+<!-- </snippet_PartialTagHelper> -->
