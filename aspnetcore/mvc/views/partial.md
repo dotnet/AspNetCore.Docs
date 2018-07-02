@@ -71,7 +71,7 @@ Since it streams the result directly, `RenderPartialAsync` may perform better in
 
 ### Partial view discovery
 
-When referencing a partial view, you can refer to its location in several ways:
+When referencing a partial view, you can refer to its location in several ways. For example:
 
 ```cshtml
 // Uses a view in current folder with this name
@@ -90,7 +90,7 @@ When referencing a partial view, you can refer to its location in several ways:
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
-You can have different partial views with the same name in different view folders. When referencing the views by name (without a file extension), views in each folder use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. The shared partial view is used by any views that don't have their own version of the partial view. You can have a default partial view (in *Shared*), which is overridden by a partial view with the same name in the same folder as the parent view.
+You can have different partial views with the same file name in different view folders. When referencing the views by name (without a file extension), views in each folder use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. The shared partial view is used by any views that don't have their own version of the partial view. You can have a default partial view (in *Shared*), which is overridden by a partial view with the same name in the same folder as the parent view.
 
 Partial views can be *chained*&mdash;a partial view can call another partial view (as long as you don't create a loop). Within each view or partial view, relative paths are always relative to that view, not to the root or parent view.
 
