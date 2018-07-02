@@ -60,4 +60,11 @@ Exception messages are generally considered sensitive data that should not be re
 
 ### Buffer management
 
-TODO!
+SignalR uses per-connection buffers in order to manage incoming and outgoing messages. By default, SignalR limits these buffers to 32KB. This means the largest possible message a client or server can send is 32KB. This also means maximum amount of memory consumed by a connection for messages is 32KB. If you know your messages will always be smaller than this limit, you can reduce this size to prevent a client from being able to send a larger message and force the server to allocate memory to accept it. Similarly, if you know messages can be larger than this limit, you can increase it. However, be aware that increasing this limit means that the client will be able to cause the server to allocate additional memory and may reduce the number of concurrent connections your app can handle.
+
+There are separate limits for incoming and outgoing messages, both can be configured on the [`HttpConnectionDispatcherOptions` object configured in `MapHub`](xref:signalr/configuration#configure-server-options):
+
+* `ApplicationMaxBufferSize` represents the maximum number of bytes from the client that the server will buffer. If the client attempts to send a message larger than this limit, the client will be forced to wait until the server has processed the message before it can send any more messages.
+* `TransportMaxBufferSize` represents the maximum number of bytes the server can send. If the server attempts to send a message (includes return values from hub methods) larger than this limit, an exception will be thrown.
+
+Setting the limit to `0` will disable the limit entirely. However, this should be done with extreme caution. Removing the limit allows a client to send a message of any size and the server will buffer it. This could be used by a malicious client to cause excess memory to be allocated, which could dramatically reduce the number of concurrent connections your app can support.
