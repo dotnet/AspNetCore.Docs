@@ -2,16 +2,16 @@
 title: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
 author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/concurrency
 ---
 
 # ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -206,7 +206,7 @@ In *DepartmentsController.cs*, replace the HttpGet `Delete` method with the foll
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
-The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends an error message to the view using `ViewData`.  
+The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends an error message to the view using `ViewData`.
 
 Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with the following code:
 
@@ -275,6 +275,8 @@ Replace the code in *Views/Departments/Create.cshtml* to add a Select option to 
 
 This completes the introduction to handling concurrency conflicts. For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](https://docs.microsoft.com/ef/core/saving/concurrency). The next tutorial shows how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
 
+::: moniker-end
+
 > [!div class="step-by-step"]
 > [Previous](update-related-data.md)
-> [Next](inheritance.md)  
+> [Next](inheritance.md)

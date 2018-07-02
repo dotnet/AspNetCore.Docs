@@ -2,13 +2,9 @@
 title: Custom Authorization Policy Providers in ASP.NET Core
 author: mjrousos
 description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NET Core app to dynamically generate authorization policies.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/iauthorizationpolicyprovider
 ---
 # Custom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 
@@ -87,7 +83,7 @@ The custom `MinimumAgeAuthorizeAttribute` makes it easy to request authorization
 When using `MinimumAgeAuthorizationAttribute`, the authorization policy names will follow the pattern `"MinimumAge" + Age`, so the custom `IAuthorizationPolicyProvider` should generate authorization policies by:
 
 * Parsing the age from the policy name.
-* Using `AuthorizationPolicyBuiler` to create a new `AuthorizationPolicy`
+* Using `AuthorizationPolicyBuilder` to create a new `AuthorizationPolicy`
 * Adding requirements to the policy based on the age with `AuthorizationPolicyBuilder.AddRequirements`. In other scenarios, you might use `RequireClaim`, `RequireRole`, or `RequireUserName` instead.
 
 ```CSharp

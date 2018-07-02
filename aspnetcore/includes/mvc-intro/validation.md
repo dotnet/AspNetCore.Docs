@@ -1,4 +1,4 @@
-# Adding validation
+# Add validation to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

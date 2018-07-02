@@ -2,13 +2,9 @@
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
 description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/22/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -216,7 +212,8 @@ Description=Example .NET Web API App running on Ubuntu
 WorkingDirectory=/var/aspnetcore/hellomvc
 ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 Restart=always
-RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
 SyslogIdentifier=dotnet-example
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production

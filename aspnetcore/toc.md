@@ -4,7 +4,7 @@
 # [What's new](xref:aspnetcore-2.0)
 # [What's new](xref:aspnetcore-1.1)
 
-# [Get started](getting-started.md)
+# [Get started](xref:getting-started)
 ## [Create a web app](xref:razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
 
@@ -20,6 +20,7 @@
 ### [Add validation](xref:tutorials/razor-pages/validation)
 ### [Upload files](xref:tutorials/razor-pages/uploading-files)
 ## [Create a real-time SignalR web app](xref:tutorials/signalr)
+## [Create a SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Create an MVC web app](tutorials/first-mvc-app/index.md)
 ### [Get started](tutorials/first-mvc-app/start-mvc.md)
 ### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -153,7 +154,7 @@
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
-## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
+## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 
 # [Razor Pages](xref:razor-pages/index)
 ## [Filter methods for Razor Pages](xref:razor-pages/filter)
@@ -244,15 +245,19 @@
 
 # [SignalR](xref:signalr/index)
 ## [Introduction](xref:signalr/introduction)
+## [Get started](xref:tutorials/signalr)
 ## [Hubs](xref:signalr/hubs)
 ## [JavaScript client](xref:signalr/javascript-client)
 ## [.NET client](xref:signalr/dotnet-client)
 ## [HubContext](xref:signalr/hubcontext)
-## [Users and Groups](xref:signalr/groups)
+## [Users and groups](xref:signalr/groups)
+## [Configuration](xref:signalr/configuration)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## [Streaming](xref:signalr/streaming)
+## [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Supported platforms](xref:signalr/supported-platforms)
+## [Differences between SignalR versions](xref:signalr/version-differences)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
@@ -286,6 +291,8 @@
 ### [Introduction to Identity](xref:security/authentication/identity)
 ### [Scaffold Identity](xref:security/authentication/scaffold-identity)
 ### [Add custom user data to Identity](xref:security/authentication/add-user-data)
+### [Customize Identity](xref:security/authentication/customize_identity_model)
+
 ### [Community OSS authentication options](xref:security/authentication/community)
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
@@ -319,6 +326,7 @@
 ### [Role-based authorization](xref:security/authorization/roles)
 ### [Claims-based authorization](xref:security/authorization/claims)
 ### [Policy-based authorization](xref:security/authorization/policies)
+### [Authorization policy providers](xref:security/authorization/iauthorizationpolicyprovider)
 ### [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
 ### [Resource-based authorization](xref:security/authorization/resourcebased)
 ### [View-based authorization](xref:security/authorization/views)

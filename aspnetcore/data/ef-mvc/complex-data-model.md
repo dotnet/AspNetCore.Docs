@@ -2,16 +2,16 @@
 title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10
 author: rick-anderson
 description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/complex-data-model
 ---
 
 # ASP.NET Core MVC with EF Core - Data Model - 5 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -350,7 +350,7 @@ Each relationship line has a 1 at one end and an asterisk (*) at the other, indi
 
 If the Enrollment table didn't include grade information, it would only need to contain the two foreign keys CourseID and StudentID. In that case, it would be a many-to-many join table without payload (or a pure join table) in the database. The Instructor and Course entities have that kind of many-to-many relationship, and your next step is to create an entity class to function as a join table without payload.
 
-(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see the [discussion in the EF Core GitHub repository](https://github.com/aspnet/EntityFramework/issues/1368).) 
+(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see the [discussion in the EF Core GitHub repository](https://github.com/aspnet/EntityFramework/issues/1368).)
 
 ## The CourseAssignment entity
 
@@ -436,7 +436,7 @@ Sometimes when you execute migrations with existing data, you need to insert stu
 
 To make this migration work with existing data you have to change the code to give the new column a default value, and create a stub department named "Temp" to act as the default department. As a result, existing Course rows will all be related to the "Temp" department after the `Up` method runs.
 
-* Open the *{timestamp}_ComplexDataModel.cs* file. 
+* Open the *{timestamp}_ComplexDataModel.cs* file.
 
 * Comment out the line of code that adds the DepartmentID column to the Course table.
 
@@ -490,7 +490,8 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 ## Summary
 
 You now have a more complex data model and corresponding database. In the following tutorial, you'll learn more about how to access related data.
+::: moniker-end
 
 > [!div class="step-by-step"]
 > [Previous](migrations.md)
-> [Next](read-related-data.md)  
+> [Next](read-related-data.md)
