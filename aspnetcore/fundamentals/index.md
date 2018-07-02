@@ -4,10 +4,9 @@ author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 09/30/2017
+ms.date: 07/02/2018
 uid: fundamentals/index
 ---
-
 # ASP.NET Core fundamentals
 
 An ASP.NET Core application is a console app that creates a web server in its `Main` method:
@@ -202,7 +201,7 @@ For more information, see [WebSockets](xref:fundamentals/websockets).
 ::: moniker range=">= aspnetcore-2.1"
 ## Microsoft.AspNetCore.App metapackage
 
-The [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage simplifies package management. See [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage for more information.
+The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage simplifies package management. For more information, see [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
@@ -211,11 +210,11 @@ The [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage si
 The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
 * All supported packages by the ASP.NET Core team.
-* All supported packages by the Entity Framework Core.
+* All supported packages by Entity Framework Core.
 * Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
-::: moniker-end
 
 For more information, see [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+::: moniker-end
 
 ## .NET Core vs. .NET Framework runtime
 
