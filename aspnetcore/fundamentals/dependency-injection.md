@@ -220,11 +220,16 @@ Singleton lifetime services are created the first time they're requested (or whe
 
 ### Constructor injection behavior
 
-Constructor injection requires a *public* constructor. Otherwise, the app throws an [InvalidOperationException](/dotnet/api/system.invalidoperationexception):
+Services can be resolved by two mechanisms:
+
+* `IServiceProvider`
+* [ActivatorUtilities](/dotnet/api/microsoft.extensions.dependencyinjection.activatorutilities)
+
+When services are resolved by `IServiceProvider` or `ActivatorUtilities`, constructor injection requires a *public* constructor. Otherwise, the app throws an [InvalidOperationException](/dotnet/api/system.invalidoperationexception):
 
 > A suitable constructor for type '&lt;TYPE&gt;' couldn't be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
 
-Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, the app throws an `InvalidOperationException`:
+When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, the app throws an `InvalidOperationException`:
 
 > Multiple constructors accepting all given argument types have been found in type '&lt;TYPE&gt;'. There should only be one applicable constructor.
 
@@ -532,13 +537,13 @@ Dependency injection is an *alternative* to static/global object access patterns
 
 ## Additional resources
 
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
-* [Dependency injection into controllers](xref:mvc/controllers/dependency-injection)
-* [Dependency injection in requirement handlers](xref:security/authorization/dependencyinjection)
-* [Repository pattern](xref:fundamentals/repository-pattern)
-* [Application Startup](xref:fundamentals/startup)
-* [Test and debug](xref:test/index)
-* [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
+* <xref:mvc/views/dependency-injection>
+* <xref:mvc/controllers/dependency-injection>
+* <xref:security/authorization/dependencyinjection>
+* <xref:fundamentals/repository-pattern>
+* <xref:fundamentals/startup>
+* <xref:test/index>
+* <xref:fundamentals/middleware/extensibility>
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
 * [Explicit Dependencies Principle](https://deviq.com/explicit-dependencies-principle/)
