@@ -9,7 +9,6 @@ ms.date: 02/15/2013
 ms.topic: article
 ms.assetid: 416438a1-3b2f-4d27-bf53-6b76223c33bf
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-production
 msc.type: authoredcontent
 ---

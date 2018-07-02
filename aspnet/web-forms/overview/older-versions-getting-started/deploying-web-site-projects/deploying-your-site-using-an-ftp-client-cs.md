@@ -9,7 +9,6 @@ ms.date: 04/01/2009
 ms.topic: article
 ms.assetid: a3599cf7-8474-4006-954a-3bc693736b66
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-an-ftp-client-cs
 msc.type: authoredcontent
 ---

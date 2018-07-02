@@ -9,7 +9,6 @@ ms.date: 05/30/2007
 ms.topic: article
 ms.assetid: 2e56a733-5512-48a6-9276-70a65bbe4d5d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 07/25/2006
 ms.topic: article
 ms.assetid: ff36f242-5f40-44d1-b65d-5ab2fb622742
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-20-aspnet-20-fundamentals
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 09/24/2008
 ms.topic: article
 ms.assetid: 77a5c8fa-ebb2-426d-b56b-a5a98a46b516
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-send-email-asynchronously-with-aspnet
 msc.type: video
 ---

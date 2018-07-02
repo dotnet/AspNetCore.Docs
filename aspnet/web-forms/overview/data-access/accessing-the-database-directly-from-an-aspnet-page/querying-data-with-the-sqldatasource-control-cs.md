@@ -9,7 +9,6 @@ ms.date: 02/20/2007
 ms.topic: article
 ms.assetid: 60512d6a-b572-4b7a-beb3-3e44b4d2020c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-cs
 msc.type: authoredcontent
 ---

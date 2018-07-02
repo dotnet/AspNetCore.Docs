@@ -9,7 +9,6 @@ ms.date: 05/22/2015
 ms.topic: article
 ms.assetid: 8513a57a-2d45-4d6b-881c-15a01c5cbb1c
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/mvc-learning-sequence
 msc.type: authoredcontent
 ---

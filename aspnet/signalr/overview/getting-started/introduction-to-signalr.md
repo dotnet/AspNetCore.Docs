@@ -9,7 +9,6 @@ ms.date: 06/10/2014
 ms.topic: article
 ms.assetid: 0fab5e35-8c1f-43d4-8635-b8aba8766a71
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/introduction-to-signalr
 msc.type: authoredcontent
 ---

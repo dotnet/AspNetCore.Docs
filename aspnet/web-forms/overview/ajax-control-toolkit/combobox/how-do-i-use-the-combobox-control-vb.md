@@ -9,7 +9,6 @@ ms.date: 05/12/2009
 ms.topic: article
 ms.assetid: e887e7b2-a6e7-4a28-a134-ba334494badb
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-vb
 msc.type: authoredcontent
 ---

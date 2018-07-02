@@ -9,7 +9,6 @@ ms.date: 03/26/2015
 ms.topic: article
 ms.assetid: d4911cb3-1afb-4805-b860-10818c4b1280
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
 msc.type: authoredcontent
 ---

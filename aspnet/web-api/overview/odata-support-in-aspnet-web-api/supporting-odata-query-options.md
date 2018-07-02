@@ -9,7 +9,6 @@ ms.date: 02/04/2013
 ms.topic: article
 ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
 ---

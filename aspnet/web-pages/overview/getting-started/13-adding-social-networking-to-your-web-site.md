@@ -9,7 +9,6 @@ ms.date: 02/21/2014
 ms.topic: article
 ms.assetid: 03c342f9-b35c-4d7c-b9ed-cd9aaaffedb6
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site
 msc.type: authoredcontent
 ---

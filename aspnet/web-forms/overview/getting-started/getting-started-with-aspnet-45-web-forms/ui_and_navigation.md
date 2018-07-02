@@ -9,7 +9,6 @@ ms.date: 09/08/2014
 ms.topic: article
 ms.assetid: 5c76891d-e515-4885-b576-76bd2c494efe
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/ui_and_navigation
 msc.type: authoredcontent
 ---

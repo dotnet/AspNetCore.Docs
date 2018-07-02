@@ -9,7 +9,6 @@ ms.date: 10/16/2008
 ms.topic: article
 ms.assetid: 3d08b4c5-a92f-4f75-aa10-5c2e9da8c114
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow
 msc.type: video
 ---

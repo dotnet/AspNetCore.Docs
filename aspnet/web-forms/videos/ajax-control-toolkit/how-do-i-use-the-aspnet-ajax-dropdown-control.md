@@ -9,7 +9,6 @@ ms.date: 03/30/2007
 ms.topic: article
 ms.assetid: a997a9f8-9f71-4b9e-b7ed-f8e3a0daa576
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropdown-control
 msc.type: video
 ---

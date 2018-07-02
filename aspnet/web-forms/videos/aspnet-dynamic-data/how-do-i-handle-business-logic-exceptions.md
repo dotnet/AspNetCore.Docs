@@ -9,7 +9,6 @@ ms.date: 05/08/2008
 ms.topic: article
 ms.assetid: f6c73522-4c77-4757-b1af-69f9d1db4fb1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-handle-business-logic-exceptions
 msc.type: video
 ---

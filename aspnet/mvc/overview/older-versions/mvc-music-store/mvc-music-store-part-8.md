@@ -9,7 +9,6 @@ ms.date: 04/21/2011
 ms.topic: article
 ms.assetid: 26b2f55e-ed42-4277-89b0-c941eb754145
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-8
 msc.type: authoredcontent
 ---

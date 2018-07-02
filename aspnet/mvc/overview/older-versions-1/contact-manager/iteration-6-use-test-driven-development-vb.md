@@ -9,7 +9,6 @@ ms.date: 02/20/2009
 ms.topic: article
 ms.assetid: e1fd226f-3f8e-4575-a179-5c75b240333d
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb
 msc.type: authoredcontent
 ---

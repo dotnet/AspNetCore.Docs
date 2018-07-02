@@ -9,7 +9,6 @@ ms.date: 08/30/2013
 ms.topic: article
 ms.assetid: 0ee21741-c1bf-4025-a9b0-24580cae24bc
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/an-overview-of-project-katana
 msc.type: authoredcontent
 ---

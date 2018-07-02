@@ -9,7 +9,6 @@ ms.date: 08/03/2007
 ms.topic: article
 ms.assetid: 213eea41-1ab4-4371-8b24-1a1a66c515de
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-cs
 msc.type: authoredcontent
 ---

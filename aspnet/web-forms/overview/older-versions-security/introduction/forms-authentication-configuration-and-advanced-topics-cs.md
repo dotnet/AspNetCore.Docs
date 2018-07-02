@@ -9,7 +9,6 @@ ms.date: 01/14/2008
 ms.topic: article
 ms.assetid: b9c29865-a34e-48bb-92c0-c443a72cb860
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 msc.type: authoredcontent
 ---

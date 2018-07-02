@@ -9,7 +9,6 @@ ms.date: 06/12/2007
 ms.topic: article
 ms.assetid: 45daf6e2-c652-49c0-a9b4-2263f4ceada8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-an-httpmodule
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/20/2005
 ms.topic: article
 ms.assetid: af4575a3-0ae3-4638-ba4d-218fad7a1642
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/the-asp-net-2-0-page-model
 msc.type: authoredcontent
 ---

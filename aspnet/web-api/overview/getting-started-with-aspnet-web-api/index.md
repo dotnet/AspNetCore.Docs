@@ -9,7 +9,6 @@ ms.date: 01/17/2012
 ms.topic: article
 ms.assetid: a36e178f-de46-46d9-b150-61fb3ba1b4d3
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api
 msc.type: chapter
 ---

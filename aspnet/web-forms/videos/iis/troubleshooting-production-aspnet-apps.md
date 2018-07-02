@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: ee45ab78-bc04-45dc-bfac-5c0c023b3f17
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/troubleshooting-production-aspnet-apps
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 07/17/2006
 ms.topic: article
 ms.assetid: e3d7028a-7a22-4a4f-babe-d53afc41c0e2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb
 msc.type: authoredcontent
 ---

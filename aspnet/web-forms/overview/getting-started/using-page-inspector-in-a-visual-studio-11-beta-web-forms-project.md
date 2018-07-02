@@ -9,7 +9,6 @@ ms.date: 08/15/2012
 ms.topic: article
 ms.assetid: 2ece0bf4-aae5-4ff4-8f62-28e0819d4f86
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/using-page-inspector-in-a-visual-studio-11-beta-web-forms-project
 msc.type: authoredcontent
 ---

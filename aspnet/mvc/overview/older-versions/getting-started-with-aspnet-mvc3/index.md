@@ -9,7 +9,6 @@ ms.date: 09/28/2011
 ms.topic: article
 ms.assetid: 67bdeec1-5301-4756-8615-cd9e8c5749e0
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3
 msc.type: chapter
 ---

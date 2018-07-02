@@ -9,7 +9,6 @@ ms.date: 07/25/2007
 ms.topic: article
 ms.assetid: b4d5b7ce-c322-4313-985d-455df98d619a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-javascript-to-refresh-an-aspnet-ajax-updatepanel
 msc.type: video
 ---

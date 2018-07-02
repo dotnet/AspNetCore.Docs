@@ -9,7 +9,6 @@ ms.date: 05/08/2008
 ms.topic: article
 ms.assetid: ce7a9af6-d01b-46a7-8b47-e1024b693830
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-display-unknown-datatypes
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 08/15/2006
 ms.topic: article
 ms.assetid: 59c01998-9326-4ecb-9392-cb9615962140
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-cs
 msc.type: authoredcontent
 ---

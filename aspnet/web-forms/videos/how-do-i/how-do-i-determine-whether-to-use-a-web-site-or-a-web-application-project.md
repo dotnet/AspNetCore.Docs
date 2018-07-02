@@ -9,7 +9,6 @@ ms.date: 08/22/2008
 ms.topic: article
 ms.assetid: 2fba2d1d-1bd3-451a-ae94-8acf4faa75ec
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-determine-whether-to-use-a-web-site-or-a-web-application-project
 msc.type: video
 ---

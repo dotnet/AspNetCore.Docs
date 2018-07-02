@@ -9,7 +9,6 @@ ms.date: 06/19/2008
 ms.topic: article
 ms.assetid: 9a0f04b9-6a49-4e2c-9c12-03ab71ab2705
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-12-mocking
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 07/30/2013
 ms.topic: article
 ms.assetid: 4ba029b6-ee7c-4e45-a0e7-b703c37e5d9a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

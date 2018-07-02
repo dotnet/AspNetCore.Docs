@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: 92348a5c-10a3-4cad-b3cf-5e8669f987ab
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/installing-ftp7
 msc.type: video
 ---

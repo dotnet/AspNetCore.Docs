@@ -9,7 +9,6 @@ ms.date: 07/09/2013
 ms.topic: article
 ms.assetid: a90a04ce-9d07-43ad-8250-8a92fb2bd3d5
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 msc.type: authoredcontent
 ---

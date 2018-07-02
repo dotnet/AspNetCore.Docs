@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: f52814a3-b458-415c-ab9f-b0f904c48705
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/creating-a-site-with-iis7-manager
 msc.type: video
 ---

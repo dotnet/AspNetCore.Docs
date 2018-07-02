@@ -9,7 +9,6 @@ ms.date: 09/28/2011
 ms.topic: article
 ms.assetid: 346c6b44-0ff4-49af-ac94-6e74d952b4eb
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security
 msc.type: chapter
 ---

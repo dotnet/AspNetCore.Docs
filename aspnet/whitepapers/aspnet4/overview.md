@@ -9,7 +9,6 @@ ms.date: 02/10/2010
 ms.topic: article
 ms.assetid: d7729af4-1eda-4ff2-8b61-dbbe4fc11d10
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4
 msc.type: content
 ---

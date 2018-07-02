@@ -9,7 +9,6 @@ ms.date: 06/02/2008
 ms.topic: article
 ms.assetid: 38ac8250-8854-444c-b9ab-8998faa41c5a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 02/20/2005
 ms.topic: article
 ms.assetid: 21ebbaee-7ed8-45ae-b6c1-c27c88342e48
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/configuration-and-instrumentation
 msc.type: authoredcontent
 ---

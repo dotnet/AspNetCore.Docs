@@ -9,7 +9,6 @@ ms.date: 02/16/2008
 ms.topic: article
 ms.assetid: c28ba88d-3a93-47f5-a306-049bd766714d
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
 msc.type: authoredcontent
 ---

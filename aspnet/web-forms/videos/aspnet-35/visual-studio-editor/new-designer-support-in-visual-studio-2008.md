@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: 01305c35-5b83-408b-bc9d-fa31b17a723f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/new-designer-support-in-visual-studio-2008
 msc.type: video
 ---

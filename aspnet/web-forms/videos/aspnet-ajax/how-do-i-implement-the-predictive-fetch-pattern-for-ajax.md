@@ -9,7 +9,6 @@ ms.date: 02/13/2007
 ms.topic: article
 ms.assetid: 4ecca278-0cd6-4198-8382-802359b30120
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-predictive-fetch-pattern-for-ajax
 msc.type: video
 ---

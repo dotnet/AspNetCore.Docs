@@ -9,7 +9,6 @@ ms.date: 01/13/2008
 ms.topic: article
 ms.assetid: ab68a92b-fc81-40a4-a7dc-406625d2c5d4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-vb
 msc.type: authoredcontent
 ---

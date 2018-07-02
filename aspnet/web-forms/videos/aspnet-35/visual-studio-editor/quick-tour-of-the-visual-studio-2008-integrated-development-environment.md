@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: f20c5f1c-e49c-4909-b18f-8b5a442eafe3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/quick-tour-of-the-visual-studio-2008-integrated-development-environment
 msc.type: video
 ---

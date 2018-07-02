@@ -9,7 +9,6 @@ ms.date: 10/07/2008
 ms.topic: article
 ms.assetid: a4a25a75-d71f-4509-98b4-df72e748985a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
 msc.type: authoredcontent
 ---

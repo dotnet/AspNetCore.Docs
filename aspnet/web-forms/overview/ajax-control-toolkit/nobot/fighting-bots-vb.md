@@ -9,7 +9,6 @@ ms.date: 06/02/2008
 ms.topic: article
 ms.assetid: e9803150-452d-4521-97e3-d75d5599383c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 10/16/2008
 ms.topic: article
 ms.assetid: d34f90a1-6de3-482a-a326-f87fdcbaaaff
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-vb
 msc.type: authoredcontent
 ---

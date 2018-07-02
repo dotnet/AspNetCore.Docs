@@ -9,7 +9,6 @@ ms.date: 03/06/2007
 ms.topic: article
 ms.assetid: 2e31b60b-8723-4f14-b7ee-37859454dc3b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 08/19/2008
 ms.topic: article
 ms.assetid: 1c1283b2-6956-4937-b568-d30de432ce23
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-vb
 msc.type: authoredcontent
 ---

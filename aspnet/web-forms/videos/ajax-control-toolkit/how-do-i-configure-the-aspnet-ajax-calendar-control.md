@@ -9,7 +9,6 @@ ms.date: 03/30/2007
 ms.topic: article
 ms.assetid: bee087cc-7fed-4dce-8b52-19987f2d38a6
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-configure-the-aspnet-ajax-calendar-control
 msc.type: video
 ---

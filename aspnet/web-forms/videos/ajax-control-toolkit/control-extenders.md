@@ -9,7 +9,6 @@ ms.date: 05/13/2009
 ms.topic: article
 ms.assetid: 26f6a508-5ad4-4551-826d-61e48135943f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/control-extenders
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 01/25/2007
 ms.topic: article
 ms.assetid: 7559a912-2753-4866-a140-a4c6cefee00c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-dynamic-partial-page-updates-with-aspnet-ajax
 msc.type: video
 ---

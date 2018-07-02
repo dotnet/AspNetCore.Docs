@@ -9,7 +9,6 @@ ms.date: 03/27/2007
 ms.topic: article
 ms.assetid: b381b1da-feb3-4776-bc1b-75db53eb90ab
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/uploading-files-cs
 msc.type: authoredcontent
 ---

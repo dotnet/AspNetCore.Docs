@@ -9,7 +9,6 @@ ms.date: 07/23/2014
 ms.topic: article
 ms.assetid: b9005f8f-1dbc-4414-abe1-dae4816141e1
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-cycle
 msc.type: folder
 ---

@@ -9,7 +9,6 @@ ms.date: 06/02/2008
 ms.topic: article
 ms.assetid: 684f0c28-a490-4e5b-b5e5-5dfb77464b49
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs
 msc.type: authoredcontent
 ---

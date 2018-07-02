@@ -9,7 +9,6 @@ ms.date: 01/20/2014
 ms.topic: article
 ms.assetid: e3d3e7ba-87f0-4032-bdd3-31f3c1aa9d9c
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/dependency-injection
 msc.type: authoredcontent
 ---

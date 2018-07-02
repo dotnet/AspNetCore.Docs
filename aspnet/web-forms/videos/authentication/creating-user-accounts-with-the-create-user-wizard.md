@@ -9,7 +9,6 @@ ms.date: 08/22/2008
 ms.topic: article
 ms.assetid: fe023ad0-a25e-48e6-a43a-304e113f1fca
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/creating-user-accounts-with-the-create-user-wizard
 msc.type: video
 ---

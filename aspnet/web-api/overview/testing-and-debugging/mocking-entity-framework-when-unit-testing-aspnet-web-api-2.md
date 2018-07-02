@@ -9,7 +9,6 @@ ms.date: 12/13/2013
 ms.topic: article
 ms.assetid: cd844025-ccad-41ce-8694-595f1022a49f
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2
 msc.type: authoredcontent
 ---

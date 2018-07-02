@@ -9,7 +9,6 @@ ms.date: 02/20/2014
 ms.topic: article
 ms.assetid: 778c4e58-4372-4d25-bab9-aec4a8d8e38d
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/9-working-with-images
 msc.type: authoredcontent
 ---

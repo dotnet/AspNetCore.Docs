@@ -9,7 +9,6 @@ ms.date: 07/17/2006
 ms.topic: article
 ms.assetid: c9bd10a7-eff8-4d8c-bec9-963c2aef2d6e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-vb
 msc.type: authoredcontent
 ---

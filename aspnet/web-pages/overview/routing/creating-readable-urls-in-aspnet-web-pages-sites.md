@@ -9,7 +9,6 @@ ms.date: 02/17/2014
 ms.topic: article
 ms.assetid: a8aac1ac-89de-4415-afe0-97a41c6423d2
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/routing/creating-readable-urls-in-aspnet-web-pages-sites
 msc.type: authoredcontent
 ---

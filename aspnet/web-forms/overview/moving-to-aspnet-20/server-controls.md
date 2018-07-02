@@ -9,7 +9,6 @@ ms.date: 02/20/2005
 ms.topic: article
 ms.assetid: 43f6ac47-76fc-4cf7-8e9f-c18ce673dfd8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/server-controls
 msc.type: authoredcontent
 ---

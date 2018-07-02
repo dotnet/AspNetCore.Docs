@@ -9,7 +9,6 @@ ms.date: 06/02/2008
 ms.topic: article
 ms.assetid: c8204c05-ec27-40fe-933d-88e4e727a482
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/animating-in-response-to-user-interaction-vb
 msc.type: authoredcontent
 ---

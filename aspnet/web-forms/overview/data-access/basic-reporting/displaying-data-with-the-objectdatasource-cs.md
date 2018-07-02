@@ -9,7 +9,6 @@ ms.date: 03/31/2010
 ms.topic: article
 ms.assetid: af882aef-56f5-4e9a-8f95-3977fde20e74
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/displaying-data-with-the-objectdatasource-cs
 msc.type: authoredcontent
 ---

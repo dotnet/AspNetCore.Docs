@@ -9,7 +9,6 @@ ms.date: 07/25/2013
 ms.topic: article
 ms.assetid: f8157be1-4ab9-469e-ad3a-0ccc80b56c00
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-data-access-content-map
 msc.type: content
 ---

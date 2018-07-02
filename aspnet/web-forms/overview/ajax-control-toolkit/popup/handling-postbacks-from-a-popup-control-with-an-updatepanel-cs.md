@@ -9,7 +9,6 @@ ms.date: 06/02/2008
 ms.topic: article
 ms.assetid: 1f68f59d-9c1e-4cf3-b304-c13ae6b7203e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs
 msc.type: authoredcontent
 ---

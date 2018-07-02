@@ -9,7 +9,6 @@ ms.date: 04/09/2009
 ms.topic: article
 ms.assetid: a5e3d616-e79b-4aed-93fe-9d96b9024478
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/intro-to-aspnet-controls
 msc.type: video
 ---

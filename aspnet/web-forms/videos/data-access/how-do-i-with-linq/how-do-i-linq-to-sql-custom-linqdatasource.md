@@ -9,7 +9,6 @@ ms.date: 01/10/2008
 ms.topic: article
 ms.assetid: 9d020ec8-a7a8-4753-b73a-d9d0584d72e3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-custom-linqdatasource
 msc.type: video
 ---

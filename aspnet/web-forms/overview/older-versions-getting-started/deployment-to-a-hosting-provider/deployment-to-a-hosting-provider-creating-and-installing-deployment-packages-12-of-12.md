@@ -9,7 +9,6 @@ ms.date: 11/17/2011
 ms.topic: article
 ms.assetid: 3fc23eed-921d-4d46-a610-a2d156e4bd03
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12
 msc.type: authoredcontent
 ---

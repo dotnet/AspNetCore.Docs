@@ -9,7 +9,6 @@ ms.date: 12/19/2014
 ms.topic: article
 ms.assetid: 220d3d75-16b2-4240-beae-a5b534f06419
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity
 msc.type: authoredcontent
 ---

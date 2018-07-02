@@ -9,7 +9,6 @@ ms.date: 05/04/2012
 ms.topic: article
 ms.assetid: 94e92f80-a7e3-4d18-9375-ff8be5d666ac
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/building-and-packaging-web-application-projects
 msc.type: authoredcontent
 ---

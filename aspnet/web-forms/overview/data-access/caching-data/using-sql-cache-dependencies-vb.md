@@ -9,7 +9,6 @@ ms.date: 05/30/2007
 ms.topic: article
 ms.assetid: bd347d93-4251-4532-801c-a36f2dfa7f96
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-vb
 msc.type: authoredcontent
 ---

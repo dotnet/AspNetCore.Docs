@@ -9,7 +9,6 @@ ms.date: 08/20/2008
 ms.topic: article
 ms.assetid: e2a72e8d-d8da-4505-aa0a-61c830c0954b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/creating-a-tasklist-application-with-aspnet-mvc
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 06/19/2013
 ms.topic: article
 ms.assetid: 7a87f16f-0e19-4f15-a88a-094ae866c4a2
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/using-oauth-providers-with-mvc
 msc.type: authoredcontent
 ---

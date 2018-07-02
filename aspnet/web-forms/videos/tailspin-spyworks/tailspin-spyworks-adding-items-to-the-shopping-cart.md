@@ -9,7 +9,6 @@ ms.date: 06/29/2010
 ms.topic: article
 ms.assetid: a408449b-4fc5-4659-8bb6-801404cfbd8f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-adding-items-to-the-shopping-cart
 msc.type: video
 ---

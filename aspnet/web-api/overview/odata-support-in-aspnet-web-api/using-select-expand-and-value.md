@@ -9,7 +9,6 @@ ms.date: 10/11/2013
 ms.topic: article
 ms.assetid: 43279a80-a96c-4564-b6ea-ad992a2d6828
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
 msc.type: authoredcontent
 ---

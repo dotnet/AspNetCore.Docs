@@ -9,7 +9,6 @@ ms.date: 11/06/2008
 ms.topic: article
 ms.assetid: 424788ac-0a43-4063-99e7-db5aa4c66a9d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-embed-an-image-in-an-email-with-aspnet
 msc.type: video
 ---

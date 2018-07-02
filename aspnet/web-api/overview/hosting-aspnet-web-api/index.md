@@ -9,7 +9,6 @@ ms.date: 01/26/2012
 ms.topic: article
 ms.assetid: 500be045-e1e1-478a-97fc-0374645dd95f
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api
 msc.type: chapter
 ---

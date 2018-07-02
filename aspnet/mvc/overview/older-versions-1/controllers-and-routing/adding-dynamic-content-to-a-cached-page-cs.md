@@ -9,7 +9,6 @@ ms.date: 01/27/2009
 ms.topic: article
 ms.assetid: 2ddd4407-d143-4a94-877c-21771bfb97a6
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-cs
 msc.type: authoredcontent
 ---

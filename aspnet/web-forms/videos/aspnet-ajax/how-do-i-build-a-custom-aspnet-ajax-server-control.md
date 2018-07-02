@@ -9,7 +9,6 @@ ms.date: 07/25/2007
 ms.topic: article
 ms.assetid: 1165e0b4-2240-4dc2-aa94-ef6664c71a8c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-build-a-custom-aspnet-ajax-server-control
 msc.type: video
 ---

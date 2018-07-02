@@ -9,7 +9,6 @@ ms.date: 03/31/2010
 ms.topic: article
 ms.assetid: 0b91d5f8-127d-4f6a-b204-f2e2b35ef703
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-detailsview-control-vb
 msc.type: authoredcontent
 ---

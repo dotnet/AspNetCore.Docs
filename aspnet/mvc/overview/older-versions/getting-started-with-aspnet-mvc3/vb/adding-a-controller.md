@@ -9,7 +9,6 @@ ms.date: 01/12/2011
 ms.topic: article
 ms.assetid: 741259e1-54ac-4f71-b4e8-2bd5560bb950
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-controller
 msc.type: authoredcontent
 ---

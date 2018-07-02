@@ -9,7 +9,6 @@ ms.date: 05/27/2008
 ms.topic: article
 ms.assetid: 24ee3167-c5ae-45e1-9636-299231e5eae0
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization
 msc.type: video
 ---

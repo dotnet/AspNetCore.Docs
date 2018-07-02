@@ -9,7 +9,6 @@ ms.date: 10/18/2014
 ms.topic: article
 ms.assetid: e7b68e52-8c2b-431c-9b1e-4fb51f1950c9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/advanced
 msc.type: chapter
 ---

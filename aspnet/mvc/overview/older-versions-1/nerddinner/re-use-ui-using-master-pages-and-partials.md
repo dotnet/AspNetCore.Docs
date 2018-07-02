@@ -9,7 +9,6 @@ ms.date: 07/27/2010
 ms.topic: article
 ms.assetid: d4243a4a-e91c-4116-9ae0-5c08e5285677
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/re-use-ui-using-master-pages-and-partials
 msc.type: authoredcontent
 ---

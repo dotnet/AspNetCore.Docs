@@ -9,7 +9,6 @@ ms.date: 07/09/2007
 ms.topic: article
 ms.assetid: a5e33a7d-ccb2-483f-a955-3d39f72ba4ec
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-choose-between-methods-of-ajax-page-updates
 msc.type: video
 ---

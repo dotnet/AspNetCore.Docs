@@ -9,7 +9,6 @@ ms.date: 01/24/2007
 ms.topic: article
 ms.assetid: 7dca3704-474b-4b0b-8294-5599279964d9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender
 msc.type: video
 ---

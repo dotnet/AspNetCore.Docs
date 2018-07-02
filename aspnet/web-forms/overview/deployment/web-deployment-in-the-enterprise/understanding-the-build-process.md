@@ -9,7 +9,6 @@ ms.date: 05/04/2012
 ms.topic: article
 ms.assetid: 5b982451-547b-4a2f-a5dc-79bc64d84d40
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process
 msc.type: authoredcontent
 ---

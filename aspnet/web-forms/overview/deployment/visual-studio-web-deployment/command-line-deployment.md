@@ -9,7 +9,6 @@ ms.date: 02/15/2013
 ms.topic: article
 ms.assetid: 82b8dea0-f062-4ee4-8784-3ffa30fbb1ca
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment
 msc.type: authoredcontent
 ---

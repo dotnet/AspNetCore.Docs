@@ -9,7 +9,6 @@ ms.date: 05/28/2015
 ms.topic: article
 ms.assetid: c85ec591-f8d7-4882-b763-de6ab9f3df7a
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
 msc.type: authoredcontent
 ---

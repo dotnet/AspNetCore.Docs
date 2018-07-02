@@ -7,7 +7,6 @@ manager: wpickett
 ms.date: 09/1721/2017
 ms.topic: article
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View

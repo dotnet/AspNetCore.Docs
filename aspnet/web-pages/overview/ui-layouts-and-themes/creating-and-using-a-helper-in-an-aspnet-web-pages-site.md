@@ -9,7 +9,6 @@ ms.date: 02/17/2014
 ms.topic: article
 ms.assetid: 46bff772-01e0-40f0-9ae6-9e18c5442ee6
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site
 msc.type: authoredcontent
 ---

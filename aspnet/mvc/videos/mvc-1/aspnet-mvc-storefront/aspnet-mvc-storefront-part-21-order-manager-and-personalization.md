@@ -9,7 +9,6 @@ ms.date: 10/16/2008
 ms.topic: article
 ms.assetid: f1490fdc-ee7d-4fee-a4e5-25d141d88478
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-21-order-manager-and-personalization
 msc.type: video
 ---

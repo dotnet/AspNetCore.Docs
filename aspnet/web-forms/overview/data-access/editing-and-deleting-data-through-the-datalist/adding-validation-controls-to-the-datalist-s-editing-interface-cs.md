@@ -9,7 +9,6 @@ ms.date: 10/30/2006
 ms.topic: article
 ms.assetid: 3ecc21c5-da0e-40ab-abb4-fac1e47398ad
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-cs
 msc.type: authoredcontent
 ---

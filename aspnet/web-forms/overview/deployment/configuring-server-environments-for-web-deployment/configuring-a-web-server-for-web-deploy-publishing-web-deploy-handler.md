@@ -9,7 +9,6 @@ ms.date: 05/04/2012
 ms.topic: article
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
 ---

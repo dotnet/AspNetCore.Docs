@@ -9,7 +9,6 @@ ms.date: 04/22/2010
 ms.topic: article
 ms.assetid: 6ec738b6-c34c-4647-b8bf-9acb8d2a259d
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/aspnet-mvc-2-areas
 msc.type: video
 ---

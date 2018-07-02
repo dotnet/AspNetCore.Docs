@@ -9,7 +9,6 @@ ms.date: 04/09/2009
 ms.topic: article
 ms.assetid: 5ff5c2eb-825b-4d70-9e19-f1fd64310752
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/intro-to-visual-web-developer
 msc.type: video
 ---

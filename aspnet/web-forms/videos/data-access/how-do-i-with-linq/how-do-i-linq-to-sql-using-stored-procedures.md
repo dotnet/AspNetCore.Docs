@@ -9,7 +9,6 @@ ms.date: 01/10/2008
 ms.topic: article
 ms.assetid: b1abfcaa-3b7d-42b9-be11-38904910ece0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-using-stored-procedures
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 01/12/2011
 ms.topic: article
 ms.assetid: cad00de1-3c68-4ff4-a436-54236d449459
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/accessing-your-models-data-from-a-controller
 msc.type: authoredcontent
 ---

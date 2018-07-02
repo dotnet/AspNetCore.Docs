@@ -9,7 +9,6 @@ ms.date: 06/19/2008
 ms.topic: article
 ms.assetid: 25cc35b4-601e-448b-abf1-bc253b30d232
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-11-hooking-up-the-shopping-cart-and-using-components
 msc.type: video
 ---

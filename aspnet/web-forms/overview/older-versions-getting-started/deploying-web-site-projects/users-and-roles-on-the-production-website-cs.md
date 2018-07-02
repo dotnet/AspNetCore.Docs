@@ -9,7 +9,6 @@ ms.date: 06/09/2009
 ms.topic: article
 ms.assetid: dbc54313-5d05-4285-98b3-726edea6d0c9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/users-and-roles-on-the-production-website-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 05/08/2008
 ms.topic: article
 ms.assetid: 816175a2-47b1-49ba-b346-cfb1ee33096a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls
 msc.type: video
 ---

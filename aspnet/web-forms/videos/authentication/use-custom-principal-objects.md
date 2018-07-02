@@ -9,7 +9,6 @@ ms.date: 07/16/2008
 ms.topic: article
 ms.assetid: 368733eb-0822-4b97-8e5a-127be6c88a61
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/use-custom-principal-objects
 msc.type: video
 ---

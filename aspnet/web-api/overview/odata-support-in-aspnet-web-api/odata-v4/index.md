@@ -9,7 +9,6 @@ ms.date: 06/26/2014
 ms.topic: article
 ms.assetid: bb807fdd-0bd8-43d0-b068-e88de7e5fd87
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4
 msc.type: chapter
 ---

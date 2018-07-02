@@ -9,7 +9,6 @@ ms.date: 03/23/2015
 ms.topic: article
 ms.assetid: 8bf2c4fb-4ee5-4841-bfc2-03462c1f7a7a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 02/26/2007
 ms.topic: article
 ms.assetid: 112e3efc-6865-4296-80a0-35910c4b3b12
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/the-effects-of-viewstate
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 06/09/2009
 ms.topic: article
 ms.assetid: 5bc1afd5-2484-4528-b158-ab218ba150e8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/processing-unhandled-exceptions-cs
 msc.type: authoredcontent
 ---

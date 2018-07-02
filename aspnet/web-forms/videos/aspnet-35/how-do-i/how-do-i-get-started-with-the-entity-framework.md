@@ -9,7 +9,6 @@ ms.date: 05/22/2008
 ms.topic: article
 ms.assetid: 2039bdcd-04f0-4813-b85b-4a3ccc916702
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-get-started-with-the-entity-framework
 msc.type: video
 ---

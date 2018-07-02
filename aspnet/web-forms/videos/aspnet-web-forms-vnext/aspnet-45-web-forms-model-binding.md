@@ -9,7 +9,6 @@ ms.date: 08/15/2012
 ms.topic: article
 ms.assetid: 9588e6e9-d5e7-4030-a76e-26845a0dd901
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-45-web-forms-model-binding
 msc.type: video
 ---

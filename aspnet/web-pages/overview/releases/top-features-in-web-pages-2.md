@@ -9,7 +9,6 @@ ms.date: 02/13/2012
 ms.topic: article
 ms.assetid: cc712e72-c3d0-4e43-bc2d-28cc09cd8f71
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/top-features-in-web-pages-2
 msc.type: authoredcontent
 ---

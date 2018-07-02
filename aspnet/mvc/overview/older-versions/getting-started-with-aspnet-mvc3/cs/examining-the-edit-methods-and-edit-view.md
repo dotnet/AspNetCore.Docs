@@ -9,7 +9,6 @@ ms.date: 01/12/2011
 ms.topic: article
 ms.assetid: 1d266bf0-a61e-423b-a3d2-13773d7dafe2
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/examining-the-edit-methods-and-edit-view
 msc.type: authoredcontent
 ---

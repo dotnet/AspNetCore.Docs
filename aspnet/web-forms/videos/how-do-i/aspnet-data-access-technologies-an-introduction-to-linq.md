@@ -9,7 +9,6 @@ ms.date: 10/13/2009
 ms.topic: article
 ms.assetid: e6792c2a-02db-440a-9070-40a0c0952b27
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/aspnet-data-access-technologies-an-introduction-to-linq
 msc.type: video
 ---

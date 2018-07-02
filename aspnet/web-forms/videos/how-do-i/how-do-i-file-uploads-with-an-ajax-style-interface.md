@@ -9,7 +9,6 @@ ms.date: 02/12/2008
 ms.topic: article
 ms.assetid: fef628a1-e86d-428f-a931-e3bbae53a878
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interface
 msc.type: video
 ---

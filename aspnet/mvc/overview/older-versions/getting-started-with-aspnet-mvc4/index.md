@@ -9,7 +9,6 @@ ms.date: 02/15/2012
 ms.topic: article
 ms.assetid: a35183ac-cbcb-4070-9233-6331cde921ad
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4
 msc.type: chapter
 ---

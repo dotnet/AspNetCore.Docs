@@ -9,7 +9,6 @@ ms.date: 10/16/2008
 ms.topic: article
 ms.assetid: 5fee879b-8bde-42a9-a434-60ba6b1cf747
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
 msc.type: authoredcontent
 ---

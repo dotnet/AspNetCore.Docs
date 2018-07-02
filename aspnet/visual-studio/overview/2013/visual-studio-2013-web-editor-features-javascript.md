@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: 1de7c3df-203c-4d2c-bba0-ddc6ffb6c9c5
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-javascript
 msc.type: video
 ---

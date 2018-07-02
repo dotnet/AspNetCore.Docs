@@ -9,7 +9,6 @@ ms.date: 02/10/2010
 ms.topic: article
 ms.assetid: fa429113-5f8f-4ef4-97c5-5c04900a19fa
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/request-validation
 msc.type: content
 ---

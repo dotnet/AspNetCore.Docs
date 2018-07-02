@@ -9,7 +9,6 @@ ms.date: 12/16/2011
 ms.topic: article
 ms.assetid: c71bb9b2-7136-4ce6-a40a-cc4d9978cfb7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/pluralsight
 msc.type: content
 ---

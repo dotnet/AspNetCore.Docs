@@ -9,7 +9,6 @@ ms.date: 07/16/2008
 ms.topic: article
 ms.assetid: a374c0cb-63fb-4630-9915-2ca8f4973da8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/how-to-change-the-forms-authentication-properties
 msc.type: video
 ---

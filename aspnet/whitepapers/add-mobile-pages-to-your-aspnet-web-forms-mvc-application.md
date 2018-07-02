@@ -9,7 +9,6 @@ ms.date: 01/20/2011
 ms.topic: article
 ms.assetid: 3124f28e-cc32-418a-afe3-519fa56f4c36
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application
 msc.type: content
 ---

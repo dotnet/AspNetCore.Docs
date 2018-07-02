@@ -9,7 +9,6 @@ ms.date: 11/11/2009
 ms.topic: article
 ms.assetid: 0f24b680-e3a6-46f6-a52a-91191e09ab78
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-search-view-hierarchy
 msc.type: video
 ---

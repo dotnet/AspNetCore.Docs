@@ -9,7 +9,6 @@ ms.date: 05/01/2008
 ms.topic: article
 ms.assetid: 2565839b-30b8-45e1-946e-34fffe940c48
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-aspnet-iis-registration-tool-to-configure-aspnet
 msc.type: video
 ---

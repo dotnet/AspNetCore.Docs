@@ -9,7 +9,6 @@ ms.date: 09/13/2007
 ms.topic: article
 ms.assetid: a4adedeb-92f9-4d08-a068-fdcdedbae069
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule
 msc.type: video
 ---

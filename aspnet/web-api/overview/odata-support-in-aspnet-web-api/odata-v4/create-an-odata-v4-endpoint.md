@@ -9,7 +9,6 @@ ms.date: 06/24/2014
 ms.topic: article
 ms.assetid: 1e1927c0-ded1-4752-80fd-a146628d2f09
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-endpoint
 msc.type: authoredcontent
 ---

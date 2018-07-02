@@ -9,7 +9,6 @@ ms.date: 01/10/2008
 ms.topic: article
 ms.assetid: 228b575b-8bf9-4c1a-b8e9-1a878861a6b3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/read-write-and-delete-cookies-in-aspnet
 msc.type: video
 ---

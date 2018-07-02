@@ -9,7 +9,6 @@ ms.date: 07/30/2013
 ms.topic: article
 ms.assetid: b83f47c4-8521-4d0a-8644-e8f77e39733e
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

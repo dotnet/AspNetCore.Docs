@@ -9,7 +9,6 @@ ms.date: 04/23/2009
 ms.topic: article
 ms.assetid: 9c31a42f-d8bb-4c0f-9ccc-597d4f70ac42
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-vb
 msc.type: authoredcontent
 ---

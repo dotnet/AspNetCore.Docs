@@ -9,7 +9,6 @@ ms.date: 01/23/2007
 ms.topic: article
 ms.assetid: 75707a81-244f-4fdc-aab3-eaefd9300e43
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-get-started-with-aspnet-ajax
 msc.type: video
 ---

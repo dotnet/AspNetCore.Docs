@@ -9,7 +9,6 @@ ms.date: 08/28/2012
 ms.topic: article
 ms.assetid: dde851d7-882e-4d99-9b96-cf96daed81cc
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-view
 msc.type: authoredcontent
 ---

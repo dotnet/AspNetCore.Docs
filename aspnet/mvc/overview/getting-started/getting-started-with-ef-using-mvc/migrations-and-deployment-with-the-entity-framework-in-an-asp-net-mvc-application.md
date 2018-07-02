@@ -9,7 +9,6 @@ ms.date: 11/07/2014
 ms.topic: article
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

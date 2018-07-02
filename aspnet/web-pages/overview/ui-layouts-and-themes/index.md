@@ -9,7 +9,6 @@ ms.date: 09/08/2014
 ms.topic: article
 ms.assetid: d7ec6e8a-3e05-4c0d-9207-d17a49f9a64d
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes
 msc.type: chapter
 ---

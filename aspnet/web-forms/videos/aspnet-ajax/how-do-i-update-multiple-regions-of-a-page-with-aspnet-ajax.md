@@ -9,7 +9,6 @@ ms.date: 07/09/2007
 ms.topic: article
 ms.assetid: 7572654d-6fa2-4ea3-a43b-56a8578af0f6
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax
 msc.type: video
 ---

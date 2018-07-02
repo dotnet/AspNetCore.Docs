@@ -9,7 +9,6 @@ ms.date: 06/10/2014
 ms.topic: article
 ms.assetid: 98358b6e-9139-4239-ba3a-2d7dd74dd664
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-sql-server
 msc.type: authoredcontent
 ---

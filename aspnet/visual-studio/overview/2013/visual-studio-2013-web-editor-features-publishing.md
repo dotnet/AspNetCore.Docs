@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: 27e27ef7-9c63-4e68-97e7-d943db68290f
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-publishing
 msc.type: video
 ---

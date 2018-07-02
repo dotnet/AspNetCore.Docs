@@ -9,7 +9,6 @@ ms.date: 03/08/2013
 ms.topic: article
 ms.assetid: db31e909-563a-4516-aadd-62aa210ac7e4
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/breezeangular-template
 msc.type: authoredcontent
 ---

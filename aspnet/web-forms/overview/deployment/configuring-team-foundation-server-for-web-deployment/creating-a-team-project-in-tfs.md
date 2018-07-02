@@ -9,7 +9,6 @@ ms.date: 05/04/2012
 ms.topic: article
 ms.assetid: b28d3e2d-0bb4-4e29-a780-af810b964722
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-team-project-in-tfs
 msc.type: authoredcontent
 ---

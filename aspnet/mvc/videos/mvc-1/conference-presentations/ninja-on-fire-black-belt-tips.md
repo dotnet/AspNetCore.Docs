@@ -9,7 +9,6 @@ ms.date: 05/12/2009
 ms.topic: article
 ms.assetid: 8b92f005-930e-458f-b91f-b0e15bb7399f
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/conference-presentations/ninja-on-fire-black-belt-tips
 msc.type: video
 ---

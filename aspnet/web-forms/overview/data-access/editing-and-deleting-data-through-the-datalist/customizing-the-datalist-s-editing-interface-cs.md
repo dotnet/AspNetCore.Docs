@@ -9,7 +9,6 @@ ms.date: 10/30/2006
 ms.topic: article
 ms.assetid: a5d13067-ddfb-4c36-8209-0f69fd40e45c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-cs
 msc.type: authoredcontent
 ---

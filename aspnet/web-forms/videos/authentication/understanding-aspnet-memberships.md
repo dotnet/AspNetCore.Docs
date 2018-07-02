@@ -9,7 +9,6 @@ ms.date: 08/04/2008
 ms.topic: article
 ms.assetid: bccd102b-67d5-4c66-833d-6b5f6f51ca55
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/understanding-aspnet-memberships
 msc.type: video
 ---

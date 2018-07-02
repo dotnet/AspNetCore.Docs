@@ -9,7 +9,6 @@ ms.date: 10/16/2008
 ms.topic: article
 ms.assetid: 1636464e-900e-4926-bd5a-88adb5315ff9
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience
 msc.type: video
 ---

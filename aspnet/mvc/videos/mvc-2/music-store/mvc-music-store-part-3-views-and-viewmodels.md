@@ -9,7 +9,6 @@ ms.date: 06/22/2010
 ms.topic: article
 ms.assetid: ffe5e656-9078-4ec7-85bb-3d7300942e87
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store/mvc-music-store-part-3-views-and-viewmodels
 msc.type: video
 ---

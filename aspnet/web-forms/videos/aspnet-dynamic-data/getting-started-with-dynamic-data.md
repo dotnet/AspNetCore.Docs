@@ -9,7 +9,6 @@ ms.date: 10/23/2008
 ms.topic: article
 ms.assetid: 2011925a-789d-4160-af31-4667097727f1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/getting-started-with-dynamic-data
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: 7ece1ff3-febd-43c0-9c4f-b5c15c3309f7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/working-with-iis7-deligated-admin
 msc.type: video
 ---

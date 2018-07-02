@@ -9,7 +9,6 @@ ms.date: 08/08/2011
 ms.topic: article
 ms.assetid: f645d3b1-1092-43c6-a28a-074b413924b4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started
 msc.type: chapter
 ---

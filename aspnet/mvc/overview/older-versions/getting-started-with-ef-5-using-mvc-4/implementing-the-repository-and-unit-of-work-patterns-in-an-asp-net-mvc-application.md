@@ -9,7 +9,6 @@ ms.date: 07/30/2013
 ms.topic: article
 ms.assetid: 44761193-04ba-4990-9f90-145d3c10a716
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

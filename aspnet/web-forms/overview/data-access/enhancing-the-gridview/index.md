@@ -9,7 +9,6 @@ ms.date: 10/05/2011
 ms.topic: article
 ms.assetid: 80010898-5cb0-49ae-a678-cc2f3fe3ca6c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview
 msc.type: chapter
 ---

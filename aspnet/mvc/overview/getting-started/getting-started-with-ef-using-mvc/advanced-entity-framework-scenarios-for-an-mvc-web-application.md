@@ -9,7 +9,6 @@ ms.date: 12/08/2014
 ms.topic: article
 ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
 ---

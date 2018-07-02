@@ -9,7 +9,6 @@ ms.date: 02/07/2014
 ms.topic: article
 ms.assetid: aa67d304-583b-4bf8-a231-195656cfb587
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-razor-syntax-c
 msc.type: authoredcontent
 ---

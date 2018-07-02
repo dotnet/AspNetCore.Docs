@@ -9,7 +9,6 @@ ms.date: 02/09/2007
 ms.topic: article
 ms.assetid: 3410a9c7-9bf4-45fc-aafa-230ba8bd7a8c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-unit-testing-with-team-system
 msc.type: video
 ---

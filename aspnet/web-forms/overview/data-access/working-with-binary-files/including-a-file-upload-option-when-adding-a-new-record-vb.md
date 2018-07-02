@@ -9,7 +9,6 @@ ms.date: 03/27/2007
 ms.topic: article
 ms.assetid: 5776281d-4637-4d1e-a65b-2621d2cade44
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-vb
 msc.type: authoredcontent
 ---

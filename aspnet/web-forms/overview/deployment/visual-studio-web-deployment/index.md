@@ -9,7 +9,6 @@ ms.date: 02/15/2013
 ms.topic: article
 ms.assetid: e733027a-525f-47ae-b1c0-2e5ecf6677aa
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment
 msc.type: chapter
 ---

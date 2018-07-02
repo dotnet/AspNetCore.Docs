@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: 6127804d-c1a9-414d-8429-7f3dd0f56e97
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/creating-a-connection-string
 msc.type: authoredcontent
 ---

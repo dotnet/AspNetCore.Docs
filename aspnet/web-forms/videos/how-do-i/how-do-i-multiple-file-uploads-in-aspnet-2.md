@@ -9,7 +9,6 @@ ms.date: 02/12/2008
 ms.topic: article
 ms.assetid: 7cf3f5ed-2a87-4208-a71d-2b39bc19832a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-multiple-file-uploads-in-aspnet-2
 msc.type: video
 ---

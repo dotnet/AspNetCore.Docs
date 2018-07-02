@@ -9,7 +9,6 @@ ms.date: 05/12/2009
 ms.topic: article
 ms.assetid: 16dc5c11-65be-4eae-a818-9fad7f8259c6
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-cs
 msc.type: authoredcontent
 ---

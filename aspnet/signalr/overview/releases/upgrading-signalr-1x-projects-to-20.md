@@ -9,7 +9,6 @@ ms.date: 06/10/2014
 ms.topic: article
 ms.assetid: adcfef99-9bc5-489d-a91b-9b7c2bc35e04
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/releases/upgrading-signalr-1x-projects-to-20
 msc.type: authoredcontent
 ---

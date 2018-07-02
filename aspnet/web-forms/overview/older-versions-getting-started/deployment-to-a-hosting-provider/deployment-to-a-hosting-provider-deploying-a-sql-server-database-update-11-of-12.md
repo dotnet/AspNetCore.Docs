@@ -9,7 +9,6 @@ ms.date: 11/17/2011
 ms.topic: article
 ms.assetid: 5e2bb092-cb22-4511-ad0a-22ae12dd99b3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12
 msc.type: authoredcontent
 ---

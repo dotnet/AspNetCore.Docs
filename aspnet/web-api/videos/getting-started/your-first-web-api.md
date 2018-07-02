@@ -9,7 +9,6 @@ ms.date: 02/15/2012
 ms.topic: article
 ms.assetid: fda768fb-50f5-4046-8fda-6f199d27bce7
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/your-first-web-api
 msc.type: video
 ---

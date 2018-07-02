@@ -9,7 +9,6 @@ ms.date: 10/02/2013
 ms.topic: article
 ms.assetid: 0c2df5d4-c2dd-486d-b0ed-fe831c6b596c
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity
 msc.type: categoryindex
 ---

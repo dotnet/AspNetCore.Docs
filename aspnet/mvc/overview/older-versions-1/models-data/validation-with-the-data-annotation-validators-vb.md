@@ -9,7 +9,6 @@ ms.date: 05/29/2009
 ms.topic: article
 ms.assetid: 0d23ff2b-f2ec-434a-be3b-1180beeccba3
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-vb
 msc.type: authoredcontent
 ---

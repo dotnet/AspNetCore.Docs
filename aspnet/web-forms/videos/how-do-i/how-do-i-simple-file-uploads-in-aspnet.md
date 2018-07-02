@@ -9,7 +9,6 @@ ms.date: 02/12/2008
 ms.topic: article
 ms.assetid: 310aa6ba-dc99-47ac-8f68-aac7529664b2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-simple-file-uploads-in-aspnet
 msc.type: video
 ---

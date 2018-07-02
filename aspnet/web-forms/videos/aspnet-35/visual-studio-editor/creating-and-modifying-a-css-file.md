@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: e7c3b221-87ce-444e-9106-bb0609665009
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/creating-and-modifying-a-css-file
 msc.type: video
 ---

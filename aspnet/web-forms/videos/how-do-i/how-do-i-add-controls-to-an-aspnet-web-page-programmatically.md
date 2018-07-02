@@ -9,7 +9,6 @@ ms.date: 07/24/2008
 ms.topic: article
 ms.assetid: 1576e0a4-73ca-4816-bc09-20ae393a66f9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-controls-to-an-aspnet-web-page-programmatically
 msc.type: video
 ---

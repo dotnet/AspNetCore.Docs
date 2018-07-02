@@ -9,7 +9,6 @@ ms.date: 04/23/2009
 ms.topic: article
 ms.assetid: 90255eda-36a2-42c6-b6b3-b5a76fee8c44
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page
 msc.type: video
 ---

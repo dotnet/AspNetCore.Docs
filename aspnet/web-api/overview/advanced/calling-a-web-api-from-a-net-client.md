@@ -8,7 +8,6 @@ manager: wpickett
 ms.date: 11/24/2017
 ms.topic: article
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 msc.type: authoredcontent
 ---

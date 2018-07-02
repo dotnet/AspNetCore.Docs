@@ -9,7 +9,6 @@ ms.date: 01/16/2006
 ms.topic: article
 ms.assetid: 77526e53-524b-4cae-9025-3e493f2895d0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-learn-the-tips-and-tricks-of-experts
 msc.type: video
 ---

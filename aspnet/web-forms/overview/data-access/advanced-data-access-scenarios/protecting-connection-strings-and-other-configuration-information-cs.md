@@ -9,7 +9,6 @@ ms.date: 08/03/2007
 ms.topic: article
 ms.assetid: ad8dd396-30f7-4abe-ac02-a0b84422e5be
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-cs
 msc.type: authoredcontent
 ---

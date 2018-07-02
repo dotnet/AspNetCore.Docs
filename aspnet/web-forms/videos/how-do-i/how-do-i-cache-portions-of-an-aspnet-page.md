@@ -9,7 +9,6 @@ ms.date: 02/12/2009
 ms.topic: article
 ms.assetid: b20b2b30-a557-4567-8e27-56f1e04235e2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-cache-portions-of-an-aspnet-page
 msc.type: video
 ---
