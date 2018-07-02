@@ -90,7 +90,7 @@ When referencing a partial view, you can refer to its location in several ways:
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
-You can have different partial views with the same name in different view folders. When referencing the views by name (without file extension), views in each folder use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. The shared partial view is used by any views that don't have their own version of the partial view. You can have a default partial view (in *Shared*), which is overridden by a partial view with the same name in the same folder as the parent view.
+You can have different partial views with the same name in different view folders. When referencing the views by name (without a file extension), views in each folder use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. The shared partial view is used by any views that don't have their own version of the partial view. You can have a default partial view (in *Shared*), which is overridden by a partial view with the same name in the same folder as the parent view.
 
 Partial views can be *chained*&mdash;a partial view can call another partial view (as long as you don't create a loop). Within each view or partial view, relative paths are always relative to that view, not to the root or parent view.
 
@@ -119,7 +119,7 @@ You can pass an instance of `ViewDataDictionary` and a view model to a partial v
 
 The following markup shows the *Views/Articles/Read.cshtml* view, which contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. Use the highlighted `ViewDataDictionary` constructor overload to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=16-19)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=17-20)]
 
 *Views/Shared/_AuthorPartial*:
 
