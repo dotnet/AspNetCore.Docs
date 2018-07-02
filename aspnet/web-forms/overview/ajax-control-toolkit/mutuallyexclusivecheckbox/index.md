@@ -9,7 +9,6 @@ ms.date: 11/14/2011
 ms.topic: article
 ms.assetid: f3f8ccad-2bb3-4cf7-94bf-24b184d987dc
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox
 msc.type: chapter
 ---

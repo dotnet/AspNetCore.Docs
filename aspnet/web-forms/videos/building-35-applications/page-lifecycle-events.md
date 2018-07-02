@@ -9,7 +9,6 @@ ms.date: 04/09/2009
 ms.topic: article
 ms.assetid: 11237821-220e-4357-9fa6-38245084e093
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/page-lifecycle-events
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 03/13/2007
 ms.topic: article
 ms.assetid: 28d5bb59-9aad-4cdd-8088-1e9d3d230ac5
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post
 msc.type: video
 ---

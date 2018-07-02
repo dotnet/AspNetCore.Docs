@@ -9,7 +9,6 @@ ms.date: 11/25/2005
 ms.topic: article
 ms.assetid: 7eac8f6b-6911-4585-87e8-ba662c1578fb
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-2-creating-a-web-forms-user-interface
 msc.type: video
 ---

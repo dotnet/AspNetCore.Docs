@@ -9,7 +9,6 @@ ms.date: 09/15/2011
 ms.topic: article
 ms.assetid: 9bc6c53a-3e54-4f9d-8bef-0f3359aecf7b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i
 msc.type: chapter
 ---

@@ -9,7 +9,6 @@ ms.date: 02/18/2013
 ms.topic: article
 ms.assetid: 634ea84b-f904-4afe-b71b-49cccef4d9cc
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access
 msc.type: authoredcontent
 ---

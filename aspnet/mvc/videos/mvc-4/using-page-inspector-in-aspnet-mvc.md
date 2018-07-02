@@ -9,7 +9,6 @@ ms.date: 06/04/2012
 ms.topic: article
 ms.assetid: ea642733-8085-40c1-a33f-d216e3a25ffa
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-4/using-page-inspector-in-aspnet-mvc
 msc.type: video
 ---

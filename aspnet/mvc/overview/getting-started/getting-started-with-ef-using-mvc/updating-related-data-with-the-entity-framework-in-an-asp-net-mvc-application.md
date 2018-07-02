@@ -9,7 +9,6 @@ ms.date: 05/01/2015
 ms.topic: article
 ms.assetid: 7ba88418-5d0a-437d-b6dc-7c3816d4ec07
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

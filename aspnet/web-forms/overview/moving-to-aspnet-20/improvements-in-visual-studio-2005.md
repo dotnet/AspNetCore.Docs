@@ -9,7 +9,6 @@ ms.date: 02/20/2005
 ms.topic: article
 ms.assetid: 72d90cd0-b3d9-454c-b2eb-ed0d9812f32c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/improvements-in-visual-studio-2005
 msc.type: authoredcontent
 ---

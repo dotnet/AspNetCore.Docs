@@ -9,7 +9,6 @@ ms.date: 11/05/2009
 ms.topic: article
 ms.assetid: 8c1d1c73-9c04-49c2-b15f-3c95b80dfbf1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-optimized-profile
 msc.type: video
 ---

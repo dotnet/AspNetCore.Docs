@@ -9,7 +9,6 @@ ms.date: 10/22/2009
 ms.topic: article
 ms.assetid: 7ed06ca2-fab6-41a3-a1cc-a3ccebb639f6
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application
 msc.type: video
 ---

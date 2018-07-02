@@ -9,7 +9,6 @@ ms.date: 10/05/2011
 ms.topic: article
 ms.assetid: 25a6b7ba-e374-4c3f-9e53-83f665cfdd21
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef
 msc.type: chapter
 ---

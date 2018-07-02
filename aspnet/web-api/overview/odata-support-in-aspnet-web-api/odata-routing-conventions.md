@@ -9,7 +9,6 @@ ms.date: 07/31/2013
 ms.topic: article
 ms.assetid: adbc175a-14eb-4ab2-a441-d056ffa8266f
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
 msc.type: authoredcontent
 ---

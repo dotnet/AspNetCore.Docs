@@ -9,7 +9,6 @@ ms.date: 10/15/2010
 ms.topic: article
 ms.assetid: 08f9d0a7-cfa0-4914-a672-8a64295d7ba8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing
 msc.type: video
 ---

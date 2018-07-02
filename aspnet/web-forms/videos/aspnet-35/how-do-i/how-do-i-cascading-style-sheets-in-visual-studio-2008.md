@@ -9,7 +9,6 @@ ms.date: 02/14/2008
 ms.topic: article
 ms.assetid: fa9c74b0-c692-4553-805c-b89f8bf2c4da
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-cascading-style-sheets-in-visual-studio-2008
 msc.type: video
 ---

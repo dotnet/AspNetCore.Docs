@@ -9,7 +9,6 @@ ms.date: 07/10/2008
 ms.topic: article
 ms.assetid: da366876-06d8-4a5d-9bce-1f52530f04b0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/utilize-the-ajax-rating-control-in-the-aspnet-toolkit
 msc.type: video
 ---

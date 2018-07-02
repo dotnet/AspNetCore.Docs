@@ -9,7 +9,6 @@ ms.date: 06/10/2014
 ms.topic: article
 ms.assetid: b19913e5-cd8a-4e4b-a872-5ac7a858a934
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/hubs-api-guide-server
 msc.type: authoredcontent
 ---

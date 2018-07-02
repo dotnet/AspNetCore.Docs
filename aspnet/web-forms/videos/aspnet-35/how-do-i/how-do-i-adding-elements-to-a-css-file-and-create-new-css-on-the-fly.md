@@ -9,7 +9,6 @@ ms.date: 02/14/2008
 ms.topic: article
 ms.assetid: 426a5d0f-fde7-447c-ad69-4efe45f8efea
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly
 msc.type: video
 ---

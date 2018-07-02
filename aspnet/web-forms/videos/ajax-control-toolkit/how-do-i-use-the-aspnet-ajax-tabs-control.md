@@ -9,7 +9,6 @@ ms.date: 07/01/2007
 ms.topic: article
 ms.assetid: f85fcce9-a897-4f43-b12f-5c6f5f2733cd
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-tabs-control
 msc.type: video
 ---

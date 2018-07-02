@@ -9,7 +9,6 @@ ms.date: 08/20/2008
 ms.topic: article
 ms.assetid: ad0f4d26-6366-4464-968f-a24a380e6dc6
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/an-introduction-to-url-routing
 msc.type: video
 ---

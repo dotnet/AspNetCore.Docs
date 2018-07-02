@@ -9,7 +9,6 @@ ms.date: 05/27/2008
 ms.topic: article
 ms.assetid: 94dd6eec-3685-4323-ac75-75a70a4f766a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-2-the-repository-pattern
 msc.type: video
 ---

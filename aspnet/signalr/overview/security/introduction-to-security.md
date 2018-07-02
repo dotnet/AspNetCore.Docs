@@ -9,7 +9,6 @@ ms.date: 06/10/2014
 ms.topic: article
 ms.assetid: ed562717-8591-4936-8e10-c7e63dcb570a
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/introduction-to-security
 msc.type: authoredcontent
 ---

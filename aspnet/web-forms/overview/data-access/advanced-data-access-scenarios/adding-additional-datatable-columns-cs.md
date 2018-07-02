@@ -9,7 +9,6 @@ ms.date: 07/18/2007
 ms.topic: article
 ms.assetid: 615f3361-f21f-4338-8bc1-fce8ae071de9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-cs
 msc.type: authoredcontent
 ---

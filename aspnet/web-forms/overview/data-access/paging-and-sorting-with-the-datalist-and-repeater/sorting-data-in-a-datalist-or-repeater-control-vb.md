@@ -9,7 +9,6 @@ ms.date: 11/13/2006
 ms.topic: article
 ms.assetid: 97c13898-0741-45f9-b3fa-7540ab1679e6
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb
 msc.type: authoredcontent
 ---

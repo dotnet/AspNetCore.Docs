@@ -9,7 +9,6 @@ ms.date: 06/11/2014
 ms.topic: article
 ms.assetid: 43a6cce7-a3ef-42aa-ad06-90d36d49f098
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 03/06/2007
 ms.topic: article
 ms.assetid: f63a9443-2db0-4f80-8246-840d3e86c2a3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-cs
 msc.type: authoredcontent
 ---

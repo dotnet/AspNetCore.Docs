@@ -9,7 +9,6 @@ ms.date: 05/13/2009
 ms.topic: article
 ms.assetid: 9cf05d32-6c0e-487a-89da-7ef42666c0a3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-20
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/20/2014
 ms.topic: article
 ms.assetid: 332fb3da-e2a5-460d-bb90-dd911e1e2c95
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/10-working-with-video
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 08/07/2008
 ms.topic: article
 ms.assetid: 1e339f8a-72ea-463a-b186-c09dd7b12993
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services/how-to-manually-bind-a-dataset-to-a-datagrid
 msc.type: video
 ---

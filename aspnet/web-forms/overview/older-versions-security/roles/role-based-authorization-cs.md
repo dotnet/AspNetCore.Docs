@@ -9,7 +9,6 @@ ms.date: 03/24/2008
 ms.topic: article
 ms.assetid: 4d9b63fa-c3d4-4e85-82b1-26ae3ba3ca1c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/role-based-authorization-cs
 msc.type: authoredcontent
 ---

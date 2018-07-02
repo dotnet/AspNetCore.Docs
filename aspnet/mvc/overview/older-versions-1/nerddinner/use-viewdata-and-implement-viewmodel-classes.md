@@ -9,7 +9,6 @@ ms.date: 07/27/2010
 ms.topic: article
 ms.assetid: 5755ec4c-60f1-4057-9ec0-3a5de3a20e23
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-viewdata-and-implement-viewmodel-classes
 msc.type: authoredcontent
 ---

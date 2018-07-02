@@ -9,7 +9,6 @@ ms.date: 06/12/2007
 ms.topic: article
 ms.assetid: 2aee17e4-06d1-4875-985e-8fb817dc8bcd
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-numericupdown-extender-control
 msc.type: video
 ---

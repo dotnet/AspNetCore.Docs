@@ -9,7 +9,6 @@ ms.date: 08/22/2007
 ms.topic: article
 ms.assetid: 83792674-f769-4c9a-889b-701cfc52de8b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-run-unit-tests-against-a-deployed-database
 msc.type: video
 ---

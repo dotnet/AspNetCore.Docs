@@ -9,7 +9,6 @@ ms.date: 12/04/2008
 ms.topic: article
 ms.assetid: 13dd3a26-c210-432e-91fe-355c979060b3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list
 msc.type: video
 ---

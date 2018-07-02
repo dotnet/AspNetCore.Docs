@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: 0496ce17-5755-4f4b-82ee-34f5a0fefdd7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/feature-specific-delegated-management
 msc.type: video
 ---

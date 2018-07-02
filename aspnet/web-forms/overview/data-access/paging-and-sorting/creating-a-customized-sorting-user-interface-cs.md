@@ -9,7 +9,6 @@ ms.date: 08/15/2006
 ms.topic: article
 ms.assetid: 6f81b633-9d01-4e52-ae4a-2ea6bc109475
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-cs
 msc.type: authoredcontent
 ---

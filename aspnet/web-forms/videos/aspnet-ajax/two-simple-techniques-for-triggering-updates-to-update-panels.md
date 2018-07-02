@@ -9,7 +9,6 @@ ms.date: 03/13/2008
 ms.topic: article
 ms.assetid: c844da8a-10e6-45c9-a9e2-331a3b8d3e03
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/two-simple-techniques-for-triggering-updates-to-update-panels
 msc.type: video
 ---

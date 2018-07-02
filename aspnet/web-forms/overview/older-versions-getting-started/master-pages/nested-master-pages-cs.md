@@ -9,7 +9,6 @@ ms.date: 07/28/2008
 ms.topic: article
 ms.assetid: 32b7fb6e-d74b-4048-91f8-70631b2523ee
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs
 msc.type: authoredcontent
 ---

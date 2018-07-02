@@ -9,7 +9,6 @@ ms.date: 01/26/2007
 ms.topic: article
 ms.assetid: ea4211be-faf9-40a0-8a7b-63427218b947
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-make-client-side-network-callbacks-with-aspnet-ajax
 msc.type: video
 ---

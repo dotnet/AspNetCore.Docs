@@ -9,7 +9,6 @@ ms.date: 10/02/2013
 ms.topic: article
 ms.assetid: d1c6e7d0-ead9-4f08-a5b9-9d7a30be78e3
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/extensibility
 msc.type: chapter
 ---

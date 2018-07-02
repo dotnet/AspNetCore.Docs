@@ -9,7 +9,6 @@ ms.date: 01/31/2007
 ms.topic: article
 ms.assetid: 919b509c-37e8-4765-92a4-70277bd87269
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-filteredtextbox-extender
 msc.type: video
 ---

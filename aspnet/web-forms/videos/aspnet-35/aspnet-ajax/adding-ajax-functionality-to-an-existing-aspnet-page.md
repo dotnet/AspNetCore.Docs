@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: a4eb03b2-8efa-42ea-848d-b26918b80c33
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page
 msc.type: video
 ---

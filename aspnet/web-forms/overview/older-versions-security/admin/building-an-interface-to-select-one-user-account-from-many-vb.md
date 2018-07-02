@@ -9,7 +9,6 @@ ms.date: 04/01/2008
 ms.topic: article
 ms.assetid: da53380c-a16b-41c7-a20d-24343c735c52
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-vb
 msc.type: authoredcontent
 ---

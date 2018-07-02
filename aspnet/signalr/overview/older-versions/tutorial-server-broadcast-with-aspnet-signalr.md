@@ -9,7 +9,6 @@ ms.date: 04/10/2013
 ms.topic: article
 ms.assetid: ab7b2554-956a-4f6d-b2a0-4ae0c62e8580
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr
 msc.type: authoredcontent
 ---

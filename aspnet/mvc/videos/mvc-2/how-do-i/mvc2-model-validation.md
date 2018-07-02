@@ -9,7 +9,6 @@ ms.date: 03/23/2010
 ms.topic: article
 ms.assetid: fe3676fd-ecec-4756-8c8d-269da9754c31
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-model-validation
 msc.type: video
 ---

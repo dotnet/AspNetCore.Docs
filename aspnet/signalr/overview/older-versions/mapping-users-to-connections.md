@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: ebbc93a8-e6c4-4122-8e0d-3aa42293c747
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/mapping-users-to-connections
 msc.type: authoredcontent
 ---

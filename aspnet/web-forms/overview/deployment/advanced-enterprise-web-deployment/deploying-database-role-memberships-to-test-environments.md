@@ -9,7 +9,6 @@ ms.date: 05/04/2012
 ms.topic: article
 ms.assetid: 9b2af539-7ad9-47aa-b66e-873bd9906e79
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments
 msc.type: authoredcontent
 ---

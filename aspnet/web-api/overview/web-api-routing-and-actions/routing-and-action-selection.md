@@ -9,7 +9,6 @@ ms.date: 07/27/2012
 ms.topic: article
 ms.assetid: bcf2d223-cb7f-411e-be05-f43e96a14015
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 msc.type: authoredcontent
 ---

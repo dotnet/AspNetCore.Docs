@@ -9,7 +9,6 @@ ms.date: 07/18/2007
 ms.topic: article
 ms.assetid: 1e8e65f9-fe3e-4250-810b-c90227786bed
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-vb
 msc.type: authoredcontent
 ---

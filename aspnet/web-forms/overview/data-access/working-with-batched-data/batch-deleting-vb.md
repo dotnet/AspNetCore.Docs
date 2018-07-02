@@ -9,7 +9,6 @@ ms.date: 06/26/2007
 ms.topic: article
 ms.assetid: 4fb72f75-32ab-4bf7-a764-be20367be726
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-deleting-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 08/08/2011
 ms.topic: article
 ms.assetid: 24eab207-f69c-4eab-bfae-06725050452d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security
 msc.type: chapter
 ---

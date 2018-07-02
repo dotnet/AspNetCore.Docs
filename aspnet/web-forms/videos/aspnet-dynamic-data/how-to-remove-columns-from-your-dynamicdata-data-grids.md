@@ -9,7 +9,6 @@ ms.date: 12/11/2008
 ms.topic: article
 ms.assetid: 5fb54eb6-d1e1-4537-91ff-e1a9040c13ce
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-remove-columns-from-your-dynamicdata-data-grids
 msc.type: video
 ---

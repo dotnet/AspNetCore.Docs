@@ -9,7 +9,6 @@ ms.date: 07/17/2006
 ms.topic: article
 ms.assetid: 129d4338-1315-4f40-89b5-2b84b807707d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb
 msc.type: authoredcontent
 ---

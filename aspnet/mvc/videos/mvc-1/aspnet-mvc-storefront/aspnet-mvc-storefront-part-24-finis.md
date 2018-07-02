@@ -9,7 +9,6 @@ ms.date: 05/28/2009
 ms.topic: article
 ms.assetid: 160d6dde-1a19-4822-963b-cd936fb8afa0
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-24-finis
 msc.type: video
 ---

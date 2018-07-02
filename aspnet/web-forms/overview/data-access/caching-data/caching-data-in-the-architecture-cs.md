@@ -9,7 +9,6 @@ ms.date: 05/30/2007
 ms.topic: article
 ms.assetid: d29a7c41-0628-4a23-9dfc-bfea9c6c1054
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-in-the-architecture-cs
 msc.type: authoredcontent
 ---

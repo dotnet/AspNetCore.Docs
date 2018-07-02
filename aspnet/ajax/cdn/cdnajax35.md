@@ -9,7 +9,6 @@ ms.date: 07/28/2014
 ms.topic: article
 ms.assetid: d5af74c6-3bdf-4d56-8dba-316e3dc0092f
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/cdnajax35
 msc.type: content
 ---

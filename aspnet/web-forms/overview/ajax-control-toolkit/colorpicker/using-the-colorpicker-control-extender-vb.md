@@ -9,7 +9,6 @@ ms.date: 05/12/2009
 ms.topic: article
 ms.assetid: 577ae07b-a872-4818-a804-bca489b40ad0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/colorpicker/using-the-colorpicker-control-extender-vb
 msc.type: authoredcontent
 ---

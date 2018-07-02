@@ -9,7 +9,6 @@ ms.date: 09/18/2008
 ms.topic: article
 ms.assetid: 5c107c6e-9fb7-4206-bd3f-221cb0767f8a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-send-templated-emails-for-health-monitoring-events-in-aspnet
 msc.type: video
 ---

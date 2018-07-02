@@ -9,7 +9,6 @@ ms.date: 06/26/2008
 ms.topic: article
 ms.assetid: 81bd2d32-53c5-4bd9-8d09-dd8a2c734f3b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-pass-information-from-one-page-to-another-using-a-query-string
 msc.type: video
 ---

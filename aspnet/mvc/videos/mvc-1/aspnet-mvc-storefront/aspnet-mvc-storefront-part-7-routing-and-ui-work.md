@@ -9,7 +9,6 @@ ms.date: 05/27/2008
 ms.topic: article
 ms.assetid: 07cb4434-cb24-4746-a4ba-bfeea889a7e2
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-7-routing-and-ui-work
 msc.type: video
 ---

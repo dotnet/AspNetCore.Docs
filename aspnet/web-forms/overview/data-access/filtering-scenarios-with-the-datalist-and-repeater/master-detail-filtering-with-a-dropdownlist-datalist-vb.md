@@ -9,7 +9,6 @@ ms.date: 07/18/2007
 ms.topic: article
 ms.assetid: ad0f1014-1eff-465f-bdc6-93058de00e44
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 06/26/2007
 ms.topic: article
 ms.assetid: d191a204-d7ea-458d-b81c-0b9049ecb55f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-updating-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 06/22/2010
 ms.topic: article
 ms.assetid: 75cbb6d6-1823-4e3c-8c33-c733641eadb2
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store/mvc-music-store-part-1-intro-tools-and-project-structure
 msc.type: video
 ---

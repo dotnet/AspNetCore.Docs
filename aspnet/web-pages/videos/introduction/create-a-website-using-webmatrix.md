@@ -9,7 +9,6 @@ ms.date: 04/12/2011
 ms.topic: article
 ms.assetid: a60d0b1f-38c4-4a7a-901e-8de57b087dd4
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-a-website-using-webmatrix
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/10/2010
 ms.topic: article
 ms.assetid: 3cb27b8a-354f-4332-bfe0-232b13bbf8aa
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/denied-access-to-iis-directories
 msc.type: content
 ---

@@ -9,7 +9,6 @@ ms.date: 01/29/2009
 ms.topic: article
 ms.assetid: 3e5ae74a-9798-47d8-a2b3-0d8ad42dd4bc
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-reponsefilter-property-to-replace-html-in-an-aspnet-page
 msc.type: video
 ---

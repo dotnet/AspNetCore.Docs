@@ -9,7 +9,6 @@ ms.date: 09/13/2006
 ms.topic: article
 ms.assetid: 83e3d759-82b8-41e6-8d62-f0f4b3edec41
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 08/03/2007
 ms.topic: article
 ms.assetid: c655c324-2ffa-4c21-8265-a254d79a693d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/debugging-stored-procedures-cs
 msc.type: authoredcontent
 ---

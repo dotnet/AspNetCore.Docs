@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: e18480cd-432c-47e5-bcfe-4cb86ebf73ab
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-support-in-visual-studio-2008
 msc.type: video
 ---

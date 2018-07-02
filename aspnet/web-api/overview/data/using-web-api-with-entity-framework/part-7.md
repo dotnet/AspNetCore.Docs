@@ -9,7 +9,6 @@ ms.date: 06/16/2014
 ms.topic: article
 ms.assetid: b2445062-a1fe-4133-8994-f510280f6d9a
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-7
 msc.type: authoredcontent
 ---

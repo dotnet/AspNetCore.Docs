@@ -9,7 +9,6 @@ ms.date: 06/21/2007
 ms.topic: article
 ms.assetid: 60b10049-ca02-4830-b3ce-83e9584511d0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-practice-test-driven-development
 msc.type: video
 ---

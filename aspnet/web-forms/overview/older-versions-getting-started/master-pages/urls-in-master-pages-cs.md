@@ -9,7 +9,6 @@ ms.date: 06/10/2008
 ms.topic: article
 ms.assetid: 48b58a18-5ea4-468c-b326-f35331b3e1e9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/urls-in-master-pages-cs
 msc.type: authoredcontent
 ---

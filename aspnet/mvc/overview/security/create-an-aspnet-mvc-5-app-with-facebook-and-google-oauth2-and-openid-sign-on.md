@@ -9,7 +9,6 @@ ms.date: 04/03/2015
 ms.topic: article
 ms.assetid: 81ee500f-fc37-40d6-8722-f1b64720fbb6
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 03/27/2007
 ms.topic: article
 ms.assetid: 9201656a-e1c2-4020-824b-18fb632d2925
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/displaying-binary-data-in-the-data-web-controls-vb
 msc.type: authoredcontent
 ---

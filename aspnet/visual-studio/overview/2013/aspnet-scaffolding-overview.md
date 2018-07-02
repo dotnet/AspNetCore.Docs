@@ -9,7 +9,6 @@ ms.date: 04/09/2014
 ms.topic: article
 ms.assetid: a41ec9d4-8287-4f31-9e2a-460e7b7f04be
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-scaffolding-overview
 msc.type: authoredcontent
 ---

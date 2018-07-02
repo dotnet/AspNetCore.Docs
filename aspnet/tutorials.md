@@ -9,7 +9,6 @@ ms.date: 01/17/2012
 ms.topic: article
 ms.assetid: fddf8e5e-c055-4f81-b691-78deef871112
 ms.technology: 
-ms.prod: .net-framework
 uid: aspnet/tutorials
 ---
 # ASP.NET tutorials

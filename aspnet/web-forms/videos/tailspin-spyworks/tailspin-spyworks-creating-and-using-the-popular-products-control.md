@@ -9,7 +9,6 @@ ms.date: 08/26/2010
 ms.topic: article
 ms.assetid: 66944300-804e-484d-8176-6cfe8c128cfc
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-creating-and-using-the-popular-products-control
 msc.type: video
 ---

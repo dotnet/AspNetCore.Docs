@@ -9,7 +9,6 @@ ms.date: 08/18/2011
 ms.topic: article
 ms.assetid: 31922c31-59df-4399-99d2-e935a476f16a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment
 msc.type: chapter
 ---

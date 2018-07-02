@@ -9,7 +9,6 @@ ms.date: 08/15/2006
 ms.topic: article
 ms.assetid: b895e37e-0e69-45cc-a7e4-17ddd2e1b38d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-vb
 msc.type: authoredcontent
 ---

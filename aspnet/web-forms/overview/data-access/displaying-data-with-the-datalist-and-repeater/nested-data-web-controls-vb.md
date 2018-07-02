@@ -9,7 +9,6 @@ ms.date: 09/13/2006
 ms.topic: article
 ms.assetid: 8b7fcf7b-722b-498d-a4e4-7c93701e0c95
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-vb
 msc.type: authoredcontent
 ---

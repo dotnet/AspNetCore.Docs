@@ -8,7 +8,6 @@ manager: wpickett
 ms.date: 11/28/2017
 ms.topic: article
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
 msc.type: authoredcontent
 ---

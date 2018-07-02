@@ -9,7 +9,6 @@ ms.date: 03/26/2007
 ms.topic: article
 ms.assetid: 806acc93-7f97-4ba1-92a5-f90146bd51f8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/the-effects-of-caching
 msc.type: video
 ---

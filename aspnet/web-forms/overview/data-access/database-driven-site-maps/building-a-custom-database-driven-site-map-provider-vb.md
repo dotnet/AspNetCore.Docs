@@ -9,7 +9,6 @@ ms.date: 06/26/2007
 ms.topic: article
 ms.assetid: f904cd2c-a408-4484-9324-8b8d7fe33893
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb
 msc.type: authoredcontent
 ---

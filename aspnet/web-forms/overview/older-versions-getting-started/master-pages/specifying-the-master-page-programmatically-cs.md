@@ -9,7 +9,6 @@ ms.date: 07/28/2008
 ms.topic: article
 ms.assetid: 7c4a3445-2440-4aee-b9fd-779c05e6abb2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-cs
 msc.type: authoredcontent
 ---

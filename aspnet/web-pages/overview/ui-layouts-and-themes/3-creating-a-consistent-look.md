@@ -9,7 +9,6 @@ ms.date: 03/10/2014
 ms.topic: article
 ms.assetid: d7bd001b-6db2-4422-9b78-f3d08b743b00
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: 18637656-3733-4549-b365-94652c596a7b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-designer/visual-studio-2008-and-nested-masterpages
 msc.type: video
 ---

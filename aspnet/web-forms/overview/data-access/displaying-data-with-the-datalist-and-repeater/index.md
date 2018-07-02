@@ -9,7 +9,6 @@ ms.date: 10/05/2011
 ms.topic: article
 ms.assetid: 3005174a-ba3d-4937-8b3e-b913ee4172ac
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater
 msc.type: chapter
 ---

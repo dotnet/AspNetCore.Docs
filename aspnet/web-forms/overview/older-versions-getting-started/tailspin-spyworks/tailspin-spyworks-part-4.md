@@ -9,7 +9,6 @@ ms.date: 07/21/2010
 ms.topic: article
 ms.assetid: 4fab47d5-a6ec-4fdc-91f0-651a093a24b9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-4
 msc.type: authoredcontent
 ---

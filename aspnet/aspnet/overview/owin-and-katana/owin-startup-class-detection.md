@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: 08257f55-36f4-4e39-9c88-2a5602838c79
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-startup-class-detection
 msc.type: authoredcontent
 ---

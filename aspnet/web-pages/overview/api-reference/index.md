@@ -9,7 +9,6 @@ ms.date: 09/08/2014
 ms.topic: article
 ms.assetid: c29776f2-10b5-4632-b383-5f43656d5900
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/api-reference
 msc.type: chapter
 ---

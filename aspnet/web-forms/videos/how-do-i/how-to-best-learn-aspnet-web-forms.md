@@ -9,7 +9,6 @@ ms.date: 09/03/2010
 ms.topic: article
 ms.assetid: 7eef8a44-d2e5-459d-8d17-70cba7d0735a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-to-best-learn-aspnet-web-forms
 msc.type: video
 ---

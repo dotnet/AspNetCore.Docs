@@ -9,7 +9,6 @@ ms.date: 07/29/2010
 ms.topic: article
 ms.assetid: 8e5cebbc-7e7b-4f1a-af6b-75a6ed398030
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/implement-the-registration-verification-pattern
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 11/14/2011
 ms.topic: article
 ms.assetid: 5cc304e2-0013-4c26-8fe6-e897a533809f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown
 msc.type: chapter
 ---

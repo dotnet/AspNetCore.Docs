@@ -9,7 +9,6 @@ ms.date: 11/14/2011
 ms.topic: article
 ms.assetid: 257686f7-7e10-4c4b-a2e9-299f93c0f917
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/core
 msc.type: chapter
 ---

@@ -9,7 +9,6 @@ ms.date: 08/21/2009
 ms.topic: article
 ms.assetid: a9f317b0-28c3-4838-bae0-cfa5ed5b3110
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner
 msc.type: video
 ---

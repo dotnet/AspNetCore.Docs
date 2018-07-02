@@ -9,7 +9,6 @@ ms.date: 05/18/2012
 ms.topic: article
 ms.assetid: b8a43660-177f-4a00-bb51-be887364c607
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction
 msc.type: chapter
 ---

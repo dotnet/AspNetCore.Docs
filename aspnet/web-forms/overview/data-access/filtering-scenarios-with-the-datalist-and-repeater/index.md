@@ -9,7 +9,6 @@ ms.date: 10/05/2011
 ms.topic: article
 ms.assetid: 80b17464-8395-4b82-8f11-5d8ee1351d53
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater
 msc.type: chapter
 ---

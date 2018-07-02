@@ -9,7 +9,6 @@ ms.date: 10/10/2014
 ms.topic: article
 ms.assetid: 1506f70f-6919-45bd-8c75-a17aff77510c
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1
 msc.type: chapter
 ---

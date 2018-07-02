@@ -9,7 +9,6 @@ ms.date: 01/31/2007
 ms.topic: article
 ms.assetid: d54549cd-e832-4bfa-b490-52e58a8a03c4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-collapsable-panel-extender
 msc.type: video
 ---

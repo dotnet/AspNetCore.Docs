@@ -9,7 +9,6 @@ ms.date: 10/09/2014
 ms.topic: article
 ms.assetid: 388c048e-a285-4d1a-851a-caace21aa988
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance
 msc.type: chapter
 ---

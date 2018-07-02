@@ -9,7 +9,6 @@ ms.date: 02/15/2013
 ms.topic: article
 ms.assetid: ae4def81-fa37-4883-a13e-d9896cbf6c36
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/preparing-databases
 msc.type: authoredcontent
 ---

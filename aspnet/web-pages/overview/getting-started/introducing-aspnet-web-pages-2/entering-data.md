@@ -9,7 +9,6 @@ ms.date: 05/28/2015
 ms.topic: article
 ms.assetid: d37c93fc-25fd-4e94-8671-0d437beef206
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/entering-data
 msc.type: authoredcontent
 ---

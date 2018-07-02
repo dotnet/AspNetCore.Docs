@@ -9,7 +9,6 @@ ms.date: 05/13/2009
 ms.topic: article
 ms.assetid: c688f8c3-0d0d-4ff2-a32b-f93e05fc826b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/editor-control-custom
 msc.type: video
 ---

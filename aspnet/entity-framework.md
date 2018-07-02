@@ -9,7 +9,6 @@ ms.date: 03/12/2010
 ms.topic: article
 ms.assetid: faa761a9-86b3-4859-b9c0-60d5c5bc5e93
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /entity-framework
 msc.type: content
 ---

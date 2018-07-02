@@ -9,7 +9,6 @@ ms.date: 06/10/2008
 ms.topic: article
 ms.assetid: dbb024a6-f043-4fc5-ad66-56556711875b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/control-id-naming-in-content-pages-vb
 msc.type: authoredcontent
 ---

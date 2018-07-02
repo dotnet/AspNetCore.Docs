@@ -9,7 +9,6 @@ ms.date: 11/11/2009
 ms.topic: article
 ms.assetid: bfeb728e-3216-4310-8303-6cdb79255c15
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-routing
 msc.type: video
 ---

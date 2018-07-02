@@ -9,7 +9,6 @@ ms.date: 04/01/2008
 ms.topic: article
 ms.assetid: 9e4e687c-b4ec-434f-a4ef-edb0b8f365e4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-cs
 msc.type: authoredcontent
 ---

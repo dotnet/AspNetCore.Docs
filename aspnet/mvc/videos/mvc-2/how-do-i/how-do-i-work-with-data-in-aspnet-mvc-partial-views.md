@@ -9,7 +9,6 @@ ms.date: 12/11/2009
 ms.topic: article
 ms.assetid: 2f0d41d2-2860-4113-8f5e-0efdd29abf7b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-work-with-data-in-aspnet-mvc-partial-views
 msc.type: video
 ---

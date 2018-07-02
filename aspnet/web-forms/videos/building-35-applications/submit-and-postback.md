@@ -9,7 +9,6 @@ ms.date: 04/20/2009
 ms.topic: article
 ms.assetid: 8ccbfcee-a2e4-496d-aded-5a7119c54244
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/submit-and-postback
 msc.type: video
 ---

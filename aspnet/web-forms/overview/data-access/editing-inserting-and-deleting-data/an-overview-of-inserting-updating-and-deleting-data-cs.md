@@ -9,7 +9,6 @@ ms.date: 07/17/2006
 ms.topic: article
 ms.assetid: b651dc58-93c7-4f83-a74e-3b99f6d60848
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs
 msc.type: authoredcontent
 ---

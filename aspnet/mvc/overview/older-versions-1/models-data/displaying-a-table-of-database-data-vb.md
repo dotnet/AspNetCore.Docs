@@ -9,7 +9,6 @@ ms.date: 10/07/2008
 ms.topic: article
 ms.assetid: 5bb4587f-5bcd-44f5-b368-3c1709162b35
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-vb
 msc.type: authoredcontent
 ---

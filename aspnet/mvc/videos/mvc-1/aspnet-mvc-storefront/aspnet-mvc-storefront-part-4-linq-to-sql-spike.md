@@ -9,7 +9,6 @@ ms.date: 05/27/2008
 ms.topic: article
 ms.assetid: 990262a5-4c06-472a-8083-ed11e14f1e5a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-4-linq-to-sql-spike
 msc.type: video
 ---

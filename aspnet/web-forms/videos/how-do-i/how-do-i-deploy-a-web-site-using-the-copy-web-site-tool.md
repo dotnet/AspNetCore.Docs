@@ -9,7 +9,6 @@ ms.date: 04/03/2008
 ms.topic: article
 ms.assetid: 4926a73c-fa70-4f47-b57d-b33556447377
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/14/2013
 ms.topic: article
 ms.assetid: bdb18d02-9f61-4676-836d-6fdea94f9282
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-and-web-tools-20122-release-notes
 msc.type: content
 ---

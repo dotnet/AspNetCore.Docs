@@ -9,7 +9,6 @@ ms.date: 02/27/2014
 ms.topic: article
 ms.assetid: b90978bd-795d-4871-9ade-1671caff5730
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/using-query-string-values-to-retrieve-data
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 05/03/2012
 ms.topic: article
 ms.assetid: aa862153-4cd8-4e33-beeb-abf502c6664f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview
 msc.type: authoredcontent
 ---

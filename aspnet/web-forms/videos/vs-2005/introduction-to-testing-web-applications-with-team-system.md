@@ -9,7 +9,6 @@ ms.date: 02/09/2007
 ms.topic: article
 ms.assetid: 0924e7ff-b148-4a3e-bfaf-6f866ca13495
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team-system
 msc.type: video
 ---

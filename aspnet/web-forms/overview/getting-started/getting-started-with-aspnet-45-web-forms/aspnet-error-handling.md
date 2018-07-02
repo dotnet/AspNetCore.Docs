@@ -9,7 +9,6 @@ ms.date: 09/08/2014
 ms.topic: article
 ms.assetid: 423498f7-1a4b-44a1-b342-5f39d0bcf94f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling
 msc.type: authoredcontent
 ---

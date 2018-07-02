@@ -9,7 +9,6 @@ ms.date: 07/27/2010
 ms.topic: article
 ms.assetid: 9e4d5cac-b071-440c-b044-20b6d0c964fb
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization
 msc.type: authoredcontent
 ---

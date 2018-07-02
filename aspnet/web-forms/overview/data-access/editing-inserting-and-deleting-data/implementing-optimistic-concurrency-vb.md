@@ -9,7 +9,6 @@ ms.date: 07/17/2006
 ms.topic: article
 ms.assetid: 2646968c-2826-4418-b1d0-62610ed177e3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-vb
 msc.type: authoredcontent
 ---

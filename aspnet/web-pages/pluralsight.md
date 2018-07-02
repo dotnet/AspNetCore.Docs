@@ -9,7 +9,6 @@ ms.date: 05/18/2012
 ms.topic: article
 ms.assetid: 79eca52c-e7ad-44ab-a3e4-d8093e9da5a7
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/pluralsight
 msc.type: content
 ---

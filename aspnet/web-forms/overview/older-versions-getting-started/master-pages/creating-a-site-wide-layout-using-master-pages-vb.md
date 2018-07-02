@@ -9,7 +9,6 @@ ms.date: 05/21/2008
 ms.topic: article
 ms.assetid: 30945276-8ed9-4b27-8e50-4309244d3559
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-vb
 msc.type: authoredcontent
 ---

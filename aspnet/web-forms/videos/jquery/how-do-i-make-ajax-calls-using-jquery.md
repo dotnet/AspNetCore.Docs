@@ -9,7 +9,6 @@ ms.date: 04/12/2010
 ms.topic: article
 ms.assetid: 112b6255-ec37-4311-b967-c1aacce78bc8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/jquery/how-do-i-make-ajax-calls-using-jquery
 msc.type: video
 ---

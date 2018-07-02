@@ -9,7 +9,6 @@ ms.date: 10/01/2014
 ms.topic: article
 ms.assetid: 269380ff-d7e1-4035-8ad1-fe1316a25f76
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/customizing-a-view
 msc.type: authoredcontent
 ---

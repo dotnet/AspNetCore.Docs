@@ -9,7 +9,6 @@ ms.date: 03/20/2006
 ms.topic: article
 ms.assetid: 2ba89851-337e-47dc-a604-82f73a68bc63
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/connecting-your-web-application-to-sql-server-2005-express-edition
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/20/2005
 ms.topic: article
 ms.assetid: 78fd0e92-f9c6-4e96-a5e9-0375b307a828
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/data-source-controls
 msc.type: authoredcontent
 ---

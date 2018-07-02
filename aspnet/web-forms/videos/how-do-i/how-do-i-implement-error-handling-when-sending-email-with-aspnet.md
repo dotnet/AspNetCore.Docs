@@ -9,7 +9,6 @@ ms.date: 11/06/2008
 ms.topic: article
 ms.assetid: c02ffd50-aa19-4cdc-b1bf-760989979a61
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-error-handling-when-sending-email-with-aspnet
 msc.type: video
 ---

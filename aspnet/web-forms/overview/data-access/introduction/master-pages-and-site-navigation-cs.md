@@ -9,7 +9,6 @@ ms.date: 03/31/2010
 ms.topic: article
 ms.assetid: 5aee8202-a4e3-4aa9-8a95-cd5d156cea4c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/master-pages-and-site-navigation-cs
 msc.type: authoredcontent
 ---

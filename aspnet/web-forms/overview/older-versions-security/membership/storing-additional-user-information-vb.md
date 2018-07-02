@@ -9,7 +9,6 @@ ms.date: 01/18/2008
 ms.topic: article
 ms.assetid: ee4b924e-8002-4dc3-819f-695fca1ff867
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/storing-additional-user-information-vb
 msc.type: authoredcontent
 ---

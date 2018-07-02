@@ -9,7 +9,6 @@ ms.date: 08/01/2007
 ms.topic: article
 ms.assetid: 3c81ee94-4561-4267-864d-2656b33d95c9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-deploy-a-web-application-during-a-team-build
 msc.type: video
 ---

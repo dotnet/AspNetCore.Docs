@@ -9,7 +9,6 @@ ms.date: 06/26/2013
 ms.topic: article
 ms.assetid: 23fc77da-2725-4434-99a0-ff872d96336b
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 msc.type: authoredcontent
 ---

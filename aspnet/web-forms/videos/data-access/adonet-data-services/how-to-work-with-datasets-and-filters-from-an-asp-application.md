@@ -9,7 +9,6 @@ ms.date: 08/07/2008
 ms.topic: article
 ms.assetid: 4ea744fa-ee7f-45a5-a0de-e3b17af67d8c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets-and-filters-from-an-asp-application
 msc.type: video
 ---

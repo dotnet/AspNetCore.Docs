@@ -9,7 +9,6 @@ ms.date: 08/15/2006
 ms.topic: article
 ms.assetid: 778baa4e-4af8-4665-947e-7a01d1a4dff2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-cs
 msc.type: authoredcontent
 ---

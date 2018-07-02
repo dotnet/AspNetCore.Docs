@@ -9,7 +9,6 @@ ms.date: 08/10/2007
 ms.topic: article
 ms.assetid: 62188875-159b-4d9e-98b7-7fda3fdd5b76
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-localize-an-aspnet-ajax-application
 msc.type: video
 ---

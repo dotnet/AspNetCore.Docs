@@ -9,7 +9,6 @@ ms.date: 02/14/2008
 ms.topic: article
 ms.assetid: babf24f7-f830-4091-a415-02a2661c724b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-working-with-visual-studio-2008-net-framework
 msc.type: video
 ---

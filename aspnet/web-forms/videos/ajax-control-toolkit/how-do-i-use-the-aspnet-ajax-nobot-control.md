@@ -9,7 +9,6 @@ ms.date: 05/29/2007
 ms.topic: article
 ms.assetid: 15282963-2ec5-4013-b6bc-f1fcf272818e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-nobot-control
 msc.type: video
 ---

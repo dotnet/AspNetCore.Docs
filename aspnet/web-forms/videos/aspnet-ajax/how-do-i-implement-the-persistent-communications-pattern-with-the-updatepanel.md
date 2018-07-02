@@ -9,7 +9,6 @@ ms.date: 08/01/2007
 ms.topic: article
 ms.assetid: 49c7a74d-dce7-4d5c-8282-c7846f478e11
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel
 msc.type: video
 ---

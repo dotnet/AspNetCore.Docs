@@ -9,7 +9,6 @@ ms.date: 04/23/2009
 ms.topic: article
 ms.assetid: 07b8905d-78ac-4252-97fb-8675b3fb0bbf
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/strategies-for-database-development-and-deployment-vb
 msc.type: authoredcontent
 ---

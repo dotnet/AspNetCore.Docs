@@ -9,7 +9,6 @@ ms.date: 02/16/2008
 ms.topic: article
 ms.assetid: b985c49a-3668-455c-a366-f85f6bc64b12
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/aspnet-mvc-controllers-overview-cs
 msc.type: authoredcontent
 ---

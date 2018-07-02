@@ -9,7 +9,6 @@ ms.date: 11/14/2011
 ms.topic: article
 ms.assetid: ee920155-b136-4f87-9545-8b5777ade9f3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/textboxwatermark
 msc.type: chapter
 ---

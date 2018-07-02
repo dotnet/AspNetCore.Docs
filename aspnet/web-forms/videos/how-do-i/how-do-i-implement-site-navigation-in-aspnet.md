@@ -9,7 +9,6 @@ ms.date: 10/18/2007
 ms.topic: article
 ms.assetid: 889e8100-a80c-41c0-bfeb-7d466c754548
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-site-navigation-in-aspnet
 msc.type: video
 ---

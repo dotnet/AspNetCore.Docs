@@ -9,7 +9,6 @@ ms.date: 02/27/2014
 ms.topic: article
 ms.assetid: 266e7866-e327-4687-b29d-627a0925e87d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/sorting-paging-and-filtering-data
 msc.type: authoredcontent
 ---

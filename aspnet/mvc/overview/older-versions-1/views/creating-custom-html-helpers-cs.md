@@ -9,7 +9,6 @@ ms.date: 10/07/2008
 ms.topic: article
 ms.assetid: e454c67d-a86e-4119-a858-eb04bbec2dff
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
 msc.type: authoredcontent
 uid: aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs

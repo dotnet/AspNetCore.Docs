@@ -9,7 +9,6 @@ ms.date: 06/12/2007
 ms.topic: article
 ms.assetid: 7f2231f1-c105-499e-b980-c24824bed56a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-pagingbulletedlist-extender-control
 msc.type: video
 ---

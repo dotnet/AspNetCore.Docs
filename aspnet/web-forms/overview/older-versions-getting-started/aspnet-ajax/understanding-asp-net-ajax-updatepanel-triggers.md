@@ -9,7 +9,6 @@ ms.date: 03/12/2008
 ms.topic: article
 ms.assetid: faab8503-2984-48a9-8a40-7728461abc50
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-updatepanel-triggers
 msc.type: authoredcontent
 ---

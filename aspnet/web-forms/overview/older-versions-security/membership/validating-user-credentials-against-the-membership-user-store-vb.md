@@ -9,7 +9,6 @@ ms.date: 01/18/2008
 ms.topic: article
 ms.assetid: 17772912-b47b-4557-9ce9-80f22df642f7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb
 msc.type: authoredcontent
 ---

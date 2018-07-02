@@ -9,7 +9,6 @@ ms.date: 03/31/2010
 ms.topic: article
 ms.assetid: 552d2d50-fe73-4153-9a7f-2b379bec4625
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-filtering-across-two-pages-cs
 msc.type: authoredcontent
 ---

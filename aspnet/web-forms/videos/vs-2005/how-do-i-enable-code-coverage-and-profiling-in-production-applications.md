@@ -9,7 +9,6 @@ ms.date: 08/22/2007
 ms.topic: article
 ms.assetid: a0437314-e310-425a-b67b-0dc06878dbe2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-enable-code-coverage-and-profiling-in-production-applications
 msc.type: video
 ---

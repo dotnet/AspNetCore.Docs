@@ -9,7 +9,6 @@ ms.date: 05/21/2008
 ms.topic: article
 ms.assetid: 0aa1c84f-c9e2-4699-b009-0e28643ecbc6
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-cs
 msc.type: authoredcontent
 ---

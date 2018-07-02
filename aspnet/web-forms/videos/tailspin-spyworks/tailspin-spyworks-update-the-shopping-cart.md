@@ -9,7 +9,6 @@ ms.date: 06/29/2010
 ms.topic: article
 ms.assetid: 92909295-b514-486f-b9ed-0e0100ded16c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-update-the-shopping-cart
 msc.type: video
 ---

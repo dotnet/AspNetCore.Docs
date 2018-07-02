@@ -9,7 +9,6 @@ ms.date: 03/23/2015
 ms.topic: article
 ms.assetid: 1cd91055-84bc-42c6-9d80-646f41429d4d
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 01/26/2011
 ms.topic: article
 ms.assetid: efb0e677-10b8-48dc-93d3-9ba3902dd807
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests
 msc.type: authoredcontent
 ---

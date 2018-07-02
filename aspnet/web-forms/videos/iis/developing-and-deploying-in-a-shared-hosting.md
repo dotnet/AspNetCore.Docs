@@ -9,7 +9,6 @@ ms.date: 03/09/2009
 ms.topic: article
 ms.assetid: fb6b54c6-5459-4528-98a0-1fb16144836a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/developing-and-deploying-in-a-shared-hosting
 msc.type: video
 ---

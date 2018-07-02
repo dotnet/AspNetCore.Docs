@@ -9,7 +9,6 @@ ms.date: 12/18/2008
 ms.topic: article
 ms.assetid: c2bbe9c6-4071-40da-82fe-52044ce7c211
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-precompile-an-aspnet-website
 msc.type: video
 ---

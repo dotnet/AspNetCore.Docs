@@ -9,7 +9,6 @@ ms.date: 06/12/2007
 ms.topic: article
 ms.assetid: ab0805a3-76ff-4557-8750-a24d0f79a4c9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-create-my-own-bug-work-item
 msc.type: video
 ---

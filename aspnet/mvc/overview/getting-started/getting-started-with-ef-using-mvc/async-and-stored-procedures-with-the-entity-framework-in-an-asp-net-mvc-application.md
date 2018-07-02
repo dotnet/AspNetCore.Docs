@@ -9,7 +9,6 @@ ms.date: 11/07/2014
 ms.topic: article
 ms.assetid: 27d110fc-d1b7-4628-a763-26f1e6087549
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

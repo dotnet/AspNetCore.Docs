@@ -9,7 +9,6 @@ ms.date: 01/26/2011
 ms.topic: article
 ms.assetid: a5aa22a6-fb7f-4f41-9c7f-addda151940b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application
 msc.type: authoredcontent
 ---

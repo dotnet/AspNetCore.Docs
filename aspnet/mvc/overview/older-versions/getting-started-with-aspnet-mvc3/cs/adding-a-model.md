@@ -9,7 +9,6 @@ ms.date: 01/12/2011
 ms.topic: article
 ms.assetid: 42355b95-5f1f-413e-8d16-14cdfaaefcd8
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-model
 msc.type: authoredcontent
 ---

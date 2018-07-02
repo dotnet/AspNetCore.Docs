@@ -9,7 +9,6 @@ ms.date: 10/15/2014
 ms.topic: article
 ms.assetid: 92c84846-f0ea-4b5e-94b6-5004874eb060
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/individual-accounts-in-web-api
 msc.type: authoredcontent
 ---
