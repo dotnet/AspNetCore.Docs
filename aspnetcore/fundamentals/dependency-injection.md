@@ -143,7 +143,7 @@ If a service's constructor requires a primitive, such as a `string`, the primiti
 
 An instance of the service is requested via the constructor of a class where the service is used and assigned to a private field. The field is used to access the service as necessary throughout the class.
 
-In the following class from the sample app, the `IMyDependency` instance is requested and used to call the service's `WriteMessage` method:
+In the sample app, the `IMyDependency` instance is requested and used to call the service's `WriteMessage` method:
 
 ::: moniker range=">= aspnetcore-2.1"
 
