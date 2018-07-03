@@ -6,11 +6,6 @@ namespace PartialViewsSample.Controllers
 {
     public class ArticlesController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult Read()
         {
             var viewModel = GetArticle();

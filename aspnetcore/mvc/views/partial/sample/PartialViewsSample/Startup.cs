@@ -40,7 +40,7 @@ namespace PartialViewsSample
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Articles}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Discovery}/{id?}");
             });
         }
     }

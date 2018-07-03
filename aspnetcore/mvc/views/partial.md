@@ -69,7 +69,7 @@ Since it streams the result directly, `RenderPartialAsync` may perform better in
 > [!IMPORTANT]
 > If your views need to execute code, use a [view component](xref:mvc/views/view-components) instead of a partial view.
 
-### Partial view discovery
+## Partial view discovery
 
 When referencing a partial view, you can refer to its location in several ways. For example:
 

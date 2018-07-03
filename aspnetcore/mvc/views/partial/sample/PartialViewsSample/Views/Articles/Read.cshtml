@@ -1,10 +1,9 @@
 ﻿<!-- <snippet_ReadPartialView> -->
-@using PartialViewsSample.ViewModels
-@model Article
+@model PartialViewsSample.ViewModels.Article
 
 <h2>@Model.Title</h2>
 @*Pass the author's name to Views\Shared\_AuthorPartial.cshtml*@
-@await Html.PartialAsync("AuthorPartial", Model.AuthorName)
+@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)
 @Model.PublicationDate
 
 @*Loop over the Sections and pass in a section and additional ViewData
