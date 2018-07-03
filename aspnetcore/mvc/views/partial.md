@@ -73,20 +73,43 @@ Since it streams the result directly, `RenderPartialAsync` may perform better in
 
 When referencing a partial view, you can refer to its location in several ways. For example:
 
+::: moniker range=">= aspnetcore-2.1"
+
 ```cshtml
-// Uses a view in current folder with this name
-// If none is found, searches the Shared folder
+// Uses a view in current folder with this name.
+// If none is found, searches the Shared folder.
+<partial name="_ViewName" />
+
+// A view with this name must be in the same folder
+<partial name="_ViewName.cshtml" />
+
+// Locate the view based on the app root.
+// Paths that start with "/" or "~/" refer to the app root.
+<partial name="~/Views/Folder/_ViewName.cshtml" />
+<partial name="/Views/Folder/_ViewName.cshtml" />
+
+// Locate the view using a relative path
+<partial name="../Account/_LoginPartial.cshtml" />
+```
+
+The preceding example uses the Partial Tag Helper, which requires ASP.NET Core 2.1 or later. The following example uses asynchronous HTML Helpers to accomplish the same task.
+
+::: moniker-end
+
+```cshtml
+// Uses a view in current folder with this name.
+// If none is found, searches the Shared folder.
 @await Html.PartialAsync("_ViewName")
 
 // A view with this name must be in the same folder
 @await Html.PartialAsync("_ViewName.cshtml")
 
-// Locate the view based on the application root
-// Paths that start with "/" or "~/" refer to the application root
+// Locate the view based on the app root.
+// Paths that start with "/" or "~/" refer to the app root.
 @await Html.PartialAsync("~/Views/Folder/_ViewName.cshtml")
 @await Html.PartialAsync("/Views/Folder/_ViewName.cshtml")
 
-// Locate the view using relative paths
+// Locate the view using a relative path
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
