@@ -52,7 +52,7 @@ When you create a new `TodoItem` item, you provide the name and completion statu
 
 The following code shows the `TodoController` Web API controller:
 
-[!code-csharp[](first-web-api2/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController)]
+[!code-csharp[](first-web-api2/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController2)]
 
 The following code shows the `TodoController` class declaration and constructor:
 
@@ -129,16 +129,7 @@ The `CreatedAtRoute` method:
 
 ### Send a Create request
 
-* Start the app.
-* Open Postman.
-
-![Postman console](first-web-api/_static/pmc.png)
-
-* Update the port number in the localhost URL.
 * Set the HTTP method to *POST*.
-* Click the **Body** tab.
-* Select the **raw** radio button.
-* Set the type to *JSON (application/json)*.
 * Enter a request body with a to-do item resembling the following JSON:
 
 ```json
@@ -148,15 +139,6 @@ The `CreatedAtRoute` method:
 }
 ```
 
-* Click the **Send** button.
+* Click the **Run** button.
 
-::: moniker range=">= aspnetcore-2.1"
-> [!TIP]
-> If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
-::: moniker-end
-
-Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
-
-![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
-
-The Location header URI can be used to access the new item.
+The Location header URI can be used to access the new item. Copy the **Location** header value from the  **Response** pane and use that to get the new item
