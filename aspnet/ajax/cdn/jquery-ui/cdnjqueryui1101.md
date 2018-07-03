@@ -9,7 +9,6 @@ ms.date: 07/22/2014
 ms.topic: article
 ms.assetid: 213a13d7-43a5-4590-8af9-818195597dbf
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1101
 msc.type: content
 ---

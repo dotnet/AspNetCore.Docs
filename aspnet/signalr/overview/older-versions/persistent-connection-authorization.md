@@ -9,7 +9,6 @@ ms.date: 10/21/2013
 ms.topic: article
 ms.assetid: c34bc627-41af-4c21-a817-e97a19a7f252
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/persistent-connection-authorization
 msc.type: authoredcontent
 ---

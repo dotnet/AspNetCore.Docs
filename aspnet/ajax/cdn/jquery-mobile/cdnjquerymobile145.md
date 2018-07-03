@@ -9,7 +9,6 @@ ms.date: 12/31/2014
 ms.topic: article
 ms.assetid: 67e9fda2-7895-4818-add6-fdc5be5be367
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile145
 msc.type: content
 ---

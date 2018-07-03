@@ -9,7 +9,6 @@ ms.date: 01/15/2010
 ms.topic: article
 ms.assetid: 1d902492-c6a3-4ab8-8e3d-57384ac893d5
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-an-efficient-and-standardized-approach-for-implementing-css-styles
 msc.type: video
 ---

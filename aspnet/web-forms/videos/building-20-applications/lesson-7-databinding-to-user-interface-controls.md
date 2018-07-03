@@ -9,7 +9,6 @@ ms.date: 11/29/2005
 ms.topic: article
 ms.assetid: 49625de7-06c3-484c-bd76-d322b9ca41ea
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls
 msc.type: video
 ---

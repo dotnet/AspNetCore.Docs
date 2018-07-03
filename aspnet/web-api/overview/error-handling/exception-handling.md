@@ -9,7 +9,6 @@ ms.date: 03/12/2012
 ms.topic: article
 ms.assetid: cbebeb37-2594-41f2-b71a-f4f26520d512
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/exception-handling
 msc.type: authoredcontent
 ---

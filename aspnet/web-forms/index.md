@@ -9,7 +9,6 @@ ms.date: 08/08/2011
 ms.topic: article
 ms.assetid: 7e4ce5d2-ab22-44f0-9825-c12eed7b8fcb
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms
 msc.type: categoryindex
 ---

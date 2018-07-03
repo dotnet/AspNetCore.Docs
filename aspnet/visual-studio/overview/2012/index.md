@@ -9,7 +9,6 @@ ms.date: 06/25/2013
 ms.topic: article
 ms.assetid: 51900291-7787-4a6e-be4e-fa558486f5ff
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012
 msc.type: chapter
 ---

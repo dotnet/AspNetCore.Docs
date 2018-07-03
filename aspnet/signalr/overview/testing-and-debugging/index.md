@@ -9,7 +9,6 @@ ms.date: 09/19/2014
 ms.topic: article
 ms.assetid: 437f6dec-ab4b-4d12-af71-e8ab028aab7b
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging
 msc.type: chapter
 ---

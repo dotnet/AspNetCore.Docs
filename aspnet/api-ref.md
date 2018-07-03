@@ -9,7 +9,6 @@ ms.date: 01/30/2017
 ms.topic: article
 ms.assetid: b2203f7b-b732-42f0-8e78-b0635fcdd1de
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: 
 msc.type: content
 ---

@@ -9,7 +9,6 @@ ms.date: 07/25/2006
 ms.topic: article
 ms.assetid: 1a95474a-a897-4ba1-b372-8a112cb324ba
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20
 msc.type: video
 ---

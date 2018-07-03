@@ -9,7 +9,6 @@ ms.date: 02/25/2011
 ms.topic: article
 ms.assetid: 2ceb5926-8326-41ba-858e-e86924b2e99b
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-forms-part-2
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 10/18/2014
 ms.topic: article
 ms.assetid: e03585c2-80bf-4083-99ba-9fcbc883ccd8
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started
 msc.type: chapter
 ---

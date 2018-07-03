@@ -9,7 +9,6 @@ ms.date: 01/17/2012
 ms.topic: article
 ms.assetid: a55b0d20-9c90-4bd3-a471-20da6f569f0c
 ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/receiving/handlers
 ---
 # ASP.NET WebHooks handlers

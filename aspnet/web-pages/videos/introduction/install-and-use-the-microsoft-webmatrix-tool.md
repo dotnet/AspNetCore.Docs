@@ -9,7 +9,6 @@ ms.date: 04/12/2011
 ms.topic: article
 ms.assetid: c0087185-82eb-40fd-b3fd-9d0c6937ee9a
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/install-and-use-the-microsoft-webmatrix-tool
 msc.type: video
 ---

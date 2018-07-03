@@ -9,7 +9,6 @@ ms.date: 01/18/2008
 ms.topic: article
 ms.assetid: f175278c-6079-4d91-b9b4-2493ed43d9ec
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/creating-user-accounts-cs
 msc.type: authoredcontent
 ---

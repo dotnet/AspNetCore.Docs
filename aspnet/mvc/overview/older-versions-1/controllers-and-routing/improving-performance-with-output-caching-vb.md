@@ -9,7 +9,6 @@ ms.date: 01/27/2009
 ms.topic: article
 ms.assetid: 0e7b4d85-2c46-4eaf-b6a8-6cd566a67334
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-vb
 msc.type: authoredcontent
 ---

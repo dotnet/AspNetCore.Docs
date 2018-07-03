@@ -9,7 +9,6 @@ ms.date: 01/26/2007
 ms.topic: article
 ms.assetid: 1126e173-733e-437f-abdd-81784f47b7f0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 11/17/2011
 ms.topic: article
 ms.assetid: 2b0df3d9-450b-4ea6-b315-4c9650722cad
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12
 msc.type: authoredcontent
 ---

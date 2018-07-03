@@ -9,7 +9,6 @@ ms.date: 07/27/2010
 ms.topic: article
 ms.assetid: 5c6371c0-a944-4adf-a28e-5afbdd011ca8
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up
 msc.type: authoredcontent
 ---

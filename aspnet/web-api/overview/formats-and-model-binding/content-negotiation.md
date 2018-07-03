@@ -9,7 +9,6 @@ ms.date: 05/20/2012
 ms.topic: article
 ms.assetid: 0dd51b30-bf5a-419f-a1b7-2817ccca3c7d
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/content-negotiation
 msc.type: authoredcontent
 ---

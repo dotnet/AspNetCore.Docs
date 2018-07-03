@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: 3d2dfc0e-eac2-4076-a468-325d3d01cc7b
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/hub-authorization
 msc.type: authoredcontent
 ---

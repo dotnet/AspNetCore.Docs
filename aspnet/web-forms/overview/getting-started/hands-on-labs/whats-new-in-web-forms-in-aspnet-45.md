@@ -9,7 +9,6 @@ ms.date: 02/18/2013
 ms.topic: article
 ms.assetid: 0a1f88bd-97da-4ed1-86f1-605199dc75a4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45
 msc.type: authoredcontent
 ---

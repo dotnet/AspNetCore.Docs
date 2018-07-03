@@ -9,7 +9,6 @@ ms.date: 01/12/2011
 ms.topic: article
 ms.assetid: 878f6c31-972d-45f4-8849-5c633b511409
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-validation-to-the-model
 msc.type: authoredcontent
 ---

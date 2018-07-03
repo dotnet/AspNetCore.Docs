@@ -9,7 +9,6 @@ ms.date: 07/25/2006
 ms.topic: article
 ms.assetid: af5736dd-e01d-45d6-8ac0-01ec0fe49023
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet
 msc.type: video
 ---

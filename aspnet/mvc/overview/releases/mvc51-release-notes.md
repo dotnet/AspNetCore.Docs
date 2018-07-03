@@ -9,7 +9,6 @@ ms.date: 02/27/2014
 ms.topic: article
 ms.assetid: 9a83a058-9b01-48aa-acce-ec041e694567
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/mvc51-release-notes
 msc.type: authoredcontent
 ---

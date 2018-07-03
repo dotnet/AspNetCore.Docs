@@ -9,7 +9,6 @@ ms.date: 04/01/2009
 ms.topic: article
 ms.assetid: 548e75f6-4d6c-4cb4-8da8-417915eb8393
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-vb
 msc.type: authoredcontent
 ---

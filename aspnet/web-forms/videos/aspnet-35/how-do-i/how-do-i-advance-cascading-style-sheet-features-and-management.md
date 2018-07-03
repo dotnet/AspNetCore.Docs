@@ -9,7 +9,6 @@ ms.date: 02/14/2008
 ms.topic: article
 ms.assetid: 6a7e8bea-2a0d-4011-ad71-3f3b5f152fe4
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-advance-cascading-style-sheet-features-and-management
 msc.type: video
 ---

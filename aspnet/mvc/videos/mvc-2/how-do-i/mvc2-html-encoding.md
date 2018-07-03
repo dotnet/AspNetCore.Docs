@@ -9,7 +9,6 @@ ms.date: 03/23/2010
 ms.topic: article
 ms.assetid: d8d2d4fc-780a-48bb-82f1-4125cce03b2a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-html-encoding
 msc.type: video
 ---

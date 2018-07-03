@@ -9,7 +9,6 @@ ms.date: 05/30/2007
 ms.topic: article
 ms.assetid: 84afe4ac-cc53-4f2e-a867-27eaf692c2df
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-at-application-startup-vb
 msc.type: authoredcontent
 ---

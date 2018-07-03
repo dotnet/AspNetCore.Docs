@@ -9,7 +9,6 @@ ms.date: 11/14/2011
 ms.topic: article
 ms.assetid: bdbeb8f7-90e7-4bc5-aeb6-0f928660fb4f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/passwordstrength
 msc.type: chapter
 ---

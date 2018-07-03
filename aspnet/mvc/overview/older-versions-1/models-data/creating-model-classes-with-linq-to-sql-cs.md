@@ -9,7 +9,6 @@ ms.date: 10/07/2008
 ms.topic: article
 ms.assetid: f84b4a16-e8bb-49e8-87a0-1832879a3501
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 10/05/2007
 ms.topic: article
 ms.assetid: c812231d-e811-4048-9922-b34df1d0f300
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-cascading-style-sheets-for-web-page-layout
 msc.type: video
 ---

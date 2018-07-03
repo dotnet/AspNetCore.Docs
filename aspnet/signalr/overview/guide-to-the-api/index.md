@@ -9,7 +9,6 @@ ms.date: 09/19/2014
 ms.topic: article
 ms.assetid: af69e8d2-efdd-4d0b-9bbc-95353a65c0db
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api
 msc.type: chapter
 ---

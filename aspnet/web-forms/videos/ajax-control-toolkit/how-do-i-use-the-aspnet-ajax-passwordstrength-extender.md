@@ -9,7 +9,6 @@ ms.date: 02/01/2007
 ms.topic: article
 ms.assetid: 4acc8d48-845f-4451-8a83-0d6d935c4564
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-passwordstrength-extender
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: 8d07ae36-c4f3-48d7-87d3-cfe9a5bb336e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-perform-group-and-aggregate-queries
 msc.type: video
 ---

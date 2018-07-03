@@ -36,9 +36,10 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
       "_navRel": "/foo",
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "ms.prod": "aspnet-framework",
       "searchScope": [
         "ASP.NET"
       ]

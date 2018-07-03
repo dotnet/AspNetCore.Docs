@@ -9,7 +9,6 @@ ms.date: 07/09/2007
 ms.topic: article
 ms.assetid: d5c42efc-1457-4e75-87e8-5b41c9ee8a80
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-set-up-distributed-load-testing-for-high-volume-tests
 msc.type: video
 ---

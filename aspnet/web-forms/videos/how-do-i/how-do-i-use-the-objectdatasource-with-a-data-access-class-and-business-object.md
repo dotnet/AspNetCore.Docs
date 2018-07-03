@@ -9,7 +9,6 @@ ms.date: 02/21/2008
 ms.topic: article
 ms.assetid: 8a47e438-3d8c-4a70-803c-56536a868bd9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object
 msc.type: video
 ---

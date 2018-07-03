@@ -9,7 +9,6 @@ ms.date: 10/17/2013
 ms.topic: article
 ms.assetid: a872d111-d4ea-4cfd-8ab6-314c4e12301c
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-css
 msc.type: video
 ---

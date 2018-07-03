@@ -9,7 +9,6 @@ ms.date: 09/28/2011
 ms.topic: article
 ms.assetid: b21d9a30-6b5c-41ab-a8e4-2fa18acd8e9b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/unit-testing
 msc.type: chapter
 ---

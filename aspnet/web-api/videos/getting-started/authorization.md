@@ -9,7 +9,6 @@ ms.date: 02/15/2012
 ms.topic: article
 ms.assetid: 14f2554f-ca12-4ffe-af53-1f33b45042ef
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/authorization
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 04/22/2010
 ms.topic: article
 ms.assetid: 11906982-0a64-4bc8-be23-6443afee8b88
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/aspnet-mvc-2-render-action
 msc.type: video
 ---

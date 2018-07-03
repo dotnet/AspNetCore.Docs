@@ -9,7 +9,6 @@ ms.date: 10/26/2007
 ms.topic: article
 ms.assetid: 1f2e5f5b-8be1-4acc-ae36-a2e0d140251a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-validation-controls-in-aspnet
 msc.type: video
 ---

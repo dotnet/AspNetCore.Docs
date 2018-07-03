@@ -9,7 +9,6 @@ ms.date: 07/25/2006
 ms.topic: article
 ms.assetid: 97906c51-8b99-4454-bd0a-29fb8b6f0ce9
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/interop-between-php-and-the-windows-platform
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/18/2013
 ms.topic: article
 ms.assetid: 48f7feb3-872f-485d-b96f-e30011ff8c4a
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4
 msc.type: authoredcontent
 ---

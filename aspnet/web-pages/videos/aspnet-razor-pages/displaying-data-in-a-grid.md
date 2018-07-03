@@ -9,7 +9,6 @@ ms.date: 02/25/2011
 ms.topic: article
 ms.assetid: 76ac6b38-ca93-4d8f-8a72-9e46c82054ab
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/displaying-data-in-a-grid
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 01/18/2008
 ms.topic: article
 ms.assetid: 1642132a-1ca5-4872-983f-ab59fc8865d3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/storing-additional-user-information-cs
 msc.type: authoredcontent
 ---

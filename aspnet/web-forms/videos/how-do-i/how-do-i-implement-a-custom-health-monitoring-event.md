@@ -9,7 +9,6 @@ ms.date: 12/17/2007
 ms.topic: article
 ms.assetid: 5fa365a1-d709-40e2-b7bf-489ff687f2ce
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-a-custom-health-monitoring-event
 msc.type: video
 ---

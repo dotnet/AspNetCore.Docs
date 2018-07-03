@@ -9,7 +9,6 @@ ms.date: 01/09/2006
 ms.topic: article
 ms.assetid: e80c641c-f5e5-42a5-8bcd-5fecb34de198
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-secure-my-site-using-membership-and-roles
 msc.type: video
 ---

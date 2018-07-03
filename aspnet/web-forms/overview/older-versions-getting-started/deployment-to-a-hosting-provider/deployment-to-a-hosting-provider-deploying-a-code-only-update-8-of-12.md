@@ -9,7 +9,6 @@ ms.date: 11/17/2011
 ms.topic: article
 ms.assetid: ddf6252f-9413-4c0c-a360-2cef8d231717
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12
 msc.type: authoredcontent
 ---

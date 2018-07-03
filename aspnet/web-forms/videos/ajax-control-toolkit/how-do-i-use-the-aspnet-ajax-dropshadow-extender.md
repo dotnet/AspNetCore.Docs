@@ -9,7 +9,6 @@ ms.date: 02/01/2007
 ms.topic: article
 ms.assetid: bd700813-f302-4e42-a697-b8cab68cdb55
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropshadow-extender
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 07/18/2007
 ms.topic: article
 ms.assetid: a5a4a9ba-d18d-489a-a6b0-a3c26d6b0274
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb
 msc.type: authoredcontent
 ---

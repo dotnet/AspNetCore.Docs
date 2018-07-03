@@ -9,7 +9,6 @@ ms.date: 04/30/2009
 ms.topic: article
 ms.assetid: d17389d8-3824-4900-9309-92d49bb756b1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/debugging
 msc.type: video
 ---

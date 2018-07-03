@@ -9,7 +9,6 @@ ms.date: 03/14/2008
 ms.topic: article
 ms.assetid: 6ab4efb6-aab6-45ac-ad2c-bdec5848ef9e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-authentication-and-profile-application-services
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 01/16/2006
 ms.topic: article
 ms.assetid: 793a01ac-3800-41b2-b542-2d88715cbe3b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 04/17/2013
 ms.topic: article
 ms.assetid: dcd4593b-1118-418a-af71-d12ff33fb36d
 ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-javascript-client
 msc.type: authoredcontent
 ---

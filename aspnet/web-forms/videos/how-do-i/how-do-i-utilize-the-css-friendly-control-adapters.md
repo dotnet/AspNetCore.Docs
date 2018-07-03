@@ -9,7 +9,6 @@ ms.date: 09/01/2007
 ms.topic: article
 ms.assetid: aa5a29e3-0cc2-4cc0-986d-e845dbf01813
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-utilize-the-css-friendly-control-adapters
 msc.type: video
 ---

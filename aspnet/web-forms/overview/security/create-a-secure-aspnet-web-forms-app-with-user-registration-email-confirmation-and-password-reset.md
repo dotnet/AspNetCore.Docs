@@ -9,7 +9,6 @@ ms.date: 10/02/2014
 ms.topic: article
 ms.assetid: 0a8d6044-5fab-4213-82d6-5618d5601358
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
 msc.type: authoredcontent
 ---

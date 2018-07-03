@@ -9,7 +9,6 @@ ms.date: 01/15/2015
 ms.topic: article
 ms.assetid: a313fb9c-93c8-40ef-9c81-e1651ecaffa3
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables104
 msc.type: content
 ---

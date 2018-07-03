@@ -9,7 +9,6 @@ ms.date: 05/28/2015
 ms.topic: article
 ms.assetid: a36d3bdf-ef1b-47a4-b932-3a0cf4cad716
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 msc.type: authoredcontent
 ---

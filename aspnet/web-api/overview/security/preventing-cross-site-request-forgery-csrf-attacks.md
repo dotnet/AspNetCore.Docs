@@ -9,7 +9,6 @@ ms.date: 12/12/2012
 ms.topic: article
 ms.assetid: 81d46f14-8f48-4d8c-830d-cc8d594dc11b
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
 msc.type: authoredcontent
 ---

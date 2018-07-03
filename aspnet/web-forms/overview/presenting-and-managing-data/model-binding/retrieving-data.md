@@ -9,7 +9,6 @@ ms.date: 02/27/2014
 ms.topic: article
 ms.assetid: 9f24fb82-c7ac-48da-b8e2-51b3da17e365
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 08/15/2012
 ms.topic: article
 ms.assetid: 5da4c4de-0836-4815-b524-3166fd3e6d0f
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-2012-html-editing-features
 msc.type: video
 ---

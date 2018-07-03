@@ -9,7 +9,6 @@ ms.date: 03/28/2008
 ms.topic: article
 ms.assetid: 54d9df99-1161-4899-b4e8-2679c85915e7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax
 msc.type: authoredcontent
 ---

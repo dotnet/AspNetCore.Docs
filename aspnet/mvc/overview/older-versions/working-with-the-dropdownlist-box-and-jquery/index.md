@@ -9,7 +9,6 @@ ms.date: 01/19/2012
 ms.topic: article
 ms.assetid: 6d64df4d-8191-4faa-ab9f-9807c1b0a020
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery
 msc.type: chapter
 ---

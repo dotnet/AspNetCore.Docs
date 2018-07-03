@@ -9,7 +9,6 @@ ms.date: 01/26/2007
 ms.topic: article
 ms.assetid: a43d175e-7526-4dd9-b8ed-9348c3c3dd39
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-textboxwatermark-control-extender
 msc.type: video
 ---

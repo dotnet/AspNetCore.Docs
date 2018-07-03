@@ -9,7 +9,6 @@ ms.date: 10/30/2010
 ms.topic: article
 ms.assetid: 68b8c023-92fa-4df6-9563-1764e16e4b04
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 06/23/2011
 ms.topic: article
 ms.assetid: ec822852-3c69-41d4-80c0-91e8d08fc7f7
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-3/mvc-3-razor-helpers
 msc.type: video
 ---

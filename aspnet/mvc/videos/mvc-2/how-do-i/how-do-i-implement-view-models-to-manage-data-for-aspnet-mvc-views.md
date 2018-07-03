@@ -9,7 +9,6 @@ ms.date: 12/11/2009
 ms.topic: article
 ms.assetid: 22f55d63-78f7-44fd-9107-f74cbe16022b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views
 msc.type: video
 ---

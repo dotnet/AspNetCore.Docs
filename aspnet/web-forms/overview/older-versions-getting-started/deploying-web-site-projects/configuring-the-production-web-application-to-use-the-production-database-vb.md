@@ -9,7 +9,6 @@ ms.date: 04/23/2009
 ms.topic: article
 ms.assetid: a64a7aa0-6608-449e-83bf-1ef8cceee504
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 06/06/2012
 ms.topic: article
 ms.assetid: a585c9a2-7c8e-478b-9706-90f3739c50d1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45
 msc.type: authoredcontent
 ---

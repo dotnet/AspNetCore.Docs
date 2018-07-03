@@ -9,7 +9,6 @@ ms.date: 04/01/2009
 ms.topic: article
 ms.assetid: 977105f3-7987-4e50-8be7-afb53b4ca28a
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-vb
 msc.type: authoredcontent
 ---

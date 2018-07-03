@@ -9,7 +9,6 @@ ms.date: 01/27/2009
 ms.topic: article
 ms.assetid: 61644169-e8b1-45dd-bf96-9c2301b69879
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 03/09/2011
 ms.topic: article
 ms.assetid: 87612fe1-258c-4f50-88d8-c3047dec3f14
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/pluralsight
 msc.type: content
 ---

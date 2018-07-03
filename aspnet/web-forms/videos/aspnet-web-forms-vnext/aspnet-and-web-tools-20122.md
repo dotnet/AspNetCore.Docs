@@ -9,7 +9,6 @@ ms.date: 02/18/2013
 ms.topic: article
 ms.assetid: ca7458bd-b238-4633-a8b4-468a4c300acc
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-and-web-tools-20122
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/24/2009
 ms.topic: article
 ms.assetid: f2b4fff1-523f-4636-aa70-63fcc1257a1f
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-a-demonstration-of-aspnet-ajax
 msc.type: video
 ---

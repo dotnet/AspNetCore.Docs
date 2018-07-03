@@ -9,7 +9,6 @@ ms.date: 11/04/2011
 ms.topic: article
 ms.assetid: bc30f0ec-cf8f-4a33-9eee-513be872ac9c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages
 msc.type: chapter
 ---

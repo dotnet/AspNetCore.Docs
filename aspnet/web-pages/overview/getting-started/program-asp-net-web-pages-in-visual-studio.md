@@ -9,7 +9,6 @@ ms.date: 02/13/2014
 ms.topic: article
 ms.assetid: 0acfec5a-48f2-4766-a801-a0f426966f0a
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 msc.type: authoredcontent
 uid: aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio

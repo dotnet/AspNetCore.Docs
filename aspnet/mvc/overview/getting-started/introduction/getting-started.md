@@ -9,7 +9,6 @@ ms.date: 05/28/2015
 ms.topic: article
 ms.assetid: f3d8adbe-55e7-4fd4-84a8-7155bc45c676
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/getting-started
 msc.type: authoredcontent
 ---

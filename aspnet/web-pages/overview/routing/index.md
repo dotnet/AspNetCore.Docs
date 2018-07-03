@@ -9,7 +9,6 @@ ms.date: 09/08/2014
 ms.topic: article
 ms.assetid: 5322c2e8-7cd9-4d61-9611-39d6e5f2d936
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/routing
 msc.type: chapter
 ---

@@ -9,7 +9,6 @@ ms.date: 05/01/2014
 ms.topic: article
 ms.assetid: 07ec7d37-023f-43ea-b471-60b08ce338f7
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 03/24/2008
 ms.topic: article
 ms.assetid: 83af9f5f-9a00-4f83-8afc-e98bdd49014e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/creating-and-managing-roles-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 12/20/2007
 ms.topic: article
 ms.assetid: c7aa9192-8859-403f-a9a8-c372081f75bd
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/adonet-data-services-with-aspnet-ajax-support
 msc.type: video
 ---

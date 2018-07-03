@@ -9,7 +9,6 @@ ms.date: 06/04/2009
 ms.topic: article
 ms.assetid: 9b9eb93d-19c6-4933-ab5f-826b427a9ad0
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/validation
 msc.type: video
 ---

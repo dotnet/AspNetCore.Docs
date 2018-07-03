@@ -9,7 +9,6 @@ ms.date: 06/01/2015
 ms.topic: article
 ms.assetid: d5723e46-41fe-4d09-850a-e03b9e285bfa
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

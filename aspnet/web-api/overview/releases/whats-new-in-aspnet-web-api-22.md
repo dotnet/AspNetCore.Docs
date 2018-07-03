@@ -9,7 +9,6 @@ ms.date: 12/25/2014
 ms.topic: article
 ms.assetid: 99c59ae4-167e-4f66-a6cd-d3f1098c4e4a
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-22
 msc.type: authoredcontent
 ---

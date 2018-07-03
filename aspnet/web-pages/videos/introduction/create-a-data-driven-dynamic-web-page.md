@@ -9,7 +9,6 @@ ms.date: 04/12/2011
 ms.topic: article
 ms.assetid: b68e309e-1d76-4bf4-8623-3e6be3916f7d
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-a-data-driven-dynamic-web-page
 msc.type: video
 ---

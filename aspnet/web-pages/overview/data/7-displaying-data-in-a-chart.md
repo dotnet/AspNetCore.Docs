@@ -9,7 +9,6 @@ ms.date: 05/22/2012
 ms.topic: article
 ms.assetid: f889fd46-4dac-4ecb-83d8-60e64c22036e
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/data/7-displaying-data-in-a-chart
 msc.type: authoredcontent
 ---

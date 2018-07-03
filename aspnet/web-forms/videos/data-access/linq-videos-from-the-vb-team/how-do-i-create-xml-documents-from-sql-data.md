@@ -9,7 +9,6 @@ ms.date: 11/15/2007
 ms.topic: article
 ms.assetid: 32c8ddfd-1e12-4bd9-9420-44478dfb0ca1
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-create-xml-documents-from-sql-data
 msc.type: video
 ---

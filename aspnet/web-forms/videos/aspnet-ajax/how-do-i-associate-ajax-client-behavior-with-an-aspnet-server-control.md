@@ -9,7 +9,6 @@ ms.date: 10/18/2007
 ms.topic: article
 ms.assetid: 3a75ac02-225d-4e30-8669-0156c3ef06c7
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control
 msc.type: video
 ---

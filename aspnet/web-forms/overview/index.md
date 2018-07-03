@@ -9,7 +9,6 @@ ms.date: 08/08/2011
 ms.topic: article
 ms.assetid: b3fb4480-0f41-495b-add6-163ca92dc8a3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview
 msc.type: book
 ---

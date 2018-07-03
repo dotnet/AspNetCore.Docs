@@ -9,7 +9,6 @@ ms.date: 07/11/2013
 ms.topic: article
 ms.assetid: e42c8388-04ed-4341-9fdb-41b1b4c06320
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
 msc.type: authoredcontent
 ---

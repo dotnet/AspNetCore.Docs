@@ -9,7 +9,6 @@ ms.date: 05/27/2008
 ms.topic: article
 ms.assetid: dac14719-1158-4552-ba97-3aae6fb2aaae
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 02/16/2009
 ms.topic: article
 ms.assetid: 3cd08f02-8763-490a-b625-2ac96a24b73f
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
 msc.type: authoredcontent
 ---

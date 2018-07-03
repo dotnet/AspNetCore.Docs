@@ -9,7 +9,6 @@ ms.date: 08/19/2008
 ms.topic: article
 ms.assetid: 87313792-0a96-4caf-89fc-1457d54e5c1e
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-cs
 msc.type: authoredcontent
 ---

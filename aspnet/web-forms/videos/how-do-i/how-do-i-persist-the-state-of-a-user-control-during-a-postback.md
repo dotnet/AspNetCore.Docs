@@ -9,7 +9,6 @@ ms.date: 04/02/2009
 ms.topic: article
 ms.assetid: d1bca4c6-838c-40f7-87ec-80bb67e483e5
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-during-a-postback
 msc.type: video
 ---

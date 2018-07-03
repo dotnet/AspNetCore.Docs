@@ -9,7 +9,6 @@ ms.date: 11/05/2009
 ms.topic: article
 ms.assetid: 16b680a1-8b3e-4c06-953d-7dac8f7d7a72
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/seo/aspnet-4-quick-hit-dynamic-metadata
 msc.type: video
 ---

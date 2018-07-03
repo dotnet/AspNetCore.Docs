@@ -9,7 +9,6 @@ ms.date: 03/02/2009
 ms.topic: article
 ms.assetid: 3a8a9d9f-82dd-4959-b7c6-960e9ce95df1
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 07/30/2013
 ms.topic: article
 ms.assetid: f7bace3f-b85a-47ff-b5fe-49e81441cdf9
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
 msc.type: authoredcontent
 ---

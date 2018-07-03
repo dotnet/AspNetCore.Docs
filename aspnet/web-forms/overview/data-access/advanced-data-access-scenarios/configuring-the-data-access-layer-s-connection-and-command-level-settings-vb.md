@@ -9,7 +9,6 @@ ms.date: 08/03/2007
 ms.topic: article
 ms.assetid: d57dfa2b-d627-45cb-b5b1-abbf3159d770
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-vb
 msc.type: authoredcontent
 ---

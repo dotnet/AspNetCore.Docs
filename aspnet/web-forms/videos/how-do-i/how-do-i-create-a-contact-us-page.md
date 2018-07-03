@@ -9,7 +9,6 @@ ms.date: 01/24/2006
 ms.topic: article
 ms.assetid: d93c8f22-14ad-4b2d-a279-b62af15eb5df
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-contact-us-page
 msc.type: video
 ---

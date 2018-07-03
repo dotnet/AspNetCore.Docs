@@ -9,7 +9,6 @@ ms.date: 02/20/2009
 ms.topic: article
 ms.assetid: 51a0d175-913b-43d8-95e3-840fb96ad1a9
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-cs
 msc.type: authoredcontent
 ---

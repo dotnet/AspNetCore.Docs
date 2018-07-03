@@ -9,7 +9,6 @@ ms.date: 08/30/2011
 ms.topic: article
 ms.assetid: 527a3d23-2e22-4a79-accd-eda47ab40350
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-page-inspector-decomposing-your-web-application
 msc.type: video
 ---

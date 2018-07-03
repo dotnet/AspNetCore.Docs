@@ -9,7 +9,6 @@ ms.date: 12/03/2010
 ms.topic: article
 ms.assetid: fb63a326-a4ae-4b0c-a4f5-412327197216
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-2
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 11/05/2007
 ms.topic: article
 ms.assetid: b3abbbef-ddac-4c8e-a068-5bab31db5931
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-tracing-in-an-aspnet-web-site
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 08/14/2010
 ms.topic: article
 ms.assetid: 7ae696b9-348f-4993-8ebb-a838acbe0c28
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part8
 msc.type: authoredcontent
 ---

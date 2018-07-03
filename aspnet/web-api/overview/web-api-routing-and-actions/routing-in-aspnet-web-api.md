@@ -9,7 +9,6 @@ ms.date: 02/11/2012
 ms.topic: article
 ms.assetid: 0675bdc7-282f-4f47-b7f3-7e02133940ca
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api
 msc.type: authoredcontent
 ---

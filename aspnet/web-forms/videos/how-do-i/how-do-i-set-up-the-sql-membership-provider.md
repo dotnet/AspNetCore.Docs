@@ -9,7 +9,6 @@ ms.date: 06/12/2007
 ms.topic: article
 ms.assetid: 6d7bad76-7cd1-40c5-ade9-8d42a85e2e4e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-set-up-the-sql-membership-provider
 msc.type: video
 ---

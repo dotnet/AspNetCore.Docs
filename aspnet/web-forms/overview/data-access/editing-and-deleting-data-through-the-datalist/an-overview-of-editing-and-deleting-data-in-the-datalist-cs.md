@@ -9,7 +9,6 @@ ms.date: 10/30/2006
 ms.topic: article
 ms.assetid: c3b0c86e-fe98-41ee-b26f-ca38cddaa75e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs
 msc.type: authoredcontent
 ---

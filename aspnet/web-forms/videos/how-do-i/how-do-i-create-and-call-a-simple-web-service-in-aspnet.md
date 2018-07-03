@@ -9,7 +9,6 @@ ms.date: 03/27/2008
 ms.topic: article
 ms.assetid: 34464109-4968-4eee-a1b1-5601cc853125
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-call-a-simple-web-service-in-aspnet
 msc.type: video
 ---

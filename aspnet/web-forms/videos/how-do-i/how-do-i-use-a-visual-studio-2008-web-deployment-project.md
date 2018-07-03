@@ -9,7 +9,6 @@ ms.date: 09/11/2008
 ms.topic: article
 ms.assetid: 9517a342-e414-4c93-b0a6-5b52b391c908
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-a-visual-studio-2008-web-deployment-project
 msc.type: video
 ---

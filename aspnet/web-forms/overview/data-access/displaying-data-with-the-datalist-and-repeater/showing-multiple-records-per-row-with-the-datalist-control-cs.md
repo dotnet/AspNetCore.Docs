@@ -9,7 +9,6 @@ ms.date: 09/13/2006
 ms.topic: article
 ms.assetid: cf5acaf5-d4f6-4957-badc-b89956b285f3
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-cs
 msc.type: authoredcontent
 ---

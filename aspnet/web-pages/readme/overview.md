@@ -9,7 +9,6 @@ ms.date: 01/06/2011
 ms.topic: article
 ms.assetid: 36c5beeb-45a7-48a0-9c30-f82cdf5c5f5f
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme
 msc.type: content
 ---

@@ -9,7 +9,6 @@ ms.date: 04/12/2011
 ms.topic: article
 ms.assetid: a0529495-422f-4008-94b5-5fa913ac2e70
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-a-web-interface-in-webmatrix
 msc.type: video
 ---

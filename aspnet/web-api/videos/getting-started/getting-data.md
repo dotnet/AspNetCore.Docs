@@ -9,7 +9,6 @@ ms.date: 02/15/2012
 ms.topic: article
 ms.assetid: 0fed43a5-4703-41ff-8da9-15917cbc0944
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/getting-data
 msc.type: video
 ---

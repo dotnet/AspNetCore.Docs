@@ -9,7 +9,6 @@ ms.date: 07/19/2010
 ms.topic: article
 ms.assetid: 50e7265e-b7fa-44a0-a17c-15048a2e84a8
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-4
 msc.type: video
 ---

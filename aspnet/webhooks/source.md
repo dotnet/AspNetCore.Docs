@@ -9,7 +9,6 @@ ms.date: 01/17/2012
 ms.topic: article
 ms.assetid: 91a62bfa-ea3a-41f9-a2e1-e90d2c8fc8ca
 ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/source
 ---
 # ASP.NET WebHooks source code and NuGet packages

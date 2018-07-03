@@ -9,7 +9,6 @@ ms.date: 12/12/2012
 ms.topic: article
 ms.assetid: 97f6164f-59cf-45c0-b820-e4aa29b45396
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/working-with-ssl-in-web-api
 msc.type: authoredcontent
 ---

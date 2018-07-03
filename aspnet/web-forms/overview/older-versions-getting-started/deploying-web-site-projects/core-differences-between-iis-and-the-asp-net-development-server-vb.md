@@ -9,7 +9,6 @@ ms.date: 04/01/2009
 ms.topic: article
 ms.assetid: 090e9205-52f3-4d72-ae31-44775b8b8421
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-vb
 msc.type: authoredcontent
 ---

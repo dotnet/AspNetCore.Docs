@@ -9,7 +9,6 @@ ms.date: 11/16/2009
 ms.topic: article
 ms.assetid: d47626d1-5ffb-4757-bfbe-49e37f08d474
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists
 msc.type: video
 ---

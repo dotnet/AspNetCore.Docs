@@ -9,7 +9,6 @@ ms.date: 10/23/2014
 ms.topic: article
 ms.assetid: f5bc7426-27c6-492c-914f-b9d2eb49753d
 ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions
 msc.type: chapter
 ---

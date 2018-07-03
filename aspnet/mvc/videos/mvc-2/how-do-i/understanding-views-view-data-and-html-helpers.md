@@ -9,7 +9,6 @@ ms.date: 08/20/2008
 ms.topic: article
 ms.assetid: 81e8ee8e-00ea-4988-9f11-920c1728ee43
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/understanding-views-view-data-and-html-helpers
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 04/01/2016
 ms.topic: article
 ms.assetid: ef09ec95-9731-4f03-a078-17d2ee38ed88
 ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate/cdnjqueryvalidate1150
 msc.type: content
 ---

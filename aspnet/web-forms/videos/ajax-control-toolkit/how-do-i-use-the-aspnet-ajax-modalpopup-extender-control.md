@@ -9,7 +9,6 @@ ms.date: 01/26/2007
 ms.topic: article
 ms.assetid: 37c50e6c-e34d-4fd0-b272-01950ada7667
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-modalpopup-extender-control
 msc.type: video
 ---

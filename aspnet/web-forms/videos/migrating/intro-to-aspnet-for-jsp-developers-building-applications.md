@@ -9,7 +9,6 @@ ms.date: 07/25/2006
 ms.topic: article
 ms.assetid: 826b9a37-0bc3-4405-92fb-d8dc87db195e
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-building-applications
 msc.type: video
 ---

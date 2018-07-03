@@ -9,7 +9,6 @@ ms.date: 01/19/2012
 ms.topic: article
 ms.assetid: 2ca920dd-a0a6-4567-ba8b-3ebf897bb2c5
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc
 msc.type: chapter
 ---

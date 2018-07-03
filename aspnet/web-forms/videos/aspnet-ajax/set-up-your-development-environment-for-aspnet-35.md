@@ -9,7 +9,6 @@ ms.date: 05/13/2009
 ms.topic: article
 ms.assetid: 00c0a4c9-5c25-413f-938c-8b77814ad2bd
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-35
 msc.type: video
 ---

@@ -9,7 +9,6 @@ ms.date: 04/20/2009
 ms.topic: article
 ms.assetid: 4c968009-8c05-4b1f-98af-df48dc0f93d5
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/session-level-objects
 msc.type: video
 ---

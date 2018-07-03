@@ -9,7 +9,6 @@ ms.date: 05/08/2008
 ms.topic: article
 ms.assetid: f2b20119-abf4-4e78-9c47-adf563ad174c
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-make-custom-pages
 msc.type: video
 ---

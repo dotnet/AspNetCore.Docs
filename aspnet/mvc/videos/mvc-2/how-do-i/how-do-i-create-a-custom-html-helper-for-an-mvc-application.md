@@ -9,7 +9,6 @@ ms.date: 12/11/2009
 ms.topic: article
 ms.assetid: 58b5eb15-4160-4ce2-ae70-6ba94262ea73
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-create-a-custom-html-helper-for-an-mvc-application
 msc.type: video
 ---

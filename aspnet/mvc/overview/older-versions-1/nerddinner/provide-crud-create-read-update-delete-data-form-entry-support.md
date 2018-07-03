@@ -9,7 +9,6 @@ ms.date: 07/27/2010
 ms.topic: article
 ms.assetid: bbb976e5-6150-4283-a374-c22fbafe29f5
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support
 msc.type: authoredcontent
 ---

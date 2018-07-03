@@ -9,7 +9,6 @@ ms.date: 03/02/2009
 ms.topic: article
 ms.assetid: 4733b9f1-9999-48fb-8b73-6038fbcc5ecb
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-cs
 msc.type: authoredcontent
 ---

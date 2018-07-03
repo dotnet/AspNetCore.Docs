@@ -9,7 +9,6 @@ ms.date: 02/20/2007
 ms.topic: article
 ms.assetid: 9673bef3-892c-45ba-a7d8-0da3d6f48ec5
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-vb
 msc.type: authoredcontent
 ---

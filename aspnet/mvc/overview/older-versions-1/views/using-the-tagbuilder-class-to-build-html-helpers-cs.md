@@ -9,7 +9,6 @@ ms.date: 03/02/2009
 ms.topic: article
 ms.assetid: 3975a52f-bd15-4edd-8f3d-1df93672515b
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-cs
 msc.type: authoredcontent
 ---

@@ -9,7 +9,6 @@ ms.date: 02/24/2014
 ms.topic: article
 ms.assetid: 7a77c2c0-deea-4290-a9c3-97958891758e
 ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security/16-adding-security-and-membership
 msc.type: authoredcontent
 ---

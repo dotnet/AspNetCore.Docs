@@ -9,7 +9,6 @@ ms.date: 05/08/2008
 ms.topic: article
 ms.assetid: aff67466-d3e1-4ecb-8df3-2a79583f65b2
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/your-first-scaffold-and-what-is-dynamic-data
 msc.type: video
 ---

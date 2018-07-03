@@ -9,7 +9,6 @@ ms.date: 02/20/2009
 ms.topic: article
 ms.assetid: f1b0809e-8909-444e-b6bb-a5cd1dea3f72
 ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
 msc.type: authoredcontent
 ---

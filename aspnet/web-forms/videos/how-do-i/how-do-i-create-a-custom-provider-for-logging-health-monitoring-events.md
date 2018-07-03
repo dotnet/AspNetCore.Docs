@@ -9,7 +9,6 @@ ms.date: 11/06/2008
 ms.topic: article
 ms.assetid: 18ae018d-b388-4f79-a218-b5dd4dc4e75b
 ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-custom-provider-for-logging-health-monitoring-events
 msc.type: video
 ---
