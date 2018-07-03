@@ -44,7 +44,7 @@ Within a view page, there are several ways to render a partial view. The best pr
 
 The Partial Tag Helper requires ASP.NET Core 2.1 or later. It renders asynchronously and uses an HTML-like syntax:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/About.cshtml?name=snippet_PartialTagHelper)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_PartialTagHelper)]
 
 See <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper> for more information.
 
@@ -54,11 +54,11 @@ See <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper> for more informat
 
 When using an HTML Helper, the best practice is to use [PartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync#Microsoft_AspNetCore_Mvc_Rendering_HtmlHelperPartialExtensions_PartialAsync_Microsoft_AspNetCore_Mvc_Rendering_IHtmlHelper_System_String_). It returns an [IHtmlContent](/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent) type wrapped in a `Task`. The method is referenced by prefixing the call with `@`:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/About.cshtml?name=snippet_PartialAsync)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_PartialAsync)]
 
 You can alternatively render a partial view with [RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync). This method doesn't return a result. It streams the rendered output directly to the response. Because the method doesn't return a result, it must be called within a Razor code block:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/About.cshtml?name=snippet_RenderPartialAsync)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
 Since it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, it's recommended you use `PartialAsync`.
 
