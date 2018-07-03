@@ -4,11 +4,8 @@ title: "What's New in ASP.NET Web API 2.2 | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/25/2014
-ms.topic: article
 ms.assetid: 99c59ae4-167e-4f66-a6cd-d3f1098c4e4a
-ms.technology: dotnet-webapi
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-22
 msc.type: authoredcontent
 ---

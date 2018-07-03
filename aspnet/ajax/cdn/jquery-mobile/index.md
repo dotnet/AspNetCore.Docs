@@ -4,11 +4,8 @@ title: "jQuery Mobile | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: c13785b6-5538-4511-92de-4afdb4a1d0f1
-ms.technology: 
 msc.legacyurl: /ajax/cdn/jquery-mobile
 msc.type: folder
 ---

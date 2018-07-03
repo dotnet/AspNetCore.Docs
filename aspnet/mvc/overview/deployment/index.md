@@ -4,11 +4,8 @@ title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy ASP.NET MVC projects to a server."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/18/2011
-ms.topic: article
 ms.assetid: 31922c31-59df-4399-99d2-e935a476f16a
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/deployment
 msc.type: chapter
 ---

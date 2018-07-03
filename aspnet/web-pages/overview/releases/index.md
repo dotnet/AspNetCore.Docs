@@ -4,11 +4,8 @@ title: "Web Pages Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in each ASP.NET Web Pages release."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/16/2014
-ms.topic: article
 ms.assetid: d01b3ea0-8d82-404b-bfea-eb1ba7ca4a54
-ms.technology: dotnet-webpages
 msc.legacyurl: /web-pages/overview/releases
 msc.type: chapter
 ---
