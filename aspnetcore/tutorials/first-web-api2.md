@@ -78,4 +78,36 @@ The preceding code implements the two GET endpoints:
 
 Select **Run** with the relative URI of `/api/todo` to return all the to-do items:
 
-![replace this with TRY .NET code .](first-web-api/_static/run1.png)
+![replace this with TRY .NET code .](first-web-api2/_static/run1.png)
+
+Use the `ID` from the `GET /api/todo` output to test fetching a specific item.
+
+### Routing and URL paths
+
+The `[HttpGet]` attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+
+* Take the template string in the controller's `Route` attribute:
+
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
+
+* Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
+In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
+
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+`Name = "GetTodo"` creates a named route. Named routes:
+
+* Enable the app to create an HTTP link using the route name.
+* Are explained later in the tutorial.
+
+### Return values
+
+The `GetAll` method returns a collection of `TodoItem` objects. MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+
+In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type), which represents a wide range of return types. `GetById` has two different return types:
+
+* If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
+* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
+

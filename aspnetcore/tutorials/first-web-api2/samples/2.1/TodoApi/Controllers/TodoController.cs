@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using TodoApi.Models;
 
-#region TodoController
+#region TodoController2
 namespace TodoApi.Controllers
 {
+    #region TodoController
     [Route("api/[controller]")]
     [ApiController]
     public class TodoController : ControllerBase
@@ -22,6 +23,7 @@ namespace TodoApi.Controllers
                 _context.SaveChanges();
             }
         }
+        #endregion
 
         #region snippet_GetAll
         [HttpGet]
