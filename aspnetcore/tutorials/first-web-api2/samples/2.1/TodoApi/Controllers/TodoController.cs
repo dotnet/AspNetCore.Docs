@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TodoApi.Models;
 
-#region TodoController2
 namespace TodoApi.Controllers
 {
+    #region TodoController2
     #region TodoController
     [Route("api/[controller]")]
     [ApiController]

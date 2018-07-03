@@ -111,7 +111,7 @@ In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-a
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-### Test the create method
+## The create method
 
 The following code shows the `Create` method:
 
@@ -142,3 +142,34 @@ The `CreatedAtRoute` method:
 * Click the **Run** button.
 
 The Location header URI can be used to access the new item. Copy the **Location** header value from the  **Response** pane and use that to get the new item
+
+![replace this with TRY .NET code .](first-web-api2/_static/run2.png)
+
+### Update
+
+The `Update` method:
+
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
+`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+
+Update the first to-do item's name and status. For example, set it to:
+
+```json
+{
+  "name":"feed cat",
+  "isComplete":true
+}
+```
+
+![replace this with TRY .NET code .](first-web-api2/_static/run3.png)
+
+### Delete
+
+The  `Delete` method:
+
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
+
+The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+
+Use Try .NET to delete the to-do item:
