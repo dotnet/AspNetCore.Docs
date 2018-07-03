@@ -4,11 +4,8 @@ title: "SignalR Connection Density Testing with Crank | Microsoft Docs"
 author: tfitzmac
 description: "SignalR Connection Density Testing with Crank"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/22/2015
-ms.topic: article
 ms.assetid: 148d9ca7-1af1-44b6-a9fb-91e261b9b463
-ms.technology: dotnet-signalr
 msc.legacyurl: /signalr/overview/performance/signalr-connection-density-testing-with-crank
 msc.type: authoredcontent
 ---

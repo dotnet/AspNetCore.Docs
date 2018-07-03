@@ -4,11 +4,8 @@ title: "Adding Validation | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 9f35ca15-e216-4db6-9ebf-24380b0f31b4
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-validation
 msc.type: authoredcontent
 ---

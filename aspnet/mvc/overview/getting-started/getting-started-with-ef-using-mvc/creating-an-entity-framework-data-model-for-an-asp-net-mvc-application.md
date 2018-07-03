@@ -4,11 +4,8 @@ title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microso
 author: tdykstra
 description: "A newer version of this tutorial series is available: Get started with ASP.NET Core and Entity Framework Core using Visual Studio 2015. The Contoso Universi..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/22/2015
-ms.topic: article
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

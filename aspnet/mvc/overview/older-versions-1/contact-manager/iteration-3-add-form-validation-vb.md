@@ -4,11 +4,8 @@ title: "Iteration #3 – Add form validation (VB) | Microsoft Docs"
 author: microsoft
 description: "In the third iteration, we add basic form validation. We prevent people from submitting a form without completing required form fields. We also validate emai..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: 4805e75a-7911-46e3-b11b-229a6eed245e
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb
 msc.type: authoredcontent
 ---

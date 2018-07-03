@@ -4,11 +4,8 @@ title: "ASP.NET WebHooks receivers | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET WebHooks receivers"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: 6cdea089-15b2-4732-8c68-921ca561a8f1
-ms.technology: 
 uid: webhooks/receiving/receivers
 ---
 # ASP.NET WebHooks receivers
