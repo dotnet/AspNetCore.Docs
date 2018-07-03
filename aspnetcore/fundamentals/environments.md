@@ -3,7 +3,7 @@ title: Use multiple environments in ASP.NET Core
 author: rick-anderson
 description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
 ms.author: riande
-ms.date: 06/21/2018
+ms.date: 07/03/2018
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -18,7 +18,7 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname). You can set `ASPNETCORE_ENVIRONMENT` to any value, but [three values](/dotnet/api/microsoft.aspnetcore.hosting.environmentname) are supported by the framework: [Development](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development), [Staging](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.staging), and [Production](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.production). If `ASPNETCORE_ENVIRONMENT` isn't set, it defaults to `Production`.
 
-[!code-csharp[](environments/sample/WebApp1/Startup.cs?name=snippet)]
+[!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet)]
 
 The preceding code:
 
@@ -31,7 +31,7 @@ The preceding code:
 
 The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
-[!code-cshtml[](environments/sample-snapshot/WebApp1/Pages/About.cshtml)]
+[!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
 On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
 
@@ -43,7 +43,47 @@ The environment for local machine development can be set in the *Properties\laun
 
 The following JSON shows three profiles from a *launchSettings.json* file:
 
-[!code-json[](environments/sample/WebApp1/Properties/launchSettings.json?highlight=10,11,18,26)]
+```json
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:54339/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_My_Environment": "1",
+        "ASPNETCORE_DETAILEDERRORS": "1",
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      }
+    },
+    "EnvironmentsSample": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      },
+      "applicationUrl": "http://localhost:54340/"
+    },
+    "Kestrel Staging": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_My_Environment": "1",
+        "ASPNETCORE_DETAILEDERRORS": "1",
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      },
+      "applicationUrl": "http://localhost:51997/"
+    }
+  }
+}
+```
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -51,7 +91,7 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 > The `applicationUrl` property in *launchSettings.json* can specify a list of server URLs. Use a semicolon between the URLs in the list:
 >
 > ```json
-> "WebApplication1": {
+> "EnvironmentsSample": {
 >    "commandName": "Project",
 >    "launchBrowser": true,
 >    "applicationUrl": "https://localhost:5001;http://localhost:5000",
@@ -77,15 +117,15 @@ When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
 The following output shows an app started with [dotnet run](/dotnet/core/tools/dotnet-run):
 
 ```bash
-PS C:\Webs\WebApp1> dotnet run
-Using launch settings from C:\Webs\WebApp1\Properties\launchSettings.json...
+PS C:\Websites\EnvironmentsSample> dotnet run
+Using launch settings from C:\Websites\EnvironmentsSample\Properties\launchSettings.json...
 Hosting environment: Staging
-Content root path: C:\Webs\WebApp1
+Content root path: C:\Websites\EnvironmentsSample
 Now listening on: http://localhost:54340
 Application started. Press Ctrl+C to shut down.
 ```
 
-The Visual Studio **Debug** tab provides a GUI to edit the *launchSettings.json* file:
+The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file:
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
@@ -125,7 +165,7 @@ The production environment should be configured to maximize security, performanc
 * Friendly error pages enabled.
 * Production logging and monitoring enabled. For example, [Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
-## Setting the environment
+## Set the environment
 
 It's often useful to set a specific environment for testing. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
 
@@ -204,16 +244,16 @@ See [Configuration by environment](xref:fundamentals/configuration/index#configu
 
 When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. If a `Startup{EnvironmentName}` class exists, the class is called for that `EnvironmentName`:
 
-[!code-csharp[](environments/sample/WebApp1/StartupDev.cs?name=snippet&highlight=1)]
+[!code-csharp[](environments/sample/EnvironmentsSample/StartupDev.cs?name=snippet&highlight=1)]
 
-[WebHostBuilder.UseStartup<TStartup>](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
+[WebHostBuilder.UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
 
 [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
 
-[!code-csharp[](environments/sample/WebApp1/Startup.cs?name=snippet_all&highlight=15,37)]
+[!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,51)]
 
 ## Additional resources
 
-* [Application startup](xref:fundamentals/startup)
-* [Configuration](xref:fundamentals/configuration/index)
+* <xref:fundamentals/startup>
+* <xref:fundamentals/configuration/index>
 * [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname)

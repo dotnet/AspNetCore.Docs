@@ -251,7 +251,7 @@ Two primary runtime configuration modes exist:
     * Excludes source maps.
     * Optimizes the client-side code via bundling & minification.
 
-ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. See **[Setting the environment](xref:fundamentals/environments#setting-the-environment)** for more information.
+ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. See **[Set the environment](xref:fundamentals/environments#set-the-environment)** for more information.
 
 ### Running with .NET Core CLI
 
