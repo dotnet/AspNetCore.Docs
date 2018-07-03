@@ -11,7 +11,7 @@ public class Program
     public static void Main(string[] args = null)
     {
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json");
 
         Configuration = builder.Build();
