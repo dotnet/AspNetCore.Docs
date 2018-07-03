@@ -52,11 +52,11 @@ When you create a new `TodoItem` item, you provide the name and completion statu
 
 The following code shows the `TodoController` Web API controller:
 
-[!code-csharp[](first-web-api2/samples/2.0/TodoApi/Controllers/TodoController.cs?name=TodoController2)]
+[!code-csharp[](first-web-api2/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController)]
 
 The following code shows the `TodoController` class declaration and constructor:
 
-[!code-csharp[](first-web-api2/samples/2.0/TodoApi/Controllers/TodoController.cs?name=TodoController)]
+[!code-csharp[](first-web-api2/samples/2.1/TodoApi/Controllers/TodoController.cs?name=TodoController)]
 
 The preceding code shows:
 
@@ -111,3 +111,52 @@ In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-a
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
+### Test the create method
+
+The following code shows the `Create` method:
+
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
+
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+
+The `CreatedAtRoute` method:
+
+* Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
+
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+### Send a Create request
+
+* Start the app.
+* Open Postman.
+
+![Postman console](first-web-api/_static/pmc.png)
+
+* Update the port number in the localhost URL.
+* Set the HTTP method to *POST*.
+* Click the **Body** tab.
+* Select the **raw** radio button.
+* Set the type to *JSON (application/json)*.
+* Enter a request body with a to-do item resembling the following JSON:
+
+```json
+{
+  "name":"walk dog",
+  "isComplete":true
+}
+```
+
+* Click the **Send** button.
+
+::: moniker range=">= aspnetcore-2.1"
+> [!TIP]
+> If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
+::: moniker-end
+
+Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
+
+![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
+
+The Location header URI can be used to access the new item.
