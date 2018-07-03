@@ -15,7 +15,7 @@ namespace RazorPagesMovie.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -25,20 +25,47 @@ namespace RazorPagesMovie.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Genre");
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("Rating");
+                    b.Property<string>("Rating")
+                        .HasMaxLength(5);
 
                     b.Property<DateTime>("ReleaseDate");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(60);
 
                     b.HasKey("ID");
 
                     b.ToTable("Movie");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Schedule", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PrivateSchedule");
+
+                    b.Property<long>("PrivateScheduleSize");
+
+                    b.Property<string>("PublicSchedule");
+
+                    b.Property<long>("PublicScheduleSize");
+
+                    b.Property<string>("Title");
+
+                    b.Property<DateTime>("UploadDT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Schedule");
                 });
 #pragma warning restore 612, 618
         }

@@ -32,7 +32,7 @@ There are three versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 
@@ -66,7 +66,7 @@ The following image shows the app after accepting tracking:
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 

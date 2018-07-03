@@ -13,7 +13,8 @@ namespace RazorPagesMovie.Utilities
 {
     public class FileHelpers
     {
-        public static async Task<string> ProcessFormFile(IFormFile formFile, ModelStateDictionary modelState)
+        public static async Task<string> ProcessFormFile(
+            IFormFile formFile, ModelStateDictionary modelState)
         {
             var fieldDisplayName = string.Empty;
 
@@ -22,12 +23,14 @@ namespace RazorPagesMovie.Utilities
             // name isn't found, error messages simply won't show
             // a display name.
             MemberInfo property = 
-                typeof(FileUpload).GetProperty(formFile.Name.Substring(formFile.Name.IndexOf(".") + 1));
+                typeof(FileUpload).GetProperty(formFile.Name.Substring(
+                    formFile.Name.IndexOf(".") + 1));
 
             if (property != null)
             {
                 var displayAttribute = 
-                    property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                    property.GetCustomAttribute(typeof(DisplayAttribute)) 
+                        as DisplayAttribute;
 
                 if (displayAttribute != null)
                 {
@@ -39,12 +42,13 @@ namespace RazorPagesMovie.Utilities
             // strip any path information passed as part of the
             // FileName property. HtmlEncode the result in case it must 
             // be returned in an error message.
-            var fileName = WebUtility.HtmlEncode(Path.GetFileName(formFile.FileName));
+            var fileName = WebUtility.HtmlEncode(
+                Path.GetFileName(formFile.FileName));
 
             if (formFile.ContentType.ToLower() != "text/plain")
             {
                 modelState.AddModelError(formFile.Name, 
-                                         $"The {fieldDisplayName}file ({fileName}) must be a text file.");
+                    $"The {fieldDisplayName}file ({fileName}) must be a text file.");
             }
 
             // Check the file length and don't bother attempting to
@@ -55,11 +59,13 @@ namespace RazorPagesMovie.Utilities
             // contains a BOM.
             if (formFile.Length == 0)
             {
-                modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) is empty.");
+                modelState.AddModelError(formFile.Name, 
+                    $"The {fieldDisplayName}file ({fileName}) is empty.");
             }
             else if (formFile.Length > 1048576)
             {
-                modelState.AddModelError(formFile.Name, $"The {fieldDisplayName}file ({fileName}) exceeds 1 MB.");
+                modelState.AddModelError(formFile.Name, 
+                    $"The {fieldDisplayName}file ({fileName}) exceeds 1 MB.");
             }
             else
             {
@@ -75,7 +81,8 @@ namespace RazorPagesMovie.Utilities
                         var reader = 
                             new StreamReader(
                                 formFile.OpenReadStream(), 
-                                new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true), 
+                                new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, 
+                                    throwOnInvalidBytes: true), 
                                 detectEncodingFromByteOrderMarks: true))
                     {
                         fileContents = await reader.ReadToEndAsync();
@@ -90,15 +97,15 @@ namespace RazorPagesMovie.Utilities
                         else
                         {
                             modelState.AddModelError(formFile.Name, 
-                                                     $"The {fieldDisplayName}file ({fileName}) is empty.");
+                                $"The {fieldDisplayName}file ({fileName}) is empty.");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     modelState.AddModelError(formFile.Name, 
-                                             $"The {fieldDisplayName}file ({fileName}) upload failed. " +
-                                             $"Please contact the Help Desk for support. Error: {ex.Message}");
+                        $"The {fieldDisplayName}file ({fileName}) upload failed. " +
+                        $"Please contact the Help Desk for support. Error: {ex.Message}");
                     // Log the exception
                 }
             }
