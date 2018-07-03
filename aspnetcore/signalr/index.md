@@ -11,7 +11,7 @@ uid: signalr/index
 
 * [Introduction](xref:signalr/introduction)
 * [Get started](xref:tutorials/signalr)
-* [Server Concepts](xref:signalr/hubs)
+* [Server concepts](xref:signalr/hubs)
   * [Supported platforms](xref:signalr/supported-platforms)
   * [Hubs](xref:signalr/hubs)
   * [HubContext](xref:signalr/hubcontext)
