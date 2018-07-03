@@ -13,8 +13,8 @@ namespace RazorPagesMovie.Utilities
 {
     public class FileHelpers
     {
-        public static async Task<string> ProcessFormFile(
-            IFormFile formFile, ModelStateDictionary modelState)
+        public static async Task<string> ProcessFormFile(IFormFile formFile, 
+            ModelStateDictionary modelState)
         {
             var fieldDisplayName = string.Empty;
 
@@ -23,8 +23,8 @@ namespace RazorPagesMovie.Utilities
             // name isn't found, error messages simply won't show
             // a display name.
             MemberInfo property = 
-                typeof(FileUpload).GetProperty(formFile.Name.Substring(
-                    formFile.Name.IndexOf(".") + 1));
+                typeof(FileUpload).GetProperty(
+                    formFile.Name.Substring(formFile.Name.IndexOf(".") + 1));
 
             if (property != null)
             {
