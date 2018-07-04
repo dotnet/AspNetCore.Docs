@@ -84,7 +84,7 @@ Select the user name and then select **Personal data**:
 Notes:
 
 * To generate the `Account/Manage` code, see [Scaffold Identity](xref:security/authentication/scaffold-identity).
-* Delete and download only impact the default identity data. Apps the create custom user data must be extended to delete/download the custom user data. GitHub issue [How to add/delete custom user data to Identity](https://github.com/aspnet/Docs/issues/6226) tracks a proposed article on creating custom/deleting/downloading custom user data. If you'd like to see that topic prioritized, leave a thumbs up reaction in the issue.
+* Delete and download only impact the default identity data. Apps the create custom user data must be extended to delete/download the custom user data. See [Add custom user data](xref:security/authentication/add-user-data) for an example.
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
 
 ## Encryption at rest
