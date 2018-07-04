@@ -187,7 +187,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 
 ### Register the SignalR route
 
-The server needs to know which URL to intercept and direct to SignalR. To do that you'll add and OWIN startup class.
+The server needs to know which URL to intercept and direct to SignalR. To do that, add an OWIN startup class:
 
 1. In **Solution Explorer**, right-click the project, and then click **Add | OWIN Startup Class**. Name the class **Startup.cs**.
 2. Replace the code in **Startup.cs** with the following.
