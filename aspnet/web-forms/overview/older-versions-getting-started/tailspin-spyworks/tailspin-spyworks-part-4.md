@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-4
 title: "Part 4: Listing Products | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 4 covers listing products with the GridView contr..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 4fab47d5-a6ec-4fdc-91f0-651a093a24b9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-4
 msc.type: authoredcontent
 ---
@@ -94,6 +91,6 @@ Our database contains a table named "ShoppingCart". When we generated an Entity 
 
 It's also worth noting that we will be creating a simple shopping cart and embedding the shopping cart logic with the shopping cart display. We might also choose to implement our shopping cart in a completely separate Business Layer.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-3.md)
-[Next](tailspin-spyworks-part-5.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-3.md)
+> [Next](tailspin-spyworks-part-5.md)

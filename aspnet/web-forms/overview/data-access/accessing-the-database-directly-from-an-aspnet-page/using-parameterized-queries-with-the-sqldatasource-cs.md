@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs
 title: "Using Parameterized Queries with the SqlDataSource (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial, we continue our look at the SqlDataSource control and learn how to define parameterized queries. The parameters can be specified both decla..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: 9128aaac-afe2-449f-84b2-bb1d035083c4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs
 msc.type: authoredcontent
 ---
@@ -203,7 +200,7 @@ Since the stored procedure accepts an input parameter (`@CategoryID`), clicking 
 **Figure 11**: Use a Hard-Coded Value of 1 to Return the Products in the Beverages Category ([Click to view full-size image](using-parameterized-queries-with-the-sqldatasource-cs/_static/image22.png))
 
 
-As the following declarative markup shows, when using a stored procedure, the SqlDataSource s `SelectCommand` property is set to the name of the stored procedure and the [`SelectCommandType` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.selectcommandtype.aspx) is set to `StoredProcedure`, indicating that the `SelectCommand` is the name of a stored procedure rather than an ad-hoc SQL statement.
+As the following declarative markup shows, when using a stored procedure, the SqlDataSource s `SelectCommand` property is set to the name of the stored procedure and the [`SelectCommandType` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.selectcommandtype.aspx) is set to `StoredProcedure`, indicating that the `SelectCommand` is the name of a stored procedure rather than an ad-hoc SQL statement.
 
 
 [!code-aspx[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample9.aspx)]
@@ -231,9 +228,9 @@ Start by adding a SqlDataSource to `ParameterizedQueries.aspx` and set its `ID` 
 
 `ORDER BY NEWID()` returns the records sorted in random order (see [Using `NEWID()` to Randomly Sort Records](http://www.sqlteam.com/item.asp?ItemID=8747)). `SELECT TOP 1` returns the first record from the result set. Put together, this query returns the `CategoryID` and `CategoryName` column values from a single, randomly selected category.
 
-To display the category s `CategoryName` value, add a Label Web control to the page, set its `ID` property to `CategoryNameLabel`, and clear out its `Text` property. To programmatically retrieve the data from a SqlDataSource control, we need to invoke its `Select()` method. The [`Select()` method](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.select.aspx) expects a single input parameter of type [`DataSourceSelectArguments`](https://msdn.microsoft.com/en-us/library/system.web.ui.datasourceselectarguments.aspx), which specifies how the data should be messaged before being returned. This can include instructions on sorting and filtering the data, and is used by the data Web controls when sorting or paging through the data from a SqlDataSource control. For our example, though, we don t need the data to be modified before being returned, and therefore will pass in the `DataSourceSelectArguments.Empty` object.
+To display the category s `CategoryName` value, add a Label Web control to the page, set its `ID` property to `CategoryNameLabel`, and clear out its `Text` property. To programmatically retrieve the data from a SqlDataSource control, we need to invoke its `Select()` method. The [`Select()` method](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.select.aspx) expects a single input parameter of type [`DataSourceSelectArguments`](https://msdn.microsoft.com/library/system.web.ui.datasourceselectarguments.aspx), which specifies how the data should be messaged before being returned. This can include instructions on sorting and filtering the data, and is used by the data Web controls when sorting or paging through the data from a SqlDataSource control. For our example, though, we don t need the data to be modified before being returned, and therefore will pass in the `DataSourceSelectArguments.Empty` object.
 
-The `Select()` method returns an object that implements `IEnumerable`. The precise type returned depends on the value of the SqlDataSource control s [`DataSourceMode` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.datasourcemode.aspx). As discussed in the previous tutorial, this property can be set to a value of either `DataSet` or `DataReader`. If set to `DataSet`, the `Select()` method returns a [DataView](https://msdn.microsoft.com/en-us/library/01s96x0z.aspx) object; if set to `DataReader`, it returns an object that implements [`IDataReader`](https://msdn.microsoft.com/en-us/library/system.data.idatareader.aspx). Since the `RandomCategoryDataSource` SqlDataSource has its `DataSourceMode` property set to `DataSet` (the default), we will be working with a DataView object.
+The `Select()` method returns an object that implements `IEnumerable`. The precise type returned depends on the value of the SqlDataSource control s [`DataSourceMode` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.sqldatasource.datasourcemode.aspx). As discussed in the previous tutorial, this property can be set to a value of either `DataSet` or `DataReader`. If set to `DataSet`, the `Select()` method returns a [DataView](https://msdn.microsoft.com/library/01s96x0z.aspx) object; if set to `DataReader`, it returns an object that implements [`IDataReader`](https://msdn.microsoft.com/library/system.data.idatareader.aspx). Since the `RandomCategoryDataSource` SqlDataSource has its `DataSourceMode` property set to `DataSet` (the default), we will be working with a DataView object.
 
 The following code illustrates how to retrieve the records from the `RandomCategoryDataSource` SqlDataSource as a DataView as well as how to read the `CategoryName` column value from the first DataView row:
 
@@ -306,6 +303,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Scott Clyde, Randell Schmidt, and Ken Pespisa. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](querying-data-with-the-sqldatasource-control-cs.md)
-[Next](inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)
+> [!div class="step-by-step"]
+> [Previous](querying-data-with-the-sqldatasource-control-cs.md)
+> [Next](inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)

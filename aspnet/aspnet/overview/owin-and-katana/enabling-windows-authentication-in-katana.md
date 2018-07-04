@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana
 title: "Enabling Windows Authentication in Katana | Microsoft Docs"
 author: MikeWasson
 description: "This article shows how to enable Windows Authentication in Katana. It covers two scenarios: Using IIS to host Katana, and using HttpListener to self-host Kat..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/30/2013
-ms.topic: article
 ms.assetid: 82324ef0-3b75-4f63-a217-76ef4036ec93
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana
 msc.type: authoredcontent
 ---
@@ -28,7 +25,7 @@ Katana is Microsoft's implementation of [OWIN](http://owin.org/), the Open Web I
 Katana currently provides two servers, both of which support Windows Integrated Authentication:
 
 - **Microsoft.Owin.Host.SystemWeb**. Uses IIS with the ASP.NET pipeline.
-- **Microsoft.Owin.Host.HttpListener**. Uses [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). This server is currently the default option when self-hosting Katana.
+- **Microsoft.Owin.Host.HttpListener**. Uses [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx). This server is currently the default option when self-hosting Katana.
 
 > [!NOTE]
 > Katana does not currently provide OWIN middleware for Windows Authentication, because this functionality is already available in the servers.
@@ -66,7 +63,7 @@ When you run the application from Visual Studio, IIS Express will require the us
 
 The WWW-Authenticate headers in this response indicate that the server supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) protocol, which uses either Kerberos or NTLM.
 
-Later, when you deploy the application to a server, follow [these steps](http://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication) to enable Windows Authentication in IIS on that server.
+Later, when you deploy the application to a server, follow [these steps](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication) to enable Windows Authentication in IIS on that server.
 
 ## Windows Authentication in HttpListener
 
@@ -94,6 +91,6 @@ You can send a request in Fiddler to confirm that the application is using Windo
 
 [An Overview of Project Katana](an-overview-of-project-katana.md)
 
-[System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx)
+[System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx)
 
 [Understanding OWIN Forms Authentication in MVC 5](https://blogs.msdn.com/b/webdev/archive/2013/07/03/understanding-owin-forms-authentication-in-mvc-5.aspx)

@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/getting-started-with-aspnet-web-api/action-results
 title: "Action Results in Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/03/2014
-ms.topic: article
 ms.assetid: 2fc4797c-38ef-4cc7-926c-ca431c4739e8
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/action-results
 msc.type: authoredcontent
 ---
@@ -50,7 +47,7 @@ HTTP response:
 
 ## HttpResponseMessage
 
-If the action returns an [HttpResponseMessage](https://msdn.microsoft.com/en-us/library/system.net.http.httpresponsemessage.aspx), Web API converts the return value directly into an HTTP response message, using the properties of the **HttpResponseMessage** object to populate the response.
+If the action returns an [HttpResponseMessage](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.aspx), Web API converts the return value directly into an HTTP response message, using the properties of the **HttpResponseMessage** object to populate the response.
 
 This option gives you a lot of control over the response message. For example, the following controller action sets the Cache-Control header.
 
@@ -68,7 +65,7 @@ Web API uses the Accept header in the request to choose the formatter. For more 
 
 ## IHttpActionResult
 
-The **IHttpActionResult** interface was introducted in Web API 2. Essentially, it defines an **HttpResponseMessage** factory. Here are some advantages of using the **IHttpActionResult** interface:
+The **IHttpActionResult** interface was introduced in Web API 2. Essentially, it defines an **HttpResponseMessage** factory. Here are some advantages of using the **IHttpActionResult** interface:
 
 - Simplifies [unit testing](../testing-and-debugging/unit-testing-controllers-in-web-api.md) your controllers.
 - Moves common logic for creating HTTP responses into separate classes.
@@ -92,9 +89,9 @@ Response:
 
 [!code-console[Main](action-results/samples/sample9.cmd)]
 
-More often, you will use the **IHttpActionResult** implementations defined in the **[System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx)** namespace. The **ApiContoller** class defines helper methods that return these built-in action results.
+More often, you will use the **IHttpActionResult** implementations defined in the **[System.Web.Http.Results](https://msdn.microsoft.com/library/system.web.http.results.aspx)** namespace. The **ApiController** class defines helper methods that return these built-in action results.
 
-In the following example, if the request does not match an existing product ID, the controller calls [ApiController.NotFound](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.notfound.aspx) to create a 404 (Not Found) response. Otherwise, the controller calls [ApiController.OK](https://msdn.microsoft.com/en-us/library/dn314591.aspx), which creates a 200 (OK) response that contains the product.
+In the following example, if the request does not match an existing product ID, the controller calls [ApiController.NotFound](https://msdn.microsoft.com/library/system.web.http.apicontroller.notfound.aspx) to create a 404 (Not Found) response. Otherwise, the controller calls [ApiController.OK](https://msdn.microsoft.com/library/dn314591.aspx), which creates a 200 (OK) response that contains the product.
 
 [!code-csharp[Main](action-results/samples/sample10.cs)]
 

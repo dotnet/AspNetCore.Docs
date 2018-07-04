@@ -1,14 +1,11 @@
 ---
+uid: single-page-application/overview/templates/hottowel-template
 title: "Hot Towel template | Microsoft Docs"
 author: madskristensen
 description: "HotTowel template"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/09/2013
-ms.topic: article
 ms.assetid: 75af2e17-6ed3-4d24-8ea1-bc340027c318
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/hottowel-template
 msc.type: authoredcontent
 ---
@@ -23,8 +20,8 @@ by [Mads Kristensen](https://github.com/madskristensen)
 > [Hot Towel MVC Template for Visual Studio 2012](https://visualstudiogallery.msdn.microsoft.com/1f68fbe8-b4e9-4968-9fd3-ddc7cbc52dca)
 > 
 > [Hot Towel MVC Template for Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/1eb8780d-d522-4dcf-bf56-56f0eab305c2)
-
-
+> 
+> 
 > Hot Towel: Because you don't want to go to the SPA without one!
 
 

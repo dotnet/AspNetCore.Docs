@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-vb
 title: "An Overview of Editing and Deleting Data in the DataList (VB) | Microsoft Docs"
 author: rick-anderson
 description: "While the DataList lacks built-in editing and deleting capabilities, in this tutorial we'll see how to create a DataList that supports editing and deleting o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: 9410a23c-9697-4f07-bd71-e62b0ceac655
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-vb
 msc.type: authoredcontent
 ---
@@ -80,11 +77,11 @@ Editing and deleting data with the GridView is so easy because, underneath the c
 
 Sadly, the DataList does not provide any of this built-in functionality. It is our responsibility to ensure that the user s values are assigned to the ObjectDataSource s parameters and that its `Update()` method is called. To aid us in this endeavor, the DataList provides the following properties and events:
 
-- **The [`DataKeyField` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.basedatalist.datakeyfield.aspx)** when updating or deleting, we need to be able to uniquely identify each item in the DataList. Set this property to the primary key field of the displayed data. Doing so will populate the DataList s [`DataKeys` collection](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.basedatalist.datakeys.aspx) with the specified `DataKeyField` value for each DataList item.
-- **The [`EditCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.editcommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Edit is clicked.
-- **The [`CancelCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.cancelcommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Cancel is clicked.
-- **The [`UpdateCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.updatecommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Update is clicked.
-- **The [`DeleteCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.deletecommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Delete is clicked.
+- **The [`DataKeyField` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.basedatalist.datakeyfield.aspx)** when updating or deleting, we need to be able to uniquely identify each item in the DataList. Set this property to the primary key field of the displayed data. Doing so will populate the DataList s [`DataKeys` collection](https://msdn.microsoft.com/library/system.web.ui.webcontrols.basedatalist.datakeys.aspx) with the specified `DataKeyField` value for each DataList item.
+- **The [`EditCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.editcommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Edit is clicked.
+- **The [`CancelCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.cancelcommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Cancel is clicked.
+- **The [`UpdateCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.updatecommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Update is clicked.
+- **The [`DeleteCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.deletecommand.aspx)** fires when a Button, LinkButton, or ImageButton whose `CommandName` property is set to Delete is clicked.
 
 Using these properties and events, there are four approaches we can use to update and delete data from the DataList:
 
@@ -147,7 +144,7 @@ Take a moment to view our progress through a browser. As Figure 7 shows, the Dat
 >  The astute reader may recall that we were able to disable view state when creating editable GridViews, DetailsViews, and FormViews. This is because ASP.NET 2.0 Web controls can include *control state*, which is state persisted across postbacks like view state, but deemed essential.
 
 
-Disabling view state in the GridView merely omits trivial state information, but maintains the control state (which includes the state necessary for editing and deleting). The DataList, having been created in the ASP.NET 1.x timeframe, does not utilize control state and therefore must have view state enabled. See [Control State vs. View State](https://msdn.microsoft.com/en-us/library/1whwt1k7.aspx) for more information on the purpose of control state and how it differs from view state.
+Disabling view state in the GridView merely omits trivial state information, but maintains the control state (which includes the state necessary for editing and deleting). The DataList, having been created in the ASP.NET 1.x timeframe, does not utilize control state and therefore must have view state enabled. See [Control State vs. View State](https://msdn.microsoft.com/library/1whwt1k7.aspx) for more information on the purpose of control state and how it differs from view state.
 
 ## Step 4: Adding an Editing User Interface
 
@@ -219,7 +216,7 @@ After you have added this Edit button, take a moment to view the page through a 
 
 Clicking the button causes a postback, but does *not* bring the product listing into edit mode. To make the product editable, we need to:
 
-1. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of the `DataListItem` whose Edit button was just clicked.
+1. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of the `DataListItem` whose Edit button was just clicked.
 2. Rebind the data to the DataList. When the DataList is re-rendered, the `DataListItem` whose `ItemIndex` corresponds with the DataList s `EditItemIndex` will render using its `EditItemTemplate`.
 
 Since the DataList s `EditCommand` event is fired when the Edit button is clicked, create an `EditCommand` event handler with the following code:
@@ -243,7 +240,7 @@ Clicking the edited product s Update or Cancel buttons does nothing at this poin
 
 To have the DataList render all of its items in the read-only mode, we need to:
 
-1. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of a non-existent `DataListItem` index. `-1` is a safe choice, since the `DataListItem` indexes start at `0`.
+1. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of a non-existent `DataListItem` index. `-1` is a safe choice, since the `DataListItem` indexes start at `0`.
 2. Rebind the data to the DataList. Since no `DataListItem` `ItemIndex` es correspond to the DataList s `EditItemIndex`, the entire DataList will be rendered in a read-only mode.
 
 These steps can be accomplished with the following event handler code:
@@ -257,7 +254,7 @@ The last event handler we need to complete is the `UpdateCommand` event handler.
 
 1. Programmatically access the user-entered product name and price as well as the edited product s `ProductID`.
 2. Initiate the update process by calling the appropriate `UpdateProduct` overload in the `ProductsBLL` class.
-3. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of a non-existent `DataListItem` index. `-1` is a safe choice, since the `DataListItem` indexes start at `0`.
+3. Set the DataList s [`EditItemIndex` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.edititemindex.aspx) to the index of a non-existent `DataListItem` index. `-1` is a safe choice, since the `DataListItem` indexes start at `0`.
 4. Rebind the data to the DataList. Since no `DataListItem` `ItemIndex` es correspond to the DataList s `EditItemIndex`, the entire DataList will be rendered in a read-only mode.
 
 Steps 1 and 2 are responsible for saving the user s changes; steps 3 and 4 return the DataList to its pre-editing state after the changes have been saved and are identical to the steps performed in the `CancelCommand` event handler.
@@ -339,6 +336,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Zack Jones, Ken Pespisa, and Randy Schmidt. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](customizing-the-datalist-s-editing-interface-cs.md)
-[Next](performing-batch-updates-vb.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-the-datalist-s-editing-interface-cs.md)
+> [Next](performing-batch-updates-vb.md)

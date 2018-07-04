@@ -1,20 +1,19 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-a-controller
 title: "Adding a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: cc764f3b-6921-486a-8f44-c6ccd1249acd
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-controller
 msc.type: authoredcontent
 ---
 Adding a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
+
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 MVC stands for *model-view-controller*. MVC is a pattern for developing applications that are well architected, testable and easy to maintain. MVC-based applications contain:
 
@@ -23,6 +22,9 @@ MVC stands for *model-view-controller*. MVC is a pattern for developing applicat
 - **C** ontrollers: Classes that handle incoming browser requests, retrieve model data, and then specify view templates that return a response to the browser.
 
 We'll be covering all these concepts in this tutorial series and show you how to use them to build an application.
+
+> [!NOTE]
+> In the previous step the Default MVC template was selected. This creates Home, Account and Manage Controllers by default.
 
 Let's begin by creating a controller class. In **Solution Explorer**, right-click the *Controllers* folder and then click **Add**, then **Controller**.
 
@@ -71,10 +73,10 @@ Let's modify the example slightly so that you can pass some parameter informatio
 [!code-csharp[Main](adding-a-controller/samples/sample3.cs)]
 
 > [!NOTE]
-> Security Note: The code above uses [HttpServerUtility.HtmlEncode](https://msdn.microsoft.com/en-us/library/w3te6wfz.aspx) to protect the application from malicious input (namely JavaScript). For more information see [How to: Protect Against Script Exploits in a Web Application by Applying HTML Encoding to Strings](https://msdn.microsoft.com/en-us/library/a2a4yykt(v=vs.100).aspx).
+> Security Note: The code above uses [HttpUtility.HtmlEncode](https://msdn.microsoft.com/library/ee360286(v=vs.110).aspx) to protect the application from malicious input (namely JavaScript). For more information see [How to: Protect Against Script Exploits in a Web Application by Applying HTML Encoding to Strings](https://msdn.microsoft.com/library/a2a4yykt(v=vs.100).aspx).
 
 
- Run your application and browse to the example URL (`http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4)`. You can try different values for `name` and `numtimes` in the URL. The [ASP.NET MVC model binding system](http://odetocode.com/Blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx) automatically maps the named parameters from the query string in the address bar to parameters in your method.
+ Run your application and browse to the example URL (`http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4`). You can try different values for `name` and `numtimes` in the URL. The [ASP.NET MVC model binding system](http://odetocode.com/Blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx) automatically maps the named parameters from the query string in the address bar to parameters in your method.
 
 ![](adding-a-controller/_static/image7.png)
 
@@ -84,7 +86,7 @@ Replace the Welcome method with the following code:
 
 [!code-csharp[Main](adding-a-controller/samples/sample4.cs)]
 
-Run the application and enter the following URL: `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the application and enter the following URL: `http://localhost:xxx/HelloWorld/Welcome/1?name=Scott`
 
 ![](adding-a-controller/_static/image8.png)
 
@@ -104,6 +106,6 @@ For many MVC applications, the default route works fine. You'll learn later in t
 
 In these examples the controller has been doing the &quot;VC&quot; portion of MVC — that is, the view and controller work. The controller is returning HTML directly. Ordinarily you don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look next at how we can do this.
 
->[!div class="step-by-step"]
-[Previous](getting-started.md)
-[Next](adding-a-view.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started.md)
+> [Next](adding-a-view.md)

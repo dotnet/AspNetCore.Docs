@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb
 title: "Testing the Strength of a Password (VB) | Microsoft Docs"
 author: wenz
 description: "Passwords are required almost anywhere, so that lazy users tend to choose simple passwords which are easy to break. The PasswordStrength control in the ASP.N..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 9215a37f-3133-4887-8ed2-3689f3a53551
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb
 msc.type: authoredcontent
 ---
@@ -45,5 +42,5 @@ Run the page and type away: Only after you have entered lowercase letters, upper
 
 Now the password is (quite) good ([Click to view full-size image](testing-the-strength-of-a-password-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](testing-the-strength-of-a-password-cs.md)
+> [!div class="step-by-step"]
+> [Previous](testing-the-strength-of-a-password-cs.md)

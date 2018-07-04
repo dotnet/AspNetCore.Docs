@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data
 title: "Introducing ASP.NET Web Pages - Deleting Database Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to delete an individual database entry. It assumes you have completed the series through Updating Database Data in ASP.NET Web Pa..."
 ms.author: aspnetcontent
-manager: wpickett
-ms.date: 05/28/2015
-ms.topic: article
+ms.date: 01/02/2018
 ms.assetid: 75b5c1cf-84bd-434f-8a86-85c568eb5b09
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data
 msc.type: authoredcontent
 ---
@@ -16,7 +13,7 @@ Introducing ASP.NET Web Pages - Deleting Database Data
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This tutorial shows you how to delete an individual database entry. It assumes you have completed the series through [Updating Database Data in ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=251583).
+> This tutorial shows you how to delete an individual database entry. It assumes you have completed the series through [Updating Database Data in ASP.NET Web Pages](updating-data.md).
 > 
 > What you'll learn:
 > 
@@ -70,7 +67,7 @@ The new column shows a link (`<a>` element) whose text says "Delete". The target
 
 This link will invoke a page named *DeleteMovie* and pass it the ID of the movie you've selected.
 
-This tutorial won't go into detail about how this link is constructed, because it's almost identical to the **Edit** link from the previous tutorial ([Updating Database Data in ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=251583)).
+This tutorial won't go into detail about how this link is constructed, because it's almost identical to the **Edit** link from the previous tutorial ([Updating Database Data in ASP.NET Web Pages](updating-data.md)).
 
 ## Creating the Delete Page
 
@@ -163,9 +160,9 @@ The next tutorial shows you how to give all the pages on your site a common look
 
 ## Additional Resources
 
-- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
+- [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../introducing-razor-syntax-c.md)
 - [SQL DELETE Statement](http://www.w3schools.com/sql/sql_delete.asp) on the W3Schools site
 
->[!div class="step-by-step"]
-[Previous](updating-data.md)
-[Next](layouts.md)
+> [!div class="step-by-step"]
+> [Previous](updating-data.md)
+> [Next](layouts.md)

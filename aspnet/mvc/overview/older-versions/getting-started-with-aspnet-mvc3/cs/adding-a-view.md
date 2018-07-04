@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-view
 title: "Adding a View (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2011
-ms.topic: article
 ms.assetid: abc7c78d-cb09-4a4c-a887-61bc401d40e3
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-view
 msc.type: authoredcontent
 ---
@@ -135,6 +132,6 @@ Now data is taken from the URL and passed to the controller automatically. The c
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/create_the_data_access_layer
 title: "Create the Data Access Layer | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 0bbf7a6e-d7eb-4091-91e4-fff892777f32
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/create_the_data_access_layer
 msc.type: authoredcontent
 ---
@@ -37,7 +34,7 @@ This tutorial describes how to create, access, and review data from a database u
 
 ## Creating the Data Models
 
-[Entity Framework](https://msdn.microsoft.com/en-us/data/aa937723) is an object-relational mapping (ORM) framework. It lets you work with relational data as objects, eliminating most of the data-access code that you'd usually need to write. Using Entity Framework, you can issue queries using [LINQ](https://msdn.microsoft.com/en-us/library/bb397926.aspx), then retrieve and manipulate data as strongly typed objects. LINQ provides patterns for querying and updating data. Using Entity Framework allows you to focus on creating the rest of your application, rather than focusing on the data access fundamentals. Later in this tutorial series, we'll show you how to use the data to populate navigation and product queries.
+[Entity Framework](https://msdn.microsoft.com/data/aa937723) is an object-relational mapping (ORM) framework. It lets you work with relational data as objects, eliminating most of the data-access code that you'd usually need to write. Using Entity Framework, you can issue queries using [LINQ](https://msdn.microsoft.com/library/bb397926.aspx), then retrieve and manipulate data as strongly typed objects. LINQ provides patterns for querying and updating data. Using Entity Framework allows you to focus on creating the rest of your application, rather than focusing on the data access fundamentals. Later in this tutorial series, we'll show you how to use the data to populate navigation and product queries.
 
 Entity Framework supports a development paradigm called *Code First*. Code First lets you define your data models using classes. A class is a construct that enables you to create your own custom types by grouping together variables of other types, methods and events. You can map classes to an existing database or use them to generate a database. In this tutorial, you'll create the data models by writing data model classes. Then, you'll let Entity Framework create the database on the fly from these new classes.
 
@@ -62,13 +59,13 @@ In this tutorial, you'll start out by adding simple entity classes representing 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image1.png)
 
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Under **Visual C#** from the **Installed** pane on the left, select **Code**. 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image2.png)
 3. Select **Class** from the middle pane and name this new class *Product.cs*.
 4. Click **Add**.  
- The new class file is displayed in the editor.
+   The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
     [!code-csharp[Main](create_the_data_access_layer/samples/sample1.cs)]
@@ -89,7 +86,7 @@ To start using the classes for data access, you must define a context class. As 
 This procedure adds a new C# context class to the *Models* folder.
 
 1. Right-click the *Models* folder and then select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Select **Class** from the middle pane, name it *ProductContext.cs* and click **Add**.
 3. Replace the default code contained in the class with the following code:   
 
@@ -175,13 +172,13 @@ In the next tutorial, you'll update the UI, add navigation, and retrieve data fr
 
 ## Additional Resources
 
-[Entity Framework Overview](https://msdn.microsoft.com/en-us/library/bb399567.aspx)   
-[Beginner's Guide to the ADO.NET Entity Framework](https://msdn.microsoft.com/en-us/data/ee712907)   
+[Entity Framework Overview](https://msdn.microsoft.com/library/bb399567.aspx)   
+[Beginner's Guide to the ADO.NET Entity Framework](https://msdn.microsoft.com/data/ee712907)   
 [Code First Development with Entity Framework](http://www.msteched.com/2010/Europe/DEV212) (video)   
-[Code First Relationships Fluent API](https://msdn.microsoft.com/en-us/data/hh134698)   
-[Code First Data Annotations](https://msdn.microsoft.com/en-us/data/gg193958)  
+[Code First Relationships Fluent API](https://msdn.microsoft.com/data/hh134698)   
+[Code First Data Annotations](https://msdn.microsoft.com/data/gg193958)  
 [Productivity Improvements for the Entity Framework](https://blogs.msdn.com/b/efdesign/archive/2010/06/21/productivity-improvements-for-the-entity-framework.aspx?wa=wsignin1.0)
 
->[!div class="step-by-step"]
-[Previous](create-the-project.md)
-[Next](ui_and_navigation.md)
+> [!div class="step-by-step"]
+> [Previous](create-the-project.md)
+> [Next](ui_and_navigation.md)

@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/working-with-groups
 title: "Working with Groups in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to persist group membership information with the Hub API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/21/2013
-ms.topic: article
 ms.assetid: 22929efd-68c9-4609-b76d-f8ba42fda01e
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/working-with-groups
 msc.type: authoredcontent
 ---
@@ -37,11 +34,11 @@ This topic includes the following sections:
 - [Storing group membership in Azure table storage](#storeazuretable)
 - [Verifying group membership when reconnecting](#verify)
 
-<a id="#add"></a>
+<a id="add"></a>
 
 ## Adding and removing users
 
-To add or remove users from a group, you call the [Add](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.igroupmanager.add(v=vs.111).aspx) or [Remove](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.igroupmanager.remove(v=vs.111).aspx) methods, and pass in the user's connection id and group's name as parameters. You do not need to manually remove a user from a group when the connection ends.
+To add or remove users from a group, you call the [Add](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.igroupmanager.add(v=vs.111).aspx) or [Remove](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.igroupmanager.remove(v=vs.111).aspx) methods, and pass in the user's connection id and group's name as parameters. You do not need to manually remove a user from a group when the connection ends.
 
 The following example shows the `Groups.Add` and `Groups.Remove` methods used in Hub methods.
 
@@ -61,7 +58,7 @@ If you want to add a client to a group and immediately send a message to the cli
 
 In general, you should not include `await` when calling the `Groups.Remove` method because the connection id that you are trying to remove might no longer be available. In that case, `TaskCanceledException` is thrown after the request times out. If your application must ensure that the user has been removed from the group before sending a message to the group, you can add `await` before Groups.Remove, and then catch the `TaskCanceledException` exception that might be thrown.
 
-<a id="#call"></a>
+<a id="call"></a>
 
 ## Calling members of a group
 

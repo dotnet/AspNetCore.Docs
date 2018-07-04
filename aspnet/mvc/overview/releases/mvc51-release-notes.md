@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/releases/mvc51-release-notes
 title: "What's New in ASP.NET MVC 5.1 | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 9a83a058-9b01-48aa-acce-ec041e694567
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/mvc51-release-notes
 msc.type: authoredcontent
 ---
@@ -30,7 +27,7 @@ This topic describes what's new for ASP.NET Web MVC 5.1.
     - [Supporting the ‘this' context in Unobtrusive Ajax](#thisContext)
 - [Known Issues and Breaking Changes](#KnownBreakingChanges)- [Bug Fixes](#bug-fixes)
 
-<a id="#SoftwareRequirements"></a>
+<a id="SoftwareRequirements"></a>
 ## Software Requirements
 
 - Visual Studio 2012: Download [ASP.NET and Web Tools 2013.1 for Visual Studio 2012](https://go.microsoft.com/fwlink/?LinkId=390062).

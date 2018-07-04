@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/presenting-and-managing-data/model-binding/sorting-paging-and-filtering-data
 title: "Sorting, paging, and filtering data with model binding and web forms | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 266e7866-e327-4687-b29d-627a0925e87d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/sorting-paging-and-filtering-data
 msc.type: authoredcontent
 ---
@@ -94,6 +91,6 @@ In this tutorial, you enabled sorting and paging of the data. You also enabled f
 
 In the next [tutorial](integrating-jquery-ui.md) you will enhance the UI by integrating a JQuery UI widget into the dynamic data template.
 
->[!div class="step-by-step"]
-[Previous](updating-deleting-and-creating-data.md)
-[Next](integrating-jquery-ui.md)
+> [!div class="step-by-step"]
+> [Previous](updating-deleting-and-creating-data.md)
+> [Next](integrating-jquery-ui.md)

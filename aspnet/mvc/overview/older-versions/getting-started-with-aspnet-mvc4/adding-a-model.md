@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model
 title: "Adding a Model | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/28/2012
-ms.topic: article
 ms.assetid: 53db72da-e0b9-44d9-b60b-6e6988c00b28
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model
 msc.type: authoredcontent
 ---
@@ -22,7 +19,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 In this section you'll add some classes for managing movies in a database. These classes will be the &quot;model&quot; part of the ASP.NET MVC application.
 
-You'll use a .NET Framework data-access technology known as the [Entity Framework](https://msdn.microsoft.com/en-us/library/bb399572(VS.110).aspx) to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from &quot;plain-old CLR objects.&quot;) You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow.
+You'll use a .NET Framework data-access technology known as the [Entity Framework](https://msdn.microsoft.com/library/bb399572(VS.110).aspx) to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from &quot;plain-old CLR objects.&quot;) You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow.
 
 ## Adding Model Classes
 
@@ -72,6 +69,6 @@ This small amount of code and XML is everything you need to write in order to re
 
 Next, you'll build a new `MoviesController` class that you can use to display the movie data and allow users to create new movie listings.
 
->[!div class="step-by-step"]
-[Previous](adding-a-view.md)
-[Next](accessing-your-models-data-from-a-controller.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-view.md)
+> [Next](accessing-your-models-data-from-a-controller.md)

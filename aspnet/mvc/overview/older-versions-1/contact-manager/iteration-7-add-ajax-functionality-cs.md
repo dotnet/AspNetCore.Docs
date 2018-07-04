@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
 title: "Iteration #7 – Add Ajax functionality (C#) | Microsoft Docs"
 author: microsoft
 description: "In the seventh iteration, we improve the responsiveness and performance of our application by adding support for Ajax."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: f1b0809e-8909-444e-b6bb-a5cd1dea3f72
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
 msc.type: authoredcontent
 ---
@@ -236,6 +233,6 @@ We also added browser history support to our Ajax application. We enabled users 
 
 Finally, we created a delete link that supports HTTP DELETE operations. By performing Ajax deletes, we enable users to delete database records without requiring the user to request an additional delete confirmation page.
 
->[!div class="step-by-step"]
-[Previous](iteration-6-use-test-driven-development-cs.md)
-[Next](iteration-1-create-the-application-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-6-use-test-driven-development-cs.md)
+> [Next](iteration-1-create-the-application-vb.md)

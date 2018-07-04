@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-6
 title: "Create the JavaScript Client | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 20360326-b123-4b1e-abae-1d350edf4ce4
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-6
 msc.type: authoredcontent
 ---
@@ -67,6 +64,6 @@ Open the file App\_Start/BundleConfig.cs. Add the following code to the Register
 
 [!code-csharp[Main](part-6/samples/sample3.cs)]
 
->[!div class="step-by-step"]
-[Previous](part-5.md)
-[Next](part-7.md)
+> [!div class="step-by-step"]
+> [Previous](part-5.md)
+> [Next](part-7.md)

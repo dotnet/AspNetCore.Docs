@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/performance/signalr-connection-density-testing-with-crank
 title: "SignalR Connection Density Testing with Crank | Microsoft Docs"
 author: tfitzmac
 description: "SignalR Connection Density Testing with Crank"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/22/2015
-ms.topic: article
 ms.assetid: 148d9ca7-1af1-44b6-a9fb-91e261b9b463
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/signalr-connection-density-testing-with-crank
 msc.type: authoredcontent
 ---
@@ -35,7 +32,7 @@ This section describes the steps needed to run a connection density test on a Si
 
 1. Download and build the [Dev branch of the SignalR codebase](https://github.com/SignalR/SignalR/archive/dev.zip). In a command prompt, navigate to &lt;project directory&gt;\src\Microsoft.AspNet.SignalR.Crank\bin\debug.
 2. Deploy your application to its intended hosting environment. Make a note of the endpoint that your application uses; for example, in the application created in the [Getting Started tutorial](../getting-started/tutorial-getting-started-with-signalr.md), the endpoint is `http://<yourhost>:8080/signalr`.
-3. Install [SignalR performance counters](signalr-performance.md) on the server. If your application is running on Azure, see [Using SignalR Performance Counters in an Azure Web Role](using-signalr-performance-counters-in-an-azure-web-role.md).
+3. Install [SignalR performance counters](signalr-performance.md#perfcounters) on the server. If your application is running on Azure, see [Using SignalR Performance Counters in an Azure Web Role](using-signalr-performance-counters-in-an-azure-web-role.md).
 
 Once you've downloaded and built the codebase, and installed performance counters on your host, the Crank command-line tool can be found in the `src\Microsoft.AspNet.SignalR.Crank\bin\Debug` folder.
 
@@ -43,7 +40,7 @@ Available options for the Crank tool include:
 
 - **/?**: Shows the help screen. The available options are also displayed if the **Url** parameter is omitted.
 - **/Url**: The URL for SignalR connections. This parameter is required. For a SignalR application using the default mapping, the path will end in "/signalr".
-- **/Transport**: The name of the transport used. The default is `auto`, which will select the best available protocol. Options include `WebSockets`, `ServerSentEvents`, and `LongPolling` (`ForeverFrame` is not an option for Crank, since the .NET client rather than Internet Explorer is used). For more information on how SignalR selects transports, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md).
+- **/Transport**: The name of the transport used. The default is `auto`, which will select the best available protocol. Options include `WebSockets`, `ServerSentEvents`, and `LongPolling` (`ForeverFrame` is not an option for Crank, since the .NET client rather than Internet Explorer is used). For more information on how SignalR selects transports, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports).
 - **/BatchSize**: The number of clients added in each batch. The default is 50.
 - **/ConnectInterval**: The interval in milliseconds between adding connections. The default is 500.
 - **/Connections**: The number of connections used to load-test the application. The default is 100,000.
@@ -60,6 +57,6 @@ Available options for the Crank tool include:
 
 ### Example
 
-The following command will test a site called `pfsignalr` on Azure that hosts an application on port 8080 with a hub named "MyHub", using 100 connections.
+The following command will test a site called `pfsignalr` on Azure that hosts an application on port 8080 with a hub named "ControllerHub", using 100 connections.
 
 `crank /Connections:100 /Url:http://pfsignalr.cloudapp.net:8080/signalr`

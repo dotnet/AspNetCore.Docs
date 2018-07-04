@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb
 title: "Customizing the Data Modification Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to customize the interface of an editable GridView, by replacing the standard TextBox and CheckBox controls with alternati..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 4830d984-bd2c-4a08-bfe5-2385599f1f7d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb
 msc.type: authoredcontent
 ---
@@ -272,6 +269,6 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md)
-[Next](implementing-optimistic-concurrency-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md)
+> [Next](implementing-optimistic-concurrency-vb.md)

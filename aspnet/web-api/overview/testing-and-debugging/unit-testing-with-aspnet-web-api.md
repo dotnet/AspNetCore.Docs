@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api
 title: "Unit Testing ASP.NET Web API 2 | Microsoft Docs"
 author: tfitzmac
 description: "This guidance and application demonstrate how to create simple unit tests for your Web API 2 application. This tutorial shows how to include a unit test proj..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/05/2014
-ms.topic: article
 ms.assetid: bf20f78d-ff91-48be-abd1-88e23dcc70ba
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -27,7 +24,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
 > - Web API 2
 
 
@@ -49,12 +46,12 @@ This topic contains the following sections:
 <a id="prereqs"></a>
 ## Prerequisites
 
-Visual Studio 2013 or Visual Studio Express 2013 for Web
+Visual Studio 2017 Community, Professional or Enterprise edition
 
 <a id="download"></a>
 ## Download code
 
-Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-e2867d4d). The downloadable project includes unit test code for this topic and for the [Mocking Entity Framework when Unit Testing ASP.NET Web API](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md) topic.
+Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-1374bc11). The downloadable project includes unit test code for this topic and for the [Mocking Entity Framework when Unit Testing ASP.NET Web API](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md) topic.
 
 <a id="appwithunittest"></a>
 ## Create application with unit test project
@@ -112,7 +109,7 @@ Replace the existing code with the following code. To simplify this example, the
 
 [!code-csharp[Main](unit-testing-with-aspnet-web-api/samples/sample2.cs)]
 
-The GetProduct method returns an instance of the **IHttpActionResult** interface. IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development. Classes that implement the IHttpActionResult interface are found in the [System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx) namespace. These classes represent possible responses from an action request, and they correspond to HTTP status codes.
+The GetProduct method returns an instance of the **IHttpActionResult** interface. IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development. Classes that implement the IHttpActionResult interface are found in the [System.Web.Http.Results](https://msdn.microsoft.com/library/system.web.http.results.aspx) namespace. These classes represent possible responses from an action request, and they correspond to HTTP status codes.
 
 Build the solution.
 

@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
 title: "Authentication and Authorization in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Gives a general overview of authentication and authorization in ASP.NET Web API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/27/2012
-ms.topic: article
 ms.assetid: 6dfb51ea-9f4d-4e70-916c-8ef8344a88d6
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -31,7 +28,7 @@ The first article in the series gives a general overview of authentication and a
 
 Web API assumes that authentication happens in the host. For web-hosting, the host is IIS, which uses HTTP modules for authentication. You can configure your project to use any of the authentication modules built in to IIS or ASP.NET, or write your own HTTP module to perform custom authentication.
 
-When the host authenticates the user, it creates a *principal*, which is an [IPrincipal](https://msdn.microsoft.com/en-us/library/System.Security.Principal.IPrincipal.aspx) object that represents the security context under which code is running. The host attaches the principal to the current thread by setting **Thread.CurrentPrincipal**. The principal contains an associated **Identity** object that contains information about the user. If the user is authenticated, the **Identity.IsAuthenticated** property returns **true**. For anonymous requests, **IsAuthenticated** returns **false**. For more information about principals, see [Role-Based Security](https://msdn.microsoft.com/en-us/library/shz8h065.aspx).
+When the host authenticates the user, it creates a *principal*, which is an [IPrincipal](https://msdn.microsoft.com/library/System.Security.Principal.IPrincipal.aspx) object that represents the security context under which code is running. The host attaches the principal to the current thread by setting **Thread.CurrentPrincipal**. The principal contains an associated **Identity** object that contains information about the user. If the user is authenticated, the **Identity.IsAuthenticated** property returns **true**. For anonymous requests, **IsAuthenticated** returns **false**. For more information about principals, see [Role-Based Security](https://msdn.microsoft.com/library/shz8h065.aspx).
 
 ### HTTP Message Handlers for Authentication
 
@@ -72,9 +69,9 @@ Authorization happens later in the pipeline, closer to the controller. That lets
 <a id="auth3"></a>
 ### Using the [Authorize] Attribute
 
-Web API provides a built-in authorization filter, [AuthorizeAttribute](https://msdn.microsoft.com/en-us/library/system.web.http.authorizeattribute.aspx). This filter checks whether the user is authenticated. If not, it returns HTTP status code 401 (Unauthorized), without invoking the action.
+Web API provides a built-in authorization filter, [AuthorizeAttribute](https://msdn.microsoft.com/library/system.web.http.authorizeattribute.aspx). This filter checks whether the user is authenticated. If not, it returns HTTP status code 401 (Unauthorized), without invoking the action.
 
-You can apply the filter globally, at the controller level, or at the level of inidivual actions.
+You can apply the filter globally, at the controller level, or at the level of individual actions.
 
 **Globally**: To restrict access for every Web API controller, add the **AuthorizeAttribute** filter to the global filter list:
 

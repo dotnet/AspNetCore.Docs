@@ -16,11 +16,10 @@ namespace WebApp1.Services
         public Task SendEmailAsync(string email, string subject, string message)
         {
             // Plug in your email service here to send an email.
-            Execute(Options.SendGridKey, subject, message, email).Wait();
-            return Task.FromResult(0);
+            return Execute(Options.SendGridKey, subject, message, email);
         }
 
-        public async Task Execute(string apiKey, string subject, string message, string email)
+        public Task Execute(string apiKey, string subject, string message, string email)
         {
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
@@ -31,7 +30,7 @@ namespace WebApp1.Services
                 HtmlContent = message
             };
             msg.AddTo(new EmailAddress(email));
-            var response = await client.SendEmailAsync(msg);
+            return client.SendEmailAsync(msg);
         }
 
         public Task SendSmsAsync(string number, string message)

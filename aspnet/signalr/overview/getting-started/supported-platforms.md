@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/getting-started/supported-platforms
 title: "Supported Platforms | Microsoft Docs"
 author: pfletcher
 description: "This article describes what clients and servers are supported by SignalR."
 ms.author: aspnetcontent
-manager: wpickett
-ms.date: 06/10/2014
-ms.topic: article
+ms.date: 04/18/2018
 ms.assetid: eac31beb-0f46-4afa-9def-e80904dea4f0
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/supported-platforms
 msc.type: authoredcontent
 ---
@@ -23,7 +20,7 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
-SignalR is supported under a variety of server and client configurations. In addition, each transport option has a set of requirements of its own; if the system requirements for a transport are not available, SignalR will gracefully failover to other transports. For more information on the transports that SignalR supports, see [Transports and Fallbacks](introduction-to-signalr.md).
+SignalR is supported under a variety of server and client configurations. In addition, each transport option has a set of requirements of its own; if the system requirements for a transport are not available, SignalR will gracefully failover to other transports. For more information on the transports that SignalR supports, see [Transports and Fallbacks](introduction-to-signalr.md#transports).
 
 ## Server system requirements
 
@@ -31,17 +28,19 @@ The SignalR server component can be hosted on a variety of server configurations
 
 ### Supported server operating systems
 
-The SignalR server component can be hosted in the following server or client operating systems. Note that for SignalR to use WebSockets, Windows Server 2012 or Windows 8 is required (WebSocket can be used on Windows Azure Web Sites, as long as the site's .NET framework version is set to 4.5, and Web Sockets is enabled in the site's Configuration page).
+The SignalR server component can be hosted in the following server or client operating systems. Note that for SignalR to use WebSockets, Windows Server 2012, Windows Server 2016, or Windows 8 is required (WebSocket can be used on Windows Azure Web Sites, as long as the site's .NET framework version is set to 4.5, and Web Sockets is enabled in the site's Configuration page).
 
+- Windows Server 2016
 - Windows Server 2012
 - Windows Server 2008 r2
+- Windows 10
 - Windows 8
 - Windows 7
 - Windows Azure
 
 ### Supported server .NET Framework version
 
-SignalR 2 is only supported on .NET Famework 4.5. See the [Recommended Updates](#updates) section for updates that enhance reliability, compatibility, stability, and performance.
+SignalR 2 is only supported on .NET Framework 4.5. See the [Recommended Updates](#updates) section for updates that enhance reliability, compatibility, stability, and performance.
 
 ### Supported server IIS versions
 

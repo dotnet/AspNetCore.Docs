@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs
 title: "Master/Detail Using a Bulleted List of Master Records with a Details DataList (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll compress the two-page master/detail report of the previous tutorial into a single page, showing a bulleted list of category names on t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2006
-ms.topic: article
 ms.assetid: c727bb73-7b59-41a1-8dc3-623c6d69e7c2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs
 msc.type: authoredcontent
 ---
@@ -237,9 +234,9 @@ After completing the Configure Data Source wizard, Visual Studio auto-generates 
 
 Currently, the `CategoryProductsDataSource` ObjectDataSource s *`categoryID`* parameter is never set, so no products are displayed when viewing the page. What we need to do is have this parameter value set based on the `CategoryID` of the clicked category in the Repeater. This introduces two challenges: first, how do we determine when a LinkButton in the Repeater s `ItemTemplate` has been clicked; and second, how can we determine the `CategoryID` of the corresponding category whose LinkButton was clicked?
 
-The LinkButton like the Button and ImageButton controls has a `Click` event and a [`Command` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.linkbutton.command.aspx). The `Click` event is designed to simply note that the LinkButton has been clicked. At times, however, in addition to noting that the LinkButton has been clicked we also need to pass some extra information to the event handler. If this is the case, the LinkButton s [`CommandName`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.linkbutton.commandname.aspx) and [`CommandArgument`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.linkbutton.commandargument.aspx) properties can be assigned this extra information. Then, when the LinkButton is clicked, its `Command` event fires (instead of its `Click` event) and the event handler is passed the values of the `CommandName` and `CommandArgument` properties.
+The LinkButton like the Button and ImageButton controls has a `Click` event and a [`Command` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.linkbutton.command.aspx). The `Click` event is designed to simply note that the LinkButton has been clicked. At times, however, in addition to noting that the LinkButton has been clicked we also need to pass some extra information to the event handler. If this is the case, the LinkButton s [`CommandName`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.linkbutton.commandname.aspx) and [`CommandArgument`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.linkbutton.commandargument.aspx) properties can be assigned this extra information. Then, when the LinkButton is clicked, its `Command` event fires (instead of its `Click` event) and the event handler is passed the values of the `CommandName` and `CommandArgument` properties.
 
-When a `Command` event is raised from within a template in the Repeater, the Repeater s [`ItemCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.repeater.itemcommand.aspx) fires and is passed the `CommandName` and `CommandArgument` values of the clicked LinkButton (or Button or ImageButton). Therefore, to determine when a category LinkButton in the Repeater has been clicked, we need to do the following:
+When a `Command` event is raised from within a template in the Repeater, the Repeater s [`ItemCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.repeater.itemcommand.aspx) fires and is passed the `CommandName` and `CommandArgument` values of the clicked LinkButton (or Button or ImageButton). Therefore, to determine when a category LinkButton in the Repeater has been clicked, we need to do the following:
 
 1. Set the `CommandName` property of the LinkButton in the Repeater s `ItemTemplate` to some value (I ve used ListProducts ). By setting this `CommandName` value, the LinkButton s `Command` event fires when the LinkButton is clicked.
 2. Set the LinkButton s `CommandArgument` property to the value of the current item s `CategoryID`.
@@ -296,6 +293,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Zack Jones. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-detail-filtering-acess-two-pages-datalist-cs.md)
-[Next](master-detail-filtering-with-a-dropdownlist-datalist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-detail-filtering-acess-two-pages-datalist-cs.md)
+> [Next](master-detail-filtering-with-a-dropdownlist-datalist-vb.md)

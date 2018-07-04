@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-vb
 title: "Updating the TableAdapter to Use JOINs (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When working with a database it is common to request data that is spread across multiple tables. To retrieve data from two different tables we can use either..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: e624a3e0-061b-4efc-8b0e-5877f9ff6714
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-vb
 msc.type: authoredcontent
 ---
@@ -48,7 +45,7 @@ Alternatively, a `JOIN` can be used to return each product s supplier and catego
 A `JOIN` merges the records from one table with records from another table based on some criteria. In the above query, for example, the `LEFT JOIN Categories ON Categories.CategoryID = Products.CategoryID` instructs SQL Server to merge each product record with the category record whose `CategoryID` value matches the product s `CategoryID` value. The merged result allows us to work with the corresponding category fields for each product (such as `CategoryName`).
 
 > [!NOTE]
-> `JOIN` s are commonly used when querying data from relational databases. If you are new to the `JOIN` syntax or need to brush up a bit on its usage, I d recommend the [SQL Join tutorial](http://www.w3schools.com/sql/sql_join.asp) at [W3 Schools](http://www.w3schools.com/). Also worth reading are the [`JOIN` Fundamentals](https://msdn.microsoft.com/en-us/library/ms191517.aspx) and [Subquery Fundamentals](https://msdn.microsoft.com/en-us/library/ms189575.aspx) sections of the [SQL Books Online](https://msdn.microsoft.com/en-us/library/ms130214.aspx).
+> `JOIN` s are commonly used when querying data from relational databases. If you are new to the `JOIN` syntax or need to brush up a bit on its usage, I d recommend the [SQL Join tutorial](http://www.w3schools.com/sql/sql_join.asp) at [W3 Schools](http://www.w3schools.com/). Also worth reading are the [`JOIN` Fundamentals](https://msdn.microsoft.com/library/ms191517.aspx) and [Subquery Fundamentals](https://msdn.microsoft.com/library/ms189575.aspx) sections of the [SQL Books Online](https://msdn.microsoft.com/library/ms130214.aspx).
 
 
 Since `JOIN` s and correlated subqueries can both be used to retrieve related data from other tables, many developers are left scratching their heads and wondering which approach to use. All of the SQL gurus I ve talked to have said roughly the same thing, that it doesn t really matter performance-wise as SQL Server will produce roughly identical execution plans. Their advice, then, is to use the technique that you and your team are most comfortable with. It merits noting that after imparting this advice these experts immediately express their preference of `JOIN` s over correlated subqueries.
@@ -260,6 +257,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Geisenow, David Suru, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
-[Next](adding-additional-datatable-columns-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
+> [Next](adding-additional-datatable-columns-vb.md)

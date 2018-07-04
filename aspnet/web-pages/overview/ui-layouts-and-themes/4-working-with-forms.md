@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/ui-layouts-and-themes/4-working-with-forms
 title: "Working with HTML Forms in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "A form is a section of an HTML document where you put user-input controls, like text boxes, check boxes, radio buttons, and pull-down lists. You use forms wh..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/10/2014
-ms.topic: article
 ms.assetid: f3f4b8c8-e8f6-4474-ad94-69228a6c01ee
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/4-working-with-forms
 msc.type: authoredcontent
 ---
@@ -133,7 +130,7 @@ You can fix this easily, however. You have access to the values that were submit
 <a id="Additional_Resources"></a>
 ## Additional Resources
 
-- [1,001 Ways to Get Input from Web Users](https://msdn.microsoft.com/en-us/library/ms971057.aspx)
-- [Using Forms and Processing User Input](https://msdn.microsoft.com/en-us/library/ms525182(VS.90).aspx)
+- [1,001 Ways to Get Input from Web Users](https://msdn.microsoft.com/library/ms971057.aspx)
+- [Using Forms and Processing User Input](https://msdn.microsoft.com/library/ms525182(VS.90).aspx)
 - [Validating User Input in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=253002)
-- [Using AutoComplete in HTML Forms](https://msdn.microsoft.com/en-us/library/ms533032(VS.85).aspx)
+- [Using AutoComplete in HTML Forms](https://msdn.microsoft.com/library/ms533032(VS.85).aspx)

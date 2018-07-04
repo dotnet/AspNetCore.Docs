@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb
 title: "Using the TagBuilder Class to Build HTML Helpers (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther introduces you to a useful utility class in the ASP.NET MVC framework named the TagBuilder class. You can use the TagBuilder class to easily..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/02/2009
-ms.topic: article
 ms.assetid: ec26f264-d0ea-4031-9943-825505a3ac4b
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb
 msc.type: authoredcontent
 ---
@@ -53,7 +50,7 @@ For example, Listing 1 contains an Image HTML helper. The Image helper is implem
 
 The module in Listing 1 contains two overloaded methods named Image(). When you call the Image() method, you can pass an object which represents a set of HTML attributes or not.
 
-Notice how the TagBuilder.MergeAttribute() method is used to add individual attributes such as the src attribute to the TagBuilder. Notice, furthermore, how the TagBuilder.MergeAttributes() method is used to add a collection of attributes to the TagBuilder. The MergeAttributes() method accepts a Dictionary&lt;string,object&gt; parameter. The The RouteValueDictionary class is used to convert the Object representing the collection of attributes into a Dictionary&lt;string,object&gt;.
+Notice how the TagBuilder.MergeAttribute() method is used to add individual attributes such as the src attribute to the TagBuilder. Notice, furthermore, how the TagBuilder.MergeAttributes() method is used to add a collection of attributes to the TagBuilder. The MergeAttributes() method accepts a Dictionary&lt;string,object&gt; parameter. The RouteValueDictionary class is used to convert the Object representing the collection of attributes into a Dictionary&lt;string,object&gt;.
 
 After you create the Image helper, you can use the helper in your ASP.NET MVC views just like any of the other standard HTML helpers. The view in Listing 2 uses the Image helper to display the same image of an Xbox twice (see Figure 1). The Image() helper is called both with and without an HTML attribute collection.
 
@@ -73,6 +70,6 @@ Notice that you must import the namespace associated with the Image helper at th
 
 In a Visual Basic application, the default namespace is the same as the name of the application.
 
->[!div class="step-by-step"]
-[Previous](creating-custom-html-helpers-vb.md)
-[Next](creating-page-layouts-with-view-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-html-helpers-vb.md)
+> [Next](creating-page-layouts-with-view-master-pages-vb.md)

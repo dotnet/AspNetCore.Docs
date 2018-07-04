@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/advanced/dependency-injection
 title: "Dependency Injection in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to inject dependencies into your ASP.NET Web API controller. Software versions used in the tutorial Web API 2 Unity Application Block..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: e3d3e7ba-87f0-4032-bdd3-31f3c1aa9d9c
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/dependency-injection
 msc.type: authoredcontent
 ---
@@ -85,7 +82,7 @@ An IoC container is a software component that is responsible for managing depend
 > "IoC" stands for "inversion of control", which is a general pattern where a framework calls into application code. An IoC container constructs your objects for you, which "inverts" the usual flow of control.
 
 
-For this tutorial, we'll use [Unity](https://msdn.microsoft.com/en-us/library/ff647202.aspx) from Microsoft Patterns &amp; Practices. (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Ninject](http://www.ninject.org/), and [StructureMap](http://docs.structuremap.net/).) You can use NuGet Package Manager to install Unity. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
+For this tutorial, we'll use [Unity](https://msdn.microsoft.com/library/ff647202.aspx) from Microsoft Patterns &amp; Practices. (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Ninject](http://www.ninject.org/), and [StructureMap](http://docs.structuremap.net/).) You can use NuGet Package Manager to install Unity. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
 [!code-console[Main](dependency-injection/samples/sample7.cmd)]
 
@@ -105,7 +102,7 @@ The following code registers the `IProductRepository` interface with Unity and t
 
 [!code-csharp[Main](dependency-injection/samples/sample9.cs)]
 
-## Dependenecy Scope and Controller Lifetime
+## Dependency Scope and Controller Lifetime
 
 Controllers are created per request. To manage object lifetimes, **IDependencyResolver** uses the concept of a *scope*.
 

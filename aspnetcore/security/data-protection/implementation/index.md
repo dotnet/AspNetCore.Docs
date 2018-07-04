@@ -1,33 +1,27 @@
 ---
-title: Implementation | Microsoft Docs
+title: ASP.NET Core Data Protection implementation
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Discover the various ASP.NET Core Data Protection implementation topics.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 706a11bb-bf6e-4e91-930b-e3f4e71d04a0
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: security/data-protection/implementation/index
 ---
-# Implementation
+# ASP.NET Core Data Protection implementation
 
-* [Authenticated encryption details.](authenticated-encryption-details.md)
+* [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 
-* [Subkey Derivation and Authenticated Encryption](subkeyderivation.md)
+* [Subkey Derivation and Authenticated Encryption](xref:security/data-protection/implementation/subkeyderivation)
 
-* [Context headers](context-headers.md)
+* [Context headers](xref:security/data-protection/implementation/context-headers)
 
-* [Key Management](key-management.md)
+* [Key Management](xref:security/data-protection/implementation/key-management)
 
-* [Key Storage Providers](key-storage-providers.md)
+* [Key Storage Providers](xref:security/data-protection/implementation/key-storage-providers)
 
-* [Key Encryption At Rest](key-encryption-at-rest.md)
+* [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-* [Key Immutability and Changing Settings](key-immutability.md)
+* [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
 
-* [Key Storage Format](key-storage-format.md)
+* [Key Storage Format](xref:security/data-protection/implementation/key-storage-format)
 
-* [Ephemeral data protection providers](key-storage-ephemeral.md)
+* [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)

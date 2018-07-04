@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-3
 title: "Part 3: Creating an Admin Controller | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/04/2012
-ms.topic: article
 ms.assetid: 6b9ae3c4-0274-4170-a1bb-9df9c546b2a9
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-3
 msc.type: authoredcontent
 ---
@@ -96,6 +93,6 @@ Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first reque
 
 [!code-console[Main](using-web-api-with-entity-framework-part-3/samples/sample6.cmd)]
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-2.md)
-[Next](using-web-api-with-entity-framework-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-2.md)
+> [Next](using-web-api-with-entity-framework-part-4.md)

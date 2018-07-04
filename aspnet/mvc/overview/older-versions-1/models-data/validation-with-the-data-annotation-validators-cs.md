@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs
 title: "Validation with the Data Annotation Validators (C#) | Microsoft Docs"
 author: microsoft
 description: "Take advantage of the Data Annotation Model Binder to perform validation within an ASP.NET MVC application. Learn how to use the different types of validator..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/29/2009
-ms.topic: article
 ms.assetid: 7ca8013e-9dfc-4e33-8336-cdccfd5f9414
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs
 msc.type: authoredcontent
 ---
@@ -52,7 +49,7 @@ This line of code registers the ataAnnotationsModelBinder as the default model b
 When you use the Data Annotations Model Binder, you use validator attributes to perform validation. The System.ComponentModel.DataAnnotations namespace includes the following validator attributes:
 
 - Range – Enables you to validate whether the value of a property falls between a specified range of values.
-- ReqularExpression – Enables you to validate whether the value of a property matches a specified regular expression pattern.
+- RegularExpression – Enables you to validate whether the value of a property matches a specified regular expression pattern.
 - Required – Enables you to mark a property as required.
 - StringLength – Enables you to specify a maximum length for a string property.
 - Validation – The base class for all validator attributes.
@@ -147,6 +144,6 @@ The page in **Figure 6** illustrates the error messages returned when you enter 
 
 In this tutorial, you learned how to take advantage of the Data Annotation Model Binder to perform validation within an ASP.NET MVC application. You learned how to use the different types of validator attributes such as the Required and StringLength attributes. You also learned how to use these attributes when working with the Microsoft Entity Framework.
 
->[!div class="step-by-step"]
-[Previous](validating-with-a-service-layer-cs.md)
-[Next](creating-model-classes-with-the-entity-framework-vb.md)
+> [!div class="step-by-step"]
+> [Previous](validating-with-a-service-layer-cs.md)
+> [Next](creating-model-classes-with-the-entity-framework-vb.md)

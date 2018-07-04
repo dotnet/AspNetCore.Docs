@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
 title: "Attribute Routing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: 979d6c9f-0129-4e5b-ae56-4507b281b86d
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
 msc.type: authoredcontent
 ---
@@ -22,18 +19,10 @@ The earlier style of routing, called convention-based routing, is still fully su
 
 This topic shows how to enable attribute routing and describes the various options for attribute routing. For an end-to-end tutorial that uses attribute routing, see [Create a REST API with Attribute Routing in Web API 2](create-a-rest-api-with-attribute-routing.md).
 
-- [Why Attribute Routing?](#why)
-- [Enabling Attribute Routing](#enable)
-- [Adding Route Attributes](#add-routes)
-- [Route Prefixes](#prefixes)
-- [Route Constraints](#constraints)
-- [Optional URI Parameters and Default Values](#optional)
-- [Route Names](#route-names)
-- [Route Order](#order)
 
 ## Prerequisites
 
-[Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) or [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express)
+[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional, or Enterprise Edition
 
 Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
 
@@ -70,7 +59,7 @@ In this example, "1" is an order number, but "pending" maps to a collection.
 `/orders/1`  
 `/orders/pending`
 
-**Mulitple parameter types**
+**Multiple parameter types**
 
 In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
@@ -102,7 +91,7 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample5.cs?highlight=4)]
 
 > [!NOTE]
-> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
+> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md#webhost).
 
 
 <a id="add-routes"></a>
@@ -132,7 +121,7 @@ Any controller methods that do not have a route attribute use convention-based r
 
 Web API also selects actions based on the HTTP method of the request (GET, POST, etc). By default, Web API looks for a case-insensitive match with the start of the controller method name. For example, a controller method named `PutCustomers` matches an HTTP PUT request.
 
-You can override this convention by decorating the mathod with any the following attributes:
+You can override this convention by decorating the method with any the following attributes:
 
 - **[HttpDelete]**
 - **[HttpGet]**
@@ -263,7 +252,7 @@ Here is how the total ordering is determined:
     3. Route parameters without constraints.
     4. Wildcard parameter segments with constraints.
     5. Wildcard parameter segments without constraints.
-3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/en-us/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
+3. In the case of a tie, routes are ordered by a case-insensitive ordinal string comparison ([OrdinalIgnoreCase](https://msdn.microsoft.com/library/system.stringcomparer.ordinalignorecase.aspx)) of the route template.
 
 Here is an example. Suppose you define the following controller:
 

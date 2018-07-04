@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/membership
 title: "Membership | Microsoft Docs"
 author: microsoft
 description: "ASP.NET Membership builds on the success of the Forms authentication model from ASP.NET 1.x. ASP.NET Forms authentication provides a convenient way to incorp..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2005
-ms.topic: article
 ms.assetid: f2339485-5d78-4c5e-8c0a-dc9b8a315345
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/membership
 msc.type: authoredcontent
 ---
@@ -114,7 +111,7 @@ The LoginView control is a templated control that provides two templates by defa
 
 ## PasswordRecovery Control
 
-The PasswordRecovery control allows users to receive an e-mail with his or her current password or reset his or her password. Clear text and encrypted passwords can be recovered and e-mailed to users. If the password is hashed, it cannot be recovered. Instead the user will be required to perform a password reset.
+The PasswordRecovery control allows users to receive an email with his or her current password or reset his or her password. Clear text and encrypted passwords can be recovered and emailed to users. If the password is hashed, it cannot be recovered. Instead the user will be required to perform a password reset.
 
 ## LoginStatus Control
 

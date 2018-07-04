@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-vb
 title: "Creating a Rating Control (VB) | Microsoft Docs"
 author: wenz
 description: "Many websites, from e-commerce to community sites, offer their users to rate articles or items. This usually requires some coding effort, but we do have the..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 6d0d70f4-725e-4258-8ae8-24a6ba1ddbf7
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-vb
 msc.type: authoredcontent
 ---
@@ -67,5 +64,5 @@ Save the page and load it into your browser. When you hover over the (initially 
 
 Creating a rating system with minimal code ([Click to view full-size image](creating-a-rating-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](creating-a-rating-control-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-rating-control-cs.md)

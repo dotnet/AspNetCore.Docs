@@ -1,4 +1,4 @@
-@model ContosoUniversity.Models.Department
+﻿@model ContosoUniversity.Models.Department
 
 @{
     ViewData["Title"] = "Delete";
@@ -42,9 +42,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="DepartmentID" />
         <input type="hidden" asp-for="RowVersion" />
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
-        </div>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

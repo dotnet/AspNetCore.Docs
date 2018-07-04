@@ -1,19 +1,20 @@
 ---
+uid: web-pages/content-guide
 title: "WebMatrix Content Guide | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/13/2011
-ms.topic: article
 ms.assetid: b558e481-775a-4aa0-bd3b-ad61e530c2d2
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/content-guide
 msc.type: content
 ---
 WebMatrix Content Guide
 ====================
+
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+
 WebMatrix is a set of tools that provides an easy way to build Web sites for Microsoft Windows. It includes IIS Express (a development web server), ASP.NET (a web programming framework), and SQL Server Compact (an embedded database). To see a quick tour of WebMatrix, see [WebMatrix Overview](https://www.microsoft.com/web/webmatrix/). To review the top WebMatrix features, see [WebMatrix Features](https://www.microsoft.com/web/webmatrix/features/).
 
 | **Scenario** | **Content** |

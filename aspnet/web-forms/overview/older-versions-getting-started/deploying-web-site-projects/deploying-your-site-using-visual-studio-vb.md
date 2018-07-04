@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-vb
 title: "Deploying Your Site Using Visual Studio (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio includes tools for deploying a website. Learn more about these tools in this tutorial."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 977105f3-7987-4e50-8be7-afb53b4ca28a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-vb
 msc.type: authoredcontent
 ---
@@ -27,7 +24,7 @@ The preceding tutorial looked at how to deploy a simple ASP.NET web application 
 
 
 > [!NOTE]
-> Other deployment-related tools offered by Visual Studio include [Web Setup Projects](https://msdn.microsoft.com/en-us/library/wx3b589t.aspx) and [Web Deployment Projects](https://www.microsoft.com/downloads/details.aspx?FamilyId=0AA30AE8-C73B-4BDD-BB1B-FE697256C459&amp;displaylang=en) Add-In. Web Setup Projects package a website's contents and configuration information into a single MSI file. This option is most useful for websites that are deployed within an intranet or for companies that sell a pre-packaged web application that customers install on their own web servers. The Web Deployment Projects Add-In is a Visual Studio Add-In that facilitates specifying configuration differences between builds for development environments and production environments. Web Setup Projects are not discussed in this tutorial series; Web Deployment Projects are summarized in the [*Common Configuration Differences Between Development and Production*](common-configuration-differences-between-development-and-production-vb.md) tutorial.
+> Other deployment-related tools offered by Visual Studio include [Web Setup Projects](https://msdn.microsoft.com/library/wx3b589t.aspx) and [Web Deployment Projects](https://www.microsoft.com/downloads/details.aspx?FamilyId=0AA30AE8-C73B-4BDD-BB1B-FE697256C459&amp;displaylang=en) Add-In. Web Setup Projects package a website's contents and configuration information into a single MSI file. This option is most useful for websites that are deployed within an intranet or for companies that sell a pre-packaged web application that customers install on their own web servers. The Web Deployment Projects Add-In is a Visual Studio Add-In that facilitates specifying configuration differences between builds for development environments and production environments. Web Setup Projects are not discussed in this tutorial series; Web Deployment Projects are summarized in the [*Common Configuration Differences Between Development and Production*](common-configuration-differences-between-development-and-production-vb.md) tutorial.
 
 
 ## Deploying Your Site Using the Copy Web Site Tool
@@ -144,12 +141,12 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Copying Web Site with the Copy Web Site Tool](https://msdn.microsoft.com/en-us/library/1cc82atw.aspx)
+- [Copying Web Site with the Copy Web Site Tool](https://msdn.microsoft.com/library/1cc82atw.aspx)
 - [How Do I: Deploy a Web Site Using the Copy Web Site Tool](../../../videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool.md) (Video)
-- [How To: Publish Web Application Projects](https://msdn.microsoft.com/en-us/library/aa983453.aspx)
-- [How To: Publish Web Sites](https://msdn.microsoft.com/en-us/library/20yh9f1b.aspx)
-- [Setup and Deployment Projects in Visual Studio](https://msdn.microsoft.com/en-us/library/wx3b589t.aspx)
+- [How To: Publish Web Application Projects](https://msdn.microsoft.com/library/aa983453.aspx)
+- [How To: Publish Web Sites](https://msdn.microsoft.com/library/20yh9f1b.aspx)
+- [Setup and Deployment Projects in Visual Studio](https://msdn.microsoft.com/library/wx3b589t.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-your-site-using-an-ftp-client-vb.md)
-[Next](common-configuration-differences-between-development-and-production-vb.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-your-site-using-an-ftp-client-vb.md)
+> [Next](common-configuration-differences-between-development-and-production-vb.md)

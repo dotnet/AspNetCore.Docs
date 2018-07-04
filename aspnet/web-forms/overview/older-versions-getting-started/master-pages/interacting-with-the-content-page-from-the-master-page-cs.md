@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs
 title: "Interacting with the Content Page from the Master Page (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to call methods, set properties, etc. of the Content Page from code in the Master Page."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/11/2008
-ms.topic: article
 ms.assetid: 3282df5e-516c-4972-8666-313828b90fb5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs
 msc.type: authoredcontent
 ---
@@ -152,7 +149,7 @@ A class subscribes to an event by creating an *event handler*, which is a method
 The second parameter passed to an event handler can include additional information about the event. While the base `EventArgs` class does not pass along any information, the .NET Framework includes a number of classes that extend `EventArgs` and encompass additional properties. For example, a `CommandEventArgs` instance is passed to event handlers that respond to the `Command` event, and includes two informational properties: `CommandArgument` and `CommandName`.
 
 > [!NOTE]
-> For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
+> For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
 
 
 To define an event use the following syntax:
@@ -245,7 +242,7 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Accessing and Updating Data in ASP.NET](http://aspnet.4guysfromrolla.com/articles/011106-1.aspx)
-- [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx)
+- [Events and Delegates](https://msdn.microsoft.com/library/17sde2xt.aspx)
 - [Passing Information Between Content and Master Pages](http://aspnet.4guysfromrolla.com/articles/013107-1.aspx)
 - [Working with Data in ASP.NET Tutorials](../../data-access/index.md)
 
@@ -257,6 +254,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](interacting-with-the-master-page-from-the-content-page-cs.md)
-[Next](master-pages-and-asp-net-ajax-cs.md)
+> [!div class="step-by-step"]
+> [Previous](interacting-with-the-master-page-from-the-content-page-cs.md)
+> [Next](master-pages-and-asp-net-ajax-cs.md)

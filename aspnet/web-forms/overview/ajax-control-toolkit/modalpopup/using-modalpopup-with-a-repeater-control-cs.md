@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/modalpopup/using-modalpopup-with-a-repeater-control-cs
 title: "Using ModalPopup with a Repeater Control (C#) | Microsoft Docs"
 author: wenz
 description: "The ModalPopup control in the AJAX Control Toolkit offers a simple way to create a modal popup using client-side means. It is also possible to use this contr..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: d686d84a-1c58-492e-8a77-3eb5a0cfe918
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup/using-modalpopup-with-a-repeater-control-cs
 msc.type: authoredcontent
 ---
@@ -50,6 +47,6 @@ Then, every item in the data source is displayed with a button next to it that t
 
 The modal popup can be triggered for every data source entry ([Click to view full-size image](using-modalpopup-with-a-repeater-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](launching-a-modal-popup-window-from-server-code-cs.md)
-[Next](handling-postbacks-from-a-modalpopup-cs.md)
+> [!div class="step-by-step"]
+> [Previous](launching-a-modal-popup-window-from-server-code-cs.md)
+> [Next](handling-postbacks-from-a-modalpopup-cs.md)

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project
 title: "Create a New ASP.NET MVC Project | Microsoft Docs"
 author: microsoft
 description: "Step 1 shows you how to put the basic NerdDinner application structure in place."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/27/2010
-ms.topic: article
 ms.assetid: 7e0e9928-8fdc-4b74-9882-55fac0976628
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project
 msc.type: authoredcontent
 ---
@@ -130,6 +127,6 @@ Later in this tutorial we'll talk more about automated testing and add additiona
 
 We've now got a basic application structure in place. Let's now [create a database to store our application data](create-a-database.md).
 
->[!div class="step-by-step"]
-[Previous](introducing-the-nerddinner-tutorial.md)
-[Next](create-a-database.md)
+> [!div class="step-by-step"]
+> [Previous](introducing-the-nerddinner-tutorial.md)
+> [Next](create-a-database.md)

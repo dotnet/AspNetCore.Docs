@@ -1,18 +1,12 @@
 ---
-title: Getting Started with ASP.NET Core and Entity Framework 6 | Microsoft Docs
-author: tdykstra
+title: Get Started with ASP.NET Core and Entity Framework 6
+author: rick-anderson
 description: This article shows how to use Entity Framework 6 in an ASP.NET Core application.
-keywords: ASP.NET Core, Entity Framework, EF 6
 ms.author: tdykstra
-manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 016cc836-4c43-45a4-b9a7-9efaf53350df
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.date: 02/24/2017
 uid: data/entity-framework-6
 ---
-# Getting started with ASP.NET Core and Entity Framework 6
+# Get Started with ASP.NET Core and Entity Framework 6
 
 By [Paweł Grudzień](https://github.com/pgrudzien12), [Damien Pontifex](https://github.com/DamienPontifex), and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -20,21 +14,21 @@ This article shows how to use Entity Framework 6 in an ASP.NET Core application.
 
 ## Overview
 
-To use Entity Framework 6, your project has to compile against the full .NET Framework, as Entity Framework 6 does not support .NET Core. If you need cross-platform features you will need to upgrade to [Entity Framework Core](https://docs.efproject.net).
+To use Entity Framework 6, your project has to compile against .NET Framework, as Entity Framework 6 doesn't support .NET Core. If you need cross-platform features you will need to upgrade to [Entity Framework Core](https://docs.microsoft.com/ef/).
 
 The recommended way to use Entity Framework 6 in an ASP.NET Core application is to put the EF6 context and model classes in a class library project that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample [Visual Studio solution with EF6 and ASP.NET Core projects](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
 
 You can't put an EF6 context in an ASP.NET Core project because .NET Core projects don't support all of the functionality that EF6 commands such as *Enable-Migrations* require.
 
-Regardless of project type in which you locate your EF6 context, only EF6 command-line tools work with an EF6 context. For example, `Scaffold-DbContext` is only available in Entity Framework Core. If you need to do reverse engineering of a database into an EF6 model, see [Code First to an Existing Database](https://msdn.microsoft.com/en-us/jj200620).
+Regardless of project type in which you locate your EF6 context, only EF6 command-line tools work with an EF6 context. For example, `Scaffold-DbContext` is only available in Entity Framework Core. If you need to do reverse engineering of a database into an EF6 model, see [Code First to an Existing Database](https://msdn.microsoft.com/jj200620).
 
 ## Reference full framework and EF6 in the ASP.NET Core project
 
-Your ASP.NET Core project needs to reference the full .NET framework and EF6. For example, the *.csproj* file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
+Your ASP.NET Core project needs to reference .NET framework and EF6. For example, the *.csproj* file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]
 
-If you’re creating a new project, use the **ASP.NET Core Web Application (.NET Framework)** template.
+When creating a new project, use the **ASP.NET Core Web Application (.NET Framework)** template.
 
 ## Handle connection strings
 
@@ -88,6 +82,6 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 This article has provided basic guidance for using Entity Framework 6 in an ASP.NET Core application.
 
-## Additional Resources
+## Additional resources
 
-* [Entity Framework - Code-Based Configuration](https://msdn.microsoft.com/en-us/data/jj680699.aspx)
+* [Entity Framework - Code-Based Configuration](https://msdn.microsoft.com/data/jj680699.aspx)

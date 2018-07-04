@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/security/working-with-ssl-in-web-api
 title: "Working with SSL in Web API | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to use SSL with ASP.NET Web API, including using SSL client certificates."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/12/2012
-ms.topic: article
 ms.assetid: 97f6164f-59cf-45c0-b820-e4aa29b45396
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/working-with-ssl-in-web-api
 msc.type: authoredcontent
 ---
@@ -25,7 +22,7 @@ To set up SSL in IIS 7 or later:
 - Create or get a certificate. For testing, you can create a self-signed certificate.
 - Add an HTTPS binding.
 
-For details, see [How to Set Up SSL on IIS 7](http://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
+For details, see [How to Set Up SSL on IIS 7](https://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
 
 For local testing, you can enable SSL in IIS Express from Visual Studio. In the Properties window, set **SSL Enabled** to **True**. Note the value of **SSL URL**; use this URL for testing HTTPS connections.
 
@@ -66,7 +63,7 @@ The **SslNegotiateCert** flag means IIS will accept a certificate from the clien
 
 ### Creating a Client Certificate for Testing
 
-For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/en-US/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
+For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
 
 [!code-console[Main](working-with-ssl-in-web-api/samples/sample4.cmd)]
 
@@ -89,6 +86,6 @@ Now create a client certificate that is signed by the first certificate:
 
 ### Using Client Certificates in Web API
 
-On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
+On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
 
 [!code-csharp[Main](working-with-ssl-in-web-api/samples/sample6.cs)]

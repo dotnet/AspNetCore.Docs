@@ -1,14 +1,11 @@
 ---
+uid: web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms
 title: "How Do I: Use Routing with ASP.NET Web Forms? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to implement routing for Web Forms in ASP.NET 4. First, the concept of routing a URL is compared to mapping the URL to a p..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/15/2010
-ms.topic: article
 ms.assetid: a3ab6cd9-8f71-4b73-9336-21c0de078269
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms
 msc.type: video
 ---
@@ -20,6 +17,6 @@ In this video Chris Pels shows how to implement routing for Web Forms in ASP.NET
 
 [&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-routing-with-aspnet-web-forms)
 
->[!div class="step-by-step"]
-[Previous](aspnet-4-quick-hit-outbound-webforms-routing.md)
-[Next](how-do-i-work-with-urls-in-aspnet-routing.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-4-quick-hit-outbound-webforms-routing.md)
+> [Next](how-do-i-work-with-urls-in-aspnet-routing.md)

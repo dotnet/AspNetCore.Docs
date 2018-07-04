@@ -8,7 +8,7 @@ public static class WebApiConfig
         builder.EntitySet<ProductRating>("Ratings");
 
         // New code: Add an action to the EDM, and define the parameter and return type.
-        ActionConfiguration rateProduct = builder.Entity>Product>().Action("RateProduct");
+        ActionConfiguration rateProduct = builder.Entity<Product>().Action("RateProduct");
         rateProduct.Parameter<int>("Rating");
         rateProduct.Returns<double>();
 

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-vb
 title: "Dynamically Populating a Control (VB) | Microsoft Docs"
 author: wenz
 description: "The DynamicPopulate control in the ASP.NET AJAX Control Toolkit calls a web service (or page method) and fills the resulting value into a target control on t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 27305347-7b5d-4519-97b7-197a357e7f6e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-vb
 msc.type: authoredcontent
 ---
@@ -67,6 +64,6 @@ Run the ASP.NET page in the browser and click on the button; you will receive th
 
 A click on the button retrieves the date from the server ([Click to view full-size image](dynamically-populating-a-control-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
-[Next](dynamically-populating-a-control-using-javascript-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
+> [Next](dynamically-populating-a-control-using-javascript-code-vb.md)

@@ -1,0 +1,80 @@
+@page
+@using TagHelpersBuiltIn.Models
+@model TagHelpersBuiltIn.Pages.ProductModel
+@{
+    ViewData["Title"] = "Partial Tag Helper";
+}
+
+<table class="table table-hover">
+    <caption>Partial Tag Helper attribute examples</caption>
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Markup</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>for</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"" />"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_For> -->
+                <partial name="_ProductPartial"
+                         for="Product" />
+                <!-- </snippet_For> -->
+            </td>
+        </tr>
+        <tr>
+            <td>model</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" model='new Product { Number = 1, Name = ""Test product"", Description=""This is a test"" }' />"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_Model> -->
+                <partial name="_ProductPartial"
+                         model='new Product { Number = 1, Name = "Test product", Description = "This is a test" }' />
+                <!-- </snippet_Model> -->
+            </td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""Shared/_ProductPartial.cshtml"" for=""Product"" />"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_Name> -->
+                <partial name="Shared/_ProductPartial.cshtml"
+                         for="Product" />
+                <!-- </snippet_Name> -->
+            </td>
+        </tr>
+        <tr>
+            <td>view-data</td>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"" view-data=""ViewData"" />"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_ViewData> -->
+                @{
+                    ViewData["IsNumberReadOnly"] = true;
+                }
+
+                <partial name="_ProductViewDataPartial"
+                         for="Product"
+                         view-data="ViewData" />
+                <!-- </snippet_ViewData> -->
+            </td>
+        </tr>
+    </tbody>
+</table>

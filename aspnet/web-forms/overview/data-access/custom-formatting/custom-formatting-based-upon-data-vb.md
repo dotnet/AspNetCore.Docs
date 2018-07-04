@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/custom-formatting/custom-formatting-based-upon-data-vb
 title: "Custom Formatting Based Upon Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Adjusting the format of the GridView, DetailsView, or FormView based upon the data bound to it can be accomplished in multiple ways. In this tutorial we'll l..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: df5a1525-386f-4632-972c-57b199870bc3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/custom-formatting-based-upon-data-vb
 msc.type: authoredcontent
 ---
@@ -91,7 +88,7 @@ The following code illustrates how to determine whether the `UnitPrice` value bo
 [!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample3.vb)]
 
 > [!NOTE]
-> Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/en-us/library/system.data.strongtypingexception.aspx).
+> Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/library/system.data.strongtypingexception.aspx).
 
 
 ## Step 3: Formatting the UnitPrice Value in the DetailsView
@@ -187,7 +184,7 @@ Once we have a programmatic reference to the Web control, we can modify its styl
 [!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample12.vb)]
 
 > [!NOTE]
-> The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
+> The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
 
 
 Figures 7 shows the FormView when viewing a product whose `UnitsInStock` value is greater than 10, while the product in Figure 8 has its value less than 10.
@@ -223,7 +220,7 @@ For the GridView, then, data binding is more accurately described by the followi
 1. The GridView's `DataBinding` event fires.
 2. The data is bound to the GridView.   
   
- For each record in the data source 
+   For each record in the data source 
 
     1. Create a `GridViewRow` object
     2. Fire the `RowCreated` event
@@ -323,6 +320,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were E.R. Gilmore, Dennis Patterson, and Dan Jagers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-summary-information-in-the-gridview-s-footer-cs.md)
-[Next](using-templatefields-in-the-gridview-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-summary-information-in-the-gridview-s-footer-cs.md)
+> [Next](using-templatefields-in-the-gridview-control-vb.md)

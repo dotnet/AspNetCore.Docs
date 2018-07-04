@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 title: "Understanding and Handling Connection Lifetime Events in SignalR | Microsoft Docs"
 author: pfletcher
 description: "This article describes how to use the events exposed by the Hubs API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 03960de2-8d95-4444-9169-4426dcc64913
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 msc.type: authoredcontent
 ---
@@ -20,9 +17,9 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > 
 > The article assumes you already have some knowledge of SignalR and connection lifetime events. For an introduction to SignalR, see [Introduction to SignalR](../getting-started/introduction-to-signalr.md). For lists of connection lifetime events, see the following resources:
 > 
-> - [How to handle connection lifetime events in the Hub class](hubs-api-guide-server.md)
-> - [How to handle connection lifetime events in JavaScript clients](hubs-api-guide-javascript-client.md)
-> - [How to handle connection lifetime events in .NET clients](hubs-api-guide-net-client.md)
+> - [How to handle connection lifetime events in the Hub class](hubs-api-guide-server.md#connectionlifetime)
+> - [How to handle connection lifetime events in JavaScript clients](hubs-api-guide-javascript-client.md#connectionlifetime)
+> - [How to handle connection lifetime events in .NET clients](hubs-api-guide-net-client.md#connectionlifetime)
 > 
 > ## Software versions used in this topic
 > 
@@ -63,7 +60,7 @@ This article contains the following sections:
 - [How to disconnect a client in server code](#disconnectclientfromserver)
 - [Detecting the reason for a disconnection](#detectingreasonfordisconnection)
 
-Links to API Reference topics are to the .NET 4.5 version of the API. If you're using .NET 4, see [the .NET 4 version of the API topics](https://msdn.microsoft.com/en-us/library/jj891075(v=vs.100).aspx).
+Links to API Reference topics are to the .NET 4.5 version of the API. If you're using .NET 4, see [the .NET 4 version of the API topics](https://msdn.microsoft.com/library/jj891075(v=vs.100).aspx).
 
 <a id="terminology"></a>
 

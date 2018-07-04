@@ -1,77 +1,69 @@
 ---
-title: Data Protection in ASP.NET Core | Microsoft Docs
+title: Data Protection in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as a table of contents for the various ASP.NET Core data protection topics.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 1f402da8-1052-4970-9835-9f9f16a02dbc
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: security/data-protection/index
 ---
-# Data Protection in ASP.NET Core: Consumer APIs, configuration, extensibility APIs and implementation
+# Data Protection in ASP.NET Core
 
-* [Introduction to Data Protection](introduction.md)
+* [Introduction to data protection](xref:security/data-protection/introduction)
 
-* [Getting Started with the Data Protection APIs](using-data-protection.md)
+* [Get started with the Data Protection APIs](xref:security/data-protection/using-data-protection)
 
-* [Consumer APIs](consumer-apis/index.md)
+* [Consumer APIs](xref:security/data-protection/consumer-apis/index)
 
-  * [Consumer APIs Overview](consumer-apis/overview.md)
+  * [Consumer APIs overview](xref:security/data-protection/consumer-apis/overview)
 
-  * [Purpose Strings](consumer-apis/purpose-strings.md)
+  * [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
 
-  * [Purpose hierarchy and multi-tenancy](consumer-apis/purpose-strings-multitenancy.md)
+  * [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
 
-  * [Password Hashing](consumer-apis/password-hashing.md)
+  * [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing)
 
-  * [Limiting the lifetime of protected payloads](consumer-apis/limited-lifetime-payloads.md)
+  * [Limit the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
 
-  * [Unprotecting payloads whose keys have been revoked](consumer-apis/dangerous-unprotect.md)
+  * [Unprotect payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
 
-* [Configuration](configuration/index.md)
+* [Configuration](xref:security/data-protection/configuration/index)
 
-  * [Configuring Data Protection](configuration/overview.md)
+  * [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview)
 
-  * [Default Settings](configuration/default-settings.md)
+  * [Default settings](xref:security/data-protection/configuration/default-settings)
 
-  * [Machine Wide Policy](configuration/machine-wide-policy.md)
+  * [Machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy)
 
-  * [Non DI Aware Scenarios](configuration/non-di-scenarios.md)
+  * [Non DI-aware scenarios](xref:security/data-protection/configuration/non-di-scenarios)
 
-* [Extensibility APIs](extensibility/index.md)
+* [Extensibility APIs](xref:security/data-protection/extensibility/index)
 
-  * [Core cryptography extensibility](extensibility/core-crypto.md)
+  * [Core cryptography extensibility](xref:security/data-protection/extensibility/core-crypto)
 
-  * [Key management extensibility](extensibility/key-management.md)
+  * [Key management extensibility](xref:security/data-protection/extensibility/key-management)
 
-  * [Miscellaneous APIs](extensibility/misc-apis.md)
+  * [Miscellaneous APIs](xref:security/data-protection/extensibility/misc-apis)
 
-* [Implementation](implementation/index.md)
+* [Implementation](xref:security/data-protection/implementation/index)
 
-  * [Authenticated encryption details.](implementation/authenticated-encryption-details.md)
+  * [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 
-  * [Subkey Derivation and Authenticated Encryption](implementation/subkeyderivation.md)
+  * [Subkey derivation and authenticated encryption](xref:security/data-protection/implementation/subkeyderivation)
 
-  * [Context headers](implementation/context-headers.md)
+  * [Context headers](xref:security/data-protection/implementation/context-headers)
 
-  * [Key Management](implementation/key-management.md)
+  * [Key management](xref:security/data-protection/implementation/key-management)
 
-  * [Key Storage Providers](implementation/key-storage-providers.md)
+  * [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)
 
-  * [Key Encryption At Rest](implementation/key-encryption-at-rest.md)
+  * [Key encryption at rest](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-  * [Key Immutability and Changing Settings](implementation/key-immutability.md)
+  * [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
 
-  * [Key Storage Format](implementation/key-storage-format.md)
+  * [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 
-  * [Ephemeral data protection providers](implementation/key-storage-ephemeral.md)
+  * [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
 
-* [Compatibility](compatibility/index.md)
+* [Compatibility](xref:security/data-protection/compatibility/index)
 
-  * [Sharing cookies between applications](compatibility/cookie-sharing.md)
-
-  * [Replacing <machineKey> in ASP.NET](compatibility/replacing-machinekey.md)
+  * [Replacing ASP.NET <machineKey> in ASP.NET Core](xref:security/data-protection/compatibility/replacing-machinekey)

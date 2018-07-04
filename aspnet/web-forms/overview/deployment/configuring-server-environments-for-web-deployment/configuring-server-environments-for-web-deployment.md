@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment
 title: "Configuring Server Environments for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This tutorial will show you how to set up server environments to support one-click, or automated, website deployment and publishing in various different scen..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 0bf0959b-4ca8-45de-bd13-b15347543b5a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment
 msc.type: authoredcontent
 ---
@@ -62,5 +59,5 @@ This forms part of a series of five tutorials on enterprise-scale web deployment
 - [Configuring Team Foundation Server for Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial describes how to configure Team Foundation Server (TFS) to support various deployment scenarios, including automated deployment as part of a continuous integration (CI) process and manually triggered deployments of specific builds.
 - [Advanced Enterprise Web Deployment](../advanced-enterprise-web-deployment/advanced-enterprise-web-deployment.md). This tutorial describes how to accomplish various more advanced deployment tasks, like customizing database deployments for multiple environments, excluding files and folders from deployment, and taking web applications offline during the deployment process.
 
->[!div class="step-by-step"]
-[Next](choosing-the-right-approach-to-web-deployment.md)
+> [!div class="step-by-step"]
+> [Next](choosing-the-right-approach-to-web-deployment.md)

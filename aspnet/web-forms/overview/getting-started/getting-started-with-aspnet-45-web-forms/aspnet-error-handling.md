@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling
 title: "ASP.NET Error Handling | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 423498f7-1a4b-44a1-b342-5f39d0bcf94f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling
 msc.type: authoredcontent
 ---
@@ -98,7 +95,7 @@ In the above code, the try block contains the code that needs to be guarded agai
 Before adding error handling to the Wingtip Toys sample application, you will add error logging support by adding an `ExceptionUtility` class to the *Logic* folder. By doing this, each time the application handles an error, the error details will be added to the error log file.
 
 1. Right-click the *Logic* folder and then select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Code** templates group on the left. Then, select **Class**from the middle list and name it **ExceptionUtility.cs**.
 3. Choose **Add**. The new class file is displayed.
 4. Replace the existing code with the following:  
@@ -112,7 +109,7 @@ When an exception occurs, the exception can be written to an exception log file 
 In the Wingtip Toys sample application, one page will be used to display errors. The error page is designed to show a secure error message to users of the site. However, if the user is a developer making an HTTP request that is being served locally on the machine where the code lives, additional error details will be displayed on the error page.
 
 1. Right-click the project name (**Wingtip Toys**) in **Solution Explorer** and select **Add** -&gt; **New Item**.   
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Web** templates group on the left. From the middle list, select **Web Form with Master Page**,and name it **ErrorPage.aspx**.
 3. Click **Add**.
 4. Select the *Site.Master* file as the master page, and then choose **OK**.
@@ -160,7 +157,7 @@ When you request the *NoPage.aspx* page, which does not exist, the error page wi
 To verify how your application will function when an error occurs, you can deliberately create error conditions in ASP.NET. In the Wingtip Toys sample application, you will throw a test exception when the default page loads to see what happens.
 
 1. Open the code-behind of the *Default.aspx* page in Visual Studio.   
- The *Default.aspx.cs* code-behind page will be displayed.
+   The *Default.aspx.cs* code-behind page will be displayed.
 2. In the `Page_Load` handler, add code so that the handler appears as follows:   
 
     [!code-csharp[Main](aspnet-error-handling/samples/sample9.cs?highlight=3-4)]
@@ -267,7 +264,7 @@ ELMAH (Error Logging Modules and Handlers) is an error logging facility that you
 - Logging of unhandled exceptions.
 - A web page to view the entire log of recoded unhandled exceptions.
 - A web page to view the full details of each logged exception.
-- An e-mail notification of each error at the time it occurs.
+- An email notification of each error at the time it occurs.
 - An RSS feed of the last 15 errors from the log.
 
 Before you can work with the ELMAH, you must install it. This is easy using the *NuGet* package installer. As mentioned earlier in this tutorial series, NuGet is a Visual Studio extension that makes it easy to install and update open source libraries and tools in Visual Studio.
@@ -329,7 +326,7 @@ Learn more about deploying your web application to Microsoft Azure, see [Deploy 
 
 I would like to thank the following people who made significant contributions to the content of this tutorial series:
 
-- [Alberto Poblacion, MVP &amp; MCT, Spain](https://mvp.microsoft.com/en-us/mvp/Alberto%20Poblacion%20Bolano-36772)
+- [Alberto Poblacion, MVP &amp; MCT, Spain](https://mvp.microsoft.com/mvp/Alberto%20Poblacion%20Bolano-36772)
 - [Alex Thissen, Netherlands](http://blog.alexthissen.nl/) (twitter: [@alexthissen](http://twitter.com/alexthissen))
 - [Andre Tournier, USA](http://andret503.wordpress.com/)
 - Apurva Joshi, Microsoft
@@ -344,17 +341,17 @@ I would like to thank the following people who made significant contributions to
 - [Paul Cociuba, Microsoft](http://linqto.me/Links/pcociuba)
 - [Paulo Morgado, Portugal](http://paulomorgado.net/)
 - [Pranav Rastogi, Microsoft](https://blogs.msdn.com/b/pranav_rastogi)
-- [Tim Ammann, Microsoft](http://blogs.iis.net/timamm/default.aspx)
+- [Tim Ammann, Microsoft](https://blogs.iis.net/timamm/default.aspx)
 - [Tom Dykstra, Microsoft](https://blogs.msdn.com/aspnetue)
 
 ## Community Contributions
 
 - Graham Mendick ([@grahammendick](http://twitter.com/grahammendick))  
- Visual Studio 2012 related code sample on MSDN: [Navigation Wingtip Toys](https://code.msdn.microsoft.com/Navigation-Wingtip-Toys-5f0daba2)
+  Visual Studio 2012 related code sample on MSDN: [Navigation Wingtip Toys](https://code.msdn.microsoft.com/Navigation-Wingtip-Toys-5f0daba2)
 - James Chaney ([jchaney@agvance.net](mailto:jchaney@agvance.net))  
- Visual Studio 2012 related code sample on MSDN: [ASP.NET 4.5 Web Forms Tutorial Series in Visual Basic](https://code.msdn.microsoft.com/ASPNET-45-Web-Forms-f37f0f63)
+  Visual Studio 2012 related code sample on MSDN: [ASP.NET 4.5 Web Forms Tutorial Series in Visual Basic](https://code.msdn.microsoft.com/ASPNET-45-Web-Forms-f37f0f63)
 - Andrielle Azevedo - Microsoft Technical Audience Contributor (twitter: @driazevedo)  
- Visual Studio 2012 translation: [Iniciando com ASP.NET Web Forms 4.5 - Parte 1 - Introdução e Visão Geral](https://andrielleazevedo.wordpress.com/2013/01/24/iniciando-com-asp-net-web-forms-4-5-introducao-e-visao-geral/)
+  Visual Studio 2012 translation: [Iniciando com ASP.NET Web Forms 4.5 - Parte 1 - Introdução e Visão Geral](https://andrielleazevedo.wordpress.com/2013/01/24/iniciando-com-asp-net-web-forms-4-5-introducao-e-visao-geral/)
 
->[!div class="step-by-step"]
-[Previous](url-routing.md)
+> [!div class="step-by-step"]
+> [Previous](url-routing.md)

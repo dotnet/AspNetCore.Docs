@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/performance/signalr-performance
 title: "SignalR Performance | Microsoft Docs"
 author: pfletcher
 description: "SignalR Performance"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 3751f5e7-59db-4be0-a290-50abc24e5c84
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/signalr-performance
 msc.type: authoredcontent
 ---
@@ -81,7 +78,7 @@ Since messages are stored in the message bus in server memory, reducing the size
 
 ### Tuning your SignalR server for performance
 
-The following configuration settings can be used to tune your server for better performance in a SignalR application. For general information on how to improve performance in an ASP.NET application, see [Improving ASP.NET Performance](https://msdn.microsoft.com/en-us/library/ff647787.aspx).
+The following configuration settings can be used to tune your server for better performance in a SignalR application. For general information on how to improve performance in an ASP.NET application, see [Improving ASP.NET Performance](https://msdn.microsoft.com/library/ff647787.aspx).
 
 **SignalR configuration settings**
 
@@ -98,7 +95,7 @@ The following configuration settings can be used to tune your server for better 
     [!code-console[Main](signalr-performance/samples/sample4.cmd)]
 - **ApplicationPool QueueLength**: This is the maximum number of requests that Http.sys queues for the application pool. When the queue is full, new requests receive a 503 "Service Unavailable" response. The default value is 1000.
 
-    Shortening the queue length for the worker process in the application pool hosting your application will conserve memory resources. For more information, see [Managing, Tuning, and Configuring Application Pools](https://technet.microsoft.com/en-us/library/cc745955.aspx).
+    Shortening the queue length for the worker process in the application pool hosting your application will conserve memory resources. For more information, see [Managing, Tuning, and Configuring Application Pools](https://technet.microsoft.com/library/cc745955.aspx).
 
 **ASP.NET configuration settings**
 
@@ -124,7 +121,7 @@ This section describes ways to find performance bottlenecks in your application.
 
 ### Verifying that WebSocket is being used
 
-While SignalR can use a variety of transports for communication between client and server, WebSocket offers a significant performance advantage, and should be used if the client and server support it. To determine if your client and server meet the requirements for WebSocket, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md). To determine what transport is being used in your application, you can use the browser developer tools, and examine the logs to see what transport is being used for the connection. For information on using the browser development tools in Internet Explorer and Chrome, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md).
+While SignalR can use a variety of transports for communication between client and server, WebSocket offers a significant performance advantage, and should be used if the client and server support it. To determine if your client and server meet the requirements for WebSocket, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports). To determine what transport is being used in your application, you can use the browser developer tools, and examine the logs to see what transport is being used for the connection. For information on using the browser development tools in Internet Explorer and Chrome, see [Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports).
 
 <a id="perfcounters"></a>
 
@@ -134,7 +131,7 @@ This section describes how to enable and use SignalR performance counters, found
 
 ### Installing signalr.exe
 
-Peformance counters can be added to the server using a utility called SignalR.exe. To install this utility, follow these steps:
+Performance counters can be added to the server using a utility called SignalR.exe. To install this utility, follow these steps:
 
 1. In your Visual Studio application, select **Tools**, **Library Package Manager**, **Manage NuGet Packages for Solution...**
 2. Search for **signalr.utils**, and select Install.
@@ -155,7 +152,7 @@ To remove SignalR performance counters, run SignalR.exe in an elevated command p
 
 ### SignalR Performance counters
 
-The utilites package installs the following performance counters. The "Total" counters measure the number of events since the last application pool or server restart.
+The utilities package installs the following performance counters. The "Total" counters measure the number of events since the last application pool or server restart.
 
 **Connection metrics**
 
@@ -163,7 +160,7 @@ The following metrics measure the connection lifetime events that occur. For mor
 
 - **Connections Connected**
 - **Connections Reconnected**
-- **Connections Disonnected**
+- **Connections Disconnected**
 - **Connections Current**
 
 **Message metrics**
@@ -203,11 +200,13 @@ The following metrics measure errors generated by SignalR message traffic. **Hub
 - **Errors: Transport Total**
 - **Errors: Transport/Sec**
 
+<a id="scaleout_metrics"></a>
+
 **Scaleout metrics**
 
 The following metrics measure traffic and errors generated by the scaleout provider. A **Stream** in this context is a scale unit used by the scaleout provider; this is a table if SQL Server is used, a Topic if Service Bus is used, and a Subscription if Redis is used. Each stream ensures ordered read and write operations; a single stream is a potential scale bottleneck, so the number of streams can be increased to help reduce that bottleneck. If multiple streams are used, SignalR will automatically distribute (shard) messages across these streams in a way that ensures messages sent from any given connection are in order.
 
-The [MaxQueueLength](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx) setting controls the length of the scaleout send queue maintained by SignalR. Setting it to a value greater than 0 will place all messages in a send queue to be sent one at a time to the configured messaging backplane. If the size of the queue goes above the configured length, subsequent calls to send will fail immediately with an [InvalidOperationException](https://msdn.microsoft.com/en-us/library/system.invalidoperationexception(v=vs.118).aspx) until the number of messages in the queue is less than the setting again. Queueing is disabled by default because the implemented backplanes generally have their own queuing or flow-control in place. In the case of SQL Server, connection pooling effectively limits the number of sends going on at any one time.
+The [MaxQueueLength](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx) setting controls the length of the scaleout send queue maintained by SignalR. Setting it to a value greater than 0 will place all messages in a send queue to be sent one at a time to the configured messaging backplane. If the size of the queue goes above the configured length, subsequent calls to send will fail immediately with an [InvalidOperationException](https://msdn.microsoft.com/library/system.invalidoperationexception(v=vs.118).aspx) until the number of messages in the queue is less than the setting again. Queueing is disabled by default because the implemented backplanes generally have their own queuing or flow-control in place. In the case of SQL Server, connection pooling effectively limits the number of sends going on at any one time.
 
 By default, only one stream is used for SQL Server and Redis, five streams are used for Service Bus, and queueing is disabled, but these settings can be changed through configuration on SQL Server and Service Bus:
 
@@ -239,7 +238,7 @@ The following performance counters may also be useful in monitoring your applica
 
 **Memory**
 
-- .NET CLR Memory# bytes in all Heaps (for w3wp)
+- .NET CLR Memory\\# bytes in all Heaps (for w3wp)
 
 **ASP.NET**
 
@@ -263,8 +262,8 @@ The following performance counters may also be useful in monitoring your applica
 
 **Threading**
 
-- .NET CLR LocksAndThreads\# of current logical Threads
-- .NET CLR LocksAnd Threads\# of current physical Threads
+- .NET CLR Locks And Threads\\# of current logical Threads
+- .NET CLR Locks And Threads\\# of current physical Threads
 
 <a id="otherresources"></a>
 
@@ -272,6 +271,6 @@ The following performance counters may also be useful in monitoring your applica
 
 For more information on ASP.NET performance monitoring and tuning, see the following topics:
 
-- [ASP.NET Performance Overview](https://msdn.microsoft.com/en-us/library/cc668225(v=vs.100).aspx)
+- [ASP.NET Performance Overview](https://msdn.microsoft.com/library/cc668225(v=vs.100).aspx)
 - [ASP.NET Thread Usage on IIS 7.5, IIS 7.0, and IIS 6.0](https://blogs.msdn.com/b/tmarq/archive/2007/07/21/asp-net-thread-usage-on-iis-7-0-and-6-0.aspx)
-- [&lt;applicationPool&gt; Element (Web Settings)](https://msdn.microsoft.com/en-us/library/dd560842.aspx)
+- [&lt;applicationPool&gt; Element (Web Settings)](https://msdn.microsoft.com/library/dd560842.aspx)

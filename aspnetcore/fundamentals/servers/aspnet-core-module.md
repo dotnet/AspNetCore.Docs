@@ -1,89 +1,53 @@
 ---
-title: ASP.NET Core Module | Microsoft Docs
-author: tdykstra
-description: Introduces ASP.NET Core Module (ANCM), an IIS module that lets the Kestrel web server use IIS or IIS Express as a reverse proxy server.
-keywords: ASP.NET Core, IIS, IIS Express, ASP.NET Core Module, UseIISIntegration
+title: ASP.NET Core Module
+author: rick-anderson
+description: Learn how the ASP.NET Core Module allows the Kestrel web server to use IIS or IIS Express as a reverse proxy server.
 ms.author: tdykstra
-manager: wpickett
-ms.date: 10/27/2016
-ms.topic: article
-ms.assetid: 4661af33-34c5-4d71-93a0-8c7632f43580
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.custom: mvc
+ms.date: 02/23/2018
 uid: fundamentals/servers/aspnet-core-module
-ms.custom: H1Hack27Feb2017
 ---
-# Introduction to ASP.NET Core Module
+# ASP.NET Core Module
 
-By [Tom Dykstra](http://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), and [Chris Ross](https://github.com/Tratcher) 
+By [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), and [Chris Ross](https://github.com/Tratcher) 
 
-ASP.NET Core Module (ANCM) lets you run ASP.NET Core applications behind IIS, using IIS for what it's good at (security, manageability, and lots more) and using [Kestrel](kestrel.md) for what it's good at (being really fast), and getting the benefits from both technologies at once. **ANCM works only with Kestrel; it isn't compatible with [WebListener](weblistener.md).** 
+The ASP.NET Core Module allows ASP.NET Core apps to run behind IIS in a reverse proxy configuration. IIS provides advanced web app security and manageability features.
 
 Supported Windows versions:
 
-* Windows 7 and Windows Server 2008 R2 and later
+* Windows 7 or later
+* Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
+The ASP.NET Core Module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
 
-## What ASP.NET Core Module does
+## ASP.NET Core Module description
 
-ANCM is a native IIS module that hooks into the IIS pipeline and redirects traffic to the backend ASP.NET Core application. Most other modules, such as windows authentication, still get a chance to run. ANCM only takes control when a handler is selected for the request, and handler mapping is defined in the application *web.config* file.
+The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to redirect web requests to backend ASP.NET Core apps. Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the module, see [IIS modules](xref:host-and-deploy/iis/modules).
 
-Because ASP.NET Core applications run in a process separate from the IIS worker process, ANCM also does process management. ANCM starts the process for the ASP.NET Core application when the first request comes in and restarts it when it crashes. This is essentially the same behavior as classic ASP.NET applications that run in-process in IIS and are managed by WAS (Windows Activation Service).
+Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with ASP.NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
-Here's a diagram that illustrates the relationship between IIS, ANCM, and ASP.NET Core applications.
+The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and ASP.NET Core apps:
 
 ![ASP.NET Core Module](aspnet-core-module/_static/ancm.png)
 
-Requests come in from the Web and hit the kernel mode Http.Sys driver which routes into IIS on the primary port (80) or SSL port (443). The request is then forwarded to the ASP.NET Core application on the HTTP port configured for the application, which is not port 80/443. Kestrel picks up the request and pushes it into the ASP.NET Core middleware pipeline which then handles the request and passes it on as an `HttpContext` instance to application logic. The application's response is then passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
+Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80/443.
 
-ANCM has a few other functions as well:
+The module specifies the port via an environment variable at startup, and the IIS Integration Middleware configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
-* Sets environment variables.
-* Logs `stdout` output to file storage.
-* Forwards Windows authentication tokens.
+After Kestrel picks up a request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
-## How to use ANCM in ASP.NET Core apps
+The ASP.NET Core Module has a few other functions. The module can:
 
-This section provides an overview of the process for setting up an IIS server and ASP.NET Core application. For detailed instructions, see [Publishing to IIS](../../publishing/iis.md).
+* Set environment variables for the worker process.
+* Log stdout output to file storage for troubleshooting startup issues.
+* Forward Windows authentication tokens.
 
-### Install ANCM
+## How to install and use the ASP.NET Core Module
 
-The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [ASP.NET Core Server Hosting Bundle](https://go.microsoft.com/fwlink/?linkid=837808). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
+For detailed instructions on how to install and use the ASP.NET Core Module, see [Host on Windows with IIS](xref:host-and-deploy/iis/index). For information on configuring the module, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module).
 
-### Install the IISIntegration NuGet package
+## Additional resources
 
-In your application, install [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/). This is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information such as the port to listen on. 
-
-### Call UseIISIntegration
-
-In your application's `Main` method, call the `UseIISIntegration` extension method on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md). 
-
-[!code-csharp[](aspnet-core-module/sample/Program.cs?name=snippet_Main&highlight=12)]
-
-The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like [developing and testing on MacOS and deploying to a server that runs IIS](../../tutorials/your-first-mac-aspnet.md).  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
-
-### Don't call UseUrls
-
-ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations like calls to `IWebHostBuilder.UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
-
-If you need to set the port number for when you run the app without IIS, you can call `UseURLs`.  When you run without IIS, the port number that you provide to `UseUrls` will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls`.
-
-In ASP.NET Core 1.0, if you call `UseUrls`, do it **before** you call `IISIntegration` so that the ANCM-configured port doesn't get overwritten. This calling order is not required in ASP.NET Core 1.1, because the ANCM setting will always override `UseUrls`.
-
-### Configure ANCM options in Web.config
-
-Configuration for the ASP.NET Core Module is stored in the *Web.config* file that is located in the application's root folder. Settings in this file point to the startup command and arguments that start your ASP.NET Core app. For sample Web.config code and guidance on configuration options, see [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md).
-
-### Run with IIS Express in development
-
-IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates.
-
-## Next steps
-
-For more information, see the following resources:
-
-* [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
-* [ASP.NET Core Module source code](https://github.com/aspnet/AspNetCoreModule)
-* [ASP.NET Core Module Configuration Reference](../../hosting/aspnet-core-module.md)
-* [Publishing to IIS](../../publishing/iis.md)
+* [Host on Windows with IIS](xref:host-and-deploy/iis/index)
+* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
+* [ASP.NET Core Module GitHub repository (source code)](https://github.com/aspnet/AspNetCoreModule)

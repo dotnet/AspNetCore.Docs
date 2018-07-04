@@ -1,14 +1,11 @@
 ---
+uid: web-forms/videos/authentication/validating-users-with-the-login-control
 title: "Validating Users with the Login Control | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner explores an alternative method of user authentication rather then creating a custom form and calling the API to authenticate a use..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/22/2008
-ms.topic: article
 ms.assetid: 6c11816b-504a-4512-b67e-9bd15947a7f8
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/validating-users-with-the-login-control
 msc.type: video
 ---
@@ -20,6 +17,6 @@ In this video, Joe Stagner explores an alternative method of user authentication
 
 [&#9654; Watch video (5 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/validating-users-with-the-login-control)
 
->[!div class="step-by-step"]
-[Previous](validating-users-manually.md)
-[Next](adding-users-to-your-membership-system.md)
+> [!div class="step-by-step"]
+> [Previous](validating-users-manually.md)
+> [Next](adding-users-to-your-membership-system.md)

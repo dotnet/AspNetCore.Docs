@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
 title: "Part 6: Using Data Annotations for Model Validation | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 6 covers Using Data Annotations for Model V..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/21/2011
-ms.topic: article
 ms.assetid: b3193d33-2d0b-4d98-9712-58bd897c62ec
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
 msc.type: authoredcontent
 ---
@@ -74,8 +71,7 @@ Typing a single letter in the Title field satisfies the validation requirements,
 
 ![](mvc-music-store-part-6/_static/image3.png)
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-5.md)
-[Next](mvc-music-store-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-5.md)
+> [Next](mvc-music-store-part-7.md)

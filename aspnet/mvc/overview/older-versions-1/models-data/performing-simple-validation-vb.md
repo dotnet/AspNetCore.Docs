@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/performing-simple-validation-vb
 title: "Performing Simple Validation (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to perform validation in an ASP.NET MVC application. In this tutorial, Stephen Walther introduces you to model state and the validation HTML helper..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/02/2009
-ms.topic: article
 ms.assetid: df6cf4b7-0bb3-4c4e-b17a-bd78a759a6bc
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/performing-simple-validation-vb
 msc.type: authoredcontent
 ---
@@ -29,7 +26,7 @@ You use model state - or more accurately, the model state dictionary - to repres
 I'm not recommending that you add your validation or database logic to a controller. A controller should contain only logic related to application flow control. We are taking a shortcut to keep things simple.
 
 
-**Listing 1 - Controllers\ProductController.<wbr />vb**
+**Listing 1 - Controllers\ProductController.vb**
 
 [!code-vb[Main](performing-simple-validation-vb/samples/sample1.vb)]
 
@@ -124,6 +121,6 @@ If you want to customize the appearance of these prebinding error messages then 
 
 The goal of this tutorial was to describe the basic mechanics of validation in the ASP.NET MVC framework. You learned how to use model state and the validation HTML helpers. We also discussed the distinction between prebinding and postbinding validation. In other tutorials, we'll discuss various strategies for moving your validation code out of your controllers and into your model classes.
 
->[!div class="step-by-step"]
-[Previous](displaying-a-table-of-database-data-vb.md)
-[Next](validating-with-the-idataerrorinfo-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-a-table-of-database-data-vb.md)
+> [Next](validating-with-the-idataerrorinfo-interface-vb.md)

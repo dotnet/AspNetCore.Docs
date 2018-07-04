@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
 title: "Iteration #1 – Create the Application (VB) | Microsoft Docs"
 author: microsoft
 description: "In the first iteration, we create the Contact Manager in the simplest way possible. We add support for basic database operations: Create, Read, Update, and D..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: 5b033582-1646-42c2-b20d-7edc8814e970
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
 msc.type: authoredcontent
 ---
@@ -484,6 +481,6 @@ Second, we have not implemented any form validation. For example, there is nothi
 
 Finally, and most importantly, the current iteration of the Contact Manager application cannot be easily modified or maintained. For example, the database access logic is baked right into the controller actions. This means that we cannot modify our data access code without modifying our controllers. In later iterations, we explore software design patterns that we can implement to make the Contact Manager more resilient to change.
 
->[!div class="step-by-step"]
-[Previous](iteration-7-add-ajax-functionality-cs.md)
-[Next](iteration-2-make-the-application-look-nice-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-7-add-ajax-functionality-cs.md)
+> [Next](iteration-2-make-the-application-look-nice-vb.md)

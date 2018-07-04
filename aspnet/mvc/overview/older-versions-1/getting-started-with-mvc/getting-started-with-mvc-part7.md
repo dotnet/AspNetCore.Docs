@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part7
 title: "Adding Validation to the Model | Microsoft Docs"
 author: shanselman
-description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. You’ll create a simple web application that reads and writes from a database."
+description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: aa7b3e8e-e23d-49f1-b160-f99a7f2982bd
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part7
 msc.type: authoredcontent
 ---
@@ -66,6 +63,6 @@ Run your application and visit /Movies/Create again, and click Create without en
 
 This is looking good! Let's now add one additional column to the database.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part6.md)
-[Next](getting-started-with-mvc-part8.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part6.md)
+> [Next](getting-started-with-mvc-part8.md)

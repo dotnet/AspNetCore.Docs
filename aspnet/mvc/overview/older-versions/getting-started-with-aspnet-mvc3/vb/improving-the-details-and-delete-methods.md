@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/improving-the-details-and-delete-methods
 title: "Improving the Details and Delete Methods (VB) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2011
-ms.topic: article
 ms.assetid: c5c14ef0-c128-4dc1-8c01-7f0fdb09e411
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/improving-the-details-and-delete-methods
 msc.type: authoredcontent
 ---
@@ -51,7 +48,7 @@ The `HttpPost` method that deletes the data is named `DeleteConfirmed` to give t
 
 The common language runtime (CLR) requires overloaded methods to have a unique signature (same name, different list of parameters). However, here you need two Delete methods -- one for GET and one for POST -- that both require the same signature. (They both need to accept a single integer as a parameter.)
 
-To sort this out, you can do a couple of things. One is to give the methods different names. That's what we did in he preceding example. However, this introduces a small problem: ASP.NET maps segments of a URL to action methods by name, and if you rename a method, routing normally wouldn't be able to find that method. The solution is what you see in the example, which is to add the `ActionName("Delete")` attribute to the `DeleteConfirmed` method. This effectively performs mapping for the routing system so that a URL that includes */Delete/*for a POST request will find the `DeleteConfirmed` method.
+To sort this out, you can do a couple of things. One is to give the methods different names. That's what we did in he preceding example. However, this introduces a small problem: ASP.NET maps segments of a URL to action methods by name, and if you rename a method, routing normally wouldn't be able to find that method. The solution is what you see in the example, which is to add the `ActionName("Delete")` attribute to the `DeleteConfirmed` method. This effectively performs mapping for the routing system so that a URL that includes <em>/Delete/</em>for a POST request will find the `DeleteConfirmed` method.
 
 Another way to avoid a problem with methods that have identical names and signatures is to artificially change the signature of the POST method to include an unused parameter. For example, some developers add a parameter type `FormCollection` that is passed to the POST method, and then simply don't use the parameter:
 
@@ -67,15 +64,15 @@ This basic tutorial got you started making controllers, associating them with vi
 
 If you'd like to deploy your application, it's helpful to first test the application on your local IIS 7 server. You can use this [Web Platform Installer](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=ASPNET;) link to enable IIS setting for ASP.NET applications. See the following deployment links:
 
-- [ASP.NET Deployment Content Map](https://msdn.microsoft.com/en-us/library/dd394698.aspx)
+- [ASP.NET Deployment Content Map](https://msdn.microsoft.com/library/dd394698.aspx)
 - [Enabling IIS 7.x](https://blogs.msdn.com/b/rickandy/archive/2011/03/14/enabling-iis-7-x-on-windows-7-vista-sp1-windows-2008-windows-2008-r2.aspx)
-- [Web Application Projects Deployment](https://msdn.microsoft.com/en-us/library/dd394698.aspx)
+- [Web Application Projects Deployment](https://msdn.microsoft.com/library/dd394698.aspx)
 
-I now encourage you to move on to our intermediate-level [Creating an Entity Framework Data Model for an ASP.NET MVC Application](../../../getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) and [MVC Music Store](../../mvc-music-store/mvc-music-store-part-1.md) tutorials, to explore the [ASP.NET articles on MSDN](https://msdn.microsoft.com/en-us/library/gg416514(VS.98).aspx), and to check out the many videos and resources at [https://asp.net/mvc](https://asp.net/mvc) to learn even more about ASP.NET MVC! The [ASP.NET MVC forums](https://forums.asp.net/1146.aspx) are a great place to ask questions.
+I now encourage you to move on to our intermediate-level [Creating an Entity Framework Data Model for an ASP.NET MVC Application](../../../getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) and [MVC Music Store](../../mvc-music-store/mvc-music-store-part-1.md) tutorials, to explore the [ASP.NET articles on MSDN](https://msdn.microsoft.com/library/gg416514(VS.98).aspx), and to check out the many videos and resources at [https://asp.net/mvc](https://asp.net/mvc) to learn even more about ASP.NET MVC! The [ASP.NET MVC forums](https://forums.asp.net/1146.aspx) are a great place to ask questions.
 
 Enjoy!
 
 — Scott Hanselman ([http://hanselman.com](http://hanselman.com) and [@shanselman](http://twitter.com/shanselman) on Twitter) and Rick Anderson [blogs.msdn.com/rickAndy](https://blogs.msdn.com/rickAndy)
 
->[!div class="step-by-step"]
-[Previous](adding-validation-to-the-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-validation-to-the-model.md)

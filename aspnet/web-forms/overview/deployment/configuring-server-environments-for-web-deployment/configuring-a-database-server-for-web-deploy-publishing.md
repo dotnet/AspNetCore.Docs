@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-database-server-for-web-deploy-publishing
 title: "Configuring a Database Server for Web Deploy Publishing | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to configure a SQL Server 2008 R2 database server to support web deployment and publishing. The tasks described in this topic are co..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: e7c447f9-eddf-4bbe-9f18-3326d965d093
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-database-server-for-web-deploy-publishing
 msc.type: authoredcontent
 ---
@@ -42,7 +39,7 @@ This topic will show you how to perform each of these procedures. The tasks and 
 The SQL Server instance only needs to include the **Database Engine Services** role, which is included automatically in any SQL Server installation. However, for ease of configuration and maintenance, we recommend that you include the **Management Tools – Basic** and **Management Tools – Complete** server roles.
 
 > [!NOTE]
-> For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx). For more information on installing SQL Server, see [Installing SQL Server 2008 R2](https://technet.microsoft.com/en-us/library/bb500395.aspx).
+> For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/library/cc754203(v=ws.10).aspx). For more information on installing SQL Server, see [Installing SQL Server 2008 R2](https://technet.microsoft.com/library/bb500395.aspx).
 
 
 ## Enable Remote Access to SQL Server
@@ -59,8 +56,8 @@ To enable SQL Server to communicate over TCP/IP, use SQL Server Configuration Ma
 1. On the **Start** menu, point to **All Programs**, click **Microsoft SQL Server 2008 R2**, click **Configuration Tools**, and then click **SQL Server Configuration Manager**.
 2. In the tree view pane, expand **SQL Server Network Configuration**, and then click **Protocols for MSSQLSERVER**.
 
-    > [!NOTE]
-    > If you have installed multiple instances of SQL Server, you'll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
+   > [!NOTE]
+   > If you have installed multiple instances of SQL Server, you'll see a <strong>Protocols for</strong><em>[instance name]</em> item for each instance. You need to configure network settings on an instance-by-instance basis.
 3. In the details pane, right-click the **TCP/IP** row, and then click **Enable**.
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image1.png)
@@ -96,7 +93,7 @@ Assuming that you're using a default instance of SQL Server, you need to configu
   
 
 > [!NOTE]
-> Technically, a client computer will use a randomly assigned TCP port between 1024 and 5000 to communicate with SQL Server, and you can restrict your firewall rules accordingly. For more information on SQL Server ports and firewalls, see [TCP/IP port numbers required to communicate to SQL over a firewall](https://go.microsoft.com/?linkid=9805125) and [How to: Configure a Server to Listen on a Specific TCP Port (SQL Server Configuration Manager)](https://msdn.microsoft.com/en-us/library/ms177440.aspx).
+> Technically, a client computer will use a randomly assigned TCP port between 1024 and 5000 to communicate with SQL Server, and you can restrict your firewall rules accordingly. For more information on SQL Server ports and firewalls, see [TCP/IP port numbers required to communicate to SQL over a firewall](https://go.microsoft.com/?linkid=9805125) and [How to: Configure a Server to Listen on a Specific TCP Port (SQL Server Configuration Manager)](https://msdn.microsoft.com/library/ms177440.aspx).
 
 
 In most Windows Server environments, you'll likely have to configure Windows Firewall on the database server. By default, Windows Firewall allows all outbound traffic unless a rule specifically prohibits it. To enable your web server to reach your database, you need to configure an inbound rule that allows TCP traffic on the port number that the SQL Server instance uses. If you're using a default instance of SQL Server, you can use the next procedure to configure this rule.
@@ -120,11 +117,11 @@ In most Windows Server environments, you'll likely have to configure Windows Fir
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image9.png)
 8. On the **Name** page, give the rule a suitably descriptive name (for example, **SQL Server default instance – network access**), and then click **Finish**.
 
-For more information on configuring Windows Firewall for SQL Server, particularly if you need to communicate with SQL Server over non-standard or dynamic ports, see [How to: Configure a Windows Firewall for Database Engine Access](https://technet.microsoft.com/en-us/library/ms175043.aspx).
+For more information on configuring Windows Firewall for SQL Server, particularly if you need to communicate with SQL Server over non-standard or dynamic ports, see [How to: Configure a Windows Firewall for Database Engine Access](https://technet.microsoft.com/library/ms175043.aspx).
 
 ## Configure Logins and Database Permissions
 
-When you deploy a web application to Internet Information Services (IIS), the application runs using the identity of the application pool. In a domain environment, application pool identities use the machine account of the server on which they run to access network resources. Machine accounts take the form *[domain name]***\***[machine name]***$**&#x2014;for example, **FABRIKAM\TESTWEB1$**. To allow your web application to access a database across the network, you need to:
+When you deploy a web application to Internet Information Services (IIS), the application runs using the identity of the application pool. In a domain environment, application pool identities use the machine account of the server on which they run to access network resources. Machine accounts take the form <em>[domain name]</em><strong>\</strong><em>[machine name]</em><strong>$</strong>&#x2014;for example, <strong>FABRIKAM\TESTWEB1$</strong>. To allow your web application to access a database across the network, you need to:
 
 - Add a login for the web server machine account to the SQL Server instance.
 - Map the machine account login to any required database roles (typically **db\_datareader** and **db\_datawriter**).
@@ -177,7 +174,7 @@ For more information on automating the creation of logins and database role mapp
 While manually mapping database roles is often more than adequate for test environments, it's less desirable for automated or one-click deployments to staging or production environments. You can find more information on automating this kind of task using post-deployment scripts in [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md).
 
 > [!NOTE]
-> For more information on server projects and database projects, see [Visual Studio 2010 SQL Server Database Projects](https://msdn.microsoft.com/en-us/library/ff678491.aspx).
+> For more information on server projects and database projects, see [Visual Studio 2010 SQL Server Database Projects](https://msdn.microsoft.com/library/ff678491.aspx).
 
 
 ## Configure Permissions for the Deployment Account
@@ -225,6 +222,6 @@ Your database server should now be ready to accept remote database deployments a
 
 For guidance on deploying database projects, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). For guidance on creating database role memberships by running a post-deployment script, see [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md). For guidance on how to meet the unique deployment challenges that membership databases pose, see [Deploying Membership Databases to Enterprise Environments](../advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments.md).
 
->[!div class="step-by-step"]
-[Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
-[Next](creating-a-server-farm-with-the-web-farm-framework.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+> [Next](creating-a-server-farm-with-the-web-farm-framework.md)

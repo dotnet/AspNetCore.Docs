@@ -1,8 +1,6 @@
 _build/
 _site/
 Properties/
-node_modules/
-wwwroot/
 
 # Use git add -f to force override .sln when required. Not needed in most cases.
 # git add -f myProj.sln
@@ -208,9 +206,10 @@ FakesAssemblies/
 *.opt
 
 project.lock.json
-**/sample/**/wwwroot/lib/
-**/samples/**/wwwroot/lib/
 __pycache__/
 
 #Mac OSX 
 .DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db

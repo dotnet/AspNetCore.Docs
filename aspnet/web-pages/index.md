@@ -1,19 +1,20 @@
 ---
+uid: web-pages/index
 title: "ASP.NET Web Pages | Microsoft Docs"
 author: rick-anderson
 description: "Download WebMatrix & learn how to quickly build web pages in a lightweight way to combine server code with HTML."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/18/2012
-ms.topic: article
 ms.assetid: 5418ba96-ff49-4a43-9cbb-09dea4949d23
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages
 msc.type: categoryindex
 ---
 ASP.NET Web Pages
 ====================
+
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+
 - [Guidance](overview/index.md)
 
     - [Getting Started](overview/getting-started/index.md)

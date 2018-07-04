@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-security/membership/user-based-authorization-cs
 title: "User-Based Authorization (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will look at limiting access to pages and restricting page-level functionality through a variety of techniques."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 3c815a9e-2296-4b9b-b945-776d54989daa
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/user-based-authorization-cs
 msc.type: authoredcontent
 ---
@@ -33,9 +30,9 @@ In this tutorial we will look at limiting access to pages and restricting page-l
 
 As discussed in the [*An Overview of Forms Authentication*](../introduction/an-overview-of-forms-authentication-cs.md) tutorial, when the ASP.NET runtime processes a request for an ASP.NET resource the request raises a number of events during its lifecycle. *HTTP Modules* are managed classes whose code is executed in response to a particular event in the request lifecycle. ASP.NET ships with a number of HTTP Modules that perform essential tasks behind the scenes.
 
-One such HTTP Module is [`FormsAuthenticationModule`](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx). As discussed in previous tutorials, the primary function of the `FormsAuthenticationModule` is to determine the identity of the current request. This is accomplished by inspecting the forms authentication ticket, which is either located in a cookie or embedded within the URL. This identification takes place during the [`AuthenticateRequest` event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest.aspx).
+One such HTTP Module is [`FormsAuthenticationModule`](https://msdn.microsoft.com/library/system.web.security.formsauthenticationmodule.aspx). As discussed in previous tutorials, the primary function of the `FormsAuthenticationModule` is to determine the identity of the current request. This is accomplished by inspecting the forms authentication ticket, which is either located in a cookie or embedded within the URL. This identification takes place during the [`AuthenticateRequest` event](https://msdn.microsoft.com/library/system.web.httpapplication.authenticaterequest.aspx).
 
-Another important HTTP Module is the [`UrlAuthorizationModule`](https://msdn.microsoft.com/en-us/library/system.web.security.urlauthorizationmodule.aspx), which is raised in response to the [`AuthorizeRequest` event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authorizerequest.aspx) (which happens after the `AuthenticateRequest` event). The `UrlAuthorizationModule` examines configuration markup in `Web.config` to determine whether the current identity has authority to visit the specified page. This process is referred to as *URL authorization*.
+Another important HTTP Module is the [`UrlAuthorizationModule`](https://msdn.microsoft.com/library/system.web.security.urlauthorizationmodule.aspx), which is raised in response to the [`AuthorizeRequest` event](https://msdn.microsoft.com/library/system.web.httpapplication.authorizerequest.aspx) (which happens after the `AuthenticateRequest` event). The `UrlAuthorizationModule` examines configuration markup in `Web.config` to determine whether the current identity has authority to visit the specified page. This process is referred to as *URL authorization*.
 
 We'll examine the syntax for the URL authorization rules in Step 1, but first let's look at what the `UrlAuthorizationModule` does depending on whether the request is authorized or not. If the `UrlAuthorizationModule` determines that the request is authorized, then it does nothing, and the request continues through its lifecycle. However, if the request is *not* authorized, then the `UrlAuthorizationModule` aborts the lifecycle and instructs the `Response` object to return an [HTTP 401 Unauthorized](http://www.checkupdown.com/status/E401.html) status. When using forms authentication this HTTP 401 status is never returned to the client because if the `FormsAuthenticationModule` detects an HTTP 401 status is modifies it to an [HTTP 302 Redirect](http://www.checkupdown.com/status/E302.html) to the login page.
 
@@ -64,24 +61,24 @@ Figure 2 depicts this confusing workflow.
 The workflow illustrated in Figure 2 can quickly befuddle even the most computer savvy visitor. We will look at ways to prevent this confusing cycle in Step 2.
 
 > [!NOTE]
-> ASP.NET uses two mechanisms to determine whether the current user can access a particular web page: URL authorization and file authorization. File authorization is implemented by the [`FileAuthorizationModule`](https://msdn.microsoft.com/en-us/library/system.web.security.fileauthorizationmodule.aspx), which determines authority by consulting the requested file(s) ACLs. File authorization is most commonly used with Windows authentication because ACLs are permissions that apply to Windows accounts. When using forms authentication, all operating system- and file system-level requests are executed by the same Windows account, regardless of the user visiting the site. Since this tutorial series focuses on forms authentication, we will not be discussing file authorization.
+> ASP.NET uses two mechanisms to determine whether the current user can access a particular web page: URL authorization and file authorization. File authorization is implemented by the [`FileAuthorizationModule`](https://msdn.microsoft.com/library/system.web.security.fileauthorizationmodule.aspx), which determines authority by consulting the requested file(s) ACLs. File authorization is most commonly used with Windows authentication because ACLs are permissions that apply to Windows accounts. When using forms authentication, all operating system- and file system-level requests are executed by the same Windows account, regardless of the user visiting the site. Since this tutorial series focuses on forms authentication, we will not be discussing file authorization.
 
 
 ### The Scope of URL Authorization
 
-The `UrlAuthorizationModule` is managed code that is part of the ASP.NET runtime. Prior to version 7 of Microsoft's [Internet Information Services (IIS)](http://www.iis.net/) web server, there was a distinct barrier between IIS's HTTP pipeline and the ASP.NET runtime's pipeline. In short, in IIS 6 and earlier, ASP.NET's `UrlAuthorizationModule` only executes when a request is delegated from IIS to the ASP.NET runtime. By default, IIS processes static content itself - like HTML pages and CSS, JavaScript, and image files - and only hands off requests to the ASP.NET runtime when a page with an extension of `.aspx`, `.asmx`, or `.ashx` is requested.
+The `UrlAuthorizationModule` is managed code that is part of the ASP.NET runtime. Prior to version 7 of Microsoft's [Internet Information Services (IIS)](https://www.iis.net/) web server, there was a distinct barrier between IIS's HTTP pipeline and the ASP.NET runtime's pipeline. In short, in IIS 6 and earlier, ASP.NET's `UrlAuthorizationModule` only executes when a request is delegated from IIS to the ASP.NET runtime. By default, IIS processes static content itself - like HTML pages and CSS, JavaScript, and image files - and only hands off requests to the ASP.NET runtime when a page with an extension of `.aspx`, `.asmx`, or `.ashx` is requested.
 
-IIS 7, however, allows for integrated IIS and ASP.NET pipelines. With a few configuration settings you can setup IIS 7 to invoke the `UrlAuthorizationModule` for *all* requests, meaning that URL authorization rules can be defined for files of any type. Additionally, IIS 7 includes its own URL authorization engine. For more information on ASP.NET integration and IIS 7's native URL authorization functionality, see [Understanding IIS7 URL Authorization](http://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization). For a more in-depth look at ASP.NET and IIS 7 integration, pick up a copy of Shahram Khosravi's book, *Professional IIS 7 and ASP.NET Integrated Programming* (ISBN: 978-0470152539).
+IIS 7, however, allows for integrated IIS and ASP.NET pipelines. With a few configuration settings you can setup IIS 7 to invoke the `UrlAuthorizationModule` for *all* requests, meaning that URL authorization rules can be defined for files of any type. Additionally, IIS 7 includes its own URL authorization engine. For more information on ASP.NET integration and IIS 7's native URL authorization functionality, see [Understanding IIS7 URL Authorization](https://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization). For a more in-depth look at ASP.NET and IIS 7 integration, pick up a copy of Shahram Khosravi's book, *Professional IIS 7 and ASP.NET Integrated Programming* (ISBN: 978-0470152539).
 
 In a nutshell, in versions prior to IIS 7, URL authorization rules are only applied to resources handled by the ASP.NET runtime. But with IIS 7 it is possible to use IIS's native URL authorization feature or to integrate ASP.NET's `UrlAuthorizationModule` into IIS's HTTP pipeline, thereby extending this functionality to all requests.
 
 > [!NOTE]
-> There are some subtle yet important differences in how ASP.NET's `UrlAuthorizationModule` and IIS 7's URL authorization feature process the authorization rules. This tutorial does not examine IIS 7's URL authorization functionality or the differences in how it parses authorization rules compared to the `UrlAuthorizationModule`. For more information on these topics, refer to the IIS 7 documentation on MSDN or at [www.iis.net](http://www.iis.net/).
+> There are some subtle yet important differences in how ASP.NET's `UrlAuthorizationModule` and IIS 7's URL authorization feature process the authorization rules. This tutorial does not examine IIS 7's URL authorization functionality or the differences in how it parses authorization rules compared to the `UrlAuthorizationModule`. For more information on these topics, refer to the IIS 7 documentation on MSDN or at [www.iis.net](https://www.iis.net/).
 
 
 ## Step 1: Defining URL Authorization Rules in`Web.config`
 
-The `UrlAuthorizationModule` determines whether to grant or deny access to a requested resource for a particular identity based on the URL authorization rules defined in the application's configuration. The authorization rules are spelled out in the [`<authorization>` element](https://msdn.microsoft.com/en-us/library/8d82143t.aspx) in the form of `<allow>` and `<deny>` child elements. Each `<allow>` and `<deny>` child element can specify:
+The `UrlAuthorizationModule` determines whether to grant or deny access to a requested resource for a particular identity based on the URL authorization rules defined in the application's configuration. The authorization rules are spelled out in the [`<authorization>` element](https://msdn.microsoft.com/library/8d82143t.aspx) in the form of `<allow>` and `<deny>` child elements. Each `<allow>` and `<deny>` child element can specify:
 
 - A particular user
 - A comma-delimited list of users
@@ -162,7 +159,7 @@ To test out this authorization change, start by visiting the website as an anony
 
 ### A Look at How the`UrlAuthorizationModule`Uses the Authorization Rules to Grant or Deny Access
 
-The `UrlAuthorizationModule` determines whether to authorize a particular identity for a particular URL by analyzing the URL authorization rules one at a time, starting from the first one and working its way down. As soon as a match is found, the user is granted or denied access, depending on if the match was found in an `<allow>` or `<deny>` element. **If no match is found, the user is granted access.** Consequently, if you want to restrict access, it is imperative that you use a `<deny>` element as the last element in the URL authorization configuration. **If you omit a****`<deny>`****element, all users will be granted access.**
+The `UrlAuthorizationModule` determines whether to authorize a particular identity for a particular URL by analyzing the URL authorization rules one at a time, starting from the first one and working its way down. As soon as a match is found, the user is granted or denied access, depending on if the match was found in an `<allow>` or `<deny>` element. <strong>If no match is found, the user is granted access.</strong> Consequently, if you want to restrict access, it is imperative that you use a `<deny>` element as the last element in the URL authorization configuration. <strong>If you omit a</strong><strong>`<deny>`</strong><strong>element, all users will be granted access.</strong>
 
 To better understand the process used by the `UrlAuthorizationModule` to determine authority, consider the example URL authorization rules we looked at earlier in this step. The first rule is an `<allow>` element that allows access to Tito and Scott. The second rules is a `<deny>` element that denies access to everyone. If an anonymous user visits, the `UrlAuthorizationModule` starts by asking, Is anonymous either Scott or Tito? The answer, obviously, is No, so it proceeds to the second rule. Is anonymous in the set of everybody? Since the answer here is Yes, the `<deny>` rule is put in effect and the visitor is redirected to the login page. Similarly, if Jisun is visiting, the `UrlAuthorizationModule` starts by asking, Is Jisun either Scott or Tito? Since she is not, the `UrlAuthorizationModule` proceeds to the second question, Is Jisun in the set of everybody? She is, so she, too, is denied access. Finally, if Tito visits, the first question posed by the `UrlAuthorizationModule` is an affirmative answer, so Tito is granted access.
 
@@ -224,10 +221,10 @@ With the GridView's markup created, we're ready to write the code that will retr
 
 [!code-csharp[Main](user-based-authorization-cs/samples/sample10.cs)]
 
-The above code uses the [`DirectoryInfo` class](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx) to obtain a list of the files in the application's root folder. The [`GetFiles()` method](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.getfiles.aspx) returns all of the files in the directory as an array of [`FileInfo` objects](https://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx), which is then bound to the GridView. The `FileInfo` object has an assortment of properties, such as `Name`, `Length`, and `IsReadOnly`, among others. As you can see from its declarative markup, the GridView displays just the `Name` and `Length` properties.
+The above code uses the [`DirectoryInfo` class](https://msdn.microsoft.com/library/system.io.directoryinfo.aspx) to obtain a list of the files in the application's root folder. The [`GetFiles()` method](https://msdn.microsoft.com/library/system.io.directoryinfo.getfiles.aspx) returns all of the files in the directory as an array of [`FileInfo` objects](https://msdn.microsoft.com/library/system.io.fileinfo.aspx), which is then bound to the GridView. The `FileInfo` object has an assortment of properties, such as `Name`, `Length`, and `IsReadOnly`, among others. As you can see from its declarative markup, the GridView displays just the `Name` and `Length` properties.
 
 > [!NOTE]
-> The `DirectoryInfo` and `FileInfo` classes are found in the [`System.IO` namespace](https://msdn.microsoft.com/en-us/library/system.io.aspx). Therefore, you will either need to preface these class names with their namespace names or have the namespace imported into the class file (via `using System.IO`).
+> The `DirectoryInfo` and `FileInfo` classes are found in the [`System.IO` namespace](https://msdn.microsoft.com/library/system.io.aspx). Therefore, you will either need to preface these class names with their namespace names or have the namespace imported into the class file (via `using System.IO`).
 
 
 Take a moment to visit this page through a browser. It will display the list of files residing in the application's root directory. Clicking any of the View or Delete LinkButtons will cause a postback, but no action will occur because we've yet to create the necessary event handlers.
@@ -242,11 +239,11 @@ We need a means to display the contents of the selected file. Return to Visual S
 
 [!code-aspx[Main](user-based-authorization-cs/samples/sample11.aspx)]
 
-Next, create an event handler for the GridView's [`SelectedIndexChanged` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedindexchanged.aspx) and add the following code:
+Next, create an event handler for the GridView's [`SelectedIndexChanged` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.selectedindexchanged.aspx) and add the following code:
 
 [!code-csharp[Main](user-based-authorization-cs/samples/sample12.cs)]
 
-This code uses the GridView's `SelectedValue` property to determine the full file name of the selected file. Internally, the `DataKeys` collection is referenced in order to obtain the `SelectedValue`, so it is imperative that you set the GridView's `DataKeyNames` property to Name, as described earlier in this step. The [`File` class](https://msdn.microsoft.com/en-us/library/system.io.file.aspx) is used to read the selected file's contents into a string, which is then assigned to the `FileContents` TextBox's `Text` property, thereby displaying the contents of the selected file on the page.
+This code uses the GridView's `SelectedValue` property to determine the full file name of the selected file. Internally, the `DataKeys` collection is referenced in order to obtain the `SelectedValue`, so it is imperative that you set the GridView's `DataKeyNames` property to Name, as described earlier in this step. The [`File` class](https://msdn.microsoft.com/library/system.io.file.aspx) is used to read the selected file's contents into a string, which is then assigned to the `FileContents` TextBox's `Text` property, thereby displaying the contents of the selected file on the page.
 
 
 [![The Selected File's Contents are Displayed in the TextBox](user-based-authorization-cs/_static/image23.png)](user-based-authorization-cs/_static/image22.png)
@@ -258,7 +255,7 @@ This code uses the GridView's `SelectedValue` property to determine the full fil
 > If you view the contents of a file that contains HTML markup, and then attempt to view or delete a file, you will receive an `HttpRequestValidationException` error. This occurs because on postback the TextBox's contents are sent back to the web server. By default, ASP.NET raises an `HttpRequestValidationException` error whenever potentially dangerous postback content, such as HTML markup, is detected. To disable this error from occurring, turn off request validation for the page by adding `ValidateRequest="false"` to the `@Page` directive. For more information on the benefits of request validation as well as what precautions you should take when disabling it, read [Request Validation - Preventing Script Attacks](https://asp.net/learn/whitepapers/request-validation/).
 
 
-Finally, add an event handler with the following code for the GridView's [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx):
+Finally, add an event handler with the following code for the GridView's [`RowDeleting` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx):
 
 [!code-csharp[Main](user-based-authorization-cs/samples/sample13.cs)]
 
@@ -352,7 +349,7 @@ As we discussed in the [*An Overview of Forms Authentication*](../introduction/a
 
 In Step 3 we disallowed anonymous users from viewing a file's contents and prohibited all users but Tito from deleting files. This was accomplished by hiding the associated user interface elements for unauthorized visitors through declarative and programmatic techniques. For our simple example, properly hiding the user interface elements was straightforward, but what about more complex sites where there may be many different ways to perform the same functionality? In limiting that functionality to unauthorized users, what happens if we forget to hide or disable all of the applicable user interface elements?
 
-An easy way to ensure that a particular piece of functionality cannot be accessed by an unauthorized user is to decorate that class or method with the [`PrincipalPermission` attribute](https://msdn.microsoft.com/en-us/library/system.security.permissions.principalpermissionattribute.aspx). When the .NET runtime uses a class or executes one of its methods, it checks to ensure that the current security context has permission to use the class or execute the method. The `PrincipalPermission` attribute provides a mechanism through which we can define these rules.
+An easy way to ensure that a particular piece of functionality cannot be accessed by an unauthorized user is to decorate that class or method with the [`PrincipalPermission` attribute](https://msdn.microsoft.com/library/system.security.permissions.principalpermissionattribute.aspx). When the .NET runtime uses a class or executes one of its methods, it checks to ensure that the current security context has permission to use the class or execute the method. The `PrincipalPermission` attribute provides a mechanism through which we can define these rules.
 
 Let's demonstrate using the `PrincipalPermission` attribute on the GridView's `SelectedIndexChanged` and `RowDeleting` event handlers to prohibit execution by anonymous users and users other than Tito, respectively. All we need to do is add the appropriate attribute atop each function definition:
 
@@ -391,13 +388,13 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Adding Authorization Rules to Business and Data Layers Using `PrincipalPermissionAttributes`](https://weblogs.asp.net/scottgu/archive/2006/10/04/Tip_2F00_Trick_3A00_-Adding-Authorization-Rules-to-Business-and-Data-Layers-using-PrincipalPermissionAttributes.aspx)
-- [ASP.NET Authorization](https://msdn.microsoft.com/en-us/library/wce3kxhd.aspx)
-- [Changes Between IIS6 and IIS7 Security](http://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/Changes-between-IIS6-and-IIS7-Security)
-- [Configuring Specific Files and Subdirectories](https://msdn.microsoft.com/en-us/library/6hbkh9s7.aspx)
+- [ASP.NET Authorization](https://msdn.microsoft.com/library/wce3kxhd.aspx)
+- [Changes Between IIS6 and IIS7 Security](https://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/Changes-between-IIS6-and-IIS7-Security)
+- [Configuring Specific Files and Subdirectories](https://msdn.microsoft.com/library/6hbkh9s7.aspx)
 - [Limiting Data Modification Functionality Based on the User](../../data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-cs.md)
 - [LoginView Control QuickStarts](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/ctrlref/login/loginview.aspx)
-- [Understanding IIS7 URL Authorization](http://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization)
-- [`UrlAuthorizationModule` Technical Documentation](https://msdn.microsoft.com/en-us/library/system.web.security.urlauthorizationmodule.aspx)
+- [Understanding IIS7 URL Authorization](https://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization)
+- [`UrlAuthorizationModule` Technical Documentation](https://msdn.microsoft.com/library/system.web.security.urlauthorizationmodule.aspx)
 - [Working with Data in ASP.NET 2.0](../../data-access/index.md)
 
 ### About the Author
@@ -408,6 +405,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](validating-user-credentials-against-the-membership-user-store-cs.md)
-[Next](storing-additional-user-information-cs.md)
+> [!div class="step-by-step"]
+> [Previous](validating-user-credentials-against-the-membership-user-store-cs.md)
+> [Next](storing-additional-user-information-cs.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/visual-studio-web-deployment/setting-folder-permissions
 title: "ASP.NET Web Deployment using Visual Studio: Setting Folder Permissions | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/15/2013
-ms.topic: article
 ms.assetid: 9715a121-fa55-4f1b-a5d2-fb3f6cd8be8f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/setting-folder-permissions
 msc.type: authoredcontent
 ---
@@ -71,6 +68,6 @@ In this example, the reason why Elmah was unable to save log files was fairly ob
 
 For more information about how to grant permissions to application pool identities, see [Application Pool Identities](https://www.iis.net/learn/manage/configuring-security/application-pool-identities) and [Secure Content in IIS Through File System ACLs](https://www.iis.net/learn/get-started/planning-for-security/secure-content-in-iis-through-file-system-acls) on the IIS.net site.
 
->[!div class="step-by-step"]
-[Previous](deploying-to-iis.md)
-[Next](deploying-to-production.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-to-iis.md)
+> [Next](deploying-to-production.md)

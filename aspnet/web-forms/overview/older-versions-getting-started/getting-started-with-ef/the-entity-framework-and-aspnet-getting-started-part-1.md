@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-1
 title: "Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 Web Forms | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET Web Forms applications using the Entity Framework 4.0 and Visual Studio 2010..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/03/2010
-ms.topic: article
 ms.assetid: 5cb00916-8f46-491f-be25-4739a615d619
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-1
 msc.type: authoredcontent
 ---
@@ -22,7 +19,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > 
 > ## Database First
 > 
-> There are three ways you can work with data in the Entity Framework: *Database First*, *Model First*, and *Code First*. This tutorial is for Database First. For information about the differences between these workflows and guidance on how to choose the best one for your scenario, see [Entity Framework Development Workflows](https://msdn.microsoft.com/en-us/library/ms178359.aspx#dbfmfcf).
+> There are three ways you can work with data in the Entity Framework: *Database First*, *Model First*, and *Code First*. This tutorial is for Database First. For information about the differences between these workflows and guidance on how to choose the best one for your scenario, see [Entity Framework Development Workflows](https://msdn.microsoft.com/library/ms178359.aspx#dbfmfcf).
 > 
 > ## Web Forms
 > 
@@ -39,7 +36,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > 
 > ## Questions
 > 
-> If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET Entity Framework forum](https://forums.asp.net/1227.aspx), the [Entity Framework and LINQ to Entities forum](https://social.msdn.microsoft.com/forums/en-US/adodotnetentityframework/threads/), or [StackOverflow.com](http://stackoverflow.com/).
+> If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET Entity Framework forum](https://forums.asp.net/1227.aspx), the [Entity Framework and LINQ to Entities forum](https://social.msdn.microsoft.com/forums/adodotnetentityframework/threads/), or [StackOverflow.com](http://stackoverflow.com/).
 
 
 ## Overview
@@ -90,7 +87,7 @@ For these tutorials, you'll use the Entity Framework data model designer to auto
 
 For the database-first method used in this tutorial, the next step is to add a database to the site. The easiest way is to first download the project that goes with this tutorial. Then right-click the *App\_Data* folder, select **Add Existing Item**, and select the *School.mdf* database file from the downloaded project.
 
-An alternative is to follow the instructions at [Creating the School Sample Database](https://msdn.microsoft.com/en-us/library/bb399731.aspx). Whether you download the database or create it, copy the *School.mdf* file from the following folder to your application's *App\_Data* folder:
+An alternative is to follow the instructions at [Creating the School Sample Database](https://msdn.microsoft.com/library/bb399731.aspx). Whether you download the database or create it, copy the *School.mdf* file from the following folder to your application's *App\_Data* folder:
 
 `%PROGRAMFILES%\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA`
 
@@ -208,5 +205,5 @@ The Entity Framework uses XML to store information about the database, the data 
 
 You've now created a website, a database, and a data model. In the next walkthrough you'll begin working with data using the data model and the ASP.NET `EntityDataSource` control.
 
->[!div class="step-by-step"]
-[Next](the-entity-framework-and-aspnet-getting-started-part-2.md)
+> [!div class="step-by-step"]
+> [Next](the-entity-framework-and-aspnet-getting-started-part-2.md)

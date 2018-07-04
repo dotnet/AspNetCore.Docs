@@ -11,7 +11,7 @@ namespace ViewComponentSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ToDoContext>(options =>
-                   options.UseInMemoryDatabase());
+                   options.UseInMemoryDatabase("db"));
             services.AddMvc();
         }
 
@@ -30,8 +30,6 @@ namespace ViewComponentSample
                     name: "default",
                     template: "{controller=Todo}/{action=Index}/{id?}");
             });
-
-            SeedData.Initialize(app.ApplicationServices);
         }
     }
 }

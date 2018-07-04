@@ -1,14 +1,11 @@
 ---
+uid: web-pages/readme/overview
 title: "WebMatrix Readme | Microsoft Docs"
 author: rick-anderson
 description: "WebMatrix and ASP.NET Web Pages (Razor) 1.0 Release Readme"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/06/2011
-ms.topic: article
 ms.assetid: 36c5beeb-45a7-48a0-9c30-f82cdf5c5f5f
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme
 msc.type: content
 ---
@@ -194,7 +191,7 @@ This section of the document describes new features, changes, and known issues w
 > Although you would most typically see this behavior when using the web-based package manager interface, the same behavior occurs if you add, remove, or modify any files in the *App\_Data* folder.
 > 
 > **Workaround**   
-> To work with packages in Visual Studio, use the NuGet extension instead of the web-based package manager. For information, see the [NuGet documentation](http://nuget.codeplex.com/documentation?title=Getting%20Started). If you are working with other files in the *App\_Data* folder, consider keeping the files elsewhere to avoid this issue. If that's not practical, delete the *app\_offline.htm* file manually or wait until the site comes back online automatically (by default, after 30 seconds).
+> To work with packages in Visual Studio, use the NuGet extension instead of the web-based package manager. For information, see the [NuGet documentation](https://docs.microsoft.com/nuget/). If you are working with other files in the *App\_Data* folder, consider keeping the files elsewhere to avoid this issue. If that's not practical, delete the *app\_offline.htm* file manually or wait until the site comes back online automatically (by default, after 30 seconds).
 
 
 #### Issue: Visual Studio IntelliSense and project templates available only in ASP.NET MVC version 3
@@ -212,7 +209,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > [!code-xml[Main](overview/samples/sample2.xml)]
 > 
-> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
+> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) on the MSDN Web site.
 
 
 #### Issue: Uninstalling the .NET Framework version 4 disables ASP.NET Web Pages with Razor Syntax
@@ -220,7 +217,7 @@ This section of the document describes new features, changes, and known issues w
 > If you uninstall the .NET Framework version 4 and then reinstall it, ASP.NET Web Pages with Razor syntax is disabled. Pages with the *.cshtml* extension do not run correctly. ASP.NET Web Pages registers an assembly in the machine root *web.config* file, and removing the .NET Framework removes that file. Reinstalling the .NET Framework installs a new version of the configuration file, but does not add the reference for the ASP.NET Web Pages assembly.
 > 
 > **Workaround** After reinstalling the .NET Framework, reinstall ASP.NET Web Pages with Razor syntax. This adds the following element to the *web.config* file in the machine root, which is typically in the following location:  
->   
+> 
 > `C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config (32-bit)`  
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
 > 
@@ -230,9 +227,9 @@ This section of the document describes new features, changes, and known issues w
 #### Issue: Extensionless URLs do not find .cshtml/.vbhtml files on IIS 7 or IIS 7.5
 
 > On IIS 7 or IIS 7.5, requests with a URL like the following are not able to find pages that have the *.cshtml* or *.vbhtml* extension:  
->   
+> 
 > `http://www.example.com/ExampleSite/ExampleFile`  
->   
+> 
 > The issue arises because URL rewriting is not enabled by default for IIS 7 or IIS 7.5. The likeliest scenario is that you do not see the problem when testing locally using IIS Express, but you experience it when you deploy your website to a hosting website.
 > 
 > **Workaround**
@@ -251,10 +248,11 @@ This section of the document describes new features, changes, and known issues w
 > 
 > 1. Copy the database engine assemblies to the *Bin* folder (and subfolders) of the application on the target computer:  
 > 
->     - Copy *C:\Program Files\Microsoft SQL Server Edition\v4.0\Desktop\System.Data.SqlServerCe.dll*   
->         **to** *\Bin*
->     - Copy *C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Private\x86\\****to***\Bin\x86*
->     - Copy *C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Private\amd64\\** **to***\Bin\amd64*
+>    - Copy *C:\Program Files\Microsoft SQL Server Edition\v4.0\Desktop\System.Data.SqlServerCe.dll*   
+>        **to** *\Bin*
+>    - Copy <em>C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Private\x86\\</em><strong><em>to</em></strong>\Bin\x86*
+>    - Copy <em>C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Private\amd64\\</em>* <strong>to</strong><em>\Bin\amd64</em>
+> 
 > 2. In the root folder of the website, create or open a *web.config* file. (In WebMatrix 1.0, this file type is available if you click **All** in the **Choose a File Type** dialog box.)
 > 3. Add the following element as a child of the `<configuration>` element (not inside the `<system.web>` element):
 > 
@@ -557,4 +555,4 @@ For more information about WebMatrix 1.0, see the following websites:
 - [ASP.NET](https://asp.net/webmatrix)
 - [Microsoft.com/web](https://www.microsoft.com/web)
 
-© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.com/en-us/cc300389.aspx).
+© 2011 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.cos/cc300389.aspx).

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process
 title: "Troubleshooting the Packaging Process | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how you can collect detailed information about the packaging process by using the EnablePackageProcessLoggingAndAssert property in the M..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 794bd819-00fc-47e2-876d-fc5d15e0de1c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process
 msc.type: authoredcontent
 ---
@@ -109,5 +106,5 @@ This topic described how you can use the **EnablePackageProcessLoggingAndAssert*
 
 For more information on using custom MSBuild project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md). For more information on the WPP and how it manages the packaging process, see [Building and Packaging Web Application Projects](../web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.md). For guidance on how to exclude specific files and folders from web deployment packages, see [Excluding Files and Folders from Deployment](excluding-files-and-folders-from-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](running-windows-powershell-scripts-from-msbuild-project-files.md)
+> [!div class="step-by-step"]
+> [Previous](running-windows-powershell-scripts-from-msbuild-project-files.md)

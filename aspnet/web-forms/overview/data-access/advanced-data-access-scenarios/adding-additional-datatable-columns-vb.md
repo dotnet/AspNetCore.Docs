@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-vb
 title: "Adding Additional DataTable Columns (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When using the TableAdapter Wizard to create a Typed DataSet, the corresponding DataTable contains the columns returned by the main database query. But there..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: 1e8e65f9-fe3e-4250-810b-c90227786bed
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-vb
 msc.type: authoredcontent
 ---
@@ -84,12 +81,12 @@ Next we are prompted for the `SELECT` query. Enter the following query into the 
 
 [!code-sql[Main](adding-additional-datatable-columns-vb/samples/sample1.sql)]
 
-The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.microsoft.com/en-us/library/ms175126.aspx) to divide the results into four groups where the groups are determined by the `UnitPrice` values sorted in descending order.
+The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.microsoft.com/library/ms175126.aspx) to divide the results into four groups where the groups are determined by the `UnitPrice` values sorted in descending order.
 
 Unfortunately, the Query Builder does not know how to parse the `OVER` keyword and will display an error when parsing the above query. Therefore, enter the above query directly in the textbox in the wizard without using the Query Builder.
 
 > [!NOTE]
-> For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/en-us/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/en-us/library/ms189798.aspx).
+> For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/library/ms189798.aspx).
 
 
 After entering the `SELECT` query and clicking Next, the wizard asks us to provide a name for the stored procedure it will create. Name the new stored procedure `Products_SelectWithPriceQuartile` and click Next.
@@ -209,6 +206,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Randy Schmidt, Jacky Goor, Bernadette Leigh, and Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](updating-the-tableadapter-to-use-joins-vb.md)
-[Next](working-with-computed-columns-vb.md)
+> [!div class="step-by-step"]
+> [Previous](updating-the-tableadapter-to-use-joins-vb.md)
+> [Next](working-with-computed-columns-vb.md)

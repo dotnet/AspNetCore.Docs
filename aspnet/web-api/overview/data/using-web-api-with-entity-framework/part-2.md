@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-2
 title: "Add Models and Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 88908ff8-51a9-40eb-931c-a8139128b680
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-2
 msc.type: authoredcontent
 ---
@@ -22,7 +19,7 @@ In this section, you will add model classes that define the database entities. T
 
 ## Add Model Classes
 
-In this tutorial, we'll create the database by using the "Code First" approach to Entity Framework (EF). With Code First, you write C# classes that correspond to datbase tables, and EF creates the database. (For more information, see [Entity Framework Development Approaches](https://msdn.microsoft.com/en-us/library/ms178359%28v=vs.110%29.aspx#dbfmfcf).)
+In this tutorial, we'll create the database by using the "Code First" approach to Entity Framework (EF). With Code First, you write C# classes that correspond to database tables, and EF creates the database. (For more information, see [Entity Framework Development Approaches](https://msdn.microsoft.com/library/ms178359%28v=vs.110%29.aspx#dbfmfcf).)
 
 We start by defining our domain objects as POCOs (plain-old CLR objects). We will create the following POCOs:
 
@@ -87,6 +84,6 @@ At this point, build the project again. Now go through the same steps to add an 
 
 ![](part-2/_static/image8.png)
 
->[!div class="step-by-step"]
-[Previous](part-1.md)
-[Next](part-3.md)
+> [!div class="step-by-step"]
+> [Previous](part-1.md)
+> [Next](part-3.md)

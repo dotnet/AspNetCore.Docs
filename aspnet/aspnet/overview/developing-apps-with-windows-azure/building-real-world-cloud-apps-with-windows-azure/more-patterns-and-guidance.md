@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/more-patterns-and-guidance
 title: "More Patterns and Guidance (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: 7e97cfc3-d830-4002-8ff7-5790d1ff49e6
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/more-patterns-and-guidance
 msc.type: authoredcontent
 ---
@@ -25,18 +22,18 @@ You've now seen 13 patterns that provide guidance on how to be successful in clo
 
 - Migrating existing on-premises applications to the cloud. 
 
-    - [Moving Applications to the Cloud](https://msdn.microsoft.com/en-us/library/ff728592.aspx). E-book by Microsoft Patterns and Practices. Also available as a [hard-copy paperback](https://www.amazon.com/dp/1621140202).
+    - [Moving Applications to the Cloud](https://msdn.microsoft.com/library/ff728592.aspx). E-book by Microsoft Patterns and Practices. Also available as a [hard-copy paperback](https://www.amazon.com/dp/1621140202).
     - [Migrating Microsoft's ASP.NET and IIS.NET](https://go.microsoft.com/fwlink/?LinkId=400656). Case study by Robert McMurray.
     - [Moving 4th &amp; Mayor to Azure Web Sites](http://www.jeff.wilcox.name/2013/04/4thandmayor-azure-websites/). Blog post by Jeff Wilcox chronicling his experience moving a web app from Amazon Web Services to Web Apps in Azure App Service.
-    - [Moving Apps to Azure: What changes?](https://azure.microsoft.com/en-us/documentation/videos/web-sites-internals-and-the-file-system/) Short video by Stefan Schackow, explains file system access in Web Apps in Azure App Service.
+    - [Moving Apps to Azure: What changes?](https://azure.microsoft.com/documentation/videos/web-sites-internals-and-the-file-system/) Short video by Stefan Schackow, explains file system access in Web Apps in Azure App Service.
     - [Azure Hybrid Cloud](https://www.amazon.com/dp/B00EOP4UQW). Hardcopy book or e-book by Danny Garber, Jamal Malik, and Adam Fazio.
 - Security, authentication, and authorization issues unique to cloud applications
 
     - [Azure Security Guidance](https://azure.microsoft.com/blog/2014/02/10/best-practices-windows-azure-websites-waws/)
-    - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Gatekeeper pattern, Federated Identity pattern.
+    - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Gatekeeper pattern, Federated Identity pattern.
     - [Azure Network Security](https://download.microsoft.com/download/4/3/9/43902EC9-410E-4875-8800-0788BE146A3D/Windows%20Azure%20Network%20Security%20Whitepaper%20-%20FINAL.docx). White paper by Ashin Palekar.
 
-See also additional cloud computing patterns and guidance at [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx).
+See also additional cloud computing patterns and guidance at [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx).
 
 <a id="resources"></a>
 ## Resources
@@ -45,9 +42,9 @@ Each of the chapters in this e-book provides links to resources for more informa
 
 Documentation
 
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
-- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/en-us/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
-- [Azure Guidance](https://azure.microsoft.com/en-us/develop/net/guidance/) Portal page for official documentation related to developing applications for Azure.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
+- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
+- [Azure Guidance](https://azure.microsoft.com/develop/net/guidance/) Portal page for official documentation related to developing applications for Azure.
 
 Videos
 
@@ -69,7 +66,7 @@ Hard copy books
 - [Windows Azure programming patterns for Start-ups](https://www.amazon.com/dp/1849685606). By Riccardo Becker.
 - [Microsoft Windows Azure Development Cookbook](https://www.amazon.com/dp/1849682224). By Neil Mackenzie.
 
-Finally, when you get started building real-world apps and running them in Azure, sooner or later you'll probably need assistance from experts. You can ask questions in community sites such as [Azure forums or StackOverflow](https://azure.microsoft.com/en-us/support/forums/), or you can contact Microsoft directly for Azure support. Microsoft offers several levels of technical support Azure: for a summary and comparison of the options, see [Azure Support](https://azure.microsoft.com/en-us/support/plans/).
+Finally, when you get started building real-world apps and running them in Azure, sooner or later you'll probably need assistance from experts. You can ask questions in community sites such as [Azure forums or StackOverflow](https://azure.microsoft.com/support/forums/), or you can contact Microsoft directly for Azure support. Microsoft offers several levels of technical support Azure: for a summary and comparison of the options, see [Azure Support](https://azure.microsoft.com/support/plans/).
 
 <a id="acknowledgments"></a>
 ## Acknowledgments
@@ -126,6 +123,6 @@ Other members of the DGAC reviewed and commented on the preliminary outline:
 - Roger Whitehead
 - Pawel Wilkosz
 
->[!div class="step-by-step"]
-[Previous](queue-centric-work-pattern.md)
-[Next](the-fix-it-sample-application.md)
+> [!div class="step-by-step"]
+> [Previous](queue-centric-work-pattern.md)
+> [Next](the-fix-it-sample-application.md)

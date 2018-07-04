@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb
 title: "Iteration #2 – Make the application look nice (VB) | Microsoft Docs"
 author: microsoft
 description: "In this iteration, we improve the appearance of the application by modifying the default ASP.NET MVC view master page and cascading style sheet."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: f65cb436-e493-46fd-9608-384b27385aa1
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb
 msc.type: authoredcontent
 ---
@@ -60,7 +57,7 @@ I decided to not use a template from the ASP.NET MVC Design gallery for the Cont
 
 The ASP.NET MVC Design Gallery is a free resource provided by Microsoft. The ASP.NET MVC Gallery is located at the following address:
 
-[http://www.ASP.net/mvc/gallery](http://www.ASP.net/mvc/gallery)
+[https://www.asp.net/mvc/gallery](https://www.asp.net/mvc/gallery)
 
 The ASP.NET MVC Design Gallery hosts a collection of free website designs that were created specifically for using in an ASP.NET MVC project. Designs are uploaded by members of the community. Visitors to the Gallery can vote for their favorite designs (see Figure 2).
 
@@ -109,7 +106,7 @@ The ASP.NET MVC Design Gallery has a good selection of different design styles. 
 
 However, you might need to create a completely unique design for your website. In that case, it makes sense to work with a website design company. I decided to take this approach for the design for the Contact Manager application.
 
-I zipped up the Contact Manager from Iteration #1 and sent the project to the design company. They did not own Visual Studio (shame on them!), but that didn t present a problem. They were able to download Microsoft Visual Web Developer for free from the [http://www.ASP.net](http://www.ASP.net) website and open the Contact Manager application in Visual Web Developer. In a couple of days, they had produced the design in Figure 7.
+I zipped up the Contact Manager from Iteration #1 and sent the project to the design company. They did not own Visual Studio (shame on them!), but that didn t present a problem. They were able to download Microsoft Visual Web Developer for free from the [https://www.asp.net](https://www.asp.net) website and open the Contact Manager application in Visual Web Developer. In a couple of days, they had produced the design in Figure 7.
 
 
 [![The New Project dialog box](iteration-2-make-the-application-look-nice-vb/_static/image7.jpg)](iteration-2-make-the-application-look-nice-vb/_static/image13.png)
@@ -157,6 +154,6 @@ Next, we discussed how you can create a custom design by modifying the default c
 
 In the next iteration, we tackle the very important subject of validation. We add validation code to our application so that a user cannot create a new contact without supplying required values such as a person s first and last name.
 
->[!div class="step-by-step"]
-[Previous](iteration-1-create-the-application-vb.md)
-[Next](iteration-3-add-form-validation-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-1-create-the-application-vb.md)
+> [Next](iteration-3-add-form-validation-vb.md)

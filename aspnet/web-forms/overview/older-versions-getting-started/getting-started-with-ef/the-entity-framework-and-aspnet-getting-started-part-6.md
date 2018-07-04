@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-6
 title: "Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 Web Forms - Part 6 | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET Web Forms applications using the Entity Framework. The sample application is..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/03/2010
-ms.topic: article
 ms.assetid: 994a5496-c648-4830-b03c-55bb43f325d2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-6
 msc.type: authoredcontent
 ---
@@ -51,7 +48,7 @@ TPH inheritance patterns generally deliver better performance in the Entity Fram
 
 ## Adding Instructor and Student Entities
 
-Open the *SchoolModel.edmx* file, right-click an unoccupied area in the designer, select **Add**, then select **Entity***.*
+Open the <em>SchoolModel.edmx</em> file, right-click an unoccupied area in the designer, select <strong>Add</strong>, then select <strong>Entity</strong><em>.</em>
 
 [![image01](the-entity-framework-and-aspnet-getting-started-part-6/_static/image6.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image5.png)
 
@@ -155,6 +152,6 @@ As a result of these changes, you've improved the Contoso University application
 
 You've now seen one way to implement an inheritance pattern in the Entity Framework. In the following tutorial, you'll learn how to use stored procedures in order to have more control over how the Entity Framework accesses the database.
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-5.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-5.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-7.md)

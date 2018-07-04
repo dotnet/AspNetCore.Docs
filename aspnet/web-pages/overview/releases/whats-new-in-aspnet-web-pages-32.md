@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 title: "What's New in ASP.NET Web Pages 3.2 | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/30/2014
-ms.topic: article
 ms.assetid: a652beff-8e6b-48ad-bfe4-3703f7ccf0a5
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 msc.type: authoredcontent
 ---
@@ -18,7 +15,7 @@ by [Microsoft](https://github.com/microsoft)
 
 This topic describes what's new for ASP.NET Web Pages 3.2, Web Pages 3.2.2 and [Web Pages 3.2.3 beta1](https://blogs.msdn.com/b/webdev/archive/2014/12/17/asp-net-mvc-5-2-3-web-pages-5-2-3-and-web-api-5-2-3-beta-releases.aspx)
 
-## ASP.Net Web Pages 3.2
+## ASP.NET Web Pages 3.2
 
 This release fixes a bug and introduces one new feature.
 
@@ -34,9 +31,9 @@ You can install or update to the released NuGet packages by using the NuGet Pack
 
 We fixed one bug and made one minor feature enhancement in this release. You can find the query for the same [here](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&amp;status=Closed&amp;type=All&amp;priority=All&amp;release=v5.2%20RC|v5.2%20RTM&amp;assignedTo=All&amp;component=Web%20Pages%2FRazor&amp;sortField=Id&amp;sortDirection=Descending&amp;page=0&amp;reasonClosed=Fixed).
 
-## ASP.Net Web Pages 3.2.2
+## ASP.NET Web Pages 3.2.2
 
-This release rolls-up the change in the [ASP.Net Web Pages 3.2.1 Beta release](https://blogs.msdn.com/b/webdev/archive/2014/07/28/announcing-the-beta-release-of-web-pages-3-2-1.aspx) which provides a significant performance improvement in rendering large razor pages. See[Codeplex Issue 585](https://aspnetwebstack.codeplex.com/workitem/585). This release aligns with the MVC 5.2.2 packages which will now depend on this version.
+This release rolls-up the change in the [ASP.NET Web Pages 3.2.1 Beta release](https://blogs.msdn.com/b/webdev/archive/2014/07/28/announcing-the-beta-release-of-web-pages-3-2-1.aspx) which provides a significant performance improvement in rendering large razor pages. See[Codeplex Issue 585](https://aspnetwebstack.codeplex.com/workitem/585). This release aligns with the MVC 5.2.2 packages which will now depend on this version.
 
 We worked with the MSN team on rendering large pages. When pages render over 80 Kilobytes of data, we end up with objects on the large object heap. When multiple layers of layouts are used this effect can be multiplied.
 
@@ -59,8 +56,9 @@ Below is a table demonstrating the results of analyzing a [perfview](https://cha
 | CPU / request (samples/req) | 19.73 | 16.47 | -16.50% |
 
 | Color coding: | <font style="background-color: #00ff00">Core Improvement</font> | <font style="background-color: #4bacc6">Positive impact on performance</font> |
-| --- | --- | --- |
+|---------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------|
+|               |                                                                 |                                                                               |
 
-## ASP.Net Web Pages 3.2.3 beta1
+## ASP.NET Web Pages 3.2.3 beta1
 
 This release contains only bug fixes. You can use [this query](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&amp;status=Closed&amp;type=All&amp;priority=All&amp;release=v5.2.3%20Beta&amp;assignedTo=All&amp;component=Web%20Pages%2FRazor&amp;sortField=LastUpdatedDate&amp;sortDirection=Descending&amp;page=0&amp;reasonClosed=Fixed) to see the list of issues fixed in this release.

@@ -11,34 +11,26 @@
         <h4>Instructor</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="ID" />
         <div class="form-group">
-            <label asp-for="LastName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="FirstMidName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FirstMidName" class="form-control" />
-                <span asp-validation-for="FirstMidName" class="text-danger"></span>
-            </div>
+            <label asp-for="FirstMidName" class="control-label"></label>
+            <input asp-for="FirstMidName" class="form-control" />
+            <span asp-validation-for="FirstMidName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="HireDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="HireDate" class="form-control" />
-                <span asp-validation-for="HireDate" class="text-danger"></span>
-            </div>
+            <label asp-for="HireDate" class="control-label"></label>
+            <input asp-for="HireDate" class="form-control" />
+            <span asp-validation-for="HireDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="OfficeAssignment.Location" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="OfficeAssignment.Location" class="form-control" />
-                <span asp-validation-for="OfficeAssignment.Location" class="text-danger" />
-            </div>
+            <label asp-for="OfficeAssignment.Location" class="control-label"></label>
+            <input asp-for="OfficeAssignment.Location" class="form-control" />
+            <span asp-validation-for="OfficeAssignment.Location" class="text-danger" />
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -69,9 +61,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 </form>

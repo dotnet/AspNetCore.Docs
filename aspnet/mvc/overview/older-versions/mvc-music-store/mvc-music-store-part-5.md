@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5
 title: "Part 5: Edit Forms and Templating | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 5 covers Edit Forms and Templating."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/21/2011
-ms.topic: article
 ms.assetid: 6b09413a-6d6a-425a-87c9-629f91b91b28
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5
 msc.type: authoredcontent
 ---
@@ -258,8 +255,7 @@ Now when we browse the /StoreManager/ URL, the albums and titles are kept below 
 
 Note: This shows the simple case of creating and using a helper in one view. To learn more about creating helpers that you can use throughout your site, see my blog post: [http://bit.ly/mvc3-helper-options](http://bit.ly/mvc3-helper-options)
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-4.md)
-[Next](mvc-music-store-part-6.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-4.md)
+> [Next](mvc-music-store-part-6.md)

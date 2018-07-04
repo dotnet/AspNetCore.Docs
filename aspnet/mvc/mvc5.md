@@ -1,14 +1,11 @@
 ---
+uid: mvc/mvc5
 title: "ASP.NET MVC 5 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 5 ASP.NET MVC 5 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of AS..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: f79fbf7f-59e5-4279-a832-c1a0294630f4
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc5
 msc.type: content
 ---
@@ -24,7 +21,7 @@ For information on upgrading MVC 4 projects to MVC 5, see [How to Upgrade an ASP
 
 ### ASP.NET Identity
 
-The MVC project templates have been updated to use ASP.NET Identity for authentication and identity management. A tutorial featuring Facebook and Google authentication and the new membership API can be found at [Create an ASP.NET MVC 5 App with Facebook and Google OAuth2 and OpenID Sign-on](overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) and [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/).
+The MVC project templates have been updated to use ASP.NET Identity for authentication and identity management. A tutorial featuring Facebook and Google authentication and the new membership API can be found at [Create an ASP.NET MVC 5 App with Facebook and Google OAuth2 and OpenID Sign-on](overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) and [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data).
 
 ### Bootstrap
 
@@ -32,7 +29,7 @@ The MVC project template has been updated to use [Bootstrap](http://getbootstrap
 
 ### Authentication filters
 
-[Authentication filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957) are a new kind of filter in ASP.NET MVC that run prior to authorization filters in the ASP.NET MVC pipeline and allow you to specify authentication logic per-action, per-controller, or globally for all controllers. Authentication filters process credentials in the request and provide a corresponding principal. Authentication filters can also add authentication challenges in response to unauthorized requests. See [ASP.NET MVC 5 Authentication Filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957), [Authentication Filters in ASP.NET MVC 5](http://theshravan.net/blog/authentication-filters-in-asp-net-mvc-5/) and [Finally the new ASP.NET MVC 5 Authentication Filters!](http://hackwebwith.net/finally-the-new-asp-net-mvc-5-authentication-filters/).
+[Authentication filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957) are a new kind of filter in ASP.NET MVC that run prior to authorization filters in the ASP.NET MVC pipeline and allow you to specify authentication logic per-action, per-controller, or globally for all controllers. Authentication filters process credentials in the request and provide a corresponding principal. Authentication filters can also add authentication challenges in response to unauthorized requests. See [ASP.NET MVC 5 Authentication Filters](http://www.dotnetcurry.com/showarticle.aspx?ID=957), [Authentication Filters in ASP.NET MVC 5](http://theshravan.net/blog/authentication-filters-in-asp-net-mvc-5/).
 
 ### Filter overrides
 
@@ -78,7 +75,7 @@ For more information and tutorials, see [ASP.NET Scaffolding Overview](../visual
 
 - [Known issues and breaking changes list](../visual-studio/overview/2013/release-notes.md#knownissues)
 - Get help and discuss ASP.NET MVC 5 in the [forums](https://forums.asp.net/1146.aspx)
-- [Report a bug in ASP.NET MVC 5](http://aspnetwebstack.codeplex.com/workitem/list/basic)
+- [Report a bug in ASP.NET MVC 5](https://github.com/aspnet/AspNetWebStack/issues)
 - [Make a feature request](http://aspnet.uservoice.com/forums/41201-asp-net-mvc)
 
 ### Upgrading from ASP.NET MVC 4

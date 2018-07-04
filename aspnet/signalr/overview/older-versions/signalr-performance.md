@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/signalr-performance
 title: "SignalR Performance (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "SignalR Performance"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/03/2013
-ms.topic: article
 ms.assetid: 9594d644-66b6-4223-acdd-23e29a6e4c46
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-performance
 msc.type: authoredcontent
 ---
@@ -64,7 +61,7 @@ Since messages are stored in the message bus in server memory, reducing the size
 
 ### Tuning your SignalR server for performance
 
-The following configuration settings can be used to tune your server for better performance in a SignalR application. For general information on how to improve performance in an ASP.NET application, see [Improving ASP.NET Performance](https://msdn.microsoft.com/en-us/library/ff647787.aspx).
+The following configuration settings can be used to tune your server for better performance in a SignalR application. For general information on how to improve performance in an ASP.NET application, see [Improving ASP.NET Performance](https://msdn.microsoft.com/library/ff647787.aspx).
 
 **SignalR configuration settings**
 
@@ -238,6 +235,6 @@ The following performance counters may also be useful in monitoring your applica
 
 For more information on ASP.NET performance monitoring and tuning, see the following topics:
 
-- [ASP.NET Performance Overview](https://msdn.microsoft.com/en-us/library/cc668225(v=vs.100).aspx)
+- [ASP.NET Performance Overview](https://msdn.microsoft.com/library/cc668225(v=vs.100).aspx)
 - [ASP.NET Thread Usage on IIS 7.5, IIS 7.0, and IIS 6.0](https://blogs.msdn.com/b/tmarq/archive/2007/07/21/asp-net-thread-usage-on-iis-7-0-and-6-0.aspx)
-- [&lt;applicationPool&gt; Element (Web Settings)](https://msdn.microsoft.com/en-us/library/dd560842.aspx)
+- [&lt;applicationPool&gt; Element (Web Settings)](https://msdn.microsoft.com/library/dd560842.aspx)

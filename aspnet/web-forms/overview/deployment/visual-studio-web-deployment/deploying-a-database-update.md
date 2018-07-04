@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-database-update
 title: "ASP.NET Web Deployment using Visual Studio: Deploying a Database Update | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/15/2013
-ms.topic: article
 ms.assetid: 9cad0833-486a-4474-a7f3-7715542ec4ce
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-database-update
 msc.type: authoredcontent
 ---
@@ -84,7 +81,7 @@ In this section, you add a birth date column to the `Person` base class for the 
 6. In the **Web One Click Publish** toolbar, click the **Production** publish profile, and then click **Publish Web**.
 7. Run the **Instructors** page in production to verify that the update was successfully deployed.
 
-    For a a real production application update that includes a database change you would also typically take the application offline during deployment by using *app\_offline.htm*, as you saw in the previous tutorial.
+    For a real production application update that includes a database change you would also typically take the application offline during deployment by using *app\_offline.htm*, as you saw in the previous tutorial.
 
 ## Deploy a database update by using the dbDacFx provider
 
@@ -164,6 +161,6 @@ You've now deployed an application update that included a database change using 
 
 The next tutorial shows you how to execute deployments by using the command line.
 
->[!div class="step-by-step"]
-[Previous](deploying-a-code-update.md)
-[Next](command-line-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-code-update.md)
+> [Next](command-line-deployment.md)

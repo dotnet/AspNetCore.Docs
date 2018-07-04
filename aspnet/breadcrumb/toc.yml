@@ -2,6 +2,9 @@
   tocHref: /
   topicHref: /
   items:
+  - name: API reference
+    tocHref: /dotnet/api/
+    topicHref: /dotnet/api/index
   - name: ASP.NET
     tocHref: /aspnet/
     topicHref: /aspnet/index
@@ -50,4 +53,4 @@
       topicHref: /aspnet/whitepapers/index
     - name: ASP.NET Core
       tocHref: /aspnet/core/
-      topicHref: /aspnet/core/intro
+      topicHref: /aspnet/core/index

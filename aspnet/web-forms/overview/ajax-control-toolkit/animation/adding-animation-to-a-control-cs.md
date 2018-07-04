@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs
 title: "Adding Animation to a Control (C#) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. This tutorial shows how..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 0f1fc1f5-9dbd-44e7-931e-387d42f0342b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs
 msc.type: authoredcontent
 ---
@@ -73,5 +70,5 @@ When you run this script, the panel is displayed and fades out in one and a half
 
 The panel is fading out ([Click to view full-size image](adding-animation-to-a-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](executing-several-animations-at-the-same-time-cs.md)
+> [!div class="step-by-step"]
+> [Next](executing-several-animations-at-the-same-time-cs.md)

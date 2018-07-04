@@ -1,4 +1,4 @@
-﻿//#define Final
+﻿#define Final
 #if Final
 
 using Microsoft.AspNetCore.Mvc;

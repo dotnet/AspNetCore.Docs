@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-test-environment-for-web-deployment
 title: "Scenario: Configuring a Test Environment for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for developer or test environments and explains the tasks you need to complete in order to set up a si..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 44a22ac7-1fc7-4174-b946-c6129fb6a19b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-test-environment-for-web-deployment
 msc.type: authoredcontent
 ---
@@ -43,7 +40,7 @@ The test environment needs to support single-step or automated deployment from a
 - Configure the test web server to support deployment using the Web Deploy handler.
 
 > [!NOTE]
-> You could also use [Web Deploy On Demand](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx) (the "temp agent"). This is similar to the remote agent approach in terms of requirements and constraints.
+> You could also use [Web Deploy On Demand](https://technet.microsoft.com/library/ee517345(WS.10).aspx) (the "temp agent"). This is similar to the remote agent approach in terms of requirements and constraints.
 
 
 In this case, the developers have administrator privileges on the destination servers, and the test environment is not subject to strict security constraints, so the logical choice is to configure the test web server to support deployment using the remote agent. This is less complex and requires less initial configuration than the Web Deploy Handler approach. You'll also need to configure your database server to support remote access and deployment.
@@ -57,6 +54,6 @@ These topics provide all the information you need in order to complete these tas
 
 For guidance on configuring a typical staging environment, see [Scenario: Configuring a Staging Environment for Web Deployment](scenario-configuring-a-staging-environment-for-web-deployment.md). For guidance on configuring a typical production environment, see [Scenario: Configuring a Production Environment for Web Deployment](scenario-configuring-a-production-environment-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](choosing-the-right-approach-to-web-deployment.md)
-[Next](scenario-configuring-a-staging-environment-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](choosing-the-right-approach-to-web-deployment.md)
+> [Next](scenario-configuring-a-staging-environment-for-web-deployment.md)

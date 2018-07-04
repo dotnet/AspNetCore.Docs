@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages
 title: "Creating Help Pages for ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2013
-ms.topic: article
 ms.assetid: 0150e67b-c50d-4613-83ea-7b4ef8cacc5a
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages
 msc.type: authoredcontent
 ---
@@ -44,7 +41,7 @@ The main part of the page is a table of APIs, grouped by controller. The table e
 
 The "API" column lists the HTTP method and relative URI. The "Description" column contains documentation for each API. Initially, the documentation is just placeholder text. In the next section, I'll show you how to add documentation from XML comments.
 
-Each API has a link to a page with mroe detailed information, including example request and response bodies.
+Each API has a link to a page with more detailed information, including example request and response bodies.
 
 ![](creating-api-help-pages/_static/image5.png)
 
@@ -70,7 +67,7 @@ Also, make sure to register areas. In the Global.asax file, add the following co
 
 ## Adding API Documentation
 
-By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/en-us/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
+By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
 
 [!code-csharp[Main](creating-api-help-pages/samples/sample3.cs)]
 
@@ -98,7 +95,7 @@ The help page reads the strings from the XML file at run time. (When you deploy 
 
 ## Under the Hood
 
-The help pages are built on top of the **ApiExplorer** class, which is part of the Web API framework. The **ApiExplorer** class provides provides the raw material for creating a help page. For each API, **ApiExplorer** contains an **ApiDescription** that describes the API. For this purpose, an "API" is defined as the combination of HTTP method and relative URI. For example, here are some distinct APIs:
+The help pages are built on top of the **ApiExplorer** class, which is part of the Web API framework. The **ApiExplorer** class provides the raw material for creating a help page. For each API, **ApiExplorer** contains an **ApiDescription** that describes the API. For this purpose, an "API" is defined as the combination of HTTP method and relative URI. For example, here are some distinct APIs:
 
 - GET /api/Products
 - GET /api/Products/{id}

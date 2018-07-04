@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up-down-control-with-a-web-service-backend-cs
 title: "Creating a Numeric Up/Down Control with a Web Service Backend (C#) | Microsoft Docs"
 author: wenz
 description: "Instead of letting a user type a value into a check box, a numeric up/down control (that exists on Windows and other operating systems) could prove as more c..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: c99bbc72-d4de-41ed-92a4-9a4632368363
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up-down-control-with-a-web-service-backend-cs
 msc.type: authoredcontent
 ---
@@ -55,5 +52,5 @@ If you run the page, notice how the value in the text box always doubles when yo
 
 Only numbers that are a power of 2 appear ([Click to view full-size image](creating-a-numeric-up-down-control-with-a-web-service-backend-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Next](creating-a-numeric-up-down-control-with-a-web-service-backend-vb.md)
+> [!div class="step-by-step"]
+> [Next](creating-a-numeric-up-down-control-with-a-web-service-backend-vb.md)

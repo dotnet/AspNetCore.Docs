@@ -1,14 +1,11 @@
 ---
+uid: web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
 title: "Enabling Full-Text Search in your Text Data | Microsoft Docs"
 author: microsoft
 description: "Full-Text search allows you to save large portions of text - even Microsoft Word documents, or other file formats - into your database and perform complex qu..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/14/2006
-ms.topic: article
 ms.assetid: f42dba2b-7efd-4f1e-8bed-f3816edcf44a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
 msc.type: video
 ---
@@ -20,5 +17,5 @@ Full-Text search allows you to save large portions of text - even Microsoft Word
 
 [&#9654; Watch video (38 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/enabling-full-text-search-in-your-text-data)
 
->[!div class="step-by-step"]
-[Previous](creating-and-using-stored-procedures.md)
+> [!div class="step-by-step"]
+> [Previous](creating-and-using-stored-procedures.md)

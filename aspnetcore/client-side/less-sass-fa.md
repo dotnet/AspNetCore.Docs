@@ -1,22 +1,16 @@
 ---
-title: Less, Sass, and Font Awesome in ASP.NET Core | Microsoft Docs
+title: Less, Sass, and Font Awesome in ASP.NET Core
 author: ardalis
 description: Learn how to use Less, Sass, and Font Awesome in ASP.NET Core applications.
-keywords: ASP.NET Core, Less, Sass, Font Awesome, preprocessors
 ms.author: tdykstra
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 94c988f9-95fd-425d-b37e-7f846598c6d4
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: client-side/less-sass-fa
 ---
-# Introduction to styling applications with Less, Sass, and Font Awesome in ASP.NET Core
+# Less, Sass, and Font Awesome in ASP.NET Core
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
-Users of web applications have increasingly high expectations when it comes to style and overall experience. Modern web applications frequently leverage rich tools and frameworks for defining and managing their look and feel in a consistent manner. Frameworks like [Bootstrap](http://getbootstrap.com/) can go a long way toward defining a common set of styles and layout options for web sites. However, most non-trivial sites also benefit from being able to effectively define and maintain styles and cascading style sheet (CSS) files, as well as having easy access to non-image icons that help make the site's interface more intuitive. That's where languages and tools that support [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/), and libraries like [Font Awesome](http://fortawesome.github.io/Font-Awesome/), come in.
+Users of web applications have increasingly high expectations when it comes to style and overall experience. Modern web applications frequently leverage rich tools and frameworks for defining and managing their look and feel in a consistent manner. Frameworks like [Bootstrap](http://getbootstrap.com/) can go a long way toward defining a common set of styles and layout options for web sites. However, most non-trivial sites also benefit from being able to effectively define and maintain styles and cascading style sheet (CSS) files, as well as having easy access to non-image icons that help make the site's interface more intuitive. That's where languages and tools that support [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/), and libraries like [Font Awesome](http://fontawesome.io/), come in.
 
 ## CSS preprocessor languages
 
@@ -94,9 +88,9 @@ body {
 .bgDark2    {color:@darker2}
 ```
 
-`@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they are set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The Less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that is produced.
+`@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they're set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The Less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that's produced.
 
-### Getting started
+### Get started
 
 Create an **npm Configuration File** (*package.json*) in your project folder and edit it to reference `gulp` and `gulp-less`:
 
@@ -221,7 +215,7 @@ nav li a:active {
 }
 ```
 
-Ideally all of the related style rules will be placed together within the CSS file, but in practice there is nothing enforcing this rule except convention and perhaps block comments.
+Ideally all of the related style rules will be placed together within the CSS file, but in practice there's nothing enforcing this rule except convention and perhaps block comments.
 
 Defining these same rules using Less looks like this:
 
@@ -243,7 +237,7 @@ nav {
 }
 ```
 
-Note that in this case, all of the subordinate elements of `nav` are contained within its scope. There is no longer any repetition of parent elements (`nav`, `li`, `a`), and the total line count has dropped as well (though some of that is a result of putting values on the same lines in the second example). It can be very helpful, organizationally, to see all of the rules for a given UI element within an explicitly bounded scope, in this case set off from the rest of the file by curly braces.
+Note that in this case, all of the subordinate elements of `nav` are contained within its scope. There's no longer any repetition of parent elements (`nav`, `li`, `a`), and the total line count has dropped as well (though some of that's a result of putting values on the same lines in the second example). It can be very helpful, organizationally, to see all of the rules for a given UI element within an explicitly bounded scope, in this case set off from the rest of the file by curly braces.
 
 The `&` syntax is a Less selector feature, with & representing the current selector parent. So, within the a {...} block, `&` represents an `a` tag, and thus `&:link` is equivalent to `a:link`.
 
@@ -318,9 +312,9 @@ Less provides a number of additional features, but this should give you some ide
 
 ## Sass
 
-Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It is built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language did not use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, **SCSS** ("Sassy CSS"). SCSS is similar to CSS in that it ignores indentation levels and whitespace, and instead uses semicolons and curly braces.
+Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It's built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language didn't use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, **SCSS** ("Sassy CSS"). SCSS is similar to CSS in that it ignores indentation levels and whitespace, and instead uses semicolons and curly braces.
 
-To install Sass, typically you would first install Ruby (pre-installed on Mac), and then run:
+To install Sass, typically you would first install Ruby (pre-installed on macOS), and then run:
 
 ```console
 gem install sass
@@ -366,7 +360,7 @@ body {
 }
 ```
 
-Save all of your files. Now when you refresh **Task Runner Explorer**, you see a `sass` task. Run it, and look in the */wwwroot/css* folder. There is now a *main2.css* file, with these contents:
+Save all of your files. Now when you refresh **Task Runner Explorer**, you see a `sass` task. Run it, and look in the */wwwroot/css* folder. There's now a *main2.css* file, with these contents:
 
 ```css
 body {
@@ -485,7 +479,7 @@ Sass also includes functions and conditional logic operations, similar to Less. 
 
 ## Less or Sass?
 
-There is still no consensus as to whether it's generally better to use Less or Sass (or even whether to prefer the original Sass or the newer SCSS syntax within Sass). Probably the most important decision is to **use one of these tools**, as opposed to just hand-coding your CSS files. Once you've made that decision, both Less and Sass are good choices.
+There's still no consensus as to whether it's generally better to use Less or Sass (or even whether to prefer the original Sass or the newer SCSS syntax within Sass). Probably the most important decision is to **use one of these tools**, as opposed to just hand-coding your CSS files. Once you've made that decision, both Less and Sass are good choices.
 
 ## Font Awesome
 

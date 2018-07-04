@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 title: "Forms Authentication Configuration and Advanced Topics (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: b9c29865-a34e-48bb-92c0-c443a72cb860
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 msc.type: authoredcontent
 ---
@@ -29,29 +26,30 @@ In this tutorial we will examine the various forms authentication settings and s
 
 ## Step 1: Examining the &lt;forms&gt; Configuration Settings
 
-The forms authentication system in ASP.NET offers a number of configuration settings that can be customized on an application-by-application basis. This includes settings like: the lifetime of the forms authentication ticket; what sort of protection is applied to the ticket; under what conditions cookieless authentication tickets are used; the path to the login page; and other information. To modify the default values, add a [&lt;forms&gt; element](https://msdn.microsoft.com/en-us/library/1d3t3c61.aspx) as a child of the [&lt;authentication&gt; element](https://msdn.microsoft.com/en-us/library/532aee0e.aspx), specifying those property values you want to customize as XML attributes like so:
+The forms authentication system in ASP.NET offers a number of configuration settings that can be customized on an application-by-application basis. This includes settings like: the lifetime of the forms authentication ticket; what sort of protection is applied to the ticket; under what conditions cookieless authentication tickets are used; the path to the login page; and other information. To modify the default values, add a [&lt;forms&gt; element](https://msdn.microsoft.com/library/1d3t3c61.aspx) as a child of the [&lt;authentication&gt; element](https://msdn.microsoft.com/library/532aee0e.aspx), specifying those property values you want to customize as XML attributes like so:
 
 [!code-xml[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample1.xml)]
 
 Table 1 summarizes the properties that can be customized through the &lt;forms&gt; element. Since Web.config is an XML file, the attribute names in the left column are case-sensitive.
 
-| **Attribute** | **Description** |
-| --- | --- |
-| cookieless | This attribute specifies under what conditions the authentication ticket is stored in a cookie versus being embedded in the URL. Allowable values are: UseCookies; UseUri; AutoDetect; and UseDeviceProfile (the default). Step 2 examines this setting in more detail. |
-| defaultUrl | Indicates the URL that users are redirected to after signing in from the login page if there is no RedirectUrl value specified in the querystring. The default value is default.aspx. |
-| domain | When using cookie-based authentication tickets, this setting specifies the cookie's domain value. The default value is an empty string, which causes the browser to use the domain from which it was issued (such as www.yourdomain.com). In this case, the cookie will **not** be sent when making requests to subdomains, such as admin.yourdomain.com. If you want the cookie to be passed to all subdomains you need to customize the domain attribute setting it to yourdomain.com. |
-| enableCrossAppRedirects | A Boolean value indicating whether authenticated users are remembered when redirected to URLs in other web applications on the same server. The default is false. |
-| loginUrl | The URL of the login page. The default value is login.aspx. |
-| name | When using cookie-based authentication tickets, the name of the cookie. The default is .ASPXAUTH. |
-| path | When using cookie-based authentication tickets, this setting specifies the cookie's path attribute. The path attribute enables a developer to limit the scope of a cookie to a particular directory hierarchy. The default value is /, which informs the browser to send the authentication ticket cookie to any request made to the domain. |
-| protection | Indicates what techniques are used to protect the forms authentication ticket. The allowable values are: All (the default); Encryption; None; and Validation. These settings are discussed in detail in Step 3. |
-| requireSSL | A Boolean value that indicates whether an SSL connection is required to transmit the authentication cookie. The default value is false. |
-| slidingExpiration | A Boolean value that indicates whether the authentication cookie's timeout is reset each time the user visits the site during a single session. The default value is true. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section. |
-| timeout | Specifies the time, in minutes, after which the authentication ticket cookie expires. The default value is 30. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section. |
+
+| <strong>Attribute</strong> |                                                                                                                                                                                                                                     <strong>Description</strong>                                                                                                                                                                                                                                      |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|         cookieless         |                                                                                                                This attribute specifies under what conditions the authentication ticket is stored in a cookie versus being embedded in the URL. Allowable values are: UseCookies; UseUri; AutoDetect; and UseDeviceProfile (the default). Step 2 examines this setting in more detail.                                                                                                                |
+|         defaultUrl         |                                                                                                                                                         Indicates the URL that users are redirected to after signing in from the login page if there is no RedirectUrl value specified in the querystring. The default value is default.aspx.                                                                                                                                                         |
+|           domain           | When using cookie-based authentication tickets, this setting specifies the cookie's domain value. The default value is an empty string, which causes the browser to use the domain from which it was issued (such as www.yourdomain.com). In this case, the cookie will <strong>not</strong> be sent when making requests to subdomains, such as admin.yourdomain.com. If you want the cookie to be passed to all subdomains you need to customize the domain attribute setting it to yourdomain.com. |
+|  enableCrossAppRedirects   |                                                                                                                                                                   A Boolean value indicating whether authenticated users are remembered when redirected to URLs in other web applications on the same server. The default is false.                                                                                                                                                                   |
+|          loginUrl          |                                                                                                                                                                                                                      The URL of the login page. The default value is login.aspx.                                                                                                                                                                                                                      |
+|            name            |                                                                                                                                                                                                   When using cookie-based authentication tickets, the name of the cookie. The default is .ASPXAUTH.                                                                                                                                                                                                   |
+|            path            |                                                                             When using cookie-based authentication tickets, this setting specifies the cookie's path attribute. The path attribute enables a developer to limit the scope of a cookie to a particular directory hierarchy. The default value is /, which informs the browser to send the authentication ticket cookie to any request made to the domain.                                                                              |
+|         protection         |                                                                                                                                            Indicates what techniques are used to protect the forms authentication ticket. The allowable values are: All (the default); Encryption; None; and Validation. These settings are discussed in detail in Step 3.                                                                                                                                            |
+|         requireSSL         |                                                                                                                                                                                A Boolean value that indicates whether an SSL connection is required to transmit the authentication cookie. The default value is false.                                                                                                                                                                                |
+|     slidingExpiration      |                                                                                                 A Boolean value that indicates whether the authentication cookie's timeout is reset each time the user visits the site during a single session. The default value is true. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section.                                                                                                 |
+|          timeout           |                                                                                                                               Specifies the time, in minutes, after which the authentication ticket cookie expires. The default value is 30. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section.                                                                                                                               |
 
 **Table 1**: A Summary of the &lt;forms&gt; Element's Attributes
 
-In ASP.NET 2.0 and beyond, the default forms authentication values are hard-coded in the FormsAuthenticationConfiguration class in the .NET Framework. Any modifications must be applied on an application-by-application basis in the Web.config file. This differs from ASP.NET 1.x, where the default forms authentication values were stored in the machine.config file (and could therefore be modified via editing machine.config). While on the topic of ASP.NET 1.x, it is worthwhile to mention that a number of the forms authentication system settings have different default values in ASP.NET 2.0 and beyond than in ASP.NET 1.x. If you are migrating your application from an ASP.NET 1.x environment, it is important to be aware of these differences. Consult [the &lt;forms&gt; element technical documentation](https://msdn.microsoft.com/en-us/library/1d3t3c61.aspx) for a list of the differences.
+In ASP.NET 2.0 and beyond, the default forms authentication values are hard-coded in the FormsAuthenticationConfiguration class in the .NET Framework. Any modifications must be applied on an application-by-application basis in the Web.config file. This differs from ASP.NET 1.x, where the default forms authentication values were stored in the machine.config file (and could therefore be modified via editing machine.config). While on the topic of ASP.NET 1.x, it is worthwhile to mention that a number of the forms authentication system settings have different default values in ASP.NET 2.0 and beyond than in ASP.NET 1.x. If you are migrating your application from an ASP.NET 1.x environment, it is important to be aware of these differences. Consult [the &lt;forms&gt; element technical documentation](https://msdn.microsoft.com/library/1d3t3c61.aspx) for a list of the differences.
 
 > [!NOTE]
 > Several forms authentication settings, such as the timeout, domain, and path, specify details for the resulting forms authentication ticket cookie. For more information on cookies, how they work, and their various properties, read [this Cookies tutorial](http://www.quirksmode.org/js/cookies.html).
@@ -131,7 +129,7 @@ The cookie policy used by the forms authentication system depends on the cookiel
 The AutoDetect and UseDeviceProfile settings rely on a *device profile* in ascertaining whether to use cookie-based or cookieless authentication tickets. ASP.NET maintains a database of various devices and their capabilities, such as whether they support cookies, what version of JavaScript they support, and so on. Each time a device requests a web page from a web server it sends along a *user-agent* HTTP header that identifies the device type. ASP.NET automatically matches the supplied user-agent string with the corresponding profile specified in its database.
 
 > [!NOTE]
-> This database of device capabilities is stored in a number of XML files that adhere to the [Browser Definition File schema](https://msdn.microsoft.com/en-us/library/ms228122.aspx). The default device profile files are located in %WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG\Browsers. You can also add custom files to your application's App\_Browsers folder. For more information, see [How To: Detect Browser Types in ASP.NET Web Pages](https://msdn.microsoft.com/en-us/library/3yekbd5b.aspx).
+> This database of device capabilities is stored in a number of XML files that adhere to the [Browser Definition File schema](https://msdn.microsoft.com/library/ms228122.aspx). The default device profile files are located in %WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG\Browsers. You can also add custom files to your application's App\_Browsers folder. For more information, see [How To: Detect Browser Types in ASP.NET Web Pages](https://msdn.microsoft.com/library/3yekbd5b.aspx).
 
 
 Because the default setting is UseDeviceProfile, cookieless forms authentication tickets will be used when the site is visited by a device whose profile reports that it does not support cookies.
@@ -160,7 +158,7 @@ Save the changes to Default.aspx and then visit it through a browser. Log on to 
 
 `http://localhost:2448/ASPNET\_Security\_Tutorial\_03\_CS/(F(jaIOIDTJxIr12xYS-VVgkqKCVAuIoW30Bu0diWi6flQC-FyMaLXJfow\_Vd9GZkB2Cv-rfezq0gKadKX0YPZCkA2))/SomePage.aspx`
 
-The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with http:// or /. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., &lt;a href="..."&gt;...&lt;/a&gt;). As long as the URL isn't something like http://www.someserver.com/SomePage.aspx or /SomePage.aspx, the forms authentication ticket will be embedded for us.
+The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with `http://` or `/`. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., `<a href="...">...</a>`). As long as the URL isn't something like `http://www.someserver.com/SomePage.aspx` or `/SomePage.aspx`, the forms authentication ticket will be embedded for us.
 
 > [!NOTE]
 > Cookieless forms authentication tickets adhere to the same timeout policies as cookie-based authentication tickets. However, cookieless authentication tickets are more prone to replay attacks since the authentication ticket is embedded directly in the URL. Imagine a user who visits a website, logs in, and then pastes the URL in an email to a colleague. If the colleague clicks on that link before the expiry is reached, they will be logged in as the user who sent the email!
@@ -193,7 +191,7 @@ Microsoft strongly recommends using the All setting.
 
 ### Setting the Validation and Decryption Keys
 
-The encryption and hashing algorithms used by the forms authentication system to encrypt and validate the authentication ticket are customizable through the [&lt;machineKey&gt; element](https://msdn.microsoft.com/en-us/library/w8h3skw9.aspx) in Web.config. Table 2 outlines the &lt;machineKey&gt; element's attributes and their possible values.
+The encryption and hashing algorithms used by the forms authentication system to encrypt and validate the authentication ticket are customizable through the [&lt;machineKey&gt; element](https://msdn.microsoft.com/library/w8h3skw9.aspx) in Web.config. Table 2 outlines the &lt;machineKey&gt; element's attributes and their possible values.
 
 | **Attribute** | **Description** |
 | --- | --- |
@@ -217,7 +215,7 @@ While neither of the above scenarios applies to our sample application, we can s
 
 [!code-xml[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample5.xml)]
 
-For more information check out [How To: Configure MachineKey in ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/ms998288.aspx).
+For more information check out [How To: Configure MachineKey in ASP.NET 2.0](https://msdn.microsoft.com/library/ms998288.aspx).
 
 > [!NOTE]
 > The decryptionKey and validationKey values were taken from [Steve Gibson](http://www.grc.com/stevegibson.htm)'s [Perfect Passwords web page](https://www.grc.com/passwords.htm), which generates 64 random hexadecimal characters on each page visit. To lessen the likelihood of these keys making their way into your production applications, you are encouraged to replace the above keys with randomly generated ones from the Perfect Passwords page.
@@ -227,7 +225,7 @@ For more information check out [How To: Configure MachineKey in ASP.NET 2.0](htt
 
 Many web applications display information about or base the page's display on the currently logged on user. For example, a web page might show the user's name and the date she last logged on in the upper corner of every page. The forms authentication ticket stores the currently logged on user's username, but when any other information is needed, the page must go to the user store - typically a database - to lookup the information not stored in the authentication ticket.
 
-With a little bit of code we can store additional user information in the forms authentication ticket. Such data can be expressed through the [FormsAuthenticationTicket class](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationticket.aspx)'s [UserData property](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationticket.userdata.aspx). This is a useful place to put small amounts of information about the user that is commonly needed. The value specified in the UserData property is included as part of the authentication ticket cookie and, like the other ticket fields, is encrypted and validated based on the forms authentication system's configuration. By default, UserData is an empty string.
+With a little bit of code we can store additional user information in the forms authentication ticket. Such data can be expressed through the [FormsAuthenticationTicket class](https://msdn.microsoft.com/library/system.web.security.formsauthenticationticket.aspx)'s [UserData property](https://msdn.microsoft.com/library/system.web.security.formsauthenticationticket.userdata.aspx). This is a useful place to put small amounts of information about the user that is commonly needed. The value specified in the UserData property is included as part of the authentication ticket cookie and, like the other ticket fields, is encrypted and validated based on the forms authentication system's configuration. By default, UserData is an empty string.
 
 In order to store user data in the authentication ticket, we need to write a bit of code in the login page that grabs the user-specific information and stores it in the ticket. Since UserData is a property of type string, the data stored in it must be properly serialized as a string. For example, imagine that our user store included each user's date of birth and the name of their employer, and we wanted to store these two property values in the authentication ticket. We could serialize these values into a string by concatenating the user's date of birth's string with a pipe ( | ), followed by the employer name. For a user born on August 15, 1974 that works for Northwind Traders, we would assign the UserData property the string: 1974-08-15|Northwind Traders .
 
@@ -263,7 +261,7 @@ Next, the FormsAuthentication.GetAuthCookie method is invoked, which creates the
 
 HttpCookie authCookie = FormsAuthentication.GetAuthCookie(UserName.Text, RememberMe.Checked);
 
-In order to work with the FormAuthenticationTicket embedded within the cookie, we need to call the FormAuthentication class's [Decrypt method](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.decrypt.aspx), passing in the cookie value.
+In order to work with the FormAuthenticationTicket embedded within the cookie, we need to call the FormAuthentication class's [Decrypt method](https://msdn.microsoft.com/library/system.web.security.formsauthentication.decrypt.aspx), passing in the cookie value.
 
 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
 
@@ -271,7 +269,7 @@ We then create a *new* FormsAuthenticationTicket instance based on the existing 
 
 FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, userDataString);
 
-We then encrypt (and validate) the new FormsAuthenticationTicket instance by calling the [Encrypt method](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.encrypt.aspx), and put this encrypted (and validated) data back into authCookie.
+We then encrypt (and validate) the new FormsAuthenticationTicket instance by calling the [Encrypt method](https://msdn.microsoft.com/library/system.web.security.formsauthentication.encrypt.aspx), and put this encrypted (and validated) data back into authCookie.
 
 authCookie.Value = FormsAuthentication.Encrypt(newTicket);
 
@@ -316,7 +314,7 @@ The principal object has two responsibilities: to indicate what roles the user b
 The GenericPrincipal class meets the needs for most forms based authentication scenarios where roles are not used. For those situations where the default role handling is insufficient or when you need to associate a custom IIdentity object with the user, you can create a custom IPrincipal object during the authentication workflow and assign it to the HttpContext.User property.
 
 > [!NOTE]
-> As we will see in future tutorials, when ASP.NET's Roles framework is enabled it creates a custom principal object of type [RolePrincipal](https://msdn.microsoft.com/en-us/library/system.web.security.roleprincipal.aspx) and overwrites the forms authentication-created GenericPrincipal object. It does this in order to customize the principal's IsInRole method to interface with the Roles framework's API.
+> As we will see in future tutorials, when ASP.NET's Roles framework is enabled it creates a custom principal object of type [RolePrincipal](https://msdn.microsoft.com/library/system.web.security.roleprincipal.aspx) and overwrites the forms authentication-created GenericPrincipal object. It does this in order to customize the principal's IsInRole method to interface with the Roles framework's API.
 
 
 Since we have not concerned ourselves with roles yet, the only reason we would have for creating a custom principal at this juncture would be to associate a custom IIdentity object to the principal. In Step 4 we looked at storing additional user information in the authentication ticket's UserData property, in particular the user's company name and their title. However, the UserData information is only accessible through the authentication ticket and only then as a serialized string, meaning that anytime we want to view the user information stored in the ticket we need to parse the UserData property.
@@ -328,7 +326,7 @@ We can improve the developer experience by creating a class that implements IIde
 For this tutorial, let's create the custom principal and identity objects in the App\_Code folder. Start by adding an App\_Code folder to your project - right-click on the project name in Solution Explorer, select the Add ASP.NET Folder option, and choose App\_Code. The App\_Code folder is a special ASP.NET folder that holds class files specific to the website.
 
 > [!NOTE]
-> The App\_Code folder should only be used when managing your project through the Website Project Model. If you are using the [Web Application Project Model](https://msdn.microsoft.com/en-us/asp.net/Aa336618.aspx), create a standard folder and add the classes to that. For example, you could add a new folder named Classes, and place your code there.
+> The App\_Code folder should only be used when managing your project through the Website Project Model. If you are using the [Web Application Project Model](https://msdn.microsoft.com/asp.net/Aa336618.aspx), create a standard folder and add the classes to that. For example, you could add a new folder named Classes, and place your code there.
 
 
 Next, add two new class files to the App\_Code folder, one named CustomIdentity.cs and one named CustomPrincipal.cs.
@@ -353,9 +351,9 @@ Next, create the CustomPrincipal class. Since we are not concerned with roles at
 
 We now have a class that extends the default IIdentity specification to include CompanyName and Title properties, as well as a custom principal class that uses the custom identity. We are ready to step into the ASP.NET pipeline and assign our custom principal object to the incoming request's security context.
 
-The ASP.NET pipeline takes an incoming request and processes it through a number of steps. At each step, a particular event is raised, making it possible for developers to tap into the ASP.NET pipeline and modify the request at certain points in its lifecycle. The FormsAuthenticationModule, for example, waits for ASP.NET to raise the [AuthenticateRequest event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest.aspx), at which point it inspects the incoming request for an authentication ticket. If an authentication ticket is found, a GenericPrincipal object is created and assigned to the HttpContext.User property.
+The ASP.NET pipeline takes an incoming request and processes it through a number of steps. At each step, a particular event is raised, making it possible for developers to tap into the ASP.NET pipeline and modify the request at certain points in its lifecycle. The FormsAuthenticationModule, for example, waits for ASP.NET to raise the [AuthenticateRequest event](https://msdn.microsoft.com/library/system.web.httpapplication.authenticaterequest.aspx), at which point it inspects the incoming request for an authentication ticket. If an authentication ticket is found, a GenericPrincipal object is created and assigned to the HttpContext.User property.
 
-After the AuthenticateRequest event, the ASP.NET pipeline raises the [PostAuthenticateRequest event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.postauthenticaterequest.aspx), which is where we can replace the GenericPrincipal object created by the FormsAuthenticationModule with an instance of our CustomPrincipal object. Figure 7 depicts this workflow.
+After the AuthenticateRequest event, the ASP.NET pipeline raises the [PostAuthenticateRequest event](https://msdn.microsoft.com/library/system.web.httpapplication.postauthenticaterequest.aspx), which is where we can replace the GenericPrincipal object created by the FormsAuthenticationModule with an instance of our CustomPrincipal object. Figure 7 depicts this workflow.
 
 
 [![The GenericPrincipal is Replaced by a CustomPrincipal in the PostAuthenticationRequest Event](forms-authentication-configuration-and-advanced-topics-cs/_static/image20.png)](forms-authentication-configuration-and-advanced-topics-cs/_static/image19.png)
@@ -371,13 +369,13 @@ In order to execute code in response to an ASP.NET pipeline event, we can either
 **Figure 08**: Add a Global.asax File to Your Website ([Click to view full-size image](forms-authentication-configuration-and-advanced-topics-cs/_static/image24.png))
 
 
-The default Global.asax template includes event handlers for a number of the ASP.NET pipeline events, including the Start, End and [Error event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.error.aspx), among others. Feel free to remove these event handlers, as we do not need them for this application. The event we are interested in is PostAuthenticateRequest. Update your Global.asax file so its markup looks similar to the following:
+The default Global.asax template includes event handlers for a number of the ASP.NET pipeline events, including the Start, End and [Error event](https://msdn.microsoft.com/library/system.web.httpapplication.error.aspx), among others. Feel free to remove these event handlers, as we do not need them for this application. The event we are interested in is PostAuthenticateRequest. Update your Global.asax file so its markup looks similar to the following:
 
 [!code-aspx[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample11.aspx)]
 
 The Application\_OnPostAuthenticateRequest method executes each time the ASP.NET runtime raises the PostAuthenticateRequest event, which happens once on each incoming page request. The event handler starts by checking to see if the user is authenticated and was authenticated via forms authentication. If so, a new CustomIdentity object is created and passed the current request's authentication ticket in its constructor. Following that, a CustomPrincipal object is created and passed the just-created CustomIdentity object in its constructor. Finally, the current request's security context is assigned to the newly created CustomPrincipal object.
 
-Note that the last step - associating the CustomPrincipal object with the request's security context - assigns the principal to two properties: HttpContext.User and Thread.CurrentPrincipal. These two assignments are necessary because of the way security contexts are handled in ASP.NET. The .NET Framework associates a security context with each running thread; this information is available as an IPrincipal object through the [Thread object](https://msdn.microsoft.com/en-us/library/system.threading.thread.aspx)'s [CurrentPrincipal property](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentcontext.aspx). What is a confusing is that ASP.NET has its own security context information (HttpContext.User).
+Note that the last step - associating the CustomPrincipal object with the request's security context - assigns the principal to two properties: HttpContext.User and Thread.CurrentPrincipal. These two assignments are necessary because of the way security contexts are handled in ASP.NET. The .NET Framework associates a security context with each running thread; this information is available as an IPrincipal object through the [Thread object](https://msdn.microsoft.com/library/system.threading.thread.aspx)'s [CurrentPrincipal property](https://msdn.microsoft.com/library/system.threading.thread.currentcontext.aspx). What is a confusing is that ASP.NET has its own security context information (HttpContext.User).
 
 In certain scenarios, the Thread.CurrentPrincipal property is examined when determining the security context; in other scenarios, HttpContext.User is used. For example, there are security features in .NET that allow developers to declaratively state what users or roles can instantiate a class or invoke specific methods (see [Adding Authorization Rules to Business and Data Layers Using PrincipalPermissionAttributes](https://weblogs.asp.net/scottgu/archive/2006/10/04/Tip_2F00_Trick_3A00_-Adding-Authorization-Rules-to-Business-and-Data-Layers-using-PrincipalPermissionAttributes.aspx)). Underneath the covers, these declarative techniques determine the security context via the Thread.CurrentPrincipal property.
 
@@ -406,13 +404,13 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Dissecting Forms Authentication](http://aspnet.4guysfromrolla.com/articles/072005-1.aspx)
-- [Explained: Forms Authentication in ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/aa480476.aspx)
-- [How To: Protect Forms Authentication in ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/ms998310.aspx)
+- [Explained: Forms Authentication in ASP.NET 2.0](https://msdn.microsoft.com/library/aa480476.aspx)
+- [How To: Protect Forms Authentication in ASP.NET 2.0](https://msdn.microsoft.com/library/ms998310.aspx)
 - [Professional ASP.NET 2.0 Security, Membership, and Role Management](http://www.wrox.com/WileyCDA/WroxTitle/productCd-0764596985.html) (ISBN: 978-0-7645-9698-8)
-- [Securing Login Controls](https://msdn.microsoft.com/en-us/library/ms178346.aspx)
-- [The &lt;authentication&gt; Element](https://msdn.microsoft.com/en-us/library/532aee0e.aspx)
-- [The &lt;forms&gt; Element for &lt;authentication&gt;](https://msdn.microsoft.com/en-us/library/1d3t3c61.aspx)
-- [The &lt;machineKey&gt; Element](https://msdn.microsoft.com/en-us/library/w8h3skw9.aspx)
+- [Securing Login Controls](https://msdn.microsoft.com/library/ms178346.aspx)
+- [The &lt;authentication&gt; Element](https://msdn.microsoft.com/library/532aee0e.aspx)
+- [The &lt;forms&gt; Element for &lt;authentication&gt;](https://msdn.microsoft.com/library/1d3t3c61.aspx)
+- [The &lt;machineKey&gt; Element](https://msdn.microsoft.com/library/w8h3skw9.aspx)
 - [Understanding the Forms Authentication Ticket and Cookie](https://support.microsoft.com/kb/910443)
 
 ### Video Training on Topics Contained in this Tutorial
@@ -432,6 +430,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Alicja Maziarz. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](an-overview-of-forms-authentication-cs.md)
-[Next](security-basics-and-asp-net-support-vb.md)
+> [!div class="step-by-step"]
+> [Previous](an-overview-of-forms-authentication-cs.md)
+> [Next](security-basics-and-asp-net-support-vb.md)

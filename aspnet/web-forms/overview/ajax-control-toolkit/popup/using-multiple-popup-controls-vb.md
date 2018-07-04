@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/popup/using-multiple-popup-controls-vb
 title: "Using Multiple Popup Controls (VB) | Microsoft Docs"
 author: wenz
 description: "The PopupControl extender in the AJAX Control Toolkit offers an easy way to trigger a popup when any other control is activated. It is also possible to use m..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 4da43d77-f6c4-43a8-9124-f1e8e1c8f0a2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/popup/using-multiple-popup-controls-vb
 msc.type: authoredcontent
 ---
@@ -50,6 +47,6 @@ Now whenever you click within a text field, a calendar appears below the field, 
 
 The Calendar appears when the user clicks into the textbox ([Click to view full-size image](using-multiple-popup-controls-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](handling-postbacks-from-a-popup-control-without-an-updatepanel-cs.md)
-[Next](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb.md)
+> [!div class="step-by-step"]
+> [Previous](handling-postbacks-from-a-popup-control-without-an-updatepanel-cs.md)
+> [Next](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb.md)

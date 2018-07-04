@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/multiple-contentplaceholders-and-default-content-vb
 title: "Multiple ContentPlaceHolders and Default Content (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to add multiple content place holders to a master page as well as how to specify default content in the content place holders."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/21/2008
-ms.topic: article
 ms.assetid: 866a7177-6884-451e-88f4-c934b1dd1af5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/multiple-contentplaceholders-and-default-content-vb
 msc.type: authoredcontent
 ---
@@ -179,6 +176,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](creating-a-site-wide-layout-using-master-pages-vb.md)
-[Next](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-site-wide-layout-using-master-pages-vb.md)
+> [Next](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md)

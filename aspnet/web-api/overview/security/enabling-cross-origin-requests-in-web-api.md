@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/security/enabling-cross-origin-requests-in-web-api
 title: "Enabling Cross-Origin Requests in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to support Cross-Origin Resource Sharing (CORS) in ASP.NET Web API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/15/2014
-ms.topic: article
 ms.assetid: 9b265a5a-6a70-4a82-adce-2d7c56ae8bdd
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api
 msc.type: authoredcontent
 ---
@@ -16,7 +13,7 @@ Enabling Cross-Origin Requests in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
-> Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sentitive data from another site. However, sometimes you might want to let other sites call your web API.
+> Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites call your web API.
 > 
 > [Cross Origin Resource Sharing](http://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as [JSONP](http://en.wikipedia.org/wiki/JSONP). This tutorial shows how to enable CORS in your Web API application.
 > 
@@ -26,20 +23,6 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > - [Visual Studio 2013 Update 2](https://www.microsoft.com/visualstudio/eng/2013-downloads)
 > - Web API 2.2
 
-
-- [Introduction](#intro)
-- [Create the WebService Project](#create-webapi-project)
-- [Create the WebClient Project](#create-client)
-- [Enable CORS in Web API](#enable-cors)
-- [How CORS Works](#how-it-works)
-- [Scope Rules for [EnableCors]](#scope)
-- [Set the Allowed Origins](#allowed-origins)
-- [Set the Allowed HTTP Methods](#allowed-methods)
-- [Set the Allowed Request Headers](#allowed-request-headers)
-- [Set the Allowed Response Headers](#allowed-response-headers)
-- [Passing Credentials in Cross-Origin Requests](#credentials)
-- [Custom CORS Policy Providers](#cors-policy-providers)
-- [Browser Support](#browser-support)
 
 <a id="intro"></a>
 ## Introduction
@@ -75,7 +58,7 @@ These URLs have different origins than the previous two:
 > This section assumes you already know how to create Web API projects. If not, see [Getting Started with ASP.NET Web API](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
 
 
-Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
+Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
 
 [![](enabling-cross-origin-requests-in-web-api/_static/image3.png)](enabling-cross-origin-requests-in-web-api/_static/image2.png)
 

@@ -1,37 +1,28 @@
 ---
-title: Using Gulp in ASP.NET Core | Microsoft Docs
+title: Use Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
-keywords: ASP.NET Core, Gulp
 ms.author: riande
-manager: wpickett
-ms.date: 02/28/2017
-ms.topic: article
-ms.assetid: 4095d273-bf3f-46cf-bdcc-18cf6815cbad
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: client-side/using-gulp
 ms.custom: H1Hack27Feb2017
+ms.date: 02/28/2017
+uid: client-side/using-gulp
 ---
-# Introduction to using Gulp in ASP.NET Core 
+# Use Gulp in ASP.NET Core
 
 By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
 
-In a typical modern web application, the build process might:
+In a typical modern web app, the build process might:
 
 * Bundle and minify JavaScript and CSS files.
-
 * Run tools to call the bundling and minification tasks before each build.
-
 * Compile LESS or SASS files to CSS.
-
 * Compile CoffeeScript or TypeScript files to JavaScript.
 
-A *task runner* is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: [Gulp](http://gulpjs.com) and [Grunt](using-grunt.md).
+A *task runner* is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: [Gulp](https://gulpjs.com/) and [Grunt](using-grunt.md).
 
-## Introducing Gulp
+## Gulp
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
 
 A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
@@ -59,13 +50,13 @@ paths.concatCssDest = paths.webroot + "css/site.min.css";
 
 The above code specifies which Node modules are required. The `require` function imports each module so that the dependent tasks can utilize their features. Each of the imported modules is assigned to a variable. The modules can be located either by name or path. In this example, the modules named `gulp`, `rimraf`, `gulp-concat`, `gulp-cssmin`, and `gulp-uglify` are retrieved by name. Additionally, a series of paths are created so that the locations of CSS and JavaScript files can be reused and referenced within the tasks. The following table provides descriptions of the modules included in *gulpfile.js*.
 
-|Module Name|Description|
-|---|---|
-|gulp|The Gulp streaming build system. For more information, see [gulp](https://www.npmjs.com/package/gulp).|
-|rimraf|A Node deletion module. For more information, see [rimraf](https://www.npmjs.com/package/rimraf).|
-|gulp-concat|A module that concatenates files based on the operating system’s newline character. For more information, see [gulp-concat](https://www.npmjs.com/package/gulp-concat).|
-|gulp-cssmin|A module that minifies CSS files. For more information, see [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin).|
-|gulp-uglify|A module that minifies *.js* files. For more information, see [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).|
+| Module Name | Description |
+| ----------- | ----------- |
+| gulp        | The Gulp streaming build system. For more information, see [gulp](https://www.npmjs.com/package/gulp). |
+| rimraf      | A Node deletion module. For more information, see [rimraf](https://www.npmjs.com/package/rimraf). |
+| gulp-concat | A module that concatenates files based on the operating system's newline character. For more information, see [gulp-concat](https://www.npmjs.com/package/gulp-concat). |
+| gulp-cssmin | A module that minifies CSS files. For more information, see [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin). |
+| gulp-uglify | A module that minifies *.js* files. For more information, see [gulp-uglify](https://www.npmjs.com/package/gulp-uglify). |
 
 Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
@@ -110,7 +101,7 @@ The following table provides an explanation of the tasks specified in the code a
 
 ## Running default tasks
 
-If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
+If you haven't already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
 1.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
 
@@ -178,17 +169,20 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
-    ![Open Task Runner Exploere from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
+    ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
     
     ![Task Runner Explorer](using-gulp/_static/03-TaskRunnerExplorer.png)
+    
+    > [!IMPORTANT]
+    > The **Task Runner Explorer** context menu item appears only if *gulpfile.js* is in the root project directory.
 
 4.  Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
     ![Task Runner Explorer clean task](using-gulp/_static/04-TaskRunner-clean.png)
 
-    **Task Runner Explorer** will create a new tab named **clean** and execute the clean task as it is defined in *gulpfile.js*.
+    **Task Runner Explorer** will create a new tab named **clean** and execute the clean task as it's defined in *gulpfile.js*.
 
 5.  Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
@@ -196,7 +190,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
     The **Before Build** binding configures the clean task to run automatically before each build of the project.
 
-The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example put this in your *.csproj* file:
+The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example, put this in your *.csproj* file:
 
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
@@ -204,7 +198,7 @@ The bindings you set up with **Task Runner Explorer** are stored in the form of 
 </Target>
 ```
 
-Now the clean task is executed when you run the project in Visual Studio or from a command prompt using the `dotnet run` command (run `npm install` first).
+Now the clean task is executed when you run the project in Visual Studio or from a command prompt using the [dotnet run](/dotnet/core/tools/dotnet-run) command (run `npm install` first).
 
 ## Defining and running a new task
 
@@ -228,7 +222,7 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     ![Task Runner Explorer run first task](using-gulp/_static/06-TaskRunner-First.png)
 
-    You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.
+    The output text is displayed. To see examples based on common scenarios, see [Gulp Recipes](#gulp-recipes).
 
 ## Defining and running tasks in a series
 
@@ -248,11 +242,11 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
     gulp.task("series", ["series:first", "series:second"], function () {});
     ```
  
-    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run.  As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
+    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
 
 2.  Save *gulpfile.js*.
 
-3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn’t already open.
+3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn't already open.
 
 4.  In **Task Runner Explorer**, right-click **series** and select **Run**.
 
@@ -264,7 +258,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 
 ![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
-For more information about IntelliSense, see [JavaScript IntelliSense](https://msdn.microsoft.com/library/bb385682).
+For more information about IntelliSense, see [JavaScript IntelliSense](/visualstudio/ide/javascript-intellisense).
 
 ## Development, staging, and production environments
 
@@ -323,11 +317,11 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
     Notice that the stylesheet links point to the unminified versions of the CSS files.
 
-For more information related to environments in ASP.NET Core, see [Working with Multiple Environments](../fundamentals/environments.md).
+For more information related to environments in ASP.NET Core, see [Use multiple environments](../fundamentals/environments.md).
 
 ## Task and module details
 
-A Gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
+A Gulp task is registered with a function name. You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
 
 |Gulp Function|Syntax|Description|
 |---   |--- |--- |
@@ -340,10 +334,10 @@ For additional Gulp API reference information, see [Gulp Docs API](https://githu
 
 ## Gulp recipes
 
-The Gulp community provides Gulp [recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md). These recipes consist of Gulp tasks to address common scenarios.
+The Gulp community provides Gulp [Recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md). These recipes consist of Gulp tasks to address common scenarios.
 
 ## Additional resources
 
 * [Gulp documentation](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 * [Bundling and minification in ASP.NET Core](bundling-and-minification.md)
-* [Using Grunt in ASP.NET Core](using-grunt.md)
+* [Use Grunt in ASP.NET Core](using-grunt.md)

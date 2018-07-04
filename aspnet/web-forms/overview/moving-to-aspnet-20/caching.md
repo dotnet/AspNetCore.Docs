@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/caching
 title: "Caching | Microsoft Docs"
 author: microsoft
 description: "An understanding of caching is important for a well-performing ASP.NET application. ASP.NET 1.x offered three different options for caching; output caching,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2005
-ms.topic: article
 ms.assetid: 2bb109d2-e299-46ea-9054-fa0263b59165
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/caching
 msc.type: authoredcontent
 ---
@@ -53,7 +50,7 @@ To invalidate the item that was inserted above, simply remove the item that was 
 
 Note that the key of the item that acts as the cache key must be the same as the value added to the array of cache keys.
 
-## Polling-Based SQL Cache Dependencies*(Also called Table-Based Dependencies)*
+## Polling-Based SQL Cache Dependencies<em>(Also called Table-Based Dependencies)</em>
 
 SQL Server 7 and 2000 use the polling-based model for SQL cache dependencies. The polling-based model uses a trigger on a database table that is triggered when data in the table change. That trigger updates a **changeId** field in the notification table that ASP.NET checks periodically. If the **changeId** field has been updated, ASP.NET knows that the data have changed and it invalidates the cached data.
 
@@ -138,7 +135,7 @@ The following code sample illustrates how to properly configure exception handli
 
 [!code-csharp[Main](caching/samples/sample11.cs)]
 
-More Information: [https://msdn.microsoft.com/en-us/library/t9x04ed2.aspx](https://msdn.microsoft.com/en-us/library/t9x04ed2.aspx)
+More Information: [https://msdn.microsoft.com/library/t9x04ed2.aspx](https://msdn.microsoft.com/library/t9x04ed2.aspx)
 
 ## Query-Based SQL Cache Dependencies (SQL Server 2005 Only)
 
@@ -182,7 +179,7 @@ The ASP.NET Substitution control specifies a section of a cached page that is cr
 
 ### Substitution API
 
-To create dynamic content for a cached page programmatically, you can call the [WriteSubstitution](https://msdn.microsoft.com/en-us/library/system.web.httpresponse.writesubstitution.aspx) method in your page code, passing it the name of a method as a parameter. The method that handles the creation of the dynamic content takes a single [HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) parameter and returns a string. The return string is the content that will be substituted at the given location. An advantage of calling the WriteSubstitution method instead of using the Substitution control declaratively is that you can call a method of any arbitrary object rather than calling a static method of the Page or the UserControl object.
+To create dynamic content for a cached page programmatically, you can call the [WriteSubstitution](https://msdn.microsoft.com/library/system.web.httpresponse.writesubstitution.aspx) method in your page code, passing it the name of a method as a parameter. The method that handles the creation of the dynamic content takes a single [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.aspx) parameter and returns a string. The return string is the content that will be substituted at the given location. An advantage of calling the WriteSubstitution method instead of using the Substitution control declaratively is that you can call a method of any arbitrary object rather than calling a static method of the Page or the UserControl object.
 
 Calling the WriteSubstitution method causes client-side cacheability to be changed to server cacheability, so that the page will not be cached on the client. This ensures that future requests to the page call the method again to generate dynamic content.
 
@@ -192,15 +189,15 @@ The AdRotator server control implements support for post-cache substitution inte
 
 ## ControlCachePolicy Class
 
-The ControlCachePolicy class allows for the programmatic control of fragment caching using user controls. ASP.NET embeds user controls within a [BasePartialCachingControl](https://msdn.microsoft.com/en-us/library/system.web.ui.basepartialcachingcontrol.aspx) instance. The BasePartialCachingControl class represents a user control that has output caching enabled.
+The ControlCachePolicy class allows for the programmatic control of fragment caching using user controls. ASP.NET embeds user controls within a [BasePartialCachingControl](https://msdn.microsoft.com/library/system.web.ui.basepartialcachingcontrol.aspx) instance. The BasePartialCachingControl class represents a user control that has output caching enabled.
 
-When you access the [BasePartialCachingControl.CachePolicy](https://msdn.microsoft.com/en-us/library/system.web.ui.basepartialcachingcontrol.cachepolicy.aspx) property of a [PartialCachingControl](https://msdn.microsoft.com/en-us/library/system.web.ui.partialcachingcontrol.aspx) control, you will always receive a valid ControlCachePolicy object. However, if you access the [UserControl.CachePolicy](https://msdn.microsoft.com/en-us/library/system.web.ui.usercontrol.cachepolicy.aspx) property of a [UserControl](https://msdn.microsoft.com/en-us/library/system.web.ui.usercontrol.aspx) control, you receive a valid ControlCachePolicy object only if the user control is already wrapped by a BasePartialCachingControl control. If it is not wrapped, the ControlCachePolicy object returned by the property will throw exceptions when you attempt to manipulate it because it does not have an associated BasePartialCachingControl. To determine whether a UserControl instance supports caching without generating exceptions, inspect the [SupportsCaching](https://msdn.microsoft.com/en-us/library/system.web.ui.controlcachepolicy.supportscaching.aspx) property.
+When you access the [BasePartialCachingControl.CachePolicy](https://msdn.microsoft.com/library/system.web.ui.basepartialcachingcontrol.cachepolicy.aspx) property of a [PartialCachingControl](https://msdn.microsoft.com/library/system.web.ui.partialcachingcontrol.aspx) control, you will always receive a valid ControlCachePolicy object. However, if you access the [UserControl.CachePolicy](https://msdn.microsoft.com/library/system.web.ui.usercontrol.cachepolicy.aspx) property of a [UserControl](https://msdn.microsoft.com/library/system.web.ui.usercontrol.aspx) control, you receive a valid ControlCachePolicy object only if the user control is already wrapped by a BasePartialCachingControl control. If it is not wrapped, the ControlCachePolicy object returned by the property will throw exceptions when you attempt to manipulate it because it does not have an associated BasePartialCachingControl. To determine whether a UserControl instance supports caching without generating exceptions, inspect the [SupportsCaching](https://msdn.microsoft.com/library/system.web.ui.controlcachepolicy.supportscaching.aspx) property.
 
 Using the ControlCachePolicy class is one of several ways you can enable output caching. The following list describes methods you can use to enable output caching:
 
-- Use the [@ OutputCache](https://msdn.microsoft.com/en-us/library/hdxfb6cy.aspx) directive to enable output caching in declarative scenarios.
-- Use the [PartialCachingAttribute](https://msdn.microsoft.com/en-us/library/system.web.ui.partialcachingattribute.aspx) attribute to enable caching for a user control in a code-behind file.
-- Use the ControlCachePolicy class to specify cache settings in programmatic scenarios in which you are working with BasePartialCachingControl instances that have been cache-enabled using one of the previous methods and dynamically loaded using the [System.Web.UI.TemplateControl.LoadControl](https://msdn.microsoft.com/en-us/library/system.web.ui.templatecontrol.loadcontrol.aspx) method.
+- Use the [@ OutputCache](https://msdn.microsoft.com/library/hdxfb6cy.aspx) directive to enable output caching in declarative scenarios.
+- Use the [PartialCachingAttribute](https://msdn.microsoft.com/library/system.web.ui.partialcachingattribute.aspx) attribute to enable caching for a user control in a code-behind file.
+- Use the ControlCachePolicy class to specify cache settings in programmatic scenarios in which you are working with BasePartialCachingControl instances that have been cache-enabled using one of the previous methods and dynamically loaded using the [System.Web.UI.TemplateControl.LoadControl](https://msdn.microsoft.com/library/system.web.ui.templatecontrol.loadcontrol.aspx) method.
 
 A ControlCachePolicy instance can be successfully manipulated only between the Init and PreRender stages of the control life cycle. If you modify a ControlCachePolicy object after the PreRender phase, ASP.NET throws an exception because any changes made after the control is rendered cannot actually affect cache settings (a control is cached during the Render stage). Finally, a user control instance (and therefore its ControlCachePolicy object) is only available for programmatic manipulation when it is actually rendered.
 
@@ -231,12 +228,13 @@ The following attributes are available in the &lt;cache&gt; element:
 
 The following attributes are available for the &lt;outputCache&gt; element.
 
-| **Attribute** | **Description** |
-| --- | --- |
-| **enableOutputCache** | Optional **Boolean** attribute. Enables/disables the page output cache. If disabled, no pages are cached regardless of the programmatic or declarative settings. Default value is **true**. |
-| **enableFragmentCache** | Optional **Boolean** attribute. Enables/disables the application fragment cache. If disabled, no pages are cached regardless of the [@ OutputCache](https://msdn.microsoft.com/en-us/library/hdxfb6cy.aspx) directive or caching profile used. Includes a cache-control header indicating that upstream proxy servers as well as browser clients should not attempt to cache page output. Default value is **false**. |
-| **sendCacheControlHeader** | Optional **Boolean** attribute. Gets or sets a value indicating whether the **cache-control:private** header is sent by the output cache module by default. Default value is **false**. |
-| **omitVaryStar** | Optional **Boolean** attribute. Enables/disables sending an Http "**Vary: \***" header in the response. With the default setting of false, a "**Vary: \***" header is sent for output cached pages. When the Vary header is sent, it allows for different versions to be cached based upon what is specified in the Vary header. For example, *Vary:User-Agents* will store different versions of a page based upon the user agent issuing the request. Default value is **false**. |
+
+|       <strong>Attribute</strong>        |                                                                                                                                                                                                                                                       <strong>Description</strong>                                                                                                                                                                                                                                                       |
+|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   <strong>enableOutputCache</strong>    |                                                                                                                                                          Optional <strong>Boolean</strong> attribute. Enables/disables the page output cache. If disabled, no pages are cached regardless of the programmatic or declarative settings. Default value is <strong>true</strong>.                                                                                                                                                           |
+|  <strong>enableFragmentCache</strong>   |                                                Optional <strong>Boolean</strong> attribute. Enables/disables the application fragment cache. If disabled, no pages are cached regardless of the [@ OutputCache](https://msdn.microsoft.com/library/hdxfb6cy.aspx) directive or caching profile used. Includes a cache-control header indicating that upstream proxy servers as well as browser clients should not attempt to cache page output. Default value is <strong>false</strong>.                                                 |
+| <strong>sendCacheControlHeader</strong> |                                                                                                                                                      Optional <strong>Boolean</strong> attribute. Gets or sets a value indicating whether the <strong>cache-control:private</strong> header is sent by the output cache module by default. Default value is <strong>false</strong>.                                                                                                                                                      |
+|      <strong>omitVaryStar</strong>      | Optional <strong>Boolean</strong> attribute. Enables/disables sending an Http "<strong>Vary: \</strong><em>" header in the response. With the default setting of false, a "</em>*Vary: \*<strong>" header is sent for output cached pages. When the Vary header is sent, it allows for different versions to be cached based upon what is specified in the Vary header. For example, <em>Vary:User-Agents</em> will store different versions of a page based upon the user agent issuing the request. Default value is **false</strong>. |
 
 ### The &lt;outputCacheSettings&gt; Element
 

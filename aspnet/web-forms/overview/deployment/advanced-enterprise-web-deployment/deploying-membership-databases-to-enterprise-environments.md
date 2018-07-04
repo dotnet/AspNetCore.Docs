@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments
 title: "Deploying Membership Databases to Enterprise Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic explains the key considerations and challenges you'll need to overcome when you provision ASP.NET application services databases (more common..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 3cf765df-d311-4f68-a295-c9685ceea830
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments
 msc.type: authoredcontent
 ---
@@ -38,8 +35,8 @@ Unfortunately, ASP.NET membership databases introduce some specific challenges t
 
 Use these guidelines when you choose how to provision a membership database in an enterprise server environment:
 
-- Wherever possible, do not deploy membership databases. Instead, create the membership database manually on the target database server. If you haven't customized your membership database schema, you can simply create a new one in situ at the destination using the [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/en-us/library/ms229862(v=vs.100).aspx).
-- If you have no option but to deploy a membership database&#x2014;for example, if you've made extensive modifications to the database schema&#x2014;you should perform a schema-only deployment of the membership database, to exclude user account data, and then run a post-deployment script to add any required configuration data. You can find broad guidance on these approaches in [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/en-us/library/ff361972(v=vs.100).aspx).
+- Wherever possible, do not deploy membership databases. Instead, create the membership database manually on the target database server. If you haven't customized your membership database schema, you can simply create a new one in situ at the destination using the [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/library/ms229862(v=vs.100).aspx).
+- If you have no option but to deploy a membership database&#x2014;for example, if you've made extensive modifications to the database schema&#x2014;you should perform a schema-only deployment of the membership database, to exclude user account data, and then run a post-deployment script to add any required configuration data. You can find broad guidance on these approaches in [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/library/ff361972(v=vs.100).aspx).
 
 It's important to remember that *the schema of your membership database is likely to be fairly static*. Even if you've customized the membership database, it's unlikely that you'll need to update the schema on a regular basis&#x2014;it's not going to change with the same frequency as the code in a web application or a database project. As such, you shouldn't need to include the membership database in any automated or single-step deployment processes.
 
@@ -51,8 +48,8 @@ The alternative is to use the VSDBCMD utility to update the schema of your desti
 
 You can use these high-level steps to update a membership database schema:
 
-1. Use the VSDBCMD **Import** action to generate a .dbschema file for your source membership database. This procedure is described in [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/en-us/library/dd172135.aspx).
-2. Use the VSDBCMD **Deploy** action to deploy the .dbschema file to your destination membership database. This procedure is described in [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/en-us/library/dd193283.aspx).
+1. Use the VSDBCMD **Import** action to generate a .dbschema file for your source membership database. This procedure is described in [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/library/dd172135.aspx).
+2. Use the VSDBCMD **Deploy** action to deploy the .dbschema file to your destination membership database. This procedure is described in [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx).
 
 ## Conclusion
 
@@ -60,8 +57,8 @@ This topic described some of the challenges you may face when you need to provis
 
 ## Further Reading
 
-For more guidance and examples of how to use VSDBCMD, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/en-us/library/dd193283.aspx) and [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/en-us/library/dd172135.aspx). For more information on using aspnet\_regsql.exe to create membership databases, see [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/en-us/library/ms229862(v=vs.100).aspx). For more general guidance on deploying membership databases, see [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/en-us/library/ff361972(v=vs.100).aspx).
+For more guidance and examples of how to use VSDBCMD, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx) and [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/library/dd172135.aspx). For more information on using aspnet\_regsql.exe to create membership databases, see [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/library/ms229862(v=vs.100).aspx). For more general guidance on deploying membership databases, see [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/library/ff361972(v=vs.100).aspx).
 
->[!div class="step-by-step"]
-[Previous](deploying-database-role-memberships-to-test-environments.md)
-[Next](excluding-files-and-folders-from-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-database-role-memberships-to-test-environments.md)
+> [Next](excluding-files-and-folders-from-deployment.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/web-deployment-in-the-enterprise
 title: "Web Deployment in the Enterprise | Microsoft Docs"
 author: jrjlee
 description: "This tutorial describes how to meet lots of the challenges you'll encounter when you manage the deployment of enterprise-scale web applications to devel..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: b8283698-7b82-42a8-8d83-3aeb18ca7fcc
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/web-deployment-in-the-enterprise
 msc.type: authoredcontent
 ---
@@ -98,5 +95,5 @@ This forms part of a series of five tutorials on enterprise-scale web deployment
 - [Configuring Team Foundation Server for Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial describes how to configure TFS to support various deployment scenarios, including automated deployment as part of a CI process and manually triggered deployments of specific builds.
 - [Advanced Enterprise Web Deployment](../advanced-enterprise-web-deployment/advanced-enterprise-web-deployment.md). This tutorial describes how to accomplish various more advanced deployment tasks, like customizing database deployments for multiple environments, excluding files and folders from deployment, and taking web applications offline during the deployment process.
 
->[!div class="step-by-step"]
-[Next](the-contact-manager-solution.md)
+> [!div class="step-by-step"]
+> [Next](the-contact-manager-solution.md)

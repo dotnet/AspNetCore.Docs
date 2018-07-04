@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/reorderlist/using-postbacks-with-reorderlist-vb
 title: "Using Postbacks with ReorderList (VB) | Microsoft Docs"
 author: wenz
 description: "The ReorderList control in the AJAX Control Toolkit provides a list that can be reordered by the user via drag and drop. Whenever the list is reordered, a po..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: e5b6ed70-19ed-4024-ba4f-6d78e8acdc0f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/reorderlist/using-postbacks-with-reorderlist-vb
 msc.type: authoredcontent
 ---
@@ -63,6 +60,6 @@ Finally, in order to activate the functionality of ASP.NET AJAX and the Control 
 
 Each reordering triggers a postback ([Click to view full-size image](using-postbacks-with-reorderlist-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](drag-and-drop-via-reorderlist-cs.md)
-[Next](drag-and-drop-via-reorderlist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](drag-and-drop-via-reorderlist-cs.md)
+> [Next](drag-and-drop-via-reorderlist-vb.md)

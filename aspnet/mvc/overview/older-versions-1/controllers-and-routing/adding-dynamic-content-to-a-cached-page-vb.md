@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb
 title: "Adding Dynamic Content to a Cached Page (VB) | Microsoft Docs"
 author: microsoft
 description: "Learn how to mix dynamic and cached content in the same page. Post-cache substitution enables you to display dynamic content, such as banner advertisements o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/27/2009
-ms.topic: article
 ms.assetid: 68acd884-fb57-4486-a1be-aaa93e380780
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb
 msc.type: authoredcontent
 ---
@@ -91,6 +88,6 @@ This tutorial explained how you can dynamically update content in a cached page.
 
 Take advantage of caching whenever possible – it can have a dramatic impact on the performance of your web applications. As explained in this tutorial, you can take advantage of caching even when you need to display dynamic content in your pages.
 
->[!div class="step-by-step"]
-[Previous](improving-performance-with-output-caching-vb.md)
-[Next](creating-a-controller-vb.md)
+> [!div class="step-by-step"]
+> [Previous](improving-performance-with-output-caching-vb.md)
+> [Next](creating-a-controller-vb.md)

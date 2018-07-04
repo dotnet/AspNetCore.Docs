@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/getting-started/using-page-inspector-in-a-visual-studio-11-beta-web-forms-project
 title: "Using Page Inspector for Visual Studio 2012 in ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "Page Inspector for Visual Studio 2012 is a web development tool with an integrated browser. Select any element in the integrated browser, and Page Inspector..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2012
-ms.topic: article
 ms.assetid: 2ece0bf4-aae5-4ff4-8f62-28e0819d4f86
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/using-page-inspector-in-a-visual-studio-11-beta-web-forms-project
 msc.type: authoredcontent
 ---
@@ -45,7 +42,7 @@ by Tim Ammann
 
 ## Prerequisites
 
-- [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us) or [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us/downloads#express-web).
+- [Visual Studio 2012](https://www.microsoft.com/visualstudio/11) or [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web).
 
 > [!NOTE]
 > To get the latest version of Page Inspector, use [Web Platform Installer](https://go.microsoft.com/fwlink/?LinkId=255386) to install the Azure SDK for .NET 2.0.
@@ -85,12 +82,13 @@ If you undock the Page Inspector window, you can place it outside Visual Studio,
 
 ![Clear the floating tool windows checkbox to ALT+TAB between Visual Studio and the undocked Page Inspector window](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image5.png)
 
-The top pane of the Page Inspector window shows the current page in a browser window. The bottom pane shows the page in HTML markup on the left, and some tabs on the right that let you inspect different aspects of the page. The bottom pane is similar to the [F12 Developer Tools](https://msdn.microsoft.com/en-us/ie/aa740478) in Internet Explorer. (However, unlike the developer tools, you can use Page Inspector right within Visual Studio.)
+The top pane of the Page Inspector window shows the current page in a browser window. The bottom pane shows the page in HTML markup on the left, and some tabs on the right that let you inspect different aspects of the page. The bottom pane is similar to the [F12 Developer Tools](https://msdn.microsoft.com/ie/aa740478) in Internet Explorer. (However, unlike the developer tools, you can use Page Inspector right within Visual Studio.)
 
 ![Page Inspector](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image6.png)
 
 In this tutorial, you will use the Page Inspector browser pane, and the **HTML** and **Styles** tabs to help you rapidly navigate and make changes to the application.
 
+<a id="_4_inspection_mode"></a>
 ## Enable Inspection Mode
 
 Next, you will see how Page Inspector's Inspection Mode works. In the Page Inspector window, click the **Inspect** button.
@@ -133,7 +131,7 @@ Add some text to the end of the line in the *Site.Master* file.
 
 Now, press Ctrl+Alt+Enter or click the Update Bar to see the results in the Page Inspector browser window.
 
-![My ASP.Net Application Rocks!](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image11.png)
+![My ASP.NET Application Rocks!](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image11.png)
 
 You might have thought that the footer was on the *Default.aspx* page, but it turned out to be in the master layout page, and Page Inspector found it for you.
 

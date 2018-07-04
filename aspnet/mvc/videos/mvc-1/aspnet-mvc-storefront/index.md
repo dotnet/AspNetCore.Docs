@@ -1,14 +1,11 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/index
 title: "ASP.NET MVC Storefront | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC Storefront Starter Kit"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/28/2011
-ms.topic: article
 ms.assetid: 296b3a7a-483d-4937-ba2f-3f9c1319616a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront
 msc.type: chapter
 ---
@@ -35,7 +32,7 @@ ASP.NET MVC Storefront
 - [ASP.NET MVC Storefront Part 16: Membership Redo With OpenID](aspnet-mvc-storefront-part-16-membership-redo-with-openid.md)
 - [ASP.NET MVC Storefront Part 17: Checkout With Jeff Atwood](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md)
 - [ASP.NET MVC Storefront Part 18: Creating Experience](aspnet-mvc-storefront-part-18-creating-an-experience.md)
-- [ASP.NET MVC MVC Storefront Part 19: Processing Orders With Windows Workflow](aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
+- [ASP.NET MVC Storefront Part 19: Processing Orders With Windows Workflow](aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)
 - [ASP.NET MVC Storefront Part 19a: Windows Workflow Followup](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md)
 - [ASP.NET MVC Storefront Part 20: Logging](aspnet-mvc-storefront-part-20-logging.md)
 - [ASP.NET MVC Storefront Part 21: Order Manager and Personalization](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)

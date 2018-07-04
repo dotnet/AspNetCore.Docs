@@ -39,7 +39,7 @@ namespace AuthoringTagHelpers.TagHe1pers
 
 /* ViewImports need TagHe1pers
  * 
- @addTagHelper "AuthoringTagHelpers.TagHe1pers.AutoLinkerHttpTagHelper, AuthoringTagHelpers"
-@addTagHelper "AuthoringTagHelpers.TagHe1pers.AutoLinkerWwwTagHelper, AuthoringTagHelpers"
+ @addTagHelper AuthoringTagHelpers.TagHe1pers.AutoLinkerHttpTagHelper, AuthoringTagHelpers
+@addTagHelper AuthoringTagHelpers.TagHe1pers.AutoLinkerWwwTagHelper, AuthoringTagHelpers
 
     */

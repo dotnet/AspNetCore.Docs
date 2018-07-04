@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website
 title: "Caching Data in an ASP.NET Web Pages (Razor) Site for Better Performance | Microsoft Docs"
 author: tfitzmac
 description: "You can speed up your website by having it store - that is, cache - the results of data that ordinarily would take considerable time to retrieve or process a..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/14/2014
-ms.topic: article
 ms.assetid: 961e525b-7700-469e-8a68-d7010b6fb68c
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website
 msc.type: authoredcontent
 ---
@@ -77,4 +74,4 @@ ASP.NET includes a `WebCache` helper that makes it easy to add caching to your s
 
 
 - [Displaying Data in a Chart](https://go.microsoft.com/fwlink/?LinkId=202895)
-- [WebCache API reference](https://msdn.microsoft.com/en-us/library/system.web.helpers.webcache(v=vs.99).aspx) (MSDN)
+- [WebCache API reference](https://msdn.microsoft.com/library/system.web.helpers.webcache(v=vs.99).aspx) (MSDN)

@@ -1,16 +1,14 @@
 ---
+uid: web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 title: "Programming ASP.NET Web Pages (Razor) Using Visual Studio | Microsoft Docs"
 author: tfitzmac
 description: "This appendix explains how you can use Visual Studio 2010 or Visual Web Developer 2010 Express to program ASP.NET Web Pages with the Razor syntax."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/13/2014
-ms.topic: article
 ms.assetid: 0acfec5a-48f2-4766-a801-a0f426966f0a
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 msc.type: authoredcontent
+uid: aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 ---
 Programming ASP.NET Web Pages (Razor) Using Visual Studio
 ====================
@@ -91,7 +89,7 @@ Now that you've created a site, you can see how IntelliSense works in Visual Stu
 
     ![intellisense](program-asp-net-web-pages-in-visual-studio/_static/image4.png)
 3. Select the `GetHtml` method from the list and then press Enter. IntelliSense automatically fills in the method. (As with any method in C#, you must add `()` characters after the method.)  
- The completed code for the `GetHtml` method looks like the following example:  
+   The completed code for the `GetHtml` method looks like the following example:  
 
     [!code-cshtml[Main](program-asp-net-web-pages-in-visual-studio/samples/sample1.cshtml)]
 4. Press Ctrl+F5 to run the page. This is what the page looks like when displayed in a browser: 

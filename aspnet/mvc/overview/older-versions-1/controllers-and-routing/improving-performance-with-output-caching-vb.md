@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-vb
 title: "Improving Performance with Output Caching (VB) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, you learn how you can dramatically improve the performance of your ASP.NET MVC web applications by taking advantage of output caching. You..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/27/2009
-ms.topic: article
 ms.assetid: 0e7b4d85-2c46-4eaf-b6a8-6cd566a67334
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-vb
 msc.type: authoredcontent
 ---
@@ -161,6 +158,6 @@ If you invoke the Index() action exposed by the controller in Listing 7 then the
 
 Output caching provides you with a very easy method of dramatically improving the performance of your ASP.NET MVC applications. In this tutorial, you learned how to use the &lt;OutputCache&gt; attribute to cache the output of controller actions. You also learned how to modify properties of the &lt;OutputCache&gt; attribute such as the Duration and VaryByParam properties to modify how content gets cached. Finally, you learned how to define cache profiles in the web configuration file.
 
->[!div class="step-by-step"]
-[Previous](understanding-action-filters-vb.md)
-[Next](adding-dynamic-content-to-a-cached-page-vb.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-action-filters-vb.md)
+> [Next](adding-dynamic-content-to-a-cached-page-vb.md)

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/index
 title: "ASP.NET MVC Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET MVC ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and that g..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/31/2011
-ms.topic: article
 ms.assetid: d916dbe0-1895-491b-8bb6-93f4594ce757
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started
 msc.type: chapter
 ---
@@ -53,7 +50,6 @@ ASP.NET MVC Getting Started
     - [Customizing a View](database-first-development/customizing-a-view.md)
     - [Enhancing Data Validation](database-first-development/enhancing-data-validation.md)
     - [Publish to Azure](database-first-development/publish-to-azure.md)
-- [ASP.NET MVC Facebook Birthday App](aspnet-mvc-facebook-birthday-app.md)
 - [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md)
 - [MVC Recommended Resources](recommended-resources-for-mvc.md)
 - [MVC recommended tutorials and articles](mvc-learning-sequence.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/customizing-database-deployments-for-multiple-environments
 title: "Customizing Database Deployments for Multiple Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to tailor the properties of a database to specific target environments as part of the deployment process. Note: The topic assumes th..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: a172979a-1318-4318-a9c6-4f9560d26267
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/customizing-database-deployments-for-multiple-environments
 msc.type: authoredcontent
 ---
@@ -76,7 +73,7 @@ This table shows typical deployment settings for different destination environme
   
 
 > [!NOTE]
-> For more information on database deployment properties and environment considerations, see [An Overview of Database Project Settings](https://msdn.microsoft.com/en-us/library/aa833291(v=VS.100).aspx), [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/en-us/library/dd172125.aspx), [Build and Deploy Database to an Isolated Development Environment](https://msdn.microsoft.com/en-us/library/dd193409.aspx), and [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/en-us/library/dd193413.aspx).
+> For more information on database deployment properties and environment considerations, see [An Overview of Database Project Settings](https://msdn.microsoft.com/library/aa833291(v=VS.100).aspx), [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/library/dd172125.aspx), [Build and Deploy Database to an Isolated Development Environment](https://msdn.microsoft.com/library/dd193409.aspx), and [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/library/dd193413.aspx).
 
 
 To support the deployment of a database project to multiple destinations, you should create a deployment configuration file for each target environment.
@@ -135,11 +132,11 @@ For more information on deploying database projects using VSDBCMD.exe, see [Depl
 
 These articles on MSDN provide more general guidance on database deployment:
 
-- [An Overview of Database Project Settings](https://msdn.microsoft.com/en-us/library/aa833291(v=VS.100).aspx)
-- [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/en-us/library/dd172125.aspx)
-- [Build and Deploy Databases to an Isolated Development Environment](https://msdn.microsoft.com/en-us/library/dd193409.aspx)
-- [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/en-us/library/dd193413.aspx)
+- [An Overview of Database Project Settings](https://msdn.microsoft.com/library/aa833291(v=VS.100).aspx)
+- [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/library/dd172125.aspx)
+- [Build and Deploy Databases to an Isolated Development Environment](https://msdn.microsoft.com/library/dd193409.aspx)
+- [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/library/dd193413.aspx)
 
->[!div class="step-by-step"]
-[Previous](performing-a-what-if-deployment.md)
-[Next](deploying-database-role-memberships-to-test-environments.md)
+> [!div class="step-by-step"]
+> [Previous](performing-a-what-if-deployment.md)
+> [Next](deploying-database-role-memberships-to-test-environments.md)

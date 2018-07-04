@@ -1,82 +1,76 @@
 ---
-title: Introduction to ASP.NET Core | Microsoft Docs
+title: Introduction to ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
-manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 1c501638-114a-4cd3-ad39-0a5790b4e764
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.date: 02/28/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
-ASP.NET Core is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET Core and explains how they help you develop modern web apps.  
+ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
 
-## What is ASP.NET Core?
+* Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Use your favorite development tools on Windows, macOS, and Linux.
+* Deploy to the cloud or on-premises.
+* Run on [.NET Core or .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
-ASP.NET Core is a new open-source and cross-platform framework for building modern cloud based internet connected applications, such as web apps, IoT apps and mobile backends. ASP.NET Core apps can run on [.NET Core](https://www.microsoft.com/net/core/platform) or on the full .NET Framework. It was architected to provide an optimized development framework for apps that are deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run your ASP.NET Core apps cross-platform on Windows, Mac and Linux. ASP.NET Core is open source at [GitHub](https://github.com/aspnet/home).
+## Why use ASP.NET Core?
 
-## Why build ASP.NET Core?
+Millions of developers have used (and continue to use) [ASP.NET 4.x](https://docs.microsoft.com/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
-The first preview release of ASP.NET came out almost 15 years ago as part of the .NET Framework.  Since then millions of developers have used it to build and run great web apps, and over the years we have added and evolved many capabilities to it.
+ASP.NET Core provides the following benefits:
 
-ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework.  ASP.NET Core is no longer based on *System.Web.dll*. It is based on a set of granular and well factored [NuGet](http://www.nuget.org/) packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
+* A unified story for building web UI and web APIs.
+* Integration of [modern, client-side frameworks](xref:client-side/index) and development workflows.
+* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
+* Built-in [dependency injection](xref:fundamentals/dependency-injection).
+* A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
+* Ability to host on [IIS](xref:host-and-deploy/iis/index), [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), [Docker](xref:host-and-deploy/docker/index), or self-host in your own process.
+* Side-by-side app versioning when targeting [.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+* Tooling that simplifies modern web development.
+* Ability to build and run on Windows, macOS, and Linux.
+* Open-source and [community-focused](https://live.asp.net/).
 
-With ASP.NET Core you gain the following foundational improvements:
+ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. Using NuGet packages allows you to optimize your app to include only the necessary dependencies. In fact, ASP.NET Core 2.x apps targeting .NET Core only require a [single NuGet package](xref:fundamentals/metapackage). The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
 
-* A unified story for building web UI and web APIs
+## Build web APIs and web UI using ASP.NET Core MVC
 
-* Integration of [modern client-side frameworks](client-side/index.md) and development workflows
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#build-web-apis) and [web apps](xref:tutorials/index#build-web-apps):
 
-* A cloud-ready environment-based [configuration system](fundamentals/configuration.md)
-
-* Built-in [dependency injection](fundamentals/dependency-injection.md)
-
-* New light-weight and modular HTTP request pipeline
-
-* Ability to host on IIS or self-host in your own process
-
-* Built on [.NET Core](https://microsoft.com/net/core), which supports true side-by-side app versioning
-
-* Ships entirely as [NuGet](https://nuget.org)  packages
-
-* New tooling that simplifies modern web development
-
-* Build and run cross-platform ASP.NET apps on Windows, Mac and Linux
-
-* Open source and community focused
-
-## Build web UI and web APIs using ASP.NET Core MVC
-
-* You can create well-factored and testable web apps that follow the Model-View-Controller (MVC) pattern. See [MVC](mvc/index.md) and [Testing](testing/index.md).
-
-* You can build HTTP services that support multiple formats and have full support for content negotiation. See [Formatting Response Data](mvc/models/formatting.md)
-
-* [Razor](http://www.asp.net/web-pages/overview/getting-started/introducing-razor-syntax-c) provides a productive language to create [Views](mvc/views/index.md)
-
-* [Tag Helpers](mvc/views/tag-helpers/intro.md) enable server-side code to participate in creating and rendering HTML elements in Razor files
-
-* You can create HTTP services with full support for content negotiation using custom or built-in formatters (JSON, XML)
-
-* [Model Binding](mvc/models/model-binding.md) automatically maps data from HTTP requests to action method parameters
-
-* [Model Validation](mvc/models/validation.md) automatically performs client and server side validation
+* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](xref:test/index).
+* [Razor Pages](xref:razor-pages/index) (new in ASP.NET Core 2.0) is a page-based programming model that makes building web UI easier and more productive.
+* [Razor markup](xref:mvc/views/razor) provides a productive syntax for [Razor Pages](xref:razor-pages/index) and [MVC views](xref:mvc/views/overview).
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+* Built-in support for [multiple data formats and content negotiation](xref:web-api/advanced/formatting) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
+* [Model binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
+* [Model validation](xref:mvc/models/validation) automatically performs client- and server-side validation.
 
 ## Client-side development
 
-ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](client-side/angular.md), [KnockoutJS](client-side/knockout.md) and [Bootstrap](client-side/bootstrap.md). See [Client-Side Development](client-side/index.md) for more details.
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](xref:client-side/bootstrap). For more information, see [Client-side development](xref:client-side/index).
+
+## ASP.NET Core targeting .NET Framework
+
+ASP.NET Core can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. There are no plans to remove support for targeting .NET Framework in ASP.NET Core. Generally, ASP.NET Core is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+
+There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
+
+* Cross-platform. Runs on macOS, Linux, and Windows.
+* Improved performance
+* Side-by-side versioning
+* New APIs
+* Open source
+
+We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
 ## Next steps
 
-For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
+For more information, see the following resources:
 
-For in-depth introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Fundamentals](fundamentals/index.md).
-
-An ASP.NET Core app can use the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
-
+* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [ASP.NET Core tutorials](xref:tutorials/index)
+* [ASP.NET Core fundamentals](xref:fundamentals/index)
+* [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.

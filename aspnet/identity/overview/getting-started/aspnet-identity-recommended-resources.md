@@ -1,14 +1,11 @@
 ---
+uid: identity/overview/getting-started/aspnet-identity-recommended-resources
 title: "ASP.NET Identity Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about how to use ASP.NET Identity. If you know a great blog post, stackoverflow thread, or any other lin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/09/2015
-ms.topic: article
 ms.assetid: 0f78aec2-f509-46fa-b20f-d5208425d8ec
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-recommended-resources
 msc.type: authoredcontent
 ---
@@ -35,7 +32,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Getting Started with ASP.NET Identity
 
 - [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) This tutorial shows you how to write an ASP.NET MVC 5 app with Facebook and Google OAuth 2 authorization. It also shows how to add additional data to the Identity database.
-- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). This tutorial adds Azure deployment, how to secure your app with roles, how to use the membership API to add users and roles, and additional security features.
+- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Azure](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). This tutorial adds Azure deployment, how to secure your app with roles, how to use the membership API to add users and roles, and additional security features.
 - [Introduction to ASP.NET Identity](introduction-to-aspnet-identity.md)
 - [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md)
 - [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](../../../mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md)
@@ -43,7 +40,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 <a id="feat"></a>
 ## New featured Must Read articles
 
-- [One stop guide to configuring OAuth providers for ASP.NET](http://www.oauthforaspnet.com/)
 - [Walkthrough: ASP.NET MVC Identity with Microsoft Account Authentication](http://www.benday.com/2014/02/25/walkthrough-asp-net-mvc-identity-with-microsoft-account-authentication/) by [Benjamin Day](http://www.benday.com/about/)
 - [ASP.NET Identity 2.0 Extending Identity Models and Using Integer Keys Instead of Strings](http://typecastexception.com/post/2014/07/13/ASPNET-Identity-20-Extending-Identity-Models-and-Using-Integer-Keys-Instead-of-Strings.aspx)
 - [AngularJS Token Authentication using ASP.NET Web API 2, Owin, and Identity](http://bitoftech.net/2014/06/09/angularjs-token-authentication-using-asp-net-web-api-2-owin-asp-net-identity/)
@@ -57,8 +53,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Two-factor authentication using SMS and email with ASP.NET Identity](../features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md)
 - [Migrating an Existing Website from SQL Membership to ASP.NET Identity](../migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md)
 - [Adding ASP.NET Identity to an Empty or Existing Web Forms Project](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project.md)
-- MSDN Magazine [External Authentication with ASP.NET Identity](https://msdn.microsoft.com/en-us/magazine/dn745860.aspx) by Dino Esposito
-- MSDN Magazine[A First Look at ASP.NET Identity](https://msdn.microsoft.com/en-us/magazine/dn605872.aspx) by Dino Esposito
+- MSDN Magazine [External Authentication with ASP.NET Identity](https://msdn.microsoft.com/magazine/dn745860.aspx) by Dino Esposito
+- MSDN Magazine[A First Look at ASP.NET Identity](https://msdn.microsoft.com/magazine/dn605872.aspx) by Dino Esposito
 - [ASP.NET Identity – User Lockout](http://tech.trailmax.info/2014/06/asp-net-identity-user-lockout/)
 
 <a id="samp"></a>
@@ -66,7 +62,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 - For StackOverflow, use the tag [aspnet-identity](http://stackoverflow.com/questions/tagged/asp.net-identity)
 - For the ASP.NET forums, post to the [Security forum](https://forums.asp.net/25.aspx) and add **ASP.NET Identity** to the title.
-- [CodePlex hosting site for ASP.NET Identity](http://aspnetidentity.codeplex.com/) Get nightly builds, request features, open bugs.
+- [ASP.NET Identity on GitHub](https://github.com/aspnet/AspNetIdentity) Get nightly builds, request features, open bugs.
 
 <a id="blog"></a>
 ## Blog posts on Identity
@@ -89,7 +85,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     - [Understanding the Owin External Authentication Pipeline](http://coding.abel.nu/2014/06/understanding-the-owin-external-authentication-pipeline/)
     - [ASP.NET Identity and Owin Overview](http://coding.abel.nu/2014/06/asp-net-identity-and-owin-overview/)
 
- By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
+  By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
 
     - [ASP.NET Core Identity](http://odetocode.com/blogs/scott/archive/2013/11/25/asp-net-core-identity.aspx) This blog examines the core abstractions, including IUser, IUserStore and the I\*Store interfaces.
     - [ASP.NET Identity with the Entity Framework](http://odetocode.com/blogs/scott/archive/2014/01/03/asp-net-identity-with-the-entity-framework.aspx) Individual User Accounts in MVC 5, Web API and SPA apps, connection strings and managing contexts
@@ -110,7 +106,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     - [ASP.NET MVC 5 Authentication Guides](http://www.beabigrockstar.com/)
 - [Get more information from Social providers used in the VS 2013 project templates](https://blogs.msdn.com/b/webdev/archive/2013/10/16/get-more-information-from-social-providers-used-in-the-vs-2013-project-templates.aspx)
 - [Building a simple ToDo application with ASP.NET Identity and associating Users with ToDoes](https://blogs.msdn.com/b/webdev/archive/2013/10/20/building-a-simple-todo-application-with-asp-net-identity-and-associating-users-with-todoes.aspx)
-- [Google OpenId integration issues with ASP.Net Identity](http://blog.technovert.com/2014/01/google-openid-integration-issues-asp-net-identity/) If you get the error: HTTP Error 404.15 – Not Found The request filtering module is configured to deny a request where the query string is too long
+- [Google OpenId integration issues with ASP.NET Identity](http://blog.technovert.com/2014/01/google-openid-integration-issues-asp-net-identity/) If you get the error: HTTP Error 404.15 – Not Found The request filtering module is configured to deny a request where the query string is too long
 - [Thinktecture.IdentityManager as a replacement for the WSAT](http://www.hanselman.com/blog/ThinktectureIdentityManagerAsAReplacementForTheASPNETWebSiteAdministrationTool.aspx)
 - [AngularJS Token Authentication using ASP.NET Web API 2, Owin, and Identity](http://bitoftech.net/2014/06/09/angularjs-token-authentication-using-asp-net-web-api-2-owin-asp-net-identity/)
 - [Simple Asp.net Identity Core Without Entity Framework](https://code.msdn.microsoft.com/Simple-Aspnet-Identiy-Core-7475a961)
@@ -160,7 +156,7 @@ If you want to write your own provider, read [Overview of Custom Storage Provide
 
 - Q: Locked out users who have enabled "remember me" (so they don't have to go through 2FA on that computer/browser) are not locked out. Why and how do I prevent that? Answer [here](http://stackoverflow.com/questions/24312247/locked-out-users-can-login-if-they-have-auth-cookie).
 - **Q**: How can I store custom claims, such as the user's real name, in the ASP.NET Identity cookie to avoid unnecessary database queries on every request. Answer [here](http://stackoverflow.com/questions/23622047/identity-cookie-loses-custom-claim-information-after-a-period-of-time).
-- **Q: Updating AspNetUser Password Hash**: I have 2 projects. One of them is using ASP.Net authentication, the other uses Windows authentication, which is the administration side. I want the Admin project to be able to manage the users of the other. I can modify everything except the password. [Answer here](http://stackoverflow.com/questions/23880666/updating-aspnetuser-password-hash).
+- **Q: Updating AspNetUser Password Hash**: I have 2 projects. One of them is using ASP.NET authentication, the other uses Windows authentication, which is the administration side. I want the Admin project to be able to manage the users of the other. I can modify everything except the password. [Answer here](http://stackoverflow.com/questions/23880666/updating-aspnetuser-password-hash).
 - **Q**: How can I reset password as a admin for other users? Answer [here](http://stackoverflow.com/questions/23783249/identity-2-0-reset-password-by-admin/24211766#24211766).
 - **Q**: Can I change the displayed name of the UserName field in ASP.NET MVC IdentityUser? Answer [here](http://stackoverflow.com/questions/23256650/can-i-change-the-displayed-name-of-the-username-field-in-asp-net-mvc-identityuse).
 - **Q**: How can I gran users permissions to add other users to certain roles? Answer [here](http://stackoverflow.com/questions/23695373/allow-users-to-grant-permissions-to-other-users-for-their-account-in-asp-net-ide).

@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on
 title: "Single Sign-On (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: 7d82d5e9-0619-4f22-9e03-32a6d52940a5
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on
 msc.type: authoredcontent
 ---
@@ -25,12 +22,12 @@ There are many security issues to think about when you're developing a cloud app
 
 ## Introduction to Azure AD
 
-[Azure AD](https://www.windowsazure.com/en-us/documentation/services/active-directory/) provides [Active Directory](https://msdn.microsoft.com/en-us/library/windows/desktop/aa746492.aspx) in the cloud. Key features include the following:
+[Azure AD](https://docs.microsoft.com/azure/active-directory/) provides [Active Directory](https://msdn.microsoft.com/library/windows/desktop/aa746492.aspx) in the cloud. Key features include the following:
 
 - It integrates with on-premises Active Directory.
 - It enables single sign-on with your apps.
 - It supports open standards such as [SAML](http://en.wikipedia.org/wiki/SAML_2.0), [WS-Fed](http://en.wikipedia.org/wiki/WS-Federation), and [OAuth 2.0](http://oauth.net/2/).
-- It supports Enterprise [Graph REST API](https://msdn.microsoft.com/en-us/library/hh974476.aspx).
+- It supports Enterprise [Graph REST API](https://msdn.microsoft.com/library/hh974476.aspx).
 
 Suppose you have an on-premises Windows Server Active Directory environment that you use to enable employees to sign on to Intranet apps:
 
@@ -58,7 +55,7 @@ If your company is using or moving to Office 365, the good news is that you'll h
 
 ## Set up an Azure AD tenant
 
-an Azure AD directory is called an Azure AD [tenant](https://technet.microsoft.com/en-us/library/jj573650.aspx), and setting up a tenant is pretty easy. We'll show you how it's done in the Azure Management Portal in order to illustrate the concepts, but of course like the other portal functions you can also do it by using a script or management API.
+an Azure AD directory is called an Azure AD [tenant](https://technet.microsoft.com/library/jj573650.aspx), and setting up a tenant is pretty easy. We'll show you how it's done in the Azure Management Portal in order to illustrate the concepts, but of course like the other portal functions you can also do it by using a script or management API.
 
 In the management portal click the Active Directory tab.
 
@@ -112,7 +109,7 @@ Click **Next**, and then indicate if you want to store a hash of your AD passwor
 
 ![WAAD Sync tool configuration wizard](single-sign-on/_static/image17.png)
 
-The password hash that you can store in the cloud is a one-way hash; actual passwords are never stored in Azure AD. If you decide against storing hashes in the cloud, you'll have to use [Active Directory Federation Services](https://technet.microsoft.com/en-us/library/hh831502.aspx) (ADFS). There are also [other factors to consider when choosing whether or not to use ADFS](https://technet.microsoft.com/en-us/library/jj573653.aspx). The ADFS option requires a few additional configuration steps.
+The password hash that you can store in the cloud is a one-way hash; actual passwords are never stored in Azure AD. If you decide against storing hashes in the cloud, you'll have to use [Active Directory Federation Services](https://technet.microsoft.com/library/hh831502.aspx) (ADFS). There are also [other factors to consider when choosing whether or not to use ADFS](https://technet.microsoft.com/library/jj573653.aspx). The ADFS option requires a few additional configuration steps.
 
 If you choose to store hashes in the cloud, you're done, and the tool starts synchronizing directories when you click **Next**.
 
@@ -150,7 +147,7 @@ Select Organizational Accounts, enter your domain name, and then select Single S
 
 ![Configure Authentication dialog](single-sign-on/_static/image24.png)
 
-You can also give the app read or read/write permission for directory data. If you do that, it can use the [Azure Graph REST API](https://msdn.microsoft.com/en-us/library/windowsazure/hh974476.aspx) to look up users' phone number, find out if they're in the office, when they last logged on, etc.
+You can also give the app read or read/write permission for directory data. If you do that, it can use the [Azure Graph REST API](https://msdn.microsoft.com/library/windowsazure/hh974476.aspx) to look up users' phone number, find out if they're in the office, when they last logged on, etc.
 
 That's all you have to do - Visual Studio asks for the credentials for an administrator for your Azure AD tenant, and then it configures both your project and your Azure AD tenant for the new application.
 
@@ -177,16 +174,16 @@ The [next chapter](data-storage-options.md) looks at the data storage options av
 
 For more information, see the following resources:
 
-- [Azure Active Directory Documentation](https://www.windowsazure.com/en-us/documentation/services/active-directory/). Portal page for Azure AD documentation on the windowsazure.com site. For step by step tutorials, see the **Develop** section.
-- [Azure Multi-Factor Authentication](https://www.windowsazure.com/en-us/documentation/services/multi-factor-authentication/). Portal page for documentation about multi-factor authentication in Azure.
+- [Azure Active Directory Documentation](https://docs.microsoft.com/azure/active-directory/). Portal page for Azure AD documentation on the windowsazure.com site. For step by step tutorials, see the **Develop** section.
+- [Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/). Portal page for documentation about multi-factor authentication in Azure.
 - [Organizational account authentication options](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#orgauthoptions). Explanation of the Azure AD authentication options in the Visual Studio 2013 new-project dialog.
-- [Microsoft Patterns and Practices - Federated Identity Pattern](https://msdn.microsoft.com/en-us/library/dn589790.aspx).
+- [Microsoft Patterns and Practices - Federated Identity Pattern](https://msdn.microsoft.com/library/dn589790.aspx).
 - [HowTo: Install the Azure Active Directory Sync Tool](https://social.technet.microsoft.com/wiki/contents/articles/19098.howto-install-the-windows-azure-active-directory-sync-tool-now-with-pictures.aspx).
 - [Active Directory Federation Services 2.0 Content Map](https://social.technet.microsoft.com/wiki/contents/articles/2735.ad-fs-2-0-content-map.aspx). Links to documentation about ADFS 2.0.
 - [Role-Based and ACL-Based Authorization in a Windows Azure AD Application](https://code.msdn.microsoft.com/Role-Based-and-ACL-Based-86ad71a1). Sample application.
 - [Azure Active Directory Graph API blog](https://blogs.msdn.com/b/aadgraphteam/).
 - [Access Control in BYOD and Directory Integration in a Hybrid Identity Infrastructure](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2014/PCIT-B213#fbid=). Tech Ed 2014 session video by Gayana Bagdasaryan.
 
->[!div class="step-by-step"]
-[Previous](web-development-best-practices.md)
-[Next](data-storage-options.md)
+> [!div class="step-by-step"]
+> [Previous](web-development-best-practices.md)
+> [Next](data-storage-options.md)

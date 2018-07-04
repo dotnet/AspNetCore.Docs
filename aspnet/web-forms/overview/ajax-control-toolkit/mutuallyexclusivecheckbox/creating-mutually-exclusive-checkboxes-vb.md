@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/creating-mutually-exclusive-checkboxes-vb
 title: "Creating Mutually Exclusive Checkboxes (VB) | Microsoft Docs"
 author: wenz
 description: "When only one of a set of options may be selected, radio buttons are usually used. There is a drawback, though: Once one radio button in a group is selected,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: e9dd1d5a-a1db-4114-981d-6a91acb1d709
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/creating-mutually-exclusive-checkboxes-vb
 msc.type: authoredcontent
 ---
@@ -48,5 +45,5 @@ Save and run the page: You can check and uncheck both check boxes, however at no
 
 Only one checkbox can be checked at a time ([Click to view full-size image](creating-mutually-exclusive-checkboxes-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](creating-mutually-exclusive-checkboxes-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-mutually-exclusive-checkboxes-cs.md)

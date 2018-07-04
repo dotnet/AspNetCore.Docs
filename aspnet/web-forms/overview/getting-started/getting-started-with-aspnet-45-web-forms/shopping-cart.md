@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/shopping-cart
 title: "Shopping Cart | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 6898c601-6c31-432f-8388-e6843f8a17cb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/shopping-cart
 msc.type: authoredcontent
 ---
@@ -45,7 +42,7 @@ Earlier in this tutorial series, you added pages and code to view product data f
 
 > [!NOTE] 
 > 
-> The ASP.NET Session state is a convenient place to store user-specific information which will expire after the user leaves the site. While misuse of session state can have performance implications on larger sites, light use of session state works well for demonstration purposes. The Wingtip Toys sample project shows how to use session state without an external provider, where session state is stored in-process on the web server hosting the site. For larger sites that provide multiple instances of an application or for sites that run multiple instances of an application on different servers, consider using **Windows Azure Cache Service**. This Cache Service provides a distributed caching service that is external to the web site and solves the problem of using in-process session state. For more information see, [How to Use ASP.NET Session State with Windows Azure Web Sites](https://www.windowsazure.com/en-us/manage/services/web-sites/session-state-caching/).
+> The ASP.NET Session state is a convenient place to store user-specific information which will expire after the user leaves the site. While misuse of session state can have performance implications on larger sites, light use of session state works well for demonstration purposes. The Wingtip Toys sample project shows how to use session state without an external provider, where session state is stored in-process on the web server hosting the site. For larger sites that provide multiple instances of an application or for sites that run multiple instances of an application on different servers, consider using **Windows Azure Cache Service**. This Cache Service provides a distributed caching service that is external to the web site and solves the problem of using in-process session state. For more information see, [How to Use ASP.NET Session State with Windows Azure Web Sites](https://docs.microsoft.com/azure/redis-cache/cache-aspnet-session-state-provider).
 
 
 ### Add CartItem as a Model Class
@@ -60,7 +57,7 @@ Earlier in this tutorial series, you defined the schema for the category and pro
     ![Shopping Cart - Add New Item Dialog](shopping-cart/_static/image2.png)
 3. Name this new class *CartItem.cs*.
 4. Click **Add**.  
- The new class file is displayed in the editor.
+   The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
     [!code-csharp[Main](shopping-cart/samples/sample1.cs)]
@@ -130,7 +127,7 @@ As mentioned earlier, you will create a processing page named *AddToCart.aspx* t
 #### To create the Add-To-Cart functionality:
 
 1. In **Solution Explorer**, right-click the **WingtipToys**project, click **Add** -&gt; **New Item**.  
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Add a standard new page (Web Form) to the application named *AddToCart.aspx*. 
 
     ![Shopping Cart - Add Web Form](shopping-cart/_static/image4.png)
@@ -148,7 +145,7 @@ As previously mentioned, a user `ID` is used to identify the products that are a
 The *ShoppingCart.aspx* page will display the products that the user has added to their shopping cart. It will also provide the ability to add, remove and update items in the shopping cart.
 
 1. In **Solution Explorer**, right-click **WingtipToys**, click **Add** -&gt; **New Item**.  
- The **Add New Item** dialog box is displayed.
+   The **Add New Item** dialog box is displayed.
 2. Add a new page (Web Form) that includes a master page by selecting **Web Form using Master Page**. Name the new page *ShoppingCart.aspx*.
 3. Select **Site.Master** to attach the master page to the newly created *.aspx* page.
 4. In the *ShoppingCart.aspx* page, replace the existing markup with the following markup:   
@@ -315,8 +312,8 @@ The shopping cart supports adding, deleting, and updating items that the user ha
 
 ## Addition Information
 
-[ASP.NET Session State Overview](https://msdn.microsoft.com/en-us/library/ms178581.aspx)
+[ASP.NET Session State Overview](https://msdn.microsoft.com/library/ms178581.aspx)
 
->[!div class="step-by-step"]
-[Previous](display_data_items_and_details.md)
-[Next](checkout-and-payment-with-paypal.md)
+> [!div class="step-by-step"]
+> [Previous](display_data_items_and_details.md)
+> [Next](checkout-and-payment-with-paypal.md)

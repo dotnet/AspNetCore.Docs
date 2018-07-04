@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-7
 title: "Part 7: Adding Features | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 7 adds additional features, such as account revie..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 50223ee9-11b9-4cf3-bca2-e2f10bf471f3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-7
 msc.type: authoredcontent
 ---
@@ -88,7 +85,7 @@ Note that we are passing the ProductID in the query string
 
 Next let's add page named ReviewAdd.aspx
 
-This page will use the ASP.NET AJAC Control Toolkit. If you have not already done so you can download it from here [http://ajaxcontroltoolkit.codeplex.com/](http://ajaxcontroltoolkit.codeplex.com/) and there is guidance on setting up the toolkit for use with Visual Studio here [https://www.asp.net/learn/ajax-videos/video-76.aspx](../../../videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md).
+This page will use the ASP.NET AJAX Control Toolkit. If you have not already done so you can download it from [DevExpress](http://devexpress.com/act) and there is guidance on setting up the toolkit for use with Visual Studio here [https://www.asp.net/learn/ajax-videos/video-76.aspx](../../../videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md).
 
 In design mode, drag controls and validators from the toolbox and build a form like the one below.
 
@@ -230,6 +227,6 @@ When we build and run now and browse to a product we see the "Also Purchased" it
 
 ![](tailspin-spyworks-part-7/_static/image7.jpg)
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-6.md)
-[Next](tailspin-spyworks-part-8.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-6.md)
+> [Next](tailspin-spyworks-part-8.md)

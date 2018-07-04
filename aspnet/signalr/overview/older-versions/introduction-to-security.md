@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/introduction-to-security
 title: "Introduction to SignalR Security (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 715a4059-d307-4631-abbb-c789c95d6eb4
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/introduction-to-security
 msc.type: authoredcontent
 ---
@@ -48,7 +45,7 @@ This document contains the following sections:
 
 SignalR is designed to be integrated into the existing authentication structure for an application. It does not provide any features for authenticating users. Instead, you authenticate users as you would normally in your application, and then work with the results of the authentication in your SignalR code. For example, you might authenticate your users with ASP.NET forms authentication, and then in your hub, enforce which users or roles are authorized to call a method. In your hub, you can also pass authentication information, such as user name or whether a user belongs to a role, to the client.
 
-SignalR provides the [Authorize](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.authorizeattribute(v=vs.111).aspx) attribute to specify which users have access to a hub or method. You apply the Authorize attribute to either a hub or particular methods in a hub. Without the Authorize attribute, all public methods on the hub are available to a client that is connected to the hub. For more information about hubs, see [Authentication and Authorization for SignalR Hubs](../security/hub-authorization.md).
+SignalR provides the [Authorize](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.authorizeattribute(v=vs.111).aspx) attribute to specify which users have access to a hub or method. You apply the Authorize attribute to either a hub or particular methods in a hub. Without the Authorize attribute, all public methods on the hub are available to a client that is connected to the hub. For more information about hubs, see [Authentication and Authorization for SignalR Hubs](../security/hub-authorization.md).
 
 The `Authorize` attribute is used only with hubs. To enforce authorization rules when using a `PersistentConnection` you must override the `AuthorizeRequest` method. For more information about persistent connections, see [Authentication and Authorization for SignalR Persistent Connections](../security/persistent-connection-authorization.md).
 
@@ -92,7 +89,7 @@ Here is an example of a CSRF attack:
 
     [!code-html[Main](introduction-to-security/samples/sample1.html)]
 
- Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
+   Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
 5. The request runs on the example.com server with the user's authentication context, and can do anything that an authenticated user is allowed to do.
 
@@ -105,7 +102,7 @@ Typically, CSRF attacks are possible against web sites that use cookies for auth
 SignalR takes the following steps to prevent a malicious site from creating valid requests to your SignalR application. These steps are taken by default and do not require any action in your code.
 
 - **Disable cross domain requests**  
- By default, cross domain requests are disabled in a SignalR application to prevent users from calling a SignalR endpoint from an external domain. Any request that comes from an external domain is automatically considered invalid and is blocked. It is recommended that you keep this default behavior; otherwise, a malicious site could trick users into sending commands to your site. If you need to use cross domain requests, see     [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md) .
+ By default, cross domain requests are disabled in a SignalR application to prevent users from calling a SignalR endpoint from an external domain. Any request that comes from an external domain is automatically considered invalid and is blocked. It is recommended that you keep this default behavior; otherwise, a malicious site could trick users into sending commands to your site. If you need to use cross domain requests, see     [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain) .
 - **Pass connection token in query string, not cookie**  
  SignalR passes the connection token as a query string value, instead of as a cookie. By not storing the connection token as a cookie, the connection token is not inadvertently forwarded by the browser when malicious code is encountered. Also, the connection token is not persisted beyond the current connection. Therefore, a malicious user cannot make a request under another user's authentication credentials.
 - **Verify connection token**  
@@ -119,7 +116,7 @@ SignalR takes the following steps to prevent a malicious site from creating vali
 
 ### Secure Socket Layers (SSL) protocol
 
-The SSL protocol uses encryption to secure the transport of data between a client and server. If your SignalR application transmits sensitive information between the client and server, use SSL for the transport. For more information about setting up SSL, see [How to set up SSL on IIS 7](http://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
+The SSL protocol uses encryption to secure the transport of data between a client and server. If your SignalR application transmits sensitive information between the client and server, use SSL for the transport. For more information about setting up SSL, see [How to set up SSL on IIS 7](https://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
 
 <a id="groupsecurity"></a>
 
@@ -159,7 +156,7 @@ If you do not want to include all of the hubs and methods in the JavaScript prox
 
 [!code-csharp[Main](introduction-to-security/samples/sample5.cs)]
 
-For more information about the JavaScript proxy files, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md). <a id="exceptions"></a>
+For more information about the JavaScript proxy files, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy). <a id="exceptions"></a>
 
 ### Exceptions
 

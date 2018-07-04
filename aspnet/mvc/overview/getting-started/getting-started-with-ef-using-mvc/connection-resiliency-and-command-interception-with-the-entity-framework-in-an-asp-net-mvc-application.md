@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
 title: "Connection Resiliency and Command Interception with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/13/2015
-ms.topic: article
 ms.assetid: c89d809f-6c65-4425-a3fa-c9f6e8ac89f2
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -43,14 +40,14 @@ The connection resiliency feature must be configured appropriately for a particu
 
 You can configure these settings manually for any database environment supported by an Entity Framework provider, but default values that typically work well for an online application that uses Windows Azure SQL Database have already been configured for you, and those are the settings you'll implement for the Contoso University application.
 
-All you have to do to enable connection resiliency is create a class in your assembly that derives from the [DbConfiguration](https://msdn.microsoft.com/en-us/data/jj680699.aspx) class, and in that class set the SQL Database *execution strategy*, which in EF is another term for *retry policy*.
+All you have to do to enable connection resiliency is create a class in your assembly that derives from the [DbConfiguration](https://msdn.microsoft.com/data/jj680699.aspx) class, and in that class set the SQL Database *execution strategy*, which in EF is another term for *retry policy*.
 
 1. In the DAL folder, add a class file named *SchoolConfiguration.cs*.
 2. Replace the template code with the following code:
 
     [!code-csharp[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-    The Entity Framework automatically runs the code it finds in a class that derives from `DbConfiguration`. You can use the `DbConfiguration` class to do configuration tasks in code that you would otherwise do in the *Web.config* file. For more information, see [EntityFramework Code-Based Configuration](https://msdn.microsoft.com/en-us/data/jj680699).
+    The Entity Framework automatically runs the code it finds in a class that derives from `DbConfiguration`. You can use the `DbConfiguration` class to do configuration tasks in code that you would otherwise do in the *Web.config* file. For more information, see [EntityFramework Code-Based Configuration](https://msdn.microsoft.com/data/jj680699).
 3. In *StudentController.cs*, add a `using` statement for `System.Data.Entity.Infrastructure`.
 
     [!code-csharp[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
@@ -60,13 +57,13 @@ All you have to do to enable connection resiliency is create a class in your ass
 
     You were using `DataException` to try to identify errors that might be transient in order to give a friendly "try again" message. But now that you've turned on a retry policy, the only errors likely to be transient will already have been tried and failed several times and the actual exception returned will be wrapped in the `RetryLimitExceededException` exception.
 
-For more information, see [Entity Framework Connection Resiliency / Retry Logic](https://msdn.microsoft.com/en-us/data/dn456835).
+For more information, see [Entity Framework Connection Resiliency / Retry Logic](https://msdn.microsoft.com/data/dn456835).
 
 ## Enable Command Interception
 
 Now that you've turned on a retry policy, how do you test to verify that it is working as expected? It's not so easy to force a transient error to happen, especially when you're running locally, and it would be especially difficult to integrate actual transient errors into an automated unit test. To test the connection resiliency feature, you need a way to intercept queries that Entity Framework sends to SQL Server and replace the SQL Server response with an exception type that is typically transient.
 
-You can also use query interception in order to implement a best practice for cloud applications: [log the latency and success or failure of all calls to external services](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md#log) such as database services. EF6 provides a [dedicated logging API](https://msdn.microsoft.com/en-us/data/dn469464) that can make it easier to do logging, but in this section of the tutorial you'll learn how to use the Entity Framework's [interception feature](https://msdn.microsoft.com/en-us/data/dn469464) directly, both for logging and for simulating transient errors.
+You can also use query interception in order to implement a best practice for cloud applications: [log the latency and success or failure of all calls to external services](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md#log) such as database services. EF6 provides a [dedicated logging API](https://msdn.microsoft.com/data/dn469464) that can make it easier to do logging, but in this section of the tutorial you'll learn how to use the Entity Framework's [interception feature](https://msdn.microsoft.com/data/dn469464) directly, both for logging and for simulating transient errors.
 
 ### Create a logging interface and class
 
@@ -84,7 +81,7 @@ A [best practice for logging](../../../../aspnet/overview/developing-apps-with-w
 
     [!code-csharp[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cs)]
 
-    The implementation uses System.Diagnostics to do the tracing. This is a built-in feature of .NET which makes it easy to generate and use tracing information. There are many "listeners" you can use with System.Diagnostics tracing, to write logs to files, for example, or to write them to blob storage in Azure. See some of the options, and links to other resources for more information, in [Troubleshooting Azure Web Sites in Visual Studio](https://www.windowsazure.com/en-us/develop/net/tutorials/troubleshoot-web-sites-in-visual-studio/). For this tutorial you'll only look at logs in the Visual Studio **Output** window.
+    The implementation uses System.Diagnostics to do the tracing. This is a built-in feature of .NET which makes it easy to generate and use tracing information. There are many "listeners" you can use with System.Diagnostics tracing, to write logs to files, for example, or to write them to blob storage in Azure. See some of the options, and links to other resources for more information, in [Troubleshooting Azure Web Sites in Visual Studio](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio). For this tutorial you'll only look at logs in the Visual Studio **Output** window.
 
     In a production application you might want to consider tracing packages other than System.Diagnostics, and the ILogger interface makes it relatively easy to switch to a different tracing mechanism if you decide to do that.
 
@@ -103,7 +100,7 @@ Next you'll create the classes that the Entity Framework will call into every ti
 
     This code only overrides the `ReaderExecuting` method, which is called for queries that can return multiple rows of data. If you wanted to check connection resiliency for other types of queries, you could also override the `NonQueryExecuting` and `ScalarExecuting` methods, as the logging interceptor does.
 
-    When you run the Student page and enter "Throw" as the search string, this code creates a dummy SQL Database exception for error number 20, a type known to be typically transient. Other error numbers currently recognized as transient are 64, 233, 10053, 10054, 10060, 10928, 10929, 40197, 40501, abd 40613, but these are subject to change in new versions of SQL Database.
+    When you run the Student page and enter "Throw" as the search string, this code creates a dummy SQL Database exception for error number 20, a type known to be typically transient. Other error numbers currently recognized as transient are 64, 233, 10053, 10054, 10060, 10928, 10929, 40197, 40501, and 40613, but these are subject to change in new versions of SQL Database.
 
     The code returns the exception to Entity Framework instead of running the query and passing back query results. The transient exception is returned four times, and then the code reverts to the normal procedure of passing the query to the database.
 
@@ -173,6 +170,6 @@ Please leave feedback on how you liked this tutorial and what we could improve. 
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)

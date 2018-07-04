@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-vb
 title: "Picking One Animation Out Of a List (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. The framework also allo..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 81ba9116-d485-40c0-8ff6-7e9ae23e0a0c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-vb
 msc.type: authoredcontent
 ---
@@ -54,6 +51,6 @@ The following markup defines three subanimations: Resizing the width, resizing t
 
 One of the possible three animations: The panel gets wider ([Click to view full-size image](picking-one-animation-out-of-a-list-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](animation-depending-on-a-condition-vb.md)
-[Next](animating-in-response-to-user-interaction-vb.md)
+> [!div class="step-by-step"]
+> [Previous](animation-depending-on-a-condition-vb.md)
+> [Next](animating-in-response-to-user-interaction-vb.md)

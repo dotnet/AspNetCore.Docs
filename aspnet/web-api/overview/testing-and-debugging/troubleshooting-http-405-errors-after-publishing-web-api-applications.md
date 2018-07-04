@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
 title: "Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications | Microsoft Docs"
 author: rmcmurray
 description: "This tutorial describes how to troubleshoot HTTP 405 errors after publishing a Web API application to a production web server."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/01/2014
-ms.topic: article
 ms.assetid: 07ec7d37-023f-43ea-b471-60b08ce338f7
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
 msc.type: authoredcontent
 ---
@@ -21,7 +18,7 @@ by [Robert McMurray](https://github.com/rmcmurray)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Internet Information Services (IIS)](http://www.iis.net/) (version 7 or later)
+> - [Internet Information Services (IIS)](https://www.iis.net/) (version 7 or later)
 > - [Web API](../../index.md) (version 1 or 2)
 
 
@@ -38,7 +35,7 @@ As a brief review, here are several of the most-used HTTP methods as defined in 
 | **GET** | This method is used to retrieve data from a URI, and it probably the most-used HTTP method. |
 | **HEAD** | This method is much like the GET method, except that it doesn't actually retrieve the data from the request URI - it simply retrieves the HTTP status. |
 | **POST** | This method is typically used to send new data to the URI; POST is often used to submit form data. |
-| **PUT** | This method is typically used to raw data to the URI; PUT is often used to submit JSON or XML data to Web API applications. |
+| **PUT** | This method is typically used to send raw data to the URI; PUT is often used to submit JSON or XML data to Web API applications. |
 | **DELETE** | This method is used to remove data from a URI. |
 | **OPTIONS** | This method is typically used to retrieve the list of HTTP methods that are supported for a URI. |
 | **COPY MOVE** | These two methods are used with WebDAV, and their purpose is self-explanatory. |

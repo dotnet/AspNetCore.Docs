@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
 title: "Building Real-World Cloud Apps with Azure | Microsoft Docs"
 author: MikeWasson
 description: "This e-book walks you through a patterns-based approach to building real-world cloud solutions. The patterns apply to the development process as well as to a..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: accfa16a-ab15-4c26-9ad4-babdc2a77d2e
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
 msc.type: authoredcontent
 ---
@@ -54,7 +51,7 @@ This e-book explains thirteen recommended patterns for cloud development. "Patte
     - Keep web tier stateless.
     - Demo: scaling and auto-scaling in Web Apps in Azure App Service.
     - Avoid session state.
-    - Use a CDN.
+    - Use a CDN with a fallback when the CDN is unavailable.
     - Use asynchronous programming model.
     - Demo: async in ASP.NET MVC and Entity Framework.
 - [Single sign-on](single-sign-on.md). 
@@ -139,7 +136,7 @@ Behind the scenes, Web Apps in Azure App Service provides a lot of architectural
 
 ![Deployment service](introduction/_static/image5.png)
 
-When a user hits the web site, they don't hit the IIS VMs directly, they go through [Application Request Routing (ARR)](http://www.iis.net/downloads/microsoft/application-request-routing) load balancers. You can use these with your own servers, but the advantage here is that they're set up for you automatically. They use a smart heuristic that takes into account factors such as session affinity, queue depth in IIS, and CPU usage on each machine to direct traffic to the VMs that host your web site.
+When a user hits the web site, they don't hit the IIS VMs directly, they go through [Application Request Routing (ARR)](https://www.iis.net/downloads/microsoft/application-request-routing) load balancers. You can use these with your own servers, but the advantage here is that they're set up for you automatically. They use a smart heuristic that takes into account factors such as session affinity, queue depth in IIS, and CPU usage on each machine to direct traffic to the VMs that host your web site.
 
 ![ARR load balancer](introduction/_static/image6.png)
 
@@ -149,7 +146,7 @@ If a machine goes down, Azure automatically pulls it from the rotation, spins up
 
 All of this takes place automatically. All you need to do is create a web site and deploy your application to it, using Windows PowerShell, Visual Studio, or the Azure management portal.
 
-For a quick and easy step-by-step tutorial that shows how to create a web application in Visual Studio and deploy it to a Azure Web Site, see [Get started with Azure and ASP.NET](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/).
+For a quick and easy step-by-step tutorial that shows how to create a web application in Visual Studio and deploy it to a Azure Web Site, see [Get started with Azure and ASP.NET](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
 <a id="summary"></a>
 ## Summary
@@ -162,14 +159,14 @@ For more information about the topics covered in this chapter, see the following
 
 Documentation:
 
-- [Web Apps in Azure App Service](https://azure.microsoft.com/en-us/services/app-service/web/). Portal page for Azure documentation about Web Apps.
-- [Web Apps, Cloud Services, and VMs: When to use which?](https://azure.microsoft.com/en-us/documentation/articles/choose-web-site-cloud-service-vm/) WAWS as shown in this chapter is just one of three ways you can run web apps in Azure. This article explains the differences between the three ways and gives guidance on how to choose which one is right for your scenario. Like Web Sites, Cloud Services is a PaaS feature of Azure. VMs are an IaaS feature. For an explanation of PaaS versus IaaS, see the [Data Options](data-storage-options.md#paasiaas) chapter.
+- [Web Apps in Azure App Service](https://azure.microsoft.com/services/app-service/web/). Portal page for Azure documentation about Web Apps.
+- [Web Apps, Cloud Services, and VMs: When to use which?](https://azure.microsoft.com/documentation/articles/choose-web-site-cloud-service-vm/) WAWS as shown in this chapter is just one of three ways you can run web apps in Azure. This article explains the differences between the three ways and gives guidance on how to choose which one is right for your scenario. Like Web Sites, Cloud Services is a PaaS feature of Azure. VMs are an IaaS feature. For an explanation of PaaS versus IaaS, see the [Data Options](data-storage-options.md#paasiaas) chapter.
 
 Videos:
 
-- [Scott Guthrie starts at Step 0 - What is the Azure Cloud OS?](https://azure.microsoft.com/en-us/documentation/videos/what-is-the-cloud-os-scottgu/)
-- [Web Sites Architecture - with Stefan Schackow](https://azure.microsoft.com/en-us/documentation/videos/why-azure-web-sites-plus-architecture/).
+- [Scott Guthrie starts at Step 0 - What is the Azure Cloud OS?](https://azure.microsoft.com/documentation/videos/what-is-the-cloud-os-scottgu/)
+- [Web Sites Architecture - with Stefan Schackow](https://azure.microsoft.com/documentation/videos/why-azure-web-sites-plus-architecture/).
 - [Azure Web Sites Internals with Nir Mashkowski](https://channel9.msdn.com/Shows/Web+Camps+TV/Windows-Azure-Web-Sites-Internals-with-Nir-Mashkowski).
 
->[!div class="step-by-step"]
-[Next](automate-everything.md)
+> [!div class="step-by-step"]
+> [Next](automate-everything.md)

@@ -1,14 +1,11 @@
 ---
+uid: visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes
 title: "ASP.NET and Web Tools 2013.2  for Visual Studio 2013 Release Notes | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/06/2014
-ms.topic: article
 ms.assetid: 7ef5f73c-ca60-43c1-bdb2-702800347e7e
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes
 msc.type: authoredcontent
 ---
@@ -128,12 +125,12 @@ Firefox uses its own certificate store, so it will display a warning.
 ### Support for Azure App Service Web Apps in Visual Studio
 
 - **Support Azure sign in.**
-- **Remote debugging and Remote View for web apps**: We now support [remote debugging for web apps in Azure App Service](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/) and remote view of web app content files in the server explorer.
+- **Remote debugging and Remote View for web apps**: We now support [remote debugging for web apps in Azure App Service](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio) and remote view of web app content files in the server explorer.
 
 <a id="AzureResources"></a>
 ### Create remote Azure resources when creating a new Web project
 
-We added an Azure ["Create Remote Resources"](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-get-started/) checkbox on the new web application dialog. By choosing it, you will be able to integrate the experience of creating a new web application, setting up the Azure publishing site for testing, and creating publishing profile in a few simple steps.
+We added an Azure ["Create Remote Resources"](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet) checkbox on the new web application dialog. By choosing it, you will be able to integrate the experience of creating a new web application, setting up the Azure publishing site for testing, and creating publishing profile in a few simple steps.
 
 ![New Project with Azure resources](aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes/_static/image19.png)![Publishing to Azure](aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes/_static/image20.png)
 
@@ -206,6 +203,7 @@ NuGet 2.8.1 RTM will be released in April 2014. Here are the salient points from
 - [Supporting the 'this' context in Unobtrusive Ajax](../../../mvc/overview/releases/mvc51-release-notes.md#thisContext)
 - Various [bug fixes](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&status=Closed&type=All&priority=All&release=v5.1%20Preview%7cv5.1%20RTM&assignedTo=All&component=MVC&sortField=AssignedTo&sortDirection=Ascending&page=0&reasonClosed=Fixed)
 
+<a id="webapi"></a>
 ### ASP.NET Web API 2.1.2
 
 - [Global error handling](../../../web-api/overview/releases/whats-new-in-aspnet-web-api-21.md#global-error)
@@ -225,10 +223,10 @@ NuGet 2.8.1 RTM will be released in April 2014. Here are the salient points from
 <a id="ef"></a>
 ### Entity Framework 6.1
 
-Entity Framework has been updated to version 6.1 for both runtime and tooling. Entity Framework (EF) 6.1 is a minor update to Entity Framework 6 and includes a number of bug fixes and new features. For detailed information on EF6.1, including links to documentation for the new features, see [Entity Framework Version History](https://msdn.microsoft.com/en-US/data/jj574253). The new features in this release include:
+Entity Framework has been updated to version 6.1 for both runtime and tooling. Entity Framework (EF) 6.1 is a minor update to Entity Framework 6 and includes a number of bug fixes and new features. For detailed information on EF6.1, including links to documentation for the new features, see [Entity Framework Version History](https://msdn.microsoft.com/data/jj574253). The new features in this release include:
 
 - **Tooling consolidation** provides a consistent way to create a new EF model. This feature extends the ADO.NET Entity Data Model wizard to support creating Code First models, including reverse engineering from an existing database. These features were previously available in Beta quality in the EF Power Tools.
-- **Handling of transaction commit failures** provides the new [System.Data.Entity.Infrastructure.CommitFailureHandler](https://msdn.microsoft.com/en-us/library/system.data.entity.infrastructure.commitfailurehandler(v=vs.113).aspx) which makes use of the newly introduced ability to intercept transaction operations. The **CommitFailureHandler** allows automatic recovery from connection failures whilst committing a transaction.
+- **Handling of transaction commit failures** provides the new [System.Data.Entity.Infrastructure.CommitFailureHandler](https://msdn.microsoft.com/library/system.data.entity.infrastructure.commitfailurehandler(v=vs.113).aspx) which makes use of the newly introduced ability to intercept transaction operations. The **CommitFailureHandler** allows automatic recovery from connection failures whilst committing a transaction.
 - **IndexAttribute** allows indexes to be specified by placing an attribute on a property (or properties) in your Code First model. Code First will then create a corresponding index in the database.
 - **The public mapping API** provides access to the information EF has on how properties and types are mapped to columns and tables in the database. In past releases this API was internal.
 - **Ability to configure interceptors via the App/Web.config file**(allowing interceptors to be added without recompiling the application).

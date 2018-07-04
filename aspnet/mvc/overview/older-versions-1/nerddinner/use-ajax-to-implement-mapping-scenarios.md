@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
 title: "Use AJAX to Implement Mapping Scenarios | Microsoft Docs"
 author: microsoft
 description: "Step 11 shows how to integrate AJAX mapping support into our NerdDinner application, enabling users who are creating, editing or viewing dinners to see the l..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/27/2010
-ms.topic: article
 ms.assetid: f731990a-0a81-4d62-81df-87d676cdedd6
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
 msc.type: authoredcontent
 ---
@@ -187,6 +184,6 @@ Clicking the Dinner title either in the bubble or on the right-hand side in the 
 
 We've now implemented all the application functionality of our NerdDinner application. Let's now look at how we can enable automated unit testing of it.
 
->[!div class="step-by-step"]
-[Previous](use-ajax-to-deliver-dynamic-updates.md)
-[Next](enable-automated-unit-testing.md)
+> [!div class="step-by-step"]
+> [Previous](use-ajax-to-deliver-dynamic-updates.md)
+> [Next](enable-automated-unit-testing.md)

@@ -1,20 +1,19 @@
 ---
+uid: mvc/overview/getting-started/introduction/accessing-your-models-data-from-a-controller
 title: "Accessing Your Model's Data from a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: caa1ba4a-f9f0-4181-ba21-042e3997861d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/accessing-your-models-data-from-a-controller
 msc.type: authoredcontent
 ---
 Accessing Your Model's Data from a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
+
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section, you'll create a new `MoviesController` class and write code that retrieves the movie data and displays it in the browser using a view template.
 
@@ -28,11 +27,11 @@ In the **Add Scaffold** dialog box, click **MVC 5 Controller with views, using E
 
 ![](accessing-your-models-data-from-a-controller/_static/image2.png)
 
-- For the Controller name enter **MoviesController**.
 - Select **Movie (MvcMovie.Models)** for the Model class.
 - Select **MovieDBContext (MvcMovie.Models)** for the Data context class.
+- For the Controller name enter **MoviesController**.
 
- The image below shows the completed dialog.  
+  The image below shows the completed dialog.  
   
 ![](accessing-your-models-data-from-a-controller/_static/image3.png)   
 
@@ -79,7 +78,7 @@ A request to the `Movies` controller returns all the entries in the `Movies` tab
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view template using the `ViewBag` object. The `ViewBag` is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass *strongly* typed objects to a view template. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b(v=vs.120).aspx) in the Visual Studio editor. The scaffolding mechanism in Visual Studio used this approach (that is, passing a *strongly* typed model) with the `MoviesController` class and view templates when it created the methods and views.
+MVC also provides the ability to pass *strongly* typed objects to a view template. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/library/hcw1s69b(v=vs.120).aspx) in the Visual Studio editor. The scaffolding mechanism in Visual Studio used this approach (that is, passing a *strongly* typed model) with the `MoviesController` class and view templates when it created the methods and views.
 
 In the *Controllers\MoviesController.cs* file examine the generated `Details` method. The `Details` method is shown below.
 
@@ -101,9 +100,9 @@ By including a `@model` statement at the top of the view template file, you can 
 
 [!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample6.cshtml)]
 
-This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the `DisplayNameFor` and [DisplayFor](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.displayextensions.displayfor(VS.98).aspx) HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and view templates also pass a movie model object.
+This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the `DisplayNameFor` and [DisplayFor](https://msdn.microsoft.com/library/system.web.mvc.html.displayextensions.displayfor(VS.98).aspx) HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and view templates also pass a movie model object.
 
-Examine the *Index.cshtml* view template and the `Index` method in the *MoviesController.cs* file. Notice how the code creates a [`List`](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) object when it calls the `View` helper method in the `Index` action method. The code then passes this `Movies` list from the `Index` action method to the view:
+Examine the *Index.cshtml* view template and the `Index` method in the *MoviesController.cs* file. Notice how the code creates a [`List`](https://msdn.microsoft.com/library/6sh2ey19.aspx) object when it calls the `View` helper method in the `Index` action method. The code then passes this `Movies` list from the `Index` action method to the view:
 
 [!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample7.cs?highlight=3)]
 
@@ -149,6 +148,6 @@ When you're finished, close the connection by right clicking *MovieDBContext* an
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll examine the rest of the scaffolded code and add a `SearchIndex` method and a `SearchIndex` view that lets you search for movies in this database. For more information on using Entity Framework with MVC, see [Creating an Entity Framework Data Model for an ASP.NET MVC Application](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
->[!div class="step-by-step"]
-[Previous](creating-a-connection-string.md)
-[Next](examining-the-edit-methods-and-edit-view.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-connection-string.md)
+> [Next](examining-the-edit-methods-and-edit-view.md)

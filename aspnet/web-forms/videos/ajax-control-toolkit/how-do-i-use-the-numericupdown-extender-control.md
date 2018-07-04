@@ -1,14 +1,11 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-numericupdown-extender-control
 title: "[How Do I:] Use the NumericUpDown Extender Control? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we examine the NumericUpDown extender control from the ASP.NET AJAX Control Toolkit. We see how the NumericUpDown extender adds 'up' and 'down'..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2007
-ms.topic: article
 ms.assetid: 2aee17e4-06d1-4875-985e-8fb817dc8bcd
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-numericupdown-extender-control
 msc.type: video
 ---
@@ -20,6 +17,6 @@ In this video we examine the NumericUpDown extender control from the ASP.NET AJA
 
 [&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-numericupdown-extender-control)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-pagingbulletedlist-extender-control.md)
-[Next](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-pagingbulletedlist-extender-control.md)
+> [Next](how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md)

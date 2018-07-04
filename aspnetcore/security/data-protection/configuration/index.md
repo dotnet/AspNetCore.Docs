@@ -1,23 +1,23 @@
 ---
-title: Configuration in ASP.NET Core | Microsoft Docs
+title: Data Protection configuration in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Discover topics that explain how to configure Data Protection in ASP.NET Core.
 ms.author: riande
-manager: wpickett
-ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 517047b3-b5a9-4b5a-9084-01dae4c74cef
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.date: 10/12/2017
 uid: security/data-protection/configuration/index
 ---
-# Configuration in ASP.NET Core
+# Data Protection configuration in ASP.NET Core
 
-* [Configuring Data Protection](overview.md)
+Visit these topics to learn about Data Protection configuration in ASP.NET Core:
 
-* [Default Settings](default-settings.md)
+* [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview)  
+  An overview on configuring ASP.NET Core Data Protection.
 
-* [Machine Wide Policy](machine-wide-policy.md)
+* [Data Protection key management and lifetime](xref:security/data-protection/configuration/default-settings)  
+  Information on Data Protection key management and lifetime.
 
-* [Non DI Aware Scenarios](non-di-scenarios.md)
+* [Data Protection machine-wide policy support](xref:security/data-protection/configuration/machine-wide-policy)  
+  Details on setting a default machine-wide policy for all apps that use Data Protection.
+
+* [Non-DI aware scenarios for Data Protection in ASP.NET Core](xref:security/data-protection/configuration/non-di-scenarios)  
+  How to use the [DataProtectionProvider](/dotnet/api/Microsoft.AspNetCore.DataProtection.DataProtectionProvider) concrete type to use Data Protection without going through DI-specific code paths.

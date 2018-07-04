@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-gridview-control-cs
 title: "Using TemplateFields in the GridView Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "To provide flexibility, the GridView offers the TemplateField, which renders using a template. A template can include a mix of static HTML, Web controls, and..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 11de31e8-a78a-4f96-bd75-66e994175902
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-gridview-control-cs
 msc.type: authoredcontent
 ---
@@ -152,7 +149,7 @@ To complete this first step, remove the `LastName` BoundField and rename the `Fi
 
 ## Step 3: Using the Calendar Control to Display the`HiredDate`Field
 
-Displaying a data field value as text in a GridView is as simple as using a BoundField. For certain scenarios, however, the data is best expressed using a particular Web control instead of just text. Such customization of the display of data is possible with TemplateFields. For example, rather than display the employee's hire date as text, we could show a calendar (using [the Calendar control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar(VS.80).aspx)) with their hire date highlighted.
+Displaying a data field value as text in a GridView is as simple as using a BoundField. For certain scenarios, however, the data is best expressed using a particular Web control instead of just text. Such customization of the display of data is possible with TemplateFields. For example, rather than display the employee's hire date as text, we could show a calendar (using [the Calendar control](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar(VS.80).aspx)) with their hire date highlighted.
 
 To accomplish this, start by converting the `HiredDate` BoundField into a TemplateField. Simply go to the GridView's smart tag and click the Edit Columns link, bringing up the Fields dialog box. Select the `HiredDate` BoundField and click "Convert this field into a TemplateField."
 
@@ -172,7 +169,7 @@ To replace the text with a Calendar control, edit the template by removing the L
 **Figure 12**: Add a Calendar Control to the `HireDate` TemplateField's `ItemTemplate` ([Click to view full-size image](using-templatefields-in-the-gridview-control-cs/_static/image36.png))
 
 
-At this point each row in the GridView will contain a Calendar control in its `HiredDate` TemplateField. However, the employee's actual `HiredDate` value is not set anywhere in the Calendar control, causing each Calendar control to default to showing the current month and date. To remedy this, we need to assign each employee's `HiredDate` to the Calendar control's [SelectedDate](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar.selecteddate(VS.80).aspx) and [VisibleDate](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.calendar.visibledate(VS.80).aspx) properties.
+At this point each row in the GridView will contain a Calendar control in its `HiredDate` TemplateField. However, the employee's actual `HiredDate` value is not set anywhere in the Calendar control, causing each Calendar control to default to showing the current month and date. To remedy this, we need to assign each employee's `HiredDate` to the Calendar control's [SelectedDate](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selecteddate(VS.80).aspx) and [VisibleDate](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.visibledate(VS.80).aspx) properties.
 
 From the Calendar control's smart tag, choose Edit DataBindings. Next, bind both `SelectedDate` and `VisibleDate` properties to the `HiredDate` data field.
 
@@ -276,6 +273,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Dan Jagers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](custom-formatting-based-upon-data-cs.md)
-[Next](using-templatefields-in-the-detailsview-control-cs.md)
+> [!div class="step-by-step"]
+> [Previous](custom-formatting-based-upon-data-cs.md)
+> [Next](using-templatefields-in-the-detailsview-control-cs.md)

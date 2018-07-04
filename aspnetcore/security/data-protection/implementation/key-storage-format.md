@@ -1,20 +1,14 @@
 ---
-title: Key Storage Format | Microsoft Docs
-author: tdykstra
-description: 
-keywords: ASP.NET Core,
+title: Key storage format in ASP.NET Core
+author: rick-anderson
+description: Learn implementation details of the ASP.NET Core Data Protection key storage format.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: e8996478-f7bf-4b58-bab4-7fdb5d8556c5
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-storage-format
 ---
-# Key Storage Format
+# Key storage format in ASP.NET Core
 
-<a name=data-protection-implementation-key-storage-format></a>
+<a name="data-protection-implementation-key-storage-format"></a>
 
 Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\ASP.NET\DataProtection-Keys\.
 
@@ -63,7 +57,7 @@ The particular format of the \<descriptor> element depends on the authenticated 
 
 ## The \<encryptedSecret> element
 
-An <encryptedSecret> element which contains the encrypted form of the secret key material may be present if [encryption of secrets at rest is enabled](key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest). The attribute decryptorType will be the assembly-qualified name of a type which implements IXmlDecryptor. This type is responsible for reading the inner <encryptedKey> element and decrypting it to recover the original plaintext.
+An <encryptedSecret> element which contains the encrypted form of the secret key material may be present if [encryption of secrets at rest is enabled](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest). The attribute decryptorType will be the assembly-qualified name of a type which implements IXmlDecryptor. This type is responsible for reading the inner <encryptedKey> element and decrypting it to recover the original plaintext.
 
 As with \<descriptor>, the particular format of the <encryptedSecret> element depends on the at-rest encryption mechanism in use. In the above example, the master key is encrypted using Windows DPAPI per the comment.
 
@@ -94,4 +88,4 @@ In this case, only the specified key is revoked. If the key id is "*", however, 
 </revocation>
 ```
 
-The \<reason> element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.
+The \<reason> element is never read by the system. It's simply a convenient place to store a human-readable reason for revocation.

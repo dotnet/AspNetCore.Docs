@@ -1,5 +1,7 @@
---- 
+---
+uid: index
 layout: HubPage 
+ms.topic: hub-page
 title: ASP.NET Documentation | Microsoft Docs 
 description: 
 ---
@@ -17,8 +19,8 @@ description:
                                 <div class="container intro">
                                     <p>ASP.NET Core is a new open-source and cross-platform .NET framework for building modern
                                         cloud-based web applications on Windows, Mac, or Linux.</p>
-                                    <p>[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)
-                                        and choose the one that's right for you.</p>
+                                    <p><a href="https://docs.microsoft.com/aspnet/core/choose-aspnet-framework" data-raw-source="[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)">Learn the benefits of both ASP.NET Core and ASP.NET</a>
+                                        and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -61,7 +63,7 @@ description:
                                 </a>
                             </li>
                             <li>
-                                <a href="https://docs.microsoft.com/aspnet/core/api/">
+                                <a href="https://docs.microsoft.com/dotnet/api/?view=aspnetcore-2.0">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -140,7 +142,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
-                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
+                                    <p><a href="https://docs.microsoft.com/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -150,11 +152,11 @@ description:
                         <ul id="core_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials | [View all ASP.NET Core tutorials](https://docs.microsoft.com/aspnet/core/tutorials/)</p>
+                                    <p>Featured tutorials | <a href="https://docs.microsoft.com/aspnet/core/tutorials/" data-raw-source="[View all ASP.NET Core tutorials](https://docs.microsoft.com/aspnet/core/tutorials/)">View all ASP.NET Core tutorials</a></p>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://docs.microsoft.com/aspnet/core/tutorials/your-first-mac-aspnet">
+                                <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-mac/start-mvc">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -165,7 +167,7 @@ description:
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Build a website on a Mac</h3>
-                                                    <p>Build your first ASP.NET core app on a Mac using Visual Studio Code.</p>
+                                                    <p>Build your first ASP.NET core app on a Mac using Visual Studio for Mac.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -275,7 +277,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
-                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
+                                    <p><a href="https://docs.microsoft.com/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -292,8 +294,8 @@ description:
                                 <div class="container intro">
                                     <p>ASP.NET is a mature web platform that provides all the services that you require to build
                                         enterprise-class server-based web applications using .NET on Windows.</p>
-                                    <p>[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)
-                                        and choose the one that's right for you.</p>
+                                    <p><a href="https://docs.microsoft.com/aspnet/core/choose-aspnet-framework" data-raw-source="[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)">Learn the benefits of both ASP.NET Core and ASP.NET</a>
+                                        and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -307,8 +309,8 @@ description:
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Get started with ASP.NET</h3>
-                                                    <p>Download Visual Studio, the free IDE for ASP.NET on Windows.</p>
+                                                    <h3>Download Visual Studio</h3>
+                                                    <p>Visual Studio is a free IDE for ASP.NET on Windows.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -444,7 +446,7 @@ description:
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that’s right for you.</p>
+                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -577,7 +579,7 @@ description:
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials</p>
+                                    <p>Featured tutorials | <a href="https://docs.microsoft.com/aspnet/tutorials/" data-raw-source="[View all ASP.NET tutorials](https://docs.microsoft.com/aspnet/tutorials/)">View all ASP.NET tutorials</a></p>
                                 </div>
                             </li>
                             <li>

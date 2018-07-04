@@ -1,14 +1,11 @@
 ---
+uid: identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity
 title: "Migrating Universal Provider Data for Membership and User Profiles to ASP.NET Identity (C#) | Microsoft Docs"
 author: rustd
 description: "This tutorial describes the steps that are necessary to migrate user and role data and user profile data created using Universal Providers of an existing app..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/13/2013
-ms.topic: article
 ms.assetid: 2e260430-d13c-4658-bd05-e256fc0d63b8
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity
 msc.type: authoredcontent
 ---
@@ -55,11 +52,11 @@ After migrating the application to use the new ASP.NET Identity system, the prof
 
     [!code-html[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample3.html)]
 
- Add the following code in the code behind:
+   Add the following code in the code behind:
 
     [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample4.cs)]
 
- Add the namespace under which AppProfile class is defined to remove the compilation errors.
+   Add the namespace under which AppProfile class is defined to remove the compilation errors.
 6. Run the app and create a new user with username '**olduser'.** Navigate to the 'AddProfileData' page and add profile information for the user.  
     ![](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/_static/image2.png)
 
@@ -83,22 +80,24 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
 
 1. Install the Nuget packages needed for ASP.NET Identity:
 
-    - <tt>Microsoft.AspNet.Identity.EntityFramework</tt>
-    - <tt>Microsoft.AspNet.Identity.Owin</tt>
-    - <tt>Microsoft.Owin.Host.SystemWeb</tt>
-    - <tt>Microsoft.Owin.Security.Facebook</tt>
-    - <tt>Microsoft.Owin.Security.Google</tt>
-    - <tt>Microsoft.Owin.Security.MicrosoftAccount</tt>
-    - <tt>Microsoft.Owin.Security.Twitter</tt>
+    - Microsoft.AspNet.Identity.EntityFramework
+    - Microsoft.AspNet.Identity.Owin
+    - Microsoft.Owin.Host.SystemWeb
+    - Microsoft.Owin.Security.Facebook
+    - Microsoft.Owin.Security.Google
+    - Microsoft.Owin.Security.MicrosoftAccount
+    - Microsoft.Owin.Security.Twitter
 
- More information on managing Nuget packages can be found     [here](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)
+   More information on managing Nuget packages can be found [here](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)
 2. To work with existing data in the table, we need to create model classes which map back to the tables and hook them up in the Identity system. As part of the Identity contract, the model classes should either implement the interfaces defined in the Identity.Core dll or can extend the existing implementation of these interfaces available in Microsoft.AspNet.Identity.EntityFramework. We will be using the existing classes for role, user logins and user claims. We need to use a custom user for our sample. Right click on the project and create new folder 'IdentityModels'. Add a new 'User' class as shown below:
 
     [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample5.cs)]
 
- Notice that the 'ProfileInfo' is now a property on the user class. Hence we can use the user class to directly work with profile data.
+   Notice that the 'ProfileInfo' is now a property on the user class. Hence we can use the user class to directly work with profile data.
 
 Copy the files in the **IdentityModels** and **IdentityAccount** folders from the download source ( [https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations](https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations) ). These have the remaining model classes and the new pages needed for user and role management using the ASP.NET Identity APIs. The approach used is similar to the SQL Membership and the detailed explanation can be found [here](migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md).
+
+[!INCLUDE[](../../../includes/identity/alter-command-exception.md)]
 
 ## Copying Profile data to the new tables
 
@@ -112,7 +111,7 @@ As mentioned earlier, we need to deserialize the xml data in the Profiles tables
 
     [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample6.cs)]
 
- Some of the models used are defined in the 'IdentityModels' folder of the web application project, so you must include the corresponding namespaces.
+   Some of the models used are defined in the 'IdentityModels' folder of the web application project, so you must include the corresponding namespaces.
 5. The above code works on the database file in the App\_Data folder of the web application project created in the previous steps. To reference that, update the connection string in the app.config file of the console application with the connection string in the web.config of the web application. Also provide the complete physical path in the 'AttachDbFilename' property.
 6. Open a command prompt and navigate to the bin folder of the above console application. Run the executable and review the log output as shown in the following image.  
     ![](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/_static/image3.jpg)

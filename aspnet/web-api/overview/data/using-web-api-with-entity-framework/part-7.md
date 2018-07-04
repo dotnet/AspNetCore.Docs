@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-7
 title: "Create the View (UI) | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: b2445062-a1fe-4133-8994-f510280f6d9a
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-7
 msc.type: authoredcontent
 ---
@@ -48,6 +45,6 @@ If you run the application now, it should look like this:
 
 The list of books loads asynchronously, after the page loads. Right now, the &quot;Details&quot; links are not functional. We'll add this functionality in the next section.
 
->[!div class="step-by-step"]
-[Previous](part-6.md)
-[Next](part-8.md)
+> [!div class="step-by-step"]
+> [Previous](part-6.md)
+> [Next](part-8.md)

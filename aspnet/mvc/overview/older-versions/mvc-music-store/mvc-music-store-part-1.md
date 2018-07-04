@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1
 title: "Part 1: Overview and File->New Project | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 1 covers Overview and File->New Project."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/21/2011
-ms.topic: article
 ms.assetid: bd356ca3-5bdb-4067-9dac-c9e9923a86e8
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1
 msc.type: authoredcontent
 ---
@@ -67,29 +64,15 @@ In addition to customer-faceing pages, we'll also build an administrator section
 
 This tutorial will begin by creating a new ASP.NET MVC 3 project using the free Visual Web Developer 2010 Express (which is free), and then we'll incrementally add features to create a complete functioning application. Along the way, we'll cover database access, form posting scenarios, data validation, using master pages for consistent page layout, using AJAX for page updates and validation, user login, and more.
 
-You can follow along step by step, or you can download the completed application from [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com).
+You can follow along step by step, or you can download the completed application from [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
 
-You can use either Visual Studio 2010 SP1 or Visual Web Developer 2010 Express SP1 (a free version of Visual Studio 2010) to build the application. We'll be using the SQL Server Compact (also free) to host the database. Before you start, make sure you've installed the prerequisites listed below. You can install all of them using the following Web Platform Installer link: [https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=VWD2010SP1Pack](javascript:;)
+You can use either Visual Studio 2010 SP1 or Visual Web Developer 2010 Express SP1 (a free version of Visual Studio 2010) to build the application. We'll be using the SQL Server Compact (also free) to host the database. Before you start, make sure you've installed the prerequisites listed below.
 
-Note: You can find this link on the big green button at this (easier to remember) link: [https://asp.net/mvc](https://asp.net/mvc)
 
-![](mvc-music-store-part-1/_static/image3.png)
+- [Visual Studio Web Developer Express SP1 prerequisites]
+- [ASP.NET MVC 3 Tools Update]
+- [SQL Server Compact 4.0] - including both runtime and tools support
 
-The Web Platform Installer will check what you've got installed and just download what you need.
-
-![](mvc-music-store-part-1/_static/image4.png)
-
-If you want to individually install the prerequisites using the following links instead of using the above link, use the following links (written out in case you're using a printed version of this tutorial):
-
-- [Visual Studio Web Developer Express SP1 prerequisites](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=VWD2010SP1Pack
-- [ASP.NET MVC 3 Tools Update](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MVC3
-- [SQL Server Compact 4.0](javascript:;)- including both runtime and tools support https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=SQLCE;SQLCEVSTools\_4\_0
-
-Note: If you're using Visual Studio 2010 instead of Visual Web Developer 2010, install the prerequisites with this link instead:
-
-[Visual Studio Web Developer Express SP1 prerequisites](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appsxml=&amp;appid=VS2010SP1Pack
-
-I highly recommend you use the first Web Platform Installer link, as it will make sure you've got everything set up correctly.
 
 ### Creating a new ASP.NET MVC 3 project
 
@@ -133,7 +116,5 @@ ASP.NET MVC makes use of some basic naming conventions for folder names:
 
 These folders are included even in an Empty ASP.NET MVC application because the ASP.NET MVC framework by default uses a "convention over configuration" approach and makes some default assumptions based on folder naming conventions. For instance, controllers look for views in the Views folder by default without you having to explicitly specify this in your code. Sticking with the default conventions reduces the amount of code you need to write, and can also make it easier for other developers to understand your project. We'll explain these conventions more as we build our application.
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
-
->[!div class="step-by-step"]
-[Next](mvc-music-store-part-2.md)
+> [!div class="step-by-step"]
+> [Next](mvc-music-store-part-2.md)

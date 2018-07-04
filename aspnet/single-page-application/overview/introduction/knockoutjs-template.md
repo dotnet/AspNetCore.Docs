@@ -1,14 +1,11 @@
 ---
+uid: single-page-application/overview/introduction/knockoutjs-template
 title: "Single Page Application: KnockoutJS template | Microsoft Docs"
 author: MikeWasson
 description: "Knockout template"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/30/2013
-ms.topic: article
 ms.assetid: f9c07af0-4b20-4b08-af8f-47fc3df169a2
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/knockoutjs-template
 msc.type: authoredcontent
 ---
@@ -111,7 +108,7 @@ This file contains models for site membership. The `UserProfile` class defines t
 
 ## Entity Framework
 
-The SPA template uses EF Code First. In Code First development, you define the models first in code, and then EF uses the model to create the database. You can also use EF with an existing database ([Database First](https://msdn.microsoft.com/en-us/data/jj206878.aspx)).
+The SPA template uses EF Code First. In Code First development, you define the models first in code, and then EF uses the model to create the database. You can also use EF with an existing database ([Database First](https://msdn.microsoft.com/data/jj206878.aspx)).
 
 The `TodoItemContext` class in the Models folder derives from **DbContext**. This class provides the "glue" between the models and EF. The `TodoItemContext` holds a `ToDoItem` collection and a `TodoList` collection. To query the database, you simply write a LINQ query against these collections. For example, here is how you can select all of the to-do lists for user "Alice":
 
@@ -223,7 +220,7 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 Anti-forgery tokens work because the malicious page cannot read the user's tokens, due to same-origin policies. (Same-origin policies prevent documents hosted on two different sites from accessing each other's content.)
 
-ASP.NET MVC provides built-in support for anti-forgery tokens, through the [AntiForgery](https://msdn.microsoft.com/en-us/library/system.web.helpers.antiforgery.aspx) class and the [[ValidateAntiForgeryToken]](https://msdn.microsoft.com/en-us/library/system.web.mvc.validateantiforgerytokenattribute.aspx) attribute. Currently, this functionality is not built into Web API. However, the SPA template includes a custom implementation for Web API. This code is defined in the `ValidateHttpAntiForgeryTokenAttribute` class, which is located in the Filters folder of the solution. To learn more about anti-CSRF in Web API, see [Preventing Cross-Site Request Forgery (CSRF) Attacks](../../../web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks.md).
+ASP.NET MVC provides built-in support for anti-forgery tokens, through the [AntiForgery](https://msdn.microsoft.com/library/system.web.helpers.antiforgery.aspx) class and the [[ValidateAntiForgeryToken]](https://msdn.microsoft.com/library/system.web.mvc.validateantiforgerytokenattribute.aspx) attribute. Currently, this functionality is not built into Web API. However, the SPA template includes a custom implementation for Web API. This code is defined in the `ValidateHttpAntiForgeryTokenAttribute` class, which is located in the Filters folder of the solution. To learn more about anti-CSRF in Web API, see [Preventing Cross-Site Request Forgery (CSRF) Attacks](../../../web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks.md).
 
 ## Conclusion
 

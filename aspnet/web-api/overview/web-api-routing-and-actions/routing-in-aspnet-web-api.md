@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api
 title: "Routing in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/11/2012
-ms.topic: article
 ms.assetid: 0675bdc7-282f-4f47-b7f3-7e02133940ca
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -34,7 +31,7 @@ This route is defined in the WebApiConfig.cs file, which is placed in the App\_S
 
 ![](routing-in-aspnet-web-api/_static/image1.png)
 
-For more information aboout the **WebApiConfig** class, see [Configuring ASP.NET Web API](../advanced/configuring-aspnet-web-api.md).
+For more information about the **WebApiConfig** class, see [Configuring ASP.NET Web API](../advanced/configuring-aspnet-web-api.md).
 
 If you self-host Web API, you must set the routing table directly on the **HttpSelfHostConfiguration** object. For more information, see [Self-Host a Web API](../older-versions/self-host-a-web-api.md).
 

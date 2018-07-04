@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment
 title: "Creating a Build Definition That Supports Deployment | Microsoft Docs"
 author: jrjlee
 description: "If you want to perform any kind of build in Team Foundation Server (TFS) 2010, you need to create a build definition within your team project. This topic des..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: fe47a018-f6d0-4979-80e7-5b1fa75a5865
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment
 msc.type: authoredcontent
 ---
@@ -36,7 +33,7 @@ A build definition is the mechanism that controls how and when builds occur for 
 - Various other parameters of the build process.
 
 > [!NOTE]
-> For more information on build definitions, see [Define Your Build Process](https://msdn.microsoft.com/en-us/library/ms181715.aspx).
+> For more information on build definitions, see [Define Your Build Process](https://msdn.microsoft.com/library/ms181715.aspx).
 
 
 This topic will show you how to create a build definition that uses CI, so that a build is triggered when a developer checks in new content. If the build succeeds, the build service runs a custom project file to deploy the solution to a test environment.
@@ -143,7 +140,7 @@ You can use this information to troubleshoot failed builds and address any probl
 
 ## Monitor the Build Process
 
-TFS provides a broad range of functionality to help you monitor the build process. For example, TFS can send you an email or display alerts in your taskbar notification area when a build has completed. For more information, see [Run and Monitor Builds](https://msdn.microsoft.com/en-us/library/ms181721.aspx).
+TFS provides a broad range of functionality to help you monitor the build process. For example, TFS can send you an email or display alerts in your taskbar notification area when a build has completed. For more information, see [Run and Monitor Builds](https://msdn.microsoft.com/library/ms181721.aspx).
 
 ## Conclusion
 
@@ -153,8 +150,8 @@ In order for an automated deployment to succeed as part of a build process, you'
 
 ## Further Reading
 
-For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/en-us/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/en-us/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/en-us/library/ms181722.aspx).
+For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/library/ms181722.aspx).
 
->[!div class="step-by-step"]
-[Previous](configuring-a-tfs-build-server-for-web-deployment.md)
-[Next](deploying-a-specific-build.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-tfs-build-server-for-web-deployment.md)
+> [Next](deploying-a-specific-build.md)

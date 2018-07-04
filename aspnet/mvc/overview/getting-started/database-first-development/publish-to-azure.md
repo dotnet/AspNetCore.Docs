@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/publish-to-azure
 title: "Publish MVC Database First site to Azure | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/22/2014
-ms.topic: article
 ms.assetid: 7131f1c1-cef3-4396-ab44-ed4519676546
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/publish-to-azure
 msc.type: authoredcontent
 ---
@@ -25,8 +22,8 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 You need an Azure account to complete this tutorial:
 
-- You can [open an Azure account for free](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A261C142F) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
-- You can [activate MSDN subscriber benefits](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
+- You can [open an Azure account for free](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
+- You can [activate MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
 
 To publish your web app, right-click the project and select **Publish**.
 
@@ -160,5 +157,5 @@ For an introductory example of Code First development, see [Getting Started with
 
 For a more advanced example, see [Creating an Entity Framework Data Model for an ASP.NET MVC 4 App](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Note that the DbContext API that you use for working with data in Database First is the same as the API you use for working with data in Code First. Even if you intend to use Database First, you can learn how to handle more complex scenarios such as reading and updating related data, handling concurrency conflicts, and so forth from a Code First tutorial. The only difference is in how the database, context class, and entity classes are created.
 
->[!div class="step-by-step"]
-[Previous](enhancing-data-validation.md)
+> [!div class="step-by-step"]
+> [Previous](enhancing-data-validation.md)

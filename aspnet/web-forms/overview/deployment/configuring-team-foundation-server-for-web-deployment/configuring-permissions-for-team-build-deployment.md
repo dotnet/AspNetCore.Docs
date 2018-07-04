@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment
 title: "Configuring Permissions for Team Build Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to configure permissions to enable your build server to deploy content to web servers and database servers as part of an automated b..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 2488a91e-b0a8-465a-b874-3233f724b56b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment
 msc.type: authoredcontent
 ---
@@ -87,5 +84,5 @@ At this point, you should understand the permissions required, together with the
 
 For more information on configuring Windows server environments to support remote deployment, see [Configuring Server Environments for Web Deployment](../configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](deploying-a-specific-build.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-specific-build.md)

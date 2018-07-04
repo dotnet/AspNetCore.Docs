@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/releases/aspnet-web-pages-2-developer-preview-readme
 title: "ASP.NET Web Pages 2 Developer Preview ReadMe | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/14/2011
-ms.topic: article
 ms.assetid: 159a92e2-e011-4da7-b61d-2edde2a967da
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/aspnet-web-pages-2-developer-preview-readme
 msc.type: authoredcontent
 ---
@@ -61,7 +58,7 @@ ASP.NET Web Pages 2 requires the .NET Framework 4. It also works with the .NET F
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample2.cs)]
 
- However, we recommend that if you use the new input validation methods, don't use *ModelState.IsValid*. Instead, structure your code like this: 
+  However, we recommend that if you use the new input validation methods, don't use *ModelState.IsValid*. Instead, structure your code like this: 
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample3.cs)]
 - **On Internet Explorer 7 and Internet Explorer 8, client-side validation does not work**. Client-side validation does not work due to incompatibilities with jQuery 1.6.2, which is included with the default project template. (Server-side validation works.).

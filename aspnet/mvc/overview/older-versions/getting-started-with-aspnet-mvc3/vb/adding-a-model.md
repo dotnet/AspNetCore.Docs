@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-model
 title: "Adding a Model (VB) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2011
-ms.topic: article
 ms.assetid: b3aa7720-5c78-4ca2-baef-9a52234fb7ce
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-model
 msc.type: authoredcontent
 ---
@@ -83,6 +80,6 @@ This small amount of code and XML is everything you need to write in order to re
 
 Next, you'll build a new `MoviesController` class that you can use to display the movie data and allow users to create new movie listings.
 
->[!div class="step-by-step"]
-[Previous](adding-a-view.md)
-[Next](accessing-your-models-data-from-a-controller.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-view.md)
+> [Next](accessing-your-models-data-from-a-controller.md)

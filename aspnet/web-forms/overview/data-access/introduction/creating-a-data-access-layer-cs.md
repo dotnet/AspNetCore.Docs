@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/introduction/creating-a-data-access-layer-cs
 title: "Creating a Data Access Layer (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll start from the very beginning and create the Data Access Layer (DAL), using typed DataSets, to access the information in a database."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/05/2010
-ms.topic: article
 ms.assetid: cfe2a6a0-1e56-4dc8-9537-c8ec76ba96a4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/creating-a-data-access-layer-cs
 msc.type: authoredcontent
 ---
@@ -78,12 +75,12 @@ All code that is specific to the underlying data source such as creating a conne
 
 These methods, when invoked, will connect to the database, issue the appropriate query, and return the results. How we return these results is important. These methods could simply return a DataSet or DataReader populated by the database query, but ideally these results should be returned using *strongly-typed objects*. A strongly-typed object is one whose schema is rigidly defined at compile time, whereas the opposite, a loosely-typed object, is one whose schema is not known until runtime.
 
-For example, the DataReader and the DataSet (by default) are loosely-typed objects since their schema is defined by the columns returned by the database query used to populate them. To access a particular column from a loosely-typed DataTable we need to use syntax like: ***DataTable*.Rows[*index*]["*columnName*"]**. The DataTable's loose typing in this example is exhibited by the fact that we need to access the column name using a string or ordinal index. A strongly-typed DataTable, on the other hand, will have each of its columns implemented as properties, resulting in code that looks like: ***DataTable*.Rows[*index*].*columnName***.
+For example, the DataReader and the DataSet (by default) are loosely-typed objects since their schema is defined by the columns returned by the database query used to populate them. To access a particular column from a loosely-typed DataTable we need to use syntax like: <strong><em>DataTable</em>.Rows[<em>index</em>]["<em>columnName</em>"]</strong>. The DataTable's loose typing in this example is exhibited by the fact that we need to access the column name using a string or ordinal index. A strongly-typed DataTable, on the other hand, will have each of its columns implemented as properties, resulting in code that looks like: <strong><em>DataTable</em>.Rows[<em>index</em>].*columnName</strong>*.
 
 To return strongly-typed objects, developers can either create their own custom business objects or use Typed DataSets. A business object is implemented by the developer as a class whose properties typically reflect the columns of the underlying database table the business object represents. A Typed DataSet is a class generated for you by Visual Studio based on a database schema and whose members are strongly-typed according to this schema. The Typed DataSet itself consists of classes that extend the ADO.NET DataSet, DataTable, and DataRow classes. In addition to strongly-typed DataTables, Typed DataSets now also include TableAdapters, which are classes with methods for populating the DataSet's DataTables and propagating modifications within the DataTables back to the database.
 
 > [!NOTE]
-> For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx).
+> For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/library/ms978496.aspx).
 
 
 We'll use strongly-typed DataSets for these tutorials' architecture. Figure 3 illustrates the workflow between the different layers of an application that uses Typed DataSets.
@@ -227,7 +224,7 @@ We are first prompted about whether we want to access the database using an ad-h
 **Figure 15**: Choose to Create a **SELECT** Statement Which Returns Rows ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image41.png))
 
 
-The next step is to define the SQL query used to access the data. Since we want to return only those products that belong to a particular category, I use the same **SELECT** statement from **GetProducts()**, but add the following **WHERE** clause: **WHERE CategoryID = @CategoryID**. The **@CategoryID** parameter indicates to the TableAdapter wizard that the method we're creating will require an input parameter of the corresponding type (namely, a nullable integer).
+The next step is to define the SQL query used to access the data. Since we want to return only those products that belong to a particular category, I use the same <strong>SELECT</strong> statement from <strong>GetProducts()</strong>, but add the following <strong>WHERE</strong> clause: <strong>WHERE CategoryID = @CategoryID</strong>. The <strong>@CategoryID</strong> parameter indicates to the TableAdapter wizard that the method we're creating will require an input parameter of the corresponding type (namely, a nullable integer).
 
 
 [![Enter a Query to Only Return Products in a Specified Category](creating-a-data-access-layer-cs/_static/image43.png)](creating-a-data-access-layer-cs/_static/image42.png)
@@ -235,7 +232,7 @@ The next step is to define the SQL query used to access the data. Since we want 
 **Figure 16**: Enter a Query to Only Return Products in a Specified Category ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image44.png))
 
 
-In the final step we can choose which data access patterns to use, as well as customize the names of the methods generated. For the Fill pattern, let's change the name to **FillByCategoryID** and for the return a DataTable return pattern (the **Get*X*** methods), let's use **GetProductsByCategoryID**.
+In the final step we can choose which data access patterns to use, as well as customize the names of the methods generated. For the Fill pattern, let's change the name to <strong>FillByCategoryID</strong> and for the return a DataTable return pattern (the <strong>Get*X</strong>* methods), let's use <strong>GetProductsByCategoryID</strong>.
 
 
 [![Choose the Names for the TableAdapter Methods](creating-a-data-access-layer-cs/_static/image46.png)](creating-a-data-access-layer-cs/_static/image45.png)
@@ -287,7 +284,7 @@ There are two patterns commonly used for inserting, updating, and deleting data.
 **Figure 21**: Each Insert, Update, and Delete Request is Sent to the Database Immediately ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image57.png))
 
 
-The other pattern, which I'll refer to as the batch update pattern, is to update an entire DataSet, DataTable, or collection of DataRows in one method call. With this pattern a developer deletes, inserts, and modifies the DataRows in a DataTable and then passes those DataRows or DataTable into an update method. This method then enumerates the DataRows passed in, determines whether or not they've been modified, added, or deleted (via the DataRow's [RowState property](https://msdn.microsoft.com/en-us/library/system.data.datarow.rowstate.aspx) value), and issues the appropriate database request for each record.
+The other pattern, which I'll refer to as the batch update pattern, is to update an entire DataSet, DataTable, or collection of DataRows in one method call. With this pattern a developer deletes, inserts, and modifies the DataRows in a DataTable and then passes those DataRows or DataTable into an update method. This method then enumerates the DataRows passed in, determines whether or not they've been modified, added, or deleted (via the DataRow's [RowState property](https://msdn.microsoft.com/library/system.data.datarow.rowstate.aspx) value), and issues the appropriate database request for each record.
 
 
 [![All Changes are Synchronized with the Database When the Update Method is Invoked](creating-a-data-access-layer-cs/_static/image59.png)](creating-a-data-access-layer-cs/_static/image58.png)
@@ -333,7 +330,7 @@ To create such a custom method, return to the DataSet Designer. Right-click on t
 **Figure 25**: Create a Method to Add a New Row to the **Products** Table ([Click to view full-size image](creating-a-data-access-layer-cs/_static/image69.png))
 
 
-On the next screen the **InsertCommand**'s **CommandText** appears. Augment this query by adding **SELECT SCOPE\_IDENTITY()** at the end of the query, which will return the last identity value inserted into an **IDENTITY** column in the same scope. (See the [technical documentation](https://msdn.microsoft.com/en-us/library/ms190315.aspx) for more information about **SCOPE\_IDENTITY()** and why you probably want to [use SCOPE\_IDENTITY() in lieu of @@IDENTITY](http://weblogs.sqlteam.com/travisl/archive/2003/10/29/405.aspx).) Make sure that you end the **INSERT** statement with a semi-colon before adding the **SELECT** statement.
+On the next screen the **InsertCommand**'s **CommandText** appears. Augment this query by adding **SELECT SCOPE\_IDENTITY()** at the end of the query, which will return the last identity value inserted into an **IDENTITY** column in the same scope. (See the [technical documentation](https://msdn.microsoft.com/library/ms190315.aspx) for more information about **SCOPE\_IDENTITY()** and why you probably want to [use SCOPE\_IDENTITY() in lieu of @@IDENTITY](http://weblogs.sqlteam.com/travisl/archive/2003/10/29/405.aspx).) Make sure that you end the **INSERT** statement with a semi-colon before adding the **SELECT** statement.
 
 
 [![Augment the Query to Return the SCOPE_IDENTITY() Value](creating-a-data-access-layer-cs/_static/image71.png)](creating-a-data-access-layer-cs/_static/image70.png)
@@ -397,48 +394,48 @@ Take a few minutes to create the following TableAdapters and methods using the f
 
 - **ProductsTableAdapter**
 
-    - **GetProducts**: 
+  - **GetProducts**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample10.sql)]
-    - **GetProductsByCategoryID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample10.sql)]
+  - **GetProductsByCategoryID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample11.sql)]
-    - **GetProductsBySupplierID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample11.sql)]
+  - **GetProductsBySupplierID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample12.sql)]
-    - **GetProductByProductID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample12.sql)]
+  - **GetProductByProductID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample13.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample13.sql)]
 - **CategoriesTableAdapter**
 
-    - **GetCategories**: 
+  - **GetCategories**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample14.sql)]
-    - **GetCategoryByCategoryID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample14.sql)]
+  - **GetCategoryByCategoryID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample15.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample15.sql)]
 - **SuppliersTableAdapter**
 
-    - **GetSuppliers**: 
+  - **GetSuppliers**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample16.sql)]
-    - **GetSuppliersByCountry**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample16.sql)]
+  - **GetSuppliersByCountry**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample17.sql)]
-    - **GetSupplierBySupplierID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample17.sql)]
+  - **GetSupplierBySupplierID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample18.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample18.sql)]
 - **EmployeesTableAdapter**
 
-    - **GetEmployees**: 
+  - **GetEmployees**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample19.sql)]
-    - **GetEmployeesByManager**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample19.sql)]
+  - **GetEmployeesByManager**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample20.sql)]
-    - **GetEmployeeByEmployeeID**: 
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample20.sql)]
+  - **GetEmployeeByEmployeeID**: 
 
-        [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample21.sql)]
+      [!code-sql[Main](creating-a-data-access-layer-cs/samples/sample21.sql)]
 
 
 [![The DataSet Designer After the Four TableAdapters Have Been Added](creating-a-data-access-layer-cs/_static/image84.png)](creating-a-data-access-layer-cs/_static/image83.png)
@@ -514,11 +511,11 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [Building a DAL using Strongly Typed TableAdapters and DataTables in VS 2005 and ASP.NET 2.0](https://weblogs.asp.net/scottgu/435498)
-- [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx)
+- [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/library/ms978496.aspx)
 - [Build a Data Access Layer with the Visual Studio 2005 DataSet Designer](http://www.theserverside.net/articles/showarticle.tss?id=DataSetDesigner)
 - [Encrypting Configuration Information in ASP.NET 2.0 Applications](http://aspnet.4guysfromrolla.com/articles/021506-1.aspx)
-- [TableAdapter Overview](https://msdn.microsoft.com/en-us/library/bz9tthwx.aspx)
-- [Working with a Typed DataSet](https://msdn.microsoft.com/en-us/library/esbykkzb.aspx)
+- [TableAdapter Overview](https://msdn.microsoft.com/library/bz9tthwx.aspx)
+- [Working with a Typed DataSet](https://msdn.microsoft.com/library/esbykkzb.aspx)
 - [Using Strongly-Typed Data Access in Visual Studio 2005 and ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/020806-1.aspx)
 - [How to Extend TableAdapter Methods](https://blogs.msdn.com/vbteam/archive/2005/05/04/ExtendingTableAdapters.aspx)
 - [Retrieving Scalar Data from a Stored Procedure](http://aspnet.4guysfromrolla.com/articles/062905-1.aspx)
@@ -537,5 +534,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Ron Green, Hilton Giesenow, Dennis Patterson, Liz Shulok, Abel Gomez, and Carlos Santos. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](creating-a-business-logic-layer-cs.md)
+> [!div class="step-by-step"]
+> [Next](creating-a-business-logic-layer-cs.md)

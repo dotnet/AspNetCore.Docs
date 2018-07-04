@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-cs
 title: "Configuring the Production Web Application to Use the Production Database (C#) | Microsoft Docs"
 author: rick-anderson
 description: "As discussed in earlier tutorials, it is not uncommon for configuration information to differ between the development and production environments. This is es..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: 0177dabd-d888-449f-91b2-24190cf5e842
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-cs
 msc.type: authoredcontent
 ---
@@ -31,7 +28,7 @@ It is not uncommon for configuration information to differ between the developme
 
 ## Examining the Connection String Information
 
-The connection string used by the Book Reviews web application is stored in the application s configuration file, `Web.config`. `Web.config` includes a special section for storing connection strings, aptly named [&lt;connectionStrings&gt;](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx). The `Web.config` file for the Book Reviews website has one connection string defined in this section named `ReviewsConnectionString`:
+The connection string used by the Book Reviews web application is stored in the application s configuration file, `Web.config`. `Web.config` includes a special section for storing connection strings, aptly named [&lt;connectionStrings&gt;](https://msdn.microsoft.com/library/bf7sd233.aspx). The `Web.config` file for the Book Reviews website has one connection string defined in this section named `ReviewsConnectionString`:
 
 [!code-xml[Main](configuring-the-production-web-application-to-use-the-production-database-cs/samples/sample1.xml)]
 
@@ -40,7 +37,7 @@ The connection string - Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory
 - `Data Source` - specifies the location of the database server and the database server instance name (if any). The value, `.\SQLEXPRESS`, is an example where there is a database server and an instance name. The period specifies that the database server is on the same computer as the application; the instance name is `SQLEXPRESS`.
 - `AttachDbFilename` - specifies the location of the database file. The value contains the placeholder `|DataDirectory|`, which is resolved to the full path of the application s `App_Data` folder at runtime.
 - `Integrated Security` - a Boolean value that indicates whether to use a specified username/password when connecting to the database (false) or the current Windows account credentials (true).
-- `User Instance` - a configuration option specific to the SQL Server Express Editions that indicates whether to allow non-Administrative users on the local computer attach and connect to a SQL Server Express Edition database. See [SQL Server Express User Instances](https://msdn.microsoft.com/en-us/library/ms254504.aspx) for more information on this setting.
+- `User Instance` - a configuration option specific to the SQL Server Express Editions that indicates whether to allow non-Administrative users on the local computer attach and connect to a SQL Server Express Edition database. See [SQL Server Express User Instances](https://msdn.microsoft.com/library/ms254504.aspx) for more information on this setting.
   
 
 The allowable connection string options depend on the database you are connecting to and the ADO.NET database provider being used. For example, the connection string for connecting to a Microsoft SQL Server database differs from that used to connect to an Oracle database. Likewise, connecting to a Microsoft SQL Server database using the SqlClient provider uses a different connection string than when using the OLE-DB provider.
@@ -65,7 +62,7 @@ Next, specify the various database connection information (see Figure 2). When y
 
 The production environment database should now be listed in the Server Explorer. Select the database from the Server Explorer and go to the Properties window. There you will find a property named Connection String with the database s connection string. Assuming you are using a Microsoft SQL Server database on production and the SqlClient provider your connection string should look similar to the following:
 
-**Data Source=*serverName*; Initial Catalog=*databaseName*; Persist Security Info=True; User ID=*username*; Password=*password***
+<strong>Data Source=<em>serverName</em>; Initial Catalog=<em>databaseName</em>; Persist Security Info=True; User ID=<em>username</em>; Password=*password</strong>*
 
 Where *serverName*, *databaseName*, *username*, and *password* are with the values for the database server name, the database name, and the username and password supplied to you by your web host company.
 
@@ -141,11 +138,11 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Connection Strings and Configuration Files](https://msdn.microsoft.com/en-us/library/ms254494.aspx)
+- [Connection Strings and Configuration Files](https://msdn.microsoft.com/library/ms254494.aspx)
 - [Database Configuration Strings Information @ ConnectionStrings.com](http://www.connectionstrings.com/)
 - [Move Settings Out of the Web.config File](http://www.asp101.com/tips/index.asp?id=154)
-- [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx)
+- [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/library/bf7sd233.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-a-database-cs.md)
-[Next](configuring-a-website-that-uses-application-services-cs.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-database-cs.md)
+> [Next](configuring-a-website-that-uses-application-services-cs.md)

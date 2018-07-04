@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/animating-in-response-to-user-interaction-cs
 title: "Animating in Response To User Interaction (C#) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. The animations can star..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: ea26549d-fbbf-4973-a108-b14cd1d6de26
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/animating-in-response-to-user-interaction-cs
 msc.type: authoredcontent
 ---
@@ -60,6 +57,6 @@ In this scenario, `<OnClick>` is used. When the user clicks on the panel, it is 
 
 A mouse click starts the animation ([Click to view full-size image](animating-in-response-to-user-interaction-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](picking-one-animation-out-of-a-list-cs.md)
-[Next](disabling-actions-during-animation-cs.md)
+> [!div class="step-by-step"]
+> [Previous](picking-one-animation-out-of-a-list-cs.md)
+> [Next](disabling-actions-during-animation-cs.md)

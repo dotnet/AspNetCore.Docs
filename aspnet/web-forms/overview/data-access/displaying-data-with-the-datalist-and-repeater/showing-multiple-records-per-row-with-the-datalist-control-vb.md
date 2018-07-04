@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb
 title: "Showing Multiple Records per Row with the DataList Control (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this short tutorial we'll explore how to customize the DataList's layout through its RepeatColumns and RepeatDirection properties."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: f555c531-bf33-4699-9987-42dbfef23c1f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb
 msc.type: authoredcontent
 ---
@@ -61,7 +58,7 @@ Take a moment to visit your page in a browser. As Figure 2 shows, the DataList r
 
 ## Step 2: Changing the DataList s Layout Direction
 
-While the default behavior for the DataList is to lay out its items vertically in a single-column, multi-row table, this behavior can easily be changed through the DataList s [`RepeatDirection` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.datalist.repeatdirection.aspx). The `RepeatDirection` property can accept one of two possible values: `Horizontal` or `Vertical` (the default).
+While the default behavior for the DataList is to lay out its items vertically in a single-column, multi-row table, this behavior can easily be changed through the DataList s [`RepeatDirection` property](https://msdn.microsoft.com/system.web.ui.webcontrols.datalist.repeatdirection.aspx). The `RepeatDirection` property can accept one of two possible values: `Horizontal` or `Vertical` (the default).
 
 By changing the `RepeatDirection` property from `Vertical` to `Horizontal`, the DataList renders its records in a single row, creating one column per data source item. To illustrate this effect, click on the DataList in the Designer and then, from the Properties window, change the `RepeatDirection` property from `Vertical` to `Horiztonal`. Immediately upon doing so, the Designer adjusts the DataList s layout, creating a single-row, multi-column interface (see Figure 3).
 
@@ -81,7 +78,7 @@ When displaying small amounts of data, a single-row, multi-column table might be
 
 ## Step 3: Displaying Data in a Multi-Column, Multi-Row Table
 
-To create a multi-column, multi-row DataList, we need to set the [`RepeatColumns` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.datalist.repeatcolumns.aspx) to the number of columns to display. By default, the `RepeatColumns` property is set to 0, which will cause the DataList to display all of its items in a single row or a column (depending on the value of the `RepeatDirection` property).
+To create a multi-column, multi-row DataList, we need to set the [`RepeatColumns` property](https://msdn.microsoft.com/system.web.ui.webcontrols.datalist.repeatcolumns.aspx) to the number of columns to display. By default, the `RepeatColumns` property is set to 0, which will cause the DataList to display all of its items in a single row or a column (depending on the value of the `RepeatDirection` property).
 
 For our example, let s display three products per table row. Therefore, set the `RepeatColumns` property to 3. After making this change, take a moment to view the results in a browser. As Figure 5 shows, the products are now listed in a three-column, multi-row table.
 
@@ -113,6 +110,6 @@ The DataList, by default, lists its items in a single-column, multi-row table, w
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was John Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](formatting-the-datalist-and-repeater-based-upon-data-vb.md)
-[Next](nested-data-web-controls-vb.md)
+> [!div class="step-by-step"]
+> [Previous](formatting-the-datalist-and-repeater-based-upon-data-vb.md)
+> [Next](nested-data-web-controls-vb.md)

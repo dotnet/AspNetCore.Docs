@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build
 title: "Deploying a Specific Build | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to deploy web packages and database scripts from a specific previous build to a new destination, like a staging or production enviro..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: c979535f-48a3-4ec4-a633-a77889b86ddb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build
 msc.type: authoredcontent
 ---
@@ -125,8 +122,8 @@ This topic described how to publish deployment resources, like web packages and 
 
 ## Further Reading
 
-For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/en-us/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/en-us/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/en-us/library/ms181722.aspx).
+For more information on creating build definitions, see [Create a Basic Build Definition](https://msdn.microsoft.com/library/ms181716.aspx) and [Define Your Build Process](https://msdn.microsoft.com/library/ms181715.aspx). For more guidance on queuing builds, see [Queue a Build](https://msdn.microsoft.com/library/ms181722.aspx).
 
->[!div class="step-by-step"]
-[Previous](creating-a-build-definition-that-supports-deployment.md)
-[Next](configuring-permissions-for-team-build-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-build-definition-that-supports-deployment.md)
+> [Next](configuring-permissions-for-team-build-deployment.md)

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-vb
 title: "Validation with the Data Annotation Validators (VB) | Microsoft Docs"
 author: microsoft
 description: "Take advantage of the Data Annotation Model Binder to perform validation within an ASP.NET MVC application. Learn how to use the different types of validator..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/29/2009
-ms.topic: article
 ms.assetid: 0d23ff2b-f2ec-434a-be3b-1180beeccba3
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-vb
 msc.type: authoredcontent
 ---
@@ -147,5 +144,5 @@ The page in **Figure 6** illustrates the error messages returned when you enter 
 
 In this tutorial, you learned how to take advantage of the Data Annotation Model Binder to perform validation within an ASP.NET MVC application. You learned how to use the different types of validator attributes such as the Required and StringLength attributes. You also learned how to use these attributes when working with the Microsoft Entity Framework.
 
->[!div class="step-by-step"]
-[Previous](validating-with-a-service-layer-vb.md)
+> [!div class="step-by-step"]
+> [Previous](validating-with-a-service-layer-vb.md)

@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/scaleout-with-windows-azure-service-bus
 title: "SignalR Scaleout with Azure Service Bus (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/01/2013
-ms.topic: article
 ms.assetid: 501db899-e68c-49ff-81b2-1dc561bfe908
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-windows-azure-service-bus
 msc.type: authoredcontent
 ---
@@ -26,11 +23,11 @@ Prerequisites:
 - The [Windows Azure SDK](https://go.microsoft.com/fwlink/?linkid=254364&amp;clcid=0x409).
 - Visual Studio 2012.
 
-The service bus backplane is also compatible with [Service Bus for Windows Server](https://msdn.microsoft.com/en-us/library/windowsazure/dn282144.aspx), version 1.1. However, it is not compatible with version 1.0 of Service Bus for Windows Server.
+The service bus backplane is also compatible with [Service Bus for Windows Server](https://msdn.microsoft.com/library/windowsazure/dn282144.aspx), version 1.1. However, it is not compatible with version 1.0 of Service Bus for Windows Server.
 
 ## Pricing
 
-The Service Bus backplane uses topics to send messages. For the latest pricing information, see [Service Bus](https://www.windowsazure.com/en-us/pricing/details/service-bus/). At the time of this writing, you can send 1,000,000 messages per month for less than $1. The backplane sends a service bus message for each invocation of a SignalR hub method. There are also some control messages for connections, disconnections, joining or leaving groups, and so forth. In most applications, the majority of the message traffic will be hub method invocations.
+The Service Bus backplane uses topics to send messages. For the latest pricing information, see [Service Bus](https://azure.microsoft.com/pricing/details/service-bus/). At the time of this writing, you can send 1,000,000 messages per month for less than $1. The backplane sends a service bus message for each invocation of a SignalR hub method. There are also some control messages for connections, disconnections, joining or leaving groups, and so forth. In most applications, the majority of the message traffic will be hub method invocations.
 
 ## Overview
 
@@ -50,11 +47,11 @@ For each application, pick a different value for "YourAppName". Do not use the s
 
 ## Create the Azure Services
 
-Create a Cloud Service, as described in [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/en-us/manage/services/cloud-services/how-to-create-and-deploy-a-cloud-service/#quick). Follow the steps in the section "How to: Create a cloud service using Quick Create". For this tutorial, you do not need to upload a certificate.
+Create a Cloud Service, as described in [How to Create and Deploy a Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Follow the steps in the section "How to: Create a cloud service using Quick Create". For this tutorial, you do not need to upload a certificate.
 
 ![](scaleout-with-windows-azure-service-bus/_static/image2.png)
 
-Create a new Service Bus namespace, as described in [How to Use Service Bus Topics/Subscriptions](https://www.windowsazure.com/en-us/develop/net/how-to-guides/service-bus-topics/ "How to Use Service Bus Topics/Subscriptions"). Follow the steps in the section "Create a Service Namespace".
+Create a new Service Bus namespace, as described in [How to Use Service Bus Topics/Subscriptions](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions). Follow the steps in the section "Create a Service Namespace".
 
 ![](scaleout-with-windows-azure-service-bus/_static/image3.png)
 

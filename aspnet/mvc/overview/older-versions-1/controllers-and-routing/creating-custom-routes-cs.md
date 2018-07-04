@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
 title: "Creating Custom Routes (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn how to add custom routes to an ASP.NET MVC application. In this tutorial, you learn how to modify the default route table in the Global.asax file."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/16/2009
-ms.topic: article
 ms.assetid: 3cd08f02-8763-490a-b625-2ac96a24b73f
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
 msc.type: authoredcontent
 ---
@@ -67,6 +64,6 @@ Notice that the Entry() method in Listing 2 accepts a parameter of type DateTime
 
 The goal of this tutorial was to demonstrate how you can create a custom route. You learned how to add a custom route to the route table in the Global.asax file that represents blog entries. We discussed how to map requests for blog entries to a controller named ArchiveController and a controller action named Entry().
 
->[!div class="step-by-step"]
-[Previous](aspnet-mvc-controllers-overview-cs.md)
-[Next](creating-a-route-constraint-cs.md)
+> [!div class="step-by-step"]
+> [Previous](aspnet-mvc-controllers-overview-cs.md)
+> [Next](creating-a-route-constraint-cs.md)

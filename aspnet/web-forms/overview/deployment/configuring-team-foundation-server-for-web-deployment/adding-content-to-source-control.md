@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/adding-content-to-source-control
 title: "Adding Content to Source Control | Microsoft Docs"
 author: jrjlee
 description: "This topic explains how to add content to source control in Team Foundation Server (TFS) 2010. It describes how to add solutions and projects to a team proje..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 86c14aab-c2dd-4f73-b40c-c6d52fa44950
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/adding-content-to-source-control
 msc.type: authoredcontent
 ---
@@ -84,7 +81,7 @@ To add projects and solutions to source control, you first need to move them to 
 1. On your developer workstation, move your projects and solutions to an appropriate location within the mapped folder structure for the team project.
 
     > [!NOTE]
-    > Many organizations will have a preferred approach to how projects and solutions should be organized in source control. For guidance on how to structure folders, see [How To: Structure Your Source Control Folders in Team Foundation Server](https://msdn.microsoft.com/en-us/library/bb668992.aspx).
+    > Many organizations will have a preferred approach to how projects and solutions should be organized in source control. For guidance on how to structure folders, see [How To: Structure Your Source Control Folders in Team Foundation Server](https://msdn.microsoft.com/library/bb668992.aspx).
 2. Open the solution in Visual Studio 2010.
 3. In the **Solution Explorer** window, right-click the solution, and then click **Add Solution to Source Control**.
 
@@ -143,14 +140,14 @@ At this point, you have added the external dependencies for your solution to sou
 
 ## Conclusion
 
-This topic described how to connect to a team project, map a folder structure, and add content to source control. For more information on how to work with items under source control, see [Using Version Control](https://msdn.microsoft.com/en-us/library/ms181368.aspx).
+This topic described how to connect to a team project, map a folder structure, and add content to source control. For more information on how to work with items under source control, see [Using Version Control](https://msdn.microsoft.com/library/ms181368.aspx).
 
 The next topic, [Configuring a TFS Build Server for Web Deployment](configuring-a-tfs-build-server-for-web-deployment.md), describes how to prepare a TFS Team Build server to build and deploy your solution.
 
 ## Further Reading
 
-For more comprehensive information on working with source control in TFS, see [Using Version Control](https://msdn.microsoft.com/en-us/library/ms181368.aspx).
+For more comprehensive information on working with source control in TFS, see [Using Version Control](https://msdn.microsoft.com/library/ms181368.aspx).
 
->[!div class="step-by-step"]
-[Previous](creating-a-team-project-in-tfs.md)
-[Next](configuring-a-tfs-build-server-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-team-project-in-tfs.md)
+> [Next](configuring-a-tfs-build-server-for-web-deployment.md)

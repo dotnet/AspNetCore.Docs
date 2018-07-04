@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs
 title: "ASP.NET MVC Views Overview (C#) | Microsoft Docs"
 author: StephenWalther
 description: "What is an ASP.NET MVC View and how does it differ from a HTML page? In this tutorial, Stephen Walther introduces you to Views and demonstrates how you can t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/16/2008
-ms.topic: article
 ms.assetid: 152ab1e5-aec2-4ea7-b8cc-27a24dd9acb8
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs
 msc.type: authoredcontent
 ---
@@ -146,5 +143,5 @@ You also have the option of passing strongly typed view data from a controller t
 
 This tutorial provided a brief introduction to ASP.NET MVC views, view data, and HTML Helpers. In the first section, you learned how to add new views to your project. You learned that you must add a view to the right folder in order to call it from a particular controller. Next, we discussed the topic of HTML Helpers. You learned how HTML Helpers enable you to easily generate standard HTML content. Finally, you learned how to take advantage of view data to pass data from a controller to a view.
 
->[!div class="step-by-step"]
-[Next](creating-custom-html-helpers-cs.md)
+> [!div class="step-by-step"]
+> [Next](creating-custom-html-helpers-cs.md)

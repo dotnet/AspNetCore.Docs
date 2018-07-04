@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
 title: "Open Types in OData v4 with ASP.NET Web API | Microsoft Docs"
 author: microsoft
 description: "In OData v4, an open type is a stuctured type that contains dynamic properties, in addition to any properties that are declared in the type definition. Open..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/15/2014
-ms.topic: article
 ms.assetid: f25f5ac5-4800-4950-abe5-c97750a27fc6
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
 msc.type: authoredcontent
 ---
@@ -94,11 +91,11 @@ From the metadata document, you can see that:
 
 - For the `Book` and `Press` types, the value of the `OpenType` attribute is true. The `Customer` and `Address` types don't have this attribute.
 - The `Book` entity type has three declared properties: ISBN, Title, and Press. The OData metadata does not include the `Book.Properties` property from the CLR class.
-- Similarly, the `Press` complex type has only two declared properties: Name and Category. The metadata does not not include the `Press.DynamicProperties` property from the CLR class.
+- Similarly, the `Press` complex type has only two declared properties: Name and Category. The metadata does not include the `Press.DynamicProperties` property from the CLR class.
 
 ## Query an Entity
 
-To get the book with ISBN equal to "978-0-7356-7942-9", send send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
+To get the book with ISBN equal to "978-0-7356-7942-9", send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
 
 [!code-console[Main](use-open-types-in-odata-v4/samples/sample7.cmd?highlight=8-13,15-23)]
 

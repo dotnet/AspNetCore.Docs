@@ -1,7 +1,0 @@
-# [Introduction to Data Protection](introduction.md)
-# [Getting Started with the Data Protection APIs](using-data-protection.md)
-# [Consumer APIs](consumer-apis/toc.md)
-# [Configuration](configuration/toc.md)
-# [Extensibility APIs](extensibility/toc.md)
-# [Implementation](implementation/toc.md)
-# [Compatibility](compatibility/toc.md)

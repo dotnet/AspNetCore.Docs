@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-cs
 title: "Deploying a Database (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Deploying an ASP.NET web application entails getting the necessary files and resources from the development environment to the production environment. For da..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: ff537a10-9f1f-43fe-9bcb-3dda161ba8f5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-cs
 msc.type: authoredcontent
 ---
@@ -109,7 +106,7 @@ Right-click on the database name and choose the "Publish to provider" option fro
 The second screen in the wizard lists the databases accessible to the Database Publishing Wizard and lets you choose whether to script all objects in the selected database or to pick which objects to script. Select the appropriate database and leave the "Script all objects in the selected database" option checked.
 
 > [!NOTE]
-> If you get the error "There are no objects in database *databaseName* of the types scriptable by this wizard" when clicking Next in the screen shown in Figure 6, make sure that the path to your database file is not overly long. As noted in [this discussion item](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) on the Database Publishing Wizard project page, this error can arise if the path to the database file is too long.
+> If you get the error "There are no objects in database *databaseName* of the types scriptable by this wizard" when clicking Next in the screen shown in Figure 6, make sure that the path to your database file is not overly long. It has been discovered that this error can arise if the path to the database file is too long.
 
 
 [![The Database Publishing Wizard Splash Screen](deploying-a-database-cs/_static/image17.jpg)](deploying-a-database-cs/_static/image16.jpg) 
@@ -188,8 +185,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 - [Download the Microsoft SQL Server Database Publishing Wizard 1.1](https://www.microsoft.com/downloads/details.aspx?familyid=56E5B1C5-BF17-42E0-A410-371A838E570A&amp;displaylang=en)
 - [Download the Microsoft SQL Server Management Studio Express Edition](https://www.microsoft.com/downloads/details.aspx?FamilyId=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796&amp;displaylang=en)
-- [The SQL Server Hosting Toolkit Home](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) (The project home for the Database Publishing Wizard and the Database Publishing Services.)
 
->[!div class="step-by-step"]
-[Previous](core-differences-between-iis-and-the-asp-net-development-server-cs.md)
-[Next](configuring-the-production-web-application-to-use-the-production-database-cs.md)
+> [!div class="step-by-step"]
+> [Previous](core-differences-between-iis-and-the-asp-net-development-server-cs.md)
+> [Next](configuring-the-production-web-application-to-use-the-production-database-cs.md)

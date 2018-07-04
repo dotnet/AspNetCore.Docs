@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/releases/top-features-in-web-pages-2
 title: "The Top Features in ASP.NET Web Pages 2 | Microsoft Docs"
 author: microsoft
 description: "This topic provides an overview of the top new features in the ASP.NET Web Pages 2, a lightweight web programming framework that is included with the WebMatr..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/13/2012
-ms.topic: article
 ms.assetid: cc712e72-c3d0-4e43-bc2d-28cc09cd8f71
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/top-features-in-web-pages-2
 msc.type: authoredcontent
 ---
@@ -88,17 +85,18 @@ The Beta version released in February 2012 has only a few changes from the Beta 
     `<a href="~/Default.cshtml">Home</a>`
 - The `Scripts` helper for assets (resource) management has been replaced with the `Assets` helper, which has slightly different methods, such as the following:
 
-    - For `Scripts.Add`, use `Assets.AddScript`
-    - For `Scripts.GetScriptTags`, use `Assets.GetScripts`
+  - For `Scripts.Add`, use `Assets.AddScript`
+  - For `Scripts.GetScriptTags`, use `Assets.GetScripts`
 
     This is a breaking change; the `Scripts` class is not available in the Beta release. The code examples in this document that use asset management have been updated with this change.
 
+<a id="templates"></a>
 ### Using the New and Updated Site Templates
 
 The **Starter Site** template has been updated so that it runs on Web Pages 2 by default. It also includes the following new capabilities:
 
 - Mobile-friendly page rendering. Through the use of CSS styles and the `@media` selector, the **Starter Site** provides improved rendering of pages on smaller screens, including mobile device screens.
-- Improved membership and authentication options. You can let users log into your site using their accounts from other social networking sites, such as Twitter, Facebook, and Windows Live. For more information, see the [Enabling Logins from Facebook and Other Sites using OAuth and OpenID](#authentication) section.
+- Improved membership and authentication options. You can let users log into your site using their accounts from other social networking sites, such as Twitter, Facebook, and Windows Live. For more information, see the [Enabling Logins from Facebook and Other Sites using OAuth and OpenID](#oauthsetup) section.
 - HTML5 elements.
 
 The new **Personal Site** template lets you create a website that contains a personal blog, a photos page, and a Twitter page. You can customize a site based on the **Personal Site** template by doing the following:
@@ -142,13 +140,13 @@ To display a summary (`<ul>` list) of all the errors in the page, `Html.Validati
 
 These steps are enough to implement server-side validation. If you want to add client-side validation, do the following in addition.
 
-Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file.
+Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file. Production apps should implement a fallback when the CDN is unavailable. Test the fallback.
 
 [!code-html[Main](top-features-in-web-pages-2/samples/sample5.html)]
 
 The easiest way to get a local copy of the *jquery.validate.unobtrusive.min.js* library is to create a new Web Pages site based on one of the site templates (such as Starter Site). The site created by the template includes *jquery.validate.unobtrusive.js* file in its Scripts folder, from which you can copy it to your site.
 
-If your website uses a*\_SiteLayout* page to control the page layout, you can include these script references in that page so that validation is available to all content pages. If you want to perform validation only on particular pages, you can use the assets manager to register the scripts on only those pages. To do this, call `Assets.AddScript(path)` in the page that you want to validate and reference each of the script files. Then add a call to `Assets.GetScripts` in the *\_SiteLayout* page in order to render the registered `<script>` tags. For more information, see the section [Registering Scripts with the Assets Manager](#resmanagement).
+If your website uses a<em>\_SiteLayout</em> page to control the page layout, you can include these script references in that page so that validation is available to all content pages. If you want to perform validation only on particular pages, you can use the assets manager to register the scripts on only those pages. To do this, call `Assets.AddScript(path)` in the page that you want to validate and reference each of the script files. Then add a call to `Assets.GetScripts` in the <em>\_SiteLayout</em> page in order to render the registered `<script>` tags. For more information, see the section [Registering Scripts with the Assets Manager](#resmanagement).
 
 In the markup for an individual element, call the `Validation.For` method. This method emits attributes that jQuery can hook in order to provide client-side validation. For example:
 
@@ -200,7 +198,7 @@ The following example shows how the assets manager works. The code contains the 
 
 - A custom helper named `MakeNote`. This helper renders a string inside a box by wrapping a `div` element around it that's styled with a border and by adding &quot;Note:&quot; to it. The helper also calls a JavaScript file that adds run-time behavior to the note. Rather than reference the script with a `<script>` tag, the helper registers the script by calling `Assets.AddScript` .
 - A JavaScript file. This is the file that's called by the helper, and it temporarily increases the font size of note items during a `mouseover` event.
-- A content page, which references the*\_SiteLayout* page, renders some content in the body, and then calls the `MakeNote` helper.
+- A content page, which references the<em>\_SiteLayout</em> page, renders some content in the body, and then calls the `MakeNote` helper.
 - A *\_SiteLayout* page. This page provides a common header and a page layout structure. It also includes a call to `Assets.GetScripts`, which is how the assets manager renders script calls in a page.
 
 To run the sample:
@@ -440,7 +438,7 @@ Here are some things to remember when you install the Web Pages 2 Beta with WebM
 - If you want to run a site using Web Pages version 1 (instead of the default, as in the previous point), you can configure the site to do that. If your site doesn't already have a *web.config* file in the root of the site, create a new one and copy the following XML into it, overwriting the existing content. If the site already contains a *web.config* file, add an `<appSettings>` element like the following one to the `<configuration>` section.
 
     [!code-xml[Main](top-features-in-web-pages-2/samples/sample22.xml)]
-`- If you do not specify a version in the *web.config* file, a site is deployed as a version 2 site. (The version 2 assemblies are copied to the *bin* folder in the deployed site.)
+  `- If you do not specify a version in the *web.config* file, a site is deployed as a version 2 site. (The version 2 assemblies are copied to the *bin* folder in the deployed site.)
 - New applications that you create using the site templates in Web Matrix version 2 Beta include the Web Pages version 2 assemblies in the site's *bin* folder.
 
 In general, you can always control which version of Web Pages to use with your site by using NuGet to install the appropriate assemblies into the site's *bin* folder. To find packages, visit [NuGet.org](http://NuGet.org).
@@ -452,7 +450,7 @@ Web Pages 2 lets you create custom displays for rendering content on mobile or o
 
 The `System.Web.WebPages` namespace contains the following classes that let you work with display modes: `DefaultDisplayMode`, `DisplayInfo`, and `DisplayModes`. You can use these classes directly and write code that renders the right output for specific devices.
 
-Alternatively, you can create device-specific pages by using a file-naming pattern like this: *FileName.**Mobile**.cshtml*. For example, you can create two versions of a page, one named *MyFile.cshtml* and one named *MyFile.Mobile.cshtml*. At run time, when a mobile device requests *MyFile.cshtml*, Web Pages renders the content from *MyFile.Mobile.cshtml*. Otherwise, *MyFile.cshtml* is rendered.
+Alternatively, you can create device-specific pages by using a file-naming pattern like this: <em>FileName.</em><em>Mobile</em><em>.cshtml</em>. For example, you can create two versions of a page, one named <em>MyFile.cshtml</em> and one named <em>MyFile.Mobile.cshtml</em>. At run time, when a mobile device requests <em>MyFile.cshtml</em>, Web Pages renders the content from <em>MyFile.Mobile.cshtml</em>. Otherwise, <em>MyFile.cshtml</em> is rendered.
 
 The following example shows how to enable mobile rendering by adding a content page for mobile devices. *Page1.cshtml* contains content plus a navigation sidebar. *Page1.Mobile.cshtml* contains the same content, but omits the sidebar.
 

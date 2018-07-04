@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb
 title: "Adding and Responding to Buttons to a GridView (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to add custom buttons, both to a template and to the fields of a GridView or DetailsView control. In particular, we'll bui..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: 06c6bbd2-4bdc-435b-87a3-df2c868f4baa
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb
 msc.type: authoredcontent
 ---
@@ -193,7 +190,7 @@ With the `DiscontinueAllProductsForSupplier(supplierID)` method in the BLL and D
 **Figure 15**: Add a Discontinue All Products Button Web Control to the FormView s `ItemTemplate` ([Click to view full-size image](adding-and-responding-to-buttons-to-a-gridview-vb/_static/image41.png))
 
 
-When the Button is clicked by a user visiting the page, a postback ensues and the FormView s [`ItemCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.formview.itemcommand.aspx) fires. To execute custom code in response to this Button being clicked, we can create an event handler for this event. Understand, though, that the `ItemCommand` event fires whenever *any* Button, LinkButton, or ImageButton Web control is clicked within the FormView. That means that when the user moves from one page to another in the FormView, the `ItemCommand` event fires; same thing when the user clicks New, Edit, or Delete in a FormView that supports inserting, updating, or deleting.
+When the Button is clicked by a user visiting the page, a postback ensues and the FormView s [`ItemCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.formview.itemcommand.aspx) fires. To execute custom code in response to this Button being clicked, we can create an event handler for this event. Understand, though, that the `ItemCommand` event fires whenever *any* Button, LinkButton, or ImageButton Web control is clicked within the FormView. That means that when the user moves from one page to another in the FormView, the `ItemCommand` event fires; same thing when the user clicks New, Edit, or Delete in a FormView that supports inserting, updating, or deleting.
 
 Since the `ItemCommand` fires regardless of what button is clicked, in the event handler we need a way to determine if the Discontinue All Products Button was clicked or if it was some other button. To accomplish this, we can set the Button Web control s `CommandName` property to some identifying value. When the Button is clicked, this `CommandName` value is passed into the `ItemCommand` event handler, enabling us to determine whether the Discontinue All Products Button was the button clicked. Set the Discontinue All Products Button s `CommandName` property to DiscontinueProducts .
 
@@ -209,7 +206,7 @@ Next, create an event handler for the FormView s `ItemCommand` event. In this ev
 
 [!code-vb[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample7.vb)]
 
-Note that the `SupplierID` of the current selected supplier in the FormView can be accessed using the FormView s [`SelectedValue` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.formview.selectedvalue.aspx). The `SelectedValue` property returns the first data key value for the record being displayed in the FormView. The FormView s [`DataKeyNames` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.formview.datakeynames.aspx), which indicates the data fields from which the data key values are pulled from, was automatically set to `SupplierID` by Visual Studio when binding the ObjectDataSource to the FormView back in Step 2.
+Note that the `SupplierID` of the current selected supplier in the FormView can be accessed using the FormView s [`SelectedValue` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.formview.selectedvalue.aspx). The `SelectedValue` property returns the first data key value for the record being displayed in the FormView. The FormView s [`DataKeyNames` property](https://msdn.microsoft.com/system.web.ui.webcontrols.formview.datakeynames.aspx), which indicates the data fields from which the data key values are pulled from, was automatically set to `SupplierID` by Visual Studio when binding the ObjectDataSource to the FormView back in Step 2.
 
 With the `ItemCommand` event handler created, take a moment to test out the page. Browse to the Cooperativa de Quesos 'Las Cabras' supplier (it s the fifth supplier in the FormView for me). This supplier provides two products, Queso Cabrales and Queso Manchego La Pastora, both of which are *not* discontinued.
 
@@ -246,7 +243,7 @@ This overload retrieves information about the specified product through the DAL 
 
 ## Step 7: Adding the Increase and Decrease Buttons to the GridView
 
-The GridView (and DetailsView) are both made up of a collection of fields. In addition to BoundFields, CheckBoxFields, and TemplateFields, ASP.NET includes the ButtonField, which, as its name implies, renders as a column with a Button, LinkButton, or ImageButton for each row. Similar to the FormView, clicking *any* button within the GridView paging buttons, Edit or Delete buttons, sorting buttons, and so on causes a postback and raises the GridView s [`RowCommand` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowcommand.aspx).
+The GridView (and DetailsView) are both made up of a collection of fields. In addition to BoundFields, CheckBoxFields, and TemplateFields, ASP.NET includes the ButtonField, which, as its name implies, renders as a column with a Button, LinkButton, or ImageButton for each row. Similar to the FormView, clicking *any* button within the GridView paging buttons, Edit or Delete buttons, sorting buttons, and so on causes a postback and raises the GridView s [`RowCommand` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.rowcommand.aspx).
 
 The ButtonField has a `CommandName` property that assigns the specified value to each of its Buttons `CommandName` properties. Like with the FormView, the `CommandName` value is used by the `RowCommand` event handler to determine which button was clicked.
 
@@ -258,7 +255,7 @@ Let s add two new ButtonFields to the GridView, one with a button text Price +10
 **Figure 18**: Add Two ButtonFields to the GridView
 
 
-Move the two ButtonFields so that they appear as the first two GridView fields. Next, set the `Text` properties of these two ButtonFields to Price +10% and Price -10% and the `CommandName` properties to IncreasePrice and DecreasePrice, respectively. By default, a ButtonField renders its column of buttons as LinkButtons. This can be changed, however, through the ButtonField s [`ButtonType` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.buttonfieldbase.buttontype.aspx). Let s have these two ButtonFields rendered as regular push buttons; therefore, set the `ButtonType` property to `Button`. Figure 19 shows the Fields dialog box after these changes have been made; following that is the GridView s declarative markup.
+Move the two ButtonFields so that they appear as the first two GridView fields. Next, set the `Text` properties of these two ButtonFields to Price +10% and Price -10% and the `CommandName` properties to IncreasePrice and DecreasePrice, respectively. By default, a ButtonField renders its column of buttons as LinkButtons. This can be changed, however, through the ButtonField s [`ButtonType` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.buttonfieldbase.buttontype.aspx). Let s have these two ButtonFields rendered as regular push buttons; therefore, set the `ButtonType` property to `Button`. Figure 19 shows the Fields dialog box after these changes have been made; following that is the GridView s declarative markup.
 
 
 ![Configure the ButtonFields Text, CommandName, and ButtonType Properties](adding-and-responding-to-buttons-to-a-gridview-vb/_static/image49.png)
@@ -308,5 +305,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](adding-and-responding-to-buttons-to-a-gridview-cs.md)
+> [!div class="step-by-step"]
+> [Previous](adding-and-responding-to-buttons-to-a-gridview-cs.md)

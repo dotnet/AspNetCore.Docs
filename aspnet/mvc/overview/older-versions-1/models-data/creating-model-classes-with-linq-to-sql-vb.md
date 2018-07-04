@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
 title: "Creating Model Classes with LINQ to SQL (VB) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain one method of creating model classes for an ASP.NET MVC application. In this tutorial, you learn how to build model c..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/07/2008
-ms.topic: article
 ms.assetid: a4a25a75-d71f-4509-98b4-df72e748985a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
 msc.type: authoredcontent
 ---
@@ -47,9 +44,10 @@ In this tutorial -- in order to illustrate how you can build model classes -- we
 
 After you create the new database, you can open the database by double-clicking the MoviesDB.mdf file in the App\_Data folder. Double-clicking the MoviesDB.mdf file opens the Server Explorer window (see Figure 2).
 
-|  | The Server Explorer window is called the Database Explorer window when using Visual Web Developer. |
-| --- | --- |
 
+|   | The Server Explorer window is called the Database Explorer window when using Visual Web Developer. |
+|---|----------------------------------------------------------------------------------------------------|
+|   |                                                                                                    |
 
 [![Using the Server Explorer window](creating-model-classes-with-linq-to-sql-vb/_static/image5.png)](creating-model-classes-with-linq-to-sql-vb/_static/image4.png)
 
@@ -194,6 +192,6 @@ The goal of this tutorial was to demonstrate how you can create MVC model classe
 
 Next, we explored a slightly more difficult, but definitely more virtuous, path for displaying database data. We took advantage of the Repository pattern and placed all of our database access logic in a separate repository class. In our controller, we wrote all of our code against an interface instead of a concrete class. The advantage of the Repository pattern is that it enables us to easily change database access technologies in the future and it enables us to easily test our controller classes.
 
->[!div class="step-by-step"]
-[Previous](creating-model-classes-with-the-entity-framework-vb.md)
-[Next](displaying-a-table-of-database-data-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-model-classes-with-the-entity-framework-vb.md)
+> [Next](displaying-a-table-of-database-data-vb.md)

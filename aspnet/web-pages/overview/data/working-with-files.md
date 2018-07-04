@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/data/working-with-files
 title: "Working with Files in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This chapter explains how to read, write, append, delete, and upload files."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2014
-ms.topic: article
 ms.assetid: eee916e4-ba4c-439a-a24e-68df7d45a569
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/data/working-with-files
 msc.type: authoredcontent
 ---
@@ -256,4 +253,4 @@ In the previous example, you let users upload one file. But you can use the `Fil
 
 [Working with Images in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=202897)
 
-[Exporting to a CSV File](https://msdn.microsoft.com/en-us/library/ms155919.aspx)
+[Exporting to a CSV File](https://msdn.microsoft.com/library/ms155919.aspx)

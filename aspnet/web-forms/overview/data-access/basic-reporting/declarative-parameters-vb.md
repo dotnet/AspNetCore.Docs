@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/basic-reporting/declarative-parameters-vb
 title: "Declarative Parameters (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll illustrate how to use a parameter set to a hard-coded value to select the data to display in a DetailsView control."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: dc1234a3-114f-4c9a-8d25-50ca03cc8e8e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/declarative-parameters-vb
 msc.type: authoredcontent
 ---
@@ -105,7 +102,7 @@ Since the `GetSuppliersByCountry(country)` method has an input parameter, the wi
 **Figure 8**: Set the Parameter Value to the `CountryName` Control Value ([Click to view full-size image](declarative-parameters-vb/_static/image24.png))
 
 
-The ObjectDataSource's declarative markup differs slightly from our first example, using a [ControlParameter](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.controlparameter.aspx) instead of the standard `Parameter` object. A `ControlParameter` has additional properties to specify the `ID` of the Web control and the property value to use for the parameter (`PropertyName`). The Configure Data Source wizard was smart enough to determine that, for a TextBox, we'll likely want to use the `Text` property for the parameter value. If, however, you want to use a different property value from the Web control you can change the `PropertyName` value here or by clicking the "Show advanced properties" link in the wizard.
+The ObjectDataSource's declarative markup differs slightly from our first example, using a [ControlParameter](https://msdn.microsoft.com/library/system.web.ui.webcontrols.controlparameter.aspx) instead of the standard `Parameter` object. A `ControlParameter` has additional properties to specify the `ID` of the Web control and the property value to use for the parameter (`PropertyName`). The Configure Data Source wizard was smart enough to determine that, for a TextBox, we'll likely want to use the `Text` property for the parameter value. If, however, you want to use a different property value from the Web control you can change the `PropertyName` value here or by clicking the "Show advanced properties" link in the wizard.
 
 [!code-aspx[Main](declarative-parameters-vb/samples/sample2.aspx)]
 
@@ -157,6 +154,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-data-with-the-objectdatasource-vb.md)
-[Next](programmatically-setting-the-objectdatasource-s-parameter-values-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-data-with-the-objectdatasource-vb.md)
+> [Next](programmatically-setting-the-objectdatasource-s-parameter-values-vb.md)

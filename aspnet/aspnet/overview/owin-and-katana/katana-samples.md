@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/owin-and-katana/katana-samples
 title: "Katana Samples | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2014
-ms.topic: article
 ms.assetid: bec04f5d-2638-4417-b288-97c58c8d6379
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/katana-samples
 msc.type: authoredcontent
 ---
@@ -46,4 +43,4 @@ Shows how to support HTTP requests for static files using OWIN / Katana.
 This sample shows how to host OWIN in IIS and add Web API to the OWIN pipeline.
 
 **Web Socket Sample** | [Source Code](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/Katana/WebSocketSample/WebSocketServer/Startup.cs)   
-Shows how to support Web Sockets in OWIN by using the [System.Net.WebSockets.WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket(v=vs.110).aspx) class.
+Shows how to support Web Sockets in OWIN by using the [System.Net.WebSockets.WebSocket](https://msdn.microsoft.com/library/system.net.websockets.websocket(v=vs.110).aspx) class.

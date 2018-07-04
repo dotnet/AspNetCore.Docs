@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part8
 title: "Adding a Column to the Model | Microsoft Docs"
 author: shanselman
-description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. You’ll create a simple web application that reads and writes from a database."
+description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: 7ae696b9-348f-4993-8ebb-a838acbe0c28
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part8
 msc.type: authoredcontent
 ---
@@ -77,5 +74,5 @@ Enjoy!
 
 - Scott Hanselman - [http://hanselman.com](http://hanselman.com) and [@shanselman](http://twitter.com/shanselman) on Twitter.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part7.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part7.md)

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial
 title: "Introducing the NerdDinner Tutorial | Microsoft Docs"
 author: shanselman
 description: "The best way to learn a new framework is to build something with it. This tutorial walks through how to build a small, but complete, application using ASP.NE..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/27/2010
-ms.topic: article
 ms.assetid: 397522d5-0402-4b94-b810-a2fb564f869d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial
 msc.type: authoredcontent
 ---
@@ -70,7 +67,7 @@ We are going to begin our NerdDinner application by using the File-&gt;New Proje
 11. [How to use AJAX to implement mapping scenarios](# "Use AJAX to Implement Mapping Scenarios")
 12. [How to enable automated unit testing](# "Enable Automated Unit Testing")
 
-You can build your own copy of NerdDinner from scratch by completing each step we walkthrough in this chapter. Alternatively, you can download a completed version of the source code here: [http://nerddinner.codeplex.com/](http://nerddinner.codeplex.com/). You can also optionally also [download a free PDF version of this tutorial](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf) if you want to read the tutorial offline.
+You can build your own copy of NerdDinner from scratch by completing each step we walkthrough in this chapter. Alternatively, you can download a completed version of the source code here: [NerdDinner on GitHub](https://github.com/AspNetMVPSamples/NerdDinner). You can also optionally also [download a free PDF version of this tutorial](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf) if you want to read the tutorial offline.
 
 You can use either Visual Studio 2008 or the free Visual Web Developer 2008 Express to build the application. You can use either SQL Server or the free SQL Server Express for the database.
 
@@ -82,5 +79,5 @@ Now that we've covered what NerdDinner is, let's roll up our sleeves and write s
 
 We'll begin by using File-&gt;New Project within Visual Studio to create the NerdDinner application.
 
->[!div class="step-by-step"]
-[Next](create-a-new-aspnet-mvc-project.md)
+> [!div class="step-by-step"]
+> [Next](create-a-new-aspnet-mvc-project.md)

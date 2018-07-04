@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-vb
 title: "Displaying a Table of Database Data (VB) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, I demonstrate two methods of displaying a set of database records. I show two methods of formatting a set of database records in an HTML ta..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/07/2008
-ms.topic: article
 ms.assetid: 5bb4587f-5bcd-44f5-b368-3c1709162b35
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-vb
 msc.type: authoredcontent
 ---
@@ -179,6 +176,6 @@ The RenderPartial() method is different than most of the other helper methods be
 
 The goal of this tutorial was to explain how you can display a set of database records in an HTML table. First, you learned how to return a set of database records from a controller action by taking advantage of the Microsoft Entity Framework. Next, you learned how to use Visual Studio scaffolding to generate a view that displays a collection of items automatically. Finally, you learned how to simplify the view by taking advantage of a partial. You learned how to use a partial as a template so that you can format each database record.
 
->[!div class="step-by-step"]
-[Previous](creating-model-classes-with-linq-to-sql-vb.md)
-[Next](performing-simple-validation-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-model-classes-with-linq-to-sql-vb.md)
+> [Next](performing-simple-validation-vb.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs
 title: "Nested Master Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Shows how to nest one master page within another."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/28/2008
-ms.topic: article
 ms.assetid: 32b7fb6e-d74b-4048-91f8-70631b2523ee
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs
 msc.type: authoredcontent
 ---
@@ -346,7 +343,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Nested ASP.NET Master Pages](https://msdn.microsoft.com/en-us/library/x2b3ktt7.aspx)
+- [Nested ASP.NET Master Pages](https://msdn.microsoft.com/library/x2b3ktt7.aspx)
 - [Tips for Nested Master Pages and VS 2005 Design-Time](https://weblogs.asp.net/scottgu/archive/2005/11/11/430382.aspx)
 - [VS 2008 Nested Master Page Support](https://weblogs.asp.net/scottgu/archive/2007/07/09/vs-2008-nested-master-page-support.aspx)
 
@@ -358,6 +355,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](specifying-the-master-page-programmatically-cs.md)
-[Next](creating-a-site-wide-layout-using-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](specifying-the-master-page-programmatically-cs.md)
+> [Next](creating-a-site-wide-layout-using-master-pages-vb.md)

@@ -1,29 +1,28 @@
 ---
+uid: mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-scaffolding-and-migrations
 title: "ASP.NET MVC 4 Entity Framework Scaffolding and Migrations | Microsoft Docs"
 author: rick-anderson
 description: "If you are familiar with ASP.NET MVC 4 controller methods, or have completed the &quot;Helpers, Forms and Validation&quot; Hands-On lab, you should be aware..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 093c1362-f10b-407c-a708-be370f4b62b0
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-scaffolding-and-migrations
 msc.type: authoredcontent
 ---
-ASP.NET MVC 4 Entity Framework Scaffolding and Migrations
-====================
-by [Web Camps Team](https://twitter.com/webcamps)
+# ASP.NET MVC 4 Entity Framework Scaffolding and Migrations
 
-> If you are familiar with ASP.NET MVC 4 controller methods, or have completed the &quot;Helpers, Forms and Validation&quot; Hands-On lab, you should be aware that many of the logic to create, update, list and remove any data entity it is repeated among the application. Not to mention that, if your model has several classes to manipulate, you will be likely to spend a considerable time writing the POST and GET action methods for each entity operation, as well as each of the views.
-> 
-> In this lab you will learn how to use the ASP.NET MVC 4 scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Starting from a simple model class, and, without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as the all the necessary views. After building and running the simple solution, you will have the application database generated, together with the MVC logic and views for data manipulation.
-> 
-> In addition, you will learn how easy it is to use Entity Framework Migrations to perform model updates throughout your entire application. Entity Framework Migrations will let you modify your database after the model has changed with simple steps. With all these in mind, you will be able to build and maintain web applications more efficiently, taking advantage of the latest features of ASP.NET MVC 4.
+By [Web Camps Team](https://twitter.com/webcamps)
 
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
-<a id="Objectives"></a>
+If you are familiar with ASP.NET MVC 4 controller methods, or have completed the &quot;Helpers, Forms and Validation&quot; Hands-On lab, you should be aware that many of the logic to create, update, list and remove any data entity it is repeated among the application. Not to mention that, if your model has several classes to manipulate, you will be likely to spend a considerable time writing the POST and GET action methods for each entity operation, as well as each of the views.
+
+In this lab you will learn how to use the ASP.NET MVC 4 scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Starting from a simple model class, and, without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as the all the necessary views. After building and running the simple solution, you will have the application database generated, together with the MVC logic and views for data manipulation.
+
+In addition, you will learn how easy it is to use Entity Framework Migrations to perform model updates throughout your entire application. Entity Framework Migrations will let you modify your database after the model has changed with simple steps. With all these in mind, you will be able to build and maintain web applications more efficiently, taking advantage of the latest features of ASP.NET MVC 4.
+
+> [!NOTE]
+> All sample code and snippets are included in the Web Camps Training Kit, available from at [Microsoft-Web/WebCampTrainingKit Releases](https://aka.ms/webcamps-training-kit). The project specific to this lab is available at [ASP.NET MVC 4 Entity Framework Scaffolding and Migrations](https://github.com/Microsoft-Web/HOL-EntityFrameworkScaffoldingAndMigrations).
 
 <a id="Objectives"></a>
 ### Objectives
@@ -100,7 +99,6 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
 
     (Code Snippet - *ASP.NET MVC 4 and Entity Framework Migrations - Ex1 Person Properties*)
 
-
     [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.cs)]
 6. Click **Build | Build Solution** to save the changes and build the project.
 
@@ -110,14 +108,14 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
 7. In the Solution Explorer, right-click the controllers folder and select **Add | Controller**.
 8. Name the controller *PersonController* and complete the **Scaffolding options** with the following values.
 
-    1. In the **Template** drop-down list, select the **MVC controller with read/write actions and views, using Entity Framework** option.
-    2. In the **Model class** drop-down list, select the **Person** class.
-    3. In the **Data Context class** list, select **&lt;New data context...&gt;**. Choose any name and click **OK**.
-    4. In the **Views** drop-down list, make sure that **Razor** is selected.
+   1. In the **Template** drop-down list, select the **MVC controller with read/write actions and views, using Entity Framework** option.
+   2. In the **Model class** drop-down list, select the **Person** class.
+   3. In the **Data Context class** list, select **&lt;New data context...&gt;**. Choose any name and click **OK**.
+   4. In the **Views** drop-down list, make sure that **Razor** is selected.
 
-    ![Adding the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image4.png "Adding the Person controller with scaffolding")
+      ![Adding the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image4.png "Adding the Person controller with scaffolding")
 
-    *Adding the Person controller with scaffolding*
+      *Adding the Person controller with scaffolding*
 9. Click **Add** to create the new controller for Person with scaffolding. You have now generated the controller actions as well as the views.
 
     ![After creating the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image5.png "After creating the Person controller with scaffolding")
@@ -125,9 +123,9 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
     *After creating the Person controller with scaffolding*
 10. Open **PersonController** class. Notice that the full CRUD action methods have been generated automatically.
 
-    ![Inside the Person controller](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image6.png "Inside the Person controller")
+   ![Inside the Person controller](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image6.png "Inside the Person controller")
 
-    *Inside the Person controller*
+   *Inside the Person controller*
 
 <a id="Ex1Task2"></a>
 
@@ -186,10 +184,8 @@ In this task you will update the database using Entity Framework Migrations. You
     *Migrations folder*
 3. Open the **Configuration.cs** file in the Migrations folder. Locate the class constructor and change the **AutomaticMigrationsEnabled** value to *true*.
 
-
     [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.cs)]
 4. Open the Person class and add an attribute for the person's middle name. With this new attribute, you are changing the model.
-
 
     [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.cs)]
 5. Select **Build | Build Solution** on the menu to build the application.
@@ -239,9 +235,9 @@ In this task you will update the database using Entity Framework Migrations. You
     *Updating the controller*
 10. Click **Add**. Then, select the values **Overwrite PersonController.cs** and the **Overwrite associated views** and click **OK**.
 
-    ![Adding a controller overwrite](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image19.png)
+   ![Adding a controller overwrite](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image19.png)
 
-    *Updating the controller*
+   *Updating the controller*
 
 <a id="Ex1Task4"></a>
 
@@ -274,7 +270,7 @@ In this Hands-On lab, you have learned simple steps to create CRUD operations wi
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/? linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 

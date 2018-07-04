@@ -1,20 +1,17 @@
 ---
-title: "Visual Studio 2012 | Microsoft Docs"
+uid: visual-studio/overview/2012/index
+title: "ASP.NET and Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
-description: "Visual Studio 2012"
+description: "Developing ASP.NET web apps with Visual Studio 2012"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/25/2013
-ms.topic: article
 ms.assetid: 51900291-7787-4a6e-be4e-fa558486f5ff
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012
 msc.type: chapter
 ---
-Visual Studio 2012
+ASP.NET and Visual Studio 2012
 ====================
-> Visual Studio 2012
+> Developing ASP.NET web apps with Visual Studio 2012
 
 
 - [Visual Studio 2012 HTML Editing Features](visual-studio-2012-html-editing-features.md)

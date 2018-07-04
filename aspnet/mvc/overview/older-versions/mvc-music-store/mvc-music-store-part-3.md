@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3
 title: "Part 3: Views and ViewModels | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 3 covers Views and ViewModels."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/21/2011
-ms.topic: article
 ms.assetid: 94297aa0-1f2d-4d72-bbcb-63f64653e0c0
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3
 msc.type: authoredcontent
 ---
@@ -81,7 +78,7 @@ The content from our individual views will be displayed by the @RenderBody() com
 
 The empty project template includes a very streamlined CSS file which just includes styles used to display validation messages. Our designer has provided some additional CSS and images to define the look and feel for our site, so we'll add those in now.
 
-The updated CSS file and Images are included in the Content directory of MvcMusicStore-Assets.zip which is available at http://mvcmusicstore.codeplex.com. We'll select both of them in Windows Explorer and drop them into our Solution's Content folder in Visual Web Developer, as shown below:
+The updated CSS file and Images are included in the Content directory of MvcMusicStore-Assets.zip which is available at [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store). We'll select both of them in Windows Explorer and drop them into our Solution's Content folder in Visual Web Developer, as shown below:
 
 ![](mvc-music-store-part-3/_static/image5.png)
 
@@ -255,8 +252,7 @@ The HTML for the genre list looks like this:
 
 [!code-html[Main](mvc-music-store-part-3/samples/sample22.html)]
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-2.md)
-[Next](mvc-music-store-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-2.md)
+> [Next](mvc-music-store-part-4.md)

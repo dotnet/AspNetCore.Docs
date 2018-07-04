@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/slider/using-the-slider-control-with-auto-postback-cs
 title: "Using the Slider Control With Auto-Postback (C#) | Microsoft Docs"
 author: wenz
 description: "The Slider control in the AJAX Control Toolkit provides a graphical slider that can be controlled using the mouse. It is possible to make the slider autopost..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 4d85e9fb-91e6-41f2-9c13-754549b19c27
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider/using-the-slider-control-with-auto-postback-cs
 msc.type: authoredcontent
 ---
@@ -57,5 +54,5 @@ Moving the slider triggers a postback ([Click to view full-size image](using-the
 
 Afterwards, the date of this change is written in the label ([Click to view full-size image](using-the-slider-control-with-auto-postback-cs/_static/image6.png))
 
->[!div class="step-by-step"]
-[Next](databinding-the-slider-control-cs.md)
+> [!div class="step-by-step"]
+> [Next](databinding-the-slider-control-cs.md)

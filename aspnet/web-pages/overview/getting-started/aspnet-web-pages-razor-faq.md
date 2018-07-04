@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/getting-started/aspnet-web-pages-razor-faq
 title: "ASP.NET Web Pages (Razor) FAQ | Microsoft Docs"
 author: tfitzmac
 description: "This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix. Software versions used in the tutorial ASP.NET Web Pages (R..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/07/2014
-ms.topic: article
 ms.assetid: b137bd04-25e1-47cb-9d96-ef2e179ecf1f
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/aspnet-web-pages-razor-faq
 msc.type: authoredcontent
 ---
@@ -16,6 +13,9 @@ ASP.NET Web Pages (Razor) FAQ
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+> > [!NOTE] 
+> > WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+>
 > This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix.
 > 
 > ## Software versions used in the tutorial
@@ -90,7 +90,7 @@ For help with IIS Express command line options, enter `iisexpress.exe /?` at the
 <a id="Can_I_use_ASP.NET_Web_Forms_controls_on_a_Web_Pages_page"></a>
 ## Can I use ASP.NET Web Forms controls on a Web Pages page?
 
-No. Web Forms controls like the [CheckBox](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.checkbox) control, the [validation controls](https://msdn.microsoft.com/en-us/library/bwd43d0x), and the [GridView](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview) control only work in Web Forms pages (*.aspx* files). These controls require the Web Forms page framework.
+No. Web Forms controls like the [CheckBox](https://msdn.microsoft.com/library/system.web.ui.webcontrols.checkbox) control, the [validation controls](https://msdn.microsoft.com/library/bwd43d0x), and the [GridView](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview) control only work in Web Forms pages (*.aspx* files). These controls require the Web Forms page framework.
 
 <a id="Can_I_deploy_an_ASP.NET_Web_Pages_site_without_using_WebMatrix"></a>
 ## Can I deploy an ASP.NET Web Pages site without using WebMatrix?

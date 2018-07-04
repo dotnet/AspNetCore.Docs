@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb
 title: "Iteration #7 – Add Ajax functionality (VB) | Microsoft Docs"
 author: microsoft
 description: "In the seventh iteration, we improve the responsiveness and performance of our application by adding support for Ajax."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: f640e063-150e-453d-8cfc-7e54a6ce0f1e
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb
 msc.type: authoredcontent
 ---
@@ -120,7 +117,7 @@ The first parameter represents the text to display for the link, the second para
 
 The updated Index() method of the Contact controller is contained in Listing 3.
 
-**Listing 3 - Controllers\ContactController.<wbr />vb (Index method)**
+**Listing 3 - Controllers\ContactController.vb (Index method)**
 
 [!code-vb[Main](iteration-7-add-ajax-functionality-vb/samples/sample5.vb)]
 
@@ -217,7 +214,7 @@ The AjaxOptions parameter has two properties. First, the Confirm property is use
 
 Listing 7 contains a new AjaxDelete() action that has been added to the Contact controller.
 
-**Listing 7 - Controllers\ContactController.<wbr />vb (AjaxDelete)**   
+**Listing 7 - Controllers\ContactController.vb (AjaxDelete)**   
 
 [!code-vb[Main](iteration-7-add-ajax-functionality-vb/samples/sample12.vb)]
 
@@ -237,5 +234,5 @@ We also added browser history support to our Ajax application. We enabled users 
 
 Finally, we created a delete link that supports HTTP DELETE operations. By performing Ajax deletes, we enable users to delete database records without requiring the user to request an additional delete confirmation page.
 
->[!div class="step-by-step"]
-[Previous](iteration-6-use-test-driven-development-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-6-use-test-driven-development-vb.md)

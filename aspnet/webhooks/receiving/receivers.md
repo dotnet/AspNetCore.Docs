@@ -1,7 +1,14 @@
 ---
-uid: receiving/receivers
+uid: webhooks/receiving/receivers
+title: "ASP.NET WebHooks receivers | Microsoft Docs"
+author: rick-anderson
+description: "ASP.NET WebHooks receivers"
+ms.author: aspnetcontent
+ms.date: 01/17/2012
+ms.assetid: 6cdea089-15b2-4732-8c68-921ca561a8f1
+uid: webhooks/receiving/receivers
 ---
-# WebHook Receivers
+# ASP.NET WebHooks receivers
 
 Receiving WebHooks depends on who the sender is. Sometimes there are additional steps registering a WebHook verifying that the subscriber is really listening. Some WebHooks provide a push-to-pull model where the HTTP POST request only contains a reference to the event information which is then to be retrieved independently. Often the security model varies quite a bit.
 
@@ -15,19 +22,15 @@ By installing Microsoft ASP.NET WebHooks you get a general WebHook controller wh
 
 The URI of this controller is the WebHook URI that you register with the service and is of the form:
 
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
-
 ```
 https://<host>/api/webhooks/incoming/<receiver>/{id}
 ```
 
 For security reasons, many WebHook receivers require that the URI is an *https* URI and in some cases it must also contain an additional query parameter which is used to enforce that only the intended party can send WebHooks to the URI above.
 
-The *<receiver>* component is the name of the receiver, for example *github* or *slack*.
+The <em><receiver></em> component is the name of the receiver, for example <em>github</em> or <em>slack</em>.
 
 The *{id}* is an optional identifier which can be used to identify a particular WebHook receiver configuration. This can be used to register N WebHooks with a particular receiver. For example, the following three URIs can be used to register for three independent WebHooks:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```
 https://<host>/api/webhooks/incoming/github
@@ -51,15 +54,11 @@ WebHook Receivers are configured through the [IWebHookReceiverConfig](https://gi
 
 The format for Application Setting keys is as follows:
 
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
-
 ```
 MS_WebHookReceiverSecret_<receiver>
-````
+```
 
 The value is a comma-separated list of values matching the *{id}* values for which WebHooks have been registered, for example:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```
 MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
@@ -68,8 +67,6 @@ MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
 ## Initializing a WebHook Receiver
 
 WebHook Receivers are initialized by registering them, typically in the *WebApiConfig* static class, for example:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```csharp
 namespace WebHookReceivers

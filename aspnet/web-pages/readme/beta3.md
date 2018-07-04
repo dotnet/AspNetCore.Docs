@@ -1,21 +1,17 @@
 ---
+uid: web-pages/readme/beta3
 title: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme | Microsoft Docs"
 author: rick-anderson
 description: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/10/2011
-ms.topic: article
 ms.assetid: ffa3d5c9-91e5-4da3-b409-560b0c7fbbf0
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme/beta3
 msc.type: content
 ---
 Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
 ====================
 > Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
-
 
 9 November 2010
 
@@ -118,7 +114,7 @@ This section of the document describes new features, changes, and known issues w
 - [Changes](#Changes)
 - [Issues](#Issues)
 
-<a id="NewFeautres"></a>
+<a id="NewFeatures"></a>
 
 #### New Features in Beta 3 for ASP.NET Web Pages with Razor Syntax
 
@@ -260,7 +256,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > [!code-xml[Main](beta3/samples/sample5.xml)]
 > 
-> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
+> For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) on the MSDN Web site.
 
 
 #### Issue: "Microsoft.Web.Infrastructure.dll cannot be loaded" error
@@ -278,9 +274,9 @@ This section of the document describes new features, changes, and known issues w
 > If you uninstall the .NET Framework version 4 and then reinstall it, ASP.NET Web Pages with Razor syntax is disabled. Pages with the *.cshtml* extension do not run correctly. ASP.NET Web Pages registers an assembly in the machine root *Web.config* file, and removing the .NET Framework removes that file. Reinstalling the .NET Framework installs a new version of the configuration file, but does not add the reference for the ASP.NET Web Pages assembly.
 > 
 > **Workaround** After reinstalling the .NET Framework, reinstall ASP.NET Web Pages with Razor syntax. This adds the following element to the *Web.config* file in the machine root, which is typically in the following location:  
->   
+> 
 > `C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config (32-bit)`  
->   
+> 
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
 > 
 > [!code-xml[Main](beta3/samples/sample6.xml)]
@@ -297,9 +293,9 @@ This section of the document describes new features, changes, and known issues w
 #### Issue: Extensionless URLs do not find .cshtml/.vbhtml files on IIS 7 or IIS 7.5
 
 > On IIS 7 or IIS 7.5, requests with a URL like the following are not able to find pages that have the *.cshtml* or *.vbhtml* extension:  
->   
+> 
 > `http://www.example.com/ExampleSite/ExampleFile`  
->   
+> 
 > The issue arises because URL rewriting is not enabled by default for IIS 7 or IIS 7.5. The likeliest scenario is that you do not see the problem when testing locally using IIS Express, but you experience it when you deploy your website to a hosting website.
 > 
 > **Workaround**
@@ -352,7 +348,7 @@ This section of the document describes new features, changes, and known issues w
 > **Workaround**  
 > Temporarily set the application to use Full Trust.
 
-
+<a id="Known_Issues_SQL_Server_Compact"></a>
 ### SQL Server Compact
 
 #### Issue: "Encrypt" property is not recognized
@@ -361,21 +357,21 @@ This section of the document describes new features, changes, and known issues w
 > 
 > **Workaround**  
 > Use the `Encryption Mode` property of the `SqlCeConnection` class to encrypt SQL Server Compact 4.0 database files. The following example shows how to create an encrypted SQL Server Compact 4.0 database using the `Encryption Mode` property:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample11.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample12.vb)]
 > 
 > To change the encryption mode of an existing SQL Server Compact 4.0 database, do the following:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample13.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample14.vb)]
 > 
 > To encrypt an unencrypted SQL Server Compact 4.0 database, do the following:
->  
+> 
 > [!code-csharp[Main](beta3/samples/sample15.cs)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample16.vb)]
 
 
@@ -532,7 +528,7 @@ This section of the document describes new features, changes, and known issues w
 > Explicitly set the data type for parameters such as `SqlDbType` or `DbType`. This is critical in the case of BLOB data types (`image` and `ntext`). Use code like the following:
 > 
 > [!code-sql[Main](beta3/samples/sample20.sql)]
->  
+> 
 > [!code-vb[Main](beta3/samples/sample21.vb)]
 
 
@@ -548,4 +544,4 @@ For more information about WebMatrix Beta 3, see the following websites:
 
 * * *
 
-© 2010 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.com/en-us/cc300389.aspx).
+© 2010 Microsoft Corporation. All Rights Reserved. [Terms of Use](https://msdn.microsoft.cos/cc300389.aspx).

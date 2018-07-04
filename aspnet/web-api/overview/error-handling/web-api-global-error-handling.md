@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/error-handling/web-api-global-error-handling
 title: "Global Error Handling in ASP.NET Web API 2 | Microsoft Docs"
 author: davidmatson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/03/2014
-ms.topic: article
 ms.assetid: bffd7863-f63b-4b23-a13c-372b5492e9fb
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling
 msc.type: authoredcontent
 ---
@@ -40,7 +37,7 @@ In addition to [exception filters](exception-handling.md), [message handlers](..
 1. We support registering multiple exception loggers but only a single exception handler.
 2. Exception loggers always get called, even if we're about to abort the connection. Exception handlers only get called when we're still able to choose which response message to send.
 
-Both services provide access to an exception context containing relevant information from the point where the exception was detected, particularly the [HttpRequestMessage](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessage(v=vs.110).aspx), the [HttpRequestContext](https://msdn.microsoft.com/en-us/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), the thrown exception and the exception source (details below).
+Both services provide access to an exception context containing relevant information from the point where the exception was detected, particularly the [HttpRequestMessage](https://msdn.microsoft.com/library/system.net.http.httprequestmessage(v=vs.110).aspx), the [HttpRequestContext](https://msdn.microsoft.com/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), the thrown exception and the exception source (details below).
 
 ### Design Principles
 
@@ -91,7 +88,7 @@ In additional to the `ExceptionContext`, a handler gets one more property it can
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample5.cs)]
 
-An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
+An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
 
 For exceptions at the top of the call stack, we took an extra step to ensure the response is appropriate for API callers. If the exception propagates up to the host, the caller would see the yellow screen of death or some other host provided response which is typically HTML and not usually an appropriate API error response. In these cases, the Result starts out non-null, and only if a custom exception handler explicitly sets it back to `null` (unhandled) will the exception propagate to the host. Setting `Result` to `null` in such cases can be useful for two scenarios:
 
@@ -113,6 +110,12 @@ The exception logger below send exception data to configured Trace sources (incl
 The following below produces a custom error response to clients, including an email address for contacting support.
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample7.cs)]
+
+## Registering Exception Filters
+
+If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, in the *App/_Start* folder:
+
+[!code-csharp[Main](exception-handling/samples/sample7.cs?highlight=5)]
 
 ## Appendix: Base Class Details
 

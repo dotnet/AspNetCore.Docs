@@ -1,16 +1,11 @@
 ---
-title: Mobile | Microsoft Docs
+title: Mobile development with ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Find out about topics that pertain to mobile development with ASP.NET Core.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba3ac
-ms.technology: aspnet
-ms.prod: asp.net-core
+uid: mobile/index
 ---
-# Mobile
+# Mobile development with ASP.NET Core
 
-*   [Creating Backend Services for Native Mobile Applications](native-mobile-backend.md)
+*   [Create backend services for native mobile apps](native-mobile-backend.md)

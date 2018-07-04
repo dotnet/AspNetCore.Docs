@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-3
 title: "Use Code First Migrations to Seed the Database | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 76e2013a-65b7-488c-834d-9448ecea378e
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-3
 msc.type: authoredcontent
 ---
@@ -18,7 +15,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 [Download Completed Project](https://github.com/MikeWasson/BookService)
 
-In this section, you will use [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) in EF to seed the database with test data.
+In this section, you will use [Code First Migrations](https://msdn.microsoft.com/data/jj591621) in EF to seed the database with test data.
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
@@ -40,7 +37,7 @@ In the Package Manager Console window, type the following commands:
 
 [!code-console[Main](part-3/samples/sample4.cmd)]
 
-The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/en-us/library/hh510202.aspx).
+The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/library/hh510202.aspx).
 
 ![](part-3/_static/image2.png)
 
@@ -96,6 +93,6 @@ The following screenshot shows the results for the Books table. Notice that EF p
 
 ![](part-3/_static/image9.png)
 
->[!div class="step-by-step"]
-[Previous](part-2.md)
-[Next](part-4.md)
+> [!div class="step-by-step"]
+> [Previous](part-2.md)
+> [Next](part-4.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-vb
 title: "Changing an Animation Using Client-Side Code (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. The animation can also..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: a7fe5de5-a964-4780-ae5e-70821dfb50a0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-vb
 msc.type: authoredcontent
 ---
@@ -72,6 +69,6 @@ The following JavaScript code assigns this JSON descripting to the `OnClick` ani
 
 The animation runs immediately, without a mouse click (and with very little markup) ([Click to view full-size image](changing-an-animation-using-client-side-code-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](executing-animations-using-client-side-code-vb.md)
-[Next](animating-an-updatepanel-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](executing-animations-using-client-side-code-vb.md)
+> [Next](animating-an-updatepanel-control-vb.md)

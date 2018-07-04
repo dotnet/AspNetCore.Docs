@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/advanced-enterprise-web-deployment
 title: "Advanced Enterprise Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This tutorial will show you how to perform various tasks that are required or desirable in a lot of enterprise deployment scenarios. For an Italian translati..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 7dcaba80-f2ec-4db3-ad98-daadc3afdb49
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/advanced-enterprise-web-deployment
 msc.type: authoredcontent
 ---
@@ -63,5 +60,5 @@ This forms part of a series of five tutorials on enterprise-scale web deployment
 - [Configuring Server Environments for Web Deployment](../configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment.md). This tutorial describes how to configure Windows servers to support various deployment scenarios, including remote web package deployment using the Web Deployment Agent Service (the remote agent) or the Web Deploy Handler and remote database deployment. It provides guidance on choosing the appropriate deployment method for your own environment, and it describes how to use the Web Farm Framework (WFF) to replicate deployed web applications across all the web servers in a server farm.
 - [Configuring Team Foundation Server for Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial describes how to configure TFS to support various deployment scenarios, including automated deployment as part of a CI process and manually triggered deployments of specific builds.
 
->[!div class="step-by-step"]
-[Next](performing-a-what-if-deployment.md)
+> [!div class="step-by-step"]
+> [Next](performing-a-what-if-deployment.md)

@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/design-to-survive-failures
 title: "Design to Survive Failures (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: 364ce84e-5af8-4e08-afc9-75a512b01f84
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/design-to-survive-failures
 msc.type: authoredcontent
 ---
@@ -111,20 +108,20 @@ For more information, see later chapters in this e-book and the following resour
 
 Documentation:
 
-- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/en-us/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
-- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/en-us/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
-- [Azure Business Continuity Technical Guidance](https://msdn.microsoft.com/en-us/library/windowsazure/hh873027.aspx). White paper by Patrick Wickline and Jason Roth.
-- [Disaster Recovery and High Availability for Azure Applications](https://msdn.microsoft.com/en-us/library/windowsazure/dn251004.aspx). White paper by Michael McKeown, Hanu Kommalapati, and Jason Roth.
-- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Multi Data Center Deployment guidance, Circuit breaker pattern.
-- [Azure Support - Service Level Agreements](https://www.windowsazure.com/en-us/support/legal/sla/).
-- [Business Continuity in Azure SQL Database](https://msdn.microsoft.com/en-us/library/windowsazure/hh852669.aspx). Documentation about SQL Database high availability and disaster recovery features.
-- [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](https://msdn.microsoft.com/en-us/library/windowsazure/jj870962.aspx).
+- [Failsafe: Guidance for Resilient Cloud Architectures](https://msdn.microsoft.com/library/windowsazure/jj853352.aspx). White paper by Marc Mercuri, Ulrich Homann, and Andrew Townhill. Web page version of the FailSafe video series.
+- [Best Practices for the Design of Large-Scale Services on Azure Cloud Services](https://msdn.microsoft.com/library/windowsazure/jj717232.aspx). White paper by Mark Simms and Michael Thomassy.
+- [Azure Business Continuity Technical Guidance](https://msdn.microsoft.com/library/windowsazure/hh873027.aspx). White paper by Patrick Wickline and Jason Roth.
+- [Disaster Recovery and High Availability for Azure Applications](https://msdn.microsoft.com/library/windowsazure/dn251004.aspx). White paper by Michael McKeown, Hanu Kommalapati, and Jason Roth.
+- [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Multi Data Center Deployment guidance, Circuit breaker pattern.
+- [Azure Support - Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
+- [Business Continuity in Azure SQL Database](https://msdn.microsoft.com/library/windowsazure/hh852669.aspx). Documentation about SQL Database high availability and disaster recovery features.
+- [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](https://msdn.microsoft.com/library/windowsazure/jj870962.aspx).
 
 Videos:
 
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. Episodes 1 and 8 go in depth into the reasons for designing cloud apps to survive failures. See also the follow-up discussion of throttling in episode 2 starting at 49:57, the discussion of failure points and failure modes in episode 2 starting at 56:05, and the discussion of circuit breakers in episode 3 starting at 40:55.
 - [Building Big: Lessons learned from Azure customers - Part II](https://channel9.msdn.com/Events/Build/2012/3-030). Mark Simms talks about designing for failure and instrumenting everything. Similar to the Failsafe series but goes into more how-to details.
 
->[!div class="step-by-step"]
-[Previous](unstructured-blob-storage.md)
-[Next](monitoring-and-telemetry.md)
+> [!div class="step-by-step"]
+> [Previous](unstructured-blob-storage.md)
+> [Next](monitoring-and-telemetry.md)

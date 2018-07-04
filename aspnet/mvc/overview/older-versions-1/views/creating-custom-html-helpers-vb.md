@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/views/creating-custom-html-helpers-vb
 title: "Creating Custom HTML Helpers (VB) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to demonstrate how you can create custom HTML Helpers that you can use within your MVC views. By taking advantage of HTML Helper..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/07/2008
-ms.topic: article
 ms.assetid: f96f4800-19ef-44c0-b457-55e777eb5de8
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-vb
 msc.type: authoredcontent
 ---
@@ -118,6 +115,6 @@ In this tutorial, you learned two methods of creating custom HTML Helpers. First
 
 In this tutorial, I focused on building an extremely simple HTML Helper method. Realize that an HTML Helper can be as complicated as you want. You can build HTML Helpers that render rich content such as tree views, menus, or tables of database data.
 
->[!div class="step-by-step"]
-[Previous](asp-net-mvc-views-overview-vb.md)
-[Next](using-the-tagbuilder-class-to-build-html-helpers-vb.md)
+> [!div class="step-by-step"]
+> [Previous](asp-net-mvc-views-overview-vb.md)
+> [Next](using-the-tagbuilder-class-to-build-html-helpers-vb.md)

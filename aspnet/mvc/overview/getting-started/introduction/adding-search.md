@@ -1,20 +1,19 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-search
 title: "Search | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/22/2015
-ms.topic: article
 ms.assetid: df001954-18bf-4550-b03d-43911a0ea186
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-search
 msc.type: authoredcontent
 ---
 Search
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
+
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 ## Adding a Search Method and Search View
 
@@ -26,7 +25,7 @@ Start by updating the `Index` action method to the existing `MoviesController` c
 
 [!code-csharp[Main](adding-search/samples/sample1.cs?highlight=1,6-9)]
 
-The first line of the `Index` method creates the following [LINQ](https://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
+The first line of the `Index` method creates the following [LINQ](https://msdn.microsoft.com/library/bb397926.aspx) query to select the movies:
 
 [!code-csharp[Main](adding-search/samples/sample2.cs)]
 
@@ -36,8 +35,10 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[Main](adding-search/samples/sample3.cs)]
 
-The `s => s.Title` code above is a [Lambda Expression](https://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](https://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](https://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method used in the above code. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where` or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the [`ToList`](https://msdn.microsoft.com/en-us/library/bb342261.aspx) method is called. In the `Search` sample, the query is executed in the *Index.cshtml* view. For more information about deferred query execution, see [Query Execution](https://msdn.microsoft.com/en-us/library/bb738633.aspx). > [!NOTE]
- > The [Contains](https://msdn.microsoft.com/en-us/library/bb155125.aspx) method is run on the database, not the c# code above. On the database, [Contains](https://msdn.microsoft.com/en-us/library/bb155125.aspx) maps to [SQL LIKE](https://msdn.microsoft.com/en-us/library/ms179859.aspx), which is case insensitive.
+The `s => s.Title` code above is a [Lambda Expression](https://msdn.microsoft.com/library/bb397687.aspx). Lambdas are used in method-based [LINQ](https://msdn.microsoft.com/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](https://msdn.microsoft.com/library/system.linq.enumerable.where.aspx) method used in the above code. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where` or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the [`ToList`](https://msdn.microsoft.com/library/bb342261.aspx) method is called. In the `Search` sample, the query is executed in the *Index.cshtml* view. For more information about deferred query execution, see [Query Execution](https://msdn.microsoft.com/library/bb738633.aspx).
+
+> [!NOTE]
+> The [Contains](https://msdn.microsoft.com/library/bb155125.aspx) method is run on the database, not the c# code above. On the database, [Contains](https://msdn.microsoft.com/library/bb155125.aspx) maps to [SQL LIKE](https://msdn.microsoft.com/library/ms179859.aspx), which is case insensitive.
 
 Now you can update the `Index` view that will display the form to the user.
 
@@ -113,7 +114,7 @@ The following code is a LINQ query that retrieves all the genres from the databa
 
 [!code-csharp[Main](adding-search/samples/sample12.cs)]
 
-The code uses the `AddRange` method of the generic `List` collection to add all the distinct genres to the list. (Without the `Distinct` modifier, duplicate genres would be added — for example, comedy would be added twice in our sample). The code then stores the list of genres in the `ViewBag.movieGenre` object. Storing category data (such a movie genre's) as a [SelectList](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlist(v=vs.108).aspx) object in a `ViewBag`, then accessing the category data in a dropdown list box is a typical approach for MVC applications.
+The code uses the `AddRange` method of the generic `List` collection to add all the distinct genres to the list. (Without the `Distinct` modifier, duplicate genres would be added — for example, comedy would be added twice in our sample). The code then stores the list of genres in the `ViewBag.MovieGenre` object. Storing category data (such a movie genre's) as a [SelectList](https://msdn.microsoft.cus/library/system.web.mvc.selectlist(v=vs.108).aspx) object in a `ViewBag`, then accessing the category data in a dropdown list box is a typical approach for MVC applications.
 
 The following code shows how to check the `movieGenre` parameter. If it's not empty, the code further constrains the movies query to limit the selected movies to the specified genre.
 
@@ -131,15 +132,15 @@ In the following code:
 
 [!code-cshtml[Main](adding-search/samples/sample15.cshtml)]
 
-The parameter "movieGenre" provides the key for the `DropDownList` helper to find a `IEnumerable<SelectListItem >` in the `ViewBag`. The `ViewBag` was populated in the action method:
+The parameter "MovieGenre" provides the key for the `DropDownList` helper to find a `IEnumerable<SelectListItem>` in the `ViewBag`. The `ViewBag` was populated in the action method:
 
 [!code-csharp[Main](adding-search/samples/sample16.cs?highlight=10)]
 
-The parameter "All" provides the item in the list to be preselected. Had we used the following code:
+The parameter "All" provides an option label. If you inspect that choice in your browser, you'll see that its "value" attribute is empty. Since our controller only filters `if` the string is not `null` or empty, submitting an empty value for `movieGenre` shows all genres.
+
+You can also set an option to be selected by default. If you wanted "Comedy" as your default option, you would change the code in the Controller like so:
 
 [!code-cshtml[Main](adding-search/samples/sample17.cshtml)]
-
-And we had a movie with a "Comedy" genre in our database, "Comedy" would be preselected in the dropdown list. Because we don't have a movie genre "All", there is no "All" in the `SelectList`, so when we post back without making a slection, the `movieGenre` query string value is empty.
 
 Run the application and browse to */Movies/Index*. Try a search by genre, by movie name, and by both criteria.
 
@@ -147,6 +148,6 @@ Run the application and browse to */Movies/Index*. Try a search by genre, by mov
 
 In this section you created a search action method and view that let users search by movie title and genre. In the next section, you'll look at how to add a property to the `Movie` model and how to add an initializer that will automatically create a test database.
 
->[!div class="step-by-step"]
-[Previous](examining-the-edit-methods-and-edit-view.md)
-[Next](adding-a-new-field.md)
+> [!div class="step-by-step"]
+> [Previous](examining-the-edit-methods-and-edit-view.md)
+> [Next](adding-a-new-field.md)

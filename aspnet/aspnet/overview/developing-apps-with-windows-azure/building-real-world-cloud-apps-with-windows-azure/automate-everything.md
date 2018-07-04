@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything
 title: "Automate Everything (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: ba6e6baa-9b9f-471f-b39d-b007a3addadc
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything
 msc.type: authoredcontent
 ---
@@ -39,7 +36,7 @@ In other words, the period of time between when you have an idea for a feature a
 
 In the [introduction to this e-book](introduction.md), you saw the web-based console, the Azure Management Portal. The management portal enables you to monitor and manage all of the resources that you have deployed on Azure. It's an easy way to create and delete services such as web apps and VMs, configure those services, monitor service operation, and so forth. It's a great tool, but using it is a manual process. If you're going to develop a production application of any size, and especially in a team environment, we recommend that you go through the portal UI in order to learn and explore Azure, and then automate the processes that you'll be doing repetitively.
 
-Nearly everything that you can do manually in the management portal or from Visual Studio can also be done by calling the REST management API. You can write scripts using [Windows PowerShell](https://msdn.microsoft.com/en-us/library/windowsazure/jj156055.aspx), or you can use an open source framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet). You can also use the Bash command-line tool in a Mac or Linux environment. Azure has scripting APIs for all those different environments, and it has a [.NET management API](http://www.hanselman.com/blog/PennyPinchingInTheCloudAutomatingEverythingWithTheWindowsAzureManagementLibrariesAndNET.aspx) in case you want to write code instead of script.
+Nearly everything that you can do manually in the management portal or from Visual Studio can also be done by calling the REST management API. You can write scripts using [Windows PowerShell](https://msdn.microsoft.com/library/windowsazure/jj156055.aspx), or you can use an open source framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet). You can also use the Bash command-line tool in a Mac or Linux environment. Azure has scripting APIs for all those different environments, and it has a [.NET management API](http://www.hanselman.com/blog/PennyPinchingInTheCloudAutomatingEverythingWithTheWindowsAzureManagementLibrariesAndNET.aspx) in case you want to write code instead of script.
 
 For the Fix It app we've created some Windows PowerShell scripts that automate the processes of creating a test environment and deploying the project to that environment, and we'll review some of the contents of those scripts.
 
@@ -122,7 +119,7 @@ The first thing the script does is create the web app by calling the `New-AzureW
 
 ### Create the storage account
 
-Then the main script runs the *New-AzureStorage.ps1* script, specifying "*&lt;websitename&gt;*storage" for the storage account name, and the same data center location as the web app.
+Then the main script runs the <em>New-AzureStorage.ps1</em> script, specifying "<em>&lt;websitename&gt;</em>storage" for the storage account name, and the same data center location as the web app.
 
 [!code-powershell[Main](automate-everything/samples/sample4.ps1?highlight=3)]
 
@@ -167,7 +164,7 @@ The database creation script retrieves the dev machine's IP address and sets a f
 
     [!code-powershell[Main](automate-everything/samples/sample14.ps1)]
 
-The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database. For an example that uses a single database, see [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/).
+The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database.
 
 ### Store app settings and connection strings
 
@@ -249,15 +246,15 @@ In the [next chapter](source-control.md) we'll look at source code and explain w
 
 ## Resources
 
-- [Install and Configure Windows PowerShell for Azure](https://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/). Explains how to install the Azure PowerShell cmdlets and how to install the certificate that you need on your computer in order to manage your Azure account. This is a great place to get started because it also has links to resources for learning PowerShell itself.
-- [Azure Script Center](https://www.windowsazure.com/en-us/documentation/scripts/). WindowsAzure.com portal to resources for developing scripts that manage Azure services, with links to getting started tutorials, cmdlet reference documentation and source code, and sample scripts
+- [Install and Configure Windows PowerShell for Azure](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-4.3.1). Explains how to install the Azure PowerShell cmdlets and how to install the certificate that you need on your computer in order to manage your Azure account. This is a great place to get started because it also has links to resources for learning PowerShell itself.
+- [Azure Script Center](https://docs.microsoft.com/azure/automation/automation-runbook-gallery). WindowsAzure.com portal to resources for developing scripts that manage Azure services, with links to getting started tutorials, cmdlet reference documentation and source code, and sample scripts
 - [Weekend Scripter: Getting Started with Azure and PowerShell](http://blogs.technet.com/b/heyscriptingguy/archive/2013/06/22/weekend-scripter-getting-started-with-windows-azure-and-powershell.aspx). In a blog dedicated to Windows PowerShell, this post provides a great introduction to using PowerShell for Azure management functions.
-- [Install and Configure the Azure Cross-Platform Command-Line Interface](https://www.windowsazure.com/en-us/manage/install-and-configure-cli/). Getting-started tutorial for an Azure scripting framework that works on Mac and Linux as well as Windows systems.
-- [Azure Command Line Tools](https://www.windowsazure.com/en-us/downloads/#cmd-line-tools). Portal page for documentation and downloads related to command line tools for Azure.
+- [Install and Configure the Azure Cross-Platform Command-Line Interface](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest). Getting-started tutorial for an Azure scripting framework that works on Mac and Linux as well as Windows systems.
+- [Command-line tools section of the Download Azure SDKs and Tools topic](https://azure.microsoft.com/downloads/). Portal page for documentation and downloads related to command-line tools for Azure.
 - [Automating everything with the Azure Management Libraries and .NET](http://www.hanselman.com/blog/PennyPinchingInTheCloudAutomatingEverythingWithTheWindowsAzureManagementLibrariesAndNET.aspx). Scott Hanselman introduces the .NET management API for Azure.
 - [Using Windows PowerShell Scripts to Publish to Dev and Test Environments](https://msdn.microsoft.com/library/azure/dn642480.aspx). MSDN documentation that explains how to use publish scripts that Visual Studio automatically generates for web projects.
 - [PowerShell Tools for Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597). Visual Studio extension that adds language support for Windows PowerShell in Visual Studio.
 
->[!div class="step-by-step"]
-[Previous](introduction.md)
-[Next](source-control.md)
+> [!div class="step-by-step"]
+> [Previous](introduction.md)
+> [Next](source-control.md)

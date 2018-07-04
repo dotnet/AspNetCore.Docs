@@ -1,14 +1,11 @@
 ---
+uid: single-page-application/overview/introduction/other-libraries
 title: "Know a library other than Knockout? | Microsoft Docs"
 author: madskristensen
 description: "Know a library other than Knockout?"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/05/2013
-ms.topic: article
 ms.assetid: a8367c6d-ef94-4dff-a010-5eff9e6eea96
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/other-libraries
 msc.type: authoredcontent
 ---
@@ -51,15 +48,17 @@ Compared with the other templates listed here, the Hot Towel teample provides a 
 
 Here are the features provided by each SPA template:
 
-|  | ASP.NET SPA | Backbone | Breeze/Angular | Breeze/KO | Ember | Hot Towel |
-| --- | --- | --- | --- | --- | --- | --- |
-| ToDo sample | &#10003; |  | &#10003; | &#10003; | &#10003; |  |
-| Bare template |  | &#10003; |  |  |  | &#10003; |
-| Navigation and history |  | &#10003; | &#10003; |  | &#10003; | &#10003; |
-| Libaries |  |  |  |  |  |  |
-| Angular |  |  | &#10003; |  |  |  |
-| &#8195;Backbone |  | &#10003; |  |  |  |  |
-| Breeze |  |  | &#10003; | &#10003; |  | &#10003; |
-| Durandal |  |  |  |  |  | &#10003; |
-| Ember |  |  |  |  | &#10003; |  |
-| Knockout | &#10003; |  |  | &#10003; |  | &#10003; |
+
+|                        | ASP.NET SPA | Backbone | Breeze/Angular | Breeze/KO |  Ember   | Hot Towel |
+|------------------------|-------------|----------|----------------|-----------|----------|-----------|
+|      ToDo sample       |  &#10003;   |          |    &#10003;    | &#10003;  | &#10003; |           |
+|     Bare template      |             | &#10003; |                |           |          | &#10003;  |
+| Navigation and history |             | &#10003; |    &#10003;    |           | &#10003; | &#10003;  |
+|        Libaries        |             |          |                |           |          |           |
+|        Angular         |             |          |    &#10003;    |           |          |           |
+|    &#8195;Backbone     |             | &#10003; |                |           |          |           |
+|         Breeze         |             |          |    &#10003;    | &#10003;  |          | &#10003;  |
+|        Durandal        |             |          |                |           |          | &#10003;  |
+|         Ember          |             |          |                |           | &#10003; |           |
+|        Knockout        |  &#10003;   |          |                | &#10003;  |          | &#10003;  |
+

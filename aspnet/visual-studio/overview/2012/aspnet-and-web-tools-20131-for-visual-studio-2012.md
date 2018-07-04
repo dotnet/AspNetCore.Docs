@@ -1,14 +1,11 @@
 ---
+uid: visual-studio/overview/2012/aspnet-and-web-tools-20131-for-visual-studio-2012
 title: "Release Notes for ASP.NET and Web Tools 2013.1 for Visual Studio 2012 | Microsoft Docs"
 author: microsoft
 description: "This document describes the release of ASP.NET and Web Tools 2013.1 for Visual Studio 2012."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/13/2013
-ms.topic: article
 ms.assetid: ca26e5bb-630e-41d2-8512-2a9386c431cb
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/aspnet-and-web-tools-20131-for-visual-studio-2012
 msc.type: authoredcontent
 ---
@@ -184,7 +181,7 @@ When you create ASP.NET MVC projects with Visual Studio 2012 on Windows 8.1 or W
 
 ![configuration error](aspnet-and-web-tools-20131-for-visual-studio-2012/_static/image2.png)
 
-You see this error because Visual Studio 2012 does not enable the ASP.NET 4.5 feature when it is installed on those releases of Windows. To enable ASP.NET 4.5, perform the steps described in [Turn Windows features on or off](https://windows.microsoft.com/en-us/windows-8/turn-windows-features-on-off).
+You see this error because Visual Studio 2012 does not enable the ASP.NET 4.5 feature when it is installed on those releases of Windows. To enable ASP.NET 4.5, perform the steps described in [Turn Windows features on or off](https://windows.microsoft.com/windows-8/turn-windows-features-on-off).
 
 ![turn on or off Windows features](aspnet-and-web-tools-20131-for-visual-studio-2012/_static/image3.png)
 

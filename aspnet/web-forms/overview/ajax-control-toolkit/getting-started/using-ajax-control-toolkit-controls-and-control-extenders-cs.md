@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-cs
 title: "Using AJAX Control Toolkit Controls and Control Extenders (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn how to add AJAX Control Toolkit controls and extenders to your ASP.NET pages."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: c1e6b51c-3bc3-4bf7-9916-9991197af3dd
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-cs
 msc.type: authoredcontent
 ---
@@ -100,6 +97,6 @@ Notice that you normally do not drag a control extender onto a page. Instead, yo
 
 A single ASP.NET control can be extended by multiple control extenders. The property sheet for the control being extended will list all of the control extenders associated with the control.
 
->[!div class="step-by-step"]
-[Previous](get-started-with-the-ajax-control-toolkit-cs.md)
-[Next](creating-a-custom-ajax-control-toolkit-control-extender-cs.md)
+> [!div class="step-by-step"]
+> [Previous](get-started-with-the-ajax-control-toolkit-cs.md)
+> [Next](creating-a-custom-ajax-control-toolkit-control-extender-cs.md)

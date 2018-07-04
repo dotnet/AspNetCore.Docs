@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <h3>@ViewData["Message"]</h3>
+    <p>
+        Each of the forms below has an antiforgery token rendered in it by ASP.NET Core.
+    </p>
+    <div class="col-md-4">
+        <h2>Form 1</h2>
+        <form asp-action="SamplePost" method="post">
+            <div>
+                Message: <input type="text" name="message" />
+                <input type="submit" value="Send" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h2>Form 2</h2>
+        @using (Html.BeginForm("SamplePost", "Home"))
+        {
+            <div>
+                Message: <input type="text" name="message" />
+                <input type="submit" value="Send" />
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>Form 3</h2>
+        <form action="/home/samplepost" method="post">
+            @Html.AntiForgeryToken()
+            <div>
+                Message: <input type="text" name="message" />
+                <input type="submit" value="Send" />
+            </div>
+        </form>
+    </div>
+</div>

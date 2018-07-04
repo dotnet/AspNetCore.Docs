@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/views/using-page-inspector-in-aspnet-mvc
 title: "Using Page Inspector in ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "Page Inspector in Visual Studio 2012 is a web development tool with an integrated browser. Select any element in the integrated browser, and Page Inspector i..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2012
-ms.topic: article
 ms.assetid: c7e4e1ab-4932-4614-9f53-aaf7c706d498
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc
 msc.type: authoredcontent
 ---
@@ -40,7 +37,7 @@ by Tim Ammann
 
 ## Prerequisites
 
-- [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us) or [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us/downloads#express-web).
+- [Visual Studio 2012](https://www.microsoft.com/visualstudio/11) or [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web).
 
 > [!NOTE]
 > To get the latest version of Page Inspector, use [Web Platform Installer](https://go.microsoft.com/fwlink/?LinkId=255386) to install the Windows Azure SDK for .NET 2.0.
@@ -78,9 +75,9 @@ In **Solution Explorer**, expand the **Views** folder and then the **Home** fold
 
 ![View Index.cshtml in Page Inspector](using-page-inspector-in-aspnet-mvc/_static/image8.png)
 
-By default, Page Inspector is docked as a window on the left side of the Visual Studio environment. If you prefer, you can dock it elsewhere, or undock the window. See [How to: Arrange and Dock Windows](https://msdn.microsoft.com/en-us/library/z4y0hsax.aspx).
+By default, Page Inspector is docked as a window on the left side of the Visual Studio environment. If you prefer, you can dock it elsewhere, or undock the window. See [How to: Arrange and Dock Windows](https://msdn.microsoft.com/library/z4y0hsax.aspx).
 
-The top pane of the Page Inspector window shows the current page in a browser window. The bottom pane shows the page in HTML markup, along with some tabs that let you inspect different aspects of the page. The bottom pane is similar to the [F12 Developer Tools](https://msdn.microsoft.com/en-us/ie/aa740478) in Internet Explorer.
+The top pane of the Page Inspector window shows the current page in a browser window. The bottom pane shows the page in HTML markup, along with some tabs that let you inspect different aspects of the page. The bottom pane is similar to the [F12 Developer Tools](https://msdn.microsoft.com/ie/aa740478) in Internet Explorer.
 
 ![ASP.NET MVC Application in Page Inspector](using-page-inspector-in-aspnet-mvc/_static/image10.png)
 
@@ -124,7 +121,7 @@ Add some text to the end of the line in the \_Layout.cshtml file.
 
 Now, press Ctrl+Alt+Enter or click the Update Bar to see the results in the Page Inspector browser window.
 
-![My ASP.Net Application Rocks!](using-page-inspector-in-aspnet-mvc/_static/image20.png)
+![My ASP.NET Application Rocks!](using-page-inspector-in-aspnet-mvc/_static/image20.png)
 
 You might have thought that the footer defined in Index.cshtml, but it turned out to be in the \_Layout.cshtml, and Page Inspector found it for you.
 

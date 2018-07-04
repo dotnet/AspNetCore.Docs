@@ -1,22 +1,16 @@
 ---
-title: Preventing Cross-Site Scripting | Microsoft Docs
+title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 95790927-2bfe-445e-b1fd-429c2c7030ce
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: security/cross-site-scripting
 ---
-# Preventing Cross-Site Scripting
+# Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 
-<a name=security-cross-site-scripting></a>
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacher to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.
+Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.
 
 ## Protecting your application against XSS
 
@@ -24,13 +18,13 @@ At a basic level XSS works by tricking your application into inserting a `<scrip
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings, HTTP headers, even data sourced from a database as an attacker may be able to breach your database even if they cannot breach your application.
 
-2. Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
+2. Before putting untrusted data inside an HTML element ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
 
-3. Before putting untrusted data into an HTML attribute ensure it is HTML attribute encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and '.
+3. Before putting untrusted data into an HTML attribute ensure it's HTML attribute encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and '.
 
-4. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example &lt; would be encoded as `\u003C`.
+4. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example &lt; would be encoded as `\u003C`.
 
-5. Before putting untrusted data into a URL query string ensure it is URL encoded.
+5. Before putting untrusted data into a URL query string ensure it's URL encoded.
 
 ## HTML Encoding using Razor
 
@@ -53,11 +47,11 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
    ```
 
 >[!WARNING]
-> ASP.NET Core MVC provides an `HtmlString` class which is not automatically encoded upon output. This should never be used in combination with untrusted input as this will expose an XSS vulnerability.
+> ASP.NET Core MVC provides an `HtmlString` class which isn't automatically encoded upon output. This should never be used in combination with untrusted input as this will expose an XSS vulnerability.
 
 ## Javascript Encoding using Razor
 
-There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
+There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert  values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
 ```none
 @{
@@ -138,11 +132,11 @@ This will render in the browser as follows;
    ```
 
 >[!WARNING]
-> Do not concatenate untrusted input in JavaScript to create DOM elements. You should use `createElement()` and assign property values appropriately such as `node.TextContent=`, or use `element.SetAttribute()`/`element[attribute]=` otherwise you expose yourself to DOM-based XSS.
+> Don't concatenate untrusted input in JavaScript to create DOM elements. You should use `createElement()` and assign property values appropriately such as `node.TextContent=`, or use `element.SetAttribute()`/`element[attribute]=` otherwise you expose yourself to DOM-based XSS.
 
 ## Accessing encoders in code
 
-The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via [dependency injection](../fundamentals/dependency-injection.md#fundamentals-dependency-injection) or you can use the default encoders contained in the `System.Text.Encodings.Web` namespace. If you use the default encoders then any  you applied to character ranges to be treated as safe will not take effect - the default encoders use the safest encoding rules possible.
+The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) or you can use the default encoders contained in the `System.Text.Encodings.Web` namespace. If you use the default encoders then any  you applied to character ranges to be treated as safe won't take effect - the default encoders use the safest encoding rules possible.
 
 To use the configurable encoders via DI your constructors should take an *HtmlEncoder*, *JavaScriptEncoder* and *UrlEncoder* parameter as appropriate. For example;
 
@@ -176,9 +170,9 @@ var example = "\"Quoted Value with spaces and &\"";
 After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%20spaces%20and%20%26%22`. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.
 
 >[!WARNING]
-> Do not use untrusted input as part of a URL path. Always pass untrusted input as a query string value.
+> Don't use untrusted input as part of a URL path. Always pass untrusted input as a query string value.
 
-<a name=security-cross-site-scripting-customization></a>
+<a name="security-cross-site-scripting-customization"></a>
 
 ## Customizing the Encoders
 
@@ -225,4 +219,4 @@ The general accepted practice is that encoding takes place at the point of outpu
 
 ## Validation as an XSS prevention technique
 
-Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 will not trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
+Validation can be a useful tool in limiting XSS attacks. For example, a numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.

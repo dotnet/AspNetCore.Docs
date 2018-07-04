@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs
 title: "Create a Movie Database Application in 15 Minutes with ASP.NET MVC (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther builds an entire database-driven ASP.NET MVC application from start to finish. This tutorial is a great introduction for people who are new t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/27/2009
-ms.topic: article
 ms.assetid: dd1be137-91c5-47a8-8137-fecf0789c7f5
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs
 msc.type: authoredcontent
 ---
@@ -53,7 +50,7 @@ You'll need either Visual Studio 2008 or Visual Web Developer 2008 Express to bu
 
 If you don't own Visual Studio 2008, then you can download a 90 day trial version of Visual Studio 2008 from this website:
 
-[https://msdn.microsoft.com/en-us/vs2008/products/cc268305.aspx](https://msdn.microsoft.com/en-us/vs2008/products/cc268305.aspx)
+[https://msdn.microsoft.com/vs2008/products/cc268305.aspx](https://msdn.microsoft.com/vs2008/products/cc268305.aspx)
 
 Alternatively, you can create ASP.NET MVC applications with Visual Web Developer Express 2008. If you decide to use Visual Web Developer Express then you must have Service Pack 1 installed. You can download Visual Web Developer 2008 Express with Service Pack 1 from this website:
 
@@ -362,5 +359,5 @@ The purpose of this tutorial was to give you a sense of the experience of buildi
 
 In this tutorial, we examined only the most basic features of the ASP.NET MVC framework. In future tutorials, we dive deeper into topics such as controllers, controller actions, views, view data, and HTML helpers.
 
->[!div class="step-by-step"]
-[Next](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb.md)
+> [!div class="step-by-step"]
+> [Next](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb.md)

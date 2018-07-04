@@ -1,22 +1,18 @@
 ---
-title: "Adding a View | Microsoft Docs"
+title: Adding a View to an MVC app
 author: Rick-Anderson
-description: ""
-ms.author: aspnetcontent
-manager: wpickett
-ms.date: 10/17/2013
-ms.topic: article
-ms.assetid: 185ae290-2952-44d6-b420-ddd97ef18fa2
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
-msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-view
-msc.type: authoredcontent
+description: Adding a view to an MVC app
+ms.author: riande
+ms.date: 09/1721/2017
+uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-In this section you're going to modify the `HelloWorldController` class to use view template files to cleanly encapsulate the process of generating HTML responses to a client.
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
+
+In this section you're going to modify the `HelloWorldController` class to use view template files to cleanly encapsulate the process of generating HTML responses to a client. 
 
 You'll create a view template file using the [Razor view engine](../../../../web-pages/overview/getting-started/introducing-razor-syntax-c.md). Razor-based view templates have a *.cshtml* file extension, and provide an elegant way to create HTML output using C#. Razor minimizes the number of characters and keystrokes required when writing a view template, and enables a fast, fluid coding workflow.
 
@@ -24,9 +20,9 @@ Currently the `Index` method returns a string with a message that is hard-coded 
 
 [!code-csharp[Main](adding-a-view/samples/sample1.cs?highlight=1,3)]
 
-The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as [action methods](http://rachelappel.com/asp.net-mvc-actionresults-explained)), such as the `Index` method above, generally return an [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx) (or a class derived from [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx)), not primitive types like string.
+The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as [action methods](http://rachelappel.com/asp.net-mvc-actionresults-explained)), such as the `Index` method above, generally return an [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult.aspx) (or a class derived from [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult.aspx)), not primitive types like string.
 
-Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
+Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with Layout (Razor)**.
   
 ![](adding-a-view/_static/image1.png)   
   
@@ -44,7 +40,7 @@ The *MvcMovie\Views\HelloWorld\Index.cshtml* file is created.
 
 ![](adding-a-view/_static/image4.png)
 
-Add the following highlighed markup.
+Add the following highlighted markup.
 
 [!code-cshtml[Main](adding-a-view/samples/sample2.cshtml?highlight=4-11)]
 
@@ -58,7 +54,7 @@ Alternatively, run the application and browse to the `HelloWorld` controller (`h
 
 ![](adding-a-view/_static/image6.png)
 
-Looks pretty good. However, notice that the browser's title bar shows &quot;Index My ASP.NET Appli" and the big link on the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
+Looks pretty good. However, notice that the browser's title bar shows &quot;Index - My ASP.NET Appli" and the big link on the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
 
 ## Changing Views and Layout Pages
 
@@ -68,7 +64,7 @@ First, you want to change the &quot;Application name&quot; link at the top of th
 
 Layout templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, &quot;wrapped&quot; in the layout page. For example, if you select the **About** link, the *Views\Home\About.cshtml* view is rendered inside the `RenderBody` method.
 
-Change the contents of the title element. Change the [ActionLink](https://msdn.microsoft.com/en-us/library/dd504972(v=vs.108).aspx) in the layout template from &quot;Application name&quot; to &quot;MVC Movie&quot; and the controller from `Home` to `Movies`. The complete layout file is shown below:
+Change the contents of the title element. Change the [ActionLink](https://msdn.microsoft.com/library/dd504972(v=vs.108).aspx) in the layout template from &quot;Application name&quot; to &quot;MVC Movie&quot; and the controller from `Home` to `Movies`. The complete layout file is shown below:
 
 [!code-cshtml[Main](adding-a-view/samples/sample3.cshtml?highlight=6,20)]
 
@@ -80,7 +76,7 @@ When we first created the *Views\HelloWorld\Index.cshtml* file, it contained the
 
 [!code-cshtml[Main](adding-a-view/samples/sample4.cshtml)]
 
-The Razor code above is explicted setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The *[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
+The Razor code above is explicitly setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The *[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
 
 [!code-cshtml[Main](adding-a-view/samples/sample5.cshtml?highlight=1-3)]
 
@@ -104,7 +100,7 @@ Also notice how the content in the *Index.cshtml* view template was merged with 
 
 ![](adding-a-view/_static/image9.png)
 
-Our little bit of &quot;data&quot; (in this case the &quot;Hello from our View Template!&quot; message) is hard-coded, though. The MVC application has a &quot;V&quot; (view) and you've got a &quot;C&quot; (controller), but no &quot;M&quot; (model) yet. Shortly, we'll walk through how create a database and retrieve model data from it.
+Our little bit of &quot;data&quot; (in this case the &quot;Hello from our View Template!&quot; message) is hard-coded, though. The MVC application has a &quot;V&quot; (view) and you've got a &quot;C&quot; (controller), but no &quot;M&quot; (model) yet. Shortly, we'll walk through how to create a database and retrieve model data from it.
 
 ## Passing Data from the Controller to the View
 
@@ -118,7 +114,7 @@ Return to the *HelloWorldController.cs* file and change the `Welcome` method to 
 
 [!code-csharp[Main](adding-a-view/samples/sample8.cs)]
 
-Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
+Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with Layout (Razor)**.
   
 ![](adding-a-view/_static/image10.png)   
   
@@ -142,10 +138,10 @@ Now data is taken from the URL and passed to the controller using the [model bin
 
 ![](adding-a-view/_static/image12.png)
 
-In the sample above, we used a `ViewBag` object to pass data from the controller to a view. Latter in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the view bag approach. See the blog entry [Dynamic V Strongly Typed Views](https://blogs.msdn.com/b/rickandy/archive/2011/01/28/dynamic-v-strongly-typed-views.aspx) for more information. 
+In the sample above, we used a `ViewBag` object to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the view bag approach. See the blog entry [Dynamic V Strongly Typed Views](https://blogs.msdn.com/b/rickandy/archive/2011/01/28/dynamic-v-strongly-typed-views.aspx) for more information. 
 
 Well, that was a kind of an &quot;M&quot; for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

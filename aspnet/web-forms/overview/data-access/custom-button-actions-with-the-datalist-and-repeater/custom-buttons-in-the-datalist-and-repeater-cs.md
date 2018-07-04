@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-cs
 title: "Custom Buttons in the DataList and Repeater (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll build an interface that uses a Repeater to list the categories in the system, with each category providing a button to show its associ..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/13/2006
-ms.topic: article
 ms.assetid: 1f42e332-78dc-438b-9e35-0c97aa0ad929
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-cs
 msc.type: authoredcontent
 ---
@@ -108,17 +105,17 @@ For this example, set the LinkButton s `CommandName` property to ShowProducts an
 
 When the button is clicked, a postback occurs and the DataList or Repeater s `ItemCommand` event fires. The event handler is passed the button s `CommandName` and `CommandArgument` values.
 
-Create an event handler for the Repeater s `ItemCommand` event and note the second parameter passed into the event handler (named `e`). This second parameter is of type [`RepeaterCommandEventArgs`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.repeatercommandeventargs.aspx) and has the following four properties:
+Create an event handler for the Repeater s `ItemCommand` event and note the second parameter passed into the event handler (named `e`). This second parameter is of type [`RepeaterCommandEventArgs`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.repeatercommandeventargs.aspx) and has the following four properties:
 
 - `CommandArgument` the value of the clicked button s `CommandArgument` property
 - `CommandName` the value of the button s `CommandName` property
 - `CommandSource` a reference to the button control that was clicked
-- `Item` a reference to the [`RepeaterItem`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.repeateritem.aspx) that contains the button that was clicked; each record bound to the Repeater is manifested as a `RepeaterItem`
+- `Item` a reference to the [`RepeaterItem`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.repeateritem.aspx) that contains the button that was clicked; each record bound to the Repeater is manifested as a `RepeaterItem`
 
 Since the selected category s `CategoryID` is passed in via the `CommandArgument` property, we can get the set of products associated with the selected category in the `ItemCommand` event handler. These products can then be bound to a BulletedList control in the `ItemTemplate` (which we ve yet to add). All that remains, then, is to add the BulletedList, reference it in the `ItemCommand` event handler, and bind to it the set of products for the selected category, which we'll tackle in Step 4.
 
 > [!NOTE]
-> The DataList s `ItemCommand` event handler is passed an object of type [`DataListCommandEventArgs`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistcommandeventargs.aspx), which offers the same four properties as the `RepeaterCommandEventArgs` class.
+> The DataList s `ItemCommand` event handler is passed an object of type [`DataListCommandEventArgs`](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalistcommandeventargs.aspx), which offers the same four properties as the `RepeaterCommandEventArgs` class.
 
 
 ## Step 4: Displaying the Selected Category s Products in a Bulleted List
@@ -162,5 +159,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Dennis Patterson. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](custom-buttons-in-the-datalist-and-repeater-vb.md)
+> [!div class="step-by-step"]
+> [Next](custom-buttons-in-the-datalist-and-repeater-vb.md)

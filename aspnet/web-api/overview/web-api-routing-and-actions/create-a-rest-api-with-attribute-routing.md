@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 title: "Create a REST API with Attribute Routing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/26/2013
-ms.topic: article
 ms.assetid: 23fc77da-2725-4434-99a0-ff872d96336b
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 msc.type: authoredcontent
 ---
@@ -43,7 +40,7 @@ For most requests, however, the API will return a subset of this data (title, au
 
 ## Prerequisites
 
-[Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) or [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express)
+[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional or Enterprise edition.
 
 ## Create the Visual Studio Project
 
@@ -87,7 +84,7 @@ In the **Add Scaffold** dialog, select "Web API 2 Controller with read/write act
 
 [![](create-a-rest-api-with-attribute-routing/_static/image6.png)](create-a-rest-api-with-attribute-routing/_static/image5.png)
 
-In the **Add Controller** dialog, for **Controller name**, enter &quot;BooksController&quot;. Select the &quot;Use async controller actions&quot; checkbox. For **Model class**, select &quot;Book&quot;. (If you don't see the `Book` class listed in the dropdown, make sure that you built the project.) Then click the "&lt;New data context...&gt;" button.
+In the **Add Controller** dialog, for **Controller name**, enter &quot;BooksController&quot;. Select the &quot;Use async controller actions&quot; checkbox. For **Model class**, select &quot;Book&quot;. (If you don't see the `Book` class listed in the dropdown, make sure that you built the project.) Then click the "+" button.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image7.png)
 
@@ -135,7 +132,7 @@ Add another class named `BookDetailDto`.
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample8.cs)]
 
-Next, update the `BooksController` class to return `BookDto` instances. We'll use the [Queryable.Select](https://msdn.microsoft.com/en-us/library/system.linq.queryable.select.aspx) method to project `Book` instances to `BookDto` instances. Here is the updated code for the controller class.
+Next, update the `BooksController` class to return `BookDto` instances. We'll use the [Queryable.Select](https://msdn.microsoft.com/library/system.linq.queryable.select.aspx) method to project `Book` instances to `BookDto` instances. Here is the updated code for the controller class.
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample9.cs)]
 
@@ -178,7 +175,7 @@ If you request `/api/books/1/details`, the response looks like this:
 
 ## Get Books By Genre
 
-To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/get/books/fantasy`.)
+To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/api/books/fantasy`.)
 
 Add the following method to `BooksController`.
 

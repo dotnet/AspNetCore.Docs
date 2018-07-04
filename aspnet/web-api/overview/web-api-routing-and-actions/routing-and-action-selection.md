@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 title: "Routing and Action Selection in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/27/2012
-ms.topic: article
 ms.assetid: bcf2d223-cb7f-411e-be05-f43e96a14015
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 msc.type: authoredcontent
 ---
@@ -36,7 +33,7 @@ You can replace some parts of the process with your own custom behaviors. In thi
 
 A route template looks similar to a URI path, but it can have placeholder values, indicated with curly braces:
 
-[!code-powershell[Main](routing-and-action-selection/samples/sample1.ps1)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample1.ps1)]
 
 When you create a route, you can provide default values for some or all of the placeholders:
 
@@ -44,7 +41,7 @@ When you create a route, you can provide default values for some or all of the p
 
 You can also provide constraints, which restrict how a URI segment can match a placeholder:
 
-[!code-javascript[Main](routing-and-action-selection/samples/sample3.js)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample3.js)]
 
 The framework tries to match the segments in the URI path to the template. Literals in the template must match exactly. A placeholder matches any value, unless you specify constraints. The framework does not match other parts of the URI, such as the host name or the query parameters. The framework selects the first route in the route table that matches the URI.
 
@@ -115,7 +112,7 @@ The default implementation is provided by the **ApiControllerActionSelector** cl
 
 Before looking at the selection algorithm, we need to understand some things about controller actions.
 
-**Which methods on the controller are considered "actions"?** When selecting an action, the framework only looks at public instance methods on the controller. Also, it excludes ["special name"](https://msdn.microsoft.com/en-us/library/system.reflection.methodbase.isspecialname) methods (constructors, events, operator overloads, and so forth), and methods inherited from the **ApiController** class.
+**Which methods on the controller are considered "actions"?** When selecting an action, the framework only looks at public instance methods on the controller. Also, it excludes ["special name"](https://msdn.microsoft.com/library/system.reflection.methodbase.isspecialname) methods (constructors, events, operator overloads, and so forth), and methods inherited from the **ApiController** class.
 
 **HTTP Methods.** The framework only chooses actions that match the HTTP method of the request, determined as follows:
 
@@ -128,7 +125,7 @@ Before looking at the selection algorithm, we need to understand some things abo
 - Simple types are taken from the URI.
 - Complex types are taken from the request body.
 
-Simple types include all of the [.NET Framework primitive types](https://msdn.microsoft.com/en-us/library/system.type.isprimitive), plus **DateTime**, **Decimal**, **Guid**, **String**, and **TimeSpan**. For each action, at most one parameter can read the request body.
+Simple types include all of the [.NET Framework primitive types](https://msdn.microsoft.com/library/system.type.isprimitive), plus **DateTime**, **Decimal**, **Guid**, **String**, and **TimeSpan**. For each action, at most one parameter can read the request body.
 
 > [!NOTE]
 > It is possible to override the default binding rules. See [WebAPI Parameter binding under the hood](https://blogs.msdn.com/b/jmstall/archive/2012/05/11/webapi-parameter-binding-under-the-hood.aspx).

@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-4
 title: "Handling Entity Relations | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: d2f5710c-23c7-40a5-9cd9-5d0516570cba
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-4
 msc.type: authoredcontent
 ---
@@ -80,7 +77,7 @@ One way to avoid serialization problems is to serialize data transfer objects (D
 
 ### Explicit Loading
 
-Explicit loading is similar to lazy loading, except that you explicitly get the related data in code; it doesn't happen automatically when you access a navigation property. Explicit loading gives you more control over when to load related data, but requires extra code. For more information about explicit loading, see [Loading Related Entities](https://msdn.microsoft.com/en-us/data/jj574232#explicit).
+Explicit loading is similar to lazy loading, except that you explicitly get the related data in code; it doesn't happen automatically when you access a navigation property. Explicit loading gives you more control over when to load related data, but requires extra code. For more information about explicit loading, see [Loading Related Entities](https://msdn.microsoft.com/data/jj574232#explicit).
 
 ## Navigation Properties and Circular References
 
@@ -106,6 +103,6 @@ One solution is to use DTOs, which I describe in the next section. Alternatively
 
 For this tutorial, you don't need the `Author.Book` navigation property, so you can leave it out.
 
->[!div class="step-by-step"]
-[Previous](part-3.md)
-[Next](part-5.md)
+> [!div class="step-by-step"]
+> [Previous](part-3.md)
+> [Next](part-5.md)

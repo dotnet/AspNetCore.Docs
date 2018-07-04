@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs
 title: "Creating Page Layouts with View Master Pages (C#) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, you learn how to create a common page layout for multiple pages in your application by taking advantage of view master pages. You can use a..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/16/2008
-ms.topic: article
 ms.assetid: dff54fcb-68b1-4488-89a2-ca97532d6a4c
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs
 msc.type: authoredcontent
 ---
@@ -137,6 +134,6 @@ The content view page in Listing 5 overrides the `<asp:ContentPlaceHolder>` tag 
 
 This tutorial provided you with a basic introduction to view master pages and view content pages. You learned how to create new view master pages and create view content pages based on them. We also examined how you can modify the content of a view master page from a particular view content page.
 
->[!div class="step-by-step"]
-[Previous](using-the-tagbuilder-class-to-build-html-helpers-cs.md)
-[Next](passing-data-to-view-master-pages-cs.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-tagbuilder-class-to-build-html-helpers-cs.md)
+> [Next](passing-data-to-view-master-pages-cs.md)

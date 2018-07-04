@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-vb
 title: "Deploying a Database (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Deploying an ASP.NET web application entails getting the necessary files and resources from the development environment to the production environment. For da..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: 96ac3e69-04c7-4917-ad06-5f8968c3fbf1
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-vb
 msc.type: authoredcontent
 ---
@@ -188,8 +185,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 - [Download the Microsoft SQL Server Database Publishing Wizard 1.1](https://www.microsoft.com/downloads/details.aspx?familyid=56E5B1C5-BF17-42E0-A410-371A838E570A&amp;displaylang=en)
 - [Download the Microsoft SQL Server Management Studio Express Edition](https://www.microsoft.com/downloads/details.aspx?FamilyId=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796&amp;displaylang=en)
-- [The SQL Server Hosting Toolkit Home](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) (The project home for the Database Publishing Wizard and the Database Publishing Services.)
 
->[!div class="step-by-step"]
-[Previous](core-differences-between-iis-and-the-asp-net-development-server-vb.md)
-[Next](configuring-the-production-web-application-to-use-the-production-database-vb.md)
+> [!div class="step-by-step"]
+> [Previous](core-differences-between-iis-and-the-asp-net-development-server-vb.md)
+> [Next](configuring-the-production-web-application-to-use-the-production-database-vb.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/cascadingdropdown/presetting-list-entries-with-cascadingdropdown-vb
 title: "Presetting List Entries with CascadingDropDown (VB) | Microsoft Docs"
 author: wenz
 description: "The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList control so that changes in one DropDownList loads associated values in anoth..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: ec61ced7-bbca-4bdd-aa3b-80878f295181
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown/presetting-list-entries-with-cascadingdropdown-vb
 msc.type: authoredcontent
 ---
@@ -54,6 +51,6 @@ Loading the page in the browser will fill the dropdown list with three vendors, 
 
 The list is filled and preselected automatically ([Click to view full-size image](presetting-list-entries-with-cascadingdropdown-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-cascadingdropdown-with-a-database-vb.md)
-[Next](using-auto-postback-with-cascadingdropdown-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-cascadingdropdown-with-a-database-vb.md)
+> [Next](using-auto-postback-with-cascadingdropdown-vb.md)

@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-authentication-and-profile-application-services
 title: "Understanding ASP.NET AJAX Authentication and Profile Application Services | Microsoft Docs"
 author: scottcate
 description: "The Authentication service allows users to provide credentials in order to receive an authentication cookie, and is the gateway service to allow custom user..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/14/2008
-ms.topic: article
 ms.assetid: 6ab4efb6-aab6-45ac-ad2c-bdec5848ef9e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-authentication-and-profile-application-services
 msc.type: authoredcontent
 ---
@@ -37,7 +34,7 @@ The Authentication service allows users to provide credentials in order to recei
 
 The Profile service allows the automatic integration and storage of user data based on membership as provided by the Authentication service. The stored data is specified by the web.config file, and the various profiling service providers handle the data management. As with the Authentication service, the AJAX Profile service is compatible with the standard ASP.NET profile service, so that pages currently incorporating features of the ASP.NET Profile service should not be broken by including AJAX support.
 
-Incorporating the ASP.NET Authentication and Profiling services themselves into an application is outside of the scope of this whitepaper. For more information on the topic, see the MSDN Library reference article Managing Users by Using Membership at [https://msdn.microsoft.com/en-us/library/tw292whz.aspx](https://msdn.microsoft.com/en-us/library/tw292whz.aspx). ASP.NET also includes a utility to automatically set up Membership with a SQL Server, which is the default authentication service provider for ASP.NET Membership. For more information, see the article ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe) at [https://msdn.microsoft.com/en-us/library/ms229862(vs.80).aspx](https://msdn.microsoft.com/en-us/library/ms229862(vs.80).aspx).
+Incorporating the ASP.NET Authentication and Profiling services themselves into an application is outside of the scope of this whitepaper. For more information on the topic, see the MSDN Library reference article Managing Users by Using Membership at [https://msdn.microsoft.com/library/tw292whz.aspx](https://msdn.microsoft.com/library/tw292whz.aspx). ASP.NET also includes a utility to automatically set up Membership with a SQL Server, which is the default authentication service provider for ASP.NET Membership. For more information, see the article ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe) at [https://msdn.microsoft.com/library/ms229862(vs.80).aspx](https://msdn.microsoft.com/library/ms229862(vs.80).aspx).
 
 ## *Using the ASP.NET AJAX Authentication Service*
 
@@ -339,6 +336,6 @@ Furthermore, by creating simplified web service implementations with equivalent 
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Previous](understanding-asp-net-ajax-updatepanel-triggers.md)
-[Next](understanding-asp-net-ajax-localization.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-asp-net-ajax-updatepanel-triggers.md)
+> [Next](understanding-asp-net-ajax-localization.md)

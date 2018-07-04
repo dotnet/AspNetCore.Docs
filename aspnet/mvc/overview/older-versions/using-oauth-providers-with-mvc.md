@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/using-oauth-providers-with-mvc
 title: "Using OAuth Providers with MVC 4 | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to build an ASP.NET MVC 4 web application that enables users to log in with credentials from an external provider, such as Facebo..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/19/2013
-ms.topic: article
 ms.assetid: 7a87f16f-0e19-4f15-a88a-094ae866c4a2
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/using-oauth-providers-with-mvc
 msc.type: authoredcontent
 ---
@@ -142,7 +139,7 @@ If you only want to enable external authentication, you are done. However, you c
 
 As you noticed in the previous sections, you do not need to retrieve any additional information for the built-in account registration to work. However, most external providers pass back additional information about the user. The following sections show how to retain that information and save it to a database. Specifically, you will retain values for the user's full name, the URI of the user's personal web page, and a value that indicates whether Facebook has verified the account.
 
-You will use [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) to add a table for storing additional user information. You are adding the table to an existing database, so you will first need to create a snapshot of the current database. By creating a snapshot of the current database, you can later create a migration that contains only the new table. To create a snapshot of the current database:
+You will use [Code First Migrations](https://msdn.microsoft.com/data/jj591621) to add a table for storing additional user information. You are adding the table to an existing database, so you will first need to create a snapshot of the current database. By creating a snapshot of the current database, you can later create a migration that contains only the new table. To create a snapshot of the current database:
 
 1. Open the **Package Manager Console**
 2. Run the command **enable-migrations**
@@ -264,5 +261,4 @@ In this tutorial, you created a site that is integrated with Facebook for user a
 
 ## Related topics
 
-- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/)
-- [ASP.NET MVC Facebook Birthday App](../getting-started/aspnet-mvc-facebook-birthday-app.md)
+- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data)

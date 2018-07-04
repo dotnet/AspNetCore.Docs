@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-vb
 title: "Executing Several Animations at The Same Time (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. It allows to run severa..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 2469f7ea-1489-42fb-a8e1-414c90141ce9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-vb
 msc.type: authoredcontent
 ---
@@ -56,6 +53,6 @@ And indeed: when you run this script, the panel is displayed, then resizes (more
 
 The panel is fading out and resizing (including its content, thanks to the browser's rendering engine) ([Click to view full-size image](executing-several-animations-at-the-same-time-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](adding-animation-to-a-control-vb.md)
-[Next](executing-several-animations-after-each-other-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-animation-to-a-control-vb.md)
+> [Next](executing-several-animations-after-each-other-vb.md)

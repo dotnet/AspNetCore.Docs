@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr
 title: "Tutorial: Getting Started with SignalR 2 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application and create an HTML pa..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: a8b3b778-f009-4369-85c7-e90f9878d8b4
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr
 msc.type: authoredcontent
 ---
@@ -119,6 +116,8 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample2.cs)]
 8. In **Solution Explorer**, right-click the project, then click **Add | HTML Page**. Name the new page `index.html`.
+    >[!NOTE]
+    >You might need to change the version numbers for the references to JQuery and SignalR libraries
 9. In **Solution Explorer**, right-click the HTML page you just created and click **Set as Start Page**.
 10. Replace the default code in the HTML page with the following code.
 
@@ -199,7 +198,7 @@ The following code shows how to open a connection with the hub. The code starts 
 
 You learned that SignalR is a framework for building real-time web applications. You also learned several SignalR development tasks: how to add SignalR to an ASP.NET application, how to create a hub class, and how to send and receive messages from the hub.
 
-For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/).
+For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
 To learn more advanced SignalR developments concepts, visit the following sites for SignalR source code and resources:
 

@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 title: "Hands on Lab: Maintainable Azure Websites: Managing Change and Scale | Microsoft Docs"
 author: rick-anderson
-description: "Microsoft Azure makes it easy to build and deploy websites to production. But you’re not done when your application is live, you’re just getting started! You..."
+description: "In this lab, learn how Microsoft Azure makes it easy to build and deploy websites to production."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/16/2014
-ms.topic: article
 ms.assetid: ecfd0eb4-c4ad-44e6-9db9-a2a66611ff6a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 msc.type: authoredcontent
 ---
@@ -22,7 +19,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > Azure offers secure and flexible development, deployment and scaling options for any size web application. Leverage your existing tools to create and deploy applications without the hassle of managing infrastructure.
 > 
-> Provision a production web application yourself in minutes by easily deploying content created using your favorite development tool. You can deploy an existing site directly from source control with support for **Git**, **GitHub**, **Bitbucket**, **CodePlex**, **TFS**, and even **DropBox**. Deploy directly from your favorite IDE or from scripts using **PowerShell** in Windows or **CLI** tools running on any OS. Once deployed, keep your sites constantly up-to-date with support for continuous deployment.
+> Provision a production web application yourself in minutes by easily deploying content created using your favorite development tool. You can deploy an existing site directly from source control with support for **Git**, **GitHub**, **Bitbucket**, **TFS**, and even **DropBox**. Deploy directly from your favorite IDE or from scripts using **PowerShell** in Windows or **CLI** tools running on any OS. Once deployed, keep your sites constantly up-to-date with support for continuous deployment.
 > 
 > Azure provides scalable, durable cloud storage, backup, and recovery solutions for any data, big or small. When deploying applications to a production environment, storage services such as Tables, Blobs and SQL Databases, help you scale your application in the cloud.
 > 
@@ -245,7 +242,7 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 In this exercise, you will deploy the **Geek Quiz** application to the staging environment of your web app using Git source control. To do this, you will create the web app and provision the required components at the management portal, configure a **Git** repository and push the application source code from your local computer to the staging slot. You will also update your production database with the **Code First Migrations** you created in the previous exercise. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it is working according to your expectations, you will promote the application to production.
 
 > [!NOTE]
-> To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/).
+> To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/).
 
 
 <a id="Ex2Task1"></a>
@@ -275,13 +272,13 @@ In this task, you will create a web app in **Azure App Service** from the manage
     *Customizing the new web app*
 5. Specify the following information for the database settings:
 
-    - In the **Name** text box, enter a database name (e.g. *geekquiz\_db*)
-    - In the Server **drop-down** list, select **New SQL database server**. Alternatively, you can select an existing server.
-    - In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL database server. If you select a server you have already created, you will be prompted for the password.
+   - In the **Name** text box, enter a database name (e.g. *geekquiz\_db*)
+   - In the Server **drop-down** list, select **New SQL database server**. Alternatively, you can select an existing server.
+   - In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL database server. If you select a server you have already created, you will be prompted for the password.
 
-    ![Specifying the database settings](maintainable-azure-websites-managing-change-and-scale/_static/image17.png)
+     ![Specifying the database settings](maintainable-azure-websites-managing-change-and-scale/_static/image17.png)
 
-    *Specifying the database settings*
+     *Specifying the database settings*
 6. Click **Next** to continue.
 7. Select **Local Git repository** for the source control to use and click **Next**.
 
@@ -689,7 +686,7 @@ In this task, you will configure the **GeekQuiz** solution to consume the image 
     [!code-xml[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample17.xml)]
 
     > [!NOTE]
-    > URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/en-us/library/ms972974.aspx).
+    > URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/library/ms972974.aspx).
 3. Press **CTRL + S** to save the changes.
 4. Open a new **Git Bash** console to deploy the updated application to Azure App Service.
 5. Execute the following commands to push the changes to Azure. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution. You will be prompted for your deployment password.
@@ -791,13 +788,13 @@ Now that **Autoscale** has been configured, you will create a **Web Performance 
     *Adding a loop to WebTest1*
 6. In the **Add Conditional Rule and Items to Loop** dialog box, select the **For Loop** rule and modify the following properties.
 
-    1. **Terminating value:** 1000
-    2. **Context Parameter Name:** Iterator
-    3. **Increment Value:** 1
+   1. **Terminating value:** 1000
+   2. **Context Parameter Name:** Iterator
+   3. **Increment Value:** 1
 
-    ![Selecting the For Loop rule and updating the properties](maintainable-azure-websites-managing-change-and-scale/_static/image84.png "Selecting the For Loop rule and updating the properties")
+      ![Selecting the For Loop rule and updating the properties](maintainable-azure-websites-managing-change-and-scale/_static/image84.png "Selecting the For Loop rule and updating the properties")
 
-    *Selecting the For Loop rule and updating the properties*
+      *Selecting the For Loop rule and updating the properties*
 7. Under the **Items in loop** section, select the request you created previously to be the first and last item for the loop. Click **OK** to continue.
 
     ![Selecting the first and last items for the loop](maintainable-azure-websites-managing-change-and-scale/_static/image85.png "Selecting the first and last items for the loop")
@@ -904,7 +901,7 @@ You will now execute the load test you created in the previous task and see how 
     > 
     > - Increase the duration of the load test (e.g. to **10 minutes**)
     > - Reduce the maximum and minimum values of the **Target CPU** range in the Autoscale configuration of your web app
-    > - Run the load test in the cloud with **Visual Studio Online**. More information [here](https://www.visualstudio.com/en-us/get-started/load-test-your-app-vs.aspx)
+    > - Run the load test in the cloud with **Visual Studio Online**. More information [here](https://www.visualstudio.com/get-started/load-test-your-app-vs.aspx)
 
 * * *
 

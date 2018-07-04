@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb
 title: "Specifying the Master Page Programmatically (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at setting the content page's master page programmatically via the PreInit event handler."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/28/2008
-ms.topic: article
 ms.assetid: 0edcd653-f24a-41aa-aef4-75f868fe5ac2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb
 msc.type: authoredcontent
 ---
@@ -28,7 +25,7 @@ Since the inaugural example in [*Creating a Site-Wide Layout Using Master Pages*
 
 [!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample1.aspx)]
 
-The [`Page` class](https://msdn.microsoft.com/en-us/library/system.web.ui.page.aspx) in the `System.Web.UI` namespace includes a [`MasterPageFile` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.masterpagefile.aspx) that returns the path to the content page's master page; it is this property that is set by the `@Page` directive. This property can also be used to programmatically specify the content page's master page. This approach is useful if you want to dynamically assign the master page based on external factors, such as the user visiting the page.
+The [`Page` class](https://msdn.microsoft.com/library/system.web.ui.page.aspx) in the `System.Web.UI` namespace includes a [`MasterPageFile` property](https://msdn.microsoft.com/library/system.web.ui.page.masterpagefile.aspx) that returns the path to the content page's master page; it is this property that is set by the `@Page` directive. This property can also be used to programmatically specify the content page's master page. This approach is useful if you want to dynamically assign the master page based on external factors, such as the user visiting the page.
 
 In this tutorial we add a second master page to our website and dynamically decide which master page to use at runtime.
 
@@ -48,7 +45,7 @@ Figure 1 illustrates this fusion. Step 1 in Figure 1 shows the initial content a
 
 What master page partakes in this fusion depends on the value of the `Page` object's `MasterPageFile` property. Setting the `MasterPageFile` attribute in the `@Page` directive has the net effect of assigning the `Page`'s `MasterPageFile` property during the Initialization stage, which is the very first stage of the page's lifecycle. We can alternatively set this property programmatically. However, it is imperative that this property be set before the fusion in Figure 1 takes place.
 
-At the start of the PreInit stage the `Page` object raises its [`PreInit` event](https://msdn.microsoft.com/en-us/library/system.web.ui.page.preinit.aspx) and calls its [`OnPreInit` method](https://msdn.microsoft.com/en-us/library/system.web.ui.page.onpreinit.aspx). To set the master page programmatically, then, we can either create an event handler for the `PreInit` event or override the `OnPreInit` method. Let's look at both approaches.
+At the start of the PreInit stage the `Page` object raises its [`PreInit` event](https://msdn.microsoft.com/library/system.web.ui.page.preinit.aspx) and calls its [`OnPreInit` method](https://msdn.microsoft.com/library/system.web.ui.page.onpreinit.aspx). To set the master page programmatically, then, we can either create an event handler for the `PreInit` event or override the `OnPreInit` method. Let's look at both approaches.
 
 Start by opening `Default.aspx.vb`, the code-behind class file for our site's homepage. Add an event handler for the page's `PreInit` event by typing in the following code:
 
@@ -269,8 +266,8 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [ASP.NET Page Lifecycle Diagram](http://emanish.googlepages.com/Asp.Net2.0Lifecycle.PNG)
-- [ASP.NET Page Lifecycle Overview](https://msdn.microsoft.com/en-us/library/ms178472.aspx)
-- [ASP.NET Themes and Skins Overview](https://msdn.microsoft.com/en-us/library/ykzx33wh.aspx)
+- [ASP.NET Page Lifecycle Overview](https://msdn.microsoft.com/library/ms178472.aspx)
+- [ASP.NET Themes and Skins Overview](https://msdn.microsoft.com/library/ykzx33wh.aspx)
 - [Master Pages: Tips, Tricks, and Traps](http://www.odetocode.com/articles/450.aspx)
 - [Themes in ASP.NET](http://www.odetocode.com/articles/423.aspx)
 
@@ -282,6 +279,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-pages-and-asp-net-ajax-vb.md)
-[Next](nested-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-pages-and-asp-net-ajax-vb.md)
+> [Next](nested-master-pages-vb.md)

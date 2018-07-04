@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment
 title: "ASP.NET Web Deployment using Visual Studio: Command Line Deployment | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/15/2013
-ms.topic: article
 ms.assetid: 82b8dea0-f062-4ee4-8784-3ffa30fbb1ca
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment
 msc.type: authoredcontent
 ---
@@ -33,7 +30,7 @@ Currently the About page displays the template code.
 
 You'll replace that with code that displays a summary of student enrollment.
 
-Open the *About.aspx* page, delete all of the markup inside the `MainContent``Content` element, and insert the following markup in its place:
+Open the *About.aspx* page, delete all of the markup inside the `MainContent` `Content` element, and insert the following markup in its place:
 
 [!code-aspx[Main](command-line-deployment/samples/sample1.aspx)]
 
@@ -138,6 +135,6 @@ You have now deployed an application update by using the command line.
 
 In the next tutorial, you will see an example of how to extend the web publish pipeline. The example will show you how to deploy files that are not included in the project.
 
->[!div class="step-by-step"]
-[Previous](deploying-a-database-update.md)
-[Next](deploying-extra-files.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-database-update.md)
+> [Next](deploying-extra-files.md)

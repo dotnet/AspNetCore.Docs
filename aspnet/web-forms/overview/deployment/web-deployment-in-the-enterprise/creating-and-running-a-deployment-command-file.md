@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file
 title: "Creating and Running a Deployment Command File | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to build a command file that will let you run a deployment using Microsoft Build Engine (MSBuild) project files as a single-step, re..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: c61560e9-9f6c-4985-834a-08a3eabf9c3c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file
 msc.type: authoredcontent
 ---
@@ -110,8 +107,8 @@ A command file to publish to a staging environment might contain this MSBuild co
 > For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
 
 
-You can also customize the build process for each environment by overriding properties or setting various other switches in your MSBuild command. For more information, see [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
+You can also customize the build process for each environment by overriding properties or setting various other switches in your MSBuild command. For more information, see [MSBuild Command Line Reference](https://msdn.microsoft.com/library/ms164311.aspx).
 
->[!div class="step-by-step"]
-[Previous](deploying-database-projects.md)
-[Next](manually-installing-web-packages.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-database-projects.md)
+> [Next](manually-installing-web-packages.md)

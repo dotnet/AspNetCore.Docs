@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5
 title: "Part 5: Business Logic | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 5 adds some business logic."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: eaef475a-ca91-47ea-a4a7-d074005ed80c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5
 msc.type: authoredcontent
 ---
@@ -181,6 +178,6 @@ At this stage in your project's development we are getting ready to implement th
 
 Before doing so let's use Visual Studio to generate the membership database and add a user to the membership repository.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-4.md)
-[Next](tailspin-spyworks-part-6.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-4.md)
+> [Next](tailspin-spyworks-part-6.md)

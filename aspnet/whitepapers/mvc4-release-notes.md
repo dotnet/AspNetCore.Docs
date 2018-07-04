@@ -1,14 +1,11 @@
 ---
+uid: whitepapers/mvc4-release-notes
 title: "ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes the release of ASP.NET MVC 4."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/09/2011
-ms.topic: article
 ms.assetid: f014524f-25c0-4094-b8e1-886d99536f00
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc4-release-notes
 msc.type: content
 ---
@@ -179,7 +176,7 @@ The bundling and minification framework enables you to reduce the number of HTTP
 <a id="_Toc303253822"></a>
 ### Enabling Logins from Facebook and Other Sites Using OAuth and OpenID
 
-The default templates in ASP.NET MVC 4 Internet Project template now includes support for OAuth and OpenID login using the DotNetOpenAuth library. For information on configuring an OAuth or OpenID provider, see [OAuth/OpenID Support for WebForms, MVC and WebPages](https://blogs.msdn.com/b/webdev/archive/2012/08/15/oauth-openid-support-for-webforms-mvc-and-webpages.aspx) and the [OAuth and OpenID feature documentation in ASP.NET Web Pages](../web-pages/overview/releases/top-features-in-web-pages-2.md).
+The default templates in ASP.NET MVC 4 Internet Project template now includes support for OAuth and OpenID login using the DotNetOpenAuth library. For information on configuring an OAuth or OpenID provider, see [OAuth/OpenID Support for WebForms, MVC and WebPages](https://blogs.msdn.com/b/webdev/archive/2012/08/15/oauth-openid-support-for-webforms-mvc-and-webpages.aspx) and the [OAuth and OpenID feature documentation in ASP.NET Web Pages](../web-pages/overview/releases/top-features-in-web-pages-2.md#oauthsetup).
 
 <a id="_Toc303253806"></a>
 ## Upgrading an ASP.NET MVC 3 Project to ASP.NET MVC 4
@@ -239,7 +236,7 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
 - **Link generation improvements:** The *UrlHelper* no longer depends on *HttpControllerContext*. You can now access the *UrlHelper* from any context where the *HttpRequestMessage* is available.
 - **Message handler execution order change:** Message handlers are now executed in the order that they are configured instead of in reverse order.
 - **Helper for wiring up message handlers:** The new *HttpClientFactory* that can wire up *DelegatingHandlers* and create an *HttpClient* with the desired pipeline ready to go. It also provides functionality for wiring up with alternative inner handlers (the default is *HttpClientHandler*) as well as do the wiring up when using *HttpMessageInvoker* or another *DelegatingHandler* instead of *HttpClient* as the top-invoker.
-- **Support for CDNs in ASP.NET Web Optimization:** ASP.NET Web Optimization now provides support for CDN alternate paths enabling you to specify for each bundle an additional URL which points to that same resource on a content delivery network. Supporting CDNs enables you to get your script and style bundles geographically closer to the end consumers of your Web applications.
+- **Support for CDNs in ASP.NET Web Optimization:** ASP.NET Web Optimization now provides support for CDN alternate paths enabling you to specify for each bundle an additional URL which points to that same resource on a content delivery network. Supporting CDNs enables you to get your script and style bundles geographically closer to the end consumers of your Web applications. Production apps should implement a fallback when the CDN is unavailable. Test the fallback.
 - **ASP.NET Web API routes and configuration moved to *WebApiConfig.Register* static method that can be resused in test code.** ASP.NET Web API routes previously were added in *RouteConfig.RegisterRoutes* along with the standard MVC routes. The default ASP.NET Web API routes and configuration are now handled in a separate *WebApiConfig.Register* method to facilitate testing.
 
 <a id="_Toc303253815"></a>
@@ -255,36 +252,37 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
     - *MvcCSharpRazorCodeGenerator*
     - *MvcVBRazorCodeParser*
 
- The following methods were also removed: 
+  The following methods were also removed: 
 
     - *MvcCSharpRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
     - *MvcWebPageRazorHost.DecorateCodeGenerator(System.Web.Razor.Generator.RazorCodeGenerator)*
     - *MvcVBRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
-- **When WebMatrix.WebData.dll is included in in the /bin directory of an ASP.NET MVC 4 apps, it takes over the URL for forms authentication.** Adding the WebMatrix.WebData.dll assembly to your application (for example, by selecting "ASP.NET Web Pages with Razor Syntax" when using the Add Deployable Dependencies dialog) will override the authentication login redirect to /account/logon rather than /account/login as expected by the default ASP.NET MVC Account Controller. To prevent this behavior and use the URL specified already in the authentication section of web.config, you can add an appSetting called PreserveLoginUrl and set it to true: 
+- **When WebMatrix.WebData.dll is included in the /bin directory of an ASP.NET MVC 4 apps, it takes over the URL for forms authentication.** Adding the WebMatrix.WebData.dll assembly to your application (for example, by selecting "ASP.NET Web Pages with Razor Syntax" when using the Add Deployable Dependencies dialog) will override the authentication login redirect to /account/logon rather than /account/login as expected by the default ASP.NET MVC Account Controller. To prevent this behavior and use the URL specified already in the authentication section of web.config, you can add an appSetting called PreserveLoginUrl and set it to true: 
 
     [!code-xml[Main](mvc4-release-notes/samples/sample6.xml)]
 - **The NuGet package manager fails to install when attempting to install ASP.NET MVC 4 for side by side installations of Visual Studio 2010 and Visual Web Developer 2010.** To run Visual Studio 2010 and Visual Web Developer 2010 side by side with ASP.NET MVC 4 you must install ASP.NET MVC 4 after both versions of Visual Studio have already been installed.
 - **Uninstalling ASP.NET MVC 4 fails if prerequisites have already been uninstalled.** To cleanly uninstall ASP.NET MVC 4you must uninstall ASP.NET MVC 4 prior to uninstalling Visual Studio.
-- **Installing ASP.NET MVC 4 breaks ASP.NET MVC 3 RTM applications.** ASP.NET MVC 3 applications that were created with the RTM release (not with the [ASP.NET MVC 3 Tools Update](https://www.microsoft.com/en-us/download/details.aspx?id=1491) release) require the following changes in order to work side-by-side with ASP.NET MVC 4. Building the project without making these updates results in compilation errors. 
+- **Installing ASP.NET MVC 4 breaks ASP.NET MVC 3 RTM applications.** ASP.NET MVC 3 applications that were created with the RTM release (not with the [ASP.NET MVC 3 Tools Update](https://www.microsoft.com/download/details.aspx?id=1491) release) require the following changes in order to work side-by-side with ASP.NET MVC 4. Building the project without making these updates results in compilation errors. 
 
     **Required updates**
 
-    1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*. 
+  1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*. 
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample7.xml)]
-    2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
-    3. Locate the following assembly references: 
+      [!code-xml[Main](mvc4-release-notes/samples/sample7.xml)]
+  2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
+  3. Locate the following assembly references: 
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample8.xml)]
+      [!code-xml[Main](mvc4-release-notes/samples/sample8.xml)]
 
-        Replace them with the following:
+      Replace them with the following:
 
-        [!code-xml[Main](mvc4-release-notes/samples/sample9.xml)]
-    4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
+      [!code-xml[Main](mvc4-release-notes/samples/sample9.xml)]
+  4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
+
 - **Changing an ASP.NET MVC 4 project to target 4.0 from 4.5 does not update the EntityFramework assembly reference:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 the reference to the EntityFramework assembly will still point to the 4.5 version. To fix this issue uninstall and reinstall the EntityFramework NuGet package.
 - **403 Forbidden when running an ASP.NET MVC 4 application on Azure after changing to target 4.0 from 4.5:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 and then deploy to Azure you may see a 403 Forbidden error at runtime. To workaround this issue add the following to your web.config: `<modules runAllManagedModulesForAllRequests="true" />`
 - **Visual Studio 2012 crashes when you type a '\' in a string literal in a Razor file.** To work around the issue enter the closing quote of the string literal first.
-- **Browsing to &quot;Account/Manage&quot; in the Internet template results in a runtime error for CHS, TRK and CHT languages.** To fix the issue modify the page to separate out *@User.Identity.Name* by puting it as the only content within the *&lt;strong&gt;* tag.
+- <strong>Browsing to &quot;Account/Manage&quot; in the Internet template results in a runtime error for CHS, TRK and CHT languages.</strong> To fix the issue modify the page to separate out <em>@User.Identity.Name</em> by puting it as the only content within the <em>&lt;strong&gt;</em> tag.
 - **Google and LinkedIn providers are not supported within Azure Web Sites.** Use alternative authentication providers when deploying to Azure Web Sites.
 - **When using UriPathExtensionMapping with IIS 8 Express/IIS, you would receive 404 Not Found errors when you try to use the extension.** The static file handler will interfere with requests to web APIs that use *UriPathExtensionMappings*. Set *runAllManagedModulesForAllRequests=true* in web.config to work around the issue.
 - **Controller.Execute method is no longer called.** All MVC controllers are now always executed asynchronously.

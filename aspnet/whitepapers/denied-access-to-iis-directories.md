@@ -1,20 +1,17 @@
 ---
+uid: whitepapers/denied-access-to-iis-directories
 title: "ASP.NET Denied Access to IIS Directories | Microsoft Docs"
 author: rick-anderson
 description: "This whitepaper describes what you must do if a request to your ASP.NET application returns the error, “Denied Access to DirectoryName directory. Failed to s..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: 3cb27b8a-354f-4332-bfe0-232b13bbf8aa
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/denied-access-to-iis-directories
 msc.type: content
 ---
 ASP.NET Denied Access to IIS Directories
 ====================
-> This whitepaper describes what you must do if a request to your ASP.NET application returns the error, "Denied Access to *DirectoryName* directory. Failed to start monitoring directory chaanges."
+> This whitepaper describes what you must do if a request to your ASP.NET application returns the error, "Denied Access to *DirectoryName* directory. Failed to start monitoring directory changes."
 > 
 > Applies to ASP.NET 1.0 and ASP.NET 1.1.
 

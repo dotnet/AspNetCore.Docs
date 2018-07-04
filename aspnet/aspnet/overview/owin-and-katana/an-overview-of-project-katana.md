@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/owin-and-katana/an-overview-of-project-katana
 title: "An Overview of Project Katana | Microsoft Docs"
 author: howarddierking
 description: "The ASP.NET Framework has been around for over ten years, and the platform has enabled the development of countless Web sites and services. As Web applicatio..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/30/2013
-ms.topic: article
 ms.assetid: 0ee21741-c1bf-4025-a9b0-24580cae24bc
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/an-overview-of-project-katana
 msc.type: authoredcontent
 ---
@@ -23,7 +20,7 @@ by [Howard Dierking](https://github.com/howarddierking)
 
  Regardless whether one is discussing a developer framework or end-user product, it's important to understand the underlying motivations for creating the product – and part of that includes knowing who the product was created for. ASP.NET was originally created with two customers in mind.   
   
-**The first group of customers was classic ASP developers.** At the time, ASP was one of the primary technologies for creating dynamic, data-driven Web sites and applications by interweaving markup and server-side script. The ASP runtime supplied server-side script with a set of objects that abstracted core aspects of the underlying HTTP protocol and Web server and provided access to additional services such session and application state management, cache, etc. While powerful, classic ASP applications became a challenge to manage as they grew in size and complexity. This was largely due to the lack of structure found in in scripting environments coupled with the duplication of code resulting from the interleaving of code and markup. In order to capitalize on the strengths of classic ASP while addressing some of its challenges, ASP.NET took advantage of the code organization provided by the object-oriented languages of the .NET Framework while also preserving the server-side programming model to which classic ASP developers had grown accustomed.
+**The first group of customers was classic ASP developers.** At the time, ASP was one of the primary technologies for creating dynamic, data-driven Web sites and applications by interweaving markup and server-side script. The ASP runtime supplied server-side script with a set of objects that abstracted core aspects of the underlying HTTP protocol and Web server and provided access to additional services such session and application state management, cache, etc. While powerful, classic ASP applications became a challenge to manage as they grew in size and complexity. This was largely due to the lack of structure found in scripting environments coupled with the duplication of code resulting from the interleaving of code and markup. In order to capitalize on the strengths of classic ASP while addressing some of its challenges, ASP.NET took advantage of the code organization provided by the object-oriented languages of the .NET Framework while also preserving the server-side programming model to which classic ASP developers had grown accustomed.
 
 **The second group of target customers for ASP.NET was Windows business application developers.** Unlike classic ASP developers, who were accustomed to writing HTML markup and the code to generate more HTML markup, WinForms developers (like the VB6 developers before them) were accustomed to a design time experience that included a canvas and a rich set of user interface controls. The first version of ASP.NET – also known as "Web Forms" provided a similar design time experience along with a server-side event model for user interface components and a set of infrastructure features (such as ViewState) to create a seamless developer experience between client and server side programming. Web Forms effectively hid the Web's stateless nature under a stateful event model that was familiar to WinForms developers.
 
@@ -67,7 +64,7 @@ In addition to specifying the type for the environment dictionary, the OWIN spec
 | `"owin.RequestMethod"` | A `string` containing the HTTP request method of the request (e.g., `"GET"`, `"POST"`). |
 | `"owin.RequestPath"` | A `string` containing the request path. The path MUST be relative to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
 | `"owin.RequestPathBase"` | A `string` containing the portion of the request path corresponding to the "root" of the application delegate; see [Paths](http://owin.org/html/owin.html#5-3-paths). |
-| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"` HTTP/1.0 `"` or `"` HTTP/1.1 `"`). |
+| `"owin.RequestProtocol"` | A `string` containing the protocol name and version (e.g. `"HTTP/1.0"` or `"HTTP/1.1"`). |
 | `"owin.RequestQueryString"` | A `string` containing the query string component of the HTTP request URI, without the leading "?" (e.g., `"foo=bar&baz=quux"`). The value may be an empty string. |
 | `"owin.RequestScheme"` | A `string` containing the URI scheme used for the request (e.g., `"http"`, `"https"`); see [URI Scheme](http://owin.org/html/owin.html#5-1-uri-scheme). |
 
@@ -83,11 +80,11 @@ The application delegate then is simply an implementation of the Func delegate t
 
 From an implementation perspective, OWIN is a specification ([http://owin.org/html/owin.html](http://owin.org/html/owin.html)). Its goal is not to be the next Web framework, but rather a specification for how Web frameworks and Web servers interact.
 
-If you've investigated [OWIN](http://owin.org/) or [Katana](http://katanaproject.codeplex.com/documentation), you may also have noticed the [Owin NuGet package](http://nuget.org/packages/Owin) and Owin.dll. This library contains a single interface, [IAppBuilder](https://github.com/owin/owin/blob/master/src/Owin/IAppBuilder.cs), which formalizes and codifies the startup sequence described in [section 4](http://owin.org/html/owin.html#4-application-startup) of the OWIN specification. While not required in order to build OWIN servers, the [IAppBuilder](https://github.com/owin/owin/blob/master/src/Owin/IAppBuilder.cs) interface provides a concrete reference point, and it is used by the Katana project components.
+If you've investigated [OWIN](http://owin.org/) or [Katana](https://github.com/aspnet/AspNetKatana/wiki), you may also have noticed the [Owin NuGet package](http://nuget.org/packages/Owin) and Owin.dll. This library contains a single interface, [IAppBuilder](https://github.com/owin/owin/blob/master/src/Owin/IAppBuilder.cs), which formalizes and codifies the startup sequence described in [section 4](http://owin.org/html/owin.html#4-application-startup) of the OWIN specification. While not required in order to build OWIN servers, the [IAppBuilder](https://github.com/owin/owin/blob/master/src/Owin/IAppBuilder.cs) interface provides a concrete reference point, and it is used by the Katana project components.
 
 ## Project Katana
 
-Whereas both the [OWIN](http://owin.org/html/owin.html) specification and *Owin.dll* are community owned and community run open source efforts, the [Katana](http://katanaproject.codeplex.com/documentation) project represents the set of OWIN components that, while still open source, are built and released by Microsoft. These components include both infrastructure components, such as hosts and servers, as well as functional components, such as authentication components and bindings to frameworks such as [SignalR](../../../signalr/index.md) and [ASP.NET Web API](../../../web-api/overview/getting-started-with-aspnet-web-api/index.md). The project has the following three high level goals: 
+Whereas both the [OWIN](http://owin.org/html/owin.html) specification and *Owin.dll* are community owned and community run open source efforts, the [Katana](https://github.com/aspnet/AspNetKatana/wiki) project represents the set of OWIN components that, while still open source, are built and released by Microsoft. These components include both infrastructure components, such as hosts and servers, as well as functional components, such as authentication components and bindings to frameworks such as [SignalR](../../../signalr/index.md) and [ASP.NET Web API](../../../web-api/overview/getting-started-with-aspnet-web-api/index.md). The project has the following three high level goals: 
 
 - **Portable** – Components should be able to be easily substituted for new components as they become available. This includes all types of components, from the framework to the server and host. The implication of this goal is that third party frameworks can seamlessly run on Microsoft servers while Microsoft frameworks can potentially run on third party servers and hosts.
 - **Modular/flexible**– Unlike many frameworks which include a myriad of features that are turned on by default, Katana project components should be small and focused, giving control over to the application developer in determining which components to use in her application.
@@ -138,7 +135,7 @@ From the command line, we can then navigate to the project root folder and simpl
 - Managing the underlying process.
 - Orchestrating the workflow that results in the selection of a server and the construction of an OWIN pipeline through which requests will be handled.
 
- At present, there are 3 primary hosting options for Katana-based applications:  
+  At present, there are 3 primary hosting options for Katana-based applications:  
   
 **IIS/ASP.NET**: Using the standard HttpModule and HttpHandler types, OWIN pipelines can run on IIS as a part of an ASP.NET request flow. ASP.NET hosting support is enabled by installing the Microsoft.AspNet.Host.SystemWeb NuGet package into a Web application project. Additionally, because IIS acts as both a host and a server, the OWIN server/host distinction is conflated in this NuGet package, meaning that if using the SystemWeb host, a developer cannot substitute an alternate server implementation.  
   
@@ -202,7 +199,7 @@ Like many current libraries and frameworks, the Katana project components are de
 
 [![](an-overview-of-project-katana/_static/image6.png)](an-overview-of-project-katana/_static/image5.png)
 
-Nearly every package in the Katana project depends, directly or indirectly, on the Owin package. You may remember that this is the package that contains the IAppBuilder interface, which provides a concrete implementation of the application startup sequence described in section 4 of the OWIN specification. Additionally, many of the packages depend on Microsoft.Owin, which provides a set of helper types for working with HTTP requests and responses. The remainder of the package can be classified as either hosting infrastructure packages (servers or hosts) or middleware. Packages dependencies that are external to the Katana project are displayed in orange.
+Nearly every package in the Katana project depends, directly or indirectly, on the Owin package. You may remember that this is the package that contains the IAppBuilder interface, which provides a concrete implementation of the application startup sequence described in section 4 of the OWIN specification. Additionally, many of the packages depend on Microsoft.Owin, which provides a set of helper types for working with HTTP requests and responses. The remainder of the package can be classified as either hosting infrastructure packages (servers or hosts) or middleware. Packages and dependencies that are external to the Katana project are displayed in orange.
 
 The hosting infrastructure for Katana 2.0 includes both the SystemWeb and HttpListener-based servers, the OwinHost package for running OWIN applications using OwinHost.exe, and the Microsoft.Owin.Hosting package for self-hosting OWIN applications in a custom host (e.g. console application, Windows service, etc.)
 
@@ -215,7 +212,7 @@ For Katana 2.0, the middleware components are primarily focused on providing dif
 
 ## For more information about Katana
 
-- The Katana project on CodePlex: [http://katanaproject.codeplex.com](http://katanaproject.codeplex.com).
+- The Katana project on GitHub: [https://github.com/aspnet/AspNetKatana/](https://github.com/aspnet/AspNetKatana/).
 - Video: [The Katana Project - OWIN for ASP.NET](https://channel9.msdn.com/Shows/Web+Camps+TV/The-Katana-Project-OWIN-for-ASPNET), by Howard Dierking.
 
 ## Acknowledgements

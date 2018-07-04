@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-vb
 title: "Sorting Custom Paged Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to implement custom paging when presentating data on a web page. In this tutorial we see how to extend the preceding..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2006
-ms.topic: article
 ms.assetid: 4823a186-caaf-4116-a318-c7ff4d955ddc
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-vb
 msc.type: authoredcontent
 ---
@@ -45,7 +42,7 @@ Unfortunately, parameterized `ORDER BY` clauses are not allowed. Instead, we mus
 
 - Write hard-coded queries for each of the sort expressions that may be used; then, use `IF/ELSE` T-SQL statements to determine which query to execute.
 - Use a `CASE` statement to provide dynamic `ORDER BY` expressions based on the `@sortExpressio` n input parameter; see the Used to Dynamically Sort Query Results section in [The Power of SQL `CASE` Statements](http://www.4guysfromrolla.com/webtech/102704-1.shtml) for more information.
-- Craft the appropriate query as a string in the stored procedure and then use [the `sp_executesql` system stored procedure](https://msdn.microsoft.com/en-us/library/ms188001.aspx) to execute the dynamic query.
+- Craft the appropriate query as a string in the stored procedure and then use [the `sp_executesql` system stored procedure](https://msdn.microsoft.com/library/ms188001.aspx) to execute the dynamic query.
 
 Each of these workarounds has some drawbacks. The first option is not as maintainable as the other two as it requires that you create a query for each possible sort expression. Therefore, if later you decide to add new, sortable fields to the GridView you will also need to go back and update the stored procedure. The second approach has some subtleties that introduce performance concerns when sorting by non-string database columns and also suffers from the same maintainability issues as the first. And the third choice, which uses dynamic SQL, introduces the risk for a SQL injection attack if an attacker is able to execute the stored procedure passing in the input parameter values of their choosing.
 
@@ -120,7 +117,7 @@ Now that we ve extended the DAL, we re ready to turn to the BLL. Open the `Produ
 
 Having augmented the DAL and BLL to include methods that utilize the `GetProductsPagedAndSorted` stored procedure, all that remains is to configure the ObjectDataSource in the `SortParameter.aspx` page to use the new BLL method and to pass in the `SortExpression` parameter based on the column that the user has requested to sort the results by.
 
-Start by changing the ObjectDataSource s `SelectMethod` from `GetProductsPaged` to `GetProductsPagedAndSorted`. This can be done through the Configure Data Source wizard, from the Properties window, or directly through the declarative syntax. Next, we need to provide a value for the ObjectDataSource s [`SortParameterName` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.objectdatasource.sortparametername.aspx). If this property is set, the ObjectDataSource attempts to pass in the GridView s `SortExpression` property to the `SelectMethod`. In particular, the ObjectDataSource looks for an input parameter whose name is equal to the value of the `SortParameterName` property. Since the BLL s `GetProductsPagedAndSorted` method has the sort expression input parameter named `sortExpression`, set the ObjectDataSource s `SortExpression` property to sortExpression .
+Start by changing the ObjectDataSource s `SelectMethod` from `GetProductsPaged` to `GetProductsPagedAndSorted`. This can be done through the Configure Data Source wizard, from the Properties window, or directly through the declarative syntax. Next, we need to provide a value for the ObjectDataSource s [`SortParameterName` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.objectdatasource.sortparametername.aspx). If this property is set, the ObjectDataSource attempts to pass in the GridView s `SortExpression` property to the `SelectMethod`. In particular, the ObjectDataSource looks for an input parameter whose name is equal to the value of the `SortParameterName` property. Since the BLL s `GetProductsPagedAndSorted` method has the sort expression input parameter named `sortExpression`, set the ObjectDataSource s `SortExpression` property to sortExpression .
 
 After making these two changes, the ObjectDataSource s declarative syntax should look similar to the following:
 
@@ -133,7 +130,7 @@ After making these two changes, the ObjectDataSource s declarative syntax should
 
 To enable sorting in the GridView, simply check the Enable Sorting checkbox in the GridView s smart tag, which sets the GridView s `AllowSorting` property to `true` and causing the header text for each column to be rendered as a LinkButton. When the end user clicks on one of the header LinkButtons, a postback ensues and the following steps transpire:
 
-1. The GridView updates its [`SortExpression` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.gridview.sortexpression.aspx) to the value of the `SortExpression` of the field whose header link was clicked
+1. The GridView updates its [`SortExpression` property](https://msdn.microsoft.com/library/system.web.ui.webcontrols.gridview.sortexpression.aspx) to the value of the `SortExpression` of the field whose header link was clicked
 2. The ObjectDataSource invokes the BLL s `GetProductsPagedAndSorted` method, passing in the GridView s `SortExpression` property as the value for the method s `sortExpression` input parameter (along with the appropriate `startRowIndex` and `maximumRows` input parameter values)
 3. The BLL invokes the DAL s `GetProductsPagedAndSorted` method
 4. The DAL executes the `GetProductsPagedAndSorted` stored procedure, passing in the `@sortExpression` parameter (along with the `@startRowIndex` and `@maximumRows` input parameter values)
@@ -184,6 +181,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Carlos Santos. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](efficiently-paging-through-large-amounts-of-data-vb.md)
-[Next](creating-a-customized-sorting-user-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](efficiently-paging-through-large-amounts-of-data-vb.md)
+> [Next](creating-a-customized-sorting-user-interface-vb.md)

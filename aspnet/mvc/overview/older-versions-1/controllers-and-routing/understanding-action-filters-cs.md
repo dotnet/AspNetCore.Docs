@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
 title: "Understanding Action Filters (C#) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain action filters. An action filter is an attribute that you can apply to a controller action -- or an entire controller..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/16/2008
-ms.topic: article
 ms.assetid: a94e4e81-40c1-47b7-8613-126a1a6cc93d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
 msc.type: authoredcontent
 ---
@@ -76,7 +73,7 @@ Exception filters are the last type of filter to run. You can use an exception f
 
 Each different type of filter is executed in a particular order. If you want to control the order in which filters of the same type are executed then you can set a filter's Order property.
 
-The base class for all action filters is the `System.Web.Mvc.FilterAttribute` class. If you want to implement a particular type of filter, then you need to create a class that inherits from the base Filter class and implements one or more of the `IAuthorizationFilter`, `IActionFilter`, `IResultFilter`, or `ExceptionFilter` interfaces.
+The base class for all action filters is the `System.Web.Mvc.FilterAttribute` class. If you want to implement a particular type of filter, then you need to create a class that inherits from the base Filter class and implements one or more of the `IAuthorizationFilter`, `IActionFilter`, `IResultFilter`, or `IExceptionFilter` interfaces.
 
 ### The Base ActionFilterAttribute Class
 
@@ -121,6 +118,6 @@ In this tutorial, you were introduced to ASP.NET MVC action filters. You learned
 
 Finally, you learned how to implement a simple action filter. We created a Log action filter that logs the stages of processing a controller action to the Visual Studio Output window.
 
->[!div class="step-by-step"]
-[Previous](asp-net-mvc-routing-overview-cs.md)
-[Next](improving-performance-with-output-caching-cs.md)
+> [!div class="step-by-step"]
+> [Previous](asp-net-mvc-routing-overview-cs.md)
+> [Next](improving-performance-with-output-caching-cs.md)

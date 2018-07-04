@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
 title: "OWIN OAuth 2.0 Authorization Server | Microsoft Docs"
 author: hongyes
 description: "This tutorial will guide you on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware. This is an advanced tutorial that only outlin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/20/2014
-ms.topic: article
 ms.assetid: 20acee16-c70c-41e9-b38f-92bfcf9a4c1c
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
 msc.type: authoredcontent
 ---
@@ -32,16 +29,15 @@ by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://gith
 > 
 > ## Questions and Comments
 > 
-> If you have questions that are not directly related to the tutorial, you can post them at [http://katanaproject.codeplex.com/discussions](http://katanaproject.codeplex.com/discussions). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
+> If you have questions that are not directly related to the tutorial, you can post them at [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana/). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
 
 
 The [OAuth 2.0 framework](http://tools.ietf.org/html/rfc6749) enables a third-party app to obtain limited access to an HTTP service. Instead of using the resource owner's credentials to access a protected resource, the client obtains an access token (which is a string denoting a specific scope, lifetime, and other access attributes). Access tokens are issued to third-party clients by an authorization server with the approval of the resource owner.
 
 This tutorial will cover:
 
-- How to create an authorization server to support 4 Authorization Grants and refresh tokens.
-- Authorization code grant:
-
+- How to create an authorization server to support four authorization grant types and refresh tokens:
+    - Authorization code grant
     - Implicit Grant
     - Resource Owner Password Credentials Grant
     - Client Credentials Grant
@@ -52,12 +48,12 @@ This tutorial will cover:
 ## Prerequisites
 
 - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-editions) or the free [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-express), as indicated in **Software Versions** at the top of the page.
-- Familiarity with OWIN. See [Getting Started with the Katana Project](https://msdn.microsoft.com/en-us/magazine/dn451439.aspx) and [What's new in OWIN and Katana](index.md).
+- Familiarity with OWIN. See [Getting Started with the Katana Project](https://msdn.microsoft.com/magazine/dn451439.aspx) and [What's new in OWIN and Katana](index.md).
 - Familiarity with [OAuth](http://tools.ietf.org/html/rfc6749) terminology, including [Roles](http://tools.ietf.org/html/rfc6749#section-1.1), [Protocol Flow](http://tools.ietf.org/html/rfc6749#section-1.2), and [Authorization Grant](http://tools.ietf.org/html/rfc6749#section-1.3). [OAuth 2.0 introduction](http://tools.ietf.org/html/rfc6749#section-1) provides a good introduction.
 
 ## Create an Authorization Server
 
-In this tutorial, we will roughly sketch out how to use [OWIN](https://msdn.microsoft.com/en-us/magazine/dn451439.aspx) and ASP.NET MVC to create an authorization server. We hope to soon provide a download for the completed sample, as this tutorial does not include each step. First, create an empty web app named *AuthorizationServer* and install the following packages:
+In this tutorial, we will roughly sketch out how to use [OWIN](https://msdn.microsoft.com/magazine/dn451439.aspx) and ASP.NET MVC to create an authorization server. We hope to soon provide a download for the completed sample, as this tutorial does not include each step. First, create an empty web app named *AuthorizationServer* and install the following packages:
 
 - Microsoft.AspNet.Mvc
 - Microsoft.Owin.Host.SystemWeb
@@ -105,10 +101,9 @@ The login page is shown below:
 
 ![](owin-oauth-20-authorization-server/_static/image1.png)
 
-Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/rfc6749#section-4.1) section now. <style type="text/css">
-.auto-style1 {border-style: solid;border-width: 2px;width: 88%;
-}
-</style> **Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/en-us/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
+Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/rfc6749#section-4.1) section now. 
+
+**Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
 
 | Flow steps from Authorization Code Grant section | Sample download performs these steps with: |
 | --- | --- |
@@ -129,7 +124,11 @@ The code above uses an in-memory concurrent dictionary to store the code and ide
 
 [!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample6.cs?highlight=15)]
 
-The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:![](owin-oauth-20-authorization-server/_static/image2.png) If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
+The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:
+
+![](owin-oauth-20-authorization-server/_static/image2.png)
+
+If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
 
 ### Implicit Grant
 

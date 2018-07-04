@@ -1,0 +1,119 @@
+---
+title: Add a new field to a Razor Page in ASP.NET Core
+author: rick-anderson
+description: Shows how to add a new field to a Razor Page with Entity Framework Core
+monikerRange: '>= aspnetcore-2.0'
+ms.author: riande
+ms.date: 05/30/2018
+uid: tutorials/razor-pages/new-field
+---
+# Add a new field to a Razor Page in ASP.NET Core
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+In this section you use [Entity Framework](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
+
+When using EF Code First to automatically create a database, Code First:
+
+* Adds a table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* If the model classes aren't in sync with the DB, EF throws an exception. 
+
+Automatic verification of schema/model in sync makes it easier to find inconsistent database/code issues.
+
+## Adding a Rating Property to the Movie Model
+
+Open the *Models/Movie.cs* file and add a `Rating` property:
+::: moniker range="= aspnetcore-2.0"
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+
+::: moniker-end
+
+Build the app (Ctrl+Shift+B).
+
+Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
+
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
+
+Add the `Rating` field to the Delete and Details pages.
+
+Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous `<div>` element and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+
+![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
+
+The following code shows *Create.cshtml* with a `Rating` field:
+
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
+
+Add the `Rating` field to the Edit Page.
+
+The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
+
+```
+SqlException: Invalid column name 'Rating'.
+```
+
+This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
+
+There are a few approaches to resolving the error:
+
+1. Have the Entity Framework automatically drop and re-create the database using  the new model class schema. This approach is convenient early in the development cycle; it allows you to quickly evolve the model and database schema together. The downside is that you lose existing data in the database. You don't want to use this approach on a production database! Dropping the DB on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
+
+2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
+
+3. Use Code First Migrations to update the database schema.
+
+For this tutorial, use Code First Migrations.
+
+Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie` block.
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
+
+::: moniker range="= aspnetcore-2.0"
+See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/SeedDataRating.cs).
+::: moniker-end
+
+Build the solution.
+
+<a name="pmc"></a>
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+In the PMC, enter the following commands:
+
+```powershell
+Add-Migration Rating
+Update-Database
+```
+
+The `Add-Migration` command tells the framework to:
+
+* Compare the `Movie` model with the `Movie` DB schema.
+* Create code to migrate the DB schema to the new model.
+
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+<a name="ssox"></a>
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX). To delete the database from SSOX:
+
+* Select the database in SSOX.
+* Right click on the database, and select *Delete*.
+* Check **Close existing connections**.
+* Select **OK**.
+* In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+
+  ```powershell
+  Update-Database
+  ```
+
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
+
+> [!div class="step-by-step"]
+> [Previous: Adding Search](xref:tutorials/razor-pages/search)
+> [Next: Adding Validation](xref:tutorials/razor-pages/validation)

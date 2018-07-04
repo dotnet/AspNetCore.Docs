@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
 title: "Host ASP.NET Web API 2 in an Azure Worker Role | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to host ASP.NET Web API in an Azure Worker Role, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) de..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/02/2014
-ms.topic: article
 ms.assetid: 6980ee2e-d6b0-4a08-8fb6-ab96362dd0e3
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
 msc.type: authoredcontent
 ---
@@ -27,7 +24,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > 
 > - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
 > - Web API 2
-> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/en-us/downloads/)
+> - [Azure SDK for .NET 2.3](https://azure.microsoft.com/downloads/)
 
 
 ## Create a Microsoft Azure Project
@@ -125,13 +122,13 @@ The compute emulator assigns a local IP address to the endpoint. You can find th
 
 [![](host-aspnet-web-api-in-an-azure-worker-role/_static/image11.png)](host-aspnet-web-api-in-an-azure-worker-role/_static/image10.png)
 
-Find the IP address under Service Deployments, deployment [id], Service Details. Open a web browser and navigate to http://*address*/test/1, where *address* is the IP address assigned by the compute emulator; for example, `http://127.0.0.1:80/test/1`. You should see the response from the Web API controller:
+Find the IP address under Service Deployments, deployment [id], Service Details. Open a web browser and navigate to http://<em>address</em>/test/1, where <em>address</em> is the IP address assigned by the compute emulator; for example, `http://127.0.0.1:80/test/1`. You should see the response from the Web API controller:
 
 ![](host-aspnet-web-api-in-an-azure-worker-role/_static/image12.png)
 
 ## Deploy to Azure
 
-For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A261C142F).
+For this step, you must have an Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
 
 In Solution Explorer, right-click the AzureApp project. Select **Publish**.
 
@@ -160,4 +157,4 @@ The Azure Activity Log window shows the progress of the deployment. When the app
 ## Additional Resources
 
 - [An Overview of Project Katana](../../../aspnet/overview/owin-and-katana/an-overview-of-project-katana.md)
-- [Katana Project on CodePlex](http://katanaproject.codeplex.com/)
+- [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana)

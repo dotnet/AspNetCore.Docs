@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/mapping-users-to-connections
 title: "Mapping SignalR Users to Connections in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic shows how to retain information about users and their connections."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: ebbc93a8-e6c4-4122-8e0d-3aa42293c747
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/mapping-users-to-connections
 msc.type: authoredcontent
 ---
@@ -92,7 +89,7 @@ Then, from the hub, you can track the state of each connection with the code sho
 
 ### Azure table storage
 
-The following Azure table storage example is similar to the database example. It does not include all of the information that you would need to get started with Azure Table Storage Service. For information, see [How to use Table storage from .NET](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-tables/).
+The following Azure table storage example is similar to the database example. It does not include all of the information that you would need to get started with Azure Table Storage Service. For information, see [How to use Table storage from .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-tables/).
 
 The following example shows a table entity for storing connection information. It partitions the data by user name, and identifies each entity by the connection id, so a user can have multiple connections at any time.
 

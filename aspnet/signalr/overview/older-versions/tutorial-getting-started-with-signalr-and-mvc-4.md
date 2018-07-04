@@ -1,14 +1,11 @@
 ---
+uid: signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 title: "Tutorial: Getting Started with SignalR 1.x and MVC 4 | Microsoft Docs"
 author: pfletcher
 description: "Use ASP.NET SignalR and ASP.NET MVC 4 to build a real-time chat application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/29/2013
-ms.topic: article
 ms.assetid: eeef9f73-6de3-49f9-b50b-9af22108f2ce
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 msc.type: authoredcontent
 ---
@@ -47,7 +44,7 @@ Sections:
 Prerequisites:
 
 - Visual Studio 2010 SP1, Visual Studio 2012, or Visual Studio 2012 Express. If you do not have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2012 Express Development Tool.
-- For Visual Studio 2010, install [ASP.NET MVC 4](https://www.microsoft.com/en-us/download/details.aspx?id=30683).
+- For Visual Studio 2010, install [ASP.NET MVC 4](https://www.microsoft.com/download/details.aspx?id=30683).
 
 This section shows how to create an ASP.NET MVC 4 application, add the SignalR library, and create the chat application.
 
@@ -57,17 +54,17 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
         > In VS 2010, select **.NET Framework 4** in the Framework version dropdown control. SignalR code runs on .NET Framework versions 4 and 4.5.
 
         ![Create mvc web](tutorial-getting-started-with-signalr-and-mvc-4/_static/image3.png)
-    2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
+      2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
 
-        ![Create mvc internet site](tutorial-getting-started-with-signalr-and-mvc-4/_static/image4.png)
-    3. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
+         ![Create mvc internet site](tutorial-getting-started-with-signalr-and-mvc-4/_static/image4.png)
+      3. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
-        `install-package Microsoft.AspNet.SignalR -Version 1.1.3`
-    4. In **Solution Explorer** expand the Scripts folder. Note that script libraries for SignalR have been added to the project.
+         `install-package Microsoft.AspNet.SignalR -Version 1.1.3`
+      4. In **Solution Explorer** expand the Scripts folder. Note that script libraries for SignalR have been added to the project.
 
-        ![Library references](tutorial-getting-started-with-signalr-and-mvc-4/_static/image6.png)
-    5. In **Solution Explorer**, right-click the project, select **Add | New Folder**, and add a new folder named **Hubs**.
-    6. Right-click the **Hubs** folder, click **Add | Class**, and create a new C# class named **ChatHub.cs**. You will use this class as a SignalR server hub that sends messages to all clients.
+         ![Library references](tutorial-getting-started-with-signalr-and-mvc-4/_static/image6.png)
+      5. In **Solution Explorer**, right-click the project, select **Add | New Folder**, and add a new folder named **Hubs**.
+      6. Right-click the **Hubs** folder, click **Add | Class**, and create a new C# class named **ChatHub.cs**. You will use this class as a SignalR server hub that sends messages to all clients.
 
 > [!NOTE]
 > If you use Visual Studio 2012 and have installed the [ASP.NET and Web Tools 2012.2 update](../../../visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw.md#_Installation), you can use the new SignalR item template to create the hub class. To do that, right-click the **Hubs** folder, click **Add | New Item**, select **SignalR Hub Class (v1)**, and name the class **ChatHub.cs**.

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/setting-up-database
 title: "Getting Started with Entity Framework 6 Database First using MVC 5 | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/01/2014
-ms.topic: article
 ms.assetid: 095abad4-3bfe-4f06-b092-ae6a735b7e49
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
 msc.type: authoredcontent
 ---
@@ -31,7 +28,7 @@ This topic addresses the situation where you have a database and want to generat
 
 For an introductory example of Code First development, see [Getting Started with ASP.NET MVC 5](../introduction/getting-started.md). For a more advanced example, see [Creating an Entity Framework Data Model for an ASP.NET MVC 4 App](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
-For guidance on selecting which Entity Framework approach to use, see [Entity Framework Development Approaches](https://msdn.microsoft.com/en-us/library/ms178359.aspx#dbfmfcf).
+For guidance on selecting which Entity Framework approach to use, see [Entity Framework Development Approaches](https://msdn.microsoft.com/library/ms178359.aspx#dbfmfcf).
 
 ## Prerequisites
 
@@ -43,7 +40,7 @@ To mimic the environment of having an existing database, you will first create a
 
 This tutorial was developed using LocalDB with either Visual Studio 2013 or Visual Studio Express 2013 for Web. You can use an existing database server instead of LocalDB, but depending on your version of Visual Studio and your type of database, all of the data tools in Visual Studio might not be supported. If the tools are not available for your database, you may need to perform some of the database-specific steps within the management suite for your database.
 
-If you have a problem with the database tools in your version of Visual Studio, make sure you have installed the latest version of the database tools. For information about updating or installing the database tools, see [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/en-us/data/hh297027).
+If you have a problem with the database tools in your version of Visual Studio, make sure you have installed the latest version of the database tools. For information about updating or installing the database tools, see [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/hh297027).
 
 Launch Visual Studio and create a **SQL Server Database Project**. Name the project **ContosoUniversityData**.
 
@@ -105,5 +102,5 @@ An editable view of the table data is displayed.
 
 Your database is now set up and populated with data. In the next tutorial, you will create a web application for the database.
 
->[!div class="step-by-step"]
-[Next](creating-the-web-application.md)
+> [!div class="step-by-step"]
+> [Next](creating-the-web-application.md)

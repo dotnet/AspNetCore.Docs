@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/enhancing-data-validation
 title: "EF Database First with ASP.NET MVC: Enhancing Data Validation | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/29/2014
-ms.topic: article
 ms.assetid: 0ed5e67a-34c0-4b57-84a6-802b0fb3cd00
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/enhancing-data-validation
 msc.type: authoredcontent
 ---
@@ -45,7 +42,7 @@ Browse to the page for editing enrollments, and attempt to provide a grade above
 
 ![grade range error](enhancing-data-validation/_static/image2.png)
 
-For a full list of data validation annotations you can apply to properties and classes, see [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx).
+For a full list of data validation annotations you can apply to properties and classes, see [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx).
 
 ## Add metadata classes
 
@@ -81,6 +78,6 @@ Save the ContosoModel.edmx file to apply the changes.
 
 Open the Student.cs file or the Enrollment.cs file, and notice that the data validation attributes you applied earlier are no longer in the file. However, run the application, and notice that the validation rules are still applied when you enter data.
 
->[!div class="step-by-step"]
-[Previous](customizing-a-view.md)
-[Next](publish-to-azure.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-a-view.md)
+> [Next](publish-to-azure.md)

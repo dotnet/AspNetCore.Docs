@@ -19,10 +19,6 @@
     "master": [
       "Publish",
       "Pdf"
-    ],
-    "aspnetmigration": [
-      "Publish",
-      "Pdf"
     ]
   },
   "docsets_to_publish": [
@@ -44,7 +40,7 @@
     {
       "docset_name": "aspnet-core-conceptual",
       "build_source_folder": "aspnetcore",
-      "build_output_subfolder": "aspnet/core",
+      "build_output_subfolder": "aspnetcore",
       "locale": "en-us",
       "version": 0,
       "open_to_public_contributors": true,
@@ -53,7 +49,8 @@
         "ManagedReference": "Content",
         "RestApi": "Content"
       },
-      "template_folder": "_themes"
+      "template_folder": "_themes",
+      "moniker_ranges": [">= aspnetcore-1.0"]
     }
   ],
   "notification_subscribers": [],

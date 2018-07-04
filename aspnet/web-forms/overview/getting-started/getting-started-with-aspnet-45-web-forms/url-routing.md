@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/url-routing
 title: "URL Routing | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 4f4bf092-c400-471f-a876-78fda0417890
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/url-routing
 msc.type: authoredcontent
 ---
@@ -147,6 +144,6 @@ In this tutorial, you have added routes for categories and products. You have le
 [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)  
 [Microsoft Azure - Free Trial](https://azure.microsoft.com/pricing/free-trial/)
 
->[!div class="step-by-step"]
-[Previous](membership-and-administration.md)
-[Next](aspnet-error-handling.md)
+> [!div class="step-by-step"]
+> [Previous](membership-and-administration.md)
+> [Next](aspnet-error-handling.md)

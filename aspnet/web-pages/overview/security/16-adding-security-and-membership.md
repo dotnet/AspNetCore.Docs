@@ -1,14 +1,11 @@
 ---
+uid: web-pages/overview/security/16-adding-security-and-membership
 title: "Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This chapter shows you how to secure your website so that some of the pages are available only to people who log in. (You'll also see how to create pages tha..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/24/2014
-ms.topic: article
 ms.assetid: 7a77c2c0-deea-4290-a9c3-97958891758e
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security/16-adding-security-and-membership
 msc.type: authoredcontent
 ---
@@ -82,26 +79,26 @@ The following procedure describes how to create the site and configure it.
     If you do not want to set up email confirmation, you can skip this step and the next step. If the SMTP values are not set, the new account is immediately available without a confirmation email.
 6. Modify the following email-related settings in the code:
 
-    - Set `WebMail.SmtpServer` to the name of the SMTP server that you have access to.
-    - Leave `WebMail.EnableSsl` set to `true`. This setting secures the credentials that are sent to the SMTP server by encrypting them.
-    - Set `WebMail.UserName` to the user name for your SMTP server account.
-    - Set `WebMail.Password` to the password for your SMTP server account.
-    - Set `WebMail.From` to your own email address. This is the email address that the message is sent from.
+   - Set `WebMail.SmtpServer` to the name of the SMTP server that you have access to.
+   - Leave `WebMail.EnableSsl` set to `true`. This setting secures the credentials that are sent to the SMTP server by encrypting them.
+   - Set `WebMail.UserName` to the user name for your SMTP server account.
+   - Set `WebMail.Password` to the password for your SMTP server account.
+   - Set `WebMail.From` to your own email address. This is the email address that the message is sent from.
 
-    > [!NOTE] 
-    > 
-    > **Tip** For additional information about the values for these properties, see [Configuring Email Settings](https://go.microsoft.com/fwlink/?LinkID=202906#configuring_email_settings) in [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkID=202906).
+     > [!NOTE] 
+     > 
+     > **Tip** For additional information about the values for these properties, see [Configuring Email Settings](https://go.microsoft.com/fwlink/?LinkID=202906#configuring_email_settings) in [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkID=202906).
 7. Save and close *\_AppStart.cshtml*.
 8. Run the *Default.cshtml* page in a browser.
 
     ![security-membership-2](16-adding-security-and-membership/_static/image1.png)
 
-    > [!NOTE]
-    > If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
-    > 
-    > [!code-xml[Main](16-adding-security-and-membership/samples/sample2.xml)]
-    > 
-    > Add this element as a child of the `<configuration>` element and as a peer of the `<system.web>` element.
+   > [!NOTE]
+   > If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
+   > 
+   > [!code-xml[Main](16-adding-security-and-membership/samples/sample2.xml)]
+   > 
+   > Add this element as a child of the `<configuration>` element and as a peer of the `<system.web>` element.
 9. In the upper-right corner of the page, click the **Register** link. The *Register.cshtml* page is displayed.
 10. Enter a user name and password and then click **Register**.
 
@@ -114,14 +111,14 @@ The following procedure describes how to create the site and configure it.
 12. Click the hyperlink to activate your account. The confirmation hyperlink opens a registration confirmation page.
 
     ![security-membership-5](16-adding-security-and-membership/_static/image4.png)
-- Click the **Login** link, and then log in using the account that you registered.
+13. Click the **Login** link, and then log in using the account that you registered.
 
-    After you log in, the **Login** and **Register** links are replaced by a **Logout** link. Your login name is displayed as a link. (The link lets you go to a page where you can change your password.)
+      After you log in, the **Login** and **Register** links are replaced by a **Logout** link. Your login name is displayed as a link. (The link lets you go to a page where you can change your password.)
 
-    ![security-membership-6](16-adding-security-and-membership/_static/image5.png)
+      ![security-membership-6](16-adding-security-and-membership/_static/image5.png)
 
-    > [!NOTE]
-    > By default, ASP.NET web pages send credentials to the server in clear text (as human-readable text). A production site should use secure HTTP (https://, also known as the *secure sockets layer* or SSL) to encrypt sensitive information that's exchanged with the server. You can required email messages to be sent using SSL by setting `WebMail.EnableSsl=true` as in the previous example. For more information about SSL, see [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660).
+      > [!NOTE]
+      > By default, ASP.NET web pages send credentials to the server in clear text (as human-readable text). A production site should use secure HTTP (https://, also known as the *secure sockets layer* or SSL) to encrypt sensitive information that's exchanged with the server. You can required email messages to be sent using SSL by setting `WebMail.EnableSsl=true` as in the previous example. For more information about SSL, see [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660).
 
 ## Additional Membership Functionality in the Site
 
@@ -159,7 +156,7 @@ In this procedure, you'll create a folder that will contain pages that are avail
     (The port number (38366) will probably be different in your URL.)
 
     You're redirected to the *Login.cshtml* page, because you aren't logged in.
-- Log in using the account you created earlier. You're redirected back to the *MembersInformation* page. Because you're logged in, this time you see the page contents.
+7. Log in using the account you created earlier. You're redirected back to the *MembersInformation* page. Because you're logged in, this time you see the page contents.
 
 To secure access to multiple pages, you can do this:
 
@@ -221,10 +218,10 @@ The login page will not stop automated programs (sometimes referred to as *web r
 7. Replace `PUBLIC_KEY` with your key.
 8. If you haven't removed it already, remove the `<div>` element that contains text that starts with "To enable CAPTCHA verification ...". (Remove the entire `<div>` element and its contents.)
 
-1. Run *Default.cshtml* in a browser. If you're logged into the site, click the **Logout** link.
-2. Click the **Register** link and test the registration using the CAPTCHA test.
+9. Run *Default.cshtml* in a browser. If you're logged into the site, click the **Logout** link.
+10. Click the **Register** link and test the registration using the CAPTCHA test.
 
-    ![security-membership-10](16-adding-security-and-membership/_static/image9.png)
+     ![security-membership-10](16-adding-security-and-membership/_static/image9.png)
 
 For more information about the `ReCaptcha` helper, see [Using a CATPCHA to Prevent Automated Programs (Bots) from Using Your ASP.NET Web Site](https://go.microsoft.com/fwlink/?LinkId=251967).
 
@@ -248,13 +245,13 @@ The procedure earlier in this article relies on using the **Starter Site** templ
 
 The basic process is described in the blog post [THE most basic way to implement ASP.NET Razor security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2240). Most of the work is done using the following methods and properties of the `WebSecurity` helper:
 
-- [WebSecurty.UserExists](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.userexists(v=vs.99).aspx), [WebSecurity.CreateUserAndAccount](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.createuserandaccount(v=vs.99).aspx). These methods let you determine whether someone is already registered and to register them.
-- [WebSecurty.IsAuthenticated](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.isauthenticated(v=vs.99).aspx). This property lets you determine whether the current user is logged in. This is useful to redirect users to a login page if they have not already logged in.
-- [WebSecurity.Login](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.login(v=vs.99).aspx), [WebSecurity.Logout](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.logout(v=vs.99).aspx). These methods log a user in or out.
-- [WebSecurity.CurrentUserName](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity.currentusername(v=vs.99).aspx). This property is useful for displaying the current user's logged-in name (if the user is logged in).
-- [WebSecurity.ConfirmAccount](https://msdn.microsoft.com/en-us/library/gg569286(v=vs.99).aspx). This method is useful if you set up email confirmation for registration. (Details are described in the blog post [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267).)
+- [WebSecurty.UserExists](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.userexists(v=vs.99).aspx), [WebSecurity.CreateUserAndAccount](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.createuserandaccount(v=vs.99).aspx). These methods let you determine whether someone is already registered and to register them.
+- [WebSecurty.IsAuthenticated](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.isauthenticated(v=vs.99).aspx). This property lets you determine whether the current user is logged in. This is useful to redirect users to a login page if they have not already logged in.
+- [WebSecurity.Login](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.login(v=vs.99).aspx), [WebSecurity.Logout](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.logout(v=vs.99).aspx). These methods log a user in or out.
+- [WebSecurity.CurrentUserName](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity.currentusername(v=vs.99).aspx). This property is useful for displaying the current user's logged-in name (if the user is logged in).
+- [WebSecurity.ConfirmAccount](https://msdn.microsoft.com/library/gg569286(v=vs.99).aspx). This method is useful if you set up email confirmation for registration. (Details are described in the blog post [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267).)
 
-To manage roles, you can use the [Roles](https://msdn.microsoft.com/en-us/library/gg538398(v=vs.99).aspx) and [Membership](https://msdn.microsoft.com/en-us/library/gg569035(v=vs.99).aspx) classes, as described in the blog entry.
+To manage roles, you can use the [Roles](https://msdn.microsoft.com/library/gg538398(v=vs.99).aspx) and [Membership](https://msdn.microsoft.com/library/gg569035(v=vs.99).aspx) classes, as described in the blog entry.
 
 ## Additional Resources
 
@@ -262,6 +259,6 @@ To manage roles, you can use the [Roles](https://msdn.microsoft.com/en-us/librar
 - [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660)
 - [THE most basic way to implement ASP.NET Razor security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2240) and [Using the confirmation feature for ASP.NET Web Pages security](http://mikepope.com/blog/DisplayBlog.aspx?permalink=2267). These are blog posts that describe how to implement ASP.NET membership features without using the **Starter Site** template.
 - [Enabling Login from External Sites in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=251969)
-- [WebSecurity Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99)) (MSDN)
-- [SimpleRoleProvider Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.simpleroleprovider(v=vs.99)) (MSDN)
-- [SimpleMembershipProvider Class API reference](https://msdn.microsoft.com/en-us/library/webmatrix.webdata.simplemembershipprovider(v=vs.99)) (MSDN)
+- [WebSecurity Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.websecurity(v=vs.99)) (MSDN)
+- [SimpleRoleProvider Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.simpleroleprovider(v=vs.99)) (MSDN)
+- [SimpleMembershipProvider Class API reference](https://msdn.microsoft.com/library/webmatrix.webdata.simplemembershipprovider(v=vs.99)) (MSDN)

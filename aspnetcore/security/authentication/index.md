@@ -1,37 +1,45 @@
 ---
-title: Authentication | Microsoft Docs
+title: Authentication in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Discover topics pertaining to ASP.NET Core authentication technologies.
 ms.author: riande
-manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
-ms.assetid: 981852c9-78f9-4590-aaee-9d50a2838dfe
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: security/authentication/index
 ---
-# Authentication
+# Authentication in ASP.NET Core
 
-* [Introduction to Identity](identity.md)
+* [Community OSS authentication options](xref:security/authentication/community)
 
-* [Enabling authentication using Facebook, Google and other external providers](social/index.md)
+* [Introduction to Identity](xref:security/authentication/identity)
 
-* [Account Confirmation and Password Recovery](accconfirm.md)
+* [Enable authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index)
 
-* [Two-factor authentication with SMS](2fa.md)
+* [Enable authentication with WS-Federation](xref:security/authentication/ws-federation)
 
-* [🔧 Supporting Third Party Clients using OAuth 2.0](oauth2.md)
+* [Enable QR code generation in Identity](xref:security/authentication/identity-enable-qrcodes)
 
-* [Using Cookie Middleware without ASP.NET Core Identity](cookie.md)
+* [Configure Windows Authentication](xref:security/authentication/windowsauth)
 
-* [Azure Active Directory](azure-active-directory/index.md)
+* [Account confirmation and password recovery](xref:security/authentication/accconfirm)
 
-  * [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
+* [Two-factor authentication with SMS](xref:security/authentication/2fa)
 
-  * [Calling an ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
+* [Use cookie authentication without Identity](xref:security/authentication/cookie)
 
-  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore)
+* [Azure Active Directory](xref:security/authentication/azure-active-directory/index)
 
-* [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)
+  * [Integrate Azure AD into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
+
+  * [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](xref:security/authentication/azure-ad-b2c)
+
+  * [Integrate Azure AD B2C into an ASP.NET Core web API](xref:security/authentication/azure-ad-b2c-webapi)
+
+  * [Call an ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+
+  * [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
+
+* [Secure ASP.NET Core apps with IdentityServer4](http://docs.identityserver.io/en/release/)
+
+* [Secure ASP.NET Core apps with Azure App Service Authentication (Easy Auth)](/azure/app-service/app-service-authentication-overview)
+
+* [Articles based on projects created with individual user accounts](xref:security/authentication/individual)

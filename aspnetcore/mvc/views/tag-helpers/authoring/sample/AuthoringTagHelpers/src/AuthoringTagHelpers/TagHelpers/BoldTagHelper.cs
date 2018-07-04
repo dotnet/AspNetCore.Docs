@@ -13,12 +13,3 @@ namespace AuthoringTagHelpers.TagHelpers
         }
     }
 }
-
-/*
- * public IActionResult About()
-{
-    ViewData["Message"] = "Your application description page.";
-    return View("AboutBoldOnly");
-    // return View();
-}
-*/

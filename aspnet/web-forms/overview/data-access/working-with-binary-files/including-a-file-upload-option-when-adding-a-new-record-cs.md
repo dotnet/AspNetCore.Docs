@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs
 title: "Including a File Upload Option When Adding a New Record (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to create a Web interface that allows the user to both enter text data and upload binary files. To illustrate the options available t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: 362ade25-3965-4fb2-88d2-835c4786244f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs
 msc.type: authoredcontent
 ---
@@ -170,7 +167,7 @@ If a user uploads an incorrect file type, we need to cancel the insert and displ
 
 ## Step 6: Saving the Uploaded Brochure to the Web Server s File System
 
-When the user enters the values for a new category and clicks the Insert button, a postback occurs and the inserting workflow unfolds. First, the DetailsView s [`ItemInserting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.detailsview.iteminserting.aspx) fires. Next, the ObjectDataSource s `Insert()` method is invoked, which results in a new record being added to the `Categories` table. After that, the DetailsView s [`ItemInserted` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.detailsview.iteminserted.aspx) fires.
+When the user enters the values for a new category and clicks the Insert button, a postback occurs and the inserting workflow unfolds. First, the DetailsView s [`ItemInserting` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.detailsview.iteminserting.aspx) fires. Next, the ObjectDataSource s `Insert()` method is invoked, which results in a new record being added to the `Categories` table. After that, the DetailsView s [`ItemInserted` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.detailsview.iteminserted.aspx) fires.
 
 Before the ObjectDataSource s `Insert()` method is invoked, we must first ensure that the appropriate file types were uploaded by the user and then save the brochure PDF to the web server s file system. Create an event handler for the DetailsView s `ItemInserting` event and add the following code:
 
@@ -185,7 +182,7 @@ The event handler starts by referencing the `BrochureUpload` FileUpload control 
 
 As discussed in the [Uploading Files](uploading-files-cs.md) tutorial, care must be taken when saving files to the file system so that one user s upload does not overwrite another s. For this tutorial we will attempt to use the same name as the uploaded file. If there already exists a file in the `~/Brochures` directory with that same file name, however, we'll append a number at the end until a unique name is found. For example, if the user uploads a brochure file named `Meats.pdf`, but there is already a file named `Meats.pdf` in the `~/Brochures` folder, we'll change the saved file name to `Meats-1.pdf`. If that exists, we'll try `Meats-2.pdf`, and so on, until a unique file name is found.
 
-The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/en-us/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
+The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
 
 
 [!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample7.cs)]
@@ -280,6 +277,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Dave Gardner, Teresa Murphy, and Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-binary-data-in-the-data-web-controls-cs.md)
-[Next](updating-and-deleting-existing-binary-data-cs.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-binary-data-in-the-data-web-controls-cs.md)
+> [Next](updating-and-deleting-existing-binary-data-cs.md)

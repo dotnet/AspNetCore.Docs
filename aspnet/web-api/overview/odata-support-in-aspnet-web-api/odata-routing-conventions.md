@@ -1,14 +1,11 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
 title: "Routing Conventions in ASP.NET Web API 2 Odata | Microsoft Docs"
 author: MikeWasson
 description: "This article describes the routing conventions that Web API uses for OData endpoints."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/31/2013
-ms.topic: article
 ms.assetid: adbc175a-14eb-4ab2-a441-d056ffa8266f
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
 msc.type: authoredcontent
 ---
@@ -141,7 +138,7 @@ Currently the built-in conventions do not cover all possible OData URIs. You can
 
 For both methods, if the convention does not apply to that request, the method should return null.
 
-The **ODataPath** parameter represents the parsed OData resource path. It contains a list of **[ODataPathSegment](https://msdn.microsoft.com/en-us/library/system.web.http.odata.routing.odatapathsegment.aspx)** instances, one for each segment of the resource path. **ODataPathSegment** is an abstract class; each segment type is represented by a class that derives from **ODataPathSegment**.
+The **ODataPath** parameter represents the parsed OData resource path. It contains a list of **[ODataPathSegment](https://msdn.microsoft.com/library/system.web.http.odata.routing.odatapathsegment.aspx)** instances, one for each segment of the resource path. **ODataPathSegment** is an abstract class; each segment type is represented by a class that derives from **ODataPathSegment**.
 
 The **ODataPath.TemplatePath** property is a string that represents the concatenation all of the path segments. For example, if the URI is `/Products(1)/Supplier`, the path template is &quot;~/entityset/key/navigation&quot;. Notice that the segments don't correspond directly to URI segments. For example, the entity key (1) is represented as its own **ODataPathSegment**.
 
@@ -164,7 +161,7 @@ Notes:
 1. I derive from **EntitySetRoutingConvention**, because the **SelectController** method in that class is appropriate for this new routing convention. That means I don't need to re-implement **SelectController**.
 2. The convention applies only to GET requests, and only when the path template is &quot;~/entityset/key/navigation/key&quot;.
 3. The action name is &quot;Get{EntityType}&quot;, where *{EntityType}* is the type of the navigation collection. For example, &quot;GetSupplier&quot;. You can use any naming convention that you like &#8212; just make sure your controller actions match.
-4. The action takes two parameters named *key* and *relatedKey*. (For a list of some predefined parameter names, see [ODataRouteConstants](https://msdn.microsoft.com/en-us/library/system.web.http.odata.routing.odatarouteconstants.aspx).)
+4. The action takes two parameters named *key* and *relatedKey*. (For a list of some predefined parameter names, see [ODataRouteConstants](https://msdn.microsoft.com/library/system.web.http.odata.routing.odatarouteconstants.aspx).)
 
 The next step is adding the new convention to the list of routing conventions. This happens during configuration, as shown in the following code:
 

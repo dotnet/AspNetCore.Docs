@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
 title: "Create a secure ASP.NET Web Forms app with user registration, email confirmation and password reset (C#) | Microsoft Docs"
 author: Erikre
 description: "This tutorial shows you how to build an ASP.NET Web Forms app with user registration, email confirmation and password reset using the ASP.NET Identity member..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/02/2014
-ms.topic: article
 ms.assetid: 0a8d6044-5fab-4213-82d6-5618d5601358
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
 msc.type: authoredcontent
 ---
@@ -46,8 +43,8 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
 2. From the **New ASP.NET Project** dialog box, select the **Web Forms** template. Leave the default authentication as **Individual User Accounts**. If you'd like to host the app in Azure, leave the **Host in the cloud** check box checked.   
  Then, click **OK** to create the new project.  
     ![New ASP.NET Project dialog box](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/_static/image1.png)
-3. Enable Secure Sockets Layer (SSL) for the project. Follow the steps available in the **Enable SSL for the Project** section of the [Getting Started with Web Forms tutorial series](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md).
-4. Run the app, click the **Register** link and register a new user. At this point, the only validation on the email is based on the [[EmailAddress]](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute to ensure the email address is well-formed. You will modify the code to add email confirmation. Close the browser window.
+3. Enable Secure Sockets Layer (SSL) for the project. Follow the steps available in the **Enable SSL for the Project** section of the [Getting Started with Web Forms tutorial series](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md#SSLWebForms).
+4. Run the app, click the **Register** link and register a new user. At this point, the only validation on the email is based on the [[EmailAddress]](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute to ensure the email address is well-formed. You will modify the code to add email confirmation. Close the browser window.
 5. In **Server Explorer** of Visual Studio (**View** -&gt; **Server Explorer**), navigate to **Data Connections\DefaultConnection\Tables\AspNetUsers**, right click and select **Open table definition**. 
 
     The following image shows the `AspNetUsers` table schema:
@@ -72,7 +69,7 @@ Although this tutorial only shows how to add email notification through [SendGri
 
 1. In Visual Studio, open the **Package Manager Console** (**Tools** -&gt; **NuGet Package Manger** -&gt; **Package Manager Console**), and enter the following command:  
     `Install-Package SendGrid`
-2. Go to the [Azure SendGrid sign-up page](https://azure.microsoft.com/en-us/gallery/store/sendgrid/sendgrid-azure/) and register for free SendGrid account. You can also sign-up for a free SendGrid account directly on [SendGrid's site](http://www.sendgrid.com).
+2. Go to the [Azure SendGrid sign-up page](https://azure.microsoft.com/gallery/store/sendgrid/sendgrid-azure/) and register for free SendGrid account. You can also sign-up for a free SendGrid account directly on [SendGrid's site](http://www.sendgrid.com).
 3. From **Solution Explorer** open the *IdentityConfig.cs* file in the *App\_Start* folder and add the following code highlighted in yellow to the `EmailService` class to configure **SendGrid**:
 
     [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample1.cs?highlight=3,5,8-37)]
@@ -98,9 +95,9 @@ Although this tutorial only shows how to add email notification through [SendGri
 2. In **Solution Explorer**, right-click *Default.aspx* and select **Set As Start Page**.
 3. Run the app by pressing **F5.** After the page is displayed, click the **Register** link to display the Register page.
 4. Enter your email and password, then click the **Register** button to send an email message via SendGrid.  
- The current state of your project and code will allow the user to log in once they complete the registration form, even though they haven't confirmed their account.
+   The current state of your project and code will allow the user to log in once they complete the registration form, even though they haven't confirmed their account.
 5. Check your email account and click on the link to confirm your email.  
- Once you submit the registration form, you will be logged in.  
+   Once you submit the registration form, you will be logged in.  
     ![Sample Website - Signed In](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/_static/image4.png)
 
 <a id="require"></a>
@@ -140,9 +137,9 @@ Although you have confirmed the email account, at this point you would not need 
 4. Run the app by pressing **F5.** After the page is displayed, click the **Log in** link.
 5. Click the **Forgot your password?** link to display the **Forgot Password** page.
 6. Enter your email address and click the **Submit** button to send an email to your address which will allow you to reset your password.   
- Check your email account and click on the link to display the **Reset Password** page.
+   Check your email account and click on the link to display the **Reset Password** page.
 7. On the **Reset Password** page, enter your email, password, and confirmed password. Then, press the **Reset** button.  
- When you successfully reset your password, the **Password Changed** page will be displayed. Now you can log in with your new password.
+   When you successfully reset your password, the **Password Changed** page will be displayed. Now you can log in with your new password.
 
 <a id="rsend"></a>
 ## Resend Email Confirmation Link
@@ -161,7 +158,7 @@ Once a user creates a new local account, they are emailed a confirmation link th
 4. Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test.
 5. Run the app (**F5**) and register your email address.
 6. Before confirming your new account via the email that was just sent, attempt to log in with the new account.  
- You'll see that you are unable to log in and that you must have a confirmed email account. In addition, you can now resend a confirmation message to your email account.
+   You'll see that you are unable to log in and that you must have a confirmed email account. In addition, you can now resend a confirmation message to your email account.
 7. Enter your email address and password, then press the **Resend confirmation** button.
 8. Once you confirm your email address based on the newly sent email message, log in to the app.
 
@@ -179,6 +176,6 @@ If you don't receive an email containing the link to verify your credentials:
 
 - [Links to ASP.NET Identity Recommended Resources](../../../identity/overview/getting-started/aspnet-identity-recommended-resources.md)
 - [Account Confirmation and Password Recovery with ASP.NET Identity](../../../identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md)
-- [ASP.NET Web Forms tutorial series - Add an OAuth 2.0 Provider](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md)
-- [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)
-- [ASP.NET Web Forms tutorial series - Enable SSL for the Project](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md)
+- [ASP.NET Web Forms tutorial series - Add an OAuth 2.0 Provider](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md#OAuthWebForms)
+- [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)
+- [ASP.NET Web Forms tutorial series - Enable SSL for the Project](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md#SSLWebForms)

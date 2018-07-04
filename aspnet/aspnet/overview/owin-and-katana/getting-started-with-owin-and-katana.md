@@ -1,14 +1,11 @@
 ---
+uid: aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 title: "Getting Started with OWIN and Katana | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/27/2013
-ms.topic: article
 ms.assetid: 6dae249f-5ac6-4f6e-bc49-13bcd5a54a70
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 msc.type: authoredcontent
 ---
@@ -68,7 +65,7 @@ Press F5 to begin debugging. Visual Studio will open a browser window to `http:/
 
 ## Self-Host OWIN in a Console Application
 
-It's easy to convert this application from IIS hosting to self-hosting in a custom process. With IIS hosting, IIS acts as both the HTTP server and as the process that host the sever. With self-hosting, your application creates the process and uses the **HttpListener** class as the HTTP server.
+It's easy to convert this application from IIS hosting to self-hosting in a custom process. With IIS hosting, IIS acts as both the HTTP server and as the process that hosts the service. With self-hosting, your application creates the process and uses the **HttpListener** class as the HTTP server.
 
 In Visual Studio, create a new console application. In the Package Manager Console window, type the following command:
 

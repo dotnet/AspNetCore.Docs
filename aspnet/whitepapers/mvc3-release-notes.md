@@ -1,14 +1,11 @@
 ---
+uid: whitepapers/mvc3-release-notes
 title: "ASP.NET MVC 3 | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/06/2010
-ms.topic: article
 ms.assetid: f44c166e-7e91-48a0-a6f8-d9285f3594e5
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc3-release-notes
 msc.type: content
 ---
@@ -226,7 +223,7 @@ This template enables you to quickly create a working data-entry user interface.
 
 For *Data Context class*, you can make these choices:
 
-- If you want to use Code First and have no existing data context class, choose *&lt;New data context…&gt;*". A data context class will then be generated for you.
+- If you want to use Code First and have no existing data context class, choose **New data context **. A data context class will then be generated for you.
 - If you want to use Code First and have an existing data context class, choose it here. It will be updated to persist the model class you have selected.
 - If you are using Database First or Model First, choose your object context class here.
 
@@ -245,11 +242,11 @@ The dialog box you use to create new ASP.NET MVC 3 projects includes multiple im
 
 The Project Template list includes a new Intranet Application template. This template contains settings for building a web application using Windows authentication instead of forms authentication. Because an intranet application requires some IIS settings that can't be encapsulated in a project template, the template includes a readme file with instructions for how to make the project template work in IIS. Documentation for the a new Intranet Application template is available on the MSDN website at the following URL:
 
-[https://msdn.microsoft.com/en-us/library/gg703322(VS.98).aspx](https://msdn.microsoft.com/en-us/library/gg703322(VS.98).aspx)
+[https://msdn.microsoft.com/library/gg703322(VS.98).aspx](https://msdn.microsoft.com/library/gg703322(VS.98).aspx)
 
 #### Project templates are now HTML5 enabled
 
-The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 *&lt;header&gt;*, *&lt;footer&gt;*, and *&lt;navigation&gt;* elements.
+The new-project dialog box now contains an option to add HTML5-specific features to the project templates. Selecting the option causes views to be generated that contain the new HTML5 `<header>`, `<footer>`, and `<navigation>` elements.
 
 Note that earlier versions of browsers do not support HTML5-specific tags. To address this limitation, the HTML5 project templates include a reference to the Modernizr library. (See the next section.)
 
@@ -287,7 +284,7 @@ When you create a new ASP.NET MVC 3 project, the project includes the JavaScript
 
 For example, given the frequency of new jQuery releases, the version of jQuery included in the project template will at some point be out of date. However, because jQuery is included as an installed NuGet package, you will be notified in the NuGet dialog box when newer versions of jQuery are available.
 
-Because jQuery includes the version number in the file name, updating jQuery to the latest version also requires updating the *&lt;script&gt;* tag that references the jQuery file to use the new file name. Other included script libraries do not include the version number in the script name, so they can be more easily updated to their latest versions.
+Because jQuery includes the version number in the file name, updating jQuery to the latest version also requires updating the `<script>` tag that references the jQuery file to use the new file name. Other included script libraries do not include the version number in the script name, so they can be more easily updated to their latest versions.
 
 <a id="tu-KI"></a>
 ## Known Issues
@@ -313,7 +310,7 @@ The ASP.NET MVC project templates for Visual Studio were updated to include the 
 <a id="RTM-2"></a>
 ### Change: Changed the default ModelMetadataProvider back to DataAnnotationsModelMetadataProvider
 
-The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available on the CodePlex website at [http://aspnet.codeplex.com/](http://aspnet.codeplex.com/).
+The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available at [ASP.NET WebStack](https://github.com/aspnet/AspNetWebStack).
 
 <a id="RTM-3"></a>
 ### Fixed: Pasting part of a Razor expression that contains whitespace results in it being reversed
@@ -347,7 +344,7 @@ Renaming a Razor file using Solution Explorer while the file is opened in the ed
 - IntelliSense for Razor syntax does not work when ReSharper is installed. If you have ReSharper installed and want to take advantage of the Razor IntelliSense support in ASP.NET MVC 3, see the entry [Razor Intellisense and ReSharper](http://blogs.jetbrains.com/dotnet/2010/11/razor-intellisense-and-resharper/) on Hadi Hariri's blog, which discusses ways to use them together today.
 - CCSHTML and VBHTML views created with the Beta version of ASP.NET MVC 3 do not have their build action set correctly, with the result that these view types are omitted when the project is published. The Build Action value for these files should be set to "Content". ASP.NET MVC 3 RTM fixes this issue for new files, but doesn't correct the setting for existing files for a project created with prerelease versions.
 - ![](mvc3-release-notes/_static/image3.png)
-- During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended./li&gt;
+- During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended.
 - When you are editing a Razor view (.cshtml file), the Go To Controller menu item in Visual Studio will not be available, and there are no code snippets.
 - If you install ASP.NET MVC 3 for Visual Web Developer Express on a computer where Visual Studio is not installed, and then later install Visual Studio, you must reinstall ASP.NET MVC 3. Visual Studio and Visual Web Developer Express share components that are upgraded by the ASP.NET MVC 3 installer. The same issue applies if you install ASP.NET MVC 3 for Visual Studio on a computer that does not have Visual Web Developer Express and then later install Visual Web Developer Express.
 
@@ -392,7 +389,7 @@ The default Edit and Create templates include references to the jQuery scripts n
 <a id="_Toc2_4"></a>
 ### Added Html.Raw Method
 
-By default, the Razor view engine HTML-encodes all values. For example, the following code snippet encodes the HTML inside the greeting variable so that it is displayed in the page as &amp;lt;strong&amp;gt;Hello World!&amp;lt;/strong&amp;gt;.
+By default, the Razor view engine HTML-encodes all values. For example, the following code snippet encodes the HTML inside the greeting variable so that it is displayed in the page as `<strong>Hello World!</strong>`.
 
 [!code-cshtml[Main](mvc3-release-notes/samples/sample10.cshtml)]
 
@@ -432,7 +429,7 @@ When the *Html.ValidationMessage* method displays a validation message, it skips
 <a id="_Toc2_10"></a>
 ### Fixed @model Declaration to not Add Whitespace to the Document
 
-In earlier releases, the *@model* declaration at the top of a view added a blank line to the rendered HTML output. This has been fixed so that the declaration does not introduce whitespace.
+In earlier releases, the <em>@model</em> declaration at the top of a view added a blank line to the rendered HTML output. This has been fixed so that the declaration does not introduce whitespace.
 
 <a id="_Toc2_11"></a>
 ### Added "FileExtensions" Property to View Engines to Support Engine-Specific File Names
@@ -441,7 +438,7 @@ A view engine can return a view using an explicit view path as in the following 
 
 [!code-csharp[Main](mvc3-release-notes/samples/sample12.cs)]
 
-The first view engine always attempts to render the view. By default, the Web Forms view engine is the first view engine; because the Web Forms engine cannot render a Razor view, an error occurs. View engines now have a *FileExtensions* property that is used to specify which file extensions they support. This property is checked when ASP.NET determines whether a view engine can render a file. This is a breaking change and more details are included in the [Breaking Changes](#_Breaking_Changes) section of this document.
+The first view engine always attempts to render the view. By default, the Web Forms view engine is the first view engine; because the Web Forms engine cannot render a Razor view, an error occurs. View engines now have a *FileExtensions* property that is used to specify which file extensions they support. This property is checked when ASP.NET determines whether a view engine can render a file. This is a breaking change and more details are included in the [Breaking Changes](#_Toc2_BC) section of this document.
 
 <a id="_Toc2_12"></a>
 ### Fixed "LabelFor" Helper to Emit the Correct Value for the "For" Attribute
@@ -459,7 +456,7 @@ In earlier versions, explicit values that were passed to the *RenderAction* meth
 - In previous versions of ASP.NET MVC, action filters were created per request except in a few cases. This behavior was never a guaranteed behavior but merely an implementation detail and the contract for filters was to consider them stateless. In ASP.NET MVC 3, filters are cached more aggressively. Therefore, any custom action filters which improperly store instance state might be broken.
 - The order of execution for exception filters has changed for exception filters that have the same *Order* value. In ASP.NET MVC 2 and earlier, exception filters on the controller that had the same *Order* value as those on an action method were executed before the exception filters on the action method. This would typically be the case when exception filters were applied without a specified *Order* value. In ASP.NET MVC 3, this order has been reversed so that the most specific exception handler executes first. As in earlier versions, if the *Order* property is explicitly specified, the filters are run in the specified order.
 - A new property named *FileExtensions* was added to the *VirtualPathProviderViewEngine* base class. When ASP.NET looks up a view by path (not by name), only views with a file extension contained in the list specified by this new property are considered. This is a breaking change in applications where a custom build provider is registered in order to enable a custom file extension for Web Form views and where the provider references those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
-- Custom controller factory implementations that directly implement the *IControllerFactory* interface must provide an implementation of the new *GetControllerSessionBehavior**method that was added to the interface in this release*. In general, it is recommended that you do not implement this interface directly and instead derive your class from *DefaultControllerFactory*.
+- Custom controller factory implementations that directly implement the <em>IControllerFactory</em> interface must provide an implementation of the new <em>GetControllerSessionBehavior</em><em>method that was added to the interface in this release</em>. In general, it is recommended that you do not implement this interface directly and instead derive your class from <em>DefaultControllerFactory</em>.
 
 <a id="_Toc2_KI"></a>
 ## Known Issues
@@ -491,7 +488,7 @@ ASP.NET MVC 3 includes the NuGet Package Manager (formerly known as NuPack), whi
 
 You can work with NuGet as a command-line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as a set of PowerShell cmdlets.
 
-For more information about NuGet, visit [http://NuGet.codeplex.com/](http://nupack.codeplex.com/) and read the [Getting Started Guide](http://nupack.codeplex.com/documentation?title=Getting%20Started).
+For more information about NuGet, read the [Nuget Documentation](https://docs.microsoft.com/nuget/).
 
 <a id="_Toc276711787"></a>
 ### Improved "New Project" Dialog Box
@@ -513,7 +510,7 @@ The list of project templates that is displayed in the dialog box is specified i
 <a id="_Toc276711788"></a>
 ### Sessionless Controllers
 
-The new *ControllerSessionStateAttribute* gives you more control over session-state behavior for controllers by specifying a [System.Web.SessionState.SessionStateBehavior](https://msdn.microsoft.com/en-us/library/system.web.sessionstate.sessionstatebehavior.aspx) enumeration value.
+The new *ControllerSessionStateAttribute* gives you more control over session-state behavior for controllers by specifying a [System.Web.SessionState.SessionStateBehavior](https://msdn.microsoft.com/library/system.web.sessionstate.sessionstatebehavior.aspx) enumeration value.
 
 The following example shows how to turn off session state for all requests to a controller.
 
@@ -602,7 +599,7 @@ Alternatively, to turn off request validation for every property of the model, a
 ## Breaking Changes
 
 - The order of execution for exception filters has changed for exception filters that have the same *Order* value. In ASP.NET MVC 2 and earlier, exception filters on the controller that had the same *Order* as those on an action method were executed before the exception filters on the action method. This would typically be the case when exception filters were applied without a specified *Order* value. In ASP.NET MVC 3, this order has been reversed so that the most specific exception handler executes first. As in earlier versions, if the *Order* property is explicitly specified, the filters are run in the specified order.
-- Added a new property named *FileExtensions* to the *VirtualPathProviderViewEngine* base class. When looking up a view by path (and not by name), only views with a file extension contained in the list specified by this new property is considered. This is a breaking change for those who register a custom build provider to enable a custom file extension for web form views and and are referencing those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
+- Added a new property named *FileExtensions* to the *VirtualPathProviderViewEngine* base class. When looking up a view by path (and not by name), only views with a file extension contained in the list specified by this new property is considered. This is a breaking change for those who register a custom build provider to enable a custom file extension for web form views and are referencing those views by using a full path rather than a name. The workaround is to modify the value of the *FileExtensions* property to include the custom file extension.
 
 <a id="_Toc276711795"></a>
 ## Known Issues
@@ -615,7 +612,7 @@ Alternatively, to turn off request validation for every property of the model, a
 - The installer may take much longer than previous versions of ASP.NET MVC to complete because it updates components of Visual Studio 2010.
 - The Add View scaffolding when selecting an "Edit" strongly typed view scaffolds read only properties. Likewise, write-only properties are scaffolded for "Display" views.
 - During installation, the EULA acceptance dialog box displays the license terms in a window that is smaller than intended.
-- Installing the [Visual Studio Async CTP](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=18712f38-fcd2-4e9f-9028-8373dc5732b2&amp;displaylang=en) causes a conflict with the Razor release that is included as part of the ASP.NET MVC 3 tooling installation. Make sure that you do not try to install both the Visual Studio Async CTP and the Razor release on the same machine.
+- Installing the Visual Studio Async CTP causes a conflict with the Razor release that is included as part of the ASP.NET MVC 3 tooling installation. Make sure that you do not try to install both the Visual Studio Async CTP and the Razor release on the same machine.
 - When you are editing a Razor view (.cshtml file), the Go To Controller menu item in Visual Studio will not be available, and there are no code snippets.
 
 <a id="TOC_ASP_NET_3_Beta"></a>
@@ -627,13 +624,13 @@ ASP.NET MVC 3 Beta was released on October 6, 2010. The following notes are spec
 
 <a id="0.1__Default_validation_system"></a>This section describes features that have been introduced in the ASP.NET MVC 3 Beta release.
 
-### <a id="0.1__Toc274034216"></a>  NuPack Package Manager
+### <a id="0.1__Toc274034216"></a>  NuGet Package Manager
 
-ASP.NET MVC 3 includes NuPack Package Manager, which is an integrated package management tool for adding libraries and tools to Visual Studio projects. For the most part, it automates the steps that developers take today to get a library into their source tree.
+ASP.NET MVC 3 includes NuGet Package Manager, which is an integrated package management tool for adding libraries and tools to Visual Studio projects. For the most part, it automates the steps that developers take today to get a library into their source tree.
 
-You can work with NuPack as a command line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as set of PowerShell cmdlets.
+You can work with NuGet as a command line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as set of PowerShell cmdlets.
 
-For more information about NuPack, visit [http://nupack.codeplex.com/](http://nupack.codeplex.com/) and read the [Getting Started Guide](http://nupack.codeplex.com/documentation?title=Getting%20Started).
+For more information about NuGet, read the [NuGet Documentation](https://docs.microsoft.com/nuget/).
 
 ### <a id="0.1__Toc274034217"></a>  Improved New Project Dialog Box
 
@@ -705,7 +702,7 @@ Implementations of this interface should simply delegate to the underlying depen
 
 When there are no registered services of the requested type, ASP.NET MVC expects implementations of this interface to return null from GetService and to return an empty collection from GetServices.
 
-The new DependencyResolver class lets you register classes that implement either the new IDependencyResolver interface or the Common Service Locator interface (IServiceLocator). For more information about Common Service Locator, see [http://commonservicelocator.codeplex.com/](http://commonservicelocator.codeplex.com/).
+The new DependencyResolver class lets you register classes that implement either the new IDependencyResolver interface or the Common Service Locator interface (IServiceLocator). For more information about Common Service Locator, see [CommonServiceLocator on GitHub](https://github.com/unitycontainer/commonservicelocator).
 
 <a id="0.1__Breaking_Changes"></a>
 
@@ -846,7 +843,7 @@ When you are editing a Razor view (CSHTML file), the <a id="0.1__Toc224729061"><
 
 When using the @model syntax to specify a strongly typed CSHTML view, language-specific shortcuts for types are not recognized. For example, @model int will not work, but @model Int32 will work. The workaround for this bug is to use the actual type name when you specify the model type.
 
-When using the @model syntax to specify a strongly typed CSHTML view (or @ModelType to specify a strongly typed VBHTML view), nullable types and array declarations are not supported. For example, @model int? is not supported. Instead, use @model Nullable&lt;Int32&gt;. The syntax @model string[] is also not supported; instead, use @model IList&lt;string&gt;.
+When using the @model syntax to specify a strongly typed CSHTML view (or @ModelType to specify a strongly typed VBHTML view), nullable types and array declarations are not supported. For example, @model int? is not supported. Instead, use `@model Nullable<Int32>`. The syntax @model string[] is also not supported; instead, use `@model IList<string>`.
 
 When you upgrade an ASP.NET MVC 2 project to ASP.NET MVC 3, make sure to add the following to the appSettings section of the Web.config file:
 

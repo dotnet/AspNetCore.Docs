@@ -1,14 +1,11 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-8
 title: "Part 8: Final Pages, Exception Handling, and Conclusion | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 8 adds a contact page, about page, and exception..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 5aeadf8f-39f3-4f07-a78f-1c310c64fb23
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-8
 msc.type: authoredcontent
 ---
@@ -71,9 +68,9 @@ Now in the Page\_Load event handler extract the error messages from the Request 
 
 ## <a id="_Toc260221683"></a>  Conclusion
 
-We've seen that that ASP.NET WebForms makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly.
+We've seen that ASP.NET WebForms makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly.
 
 Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET WebForms applications!
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-7.md)

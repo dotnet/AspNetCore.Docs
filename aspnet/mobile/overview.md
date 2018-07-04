@@ -1,14 +1,11 @@
 ---
+uid: mobile/overview
 title: "Mobile Apps & Sites with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "Learn how ASP.NET makes it easy to build mobile Web applications"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/28/2011
-ms.topic: article
 ms.assetid: 1febce65-cdd4-47da-bdb5-1e6022ccd20a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /mobile
 msc.type: content
 ---
@@ -32,17 +29,17 @@ In the second article in their series, the authors discuss how they use Xamarin 
 This end-to-end tutorial shows how to create an ASP.NET Web API application that provides data to a Windows Phone 8 application.
 
 
-### [Get Started with Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started?WT.mc_id=zumo_aspnet)
+### [Get Started with Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started?WT.mc_id=zumo_aspnet)
 
 Get started using Azure Mobile Services with ASP.NET Web API. This tutorial shows how to create a Mobile Services app from the Azure Management Portal.
 
 
-### [Authentication in Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-users/?WT.mc_id=zumo_aspnet)
+### [Authentication in Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-users/?WT.mc_id=zumo_aspnet)
 
 This tutorial shows how to authenticate users in Azure Mobile Services from your app.
 
 
-### [Using Push Notifications in Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-push/?WT.mc_id=zumo_aspnet)
+### [Using Push Notifications in Azure Mobile Services](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-get-started-push/?WT.mc_id=zumo_aspnet)
 
 Use Azure Mobile Services to send push notifications to a mobile device.
 
@@ -50,7 +47,7 @@ Use Azure Mobile Services to send push notifications to a mobile device.
 ## Develop Mobile Sites
 
 
-### [Deploy an Mobile-Friendly ASP.NET MVC 5 Web Application on Windows Azure Web Sites](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/)
+### [Deploy an Mobile-Friendly ASP.NET MVC 5 Web Application on Windows Azure Web Sites](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-deploy-aspnet-mvc-mobile-app)
 
 This tutorial will teach you the basics of how to deploy an MVC 5 application to a Windows Azure web site and create mobile-friendly views using responsive Bootstrap design.
 
@@ -60,7 +57,7 @@ This tutorial will teach you the basics of how to deploy an MVC 5 application to
 This How To describes various ways to serve pages optimized for mobile devices from your ASP.NET Web Forms / MVC application, and suggests architectural and design issues to consider when targeting a broad range of devices.
 
 
-### [Detect the latest mobile devices using 51degrees.mobi Foundation](http://51degrees.codeplex.com/)
+### [Detect the latest mobile devices using 51degrees.mobi Foundation](https://github.com/51Degrees/dotNET-Device-Detection)
 
 51degrees.mobi Foundation is a third-party open source project that enhances ASP.NET's Request.Browser API so you can easily detect recently-released mobile devices including Windows Phone 7, Android, and Apple iPad.
 

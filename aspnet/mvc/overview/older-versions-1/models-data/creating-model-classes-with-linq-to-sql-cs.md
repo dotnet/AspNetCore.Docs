@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs
 title: "Creating Model Classes with LINQ to SQL (C#) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain one method of creating model classes for an ASP.NET MVC application. In this tutorial, you learn how to build model c..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/07/2008
-ms.topic: article
 ms.assetid: f84b4a16-e8bb-49e8-87a0-1832879a3501
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs
 msc.type: authoredcontent
 ---
@@ -143,7 +140,7 @@ After you add some database records to the `tblMovies` table, and you run the ap
 
 ## Using the Repository Pattern
 
-In the previous section, we used LINQ to SQL classes directly within a controller action. We used the `MovieDataContex` t class directly from the `Index()` controller action. There is nothing wrong with doing this in the case of a simple application. However, working directly with LINQ to SQL in a controller class creates problems when you need to build a more complex application.
+In the previous section, we used LINQ to SQL classes directly within a controller action. We used the `MovieDataContext` class directly from the `Index()` controller action. There is nothing wrong with doing this in the case of a simple application. However, working directly with LINQ to SQL in a controller class creates problems when you need to build a more complex application.
 
 Using LINQ to SQL within a controller class makes it difficult to switch data access technologies in the future. For example, you might decide to switch from using Microsoft LINQ to SQL to using the Microsoft Entity Framework as your data access technology. In that case, you would need to rewrite every controller that accesses the database within your application.
 
@@ -191,6 +188,6 @@ The goal of this tutorial was to demonstrate how you can create MVC model classe
 
 Next, we explored a slightly more difficult, but definitely more virtuous, path for displaying database data. We took advantage of the Repository pattern and placed all of our database access logic in a separate repository class. In our controller, we wrote all of our code against an interface instead of a concrete class. The advantage of the Repository pattern is that it enables us to easily change database access technologies in the future and it enables us to easily test our controller classes.
 
->[!div class="step-by-step"]
-[Previous](creating-model-classes-with-the-entity-framework-cs.md)
-[Next](displaying-a-table-of-database-data-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-model-classes-with-the-entity-framework-cs.md)
+> [Next](displaying-a-table-of-database-data-cs.md)

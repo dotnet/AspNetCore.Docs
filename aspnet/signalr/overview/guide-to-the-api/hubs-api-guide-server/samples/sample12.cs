@@ -1,12 +1,12 @@
 public class StrongHub : Hub<IClient>
 {
-    public void Send(string message)
+    public async Task Send(string message)
     {
-        Clients.All.NewMessage(message);
+        await Clients.All.NewMessage(message);
     }
 }
 
 public interface IClient
 {
-    void NewMessage(string message);
+    Task NewMessage(string message);
 }

@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10
 title: "Part 10: Final Updates to Navigation and Site Design, Conclusion | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 10 covers Final Updates to Navigation and S..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/21/2011
-ms.topic: article
 ms.assetid: 0c6e4c2f-fcdb-4978-9656-1990c6f15727
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10
 msc.type: authoredcontent
 ---
@@ -129,10 +126,8 @@ Now when we run the application, we'll see our updated home page with top sellin
 
 ## Conclusion
 
-We've seen that that ASP.NET MVC makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly. Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET MVC applications!
+We've seen that ASP.NET MVC makes it easy to create a sophisticated website with database access, membership, AJAX, etc. pretty quickly. Hopefully this tutorial has given you the tools you need to get started building your own ASP.NET MVC applications!
 
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
-
->[!div class="step-by-step"]
-[Previous](mvc-music-store-part-9.md)
+> [!div class="step-by-step"]
+> [Previous](mvc-music-store-part-9.md)

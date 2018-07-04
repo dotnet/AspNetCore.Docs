@@ -1,14 +1,11 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/creating-the-web-application
 title: "EF Database First with ASP.NET MVC: Creating the Web Application and Data Models | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/01/2014
-ms.topic: article
 ms.assetid: bc8f2bd5-ff57-4dcd-8418-a5bd517d8953
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/creating-the-web-application
 msc.type: authoredcontent
 ---
@@ -95,6 +92,6 @@ The **ContosoModel.Context.cs** file contains a class that derives from the **Db
 
 Before proceeding with this tutorial, build the project. In the next section, you will generate code based on the data models, but that section will not work if the project has not been built.
 
->[!div class="step-by-step"]
-[Previous](setting-up-database.md)
-[Next](generating-views.md)
+> [!div class="step-by-step"]
+> [Previous](setting-up-database.md)
+> [Next](generating-views.md)
