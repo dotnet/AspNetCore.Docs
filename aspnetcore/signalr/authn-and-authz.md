@@ -3,7 +3,7 @@ title: Authentication and Authorization in SignalR
 author: rachelappel
 description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: anurse
 ms.custom: mvc
 ms.date: 06/29/2018
 uid: signalr/authn-and-authz
@@ -17,23 +17,35 @@ By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core Authentication](xref:security/authentication/index) to associate a User with each connection. In a hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user?view=aspnetcore-2.1) property. Authentication also allows the hub to call methods on all connections associated with a user (See [Manage users and groups in SignalR](xref:signalr/groups) for more information). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core Authentication](xref:security/authentication/index) to associate a User with each connection. In a hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user?view=aspnetcore-2.1) property. Authentication allows the hub to call methods on all connections associated with a user (See [Manage users and groups in SignalR](xref:signalr/groups) for more information). Multiple connections may be associated with a single user.
 
-### Cookie Authentication
+### Cookie authentication
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
 
-We do not recommend using Cookie authentication unless you only need to authenticate users from the browser client. When using the .NET Client, the `Cookies` property can be configured in the `.WithUrl` call in order to provide a cookie. However, this requires that you provide an API to exchange authentication data for a cookie.
+Cookie authentication is not recommended unless the app only needs to authenticate users from the browser client. When using the .NET Client, the `Cookies` property can be configured in the `.WithUrl` call in order to provide a cookie. However, cookie authentication requires the app to provide an API to exchange authentication data for a cookie.
 
-### Bearer Token Authentication
+### Bearer token authentication
 
-When using the .NET Client, or when your SignalR hubs are located on a different server from your web app, bearer token authentication is the recommended approach. In this authentication scheme, you configure the SignalR client with an access token to send to the server. The server validates this token and uses the data within it to identify the user. The details of bearer token authentication are beyond the scope of this document, but there are some things to note when using this form of authentication in SignalR. On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer?view=aspnetcore-2.1).
+Bearer token authentication is the recommended approach:
 
-In the JavaScript client, the token can be provided using the `accessTokenFactory` option.
+* When using a .NET Client.
+* When your SignalR hubs are located on a different server from your web app.
+
+ To use the bearer token authentication scheme:
+
+* Configure the SignalR client with an access token to send to the server.
+* The server validates the SignalR client with an access token and uses the data within it to identify the user.
+
+The details of bearer token authentication are beyond the scope of this document. When using  bearer token authentication with SignalR:
+
+* On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer?view=aspnetcore-2.1).
+
+* In the JavaScript client, the token can be provided using the `accessTokenFactory` option.
 
 [!code-javascript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=63-65)]
 
-In the .NET client, there is a simlar `AccessTokenProvider` property that can be used to configure the token:
+* In the .NET client, there is a similar `AccessTokenProvider` property that can be used to configure the token:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -42,7 +54,7 @@ var connection = new HubConnectionBuilder()
 ```
 
 > [!NOTE]
-> This function is called before **every** HTTP request made by SignalR. If you need to renew the token in order to keep the connection active (because it may expire during the connection), do so from within this function and return the updated token.
+> `HubConnectionBuilder` is called before **every** HTTP request made by SignalR. If you need to renew the token in order to keep the connection active (because it may expire during the connection), do so from within this function and return the updated token.
 
 In standard Web APIs, bearer tokens are sent in an HTTP header. However, due to security limitations imposed by browsers, the browser client isn't able to set these headers when using the WebSockets or Server-Sent Events transports. When using those transports, the token is transmitted as a query string parameter. In order to support this on the server, additional configuration is required:
 
@@ -50,7 +62,12 @@ In standard Web APIs, bearer tokens are sent in an HTTP header. However, due to 
 
 ### Windows Authentication
 
-If you have configured [Windows authentication](xref:security/authentication/windowsauth) in your app, SignalR can use that authentication to secure hubs. However, in order to send messages to individual users, you need to add a custom User ID provider. This is because the Windows authentication system does not provide the "Name Identifier" claim that SignalR uses to determine the user name. To do this, add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
+If [Windows authentication](xref:security/authentication/windowsauth) is configured in your app, SignalR can use Windows authentication to secure hubs. However, in order to send messages to individual users, you need to add a custom User ID provider. This is because the Windows authentication system does not provide the "Name Identifier" claim that SignalR uses to determine the user name. To add a custom User ID provider:
+
+* Add a  class that implements `IUserIdProvider`.
+* Retrieve one of the unique claims from the user to use as the identifier. 
+
+For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
 ```csharp
 public class NameUserIdProvider : IUserIdProvider
@@ -62,12 +79,12 @@ public class NameUserIdProvider : IUserIdProvider
 }
 ```
 
-Instead of `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, etc.).
+Rather than `ClaimTypes.Name`, you can use any unique value from `User` (such as the Windows SID identifier).
 
 > [!NOTE]
 > The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
 
-Then, register this component in your `ConfigureServices` method **after** the call to `.AddSignalR`
+Register this component in your `ConfigureServices` method **after** the call to `.AddSignalR`
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
