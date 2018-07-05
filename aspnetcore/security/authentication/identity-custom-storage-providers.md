@@ -121,18 +121,18 @@ Create a `UserStore` class that provides the methods for all data operations on 
 
 ### Optional interfaces
 
-- [IUserRoleStore](/dotnet/api/microsoft.aspnetcore.identity.iuserrolestore-1)
-- [IUserClaimStore](/dotnet/api/microsoft.aspnetcore.identity.iuserclaimstore-1)
-- [IUserPasswordStore](/dotnet/api/microsoft.aspnetcore.identity.iuserpasswordstore-1)
-- [IUserSecurityStampStore](/dotnet/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1)
-- [IUserEmailStore](/dotnet/api/microsoft.aspnetcore.identity.iuseremailstore-1)
-- [IPhoneNumberStore](/dotnet/api/microsoft.aspnetcore.identity.iphonenumberstore-1)
-- [IQueryableUserStore](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1)
-- [IUserLoginStore](/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1)
-- [IUserTwoFactorStore](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactorstore-1)
-- [IUserLockoutStore](/dotnet/api/microsoft.aspnetcore.identity.iuserlockoutstore-1)
+* [IUserRoleStore](/dotnet/api/microsoft.aspnetcore.identity.iuserrolestore-1)
+* [IUserClaimStore](/dotnet/api/microsoft.aspnetcore.identity.iuserclaimstore-1)
+* [IUserPasswordStore](/dotnet/api/microsoft.aspnetcore.identity.iuserpasswordstore-1)
+* [IUserSecurityStampStore](/dotnet/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1)
+* [IUserEmailStore](/dotnet/api/microsoft.aspnetcore.identity.iuseremailstore-1)
+* [IPhoneNumberStore](/dotnet/api/microsoft.aspnetcore.identity.iphonenumberstore-1)
+* [IQueryableUserStore](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1)
+* [IUserLoginStore](/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1)
+* [IUserTwoFactorStore](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactorstore-1)
+* [IUserLockoutStore](/dotnet/api/microsoft.aspnetcore.identity.iuserlockoutstore-1)
 
-The optional interfaces inherit from `IUserStore<TUser>`. You can see a partially implemented sample user store [here](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
+The optional interfaces inherit from `IUserStore<TUser>`. You can see a partially implemented sample user store in the [sample app](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
 
 Within the `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the SQL Server with Dapper implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `DapperUsersTable` to insert a new record:
 
@@ -194,7 +194,7 @@ The following is an example role class:
 You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
- The [IRoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
+ The [IRoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
 - **RoleStore&lt;TRole&gt;**  
  To customize `RoleStore`, create a class that implements the `IRoleStore<TRole>` interface. 
 
