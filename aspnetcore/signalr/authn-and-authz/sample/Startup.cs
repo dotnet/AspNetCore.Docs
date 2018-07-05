@@ -41,7 +41,8 @@ namespace SignalRAuthenticationSample
 
             services.AddAuthentication(options =>
                 {
-                    // Identity made Cookie authentication the default, we want JWT Bearer Auth to be the default.
+                    // Identity made Cookie authentication the default.
+                    // However, we want JWT Bearer Auth to be the default.
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
@@ -51,7 +52,10 @@ namespace SignalRAuthenticationSample
                     options.TokenValidationParameters =
                         new TokenValidationParameters
                         {
-                            LifetimeValidator = (before, expires, token, parameters) => expires > DateTime.UtcNow,
+                            LifetimeValidator = (before, expires, token, param) =>
+                            {
+                                return expires > DateTime.UtcNow
+                            },
                             ValidateAudience = false,
                             ValidateIssuer = false,
                             ValidateActor = false,
@@ -59,8 +63,10 @@ namespace SignalRAuthenticationSample
                             IssuerSigningKey = SecurityKey
                         };
 
-                    // We have to hook the OnMessageReceived event in order to allow the JWT authentication handler
-                    // to read the access token from the query string when a WebSocket or Server-Sent Events request comes in.
+                    // We have to hook the OnMessageReceived event in order to
+                    // allow the JWT authentication handler to read the access
+                    // token from the query string when a WebSocket or 
+                    // Server-Sent Events request comes in.
                     options.Events = new JwtBearerEvents
                     {
                         OnMessageReceived = context =>
@@ -68,8 +74,9 @@ namespace SignalRAuthenticationSample
                             var accessToken = context.Request.Query["access_token"];
 
                             // If the request is for our hub...
+                            var path = context.HttpContext.Request.Path;
                             if (!string.IsNullOrEmpty(accessToken) &&
-                                (context.HttpContext.Request.Path.StartsWithSegments("/hubs/chat")))
+                                (path.StartsWithSegments("/hubs/chat")))
                             {
                                 // Read the token out of the query string
                                 context.Token = accessToken;
@@ -84,12 +91,15 @@ namespace SignalRAuthenticationSample
             services.AddSignalR();
 
             // Change to use Name as the user identifier for SignalR
-            // WARNING: This requires that the source of your JWT token ensures that the Name claim is unique! If the Name claim isn't unique, users
-            // could receive messages intended for a different user!
+            // WARNING: This requires that the source of your JWT token 
+            // ensures that the Name claim is unique!
+            // If the Name claim isn't unique, users could receive messages 
+            // intended for a different user!
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the
+        // HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -81,7 +81,7 @@ class ViewModel {
     public async directMessageFormSubmitted(evt: Event) {
         try {
             evt.preventDefault();
-            await this.connection.invoke("SendToUser", toUserInput.value, directMessageInput.value);
+            await this.connection.send("SendToUser", toUserInput.value, directMessageInput.value);
             directMessageInput.value = "";
         } catch (e) {
             this.error = `Error sending: ${e.toString()}`;

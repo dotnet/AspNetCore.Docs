@@ -77,7 +77,7 @@ class ViewModel {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 evt.preventDefault();
-                yield this.connection.invoke("SendToUser", toUserInput.value, directMessageInput.value);
+                yield this.connection.send("SendToUser", toUserInput.value, directMessageInput.value);
                 directMessageInput.value = "";
             }
             catch (e) {
