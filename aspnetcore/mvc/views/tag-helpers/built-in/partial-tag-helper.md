@@ -75,7 +75,7 @@ In the preceding code, the `IsNumberReadOnly` key value is set to `true` and add
 
 In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether the *Number* field is displayed as read only.
 
-## Migrate from HTML Helper
+## Migrate from an HTML Helper
 
 Consider the following asynchronous HTML Helper example. A collection of products is iterated and displayed. Per the `PartialAsync` method's first parameter, the *_ProductPartial.cshtml* partial view is loaded. An instance of the `Product` model is passed to it for binding.
 
