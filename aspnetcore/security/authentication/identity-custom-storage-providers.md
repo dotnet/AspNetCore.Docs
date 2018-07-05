@@ -117,7 +117,7 @@ The `IdentityUser` class defines the properties that the `UserManager` calls whe
 
 ## Customize the user store
 
-Create a `UserStore` class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore<TUser>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.userstore-1) class. In your `UserStore` class, implement `IUserStore<TUser>` and the optional interfaces required. You select which optional interfaces to implement based on the functionality provided in your app.
+Create a `UserStore` class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.userstore-1) class. In your `UserStore` class, implement `IUserStore<TUser>` and the optional interfaces required. You select which optional interfaces to implement based on the functionality provided in your app.
 
 ### Optional interfaces
 
@@ -191,10 +191,10 @@ The following is an example role class:
 
 ## Customize the role store
 
-You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
+You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
- The [IRoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
+ The [IRoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting, and retrieving roles.
 - **RoleStore&lt;TRole&gt;**  
  To customize `RoleStore`, create a class that implements the `IRoleStore<TRole>` interface. 
 
