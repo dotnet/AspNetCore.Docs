@@ -14,7 +14,6 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
 * [Authentication](xref:security/authentication/index)
-* [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC 1.1 and 2.x versions.
