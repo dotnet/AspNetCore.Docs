@@ -226,7 +226,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
         // Connection: RemoteIp
         await context.Response.WriteAsync(
             $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
-    }
+    });
 }
 ```
 
