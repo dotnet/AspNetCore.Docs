@@ -5,7 +5,7 @@ description: Discover the ASP.NET Core Partial Tag Helper and the role each of i
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/13/2018
+ms.date: 07/05/2018
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
@@ -75,7 +75,17 @@ In the preceding code, the `IsNumberReadOnly` key value is set to `true` and add
 
 In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether the *Number* field is displayed as read only.
 
+## Migrate from HTML Helper
+
+Consider the following asynchronous HTML Helper example:
+
+[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_HtmlHelper&highlight=3)]
+
+The following Partial Tag Helper achieves the same asynchronous rendering behavior:
+
+[!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_TagHelper&highlight=3)]
+
 ## Additional resources
 
-* [Partial views](xref:mvc/views/partial)
-* [Weakly typed data (ViewData, ViewData attribute, and ViewBag)](xref:mvc/views/overview#weakly-typed-data-viewdata-viewdata-attribute-and-viewbag)
+* <xref:mvc/views/partial>
+* <xref:mvc/views/overview#weakly-typed-data-viewdata-viewdata-attribute-and-viewbag>
