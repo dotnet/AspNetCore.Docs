@@ -73,6 +73,16 @@ Since it streams the result directly, `RenderPartialAsync` may perform better in
 > [!IMPORTANT]
 > If your views need to execute code, use a [view component](xref:mvc/views/view-components) instead of a partial view.
 
+::: moniker range=">= aspnetcore-2.1"
+
+In ASP.NET Core 2.1 and later, calling `Partial` or `RenderPartial` results in an analyzer warning. For example, usage of `Partial` yields the following warning message:
+
+> Use of IHtmlHelper.Partial may result in application deadlocks. Consider using `<partial>` Tag Helper or `IHtmlHelper.PartialAsync`.
+
+Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the Partial Tag Helper. See <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper> for Partial Tag Helper migration information.
+
+::: moniker-end
+
 ## Partial view discovery
 
 When referencing a partial view, you can refer to its location in several ways. For example:
