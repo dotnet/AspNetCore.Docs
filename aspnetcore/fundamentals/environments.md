@@ -236,6 +236,13 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see 
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in an isolated Application Pool (supported on IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables &lt;environmentVariables&gt;](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic. When the `ASPNETCORE_ENVIRONMENT` environment variable is set for an app pool, its value overrides a setting at the system level.
 
+> [!IMPORTANT]
+> When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` environment variable, use any one of the following approaches to have the new value picked up by apps:
+>
+> * Restart an app's app pool.
+> * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
+> * Restart the server.
+
 ### macOS
 
 Setting the current environment for macOS can be performed in-line when running the app:
