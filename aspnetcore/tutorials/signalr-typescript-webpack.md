@@ -33,7 +33,7 @@ Install the following software:
 
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7 or later with the **ASP.NET and web development** workload
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7.3 or later with the **ASP.NET and web development** workload
 
 # [.NET Core CLI](#tab/netcore-cli)
 

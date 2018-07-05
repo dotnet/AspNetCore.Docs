@@ -136,7 +136,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
 7. View the database.
 
-   If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** > **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching **aspnet-<*name of your project*>-<*date string*>** is displayed.
+   If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** > **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching `aspnet-<name of your project>-<guid>` is displayed.
 
    ![Contextual menu on AspNetUsers database table](identity/_static/04-db.png)
 

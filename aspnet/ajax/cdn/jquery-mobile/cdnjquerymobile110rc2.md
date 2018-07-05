@@ -4,11 +4,8 @@ title: "jQuery Mobile 1.1.0 RC2 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: 50a56675-fb2e-4a5b-b756-ec4e7a9dad61
-ms.technology: 
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile110rc2
 msc.type: content
 ---

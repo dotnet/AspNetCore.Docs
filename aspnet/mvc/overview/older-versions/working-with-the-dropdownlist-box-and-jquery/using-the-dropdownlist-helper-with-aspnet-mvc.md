@@ -4,11 +4,8 @@ title: "Using the DropDownList Helper with ASP.NET MVC | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2012
-ms.topic: article
 ms.assetid: 53767e05-c8ab-42e1-a94b-22d906195200
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc
 msc.type: authoredcontent
 ---

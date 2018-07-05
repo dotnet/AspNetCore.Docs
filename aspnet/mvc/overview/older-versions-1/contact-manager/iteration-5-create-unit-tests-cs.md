@@ -4,11 +4,8 @@ title: "Iteration #5 – Create unit tests (C#) | Microsoft Docs"
 author: microsoft
 description: "In the fifth iteration, we make our application easier to maintain and modify by adding unit tests. We mock our data model classes and build unit tests for o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: 28ad8f80-b8a5-444e-b478-8b15a846060c
-ms.technology: dotnet-mvc
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-cs
 msc.type: authoredcontent
 ---
