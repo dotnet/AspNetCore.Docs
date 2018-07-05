@@ -65,6 +65,8 @@ if (context.Movie.Any())
 <a name="si"></a>
 ### Add the seed initializer
 
+Replace the contents of *Program.cs* with the following code:
+
 ::: moniker range=">= aspnetcore-2.1"
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
 ::: moniker-end
