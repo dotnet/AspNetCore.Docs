@@ -77,11 +77,11 @@ In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether 
 
 ## Migrate from HTML Helper
 
-Consider the following asynchronous HTML Helper example:
+Consider the following asynchronous HTML Helper example. Per the `PartialAsync` method's first parameter, the *_ProductPartial.cshtml* partial view is loaded. An instance of the `Product` model is passed to it for binding.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_HtmlHelper&highlight=3)]
 
-The following Partial Tag Helper achieves the same asynchronous rendering behavior:
+The following Partial Tag Helper achieves the same asynchronous rendering behavior as the `PartialAsync` HTML Helper. The `Product` model instance is assigned to the Tag Helper's `model` attribute.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_TagHelper&highlight=3)]
 

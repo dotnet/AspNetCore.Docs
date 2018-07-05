@@ -21,7 +21,7 @@ namespace TagHelpersBuiltIn.Pages
                 new Product
                 {
                     Number = 2,
-                    Name = "Test Product 2",
+                    Name = "Test product 2",
                     Description = "This is another test product"
                 }
             };
