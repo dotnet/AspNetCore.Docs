@@ -1,48 +1,64 @@
 ---
 title: Handle errors in ASP.NET Core
 author: ardalis
-description: Discover how to handle errors in ASP.NET Core applications.
+description: Discover how to handle errors in ASP.NET Core apps.
 ms.author: tdykstra
-ms.custom: H1Hack27Feb2017
-ms.date: 11/30/2016
+ms.custom: mvc
+ms.date: 07/05/2018
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common appoaches to handling errors in ASP.NET Core apps.
+This article covers common approaches to handling errors in ASP.NET Core apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/ErrorHandlingSample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## The developer exception page
 
-To configure an app to display a page that shows detailed information about exceptions, install the `Microsoft.AspNetCore.Diagnostics` NuGet package and add a line to the [Configure method in the Startup class](xref:fundamentals/startup):
+::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
+To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
 
-Put `UseDeveloperExceptionPage` before any middleware you want to catch exceptions in, such as `app.UseMvc`.
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). Add a line to the `Startup.Configure` method:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by adding a package reference for the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package in the project file. Add a line to the `Startup.Configure` method:
+
+::: moniker-end
+
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
+
+Place the call to [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) in front of any middleware where you want to catch exceptions, such as `app.UseMvc`.
 
 >[!WARNING]
 > Enable the developer exception page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. [Learn more about configuring environments](xref:fundamentals/environments).
 
-To see the developer exception page, run the sample application with the environment set to `Development`, and add `?throw=true` to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace. 
+To see the developer exception page, run the sample app with the environment set to `Development`, and add `?throw=true` to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace:
 
 ![Stack trace](error-handling/_static/developer-exception-page.png)
 
-The next tab shows the query string parameters, if any.
+The next tab shows the query string parameters, if any:
 
 ![Query string parameters](error-handling/_static/developer-exception-page-query.png)
 
-This request didn't have any cookies, but if it did, they would appear on the **Cookies** tab. You can see the headers that were passed in the last tab.
+If the request has cookies, they appear on the **Cookies** tab. Headers are seen in the last tab:
 
 ![Headers](error-handling/_static/developer-exception-page-headers.png)
 
 ## Configuring a custom exception handling page
 
-Configure an exception handler page to use when the app isn't running in the `Development` environment.
+Configure an exception handler page to use when the app isn't running in the `Development` environment:
 
-[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
 
 In a Razor Pages app, the [dotnet new](/dotnet/core/tools/dotnet-new) Razor Pages template provides an Error page and `ErrorModel` page model class in the *Pages* folder.
 
@@ -54,7 +70,8 @@ For example, the following error handler method is provided by the [dotnet new](
 [AllowAnonymous]
 public IActionResult Error()
 {
-    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    return View(new ErrorViewModel 
+        { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }
 ```
 
@@ -66,13 +83,13 @@ By default, an app doesn't provide a rich status code page for HTTP status codes
 app.UseStatusCodePages();
 ```
 
-By default, Status Code Pages Middleware adds simple, text-only handlers for common status codes, such as 404:
+By default, Status Code Pages Middleware adds text-only handlers for common status codes, such as 404:
 
 ![404 page](error-handling/_static/default-404-status-code.png)
 
 The middleware supports several extension methods. One method takes a lambda expression:
 
-[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePages)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePages)]
 
 Another method takes a content type and format string:
 
@@ -80,9 +97,9 @@ Another method takes a content type and format string:
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
 
-There are also redirect and re-execute extension methods. The redirect method sends a 302 status code to the client:
+There's also redirect and re-execute extension methods. The redirect method sends a *302 Found* status code to the client:
 
-[!code-csharp[](error-handling/sample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
 The re-execute method returns the original status code to the client but also executes the handler for the redirect URL:
 
@@ -124,10 +141,15 @@ If using a `UseStatusCodePages*` overload that points to an endpoint within the 
 
 <h3>Development Mode</h3>
 <p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    Swapping to <strong>Development</strong> environment will display more detailed 
+    information about the error that occurred.
 </p>
 <p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
+    <strong>Development environment should not be enabled in deployed applications
+    </strong>, as it can result in sensitive information from exceptions being 
+    displayed to end users. For local debugging, development environment can be 
+    enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment 
+    variable to <strong>Development</strong>, and restarting the application.
 </p>
 ```
 
@@ -140,7 +162,8 @@ public class ErrorModel : PageModel
 
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, 
+        NoStore = true)]
     public void OnGet()
     {
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
@@ -170,15 +193,20 @@ When running on [IIS](/iis) or [IIS Express](/iis/extensions/introduction-to-iis
 
 [MVC](xref:mvc/overview) apps have some additional options for handling errors, such as configuring exception filters and performing model validation.
 
-### Exception Filters
+### Exception filters
 
-Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter, and are not called otherwise. Learn more about exception filters in [Filters](xref:mvc/controllers/filters).
+Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. These filters aren't called otherwise. To learn more, see [Filters](xref:mvc/controllers/filters).
 
 > [!TIP]
-> Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen.
+> Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Generally prefer the use of middleware, and use filters only where you need to perform error handling *differently* based on which MVC action is chosen.
 
-### Handling Model State Errors
+### Handling model state errors
 
 [Model validation](xref:mvc/models/validation) occurs prior to invoking each controller action, and it's the action method's responsibility to inspect `ModelState.IsValid` and react appropriately.
 
-Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a [filter](xref:mvc/controllers/filters) may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. Learn more in [Test controller logic](xref:mvc/controllers/testing).
+Some apps choose to follow a standard convention for dealing with model validation errors, in which case a [filter](xref:mvc/controllers/filters) may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. Learn more in [Test controller logic](xref:mvc/controllers/testing).
+
+## Additional resources
+
+* <xref:host-and-deploy/azure-iis-errors-reference>
+* <xref:host-and-deploy/azure-apps/troubleshoot>

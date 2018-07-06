@@ -1,18 +1,13 @@
 ﻿#define StatusCodePages // or StatusCodePagesWithRedirect
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using System.Text;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Net;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace ErrorHandlingSample
 {
@@ -23,10 +18,10 @@ namespace ErrorHandlingSample
         }
 
         #region snippet_DevExceptionPage
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
             env.EnvironmentName = EnvironmentName.Production;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -35,19 +30,21 @@ namespace ErrorHandlingSample
             {
                 app.UseExceptionHandler("/error");
             }
-            #endregion
+        #endregion
 
 #if StatusCodePages
             #region snippet_StatusCodePages
             app.UseStatusCodePages(async context =>
             {
                 context.HttpContext.Response.ContentType = "text/plain";
+
                 await context.HttpContext.Response.WriteAsync(
                     "Status code page, status code: " + 
                     context.HttpContext.Response.StatusCode);
             });
             #endregion
 #endif
+
 #if StatusCodePagesWithRedirect
             #region snippet_StatusCodePagesWithRedirect
             app.UseStatusCodePagesWithRedirects("/error/{0}");
@@ -82,6 +79,7 @@ namespace ErrorHandlingSample
                     await context.Response.WriteAsync(builder.ToString());
                 });
             });
+
             #region snippet_AppRun
             app.Run(async (context) =>
             {
