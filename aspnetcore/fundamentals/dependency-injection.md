@@ -13,7 +13,7 @@ By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), a
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](https://deviq.com/inversion-of-control/) between classes and their dependencies.
 
-For more information specific to dependency injection within MVC controllers, see [Dependency injection into controllers](xref:mvc/controllers/dependency-injection).
+For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -209,7 +209,7 @@ Transient lifetime services are created each time they're requested. This lifeti
 Scoped lifetime services are created once per request.
 
 > [!WARNING]
-> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton. For more information, see [Middleware](xref:fundamentals/middleware/index).
+> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/index>.
 
 **Singleton**
 
@@ -399,7 +399,7 @@ The root service provider is created when [BuildServiceProvider](/dotnet/api/mic
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-For more information, see [Scope validation in the Web Host topic](xref:fundamentals/host/web-host#scope-validation).
+For more information, see <xref:fundamentals/host/web-host#scope-validation>.
 
 ## Request Services
 
