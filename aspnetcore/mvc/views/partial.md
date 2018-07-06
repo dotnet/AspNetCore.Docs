@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how a partial view is a view that's rendered within another view and when they should be used in ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2018
+ms.date: 07/06/2018
 uid: mvc/views/partial
 ---
 # Partial views in ASP.NET Core
@@ -36,7 +36,7 @@ In a complex page composed of several logical pieces, it's helpful to work with 
 
 Partial views are created like a regular view&mdash;by creating a *.cshtml* file within the *Views* folder. There's no semantic difference between a partial view and a regular view; however, they're rendered differently. You can have a view that's returned directly from a controller's [ViewResult](/dotnet/api/microsoft.aspnetcore.mvc.viewresult), and the same view can be used as a partial view. The main difference between how a view and a partial view are rendered is that partial views don't run *_ViewStart.cshtml*. Regular views do run *_ViewStart.cshtml*. Learn more about *_ViewStart.cshtml* in [Layout](xref:mvc/views/layout)).
 
-As a convention, partial view file names often begin with `_`. This isn't a requirement, but it helps to visually differentiate partial views from regular views.
+As a convention, partial view file names often begin with `_`. This naming convention isn't a requirement, but it helps to visually differentiate partial views from regular views.
 
 ## Reference a partial view
 
@@ -50,7 +50,7 @@ The Partial Tag Helper requires ASP.NET Core 2.1 or later. It renders asynchrono
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_PartialTagHelper)]
 
-See <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper> for more information.
+For more information, see <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
 
 ::: moniker-end
 
@@ -60,11 +60,11 @@ When using an HTML Helper, the best practice is to use [PartialAsync](/dotnet/ap
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_PartialAsync)]
 
-You can alternatively render a partial view with [RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync). This method doesn't return a result. It streams the rendered output directly to the response. Because the method doesn't return a result, it must be called within a Razor code block:
+Alternatively, you can render a partial view with [RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync). This method doesn't return a result. It streams the rendered output directly to the response. Because the method doesn't return a result, it must be called within a Razor code block:
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
-Since it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, it's recommended you use `PartialAsync`.
+Since it streams the result directly, `RenderPartialAsync` may perform better in some scenarios. However, it's recommended that you use `PartialAsync`.
 
 ### Synchronous HTML Helper
 
@@ -72,6 +72,16 @@ Since it streams the result directly, `RenderPartialAsync` may perform better in
 
 > [!IMPORTANT]
 > If your views need to execute code, use a [view component](xref:mvc/views/view-components) instead of a partial view.
+
+::: moniker range=">= aspnetcore-2.1"
+
+In ASP.NET Core 2.1 or later, calling `Partial` or `RenderPartial` results in an analyzer warning. For example, usage of `Partial` yields the following warning message:
+
+> Use of IHtmlHelper.Partial may result in application deadlocks. Consider using `<partial>` Tag Helper or `IHtmlHelper.PartialAsync`.
+
+Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the Partial Tag Helper. For more information on Partial Tag Helper migration, see [Migrate from an HTML Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper).
+
+::: moniker-end
 
 ## Partial view discovery
 
