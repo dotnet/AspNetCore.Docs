@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/24/2018
+ms.date: 07/06/2018
 uid: web-api/index
 ---
 # Build web APIs with ASP.NET Core
@@ -26,16 +26,21 @@ Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controlle
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
 ::: moniker-end
 
-The `ControllerBase` class provides access to numerous properties and methods. In the preceding example, some such methods include [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest) and [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction). These methods are invoked within action methods to return HTTP 400 and 201 status codes, respectively. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property, also provided by `ControllerBase`, is accessed to perform request model validation.
+The `ControllerBase` class provides access to several properties and methods. In the preceding example, some such methods include [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest) and [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction). These methods are called within action methods to return HTTP 400 and 201 status codes, respectively. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property, also provided by `ControllerBase`, is accessed to handle request model validation.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## Annotate class with ApiControllerAttribute
 
 ASP.NET Core 2.1 introduces the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to denote a web API controller class. For example:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-This attribute is commonly coupled with `ControllerBase` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file).
+The ASP.NET Core 2.1 compatibility flag must be enabled, via [SetCompatibilityVersion](/dotnet/api/microsoft.extensions.dependencyinjection.mvccoremvcbuilderextensions.setcompatibilityversion), to use this attribute. Add the highlighted code in *Startup.ConfigureServices*:
+
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=2)]
+
+The `[ApiController]` attribute is commonly coupled with `ControllerBase` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file).
 
 Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:
 
@@ -80,7 +85,7 @@ Inference rules are applied for the default data sources of action parameters. T
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/TestController.cs?name=snippet_ActionsCausingExceptions)]
 
 * **[FromForm]** is inferred for action parameters of type [IFormFile](/dotnet/api/microsoft.aspnetcore.http.iformfile) and [IFormFileCollection](/dotnet/api/microsoft.aspnetcore.http.iformfilecollection). It's not inferred for any simple or user-defined types.
-* **[FromRoute]** is inferred for any action parameter name matching a parameter in the route template. When multiple routes match an action parameter, any route value is considered `[FromRoute]`.
+* **[FromRoute]** is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
 * **[FromQuery]** is inferred for any other action parameters.
 
 The default inference rules are disabled with the following code in *Startup.ConfigureServices*:
@@ -102,12 +107,13 @@ Attribute routing becomes a requirement. For example:
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=1)]
 
 Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined in [UseMvc](/dotnet/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions.usemvc#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvc_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_Microsoft_AspNetCore_Routing_IRouteBuilder__) or by [UseMvcWithDefaultRoute](/dotnet/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions.usemvcwithdefaultroute#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_) in *Startup.Configure*.
+
 ::: moniker-end
 
 ## Additional resources
 
-* [Controller action return types](xref:web-api/action-return-types)
-* [Custom formatters](xref:web-api/advanced/custom-formatters)
-* [Format response data](xref:web-api/advanced/formatting)
-* [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
-* [Routing to controller actions](xref:mvc/controllers/routing)
+* <xref:web-api/action-return-types>
+* <xref:web-api/advanced/custom-formatters>
+* <xref:web-api/advanced/formatting>
+* <xref:tutorials/web-api-help-pages-using-swagger>
+* <xref:mvc/controllers/routing>
