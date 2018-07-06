@@ -230,7 +230,7 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 **web.config**
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see [ASP.NET Core Module configuration reference: Setting environment variables](xref:host-and-deploy/aspnet-core-module#setting-environment-variables). When the `ASPNETCORE_ENVIRONMENT` environment variable is set with *web.config*, its value overrides a setting at the system level.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see the *Setting environment variables* section of <xref:host-and-deploy/aspnet-core-module#setting-environment-variables>. When the `ASPNETCORE_ENVIRONMENT` environment variable is set with *web.config*, its value overrides a setting at the system level.
 
 **Per IIS Application Pool**
 
@@ -269,7 +269,7 @@ For Linux distros, use the `export` command at a command prompt for session-base
 
 ### Configuration by environment
 
-See [Configuration by environment](xref:fundamentals/configuration/index#configuration-by-environment) for more information.
+See the *Configuration by environment* section of <xref:fundamentals/configuration/index#configuration-by-environment>.
 
 ## Environment-based Startup class and methods
 
