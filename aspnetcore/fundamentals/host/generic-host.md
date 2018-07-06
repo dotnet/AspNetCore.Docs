@@ -73,13 +73,13 @@ Extension methods are called on the `IHostBuilder` implementation to configure t
 
 #### Application Key (Name)
 
-The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is automatically set when [UseStartup](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup) or [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configure) is called during host construction. The value is set to the name of the assembly containing the app's entry point. To set the value explicitly, use the [HostDefaults.ApplicationKey](/dotnet/api/microsoft.extensions.hosting.hostdefaults.applicationkey):
+The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is set from host configuration during host construction. To set the value explicitly, use the [HostDefaults.ApplicationKey](/dotnet/api/microsoft.extensions.hosting.hostdefaults.applicationkey):
 
 **Key**: applicationName  
 **Type**: *string*  
 **Default**: The name of the assembly containing the app's entry point.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_APPLICATIONKEY`
+**Environment variable**: `<PREFIX_>APPLICATIONKEY` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
