@@ -33,10 +33,6 @@ namespace RazorPagesMovie
         #region snippet_ConfigureServices2
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires 
-            // using RazorPagesMovie.Models;
-            // using Microsoft.EntityFrameworkCore;
-
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
             services.AddMvc();

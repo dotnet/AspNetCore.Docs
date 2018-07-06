@@ -15,17 +15,19 @@ Browser Link is a feature in Visual Studio that creates a communication channel 
 
 ## Browser Link setup
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** template projects use the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) metapackage, which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
-
 ::: moniker range=">= aspnetcore-2.1"
 
-When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage, you must install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package manually for BrowserLink functionality.
+When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for BrowserLink functionality. The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.
 
 ::: moniker-end
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker range="= aspnetcore-2.0"
+
+The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
 
 The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. The **Empty** or **Web API** template projects require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
@@ -43,11 +45,11 @@ Find and install the package:
 
 ![Add package with NuGet Package Manager](using-browserlink/_static/add-package-with-nuget-package-manager.png)
 
----
+::: moniker-end
 
 ### Configuration
 
-In the `Configure` method of the *Startup.cs* file:
+In the `Startup.Configure` method:
 
 ```csharp
 app.UseBrowserLink();
@@ -81,7 +83,7 @@ From the Browser Link toolbar control, you can:
 > [!NOTE]
 > Some Visual Studio plug-ins, most notably *Web Extension Pack 2015* and *Web Extension Pack 2017*, offer extended functionality for Browser Link, but some of the additional features don't work with ASP.NET Core projects.
 
-## Refresh the web application in several browsers at once
+## Refresh the web app in several browsers at once
 
 To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:
 
@@ -129,11 +131,11 @@ When you re-enable Browser Link after disabling it, you must refresh the browser
 
 When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
-## How does it work?
+## How it works
 
 Browser Link uses SignalR to create a communication channel between Visual Studio and the browser. When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. Browser Link also registers a middleware component in the ASP.NET request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
 
-```javascript
+```html
     <!-- Visual Studio Browser Link -->
     <script type="application/json" id="__browserLink_initializationData">
         {"requestId":"a717d5a07c1741949a7cefd6fa2bad08","requestMappingFromServer":false}
@@ -143,6 +145,6 @@ Browser Link uses SignalR to create a communication channel between Visual Studi
 </body>
 ```
 
-Your source files aren't modified. The middleware component injects the script references dynamically. 
+Your source files aren't modified. The middleware component injects the script references dynamically.
 
 Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.
