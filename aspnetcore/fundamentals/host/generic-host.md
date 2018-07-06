@@ -12,7 +12,7 @@ uid: fundamentals/host/generic-host
 
 By [Luke Latham](https://github.com/guardrex)
 
-.NET apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), see the [Web Host](xref:fundamentals/host/web-host) topic.
+.NET apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), see <xref:fundamentals/host/web-host>.
 
 The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
 
@@ -52,7 +52,7 @@ Host builder configuration is created by calling [ConfigureHostConfiguration](/d
 
 Environment variable configuration isn't added by default. Call [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) on the host builder to configure the host from environment variables. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
-During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see [Use multiple environments](xref:fundamentals/environments).
+During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see <xref:fundamentals/environments>.
 
 `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
 
@@ -70,6 +70,21 @@ Example `HostBuilder` configuration using `ConfigureHostConfiguration`:
 ### Extension method configuration
 
 Extension methods are called on the `IHostBuilder` implementation to configure the content root and the environment.
+
+#### Application Key (Name)
+
+The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is set from host configuration during host construction. To set the value explicitly, use the [HostDefaults.ApplicationKey](/dotnet/api/microsoft.extensions.hosting.hostdefaults.applicationkey):
+
+**Key**: applicationName  
+**Type**: *string*  
+**Default**: The name of the assembly containing the app's entry point.  
+**Set using**: `UseSetting`  
+**Environment variable**: `<PREFIX_>APPLICATIONKEY` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting(WebHostDefaults.ApplicationKey, "CustomApplicationName")
+```
 
 #### Content Root
 
@@ -134,7 +149,7 @@ To move settings files to the output directory, specify the settings files as [M
 
 [ConfigureServices](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.configureservices) adds services to the app's [dependency injection](xref:fundamentals/dependency-injection) container. `ConfigureServices` can be called multiple times with additive results.
 
-A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. For more information, see the [Background tasks with hosted services](xref:fundamentals/host/hosted-services) topic.
+A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. For more information, see <xref:fundamentals/host/hosted-services>.
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses the `AddHostedService` extension method to add a service for lifetime events, `LifetimeEventsHostedService`, and a timed background task, `TimedHostedService`, to the app:
 
@@ -384,7 +399,7 @@ public class MyClass
 }
 ```
 
-For more information, see [Use multiple environments](xref:fundamentals/environments).
+For more information, see <xref:fundamentals/environments>.
 
 ## IApplicationLifetime interface
 
@@ -423,5 +438,5 @@ public class MyClass
 
 ## Additional resources
 
-* [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
+* <xref:fundamentals/host/hosted-services>
 * [Hosting repo samples on GitHub](https://github.com/aspnet/Hosting/tree/release/2.1/samples)
