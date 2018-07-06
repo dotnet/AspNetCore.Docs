@@ -20,10 +20,15 @@ This document explains how to build a web API in ASP.NET Core and when it's most
 Inherit from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase) class in a controller that's intended to serve as a web API. For example:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
+
 ::: moniker-end
 
 The `ControllerBase` class provides access to several properties and methods. In the preceding example, some such methods include [BadRequest](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.badrequest) and [CreatedAtAction](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.createdataction). These methods are called within action methods to return HTTP 400 and 201 status codes, respectively. The [ModelState](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.modelstate) property, also provided by `ControllerBase`, is accessed to handle request model validation.
@@ -36,11 +41,11 @@ ASP.NET Core 2.1 introduces the [[ApiController]](/dotnet/api/microsoft.aspnetco
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-The ASP.NET Core 2.1 compatibility flag must be enabled, via [SetCompatibilityVersion](/dotnet/api/microsoft.extensions.dependencyinjection.mvccoremvcbuilderextensions.setcompatibilityversion), to use this attribute. Add the highlighted code in *Startup.ConfigureServices*:
+A compatibility version of 2.1 or later, set via [SetCompatibilityVersion](/dotnet/api/microsoft.extensions.dependencyinjection.mvccoremvcbuilderextensions.setcompatibilityversion), is required to use this attribute. For example, the highlighted code in *Startup.ConfigureServices* sets the 2.1 compatibility flag:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=2)]
 
-The `[ApiController]` attribute is commonly coupled with `ControllerBase` to gain access to useful methods and properties. `ControllerBase` provides access to methods such as [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file).
+The `[ApiController]` attribute is commonly coupled with `ControllerBase` to enable REST-specific behavior for controllers. `ControllerBase` provides access to methods such as [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) and [File](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.file).
 
 Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:
 
@@ -71,8 +76,8 @@ A binding source attribute defines the location at which an action parameter's v
 |**[[FromRoute]](/dotnet/api/microsoft.aspnetcore.mvc.fromrouteattribute)**   | Route data from the current request |
 |**[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices)** | The request service injected as an action parameter |
 
-> [!NOTE]
-> Do **not** use `[FromRoute]` when values might contain `%2f` (that is `/`) because `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
+> [!WARNING]
+> Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
 
 Without the `[ApiController]` attribute, binding source attributes are explicitly defined. In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string:
 
