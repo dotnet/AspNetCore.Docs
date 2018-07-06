@@ -15,17 +15,19 @@ Browser Link is a feature in Visual Studio that creates a communication channel 
 
 ## Browser Link setup
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** template projects use the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) metapackage, which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
-
 ::: moniker range=">= aspnetcore-2.1"
 
-When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) metapackage, you must install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package manually for BrowserLink functionality.
+When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for BrowserLink functionality.
 
 ::: moniker-end
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker range="= aspnetcore-2.0"
+
+The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
 
 The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. The **Empty** or **Web API** template projects require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
@@ -43,7 +45,7 @@ Find and install the package:
 
 ![Add package with NuGet Package Manager](using-browserlink/_static/add-package-with-nuget-package-manager.png)
 
----
+::: moniker-end
 
 ### Configuration
 
