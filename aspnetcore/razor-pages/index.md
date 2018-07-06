@@ -318,7 +318,7 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 ::: moniker range=">= aspnetcore-2.1"
 
-The layout is in the *Shared/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Shared/Pages* folder can be used from any Razor page under the *Pages* folder.
+The layout is in the *Pages/Shared* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages/Shared* folder can be used from any Razor page under the *Pages* folder.
 
 The layout file should go in the *Pages/Shared* folder.
 
