@@ -5,7 +5,7 @@ description: Discover the ASP.NET Core Partial Tag Helper and the role each of i
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/05/2018
+ms.date: 07/06/2018
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
@@ -77,7 +77,7 @@ In this example, the value of `ViewData["IsNumberReadOnly"]` determines whether 
 
 ## Migrate from an HTML Helper
 
-Consider the following asynchronous HTML Helper example. A collection of products is iterated and displayed. Per the `PartialAsync` method's first parameter, the *_ProductPartial.cshtml* partial view is loaded. An instance of the `Product` model is passed to it for binding.
+Consider the following asynchronous HTML Helper example. A collection of products is iterated and displayed. Per the `PartialAsync` method's first parameter, the *_ProductPartial.cshtml* partial view is loaded. An instance of the `Product` model is passed to the partial view for binding.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_HtmlHelper&highlight=3)]
 

@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using TagHelpersBuiltIn.Models;
 
 namespace TagHelpersBuiltIn.Pages
 {
     public class ProductsModel : PageModel
     {
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; private set; }
 
         public void OnGet()
         {

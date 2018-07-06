@@ -59,4 +59,4 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine. To resolve this problem:
 
 * Install or verify the .NET Core SDK is installed.
-* Verify the `PATH` environment variable points to the location the SDK is installed. The installer normally sets the `PATH`.
+* Verify that the `PATH` environment variable points to the location in which the SDK is installed. The installer normally sets the `PATH`.
