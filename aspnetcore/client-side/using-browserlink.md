@@ -49,7 +49,7 @@ Find and install the package:
 
 ### Configuration
 
-In the `Configure` method of the *Startup.cs* file:
+In the `Startup.Configure` method:
 
 ```csharp
 app.UseBrowserLink();
@@ -83,7 +83,7 @@ From the Browser Link toolbar control, you can:
 > [!NOTE]
 > Some Visual Studio plug-ins, most notably *Web Extension Pack 2015* and *Web Extension Pack 2017*, offer extended functionality for Browser Link, but some of the additional features don't work with ASP.NET Core projects.
 
-## Refresh the web application in several browsers at once
+## Refresh the web app in several browsers at once
 
 To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:
 
@@ -131,11 +131,11 @@ When you re-enable Browser Link after disabling it, you must refresh the browser
 
 When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
-## How does it work?
+## How it works
 
 Browser Link uses SignalR to create a communication channel between Visual Studio and the browser. When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. Browser Link also registers a middleware component in the ASP.NET request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
 
-```javascript
+```html
     <!-- Visual Studio Browser Link -->
     <script type="application/json" id="__browserLink_initializationData">
         {"requestId":"a717d5a07c1741949a7cefd6fa2bad08","requestMappingFromServer":false}
@@ -145,6 +145,6 @@ Browser Link uses SignalR to create a communication channel between Visual Studi
 </body>
 ```
 
-Your source files aren't modified. The middleware component injects the script references dynamically. 
+Your source files aren't modified. The middleware component injects the script references dynamically.
 
 Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.
