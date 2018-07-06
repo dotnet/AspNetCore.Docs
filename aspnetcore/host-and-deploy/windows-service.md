@@ -34,7 +34,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    * Call [host.RunAsService](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostwindowsserviceextensions.runasservice) instead of `host.Run`.
 
-   * If the code calls `UseContentRoot`, use a path to the app's published location instead of `Directory.GetCurrentDirectory()`.
+   * Call [UseContentRoot](xref:fundamentals/host/web-host#content-root) and use a path to the app's published location instead of `Directory.GetCurrentDirectory()`.
 
      ::: moniker range=">= aspnetcore-2.0"
 
