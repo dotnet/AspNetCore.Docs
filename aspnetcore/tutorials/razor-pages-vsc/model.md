@@ -22,7 +22,14 @@ uid: tutorials/razor-pages-vsc/model
 
 [!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
-[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
+
+Add the following `using` statements at the top of *Startup.cs*:
+
+```csharp
+using RazorPagesMovie.Models;
+using Microsoft.EntityFrameworkCore;
+```
 
 Build the project to verify you don't have any errors.
 
