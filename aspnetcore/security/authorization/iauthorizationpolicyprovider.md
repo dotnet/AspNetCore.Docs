@@ -146,4 +146,4 @@ To use custom policies from an `IAuthorizationPolicyProvider`, you must:
 services.AddTransient<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 ```
 
-A complete custom `IAuthorizationPolicyProvider` sample is available in the [aspnet/AuthSamples GitHub repository](https://github.com/aspnet/AuthSamples/tree/dev/samples/CustomPolicyProvider).
+A complete custom `IAuthorizationPolicyProvider` sample is available in the [aspnet/AuthSamples GitHub repository](https://github.com/aspnet/AuthSamples/tree/master/samples/CustomPolicyProvider).
