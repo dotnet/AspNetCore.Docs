@@ -13,15 +13,17 @@ namespace AspNetCoreService
         #region ServiceOnly
         public static void Main(string[] args)
         {
+            CreateWebHostBuilder(args).Build().RunAsService();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
             var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
             var pathToContentRoot = Path.GetDirectoryName(pathToExe);
 
-            var host = WebHost.CreateDefaultBuilder(args)
+            return WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(pathToContentRoot)
-                .UseStartup<Startup>()
-                .Build();
-
-            host.RunAsService();
+                .UseStartup<Startup>();
         }
         #endregion
 #endif
@@ -36,6 +38,21 @@ namespace AspNetCoreService
                 isService = false;
             }
 
+            var host = CreateWebHostBuilder(args, isService).Build();
+
+            if (isService)
+            {
+                host.RunAsService();
+            }
+            else
+            {
+                host.Run();
+            }
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
+            bool isService)
+        {
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
             if (isService)
@@ -46,19 +63,9 @@ namespace AspNetCoreService
 
             var webHostArgs = args.Where(arg => arg != "--console").ToArray();
 
-            var host = WebHost.CreateDefaultBuilder(webHostArgs)
+            WebHost.CreateDefaultBuilder(webHostArgs)
                 .UseContentRoot(pathToContentRoot)
-                .UseStartup<Startup>()
-                .Build();
-
-            if (isService)
-            {
-                host.RunAsService();
-            }
-            else
-            {
-                host.Run();
-            }
+                .UseStartup<Startup>();
         }
         #endregion
 #endif
@@ -73,6 +80,21 @@ namespace AspNetCoreService
                 isService = false;
             }
 
+            var host = CreateWebHostBuilder(args, isService).Build();
+
+            if (isService)
+            {
+                host.RunAsCustomService();
+            }
+            else
+            {
+                host.Run();
+            }
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
+            bool isService)
+        {
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
             if (isService)
@@ -83,19 +105,9 @@ namespace AspNetCoreService
 
             var webHostArgs = args.Where(arg => arg != "--console").ToArray();
 
-            var host = WebHost.CreateDefaultBuilder(args)
+            return WebHost.CreateDefaultBuilder(webHostArgs)
                 .UseContentRoot(pathToContentRoot)
-                .UseStartup<Startup>()
-                .Build();
-
-            if (isService)
-            {
-                host.RunAsCustomService();
-            }
-            else
-            {
-                host.Run();
-            }
+                .UseStartup<Startup>();
         }
         #endregion
 #endif

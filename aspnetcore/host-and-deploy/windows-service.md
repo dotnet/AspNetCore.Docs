@@ -22,12 +22,40 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 1. In the project file:
 
    1. Confirm the presence of the runtime identifier or add it to the **\<PropertyGroup>** that contains the target framework:
+
+      ::: moniker range=">= aspnetcore-2.1"
+
       ```xml
       <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
         <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
       </PropertyGroup>
       ```
+
+      ::: moniker-end
+
+      ::: moniker range="= aspnetcore-2.0"
+
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
+
+      ::: moniker-end
+
+      ::: moniker range="< aspnetcore-2.0"
+
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp1.1</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
+
+      ::: moniker-end
+
    1. Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
 
 1. Make the following changes in `Program.Main`:
@@ -38,7 +66,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker range=">= aspnetcore-2.0"
 
-     [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=3-4,7,11)]
+     [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=8-9,12)]
 
      ::: moniker-end
 
@@ -71,7 +99,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    Open a command shell with administrative privileges and run the following command:
 
    ```console
-   sc create MyService binPath= "c:\my_services\aspnetcoreservice\bin\release\<TARGET_FRAMEWORK>\publish\aspnetcoreservice.exe"
+   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\<TARGET_FRAMEWORK>\publish\AspNetCoreService.exe"
    ```
    
    > [!IMPORTANT]
@@ -165,7 +193,7 @@ To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.
 
    ::: moniker range=">= aspnetcore-2.0"
 
-   [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=27)]
+   [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=14)]
 
    ::: moniker-end
 
@@ -177,7 +205,7 @@ To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.
 
 If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the [IWebHost.Services](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost.services) property:
 
-[!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]
+[!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7-8)]
 
 ## Proxy server and load balancer scenarios
 
