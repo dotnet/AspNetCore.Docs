@@ -26,6 +26,9 @@ Discover how to handle errors in ASP.NET Core apps during development on a local
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
 This topic introduces the features of the Visual Studio debugger.
 
+[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)  
+Learn about the debugging support built into Visual Studio Code.
+
 ## App startup errors
 
 **502.5 Process Failure**  
