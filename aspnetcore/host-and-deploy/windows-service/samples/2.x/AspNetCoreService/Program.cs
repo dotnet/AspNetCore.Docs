@@ -29,18 +29,18 @@ namespace AspNetCoreService
 #endif
 #if ServiceOrConsole
         #region ServiceOrConsole
+        private static bool _isService = true;
+
         public static void Main(string[] args)
         {
-            var isService = true;
-
             if (Debugger.IsAttached || args.Contains("--console"))
             {
-                isService = false;
+                _isService = false;
             }
 
-            var host = CreateWebHostBuilder(args, isService).Build();
+            var host = CreateWebHostBuilder(args).Build();
 
-            if (isService)
+            if (_isService)
             {
                 host.RunAsService();
             }
@@ -50,12 +50,11 @@ namespace AspNetCoreService
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
-            bool isService)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
-            if (isService)
+            if (_isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
@@ -71,18 +70,18 @@ namespace AspNetCoreService
 #endif
 #if HandleStopStart
         #region HandleStopStart
+        private static bool _isService = true;
+
         public static void Main(string[] args)
         {
-            var isService = true;
-
             if (Debugger.IsAttached || args.Contains("--console"))
             {
-                isService = false;
+                _isService = false;
             }
 
-            var host = CreateWebHostBuilder(args, isService).Build();
+            var host = CreateWebHostBuilder(args).Build();
 
-            if (isService)
+            if (_isService)
             {
                 host.RunAsCustomService();
             }
@@ -92,12 +91,11 @@ namespace AspNetCoreService
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
-            bool isService)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
-            if (isService)
+            if (_isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
