@@ -244,9 +244,9 @@ See [Configuration by environment](xref:fundamentals/configuration/index#configu
 
 ### Startup class conventions
 
-When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup<EnvironmentName>` class isn't found, the `Startup` class is used.
+When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used.
 
-To implement environment-based `Startup` classes, create a `Startup<EnvironmentName>` class for each environment in use and a fallback `Startup` class:
+To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
 
 ```csharp
 // Startup class to use in the Development environment
@@ -278,7 +278,7 @@ public class StartupProduction
 }
 
 // Fallback Startup class
-// Selected if the environment doesn't match a Startup<EnvironmentName> class
+// Selected if the environment doesn't match a Startup{EnvironmentName} class
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
