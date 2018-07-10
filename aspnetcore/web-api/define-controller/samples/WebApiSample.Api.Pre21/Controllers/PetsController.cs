@@ -22,7 +22,7 @@ namespace WebApiSample.Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<Pet>), 200)]
         public async Task<IActionResult> GetAllAsync()
         {
-            List<Pet> pets = await _repository.GetPetsAsync();
+            var pets = await _repository.GetPetsAsync();
 
             return Ok(pets);
         }
