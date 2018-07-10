@@ -45,7 +45,7 @@ The following project file references the `Microsoft.AspNetCore.App` metapackage
 </Project>
 ```
 
-The version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version `2.1.1` is specified, but `2.1.3` is installed. In that case, the app uses `2.1.3`. Although not recommended, you can disable roll-forward behavior (patch and/or minor). For more information on package version roll-forward behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+The version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be used. For example, suppose version `2.1.1` is specified, but `2.1.3` is installed. In that case, the app uses `2.1.3`. Although not recommended, you can disable roll-forward behavior (patch and/or minor). For more information on package version roll-forward behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
 The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages) isn't a traditional package that's updated from NuGet. Similar to `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App` represents a shared runtime, which has special versioning semantics handled outside of NuGet. For more information, see [Packages, metapackages and frameworks](/dotnet/core/packages).
 
