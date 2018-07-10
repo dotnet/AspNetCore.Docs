@@ -293,7 +293,7 @@ public class Startup
 }
 ```
 
-Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload to bootstrap startup that accepts an assembly name:
+Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload that accepts an assembly name:
 
 ::: moniker range=">= aspnetcore-2.1"
 
