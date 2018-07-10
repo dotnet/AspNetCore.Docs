@@ -21,8 +21,9 @@ uid: signalr/index
   * [JavaScript client](xref:signalr/javascript-client)
   * [.NET client](xref:signalr/dotnet-client)
   * [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+  * [JavaScript API](/javascript/api/?view=signalr-js-latest)
+
 * [Configuration](xref:signalr/configuration)
 * [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Streaming](xref:signalr/streaming)
 * [Differences between SignalR versions](xref:signalr/version-differences)
-* [JavaScript API](/javascript/api/)
