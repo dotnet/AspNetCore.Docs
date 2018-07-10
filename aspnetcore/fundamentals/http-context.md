@@ -61,7 +61,8 @@ For other framework and custom components that need access to `HttpContext`, the
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-     services.AddMvc();
+     services.AddMvc()
+             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
      services.AddHttpContextAccessor();
      services.AddTransient<IUserRepository, UserRepository>();
 }
