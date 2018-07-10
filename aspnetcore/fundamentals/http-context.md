@@ -11,13 +11,13 @@ ms.technology: aspnet
 ms.topic: article
 uid: fundamentals/httpcontext
 ---
-# Use IHttpContextAccessor to manage HttpContext
+# Accessing HttpContext in ASP.NET Core
 
-ASP.NET Core applications access the HttpContext through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor?view=aspnetcore-2.0) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor.httpcontext?view=aspnetcore-2.0).
+ASP.NET Core apps access the HttpContext through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
 
 ## Use the HttpContext from Razor Pages, controllers, and middleware
 
-The Razor Pages `PageModel` exposes the `HttpContext` property:
+The Razor Pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) exposes the [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext) property:
 
 ```csharp
 public class AboutModel : PageModel
@@ -31,7 +31,7 @@ public class AboutModel : PageModel
 }
 ```
 
-Controllers expose the `HttpContext` property from the `ControllerBase`:
+Controllers expose the `HttpContext` property from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase):
 
 ```csharp
 public IActionResult About()
@@ -43,12 +43,12 @@ public IActionResult About()
 }
 ```
 
-When working with custom middleware components, `HttpContext` is passed into the `Invoke` method and can be accessed when the middleware is being configured.
+When working with custom middleware components, `HttpContext` is passed into the `Invoke` or `InvokeAsync` method and can be accessed when the middleware is configured:
 
 ```csharp
 public class MyCustomMiddleware
 {
-    public async Task Invoke(HttpContext context)
+    public Task InvokeAsync(HttpContext context)
     {
         // Middleware initialization optionally using HttpContext
     }
@@ -58,13 +58,13 @@ public class MyCustomMiddleware
 
 ## Use HttpContext from custom components
 
-For other framework and custom components that need access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container. The dependency injection container will supply the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
+For other framework and custom components that need access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container. The dependency injection container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
      services.AddMvc();
-     services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+     services.AddHttpContextAccessor();
      services.AddTransient<IUserRepository, UserRepository>();
 }
 ```
@@ -91,56 +91,6 @@ public class UserRepository : IUserRepository
     }
 
     ...
-```
-
-## Work with libraries and ported code
-
-Registering IHttpContextAccessor in the application startup using the built-in dependency injection framework is the preferred approach to accessing HttpContext. In scenarios where it is not feasible to refactor to this approach, it is possible to simulate the behavior of `System.Web.HttpContext` from ASP.NET 4.x.
-
-Register `IHttpContextAccessor` as a dependency in the `ConfigureServices` method.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 }
 ```
 
-Create a wrapper class for `HttpContext` and provide a method to invoke to pass an instance of `IHttpContextAccessor`.
-
-```csharp
-public static class HttpContext
-{
-    private static IHttpContextAccessor _httpContextAccessor;
-
-    public static Microsoft.AspNetCore.Http.HttpContext Current => _httpContextAccessor.HttpContext;
-
-    public static void RegisterContextAccessor(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
-}
-```
-
-Introduce an extension method to resolve the `IHttpContextAccessor` dependency and set the `HttpContext` property.
-
-```csharp
-public static IApplicationBuilder UseStaticHttpContext(this IApplicationBuilder app)
-{
-     var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
-
-     HttpContext.RegisterContextAccessor(httpContextAccessor);
-     return app;
-}
-```
-
-Configure the application to use the static `HttpContext` object.
-
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-     app.UseStaticHttpContext();
-}
-```
-
-You will now be able to access the current HttpContext through the static `HttpContext.Current`. When porting code to ASP.NET Core, it may be helpful to place the static `HttpContext` class in the `System.Web` namespace.
