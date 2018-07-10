@@ -40,7 +40,8 @@ namespace AspNetCoreService
 
         public CustomWebHostService(IWebHost host) : base(host)
         {
-            _logger = host.Services.GetRequiredService<ILogger<CustomWebHostService>>();
+            _logger = host.Services
+                .GetRequiredService<ILogger<CustomWebHostService>>();
         }
 
         protected override void OnStarting(string[] args)
