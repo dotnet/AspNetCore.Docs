@@ -259,6 +259,7 @@
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
 ## [Differences between SignalR versions](xref:signalr/version-differences)
+## [JavaScript API](/javascript/api/)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
