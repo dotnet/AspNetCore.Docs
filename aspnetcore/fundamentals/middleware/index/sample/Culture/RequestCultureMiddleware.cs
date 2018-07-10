@@ -13,7 +13,7 @@ namespace Culture
             _next = next;
         }
 
-        public Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             var cultureQuery = context.Request.Query["culture"];
             if (!string.IsNullOrWhiteSpace(cultureQuery))
@@ -26,7 +26,7 @@ namespace Culture
             }
 
             // Call the next delegate/middleware in the pipeline
-            return this._next(context);
+            await _next(context);
         }
     }
 }
