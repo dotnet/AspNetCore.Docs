@@ -9,9 +9,11 @@ uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
 
-ASP.NET Core apps access the HttpContext through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
+ASP.NET Core apps access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
 
-## Use the HttpContext from Razor Pages, controllers, and middleware
+::: moniker range=">= aspnetcore-2.0"
+
+## Use HttpContext from Razor Pages
 
 The Razor Pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) exposes the [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext) property:
 
@@ -27,6 +29,10 @@ public class AboutModel : PageModel
 }
 ```
 
+::: moniker-end
+
+## Use HttpContext from a controller
+
 Controllers expose the `HttpContext` property from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase):
 
 ```csharp
@@ -38,6 +44,8 @@ public IActionResult About()
     return View();
 }
 ```
+
+## Use HttpContext from middleware
 
 When working with custom middleware components, `HttpContext` is passed into the `Invoke` or `InvokeAsync` method and can be accessed when the middleware is configured:
 
