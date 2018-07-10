@@ -43,7 +43,6 @@ The following project file references the `Microsoft.AspNetCore.App` metapackage
   </ItemGroup>
 
 </Project>
-
 ```
 
 The version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version `2.1.1` is specified, but `2.1.3` is installed. In that case, the app uses `2.1.3`. Although not recommended, you can disable roll-forward behavior (patch and/or minor). For more information on package version roll-forward behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
