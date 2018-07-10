@@ -25,3 +25,4 @@ uid: signalr/index
 * [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Streaming](xref:signalr/streaming)
 * [Differences between SignalR versions](xref:signalr/version-differences)
+* [JavaScript API](/javascript/api/)
