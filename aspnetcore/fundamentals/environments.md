@@ -242,13 +242,121 @@ See [Configuration by environment](xref:fundamentals/configuration/index#configu
 
 ## Environment-based Startup class and methods
 
-When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. If a `Startup{EnvironmentName}` class exists, the class is called for that `EnvironmentName`:
+### Startup class conventions
 
-[!code-csharp[](environments/sample/EnvironmentsSample/StartupDev.cs?name=snippet&highlight=1)]
+When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used.
 
-[WebHostBuilder.UseStartup&lt;TStartup&gt;](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) overrides configuration sections.
+To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure{EnvironmentName}` and `Configure{EnvironmentName}Services`:
+```csharp
+// Startup class to use in the Development environment
+public class StartupDevelopment
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        ...
+    }
+}
+
+// Startup class to use in the Production environment
+public class StartupProduction
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        ...
+    }
+}
+
+// Fallback Startup class
+// Selected if the environment doesn't match a Startup{EnvironmentName} class
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        ...
+    }
+}
+```
+
+Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload that accepts an assembly name:
+
+::: moniker range=">= aspnetcore-2.1"
+
+```csharp
+public static void Main(string[] args)
+{
+    CreateWebHostBuilder(args).Build().Run();
+}
+
+public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+{
+    var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
+
+    return WebHost.CreateDefaultBuilder(args)
+        .UseStartup(assemblyName);
+}
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+```csharp
+public static void Main(string[] args)
+{
+    CreateWebHost(args).Run();
+}
+
+public static IWebHost CreateWebHost(string[] args)
+{
+    var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
+
+    return WebHost.CreateDefaultBuilder(args)
+        .UseStartup(assemblyName)
+        .Build();
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
+
+        var host = new WebHostBuilder()
+            .UseStartup(assemblyName)
+            .Build();
+
+        host.Run();
+    }
+}
+```
+
+::: moniker-end
+
+### Startup method conventions
+
+[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`:
 
 [!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,51)]
 
