@@ -11,6 +11,9 @@ msc.type: authoredcontent
 ---
 Introduction to SignalR
 ====================
+
+An updated version of this tutorial is available [here](/aspnet/core/tutorials/signalr) using the latest version of Visual Studio. The new tutorial uses [ASP.NET Core](/aspnet/core/), which provides many improvements over this tutorial.
+
 by [Patrick Fletcher](https://github.com/pfletcher)
 
 > This article describes what SignalR is, and some of the solutions it was designed to create. 
