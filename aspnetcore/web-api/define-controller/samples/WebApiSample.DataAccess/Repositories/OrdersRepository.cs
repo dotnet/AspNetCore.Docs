@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebApiSample.DataAccess.Models;
 
 namespace WebApiSample.DataAccess.Repositories
@@ -31,16 +32,14 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Order> GetOrders()
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
         {
-            return _context.Orders.ToList();
+            return await _context.Orders.ToListAsync();
         }
 
-        public bool TryGetOrder(int id, out Order order)
+        public async Task<Order> GetOrderAsync(int id)
         {
-            order = _context.Orders.Find(id);
-
-            return (order != null);
+            return await _context.Orders.FindAsync(id);
         }
 
         public async Task<int> AddOrderAsync(Order order)
