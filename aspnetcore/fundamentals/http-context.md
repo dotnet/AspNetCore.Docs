@@ -1,17 +1,13 @@
 ---
-title: Accessing HttpContext in ASP.NET Core
+title: Access HttpContext in ASP.NET Core
 author: coderandhiker
 description: Learn how to access HttpContext in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/22/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 07/10/2018
 uid: fundamentals/httpcontext
 ---
-# Accessing HttpContext in ASP.NET Core
+# Access HttpContext in ASP.NET Core
 
 ASP.NET Core apps access the HttpContext through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
 
