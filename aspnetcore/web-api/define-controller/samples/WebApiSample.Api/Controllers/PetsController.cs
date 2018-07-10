@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
@@ -19,16 +19,18 @@ namespace WebApiSample.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Pet>> Get()
+        public async Task<ActionResult<List<Pet>>> GetAllAsync()
         {
-            return _repository.GetPets();
+            return await _repository.GetPetsAsync();
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(404)]
-        public ActionResult<Pet> GetById(int id)
+        public async Task<ActionResult<Pet>> GetByIdAsync(int id)
         {
-            if (!_repository.TryGetPet(id, out var pet))
+            var pet = await _repository.GetPetAsync(id);
+
+            if (pet == null)
             {
                 return NotFound();
             }
@@ -47,7 +49,7 @@ namespace WebApiSample.Api.Controllers
 
             await _repository.AddPetAsync(pet);
 
-            return CreatedAtAction(nameof(GetById),
+            return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = pet.Id }, pet);
         }
     }
