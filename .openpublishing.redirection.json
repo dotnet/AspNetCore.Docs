@@ -444,6 +444,11 @@
         "source_path": "aspnetcore/spa/react.md",
         "redirect_url": "/aspnet/core/client-side/spa/react",
         "redirect_document_id": false
-    }    
+    },
+    {
+        "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
+        "redirect_url": "/aspnet/core/razor-pages/upload-files",
+        "redirect_document_id": false
+    }
   ] 
 }

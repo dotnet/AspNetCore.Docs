@@ -151,6 +151,8 @@ The following code shows combining attributes on one line:
 
 See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure.
 
+Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
@@ -160,4 +162,3 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
-> [Next: Uploading files](xref:tutorials/razor-pages/uploading-files)
