@@ -93,14 +93,8 @@ Create the RCL project:
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
-Create the Razor Pages web app:
 
-* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the app **WebApp1**.
-* Verify **ASP.NET Core 2.1** or later is selected.
-* Select **Web Application** > **OK**.
-
+<!-- snip start 
 ### Add Razor files and folders to the project.
 
 * Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
@@ -111,6 +105,8 @@ Create the Razor Pages web app:
 * Copy the *_ViewStart.cshtml* file from the WebApp1 project to  *RazorUIClassLib/Areas/MyFeature/Pages/_ViewStart.cshtml*.
 
   The [viewstart](xref:mvc/views/layout#running-code-before-each-view) file is required to use the layout of the Razor Pages project.
+
+-->
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -130,8 +126,11 @@ The preceding commands:
 
 The viewstart file is required to use the layout of the Razor Pages project (which is added in the next section).
 
-Update the Razor Pages:
+------
 
+### Add Razor files and folders to the project.
+
+* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
 * Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
 
 [!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
@@ -156,11 +155,17 @@ dotnet build RazorUIClassLib
 
 The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
 
-------
-
 ### Use the Razor UI library from a Razor Pages project
 
 # [Visual Studio](#tab/visual-studio)
+
+Create the Razor Pages web app:
+
+* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **WebApp1**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Web Application** > **OK**.
 
 * From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**.
 * From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > **Project Dependencies**.
