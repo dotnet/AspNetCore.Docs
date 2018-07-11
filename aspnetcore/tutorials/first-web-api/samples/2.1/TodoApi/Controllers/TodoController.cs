@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TodoApi.Models;
 
-#region TodoController
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
@@ -11,7 +10,6 @@ namespace TodoApi.Controllers
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
-        #endregion
 
         public TodoController(TodoContext context)
         {
@@ -24,14 +22,12 @@ namespace TodoApi.Controllers
             }
         }
 
-        #region snippet_GetAll
         [HttpGet]
         public ActionResult<List<TodoItem>> GetAll()
         {
             return _context.TodoItems.ToList();
         }
 
-        #region snippet_GetByID
         [HttpGet("{id}", Name = "GetTodo")]
         public ActionResult<TodoItem> GetById(long id)
         {
@@ -42,10 +38,7 @@ namespace TodoApi.Controllers
             }
             return item;
         }
-        #endregion
-        #endregion
 
-        #region snippet_Create
         [HttpPost]
         public IActionResult Create(TodoItem item)
         {
@@ -54,9 +47,7 @@ namespace TodoApi.Controllers
 
             return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         }
-        #endregion
 
-        #region snippet_Update
         [HttpPut("{id}")]
         public IActionResult Update(long id, TodoItem item)
         {
@@ -73,9 +64,7 @@ namespace TodoApi.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-        #endregion
 
-        #region snippet_Delete
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
@@ -89,6 +78,5 @@ namespace TodoApi.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-        #endregion
     }
 }
