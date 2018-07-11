@@ -29,6 +29,12 @@ namespace Web20
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            // There is no overload for TRole, so if using the RoleManager chain .AddRoles<TRole> 
+            // before .AddEntityFrameworkStores
+            // services.AddDefaultIdentity<ApplicationUser>()
+            //.AddRoles<IdentityRole> This must come before AddEntityFrameworkStores            
+            
+           // Change services.AddIdentity to AddDefaultIdentity
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
