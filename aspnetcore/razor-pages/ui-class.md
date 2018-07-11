@@ -93,13 +93,6 @@ Create the RCL project:
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
-Create the Razor Pages web app:
-
-* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the app **WebApp1**.
-* Verify **ASP.NET Core 2.1** or later is selected.
-* Select **Web Application** > **OK**.
 
 <!-- snip start 
 ### Add Razor files and folders to the project.
@@ -165,6 +158,14 @@ The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*.
 ### Use the Razor UI library from a Razor Pages project
 
 # [Visual Studio](#tab/visual-studio)
+
+Create the Razor Pages web app:
+
+* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **WebApp1**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Web Application** > **OK**.
 
 * From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**.
 * From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > **Project Dependencies**.
