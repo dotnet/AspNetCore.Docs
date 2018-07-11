@@ -40,8 +40,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 ------
 Add Razor files to the RCL.
 
-We recommend RCL content go in the *Areas* folder. 
-
+We recommend RCL content go in the *Areas* folder.
 
 ## Referencing Razor Class Library content
 
@@ -89,24 +88,10 @@ Create the RCL project:
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
-* Name the app **RazorUIClassLib**.
+* Name the app **RazorUIClassLib** > **OK**.
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 * Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
-
-<!-- snip start 
-### Add Razor files and folders to the project.
-
-* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
-* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
-
-[!code-html[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
-
-* Copy the *_ViewStart.cshtml* file from the WebApp1 project to  *RazorUIClassLib/Areas/MyFeature/Pages/_ViewStart.cshtml*.
-
-  The [viewstart](xref:mvc/views/layout#running-code-before-each-view) file is required to use the layout of the Razor Pages project.
-
--->
 
 # [.NET Core CLI](#tab/netcore-cli)
 
