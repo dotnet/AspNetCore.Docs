@@ -1,0 +1,22 @@
+﻿
+// This file is used by Code Analysis to maintain SuppressMessage 
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given 
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancies in Symbol Declarations", "RECS0154:Parameter is never used", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.Lazy`1.#ctor(System.Func{`0})")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S1118:Utility classes should not have public constructors", Justification = "<Pending>", Scope = "type", Target = "~T:MiddlewareExtensibilitySample.Program")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1052:Static holder types should be Static or NotInheritable", Justification = "<Pending>", Scope = "type", Target = "~T:MiddlewareExtensibilitySample.Program")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.BuildMiddlewareFactory.Create(System.Type)~Microsoft.AspNetCore.Http.IMiddleware")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.MiddlewareExtensions.UseBuildActivatedMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)~Microsoft.AspNetCore.Builder.IApplicationBuilder")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Pages.ErrorModel.OnGet")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Pages.IndexModel.OnGetAsync~System.Threading.Tasks.Task")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Program.Main(System.String[])")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0021:Use expression body for constructors", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.BuildActivatedMiddleware.#ctor(MiddlewareExtensibilitySample.Middleware.Lazy{MiddlewareExtensibilitySample.Data.AppDbContext})")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0021:Use expression body for constructors", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.BuildMiddlewareFactory.#ctor(Build.Container)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0021:Use expression body for constructors", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Pages.IndexModel.#ctor(MiddlewareExtensibilitySample.Data.AppDbContext)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0021:Use expression body for constructors", Justification = "<Pending>", Scope = "member", Target = "~M:MiddlewareExtensibilitySample.Middleware.BuildActivatedMiddleware.#ctor(System.Lazy{MiddlewareExtensibilitySample.Data.AppDbContext})")]
