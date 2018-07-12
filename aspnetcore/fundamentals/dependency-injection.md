@@ -1,6 +1,6 @@
 ---
 title: Dependency injection in ASP.NET Core
-author: ardalis
+author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
