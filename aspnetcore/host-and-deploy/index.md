@@ -68,7 +68,7 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 
 ## Host in a web farm
 
-For information on configuration for hosting ASP.NET Core apps in a web farm environment, see <xref:host-and-deploy/web-farm>.
+For information on configuration for hosting ASP.NET Core apps in a web farm environment (for example, deployment of multiple instances of your app for scalability), see <xref:host-and-deploy/web-farm>.
 
 ## Additional resources
 

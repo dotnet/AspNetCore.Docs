@@ -9,7 +9,14 @@ uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
-By [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Chris Ross](https://github.com/Tratcher)
+
+A *web farm* is a group of two or more web servers (or *nodes*) that host multiple instances of an app. When requests from users arrive to a web farm, a *load balancer* distributes the requests to the web farm's nodes. Web farms improve:
+
+* Reliability/availability &ndash; When one or more nodes fail, the load balancer can route requests to other functioning nodes to continue processing requests.
+* Capacity/performance &ndash; Multiple nodes can process more requests than a single server. The load balancer balances the workload by distributing requests to the nodes.
+* Scalability &ndash; When more or less capacity is required, the number of active nodes can be increased or decreased to match the workload. Web farm platform technologies, such as [Azure App Service](https://azure.microsoft.com/services/app-service/), can automatically add or remove nodes at the request of the system administrator or automatically without human intervention.
+* Maintainability &ndash; Nodes of a web farm can rely on a set of shared services, which results in easier system management. For example, the nodes of a web farm can rely upon a single database server and a common network location for static resources, such as images and downloadable files.
 
 This topic describes configuration and dependencies for ASP.NET core apps hosted in a web farm that rely upon shared resources.
 
@@ -34,7 +41,7 @@ The [ASP.NET Core Data Protection system](xref:security/data-protection/introduc
 
 ### Caching
 
-Caching is required by [ASP.NET Core Sessions](xref:fundamentals/app-state#session-state) and when [caching responses](xref:performance/caching/response). In a web farm environment, the caching mechanism must share cached items across the web farm's nodes. Caching must either rely upon a common Redis cache, a shared SQL Server database, or a custom caching implementation that shares cached items across the web farm. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/response>.
+In a web farm environment, the caching mechanism must share cached items across the web farm's nodes. Caching must either rely upon a common Redis cache, a shared SQL Server database, or a custom caching implementation that shares cached items across the web farm. For more information, see <xref:performance/caching/distributed>.
 
 ## Dependent components
 
@@ -42,25 +49,26 @@ The following scenarios don't require additional configuration, but they depend 
 
 | Scenario | Depends on &hellip; |
 | -------- | ------------------- |
-| Cookie authentication | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie>. |
-| Identity | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
-| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed> and <xref:performance/caching/response>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
+| Authentication | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie> and <xref:security/cookie-sharing>. |
+| Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
+| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
 | TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and app state: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and app state: TempData](xref:fundamentals/app-state#tempdata). |
-| Anti-forgery | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
+| Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
+| App data | When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing the state by implementing [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). If the shared state requires persistence, consider storing the shared state in a database. |
 
 ## Troubleshoot
 
-When Data Protection or Caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources (or user requests aren't always routed back to the same node).
+When Data Protection or Caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources and user (or user requests aren't always routed back to the same node).
 
-Consider a user who signs into the app using cookie authentication. The user signs into the app on one web farm node. If their next request arrives at the same node where they signed in, the app is able to decipher the authentication cookie and allows access to the app's resource. If their next request arrives at a different node, the app can't decipher the authentication cookie from the node where the user signed in, and authorization for the requested resource fails.
+Consider a user who signs into the app using cookie authentication. The user signs into the app on one web farm node. If their next request arrives at the same node where they signed in, the app is able to decrypt the authentication cookie and allows access to the app's resource. If their next request arrives at a different node, the app can't decrypt the authentication cookie from the node where the user signed in, and authorization for the requested resource fails.
 
 When any of the following symptoms occur **intermittently**, the problem is usually traced to improper Data Protection or Caching configuration for a web farm environment:
 
-* Authentication breaks &ndash; The authentication cookie is misconfigured or undecipherable.
+* Authentication breaks &ndash; The authentication cookie is misconfigured or can't be decrypted. OAuth (Facebook, Microsoft, Twitter) or OpenIdConnect logins fail with the error "Correlation failed."
 * Authorization breaks &ndash; Identity is lost.
 * Session state loses data.
 * Cached items disappear.
 * TempData fails.
 * POSTs fail &ndash; The anti-forgery check fails.
 
-For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on Caching configuration for web farm deployments, see <xref:performance/caching/distributed> and <xref:performance/caching/response>.
+For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on Caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
