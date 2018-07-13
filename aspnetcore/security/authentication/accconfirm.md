@@ -190,7 +190,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 The complete method is shown with the changed line highlighted:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
 
 ## Register, confirm email, and reset password
 
