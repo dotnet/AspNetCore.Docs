@@ -7,7 +7,7 @@ ms.date: 2/11/2018
 uid: security/authentication/accconfirm
 ---
 
-::: moniker range="= aspnetcore-2.0"
+::: moniker range="<= aspnetcore-2.0"
 
 See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
 
@@ -47,7 +47,7 @@ In the next step:
 
 Follow the instructions in [Scaffold identity into a Razor project without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-without-existing-authorization) to set up the web app to use authentication.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [.NET Core CLI](#tab/netcore-cli)
 
 ```console
 dotnet new webapp -o WebPWrecover
@@ -99,7 +99,7 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update *Areas/Identity/IdentityHostingStartup.cs*  to require a confirmed email:
 
-[!code-csharp[](accconfirm/sampleWebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=23-25)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=23-25)]
 
 `config.SignIn.RequireConfirmedEmail = true;` prevents registered users from logging in until their email is confirmed.
 
@@ -111,13 +111,13 @@ The [Options pattern](xref:fundamentals/configuration/options) is used to access
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
-[!code-csharp[](accconfirm/sampleWebPWrecover21/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### Configure SendGrid user secrets
 
 Add a unique `<UserSecretsId>` value to the `<PropertyGroup>` element of the project file:
 
-[!code-xml[](accconfirm/sampleWebPWrecover21/WebPWrecover.csproj?highlight=5)]
+[!code-xml[](accconfirm/sample/WebPWrecover21/WebPWrecover.csproj?highlight=5)]
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
@@ -144,7 +144,7 @@ Add the following code to the the `ConfigureServices` method in the *Startup.cs*
 * Add `EmailSender` as a singleton service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sampleWebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
 
 ### Configure the AuthMessageSender class
 
@@ -176,7 +176,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 To configure SendGrid, create *Services/EmailSender.cs* with code similar to the following:
 
-[!code-csharp[](accconfirm/sampleWebPWrecover21/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
 
 ## Enable account confirmation and password recovery
 
@@ -190,7 +190,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 The complete method is shown with the changed line highlighted:
 
-[!code-csharp[](accconfirm/sampleWebPWrecover21/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
 
 ## Register, confirm email, and reset password
 
@@ -214,18 +214,9 @@ You might need to expand the navbar to see user name.
 
 ![navbar](accconfirm/_static/x.png)
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
 
 ![manage page](accconfirm/_static/rick2.png)
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-This is mentioned later in the tutorial.
-![manage page](accconfirm/_static/rick2.png)
-
----
 
 ### Test password reset
 
