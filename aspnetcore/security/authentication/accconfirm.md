@@ -60,11 +60,11 @@ dotnet ef database update
 dotnet build
 ```
 
-Run `dotnet aspnet-codegenerator identity --help` to get help on this command.
+Run `dotnet aspnet-codegenerator identity --help` to get help on the scaffolding tool.
 
 ------
 
-Follow the instructions in [Enable authentication](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-without-existing-authorization#useauthentication):
+Follow the instructions in [Enable authentication](xref:security/authentication/scaffold-identity#useauthentication):
 
 * Add `app.UseAuthentication();` to `Startup.Configure`
 * Add `<partial name="_LoginPartial" />` to the layout file.
@@ -139,21 +139,6 @@ The contents of the *secrets.json* file aren't encrypted. The *secrets.json* fil
   }
   ```
 
-### Implement IEmailSender
-
-To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
-
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
-
-### Configure startup to support email
-
-Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
-
-* Add `EmailSender` as a singleton service.
-* Register the `AuthMessageSenderOptions` configuration instance.
-
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
-
 ### Install SendGrid
 
 This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
@@ -179,7 +164,20 @@ dotnet add package SendGrid
 ------
 
 See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
+### Implement IEmailSender
 
+To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
+
+### Configure startup to support email
+
+Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
+
+* Add `EmailSender` as a singleton service.
+* Register the `AuthMessageSenderOptions` configuration instance.
+
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
 
 ## Enable account confirmation and password recovery
 
