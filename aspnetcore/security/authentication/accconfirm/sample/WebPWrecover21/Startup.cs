@@ -32,10 +32,8 @@ namespace WebPWrecover
 
             // requires
             // using Microsoft.AspNetCore.Identity.UI.Services;
-            services.AddSingleton<IEmailSender, EmailSender>();
-
-            // requires 
             // using WebPWrecover.Services;
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
         }
         #endregion
