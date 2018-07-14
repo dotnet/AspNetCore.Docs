@@ -19,7 +19,7 @@ See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/securi
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
+This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
 * [Authentication](xref:security/authentication/index)
@@ -45,8 +45,6 @@ In the next step:
 * Select *Account/Register*
 * Create a new **Data context class**
 
-Follow the instructions in [Scaffold identity into a Razor project without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-without-existing-authorization) to set up the web app to use authentication.
-
 # [.NET Core CLI](#tab/netcore-cli)
 
 ```console
@@ -57,19 +55,23 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 dotnet aspnet-codegenerator identity -fi Account.Register -dc WebPWrecover.Models.WebPWrecoverContext
 dotnet ef migrations add CreateIdentitySchema
+dotnet ef database drop -f
 dotnet ef database update
 dotnet build
 ```
 
 Run `dotnet aspnet-codegenerator identity --help` to get help on this command.
 
-Follow the instructions in [Scaffold identity into a Razor project without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-without-existing-authorization) to set up the web app to use authentication.
-
 ------
+
+Follow the instructions in [Enable authentication](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-without-existing-authorization#useauthentication):
+
+* Add `app.UseAuthentication();` to `Startup.Configure`
+* Add `<partial name="_LoginPartial" />` to the layout file.
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't log in until their email has been validated.
+Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't log in until their email is validated.
 
 ## View the Identity database
 
@@ -99,7 +101,7 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update *Areas/Identity/IdentityHostingStartup.cs*  to require a confirmed email:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=23-25)]
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=10-13)]
 
 `config.SignIn.RequireConfirmedEmail = true;` prevents registered users from logging in until their email is confirmed.
 
@@ -137,16 +139,22 @@ The contents of the *secrets.json* file aren't encrypted. The *secrets.json* fil
   }
   ```
 
+### Implement IEmailSender
+
+To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
+
 ### Configure startup to support email
 
-Add the following code to the the `ConfigureServices` method in the *Startup.cs* file:
+Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
 
 * Add `EmailSender` as a singleton service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
 
-### Configure the AuthMessageSender class
+### Install SendGrid
 
 This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
 
@@ -172,11 +180,6 @@ dotnet add package SendGrid
 
 See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
 
-#### Configure SendGrid
-
-To configure SendGrid, create *Services/EmailSender.cs* with code similar to the following:
-
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
 
 ## Enable account confirmation and password recovery
 
@@ -216,8 +219,6 @@ You might need to expand the navbar to see user name.
 
 The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
 
-![manage page](accconfirm/_static/rick2.png)
-
 ### Test password reset
 
 * If you're logged in, select **Logout**.
@@ -231,7 +232,8 @@ The manage page is displayed with the **Profile** tab selected. The **Email** sh
 
 If you can't get email working:
 
-* Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
+* Set a breakpoint in `EmailSender.Execute` to verify `SendGridClient.SendEmailAsync` is called.
+* Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) using similar code to `EmailSender.Execute`.
 * Review the [Email Activity](https://sendgrid.com/docs/User_Guide/email_activity.html) page.
 * Check your spam folder.
 * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
