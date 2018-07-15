@@ -65,7 +65,7 @@ Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its
     npm install @aspnet/signalr
     ```
 
-4. Create a new folder named "signalr" inside the  *lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
+4. Create a new folder named "signalr" inside the  *wwwroot/lib* folder in your project. Copy the *signalr.js* file from *node_modules\\@aspnet\signalr\dist\browser* to this folder.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
