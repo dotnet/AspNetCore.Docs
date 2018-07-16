@@ -66,6 +66,10 @@ By using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-
 
 See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish an app to Azure using Visual Studio. The app can also be published to Azure from the [command line](xref:tutorials/publish-to-azure-webapp-using-cli).
 
+## Host in a web farm
+
+For information on configuration for hosting ASP.NET Core apps in a web farm environment (for example, deployment of multiple instances of your app for scalability), see <xref:host-and-deploy/web-farm>.
+
 ## Additional resources
 
 For information on using Docker as a hosting environment, see [Host ASP.NET Core apps in Docker](xref:host-and-deploy/docker/index).
