@@ -154,3 +154,7 @@ When generating a user identity, the authentication type must match the type def
 ## Use a common user database
 
 Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
+
+## Additional resources
+
+<xref:host-and-deploy/web-farm>

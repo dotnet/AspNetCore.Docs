@@ -193,7 +193,8 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 
 ## Next Steps
 
-* [Migrate Authentication and Identity](xref:migration/identity)
-* [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
-* [Two-factor authentication with SMS](xref:security/authentication/2fa)
-* [Facebook, Google, and external provider authentication](xref:security/authentication/social/index)
+* <xref:migration/identity>
+* <xref:security/authentication/accconfirm>
+* <xref:security/authentication/2fa>
+* <xref:security/authentication/social/index>
+* <xref:host-and-deploy/web-farm>
