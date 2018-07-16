@@ -310,7 +310,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Add the following `Contact` model:
+* Add *Models\Contact.cs*:
 
   [!code-csharp[](secure-data/samples/starter2/Models/Contact.cs?name=snippet1)]
 
