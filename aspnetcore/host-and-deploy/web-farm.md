@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/13/2018
+ms.date: 07/16/2018
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
@@ -31,6 +31,9 @@ Learn about configuration for apps hosted behind proxy servers and load balancer
 <xref:host-and-deploy/azure-apps/index>  
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core. App Service is a fully managed platform that provides automatic scaling, load balancing, patching, and continuous deployment.
 
+<xref:performance/caching/distributed>  
+When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing the state by sharing an [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). If the shared state requires persistence, consider storing the shared state in a database.
+
 ## Required configuration
 
 Data Protection and Caching require configuration for apps deployed to a web farm.
@@ -54,11 +57,10 @@ The following scenarios don't require additional configuration, but they depend 
 | Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
 | TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and app state: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and app state: TempData](xref:fundamentals/app-state#tempdata). |
 | Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
-| App data | When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing the state by implementing [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). If the shared state requires persistence, consider storing the shared state in a database. |
 
 ## Troubleshoot
 
-When Data Protection or Caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources and user (or user requests aren't always routed back to the same node).
+When Data Protection or Caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources and user requests aren't always routed back to the same node.
 
 Consider a user who signs into the app using cookie authentication. The user signs into the app on one web farm node. If their next request arrives at the same node where they signed in, the app is able to decrypt the authentication cookie and allows access to the app's resource. If their next request arrives at a different node, the app can't decrypt the authentication cookie from the node where the user signed in, and authorization for the requested resource fails.
 
