@@ -7,9 +7,14 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
+::: moniker range="= aspnetcore-1.1"
+
+See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
+::: moniker-end
+
 ::: moniker range="= aspnetcore-2.0"
 
-See the [pdf download] (https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/)
+See the [this pdf] (https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
 
 ::: moniker-end
 
@@ -65,8 +70,6 @@ This tutorial is advanced. You should be familiar with:
 * [Authorization](xref:security/authorization/index)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
-See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
-
 ## The starter and completed app
 
 [Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
@@ -96,38 +99,17 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### Require HTTPS and authenticated users
-
-Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment) to `Startup`:
-
-[!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_env)]
-
-In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
-
-[!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=10-999)]
-
-If you're using Visual Studio, enable HTTPS.
-
-To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
-
-  Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file.
-
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is safer than relying on new controllers and Razor Pages to include the `[Authorize]` attribute. 
+Set the default authentication policy to require users to be authenticated:
 
-With the requirement of all users authenticated, the [AuthorizeFolder](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizefolder?view=aspnetcore-2.0#Microsoft_Extensions_DependencyInjection_PageConventionCollectionExtensions_AuthorizeFolder_Microsoft_AspNetCore_Mvc_ApplicationModels_PageConventionCollection_System_String_System_String_) and [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage?view=aspnetcore-2.0) calls are not required.
+[!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=40-999)]
 
-Update `ConfigureServices` with the following changes:
+ You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
-* Comment out `AuthorizeFolder` and `AuthorizePage`.
-* Set the default authentication policy to require users to be authenticated.
+Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
 
-[!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_defaultPolicy&highlight=23-27,31-999)]
-
-Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register. 
-
-[!code-csharp[](secure-data/samples/final2/Pages/Index.cshtml.cs?name=snippet&highlight=2)]
+[!code-csharp[](secure-data/samples/final2.1/Pages/Index.cshtml.cs?highlight=6)]
 
 Add `[AllowAnonymous]` to the [LoginModel and RegisterModel](https://github.com/aspnet/templating/issues/238).
 
@@ -139,7 +121,7 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
-If you don't use a strong password, an exception is thrown when `SeedData.Initialize` is called.
+If a strong password is not specified, an exception is thrown when `SeedData.Initialize` is called.
 
 Update `Main` to use the test password:
 
@@ -186,7 +168,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[](secure-data/samples/final2/Startup.cs?name=ConfigureServices&highlight=41-999)]
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=25-99)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
