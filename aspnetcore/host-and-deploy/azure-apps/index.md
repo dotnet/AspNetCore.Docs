@@ -145,11 +145,12 @@ The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the la
 * [Azure App Service: The Best Place to Host your .NET Apps (55-minute overview video)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
 * [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience (12-minute video)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
+* <xref:host-and-deploy/web-farm>
 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). The following topics pertain to the underlying IIS technology:
 
-* [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
-* [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
+* <xref:host-and-deploy/iis/index>
+* <xref:fundamentals/servers/aspnet-core-module>
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/iis/modules>
 * [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)

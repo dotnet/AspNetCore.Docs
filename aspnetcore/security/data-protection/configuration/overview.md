@@ -325,5 +325,6 @@ When hosting in a [Docker](/dotnet/standard/microservices-architecture/container
 
 ## See also
 
-* [Non DI Aware Scenarios](xref:security/data-protection/configuration/non-di-scenarios)
-* [Machine Wide Policy](xref:security/data-protection/configuration/machine-wide-policy)
+* <xref:security/data-protection/configuration/non-di-scenarios>
+* <xref:security/data-protection/configuration/machine-wide-policy>
+* <xref:host-and-deploy/web-farm>

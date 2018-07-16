@@ -141,9 +141,10 @@ When deciding which implementation of `IDistributedCache` is right for your app,
 
 * [Redis Cache on Azure](https://azure.microsoft.com/documentation/services/redis-cache/)
 * [SQL Database on Azure](https://azure.microsoft.com/documentation/services/sql-database/)
-* [Cache in-memory](xref:performance/caching/memory)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
-* [Response caching](xref:performance/caching/response)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/memory>
+* <xref:fundamentals/primitives/change-tokens>
+* <xref:performance/caching/response>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* <xref:host-and-deploy/web-farm>

@@ -253,4 +253,5 @@ The request's original remote IP must match an entry in the `KnownProxies` or `K
 
 ## Additional resources
 
-[Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
+* <xref:host-and-deploy/web-farm>
+* [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
