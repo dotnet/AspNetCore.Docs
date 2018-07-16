@@ -202,7 +202,7 @@ Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial 
 
 ### RCL Pages layout
 
-To reference RCL content as though it is part of the web app's Pages folder,  create the RCL project with the following file structure:
+To reference RCL content as though it is part of the web app's Pages folder, create the RCL project with the following file structure:
 
 * *RazorUIClassLib/Pages*
 * *RazorUIClassLib/Pages/Shared*
