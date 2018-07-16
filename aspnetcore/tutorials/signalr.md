@@ -1,9 +1,9 @@
 ---
 title: Get started with SignalR on ASP.NET Core
-author: rachelappel
+author: tdykstra
 description: In this tutorial, you create an app using SignalR for ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/22/2018
 uid: tutorials/signalr
