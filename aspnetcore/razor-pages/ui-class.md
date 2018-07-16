@@ -40,7 +40,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 ------
 Add Razor files to the RCL.
 
-The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create a RCL that exposes content in `~/Pages`.
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create a RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
 
 ## Referencing Razor Class Library content
 
