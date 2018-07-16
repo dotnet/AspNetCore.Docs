@@ -50,7 +50,7 @@ To use a provider, call the provider's `Add<ProviderName>` extension method in *
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_ExpandDefault&highlight=16,17)]
 
-The default project template enables logging with the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder?view=aspnetcore-2.0#Microsoft_AspNetCore_WebHost_CreateDefaultBuilder_System_String___) method:
+The default project template enables the Console and Debug logging providers with a call to the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method in *Program.cs*:
 
 [!code-csharp[](index/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
@@ -71,11 +71,21 @@ ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI)
 
 ::: moniker-end
 
-You'll find information about each [built-in logging provider](#built-in-logging-providers) and links to [third-party logging providers](#third-party-logging-providers) later in the article.
+Learn more about the [built-in logging providers](#built-in-logging-providers) and find links to [third-party logging providers](#third-party-logging-providers) later in the article.
 
-## Settings file configuration
+## Configuration
 
-Each of the preceding examples in the [How to add providers](#how-to-add-providers) section loads logging provider configuration from the `Logging` section of app settings files. The following example shows the contents of a typical *appsettings.Development.json* file:
+Logging provider configuration is provided by one or more configuration providers:
+
+* File formats (INI, JSON, and XML).
+* Command-line arguments.
+* Environment variables.
+* In-memory .NET objects.
+* The unencrypted [Secret Manager](xref:security/app-secrets) storage.
+* An encrypted user store, such as [Azure Key Vault](xref:security/key-vault-configuration).
+* Custom providers (installed or created).
+
+For example, logging configuration is commonly provided by the `Logging` section of app settings files. The following example shows the contents of a typical *appsettings.Development.json* file:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -116,6 +126,8 @@ Each of the preceding examples in the [How to add providers](#how-to-add-provide
 `LogLevel` keys represent log names. The `Default` key applies to logs not explicitly listed. The value represents the [log level](#log-level) applied to the given log.
 
 ::: moniker-end
+
+For information on implementing configuration providers, see <xref:fundamentals/configuration/index>.
 
 ## Sample logging output
 
@@ -430,7 +442,7 @@ The following code enables scopes for the console provider:
 > [!NOTE]
 > Configuring the `IncludeScopes` console logger option is required to enable scope-based logging.
 >
-> `IncludeScopes` can be configured via *appsettings* configuration files. For more information, see the [Settings file configuration](#settings-file-configuration) section.
+> For information on configuration, see the [Configuration](#Configuration) section.
 
 ::: moniker-end
 
