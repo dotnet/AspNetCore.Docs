@@ -40,7 +40,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 ------
 Add Razor files to the RCL.
 
-We recommend RCL content go in the *Areas* folder - however, this is not required. See section Alternative File Structure for more information.
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create a RCL that exposes content in `~/Pages`.
 
 ## Referencing Razor Class Library content
 
@@ -198,17 +198,16 @@ In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFe
 
 Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 
-### Alternative File Structure
+<a name="afs"></a>
 
-If you want to reference your RCL content as though it is part of your webapp's Pages folder, you may create your RCL project with the following file structure:
+### RCL Pages layout
 
-*RazorUIClassLib/Pages*
+To reference RCL content as though it is part of the web app's Pages folder,  create the RCL project with the following file structure:
 
-*RazorUIClassLib/Pages/Shared*
+* *RazorUIClassLib/Pages*
+* *RazorUIClassLib/Pages/Shared*
 
-Now imagine that your *RazorUIClassLib/Pages/Shared* contains two files called *_Header.cshtml* and *_Footer.cshtml*.
-
-Using this structure, you could add <partial> tags to your *_Layout.cshtml* file like so: 
+Suppose *RazorUIClassLib/Pages/Shared* contains two partial files, *_Header.cshtml* and *_Footer.cshtml*. The <partial> tags could be added to *_Layout.cshtml* file: 
   
 ```
   <body>
@@ -216,5 +215,4 @@ Using this structure, you could add <partial> tags to your *_Layout.cshtml* file
     @RenderBody()
     <partial name="_Footer">
   </body>
-``` 
-Assuming your webapp project does not contain files with the same names, the partials from the RCL will be used.
+```
