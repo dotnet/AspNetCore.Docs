@@ -1,9 +1,9 @@
 ---
 title: Model Binding in ASP.NET Core
-author: rachelappel
+author: tdykstra
 description: Learn how model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
-ms.author: rachelap
+ms.author: tdykstra
 ms.date: 01/22/2018
 uid: mvc/models/model-binding
 ---
