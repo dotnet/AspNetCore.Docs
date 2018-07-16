@@ -97,7 +97,20 @@ A background task queue is based on the .NET 4.x [QueueBackgroundWorkItem](/dotn
 
 In `QueueHostedService`, background tasks (`workItem`) in the queue are dequeued and executed:
 
+::: moniker range=">= aspnetcore-2.1"
+
+Since most background tasks will have similar needs in regard to the cancellation tokens management and other typical operations, .NET Core 2.1 provides a very convenient abstract base class you can derive from, named xref:Microsoft.Extensions.Hosting.BackgroundService.
+
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+[!code-csharp[](hosted-services/samples-snapshot/2.x/BackgroundTasksSample-WebHost/Services/QueuedHostedService.cs?name=snippet1&highlight=30-31,35)]
+
+::: moniker-end
+
 
 ::: moniker range=">= aspnetcore-2.1"
 
