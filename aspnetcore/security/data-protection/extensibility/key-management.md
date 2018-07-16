@@ -126,7 +126,7 @@ The `IXmlRepository` interface represents a type that can persist XML to and ret
 
 Implementations of `IXmlRepository` don't need to parse the XML passing through them. They should treat the XML documents as opaque and let higher layers worry about generating and parsing the documents.
 
-There are two built-in concrete types which implement `IXmlRepository`: `FileSystemXmlRepository` and `RegistryXmlRepository`. See the [key storage providers document](xref:security/data-protection/implementation/key-storage-providers#data-protection-implementation-key-storage-providers) for more information. Registering a custom `IXmlRepository` would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage.
+There are two built-in concrete types which implement `IXmlRepository`: `FileSystemXmlRepository` and `RegistryXmlRepository`. See the [key storage providers document](xref:security/data-protection/implementation/key-storage-providers) for more information. Registering a custom `IXmlRepository` would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage.
 
 To change the default repository application-wide, register a custom `IXmlRepository` instance:
 
@@ -160,7 +160,7 @@ There are four built-in concrete types which implement `IXmlEncryptor`:
 * `DpapiXmlEncryptor`
 * `NullXmlEncryptor`
 
-See the [key encryption at rest document](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest) for more information.
+See the [key encryption at rest document](xref:security/data-protection/implementation/key-encryption-at-rest) for more information.
 
 To change the default key-encryption-at-rest mechanism application-wide, register a custom `IXmlEncryptor` instance:
 
