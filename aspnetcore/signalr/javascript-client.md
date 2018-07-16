@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR JavaScript client
-author: rachelappel
+author: tdykstra
 description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/29/2018
 uid: signalr/javascript-client
