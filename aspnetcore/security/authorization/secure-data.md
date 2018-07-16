@@ -314,10 +314,14 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 
   [!code-csharp[](secure-data/samples/starter2/Models/Contact.cs?name=snippet1)]
 
-* Scaffold the `Contact` model:
+* Scaffold the `Contact` model.
+* Create initial migration and update the database:
 
 ```console
 dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
+dotnet ef database drop -f
+dotnet ef migrations add initial
+dotnet ef database update
 ```
 
 * Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file:
@@ -326,22 +330,15 @@ dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -
 <a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
 ```
 
-* Scaffold the initial migration and update the database:
-
-```console
-dotnet ef migrations add initial
-dotnet ef database update
-```
-
 * Test the app by creating, editing, and deleting a contact
 
 ### Seed the database
 
-Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, you can copy the *SeedData.cs* file to the *Data* folder of the starter project.
+Add the [SeedData](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) class to the *Data* folder.
 
 Call `SeedData.Initialize` from `Main`:
 
-[!code-csharp[](secure-data/samples/starter2/Program.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/starter2.1/Program.cs?name=snippet)]
 
 Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
 

@@ -21,6 +21,15 @@ namespace ContactManager.Pages.Contacts
 
         public IActionResult OnGet()
         {
+            Contact = new Contact
+            {
+                Name = "Rick",
+                Address = "123 N 456 S",
+                City = "GF",
+                State = "MT",
+                Zip = "59405",
+                Email = "rick@rick.com"
+            };
             return Page();
         }
 

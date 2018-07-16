@@ -14,9 +14,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Contact[0].OwnerID)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Contact[0].Name)
             </th>
             <th>
@@ -34,18 +31,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Contact[0].Email)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contact[0].Status)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Contact) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OwnerID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -63,9 +54,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a> |

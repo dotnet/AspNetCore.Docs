@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-ContactManager-00707476-03E0-4B25-9333-B171952EBA1E</UserSecretsId>
+    <UserSecretsId>aspnet-ContactManager-7A098A32-4BE0-4A2D-89E1-F082633B4EC9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

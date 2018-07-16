@@ -15,11 +15,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Contact.ContactId" />
             <div class="form-group">
-                <label asp-for="Contact.OwnerID" class="control-label"></label>
-                <input asp-for="Contact.OwnerID" class="form-control" />
-                <span asp-validation-for="Contact.OwnerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Contact.Name" class="control-label"></label>
                 <input asp-for="Contact.Name" class="form-control" />
                 <span asp-validation-for="Contact.Name" class="text-danger"></span>
@@ -48,11 +43,6 @@
                 <label asp-for="Contact.Email" class="control-label"></label>
                 <input asp-for="Contact.Email" class="form-control" />
                 <span asp-validation-for="Contact.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contact.Status" class="control-label"></label>
-                <select asp-for="Contact.Status" class="form-control"></select>
-                <span asp-validation-for="Contact.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
