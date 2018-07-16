@@ -7,6 +7,14 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
+::: moniker range="= aspnetcore-2.0"
+
+See the [pdf download] (https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
 # Create an ASP.NET Core app with user data protected by authorization
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
@@ -295,27 +303,12 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 * Create a Razor Pages app named "ContactManager"
 
   * Create the app with **Individual User Accounts**.
-  * Name it "ContactManager" so your namespace matches the namespace used in the sample.
-
-::: moniker range=">= aspnetcore-2.1"
+  * Name it "ContactManager" so the namespace matches the namespace used in the sample.
+  * `-uld` specifies LocalDB instead of SQLite
 
   ```console
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
-
-  [!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-  ```console
-  dotnet new razor -o ContactManager -au Individual -uld
-  ```
-
-::: moniker-end
-
-  * `-uld` specifies LocalDB instead of SQLite
 
 * Add the following `Contact` model:
 
@@ -359,3 +352,5 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
 * [Authorization in ASP.NET Core: Simple, role, claims-based, and custom](xref:security/authorization/index)
 * [Custom policy-based authorization](xref:security/authorization/policies)
+
+::: moniker-end
