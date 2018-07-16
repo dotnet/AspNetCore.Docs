@@ -31,7 +31,8 @@ Learn about configuration for apps hosted behind proxy servers and load balancer
 <xref:host-and-deploy/azure-apps/index>  
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core. App Service is a fully managed platform that provides automatic scaling, load balancing, patching, and continuous deployment.
 
-<xref:performance/caching/distributed>  
+## App data
+
 When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing the state by sharing an [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). If the shared state requires persistence, consider storing the shared state in a database.
 
 ## Required configuration
