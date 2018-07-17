@@ -107,7 +107,7 @@ Open the *App\_Start\BundleConfig.cs* file and examine the `RegisterBundles` met
 
 The  preceding code creates a new JavaScript bundle named *~/bundles/jquery* that includes all the appropriate (that is debug or minified but not .*vsdoc*) files in the *Scripts* folder that match the wild card string "~/Scripts/jquery-{version}.js". For ASP.NET MVC 4, this means with a debug configuration, the file *jquery-1.7.1.js* will be added to the bundle. In a release configuration, *jquery-1.7.1.min.js* will be added. The bundling framework follows several common conventions such as:
 
-- Selecting ".min" file for release when "*FileX.min.js*" and "*FileX.js*" exist.
+- Selecting ".min" file for release when *FileX.min.js* and *FileX.js* exist.
 - Selecting the non ".min" version for debug.
 - Ignoring "-vsdoc" files (such as *jquery-1.7.1-vsdoc.js*), which are used only by IntelliSense.
 
@@ -136,7 +136,7 @@ The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v
 
 [!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
-Bundles are referenced in views using the Render method, ( `Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
+Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
 
 [!code-cshtml[Main](bundling-and-minification/samples/sample10.cshtml?highlight=5-6,11)]
 
@@ -161,13 +161,13 @@ The following table shows the files added to a bundle using the wildcard as show
 
 | **Call** | **Files Added or Exception Raised** |
 | --- | --- |
-| Include("~/Scripts/Common/\*.js") | *AddAltToImg.js, ToggleDiv.js, ToggleImg.js* |
+| Include("~/Scripts/Common/\*.js") | *AddAltToImg.js*, *ToggleDiv.js*, *ToggleImg.js* |
 | Include("~/Scripts/Common/T\*.js") | Invalid pattern exception. The wildcard character is only allowed on the prefix or suffix. |
 | Include("~/Scripts/Common/\*og.\*") | Invalid pattern exception. Only one wildcard character is allowed. |
-| "Include("~/Scripts/Common/T\*") | *ToggleDiv.js, ToggleImg.js* |
+| "Include("~/Scripts/Common/T\*") | *ToggleDiv.js*, *ToggleImg.js* |
 | "Include("~/Scripts/Common/\*") | Invalid pattern exception. A pure wildcard segment is not valid. |
-| IncludeDirectory("~/Scripts/Common", "T\*") | *ToggleDiv.js, ToggleImg.js* |
-| IncludeDirectory("~/Scripts/Common", "T\*",true) | *ToggleDiv.js, ToggleImg.js, ToggleLinks.js* |
+| IncludeDirectory("~/Scripts/Common", "T\*") | *ToggleDiv.js*, *ToggleImg.js* |
+| IncludeDirectory("~/Scripts/Common", "T\*",true) | *ToggleDiv.js*, *ToggleImg.js*, *ToggleLinks.js* |
 
 Explicitly adding each file to a bundle is generally the preferred over wildcard loading of files for the following reasons:
 
@@ -222,11 +222,11 @@ The browser limitation of six simultaneous connections per each hostname can be 
 
 Bundles should be partitioned by pages that need them. For example, the default ASP.NET MVC template for an internet application creates a jQuery Validation bundle separate from jQuery. Because the default views created have no input and do not post values, they don't include the validation bundle.
 
-The `System.Web.Optimization` namespace is implemented in System.Web.Optimization.dll. It leverages the WebGrease library (WebGrease.dll) for minification capabilities, which in turn uses Antlr3.Runtime.dll.
+The `System.Web.Optimization` namespace is implemented in *System.Web.Optimization.dll*. It leverages the WebGrease library (*WebGrease.dll*) for minification capabilities, which in turn uses *Antlr3.Runtime.dll*.
 
 *I use Twitter to make quick posts and share links. My Twitter handle is*: [@RickAndMSFT](http://twitter.com/RickAndMSFT)
 
-## Additional Resources
+## Additional resources
 
 - Video:[Bundling and Optimizing](https://channel9.msdn.com/Events/aspConf/aspConf/Bundling-and-Optimizing) by [Howard Dierking](https://twitter.com/#!/howard_dierking)
 - [Adding Web Optimization to a Web Pages Site](https://blogs.msdn.com/b/rickandy/archive/2012/08/15/adding-web-optimization-to-a-web-pages-site.aspx).
