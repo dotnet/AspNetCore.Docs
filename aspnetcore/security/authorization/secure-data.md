@@ -7,6 +7,8 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1
+
 ::: moniker range="<= aspnetcore-1.1"
 
 See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
@@ -99,11 +101,17 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
+### Add Role services to Identity
+
+Append [AddRoles](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
+
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=13)] 
+
 ### Require authenticated users
 
 Set the default authentication policy to require users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=40-999)] 
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet&highlight=17-99)] 
 
  You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 

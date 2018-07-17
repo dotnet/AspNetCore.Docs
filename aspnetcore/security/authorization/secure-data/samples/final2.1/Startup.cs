@@ -23,6 +23,8 @@ namespace ContactManager
         public IConfiguration Configuration { get; }
 
         #region snippet_defaultPolicy
+        #region snippet
+        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -37,7 +39,7 @@ namespace ContactManager
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            #endregion
 
             services.AddMvc(config =>
             {
@@ -47,6 +49,7 @@ namespace ContactManager
                 config.Filters.Add(new AuthorizeFilter(policy));
             })                
                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #endregion
 
             // Authorization handlers.
             services.AddScoped<IAuthorizationHandler,
