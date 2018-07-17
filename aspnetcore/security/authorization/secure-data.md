@@ -182,7 +182,7 @@ Review the `ContactOperations` class. This class contains the requirements the a
 
 [!code-csharp[](secure-data/samples/final2/Authorization/ContactOperations.cs)]
 
-### Create a base class for the Razor Pages
+### Create a base class for the Contacts Razor Pages
 
 Create a base class that contains the services used in the contacts Razor Pages. The base class puts that initialization code in one location:
 
@@ -227,17 +227,17 @@ Update the delete page model to use the authorization handler to verify the user
 
 ## Inject the authorization service into the views
 
-Currently, the UI shows edit and delete links for data the user can't modify. The UI is fixed by applying the authorization handler to the views.
+Currently, the UI shows edit and delete links for contacts the user can't modify.
 
 Inject the authorization service in the *Views/_ViewImports.cshtml* file so it's available to all views:
 
-[!code-cshtml[](secure-data/samples/final2/Pages/_ViewImports.cshtml?highlight=6-9)]
+[!code-cshtml[](secure-data/samples/final2.1/Pages/_ViewImports.cshtml?highlight=6-99)]
 
 The preceding markup adds several `using` statements.
 
 Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
 
-[!code-cshtml[](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,64-999)]
+[!code-cshtml[](secure-data/samples/final2/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
 > Hiding links from users that don't have permission to change data doesn't secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
@@ -246,17 +246,13 @@ Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so the
 
 Update the details view so managers can approve or reject contacts:
 
-[!code-cshtml[](secure-data/samples/final2/Pages/Contacts/Details.cshtml?range=48-999)]
+[!code-cshtml[](secure-data/samples/final2/Pages/Contacts/Details.cshtml?name=snippet)]
 
 Update the details page model:
 
 [!code-csharp[](secure-data/samples/final2/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
 ## Test the completed app
-
-If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
-
-* Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
 
 If the app has contacts:
 
@@ -283,7 +279,6 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
