@@ -101,7 +101,7 @@ To enable bundling and minification, set the `debug` value to "false". You can o
 
 In this section we will create an ASP.NET MVC project to examine bundling and minification. First, create a new ASP.NET MVC internet project named **MvcBM** without changing any of the defaults.
 
-Open the *App\\_Start\\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
+Open the *App\\\_Start\\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
 
 [!code-csharp[Main](bundling-and-minification/samples/sample5.cs)]
 
@@ -128,7 +128,7 @@ In the code above, jQuery will be requested from the CDN while in release mode a
 
 ## Creating a Bundle
 
-The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\\_Start\\BundleConfig.cs* file shows how multiple files are added to a bundle:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\\\_Start\\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
@@ -136,7 +136,7 @@ The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v
 
 [!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
-Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
+Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\\Shared\\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
 
 [!code-cshtml[Main](bundling-and-minification/samples/sample10.cshtml?highlight=5-6,11)]
 
@@ -189,7 +189,7 @@ The following image shows the **Caching** tab of the Fiddler response pane:
 
 The request   
 `http://localhost/MvcBM_time/bundles/AllMyScripts?v=r0sLDicvP58AIXN_mc3QdyVvVj5euZNzdsa2N1PKvb81`  
- is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
+ is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\\\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
 
 If you run the IE9 F12 developer tools and navigate to a previously loaded page, IE incorrectly shows conditional GET requests made to each bundle and the server returning HTTP 304. You can read why IE9 has problems determining if a conditional request was made in the blog entry [Using CDNs and Expires to Improve Web Site Performance](https://blogs.msdn.com/b/rickandy/archive/2011/05/21/using-cdns-to-improve-web-site-performance.aspx).
 
