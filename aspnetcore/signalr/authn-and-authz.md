@@ -84,6 +84,19 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+In the .NET Client, Windows Authentication must be enabled by setting the [UseDefaultCredentials](/dotnet/api/microsoft.aspnetcore.http.connections.client.httpconnectionoptions.usedefaultcredentials) property:
+
+```csharp
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/myhub", options =>
+    {
+        options.UseDefaultCredentials = true;
+    })
+    .Build();
+```
+
+Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
+
 ## Authorize users to access hubs and hub methods
 
 By default, all methods in a hub can be called by an unauthenticated user. In order to require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the hub:
