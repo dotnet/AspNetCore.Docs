@@ -7,7 +7,7 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
-::: moniker range="= aspnetcore-1.1"
+::: moniker range="<= aspnetcore-1.1"
 
 See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 ::: moniker-end
@@ -279,9 +279,9 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-  * Create the app with **Individual User Accounts**.
-  * Name it "ContactManager" so the namespace matches the namespace used in the sample.
-  * `-uld` specifies LocalDB instead of SQLite
+   * Create the app with **Individual User Accounts**.
+   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
+   * `-uld` specifies LocalDB instead of SQLite
 
   ```console
   dotnet new webapp -o ContactManager -au Individual -uld

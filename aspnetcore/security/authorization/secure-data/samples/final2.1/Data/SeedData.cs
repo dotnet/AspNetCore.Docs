@@ -128,6 +128,7 @@ namespace ContactManager.Data
                  State = "WA",
                  Zip = "10999",
                  Email = "jon@example.com",
+                 Status = ContactStatus.Submitted,
                  OwnerID = adminID
              },
              new Contact
