@@ -55,7 +55,7 @@ namespace SignalRAuthenticationSample
                         {
                             LifetimeValidator = (before, expires, token, param) =>
                             {
-                                return expires > DateTime.UtcNow
+                                return expires > DateTime.UtcNow;
                             },
                             ValidateAudience = false,
                             ValidateIssuer = false,
