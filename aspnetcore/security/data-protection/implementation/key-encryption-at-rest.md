@@ -28,7 +28,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-For more information, see [Configure ASP.NET Core Data Protection: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#ProtectKeysWithAzureKeyVault).
+For more information, see [Configure ASP.NET Core Data Protection: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault).
 
 ::: moniker-end
 
