@@ -9,10 +9,9 @@ namespace BackgroundTasksSample.Services
     #region snippet1
     public class QueuedHostedService : BackgroundService
     {
-        private Task _backgroundTask;
         private readonly ILogger _logger;
 
-        public QueuedHostedService(IBackgroundTaskQueue taskQueue,
+        public QueuedHostedService(IBackgroundTaskQueue taskQueue, 
             ILoggerFactory loggerFactory)
         {
             TaskQueue = taskQueue;
@@ -21,22 +20,27 @@ namespace BackgroundTasksSample.Services
 
         public IBackgroundTaskQueue TaskQueue { get; }
 
-        protected async override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected async override Task ExecuteAsync(
+            CancellationToken cancellationToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            _logger.LogInformation("Queued Hosted Service is starting.");
+
+            while (!cancellationToken.IsCancellationRequested)
             {
-                var workItem =
-                    await TaskQueue.DequeueAsync(stoppingToken);
+                var workItem = await TaskQueue.DequeueAsync(cancellationToken);
+
                 try
                 {
-                    await workItem(stoppingToken);
+                    await workItem(cancellationToken);
                 }
                 catch (Exception ex)
                 {
-                    this._logger.LogError(ex,
-                        $"Error occurred executing {nameof(workItem)}.");
+                    _logger.LogError(ex, 
+                       $"Error occurred executing {nameof(workItem)}.");
                 }
             }
+
+            _logger.LogInformation("Queued Hosted Service is stopping.");
         }
     }
     #endregion
