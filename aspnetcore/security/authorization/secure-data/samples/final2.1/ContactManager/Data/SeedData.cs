@@ -55,6 +55,11 @@ namespace ContactManager.Data
             IdentityResult IR = null;
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
 
+            if (roleManager == null)
+            {
+                throw new Exception("roleManager null");
+            }
+
             if (!await roleManager.RoleExistsAsync(role))
             {
                 IR = await roleManager.CreateAsync(new IdentityRole(role));
