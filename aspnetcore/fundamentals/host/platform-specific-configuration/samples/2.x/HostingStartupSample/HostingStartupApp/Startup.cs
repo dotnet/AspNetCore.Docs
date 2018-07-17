@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HostingStartupSample
+#region snippet1
+[assembly: HostingStartup(typeof(HostingStartupLib.ServiceKeyInjection))]
+
+namespace HostingStartupApp
 {
     public class Startup
     {
+#endregion
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
