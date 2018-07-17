@@ -63,7 +63,7 @@ The following table shows several important differences between listing all the 
 | **KB Received** | 388.51 | 530 | 36% |
 | **Load Time** | 510 MS | 780 MS | 53% |
 
-The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers they apply on requests. The received bytes reduction is not as large because the largest files (*Scripts\jquery-ui-1.8.11.min.js* and *Scripts\jquery-1.7.1.min.js*) are already minified. Note: The timings on the sample program used the [Fiddler](http://www.fiddler2.com/fiddler2/) tool to simulate a slow network. (From the Fiddler **Rules** menu, select **Performance** then **Simulate Modem Speeds**.)
+The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers they apply on requests. The received bytes reduction is not as large because the largest files (*Scripts\\jquery-ui-1.8.11.min.js* and *Scripts\\jquery-1.7.1.min.js*) are already minified. Note: The timings on the sample program used the [Fiddler](http://www.fiddler2.com/fiddler2/) tool to simulate a slow network. (From the Fiddler **Rules** menu, select **Performance** then **Simulate Modem Speeds**.)
 
 ## Debugging Bundled and Minified JavaScript
 
@@ -101,7 +101,7 @@ To enable bundling and minification, set the `debug` value to "false". You can o
 
 In this section we will create an ASP.NET MVC project to examine bundling and minification. First, create a new ASP.NET MVC internet project named **MvcBM** without changing any of the defaults.
 
-Open the *App\_Start\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
+Open the *App\\_Start\\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
 
 [!code-csharp[Main](bundling-and-minification/samples/sample5.cs)]
 
@@ -128,7 +128,7 @@ In the code above, jQuery will be requested from the CDN while in release mode a
 
 ## Creating a Bundle
 
-The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\\_Start\\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
@@ -136,7 +136,7 @@ The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v
 
 [!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
-Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
+Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
 
 [!code-cshtml[Main](bundling-and-minification/samples/sample10.cshtml?highlight=5-6,11)]
 
@@ -150,10 +150,10 @@ The virtual path specified in the `Include` method and the search pattern in the
 
 Consider a project with the following JavaScript files:
 
-- *Scripts\Common\AddAltToImg.js*
-- *Scripts\Common\ToggleDiv.js*
-- *Scripts\Common\ToggleImg.js*
-- *Scripts\Common\Sub1\ToggleLinks.js*
+- *Scripts\\Common\\AddAltToImg.js*
+- *Scripts\\Common\\ToggleDiv.js*
+- *Scripts\\Common\\ToggleImg.js*
+- *Scripts\\Common\\Sub1\\ToggleLinks.js*
 
 ![dir imag](bundling-and-minification/_static/image7.png)
 
@@ -164,10 +164,10 @@ The following table shows the files added to a bundle using the wildcard as show
 | Include("~/Scripts/Common/\*.js") | *AddAltToImg.js*, *ToggleDiv.js*, *ToggleImg.js* |
 | Include("~/Scripts/Common/T\*.js") | Invalid pattern exception. The wildcard character is only allowed on the prefix or suffix. |
 | Include("~/Scripts/Common/\*og.\*") | Invalid pattern exception. Only one wildcard character is allowed. |
-| "Include("~/Scripts/Common/T\*") | *ToggleDiv.js*, *ToggleImg.js* |
-| "Include("~/Scripts/Common/\*") | Invalid pattern exception. A pure wildcard segment is not valid. |
+| Include("~/Scripts/Common/T\*") | *ToggleDiv.js*, *ToggleImg.js* |
+| Include("~/Scripts/Common/\*") | Invalid pattern exception. A pure wildcard segment is not valid. |
 | IncludeDirectory("~/Scripts/Common", "T\*") | *ToggleDiv.js*, *ToggleImg.js* |
-| IncludeDirectory("~/Scripts/Common", "T\*",true) | *ToggleDiv.js*, *ToggleImg.js*, *ToggleLinks.js* |
+| IncludeDirectory("~/Scripts/Common", "T\*", true) | *ToggleDiv.js*, *ToggleImg.js*, *ToggleLinks.js* |
 
 Explicitly adding each file to a bundle is generally the preferred over wildcard loading of files for the following reasons:
 
@@ -177,7 +177,7 @@ Explicitly adding each file to a bundle is generally the preferred over wildcard
 
     [!code-csharp[Main](bundling-and-minification/samples/sample12.cs)]
 
-  The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\themes\base\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
+  The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\\themes\\base\\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
 
 ## Bundle Caching
 
@@ -189,7 +189,7 @@ The following image shows the **Caching** tab of the Fiddler response pane:
 
 The request   
 `http://localhost/MvcBM_time/bundles/AllMyScripts?v=r0sLDicvP58AIXN_mc3QdyVvVj5euZNzdsa2N1PKvb81`  
- is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
+ is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
 
 If you run the IE9 F12 developer tools and navigate to a previously loaded page, IE incorrectly shows conditional GET requests made to each bundle and the server returning HTTP 304. You can read why IE9 has problems determining if a conditional request was made in the blog entry [Using CDNs and Expires to Improve Web Site Performance](https://blogs.msdn.com/b/rickandy/archive/2011/05/21/using-cdns-to-improve-web-site-performance.aspx).
 
@@ -197,13 +197,13 @@ If you run the IE9 F12 developer tools and navigate to a previously loaded page,
 
 The bundling and minification framework provides a mechanism to process intermediate languages such as [SCSS](http://sass-lang.com/), [Sass](http://sass-lang.com/), [LESS](http://www.dotlesscss.org/) or [Coffeescript](http://coffeescript.org/), and apply transforms such as minification to the resulting bundle. For example, to add [.less](http://www.dotlesscss.org/) files to your MVC 4 project:
 
-1. Create a folder for your LESS content. The following example uses the *Content\MyLess* folder.
+1. Create a folder for your LESS content. The following example uses the *Content\\MyLess* folder.
 2. Add the [.less](http://www.dotlesscss.org/) NuGet package **dotless** to your project.  
     ![NuGet dotless install](bundling-and-minification/_static/image9.png)
 3. Add a class that implements the [IBundleTransform](https://msdn.microsoft.com/library/system.web.optimization.ibundletransform(VS.110).aspx) interface. For the .less transform, add the following code to your project.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample13.cs)]
-4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file.
+4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\\_Start\\BundleConfig.cs* file.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample14.cs)]
 5. Add the following code to any views which references the LESS bundle.
