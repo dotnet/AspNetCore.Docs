@@ -73,7 +73,7 @@ It's easy to debug your JavaScript in a development environment (where the [comp
 2. Select the bundle containing the JavaScript function you want to debug using the assets button.  
     ![](bundling-and-minification/_static/image4.png)
 3. Format the minified JavaScript by selecting the **Configuration button** ![](bundling-and-minification/_static/image5.png), and then selecting **Format JavaScript**.
-4. In the **Search Scrip** t input box, select the name of the function you want to debug. In the following image, **AddAltToImg** was entered in the **Search Scrip** t input box.  
+4. In the **Search Script** input box, select the name of the function you want to debug. In the following image, **AddAltToImg** was entered in the **Search Script** input box.  
     ![](bundling-and-minification/_static/image6.png)
 
 For more information on debugging with the F12 developer tools, see the MSDN article [Using the F12 Developer Tools to Debug JavaScript Errors](https://msdn.microsoft.com/library/ie/gg699336(v=vs.85).aspx).
@@ -107,9 +107,9 @@ Open the *App\_Start\BundleConfig.cs* file and examine the `RegisterBundles` met
 
 The  preceding code creates a new JavaScript bundle named *~/bundles/jquery* that includes all the appropriate (that is debug or minified but not .*vsdoc*) files in the *Scripts* folder that match the wild card string "~/Scripts/jquery-{version}.js". For ASP.NET MVC 4, this means with a debug configuration, the file *jquery-1.7.1.js* will be added to the bundle. In a release configuration, *jquery-1.7.1.min.js* will be added. The bundling framework follows several common conventions such as:
 
-- Selecting ".min" file for release when "FileX.min.js" and "FileX.js" exist.
+- Selecting ".min" file for release when "*FileX.min.js*" and "*FileX.js*" exist.
 - Selecting the non ".min" version for debug.
-- Ignoring "-vsdoc" files (such as jquery-1.7.1-vsdoc.js), which are used only by IntelliSense.
+- Ignoring "-vsdoc" files (such as *jquery-1.7.1-vsdoc.js*), which are used only by IntelliSense.
 
 The `{version}` wild card matching shown above is used to automatically create a jQuery bundle with the appropriate version of jQuery in your *Scripts* folder. In this example, using a wild card provides the following benefits:
 
@@ -128,7 +128,7 @@ In the code above, jQuery will be requested from the CDN while in release mode a
 
 ## Creating a Bundle
 
-The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the RegisterBundles method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
@@ -222,7 +222,7 @@ The browser limitation of six simultaneous connections per each hostname can be 
 
 Bundles should be partitioned by pages that need them. For example, the default ASP.NET MVC template for an internet application creates a jQuery Validation bundle separate from jQuery. Because the default views created have no input and do not post values, they don't include the validation bundle.
 
-The `System.Web.Optimization` namespace is implemented in System.Web.Optimization.DLL. It leverages the WebGrease library (WebGrease.dll) for minification capabilities, which in turn uses Antlr3.Runtime.dll.
+The `System.Web.Optimization` namespace is implemented in System.Web.Optimization.dll. It leverages the WebGrease library (WebGrease.dll) for minification capabilities, which in turn uses Antlr3.Runtime.dll.
 
 *I use Twitter to make quick posts and share links. My Twitter handle is*: [@RickAndMSFT](http://twitter.com/RickAndMSFT)
 
