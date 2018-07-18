@@ -28,8 +28,8 @@ namespace ContactManager.Data
                 await EnsureRole(serviceProvider, adminID, Constants.ContactAdministratorsRole);
 
                 // allowed user can create and edit contacts that they create
-                var uid = await EnsureUser(serviceProvider, testUserPw, "manager@contoso.com");
-                await EnsureRole(serviceProvider, uid, Constants.ContactManagersRole);
+                var managerID = await EnsureUser(serviceProvider, testUserPw, "manager@contoso.com");
+                await EnsureRole(serviceProvider, managerID, Constants.ContactManagersRole);
 
                 SeedDB(context, adminID);
             }

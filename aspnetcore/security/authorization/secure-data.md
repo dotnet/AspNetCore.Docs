@@ -54,7 +54,7 @@ The administrator has all privileges. She can read/edit/delete any contact and c
 
 The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller) the following `Contact` model:
 
-[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
+[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet)]
 
 The sample contains the following authorization handlers:
 
@@ -117,9 +117,7 @@ Set the default authentication policy to require users to be authenticated:
 
 Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index, About, and Contact pages so anonymous users can get information about the site before they register.
 
-[!code-csharp[](secure-data/samples/final2.1/Pages/Index.cshtml.cs?highlight=6)]
-
-Add `[AllowAnonymous]` to the [LoginModel and RegisterModel](https://github.com/aspnet/templating/issues/238).
+[!code-csharp[](secure-data/samples/final2.1/Pages/Index.cshtml.cs?highlight=1,6)]
 
 ### Configure the test account
 
@@ -176,7 +174,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=25-99)]
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
@@ -192,7 +190,7 @@ Review the `ContactOperations` class. This class contains the requirements the a
 
 ### Create a base class for the Contacts Razor Pages
 
-Create a base class that contains the services used in the contacts Razor Pages. The base class puts that initialization code in one location:
+Create a base class that contains the services used in the contacts Razor Pages. The base class puts the initialization code in one location:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/DI_BasePageModel.cs)]
 
