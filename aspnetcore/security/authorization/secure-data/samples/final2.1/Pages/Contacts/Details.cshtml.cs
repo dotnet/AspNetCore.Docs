@@ -30,6 +30,15 @@ namespace ContactManager.Pages.Contacts
             {
                 return NotFound();
             }
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                                        User, Contact,
+                                        ContactOperations.Approve);
+            if (!isAuthorized.Succeeded)
+            {
+                return new ChallengeResult();
+            }
+
             return Page();
         }
 
