@@ -50,7 +50,7 @@ The Visual Studio Tools for Docker don't support adding Docker to an existing AS
 
 ## Docker assets overview
 
-The Visual Studio Tools for Docker add a *docker-compose* project to the solution, containing the following files:
+The Visual Studio Tools for Docker add a *docker-compose* project to the solution containing the following files:
 
 * *.dockerignore*: Contains a list of file and directory patterns to exclude when generating a build context.
 * *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
@@ -105,7 +105,7 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   21 seconds 
 
 Changes to static files and Razor views are automatically updated without the need for a compilation step. Make the change, save, and refresh the browser to view the update.
 
-Code file modifications require compilation and a restart of Kestrel within the container. After making the change, use CTRL + F5 to perform the process and start the app within the container. The Docker container isn't rebuilt or stopped. Run the `docker ps` command in PMC. Notice the original container is still running as of 10 minutes ago:
+Code file modifications require compilation and a restart of Kestrel within the container. After making the change, use `CTRL+F5` to perform the process and start the app within the container. The Docker container isn't rebuilt or stopped. Run the `docker ps` command in PMC. Notice the original container is still running as of 10 minutes ago:
 
 ```console
 CONTAINER ID        IMAGE                  COMMAND                   CREATED             STATUS              PORTS                   NAMES
