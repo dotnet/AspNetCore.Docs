@@ -18,7 +18,7 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 ## Hosting startup activated from an existing class library
 
-When an `IHostingStartup` enhancement is available in an existing library, the hosting startup types provided by the library can be made available to the app with a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute.
+When an `IHostingStartup` enhancement is available in an existing library, the hosting startup types provided by the library can be made available to the app with a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute. The entry assembly or the assembly containing the `Startup` class is automatically scanned for the `HostingStartup` attribute.
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/2.x/HostingStartupSample) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLib*. The class library contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`.
 
@@ -38,15 +38,13 @@ The app's Index page reads the configuration values for the two keys set by the 
 
 *HostingStartupApp/Pages/Index.cshtml.cs*:
 
-[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=11-12,19-20)]
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,9-10)]
 
 ## Discover loaded hosting startup assemblies
 
 To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are logged. Loaded hosting startup assemblies are logged at the Debug level, and all errors are logged.
 
-The sample app reads the [HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey) into a `string` array and displays the result in the app's Index page:
-
-[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=10,16-18)]
+Hosting startup assemblies are listed in the [WebHostDefaults.HostingStartupAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupassemblieskey). Excluded assemblies are listed in the [WebHostDefaults.HostingStartupExcludeAssembliesKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.hostingstartupexcludeassemblieskey). For more information, see [Web Host: Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) and [Web Host: Hosting Startup Exclude Assemblies](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies).
 
 ## Disable automatic loading of hosting startup assemblies
 
@@ -84,7 +82,7 @@ An `IHostingStartup` enhancement is deployed as an assembly based on a console a
 
 [!code-xml[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.csproj)]
 
-A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). In the following example, the namespace is `StartupEnhancement`, and the class is `StartupEnhancementHostingStartup`:
+A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost). The entry assembly or the assembly containing the `Startup` class is automatically scanned for the `HostingStartup` attribute. In the following example, the namespace is `StartupEnhancement`, and the class is `StartupEnhancementHostingStartup`:
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
 
