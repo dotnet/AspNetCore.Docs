@@ -33,7 +33,7 @@ public class AboutModel : PageModel
 
 ## Use HttpContext from a controller
 
-Controllers expose the `HttpContext` property from the [ControllerBase](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase):
+Controllers expose the [ControllerBase.HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.httpcontext) property:
 
 ```csharp
 public IActionResult About()
