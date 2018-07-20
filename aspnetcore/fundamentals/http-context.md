@@ -59,7 +59,6 @@ public class MyCustomMiddleware
     {
         // Middleware initialization optionally using HttpContext
     }
-    ...
 }
 ```
 
@@ -73,7 +72,7 @@ For other framework and custom components that require access to `HttpContext`, 
 public void ConfigureServices(IServiceCollection services)
 {
      services.AddMvc()
-             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+         .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
      services.AddHttpContextAccessor();
      services.AddTransient<IUserRepository, UserRepository>();
 }
@@ -114,7 +113,5 @@ public class UserRepository : IUserRepository
         var username = _httpContextAccessor.HttpContext.User.Identity.Name;
         service.LogAccessRequest(username);
     }
-
-    ...
 }
 ```
