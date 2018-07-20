@@ -45,6 +45,7 @@ namespace FileUploadSample.Controllers
         //    in the request header and then falls back to reading the body.
         [HttpPost]
         [DisableFormValueModelBinding]
+        [DisableRequestSizeLimit]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload()
         {
@@ -104,7 +105,7 @@ namespace FileUploadSample.Controllers
                             {
                                 value = String.Empty;
                             }
-                            formAccumulator.Append(key, value);
+                            formAccumulator.Append(key.ToString(), value);
 
                             if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
                             {

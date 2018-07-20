@@ -10,7 +10,7 @@ namespace FileUploadSample
         // The spec says 70 characters is a reasonable limit.
         public static string GetBoundary(MediaTypeHeaderValue contentType, int lengthLimit)
         {
-            var boundary = HeaderUtilities.RemoveQuotes(contentType.Boundary);
+            var boundary = HeaderUtilities.RemoveQuotes(contentType.Boundary).ToString();
             if (string.IsNullOrWhiteSpace(boundary))
             {
                 throw new InvalidDataException("Missing content-type boundary.");
@@ -36,8 +36,8 @@ namespace FileUploadSample
             // Content-Disposition: form-data; name="key";
             return contentDisposition != null
                    && contentDisposition.DispositionType.Equals("form-data")
-                   && string.IsNullOrEmpty(contentDisposition.FileName)
-                   && string.IsNullOrEmpty(contentDisposition.FileNameStar);
+                   && string.IsNullOrEmpty(contentDisposition.FileName.ToString())
+                   && string.IsNullOrEmpty(contentDisposition.FileNameStar.ToString());
         }
 
         public static bool HasFileContentDisposition(ContentDispositionHeaderValue contentDisposition)
@@ -45,8 +45,8 @@ namespace FileUploadSample
             // Content-Disposition: form-data; name="myfile1"; filename="Misc 002.jpg"
             return contentDisposition != null
                    && contentDisposition.DispositionType.Equals("form-data")
-                   && (!string.IsNullOrEmpty(contentDisposition.FileName)
-                       || !string.IsNullOrEmpty(contentDisposition.FileNameStar));
+                   && (!string.IsNullOrEmpty(contentDisposition.FileName.ToString())
+                       || !string.IsNullOrEmpty(contentDisposition.FileNameStar.ToString()));
         }
     }
 }
