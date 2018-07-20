@@ -24,7 +24,7 @@ MVC Video Training from Pluralsight
 
 > This MVC 5 course recorded by K. Scott Allen for Pluralsight provides a fantastic way to quickly get up to speed on the latest release of ASP.NET MVC. Scott's presentation style is easy to follow and technically compelling, and the course format, video player, and overall cadence are really great. Plus – it's free, so there's no excuse not to learn MVC 5 today!
 >
-> &mdash; Scott Guthrie, Executive Vice President, Microsoft Cloud and Enterprise group, Microsoft
+> &mdash;Scott Guthrie, Executive Vice President, Microsoft Cloud and Enterprise group, Microsoft
 
 ![pluralsight-logo-playbutton](pluralsight/_static/image1.png)
 
