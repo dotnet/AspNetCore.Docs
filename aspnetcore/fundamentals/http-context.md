@@ -4,7 +4,7 @@ author: coderandhiker
 description: Learn how to access HttpContext in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/10/2018
+ms.date: 07/20/2018
 uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
