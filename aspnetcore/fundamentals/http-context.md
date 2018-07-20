@@ -62,7 +62,7 @@ public class MyCustomMiddleware
 
 ## Use HttpContext from custom components
 
-For other framework and custom components that need access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container. The dependency injection container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
+For other framework and custom components that require access to `HttpContext`, the recommended approach is to register a dependency using the built-in [dependency injection](xref:fundamentals/dependency-injection) container. The dependency injection container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors.
 
 ::: moniker range=">= aspnetcore-2.1"
 
