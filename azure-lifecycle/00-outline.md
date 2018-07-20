@@ -54,7 +54,7 @@ The purpose of this book is to set the minimum bar to create a complete .NET dev
     * Debugging
     * Application Insights
     * Designing a DevOps dashboard with OMS and PowerBI
-    * Integrating an incident mgmt workflow (Pick a partner, perhaps PagerDuty, who has VSTS integration.)
+    * Integrating an incident management workflow (Pick a partner, perhaps PagerDuty, who has VSTS integration.)
 1. Large system devops environment configurations
     * Large system scenarios
       - Multi-product
