@@ -36,12 +36,15 @@ public class AboutModel : PageModel
 Controllers expose the [ControllerBase.HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.httpcontext) property:
 
 ```csharp
-public IActionResult About()
+public class HomeController : Controller
 {
-    var pathBase = HttpContext.Request.PathBase;
-    // Do something with the PathBase.
+    public IActionResult About()
+    {
+        var pathBase = HttpContext.Request.PathBase;
+        // Do something with the PathBase.
 
-    return View();
+        return View();
+    }
 }
 ```
 
