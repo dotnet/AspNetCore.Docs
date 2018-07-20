@@ -56,7 +56,7 @@ The following table describes options for configuring SignalR hubs:
 
 | Option | Description |
 | ------ | ----------- |
-| `HandshakeTimeout` | If the client doesn't send an initial handshake message within this time interval, the connection is closed. |
+| `HandshakeTimeout` | If the client doesn't send an initial handshake message within this time interval, the connection is closed. This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open. |
 | `SupportedProtocols` | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
@@ -210,10 +210,10 @@ Additional options for configuring timeout and keep-alive behavior are available
 
 | .NET Option | JavaScript Option | Description |
 | ----------- | ----------------- | ----------- |
-| `ServerTimeout` | `serverTimeoutInMilliseconds` | Timeout for server activity. If the server hasn't sent any message in this interval, the client considers the server disconnected and trigger the `Closed` event (`onclose` in JavaScript). |
-| `HandshakeTimeout` | Not configurable | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and trigger the `Closed` event (`onclose` in JavaScript). |
+| `ServerTimeout` | `serverTimeoutInMilliseconds` | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). |
+| `HandshakeTimeout` | Not configurable | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 
-In the .NET Client, timeout values are specified as `TimeSpan` values. In the JavaScript client, timeout values are specified as numbers. The numbers represent time values in milliseconds.
+In the .NET Client, timeout values are specified as `TimeSpan` values. In the JavaScript client, timeout values are specified as a number indicating the duration in milliseconds.
 
 ### Configure additional options
 
