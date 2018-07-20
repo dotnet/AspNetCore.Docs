@@ -210,8 +210,8 @@ Additional options for configuring timeout and keep-alive behavior are available
 
 | .NET Option | JavaScript Option | Description |
 | ----------- | ----------------- | ----------- |
-| `ServerTimeout` | `serverTimeoutInMilliseconds` | Timeout for server activity. If the server hasn't sent any message in this interval, the client considers the server disconnected and trigger the `Closed` event (`onclose` in JavaScript). |
-| `HandshakeTimeout` | Not configurable | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and trigger the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | `serverTimeoutInMilliseconds` | Timeout for server activity. If the server hasn't sent any message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). |
+| `HandshakeTimeout` | Not configurable | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 
 In the .NET Client, timeout values are specified as `TimeSpan` values. In the JavaScript client, timeout values are specified as a number indicating the duration in milliseconds.
 
