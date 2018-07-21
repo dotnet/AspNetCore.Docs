@@ -10,26 +10,44 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Consume hosting startup from an existing library</h3>
+                <h3 class="panel-title">Consume hosting startup from a bin-deployed library</h3>
             </div>
             <div class="panel-body">
                 <h4>Add configuration</h4>
                 <p>
-                    When an <code>IHostingStartup</code> enhancement is available from an existing library, the types provided by the library can be made available by specifying a <code>[HostingStartup]</code> attribute in the app. The sample app has a project reference for a class library, <em>HostingStartupLib</em>, that provides a hosting startup enhancement:
+                    When an <code>IHostingStartup</code> enhancement is available from an existing library, the types provided by the library can be made available by bin-deploying the library's assembly and adding the hosting startup assembly name to the <code>ASPNETCORE_HOSTINGSTARTUPASSEMBLIES</code> environment variable.
                 </p>
-                <h4>HostingStartupApp.csproj</h4>
-                <pre><code>&lt;ItemGroup&gt;
-  &lt;ProjectReference Include="..\HostingStartupLib\HostingStartupLib.csproj" /&gt;
-&lt;/ItemGroup&gt;</code></pre>
-                <h4>Startup.cs</h4>
-                <pre><code>[assembly: HostingStartup(typeof(HostingStartupLib.ServiceKeyInjection))]</code></pre>
                 <p>
                     The hosting startup of the class library adds an in-memory configuration provider to the app that specifies values for the service keys shown below.
                 </p>
                 <h4>Service Keys</h4>
                 <ul>
-                    <li><b>Development Service Key</b>: @Model.ServiceKey_Development</li>
-                    <li><b>Production Service Key</b>: @Model.ServiceKey_Production</li>
+                    <li><b>Development Service Key from Library</b>: @Model.ServiceKey_Development_Library</li>
+                    <li><b>Production Service Key from Library</b>: @Model.ServiceKey_Production_Library</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Consume hosting startup from a NuGet package</h3>
+            </div>
+            <div class="panel-body">
+                <h4>Add configuration</h4>
+                <p>
+                    When an <code>IHostingStartup</code> enhancement is available from an existing NuGet package, the types provided by the package can be made available by referencing the package and adding the hosting startup assembly name to the <code>ASPNETCORE_HOSTINGSTARTUPASSEMBLIES</code> environment variable.
+                </p>
+                <p>
+                    The hosting startup of the NuGet package adds an in-memory configuration provider to the app that specifies values for the service keys shown below.
+                </p>
+                <h4>Service Keys</h4>
+                <ul>
+                    <li><b>Development Service Key from Package</b>: @Model.ServiceKey_Development_Package</li>
+                    <li><b>Production Service Key from Package</b>: @Model.ServiceKey_Production_Package</li>
                 </ul>
             </div>
         </div>

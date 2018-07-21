@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
+    <PackageReference Include="HostingStartupPackage" Version="1.0.0" />
+  </ItemGroup>
+
+  <!--
+    The following PropertyGroup sets the package restore sources for the app.
+
+    The HostingStartupPackage bin/Debug folder is added.
+    
+    This permits the app to restore the HostingStartupPackage from its 
+    project's published output. There is no need to publish the package to 
+    nuget.org.
+  -->
+  <PropertyGroup>
+    <RestoreSources>$(RestoreSources);https://api.nuget.org/v3/index.json;../HostingStartupPackage/bin/Debug</RestoreSources>
+  </PropertyGroup>
+
+  <!--
+    The following ItemGroup permits the app to load the HostingStartupLibrary
+    from the app's bin folder.
+  -->
+  <ItemGroup>
+    <Reference Include=".\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll">
+      <HintPath>.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion> 
+    </Reference>
+  </ItemGroup>
+
+</Project>
