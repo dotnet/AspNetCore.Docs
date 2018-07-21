@@ -74,7 +74,7 @@ dotnet run
 
 ## Set up the site style
 
-A few changes set up the site menu, layout, and home page. Update *Pages/Shared/_Layout.cshtml* with the following changes:
+A few changes set up the site menu, layout, and home page. Update *Pages/_Layout.cshtml* with the following changes:
 
 * Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
 
@@ -180,7 +180,7 @@ The scaffold process created and changed the following files:
 ### Files created
 
 * *Pages/Students* Create, Delete, Details, Edit, Index.
-* *Data/ContosoUniversityContext.cs*
+* *Data/StudentContext.cs*
 
 ### Files updates
 
