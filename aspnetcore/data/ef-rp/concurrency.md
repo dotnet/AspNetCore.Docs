@@ -6,9 +6,6 @@ ms.author: riande
 ms.date: 11/15/2017
 uid: data/ef-rp/concurrency
 ---
-
-en-us/
-
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Jon P Smith](https://twitter.com/thereformedprog)
@@ -50,18 +47,20 @@ Optimistic concurrency includes the following options:
 * You can keep track of which property a user has modified and update only the corresponding columns in the DB.
 
   In the scenario, no data would be lost. Different properties were updated by the two users. The next time someone browses the English department, they will see both Jane's and John's changes. This method of updating can reduce the number of conflicts that could result in data loss. This approach:
-		* Can't avoid data loss if competing changes are made to the same property.
-		* Is generally not practical in a web app. It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
-		* Can increase app complexity compared to concurrency detection on an entity.
+ 
+  * Can't avoid data loss if competing changes are made to the same property.
+  * Is generally not practical in a web app. It requires maintaining significant state in order to keep track of all fetched values and new values. Maintaining large amounts of state can affect app performance.
+  * Can increase app complexity compared to concurrency detection on an entity.
 
 * You can let John's change overwrite Jane's change.
 
   The next time someone browses the English department, they will see 9/1/2013 and the fetched $350,000.00 value. This approach is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) If you don't do any coding for concurrency handling, Client Wins happens automatically.
 
 * You can prevent John's change from being updated in the DB. Typically, the app would:
-		* Display an error message.
-		* Show the current state of the data.
-		* Allow the user to reapply the changes.
+
+  * Display an error message.
+  * Show the current state of the data.
+  * Allow the user to reapply the changes.
 
   This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
@@ -141,7 +140,7 @@ The preceding commands:
 * Adds the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-[!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
+  [!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
 
 * Runs migrations to update the DB.
 
