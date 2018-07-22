@@ -293,7 +293,7 @@ Refresh the page and select an instructor. Select a course to see the list of en
 
 The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21,28-29)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21-22,30-31)]
 
 The preceding `Single` approach provides no benefits over using `Where`. Some developers prefer the `Single` approach style.
 
