@@ -16,7 +16,7 @@ In this section, you'll accomplish the following tasks:
 
 ## Download and test the app
 
-The app used in this guide is a pre-built ASP.NET Core app, [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/). It's a [Razor Pages](https://docs.microsoft.com/aspnet/core/razor-pages/) app that uses the [`Microsoft.SyndicationFeed.ReaderWriter`](https://github.com/dotnet/SyndicationFeedReaderWriter) API to retrieve an RSS/Atom feed and display the news items in a list.
+The app used in this guide is a prebuilt ASP.NET Core app, [Simple Feed Reader](https://github.com/Azure-Samples/simple-feed-reader/). It's a [Razor Pages](xref:razor-pages/index) app that uses the [Microsoft.SyndicationFeed.ReaderWriter](https://github.com/dotnet/SyndicationFeedReaderWriter) API to retrieve an RSS/Atom feed and display the news items in a list.
 
 Feel free to review the code, but it's important to understand that there's nothing special about this app. It's a basic ASP.NET Core app for illustrative purposes.
 
