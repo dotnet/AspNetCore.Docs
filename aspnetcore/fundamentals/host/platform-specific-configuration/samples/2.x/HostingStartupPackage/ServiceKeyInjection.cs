@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace HostingStartupPackage
 {
-
     public class ServiceKeyInjection : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)

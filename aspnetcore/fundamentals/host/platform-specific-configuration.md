@@ -16,30 +16,6 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Hosting startup activated from an existing class library
-
-When an `IHostingStartup` enhancement is available in an existing library, the hosting startup types provided by the library can be made available to the app with a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute. The entry assembly or the assembly containing the `Startup` class is automatically scanned for the `HostingStartup` attribute.
-
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/2.x/HostingStartupSample) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLib*. The class library contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`.
-
-`ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
-
-*HostingStartupSample/HostingStartupLib/ServiceKeyInjection.cs*:
-
-[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupLib/ServiceKeyInjection.cs?name=snippet1)]
-
-The app's `Startup` class file specifies a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute for the class library's `ServiceKeyInjection` class.
-
-*HostingStartupSample/HostingStartupApp/Startup.cs*:
-
-[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupApp/Startup.cs?name=snippet1&highlight=1)]
-
-The app's Index page reads the configuration values for the two keys set by the class library's hosting startup assembly. The configuration values for these keys are displayed when the page is rendered.
-
-*HostingStartupApp/Pages/Index.cshtml.cs*:
-
-[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupSample/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,9-10)]
-
 ## Discover loaded hosting startup assemblies
 
 To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are logged. Loaded hosting startup assemblies are logged at the Debug level, and all errors are logged.
@@ -74,7 +50,79 @@ If both the host configuration setting and the environment variable are set, the
 
 Disabling hosting startup assemblies using the host setting or environment variable disables the assembly globally and may disable several characteristics of an app.
 
-## Hosting startup activated dynamically from a bin-deployed or runtime store-deployed assembly
+## HostingStartup attribute
+
+A [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute indicates to the compiler the presence of a hosting startup assembly to activate at runtime.
+
+The entry assembly or the assembly containing the `Startup` class is automatically scanned for the `HostingStartup` attribute.
+
+In the following example, the namespace of the hosting startup assembly is `StartupEnhancement`, and the class containing the hosting startup code is `StartupEnhancementHostingStartup`:
+
+[!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
+
+The `HostingStartup` attribute is typically located in the hosting startup assembly's `IHostingStartup` implementation class file.
+
+## Activation approaches
+
+There are three approaches for activation of a hosting startup assembly. Each approach is described in the following sections.
+
+* [NuGet package](#activation-from-a-nuget-package)
+* [Class library](#activation-from-a-class-library)
+* [Assembly](#activation-from-an-assembly)
+
+## Activation from a NuGet package
+
+A hosting startup enhancement can be provided in a NuGet package (the package has a `HostingStartup` attribute). The hosting startup types provided by the package are made available to the app via a package reference in the app's project file with the `PackageID` listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+
+The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a NuGet package, *HostingStartupPackage*. The package:
+
+* Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
+* Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
+
+*HostingStartupPackage/ServiceKeyInjection.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupPackage/ServiceKeyInjection.cs?name=snippet1)]
+
+The app's Index page reads the configuration values for the two keys set by the package's hosting startup assembly. The configuration values for these keys are displayed when the page is rendered.
+
+*HostingStartupApp/Pages/Index.cshtml.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
+
+The NuGet package is listed as a package reference in the app's project file, and the package's `PackageId` is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
+
+The package's `PackageId` can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
+
+When multiple hosting startup assembles are present, their [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) methods are executed in the order that the assemblies are listed.
+
+## Activation from a class library
+
+A hosting startup enhancement can be provided in a class library (the library has a `HostingStartup` attribute). The hosting startup types provided by the library are made available to the app via a bin-deployed assembly with the assembly name listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+
+The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
+
+* Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
+* Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
+
+*HostingStartupLibrary/ServiceKeyInjection.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
+
+The app's Index page reads the configuration values for the two keys set by the class library's hosting startup assembly. The configuration values for these keys are displayed when the page is rendered.
+
+*HostingStartupApp/Pages/Index.cshtml.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
+
+The compiled class library is bin-deployed to the app, and the class library's assembly name is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
+
+The class library's assembly name can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
+
+When multiple hosting startup assembles are present, their [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) methods are executed in the order that the assemblies are listed.
+
+## Activation from an assembly
+
+This section describes how to activate a hosting startup from a bin-deployed or runtime store-deployed assembly.
 
 ### Create the assembly
 
@@ -148,7 +196,7 @@ Set the following environment variables in the context of the app that uses the 
 
 ASPNETCORE_HOSTINGSTARTUPASSEMBLIES
 
-Only hosting startup assemblies are scanned for the `HostingStartupAttribute`. The assembly name of the implementation is provided in this environment variable. The sample app sets this value to `StartupDiagnostics`.
+Only hosting startup assemblies are scanned for the `HostingStartup` attribute. The assembly name of the implementation is provided in this environment variable. The sample app sets this value to `StartupDiagnostics`.
 
 The value can also be set using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
 
@@ -178,12 +226,13 @@ The sample app sets this value to:
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
-## Sample app
+## Sample code
 
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates two hosting startup scenarios:
+The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates the three hosting startup scenarios described earlier in this topic:
 
-* A hosting startup assembly provided by a class library that sets a pair of in-memory configuration key-value pairs.
-* Hosting startup activated dynamically from a runtime store-deployed assembly. The assembly adds two middlewares to the app at startup that provide diagnostic information on:
+* A hosting startup assembly provided by a *NuGet package* that sets a pair of in-memory configuration key-value pairs.
+* A hosting startup assembly provided by a *class library* that sets a pair of in-memory configuration key-value pairs.
+* Hosting startup activated from a *runtime store-deployed assembly*. The assembly adds two middlewares to the app at startup that provide diagnostic information on:
   - Registered services
   - Address (scheme, host, path base, path, query string)
   - Connection (remote IP, remote port, local IP, local port, client certificate)
@@ -192,20 +241,45 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundament
 
 To run the sample:
 
-**Hosting startup activated from an existing class library**
+**Activation from a NuGet package**
 
-1. Run the sample app.
+1. Compile the *HostingStartupPackage* package with the [dotnet pack](/dotnet/core/tools/dotnet-pack) command.
+1. Add the `PackageId` of *HostingStartupPackage* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+1. Compile and run the app. A **&lt;PropertyGroup&gt;** in the app's project file specifies the package project's output (*../HostingStartupPackage/bin/Debug*) as a package source. This allows the app to use the package without actually uploading the package to nuget.org.
+
+   ```xml
+   <PropertyGroup>
+     <RestoreSources>$(RestoreSources);https://api.nuget.org/v3/index.json;../HostingStartupPackage/bin/Debug</RestoreSources>
+   </PropertyGroup>
+   ```
+1. Observe that the service configuration key values rendered by the Index page match the values set by the package's `ServiceKeyInjection.Configure` method.
+
+**Activation from a class library**
+
+1. Compile the *HostingStartupLibrary* class library with the [dotnet build](/dotnet/core/tools/dotnet-build) command.
+1. Add the class library's assembly name of *HostingStartupLibrary* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+1. *bin*-deploy the class library's assembly to the app. Copy the *HostingStartupLibrary.dll* file from the class library's compiled output to the app's *bin* folder.
+1. Compile and run the app. An **&lt;ItemGroup&gt;** in the app's project file references the class library's assembly (*.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll*):
+
+   ```xml
+   <ItemGroup>
+     <Reference Include=".\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll">
+       <HintPath>.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll</HintPath>
+       <SpecificVersion>False</SpecificVersion> 
+     </Reference>
+   </ItemGroup>
+   ```
 1. Observe that the service configuration key values rendered by the Index page match the values set by the class library's `ServiceKeyInjection.Configure` method.
 
-**Hosting startup activated dynamically from a runtime store-deployed assembly**
+**Activation from a runtime store-deployed assembly**
 
 1. The Startup Diagnostic project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows OS starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-windows-powershell).
-1. Build the Startup Diagnostic project. A build target in the project file:
+1. Build the Startup Diagnostic project. When the project is built, a build target in the project file automatically:
    * Moves the assembly and symbols files to the user profile's runtime store.
    * Triggers the PowerShell script to modify the *StartupDiagnostics.deps.json* file.
    * Moves the *StartupDiagnostics.deps.json* file to the user profile's `additionalDeps` folder.
 1. Set the environment variables:
-    * `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`: `StartupDiagnostics`
-    * `DOTNET_ADDITIONAL_DEPS`: `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`
+   * Add the assembly name of *StartupDiagnostics* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+   * Set the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`.
 1. Run the sample app.
 1. Request the `/services` endpoint to see the app's registered services. Request the `/diag` endpoint to see the diagnostic information.
