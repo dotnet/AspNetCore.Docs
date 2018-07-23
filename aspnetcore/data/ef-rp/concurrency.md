@@ -149,7 +149,7 @@ The preceding commands:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` and the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` for the model class.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
