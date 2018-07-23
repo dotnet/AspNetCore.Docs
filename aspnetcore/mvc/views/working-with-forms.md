@@ -163,7 +163,7 @@ The data annotations applied to the `Email` and `Password` properties generate m
 
 ### Expression names
 
-The `asp-for` attribute value is a `ModelExpression` and the right hand side of a lambda expression. Therefore, `asp-for="Property1"` becomes `m => m.Property1` in the generated code which is why you don't need to prefix with `Model`. You can use the "@" character to start an inline expression and move before the `m.`:
+The `asp-for` attribute value is a `ModelExpression` and the right hand side of a lambda expression. Therefore, `asp-for="Property1"` becomes `m => m.Property1` in the generated code which is why you don't need to prefix with `Model`. You can use the "\@" character to start an inline expression and move before the `m.`:
 
 ```HTML
 @{
