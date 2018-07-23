@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/14/2016
+ms.date: 7/22/2018
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -24,6 +24,13 @@ Non-sticky sessions in a web farm require a [distributed cache](distributed.md) 
 The `IMemoryCache` cache will evict cache entries under memory pressure unless the [cache priority](/dotnet/api/microsoft.extensions.caching.memory.cacheitempriority) is set to `CacheItemPriority.NeverRemove`. You can set the `CacheItemPriority` to adjust the priority with which the cache evicts items under memory pressure.
 
 The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`.
+
+### Cache guidelines
+
+* Code should **not** depend on a cache value being present in the cache.
+* The cache is a scare resource. Limit cache growth:
+    * Do **not** use external input as cache keys.
+    * Use expirations to limit cache growth.
 
 ## Using IMemoryCache
 

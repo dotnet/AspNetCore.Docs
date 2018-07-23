@@ -46,6 +46,33 @@ public class HomeController : Controller
     }
     #endregion
 
+    #region snippetSize
+    public IActionResult CacheTryGetValueSetSize()
+    {
+        DateTime cacheEntry;
+
+        // Look for cache key.
+        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        {
+            // Key not in cache, so get data.
+            cacheEntry = DateTime.Now;
+
+            // Set cache options.
+            var cacheEntryOptions = new MemoryCacheEntryOptions()
+                .SetSize(1024*2)
+                // Keep in cache for this time, reset time if accessed.
+                .SetSlidingExpiration(TimeSpan.FromSeconds(3));
+
+            cacheEntryOptions.Size = 1;
+
+            // Save data in cache.
+            _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
+        }
+
+        return View("Cache", cacheEntry);
+    }
+    #endregion
+
     #region snippet_gct
     public IActionResult CacheGet()
     {
