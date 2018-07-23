@@ -86,7 +86,7 @@ The Visual Studio Tools for Docker add a *docker-compose* project to the solutio
 
 The *docker-compose.yml* file references the name of the image that's created when the project runs:
 
-[!code-yaml[](visual-studio-tools-for-docker/samples/HelloDockerTools/docker-compose.yml?highlight=5)]
+[!code-yaml[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/docker-compose.yml?highlight=5)]
 
 In the preceding example, `image: hellodockertools` generates the image `hellodockertools:dev` when the app runs in **Debug** mode. The `hellodockertools:latest` image is generated when the app runs in **Release** mode.
 
@@ -94,7 +94,7 @@ Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (f
 
 ### Service Fabric
 
-In addition to the base [Prerequisites](#Prerequisites), the *Service Fabric* solution demands the following prerequisites:
+In addition to the base [Prerequisites](#prerequisites), the *Service Fabric* solution demands the following prerequisites:
 
 * [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
 * Visual Studio 2017's **Azure Development** workload
