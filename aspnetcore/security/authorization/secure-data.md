@@ -105,7 +105,7 @@ dotnet ef database update
 
 Append [AddRoles](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=13)] 
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=12)]
 
 ### Require authenticated users
 
