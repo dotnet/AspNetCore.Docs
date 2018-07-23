@@ -35,7 +35,7 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 # [Visual Studio](#tab/visual-studio) 
 
-* In Visual Studio, create a new **Web Application** project.
+* In Visual Studio, create a new **Web Application** project named **WebPWrecover**.
 * Select **ASP.NET Core 2.1**.
 * Keep the default **Authentication** set to **No Authentication**. Authentication is added in the next step.
 
