@@ -69,6 +69,7 @@ To display the name of the assigned department in a list of courses:
 * Run the following command:
 
   ```console
+  dotnet aspnet-codegenerator
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
