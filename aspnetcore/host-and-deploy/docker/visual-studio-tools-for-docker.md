@@ -4,17 +4,17 @@ author: spboyer
 description: Learn how to use Visual Studio 2017 tooling and Docker for Windows to containerize an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/18/2018
+ms.date: 07/23/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core
 
-[Visual Studio 2017](https://www.visualstudio.com/) supports building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
+Visual Studio 2017 supports building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
 ## Prerequisites
 
-* [Visual Studio 2017](https://www.visualstudio.com/) with the **.NET Core cross-platform development** workload
 * [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
+* [Visual Studio 2017](https://www.visualstudio.com/) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 
@@ -27,9 +27,9 @@ For Docker installation, review the information at [Docker for Windows: What to 
 > [!TIP]
 > Visual Studio 2017 versions 15.6 and later prompt when **Shared Drives** aren't configured.
 
-## Add Docker support to an app
+## Add a project to a Docker container
 
-To add Docker support to an ASP.NET Core project, the project must target .NET Core. Both Linux and Windows containers are supported.
+To containerize an ASP.NET Core project, the project must target .NET Core. Both Linux and Windows containers are supported.
 
 When adding Docker support to a project, choose either a Windows or a Linux container. The Docker host must be running the same container type. To change the container type in the running Docker instance, right-click the System Tray's Docker icon and choose **Switch to Windows containers...** or **Switch to Linux containers...**.
 
@@ -48,21 +48,43 @@ The Visual Studio Tools for Docker don't support adding Docker to an existing AS
 * Select **Docker Support** from the **Project** menu.
 * Right-click the project in Solution Explorer and select **Add** > **Docker Support**.
 
-## Docker assets overview
+## Dockerfile overview
 
-The Visual Studio Tools for Docker add a *docker-compose* project to the solution containing the following files:
+A *Dockerfile*, the recipe for creating a final Docker image, is added to the project root. Refer to [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) for an understanding of the commands within it. This particular *Dockerfile* uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) with four distinct, named build stages:
 
-* *.dockerignore*: Contains a list of file and directory patterns to exclude when generating a build context.
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile?highlight=1,6,14,17)]
+
+The preceding *Dockerfile* is based on the [microsoft/dotnet](https://hub.docker.com/r/microsoft/dotnet/) image. This base image includes the ASP.NET Core runtime and NuGet packages. The packages have been pre-jitted to improve startup performance.
+
+When the new project dialog's **Configure for HTTPS** check box is checked, the *Dockerfile* exposes two ports. One port is used for HTTP traffic; the other port is used for HTTPS. If the check box isn't checked, a single port (80) is exposed for HTTP traffic.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/Dockerfile?highlight=1,5,14,17)]
+
+The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore/) image. This base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
+
+::: moniker-end
+
+## Add container orchestrator support to an app
+
+The tools in Visual Studio 2017 versions 15.7 and earlier support Docker Compose as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
+
+Visual Studio 2017 versions 15.8 and later offer two different orchestration solutions: [Docker Compose](https://docs.docker.com/compose/overview/) and [Service Fabric](/azure/service-fabric/). Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**.
+
+### Docker Compose
+
+The Visual Studio Tools for Docker add a *docker-compose* project to the solution with the following files:
+
+* *.dockerignore*: Lists the file and directory patterns to exclude when generating a build context.
 * *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
-* *docker-compose.override.yml*: An optional file, read by Docker Compose, containing configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
+* *docker-compose.override.yml*: An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
-A *Dockerfile*, the recipe for creating a final Docker image, is added to the project root. Refer to [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) for an understanding of the commands within it. This particular *Dockerfile* uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) containing four distinct, named build stages:
-
-[!code-dockerfile[](visual-studio-tools-for-docker/samples/HelloDockerTools/HelloDockerTools/Dockerfile?highlight=1,5,14,17)]
-
-The *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore) image. This base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
-
-The *docker-compose.yml* file contains the name of the image that's created when the project runs:
+The *docker-compose.yml* file references the name of the image that's created when the project runs:
 
 [!code-yaml[](visual-studio-tools-for-docker/samples/HelloDockerTools/docker-compose.yml?highlight=5)]
 
@@ -70,9 +92,36 @@ In the preceding example, `image: hellodockertools` generates the image `hellodo
 
 Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (for example, `dockerhubusername/hellodockertools`) if the image will be pushed to the registry. Alternatively, change the image name to include the private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on the configuration.
 
+### Service Fabric
+
+In addition to the base [Prerequisites](#Prerequisites), the *Service Fabric* solution demands the following prerequisites:
+
+* [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
+* Visual Studio 2017's **Azure Development** workload
+
 ## Debug
 
 Select **Docker** from the debug drop-down in the toolbar, and start debugging the app. The **Docker** view of the **Output** window shows the following actions taking place:
+
+::: moniker range=">= aspnetcore-2.1"
+
+* The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image contains the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
+* The *2.1-sdk* tag of the *microsoft/dotnet* compile/publish image is acquired (if not already in the cache). The image contains the .NET Core SDK.
+* Two dynamically assigned ports are exposed: one for HTTP and one for HTTPS. The port assigned to localhost can be queried with the `docker ps` command.
+* The app is copied to the container.
+* The default browser is launched with the debugger attached to the container using the dynamically assigned port.
+
+The resulting Docker image is the *dev* image of the app with the *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* image as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
+
+```console
+REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
+hellodockertools    dev                      e2be3da94993        3 minutes ago       255MB
+microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago          255MB
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 
 * The *microsoft/aspnetcore* runtime image is acquired (if not already in the cache).
 * The *microsoft/aspnetcore-build* compile/publish image is acquired (if not already in the cache).
@@ -81,7 +130,7 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 * The app is copied to the container.
 * The default browser is launched with the debugger attached to the container using the dynamically assigned port.
 
-The resulting Docker image is the *dev* image of the app with the *microsoft/aspnetcore* images as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
+The resulting Docker image is the *dev* image of the app with the *microsoft/aspnetcore* image as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
 
 ```console
 REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
@@ -90,6 +139,8 @@ hellodockertools             dev                   85c5ffee5258        About an 
 microsoft/aspnetcore-build   2.0-nanoserver-1709   d7cce94e3eb0        15 hours ago        1.86GB
 microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours ago        389MB
 ```
+
+::: moniker-end
 
 > [!NOTE]
 > The dev image lacks the app contents, as **Debug** configurations use volume mounting to provide the iterative experience. To push an image, use the **Release** configuration.
@@ -118,6 +169,18 @@ Once the develop and debug cycle of the app is completed, the Visual Studio Tool
 
 Run the `docker images` command in PMC to see the list of images:
 
+::: moniker range=">= aspnetcore-2.1"
+
+```console
+REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
+hellodockertools    dev                      e2be3da94993        3 minutes ago       255MB
+microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago          255MB
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
 ```console
 REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
 hellodockertools             latest                4cb1fca533f0        19 seconds ago      391MB
@@ -126,6 +189,8 @@ microsoft/aspnetcore-build   2.0-nanoserver-1709   d7cce94e3eb0        16 hours 
 microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours ago        389MB
 ```
 
+::: moniker-end
+
 > [!NOTE]
 > The `docker images` command returns intermediary images with repository names and tags identified as *\<none>* (not listed above). These unnamed images are produced by the [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile*. They improve the efficiency of building the final image&mdash;only the necessary layers are rebuilt when changes occur. When the intermediary images are no longer needed, delete them using the [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/) command.
 
@@ -133,5 +198,7 @@ There may be an expectation for the production or release image to be smaller in
 
 ## Additional resources
 
+* [Azure Service Fabric: Prepare your development environment](/azure/service-fabric/service-fabric-get-started)
+* [Deploy a .NET app in a Windows container to Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
 * [Troubleshoot Visual Studio 2017 development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
 * [Visual Studio Tools for Docker GitHub repository](https://github.com/Microsoft/DockerTools)
