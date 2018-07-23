@@ -36,7 +36,7 @@ For more information, see [Configure ASP.NET Core Data Protection: ProtectKeysWi
 
 **Only applies to Windows deployments.**
 
-When Windows DPAPI is used, key material is encrypted with [CryptProtectData](https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). To configure DPAPI key-at-rest encryption, call one of the [ProtectKeysWithDpapi](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpapi) extension methods:
+When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). To configure DPAPI key-at-rest encryption, call one of the [ProtectKeysWithDpapi](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpapi) extension methods:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -80,7 +80,7 @@ Due to .NET Framework limitations, only certificates with CAPI private keys are 
 
 **This mechanism is available only on Windows 8/Windows Server 2012 or later.**
 
-Beginning with Windows 8, Windows OS supports DPAPI-NG (also called CNG DPAPI). For more information, see [About CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794(v=vs.85).aspx).
+Beginning with Windows 8, Windows OS supports DPAPI-NG (also called CNG DPAPI). For more information, see [About CNG DPAPI](/windows/desktop/SecCNG/cng-dpapi).
 
 The principal is encoded as a protection descriptor rule. In the following example that calls [ProtectKeysWithDpapiNG](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpaping), only the domain-joined user with the specified SID can decrypt the key ring:
 
@@ -105,7 +105,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user is able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
+In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user can decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
 
 ## Certificate-based encryption with Windows DPAPI-NG
 
