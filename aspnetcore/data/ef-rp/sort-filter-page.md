@@ -259,8 +259,6 @@ Update the *Pages/About.cshtml.cs* file with the following code:
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
 
-Note: The LINQ `group` command isn't currently supported by EF Core. In the preceding code, all the student records are returned from SQL Server. The `group` command is applied in the Razor Pages app, not on the SQL Server. EF Core 2.1 will support this LINQ `group` operator, and the grouping occurs on the SQL Server. See [Relational: Support translating GroupBy() to SQL](https://github.com/aspnet/EntityFrameworkCore/issues/2341). [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/roadmap) will be released with .NET Core 2.1. For more information, see the [.NET Core Roadmap](https://github.com/dotnet/core/blob/master/roadmap.md).
-
 ### Modify the About Razor Page
 
 Replace the code in the *Pages/About.cshtml* file with the following code:
