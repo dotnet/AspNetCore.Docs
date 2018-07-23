@@ -55,9 +55,7 @@ The following mechanisms set the port automatically:
 
 The port can be configured by setting the:
 
-* `ASPNETCORE_HTTPS_PORT` environment variable when the app relies on either of the following host configuration approaches. Otherwise, the port is configured by setting the `HTTPS_PORT` environment variable.
-  - The app runs on the [Web Host](xref:fundamentals/host/web-host).
-  - The app uses the environment variable configuration provider ([AddEnvironmentVariables(IConfigurationBuilder, String)](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables#Microsoft_Extensions_Configuration_EnvironmentVariablesExtensions_AddEnvironmentVariables_Microsoft_Extensions_Configuration_IConfigurationBuilder_System_String_)) with a prefix of `ASPNETCORE_`.
+* `ASPNETCORE_HTTPS_PORT` environment variable.
 * `http_port` host configuration key (for example, via *hostsettings.json* or a command line argument).
 * [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
 
