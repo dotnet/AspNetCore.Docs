@@ -147,13 +147,19 @@ The preceding commands:
 <a name="scaffold"></a>
 ## Scaffold the Departments model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
+
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` and the model class.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+ Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
+
+------
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
