@@ -1,9 +1,9 @@
 ---
 title: SignalR HubContext
-author: rachelappel
+author: tdykstra
 description: Learn how to use the ASP.NET Core SignalR HubContext service for sending notifications to clients from outside a hub.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/13/2018
 uid: signalr/hubcontext

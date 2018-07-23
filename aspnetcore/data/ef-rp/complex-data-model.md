@@ -538,8 +538,6 @@ The preceding code provides seed data for the new entities. Most of this code cr
 * `Enrollments`
 * `CourseAssignment`
 
-Note: [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
-
 ## Add a migration
 
 Build the project.

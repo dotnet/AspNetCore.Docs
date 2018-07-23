@@ -30,6 +30,7 @@ namespace SignalRAuthenticationSample
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -54,7 +55,7 @@ namespace SignalRAuthenticationSample
                         {
                             LifetimeValidator = (before, expires, token, param) =>
                             {
-                                return expires > DateTime.UtcNow
+                                return expires > DateTime.UtcNow;
                             },
                             ValidateAudience = false,
                             ValidateIssuer = false,
@@ -97,6 +98,7 @@ namespace SignalRAuthenticationSample
             // intended for a different user!
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the
         // HTTP request pipeline.

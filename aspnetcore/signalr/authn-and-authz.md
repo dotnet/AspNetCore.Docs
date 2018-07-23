@@ -1,6 +1,6 @@
 ---
 title: Authentication and authorization in ASP.NET Core SignalR
-author: rachelappel
+author: tdykstra
 description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
@@ -49,7 +49,7 @@ var connection = new HubConnectionBuilder()
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. In order to support this on the server, additional configuration is required:
 
-[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?range=33-34,42-80,90)]
+[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
 ### Windows authentication
 
@@ -83,6 +83,19 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
 }
 ```
+
+In the .NET Client, Windows Authentication must be enabled by setting the [UseDefaultCredentials](/dotnet/api/microsoft.aspnetcore.http.connections.client.httpconnectionoptions.usedefaultcredentials) property:
+
+```csharp
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/myhub", options =>
+    {
+        options.UseDefaultCredentials = true;
+    })
+    .Build();
+```
+
+Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
 
 ## Authorize users to access hubs and hub methods
 
