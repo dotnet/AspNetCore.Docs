@@ -84,15 +84,15 @@
             }
             <tr class="@selectedRow">
                 <td>
-                    @Html.ActionLink("Select", "OnGetAsync", 
-                                  new { courseID = item.CourseID })
+                    <a asp-page="./Index" asp-route-courseID="@item.CourseID">Select</a>
                 </td>
                 <td>
                     @item.CourseID
                 </td>
                 <td>
                     @item.Title
-                </td>  <td>
+                </td>
+                <td>
                     @item.Department.Name
                 </td>
             </tr>
