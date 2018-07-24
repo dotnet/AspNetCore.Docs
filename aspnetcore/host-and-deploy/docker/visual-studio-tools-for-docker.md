@@ -64,7 +64,7 @@ When the new project dialog's **Configure for HTTPS** check box is checked, the 
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/Dockerfile?highlight=1,5,14,17)]
+[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/Dockerfile?highlight=1,5,13,16)]
 
 The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore/) image. This base image includes the ASP.NET Core NuGet packages, which have been pre-jitted to improve startup performance.
 
@@ -86,7 +86,7 @@ The Visual Studio Tools for Docker add a *docker-compose* project to the solutio
 
 The *docker-compose.yml* file references the name of the image that's created when the project runs:
 
-[!code-yaml[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/docker-compose.yml?highlight=5)]
+[!code-yaml[](visual-studio-tools-for-docker/samples/2.0/docker-compose.yml?highlight=5)]
 
 In the preceding example, `image: hellodockertools` generates the image `hellodockertools:dev` when the app runs in **Debug** mode. The `hellodockertools:latest` image is generated when the app runs in **Release** mode.
 

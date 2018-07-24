@@ -1,18 +1,17 @@
-FROM microsoft/aspnetcore:2.0-nanoserver-1709 AS base
+FROM microsoft/aspnetcore:2.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/aspnetcore-build:2.0-nanoserver-1709 AS build
+FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY *.sln ./
 COPY HelloDockerTools/HelloDockerTools.csproj HelloDockerTools/
-RUN dotnet restore
+RUN dotnet restore HelloDockerTools/HelloDockerTools.csproj
 COPY . .
 WORKDIR /src/HelloDockerTools
-RUN dotnet build -c Release -o /app
+RUN dotnet build HelloDockerTools.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish HelloDockerTools.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

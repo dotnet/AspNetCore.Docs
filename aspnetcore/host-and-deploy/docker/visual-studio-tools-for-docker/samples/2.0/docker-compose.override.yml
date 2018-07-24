@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   hellodockertools:
@@ -6,7 +6,3 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
-networks:
-  default:
-    external:
-      name: nat

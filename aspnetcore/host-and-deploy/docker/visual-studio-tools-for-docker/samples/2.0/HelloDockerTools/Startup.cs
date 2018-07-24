@@ -29,8 +29,8 @@ namespace HelloDockerTools
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
@@ -39,12 +39,7 @@ namespace HelloDockerTools
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }
