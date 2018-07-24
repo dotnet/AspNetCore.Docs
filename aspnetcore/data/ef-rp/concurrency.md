@@ -147,24 +147,23 @@ The preceding commands:
 <a name="scaffold"></a>
 ## Scaffold the Departments model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
+
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` for the model class.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+ Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
+------
+
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
-Build the project. The build generates errors like the following:
-
-`1>Pages/Departments/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
- contain a definition for 'Department' and no extension method 'Department' accepting a first
- argument of type 'SchoolContext' could be found (are you missing a using directive or
- an assembly reference?)`
-
- Globally change `_context.Department` to `_context.Departments` (that is, add an "s" to `Department`). 7 occurrences are found and updated.
+Build the project.
 
 ### Update the Departments Index page
 
