@@ -73,7 +73,6 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
  Run the following command:
 
   ```console
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
@@ -161,13 +160,12 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+  ```
 
 ------
 
-
-* The preceding command scaffolds the `Instructor` model.
-* Build the project.
-* Run the app and navigate to the instructors page.
+The preceding command scaffolds the `Instructor` model. 
+Run the app and navigate to the instructors page.
 
 Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 

@@ -163,14 +163,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
-Build the project. The build generates errors like the following:
-
-`1>Pages/Departments/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
- contain a definition for 'Department' and no extension method 'Department' accepting a first
- argument of type 'SchoolContext' could be found (are you missing a using directive or
- an assembly reference?)`
-
- Globally change `_context.Department` to `_context.Departments` (that is, add an "s" to `Department`). 7 occurrences are found and updated.
+Build the project.
 
 ### Update the Departments Index page
 
