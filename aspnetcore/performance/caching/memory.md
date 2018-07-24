@@ -9,6 +9,10 @@ uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
 
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -29,8 +33,8 @@ The in-memory cache can store any object; the distributed cache interface is lim
 
 * Code should **not** depend on a cache value being present in the cache.
 * The cache is a scare resource. Limit cache growth:
-    * Do **not** use external input as cache keys.
-    * Use expirations to limit cache growth.
+  * Do **not** use external input as cache keys.
+  * Use expirations to limit cache growth.
 
 ## Using IMemoryCache
 
@@ -50,17 +54,19 @@ Request the `IMemoryCache` instance in the constructor:
 
 ::: moniker range="= aspnetcore-2.0"
 
-`IMemoryCache` requires NuGet package [Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/), which is avaiable in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+`IMemoryCache` requires NuGet package [Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/), which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
 
 ::: moniker-end
 
 ::: moniker range="> aspnetcore-2.0"
 
-`IMemoryCache` requires NuGet package [Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/), which is avaiable in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+`IMemoryCache` requires NuGet package [Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/), which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ::: moniker-end
 
 The following code uses [TryGetValue](/dotnet/api/microsoft.extensions.caching.memory.imemorycache.trygetvalue?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_IMemoryCache_TryGetValue_System_Object_System_Object__) to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with [Set](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.set?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_).
+
+[!code-csharp[](memory/sample/WebCache/CacheKeys.cs)]
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet1)]
 
@@ -82,7 +88,7 @@ The following code calls [Get](/dotnet/api/microsoft.extensions.caching.memory.c
 
 See [IMemoryCache methods](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) for a description of the cache methods.
 
-## Using MemoryCacheEntryOptions
+## MemoryCacheEntryOptions
 
 The following sample:
 
@@ -92,6 +98,32 @@ The following sample:
 - Sets a [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_et&highlight=14-21)]
+
+::: moniker range=">= aspnetcore-2.0"
+
+## Use SetSize, Size, and SizeLimit to limit cache size
+
+The following code creates a fixed size [MemoryCache](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1):
+
+[!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
+
+[SizeLimit](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions.sizelimit?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheOptions_SizeLimit) does not have units.
+
+The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
+
+[!code-csharp[](memory/sample/RPcache/Startup.cs?name=snippet&highlight=5)]
+
+The following code uses `MyMemoryCache`:
+
+[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet)]
+
+The size of the cache entry can be set by [Size](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size) or the [SetSize](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_) extension method:
+
+[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,14)]
+
+::: moniker-end
+
+See the [Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs](https://github.com/aspnet/Caching/blob/release/2.1/test/Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs) unit tests for details on using the a cache with `SizeLimit`.
 
 ## Cache dependencies
 
@@ -109,6 +141,8 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
   - This can result in several threads repopulating the cached item.
 
 - When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
+
+Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
 
 ## Additional resources
 

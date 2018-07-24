@@ -1,0 +1,24 @@
+﻿using Microsoft.Extensions.Caching.Memory;
+
+namespace RPcache.Services
+{
+    #region snippet
+    // using Microsoft.Extensions.Caching.Memory;
+    public class MyMemoryCache : IMyMemoryCache
+    {
+        public MemoryCache Cache { get; set; }
+        public MyMemoryCache()
+        {
+            Cache = new MemoryCache(new MemoryCacheOptions
+            {
+                SizeLimit = 1024
+            });
+        }
+    }
+
+    public interface IMyMemoryCache
+    {
+        MemoryCache Cache { get; set; }
+    }
+    #endregion
+}
