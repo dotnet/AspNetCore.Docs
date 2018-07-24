@@ -37,7 +37,7 @@ Examples provided in this topic rely upon:
 * Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to the app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
 * Binding configuration with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to the app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
 
-Both packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+These packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ::: moniker-end
 
@@ -49,7 +49,7 @@ Examples provided in this topic rely upon:
 * Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to the app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
 * Binding configuration with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to the app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
 
-Both packages are included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+These packages are included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
 
 ::: moniker-end
 
