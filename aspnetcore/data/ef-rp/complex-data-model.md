@@ -397,9 +397,9 @@ If business rules required the `InstructorID` property be non-nullable, use the 
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
-## Update the Enrollment entityUpdate the Enrollment entity
+## Update the Enrollment entity
 
-An enrollment record is for a one course taken by one student.
+An enrollment record is for one course taken by one student.
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
