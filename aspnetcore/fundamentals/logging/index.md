@@ -482,7 +482,7 @@ The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Micros
 ::: moniker range=">= aspnetcore-2.0"
 
 ```csharp
-logging.AddConsole()
+logging.AddConsole();
 ```
 
 ::: moniker-end
@@ -490,7 +490,7 @@ logging.AddConsole()
 ::: moniker range="< aspnetcore-2.0"
 
 ```csharp
-loggerFactory.AddConsole()
+loggerFactory.AddConsole();
 ```
 
 [AddConsole overloads](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels.
