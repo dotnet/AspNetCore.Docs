@@ -76,7 +76,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker-end
      
-     * Configure the project as "Windows Application". To do so, In Visual Studio, right click on the project > Properties > on "Application" tab > set "Output type" field to "Windows Application".
+     * Configure the project as a "Windows Application".  In Visual Studio, right click on the project > Properties > Application tab > set "Output type" field to "Windows Application".
 
 1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles).
 
