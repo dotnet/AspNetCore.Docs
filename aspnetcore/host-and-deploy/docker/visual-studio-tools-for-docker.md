@@ -80,7 +80,7 @@ Visual Studio 2017 versions 15.8 or later offer two different orchestration solu
 
 The Visual Studio Tools for Docker add a *docker-compose* project to the solution with the following files:
 
-* *docker-compose.dcproj* &mdash; The file representing the project. Contains a `<DockerTargetOS>` element indicating the OS to be used.
+* *docker-compose.dcproj* &mdash; The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
 * *.dockerignore* &mdash; Lists the file and directory patterns to exclude when generating a build context.
 * *docker-compose.yml* &mdash; The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
 * *docker-compose.override.yml* &mdash; An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
@@ -107,12 +107,12 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 ::: moniker range=">= aspnetcore-2.1"
 
 * The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image contains the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
-* The *2.1-sdk* tag of the *microsoft/dotnet* compile/publish image is acquired (if not already in the cache). The image installs the .NET Core SDK.
+* The *ASPNETCORE_ENVIRONMENT* environment variable is set to `Development` within the container.
 * Two dynamically assigned ports are exposed: one for HTTP and one for HTTPS. The port assigned to localhost can be queried with the `docker ps` command.
 * The app is copied to the container.
 * The default browser is launched with the debugger attached to the container using the dynamically assigned port.
 
-The resulting Docker image is the *dev* image of the app with the *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* image as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
+The resulting Docker image of the app is tagged as *dev*. The image is based on the *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
 
 ```console
 REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
@@ -130,7 +130,7 @@ microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        6 days ago     
 * The app is copied to the container.
 * The default browser is launched with the debugger attached to the container using the dynamically assigned port.
 
-The resulting Docker image is the *dev* image of the app with the *microsoft/aspnetcore* image as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
+The resulting Docker image of the app is tagged as *dev*. The image is based on the *microsoft/aspnetcore* base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
 
 ```console
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
@@ -188,6 +188,8 @@ hellodockertools             dev                 5fafe5d1ad5b        23 minutes 
 microsoft/aspnetcore-build   2.0                 7fed40fbb647        13 days ago         2.02GB
 microsoft/aspnetcore         2.0                 c69d39472da9        13 days ago         347MB
 ```
+
+The `microsoft/aspnetcore-build` and `microsoft/aspnetcore` images listed in the preceding output are replaced with `microsoft/dotnet` images as of .NET Core 2.1. For more information, see [the Docker repositories migration announcement](https://github.com/aspnet/Announcements/issues/298).
 
 ::: moniker-end
 
