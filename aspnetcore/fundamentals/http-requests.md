@@ -21,7 +21,7 @@ An [IHttpClientFactory](/dotnet/api/system.net.http.ihttpclientfactory) can be r
 
 ## Prerequisites
 
-Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects which target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the *Microsoft.Extensions.Http* package.
+Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the *Microsoft.Extensions.Http* package.
 
 ## Consumption patterns
 
