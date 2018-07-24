@@ -29,6 +29,40 @@ The options pattern uses options classes to represent groups of related settings
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
+::: moniker range=">= aspnetcore-2.1"
+
+Examples provided in this topic rely upon:
+
+* Setting the base path of the app with [SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath). `SetBasePath` is made available to the app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
+* Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to the app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
+* Binding configuration with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to the app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
+
+These packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+Examples provided in this topic rely upon:
+
+* Setting the base path of the app with [SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath). `SetBasePath` is made available to the app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
+* Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to the app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
+* Binding configuration with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to the app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
+
+These packages are included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
+Examples provided in this topic rely upon:
+
+* Setting the base path of the app with [SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath). `SetBasePath` is made available to the app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
+* Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to the app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
+* Binding configuration with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to the app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
+
+::: moniker-end
+
 ## JSON configuration
 
 The following console app uses the JSON configuration provider:
