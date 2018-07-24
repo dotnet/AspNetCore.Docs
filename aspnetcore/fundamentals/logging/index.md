@@ -622,7 +622,7 @@ If targeting .NET Core, note the following points:
 * The provider package is included in the ASP.NET Core [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) but not in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 * Don't explicitly call [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics). The provider is automatically made available to the app when the app is deployed to Azure App Service.
 
-If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project and invoke `AddAzureWebAppDiagnostics`:
+If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics` on an [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory) instance:
 
 ```csharp
 logging.AddAzureWebAppDiagnostics();
