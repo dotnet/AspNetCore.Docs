@@ -22,7 +22,7 @@ For Docker installation, review the information at [Docker for Windows: What to 
 
 **[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging. Right-click the System Tray's Docker icon, select **Settings...**, and select **Shared Drives**. Select the drive where Docker stores files. Select **Apply**.
 
-![Shared Drives](./visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
+![Shared Drives](visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
 > [!TIP]
 > Visual Studio 2017 versions 15.6 and later prompt when **Shared Drives** aren't configured.
@@ -37,7 +37,7 @@ When adding Docker support to a project, choose either a Windows or a Linux cont
 
 When creating a new app with the **ASP.NET Core Web Application** project templates, select the **Enable Docker Support** check box:
 
-![Enable Docker Support check box](visual-studio-tools-for-docker/_static/enable-docker-support-check box.png)
+![Enable Docker Support check box](visual-studio-tools-for-docker/_static/enable-docker-support-check-box.png)
 
 If the target framework is .NET Core, the **OS** drop-down allows for the selection of a container type.
 
