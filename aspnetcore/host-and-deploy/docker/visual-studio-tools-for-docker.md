@@ -72,9 +72,9 @@ The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.do
 
 ## Add container orchestrator support to an app
 
-The tools in Visual Studio 2017 versions 15.7 and earlier support Docker Compose as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
+The tools in Visual Studio 2017 versions 15.7 and earlier support [Docker Compose](https://docs.docker.com/compose/overview/) as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
 
-Visual Studio 2017 versions 15.8 and later offer two different orchestration solutions: [Docker Compose](https://docs.docker.com/compose/overview/) and [Service Fabric](/azure/service-fabric/). Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**.
+Visual Studio 2017 versions 15.8 and later offer two different orchestration solutions: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric). Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**.
 
 ### Docker Compose
 
@@ -90,11 +90,11 @@ The *docker-compose.yml* file references the name of the image that's created wh
 
 In the preceding example, `image: hellodockertools` generates the image `hellodockertools:dev` when the app runs in **Debug** mode. The `hellodockertools:latest` image is generated when the app runs in **Release** mode.
 
-Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (for example, `dockerhubusername/hellodockertools`) if the image will be pushed to the registry. Alternatively, change the image name to include the private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on the configuration.
+Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (for example, `dockerhubusername/hellodockertools`) if the image is to be pushed to the registry. Alternatively, change the image name to include the private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on the configuration.
 
 ### Service Fabric
 
-In addition to the base [Prerequisites](#prerequisites), the *Service Fabric* solution demands the following prerequisites:
+In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/azure/service-fabric/) orchestration solution demands the following prerequisites:
 
 * [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
 * Visual Studio 2017's **Azure Development** workload
@@ -106,7 +106,7 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 ::: moniker range=">= aspnetcore-2.1"
 
 * The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image contains the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
-* The *2.1-sdk* tag of the *microsoft/dotnet* compile/publish image is acquired (if not already in the cache). The image contains the .NET Core SDK.
+* The *2.1-sdk* tag of the *microsoft/dotnet* compile/publish image is acquired (if not already in the cache). The image installs the .NET Core SDK.
 * Two dynamically assigned ports are exposed: one for HTTP and one for HTTPS. The port assigned to localhost can be queried with the `docker ps` command.
 * The app is copied to the container.
 * The default browser is launched with the debugger attached to the container using the dynamically assigned port.
