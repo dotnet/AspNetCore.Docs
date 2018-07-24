@@ -156,6 +156,7 @@
 ## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 
 # [Razor Pages](xref:razor-pages/index)
+## [Razor Pages compared to MVC](xref:razor-pages/rp-mvc)
 ## [Filter methods for Razor Pages](xref:razor-pages/filter)
 ## [Create a Razor Class Library](xref:razor-pages/ui-class)
 ## [Route and app conventions](xref:razor-pages/razor-pages-conventions)
