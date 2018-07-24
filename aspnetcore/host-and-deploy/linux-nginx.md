@@ -305,7 +305,8 @@ Linux Security Modules (LSM) is a framework that's part of the Linux kernel sinc
 Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a command line interface for configuring the firewall. Verify that `ufw` is configured to allow traffic on any ports needed.
 
 > [!WARNING]
-> Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22.
+> Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see https://help.ubuntu.com/community/UFW and
+http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html.
 
 ```bash
 sudo apt-get install ufw
