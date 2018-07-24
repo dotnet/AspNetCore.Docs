@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/22/2018
+ms.date: 07/23/2018
 uid: fundamentals/http-requests
 ---
 # Initiate HTTP requests
@@ -18,6 +18,10 @@ An [IHttpClientFactory](/dotnet/api/system.net.http.ihttpclientfactory) can be r
 * Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that.
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
+
+## Prerequisites
+
+Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the `Microsoft.Extensions.Http` package.
 
 ## Consumption patterns
 
