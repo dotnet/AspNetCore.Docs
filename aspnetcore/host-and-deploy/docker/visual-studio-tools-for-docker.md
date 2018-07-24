@@ -72,17 +72,18 @@ The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.do
 
 ## Add container orchestrator support to an app
 
-The tools in Visual Studio 2017 versions 15.7 and earlier support [Docker Compose](https://docs.docker.com/compose/overview/) as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
+Visual Studio 2017 versions 15.7 or earlier support [Docker Compose](https://docs.docker.com/compose/overview/) as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
 
-Visual Studio 2017 versions 15.8 and later offer two different orchestration solutions: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric). Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**.
+Visual Studio 2017 versions 15.8 or later offer two different orchestration solutions: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric). Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**.
 
 ### Docker Compose
 
 The Visual Studio Tools for Docker add a *docker-compose* project to the solution with the following files:
 
-* *.dockerignore*: Lists the file and directory patterns to exclude when generating a build context.
-* *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
-* *docker-compose.override.yml*: An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
+* *docker-compose.dcproj* &mdash; The file representing the project. Contains a `<DockerTargetOS>` element indicating the OS to be used.
+* *.dockerignore* &mdash; Lists the file and directory patterns to exclude when generating a build context.
+* *docker-compose.yml* &mdash; The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images to be built and run with `docker-compose build` and `docker-compose run`, respectively.
+* *docker-compose.override.yml* &mdash; An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
 The *docker-compose.yml* file references the name of the image that's created when the project runs:
 
@@ -115,8 +116,8 @@ The resulting Docker image is the *dev* image of the app with the *2.1-aspnetcor
 
 ```console
 REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
-hellodockertools    dev                      e2be3da94993        3 minutes ago       255MB
-microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago          255MB
+hellodockertools    dev                      d72ce0f1dfe7        30 seconds ago      255MB
+microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        6 days ago          255MB
 ```
 
 ::: moniker-end
@@ -124,7 +125,6 @@ microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago     
 ::: moniker range="<= aspnetcore-2.0"
 
 * The *microsoft/aspnetcore* runtime image is acquired (if not already in the cache).
-* The *microsoft/aspnetcore-build* compile/publish image is acquired (if not already in the cache).
 * The *ASPNETCORE_ENVIRONMENT* environment variable is set to `Development` within the container.
 * Port 80 is exposed and mapped to a dynamically assigned port for localhost. The port is determined by the Docker host and can be queried with the `docker ps` command.
 * The app is copied to the container.
@@ -133,17 +133,15 @@ microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago     
 The resulting Docker image is the *dev* image of the app with the *microsoft/aspnetcore* image as the base image. Run the `docker images` command in the **Package Manager Console** (PMC) window. The images on the machine are displayed:
 
 ```console
-REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
-hellodockertools             latest                f8f9d6c923e2        About an hour ago   391MB
-hellodockertools             dev                   85c5ffee5258        About an hour ago   389MB
-microsoft/aspnetcore-build   2.0-nanoserver-1709   d7cce94e3eb0        15 hours ago        1.86GB
-microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours ago        389MB
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+hellodockertools       dev                 5fafe5d1ad5b        4 minutes ago       347MB
+microsoft/aspnetcore   2.0                 c69d39472da9        13 days ago         347MB
 ```
 
 ::: moniker-end
 
 > [!NOTE]
-> The dev image lacks the app contents, as **Debug** configurations use volume mounting to provide the iterative experience. To push an image, use the **Release** configuration.
+> The *dev* image lacks the app contents, as **Debug** configurations use volume mounting to provide the iterative experience. To push an image, use the **Release** configuration.
 
 Run the `docker ps` command in PMC. Notice the app is running using the container:
 
@@ -165,16 +163,18 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   10 minutes 
 
 ## Publish Docker images
 
-Once the develop and debug cycle of the app is completed, the Visual Studio Tools for Docker assist in creating the production image of the app. Change the configuration drop-down to **Release** and build the app. The tooling produces the image with the *latest* tag, which can be pushed to the private registry or Docker Hub.
+Once the develop and debug cycle of the app is completed, the Visual Studio Tools for Docker assist in creating the production image of the app. Change the configuration drop-down to **Release** and build the app. The tooling acquires the compile/publish image from Docker Hub (if not already in the cache). An image is produced with the *latest* tag, which can be pushed to the private registry or Docker Hub.
 
-Run the `docker images` command in PMC to see the list of images:
+Run the `docker images` command in PMC to see the list of images. Output similar to the following is displayed:
 
 ::: moniker range=">= aspnetcore-2.1"
 
 ```console
-REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
-hellodockertools    dev                      e2be3da94993        3 minutes ago       255MB
-microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago          255MB
+REPOSITORY          TAG                      IMAGE ID            CREATED              SIZE
+hellodockertools    latest                   e3984a64230c        About a minute ago   258MB
+hellodockertools    dev                      d72ce0f1dfe7        4 minutes ago        255MB
+microsoft/dotnet    2.1-sdk                  9e243db15f91        6 days ago           1.7GB
+microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        6 days ago           255MB
 ```
 
 ::: moniker-end
@@ -182,11 +182,11 @@ microsoft/dotnet    2.1-aspnetcore-runtime   fcc3887985bb        5 days ago     
 ::: moniker range="<= aspnetcore-2.0"
 
 ```console
-REPOSITORY                   TAG                   IMAGE ID            CREATED             SIZE
-hellodockertools             latest                4cb1fca533f0        19 seconds ago      391MB
-hellodockertools             dev                   85c5ffee5258        About an hour ago   389MB
-microsoft/aspnetcore-build   2.0-nanoserver-1709   d7cce94e3eb0        16 hours ago        1.86GB
-microsoft/aspnetcore         2.0-nanoserver-1709   8872347d7e5d        40 hours ago        389MB
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+hellodockertools             latest              cd28f0d4abbd        12 seconds ago      349MB
+hellodockertools             dev                 5fafe5d1ad5b        23 minutes ago      347MB
+microsoft/aspnetcore-build   2.0                 7fed40fbb647        13 days ago         2.02GB
+microsoft/aspnetcore         2.0                 c69d39472da9        13 days ago         347MB
 ```
 
 ::: moniker-end
