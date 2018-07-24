@@ -7,7 +7,7 @@ ms.author: riande
 ms.date: 8/05/2018
 uid: razor-pages/rp-mvc
 ---
-# Razor Pages compared to ASP.NET Core MVC with controllers and views
+# Razor Pages compared to ASP.NET Core MVC
 
 By [Scott Sauber](https://twitter.com/scottsauber) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -16,7 +16,7 @@ Razor Pages is a feature of the ASP.NET Core MVC framework. Razor Pages follows 
 * Can continue app development featuring controllers and views.
 * Can be assured the ASP.NET Core framework will provide improvements to controller/view development.
 
-Razor Pages can be added to controller/view projects. The controller-view approach to MVC may be preferred approach taken by larger teams.
+Razor Pages can be added to controller/view projects. The controller-view approach to MVC may be preferred by larger teams.
 
 If you haven't tried Razor Pages, consider using them. Many developers find Razor Pages development simpler and more productive than using controllers and views.
 
@@ -28,7 +28,7 @@ Razor Pages advantages over controller/view development:
   * Controllers often end up with many `Action` methods, many of which are not related to each other.
   * Controllers contain all the shared code used by all the `Action` methods. Razor Pages include only the code they use. Shared code for Razor Pages is contained in a base class. For example, see [Create a base class to share common code](xref:data/ef-rp/update-related-data#create-a-base-class-to-share-common-code).
 
- Controllers with many actions, views, and shared code can be difficult to navigate and maintain. Using private methods in a controller can exacerbate the problem. With Razor Pages development, unrelated methods are not added to the `PageModel`. Everything  put in the `PageModel` is related to the Page. 
+  Controllers with many actions, views, and shared code can be difficult to navigate and maintain. Using private methods in a controller can exacerbate the problem. With Razor Pages development, unrelated methods are not added to the `PageModel`. Everything  put in the `PageModel` is related to the Page. 
  Razor Pages follow the [Single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle), while MVC does not.
 * **Routing is easier.**  By default in Razor Pages, routing matches the folder structure.  This makes nesting folders straightforward.  For example, consider an app where:
   * All of the HR administrator/privileged pages are under the */Administrator* folder.
@@ -41,4 +41,16 @@ Razor Pages advantages over controller/view development:
 
 ## Razor Pages compared to Web Forms
 
-Razor Pages and Web Forms are page focused and each contain a *.cs* file associated with the markup page. Other than the page focus, Razor Pages are very different from Web Forms. It can be difficult to migrate Web Forms code to Razor Pages. Converting between Razor Pages and ASP.NET Core MVC is generally straightforward. Razor Pages and Web Forms have very little in common. Razor Pages and ASP.NET Core MVC share most of the ASP.NET Core framework.
+Razor Pages and Web Forms are page focused and each contain a *.cs* file associated with the markup page. Other than the page focus, Razor Pages are very different from Web Forms. It can be difficult to migrate Web Forms code to Razor Pages. Converting between Razor Pages and ASP.NET Core MVC is generally straightforward. Razor Pages and Web Forms have very little in common. Razor Pages and ASP.NET Core MVC share most of the ASP.NET Core framework. The following section shows many features shared between Razor Pages and ASP.NET Core MVC that are not found in Web Forms.
+
+## Feature comparison of Razor Pages and MVC with controller and views
+
+|Feature | Controller/Views | Razor Pages|
+| ----| ----------------- | ------------ |
+|Action Filters | x |  2.1 |
+|testable| x | x |
+|separation of concerns| x | x |
+|areas| x | 2.1 |
+|Partial views| x | na |
+|View Components | x | x|
+|Build in DI | x | x |
