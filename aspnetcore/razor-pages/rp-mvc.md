@@ -48,9 +48,9 @@ Razor Pages and Web Forms are page focused and each contain a *.cs* file associa
 |Feature | Controller/Views | Razor Pages|
 | ----| ----------------- | ------------ |
 |Action Filters | x |  2.1 |
-|testable| x | x |
-|separation of concerns| x | x |
-|areas| x | 2.1 |
+|Testable| x | x |
+|Separation of concerns| x | x |
+|Areas| x | 2.1 |
 |Partial views| x | na |
 |View Components | x | x|
 |Build in DI | x | x |
