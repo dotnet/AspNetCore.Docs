@@ -46,6 +46,8 @@ The preceding highlighted code:
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) to `Status307TemporaryRedirect`, which is the default value. Production apps should call [UseHsts](#hsts).
 * Sets the HTTPS port to 5001. The default value is 443.
 
+A call to `AddHttpsRedirection` isn't required unless the default options are changed.
+
 The following mechanisms set the port automatically:
 
 * The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
