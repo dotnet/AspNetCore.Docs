@@ -213,7 +213,7 @@ To set the value globally in Windows, use either of the following approaches:
   **Command prompt**
 
   ```console
-  setx ASPNETCORE_ENVIRONMENT=Development /M
+  setx ASPNETCORE_ENVIRONMENT Development /M
   ```
 
   The `/M` switch indicates to set the environment variable at the system level. If the `/M` switch isn't used, the environment variable is set for the user account.
