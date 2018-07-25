@@ -102,13 +102,20 @@ In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/a
 * [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
 * Visual Studio 2017's **Azure Development** workload
 
-The Visual Studio Tools for Docker add a *&lt;project_name&gt;Application* project to the solution. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
+Service Fabric doesn't support running Linux containers in the local development cluster on Windows. If the project is already using a Linux container, Visual Studio prompts to switch to Windows containers.
 
-[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
+The Visual Studio Tools for Docker do the following:
 
-An `<IsServiceFabricServiceProject>` element is added to the ASP.NET Core project's *.csproj* file:
+* Adds a *&lt;project_name&gt;Application* Service Fabric app project to the solution.
+* Adds a *Dockerfile* and a *.dockerignore* file to the ASP.NET Core project. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
 
-[!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
+    [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
+
+* Adds an `<IsServiceFabricServiceProject>` element to the ASP.NET Core project's *.csproj* file:
+
+    [!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
+
+* Adds a *PackageRoot* folder to the ASP.NET Core project. The folder includes the service manifest and settings for the new service.
 
 For more information, see [Deploy a .NET app in a Windows container to Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container).
 
