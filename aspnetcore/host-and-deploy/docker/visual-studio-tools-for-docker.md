@@ -48,7 +48,7 @@ If the target framework is .NET Core, the **OS** drop-down allows for the select
 The Visual Studio Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework. For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 * Select **Docker Support** from the **Project** menu.
-* Right-click the project in Solution Explorer and select **Add** > **Docker Support**.
+* Right-click the project in **Solution Explorer** and select **Add** > **Docker Support**.
 
 ## Dockerfile overview
 
@@ -76,7 +76,7 @@ The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.do
 
 Visual Studio 2017 versions 15.7 or earlier support [Docker Compose](https://docs.docker.com/compose/overview/) as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
 
-Visual Studio 2017 versions 15.8 or later add an orchestration solution only when instructed. Right-click the project in Solution Explorer and select **Add** > **Container Orchestrator Support**. Two different choices are offered: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric).
+Visual Studio 2017 versions 15.8 or later add an orchestration solution only when instructed. Right-click the project in **Solution Explorer** and select **Add** > **Container Orchestrator Support**. Two different choices are offered: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric).
 
 ### Docker Compose
 
@@ -106,7 +106,7 @@ Service Fabric doesn't support running Linux containers in the local development
 
 The Visual Studio Tools for Docker do the following tasks:
 
-* Adds a *&lt;project_name&gt;Application* Service Fabric app project to the solution.
+* Adds a *&lt;project_name&gt;Application* **Service Fabric Application** project to the solution.
 * Adds a *Dockerfile* and a *.dockerignore* file to the ASP.NET Core project. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
