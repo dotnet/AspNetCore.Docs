@@ -104,7 +104,11 @@ In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/a
 
 The Visual Studio Tools for Docker add a *&lt;project_name&gt;Application* project to the solution. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
 
-<!-- TODO: import Dockerfile -->
+[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
+
+An `<IsServiceFabricServiceProject>` element is added to the ASP.NET Core project's *.csproj* file:
+
+[!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
 
 ## Debug
 
@@ -112,7 +116,7 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image contains the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
+* The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image installs the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
 * The *ASPNETCORE_ENVIRONMENT* environment variable is set to `Development` within the container.
 * Two dynamically assigned ports are exposed: one for HTTP and one for HTTPS. The port assigned to localhost can be queried with the `docker ps` command.
 * The app is copied to the container.
