@@ -296,17 +296,18 @@ To configure data protection to persist and encrypt the key ring, see:
 
 ## Securing the app
 
-> [!WARNING]
-> Attempts to secure an app can prevent access to the app if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see https://help.ubuntu.com/community/UFW and
-http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html.
-
 ### Enable AppArmor
 
 Linux Security Modules (LSM) is a framework that's part of the Linux kernel since Linux 2.6. LSM supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
 
 ### Configuring the firewall
 
-Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a command line interface for configuring the firewall. Verify that `ufw` is configured to allow traffic on any ports needed.
+Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a command line interface for configuring the firewall.
+
+> [!WARNING]
+> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
+
+Install `ufw` and configure it to allow traffic on any ports needed.
 
 ```bash
 sudo apt-get install ufw
