@@ -1,20 +1,7 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+﻿# See https://aka.ms/containerimagehelp for information on how to use Windows Server 1709 containers with Service Fabric.
+# FROM microsoft/aspnetcore:2.0-nanoserver-1709
+FROM microsoft/aspnetcore:2.0-nanoserver-sac2016
+ARG source
 WORKDIR /app
-EXPOSE 59518
-EXPOSE 44364
-
-FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
-COPY HelloDockerTools/HelloDockerTools.csproj HelloDockerTools/
-RUN dotnet restore HelloDockerTools/HelloDockerTools.csproj
-COPY . .
-WORKDIR /src/HelloDockerTools
-RUN dotnet build HelloDockerTools.csproj -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish HelloDockerTools.csproj -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
+COPY ${source:-obj/Docker/publish} .
 ENTRYPOINT ["dotnet", "HelloDockerTools.dll"]

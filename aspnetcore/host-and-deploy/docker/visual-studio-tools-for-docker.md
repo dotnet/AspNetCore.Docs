@@ -102,7 +102,9 @@ In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/a
 * [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
 * Visual Studio 2017's **Azure Development** workload
 
-The Visual Studio Tools for Docker add a 
+The Visual Studio Tools for Docker add a *&lt;project_name&gt;Application* project to the solution. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
+
+<!-- TODO: import Dockerfile -->
 
 ## Debug
 
