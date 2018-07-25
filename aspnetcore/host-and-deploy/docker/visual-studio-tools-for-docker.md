@@ -56,7 +56,7 @@ A *Dockerfile*, the recipe for creating a final Docker image, is added to the pr
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile?highlight=1,6,14,17)]
+[!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile.original?highlight=1,6,14,17)]
 
 The preceding *Dockerfile* is based on the [microsoft/dotnet](https://hub.docker.com/r/microsoft/dotnet/) image. This base image includes the ASP.NET Core runtime and NuGet packages. The packages have been pre-jitted to improve startup performance.
 
