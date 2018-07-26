@@ -4,7 +4,7 @@ author: spboyer
 description: Learn how to use Visual Studio 2017 tooling and Docker for Windows to containerize an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/25/2018
+ms.date: 07/26/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core
@@ -20,7 +20,7 @@ Visual Studio 2017 supports building, debugging, and running containerized ASP.N
 
 ## Installation and setup
 
-For Docker installation, review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) and install [Docker For Windows](https://docs.docker.com/docker-for-windows/install/).
+For Docker installation, first review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install). Next, install [Docker For Windows](https://docs.docker.com/docker-for-windows/install/).
 
 **[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging. Right-click the System Tray's Docker icon, select **Settings**, and select **Shared Drives**. Select the drive where Docker stores files. Click **Apply**.
 
@@ -45,10 +45,12 @@ If the target framework is .NET Core, the **OS** drop-down allows for the select
 
 ### Existing app
 
-The Visual Studio Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework. For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
+For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 * Select **Docker Support** from the **Project** menu.
 * Right-click the project in **Solution Explorer** and select **Add** > **Docker Support**.
+
+The Visual Studio Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework.
 
 ## Dockerfile overview
 
