@@ -90,7 +90,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"
    ```
 
-   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example, the service is:
+   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example:
 
    * The project resides in the `c:\my_services\AspNetCoreService` folder.
    * The project is published in `Release` configuration.
