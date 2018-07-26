@@ -4,12 +4,8 @@ title: "Nested Data Web Controls (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will explore how to use a Repeater nested inside another Repeater. The examples will illustrate how to populate the inner Repeater both d..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: ad3cb0ec-26cf-42d7-b81b-184a34ec9f86
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-cs
 msc.type: authoredcontent
 ---

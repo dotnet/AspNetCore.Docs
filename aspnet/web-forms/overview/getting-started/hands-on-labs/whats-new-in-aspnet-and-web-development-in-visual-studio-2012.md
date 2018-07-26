@@ -4,12 +4,8 @@ title: "What's New in ASP.NET and Web Development in Visual Studio 2012 | Micros
 author: rick-anderson
 description: "The new version of Visual Studio introduces a number of enhancements focused on improving the experience and performance when working with Web technologies...."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 6d40d276-1642-4a77-b6c9-02ac914f6805
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/whats-new-in-aspnet-and-web-development-in-visual-studio-2012
 msc.type: authoredcontent
 ---

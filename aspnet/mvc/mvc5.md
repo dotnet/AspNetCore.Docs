@@ -4,12 +4,8 @@ title: "ASP.NET MVC 5 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 5 ASP.NET MVC 5 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of AS..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: f79fbf7f-59e5-4279-a832-c1a0294630f4
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc5
 msc.type: content
 ---

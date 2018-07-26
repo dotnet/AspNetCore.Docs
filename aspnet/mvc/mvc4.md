@@ -4,12 +4,8 @@ title: "ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 4 ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of AS..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/12/2011
-ms.topic: article
 ms.assetid: 1279f5b1-390f-4b4b-9e6e-f947cb1ef5f5
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc4
 msc.type: content
 ---

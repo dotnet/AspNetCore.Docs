@@ -4,12 +4,8 @@ title: "Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013 | Micr
 author: Erikre
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/03/2014
-ms.topic: article
 ms.assetid: a2f1c635-0817-4a9a-8c13-d5b5d29727c0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
 msc.type: authoredcontent
 ---

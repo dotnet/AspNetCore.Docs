@@ -4,12 +4,8 @@ title: Clean Web.Config Files | Microsoft Docs
 author: JoeStagner
 description: "In this video you will see how the major configuration elements have been moved to the machine.config file. This allows the Web.config file in ASP.NET 4 appl..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/11/2009
-ms.topic: article
 ms.assetid: 12aa35dd-16f7-408a-9a3b-a70c0aca791f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/core/aspnet-4-quick-hit-clean-webconfig-files
 msc.type: video
 ---

@@ -4,12 +4,8 @@ title: "ASP.NET MVC Storefront Part 23: Getting Started With Domain-Driven Desig
 author: robconery
 description: "I don't like the complexity that's crept into my application. Not sure how else to put it - but the architecture needs to be shaken a bit so in this episode..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/28/2009
-ms.topic: article
 ms.assetid: 690538bb-6f23-4b1a-94b7-188454bb734a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-23-getting-started-with-domain-driven-design
 msc.type: video
 ---

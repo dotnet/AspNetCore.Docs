@@ -4,12 +4,8 @@ title: "Bundling and Minification | Microsoft Docs"
 author: Rick-Anderson
 description: "Bundling and minification are two techniques you can use in ASP.NET 4.5 to improve request load time. Bundling and minification improves load time by reducin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/23/2012
-ms.topic: article
 ms.assetid: 5894dc13-5d45-4dad-8096-136499120f1d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/bundling-and-minification
 msc.type: authoredcontent
 ---
@@ -67,7 +63,7 @@ The following table shows several important differences between listing all the 
 | **KB Received** | 388.51 | 530 | 36% |
 | **Load Time** | 510 MS | 780 MS | 53% |
 
-The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers they apply on requests. The received bytes reduction is not as large because the largest files (*Scripts\jquery-ui-1.8.11.min.js* and *Scripts\jquery-1.7.1.min.js*) are already minified. Note: The timings on the sample program used the [Fiddler](http://www.fiddler2.com/fiddler2/) tool to simulate a slow network. (From the Fiddler **Rules** menu, select **Performance** then **Simulate Modem Speeds**.)
+The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers they apply on requests. The received bytes reduction is not as large because the largest files (*Scripts\\jquery-ui-1.8.11.min.js* and *Scripts\\jquery-1.7.1.min.js*) are already minified. Note: The timings on the sample program used the [Fiddler](http://www.fiddler2.com/fiddler2/) tool to simulate a slow network. (From the Fiddler **Rules** menu, select **Performance** then **Simulate Modem Speeds**.)
 
 ## Debugging Bundled and Minified JavaScript
 
@@ -77,7 +73,7 @@ It's easy to debug your JavaScript in a development environment (where the [comp
 2. Select the bundle containing the JavaScript function you want to debug using the assets button.  
     ![](bundling-and-minification/_static/image4.png)
 3. Format the minified JavaScript by selecting the **Configuration button** ![](bundling-and-minification/_static/image5.png), and then selecting **Format JavaScript**.
-4. In the **Search Scrip** t input box, select the name of the function you want to debug. In the following image, **AddAltToImg** was entered in the **Search Scrip** t input box.  
+4. In the **Search Script** input box, select the name of the function you want to debug. In the following image, **AddAltToImg** was entered in the **Search Script** input box.  
     ![](bundling-and-minification/_static/image6.png)
 
 For more information on debugging with the F12 developer tools, see the MSDN article [Using the F12 Developer Tools to Debug JavaScript Errors](https://msdn.microsoft.com/library/ie/gg699336(v=vs.85).aspx).
@@ -105,15 +101,15 @@ To enable bundling and minification, set the `debug` value to "false". You can o
 
 In this section we will create an ASP.NET MVC project to examine bundling and minification. First, create a new ASP.NET MVC internet project named **MvcBM** without changing any of the defaults.
 
-Open the *App\_Start\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
+Open the *App\\\_Start\\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
 
 [!code-csharp[Main](bundling-and-minification/samples/sample5.cs)]
 
 The  preceding code creates a new JavaScript bundle named *~/bundles/jquery* that includes all the appropriate (that is debug or minified but not .*vsdoc*) files in the *Scripts* folder that match the wild card string "~/Scripts/jquery-{version}.js". For ASP.NET MVC 4, this means with a debug configuration, the file *jquery-1.7.1.js* will be added to the bundle. In a release configuration, *jquery-1.7.1.min.js* will be added. The bundling framework follows several common conventions such as:
 
-- Selecting ".min" file for release when "FileX.min.js" and "FileX.js" exist.
+- Selecting ".min" file for release when *FileX.min.js* and *FileX.js* exist.
 - Selecting the non ".min" version for debug.
-- Ignoring "-vsdoc" files (such as jquery-1.7.1-vsdoc.js), which are used only by IntelliSense.
+- Ignoring "-vsdoc" files (such as *jquery-1.7.1-vsdoc.js*), which are used only by IntelliSense.
 
 The `{version}` wild card matching shown above is used to automatically create a jQuery bundle with the appropriate version of jQuery in your *Scripts* folder. In this example, using a wild card provides the following benefits:
 
@@ -132,7 +128,7 @@ In the code above, jQuery will be requested from the CDN while in release mode a
 
 ## Creating a Bundle
 
-The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the RegisterBundles method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
+The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the `RegisterBundles` method in the *App\\\_Start\\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
 [!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
@@ -140,7 +136,7 @@ The [Bundle](https://msdn.microsoft.com/library/system.web.optimization.bundle(v
 
 [!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
-Bundles are referenced in views using the Render method, ( `Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
+Bundles are referenced in views using the Render method, (`Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\\Shared\\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
 
 [!code-cshtml[Main](bundling-and-minification/samples/sample10.cshtml?highlight=5-6,11)]
 
@@ -154,10 +150,10 @@ The virtual path specified in the `Include` method and the search pattern in the
 
 Consider a project with the following JavaScript files:
 
-- *Scripts\Common\AddAltToImg.js*
-- *Scripts\Common\ToggleDiv.js*
-- *Scripts\Common\ToggleImg.js*
-- *Scripts\Common\Sub1\ToggleLinks.js*
+- *Scripts\\Common\\AddAltToImg.js*
+- *Scripts\\Common\\ToggleDiv.js*
+- *Scripts\\Common\\ToggleImg.js*
+- *Scripts\\Common\\Sub1\\ToggleLinks.js*
 
 ![dir imag](bundling-and-minification/_static/image7.png)
 
@@ -165,13 +161,13 @@ The following table shows the files added to a bundle using the wildcard as show
 
 | **Call** | **Files Added or Exception Raised** |
 | --- | --- |
-| Include("~/Scripts/Common/\*.js") | *AddAltToImg.js, ToggleDiv.js, ToggleImg.js* |
+| Include("~/Scripts/Common/\*.js") | *AddAltToImg.js*, *ToggleDiv.js*, *ToggleImg.js* |
 | Include("~/Scripts/Common/T\*.js") | Invalid pattern exception. The wildcard character is only allowed on the prefix or suffix. |
 | Include("~/Scripts/Common/\*og.\*") | Invalid pattern exception. Only one wildcard character is allowed. |
-| "Include("~/Scripts/Common/T\*") | *ToggleDiv.js, ToggleImg.js* |
-| "Include("~/Scripts/Common/\*") | Invalid pattern exception. A pure wildcard segment is not valid. |
-| IncludeDirectory("~/Scripts/Common", "T\*") | *ToggleDiv.js, ToggleImg.js* |
-| IncludeDirectory("~/Scripts/Common", "T\*",true) | *ToggleDiv.js, ToggleImg.js, ToggleLinks.js* |
+| Include("~/Scripts/Common/T\*") | *ToggleDiv.js*, *ToggleImg.js* |
+| Include("~/Scripts/Common/\*") | Invalid pattern exception. A pure wildcard segment is not valid. |
+| IncludeDirectory("~/Scripts/Common", "T\*") | *ToggleDiv.js*, *ToggleImg.js* |
+| IncludeDirectory("~/Scripts/Common", "T\*", true) | *ToggleDiv.js*, *ToggleImg.js*, *ToggleLinks.js* |
 
 Explicitly adding each file to a bundle is generally the preferred over wildcard loading of files for the following reasons:
 
@@ -181,7 +177,7 @@ Explicitly adding each file to a bundle is generally the preferred over wildcard
 
     [!code-csharp[Main](bundling-and-minification/samples/sample12.cs)]
 
-  The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\themes\base\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
+  The wild card selector "\*.css" brings in each CSS file in the folder, including the *Content\\themes\\base\\jquery.ui.all.css* file. The *jquery.ui.all.css* file imports other CSS files.
 
 ## Bundle Caching
 
@@ -193,7 +189,7 @@ The following image shows the **Caching** tab of the Fiddler response pane:
 
 The request   
 `http://localhost/MvcBM_time/bundles/AllMyScripts?v=r0sLDicvP58AIXN_mc3QdyVvVj5euZNzdsa2N1PKvb81`  
- is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
+ is for the bundle **AllMyScripts** and contains a query string pair **v=r0sLDicvP58AIXN\\\_mc3QdyVvVj5euZNzdsa2N1PKvb81**. The query string **v** has a value token that is a unique identifier used for caching. As long as the bundle doesn't change, the ASP.NET application will request the **AllMyScripts** bundle using this token. If any file in the bundle changes, the ASP.NET optimization framework will generate a new token, guaranteeing that browser requests for the bundle will get the latest bundle.
 
 If you run the IE9 F12 developer tools and navigate to a previously loaded page, IE incorrectly shows conditional GET requests made to each bundle and the server returning HTTP 304. You can read why IE9 has problems determining if a conditional request was made in the blog entry [Using CDNs and Expires to Improve Web Site Performance](https://blogs.msdn.com/b/rickandy/archive/2011/05/21/using-cdns-to-improve-web-site-performance.aspx).
 
@@ -201,13 +197,13 @@ If you run the IE9 F12 developer tools and navigate to a previously loaded page,
 
 The bundling and minification framework provides a mechanism to process intermediate languages such as [SCSS](http://sass-lang.com/), [Sass](http://sass-lang.com/), [LESS](http://www.dotlesscss.org/) or [Coffeescript](http://coffeescript.org/), and apply transforms such as minification to the resulting bundle. For example, to add [.less](http://www.dotlesscss.org/) files to your MVC 4 project:
 
-1. Create a folder for your LESS content. The following example uses the *Content\MyLess* folder.
+1. Create a folder for your LESS content. The following example uses the *Content\\MyLess* folder.
 2. Add the [.less](http://www.dotlesscss.org/) NuGet package **dotless** to your project.  
     ![NuGet dotless install](bundling-and-minification/_static/image9.png)
 3. Add a class that implements the [IBundleTransform](https://msdn.microsoft.com/library/system.web.optimization.ibundletransform(VS.110).aspx) interface. For the .less transform, add the following code to your project.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample13.cs)]
-4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\_Start\BundleConfig.cs* file.
+4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\\_Start\\BundleConfig.cs* file.
 
     [!code-csharp[Main](bundling-and-minification/samples/sample14.cs)]
 5. Add the following code to any views which references the LESS bundle.
@@ -226,11 +222,11 @@ The browser limitation of six simultaneous connections per each hostname can be 
 
 Bundles should be partitioned by pages that need them. For example, the default ASP.NET MVC template for an internet application creates a jQuery Validation bundle separate from jQuery. Because the default views created have no input and do not post values, they don't include the validation bundle.
 
-The `System.Web.Optimization` namespace is implemented in System.Web.Optimization.DLL. It leverages the WebGrease library (WebGrease.dll) for minification capabilities, which in turn uses Antlr3.Runtime.dll.
+The `System.Web.Optimization` namespace is implemented in *System.Web.Optimization.dll*. It leverages the WebGrease library (*WebGrease.dll*) for minification capabilities, which in turn uses *Antlr3.Runtime.dll*.
 
 *I use Twitter to make quick posts and share links. My Twitter handle is*: [@RickAndMSFT](http://twitter.com/RickAndMSFT)
 
-## Additional Resources
+## Additional resources
 
 - Video:[Bundling and Optimizing](https://channel9.msdn.com/Events/aspConf/aspConf/Bundling-and-Optimizing) by [Howard Dierking](https://twitter.com/#!/howard_dierking)
 - [Adding Web Optimization to a Web Pages Site](https://blogs.msdn.com/b/rickandy/archive/2012/08/15/adding-web-optimization-to-a-web-pages-site.aspx).

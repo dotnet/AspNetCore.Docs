@@ -4,12 +4,8 @@ title: "Updating Related Data with the Entity Framework in an ASP.NET MVC Applic
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/01/2015
-ms.topic: article
 ms.assetid: 7ba88418-5d0a-437d-b6dc-7c3816d4ec07
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---

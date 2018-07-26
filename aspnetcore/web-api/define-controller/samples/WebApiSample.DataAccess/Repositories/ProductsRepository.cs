@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebApiSample.DataAccess.Models;
 
 namespace WebApiSample.DataAccess.Repositories
@@ -31,25 +32,21 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public List<Product> GetDiscontinuedProducts()
+        public async Task<List<Product>> GetDiscontinuedProductsAsync()
         {
-            var products = (from p in _context.Products
-                            where p.IsDiscontinued
-                            select p).ToList();
-
-            return products;
+            return await _context.Products
+                                 .Where(p => p.IsDiscontinued)
+                                 .ToListAsync();
         }
 
-        public List<Product> GetProducts()
+        public async Task<List<Product>> GetProductsAsync()
         {
-            return _context.Products.ToList();
+            return await _context.Products.ToListAsync();
         }
 
-        public bool TryGetProduct(int id, out Product product)
+        public async Task<Product> GetProductAsync(int id)
         {
-            product = _context.Products.Find(id);
-
-            return (product != null);
+            return await _context.Products.FindAsync(id);
         }
 
         public async Task<int> AddProductAsync(Product product)

@@ -4,12 +4,8 @@ title: "Updating the TableAdapter to Use JOINs (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When working with a database it is common to request data that is spread across multiple tables. To retrieve data from two different tables we can use either..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: e624a3e0-061b-4efc-8b0e-5877f9ff6714
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-vb
 msc.type: authoredcontent
 ---

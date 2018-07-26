@@ -4,12 +4,8 @@ title: "Creating a Custom AJAX Control Toolkit Control Extender (VB) | Microsoft
 author: microsoft
 description: "Custom Extenders enable you to customize and extend the capabilities of ASP.NET controls without having to create new classes."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: 18b29834-c991-4e0c-b533-44d358fbfc9c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb
 msc.type: authoredcontent
 ---

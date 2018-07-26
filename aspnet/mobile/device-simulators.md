@@ -4,12 +4,8 @@ title: "Simulate Popular Mobile Devices for Testing | Microsoft Docs"
 author: rick-anderson
 description: "You can download emulators for popular mobile devices and browsers by following these links"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/28/2011
-ms.topic: article
 ms.assetid: bfb5612e-c3ec-4f28-b43b-63d781aa2272
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /mobile/device-simulators
 msc.type: content
 ---

@@ -4,12 +4,8 @@ title: "Deploying Web Applications in Enterprise Scenarios using Visual Studio 2
 author: jrjlee
 description: "This set of tutorials describes tools and techniques you can use to deploy web applications in various enterprise scenarios. It explains how to make best use..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/03/2012
-ms.topic: article
 ms.assetid: 48cfe378-d62a-48c6-a4db-6be3cead6898
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios
 msc.type: authoredcontent
 ---

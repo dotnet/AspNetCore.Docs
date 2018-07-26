@@ -4,12 +4,8 @@ title: "ASP.NET MVC Controller Overview | Microsoft Docs"
 author: StephenWalther
 description: "In this video, Stephen Walther introduces you to ASP.NET MVC controllers and controller actions. You learn how to return different types of action results."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/17/2009
-ms.topic: article
 ms.assetid: f6c9fc19-a2b8-48b6-aef5-68a7239435c4
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/aspnet-mvc-controller-overview
 msc.type: video
 ---

@@ -4,12 +4,8 @@ title: "Implementing Optimistic Concurrency (VB) | Microsoft Docs"
 author: rick-anderson
 description: "For a web application that allows multiple users to edit data, there is the risk that two users may be editing the same data at the same time. In this tutori..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 2646968c-2826-4418-b1d0-62610ed177e3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-vb
 msc.type: authoredcontent
 ---

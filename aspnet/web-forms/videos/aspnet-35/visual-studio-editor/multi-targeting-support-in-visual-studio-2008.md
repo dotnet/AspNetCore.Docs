@@ -4,12 +4,8 @@ title: "Multi Targeting Support in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "I will illustrate the MultiTarget feature of Visual Studio 2008. In the past, you had to choose the version of Visual Studio to match the targeted .NET versi..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/15/2007
-ms.topic: article
 ms.assetid: 297bd67d-10d9-406d-9c6e-9db0bbe35491
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/multi-targeting-support-in-visual-studio-2008
 msc.type: video
 ---

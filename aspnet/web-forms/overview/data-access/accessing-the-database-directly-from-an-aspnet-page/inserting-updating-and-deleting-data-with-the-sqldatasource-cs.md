@@ -4,12 +4,8 @@ title: "Inserting, Updating, and Deleting Data with the SqlDataSource (C#) | Mic
 author: rick-anderson
 description: "In previous tutorials we learned how the ObjectDataSource control allowed for inserting, updating, and deleting of data. The SqlDataSource control supports t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: a526f0ec-779e-4a2b-a476-6604090d25ce
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs
 msc.type: authoredcontent
 ---

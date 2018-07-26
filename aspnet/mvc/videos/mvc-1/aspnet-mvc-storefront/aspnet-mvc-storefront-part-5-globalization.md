@@ -4,12 +4,8 @@ title: "ASP.NET MVC Storefront Part 5: Globalization | Microsoft Docs"
 author: robconery
 description: "Rob Conery works with Damien Guard to refactor the database to deal with test data and globalization issues."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/27/2008
-ms.topic: article
 ms.assetid: ec659d9f-8172-4c9e-9dd0-f5743bb27d4b
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-5-globalization
 msc.type: video
 ---

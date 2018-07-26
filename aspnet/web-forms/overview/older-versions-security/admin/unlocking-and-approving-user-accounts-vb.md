@@ -4,12 +4,8 @@ title: "Unlocking and Approving User Accounts (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to build a web page for administrators to manage users' locked out and approved statuses. We will also see how to approve new users o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2008
-ms.topic: article
 ms.assetid: 041854a5-ea8c-4de0-82f1-121ba6cb2893
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/unlocking-and-approving-user-accounts-vb
 msc.type: authoredcontent
 ---

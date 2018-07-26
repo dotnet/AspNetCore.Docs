@@ -4,12 +4,8 @@ title: "Creating ASP.NET Web Projects in Visual Studio 2013 | Microsoft Docs"
 author: tdykstra
 description: "This topic explains the options for creating ASP.NET web projects in Visual Studio 2013 with Update 3 Here are some of the new features for web development c..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/01/2014
-ms.topic: article
 ms.assetid: 61941e64-0c0d-4996-9270-cb8ccfd0cabc
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/creating-web-projects-in-visual-studio
 msc.type: authoredcontent
 ---

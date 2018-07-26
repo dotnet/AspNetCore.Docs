@@ -4,12 +4,8 @@ title: "[How Do I:] Detect Browser Capabilities in ASP.NET Web Pages | Microsoft
 author: rick-anderson
 description: "In this video Chris Pels will show how to determine what capabilities a user's browser has when viewing pages in an ASP.NET web site. First, learn how to acc..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/19/2008
-ms.topic: article
 ms.assetid: aabfeabb-459e-4cfd-b067-44da3bbb291b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-detect-browser-capabilities-in-aspnet-web-pages
 msc.type: video
 ---

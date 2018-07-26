@@ -4,12 +4,8 @@ title: "Storing Additional User Information (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will answer this question by building a very rudimentary guestbook application. In doing so, we will look at different options for modeli..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 1642132a-1ca5-4872-983f-ab59fc8865d3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/storing-additional-user-information-cs
 msc.type: authoredcontent
 ---

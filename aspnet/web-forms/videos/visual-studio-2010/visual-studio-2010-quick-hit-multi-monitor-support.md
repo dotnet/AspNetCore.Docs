@@ -4,12 +4,8 @@ title: Visual Studio 2010 Quick Hit - Multi-Monitor Support
 author: JoeStagner
 description: "In this video you will learn about Visual Studio's support of multiple monitor scenarios to improve your use of screen real-estate, and optimize your overall..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/11/2009
-ms.topic: article
 ms.assetid: 26dfc502-d164-4261-8006-ffde9a3e3447
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-multi-monitor-support
 msc.type: video
 ---

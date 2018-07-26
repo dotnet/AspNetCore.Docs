@@ -4,12 +4,8 @@ title: "Creating an Action (VB) | Microsoft Docs"
 author: microsoft
 description: "Learn how to add a new action to an ASP.NET MVC controller. Learn about the requirements for a method to be an action."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/02/2009
-ms.topic: article
 ms.assetid: c8d93e11-ef78-4a30-afbc-f30419000a60
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-vb
 msc.type: authoredcontent
 ---

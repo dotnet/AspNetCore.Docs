@@ -4,12 +4,8 @@ title: "Understanding and Handling Connection Lifetime Events in SignalR 1.x | M
 author: pfletcher
 description: "This article describes how to use the events exposed by the Hubs API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/05/2013
-ms.topic: article
 ms.assetid: e608e263-264d-448b-b0eb-6eeb77713b22
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/handling-connection-lifetime-events
 msc.type: authoredcontent
 ---

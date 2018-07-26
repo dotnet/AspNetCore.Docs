@@ -4,12 +4,8 @@ title: "Color Picker | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate how to use the new Color Picker control from the Microsoft AJAX Control Toolkit."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/13/2009
-ms.topic: article
 ms.assetid: 8f2cb811-d9d3-4a6a-a7d6-f2035cfe51e5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/color-picker
 msc.type: video
 ---

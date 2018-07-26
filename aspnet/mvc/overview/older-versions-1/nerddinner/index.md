@@ -4,12 +4,8 @@ title: "NerdDinner | Microsoft Docs"
 author: rick-anderson
 description: "How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.NET MVC 3 version, visit nerddinner on GitHub."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/28/2011
-ms.topic: article
 ms.assetid: 6edfe14c-415a-4281-b6fa-69e9b38a82c8
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner
 msc.type: chapter
 ---

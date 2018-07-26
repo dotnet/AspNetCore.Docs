@@ -4,12 +4,8 @@ title: "Using Browser Link in Visual Studio 2013 | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/04/2013
-ms.topic: article
 ms.assetid: 46cbfe20-b4dc-449b-9016-80657dd44fbe
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/using-browser-link
 msc.type: authoredcontent
 ---

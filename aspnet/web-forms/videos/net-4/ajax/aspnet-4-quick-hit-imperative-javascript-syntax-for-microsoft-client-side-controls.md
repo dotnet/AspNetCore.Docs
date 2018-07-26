@@ -4,12 +4,8 @@ title: Visual Studio 2010 Quick Hit- Imperative JavaScript Syntax for Microsoft 
 author: JoeStagner
 description: "In this video you will learn the imperative JavaScript syntax for Microsoft client side controls."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/16/2009
-ms.topic: article
 ms.assetid: d4df6c61-9ca2-4e7c-8b65-749847f15d2c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/ajax/aspnet-4-quick-hit-imperative-javascript-syntax-for-microsoft-client-side-controls
 msc.type: video
 ---

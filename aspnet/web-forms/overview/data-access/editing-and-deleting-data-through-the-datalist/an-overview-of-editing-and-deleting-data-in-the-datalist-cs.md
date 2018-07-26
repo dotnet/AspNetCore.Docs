@@ -4,12 +4,8 @@ title: "An Overview of Editing and Deleting Data in the DataList (C#) | Microsof
 author: rick-anderson
 description: "While the DataList lacks built-in editing and deleting capabilities, in this tutorial we'll see how to create a DataList that supports editing and deleting o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: c3b0c86e-fe98-41ee-b26f-ca38cddaa75e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs
 msc.type: authoredcontent
 ---

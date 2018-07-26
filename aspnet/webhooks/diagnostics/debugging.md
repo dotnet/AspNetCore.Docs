@@ -4,12 +4,8 @@ title: "ASP.NET WebHooks debugging | Microsoft Docs"
 author: rick-anderson
 description: "How to debug ASP.NET WebHooks."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: 467da78b-3c35-4c51-8b08-77a32379e4a8
-ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/diagnostics/debugging
 ---
 # ASP.NET WebHooks debugging  

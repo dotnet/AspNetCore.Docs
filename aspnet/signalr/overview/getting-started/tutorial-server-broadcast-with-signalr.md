@@ -4,12 +4,8 @@ title: "Tutorial: Server Broadcast with SignalR 2 | Microsoft Docs"
 author: tdykstra
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that commun..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/13/2014
-ms.topic: article
 ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 msc.type: authoredcontent
 ---
@@ -191,7 +187,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 
 ### Register the SignalR route
 
-The server needs to know which URL to intercept and direct to SignalR. To do that you'll add and OWIN startup class.
+The server needs to know which URL to intercept and direct to SignalR. To do that, add an OWIN startup class:
 
 1. In **Solution Explorer**, right-click the project, and then click **Add | OWIN Startup Class**. Name the class **Startup.cs**.
 2. Replace the code in **Startup.cs** with the following.

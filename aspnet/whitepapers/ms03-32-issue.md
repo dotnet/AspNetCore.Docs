@@ -4,12 +4,8 @@ title: "Fix for 'Server Application Unavailable' Error after Applying Security U
 author: rick-anderson
 description: "This paper describes the patch that fixes an issue with the MS03-32 Security Update for Internet Explorer that affects ASP.NET 1.0 applications running on Wi..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: 1365eebb-bdf7-4a05-8d18-7f200531be55
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/ms03-32-issue
 msc.type: content
 ---

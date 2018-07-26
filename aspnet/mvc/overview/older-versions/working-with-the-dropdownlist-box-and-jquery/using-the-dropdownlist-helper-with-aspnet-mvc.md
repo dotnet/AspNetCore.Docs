@@ -4,12 +4,8 @@ title: "Using the DropDownList Helper with ASP.NET MVC | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2012
-ms.topic: article
 ms.assetid: 53767e05-c8ab-42e1-a94b-22d906195200
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc
 msc.type: authoredcontent
 ---
@@ -188,7 +184,7 @@ Open the *Views\Home\MultiSelectCountry.cshtml* file and add an `htmlAttributes`
 
 [!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample12.cshtml)]
 
-In the code above, we are adding the HTML attribute and attribute value `class = "chzn-select"`. The @ character preceding class has nothing to do with the Razor view engine. `class` is a [C# keyword](https://msdn.microsoft.com/library/x53a06bb.aspx). C# keywords cannot be used as identifiers unless they include @ as a prefix. In the example above, `@class` is a valid identifier but **class** is not because **class** is a keyword.
+In the code above, we are adding the HTML attribute and attribute value `class = "chzn-select"`. The \@ character preceding class has nothing to do with the Razor view engine. `class` is a [C# keyword](https://msdn.microsoft.com/library/x53a06bb.aspx). C# keywords cannot be used as identifiers unless they include \@ as a prefix. In the example above, `@class` is a valid identifier but **class** is not because **class** is a keyword.
 
 Add references to the *Chosen/chosen.jquery.js* and *Chosen/chosen.css* files. The *Chosen/chosen.jquery.js* and implements the functionally of the Chosen plugin. The *Chosen/chosen.css* file provides the styling. Add these references to the bottom of the *Views\Home\MultiSelectCountry.cshtml* file. The following code shows how to reference the Chosen plugin.
 

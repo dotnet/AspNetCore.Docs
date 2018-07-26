@@ -4,12 +4,8 @@ title: "Accessing Your Model's Data from a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: caa1ba4a-f9f0-4181-ba21-042e3997861d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/accessing-your-models-data-from-a-controller
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "Part 2: Data Access Layer | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 2 covers adding the data access layer."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 5a9d5429-d70b-411c-8474-f42cf7ef8a2b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-2
 msc.type: authoredcontent
 ---

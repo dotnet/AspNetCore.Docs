@@ -4,12 +4,8 @@ title: "[How Do I:] Save and Load View State Information for a Custom Web Server
 author: rick-anderson
 description: "In this video Chris Pels will show how to persist and restore information in the ViewState of a custom user control. First, learn how to persist simple value..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 20750baf-ad6d-4754-a1f5-644b952f2ebb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-save-and-load-view-state-information-for-a-custom-web-server-control
 msc.type: video
 ---

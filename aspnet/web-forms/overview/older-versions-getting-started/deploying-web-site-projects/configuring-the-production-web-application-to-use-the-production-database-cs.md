@@ -4,12 +4,8 @@ title: "Configuring the Production Web Application to Use the Production Databas
 author: rick-anderson
 description: "As discussed in earlier tutorials, it is not uncommon for configuration information to differ between the development and production environments. This is es..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: 0177dabd-d888-449f-91b2-24190cf5e842
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-cs
 msc.type: authoredcontent
 ---

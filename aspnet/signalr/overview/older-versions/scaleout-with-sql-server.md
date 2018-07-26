@@ -4,12 +4,8 @@ title: "SignalR Scaleout with SQL Server (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/01/2013
-ms.topic: article
 ms.assetid: 1dca7967-8296-444a-9533-837eb284e78c
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-sql-server
 msc.type: authoredcontent
 ---

@@ -231,9 +231,9 @@ Test Delete.
 
 ## Common errors
 
-Student/Home or other links don't work:
+Student/Index or other links don't work:
 
-Verify the Razor Page contains the correct `@page` directive. For example, The Student/Home Razor Page should **not** contain a route template:
+Verify the Razor Page contains the correct `@page` directive. For example, The Student/Index Razor Page should **not** contain a route template:
 
 ```cshtml
 @page "{id:int}"

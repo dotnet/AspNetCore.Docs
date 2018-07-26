@@ -4,12 +4,8 @@ title: "Visual Studio Editor | Microsoft Docs"
 author: rick-anderson
 description: "This video series shows you new features of the Visual Studio 2008 editor, including enhanced support for JavaScript and CSS."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/14/2011
-ms.topic: article
 ms.assetid: 8d424d7b-5206-4790-a068-36d01c05ceb0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor
 msc.type: chapter
 ---

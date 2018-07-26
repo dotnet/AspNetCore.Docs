@@ -4,12 +4,8 @@ title: "Advanced Topics for ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "More advanced topics for ASP.NET Web API development, after you've learned the basics."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: 7404a0f1-52f7-410c-abd0-c96bab52d217
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced
 msc.type: chapter
 ---

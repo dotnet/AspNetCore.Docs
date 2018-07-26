@@ -4,12 +4,8 @@ title: "ASP.NET MVC Storefront Part 6: Finishing The Repository, and Initial UI 
 author: robconery
 description: "Rob talks with Jon Galloway about CSS strategies and begin working in the Front end of the application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/27/2008
-ms.topic: article
 ms.assetid: 40c12998-f699-409f-acdc-59699a0e5514
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work
 msc.type: video
 ---

@@ -4,12 +4,8 @@ title: "Processing Unhandled Exceptions (C#) | Microsoft Docs"
 author: rick-anderson
 description: "When a runtime error occurs on a web application in production it is important to notify a developer and to log the error so that it may be diagnosed at a la..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/09/2009
-ms.topic: article
 ms.assetid: 5bc1afd5-2484-4528-b158-ab218ba150e8
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/processing-unhandled-exceptions-cs
 msc.type: authoredcontent
 ---

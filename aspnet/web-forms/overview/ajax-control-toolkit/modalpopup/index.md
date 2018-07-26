@@ -4,12 +4,8 @@ title: "ModalPopup | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the ModalPopup control, which lets you create the equivalent of a modal dialog box."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/14/2011
-ms.topic: article
 ms.assetid: db4eca5d-b625-4e67-8e5b-a844639d4354
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup
 msc.type: chapter
 ---

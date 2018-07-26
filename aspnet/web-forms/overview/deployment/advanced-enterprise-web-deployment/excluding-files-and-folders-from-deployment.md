@@ -4,12 +4,8 @@ title: "Excluding Files and Folders from Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how you can exclude files and folders from a web deployment package when you build and package a web application project."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: f4cc2d40-6a78-429b-b06f-07d000d4caad
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/excluding-files-and-folders-from-deployment
 msc.type: authoredcontent
 ---

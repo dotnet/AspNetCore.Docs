@@ -4,12 +4,8 @@ title: "SignalR Scaleout with SQL Server | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For information about earlier versions of..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 98358b6e-9139-4239-ba3a-2d7dd74dd664
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-sql-server
 msc.type: authoredcontent
 ---

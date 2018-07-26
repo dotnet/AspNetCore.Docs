@@ -4,12 +4,8 @@ title: "Part 4: Adding an Admin View | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/04/2012
-ms.topic: article
 ms.assetid: 792f4513-a508-4d14-a0dd-1a2fe282c7bb
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-4
 msc.type: authoredcontent
 ---

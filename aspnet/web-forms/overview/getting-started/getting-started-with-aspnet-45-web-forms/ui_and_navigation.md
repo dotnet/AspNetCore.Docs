@@ -4,12 +4,8 @@ title: "UI and Navigation | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 5c76891d-e515-4885-b576-76bd2c494efe
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/ui_and_navigation
 msc.type: authoredcontent
 ---
@@ -162,7 +158,7 @@ In this tutorial, you will change look and feel of the Wingtip Toys application 
 3. Rename the *bootstrap.min.css* to *bootstrap-original.min.css*.
 4. In **Solution Explorer**, right-click the *Content* folder and select **Open Folder in File Explorer**.  
    The File Explorer will be displayed. You will save a downloaded bootstrap CSS files to this location.
-5. In your browser, go to [http://Bootswatch.com](http://bootswatch.com/).
+5. In your browser, go to [https://bootswatch.com/3/](https://bootswatch.com/3/).
 6. Scroll the browser window until you see the Cerulean theme. 
 
     ![UI and Navigation - Cerulean Theme](ui_and_navigation/_static/image5.png)

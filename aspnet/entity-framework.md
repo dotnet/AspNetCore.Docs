@@ -3,13 +3,10 @@ uid: entity-framework
 title: "Entity Framework | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
-ms.date: 03/12/2010
-ms.topic: article
 ms.assetid: faa761a9-86b3-4859-b9c0-60d5c5bc5e93
-ms.technology: 
-ms.prod: .net-framework
+ms.author: aspnetcontent
+ms.date: 03/12/2010
+ms.technology: aspnet
 msc.legacyurl: /entity-framework
 msc.type: content
 ---

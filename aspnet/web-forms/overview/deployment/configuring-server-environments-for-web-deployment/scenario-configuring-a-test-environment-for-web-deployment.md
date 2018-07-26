@@ -4,12 +4,8 @@ title: "Scenario: Configuring a Test Environment for Web Deployment | Microsoft 
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for developer or test environments and explains the tasks you need to complete in order to set up a si..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 44a22ac7-1fc7-4174-b946-c6129fb6a19b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-test-environment-for-web-deployment
 msc.type: authoredcontent
 ---

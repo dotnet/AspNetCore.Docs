@@ -4,12 +4,8 @@ title: "Sending HTML Form Data in ASP.NET Web API: Form-urlencoded Data | Micros
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/15/2012
-ms.topic: article
 ms.assetid: 585351c4-809a-4bf5-bcbe-35d624f565fe
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/sending-html-form-data-part-1
 msc.type: authoredcontent
 ---

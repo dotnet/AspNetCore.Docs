@@ -4,11 +4,7 @@ title: Get Started with ASP.NET Web API 2 (C#)
 author: MikeWasson
 description: "HTTP is not just for serving up web pages. It is also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiq..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/28/2017
-ms.topic: article
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
 msc.type: authoredcontent
 ---

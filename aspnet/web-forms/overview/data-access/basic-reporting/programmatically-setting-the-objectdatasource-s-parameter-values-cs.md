@@ -4,12 +4,8 @@ title: "Programmatically Setting the ObjectDataSource's Parameter Values (C#) | 
 author: rick-anderson
 description: "In this tutorial we'll look at adding a method to our DAL and BLL that accepts a single input parameter and returns data. The example will set this parameter..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 1c4588bb-255d-4088-b319-5208da756f4d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-cs
 msc.type: authoredcontent
 ---

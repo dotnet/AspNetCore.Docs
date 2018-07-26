@@ -4,12 +4,8 @@ title: "[How Do I:] Adding Elements to a CSS File and Create New CSS on the Fly 
 author: rick-anderson
 description: "In this video we will build on an existing style sheet and enhance it with element ids using the new CSS management tools in Visual Studio 2008."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/14/2008
-ms.topic: article
 ms.assetid: 426a5d0f-fde7-447c-ad69-4efe45f8efea
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly
 msc.type: video
 ---

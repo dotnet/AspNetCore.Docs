@@ -4,12 +4,8 @@ title: "Using SignalR with Web Apps in Azure App Service | Microsoft Docs"
 author: pfletcher
 description: "This document describes how to configure a SignalR application that runs on Microsoft Azure. Software versions used in the tutorial Visual Studio 2013 or Vis..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/01/2015
-ms.topic: article
 ms.assetid: 2a7517a0-b88c-4162-ade3-9bf6ca7062fd
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment/using-signalr-with-azure-web-sites
 msc.type: authoredcontent
 ---

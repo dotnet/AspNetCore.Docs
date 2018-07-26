@@ -4,12 +4,8 @@ title: "Adding Client-Side Confirmation When Deleting (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the interfaces we've created so far, a user can accidentally delete data by clicking the Delete button when they meant to click the Edit button. In this t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: f6e2a12a-2b5e-48fd-8db3-1e94a500c19a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs
 msc.type: authoredcontent
 ---

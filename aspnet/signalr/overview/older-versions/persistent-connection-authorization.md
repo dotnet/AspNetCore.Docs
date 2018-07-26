@@ -4,12 +4,8 @@ title: "Authentication and Authorization for SignalR Persistent Connections (Sig
 author: pfletcher
 description: "This topic describes how to enforce authorization on a persistent connection. For general information about integrating security into a SignalR application,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/21/2013
-ms.topic: article
 ms.assetid: c34bc627-41af-4c21-a817-e97a19a7f252
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/persistent-connection-authorization
 msc.type: authoredcontent
 ---

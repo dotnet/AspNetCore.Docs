@@ -4,12 +4,8 @@ title: "Migrating to ASP.NET Identity | Microsoft Docs"
 author: rick-anderson
 description: "Migration to ASP.NET Identity from other membership providers"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/02/2013
-ms.topic: article
 ms.assetid: 4a54fee1-d064-4d67-837a-87143a9205fd
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations
 msc.type: chapter
 ---

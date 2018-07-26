@@ -4,12 +4,8 @@ title: "Displaying Data with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show alternative ways to display data by using the DataList and Repeater controls."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/05/2011
-ms.topic: article
 ms.assetid: 3005174a-ba3d-4937-8b3e-b913ee4172ac
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater
 msc.type: chapter
 ---

@@ -4,12 +4,8 @@ title: "Adding ASP.NET Identity to an Empty or Existing Web Forms Project | Micr
 author: raquelsa
 description: "This tutorial shows you how to add ASP.NET Identity (the new membership system for ASP.NET) to an ASP.NET application. When you create a new Web Forms or MVC..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/23/2013
-ms.topic: article
 ms.assetid: 1cbc0ed2-5bd6-4b62-8d34-4c193dcd8b25
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project
 msc.type: authoredcontent
 ---

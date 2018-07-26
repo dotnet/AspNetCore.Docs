@@ -4,12 +4,8 @@ title: "Windows Azure Authentication | Microsoft Docs"
 author: Rick-Anderson
 description: "Microsoft ASP.NET tools for Windows Azure Active Directory makes it simple to enable authentication for web applications hosted on Windows Azure Web Sites ...."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2013
-ms.topic: article
 ms.assetid: a3cef801-a54b-4ebd-93c3-55764e2e14b1
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 msc.type: authoredcontent
 ---

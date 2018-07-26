@@ -4,12 +4,8 @@ title: "[How Do I:] Write Code More Quickly with Unit Tests? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we learn how Unit Testing can increase your productivity by easing the debugging process. We see how Visual Studio Team System can generate a U..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/21/2007
-ms.topic: article
 ms.assetid: 4618499e-1925-414e-a432-16952bb967f4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-write-code-more-quickly-with-unit-tests
 msc.type: video
 ---

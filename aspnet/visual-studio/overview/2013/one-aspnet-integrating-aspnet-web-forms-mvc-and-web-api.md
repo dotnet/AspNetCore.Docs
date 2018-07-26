@@ -4,12 +4,8 @@ title: "Hands On Lab: One ASP.NET: Integrating ASP.NET Web Forms, MVC and Web AP
 author: rick-anderson
 description: "ASP.NET is a framework for building Web sites, apps and services using specialized technologies such as MVC, Web API and others. With the expansion ASP.NET h..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/16/2014
-ms.topic: article
 ms.assetid: 4fe2558d-67cc-4d12-a5c1-6fb9f6f16137
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api
 msc.type: authoredcontent
 ---

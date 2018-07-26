@@ -4,12 +4,8 @@ title: "Breeze/Knockout template | Microsoft Docs"
 author: madskristensen
 description: "Breeze/Knockout Single Page Application template"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/30/2013
-ms.topic: article
 ms.assetid: 3bd94827-3c59-448f-abc3-36e6df4858db
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/breezeknockout-template
 msc.type: authoredcontent
 ---

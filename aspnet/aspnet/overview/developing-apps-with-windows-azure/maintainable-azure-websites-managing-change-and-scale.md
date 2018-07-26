@@ -4,12 +4,8 @@ title: "Hands on Lab: Maintainable Azure Websites: Managing Change and Scale | M
 author: rick-anderson
 description: "In this lab, learn how Microsoft Azure makes it easy to build and deploy websites to production."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/16/2014
-ms.topic: article
 ms.assetid: ecfd0eb4-c4ad-44e6-9db9-a2a66611ff6a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 msc.type: authoredcontent
 ---

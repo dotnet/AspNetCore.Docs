@@ -4,12 +4,8 @@ title: "Declarative Parameters (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll illustrate how to use a parameter set to a hard-coded value to select the data to display in a DetailsView control."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: dc1234a3-114f-4c9a-8d25-50ca03cc8e8e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/declarative-parameters-vb
 msc.type: authoredcontent
 ---

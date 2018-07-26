@@ -4,12 +4,8 @@ title: "[How Do I:] Handle Application Events using an HttpModule? | Microsoft D
 author: rick-anderson
 description: "Learn how to create an HttpModule that handles application events during the processing of a page request. The sample module will write information to a log..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/13/2007
-ms.topic: article
 ms.assetid: a4adedeb-92f9-4d08-a068-fdcdedbae069
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule
 msc.type: video
 ---

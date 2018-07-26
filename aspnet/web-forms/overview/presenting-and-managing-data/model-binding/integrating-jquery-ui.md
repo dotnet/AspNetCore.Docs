@@ -4,12 +4,8 @@ title: "Integrating JQuery UI Datepicker with model binding and web forms | Micr
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 3cbab37b-fb0f-4751-9ec4-74e068c3f380
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/integrating-jquery-ui
 msc.type: authoredcontent
 ---

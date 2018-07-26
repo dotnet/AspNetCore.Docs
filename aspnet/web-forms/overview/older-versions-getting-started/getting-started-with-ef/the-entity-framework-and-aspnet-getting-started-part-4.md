@@ -4,12 +4,8 @@ title: "Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 W
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET Web Forms applications using the Entity Framework. The sample application is..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/03/2010
-ms.topic: article
 ms.assetid: ceb9e60f-957c-4d25-9331-cc527de96a33
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-4
 msc.type: authoredcontent
 ---

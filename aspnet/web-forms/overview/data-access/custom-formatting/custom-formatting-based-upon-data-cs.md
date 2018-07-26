@@ -4,12 +4,8 @@ title: "Custom Formatting Based Upon Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Adjusting the format of the GridView, DetailsView, or FormView based upon the data bound to it can be accomplished in multiple ways. In this tutorial we'll l..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 871a4574-f89c-4214-b786-79253ed3653b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/custom-formatting-based-upon-data-cs
 msc.type: authoredcontent
 ---

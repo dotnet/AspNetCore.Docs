@@ -4,12 +4,8 @@ title: "Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 3:
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/26/2011
-ms.topic: article
 ms.assetid: 2990bd10-590d-43d5-9529-6b503ce5455d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering
 msc.type: authoredcontent
 ---

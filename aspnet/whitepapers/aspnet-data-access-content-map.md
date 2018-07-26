@@ -4,12 +4,8 @@ title: "ASP.NET Data Access - Recommended Resources | Microsoft Docs"
 author: rick-anderson
 description: "This topic provides links to documentation resources about how to access data in ASP.NET web applications, primarily by using the Entity Framework and SQL Se..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/25/2013
-ms.topic: article
 ms.assetid: f8157be1-4ab9-469e-ad3a-0ccc80b56c00
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-data-access-content-map
 msc.type: content
 ---

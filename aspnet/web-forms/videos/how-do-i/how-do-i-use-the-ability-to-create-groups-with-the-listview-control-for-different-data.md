@@ -4,12 +4,8 @@ title: "[How Do I:] Use the Ability to Create Groups with the ListView Control f
 author: rick-anderson
 description: "In this video Chris Pels will show how to group items when displaying data in a ListView control. First, see the basics of item layout in the ListView contro..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/20/2008
-ms.topic: article
 ms.assetid: 694103ee-3845-451a-aac4-be06559530d2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-ability-to-create-groups-with-the-listview-control-for-different-data
 msc.type: video
 ---

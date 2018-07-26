@@ -4,12 +4,8 @@ title: "Page Layout | Microsoft Docs"
 author: JoeStagner
 description: "Tables or StyleSheets? Relative Positioning or Absolute? This video will demonstrate the features of Visual Web developer that support the developing with yo..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/09/2009
-ms.topic: article
 ms.assetid: c757d668-6f3e-4af1-beb5-100d4c101b88
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/page-layout
 msc.type: video
 ---

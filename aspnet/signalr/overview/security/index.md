@@ -4,12 +4,8 @@ title: "SignalR Security | Microsoft Docs"
 author: rick-anderson
 description: "Understanding and handling security issues in SignalR applications."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/19/2014
-ms.topic: article
 ms.assetid: 8faa734d-ab55-4b09-be54-564595d2ec78
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security
 msc.type: chapter
 ---

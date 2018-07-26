@@ -4,12 +4,8 @@ title: "Videos | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/18/2012
-ms.topic: article
 ms.assetid: febf2824-4e3d-4dc6-84c5-f99777ec6144
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos
 msc.type: book
 ---

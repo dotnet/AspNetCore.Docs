@@ -4,12 +4,8 @@ title: "jQuery UI 1.9.2 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/22/2014
-ms.topic: article
 ms.assetid: 9e77f477-7c02-49a5-b739-61a64a79d578
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui192
 msc.type: content
 ---

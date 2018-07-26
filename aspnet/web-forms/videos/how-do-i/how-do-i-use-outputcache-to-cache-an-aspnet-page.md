@@ -4,12 +4,8 @@ title: "[How Do I:] Use OutputCache to Cache an ASP.NET Page | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to utilize the built-in caching of ASP.NET to store a page in the cache so it does not have to be re-rendered. First, the..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/05/2009
-ms.topic: article
 ms.assetid: 651c54da-becb-467e-9076-d6ace7456351
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-outputcache-to-cache-an-aspnet-page
 msc.type: video
 ---

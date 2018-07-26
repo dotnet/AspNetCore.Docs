@@ -4,12 +4,8 @@ title: "ASP.NET Web Forms Connection Resiliency and Command Interception | Micro
 author: Erikre
 description: "This tutorial describes how to modify a sample application to support connection resiliency and command interception."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2014
-ms.topic: article
 ms.assetid: 6d497001-fa80-4765-b4cc-181fe90b894e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/advanced/aspnet-web-forms-connection-resiliency-and-command-interception
 msc.type: authoredcontent
 ---

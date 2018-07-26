@@ -4,12 +4,8 @@ title: "Intro to ASP.NET MVC 4 | Microsoft Docs"
 author: Rick-Anderson
 description: "An updated version if this tutorial is available here using Visual Studio 2013. The new tutorial uses ASP.NET MVC 5, which provides many improvements over t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2012
-ms.topic: article
 ms.assetid: ed66530a-04d5-49eb-b76a-85be1f57c437
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/intro-to-aspnet-mvc-4
 msc.type: authoredcontent
 ---

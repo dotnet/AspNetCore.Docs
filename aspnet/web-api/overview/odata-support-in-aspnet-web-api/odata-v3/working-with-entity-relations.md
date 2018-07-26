@@ -4,12 +4,8 @@ title: "Supporting Entity Relations in OData v3 with Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Most data sets define relations between entities: Customers have orders; books have authors; products have suppliers. Using OData, clients can navigate over..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/26/2014
-ms.topic: article
 ms.assetid: 1e4c2eb4-b6cf-42ff-8a65-4d71ddca0394
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v3/working-with-entity-relations
 msc.type: authoredcontent
 ---

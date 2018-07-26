@@ -4,12 +4,8 @@ title: "ASP.NET MVC 1 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 1"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/14/2011
-ms.topic: article
 ms.assetid: a780d06b-36cd-410a-b95a-b6b935b5a7fa
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1
 msc.type: chapter
 ---

@@ -4,12 +4,8 @@ title: Visual Studio 2010 Quick Hit- jQuery Syntax for Microsoft Ajax | Microsof
 author: JoeStagner
 description: "In this video you will learn about jQuery syntax for Microsoft Ajax."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/16/2009
-ms.topic: article
 ms.assetid: 997897e3-8fe2-46ca-8a86-b59dbf93e65e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/ajax/aspnet-4-quick-hit-jquery-syntax-for-microsoft-ajax
 msc.type: video
 ---

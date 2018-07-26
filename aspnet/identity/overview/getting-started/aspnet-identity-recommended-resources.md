@@ -4,12 +4,8 @@ title: "ASP.NET Identity Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about how to use ASP.NET Identity. If you know a great blog post, stackoverflow thread, or any other lin..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/09/2015
-ms.topic: article
 ms.assetid: 0f78aec2-f509-46fa-b20f-d5208425d8ec
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-recommended-resources
 msc.type: authoredcontent
 ---

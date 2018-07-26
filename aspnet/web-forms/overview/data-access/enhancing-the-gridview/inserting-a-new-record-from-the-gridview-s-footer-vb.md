@@ -4,12 +4,8 @@ title: "Inserting a New Record from the GridView's Footer (VB) | Microsoft Docs"
 author: rick-anderson
 description: "While the GridView control does not provide built-in support for inserting a new record of data, this tutorial shows how to augment the GridView to include a..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/06/2007
-ms.topic: article
 ms.assetid: 528acc48-f20c-4b4e-aa16-4cc02f068ebb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-vb
 msc.type: authoredcontent
 ---

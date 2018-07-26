@@ -4,12 +4,8 @@ title: "Tailspin Spyworks - Final Check Out | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner places the customer's order during the final check out process for the Tailspin Spyworks sample Web Forms application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/29/2010
-ms.topic: article
 ms.assetid: 61ee30d6-c557-4ebd-9538-1253bd02d825
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-final-check-out
 msc.type: video
 ---

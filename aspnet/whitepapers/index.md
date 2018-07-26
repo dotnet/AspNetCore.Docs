@@ -4,12 +4,8 @@ title: "Whitepapers | Microsoft Docs"
 author: rick-anderson
 description: "On this page you will find whitepapers to help you install and configure ASP.NET, and to assist you to write secure, fast and flexible ASP.NET applications."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/15/2011
-ms.topic: article
 ms.assetid: 3824e2d7-446f-406b-9c8b-5a1634359a78
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: 
 msc.type: content
 ---

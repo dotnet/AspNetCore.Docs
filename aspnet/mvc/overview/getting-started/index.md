@@ -4,12 +4,8 @@ title: "ASP.NET MVC Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET MVC ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and that g..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/31/2011
-ms.topic: article
 ms.assetid: d916dbe0-1895-491b-8bb6-93f4594ce757
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started
 msc.type: chapter
 ---

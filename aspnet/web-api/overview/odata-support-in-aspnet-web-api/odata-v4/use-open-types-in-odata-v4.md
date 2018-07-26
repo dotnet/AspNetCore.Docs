@@ -4,12 +4,8 @@ title: "Open Types in OData v4 with ASP.NET Web API | Microsoft Docs"
 author: microsoft
 description: "In OData v4, an open type is a stuctured type that contains dynamic properties, in addition to any properties that are declared in the type definition. Open..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/15/2014
-ms.topic: article
 ms.assetid: f25f5ac5-4800-4950-abe5-c97750a27fc6
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
 msc.type: authoredcontent
 ---

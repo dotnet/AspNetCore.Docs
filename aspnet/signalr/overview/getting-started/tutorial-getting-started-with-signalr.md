@@ -4,12 +4,8 @@ title: "Tutorial: Getting Started with SignalR 2 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application and create an HTML pa..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: a8b3b778-f009-4369-85c7-e90f9878d8b4
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr
 msc.type: authoredcontent
 ---

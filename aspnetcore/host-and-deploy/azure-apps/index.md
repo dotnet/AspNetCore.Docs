@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to host ASP.NET Core apps in Azure App Service with links to helpful resources.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2018
+ms.date: 07/24/2018
 uid: host-and-deploy/azure-apps/index
 ---
 # Host ASP.NET Core on Azure App Service
@@ -38,13 +38,19 @@ Set up a CI build for an ASP.NET Core app, then create a continuous deployment r
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
 
+::: moniker range=">= aspnetcore-2.0"
+
 ## Application configuration
 
-With ASP.NET Core 2.0 and later, three packages in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) provide automatic logging features for apps deployed to Azure App Service:
+In ASP.NET Core 2.0 or later, the following NuGet packages provide automatic logging features for apps deployed to Azure App Service:
 
-* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core lightup integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
+* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core light-up integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executes [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) to add Azure App Service diagnostics logging providers in the `Microsoft.Extensions.Logging.AzureAppServices` package.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) provides logger implementations to support Azure App Service diagnostics logs and log streaming features.
+
+If targeting .NET Core and referencing the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), the packages are already included. The packages are absent from the newer [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, reference the individual logging packages.
+
+::: moniker-end
 
 ## Proxy server and load balancer scenarios
 
@@ -61,7 +67,7 @@ Learn how to review quotas and metrics for apps and App Service plans.
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
 [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)  
-Understand common appoaches to handling errors in ASP.NET Core apps.
+Understand common approaches to handling errors in ASP.NET Core apps.
 
 [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
@@ -145,11 +151,12 @@ The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the la
 * [Azure App Service: The Best Place to Host your .NET Apps (55-minute overview video)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
 * [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience (12-minute video)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
+* <xref:host-and-deploy/web-farm>
 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). The following topics pertain to the underlying IIS technology:
 
-* [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
-* [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
+* <xref:host-and-deploy/iis/index>
+* <xref:fundamentals/servers/aspnet-core-module>
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/iis/modules>
 * [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)

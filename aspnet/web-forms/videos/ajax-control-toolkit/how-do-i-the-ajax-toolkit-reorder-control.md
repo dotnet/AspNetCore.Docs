@@ -4,12 +4,8 @@ title: "[How Do I:] The AJAX Toolkit Reorder Control | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate the use of the reorder control that ships with the AJAX toolkit. The reorder control lets you present to your users a list o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/21/2008
-ms.topic: article
 ms.assetid: 1bc7e41a-633c-4ade-ba7a-486c9484a0ba
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-the-ajax-toolkit-reorder-control
 msc.type: video
 ---

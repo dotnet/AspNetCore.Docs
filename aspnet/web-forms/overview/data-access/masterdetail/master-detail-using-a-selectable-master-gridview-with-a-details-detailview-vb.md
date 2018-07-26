@@ -4,12 +4,8 @@ title: "Master/Detail Using a Selectable Master GridView with a Details DetailVi
 author: rick-anderson
 description: "This tutorial will have a GridView whose rows include the name and price of each product along with a Select button. Clicking the Select button for a particu..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 1d1a7c93-971d-4690-9c5e-dac0e5014a09
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb
 msc.type: authoredcontent
 ---

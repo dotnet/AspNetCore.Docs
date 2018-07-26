@@ -4,12 +4,8 @@ title: "jQuery DataTables 1.10.5 | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/10/2015
-ms.topic: article
 ms.assetid: 7a06c2a5-fd96-436c-baa1-2d148b8f7116
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables105
 msc.type: content
 ---

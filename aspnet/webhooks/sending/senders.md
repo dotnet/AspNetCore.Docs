@@ -4,12 +4,8 @@ title: "ASP.NET WebHooks senders | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET WebHooks senders"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: 33001ae2-8e1b-4807-8b02-16c7fd8ad38d
-ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/senders
 ---
 # ASP.NET WebHook senders

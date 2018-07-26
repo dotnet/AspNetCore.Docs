@@ -205,7 +205,7 @@ The `PaginatedList.CreateAsync` method converts the student query to a single pa
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
-The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/ dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
+The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
 ## Add paging links to the student Razor Page
 
@@ -258,8 +258,6 @@ Update the *Pages/About.cshtml.cs* file with the following code:
 [!code-csharp[](intro/samples/cu21/Pages/About.cshtml.cs)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
-
-Note: The LINQ `group` command isn't currently supported by EF Core. In the preceding code, all the student records are returned from SQL Server. The `group` command is applied in the Razor Pages app, not on the SQL Server. EF Core 2.1 will support this LINQ `group` operator, and the grouping occurs on the SQL Server. See [Relational: Support translating GroupBy() to SQL](https://github.com/aspnet/EntityFrameworkCore/issues/2341). [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/roadmap) will be released with .NET Core 2.1. For more information, see the [.NET Core Roadmap](https://github.com/dotnet/core/blob/master/roadmap.md).
 
 ### Modify the About Razor Page
 

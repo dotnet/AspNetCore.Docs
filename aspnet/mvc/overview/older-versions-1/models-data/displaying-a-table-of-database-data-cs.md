@@ -4,12 +4,8 @@ title: "Displaying a Table of Database Data (C#) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, I demonstrate two methods of displaying a set of database records. I show two methods of formatting a set of database records in an HTML ta..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/07/2008
-ms.topic: article
 ms.assetid: d6e758b6-6571-484d-a132-34ee6c47747a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-cs
 msc.type: authoredcontent
 ---

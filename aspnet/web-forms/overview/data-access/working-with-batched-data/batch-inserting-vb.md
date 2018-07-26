@@ -4,12 +4,8 @@ title: "Batch Inserting (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to insert multiple database records in a single operation. In the User Interface Layer we extend the GridView to allow the user to enter multiple n..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: 48e2a4ae-77ca-4208-a204-c38c690ffb59
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-inserting-vb
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "[How Do I:] Implement the Persistent Communications Pattern with the Upd
 author: JoeStagner
 description: "In a traditional Web site the browser and the server do not maintain an ongoing communication, but communicate only in response to the user performing an act..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/01/2007
-ms.topic: article
 ms.assetid: 49c7a74d-dce7-4d5c-8282-c7846f478e11
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel
 msc.type: video
 ---

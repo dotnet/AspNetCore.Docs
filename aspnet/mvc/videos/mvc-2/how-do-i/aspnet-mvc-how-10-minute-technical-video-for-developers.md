@@ -4,12 +4,8 @@ title: "ASP.NET MVC: How? 10 minute technical video for developers | Microsoft D
 author: robconery
 description: "A short overview of what it's like to work with ASP.NET MVC."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/21/2009
-ms.topic: article
 ms.assetid: 8aef4323-19d5-4b64-95a1-cec156f7cae5
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/aspnet-mvc-how-10-minute-technical-video-for-developers
 msc.type: video
 ---

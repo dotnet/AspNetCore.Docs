@@ -4,12 +4,8 @@ title: "Caching Data at Application Startup (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In any Web application some data will be frequently used and some data will be infrequently used. We can improve the performance of our ASP.NET application b..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/30/2007
-ms.topic: article
 ms.assetid: 84afe4ac-cc53-4f2e-a867-27eaf692c2df
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-at-application-startup-vb
 msc.type: authoredcontent
 ---
