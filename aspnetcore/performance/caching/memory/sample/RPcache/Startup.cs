@@ -21,7 +21,7 @@ namespace RPcache
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddSingleton<IMyMemoryCache, MyMemoryCache>();
+            services.AddSingleton<MyMemoryCache>();
         }
         #endregion
 

@@ -12,7 +12,7 @@ namespace RPcache.Pages
         private MemoryCache _cache;
         public static readonly string MyKey = "_MyKey";
 
-        public AboutModel(IMyMemoryCache memoryCache)
+        public AboutModel(MyMemoryCache memoryCache)
         {
             _cache = memoryCache.Cache;
         }
@@ -29,11 +29,12 @@ namespace RPcache.Pages
                 cacheEntry = DateTime.Now.TimeOfDay.ToString();
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    // Set cache entry size via extension method.
                     .SetSize(1)
                     // Keep in cache for this time, reset time if accessed.
                     .SetSlidingExpiration(TimeSpan.FromSeconds(3));
 
-                // Set cache entry size via extension method.
+                //  Set cache entry size via property.
                 //  cacheEntryOptions.Size = 1;
 
                 // Save data in cache.

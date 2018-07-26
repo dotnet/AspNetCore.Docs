@@ -118,9 +118,9 @@ The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extension
 
 [!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,14)]
 
-::: moniker-end
-
 See the [Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs](https://github.com/aspnet/Caching/blob/release/2.1/test/Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs) unit tests for details on using a cache with `SizeLimit`.
+
+::: moniker-end
 
 ## Cache dependencies
 
@@ -139,7 +139,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 - When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
 
-Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
+- Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
 
 ## Additional resources
 

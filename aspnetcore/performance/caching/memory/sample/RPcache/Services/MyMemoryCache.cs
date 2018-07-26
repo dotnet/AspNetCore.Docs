@@ -4,7 +4,7 @@ namespace RPcache.Services
 {
     #region snippet
     // using Microsoft.Extensions.Caching.Memory;
-    public class MyMemoryCache : IMyMemoryCache
+    public class MyMemoryCache 
     {
         public MemoryCache Cache { get; set; }
         public MyMemoryCache()
@@ -14,11 +14,6 @@ namespace RPcache.Services
                 SizeLimit = 1024
             });
         }
-    }
-
-    public interface IMyMemoryCache
-    {
-        MemoryCache Cache { get; set; }
     }
     #endregion
 }
