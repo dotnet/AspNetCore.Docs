@@ -43,7 +43,7 @@ Razor Pages advantages over controller/view development:
 
 ## Razor Pages compared to Web Forms
 
-Razor Pages and Web Forms are page focused and each contain a *.cs* file associated with the markup page. Other than the page focus, Razor Pages are very different from Web Forms. It can be difficult to migrate Web Forms code to Razor Pages. Converting between Razor Pages and ASP.NET Core MVC is generally straightforward. Razor Pages and Web Forms have very little in common. Razor Pages and ASP.NET Core MVC share most of the ASP.NET Core framework. The following section shows many features shared between Razor Pages and ASP.NET Core MVC that are not found in Web Forms.
+Razor Pages and Web Forms ASP.NET 4.x are page focused and each contains a *.cs* file associated with the markup page. Other than the page focus, Razor Pages are very different from Web Forms. It can be difficult to migrate Web Forms code to Razor Pages. Converting between Razor Pages and ASP.NET Core MVC is generally straightforward. Razor Pages and Web Forms have very little in common. Razor Pages and ASP.NET Core MVC share most of the ASP.NET Core framework. The following section shows many features shared between Razor Pages and ASP.NET Core MVC that are not found in Web Forms.
 
 ## Feature comparison of Razor Pages and MVC with controller and views
 
