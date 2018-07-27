@@ -184,6 +184,32 @@ Suppress warnings by defining a semicolon-delimited list of warning codes to ign
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=3)]
 
+If you don't want to ignore all Missing XML Comment warnings for the project, you can use `#pragma` statements around specific classes you want to ignore. For example, you may want to ignore the `Program` and `Startup` classes as they will not be exposed via the API docs.
+
+```csharp
+namespace MyApi
+{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
+    }
+
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+}
+```
+
+Note that if you do not `restore` the warning at the end of the class, it ignores the rest of the project's classes.
+
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
