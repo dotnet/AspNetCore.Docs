@@ -111,11 +111,13 @@ The following code creates a unitless fixed size [MemoryCache](/dotnet/api/micro
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-[SizeLimit](/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions.sizelimit?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheOptions_SizeLimit) does not have units. Cached entries must specify size if the cache memory size has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`.
+[SizeLimit](/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions.sizelimit?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheOptions_SizeLimit) does not have units. Cached entries must specify size in whatever units they deem most appropriate if the cache memory size has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry will be ignored.
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 
 [!code-csharp[](memory/sample/RPcache/Startup.cs?name=snippet&highlight=5)]
+
+`MyMemoryCache` is created as an independent memory cache for components that are aware of this szize limited cache and know how to set cache entry size appropriately.
 
 The following code uses `MyMemoryCache`:
 
