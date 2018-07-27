@@ -178,7 +178,7 @@ Enabling XML comments provides debug information for undocumented public types a
 warning CS1591: Missing XML comment for publicly visible type or member 'TodoController.GetAll()'
 ```
 
-To suppress warnings project-wide, define a semicolon-delimited list of warning codes to ignore in the *.csproj* file. Appending the warning codes to `$(NoWarn);` applies the C# default values too.
+To suppress warnings project-wide, define a semicolon-delimited list of warning codes to ignore in the project file. Appending the warning codes to `$(NoWarn);` applies the C# default values too.
 
 ::: moniker range=">= aspnetcore-2.0"
 
