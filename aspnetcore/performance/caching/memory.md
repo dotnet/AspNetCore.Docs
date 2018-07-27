@@ -27,8 +27,8 @@ The in-memory cache can store any object; the distributed cache interface is lim
 
 ### Cache guidelines
 
-* Code should **not** depend on a cache value being present in the cache.
-* The cache is a scare resource. Limit cache growth:
+* Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
+* The cache uses a scare resource, memory. Limit cache growth:
   * Do **not** use external input as cache keys.
   * Use expirations to limit cache growth.
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size)
@@ -63,7 +63,7 @@ Request the `IMemoryCache` instance in the constructor:
 
 The following code uses [TryGetValue](/dotnet/api/microsoft.extensions.caching.memory.imemorycache.trygetvalue?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_IMemoryCache_TryGetValue_System_Object_System_Object__) to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with [Set](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.set?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_).
 
-[!code-csharp[](memory/sample/WebCache/CacheKeys.cs)]
+[!code-csharp [](memory/sample/WebCache/CacheKeys.cs)]
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet1)]
 
@@ -100,11 +100,18 @@ The following sample:
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
-The following code creates a unitless fixed size [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1):
+A MemoryCache instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, then all entries must specify size. The size specified is in units the developer chooses.
+
+For example:
+
+* If the web app was primarily caching strings, each cache entry size could be set to the string length.
+* The app could specify the size of all entries as 1, and the size limit is the count of entries.
+
+The following code creates a unitless fixed size [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1) accessible by [dependency injection](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-[SizeLimit](/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions.sizelimit?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheOptions_SizeLimit) does not have units. Cached entries must specify size. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`.
+[SizeLimit](/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions.sizelimit?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheOptions_SizeLimit) does not have units. Cached entries must specify size if the cache memory size has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`.
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 
@@ -117,8 +124,6 @@ The following code uses `MyMemoryCache`:
 The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size) or the [SetSize](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_) extension method:
 
 [!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,14)]
-
-See the [Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs](https://github.com/aspnet/Caching/blob/release/2.1/test/Microsoft.Extensions.Caching.Memory.Tests/CapacityTests.cs) unit tests for details on using a cache with `SizeLimit`.
 
 ::: moniker-end
 

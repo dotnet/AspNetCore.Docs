@@ -34,8 +34,8 @@ namespace RPcache.Pages
                     // Keep in cache for this time, reset time if accessed.
                     .SetSlidingExpiration(TimeSpan.FromSeconds(3));
 
-                //  Set cache entry size via property.
-                //  cacheEntryOptions.Size = 1;
+                // Set cache entry size via property.
+                // cacheEntryOptions.Size = 1;
 
                 // Save data in cache.
                 _cache.Set(MyKey, cacheEntry, cacheEntryOptions);
