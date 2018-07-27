@@ -9,7 +9,7 @@ uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
 
-ASP.NET Core apps access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
+ASP.NET Core apps access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor). It's only necessary to use the `IHttpContextAccessor` service when you need access to the `HttpContext` inside a service.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -33,7 +33,7 @@ public class AboutModel : PageModel
 
 ## Use HttpContext from a Razor view
 
-Razor views expose the HttpContext directly via a [RazorPage.Context](/dotnet/api/microsoft.aspnetcore.mvc.razor.razorpage.context?#Microsoft_AspNetCore_Mvc_Razor_RazorPage_Context) property on the view. The following example retrieves the current username in an Intranet app using Windows Authentication:
+Razor views expose the `HttpContext` directly via a [RazorPage.Context](/dotnet/api/microsoft.aspnetcore.mvc.razor.razorpage.context#Microsoft_AspNetCore_Mvc_Razor_RazorPage_Context) property on the view. The following example retrieves the current username in an Intranet app using Windows Authentication:
 
 ```cshtml
 
