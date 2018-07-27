@@ -4,7 +4,7 @@ author: coderandhiker
 description: Learn how to access HttpContext in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/20/2018
+ms.date: 07/27/2018
 uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
@@ -30,6 +30,19 @@ public class AboutModel : PageModel
 ```
 
 ::: moniker-end
+
+## Use HttpContext from a Razor view
+
+`IHttpContextAccessor` service access is provided to a Razor view via the `@inject` directive. The following example retrieves the current username in an Intranet app using Windows Authentication:
+
+```cshtml
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var username = HttpContextAccessor.HttpContext.User.Identity.Name;
+}
+```
 
 ## Use HttpContext from a controller
 
