@@ -30,6 +30,7 @@ namespace RPcache.Pages
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                     // Set cache entry size via extension method.
+                    // See accompanying article for unit size discussion.
                     .SetSize(1)
                     // Keep in cache for this time, reset time if accessed.
                     .SetSlidingExpiration(TimeSpan.FromSeconds(3));
