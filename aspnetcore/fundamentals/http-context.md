@@ -36,7 +36,6 @@ public class AboutModel : PageModel
 Razor views expose the `HttpContext` directly via a [RazorPage.Context](/dotnet/api/microsoft.aspnetcore.mvc.razor.razorpage.context#Microsoft_AspNetCore_Mvc_Razor_RazorPage_Context) property on the view. The following example retrieves the current username in an Intranet app using Windows Authentication:
 
 ```cshtml
-
 @{
     var username = Context.User.Identity.Name;
 }
