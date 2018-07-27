@@ -117,7 +117,7 @@ The following code registers `MyMemoryCache` with the [dependency injection](xre
 
 [!code-csharp[](memory/sample/RPcache/Startup.cs?name=snippet&highlight=5)]
 
-`MyMemoryCache` is created as an independent memory cache for components that are aware of this szize limited cache and know how to set cache entry size appropriately.
+`MyMemoryCache` is created as an independent memory cache for components that are aware of this size limited cache and know how to set cache entry size appropriately.
 
 The following code uses `MyMemoryCache`:
 
