@@ -28,10 +28,9 @@ namespace RPcache.Pages
                 // Key not in cache, so get data.
                 cacheEntry = DateTime.Now.TimeOfDay.ToString();
 
-                var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    // Set cache entry size via extension method.
-                    // See accompanying article for unit size discussion.
-                    .SetSize(1)
+                var cacheEntryOptions = new MemoryCacheEntryOptions() 
+                    // Set cache entry size by extension method.
+                    .SetSize(1) 
                     // Keep in cache for this time, reset time if accessed.
                     .SetSlidingExpiration(TimeSpan.FromSeconds(3));
 
