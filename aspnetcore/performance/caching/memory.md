@@ -100,11 +100,11 @@ The following sample:
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
-A MemoryCache instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, then all entries must specify size. The size specified is in units the developer chooses.
+A `MemoryCache` instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, all entries must specify size. The size specified is in units the developer chooses.
 
 For example:
 
-* If the web app was primarily caching strings, each cache entry size could be set to the string length.
+* If the web app was primarily caching strings, each cache entry size could be the string length.
 * The app could specify the size of all entries as 1, and the size limit is the count of entries.
 
 The following code creates a unitless fixed size [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1) accessible by [dependency injection](xref:fundamentals/dependency-injection):
@@ -125,7 +125,7 @@ The following code uses `MyMemoryCache`:
 
 The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size) or the [SetSize](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_) extension method:
 
-[!code-csharp [](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,14)]
+[!code-csharp [](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,10,14,15)]
 
 ::: moniker-end
 
