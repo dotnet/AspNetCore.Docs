@@ -1,0 +1,10 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h3>Current Time: @DateTime.Now.TimeOfDay.ToString()</h3>
+<h3>
+    Cached Time: @Model.DateTime_Now
+</h3>
