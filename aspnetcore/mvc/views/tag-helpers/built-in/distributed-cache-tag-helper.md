@@ -51,7 +51,7 @@ There are no tag attributes specifically associated with using any specific impl
 ## Additional resources
 
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:fundamentals/dependency-injection#service-lifetimes-and-registration-options>
+* <xref:fundamentals/dependency-injection>
 * <xref:performance/caching/distributed>
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>
