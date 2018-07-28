@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about the ASP.NET Core Web Host and .NET Generic Host, which are responsible for app startup and lifetime management.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/18/2018
+ms.date: 07/27/2018
 uid: fundamentals/host/index
 ---
 # Host in ASP.NET Core
@@ -20,4 +20,4 @@ For hosting ASP.NET Core *web apps*, developers should use the Web Host based on
 Learn how to implement background tasks with hosted services in ASP.NET Core.
 
 <xref:fundamentals/configuration/platform-specific-configuration>  
-Discover how to enhance an ASP.NET Core app from a class library or external assembly using an `IHostingStartup` implementation.
+Discover how to enhance an ASP.NET Core app from a referenced  or unreferenced assembly using an `IHostingStartup` implementation.

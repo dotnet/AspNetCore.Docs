@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from a class library or
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/24/2018
+ms.date: 07/27/2018
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
@@ -18,7 +18,7 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (
 
 ## Discover loaded hosting startup assemblies
 
-To discover hosting startup assemblies loaded by the app or by libraries, enable logging and check the application logs. Errors that occur when loading assemblies are logged. Loaded hosting startup assemblies are logged at the Debug level, and all errors are logged.
+To discover loaded hosting startup assemblies, enable logging and check the application logs. Errors that occur when loading assemblies are logged. Loaded hosting startup assemblies are logged at the Debug level, and all errors are logged.
 
 ## Disable automatic loading of hosting startup assemblies
 
@@ -62,17 +62,22 @@ The `HostingStartup` attribute is typically located in the hosting startup assem
 
 ## Activation approaches
 
-There are three approaches that you can take to set up and activate a hosting startup assembly:
+There are three approaches that you can take to deliver and activate a hosting startup assembly:
 
-* [NuGet package](#nuget-package-activation)
-* [Class library](#class-library-activation)
-* [Assembly](#assembly-activation)
+| Approach | Compile-time reference required |
+| -------- | ------------------------------- |
+| [NuGet package](#nuget-package-activation) | Yes |
+| [Class library](#class-library-activation-bin-deployment) *bin*-deployed | Yes |
+| [Class library](#class-library-activation-runtimestoredeployment) runtime store-deployed | No |
+| [Assembly](#assembly-activation) | No |
 
-Each approach is described in the following sections.
+When a compile-time reference is required, the app receiving the hosting startup enhancement must reference the assembly providing the enhancement. With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*.\*.deps.json*).
+
+When a compile-time reference isn't provided, the hosting startup assembly's dependency file must be provided to the app.
 
 ## NuGet package activation
 
-A hosting startup enhancement can be provided in a NuGet package (the package has a `HostingStartup` attribute). The hosting startup types provided by the package are made available to the app via a package reference in the app's project file with the `PackageID` listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+A hosting startup enhancement can be provided in a NuGet package (the package has a `HostingStartup` attribute). The hosting startup types provided by the package are made available to the app via a package reference in the app's project file with the assembly name listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
 
 The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a NuGet package, *HostingStartupPackage*. The package:
 
@@ -91,15 +96,15 @@ The app's Index page reads the configuration values for the two keys set by the 
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-The NuGet package is listed as a package reference in the app's project file, and the package's `PackageId` is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
+The NuGet package is listed as a package reference in the app's project file, and the package's assembly name is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
 
-The package's `PackageId` can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
+The package's assembly name can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
 
 When multiple hosting startup assembles are present, their [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) methods are executed in the order that the assemblies are listed.
 
-## Class library activation
+## Class library activation (bin-deployment)
 
-A hosting startup enhancement can be provided in a class library (the library has a `HostingStartup` attribute). The hosting startup types provided by the library are made available to the app via a bin-deployed assembly with the assembly name listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+A hosting startup enhancement can be provided in a class library (the library has a `HostingStartup` attribute). The hosting startup types provided by the library can be made available to the app via a *bin*-deployed assembly with the assembly name listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
 
 The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
 
@@ -118,7 +123,52 @@ The app's Index page reads the configuration values for the two keys set by the 
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
 
-The compiled class library is bin-deployed to the app, and the class library's assembly name is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
+The app requires a compile-time reference to the assembly. Use one of the following approaches:
+
+* *bin*-deploy the assembly.
+* Provide a compile-time reference to the assembly.
+
+In the sample app, the compiled class library is *bin*-deployed.
+
+The class library's assembly name is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
+
+The class library's assembly name can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
+
+When multiple hosting startup assembles are present, their [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) methods are executed in the order that the assemblies are listed.
+
+## Class library activation (runtime store deployment)
+
+A hosting startup enhancement can be provided in a class library (the library has a `HostingStartup` attribute). The hosting startup types provided by the library can be made available to the app via a runtime store-deployed assembly with:
+
+* The assembly name listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
+* The hosting startup's dependencies file 
+
+The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
+
+* Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
+* Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
+
+The `ServiceKeyInjection` class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code, which allows user code to overwrite any configuration provided by the hosting startup assembly.
+
+*HostingStartupLibrary/ServiceKeyInjection.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
+
+The app's Index page reads the configuration values for the two keys set by the class library's hosting startup assembly. The configuration values for these keys are displayed when the page is rendered.
+
+*HostingStartupApp/Pages/Index.cshtml.cs*:
+
+[!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
+
+The app requires a compile-time reference to the assembly. Use one of the following approaches:
+
+* *bin*-deploy the assembly.
+* Provide a compile-time reference to the assembly.
+* Place the assembly into the [runtime store](/dotnet/core/deploying/runtime-store). When placed into the runtime store 
+
+In the sample app, the compiled class library is *bin*-deployed.
+
+The class library's assembly name is listed in the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The environment variable is a semicolon-delimited list of assemblies that contain a `HostingStartup` attribute that identifies a hosting startup enhancement to load.
 
 The class library's assembly name can also be provided using the [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies) host configuration setting.
 
@@ -126,7 +176,7 @@ When multiple hosting startup assembles are present, their [Configure](/dotnet/a
 
 ## Assembly activation
 
-This section describes how to activate a hosting startup from a bin-deployed or runtime store-deployed assembly.
+This section describes how to activate a hosting startup from an assembly that doesn't have a compile-time reference. The following approach is only available for .NET Core apps, not .NET Framework.
 
 ### Create the assembly
 
@@ -174,7 +224,7 @@ For global use, place the assembly in the .NET Core installation's runtime store
 <DRIVE>\Program Files\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
 
-When deploying the assembly to the runtime store, the symbols file may be deployed as well but isn't required for the enhancement to work.
+When deploying the assembly to the runtime store, the symbols file may be deployed as well but isn't required for the enhancement to function.
 
 **Place the dependencies file**
 
