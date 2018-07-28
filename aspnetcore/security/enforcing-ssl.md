@@ -53,7 +53,7 @@ The following mechanisms set the port automatically:
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
 
-The port can be configured by setting the [https_port Web Host configuration setting](#):
+The port can be configured by setting the [https_port Web Host configuration setting](xref:fundamentals/host/web-host#https-port):
 
 **Key**: https_port
 **Type**: *string*
