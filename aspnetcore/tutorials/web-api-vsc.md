@@ -66,6 +66,12 @@ Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCo
 [!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
 :::moniker-end
 
+Install the `Microsoft.EntityFrameworkCore` package by adding the following to the csproj as a sibling to the `Microsoft.AspNetCore.App` package reference.
+
+``` xml
+ <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />  
+```
+
 There's no need to install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 ## Add a model class
