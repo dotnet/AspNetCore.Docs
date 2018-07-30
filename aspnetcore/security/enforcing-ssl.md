@@ -30,7 +30,7 @@ We recommend all ASP.NET Core web apps call HTTPS Redirection Middleware ([UseHt
 
 The following code calls `UseHttpsRedirection` in the `Startup` class:
 
-[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=14)]
 
 The preceding highlighted code:
 
