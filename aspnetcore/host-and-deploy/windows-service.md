@@ -220,6 +220,36 @@ If the custom `WebHostService` code requires a service from dependency injection
 
 Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
+## Configure HTTPS
+
+A Windows Service runs under the [LocalSystem](/windows/desktop/services/localsystem-account) account. Specify an HTTPS port and [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) in a [Kestrel server endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration). 
+
+The following example creates an HTTPS endpoint with a certificate provided by [CertificateLoader.LoadFromStoreCert](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.internal.certificateloader.loadfromstorecert). The endpoint configuration:
+
+* Sets the port to 5001.
+* Uses the [local development certificate (localhost)](xref:aspnetcore-2.1#on-by-default).
+* Loads the certificate from the [StoreLocation.LocalMachine](/dotnet/api/system.security.cryptography.x509certificates.storelocation) certificate store, which is accessible by the LocalSystem account.
+
+```csharp
+var host = WebHost.CreateDefaultBuilder(args)
+    .UseKestrel((context, options) =>
+    {
+        options.ListenAnyIP(5001, listenOptions =>
+        {
+            listenOptions.UseHttps(httpsOptions =>
+            {
+                var cert = CertificateLoader.LoadFromStoreCert(
+                    "localhost", "My", StoreLocation.LocalMachine, 
+                    allowInvalid: true);
+                httpsOptions.ServerCertificateSelector = (connectionContext, name) =>
+                {
+                    return cert;
+                };
+            });
+        });
+    })
+```
+
 ## Additional resources
 
 * [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
