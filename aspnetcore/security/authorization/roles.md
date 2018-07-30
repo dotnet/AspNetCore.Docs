@@ -15,7 +15,7 @@ When an identity is created it may belong to one or more roles. For example, Tra
 ::: moniker range=">= aspnetcore-2.0"
 
 > [!IMPORTANT]
-> This topic does **not** apply to Razor Pages. Razor Pages supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter) . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+> This topic does **not** apply to Razor Pages. Razor Pages supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter). For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 ::: moniker-end
 
