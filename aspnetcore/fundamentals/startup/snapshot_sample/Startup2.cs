@@ -2,29 +2,31 @@ public class Startup
 {
     private readonly IHostingEnvironment _env;
     private readonly IConfiguration _config;
-    private readonly ILogger<Startup> _logger;
+    private readonly ILoggerFactory _loggerFactory;
 
     public Startup(IHostingEnvironment env, IConfiguration config, 
-        ILogger<Startup> logger)
+        ILoggerFactory loggerFactory)
     {
         _env = env;
         _config = config;
-        _logger = logger;
+        _loggerFactory = loggerFactory;
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var logger = _loggerFactory.CreateLogger<Startup>();
+
         if (_env.IsDevelopment())
         {
             // Development service configuration
 
-            _logger.LogInformation("Development environment");
+            logger.LogInformation("Development environment");
         }
         else
         {
             // Non-development service configuration
 
-            _logger.LogInformation($"Environment: {_env.EnvironmentName}");
+            logger.LogInformation($"Environment: {_env.EnvironmentName}");
         }
 
         // Configuration is available during startup.
