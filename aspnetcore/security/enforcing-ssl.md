@@ -105,11 +105,11 @@ Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Secur
 
 ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
-[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
+[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10-11)]
 
 `UseHsts` isn't recommended in development because the HSTS header is highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-The following code:
+The following code configures HSTS:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=5-12)]
 
