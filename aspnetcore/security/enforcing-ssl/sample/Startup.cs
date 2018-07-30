@@ -48,7 +48,6 @@ namespace WebHTTPS
             else
             {
                 app.UseExceptionHandler("/Error");
-                // Requires NuGet package Microsoft.AspNetCore.HttpsPolicy
                 app.UseHsts();
             }
 
