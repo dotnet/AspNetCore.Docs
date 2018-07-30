@@ -34,7 +34,7 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 * [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment) to configure services by environment.
 * [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) to read configuration.
-* [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) to activate a named `ILogger` from dependency injection.
+* [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory) to create a logger in `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/snapshot_sample/Startup2.cs)]
 
