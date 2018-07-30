@@ -11,7 +11,7 @@ uid: mvc/views/partial
 
 By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Scott Sauber](https://twitter.com/scottsauber)
 
-ASP.NET Core supports partial views. Partial views are used to share reusable parts of web pages across different views. 
+ASP.NET Core supports partial views. Partial views are used to share reusable parts of web pages across different views.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/partial/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
