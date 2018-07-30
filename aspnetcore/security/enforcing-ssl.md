@@ -57,7 +57,7 @@ The port can be configured by setting the [https_port Web Host configuration set
 
 **Key**: https_port
 **Type**: *string*
-**Default**: 443
+**Default**: A default value isn't set.
 **Set using**: `UseSetting`
 **Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the Web Host.)
 
