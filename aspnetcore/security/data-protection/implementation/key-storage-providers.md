@@ -54,7 +54,7 @@ For more information, see the following topics:
 
 * [StackExchange.Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
 * [Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
-* [aspnet/DataProtection samples](https://github.com/aspnet/DataProtection/samples)
+* [aspnet/DataProtection samples](https://github.com/aspnet/DataProtection/tree/master/samples)
 
 ## Registry
 

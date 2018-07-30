@@ -58,11 +58,18 @@ The following mechanisms set the port automatically:
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
 
-The port can be configured by setting the:
+The port can be configured by setting the [https_port Web Host configuration setting](xref:fundamentals/host/web-host#https-port):
 
-* `ASPNETCORE_HTTPS_PORT` environment variable.
-* `http_port` host configuration key (for example, via *hostsettings.json* or a command line argument).
-* [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
+**Key**: https_port
+**Type**: *string*
+**Default**: A default value isn't set.
+**Set using**: `UseSetting`
+**Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the Web Host.)
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("https_port", "8080")
+```
 
 > [!NOTE]
 > The port can be configured indirectly by setting the URL with the `ASPNETCORE_URLS` environment variable. The environment variable configures the server, and then the middleware indirectly discovers the HTTPS port via `IServerAddressesFeature`.
