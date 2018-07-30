@@ -408,7 +408,8 @@ WebHost.CreateDefaultBuilder()
                 var subExampleCert = CertificateLoader.LoadFromStoreCert(
                     "sub.example.com", "My", StoreLocation.CurrentUser, 
                     allowInvalid: true);
-                var certs = new Dictionary(StringComparer.OrdinalIgnoreCase);
+                var certs = new Dictionary<string, X509Certificate2>(
+                    StringComparer.OrdinalIgnoreCase);
                 certs["localhost"] = localhostCert;
                 certs["example.com"] = exampleCert;
                 certs["sub.example.com"] = subExampleCert;
