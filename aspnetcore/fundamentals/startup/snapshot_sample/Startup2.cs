@@ -1,27 +1,37 @@
 public class Startup
 {
-    public Startup(IHostingEnvironment env, IConfiguration config)
-    {
-        HostingEnvironment = env;
-        Configuration = config;
-    }
+    private readonly IHostingEnvironment _env;
+    private readonly IConfiguration _config;
+    private readonly ILoggerFactory _loggerFactory;
 
-    public IHostingEnvironment HostingEnvironment { get; }
-    public IConfiguration Configuration { get; }
+    public Startup(IHostingEnvironment env, IConfiguration config, 
+        ILoggerFactory loggerFactory)
+    {
+        _env = env;
+        _config = config;
+        _loggerFactory = loggerFactory;
+    }
 
     public void ConfigureServices(IServiceCollection services)
     {
-        if (HostingEnvironment.IsDevelopment())
+        var logger = _loggerFactory.CreateLogger<Startup>();
+
+        if (_env.IsDevelopment())
         {
-            // Development configuration
+            // Development service configuration
+
+            logger.LogInformation("Development environment");
         }
         else
         {
-            // Staging/Production configuration
+            // Non-development service configuration
+
+            logger.LogInformation($"Environment: {_env.EnvironmentName}");
         }
 
-        // Configuration is available during startup. Examples:
-        // Configuration["key"]
-        // Configuration["subsection:suboption1"]
+        // Configuration is available during startup.
+        // Examples:
+        //   _config["key"]
+        //   _config["subsection:suboption1"]
     }
 }
