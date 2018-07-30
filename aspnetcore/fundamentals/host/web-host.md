@@ -322,11 +322,11 @@ WebHost.CreateDefaultBuilder(args)
 
 ### HTTPS Port
 
-Set the HTTPS port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
 **Key**: https_port
 **Type**: *string*
-**Default**: 443
+**Default**: A default value isn't set.
 **Set using**: `UseSetting`
 **Environment variable**: `ASPNETCORE_HTTPS_PORT`
 
