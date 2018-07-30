@@ -56,21 +56,26 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 ## Add support for Entity Framework Core
 
 :::moniker range="<= aspnetcore-2.0"
+
 Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package reference to the *TodoApi.csproj* file:
 
 [!code-xml[](first-web-api/samples/2.0/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
+
 :::moniker-end
+
 :::moniker range=">= aspnetcore-2.1"
+
 Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) package reference to the *TodoApi.csproj* file:
 
 [!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
-:::moniker-end
 
-Install the `Microsoft.EntityFrameworkCore` package by adding the following to the csproj as a sibling to the `Microsoft.AspNetCore.App` package reference.
+Add a package reference for [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/) to the project file:
 
 ``` xml
- <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />  
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />  
 ```
+
+:::moniker-end
 
 There's no need to install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.
 
