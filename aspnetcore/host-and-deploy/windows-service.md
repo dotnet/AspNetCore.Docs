@@ -76,7 +76,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker-end
 
-1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles).
+1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles). When using a Visual Studio, select the **FolderProfile**.
 
    To publish the sample app from the command line, run the following command in a console window from the project folder:
 
@@ -90,16 +90,19 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"
    ```
 
-   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example, the service is:
+   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example:
 
-   * Named **MyService**.
-   * Published to the *c:\\my_services\\AspNetCoreService\\bin\\Release\\&lt;TARGET_FRAMEWORK&gt;\\publish* folder.
-   * Represented by an app executable named *AspNetCoreService.exe*.
+   * The project resides in the `c:\my_services\AspNetCoreService` folder.
+   * The project is published in `Release` configuration.
+   * The Target Framework Moniker (TFM) is `netcoreapp2.1`.
+   * The Runtime Identifer (RID) is `win7-x64`.
+   * The app executable is named *AspNetCoreService.exe*.
+   * The service is named **MyService**.
 
-   Open a command shell with administrative privileges and run the following command:
+   Example:
 
    ```console
-   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\<TARGET_FRAMEWORK>\publish\AspNetCoreService.exe"
+   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\netcoreapp2.1\win7-x64\publish\AspNetCoreService.exe"
    ```
    
    > [!IMPORTANT]
@@ -107,7 +110,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    
    To publish and start the service from a different folder:
    
-   1. Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command.
+      1. Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command. If using Visual Studio, configure the **Target Location** in the **FolderProfile** publish property page before selecting the **Publish** button.
    1. Create the service with the `sc.exe` command using the output folder path. Include the name of the service's executable in the path provided to `binPath`.
 
 1. Start the service with the `sc start <SERVICE_NAME>` command.

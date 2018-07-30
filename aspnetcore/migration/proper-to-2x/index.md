@@ -130,7 +130,7 @@ Because Dependency Injection is part of ASP.NET Core, you can add your service i
 The repository can be injected anywhere, as was true with Unity.
 
 > [!NOTE]
-> For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
+> For more information on dependency injection, see [Dependency injection](xref:fundamentals/dependency-injection).
 
 ## Serve static files
 
