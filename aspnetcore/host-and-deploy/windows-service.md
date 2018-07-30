@@ -248,6 +248,9 @@ var host = WebHost.CreateDefaultBuilder(args)
             });
         });
     })
+    .UseContentRoot(pathToContentRoot)
+    .UseStartup<Startup>()
+    .Build();
 ```
 
 ## Additional resources
