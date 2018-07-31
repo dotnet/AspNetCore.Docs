@@ -222,13 +222,13 @@ Services that interact with requests from the Internet or a corporate network an
 
 ## Configure HTTPS
 
-A Windows Service runs under the [LocalSystem](/windows/desktop/services/localsystem-account) account. Specify an HTTPS port and [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) in a [Kestrel server endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration). 
+Specify an HTTPS port and [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) in a [Kestrel server endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 The following example creates an HTTPS endpoint with a certificate provided by [CertificateLoader.LoadFromStoreCert](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.internal.certificateloader.loadfromstorecert). The endpoint configuration:
 
 * Sets the port to 5001.
 * Uses the [local development certificate (localhost)](xref:aspnetcore-2.1#on-by-default).
-* Loads the certificate from the [StoreLocation.LocalMachine](/dotnet/api/system.security.cryptography.x509certificates.storelocation) certificate store, which is accessible by the LocalSystem account.
+* Loads the certificate from the [StoreLocation.LocalMachine](/dotnet/api/system.security.cryptography.x509certificates.storelocation) certificate store. A Windows Service runs under the [LocalSystem](/windows/desktop/services/localsystem-account) account, which requires loading the certificate from the `LocalMachine` store.
 
 ```csharp
 var host = WebHost.CreateDefaultBuilder(args)
