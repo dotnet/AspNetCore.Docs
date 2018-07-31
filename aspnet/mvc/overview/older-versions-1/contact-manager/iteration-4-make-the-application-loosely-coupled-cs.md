@@ -15,7 +15,7 @@ by [Microsoft](https://github.com/microsoft)
 
 [Download Code](iteration-4-make-the-application-loosely-coupled-cs/_static/contactmanager_4_cs1.zip)
 
-> In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For example, we refactor our application to use the Repository pattern and the Dependency Injection pattern.
+> In this fourth iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For example, we refactor our application to use the Repository pattern and the Dependency Injection pattern.
 
 
 ## Building a Contact Management ASP.NET MVC Application (C#)
