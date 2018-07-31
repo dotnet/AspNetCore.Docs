@@ -222,9 +222,7 @@ Services that interact with requests from the Internet or a corporate network an
 
 ## Configure HTTPS
 
-Specify an HTTPS endpoint with an [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) in a [Kestrel server endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
-
-The following example specifies an HTTPS port with a certificate provided by [CertificateLoader.LoadFromStoreCert](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.internal.certificateloader.loadfromstorecert). The endpoint configuration:
+Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration). The following example specifies an HTTPS port with an [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) provided by [CertificateLoader.LoadFromStoreCert](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.internal.certificateloader.loadfromstorecert). The endpoint configuration:
 
 * Sets the port to 5001.
 * Uses the [local development certificate (localhost)](xref:aspnetcore-2.1#on-by-default).
