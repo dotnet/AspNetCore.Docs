@@ -2,7 +2,7 @@
 uid: mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-cs
 title: "Iteration #4 – Make the application loosely coupled (C#) | Microsoft Docs"
 author: microsoft
-description: "In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For..."
+description: "In this fourth iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For..."
 ms.author: aspnetcontent
 ms.date: 02/20/2009
 ms.assetid: 829f589f-e201-4f6e-9ae6-08ae84322065
