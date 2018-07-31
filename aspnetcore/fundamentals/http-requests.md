@@ -66,7 +66,7 @@ In the preceding code, the request doesn't need to specify a hostname. It can pa
 
 ### Typed clients
 
-Typed clients provide the same features as named clients without the need to use strings as keys. The typed client approach provides IntelliSense and compiler help when consuming clients. They provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint. Another advantage is that they work with DI and can be injected where required in your app.
+Typed clients provide the same capabilities as named clients without the need to use strings as keys. The typed client approach provides IntelliSense and compiler help when consuming clients. They provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint. Another advantage is that they work with DI and can be injected where required in your app.
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
@@ -179,7 +179,7 @@ After restoring this package, extension methods are available to support adding 
 
 ### Handle transient faults
 
-The most common faults you may expect to occur when making external HTTP calls are transient. A convenient extension method called `AddTransientHttpErrorPolicy` is included which allows a policy to be defined to handle transient errors. Policies configured with this extension method handle `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
+Most common faults occur when external HTTP calls are transient. A convenient extension method called `AddTransientHttpErrorPolicy` is included which allows a policy to be defined to handle transient errors. Policies configured with this extension method handle `HttpRequestException`, HTTP 5xx responses, and HTTP 408 responses.
 
 The `AddTransientHttpErrorPolicy` extension can be used within `Startup.ConfigureServices`. The extension provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
@@ -209,7 +209,7 @@ An approach to managing regularly used policies is to define them once and regis
 
 [!code-csharp[Main](http-requests/samples/Startup.cs?name=snippet10)]
 
-In the preceding code, a `PolicyRegistry` is added to the `ServiceCollection` and two policies are registered with it. To use a policy from the registry, the `AddPolicyHandlerFromRegistry` method is used, passing the name of the policy to apply.
+In the preceding code, two policies are registered when the `PolicyRegistry` is added to the `ServiceCollection`. To use a policy from the registry, the `AddPolicyHandlerFromRegistry` method is used, passing the name of the policy to apply.
 
 Further information about `IHttpClientFactory` and Polly integrations can be found on the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
