@@ -442,7 +442,7 @@ The following code enables scopes for the console provider:
 > [!NOTE]
 > Configuring the `IncludeScopes` console logger option is required to enable scope-based logging.
 >
-> For information on configuration, see the [Configuration](#Configuration) section.
+> For information on configuration, see the [Configuration](#configuration) section.
 
 ::: moniker-end
 
