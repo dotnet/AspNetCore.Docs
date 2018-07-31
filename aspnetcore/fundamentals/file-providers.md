@@ -199,7 +199,7 @@ The [CompositeFileProvider](/dotnet/api/microsoft.extensions.fileproviders.compo
 
 ::: moniker range=">= aspnetcore-2.0"
 
-In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` that's registered in the app's service container:
+In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container:
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/Startup.cs?name=snippet1)]
 
@@ -207,7 +207,7 @@ In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider`
 
 ::: moniker range="< aspnetcore-2.0"
 
-In the sample app, a `PhysicalFileProvider` and an `EmbeddedFileProvider` provide files to a `CompositeFileProvider` that's registered in the app's service container:
+In the sample app, a `PhysicalFileProvider` and an `EmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container:
 
 [!code-csharp[](file-providers/samples/1.x/FileProviderSample/Startup.cs?name=snippet1)]
 
