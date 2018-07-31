@@ -29,8 +29,10 @@ namespace FileProviderSample
 
             #region snippet1
             var physicalProvider = _env.ContentRootFileProvider;
-            var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
-            var compositeProvider = new CompositeFileProvider(physicalProvider, embeddedProvider);
+            var manifestEmbeddedProvider = 
+                new ManifestEmbeddedFileProvider(Assembly.GetEntryAssembly());
+            var compositeProvider = 
+                new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
 
             services.AddSingleton<IFileProvider>(compositeProvider);
             #endregion

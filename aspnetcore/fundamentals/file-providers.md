@@ -3,7 +3,7 @@ title: File providers in ASP.NET Core
 author: guardrex
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 ms.author: riande
-ms.date: 07/23/2018
+ms.date: 07/31/2018
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -37,17 +37,31 @@ The primary interface is [IFileProvider](/dotnet/api/microsoft.extensions.filepr
 
 You can read from the file using the [IFileInfo.CreateReadStream](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo.createreadstream) method.
 
-The sample app shows how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
 
 ## File Provider implementations
 
 Three implementations of `IFileProvider` are available.
+
+::: moniker range=">= aspnetcore-2.0"
+
+| Implementation | Description |
+| -------------- | ----------- |
+| [PhysicalFileProvider](#physicalfileprovider) | The physical provider is used to access the system's physical files. |
+| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | The manifest embedded provider is used to access files embedded in assemblies. |
+| [CompositeFileProvider](#compositefileprovider) | The composite provider is used to provide combined access to files and directories from one or more other providers. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 | Implementation | Description |
 | -------------- | ----------- |
 | [PhysicalFileProvider](#physicalfileprovider) | The physical provider is used to access the system's physical files. |
 | [EmbeddedFileProvider](#embeddedfileprovider) | The embedded provider is used to access files embedded in assemblies. |
 | [CompositeFileProvider](#compositefileprovider) | The composite provider is used to provide combined access to files and directories from one or more other providers. |
+
+::: moniker-end
 
 ### PhysicalFileProvider
 
@@ -113,13 +127,53 @@ The `IDirectoryContents` are iterated in the view.
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.0"
+
+### ManifestEmbeddedFileProvider
+
+The [ManifestEmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider) is used to access files embedded within assemblies. The `ManifestEmbeddedFileProvider` uses a manifest compiled into the assembly to reconstruct the original paths of the embedded files.
+
+> [!NOTE]
+> The `ManifestEmbeddedFileProvider` is available in ASP.NET Core 2.1 or later. To access files embedded in assemblies in ASP.NET Core 2.0 or earlier, see the [ASP.NET Core 1.x version of this topic](xref:fundamentals/file-providers?view=aspnetcore-1.1).
+
+To generate a manifest of the embedded files, set the **&lt;GenerateEmbeddedFilesManifest&gt;** property to `true`. Specify the files to embed with [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
+
+[!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
+
+Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
+
+The sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
+
+*Startup.cs*:
+
+```csharp
+var manifestEmbeddedProvider = 
+    new ManifestEmbeddedFileProvider(Assembly.GetEntryAssembly());
+```
+
+Additional overloads allow you to:
+
+* Specify a relative file path.
+* Scope files to a last modified date.
+* Name the embedded resource containing the embedded file manifest.
+
+| Overload | Description |
+| -------- | ----------- |
+| [ManifestEmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_) | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided path. |
+| [ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path parameter and a `lastModified` date ([DateTimeOffset](/dotnet/api/system.datetimeoffset)) parameter. The `lastModified` date scopes the last modification date for the [IFileInfo](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo) instances returned by the [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider). |
+| [ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
 ### EmbeddedFileProvider
 
-The [EmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider) is used to access files embedded within assemblies. In .NET Core, files are embedded into an assembly with the [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects) element in the project file:
+The [EmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider) is used to access files embedded within assemblies. Specify the files to embed with the [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects) property in the project file:
 
 ```xml
 <ItemGroup>
-  <EmbeddedResource Include="Resource.txt" CopyToOutputDirectory="PreserveNewest" />
+  <EmbeddedResource Include="Resource.txt" />
 </ItemGroup>
 ```
 
@@ -135,21 +189,25 @@ var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
 
 Embedded resources don't expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators. In the sample app, the `baseNamespace` is `FileProviderSample.`.
 
-The [EmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_EmbeddedFileProvider__ctor_System_Reflection_Assembly_) constructor accepts an optional `baseNamespace` parameter. Specifying the base namespace scopes calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided namespace.
+The [EmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_EmbeddedFileProvider__ctor_System_Reflection_Assembly_) constructor accepts an optional `baseNamespace` parameter. Specify the base namespace to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided namespace.
+
+::: moniker-end
 
 ### CompositeFileProvider
 
 The [CompositeFileProvider](/dotnet/api/microsoft.extensions.fileproviders.compositefileprovider) combines `IFileProvider` instances, exposing a single interface for working with files from multiple providers. When creating the `CompositeFileProvider`, pass one or more `IFileProvider` instances to its constructor.
 
-In the sample app, a `PhysicalFileProvider` and an `EmbeddedFileProvider` provide files to a `CompositeFileProvider` that's registered in the app's service container:
-
 ::: moniker range=">= aspnetcore-2.0"
+
+In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` that's registered in the app's service container:
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/Startup.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
+
+In the sample app, a `PhysicalFileProvider` and an `EmbeddedFileProvider` provide files to a `CompositeFileProvider` that's registered in the app's service container:
 
 [!code-csharp[](file-providers/samples/1.x/FileProviderSample/Startup.cs?name=snippet1)]
 
