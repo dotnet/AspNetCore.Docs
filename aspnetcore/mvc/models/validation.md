@@ -202,11 +202,11 @@ Attributes that implement this interface can add HTML attributes to generated fi
     id="ReleaseDate" name="ReleaseDate" value="" />
 ```
 
-Unobtrusive validation uses the data in the `data-` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's `validator` object. This is shown in the following example, which adds a custom `classicmovie` client validation method to the jQuery `validator` object. An explanation of the `unobtrusive.adapters.add` method can be found [here](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html).
+Unobtrusive validation uses the data in the `data-` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's `validator` object. This is shown in the following example, which adds a custom `classicmovie` client validation method to the jQuery `validator` object. For an explanation of the `unobtrusive.adapters.add` method, see [Unobtrusive Client Validation in ASP.NET MVC](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html).
 
 [!code-javascript[](validation/sample/Views/Movies/Create.cshtml?name=snippet_UnobtrusiveValidation)]
 
-Now jQuery has the information to execute the custom JavaScript validation and the error message to display if the validation code returns false.
+With the preceding code, the `classicmovie` method performs client-side validation on the movie release date. The error message displays if the method returns `false`.
 
 ## Remote validation
 
@@ -216,11 +216,14 @@ You can implement remote validation in a two step process. First, you must annot
 
 [!code-csharp[](validation/sample/User.cs?range=7-8)]
 
-The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. According to the jQuery Validate [`remote()`](https://jqueryvalidation.org/remote-method/) method documentation:
+The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. According to the jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method documentation, the server response must be a JSON string that's either:
 
-> The server response must be a JSON string that must be `"true"` for valid elements, and can be `"false"`, `undefined`, or `null` for invalid elements, using the default error message. If the server response is a string, eg. `"That name is already taken, try peter123 instead"`, this string will be displayed as a custom error message in place of the default.
+* `"true"` for valid elements.
+* `"false"`, `undefined`, or `null` for invalid elements, using the default error message.
 
-The definition of the `VerifyEmail()` method follows these rules, as shown below. It returns a validation error message if the email is taken, or `true` if the email is free, and wraps the result in a `JsonResult` object. The client side can then use the returned value to proceed or display the error if needed.
+If the server response is a string (for example, `"That name is already taken, try peter123 instead"`), the string is displayed as a custom error message in place of the default string.
+
+The definition of the `VerifyEmail` method follows these rules, as shown below. It returns a validation error message if the email is taken, or `true` if the email is free, and wraps the result in a `JsonResult` object. The client side can then use the returned value to proceed or display the error if needed.
 
 [!code-csharp[](validation/sample/UsersController.cs?range=19-28)]
 
