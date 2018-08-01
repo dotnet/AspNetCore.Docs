@@ -186,6 +186,12 @@ Background tasks are implemented as *hosted services*. A hosted service is a cla
 
 For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
+## Access HttpContext
+
+Access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
+
+For more information, see <xref:fundamentals/httpcontext>.
+
 ## Open Web Interface for .NET (OWIN)
 
 ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers.

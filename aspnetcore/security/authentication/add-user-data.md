@@ -51,12 +51,12 @@ dotnet new webapp -o WebApp1
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, the following options:
-  * Select your existing layout  file  *~/Pages/Shared/_Layout.cshtml*
+  * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
-  * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if you named the project **WebApp1**).
-  * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if you named the project **WebApp1**) > **Add**.
+  * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
+  * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **ADD**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -102,7 +102,7 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named your project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
 
 [!code-csharp[Main](add-user-data/sample/Areas/Identity/Data/WebApp1User.cs)]
 

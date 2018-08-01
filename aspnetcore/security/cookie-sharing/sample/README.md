@@ -4,9 +4,9 @@ The sample illustrates cookie sharing across three apps that use cookie authenti
 
 | Project                             | Description |
 | ----------------------------------- | ----------- |
-| CookieAuth.Core                     | ASP.NET Core 2.0 Razor Pages app without using ASP.NET Core Identity |
-| CookieAuthWithIdentity.Core         | ASP.NET Core 2.0 MVC app with ASP.NET Core Identity |
-| CookieAuthWithIdentity.NETFramework | ASP.NET Framework 4.6.1 MVC app with ASP.NET Identity |
+| CookieAuth.Core                     | ASP.NET Core Razor Pages app without using ASP.NET Core Identity |
+| CookieAuthWithIdentity.Core         | ASP.NET Core MVC app with ASP.NET Core Identity |
+| CookieAuthWithIdentity.NETFramework | ASP.NET Framework MVC app with ASP.NET Identity |
 
 Instructions:
 
