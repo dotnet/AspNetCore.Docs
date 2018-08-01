@@ -1,3 +1,4 @@
+#region snippet_Startup
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -64,3 +65,4 @@ namespace SignalRChat
         }
     }
 }
+#endregion
