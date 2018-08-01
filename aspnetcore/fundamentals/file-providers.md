@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/31/2018
+ms.date: 08/01/2018
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -137,7 +137,7 @@ The [ManifestEmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileprovider
 > [!NOTE]
 > The `ManifestEmbeddedFileProvider` is available in ASP.NET Core 2.1 or later. To access files embedded in assemblies in ASP.NET Core 2.0 or earlier, see the [ASP.NET Core 1.x version of this topic](xref:fundamentals/file-providers?view=aspnetcore-1.1).
 
-To generate a manifest of the embedded files, set the **&lt;GenerateEmbeddedFilesManifest&gt;** property to `true`. Specify the files to embed with [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
+To generate a manifest of the embedded files, set the `<GenerateEmbeddedFilesManifest>` property to `true`. Specify the files to embed with [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
 
