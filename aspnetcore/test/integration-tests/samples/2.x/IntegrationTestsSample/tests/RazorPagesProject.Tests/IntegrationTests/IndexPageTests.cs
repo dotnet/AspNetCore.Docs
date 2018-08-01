@@ -5,10 +5,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AngleSharp.Dom.Html;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit;
 using RazorPagesProject.Data;
+using RazorPagesProject.Services;
 using RazorPagesProject.Tests.Helpers;
 
 namespace RazorPagesProject.Tests
@@ -186,5 +188,44 @@ namespace RazorPagesProject.Tests
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.Equal("/", response.Headers.Location.OriginalString);
         }
+
+        #region snippet4
+        // Quote ©1975 BBC: The Doctor (Tom Baker); Pyramids of Mars
+        // https://www.bbc.co.uk/programmes/p00pys55
+        public class TestQuoteService : IQuoteService
+        {
+            public Task<string> GenerateQuote()
+            {
+                return Task.FromResult<string>(
+                    "Something's interfering with time, Mr. Scarman, " +
+                    "and time is my business.");
+            }
+        }
+        #endregion
+
+        #region snippet5
+        [Fact]
+        public async Task Get_QuoteService_ProvidesQuoteInPage()
+        {
+            // Arrange
+            var client = _factory.WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureTestServices(services =>
+                    {
+                        services.AddScoped<IQuoteService, TestQuoteService>();
+                    });
+                })
+                .CreateClient();
+
+            //Act
+            var defaultPage = await client.GetAsync("/");
+            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+            var quoteElement = content.QuerySelector("#quote");
+
+            // Assert
+            Assert.Equal("Something's interfering with time, Mr. Scarman, " +
+                "and time is my business.", quoteElement.Attributes["value"].Value);
+        }
+        #endregion
     }
 }
