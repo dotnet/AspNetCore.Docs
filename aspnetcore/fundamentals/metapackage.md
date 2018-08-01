@@ -1,5 +1,5 @@
 ---
-title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0 and later
+title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage includes all supported ASP.NET Core and Entity Framework Core packages, along with their dependencies.
 monikerRange: '>= aspnetcore-2.0'
@@ -18,8 +18,8 @@ This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
 * All supported packages by the ASP.NET Core team.
-* All supported packages by the Entity Framework Core. 
-* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core. 
+* All supported packages by the Entity Framework Core.
+* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the `Microsoft.AspNetCore.All` package. The default project templates targeting ASP.NET Core 2.0 use this package.
 

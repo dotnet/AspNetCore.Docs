@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebApiSample.DataAccess.Models;
 
 namespace WebApiSample.DataAccess.Repositories
@@ -44,16 +45,14 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public List<Pet> GetPets()
+        public async Task<List<Pet>> GetPetsAsync()
         {
-            return _context.Pets.ToList();
+            return await _context.Pets.ToListAsync();
         }
 
-        public bool TryGetPet(int id, out Pet pet)
+        public async Task<Pet> GetPetAsync(int id)
         {
-            pet = _context.Pets.Find(id);
-
-            return (pet != null);
+            return await _context.Pets.FindAsync(id);
         }
 
         public async Task<int> AddPetAsync(Pet pet)

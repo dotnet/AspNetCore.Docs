@@ -18,7 +18,7 @@ To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core 
 
 ## Set up
 
-* Open a [free Azure account](https://aka.ms/K5y5yh) if you don't have one. 
+* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one. 
 
 ## Create a web app
 

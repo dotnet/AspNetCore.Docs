@@ -158,7 +158,7 @@ In this tutorial, you will change look and feel of the Wingtip Toys application 
 3. Rename the *bootstrap.min.css* to *bootstrap-original.min.css*.
 4. In **Solution Explorer**, right-click the *Content* folder and select **Open Folder in File Explorer**.  
    The File Explorer will be displayed. You will save a downloaded bootstrap CSS files to this location.
-5. In your browser, go to [http://Bootswatch.com](http://bootswatch.com/).
+5. In your browser, go to [https://bootswatch.com/3/](https://bootswatch.com/3/).
 6. Scroll the browser window until you see the Cerulean theme. 
 
     ![UI and Navigation - Cerulean Theme](ui_and_navigation/_static/image5.png)

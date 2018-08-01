@@ -78,12 +78,15 @@ The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosti
 **Key**: applicationName  
 **Type**: *string*  
 **Default**: The name of the assembly containing the app's entry point.  
-**Set using**: `UseSetting`  
+**Set using**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
 **Environment variable**: `<PREFIX_>APPLICATIONKEY` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
 
 ```csharp
-WebHost.CreateDefaultBuilder(args)
-    .UseSetting(WebHostDefaults.ApplicationKey, "CustomApplicationName")
+var host = new HostBuilder()
+    .ConfigureAppConfiguration((hostContext, configApp) =>
+    {
+        hostContext.HostingEnvironment.ApplicationName = "CustomApplicationName";
+    })
 ```
 
 #### Content Root

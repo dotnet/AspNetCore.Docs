@@ -318,6 +318,25 @@ WebHost.CreateDefaultBuilder(args)
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.1"
+
+### HTTPS Port
+
+Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+
+**Key**: https_port
+**Type**: *string*
+**Default**: A default value isn't set.
+**Set using**: `UseSetting`
+**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("https_port", "8080")
+```
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.0"
 
 ### Prefer Hosting URLs

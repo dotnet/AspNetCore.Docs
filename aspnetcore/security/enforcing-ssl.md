@@ -32,6 +32,11 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=13)]
 
+The preceding highlighted code:
+
+* Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`). Production apps should call [UseHsts](#hsts).
+* Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (443).
+
 The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
@@ -53,11 +58,18 @@ The following mechanisms set the port automatically:
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
 
-The port can be configured by setting the:
+The port can be configured by setting the [https_port Web Host configuration setting](xref:fundamentals/host/web-host#https-port):
 
-* `ASPNETCORE_HTTPS_PORT` environment variable.
-* `http_port` host configuration key (for example, via *hostsettings.json* or a command line argument).
-* [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport). See the preceding example that shows how to set the port to 5001.
+**Key**: https_port
+**Type**: *string*
+**Default**: A default value isn't set.
+**Set using**: `UseSetting`
+**Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the Web Host.)
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("https_port", "8080")
+```
 
 > [!NOTE]
 > The port can be configured indirectly by setting the URL with the `ASPNETCORE_URLS` environment variable. The environment variable configures the server, and then the middleware indirectly discovers the HTTPS port via `IServerAddressesFeature`.
@@ -78,7 +90,7 @@ If no port is set:
 
 The [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) is used to require HTTPS. `[RequireHttpsAttribute]` can decorate controllers or methods, or can be applied globally. To apply the attribute globally, add the following code to `ConfigureServices` in `Startup`:
 
-[!code-csharp[](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-999)]
+[!code-csharp[](~/security/authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-999)]
 
 The preceding highlighted code requires all requests use `HTTPS`; therefore, HTTP requests are ignored. The following highlighted code redirects all HTTP requests to HTTPS:
 
