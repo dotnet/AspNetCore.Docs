@@ -118,9 +118,9 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
    This change adds SignalR to the [middleware](xref:fundamentals/middleware/index) pipeline.
 
-1. The highlighted lines shows these changes in the context of `Startup` class code. The parts that aren't highlighted may differ from your `Startup` class.
+1. The highlighted lines show these changes in the context of `Startup` class code. The parts that aren't highlighted may differ from your `Startup` class.
 
-   [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=6,37,57-60)]
+   [!code-csharp[Startup](signalr/sample/Startup.cs?name=snippet_Startup&highlight=6,37,57-60)]
 
 ## Create the SignalR client code
 
