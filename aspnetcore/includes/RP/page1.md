@@ -25,8 +25,7 @@ When a request is made for the page, the `OnGetAsync` method returns a list of m
 
 When `OnGet` returns `void` or `OnGetAsync` returns`Task`, no return method is used. When the return type is `IActionResult` or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
 
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie21/Pages/Movies/Create.cshtml.cs?name=snippet)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
 Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
