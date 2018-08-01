@@ -235,7 +235,7 @@ In the sample app, the *WatchConsole* console app is configured to display a mes
 
 ::: moniker-end
 
-Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLINGFILEWATCHER` environment variable to `1` or `true` to poll the file system for changes every four seconds.
+Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLING_FILE_WATCHER` environment variable to `1` or `true` to poll the file system for changes every four seconds (not configurable).
 
 ## Glob patterns
 
