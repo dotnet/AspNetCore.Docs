@@ -83,7 +83,7 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 Here is an example of a CSRF attack:
 
-1. A user logs into www.example.com, using forms authentication.
+1. A user logs into `www.example.com`, using forms authentication.
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 

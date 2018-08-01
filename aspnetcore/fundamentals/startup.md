@@ -28,10 +28,13 @@ Specify the `Startup` class with the [WebHostBuilderExtensions](/dotnet/api/Micr
 
 [!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=10)]
 
-The `Startup` class constructor accepts dependencies defined by the host. A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
+The web host provides some services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the app.
+
+A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
 * [IHostingEnvironment](/dotnet/api/Microsoft.AspNetCore.Hosting.IHostingEnvironment) to configure services by environment.
-* [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) to configure the app during startup.
+* [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) to read configuration.
+* [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory) to create a logger in `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/snapshot_sample/Startup2.cs)]
 
@@ -59,7 +62,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 
 <a name="setcompatibilityversion"></a>
 
-### SetCompatibilityVersion for ASP.NET Core MVC 
+### SetCompatibilityVersion for ASP.NET Core MVC
 
 The `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET MVC Core 2.1+. These potentially breaking behavior changes are generally in how the MVC subsystem behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long-term behavior of ASP.NET Core.
 
@@ -67,14 +70,14 @@ The following code sets the compatibility mode to ASP.NET Core 2.1:
 
 [!code-csharp[Main](startup/sampleCompatibility/Startup.cs?name=snippet1)]
 
-We recommend you test your application using the latest version (`CompatibilityVersion.Version_2_1`). We anticipate that most applications will not have breaking behavior changes using the latest version. 
+We recommend you test your app using the latest version (`CompatibilityVersion.Version_2_1`). We anticipate that most apps won't have breaking behavior changes using the latest version.
 
-Applications that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1 MVC and later 2.x versions. This protection:
+Apps that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1 MVC and later 2.x versions. This protection:
 
 * Does not apply to all 2.1 and later changes, it's targeted to potentially breaking ASP.NET Core runtime behavior changes in the MVC subsystem.
 * Does not extend to the next major version.
 
-The default compatibility for ASP.NET Core 2.1 and later 2.x applications that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
+The default compatibility for ASP.NET Core 2.1 and later 2.x apps that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
 
 The following code sets the compatibility mode to ASP.NET Core 2.1, except for the following behaviors:
 
@@ -90,13 +93,9 @@ For apps that encounter breaking behavior changes, using the appropriate compati
 
 The [MvcOptions](https://github.com/aspnet/Mvc/blob/master/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs) class source comments have a good explanation of what changed and why the changes are an improvement for most users.
 
-At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Old behaviors supported by compatibility switches will be removed in the 3.0 version. We feel these are positive changes benefitting nearly all users. By introducing these changes now, most apps can benefit now, and the others will have time to update their applications.
+At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Old behaviors supported by compatibility switches will be removed in the 3.0 version. We feel these are positive changes benefitting nearly all users. By introducing these changes now, most apps can benefit now, and the others will have time to update their apps.
 
 ::: moniker-end
-
-## Services available in Startup
-
-The web host provides some services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the application.
 
 ## The Configure method
 
@@ -155,9 +154,9 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 
 ## Additional resources
 
-* [Hosting](xref:fundamentals/host/index)
-* [Use multiple environments](xref:fundamentals/environments)
-* [Middleware](xref:fundamentals/middleware/index)
-* [Logging](xref:fundamentals/logging/index)
-* [Configuration](xref:fundamentals/configuration/index)
+* <xref:fundamentals/host/index>
+* <xref:fundamentals/environments>
+* <xref:fundamentals/middleware/index>
+* <xref:fundamentals/logging/index>
+* <xref:fundamentals/configuration/index>
 * [StartupLoader class: FindStartupType method (reference source)](https://github.com/aspnet/Hosting/blob/rel/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs#L66-L116)

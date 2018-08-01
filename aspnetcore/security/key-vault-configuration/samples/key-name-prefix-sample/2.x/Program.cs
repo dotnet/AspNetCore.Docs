@@ -1,4 +1,3 @@
-using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -27,17 +26,11 @@ namespace KeyVaultConfigProviderSample
 
                     var builtConfig = config.Build();
 
-                    var keyVaultConfigBuilder = new ConfigurationBuilder();
-
-                    keyVaultConfigBuilder.AddAzureKeyVault(
+                    config.AddAzureKeyVault(
                         $"https://{builtConfig["Vault"]}.vault.azure.net/",
                         builtConfig["ClientId"],
                         builtConfig["ClientSecret"],
                         new PrefixKeyVaultSecretManager(versionPrefix));
-
-                    var keyVaultConfig = keyVaultConfigBuilder.Build();
-
-                    config.AddConfiguration(keyVaultConfig);
                 })
                 .UseStartup<Startup>();
         #endregion

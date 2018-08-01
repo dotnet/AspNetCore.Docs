@@ -47,11 +47,15 @@ namespace RazorPagesProject
                 });
             #endregion
 
-                services.AddHttpClient<IGithubClient, GithubClient>(client =>
-                {
-                    client.BaseAddress = new Uri("https://api.github.com");
-                    client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Yolo", "0.1.0"));
-                });
+            services.AddHttpClient<IGithubClient, GithubClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.github.com");
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Yolo", "0.1.0"));
+            });
+
+            #region snippet2
+            services.AddScoped<IQuoteService, QuoteService>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

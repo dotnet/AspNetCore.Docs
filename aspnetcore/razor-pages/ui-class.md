@@ -27,6 +27,10 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
+A Razor Class Library has the following project file:
+
+[!code-xml[Main](ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
+
 # [.NET Core CLI](#tab/netcore-cli)
 
 From the commandline, run `dotnet new razorclasslib`. For example:

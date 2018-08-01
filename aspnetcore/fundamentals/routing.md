@@ -3,7 +3,7 @@ title: Routing in ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core routing functionality is responsible for mapping an incoming request to a route handler.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 07/25/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -68,7 +68,7 @@ Tip: Think of `Values` as being a set of overrides for the `AmbientValues`. URL 
 
 The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL and some additional properties that should be set by the route.
 
-The `VirtualPathData.VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
+The `VirtualPathData.VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs, you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
 
 The `VirtualPathData.Router` is a reference to the route that successfully generated the URL.
 
@@ -104,7 +104,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{id:int}");
 ```
 
-This template will match a URL path like `/Products/Details/17`, but not `/Products/Details/Apples`. The route parameter definition `{id:int}` defines a *route constraint* for the `id` route parameter. Route constraints implement `IRouteConstraint` and inspect route values to verify them. In this example the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for a more detailed explanation of route constraints that are provided by the framework.
+This template will match a URL path like `/Products/Details/17`, but not `/Products/Details/Apples`. The route parameter definition `{id:int}` defines a *route constraint* for the `id` route parameter. Route constraints implement `IRouteConstraint` and inspect route values to verify them. In this example, the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for a more detailed explanation of route constraints that are provided by the framework.
 
 Additional overloads of `MapRoute` accept values for `constraints`, `dataTokens`, and `defaults`. These additional parameters of `MapRoute` are defined as type `object`. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
 
@@ -318,26 +318,33 @@ The following table demonstrates some route constraints and their expected behav
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
 | `required`  | `{name:required}` | `Rick` |  Used to enforce that a non-parameter value is present during URL generation |
 
+Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
+
+```csharp
+[Route("users/{id:int:min(1)}")]
+public User GetUserById(int id) { }
+```
+
 >[!WARNING]
 > Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
-## Regular expressions 
+## Regular expressions
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](/dotnet/api/system.text.regularexpressions.regexoptions) for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/string). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
 
 | Expression               | Note |
-| ----------------- | ------------ | 
+| ----------------- | ------------ |
 | `^\d{3}-\d{2}-\d{4}$` | Regular expression |
 | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  |
 | `^[a-z]{2}$` | Regular expression |
 | `^[[a-z]]{{2}}$` | Escaped  |
 
-Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
+Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any substring within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
 
 | Expression               | String | Match | Comment |
-| ----------------- | ------------ |  ------------ |  ------------ | 
+| ----------------- | ------------ |  ------------ |  ------------ |
 | `[a-z]{2}` | hello | yes | substring matches |
 | `[a-z]{2}` | 123abc456 | yes | substring matches |
 | `[a-z]{2}` | mz | yes | matches expression |

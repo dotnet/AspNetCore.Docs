@@ -64,14 +64,19 @@ To display the name of the assigned department in a list of courses:
 <a name="scaffold"></a>
 ### Scaffold the Course model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
+
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+ Run the following command:
 
   ```console
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
+
+------
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
@@ -145,25 +150,26 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 ### Scaffold the Instructor model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
+
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+ Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
-The preceding command scaffolds the `Instructor` model. Open the project in Visual Studio.
+------
 
-Build the project. The build generates errors.
-
-Globally change `_context.Instructor` to `_context.Instructors` (that is, add an "s" to `Instructor`). 7 occurrences are found and updated.
-
+The preceding command scaffolds the `Instructor` model. 
 Run the app and navigate to the instructors page.
 
 Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,20-99)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,18-99)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
@@ -293,7 +299,7 @@ Refresh the page and select an instructor. Select a course to see the list of en
 
 The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21,28-29)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21-22,30-31)]
 
 The preceding `Single` approach provides no benefits over using `Where`. Some developers prefer the `Single` approach style.
 
