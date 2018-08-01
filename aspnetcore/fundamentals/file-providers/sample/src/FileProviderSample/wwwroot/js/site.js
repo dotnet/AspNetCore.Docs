@@ -1,2 +1,0 @@
-﻿// Write your Javascript code.
-   
