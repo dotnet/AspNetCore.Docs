@@ -54,10 +54,12 @@ namespace SignalRChat
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseCors("CorsPolicy");
+#region snippet_Routes
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chatHub");
             });
+#endregion
             app.UseMvc();
         }
     }
