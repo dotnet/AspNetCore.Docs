@@ -10,30 +10,6 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Consume hosting startup from a NuGet package</h3>
-            </div>
-            <div class="panel-body">
-                <h4>Add configuration</h4>
-                <p>
-                    When an <code>IHostingStartup</code> enhancement is available from an existing NuGet package, the types provided by the package can be made available by referencing the package and adding the hosting startup assembly name to the <code>ASPNETCORE_HOSTINGSTARTUPASSEMBLIES</code> environment variable.
-                </p>
-                <p>
-                    The hosting startup of the NuGet package adds an in-memory configuration provider to the app that specifies values for the service keys shown below.
-                </p>
-                <h4>Service Keys</h4>
-                <ul>
-                    <li><b>Development Service Key from Package</b>: @Model.ServiceKey_Development_Package</li>
-                    <li><b>Production Service Key from Package</b>: @Model.ServiceKey_Production_Package</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
                 <h3 class="panel-title">Consume hosting startup from a bin-deployed library</h3>
             </div>
             <div class="panel-body">
@@ -48,6 +24,30 @@
                 <ul>
                     <li><b>Development Service Key from Library</b>: @Model.ServiceKey_Development_Library</li>
                     <li><b>Production Service Key from Library</b>: @Model.ServiceKey_Production_Library</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Consume hosting startup from a NuGet package</h3>
+            </div>
+            <div class="panel-body">
+                <h4>Add configuration</h4>
+                <p>
+                    When an <code>IHostingStartup</code> enhancement is available from an existing NuGet package, the types provided by the package can be made available by referencing the package and adding the hosting startup assembly name to the <code>ASPNETCORE_HOSTINGSTARTUPASSEMBLIES</code> environment variable.
+                </p>
+                <p>
+                    The hosting startup of the NuGet package adds an in-memory configuration provider to the app that specifies values for the service keys shown below.
+                </p>
+                <h4>Service Keys</h4>
+                <ul>
+                    <li><b>Development Service Key from Package</b>: @Model.ServiceKey_Development_Package</li>
+                    <li><b>Production Service Key from Package</b>: @Model.ServiceKey_Production_Package</li>
                 </ul>
             </div>
         </div>
