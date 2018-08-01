@@ -131,7 +131,7 @@
 ## [Logging](xref:fundamentals/logging/index)
 ### [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Handle errors](fundamentals/error-handling.md)
-## [File providers](fundamentals/file-providers.md)
+## [File Providers](fundamentals/file-providers.md)
 ## [Host](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)

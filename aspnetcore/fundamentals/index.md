@@ -134,7 +134,7 @@ ASP.NET Core offers features for routing of app requests to route handlers.
 
 For more information, see [Routing](xref:fundamentals/routing).
 
-## File providers
+## File Providers
 
 ASP.NET Core abstracts file system access through the use of File Providers, which offers a common interface for working with files across platforms.
 

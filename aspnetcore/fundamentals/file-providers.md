@@ -1,8 +1,9 @@
 ---
-title: File providers in ASP.NET Core
+title: File Providers in ASP.NET Core
 author: guardrex
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 ms.author: riande
+ms.custom: mvc
 ms.date: 07/31/2018
 uid: fundamentals/file-providers
 ---
@@ -65,7 +66,7 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The [PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider) provides access to the physical file system. `PhysicalFileProvider` uses the [System.IO.File](/dotnet/api/system.io.file) type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider. You can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a page model/controller or a service's constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The [PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider) provides access to the physical file system. `PhysicalFileProvider` uses the [System.IO.File](/dotnet/api/system.io.file) type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider. You can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 **Static types**
 
@@ -83,7 +84,7 @@ Types in the preceding example:
 * `contents` is an `IDirectoryContents`.
 * `fileInfo` is an `IFileInfo`.
 
-The File Provider can be used to iterate through the `applicationRoot` directory or call `GetFileInfo` to obtain a file's information. The File Provider has no access outside of the `applicationRoot` directory.
+The File Provider can be used to iterate through the directory specified by `applicationRoot` or call `GetFileInfo` to obtain a file's information. The File Provider has no access outside of the `applicationRoot` directory.
 
 The sample app creates the provider in the app's `Startup.ConfigureServices` class using [IHostingEnvironment.ContentRootFileProvider](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.contentrootfileprovider):
 
@@ -159,9 +160,9 @@ Additional overloads allow you to:
 
 | Overload | Description |
 | -------- | ----------- |
-| [ManifestEmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_) | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided path. |
-| [ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path parameter and a `lastModified` date ([DateTimeOffset](/dotnet/api/system.datetimeoffset)) parameter. The `lastModified` date scopes the last modification date for the [IFileInfo](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo) instances returned by the [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider). |
-| [ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
+| [ManifestEmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_) | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided path. |
+| [ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path parameter and a `lastModified` date ([DateTimeOffset](/dotnet/api/system.datetimeoffset)) parameter. The `lastModified` date scopes the last modification date for the [IFileInfo](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo) instances returned by the [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider). |
+| [ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
 
 ::: moniker-end
 
@@ -189,7 +190,7 @@ var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
 
 Embedded resources don't expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators. In the sample app, the `baseNamespace` is `FileProviderSample.`.
 
-The [EmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider.-ctor?view=aspnetcore-2.1#Microsoft_Extensions_FileProviders_EmbeddedFileProvider__ctor_System_Reflection_Assembly_) constructor accepts an optional `baseNamespace` parameter. Specify the base namespace to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided namespace.
+The [EmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_EmbeddedFileProvider__ctor_System_Reflection_Assembly_) constructor accepts an optional `baseNamespace` parameter. Specify the base namespace to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided namespace.
 
 ::: moniker-end
 
@@ -252,10 +253,10 @@ Matches anything across multiple directory levels. Can be used to recursively ma
 Matches a specific file in a specific directory.
 
 **`directory/*.txt`**  
-Matches all files with `.txt` extension in a specific directory.
+Matches all files with *.txt* extension in a specific directory.
 
 **`directory/*/appsettings.json`**  
-Matches all `appsettings.json` files in directories exactly one level below the `directory` folder.
+Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.
 
 **`directory/**/*.txt`**  
-Matches all files with `.txt` extension found anywhere under the `directory` folder.
+Matches all files with *.txt* extension found anywhere under the *directory* folder.
