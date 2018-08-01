@@ -3,7 +3,7 @@ title: Azure Key Vault configuration provider in ASP.NET Core
 author: guardrex
 description: Learn how to use the Azure Key Vault Configuration Provider to configure an app using name-value pairs loaded at runtime.
 ms.author: riande
-ms.date: 08/09/2017
+ms.date: 08/01/2018
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider in ASP.NET Core
