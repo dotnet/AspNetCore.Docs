@@ -55,7 +55,7 @@ Install the following software:
 
    ![New Project dialog in Visual Studio](signalr/_static/signalr-new-project-choose-type.png)
 
-   Visual Studio includes the `Microsoft.AspNetCore.SignalR` package containing its server libraries as part of its **ASP.NET Core Web Application** template. However, the JavaScript client library for SignalR must be installed using *npm*.
+   The **ASP.NET Core Web Application** template includes the server libraries in the `Microsoft.AspNetCore.SignalR` NuGet package. But the JavaScript client library for SignalR must be installed using *npm*.
 
 3. In **Package Manager Console**, make sure you're in the project folder, and then run the following commands. When you're in the project folder, the `dir` command shows the *SignalRChat.csproj* file.
 
@@ -99,7 +99,7 @@ Install the following software:
 
 ## Create the SignalR hub
 
-A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that allows the client and server to call methods on each other.
+A *hub* is a class that serves as a high-level pipeline that allows the client and server to call methods on each other.
 
 1. In the SignalRChat project, create a folder named *Hubs*.
 
@@ -151,7 +151,7 @@ The SignalR server must be configured so that it knows to pass requests to Signa
 
    This code:
 
-   * [Creates and starts a connection](xref:signalr/javascript-client#connect-to-a-hub).
+   * Creates and starts a connection.
    * Adds to the submit button a handler that sends messages to the hub.
    * Adds to the connection object a handler that receives messages from the hub and adds them to the list.
 
@@ -187,7 +187,8 @@ In this tutorial, you learned how to:
 > * Connect to the SignalR hub from clients.
 > * Use the hub to send messages from any client to all connected clients.
 
-To learn more about SignalR, start with these resources:
+To learn more about SignalR, hubs, and JavaScript clients, see these resources:
 
-* [Introduction to ASP.NET Core SignalR](xref:signalr/introduction).
-* [Server concepts in ASP.NET Core SignalR](xref:signalr/hubs).
+* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction).
+* [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs).
+* [ASP.NET Core SignalR JavaScript client](xref:signalr/javascript-client)
