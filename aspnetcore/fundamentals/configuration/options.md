@@ -290,6 +290,13 @@ services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
 
 `IOptions` can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
+```csharp
+public void Configure(IApplicationBuilder app, IOptions<MyOptions> optionsAccessor)
+{
+    var option1 = optionsAccessor.Value.Option1;
+}
+```
+
 `IOptions` shouldn't be used in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
 
 ## See also
