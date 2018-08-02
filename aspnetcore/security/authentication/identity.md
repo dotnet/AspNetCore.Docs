@@ -8,43 +8,36 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
 
-By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), Jon Galloway, [Erik Reitan](https://github.com/Erikre), and [Steve Smith](https://ardalis.com/)
+By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), [Jon Galloway](https://twitter.com/jongalloway), and [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login provider such as Facebook, Google, Microsoft Account, Twitter or others.
+ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social).
 
-You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example, an Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.
+Identity can be configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
 [View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](xref:tutorials/index#how-to-download-a-sample)
 
 ## Overview of Identity
 
-In this topic, you'll learn how to use ASP.NET Core Identity to add functionality to register, log in, and log out a user. For more detailed instructions about creating apps using ASP.NET Core Identity, see the Next Steps section at the end of this article.
+In this topic, you learn how to use ASP.NET Core Identity to add functionality to register, log in, and log out a user. For more detailed instructions about creating apps using ASP.NET Core Identity, see the Next Steps section at the end of this article.
 
-1. Create an ASP.NET Core Web Application project with Individual User Accounts.
+### Create a Web app with authentication
 
-   # [Visual Studio](#tab/visual-studio)
+Create an ASP.NET Core Web Application project with Individual User Accounts.
 
-   In Visual Studio, select **File** > **New** > **Project**. Select **ASP.NET Core Web Application** and click **OK**.
+# [Visual Studio](#tab/visual-studio)
 
-   ![New Project dialog](identity/_static/01-new-project.png)
+* Select **File** > **New** > **Project**. 
+* Select **ASP.NET Core Web Application**. Name the project **WebApp1** to have the same namespace as the project download. Click **OK**.
+* Select an ASP.NET Core **Web Application** for ASP.NET Core 2.1, then select **Change Authentication**.
+* Select **Individual User Accounts** and click **OK**.
 
-   Select an ASP.NET Core **Web Application (Model-View-Controller)** for ASP.NET Core 2.x, then select **Change Authentication**.
+# [.NET Core CLI](#tab/netcore-cli)
 
-   ![New Project dialog](identity/_static/02-new-project.png)
+```cli
+dotnet new webapp --auth Individual -o WebApp1
+```
 
-   A dialog appears offering authentication choices. Select **Individual User Accounts** and click **OK** to return to the previous dialog.
-
-   ![New Project dialog](identity/_static/03-new-project-auth.png)
-
-   Selecting **Individual User Accounts** directs Visual Studio to create Models, ViewModels, Views, Controllers, and other assets required for authentication as part of the project template.
-
-   # [.NET Core CLI](#tab/netcore-cli)
-
-   If using the .NET Core CLI, create the new project using `dotnet new mvc --auth Individual`. This command creates a new project with the same Identity template code Visual Studio creates.
-
-   The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which persists the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
-
-   ---
+---
 
 2. Configure Identity services and add middleware in `Startup`.
 
