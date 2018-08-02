@@ -299,6 +299,6 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> optionsAccess
 
 `IOptions` shouldn't be used in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
 
-## See also
+## Additional resources
 
-* [Configuration](xref:fundamentals/configuration/index)
+* <xref:fundamentals/configuration/index>
