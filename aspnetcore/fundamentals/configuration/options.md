@@ -288,10 +288,17 @@ services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
 
 ## Accessing options during startup
 
-`IOptions` can be used in `Configure`, since services are built before the `Configure` method executes. If a service provider is built in `ConfigureServices` to access options, it wouldn't contain any options configurations provided after the service provider is built. Therefore, an inconsistent options state may exist due to the ordering of service registrations.
+`IOptions` can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
-Since options are typically loaded from configuration, configuration can be used in startup in both `Configure` and `ConfigureServices`. For examples of using configuration during startup, see the [Application startup](xref:fundamentals/startup) topic.
+```csharp
+public void Configure(IApplicationBuilder app, IOptions<MyOptions> optionsAccessor)
+{
+    var option1 = optionsAccessor.Value.Option1;
+}
+```
 
-## See also
+`IOptions` shouldn't be used in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
 
-* [Configuration](xref:fundamentals/configuration/index)
+## Additional resources
+
+* <xref:fundamentals/configuration/index>
