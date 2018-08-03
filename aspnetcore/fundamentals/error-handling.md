@@ -25,16 +25,6 @@ To configure an app to display a page that shows detailed information about exce
 
 ::: moniker range="= aspnetcore-2.0"
 
-To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). Add a line to the `Startup.Configure` method:
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by adding a package reference for the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package in the project file. Add a line to the `Startup.Configure` method:
-
-::: moniker-end
-
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
 
 Place the call to [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) in front of any middleware where you want to catch exceptions, such as `app.UseMvc`.
