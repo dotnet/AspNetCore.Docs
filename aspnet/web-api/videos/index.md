@@ -4,12 +4,8 @@ title: "ASP.NET Web API Videos | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/16/2012
-ms.topic: article
 ms.assetid: 8ed7e133-707b-43e6-bce4-e9d266935573
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/videos
 msc.type: book
 ---

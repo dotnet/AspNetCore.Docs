@@ -4,12 +4,8 @@ title: "ADO.NET Data Services | Microsoft Docs"
 author: rick-anderson
 description: "These videos show you how to create a data access layer using a typed data set for a simple ASP.NET application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/04/2011
-ms.topic: article
 ms.assetid: e0af2f02-b132-4ad4-b881-f6b5ab86b1ae
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services
 msc.type: chapter
 ---

@@ -4,12 +4,8 @@ title: "Understanding Partial Page Updates with ASP.NET AJAX | Microsoft Docs"
 author: scottcate
 description: "Perhaps the most visible feature of the ASP.NET AJAX Extensions is the ability to do a partial or incremental page updates without doing a full postback to t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/28/2008
-ms.topic: article
 ms.assetid: 54d9df99-1161-4899-b4e8-2679c85915e7
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax
 msc.type: authoredcontent
 ---

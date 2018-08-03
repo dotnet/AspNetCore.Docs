@@ -2,13 +2,9 @@
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 author: steve-smith
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/19/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -38,11 +34,13 @@ An example of a CSRF attack:
 1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
 1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
 
-When the user selects the button to submit the form, the malicious site could:
+In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 
 * Run a script that automatically submits the form.
-* Sends a form submission as an AJAX request. 
-* Use a hidden form with CSS. 
+* Send the form submission as an AJAX request.
+* Hide the form using CSS.
+
+These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
 Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
 
@@ -130,7 +128,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf).
+> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -401,3 +399,4 @@ The [IAntiForgeryAdditionalDataProvider](/dotnet/api/microsoft.aspnetcore.antifo
 ## Additional resources
 
 * [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) on [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP).
+* <xref:host-and-deploy/web-farm>

@@ -4,12 +4,8 @@ title: New Rendering Option for Check Box Lists and Radio Button Lists | Microso
 author: JoeStagner
 description: "In this video you will learn about the RepeatLayout rendering option for Check Box and Radio Button lists."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/16/2009
-ms.topic: article
 ms.assetid: d47626d1-5ffb-4757-bfbe-49e37f08d474
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists
 msc.type: video
 ---

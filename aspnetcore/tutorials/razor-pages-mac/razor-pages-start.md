@@ -2,19 +2,16 @@
 title: Get started with Razor Pages in ASP.NET Core on macOS with Visual Studio for Mac
 author: rick-anderson
 description: Discover how to get started with Razor Pages in ASP.NET Core using Visual Studio for Mac.
-manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 07/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/razor-pages-start
 ---
 # Get started with Razor Pages in ASP.NET Core on macOS with Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you review [Introduction to Razor Pages](xref:mvc/razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
+This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you review [Introduction to Razor Pages](xref:razor-pages/index) before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.
 
 ## Prerequisites
 
@@ -24,11 +21,27 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 From a terminal, run the following commands:
 
+::: moniker range=">= aspnetcore-2.1"
+
+```console
+dotnet new webapp -o RazorPagesMovie
+cd RazorPagesMovie
+dotnet run
+```
+
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 ```console
 dotnet new razor -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```
+
+::: moniker-end
 
 The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 

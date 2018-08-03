@@ -4,12 +4,8 @@ title: "HTTP Cookies in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/17/2012
-ms.topic: article
 ms.assetid: 243db2ec-8f67-4a5e-a382-4ddcec4b4164
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/http-cookies
 msc.type: authoredcontent
 ---

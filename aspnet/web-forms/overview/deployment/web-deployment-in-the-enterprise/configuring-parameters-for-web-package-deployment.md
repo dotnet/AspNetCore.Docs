@@ -4,12 +4,8 @@ title: "Configuring Parameters for Web Package Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to set parameter values, like Internet Information Services (IIS) web application names, connection strings, and service endpoints,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 37947d79-ab1e-4ba9-9017-52e7a2757414
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment
 msc.type: authoredcontent
 ---

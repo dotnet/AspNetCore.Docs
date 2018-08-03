@@ -4,12 +4,8 @@ title: "External Authentication Services with ASP.NET Web API (C#) | Microsoft D
 author: rmcmurray
 description: "Describes using External Authentication Services in ASP.NET Web API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/26/2013
-ms.topic: article
 ms.assetid: 3bb8eb15-b518-44f5-a67d-a27e051aedc6
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/external-authentication-services
 msc.type: authoredcontent
 ---

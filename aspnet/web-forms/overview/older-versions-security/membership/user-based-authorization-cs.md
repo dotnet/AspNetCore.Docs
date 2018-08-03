@@ -4,12 +4,8 @@ title: "User-Based Authorization (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will look at limiting access to pages and restricting page-level functionality through a variety of techniques."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 3c815a9e-2296-4b9b-b945-776d54989daa
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/user-based-authorization-cs
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "ASP.NET Web Pages 2 Developer Preview ReadMe | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/14/2011
-ms.topic: article
 ms.assetid: 159a92e2-e011-4da7-b61d-2edde2a967da
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/aspnet-web-pages-2-developer-preview-readme
 msc.type: authoredcontent
 ---

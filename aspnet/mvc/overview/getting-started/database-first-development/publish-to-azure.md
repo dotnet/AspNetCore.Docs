@@ -4,12 +4,8 @@ title: "Publish MVC Database First site to Azure | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/22/2014
-ms.topic: article
 ms.assetid: 7131f1c1-cef3-4396-ab44-ed4519676546
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/publish-to-azure
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "Know a library other than Knockout? | Microsoft Docs"
 author: madskristensen
 description: "Know a library other than Knockout?"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/05/2013
-ms.topic: article
 ms.assetid: a8367c6d-ef94-4dff-a010-5eff9e6eea96
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/other-libraries
 msc.type: authoredcontent
 ---

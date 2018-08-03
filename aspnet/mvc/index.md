@@ -4,12 +4,8 @@ title: "ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "Download ASP.NET MVC and learn how to build web apps using the model view controller pattern."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/24/2011
-ms.topic: article
 ms.assetid: 466e52b9-bddf-4b2d-847a-f8df9a2513d7
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc
 msc.type: categoryindex
 ---

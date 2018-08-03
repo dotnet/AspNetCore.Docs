@@ -4,12 +4,8 @@ title: "Creating a Customized Sorting User Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When displaying a long list of sorted data, it can be very helpful to group related data by introducing separator rows. In this tutorial we'll see how to cre..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2006
-ms.topic: article
 ms.assetid: f3897a74-cc6a-4032-8f68-465f155e296a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-vb
 msc.type: authoredcontent
 ---

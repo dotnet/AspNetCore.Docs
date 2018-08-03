@@ -4,12 +4,8 @@ title: "Building an Interface to Select One User Account from Many (C#) | Micros
 author: rick-anderson
 description: "In this tutorial we will build a user interface with a paged, filterable grid. In particular, our user interface will consist of a series of LinkButtons for..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2008
-ms.topic: article
 ms.assetid: 9e4e687c-b4ec-434f-a4ef-edb0b8f365e4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-cs
 msc.type: authoredcontent
 ---

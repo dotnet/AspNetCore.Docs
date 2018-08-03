@@ -2,19 +2,15 @@
 title: Get started with ASP.NET Core MVC and Visual Studio
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC and Visual Studio.
-manager: wpickett
 ms.author: riande
 ms.date: 10/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC and Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](~/includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
@@ -24,10 +20,67 @@ There are 3 versions of this tutorial:
 
 ## Install Visual Studio and .NET Core
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.1"
+
+[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+
+## Create a web app
+
+From Visual Studio, select  **File > New > Project**.
+
+![File > New > Project](start-mvc/_static/alt_new_project.png)
+
+Complete the **New Project** dialog:
+
+* In the left pane, tap **.NET Core**
+* In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
+* Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
+* Tap **OK**
+
+![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
+
+Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
+
+* In the version selector drop-down box select **ASP.NET Core 2.1**
+* Select **Web Application(Model-View-Controller)**
+* Tap **OK**.
+
+![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
+
+Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start,
+
+Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
+<!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
+![running app](start-mvc/_static/1.png)
+
+* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
+* Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+* You can launch the app in debug or non-debug mode from the **Debug** menu item:
+
+![Debug menu](start-mvc/_static/debug_menu.png)
+
+* You can debug the app by tapping the **IIS Express** button
+
+![IIS Express](start-mvc/_static/iis_express.png)
+
+The default template gives you working **Home, About** and **Contact** links. The browser image above doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
+
+![navigation icon in upper right](start-mvc/_static/2.png)
+
+If you were running in debug mode, tap **Shift-F5** to stop debugging.
+
+In the next part of this tutorial, we'll learn about MVC and start writing some code.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 [!INCLUDE [](~/includes/net-core-prereqs.md)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
 * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
@@ -41,7 +94,8 @@ Run the installer and select the following workloads:
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
-* * *
+---
+
 ## Create a web app
 
 From Visual Studio, select  **File > New > Project**.
@@ -56,7 +110,6 @@ Complete the **New Project** dialog:
 * Tap **OK**
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
-
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -81,13 +134,13 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 ---
 
-Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a simple starter project, and it's a good place to start,
+Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start,
 
 Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 <!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
 ![running app](start-mvc/_static/1.png)
 
-* Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
+* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
@@ -105,5 +158,6 @@ If you were running in debug mode, tap **Shift-F5** to stop debugging.
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
+::: moniker-end
 > [!div class="step-by-step"]
 > [Next](adding-controller.md)  

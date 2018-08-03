@@ -4,12 +4,8 @@ title: "Performing Batch Updates (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create a fully-editable DataList where all of its items are in edit mode and whose values can be saved by clicking an 'Update All' button on the..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: 8dac22a7-91de-4e3b-888f-a4c438b03851
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-vb
 msc.type: authoredcontent
 ---

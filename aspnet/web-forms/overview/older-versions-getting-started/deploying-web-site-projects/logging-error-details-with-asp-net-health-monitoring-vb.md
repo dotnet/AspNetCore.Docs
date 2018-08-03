@@ -4,12 +4,8 @@ title: "Logging Error Details with ASP.NET Health Monitoring (VB) | Microsoft Do
 author: rick-anderson
 description: "Microsoft's health monitoring system provides an easy and customizable way to log various web events, including unhandled exceptions. This tutorial walks thr..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/09/2009
-ms.topic: article
 ms.assetid: 09a6c74e-936a-4c04-8547-5bb313a4e4a3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-asp-net-health-monitoring-vb
 msc.type: authoredcontent
 ---

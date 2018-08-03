@@ -4,12 +4,8 @@ title: "Dependency Injection in SignalR 1.x | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/15/2013
-ms.topic: article
 ms.assetid: eaa206c4-edb3-487e-8fcb-54a3261fed36
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/dependency-injection
 msc.type: authoredcontent
 ---

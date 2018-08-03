@@ -2,12 +2,8 @@
 title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 08/02/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -55,7 +51,10 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
-* Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
+* Enter your development URI with `/signin-google` appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at `/signin-google` route to implement the OAuth flow.
+
+> [!NOTE]
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
 
 * Press TAB to add the **Authorized redirect URIs** entry.
 
@@ -81,7 +80,8 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google Authentication
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
@@ -98,13 +98,16 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
- * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
- * To install with .NET Core CLI, execute the following in your project directory:
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with .NET Core CLI, execute the following in your project directory:
 
-   `dotnet add package Microsoft.AspNetCore.Authentication.Google`
+`dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 Add the Google middleware in the `Configure` method in *Startup.cs* file:
 
@@ -116,8 +119,9 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ```
 
-* * *
-See the [GoogleOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
+---
+
+See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Sign in with Google
 

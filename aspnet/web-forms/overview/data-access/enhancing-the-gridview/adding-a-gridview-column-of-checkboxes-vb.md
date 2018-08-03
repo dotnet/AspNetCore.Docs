@@ -4,12 +4,8 @@ title: "Adding a GridView Column of Checkboxes (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at how to add a column of check boxes to a GridView control to provide the user with an intuitive way of selecting multiple rows of the G..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/06/2007
-ms.topic: article
 ms.assetid: 39253d05-75c0-41c7-b9d4-a6c58ecf69ce
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-vb
 msc.type: authoredcontent
 ---

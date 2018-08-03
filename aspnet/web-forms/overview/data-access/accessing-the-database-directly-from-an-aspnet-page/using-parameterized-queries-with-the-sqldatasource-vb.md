@@ -4,12 +4,8 @@ title: "Using Parameterized Queries with the SqlDataSource (VB) | Microsoft Docs
 author: rick-anderson
 description: "In this tutorial, we continue our look at the SqlDataSource control and learn how to define parameterized queries. The parameters can be specified both decla..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: e322f34c-83b7-41ea-ab65-ab1e0bdcc609
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-vb
 msc.type: authoredcontent
 ---

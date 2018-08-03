@@ -4,12 +4,8 @@ title: "Part 2: Creating the Domain Models | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/03/2012
-ms.topic: article
 ms.assetid: fe3ef85f-bdc6-4e10-9768-25aa565c01d0
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-2
 msc.type: authoredcontent
 ---

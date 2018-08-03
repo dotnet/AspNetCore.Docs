@@ -4,12 +4,8 @@ title: "Creating a Database | Microsoft Docs"
 author: shanselman
 description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: 742df67f-484d-4ef3-af6b-8c791e556b43
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part4
 msc.type: authoredcontent
 ---

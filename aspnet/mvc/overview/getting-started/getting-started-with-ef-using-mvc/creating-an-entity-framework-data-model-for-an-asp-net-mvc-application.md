@@ -4,12 +4,8 @@ title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microso
 author: tdykstra
 description: "A newer version of this tutorial series is available: Get started with ASP.NET Core and Entity Framework Core using Visual Studio 2015. The Contoso Universi..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/22/2015
-ms.topic: article
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -226,11 +222,7 @@ following code, which causes a database to be created when needed and loads test
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample8.cs)]
 
-The `Seed` method takes the database context object as an input parameter, and the code in the method uses  
-that object to add new entities to the database. For each entity type, the code creates a collection of new  
- entities, adds them to the appropriate `DbSet` property, and then saves the changes to the database. It isn't  
-necessary to call the `SaveChanges` method after each group of entities, as is done here, but doing that helps  
-you locate the source of a problem if an exception occurs while the code is writing to the database.
+The `Seed` method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new  entities, adds them to the appropriate `DbSet` property, and then saves the changes to the database. It isn't necessary to call the `SaveChanges` method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
 
 To tell Entity Framework to use your initializer class, add an element to the `entityFramework` element in the application *Web.config* file (the one in the root project folder), as shown in the following example:
 

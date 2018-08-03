@@ -4,12 +4,8 @@ title: "Display Item Details | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 75ef94b1-bbec-4681-9210-452dba816144
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-8
 msc.type: authoredcontent
 ---

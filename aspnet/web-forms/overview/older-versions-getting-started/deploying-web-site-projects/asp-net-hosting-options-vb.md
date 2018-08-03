@@ -4,12 +4,8 @@ title: "ASP.NET Hosting Options (VB) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET web applications are typically designed, created, and tested in a local development environment and need to be deployed to a production environment o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 492f5ae2-bad7-4107-89a9-f04a9525dee7
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/asp-net-hosting-options-vb
 msc.type: authoredcontent
 ---

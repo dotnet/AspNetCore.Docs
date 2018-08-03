@@ -4,12 +4,8 @@ title: "ASP.NET Web API, Part 1: Your First Web API | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/15/2012
-ms.topic: article
 ms.assetid: fda768fb-50f5-4046-8fda-6f199d27bce7
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/your-first-web-api
 msc.type: video
 ---

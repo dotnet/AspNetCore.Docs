@@ -4,12 +4,8 @@ title: "Determining What Files Need to Be Deployed (VB) | Microsoft Docs"
 author: rick-anderson
 description: "What files need to be deployed from the development environment to the production environment depends in part on whether the ASP.NET application was built us..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: ea918f62-c9d6-4a7f-9bc6-e054d3764b2c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/determining-what-files-need-to-be-deployed-vb
 msc.type: authoredcontent
 ---

@@ -2,13 +2,9 @@
 title: Manage client-side packages with Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 02/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bower
 ---
 # Manage client-side packages with Bower in ASP.NET Core
@@ -16,7 +12,9 @@ uid: client-side/bower
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/), and [Scott Addie](https://scottaddie.com) 
 
 > [!IMPORTANT]
-> While Bower is maintained, its maintainers recommend using a different solution. Yarn with Webpack is one popular alternative for which [migration instructions](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) are available.
+> While Bower is maintained, its maintainers recommend using a different solution. [Library Manager](https://blogs.msdn.microsoft.com/webdev/2018/04/18/what-happened-to-bower/) (LibMan for short) is Visual Studio's new client-side static content management system (Visual Studio 15.8 or later). For more information, see [Library Manager: Client-side content manager for web apps](https://blogs.msdn.microsoft.com/webdev/2018/04/17/library-manager-client-side-content-manager-for-web-apps/). Bower is supported in Visual Studio through version 15.5.
+>
+> Yarn with Webpack is one popular alternative for which [migration instructions](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) are available. 
 
 [Bower](https://bower.io/) calls itself "A package manager for the web". Within the .NET ecosystem, it fills the void left by NuGet's inability to deliver static content files. For ASP.NET Core projects, these static files are inherent to client-side libraries like [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/). For .NET libraries, you still use [NuGet](https://www.nuget.org/) package manager.
 
@@ -102,7 +100,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 ### Enable static files
 
 * Add the `Microsoft.AspNetCore.StaticFiles` NuGet package to the project.
-* Enable static files to be served with the [Static file middleware](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions). Add a call to [UseStaticFiles](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
+* Enable static files to be served with the [Static file middleware](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions). Add a call to [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
 
 [!code-csharp[](bower/sample/Startup.cs?highlight=9)]
 
@@ -110,7 +108,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 In this section, you will create an HTML page to verify it can access the deployed packages.
 
-* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Work with static files](xref:fundamentals/static-files) for more information.
+* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Static files](xref:fundamentals/static-files) for more information.
 
   Replace the contents of *Index.html* with the following markup:
 

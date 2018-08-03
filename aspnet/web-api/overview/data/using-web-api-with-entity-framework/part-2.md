@@ -4,12 +4,8 @@ title: "Add Models and Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 88908ff8-51a9-40eb-931c-a8139128b680
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-2
 msc.type: authoredcontent
 ---

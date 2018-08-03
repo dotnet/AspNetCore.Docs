@@ -4,12 +4,8 @@ title: "Adding a New Category to the DropDownList using jQuery UI | Microsoft Do
 author: Rick-Anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/12/2012
-ms.topic: article
 ms.assetid: 44aa1ac4-6ea2-48a2-972d-52710c48eae5
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui
 msc.type: authoredcontent
 ---

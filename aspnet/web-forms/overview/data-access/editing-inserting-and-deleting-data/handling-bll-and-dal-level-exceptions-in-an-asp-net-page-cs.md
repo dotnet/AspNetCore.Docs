@@ -4,12 +4,8 @@ title: "Handling BLL- and DAL-Level Exceptions in an ASP.NET Page (C#) | Microso
 author: rick-anderson
 description: "In this tutorial we will see how to display a friendly, informative error message should an exception occur during an insert, update, or delete operation of..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 49d8a66c-3ea8-4087-839f-179d1d94512a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "EmberJS template | Microsoft Docs"
 author: xqiu
 description: "EmberJS template"
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/30/2013
-ms.topic: article
 ms.assetid: 04d5f142-5f62-494a-b5ea-4f3d068d34cb
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/emberjs-template
 msc.type: authoredcontent
 ---

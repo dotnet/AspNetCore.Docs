@@ -4,12 +4,8 @@ title: "Creating Mutually Exclusive Checkboxes (C#) | Microsoft Docs"
 author: wenz
 description: "When only one of a set of options may be selected, radio buttons are usually used. There is a drawback, though: Once one radio button in a group is selected,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 8e11b813-ba0d-4c29-b0f8-f65db6dbef1e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/creating-mutually-exclusive-checkboxes-cs
 msc.type: authoredcontent
 ---

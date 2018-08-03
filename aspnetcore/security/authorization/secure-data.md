@@ -2,12 +2,8 @@
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
 description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
-manager: wpickett
 ms.author: riande
 ms.date: 01/24/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/secure-data
 ---
 
@@ -98,7 +94,7 @@ Add [IHostingEnvironment](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvir
 
 [!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_env)]
 
-In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
+In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) authorization filter:
 
 [!code-csharp[](secure-data/samples/final2/Startup.cs?name=snippet_SSL&highlight=10-999)]
 
@@ -106,7 +102,7 @@ If you're using Visual Studio, enable HTTPS.
 
 To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting). If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
-  Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file.
+  Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file.
 
 ### Require authenticated users
 
@@ -134,6 +130,8 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 ```console
 dotnet user-secrets set SeedUserPW <PW>
 ```
+
+If you don't use a strong password, an exception is thrown when `SeedData.Initialize` is called.
 
 Update `Main` to use the test password:
 
@@ -178,7 +176,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/aspnet/core/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final2/Startup.cs?name=ConfigureServices&highlight=41-999)]
 
@@ -268,7 +266,7 @@ Update the details page model:
 
 If you're using Visual Studio Code or testing on a local platform that doesn't include a test certificate for HTTPS:
 
-* Set `"LocalTest:skipSSL": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
+* Set `"LocalTest:skipHTTPS": true` in the *appsettings.Developement.json* file to skip the HTTPS requirement. Skip HTTPS only on a development machine.
 
 If the app has contacts:
 
@@ -299,9 +297,23 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace matches the namespace used in the sample.
 
+::: moniker range=">= aspnetcore-2.1"
+
+  ```console
+  dotnet new webapp -o ContactManager -au Individual -uld
+  ```
+
+  [!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
   ```console
   dotnet new razor -o ContactManager -au Individual -uld
   ```
+
+::: moniker-end
 
   * `-uld` specifies LocalDB instead of SQLite
 

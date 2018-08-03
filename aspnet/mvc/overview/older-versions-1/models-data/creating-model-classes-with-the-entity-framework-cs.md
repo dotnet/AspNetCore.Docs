@@ -4,12 +4,8 @@ title: "Creating Model Classes with the Entity Framework (C#) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, you learn how to use ASP.NET MVC with the Microsoft Entity Framework. You learn how to use the Entity Wizard to create an ADO.NET Entity Da..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/27/2009
-ms.topic: article
 ms.assetid: 61644169-e8b1-45dd-bf96-9c2301b69879
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-cs
 msc.type: authoredcontent
 ---

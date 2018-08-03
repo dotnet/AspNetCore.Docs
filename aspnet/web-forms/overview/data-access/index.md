@@ -4,12 +4,8 @@ title: "Older Versions - Data Access | Microsoft Docs"
 author: rick-anderson
 description: "How to perform a variety of data-related tasks using ASP.NET Web Forms data controls."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/05/2011
-ms.topic: article
 ms.assetid: cf54a6fb-a362-4481-b967-c158b98092f7
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access
 msc.type: chapter
 ---

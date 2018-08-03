@@ -4,12 +4,8 @@ title: "Getting Started with ASP.NET MVC 5 | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here using Visual Studio 2015. The new tutorial uses ASP.NET Core MVC 6, which provides many improvem..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/28/2015
-ms.topic: article
 ms.assetid: f3d8adbe-55e7-4fd4-84a8-7155bc45c676
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/getting-started
 msc.type: authoredcontent
 ---

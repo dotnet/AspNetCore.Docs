@@ -4,12 +4,8 @@ title: "ASP.NET WebHooks logging | Microsoft Docs"
 author: rick-anderson
 description: "How to do logging in ASP.NET WebHooks."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: f71bc442-5f80-481b-a32c-a0ec18dee9d6
-ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/diagnostics/logging
 ---
 # ASP.NET WebHooks logging

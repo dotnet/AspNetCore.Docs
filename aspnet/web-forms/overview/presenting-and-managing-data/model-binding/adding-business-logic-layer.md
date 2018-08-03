@@ -4,12 +4,8 @@ title: "Adding business logic layer to a project that uses model binding and web
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 7ef664b3-1cc8-4cbf-bb18-9f0f3a3ada2b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/adding-business-logic-layer
 msc.type: authoredcontent
 ---

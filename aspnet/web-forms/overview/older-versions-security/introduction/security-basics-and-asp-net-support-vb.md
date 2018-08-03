@@ -4,12 +4,8 @@ title: "Security Basics and ASP.NET Support (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This is the first tutorial in a series of tutorials that will explore techniques for authenticating visitors through a web form, authorizing access to partic..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/13/2008
-ms.topic: article
 ms.assetid: ab68a92b-fc81-40a4-a7dc-406625d2c5d4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-vb
 msc.type: authoredcontent
 ---

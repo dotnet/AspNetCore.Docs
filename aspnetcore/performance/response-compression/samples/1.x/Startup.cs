@@ -22,7 +22,9 @@ namespace ResponseCompressionSample
             {
                 options.Providers.Add<GzipCompressionProvider>();
                 options.Providers.Add<CustomCompressionProvider>();
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
+                options.MimeTypes = 
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml" });
             });
 
             services.Configure<GzipCompressionProviderOptions>(options => 
@@ -31,7 +33,7 @@ namespace ResponseCompressionSample
             });
         }
         #endregion
-        
+
         public void Configure(IApplicationBuilder app)
         {
             app.UseResponseCompression();

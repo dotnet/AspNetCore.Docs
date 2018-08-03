@@ -4,12 +4,8 @@ title: "Handling BLL- and DAL-Level Exceptions (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial, we'll see how to tactfully handle exceptions raised during an editable DataList's updating workflow."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: f8fd58e2-f932-4f08-ab3d-fbf8ff3295d2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-cs
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "Uploading Files (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to allow users to upload binary files (such as Word or PDF documents) to your Web site where they may be stored in either the server's file system..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: f7c00fbd-652c-433d-8ed3-0e5168a4d4df
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/uploading-files-vb
 msc.type: authoredcontent
 ---

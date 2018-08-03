@@ -4,12 +4,8 @@ title: "Sorting Custom Paged Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to implement custom paging when presentating data on a web page. In this tutorial we see how to extend the preceding..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2006
-ms.topic: article
 ms.assetid: 4823a186-caaf-4116-a318-c7ff4d955ddc
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-vb
 msc.type: authoredcontent
 ---

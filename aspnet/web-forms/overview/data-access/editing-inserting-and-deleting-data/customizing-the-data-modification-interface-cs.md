@@ -4,12 +4,8 @@ title: "Customizing the Data Modification Interface (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to customize the interface of an editable GridView, by replacing the standard TextBox and CheckBox controls with alternati..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 22e99600-8d18-4a94-a20e-a3a62bb63798
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs
 msc.type: authoredcontent
 ---

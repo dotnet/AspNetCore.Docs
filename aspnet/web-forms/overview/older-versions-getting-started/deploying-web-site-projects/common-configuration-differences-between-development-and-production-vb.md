@@ -4,12 +4,8 @@ title: "Common Configuration Differences Between Development and Production (VB)
 author: rick-anderson
 description: "In earlier tutorials we deployed our website by copying all of the pertinent files from the development environment to the production environment. However, i..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 548e75f6-4d6c-4cb4-8da8-417915eb8393
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-vb
 msc.type: authoredcontent
 ---

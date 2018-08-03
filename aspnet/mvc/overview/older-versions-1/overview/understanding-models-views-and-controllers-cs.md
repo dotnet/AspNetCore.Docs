@@ -4,12 +4,8 @@ title: "Understanding Models, Views, and Controllers (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Confused about Models, Views, and Controllers? In this tutorial, Stephen Walther introduces you to the different parts of an ASP.NET MVC application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/19/2008
-ms.topic: article
 ms.assetid: 87313792-0a96-4caf-89fc-1457d54e5c1e
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-cs
 msc.type: authoredcontent
 ---

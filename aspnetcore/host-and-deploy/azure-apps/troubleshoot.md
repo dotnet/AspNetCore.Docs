@@ -2,13 +2,9 @@
 title: Troubleshoot ASP.NET Core on Azure App Service
 author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/31/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service

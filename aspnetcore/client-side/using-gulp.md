@@ -2,13 +2,9 @@
 title: Use Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 02/28/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/using-gulp
 ---
 # Use Gulp in ASP.NET Core
@@ -178,6 +174,9 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
     
     ![Task Runner Explorer](using-gulp/_static/03-TaskRunnerExplorer.png)
+    
+    > [!IMPORTANT]
+    > The **Task Runner Explorer** context menu item appears only if *gulpfile.js* is in the root project directory.
 
 4.  Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
@@ -223,7 +222,7 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     ![Task Runner Explorer run first task](using-gulp/_static/06-TaskRunner-First.png)
 
-    You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.
+    The output text is displayed. To see examples based on common scenarios, see [Gulp Recipes](#gulp-recipes).
 
 ## Defining and running tasks in a series
 
@@ -259,7 +258,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 
 ![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
-For more information about IntelliSense, see [JavaScript IntelliSense](https://docs.microsoft.com/visualstudio/ide/javascript-intellisense).
+For more information about IntelliSense, see [JavaScript IntelliSense](/visualstudio/ide/javascript-intellisense).
 
 ## Development, staging, and production environments
 
@@ -318,7 +317,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
     Notice that the stylesheet links point to the unminified versions of the CSS files.
 
-For more information related to environments in ASP.NET Core, see [Work with multiple environments](../fundamentals/environments.md).
+For more information related to environments in ASP.NET Core, see [Use multiple environments](../fundamentals/environments.md).
 
 ## Task and module details
 
@@ -335,7 +334,7 @@ For additional Gulp API reference information, see [Gulp Docs API](https://githu
 
 ## Gulp recipes
 
-The Gulp community provides Gulp [recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md). These recipes consist of Gulp tasks to address common scenarios.
+The Gulp community provides Gulp [Recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md). These recipes consist of Gulp tasks to address common scenarios.
 
 ## Additional resources
 

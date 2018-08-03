@@ -4,12 +4,8 @@ title: Table Free Templated Controls | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn about the RenderOuterTable property for templated controls, which allows you to control whether or not the outer table is render..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 11/16/2009
-ms.topic: article
 ms.assetid: 3d8c871d-7e00-4f13-937c-aa1f9b5a7dba
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-table-free-templated-controls
 msc.type: video
 ---

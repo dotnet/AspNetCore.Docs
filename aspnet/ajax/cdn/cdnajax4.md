@@ -4,12 +4,8 @@ title: "ASP.NET Web Forms and Ajax 4 | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/28/2014
-ms.topic: article
 ms.assetid: cced3924-251c-4c77-bef0-7992acbac106
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/cdnajax4
 msc.type: content
 ---

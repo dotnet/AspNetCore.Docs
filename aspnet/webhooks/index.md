@@ -4,12 +4,8 @@ title: "ASP.NET WebHooks Overview | Microsoft Docs"
 author: rick-anderson
 description: "An introduction to ASP.NET WebHooks."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: 5e2843f0-f499-448f-a712-33d4e9858321
-ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/index
 ---
 # ASP.NET WebHooks overview

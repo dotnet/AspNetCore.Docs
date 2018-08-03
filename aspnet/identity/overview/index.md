@@ -4,12 +4,8 @@ title: "ASP.NET Identity Overview | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/02/2013
-ms.topic: article
 ms.assetid: d3972a0e-9ff6-4de1-bf4d-c94943cab048
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview
 msc.type: book
 ---

@@ -4,12 +4,8 @@ title: "Implementing Basic CRUD Functionality with the Entity Framework in ASP.N
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/09/2015
-ms.topic: article
 ms.assetid: a2f70ba4-83d1-4002-9255-24732726c4f2
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
 msc.type: authoredcontent
 ---

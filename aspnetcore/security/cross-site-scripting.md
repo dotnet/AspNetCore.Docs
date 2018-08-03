@@ -2,12 +2,8 @@
 title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 author: rick-anderson
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/cross-site-scripting
 ---
 # Prevent Cross-Site Scripting (XSS) in ASP.NET Core
@@ -55,7 +51,7 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
 
 ## Javascript Encoding using Razor
 
-There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
+There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert  values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
 ```none
 @{
@@ -140,7 +136,7 @@ This will render in the browser as follows;
 
 ## Accessing encoders in code
 
-The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) or you can use the default encoders contained in the `System.Text.Encodings.Web` namespace. If you use the default encoders then any  you applied to character ranges to be treated as safe won't take effect - the default encoders use the safest encoding rules possible.
+The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via [dependency injection](xref:fundamentals/dependency-injection) or you can use the default encoders contained in the `System.Text.Encodings.Web` namespace. If you use the default encoders then any  you applied to character ranges to be treated as safe won't take effect - the default encoders use the safest encoding rules possible.
 
 To use the configurable encoders via DI your constructors should take an *HtmlEncoder*, *JavaScriptEncoder* and *UrlEncoder* parameter as appropriate. For example;
 
@@ -223,4 +219,4 @@ The general accepted practice is that encoding takes place at the point of outpu
 
 ## Validation as an XSS prevention technique
 
-Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
+Validation can be a useful tool in limiting XSS attacks. For example, a numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.

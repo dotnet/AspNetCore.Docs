@@ -4,12 +4,8 @@ title: "Forms Authentication Configuration and Advanced Topics (VB) | Microsoft 
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: 829d2f56-5c48-445b-b826-3418a450c788
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-vb
 msc.type: authoredcontent
 ---

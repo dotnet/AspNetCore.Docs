@@ -4,12 +4,8 @@ title: "Editing and Deleting Data Through the DataList | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to tweak the DataList control so that it lets uses modify data."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/05/2011
-ms.topic: article
 ms.assetid: a6f02826-428a-49b1-ab2c-8e080b72f51e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist
 msc.type: chapter
 ---

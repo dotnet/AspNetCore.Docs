@@ -1,14 +1,10 @@
 ---
 title: ASP.NET Core Module
-author: tdykstra
+author: rick-anderson
 description: Learn how the ASP.NET Core Module allows the Kestrel web server to use IIS or IIS Express as a reverse proxy server.
-manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 02/23/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/servers/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -20,9 +16,7 @@ The ASP.NET Core Module allows ASP.NET Core apps to run behind IIS in a reverse 
 Supported Windows versions:
 
 * Windows 7 or later
-* Windows Server 2008 R2 or later&#8224;
-
-&#8224;Conceptually, the use of the ASP.NET Core Module with IIS described in this document also applies to hosting ASP.NET Core apps on Nano Server IIS. For instructions specific to Nano Server, see the [ASP.NET Core with IIS on Nano Server](xref:tutorials/nano-server) tutorial.
+* Windows Server 2008 R2 or later
 
 The ASP.NET Core Module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
 
@@ -45,7 +39,7 @@ After Kestrel picks up a request from the module, the request is pushed into the
 The ASP.NET Core Module has a few other functions. The module can:
 
 * Set environment variables for the worker process.
-* Log `stdout` output to file storage for troubleshooting startup issues.
+* Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
 ## How to install and use the ASP.NET Core Module

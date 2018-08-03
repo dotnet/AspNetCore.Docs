@@ -4,12 +4,8 @@ title: "SignalR Scaleout with Azure Service Bus (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/01/2013
-ms.topic: article
 ms.assetid: 501db899-e68c-49ff-81b2-1dc561bfe908
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-windows-azure-service-bus
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "Introducing ASP.NET Web Pages - Programming Basics | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial gives you an overview of how to program in ASP.NET Web Pages with Razor syntax. What you'll learn: The basic 'Razor' syntax that you use for pr..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/17/2015
-ms.topic: article
 ms.assetid: 7526ed45-a97d-4e8a-8301-01324ef0eff9
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming
 msc.type: authoredcontent
 ---
@@ -202,7 +198,7 @@ Run the page and click **Submit**. This time you not only see a different messag
 
 ### Testing the value of a query string
 
-One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: ``http://localhost:43097/TestRazorPart2.cshtml`?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
+One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: `http://localhost:43097/TestRazorPart2.cshtml?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
 
 At the bottom (but inside) the code block at the top of the page, add the following:
 

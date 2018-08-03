@@ -2,13 +2,9 @@
 title: Troubleshoot ASP.NET Core on IIS
 author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -29,6 +25,9 @@ Discover how to handle errors in ASP.NET Core apps during development on a local
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
 This topic introduces the features of the Visual Studio debugger.
+
+[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)  
+Learn about the debugging support built into Visual Studio Code.
 
 ## App startup errors
 

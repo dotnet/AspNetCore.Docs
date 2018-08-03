@@ -4,12 +4,8 @@ title: "Mapping SignalR Users to Connections | Microsoft Docs"
 author: tfitzmac
 description: "This topic shows how to retain information about users and their connections. Patrick Fletcher helped write this topic. Software versions used in this topic..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/30/2014
-ms.topic: article
 ms.assetid: f80c08b1-3f1f-432c-980c-c7b6edeb31b1
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/mapping-users-to-connections
 msc.type: authoredcontent
 ---

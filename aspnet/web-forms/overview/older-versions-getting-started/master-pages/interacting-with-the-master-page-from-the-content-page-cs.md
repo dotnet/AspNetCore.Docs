@@ -4,12 +4,8 @@ title: "Interacting with the Master Page from the Content Page (C#) | Microsoft 
 author: rick-anderson
 description: "Examines how to call methods, set properties, etc. of the Master Page from code in the Content Page."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/11/2008
-ms.topic: article
 ms.assetid: 32d54638-71b2-491d-81f4-f7417a13a62f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-master-page-from-the-content-page-cs
 msc.type: authoredcontent
 ---

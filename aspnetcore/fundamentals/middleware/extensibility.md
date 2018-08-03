@@ -3,12 +3,8 @@ title: Factory-based middleware activation in ASP.NET Core
 author: guardrex
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
 ms.author: riande
-manager: wpickett
 ms.custom: mvc
 ms.date: 01/29/2018
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
@@ -64,11 +60,11 @@ public static IApplicationBuilder UseIMiddlewareMiddleware(
 
 The factory-activated middleware is added to the built-in container in *Startup.cs*:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=6)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=12)]
 
 Both middlewares are registered in the request processing pipeline in `Configure`:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=12-13)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=13-14)]
 
 ## IMiddlewareFactory
 

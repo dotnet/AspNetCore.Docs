@@ -4,12 +4,8 @@ title: "ASP.NET MVC Storefront Part 16: Membership Redo With OpenID | Microsoft 
 author: robconery
 description: "Rob changes the Membership system and splits it out into three separate services/parts. Rob then sits with Jon Galloway to talk about OpenID and how to imple..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/16/2008
-ms.topic: article
 ms.assetid: afc038e6-555e-4dfa-ae45-f4d3d50e8f96
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-16-membership-redo-with-openid
 msc.type: video
 ---

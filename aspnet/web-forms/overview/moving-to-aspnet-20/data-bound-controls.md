@@ -4,12 +4,8 @@ title: "Data Bound Controls | Microsoft Docs"
 author: microsoft
 description: "Most ASP.NET applications rely on some degree of data presentation from a back-end data source. Data-bound controls have been a pivotal part of interacting w..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2005
-ms.topic: article
 ms.assetid: 0e23ff32-646d-43f3-8bec-6b2313d3abd6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/data-bound-controls
 msc.type: authoredcontent
 ---

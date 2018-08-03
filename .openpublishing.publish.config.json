@@ -19,10 +19,6 @@
     "master": [
       "Publish",
       "Pdf"
-    ],
-    "aspnetmigration": [
-      "Publish",
-      "Pdf"
     ]
   },
   "docsets_to_publish": [
@@ -53,7 +49,8 @@
         "ManagedReference": "Content",
         "RestApi": "Content"
       },
-      "template_folder": "_themes"
+      "template_folder": "_themes",
+      "moniker_ranges": [">= aspnetcore-1.0"]
     }
   ],
   "notification_subscribers": [],

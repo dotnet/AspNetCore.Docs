@@ -4,12 +4,8 @@ title: "Forms Authentication Configuration and Advanced Topics (C#) | Microsoft 
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: b9c29865-a34e-48bb-92c0-c443a72cb860
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 msc.type: authoredcontent
 ---
@@ -162,7 +158,7 @@ Save the changes to Default.aspx and then visit it through a browser. Log on to 
 
 `http://localhost:2448/ASPNET\_Security\_Tutorial\_03\_CS/(F(jaIOIDTJxIr12xYS-VVgkqKCVAuIoW30Bu0diWi6flQC-FyMaLXJfow\_Vd9GZkB2Cv-rfezq0gKadKX0YPZCkA2))/SomePage.aspx`
 
-The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with http:// or /. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., &lt;a href="..."&gt;...&lt;/a&gt;). As long as the URL isn't something like http://www.someserver.com/SomePage.aspx or /SomePage.aspx, the forms authentication ticket will be embedded for us.
+The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with `http://` or `/`. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., `<a href="...">...</a>`). As long as the URL isn't something like `http://www.someserver.com/SomePage.aspx` or `/SomePage.aspx`, the forms authentication ticket will be embedded for us.
 
 > [!NOTE]
 > Cookieless forms authentication tickets adhere to the same timeout policies as cookie-based authentication tickets. However, cookieless authentication tickets are more prone to replay attacks since the authentication ticket is embedded directly in the URL. Imagine a user who visits a website, logs in, and then pastes the URL in an email to a colleague. If the colleague clicks on that link before the expiry is reached, they will be logged in as the user who sent the email!

@@ -4,12 +4,8 @@ title: "jQuery UI 1.11.3 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/12/2015
-ms.topic: article
 ms.assetid: 71da37d6-1c89-4283-80a1-332dcd5807c4
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1113
 msc.type: content
 ---

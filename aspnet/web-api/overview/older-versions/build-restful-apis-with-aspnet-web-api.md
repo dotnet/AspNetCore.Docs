@@ -4,12 +4,8 @@ title: "Build RESTful APIs with ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "In recent years, it has become clear that HTTP is not just for serving up HTML pages. It is also a powerful platform for building Web APIs, using a handful o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 87daa99f-3810-407e-b969-dd28a192959d
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -20,7 +16,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > In recent years, it has become clear that HTTP is not just for serving up HTML pages. It is also a powerful platform for building Web APIs, using a handful of verbs (GET, POST, and so forth) plus a few simple concepts such as *URIs* and *headers*. ASP.NET Web API is a set of components that simplify HTTP programming. Because it is built on top of the ASP.NET MVC runtime, Web API automatically handles the low-level transport details of HTTP. At the same time, Web API naturally exposes the HTTP programming model. In fact, one goal of Web API is to *not* abstract away the reality of HTTP. As a result, Web API is both flexible and easy to extend. In this hands-on lab, you will use Web API to build a simple REST API for a contact manager application. You will also build a client to consume the API. The REST architectural style has proven to be an effective way to leverage HTTP - although it is certainly not the only valid approach to HTTP. The contact manager will expose the RESTful for listing, adding and removing contacts, among others. This lab requires a basic understanding of HTTP, REST, and assumes you have a basic working knowledge of HTML, JavaScript, and jQuery.
 > 
 > > [!NOTE]
-> > The ASP.NET Web site has an area dedicated to the ASP.NET Web API framework at [[https://asp.net/web-api](https://asp.net/web-api)](https://asp.net/web-api). This site will continue to provide late-breaking information, samples, and news related to Web API, so check it frequently if you'd like to delve deeper into the art of creating custom Web APIs available to virtually any device or development framework.
+> > The ASP.NET Web site has an area dedicated to the ASP.NET Web API framework at [https://asp.net/web-api](https://asp.net/web-api). This site will continue to provide late-breaking information, samples, and news related to Web API, so check it frequently if you'd like to delve deeper into the art of creating custom Web APIs available to virtually any device or development framework.
 > > 
 > > ASP.NET Web API, similar to ASP.NET MVC 4, has great flexibility in terms of separating the service layer from the controllers allowing you to use several of the available Dependency Injection frameworks fairly easy. There is a good sample in MSDN that shows how to use Ninject for dependency injection in an ASP.NET Web API project that you can download it from [here](https://code.msdn.microsoft.com/ASPNET-Web-API-JavaScript-d0d64dd7).
 > 
@@ -166,10 +162,7 @@ In this task, you will create the controller classes in which API methods will r
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Class*)
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
 4. In the **ContactController** class, select the word **string** in method definition of the **Get** method, and type the word *Contact*. Once the word is typed in, an indicator will appear at the beginning of the word **Contact**. Either hold down the **Ctrl** key and press the period (.) key or click the icon using your mouse to open up the assistance dialog in the code editor, to automatically fill in the **using** directive for the Models namespace.
 
     ![Using Intellisense assistance for namespace declarations](build-restful-apis-with-aspnet-web-api/_static/image12.png)
@@ -217,10 +210,7 @@ This task will demonstrate how to extract functionality into a Service layer to 
     *Creating a class file to contain the code for the Contact Repository service layer*
 4. Add a using directive to the **ContactRepository.cs** file to include the models namespace.
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
 5. Add the following highlighted code to the **ContactRepository.cs** file to implement GetAllContacts method.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Repository*)
@@ -229,10 +219,7 @@ This task will demonstrate how to extract functionality into a Service layer to 
 6. Open the **ContactController.cs** file if it is not already open.
 7. Add the following using statement to the namespace declaration section of the file.
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
 8. Add the following highlighted code to the **ContactController.cs** class to add a private field to represent the instance of the repository, so that the rest of the class members can make use of the service implementation.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Controller*)
@@ -351,16 +338,10 @@ In this task, you will modify the default Index view of the web application to s
 3. Open the **Index.cshtml** file located at **Views/Home** folder.
 4. Replace the HTML code within the div element with id **body** so that it looks like the following code.
 
-
-~~~
-[!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
-~~~
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
 5. Add the following Javascript code at the bottom of the file to perform the HTTP request to the Web API.
 
-
-~~~
-[!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
-~~~
+    [!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
 6. Open the **ContactController.cs** file if it is not already open.
 7. Place a breakpoint on the **Get** method of the **ContactController** class.
 
@@ -395,17 +376,11 @@ In this task, you will continue to modify the Index view of the MVC application.
 
     (Code Snippet - *Web API Lab - Ex03 - Post Method*)
 
-
-~~~
-[!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
-~~~
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
 3. Open the **Index.cshtml** file in Visual Studio if it is not already open.
 4. Add the HTML code below to the file just after the unordered list you added in the previous task.
 
-
-~~~
-[!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
-~~~
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
 5. Within the script element at the bottom of the document, add the following highlighted code to handle button-click events, which will post the data to the Web API using an HTTP POST call.
 
     [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample17.html)]

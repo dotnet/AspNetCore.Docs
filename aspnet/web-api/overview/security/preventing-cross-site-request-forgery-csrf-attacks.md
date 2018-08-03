@@ -4,12 +4,8 @@ title: "Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET Web API 
 author: MikeWasson
 description: "Describes the cross-site request forgery (CSRF) attack and how to implement anti-CSRF measures in ASP.NET Web API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/12/2012
-ms.topic: article
 ms.assetid: 81d46f14-8f48-4d8c-830d-cc8d594dc11b
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
 msc.type: authoredcontent
 ---
@@ -21,7 +17,7 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 Here is an example of a CSRF attack:
 
-1. A user logs into www.example.com, using forms authentication.
+1. A user logs into `www.example.com` using forms authentication.
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 

@@ -4,12 +4,8 @@ title: "Migrating Universal Provider Data for Membership and User Profiles to AS
 author: rustd
 description: "This tutorial describes the steps that are necessary to migrate user and role data and user profile data created using Universal Providers of an existing app..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 12/13/2013
-ms.topic: article
 ms.assetid: 2e260430-d13c-4658-bd05-e256fc0d63b8
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity
 msc.type: authoredcontent
 ---
@@ -100,6 +96,8 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
    Notice that the 'ProfileInfo' is now a property on the user class. Hence we can use the user class to directly work with profile data.
 
 Copy the files in the **IdentityModels** and **IdentityAccount** folders from the download source ( [https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations](https://github.com/suhasj/UniversalProviders-Identity-Migrations/tree/master/UniversalProviders-Identity-Migrations) ). These have the remaining model classes and the new pages needed for user and role management using the ASP.NET Identity APIs. The approach used is similar to the SQL Membership and the detailed explanation can be found [here](migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md).
+
+[!INCLUDE[](../../../includes/identity/alter-command-exception.md)]
 
 ## Copying Profile data to the new tables
 

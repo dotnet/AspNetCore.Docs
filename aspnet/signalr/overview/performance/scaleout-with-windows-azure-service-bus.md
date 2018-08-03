@@ -4,12 +4,8 @@ title: "SignalR Scaleout with Azure Service Bus | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For the SignalR 1.x version of this topic,..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: ce1305f9-30fd-49e3-bf38-d0a78dfb06c3
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-windows-azure-service-bus
 msc.type: authoredcontent
 ---
@@ -41,7 +37,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 2. Add these NuGet packages to your application: 
 
     - [Microsoft.AspNet.SignalR](http://nuget.org/packages/Microsoft.AspNet.SignalR)
-    - [Microsoft.AspNet.SignalR.ServiceBus](http://www.nuget.org/packages/SignalR.WindowsAzureServiceBus)
+    - [Microsoft.AspNet.SignalR.ServiceBus3](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.ServiceBus3) or [Microsoft.AspNet.SignalR.ServiceBus](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.ServiceBus)
 3. Create a SignalR application.
 4. Add the following code to Startup.cs to configure the backplane: 
 

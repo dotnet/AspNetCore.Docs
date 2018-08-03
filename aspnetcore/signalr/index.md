@@ -1,17 +1,32 @@
 ---
 title: ASP.NET Core SignalR
-author: rachelappel
+author: tdykstra
 description: Discover topics that pertain to ASP.NET Core SignalR.
-manager: wpickett
-ms.author: rachelap
-ms.date: 03/29/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+monikerRange: '>= aspnetcore-2.1'
+ms.author: tdykstra
+ms.date: 07/03/2018
 uid: signalr/index
 ---
+
 # ASP.NET Core SignalR
 
-* [Get started with SignalR for ASP.NET Core](xref:signalr/get-started)
-* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction)
-* [SignalR Hubs](xref:signalr/hubs)
+* [Introduction](xref:signalr/introduction)
+* [Get started](xref:tutorials/signalr)
+* [Server concepts](xref:signalr/hubs)
+  * [Supported platforms](xref:signalr/supported-platforms)
+  * [Hubs](xref:signalr/hubs)
+  * [HubContext](xref:signalr/hubcontext)
+  * [Users and groups](xref:signalr/groups)
+  * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Clients](xref:signalr/javascript-client)
+  * [JavaScript client](xref:signalr/javascript-client)
+  * [.NET client](xref:signalr/dotnet-client)
+  * [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+  * [JavaScript API](/javascript/api/?view=signalr-js-latest)
+
+* [Configuration](xref:signalr/configuration)
+* [Authentication and authorization](xref:signalr/authn-and-authz)
+* [Security considerations](xref:signalr/security)
+* [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
+* [Streaming](xref:signalr/streaming)
+* [Differences between SignalR versions](xref:signalr/version-differences)

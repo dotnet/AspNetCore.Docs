@@ -4,12 +4,8 @@ title: "What's New in Web Forms in ASP.NET 4.5 | Microsoft Docs"
 author: rick-anderson
 description: "The new version of ASP.NET Web Forms introduces a number of improvements focused on improving user experience when working with data. In previous versions of..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 0a1f88bd-97da-4ed1-86f1-605199dc75a4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45
 msc.type: authoredcontent
 ---
@@ -574,10 +570,7 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
 1. Open the **ProductDetails.aspx** page. Add the **Async** attribute in the **Page** element and set it to **true**. This attribute tells ASP.NET to implement the IHttpAsyncHandler interface.
 
-
-~~~
-[!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.aspx)]
-~~~
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.aspx)]
 2. Add a Label at the bottom of the page to show the details of the threads running the page.
 
     [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample36.aspx)]

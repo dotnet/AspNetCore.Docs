@@ -4,12 +4,8 @@ title: "Introduction to ASP.NET for ColdFusion Developers: Building an ASP.NET A
 author: microsoft
 description: "This webcast shows how to build an ASP.NET application starting from a blank form, to give the experienced ColdFusion developer a clear idea of exactly what..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/25/2006
-ms.topic: article
 ms.assetid: 47316dec-a4cd-4818-8ba7-87e29d963c38
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application
 msc.type: video
 ---

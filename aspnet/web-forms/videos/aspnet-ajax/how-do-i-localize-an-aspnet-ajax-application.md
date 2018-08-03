@@ -4,12 +4,8 @@ title: "[How Do I:] Localize an ASP.NET AJAX Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we start with an overview of the localization capabilities of the standard ASP.NET framework, and then look at the localization features of the..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/10/2007
-ms.topic: article
 ms.assetid: 62188875-159b-4d9e-98b7-7fda3fdd5b76
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-localize-an-aspnet-ajax-application
 msc.type: video
 ---

@@ -4,12 +4,8 @@ title: "How Do I: Use Routing with ASP.NET Web Forms? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to implement routing for Web Forms in ASP.NET 4. First, the concept of routing a URL is compared to mapping the URL to a p..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/15/2010
-ms.topic: article
 ms.assetid: a3ab6cd9-8f71-4b73-9336-21c0de078269
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms
 msc.type: video
 ---

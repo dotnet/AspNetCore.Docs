@@ -4,12 +4,8 @@ title: "Introducing ASP.NET Web Pages - Publishing a Site by Using WebMatrix | M
 author: tfitzmac
 description: "This tutorial is the final installment in the tutorial set that introduces ASP.NET Web Pages and Microsoft WebMatrix. It discusses how to publish your site t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/28/2015
-ms.topic: article
 ms.assetid: 7e85c70e-1a88-4408-8b3d-29611c7713ed
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/publishing
 msc.type: authoredcontent
 ---

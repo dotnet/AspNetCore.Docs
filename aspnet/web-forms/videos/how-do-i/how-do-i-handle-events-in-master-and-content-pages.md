@@ -4,12 +4,8 @@ title: "[How Do I:] Handle Events in Master and Content Pages | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how events are handled in master and individual content pages. Even though the end result of a master and individual conte..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/21/2008
-ms.topic: article
 ms.assetid: 9b5f1ca6-b394-4b33-8b60-fd0587341482
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-handle-events-in-master-and-content-pages
 msc.type: video
 ---

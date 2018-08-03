@@ -4,12 +4,8 @@ title: "Creating and Using a Helper in an ASP.NET Web Pages (Razor) Site | Micro
 author: tfitzmac
 description: "This article describes how to create a helper in an ASP.NET Web Pages (Razor) website. A helper is a reusable component that includes code and markup to perf..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/17/2014
-ms.topic: article
 ms.assetid: 46bff772-01e0-40f0-9ae6-9e18c5442ee6
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site
 msc.type: authoredcontent
 ---

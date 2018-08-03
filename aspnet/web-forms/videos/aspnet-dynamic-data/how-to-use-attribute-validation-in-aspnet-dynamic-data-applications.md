@@ -4,12 +4,8 @@ title: "How to Use Attribute Validation in ASP.NET Dynamic Data Applications | M
 author: JoeStagner
 description: "This video will introduce modifying the Partial Classes in our Dynamic Data Application's Data Access Layer and get us started using Attributes by focusing o..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/23/2008
-ms.topic: article
 ms.assetid: dcaaaa8d-7dbd-4f5f-be2a-226c2517872a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-use-attribute-validation-in-aspnet-dynamic-data-applications
 msc.type: video
 ---

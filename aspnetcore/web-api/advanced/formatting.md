@@ -2,13 +2,9 @@
 title: Format response data in ASP.NET Core Web API
 author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -17,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/formatting/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Format-Specific Action Results
 

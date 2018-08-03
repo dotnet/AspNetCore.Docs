@@ -4,12 +4,8 @@ title: "ASP.NET 4 - Getting Started with Entity Framework 4 and Web Forms | Micr
 author: rick-anderson
 description: "The basics of using Entity Framework to display and edit data in an ASP.NET Web Forms application."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/05/2011
-ms.topic: article
 ms.assetid: c801eeab-1469-42d7-a961-082dbbf4683e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef
 msc.type: chapter
 ---

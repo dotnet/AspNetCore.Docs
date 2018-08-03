@@ -4,12 +4,8 @@ title: "jQuery UI | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/21/2014
-ms.topic: article
 ms.assetid: bd72bb7e-bdcb-490b-8bc1-9b669329632b
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui
 msc.type: folder
 ---

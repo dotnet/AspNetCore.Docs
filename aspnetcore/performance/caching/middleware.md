@@ -2,35 +2,33 @@
 title: Response Caching Middleware in ASP.NET Core
 author: guardrex
 description: Learn how to configure and use Response Caching Middleware in ASP.NET Core.
-manager: wpickett
+monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/26/2017
-ms.prod: asp.net-core
-ms.topic: article
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex) and [John Luo](https://github.com/JunTaoLuo)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download ASP.NET Core 2.1 sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](xref:performance/caching/response).
 
 ## Package
 
-To include the middleware in a project, add a reference to the [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package (ASP.NET Core 2.0 or later when targeting .NET Core).
+To include the middleware in your project, add a reference to the [Microsoft.AspNetCore.ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), which is available for use in ASP.NET Core 2.1 or later.
 
 ## Configuration
 
 In `ConfigureServices`, add the middleware to the service collection.
 
-[!code-csharp[](middleware/sample/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=9)]
 
-Configure the app to use the middleware with the `UseResponseCaching` extension method, which adds the middleware to the request processing pipeline. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+Configure the app to use the middleware with the `UseResponseCaching` extension method, which adds the middleware to the request processing pipeline. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request. In the code example that follows, [CacheControlHeaderValue](/dotnet/api/microsoft.net.http.headers.cachecontrolheadervalue) and [HeaderNames](/dotnet/api/microsoft.net.http.headers.headernames) require a `using` statement for the [Microsoft.Net.Http.Headers](/dotnet/api/microsoft.net.http.headers) namespace.
 
-[!code-csharp[](middleware/sample/Startup.cs?name=snippet2&highlight=3,7-12)]
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17,21-28)]
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
@@ -41,10 +39,10 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 
 The middleware offers three options for controlling response caching.
 
-| Option                | Default Value |
-| --------------------- | ------------- |
-| UseCaseSensitivePaths | Determines if responses are cached on case-sensitive paths.</p><p>The default value is `false`. |
-| MaximumBodySize       | The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` (64 MB). |
+| Option                | Description |
+| --------------------- | ----------- |
+| UseCaseSensitivePaths | Determines if responses are cached on case-sensitive paths. The default value is `false`. |
+| MaximumBodySize       | The largest cacheable size for the response body in bytes. The default value is `64 * 1024 * 1024` (64 MB). |
 | SizeLimit             | The size limit for the response cache middleware in bytes. The default value is `100 * 1024 * 1024` (100 MB). |
 
 The following example configures the middleware to:
@@ -85,7 +83,7 @@ Response caching by the middleware is configured using HTTP headers.
 | Authorization | The response isn't cached if the header exists. |
 | Cache-Control | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 7231: Request Cache-Control Directives](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | Pragma | A `Pragma: no-cache` header in the request produces the same effect as `Cache-Control: no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header, if present. Considered for backward compatibility with HTTP/1.0. |
-| Set-Cookie | The response isn't cached if the header exists. |
+| Set-Cookie | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the Response Caching Middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
 | Vary | The `Vary` header is used to vary the cached response by another header. For example, cache responses by encoding by including the `Vary: Accept-Encoding` header, which caches responses for requests with headers `Accept-Encoding: gzip` and `Accept-Encoding: text/plain` separately. A response with a header value of `*` is never stored. |
 | Expires | A response deemed stale by this header isn't stored or retrieved unless overridden by other `Cache-Control` headers. |
 | If-None-Match | The full response is served from cache if the value isn't `*` and the `ETag` of the response doesn't match any of the values provided. Otherwise, a 304 (Not Modified) response is served. |
@@ -125,13 +123,13 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The `Set-Cookie` header must not be present.
 * `Vary` header parameters must be valid and not equal to `*`.
 * The `Content-Length` header value (if set) must match the size of the response body.
-* The [IHttpSendFileFeature](/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpsendfilefeature) isn't used.
+* The [IHttpSendFileFeature](/dotnet/api/microsoft.aspnetcore.http.features.ihttpsendfilefeature) isn't used.
 * The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering must be successful, and the size of the response must be smaller than the configured or default `SizeLimit`.
 * The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of [RFC 7234](https://tools.ietf.org/html/rfc7234) for details.
 
 > [!NOTE]
-> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached.
+> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see [ASP.NET Core antiforgery configuration](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration).
 
 ## Additional resources
 

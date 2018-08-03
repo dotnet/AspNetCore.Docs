@@ -4,12 +4,8 @@ title: "ASP.NET 4 and Visual Studio 2010 Web Development Overview | Microsoft Do
 author: rick-anderson
 description: "This document provides an overview of many of the new features for ASP.NET that are included in the.NET Framework 4 and in Visual Studio 2010."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: d7729af4-1eda-4ff2-8b61-dbbe4fc11d10
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4
 msc.type: content
 ---

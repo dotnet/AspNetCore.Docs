@@ -4,12 +4,8 @@ title: "SQL 2005 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with SQL Server Express to add database capabilities to your ASP.NET applications."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/05/2011
-ms.topic: article
 ms.assetid: cf0b487c-f387-46dd-b3bc-6b3c4af17c9c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005
 msc.type: chapter
 ---

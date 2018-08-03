@@ -4,12 +4,8 @@ title: "Sending HTML Form Data in ASP.NET Web API: File Upload and Multipart MIM
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/21/2012
-ms.topic: article
 ms.assetid: a7f3c1b5-69d9-4261-b082-19ffafa5f16a
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/sending-html-form-data-part-2
 msc.type: authoredcontent
 ---

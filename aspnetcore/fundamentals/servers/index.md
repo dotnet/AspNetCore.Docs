@@ -1,14 +1,10 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
-manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -19,13 +15,12 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships two server implementations:
 
-* [Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
-
+* [Kestrel](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
 * [HTTP.sys](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
 
 ## Kestrel
 
-Kestrel is the web server that's included by default in ASP.NET Core new-project templates. 
+Kestrel is the default web server included in ASP.NET Core project templates.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -35,9 +30,7 @@ Kestrel can be used by itself or with a *reverse proxy server*, such as IIS, Ngi
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is only exposed to an internal network.
-
-For information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -51,7 +44,7 @@ If the app is exposed to the Internet, Kestrel must use IIS, Nginx, or Apache as
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
 
-For information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
 ---
 

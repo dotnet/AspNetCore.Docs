@@ -3,13 +3,10 @@ uid: api-ref
 title: "ASP.NET API reference | Microsoft Docs"
 author: rick-anderson
 description: "API reference documentation for ASP.NET."
-ms.author: aspnetcontent
-manager: wpickett
-ms.date: 01/30/2017
-ms.topic: article
 ms.assetid: b2203f7b-b732-42f0-8e78-b0635fcdd1de
-ms.technology: 
-ms.prod: .net-framework
+ms.author: aspnetcontent
+ms.date: 01/30/2017
+ms.technology: aspnet
 msc.legacyurl: 
 msc.type: content
 ---

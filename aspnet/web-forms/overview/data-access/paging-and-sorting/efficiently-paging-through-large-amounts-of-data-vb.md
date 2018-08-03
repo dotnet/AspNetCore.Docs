@@ -4,12 +4,8 @@ title: "Efficiently Paging Through Large Amounts of Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "The default paging option of a data presentation control is unsuitable when working with large amounts of data, as its underlying data source control retriev..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 08/15/2006
-ms.topic: article
 ms.assetid: 3e20e64a-8808-4b49-88d6-014e2629d56f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-vb
 msc.type: authoredcontent
 ---

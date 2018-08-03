@@ -4,12 +4,8 @@ title: "Part 5: Creating a Dynamic UI with Knockout.js | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/04/2012
-ms.topic: article
 ms.assetid: 9d9cb3b0-f4a7-434e-a508-9fc0ad0eb813
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-5
 msc.type: authoredcontent
 ---

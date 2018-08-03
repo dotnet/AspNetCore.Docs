@@ -4,12 +4,8 @@ title: "Request Validation - Preventing Script Attacks | Microsoft Docs"
 author: rick-anderson
 description: "This paper describes the request validation feature of ASP.NET where, by default, the application is prevented from processing unencoded HTML content submitt..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: fa429113-5f8f-4ef4-97c5-5c04900a19fa
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/request-validation
 msc.type: content
 ---

@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using MiddlewareExtensibilitySample.Data;
 using MiddlewareExtensibilitySample.Middleware;
+
 
 namespace MiddlewareExtensibilitySample
 {
@@ -17,7 +19,13 @@ namespace MiddlewareExtensibilitySample
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Replace the default middleware factory with the 
             // SimpleInjectorMiddlewareFactory.
@@ -61,11 +69,14 @@ namespace MiddlewareExtensibilitySample
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseSimpleInjectorActivatedMiddleware();
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseMvc();
         }
         #endregion

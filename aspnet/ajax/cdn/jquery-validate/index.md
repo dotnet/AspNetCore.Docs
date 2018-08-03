@@ -4,12 +4,8 @@ title: "jQuery Validate | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/14/2017
-ms.topic: article
 ms.assetid: a266cc44-f514-4913-9768-5b382380184d
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate
 msc.type: folder
 ---

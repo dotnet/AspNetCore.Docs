@@ -4,12 +4,8 @@ title: "[How Do I:] ASP.NET AJAX Enable an Existing Web Service? | Microsoft Doc
 author: JoeStagner
 description: "This video demonstrates how simple it is to add Microsoft ASP.NET AJAX functionality to an existing ASP.NET web service. This enables the web service to gene..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/26/2007
-ms.topic: article
 ms.assetid: 15a8d767-a99e-4459-8466-7746b5f29362
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-aspnet-ajax-enable-an-existing-web-service
 msc.type: video
 ---

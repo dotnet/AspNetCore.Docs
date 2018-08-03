@@ -4,12 +4,8 @@ title: "Wrapping Database Modifications within a Transaction (C#) | Microsoft Do
 author: rick-anderson
 description: "This tutorial is the first of four that looks at updating, deleting, and inserting batches of data. In this tutorial we learn how database transactions allow..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: b45fede3-c53a-4ea1-824b-20200808dbae
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs
 msc.type: authoredcontent
 ---

@@ -4,12 +4,8 @@ title: "Understanding the ASP.NET MVC Execution Process | Microsoft Docs"
 author: microsoft
 description: "Learn how the ASP.NET MVC framework processes a browser request step-by-step."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/27/2009
-ms.topic: article
 ms.assetid: d1608db3-660d-4079-8c15-f452ff01f1db
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process
 msc.type: authoredcontent
 ---

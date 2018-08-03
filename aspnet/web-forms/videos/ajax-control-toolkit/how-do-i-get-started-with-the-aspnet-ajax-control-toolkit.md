@@ -4,12 +4,8 @@ title: "[How Do I:] Get Started with the ASP.NET AJAX Control Toolkit? | Microso
 author: JoeStagner
 description: "Learn how to extend your ASP.NET AJAX applications using the ASP.NET AJAX Control Toolkit. This video starts with the very basics, including downloading and..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/23/2007
-ms.topic: article
 ms.assetid: 0ab311fc-154b-4e38-86ce-c6351ff5cabb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit
 msc.type: video
 ---

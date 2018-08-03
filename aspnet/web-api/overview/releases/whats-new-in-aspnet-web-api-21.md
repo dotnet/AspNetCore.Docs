@@ -4,12 +4,8 @@ title: "What's New in ASP.NET Web API 2.1 | Microsoft Docs"
 author: microsoft
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: b6721bba-38c8-48c4-acbf-274c1a34e817
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-21
 msc.type: authoredcontent
 ---

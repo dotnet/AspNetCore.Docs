@@ -4,12 +4,8 @@ title: "Host ASP.NET Web API 2 in an Azure Worker Role | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to host ASP.NET Web API in an Azure Worker Role, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) de..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 04/02/2014
-ms.topic: article
 ms.assetid: 6980ee2e-d6b0-4a08-8fb6-ab96362dd0e3
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
 msc.type: authoredcontent
 ---

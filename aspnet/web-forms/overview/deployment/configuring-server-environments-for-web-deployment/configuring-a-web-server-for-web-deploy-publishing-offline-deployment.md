@@ -4,12 +4,8 @@ title: "Configuring a Web Server for Web Deploy Publishing (Offline Deployment) 
 author: jrjlee
 description: "This topic describes how to configure an IIS web server to support offline web publishing and deployment. When you work with Internet Information Services (I..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: ba92788f-9f03-44b1-b6b2-af8413e6a35d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment
 msc.type: authoredcontent
 ---

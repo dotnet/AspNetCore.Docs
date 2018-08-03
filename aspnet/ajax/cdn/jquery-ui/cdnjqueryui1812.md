@@ -4,12 +4,8 @@ title: "jQuery UI 1.8.12 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: f7cb2102-d826-4d70-ba9a-504e3c50ad89
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1812
 msc.type: content
 ---

@@ -4,17 +4,16 @@ title: "Introduction to SignalR | Microsoft Docs"
 author: pfletcher
 description: "This article describes what SignalR is, and some of the solutions it was designed to create."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 0fab5e35-8c1f-43d4-8635-b8aba8766a71
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/introduction-to-signalr
 msc.type: authoredcontent
 ---
 Introduction to SignalR
 ====================
+
+An updated version of this tutorial is available [here](/aspnet/core/tutorials/signalr) using the latest version of Visual Studio. The new tutorial uses [ASP.NET Core](/aspnet/core/), which provides many improvements over this tutorial.
+
 by [Patrick Fletcher](https://github.com/pfletcher)
 
 > This article describes what SignalR is, and some of the solutions it was designed to create. 

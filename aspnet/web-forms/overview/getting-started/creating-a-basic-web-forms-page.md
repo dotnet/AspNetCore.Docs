@@ -4,12 +4,8 @@ title: "Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013 | Micr
 author: Erikre
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/03/2014
-ms.topic: article
 ms.assetid: a2f1c635-0817-4a9a-8c13-d5b5d29727c0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
 msc.type: authoredcontent
 ---
@@ -310,15 +306,12 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
     A new event handler is created and displayed in the code-behind file named *FirstWebPage.aspx.cs*.
 2. Finish the [SelectionChanged](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selectionchanged.aspx) event handler with the following code.
 
-
-~~~
-[!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
+    [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
 
 
-[!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
-~~~
+    [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
 
- The above code sets the text of the label control to the selected date of the calendar control.
+    The above code sets the text of the label control to the selected date of the calendar control.
 
 
 ### Running the Page

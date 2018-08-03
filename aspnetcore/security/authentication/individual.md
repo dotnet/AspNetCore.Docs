@@ -2,12 +2,8 @@
 title: Articles based on ASP.NET Core projects created with individual user accounts
 author: rick-anderson
 description: Discover articles based on ASP.NET Core projects created with individual user accounts.
-manager: wpickett
 ms.author: riande
 ms.date: 11/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts
@@ -16,11 +12,27 @@ ASP.NET Core Identity is included in project templates in Visual Studio with the
 
 The authentication templates are available in .NET Core CLI with `-au Individual`:
 
+::: moniker range=">= aspnetcore-2.1"
+
+```console
+dotnet new mvc -au Individual
+dotnet new webapi -au Individual
+dotnet new webapp -au Individual
+```
+
+[!INCLUDE[](~/includes/webapp-alias-notice.md)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 ```console
 dotnet new mvc -au Individual
 dotnet new webapi -au Individual
 dotnet new razor -au Individual
 ```
+
+::: moniker-end
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual user accounts:
 

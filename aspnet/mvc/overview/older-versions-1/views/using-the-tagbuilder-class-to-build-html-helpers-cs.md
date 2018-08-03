@@ -4,12 +4,8 @@ title: "Using the TagBuilder Class to Build HTML Helpers (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther introduces you to a useful utility class in the ASP.NET MVC framework named the TagBuilder class. You can use the TagBuilder class to easily..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 03/02/2009
-ms.topic: article
 ms.assetid: 3975a52f-bd15-4edd-8f3d-1df93672515b
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-cs
 msc.type: authoredcontent
 ---

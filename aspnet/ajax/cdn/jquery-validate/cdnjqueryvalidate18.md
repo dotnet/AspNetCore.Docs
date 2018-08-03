@@ -4,12 +4,8 @@ title: "jquery.validate version 1.8 | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: 68fa43ec-b976-49ca-8e0f-fe317a0e598c
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate/cdnjqueryvalidate18
 msc.type: content
 ---

@@ -4,12 +4,8 @@ title: "Working with Data in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How to program CRUD (create, read, update, delete) operations in Web API."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 10/23/2014
-ms.topic: article
 ms.assetid: 995cbe38-7dbd-4c36-a5d0-a761944c7636
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data
 msc.type: chapter
 ---

@@ -4,12 +4,8 @@ title: "Implementing Optimistic Concurrency with the SqlDataSource (C#) | Micros
 author: rick-anderson
 description: "In this tutorial we review the essentials of optimistic concurrency control and then explore how to implement it using the SqlDataSource control."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: df999966-ac48-460e-b82b-4877a57d6ab9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-cs
 msc.type: authoredcontent
 ---

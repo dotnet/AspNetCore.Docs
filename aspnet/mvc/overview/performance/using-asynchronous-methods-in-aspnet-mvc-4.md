@@ -4,12 +4,8 @@ title: "Using Asynchronous Methods in ASP.NET MVC 4 | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using Visual Studio Express 2012 for Web, which is a free ve..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 06/06/2012
-ms.topic: article
 ms.assetid: a56572ba-81c3-47af-826d-941e9c4775ec
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
 msc.type: authoredcontent
 ---
@@ -39,7 +35,7 @@ This might not be a problem, because the thread pool can be made large enough to
 
 ## Processing Asynchronous Requests
 
-In web applications that sees a large number of concurrent requests at start-up or has a bursty load (where concurrency increases suddenly), making these web service calls asynchronous will increase the responsiveness of your application. An asynchronous request takes the same amount of time to process as a synchronous request. For example, if a request makes a web service call that requires two seconds to complete, the request takes two seconds whether it is performed synchronously or asynchronously. However, during an asynchronous call, a thread is not blocked from responding to other requests while it waits for the first request to complete. Therefore, asynchronous requests prevent request queuing and thread pool growth when there are many concurrent requests that invoke long-running operations.
+In a web app that sees a large number of concurrent requests at start-up or has a bursty load (where concurrency increases suddenly), making web service calls asynchronous increases the responsiveness of the app. An asynchronous request takes the same amount of time to process as a synchronous request. If a request makes a web service call that requires two seconds to complete, the request takes two seconds whether it's performed synchronously or asynchronously. However during an asynchronous call, a thread isn't blocked from responding to other requests while it waits for the first request to complete. Therefore, asynchronous requests prevent request queuing and thread pool growth when there are many concurrent requests that invoke long-running operations.
 
 ## <a id="ChoosingSyncVasync"></a>  Choosing Synchronous or Asynchronous Action Methods
 
@@ -57,7 +53,7 @@ In general, use synchronous methods for the following conditions:
 - The operations are network-bound or I/O-bound instead of CPU-bound.
 - Parallelism is more important than simplicity of code.
 - You want to provide a mechanism that lets users cancel a long-running request.
-- When the benefit of switching threads out weights the cost of the context switch. In general, you should make a method asynchronous if the synchronous method waits on the ASP.NET request thread while doing no work. By making the call asynchronous, the ASP.NET request thread is not stalled doing no work while it waits for the web service request to complete.
+- When the benefit of switching threads outweighs the cost of the context switch. In general, you should make a method asynchronous if the synchronous method waits on the ASP.NET request thread while doing no work. By making the call asynchronous, the ASP.NET request thread is not stalled doing no work while it waits for the web service request to complete.
 - Testing shows that the blocking operations are a bottleneck in site performance and that IIS can service more requests by using asynchronous methods for these blocking calls.
 
   The downloadable sample shows how to use asynchronous action methods effectively. The sample provided was designed to provide a simple demonstration of asynchronous programming in ASP.NET MVC 4 using .NET 4.5. The sample is not intended to be a reference architecture for asynchronous programming in ASP.NET MVC. The sample program calls [ASP.NET Web API](../../../web-api/index.md) methods which in turn call [Task.Delay](https://msdn.microsoft.com/library/hh139096(VS.110).aspx) to simulate long-running web service calls. Most production applications will not show such obvious benefits to using asynchronous action methods.   

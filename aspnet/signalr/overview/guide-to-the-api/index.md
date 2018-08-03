@@ -4,12 +4,8 @@ title: "SignalR Guide to the API | Microsoft Docs"
 author: rick-anderson
 description: "Documentation on how to use the SignalR Hubs API. For authorization API, see the Security tab."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 09/19/2014
-ms.topic: article
 ms.assetid: af69e8d2-efdd-4d0b-9bbc-95353a65c0db
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api
 msc.type: chapter
 ---

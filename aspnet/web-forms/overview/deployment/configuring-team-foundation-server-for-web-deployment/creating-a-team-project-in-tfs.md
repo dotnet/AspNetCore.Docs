@@ -4,12 +4,8 @@ title: "Creating a Team Project in TFS | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to create a new team project in Team Foundation Server (TFS) 2010."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: b28d3e2d-0bb4-4e29-a780-af810b964722
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-team-project-in-tfs
 msc.type: authoredcontent
 ---
@@ -104,9 +100,9 @@ Next, you need to give the user permission to create new team sites in the Share
 
    > [!NOTE]
    > You may receive an <strong>HTTP 404 Not Found</strong> error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
-   > [<em>site collection URL</em>]/\_layouts/permsetup.aspx  
+   > `[site_collection_URL]/_layouts/permsetup.aspx`
    > For example:  
-   > http://tfs/sites/Fabrikam%20Web%20Projects/\_layouts/permsetup.aspx
+   > `http://tfs/sites/Fabrikam%20Web%20Projects/_layouts/permsetup.aspx` 
 8. On the **Set Up Groups for this Site** page, add the user who will create team projects to the **Owners** group, and then click **OK**.
 
     ![](creating-a-team-project-in-tfs/_static/image10.png)

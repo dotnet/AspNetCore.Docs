@@ -4,12 +4,8 @@ title: "ASP.NET WebHooks receiver dependencies | Microsoft Docs"
 author: rick-anderson
 description: "Receiver dependencies and dependency injection in ASP.NET WebHooks."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/17/2012
-ms.topic: article
 ms.assetid: 5125e483-c2bb-435b-8cd1-21d3499bfaaf
-ms.technology: 
-ms.prod: .net-framework
 uid: webhooks/receiving/dependencies
 ---
 # ASP.NET WebHooks receiver dependencies

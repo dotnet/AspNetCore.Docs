@@ -2,12 +2,8 @@
 title: Configure Windows authentication in ASP.NET Core
 author: ardalis
 description: This article describes how to configure Windows authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
-manager: wpickett
 ms.author: riande
 ms.date: 10/24/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/windowsauth
 ---
 # Configure Windows authentication in ASP.NET Core
@@ -20,7 +16,7 @@ Windows authentication can be configured for ASP.NET Core apps hosted with IIS, 
 
 Windows authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is best suited to intranet environments in which users, client applications, and web servers belong to the same Windows domain.
 
-[Learn more about Windows authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
+[Learn more about Windows authentication and installing it for IIS](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
 
 ## Enable Windows authentication in an ASP.NET Core app
 
@@ -51,7 +47,7 @@ Alternatively, these two properties can be configured in the *launchSettings.jso
 
 ## Enable Windows authentication with IIS
 
-IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module flows Windows authentication to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
+IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. The module allows Windows authentication to flow to IIS by default. Windows authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication.
 
 ### Create a new IIS site
 
@@ -79,17 +75,20 @@ Launch the app to verify Windows authentication is working.
 
 ## Enable Windows authentication with HTTP.sys or WebListener
 
-#### [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
 Although Kestrel doesn't support Windows authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program2x.cs?highlight=9-14)]
 
-#### [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
 
-* * *
+---
+
 ## Work with Windows authentication
 
 The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the disallowed and allowed configuration states of anonymous access.

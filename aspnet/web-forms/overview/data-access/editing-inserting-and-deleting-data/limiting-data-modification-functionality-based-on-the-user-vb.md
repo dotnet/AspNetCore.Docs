@@ -4,12 +4,8 @@ title: "Limiting Data Modification Functionality Based on the User (VB) | Micros
 author: rick-anderson
 description: "In a web application that allows users to edit data, different user accounts may have different data-editing privileges. In this tutorial we'll examine how t..."
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 9dc264a6-feb8-474b-8b91-008c50708065
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-vb
 msc.type: authoredcontent
 ---

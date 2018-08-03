@@ -2,12 +2,8 @@
 title: Introduction to authorization in ASP.NET Core
 author: rick-anderson
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core
@@ -16,7 +12,7 @@ uid: security/authorization/introduction
 
 Authorization refers to the process that determines what a user is able to do. For example, an administrative user is allowed to create a document library, add documents, edit documents, and delete them. A non-administrative user working with the library is only authorized to read the documents.
 
-Authorization is orthogonal and independent from authentication, which is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
+Authorization is orthogonal and independent from authentication. However, authorization requires an authentication mechanism. Authentication is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
 
 ## Authorization types
 

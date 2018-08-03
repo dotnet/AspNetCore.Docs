@@ -4,12 +4,8 @@ title: "Media Formatters in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 01/20/2014
-ms.topic: article
 ms.assetid: 4c56f64a-086a-44ce-99c2-4c69604cd7fd
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/media-formatters
 msc.type: authoredcontent
 ---
@@ -17,7 +13,7 @@ Media Formatters in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
-This tutorial shows how support additional media formats in ASP.NET Web API.
+This tutorial shows how to support additional media formats in ASP.NET Web API.
 
 ## Internet Media Types
 

@@ -4,12 +4,8 @@ title: "jQuery DataTables 1.9.2 | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
-manager: wpickett
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: 71a851e2-e939-4da5-9480-59cdef3d56b4
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables192
 msc.type: content
 ---
