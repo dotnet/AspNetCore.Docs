@@ -1,7 +1,5 @@
 # Continuous Integration and Continuous Deployment
 
-## Overview
-
 In the previous chapter, you created a local Git repository for the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct a Visual Studio Team Services (VSTS) DevOps pipeline. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a deployment to the Azure Web App's staging slot.
 
 In this section, you'll complete the following tasks:

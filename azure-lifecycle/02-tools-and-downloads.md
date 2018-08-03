@@ -1,7 +1,5 @@
 # Tools and downloads
 
-## Overview
-
 Azure has multiple interfaces for provisioning and managing resources, such as the [Azure portal](https://portal.azure.com), [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-6.0.0), [Azure Cloud Shell](https://shell.azure.com/bash), and Visual Studio. This guide takes a minimalist approach and uses the Azure Cloud Shell whenever possible to reduce the steps required. However, the Azure portal must be used for some portions.
 
 ## Prerequisites

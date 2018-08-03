@@ -1,4 +1,4 @@
-# Overview
+# Monitoring and Debugging
 
 Having deployed the app and built a DevOps pipeline, it's important to understand how to monitor and troubleshoot the app.
 
