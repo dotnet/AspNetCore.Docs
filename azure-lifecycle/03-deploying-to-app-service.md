@@ -76,13 +76,15 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     az group create --location centralus --name AzureTutorial
     ```
 
+    The `az` command invokes [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest). The CLI can be run locally, but using it in the Cloud Shell saves time and configuration.
+
     c. Create an App Service plan in the S1 tier. An App Service plan is a grouping of web apps that share the same pricing tier. The S1 tier isn't free, but it's required for the staging slots feature.
 
     ```azure-cli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
-    d. Create the web app resource in Azure.
+    d. Create the web app resource using the App Service plan in the same resource group.
 
     ```azure-cli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
@@ -91,7 +93,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     e. Set the deployment credentials. These deployment credentials apply to all the web apps in your subscription. Don't use special characters in the user name.
 
     ```azure-cli
-    az webapp deployment user set --user-name <REPLACE WITH USER NAME> --password <REPLACE WITH PASSWORD>
+    az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Configure the web app to accept deployments from local Git and display the *Git deployment URL*. **Note this URL for reference later**.
@@ -111,7 +113,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     a. Add the remote URL to the local repo.
 
     ```console
-    git remote add azure-prod <Git_deployment_URL>
+    git remote add azure-prod GIT_DEPLOYMENT_URL
     ```
 
     b. Push the local *master* branch to the *azure-prod* remote's *master* branch.
@@ -123,6 +125,8 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     You'll be prompted for the deployment credentials you created earlier. Observe the output in the command shell. Azure builds the ASP.NET Core app remotely.
 
 4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repo with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
+
+
 
 ## Deployment with Visual Studio
 
