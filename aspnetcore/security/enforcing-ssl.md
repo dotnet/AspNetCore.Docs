@@ -108,13 +108,15 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 <a name="hsts"></a>
 ## HTTP Strict Transport Security Protocol (HSTS)
 
-Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that is specified by a web application through the use of a special response header. Once a supported browser receives this header that browser will prevent any communications from being sent over HTTP to the specified domain and will instead send all communications over HTTPS. It also prevents HTTPS click through prompts on browsers.
+Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that is specified by a web application through the use of a special response header. Once a browser that supports HSTS receives this header it stores configuration for the domain that will prevent any communications from being sent over HTTP and will instead force all communications over HTTPS. It also prevents the user of unstrusted or invalid certificates, disabling the browser prompts that can allow a user to temporarily trust such a certificate.
 
 ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS header is highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
+
+For production environments implementing HTTPS for the first time the initial HSTS value should be set to a small value, hours or, at most, a single day, in case the HTTPS infrastructure is reverted and returns to HTTP. Once confidence in the HTTPS configuration increases the HSTS max-age value can be increased; a commonly used value is one year. 
 
 The following code:
 
