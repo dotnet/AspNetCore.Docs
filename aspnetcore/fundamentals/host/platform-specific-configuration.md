@@ -107,9 +107,16 @@ The app's Index page reads and renders the configuration values for the two keys
 
 *This approach is only available for .NET Core apps, not .NET 4.x.*
 
-A hosting startup enhancement can be provided in a console app without an entry point. The app contains a `HostingStartup` attribute.
+A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point. The app contains a `HostingStartup` attribute. To create a dynamic hosting startup:
 
-The assembly references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
+1. An implementation library is created from the class that contains the `IHostingStartup` implementation. The implementation library is treated as a normal package.
+1. A console app without an entry point references the implementation library package. A console app is used because:
+   - A dependencies file is a runnable app asset, so a library can't furnish a dependencies file.
+   - A library can't be added directly to the [runtime package store](/dotnet/core/deploying/runtime-store), which requires a runnable project that targets the shared runtime.
+1. The console app is published to obtain the hosting startup's dependencies. A consequence of publishing the console app is that unused dependencies are trimmed from the dependencies file.
+1. The app and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're referenced in a pair of environment variables.
+
+The console app references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
 [!code-xml[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.csproj)]
 
@@ -145,9 +152,10 @@ When multiple hosting startup assembles are present, their [Configure](/dotnet/a
 
 There are three options for hosting startup activation:
 
-* [Runtime store](#runtime-store)
-* [NuGet package](#nuget-package)
-* [Project bin folder](#project-bin-folder)
+* Doesn't require a compile-time reference for activation: [Runtime store](#runtime-store)
+* Compile-time reference required for activation
+  - [NuGet package](#nuget-package)
+  - [Project bin folder](#project-bin-folder)
 
 ### Runtime store
 
