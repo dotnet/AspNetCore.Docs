@@ -1,7 +1,5 @@
 # Deploy an app to App Service
 
-## Overview
-
 [Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done multiple ways, either manually or by an automated process. This section of the guide discusses deployment methods that can be initiated manually or by script.
 
 In this section, you'll accomplish the following tasks:
