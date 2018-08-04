@@ -39,11 +39,25 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-2. Configure Identity services and add middleware in `Startup`.
+The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).
 
-   The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
+### Test Register and Login
+
+Run the app and register a user. Depending on your screen size, you might need to select the navigation toggle button to see the **Register** and **Login** links.
+
+![toggle navbar button](identity/_static/navToggle.png)
+
+[!INCLUDE[](~/includes/view-identity-db.md)]
+
+### Configure Identity services
 
    # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+
+::: moniker range=">= aspnetcore-2.1"
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
 
@@ -52,6 +66,8 @@ dotnet new webapp --auth Individual -o WebApp1
    Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
+
+::: moniker-end
 
    # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
@@ -65,22 +81,9 @@ dotnet new webapp --auth Individual -o WebApp1
 
    ---
 
-   For more information about the application start up process, see [Application Startup](xref:fundamentals/startup).
+For more information, see [IdentityOptions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) and [Application Startup](xref:fundamentals/startup).
 
-3. Create a user.
 
-   Launch the application and then click on the **Register** link.
-
-   If this is the first time you're performing this action, you may be required to run migrations. The application prompts you to **Apply Migrations**. Refresh the page if needed.
-
-   ![Apply Migrations Web Page](identity/_static/apply-migrations.png)
-
-   Alternately, you can test using ASP.NET Core Identity with your app without a persistent database by using an in-memory database. To use an in-memory database, add the `Microsoft.EntityFrameworkCore.InMemory` package to your app and modify your app's call to `AddDbContext` in `ConfigureServices` as follows:
-
-   ```csharp
-   services.AddDbContext<ApplicationDbContext>(options =>
-       options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
-   ```
 
    When the user clicks the **Register** link, the `Register` action is invoked on `AccountController`. The `Register` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to `AccountController` by dependency injection):
 

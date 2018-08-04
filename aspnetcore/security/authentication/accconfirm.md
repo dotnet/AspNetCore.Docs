@@ -73,24 +73,11 @@ Follow the instructions in [Enable authentication](xref:security/authentication/
 
 Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't log in until their email is validated.
 
-## View the Identity database
-
-# [Visual Studio](#tab/visual-studio) 
-
-* From the **View** menu, select **SQL Server Object Explorer** (SSOX).
-* Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
-
-![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
+[!INCLUDE[](~/includes/view-identity-db.md)]
 
 Note the table's `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias makes it easier in the following steps.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-See [Work with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
-
-------
 
 <a name="prevent-login-at-registration"></a>
 ## Require email confirmation
