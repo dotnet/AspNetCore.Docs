@@ -51,9 +51,19 @@ Run the app and register a user. Depending on your screen size, you might need t
 
 ### Configure Identity services
 
+Services are added in `ConfigureServices`.
+
    # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 ::: moniker range=">= aspnetcore-2.1"
+
+   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configureservices)]
+
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+
+   Identity is enabled by calling `UseAuthentication`. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+
+   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configure&highlight=18)]
 
 ::: moniker-end
 
@@ -61,7 +71,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 
    [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
 
-   These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
+   Services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
 
    Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
@@ -192,5 +202,7 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/2fa>
+<!-- 
 * <xref:security/authentication/social/index>
+-->
 * <xref:host-and-deploy/web-farm>
