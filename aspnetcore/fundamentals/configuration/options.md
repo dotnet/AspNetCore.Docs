@@ -11,9 +11,9 @@ uid: fundamentals/configuration/options
 
 By [Luke Latham](https://github.com/guardrex)
 
-The options pattern uses classes to represent groups of related settings. When configuration settings are isolated by feature into separate classes, the app adheres to two important software engineering principles:
+The options pattern uses classes to represent groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
-* The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Features (classes) that depend on configuration settings depend only on the configuration settings that they use.
+* The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.
 * [Separation of Concerns](http://deviq.com/separation-of-concerns/): Settings for different parts of the app aren't dependent or coupled to one another.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)) This article is easier to follow with the sample app.
@@ -96,7 +96,7 @@ delegate_option1 = value1_configured_by_delgate, delegate_option2 = 500
 
 Suboptions configuration is demonstrated as Example &num;3 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
 
-Apps should create options classes that pertain to specific feature groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
+Apps should create options classes that pertain to specific scenario groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
 
 When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.
 
@@ -291,7 +291,3 @@ services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
 `IOptions` can be used in `Configure`, since services are built before the `Configure` method executes. If a service provider is built in `ConfigureServices` to access options, it wouldn't contain any options configurations provided after the service provider is built. Therefore, an inconsistent options state may exist due to the ordering of service registrations.
 
 Since options are typically loaded from configuration, configuration can be used in startup in both `Configure` and `ConfigureServices`. For examples of using configuration during startup, see the [Application startup](xref:fundamentals/startup) topic.
-
-## See also
-
-* [Configuration](xref:fundamentals/configuration/index)
