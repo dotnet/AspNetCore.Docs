@@ -109,8 +109,6 @@ Update *Areas/Identity/IdentityHostingStartup.cs*  to require a confirmed email:
 
 In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
 
-The [Options pattern](xref:fundamentals/configuration/options) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration/index).
-
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover21/Services/AuthMessageSenderOptions.cs?name=snippet1)]
@@ -138,6 +136,8 @@ The contents of the *secrets.json* file aren't encrypted. The *secrets.json* fil
     "SendGridKey": "<key removed>"
   }
   ```
+ 
+For more information, see the [Options pattern](xref:fundamentals/configuration/options) and [configuration](xref:fundamentals/configuration/index).
 
 ### Install SendGrid
 
