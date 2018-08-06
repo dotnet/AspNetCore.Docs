@@ -243,6 +243,49 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 > [!NOTE]
 > All options are named instances. Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. `IConfigureNamedOptions` also implements `IConfigureOptions`. The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).
 
+## Options Validation
+
+Options validation is being introduced in 2.2 as methods in `IOptionsBuilder<TOptions>` 
+
+```C#
+  // Registration
+  services.AddOptions<MyOptions>("optionalOptionsName")
+        .Configure(o => { }) // configure the options
+        .Validate(o => YourValidationShouldReturnTrueIfValid(o), "custom error");
+        
+  // Consumption
+  var monitor = services.BuildServiceProvider().GetService<IOptionsMonitor<MyOptions>>();
+  
+  try {
+      var options = monitor.Get("optionalOptionsName");
+  } catch (OptionsValidationException e) {
+     // e.OptionsName = "optionalOptionsName"
+     // e.OptionsType = typeof(MyOptions)
+     // e.Failures = list of errors, which would contain "custom error" 
+  }
+```
+
+The idea is that for a specific named options instance(the default `Options.DefaultName`) is used otherwise, you can add arbitrary validation which will run whenver this options instance is created. Your option instance is guaranteed to have passed validation the first time its accessed.  Note: this does not guard against modifications, so this is only true initially when accessing your options from `IOptions[Monitor/Snapshot]`.
+
+The Validate method currently only accepts a `Func<TOptions, bool>`, to fully customize validation, developers can implement `IValidateOptions<TOptions>` for full control. This would allow validation of multiple option types, and also the validation could consume other options types as well.
+
+```C#
+    public interface IValidateOptions<TOptions> where TOptions : class
+    {
+        /// <summary>
+        /// Validates a specific named options instance (or all when name is null).
+        /// </summary>
+        /// <param name="name">The name of the options instance being validated.</param>
+        /// <param name="options">The options instance.</param>
+        /// <returns>The <see cref="ValidateOptionsResult"/> result.</returns>
+        ValidateOptionsResult Validate(string name, TOptions options);
+    }
+```
+
+Eager validation (fail fast at startup), and data annotation based validation are coming soon.
+
+
+
 ## IPostConfigureOptions
 
 Set postconfiguration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1). Postconfiguration runs after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs:
