@@ -38,24 +38,10 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
-[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
-
-The preceding highlighted code:
-
-* Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode).
-* Sets the HTTPS port to 5001.
-
-The following mechanisms set the port automatically:
-
-* The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
-  - Kestrel or HTTP.sys is used directly with HTTPS endpoints (also applies to running the app with Visual Studio Code's debugger).
-  - Only **one HTTPS port** is used by the app.
-* Visual Studio is used:
-  - IIS Express has HTTPS enabled.
-  - *launchSettings.json* sets the `sslPort` for IIS Express.
+[!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=33-44)]
 
 > [!NOTE]
-> When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
+> When an app is run behind a reverse proxy (for example, IIS, IIS Express), the port must be manually configured. 
 
 The port can be configured by setting the:
 
