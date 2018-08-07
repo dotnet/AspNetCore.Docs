@@ -4,7 +4,7 @@ author: CamSoper
 description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
 ms.author: casoper
 ms.date: 08/07/2018
-uid: azure/devops/deploying-to-app-service
+uid: azure/devops/deploy-to-app-service
 ---
 # Deploy an app to App Service
 
