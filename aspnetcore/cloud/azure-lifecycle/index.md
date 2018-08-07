@@ -1,3 +1,12 @@
+---
+title: ASP.NET Core DevOps on Azure
+author: CamSoper
+description: No description
+ms.author: casoper
+ms.date: 08/07/2018
+uid: cloud/devops/guide
+---
+
 # ASP.NET Core DevOps on Azure
 
 Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature DevOps toolchain.
