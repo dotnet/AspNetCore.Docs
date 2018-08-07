@@ -116,7 +116,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
 3. Using a command shell on your local machine, navigate to the web app's project folder (for example, `.\simple-feed-reader\SimpleFeedReader`). Execute the following commands to set up Git to push to the deployment URL:
 
-    a. Add the remote URL to the local repo.
+    a. Add the remote URL to the local repository.
 
     ```console
     git remote add azure-prod GIT_DEPLOYMENT_URL
@@ -130,11 +130,11 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
     You'll be prompted for the deployment credentials you created earlier. Observe the output in the command shell. Azure builds the ASP.NET Core app remotely.
 
-4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repo with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
+4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repository with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
 
 ## Deployment with Visual Studio
 
-> *Note: This section applies to Windows only. Linux and macOS users should make the change described in step 2 below. Save the file, and commit the change to the local repo with `git commit`. Finally, push the change with `git push`, as in the first section.*
+> *Note: This section applies to Windows only. Linux and macOS users should make the change described in step 2 below. Save the file, and commit the change to the local repository with `git commit`. Finally, push the change with `git push`, as in the first section.*
 
 The app has already been deployed from the command shell. Let's use Visual Studio's integrated tools to deploy an update to the app. Behind the scenes, Visual Studio accomplishes the same thing as the command line tooling, but within Visual Studio's familiar UI.
 
@@ -188,7 +188,7 @@ Deployment slots support the staging of changes without impacting the app runnin
     ```
 5. Using the local machine's command shell, add the staging deployment URL as a Git remote and push the committed changes:
 
-    a. Add the remote URL for staging to the local repo.
+    a. Add the remote URL for staging to the local Git repository.
 
     ```console
     git remote add azure-staging <Git_staging_deployment_URL>
