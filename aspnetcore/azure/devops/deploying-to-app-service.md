@@ -8,7 +8,7 @@ uid: azure/devops/deploy-to-app-service
 ---
 # Deploy an app to App Service
 
-[Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done multiple ways, either manually or by an automated process. This section of the guide discusses deployment methods that can be initiated manually or by script.
+[Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done manually or by an automated process. This section of the guide discusses deployment methods that can be triggered manually or by script.
 
 In this section, you'll accomplish the following tasks:
 
@@ -66,11 +66,11 @@ From a command shell, download the code, build the project, and run it as follow
 
 To deploy the app, you'll need to create an App Service [Web App](https://docs.microsoft.com/azure/app-service/app-service-web-overview). After creation of the Web App, you'll deploy to it from your local machine using Git.
 
-1. Log into the [Azure Cloud Shell](https://shell.azure.com/bash). Note: On first login, Cloud Shell prompts to create a storage account for configuration files. Accept the defaults or provide a unique name.
+1. Sign in to the [Azure Cloud Shell](https://shell.azure.com/bash). Note: When you sign in for the first time, Cloud Shell prompts to create a storage account for configuration files. Accept the defaults or provide a unique name.
 
 2. Use the Cloud Shell for the following steps.
 
-    a. Declare a variable containing the name of your web app. The name must be unique to be used in the default URL. Using the `$RANDOM` Bash function to construct the name ensures uniqueness and results in the format `webappname99999`.
+    a. Declare a variable to store your web app's name. The name must be unique to be used in the default URL. Using the `$RANDOM` Bash function to construct the name guarantees uniqueness and results in the format `webappname99999`.
 
     ```console
     webappname=mywebapp$RANDOM
@@ -82,7 +82,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     az group create --location centralus --name AzureTutorial
     ```
 
-    The `az` command invokes [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest). The CLI can be run locally, but using it in the Cloud Shell saves time and configuration.
+    The `az` command invokes the [Azure CLI](https://docs.microsoft.com/cli/azure/). The CLI can be run locally, but using it in the Cloud Shell saves time and configuration.
 
     c. Create an App Service plan in the S1 tier. An App Service plan is a grouping of web apps that share the same pricing tier. The S1 tier isn't free, but it's required for the staging slots feature.
 
@@ -145,8 +145,8 @@ The app has already been deployed from the command shell. Let's use Visual Studi
 
     ![Right-click, Publish](./media/deploying-to-app-service/publish.png)
 5. Visual Studio can create a new App Service resource, but this update will be published over the existing deployment. In the **Pick a publish target** dialog, select **App Service** from the list on the left, and then select **Select Existing**. Click **Publish**.
-6. In the **App Service** dialog, ensure that the Microsoft or Organizational account used to create your Azure subscription is displayed in the upper right. If it's not, click the drop-down and add it.
-7. Ensure the correct Azure **Subscription** is selected. For **View**, select **Resource Group**. Expand the **AzureTutorial** resource group and then select the existing web app. Click **OK**.
+6. In the **App Service** dialog, confirm that the Microsoft or Organizational account used to create your Azure subscription is displayed in the upper right. If it's not, click the drop-down and add it.
+7. Confirm that the correct Azure **Subscription** is selected. For **View**, select **Resource Group**. Expand the **AzureTutorial** resource group and then select the existing web app. Click **OK**.
 
     ![Publish App Service dialog](./media/deploying-to-app-service/publish-dialog.png)
 
@@ -158,7 +158,7 @@ Visual Studio builds and deploys the app to Azure. Browse to the web app URL. Va
 
 Deployment slots support the staging of changes without impacting the app running in production. Once the staged version of the app is validated by a quality assurance team, the production and staging slots can be swapped. The app in staging is promoted to production in this manner. The following steps create a staging slot, deploy some changes to it, and swap the staging slot with production after verification.
 
-1. Log into the [Azure Cloud Shell](https://shell.azure.com/bash), if not already logged in.
+1. Sign in to the [Azure Cloud Shell](https://shell.azure.com/bash), if not already signed in.
 2. Create the staging slot.
 
     a. Create a deployment slot with the name *staging*.
@@ -202,7 +202,7 @@ Deployment slots support the staging of changes without impacting the app runnin
 
     Wait while Azure builds and deploys the app.
 
-6. To verify that V3 has been deployed to the staging slot, open two browser windows. In one window, navigate to the original web app URL. In the other window, navigate to the staging web app URL. The production URL renders V2 of the app. The staging URL renders V3 of the app.
+6. To verify that V3 has been deployed to the staging slot, open two browser windows. In one window, navigate to the original web app URL. In the other window, navigate to the staging web app URL. The production URL serves V2 of the app. The staging URL serves V3 of the app.
 
     ![Comparing the browser windows](./media/deploying-to-app-service/ready-to-swap.png)
 
