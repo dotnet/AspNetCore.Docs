@@ -1,4 +1,12 @@
-# Next Steps
+---
+title: DevOps with ASP.NET Core and Azure | Next steps
+author: CamSoper
+description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+ms.author: casoper
+ms.date: 08/07/2018
+uid: azure/devops/next-steps
+---
+# Next steps
 
 In this guide, you created a DevOps pipeline for an ASP.NET Core sample application. Congratulations! We hope you enjoyed learning how to publish ASP.NET Core web apps to Azure App Service and automate the continuous integration of changes.
 
