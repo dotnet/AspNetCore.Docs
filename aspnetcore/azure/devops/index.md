@@ -8,23 +8,23 @@ uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure
 
-Welcome to Azure Development Lifecycle for .NET! In this guide, we'll introduce you to the basic concepts you'll need to build a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll be able to reap the benefits of a mature DevOps toolchain.
+Welcome to the Azure Development Lifecycle guide for .NET! This guide introduces the basic concepts of building a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll reap the benefits of a mature DevOps toolchain.
 
-### Who this guide is for
+## Who this guide is for
 
 You should be an experienced ASP.NET developer (200-300 level). You don't need to know anything about Azure, as we'll cover that in this introduction. This guide may also be useful for DevOps engineers who are more focused on operations than development.
 
-This guide targets Windows developers. However, Linux and macOS is fully supported by .NET Core. To adapt this guide for Linux/macOS, watch for callouts for Linux/macOS differences.
+This guide targets Windows developers. However, Linux and macOS are fully supported by .NET Core. To adapt this guide for Linux/macOS, watch for callouts for Linux/macOS differences.
 
-### What this guide doesn't cover
+## What this guide doesn't cover
 
-This guide is focused on an end-to-end continuous deployment experience for .NET developers. It will not be an exhaustive guide to all things Azure, nor will it focus extensively on .NET APIs for Azure services. The emphasis is all around continuous integration, deployment, monitoring, and debugging. Near the end of the guide we will make some recommendations for next steps, which will include some suggestions for Azure platform services that will be useful for ASP.NET developers.
+This guide is focused on an end-to-end continuous deployment experience for .NET developers. It's not an exhaustive guide to all things Azure, and it doesn't focus extensively on .NET APIs for Azure services. The emphasis is all around continuous integration, deployment, monitoring, and debugging. Near the end of the guide, recommendations for next steps are offered. Included in the suggestions are Azure platform services that are useful to ASP.NET developers.
 
 ## What's in this guide
 
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
 
-Find out where to obtain the tools used in this guide.
+Learn where to acquire the tools used in this guide.
 
 ### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
 
