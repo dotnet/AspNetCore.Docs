@@ -93,7 +93,7 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
 
 ---
 
-* Run the npm initializer:
+* Run the npm initializer to create a *package.json* file:
 
   ```console
   npm init -y
@@ -115,7 +115,7 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
     "author": "",
     "license": "ISC"0
   }
-```
+  ```
 
 * Install the client library package:
 
@@ -123,7 +123,7 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   npm install @aspnet/signalr
   ```
 
-  The creates output similar to the following example:
+  The command creates output similar to the following example:
 
   ```
   npm : npm notice created a lockfile as package-lock.json. You should commit this file.
@@ -146,19 +146,17 @@ The `npm install` command downloaded the JavaScript client library to a subfolde
 
 ## Create the SignalR hub
 
-A *hub* is a class that serves as a high-level pipeline that allows the client and server to call methods on each other.
+A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that handles client-server communication.
 
-* In the SignalRChat project, create a folder named *Hubs*.
+* In the SignalRChat project, create a *Hubs* folder.
 
-* In the *Hubs* folder, create a file named *ChatHub.cs*.
-
-* Replace the code in the file with the following code:
+* In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
 
   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
 
-  The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class contains properties and events for managing connections and groups, as well as sending and receiving data.
+  The `ChatHub` class inherits from the SignalR [Hub](/dotnet/api/microsoft.aspnetcore.signalr.hub) class. The `Hub` class manages connections, groups, and messaging.
 
-  The `SendMessage` method sends a message to all connected chat clients. Notice it returns a [Task](https://msdn.microsoft.com/library/system.threading.tasks.task(v=vs.110).aspx), because SignalR is asynchronous. Asynchronous code scales better.
+  The `SendMessage` method can be called by any connected client. It sends the received message to all clients. The method is asynchronous because SignalR code is asynchronous to provide maximum scalability.
 
 ## Configure the project to use SignalR
 
