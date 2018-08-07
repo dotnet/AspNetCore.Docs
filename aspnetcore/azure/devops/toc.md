@@ -1,7 +1,7 @@
 # DevOps with ASP.NET Core and Azure
-## [Introduction](index.md)
-## [Tools and downloads](tools-and-downloads.md)
-## [Deploying to App Service](deploying-to-app-service.md)
-## [Continuous integration and deployment](cicd.md)
-## [Monitoring and troubleshooting](monitoring.md)
-## [Next steps](next-steps.md)
+## [Introduction](xref:azure/devops/index)
+## [Tools and downloads](xref:azure/devops/tools-and-downloads)
+## [Deploying to App Service](xref:azure/devops/deploy-to-app-service)
+## [Continuous integration and deployment](xref:azure/devops/cicd)
+## [Monitor and troubleshoot](xref:azure/devops/monitor)
+## [Next steps](xref:azure/devops/next-steps)
