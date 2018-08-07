@@ -284,8 +284,8 @@ Validation runs when the options instance is created. Your option instance is gu
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
-* Validation of multiple option types.
-* Validation to consume other options types.
+* Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`
+* Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptions<AnotherOption> options)`
 
 `IValidateOptions` validates:
 
