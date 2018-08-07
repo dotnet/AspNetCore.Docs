@@ -231,7 +231,7 @@
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
 # Azure Guidance
-## [DevOps with Azure and ASP.NET Core](xref:cloud/devops/guide)
+## [DevOps with ASP.NET Core and Azure](xref:azure/devops/guide)
 
 # [Client-side development](xref:client-side/index)
 ## [Use Gulp](xref:client-side/using-gulp)

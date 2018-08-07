@@ -1,4 +1,4 @@
-# ASP.NET Core DevOps on Azure
+# DevOps with ASP.NET Core and Azure
 ## [Introduction](index.md)
 ## [Tools and downloads](tools-and-downloads.md)
 ## [Deploying to App Service](deploying-to-app-service.md)
