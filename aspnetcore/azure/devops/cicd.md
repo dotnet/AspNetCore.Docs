@@ -1,4 +1,12 @@
-# Continuous Integration and Deployment
+---
+title: DevOps with ASP.NET Core and Azure | Continuous integration and deployment
+author: CamSoper
+description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+ms.author: casoper
+ms.date: 08/07/2018
+uid: azure/devops/cicd
+---
+# Continuous integration and deployment
 
 In the previous chapter, you created a local Git repository for the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct a Visual Studio Team Services (VSTS) DevOps pipeline. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a deployment to the Azure Web App's staging slot.
 
