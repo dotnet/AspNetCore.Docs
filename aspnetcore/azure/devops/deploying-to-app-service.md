@@ -1,3 +1,11 @@
+---
+title: DevOps with ASP.NET Core and Azure | Deploy an app to App Service
+author: CamSoper
+description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+ms.author: casoper
+ms.date: 08/07/2018
+uid: azure/devops/deploying-to-app-service
+---
 # Deploy an app to App Service
 
 [Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done multiple ways, either manually or by an automated process. This section of the guide discusses deployment methods that can be initiated manually or by script.
