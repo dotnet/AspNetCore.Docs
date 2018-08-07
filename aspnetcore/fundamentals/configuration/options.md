@@ -110,11 +110,11 @@ The sample's *appsettings.json* file defines a `subsection` member with keys for
 
 [!code-json[](options/sample/appsettings.json?highlight=4-7)]
 
-The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the sub-option values (*Models/MySubOptions.cs*):
+The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values (*Models/MySubOptions.cs*):
 
 [!code-csharp[](options/sample/Models/MySubOptions.cs?name=snippet1)]
 
-The page model's `OnGet` method returns a string with the sub-option values (*Pages/Index.cshtml.cs*):
+The page model's `OnGet` method returns a string with the options values (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=11)]
 
@@ -144,7 +144,7 @@ For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:
 
 [!code-cshtml[](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
 
-When the app is run, the option values are shown in the rendered page:
+When the app is run, the options values are shown in the rendered page:
 
 ![Options values Option1: value1_from_json and Option2: -1 are loaded from the model and by injection into the view.](options/_static/view.png)
 
