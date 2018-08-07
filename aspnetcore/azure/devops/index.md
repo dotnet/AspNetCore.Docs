@@ -23,23 +23,23 @@ This guide is focused on an end-to-end continuous deployment experience for .NET
 
 ## What's in this guide
 
-### [Tools and Downloads](02-tools-and-downloads.md)
+### [Tools and Downloads](tools-and-downloads.md)
 
 Find out where to obtain the tools used in this guide.
 
-### [Deploying to App Service](03-deploying-to-app-service.md)
+### [Deploying to App Service](deploying-to-app-service.md)
 
 Learn the various methods for deploying an ASP.NET Core app to Azure App Service.
 
-### [Continuous Integration](04-cicd.md)
+### [Continuous Integration](cicd.md)
 
 Build an end-to-end continuous integration solution for your ASP.NET Core app with GitHub, VSTS, and Azure.
 
-### [Monitoring and Debugging](05-monitoring.md)
+### [Monitoring and Debugging](monitoring.md)
 
 Use Azure's tools to monitor, troubleshoot, and tune your application.
 
-### [Next steps](06-next-steps.md)
+### [Next steps](next-steps.md)
 
 Other learning paths for the ASP.NET Core developer learning Azure.
 

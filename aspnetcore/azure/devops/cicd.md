@@ -18,7 +18,7 @@ In this section, you'll complete the following tasks:
 1. Open a browser window, and navigate to `https://github.com`.
 1. Click the **+** drop-down in the header, and select **New repository**:
 
-    ![GitHub New Repository option](media/04/github-new-repo.png)
+    ![GitHub New Repository option](media/cicd/github-new-repo.png)
 
 1. Select your account in the **Owner** drop-down, and enter *simple-feed-reader* in the **Repository name** textbox.
 1. Click the **Create repository** button.
@@ -43,7 +43,7 @@ Remove the local Git deployment with the following steps. VSTS both replaces and
 
 1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *staging* in the portal's search box:
 
-    ![staging Web App search term](media/04/portal-search-box.png)
+    ![staging Web App search term](media/cicd/portal-search-box.png)
 
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
@@ -56,11 +56,11 @@ Remove the local Git deployment with the following steps. VSTS both replaces and
 1. Select the **Git** radio button, since the code is hosted in a GitHub repository.
 1. Click the **Continue** button. After a short wait, an account and a team project, named *MyFirstProject*, are created.
 
-    ![VSTS account creation page](media/04/vsts-account-creation.png)
+    ![VSTS account creation page](media/cicd/vsts-account-creation.png)
 
 1. Open the confirmation email indicating that the VSTS account and project are ready for use. Click the **Start your project** button:
 
-    ![Start your project button](media/04/vsts-start-project.png)
+    ![Start your project button](media/cicd/vsts-start-project.png)
 
 1. A browser opens to *\<account_name\>.visualstudio.com*. Click the *MyFirstProject* link to begin configuring the project's DevOps pipeline.
 
@@ -72,15 +72,15 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 1. Expand the **or build code from an external repository** accordion. Click the **Setup Build** button:
 
-    ![Setup Build button](media/04/vsts-setup-build.png)
+    ![Setup Build button](media/cicd/vsts-setup-build.png)
 
 1. Select the **GitHub** option from the **Select a source** section:
 
-    ![Select a source - GitHub](media/04/vsts-select-source.png)
+    ![Select a source - GitHub](media/cicd/vsts-select-source.png)
 
 1. Authorization is required before VSTS can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox. For example:
 
-    ![GitHub connection name](media/04/vsts-repo-authz.png)
+    ![GitHub connection name](media/cicd/vsts-repo-authz.png)
 
 1. If two-factor authentication is enabled on your GitHub account, a personal access token is required. In that case, click the **Authorize with a GitHub personal access token** link. See the [official GitHub personal access token creation instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for help. Only the *repo* scope of permissions is needed. Otherwise, click the **Authorize using OAuth** button.
 1. When prompted, sign in to your GitHub account. Then select Authorize to grant access to your VSTS account. If successful, a new service endpoint is created.
@@ -91,23 +91,23 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 1. From the template selection page, enter *ASP.NET Core* in the search box:
 
-    ![ASP.NET Core search on template page](media/04/vsts-template-selection.png)
+    ![ASP.NET Core search on template page](media/cicd/vsts-template-selection.png)
 
 1. The template search results appear. Hover over the **ASP.NET Core** template, and click the **Apply** button.
 1. The **Tasks** tab of the build definition appears. Click the **Triggers** tab.
 1. Check the **Enable continuous integration** box. Under the **Branch filters** section, confirm that the **Type** drop-down is set to *Include*. Set the **Branch specification** drop-down to *master*.
 
-    ![Enable continuous integration settings](media/04/vsts-enable-ci.png)
+    ![Enable continuous integration settings](media/cicd/vsts-enable-ci.png)
 
     These settings cause a build to trigger when any change is pushed to the *master* branch of the GitHub repository. Continuous integration is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
 
 1. Click the **Save & queue** button, and select the **Save** option:
 
-    ![Save button](media/04/vsts-save-build.png)
+    ![Save button](media/cicd/vsts-save-build.png)
 
 1. The following modal dialog appears:
 
-    ![Save build definition - modal dialog](media/04/vsts-save-modal.png)
+    ![Save build definition - modal dialog](media/cicd/vsts-save-modal.png)
 
     Use the default folder of *\\*, and click the **Save** button.
 
@@ -115,21 +115,21 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 1. Click the **Releases** tab of your team project. Click the **New definition** button.
 
-    ![Releases tab - New definition button](media/04/vsts-new-release-definition.png)
+    ![Releases tab - New definition button](media/cicd/vsts-new-release-definition.png)
 
     The template selection pane appears.
 
 1. From the template selection page, enter *App Service* in the search box:
 
-    ![Release definition template search box](media/04/vsts-release-template-search.png)
+    ![Release definition template search box](media/cicd/vsts-release-template-search.png)
 
 1. The template search results appear. Hover over the **Azure App Service Deployment with Slot** template, and click the **Apply** button. The **Pipeline** tab of the release definition appears.
 
-    ![Release definition Pipeline tab](media/04/vsts-release-definition-pipeline.png)
+    ![Release definition Pipeline tab](media/cicd/vsts-release-definition-pipeline.png)
 
 1. Click the **Add** button in the **Artifacts** box. The **Add artifact** panel appears:
 
-    ![Release definition - Add artifact panel](media/04/vsts-release-add-artifact.png)
+    ![Release definition - Add artifact panel](media/cicd/vsts-release-add-artifact.png)
 
 1. Select the **Build** tile from the **Source type** section. This type allows for the linking of the release definition to the build definition.
 1. Select *MyFirstProject* from the **Project** drop-down.
@@ -139,7 +139,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Click the **Add** button. The **Artifacts** section updates to display the changes.
 1. Click the lightning bolt icon to enable continuous deployments:
 
-    ![Release definition Artifacts - lightning bolt icon](media/04/vsts-artifacts-lightning-bolt.png)
+    ![Release definition Artifacts - lightning bolt icon](media/cicd/vsts-artifacts-lightning-bolt.png)
 
     With this option enabled, a deployment occurs each time a new build is available.
 1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
@@ -147,11 +147,11 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
 1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
 
-   ![Release definition - Environment name textbox](media/04/vsts-environment-name-textbox.png)
+   ![Release definition - Environment name textbox](media/cicd/vsts-environment-name-textbox.png)
 
 1. Click the **1 phase, 2 tasks** link in the **Production** box:
 
-    ![Release definition - Production environment link.png](media/04/vsts-production-link.png)
+    ![Release definition - Production environment link.png](media/cicd/vsts-production-link.png)
 
     The **Tasks** tab of the environment appears.
 1. Click the **Deploy Azure App Service to Slot** task. Its settings appear in a panel to the right.
@@ -163,7 +163,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Click the **Save** button.
 1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
 
-    ![Release definition name](media/04/vsts-release-definition-name.png)
+    ![Release definition name](media/cicd/vsts-release-definition-name.png)
 
 1. Click the **Save** button.
 
@@ -185,19 +185,19 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     The commit appears in the GitHub repository's *master* branch:
 
-    ![GitHub commit in master branch](media/04/github-commit.png)
+    ![GitHub commit in master branch](media/cicd/github-commit.png)
 
     The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
 
-    ![enable continuous integration](media/04/enable-ci.png)
+    ![enable continuous integration](media/cicd/enable-ci.png)
 
 1. Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
 
-    ![queued build](media/04/build-queued.png)
+    ![queued build](media/cicd/build-queued.png)
 
 1. Once the build succeeds, a deployment to Azure occurs. Navigate to the app in the browser. Notice that the "V4" text appears in the heading:
 
-    ![updated app](media/04/updated-app-v4.png)
+    ![updated app](media/cicd/updated-app-v4.png)
 
 ## Examine the VSTS DevOps pipeline
 
@@ -207,7 +207,7 @@ A build definition was created with the name *MyFirstProject-ASP.NET Core-CI*. U
 
 The build definition's **Tasks** tab lists the individual steps being used. There are five build tasks.
 
-![build definition tasks](media/04/build-definition-tasks.png)
+![build definition tasks](media/cicd/build-definition-tasks.png)
 
 1. **Restore** &mdash; Executes the `dotnet restore` command to restore the app's NuGet packages. The default package feed used is nuget.org.
 1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug configuration is needed.
@@ -217,15 +217,15 @@ The build definition's **Tasks** tab lists the individual steps being used. Ther
 
 Click the build definition's **Summary** link to view a history of builds with the definition:
 
-![build definition history](media/04/build-definition-summary.png)
+![build definition history](media/cicd/build-definition-summary.png)
 
 On the resulting page, click the link corresponding to the unique build number:
 
-![build definition summary page](media/04/build-definition-completed.png)
+![build definition summary page](media/cicd/build-definition-completed.png)
 
 A summary of this specific build is displayed. Click the **Artifacts** tab, and notice the *drop* folder produced by the build is listed:
 
-![build definition artifacts - drop folder](media/04/build-definition-artifacts.png)
+![build definition artifacts - drop folder](media/cicd/build-definition-artifacts.png)
 
 Use the **Download** and **Explore** links to inspect the published artifacts.
 
@@ -233,25 +233,25 @@ Use the **Download** and **Explore** links to inspect the published artifacts.
 
 A release definition was created with the name *MyFirstProject-ASP.NET Core-CD*:
 
-![release definition overview](media/04/release-definition-overview.png)
+![release definition overview](media/cicd/release-definition-overview.png)
 
 The two major components of the release definition are the **Artifacts** and the **Environments**. Clicking the box in the **Artifacts** section reveals the following panel:
 
-![release definition artifacts](media/04/release-definition-artifacts.png)
+![release definition artifacts](media/cicd/release-definition-artifacts.png)
 
 The **Source (Build definition)** value represents the build definition to which this release definition is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for deployment to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release definition tasks:
 
-![release definition tasks](media/04/release-definition-tasks.png)
+![release definition tasks](media/cicd/release-definition-tasks.png)
 
 The release definition consists of two tasks: *Deploy Azure App Service to Slot* and *Manage Azure App Service - Slot Swap*. Clicking the first task reveals the following task configuration:
 
-![release definition deploy task](media/04/release-definition-task1.png)
+![release definition deploy task](media/cicd/release-definition-task1.png)
 
 The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp\<unique_number\>* web app.
 
 Clicking the slot swap task reveals the following task configuration:
 
-![release definition slot swap task](media/04/release-definition-task2.png)
+![release definition slot swap task](media/cicd/release-definition-task2.png)
 
 The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
