@@ -1,10 +1,10 @@
 ---
-title: ASP.NET Core DevOps on Azure
+title: DevOps with ASP.NET Core and Azure
 author: CamSoper
-description: No description
+description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
 ms.author: casoper
 ms.date: 08/07/2018
-uid: azure/devops/guide
+uid: azure/devops/index
 ---
 
 # DevOps with ASP.NET Core and Azure
