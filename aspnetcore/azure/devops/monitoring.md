@@ -1,4 +1,12 @@
-# Monitoring and Debugging
+---
+title: DevOps with ASP.NET Core and Azure | Monitor and debug
+author: CamSoper
+description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+ms.author: casoper
+ms.date: 08/07/2018
+uid: azure/devops/monitor
+---
+# Monitor and debug
 
 Having deployed the app and built a DevOps pipeline, it's important to understand how to monitor and troubleshoot the app.
 
