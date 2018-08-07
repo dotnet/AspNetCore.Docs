@@ -249,7 +249,7 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 
 ## Options validation
 
-Options validation allows you to validate options at the time of options configuration. After configuring options, call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
+Options validation allows you to validate options when options are configured. Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
 
 ```csharp
 // Registration
@@ -277,10 +277,10 @@ catch (OptionsValidationException e)
 
 The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
 
-The arbitrary validation runs when the options instance is created. Your option instance is guaranteed to pass validation the first time it's accessed.
+Validation runs when the options instance is created. Your option instance is guaranteed to pass validation the first time it's accessed.
 
 > [!IMPORTANT]
-> Options validation doesn't guard against invalid modifications to options after the options are initially configured and validated.
+> Options validation doesn't guard against options modifications after the options are initially configured and validated.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
