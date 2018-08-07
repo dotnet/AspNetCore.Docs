@@ -132,8 +132,6 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
 
 4. In a browser, navigate to the *Web app URL* and note the app has been built and deployed. Additional changes can be committed to the local Git repo with `git commit`. These changes are pushed to Azure with the preceding `git push` command.
 
-
-
 ## Deployment with Visual Studio
 
 > *Note: This section applies to Windows only. Linux and macOS users should make the change described in step 2 below. Save the file, and commit the change to the local repo with `git commit`. Finally, push the change with `git push`, as in the first section.*
@@ -183,7 +181,7 @@ Deployment slots support the staging of changes without impacting the app runnin
 
 3. In a text editor or Visual Studio, modify *Pages/Index.cshtml* again so that the `<h2>` element reads `<h2>Simple Feed Reader - V3</h2>` and save the file.
 
-4. Commit the file to the local Git repo, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using the local machine's command shell:
+4. Commit the file to the local Git repository, using either the **Changes** page in Visual Studio's *Team Explorer* tab, or by entering the following using the local machine's command shell:
 
     ```console
     git commit -a -m "upgraded to V3"
