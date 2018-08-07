@@ -243,6 +243,8 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 > [!NOTE]
 > All options are named instances. Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. `IConfigureNamedOptions` also implements `IConfigureOptions`. The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.2"
 
 ## Options validation
@@ -302,6 +304,8 @@ public interface IValidateOptions<TOptions> where TOptions : class
 Eager validation (fail fast at startup) and data annotation-based validation are scheduled for a future release.
 
 ::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
 
 ## IPostConfigureOptions
 
