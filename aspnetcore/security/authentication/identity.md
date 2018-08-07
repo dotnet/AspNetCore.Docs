@@ -8,7 +8,10 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
 
-By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), [Jon Galloway](https://twitter.com/jongalloway), and [Steve Smith](https://ardalis.com/)
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_
+
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social).
 
@@ -49,6 +52,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
+<a name="pw"></a>
 ### Configure Identity services
 
 Services are added in `ConfigureServices`.
@@ -61,7 +65,7 @@ Services are added in `ConfigureServices`.
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
-   Identity is enabled by calling `UseAuthentication`. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+   Identity is enabled by calling [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configure&highlight=18)]
 
@@ -91,13 +95,47 @@ The preceding code configures Identity with default option values. Services are 
 
    ---
 
-For more information, see [IdentityOptions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) and [Application Startup](xref:fundamentals/startup).
+For more information, see the [IdentityOptions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) and [Application Startup](xref:fundamentals/startup).
+
+## Scaffold Register, Login, and LogOut
+
+Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#) instructions.
+
+# [Visual Studio](#tab/visual-studio)
+
+Add the Register, Login, and LogOut files.
 
 
+# [.NET Core CLI](#tab/netcore-cli)
+
+If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
+
+
+```cli
+dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
+
+```
+
+Powershell uses semicolon as a command separator. When using powershell, escape the semi-colons in the file list or put the file list in double quotes, as the preceding example shows.
+
+---
+
+### Examine Register
+
+::: moniker range=">= aspnetcore-2.1"
+
+   When the user clicks the **Register** link, the `Register.OnPostAsync` action is invoked. The user is created by  the `CreateAsync` on the `_userManager` object. `_userManager` is provided to `RegisterModel` by dependency injection):
+
+   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Register.cshtml.cs?name=snippet&highlight=7,22)]
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
 
    When the user clicks the **Register** link, the `Register` action is invoked on `AccountController`. The `Register` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to `AccountController` by dependency injection):
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
+
+::: moniker-end
 
    If the user was created successfully, the user is logged in by the call to `_signInManager.SignInAsync`.
 
@@ -121,32 +159,6 @@ For more information, see [IdentityOptions Class](https://docs.microsoft.com/en-
 
    The preceding code above calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
 
-<a name="pw"></a>
-6. Configuration.
-
-   Identity has some default behaviors that can be overridden in the app's startup class. `IdentityOptions` don't need to be configured when using the default behaviors. The following code sets several password strength options:
-
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
-
-   [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-42)]
-
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
-
-   [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=13-33)]
-
-   ---
-
-   For more information about how to configure Identity, see [Configure Identity](xref:security/authentication/identity-configuration).
-
-   You also can configure the data type of the primary key, see [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).
-
-7. View the database.
-
-   If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use **SQL Server Management Studio**. Alternatively, from Visual Studio, select **View** > **SQL Server Object Explorer**. Connect to **(localdb)\MSSQLLocalDB**. The database with a name matching `aspnet-<name of your project>-<guid>` is displayed.
-
-   ![Contextual menu on AspNetUsers database table](identity/_static/04-db.png)
-
-   Expand the database and its **Tables**, then right-click the **dbo.AspNetUsers** table and select **View Data**.
 
 8. Verify Identity works
 
@@ -161,32 +173,16 @@ For more information, see [IdentityOptions Class](https://docs.microsoft.com/en-
     }
     ```
 
-    # [Visual Studio](#tab/visual-studio)
-
-    Run the project using **Ctrl** + **F5** and navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
-
-    # [.NET Core CLI](#tab/netcore-cli)
-
-    Open a command window and navigate to the project's root directory containing the `.csproj` file. Run the [dotnet run](/dotnet/core/tools/dotnet-run) command to run the app:
-
-    ```csharp
-    dotnet run 
-    ```
-
-    Browse the URL specified in the output from the [dotnet run](/dotnet/core/tools/dotnet-run) command. The URL should point to `localhost` with a generated port number. Navigate to the **About** page. Only authenticated users may access the **About** page now, so ASP.NET redirects you to the login page to login or register.
-
-    ---
+Run the app. Only authenticated users may access the **About** page now. If you are not logged in,You are redirected to the login page.
 
 ## Identity Components
 
-The primary reference assembly for the Identity system is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+The primary reference assembly for Identity is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 These dependencies are needed to use the Identity system in ASP.NET Core applications:
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore` - Contains the required types to use Identity with Entity Framework Core.
-
 * `Microsoft.EntityFrameworkCore.SqlServer` - Entity Framework Core is Microsoft's recommended data access technology for relational databases like SQL Server. For testing, you can use `Microsoft.EntityFrameworkCore.InMemory`.
-
 * `Microsoft.AspNetCore.Authentication.Cookies` - Middleware that enables an app to use cookie-based authentication.
 
 ## Migrating to ASP.NET Core Identity
@@ -199,10 +195,9 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 
 ## Next Steps
 
+* [Configure Identity](xref:security/authentication/identity-configuration)
+* [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/2fa>
-<!-- 
-* <xref:security/authentication/social/index>
--->
 * <xref:host-and-deploy/web-farm>
