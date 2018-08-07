@@ -15,7 +15,7 @@ This tutorial teaches the basics of building a real-time app using SignalR. You 
 > [!div class="checklist"]
 > * Create a web app that uses SignalR on ASP.NET Core.
 > * Create a SignalR hub on the server.
-> * Connect to the SignalR hub from clients.
+> * Connect to the SignalR hub from JavaScript clients.
 > * Use the hub to send messages from any client to all connected clients.
 
 At the end you'll have a working chat app:
@@ -71,9 +71,9 @@ At the end you'll have a working chat app:
 
 ---
 
-## Add the SignalR client package
+## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspnetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from the Node.js package manager.
+The SignalR server library is included in the [Microsoft.AspnetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from npm, the Node.js package manager.
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -83,13 +83,6 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   cd SignalRChat
   ``` 
 
-* Install the JavaScript client library:
-
-  ```console
-  npm init -y
-  npm install @aspnet/signalr
-  ```
-
 # [Visual Studio Code](#tab/visual-studio-code/)
 
 2. Change to the new project folder.
@@ -98,50 +91,52 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   cd SignalRChat
   ``` 
 
-2. Install the JavaScript client library.
+---
+
+* Run the npm initializer:
 
   ```console
   npm init -y
+  ```
+
+  The command creates output similar to the following example:
+
+  ```console
+  Wrote to C:\tmp\SignalRChat\package.json:
+  {
+    "name": "SignalRChat",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"0
+  }
+```
+
+* Install the client library package:
+
+  ```console
   npm install @aspnet/signalr
   ```
 
----
+  The creates output similar to the following example:
 
-The *npm init* command creates output similar to the following example:
-
-```console
-Wrote to C:\tmp\SignalRChat\package.json:
-
-{
-  "name": "SignalRChat",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
-```
-
-The *npm install* command creates output similar to the following example:
-
-```
-npm : npm notice created a lockfile as package-lock.json. You should commit this file.
-At line:1 char:1
-+ npm install @aspnet/signalr
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (npm notice crea...mmit this file.:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-WARN
- SignalRChat@1.0.0 No description
- 
-WARN
- SignalRChat@1.0.0 No repository field.
-```
+  ```
+  npm : npm notice created a lockfile as package-lock.json. You should commit this file.
+  At line:1 char:1
+  + npm install @aspnet/signalr
+  + ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : NotSpecified: (npm notice crea...mmit this file.:String) [], RemoteException
+      + FullyQualifiedErrorId : NativeCommandError
+  WARN
+   SignalRChat@1.0.0 No description
+  WARN
+   SignalRChat@1.0.0 No repository field.
+  ```
 
 The `npm install` command downloaded the JavaScript client library to a subfolder under *node_modules*. Copy it from there to a folder under *wwwroot* that you can reference from the chat app web page.
 
