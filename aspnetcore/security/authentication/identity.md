@@ -8,9 +8,6 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_
-
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -19,9 +16,7 @@ Identity can be configured using a SQL Server database to store user names, pass
 
 [View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](xref:tutorials/index#how-to-download-a-sample)
 
-## Overview of Identity
-
-In this topic, you learn how to use ASP.NET Core Identity to add functionality to register, log in, and log out a user. For more detailed instructions about creating apps using ASP.NET Core Identity, see the Next Steps section at the end of this article.
+In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps using Identity, see the Next Steps section at the end of this article.
 
 ### Create a Web app with authentication
 
@@ -57,15 +52,13 @@ Run the app and register a user. Depending on your screen size, you might need t
 
 Services are added in `ConfigureServices`.
 
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x/)
-
 ::: moniker range=">= aspnetcore-2.1"
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configureservices)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
-   Identity is enabled by calling [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.1#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+   Identity is enabled by calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configure&highlight=18)]
 
@@ -83,7 +76,7 @@ The preceding code configures Identity with default option values. Services are 
 
 ::: moniker-end
 
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker range="<= aspnetcore-1.1"
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-33)]
 
@@ -93,9 +86,9 @@ The preceding code configures Identity with default option values. Services are 
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configure&highlight=21)]
 
-   ---
+::: moniker-end
 
-For more information, see the [IdentityOptions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) and [Application Startup](xref:fundamentals/startup).
+For more information, see the [IdentityOptions Class](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) and [Application Startup](xref:fundamentals/startup).
 
 ## Scaffold Register, Login, and LogOut
 
@@ -124,7 +117,7 @@ Powershell uses semicolon as a command separator. When using powershell, escape 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-   When a user clicks the **Register** link, the `RegisterModel.OnPostAsync` action is invoked. The user is created by [CreateAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) on the `_userManager` object. `_userManager` is provided by dependency injection):
+   When a user clicks the **Register** link, the `RegisterModel.OnPostAsync` action is invoked. The user is created by [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) on the `_userManager` object. `_userManager` is provided by dependency injection):
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Register.cshtml.cs?name=snippet&highlight=7,22)]
 
@@ -145,7 +138,12 @@ Powershell uses semicolon as a command separator. When using powershell, escape 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-The Login form is displayed when users select the **Log in** link or are redirected when accessing a page that requires authentication. When the user submits the form on the Login page, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
+The Login form is displayed when:
+
+* The **Log in** link  is selected.
+* When a user accesses a page where they are not authenticated **or** authorized, they are redirected to the Login page. 
+
+When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
@@ -160,7 +158,7 @@ The `Login` action calls `PasswordSignInAsync` on the `_signInManager` object (p
 
 [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
 
-The base ( `Controller` or `PageModel` class exposes a `User` property. For example, `User.Claims` can be enumerated to make authorization decisions.
+The base ( Controller` or `PageModel` class exposes a `User` property. For example, `User.Claims` can be enumerated to make authorization decisions.
 
 ::: moniker-end
 
@@ -172,7 +170,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Logout.cshtml.cs)]
 
-[SignOutAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie.
+[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie.
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
@@ -189,7 +187,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 ## Test Identity
 
-The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.0) to the About page.
+The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the About page.
 
 [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/About.cshtml.cs)]
 
@@ -216,9 +214,14 @@ These dependencies are needed to use the Identity system in ASP.NET Core applica
 * `Microsoft.EntityFrameworkCore.SqlServer` - Entity Framework Core is Microsoft's recommended data access technology for relational databases like SQL Server. For testing, you can use `Microsoft.EntityFrameworkCore.InMemory`.
 * `Microsoft.AspNetCore.Authentication.Cookies` - Middleware that enables an app to use cookie-based authentication.
 
+::: moniker range=">= aspnetcore-2.1"
+
+The preceding packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
+::: moniker-end
+
 ## Migrating to ASP.NET Core Identity
 
-For additional information and guidance on migrating your existing Identity store see [Migrate Authentication and Identity](xref:migration/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/identity).
 
 ## Setting password strength
 
