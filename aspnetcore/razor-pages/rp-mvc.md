@@ -49,10 +49,10 @@ Razor Pages and Web Forms ASP.NET 4.x are page focused and each contains a *.cs*
 
 |Feature | Controller/Views | Razor Pages|
 | ----| ----------------- | ------------ |
-|Action Filters | x |  2.1 |
-|Testable| x | x |
+| Filters | [MVC](xref:mvc/controllers/filters) | [RP](razor-pages/filter) |
+|[Testable](xref:test/index)| x | x |
 |Separation of concerns| x | x |
 |Areas| x | 2.1 |
-|Partial views| x | na |
+|[Partial views](xref:mvc/views/partial)| x | x |
 |View Components | x | x|
 |Build in DI | x | x |
