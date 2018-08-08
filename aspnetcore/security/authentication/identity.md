@@ -1,22 +1,22 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: Use Identity with an ASP.NET Core app. Includes, Setting password requirements (RequireDigit,RequiredLength,RequiredUniqueChars and more).
+description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
-ms.date: 01/24/2018
+ms.date: 08/08/2018
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
+ASP.NET Core Identity is a membership system that adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
 
 Identity can be configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
 [View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](xref:tutorials/index#how-to-download-a-sample)
 
-In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps using Identity, see the Next Steps section at the end of this article.
+In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps that use Identity, see the Next Steps section at the end of this article.
 
 ## Create a Web app with authentication
 
@@ -109,7 +109,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 ```
 
-Powershell uses semicolon as a command separator. When using powershell, escape the semi-colons in the file list or put the file list in double quotes, as the preceding example shows.
+PowerShell uses semicolon as a command separator. When using PowerShell, escape the semicolons in the file list or put the file list in double quotes, as the preceding example shows.
 
 ---
 
