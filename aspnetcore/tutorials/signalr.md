@@ -136,6 +136,8 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
    SignalRChat@1.0.0 No description
   WARN
    SignalRChat@1.0.0 No repository field.
+  + @aspnet/signalr@1.0.2
+  added 1 package in 1.398s
   ```
 
 The `npm install` command downloaded the JavaScript client library to a subfolder under *node_modules*. Copy it from there to a folder under *wwwroot* that you can reference from the chat app web page.
@@ -148,7 +150,7 @@ The `npm install` command downloaded the JavaScript client library to a subfolde
 
 A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that handles client-server communication.
 
-* In the SignalRChat project, create a *Hubs* folder.
+* In the SignalRChat project folder, create a *Hubs* folder.
 
 * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
 
@@ -156,7 +158,7 @@ A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that 
 
   The `ChatHub` class inherits from the SignalR [Hub](/dotnet/api/microsoft.aspnetcore.signalr.hub) class. The `Hub` class manages connections, groups, and messaging.
 
-  The `SendMessage` method can be called by any connected client. It sends the received message to all clients. The method is asynchronous because SignalR code is asynchronous to provide maximum scalability.
+  The `SendMessage` method can be called by any connected client. It sends the received message to all clients. SignalR code is asynchronous to provide maximum scalability.
 
 ## Configure the project to use SignalR
 
@@ -164,7 +166,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Add the following highlighted code to the *Startup.cs* file.
 
-  [!code-csharp[Startup](signalr/sample/Startup.cs?name=snippet_Startup&highlight=6,37,57-60)]
+  [!code-csharp[Startup](signalr/sample/Startup.cs?name=snippet_Startup&highlight=7,33,52-56)]
 
   These changes add SignalR to the the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
 
@@ -180,7 +182,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
   * Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.
   * Includes script references to SignalR and the *chat.js* application code that you create in the next step.
 
-* In the *wwwroot\js* folder, create a *chat.js* file with the following code:
+* In the *wwwroot/js* folder, create a *chat.js* file with the following code:
 
   [!code-javascript[Index](signalr/sample/wwwroot/js/chat.js)]
 
