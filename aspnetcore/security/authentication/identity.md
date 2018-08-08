@@ -18,7 +18,7 @@ Identity can be configured using a SQL Server database to store user names, pass
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps using Identity, see the Next Steps section at the end of this article.
 
-### Create a Web app with authentication
+## Create a Web app with authentication
 
 Create an ASP.NET Core Web Application project with Individual User Accounts.
 
@@ -170,7 +170,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Logout.cshtml.cs)]
 
-[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie.
+[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie. Don't redirect after calling `SignOutAsync` or the user will **not** be signed out.
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
@@ -216,7 +216,7 @@ These dependencies are needed to use the Identity system in ASP.NET Core applica
 
 ::: moniker range=">= aspnetcore-2.1"
 
-The preceding packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
+The preceding packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 ::: moniker-end
 
 ## Migrating to ASP.NET Core Identity
