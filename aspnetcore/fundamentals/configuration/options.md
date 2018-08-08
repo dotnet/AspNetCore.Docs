@@ -110,11 +110,11 @@ The sample's *appsettings.json* file defines a `subsection` member with keys for
 
 [!code-json[](options/sample/appsettings.json?highlight=4-7)]
 
-The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the sub-option values (*Models/MySubOptions.cs*):
+The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values (*Models/MySubOptions.cs*):
 
 [!code-csharp[](options/sample/Models/MySubOptions.cs?name=snippet1)]
 
-The page model's `OnGet` method returns a string with the sub-option values (*Pages/Index.cshtml.cs*):
+The page model's `OnGet` method returns a string with the options values (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=11)]
 
@@ -144,7 +144,7 @@ For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:
 
 [!code-cshtml[](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
 
-When the app is run, the option values are shown in the rendered page:
+When the app is run, the options values are shown in the rendered page:
 
 ![Options values Option1: value1_from_json and Option2: -1 are loaded from the model and by injection into the view.](options/_static/view.png)
 
@@ -243,6 +243,70 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 > [!NOTE]
 > All options are named instances. Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. `IConfigureNamedOptions` also implements `IConfigureOptions`. The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+## Options validation
+
+Options validation allows you to validate options when options are configured. Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
+
+```csharp
+// Registration
+services.AddOptions<MyOptions>("optionalOptionsName")
+    .Configure(o => { }) // Configure the options
+    .Validate(o => YourValidationShouldReturnTrueIfValid(o), 
+        "custom error");
+        
+// Consumption
+var monitor = services.BuildServiceProvider()
+    .GetService<IOptionsMonitor<MyOptions>>();
+  
+try
+{
+    var options = monitor.Get("optionalOptionsName");
+} 
+catch (OptionsValidationException e) 
+{
+   // e.OptionsName returns "optionalOptionsName"
+   // e.OptionsType returns typeof(MyOptions)
+   // e.Failures returns a list of errors, which would contain 
+   //     "custom error"
+}
+```
+
+The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
+
+Validation runs when the options instance is created. Your options instance is guaranteed to pass validation the first time it's accessed.
+
+> [!IMPORTANT]
+> Options validation doesn't guard against options modifications after the options are initially configured and validated.
+
+The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
+
+* Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`
+* Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptions<AnotherOption> options)`
+
+`IValidateOptions` validates:
+
+* A specific named options instance.
+* All options when `name` is `null`.
+
+Return a `ValidateOptionsResult` from your implementation of the interface:
+
+```csharp
+public interface IValidateOptions<TOptions> where TOptions : class
+{
+    ValidateOptionsResult Validate(string name, TOptions options);
+}
+```
+
+Eager validation (fail fast at startup) and data annotation-based validation are scheduled for a future release.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
+
 ## IPostConfigureOptions
 
 Set postconfiguration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1). Postconfiguration runs after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs:
@@ -266,7 +330,7 @@ services.PostConfigure<MyOptions>("named_options_1", myOptions =>
 Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) to post-configure all named configuration instances:
 
 ```csharp
-services.PostConfigureAll<MyOptions>("named_options_1", myOptions =>
+services.PostConfigureAll<MyOptions>(myOptions =>
 {
     myOptions.Option1 = "post_configured_option1_value";
 });
