@@ -230,8 +230,14 @@
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
-# Azure guidance
-## [DevOps with ASP.NET Core and Azure](xref:azure/devops/index)
+# [Azure guidance](xref:azure/index)
+## DevOps with ASP.NET Core and Azure
+### [Introduction](xref:azure/devops/index)
+### [Tools and downloads](xref:azure/devops/tools-and-downloads)
+### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
+### [Continuous integration and deployment](xref:azure/devops/cicd)
+### [Monitor and troubleshoot](xref:azure/devops/monitor)
+### [Next steps](xref:azure/devops/next-steps)
 
 # [Client-side development](xref:client-side/index)
 ## [Use Gulp](xref:client-side/using-gulp)

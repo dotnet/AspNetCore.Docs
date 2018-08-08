@@ -46,7 +46,7 @@ Other learning paths for the ASP.NET Core developer learning Azure.
 
 Thank you to everyone in the .NET community who contributed to this guide with helpful suggestions! We'd like to specifically thank the following community members who contributed to the final review of this material:
 
-* Sam Wronski
+* [Sam Wronski](https://www.youtube.com/c/worldofzerodevelopment)
 * [Jeffrey Palermo](https://twitter.com/jeffreypalermo)
 
 ## Conclusion
