@@ -166,7 +166,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Add the following highlighted code to the *Startup.cs* file.
 
-  [!code-csharp[Startup](signalr/sample/Startup.cs?name=snippet_Startup&highlight=7,33,52-56)]
+  [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=7,33,52-56)]
 
   These changes add SignalR to the the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
 
