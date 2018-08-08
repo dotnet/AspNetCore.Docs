@@ -204,6 +204,10 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
   ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
+> [!TIP]
+> If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *chat.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
+> ![chat.js not found error](signalr/_static/f12-console.png)
+
 ## Additional resources
 
 If you want clients to connect to a SignalR app from different domains, you have to enable Cross-Origin Resource Sharing (CORS). For more information, see to [Cross-origin resource sharing](xref:signalr/security?view=aspnetcore-2.1#cross-origin-resource-sharing).
