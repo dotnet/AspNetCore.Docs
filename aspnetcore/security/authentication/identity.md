@@ -76,7 +76,7 @@ The preceding code configures Identity with default option values. Services are 
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+::: moniker range="= aspnetcore-1.1"
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,13-33)]
 
@@ -206,18 +206,12 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
-
-These dependencies are needed to use the Identity system in ASP.NET Core applications:
-
-* `Microsoft.AspNetCore.Identity.EntityFrameworkCore` - Contains the required types to use Identity with Entity Framework Core.
-* `Microsoft.EntityFrameworkCore.SqlServer` - Entity Framework Core is Microsoft's recommended data access technology for relational databases like SQL Server. For testing, you can use `Microsoft.EntityFrameworkCore.InMemory`.
-* `Microsoft.AspNetCore.Authentication.Cookies` - Middleware that enables an app to use cookie-based authentication.
-
 ::: moniker range=">= aspnetcore-2.1"
 
-The preceding packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+All the Identity dependent NuGet packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 ::: moniker-end
+
+The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 ## Migrating to ASP.NET Core Identity
 
