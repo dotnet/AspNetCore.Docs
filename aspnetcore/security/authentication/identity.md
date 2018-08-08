@@ -152,13 +152,13 @@ When the form on the Login page is submitted, the `OnPostAsync` action is called
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
 
-The Login form is display when users select the **Log in** link or are redirected when accessing a page that requires authentication. When the user submits the form on the Login page, the `AccountController` `Login` action is called.
+The Login form is displayed when users select the **Log in** link or are redirected when accessing a page that requires authentication. When the user submits the form on the Login page, the `AccountController` `Login` action is called.
 
 The `Login` action calls `PasswordSignInAsync` on the `_signInManager` object (provided to `AccountController` by dependency injection).
 
 [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
 
-The base ( Controller` or `PageModel` class exposes a `User` property. For example, `User.Claims` can be enumerated to make authorization decisions.
+The base (`Controller` or `PageModel`) class exposes a `User` property. For example, `User.Claims` can be enumerated to make authorization decisions.
 
 ::: moniker-end
 
