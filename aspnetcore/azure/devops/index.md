@@ -42,6 +42,13 @@ Use Azure's tools to monitor, troubleshoot, and tune your application.
 
 Other learning paths for the ASP.NET Core developer learning Azure.
 
+## Acknowledgments
+
+Thank you to everyone in the .NET community who contributed to this guide with helpful suggestions! We'd like to specifically thank the following community members who contributed to the final review of this material:
+
+* Sam Wronski
+* [Jeffrey Palermo](https://twitter.com/jeffreypalermo)
+
 ## Conclusion
 
 This guide prepares you to build a continuous integration development lifecycle built around ASP.NET Core and Azure App Service.
