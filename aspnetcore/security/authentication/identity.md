@@ -13,7 +13,7 @@ https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authapp
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social).
+ASP.NET Core Identity is a membership system which adds login functionality to ASP.NET Core apps. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
 
 Identity can be configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
@@ -124,14 +124,14 @@ Powershell uses semicolon as a command separator. When using powershell, escape 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-   When the user clicks the **Register** link, the `Register.OnPostAsync` action is invoked. The user is created by  the `CreateAsync` on the `_userManager` object. `_userManager` is provided to `RegisterModel` by dependency injection):
+   When a user clicks the **Register** link, the `RegisterModel.OnPostAsync` action is invoked. The user is created by [CreateAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) on the `_userManager` object. `_userManager` is provided by dependency injection):
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Register.cshtml.cs?name=snippet&highlight=7,22)]
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
 
-   When the user clicks the **Register** link, the `Register` action is invoked on `AccountController`. The `Register` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to `AccountController` by dependency injection):
+   When a user clicks the **Register** link, the `Register` action is invoked on `AccountController`. The `Register` action creates the user by calling `CreateAsync` on the `_userManager` object (provided to `AccountController` by dependency injection):
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_register&highlight=11)]
 
@@ -141,43 +141,74 @@ Powershell uses semicolon as a command separator. When using powershell, escape 
 
    **Note:** See [account confirmation](xref:security/authentication/accconfirm#prevent-login-at-registration) for steps to prevent immediate login at registration.
 
-4. Log in.
+### Log in
 
-   Users can sign in by clicking the **Log in** link at the top of the site, or they may be navigated to the Login page if they attempt to access a part of the site that requires authorization. When the user submits the form on the Login page, the `AccountController` `Login` action is called.
+::: moniker range=">= aspnetcore-2.1"
 
-   The `Login` action calls `PasswordSignInAsync` on the `_signInManager` object (provided to `AccountController` by dependency injection).
+The Login form is displayed when users select the **Log in** link or are redirected when accessing a page that requires authentication. When the user submits the form on the Login page, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 
-   [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
+   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
    The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
 
-5. Log out.
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
 
+The Login form is display when users select the **Log in** link or are redirected when accessing a page that requires authentication. When the user submits the form on the Login page, the `AccountController` `Login` action is called.
+
+The `Login` action calls `PasswordSignInAsync` on the `_signInManager` object (provided to `AccountController` by dependency injection).
+
+[!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_login&highlight=13-14)]
+
+The base ( `Controller` or `PageModel` class exposes a `User` property. For example, `User.Claims` can be enumerated to make authorization decisions.
+
+::: moniker-end
+
+### Log out
+
+::: moniker range=">= aspnetcore-2.1"
+
+The **Log out** link invokes the `LogoutModel.OnPost` action. 
+
+[!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Logout.cshtml.cs)]
+
+[SignOutAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie.
+
+Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+
+[!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/_LoginPartial.cshtml?highlight=10)]
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
    Clicking the **Log out** link calls the `LogOut` action.
 
    [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=snippet_logout&highlight=7)]
 
-   The preceding code above calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
+   The preceding code calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
+::: moniker-end
 
+## Test Identity
 
-8. Verify Identity works
+The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.0) to the About page.
 
-    The default *ASP.NET Core Web Application* project template allows users to access any action in the application without having to login. To verify that ASP.NET Identity works, add an`[Authorize]` attribute to the `About` action of the `Home` Controller.
+[!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/About.cshtml.cs)]
 
-    ```csharp
-    [Authorize]
-    public IActionResult About()
-    {
-        ViewData["Message"] = "Your application description page.";
-        return View();
-    }
-    ```
+If you are signed in, sign out. Run the app and select the **About** link. You are redirected to the login page.
 
-Run the app. Only authenticated users may access the **About** page now. If you are not logged in,You are redirected to the login page.
+::: moniker range=">= aspnetcore-2.1"
+
+### Explore Identity
+
+To explore Identity in more detail:
+
+* [Create full identity UI source](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
+* Examine the source of each page and step through the debugger.
+
+::: moniker-end
 
 ## Identity Components
 
-The primary reference assembly for Identity is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 These dependencies are needed to use the Identity system in ASP.NET Core applications:
 
@@ -196,6 +227,9 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 ## Next Steps
 
 * [Configure Identity](xref:security/authentication/identity-configuration)
+* <xref:security/authorization/secure-data>
+* <xref:security/authentication/add-user-data>
+* <xref:security/authentication/identity-enable-qrcodes>
 * [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
