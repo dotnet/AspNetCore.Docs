@@ -72,7 +72,9 @@ Follow these steps to install a client-side library:
 
 ### Edit the LibMan manifest
 
-All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Right-click the project name in **Solution Explorer** and select **Manage Client-Side Libraries** to open *libman.json* for editing. Visual Studio offers editing support such as colorization, formatting, IntelliSense, and JSON schema validation.
+All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Right-click the project name in **Solution Explorer** and select **Manage Client-Side Libraries** to open *libman.json* for editing.
+
+Visual Studio offers rich editing support such as colorization, formatting, IntelliSense, and JSON schema validation. The JSON schema is found at [http://json.schemastore.org/libman](http://json.schemastore.org/libman).
 
 With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder. The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
 
@@ -105,13 +107,19 @@ The **Clean Client-Side Libraries** operation removes all library files that wer
 
 ### Uninstall library files
 
-To uninstall library files from within Visual Studio, edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan manifest.
+To uninstall library files from within Visual Studio, put the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
 
-### Update library versions
+![Uninstall library context menu option](libman/_static/uninstall-menu-option.png)
 
-To update the version of a library, edit the *libman.json* file by changing to the version required. When the file is saved, the LibMan restore operation removes redundant files from the previous version and adds new and updated files from the new version.
+Alternatively, edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan manifest.
 
+### Update library version
 
+To check for an updated version of a library, put the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is recommended if not already installed:
+
+![Check for updates context menu option](libman/_static/update-menu-option.png)
+
+Downgrade to an older library version by manually editing the *libman.json* file. When the file is saved, the LibMan restore operation removes redundant files from the previous version and adds new and updated files from the new version.
 
 ## Additional resources
 
