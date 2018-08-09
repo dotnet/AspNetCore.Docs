@@ -218,7 +218,7 @@
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 ## [Troubleshoot](xref:test/troubleshoot)
 
-# [Data access with EF Core and Azure](data/index.md)
+# [Data access with EF Core](xref:data/index)
 ## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
 ## [Get started with ASP.NET Core and EF Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
@@ -229,6 +229,15 @@
 ### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
+
+# [Azure guidance](xref:azure/index)
+## DevOps with ASP.NET Core and Azure
+### [Introduction](xref:azure/devops/index)
+### [Tools and downloads](xref:azure/devops/tools-and-downloads)
+### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
+### [Continuous integration and deployment](xref:azure/devops/cicd)
+### [Monitor and troubleshoot](xref:azure/devops/monitor)
+### [Next steps](xref:azure/devops/next-steps)
 
 # [Client-side development](xref:client-side/index)
 ## [Use Gulp](xref:client-side/using-gulp)
