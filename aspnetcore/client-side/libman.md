@@ -72,7 +72,7 @@ Follow these steps to install a client-side library:
 
 ### Edit the LibMan manifest
 
-All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Right-click the project name in **Solution Explorer** and select **Manage Client-Side Libraries** to open *libman.json* for editing.
+All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Right-click the project name in **Solution Explorer** and select **Manage Client-Side Libraries** to open *libman.json* for editing. This gesture creates a *libman.json* file in the project root, if it doesn't already exist.
 
 Visual Studio offers rich editing support such as colorization, formatting, IntelliSense, and JSON schema validation. The JSON schema is found at [http://json.schemastore.org/libman](http://json.schemastore.org/libman).
 
