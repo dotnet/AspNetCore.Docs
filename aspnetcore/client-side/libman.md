@@ -48,13 +48,17 @@ There are two ways to add files to your ASP.NET Core project:
 
 Follow these steps to install a client-side library:
 
-* In **Solution Explorer**, right-click the folder in which the file(s) should be added. Choose **Add** > **Client-Side Library**. The **Add Client-Side Library** dialog appears.
-* Type the library name to fetch in the *Library* text box. IntelliSense provides a list of libraries beginning with the provided text.
+* In **Solution Explorer**, right-click the project folder in which the file(s) should be added. Choose **Add** > **Client-Side Library**. The **Add Client-Side Library** dialog appears:
+
+  ![Add Client-Side Library dialog](libman/_static/add-library-dialog.png)
+
+* Choose the library provider from the **Provider** drop down. CDNJS is the default provider.
+* Type the library name to fetch in the **Library** text box. IntelliSense provides a list of libraries beginning with the provided text.
 * Select the library from the IntelliSense list. The library name is suffixed with the `@` symbol and the latest stable version known to the selected provider.
-* To include all of the library's files, choose the **Include all library files** radio button. To include a subset of the library's files, choose the **Choose specific files** radio button. The file selector tree becomes usable. Use the check boxes to the left of the files to select files for download.
-* Specify the project folder for storing the new files. As a recommendation, store each library in a separate folder. The default folder suggestion is the location from which the dialog is launched, plus the library name. For example, *wwwroot/lib/jquery/*.
+* To include all of the library's files, choose the **Include all library files** radio button. To include a subset of the library's files, choose the **Choose specific files** radio button. The file selector tree becomes usable. Use the check boxes to the left of the file names to select files for download.
+* Specify the project folder for storing the new files in the **Target Location** text box. As a recommendation, store each library in a separate folder. The default folder suggestion is the location from which the dialog is launched, plus the library name. For example, *wwwroot/lib/jquery/*.
 * Click the **Install** button. The *libman.json* file is modified to store the package configuration. The files are downloaded to the specified folder in the project.
-* Review the **Output** window's **Library Manager** feed for details of the installation.
+* Review the **Library Manager** feed of the **Output** window for installation details.
 
 ### Edit the LibMan manifest
 
@@ -75,7 +79,7 @@ While the operation is running, the Task Status Center icon on the status bar is
 
 ### Clean library files from your project
 
-The **Clean Client-Side Libraries** operation removes all the library files that were previously restored by LibMan in Visual Studio. So that additional non-library files aren't unintentionally removed, the clean operation doesn't delete whole directories. It only removes the files that were included in the previous restore.
+The **Clean Client-Side Libraries** operation removes all library files that were previously restored by LibMan in Visual Studio. To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
 
 ### Restore library files on build
 
