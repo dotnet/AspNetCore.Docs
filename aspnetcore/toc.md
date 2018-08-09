@@ -35,7 +35,7 @@
 ## [Build Web APIs](xref:web-api/index)
 ### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Create a Web API in Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [Create a Web API in Visual Studio for Windows](xref:tutorials/first-web-api)
+### [Create a Web API in Visual Studio](xref:tutorials/first-web-api)
 ### [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 #### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
