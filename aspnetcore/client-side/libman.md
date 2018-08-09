@@ -87,7 +87,18 @@ With the following manifest file, LibMan retrieves files per the configuration d
 
 If your project has a valid *libman.json* file, the **Restore Client-Side Libraries** operation downloads the defined library files and places them in your project at the location specified for each library. To trigger a restore operation for all projects in the solution, select the **Restore Client-Side Libraries** option from the solution-level context menu.
 
-While the restore operation is running, the Task Status Center icon on the Visual Studio status bar is animated. Clicking the icon opens a window listing the known background tasks. Messages are sent to the status bar and the **Library Manager** feed of the **Output** window.
+While the restore operation is running, the Task Status Center icon on the Visual Studio status bar is animated. Clicking the icon opens a tooltip listing the known background tasks. Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
+
+  ```console
+  Restore operation started...
+  Restoring libraries for project LibManSample
+  Restoring library jquery@3.3.1... (LibManSample)
+  wwwroot/lib/jquery/jquery.min.js written to destination (LibManSample)
+  wwwroot/lib/jquery/jquery.js written to destination (LibManSample)
+  wwwroot/lib/jquery/jquery.min.map written to destination (LibManSample)
+  Restore operation completed
+  1 libraries restored in 2.32 seconds
+  ```
 
 ### Restore library files on build
 
