@@ -11,7 +11,7 @@ uid: client-side/libman
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Library Manager (LibMan) is a lightweight, client-side library acquisition tool. It helps you download popular libraries and frameworks from external sources, such as [CDNJS](https://cdnjs.com/) and [unpkg](https://unpkg.com/#/). Only the necessary files are fetched and placed in the appropriate location within the ASP.NET Core project.
+Library Manager (LibMan) is a lightweight, client-side library acquisition tool. It downloads popular libraries and frameworks from the file system or from content delivery networks, such as [CDNJS](https://cdnjs.com/) and [unpkg](https://unpkg.com/#/). Only the necessary files are fetched and placed in the appropriate location within the ASP.NET Core project.
 
 ## Prerequisites
 
@@ -110,6 +110,8 @@ To uninstall library files from within Visual Studio, edit the *libman.json* fil
 ### Update library versions
 
 To update the version of a library, edit the *libman.json* file by changing to the version required. When the file is saved, the LibMan restore operation removes redundant files from the previous version and adds new and updated files from the new version.
+
+
 
 ## Additional resources
 
