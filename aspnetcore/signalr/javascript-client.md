@@ -54,7 +54,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 JavaScript clients call public methods on hubs by using `connection.invoke`. The `invoke` method accepts two arguments:
 
-* The name of the hub method. In the following example, the hub name is `SendMessage`.
+* The name of the hub method. In the following example, the method name on the hub is `SendMessage`.
 * Any arguments defined in the hub method. In the following example, the argument name is `message`.
 
 [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
