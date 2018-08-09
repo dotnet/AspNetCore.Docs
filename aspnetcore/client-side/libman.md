@@ -106,7 +106,19 @@ LibMan can restore the defined library files upon build of the project. By defau
 
 [!code-xml[](libman/samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
-The `Microsoft.Web.LibraryManager.Build` package contains an MSBuild target that runs LibMan during the project's build operation.
+The `Microsoft.Web.LibraryManager.Build` package contains an MSBuild target that runs LibMan during the project's build operation. Review the build output in the **Build** feed of the **Output** window. For example:
+
+```console
+1>------ Build started: Project: LibManSample, Configuration: Debug Any CPU ------
+1>
+1>Restore operation started...
+1>Restoring library jquery@3.3.1...
+1>Restoring library bootstrap@4.1.3...
+1>
+1>2 libraries restored in 10.66 seconds
+1>LibManSample -> C:\LibManSample\bin\Debug\netcoreapp2.1\LibManSample.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+```
 
 When the restore-on-build behavior is enabled, the *libman.json* context menu displays a **Disable Restore Client-Side Libraries on Build** option. Selecting this option removes the `Microsoft.Web.LibraryManager.Build` package reference from the project file. Consequently, the client-side libraries are no longer restored on each build.
 
