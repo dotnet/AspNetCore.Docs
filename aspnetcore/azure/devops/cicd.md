@@ -17,7 +17,7 @@ In this section, you'll complete the following tasks:
 * Create a VSTS account
 * Create a team project in VSTS
 * Create a build definition
-* Create a release definition
+* Create a release pipeline
 * Commit changes to GitHub and automatically deploy to Azure
 * Examine the VSTS DevOps pipeline
 
@@ -119,9 +119,9 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     Use the default folder of *\\*, and click the **Save** button.
 
-### Create the release definition
+### Create the release pipeline
 
-1. Click the **Releases** tab of your team project. Click the **New definition** button.
+1. Click the **Releases** tab of your team project. Click the **New pipeline** button.
 
     ![Releases tab - New definition button](media/cicd/vsts-new-release-definition.png)
 
@@ -129,17 +129,17 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 1. From the template selection page, enter *App Service* in the search box:
 
-    ![Release definition template search box](media/cicd/vsts-release-template-search.png)
+    ![Release pipeline template search box](media/cicd/vsts-release-template-search.png)
 
-1. The template search results appear. Hover over the **Azure App Service Deployment with Slot** template, and click the **Apply** button. The **Pipeline** tab of the release definition appears.
+1. The template search results appear. Hover over the **Azure App Service Deployment with Slot** template, and click the **Apply** button. The **Pipeline** tab of the release pipeline appears.
 
-    ![Release definition Pipeline tab](media/cicd/vsts-release-definition-pipeline.png)
+    ![Release pipeline Pipeline tab](media/cicd/vsts-release-definition-pipeline.png)
 
 1. Click the **Add** button in the **Artifacts** box. The **Add artifact** panel appears:
 
-    ![Release definition - Add artifact panel](media/cicd/vsts-release-add-artifact.png)
+    ![Release pipeline - Add artifact panel](media/cicd/vsts-release-add-artifact.png)
 
-1. Select the **Build** tile from the **Source type** section. This type allows for the linking of the release definition to the build definition.
+1. Select the **Build** tile from the **Source type** section. This type allows for the linking of the release pipeline to the build definition.
 1. Select *MyFirstProject* from the **Project** drop-down.
 1. Select the build definition name, *MyFirstProject-ASP.NET Core-CI*, from the **Source (Build definition)** drop-down.
 1. Select *Latest* from the **Default version** drop-down. This option builds the artifacts produced by the latest run of the build definition.
@@ -147,19 +147,19 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Click the **Add** button. The **Artifacts** section updates to display the changes.
 1. Click the lightning bolt icon to enable continuous deployments:
 
-    ![Release definition Artifacts - lightning bolt icon](media/cicd/vsts-artifacts-lightning-bolt.png)
+    ![Release pipeline Artifacts - lightning bolt icon](media/cicd/vsts-artifacts-lightning-bolt.png)
 
     With this option enabled, a deployment occurs each time a new build is available.
-1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature.
+1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature. It isn't necessary to enable the **Pull request trigger**.
 1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's *master* branch.
 1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
 1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
 
-   ![Release definition - Environment name textbox](media/cicd/vsts-environment-name-textbox.png)
+   ![Release pipeline - Environment name textbox](media/cicd/vsts-environment-name-textbox.png)
 
 1. Click the **1 phase, 2 tasks** link in the **Production** box:
 
-    ![Release definition - Production environment link.png](media/cicd/vsts-production-link.png)
+    ![Release pipeline - Production environment link.png](media/cicd/vsts-production-link.png)
 
     The **Tasks** tab of the environment appears.
 1. Click the **Deploy Azure App Service to Slot** task. Its settings appear in a panel to the right.
@@ -169,9 +169,9 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. Select *AzureTutorial* from the **Resource group** drop-down.
 1. Select *staging* from the **Slot** drop-down.
 1. Click the **Save** button.
-1. Hover over the default release definition name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
+1. Hover over the default release pipeline name. Click the pencil icon to edit it. Use *MyFirstProject-ASP.NET Core-CD* as the name.
 
-    ![Release definition name](media/cicd/vsts-release-definition-name.png)
+    ![Release pipeline name](media/cicd/vsts-release-definition-name.png)
 
 1. Click the **Save** button.
 
@@ -211,7 +211,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 ### Build definition
 
-A build definition was created with the name *MyFirstProject-ASP.NET Core-CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release definition deploys those assets to Azure.
+A build definition was created with the name *MyFirstProject-ASP.NET Core-CI*. Upon completion, the build produces a *.zip* file including the assets to be published. The release pipeline deploys those assets to Azure.
 
 The build definition's **Tasks** tab lists the individual steps being used. There are five build tasks.
 
@@ -219,7 +219,10 @@ The build definition's **Tasks** tab lists the individual steps being used. Ther
 
 1. **Restore** &mdash; Executes the `dotnet restore` command to restore the app's NuGet packages. The default package feed used is nuget.org.
 1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug configuration is needed.
-1. **Test** &mdash; Executes the `dotnet test --configuration Release` command to run the app's unit tests. This step currently serves no purpose, as no unit tests were written.
+1. **Test** &mdash; Executes the `dotnet test --configuration Release` command to run the app's unit tests. If any of the tests fail, the build fails and isn't deployed.
+
+    > [!NOTE]
+    > To verify the unit tests are working correctly, modify *SimpleFeedReader.Tests\Services\NewsServiceTests.cs* to purposefully break one of the tests, such as by changing `Assert.True(result.Count > 0);` to `Assert.False(result.Count > 0);` in the `Returns_News_Stories_Given_Valid_Uri()` method. Commit and push the change. The build will fail and the build pipeline status changes to **failed**. Revert the change, commit, and push again, and the build succeeds.
 1. **Publish** &mdash; Executes the `dotnet publish --configuration Release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
 1. **Publish Artifact** &mdash; Publishes the *.zip* file produced by the **Publish** task. The task accepts the *.zip* file location as a parameter, which is the predefined variable `$(build.artifactstagingdirectory)`. The *.zip* file is published as a folder named *drop*.
 
@@ -237,29 +240,29 @@ A summary of this specific build is displayed. Click the **Artifacts** tab, and 
 
 Use the **Download** and **Explore** links to inspect the published artifacts.
 
-### Release definition
+### Release pipeline
 
-A release definition was created with the name *MyFirstProject-ASP.NET Core-CD*:
+A release pipeline was created with the name *MyFirstProject-ASP.NET Core-CD*:
 
-![release definition overview](media/cicd/release-definition-overview.png)
+![release pipeline overview](media/cicd/release-definition-overview.png)
 
-The two major components of the release definition are the **Artifacts** and the **Environments**. Clicking the box in the **Artifacts** section reveals the following panel:
+The two major components of the release pipeline are the **Artifacts** and the **Environments**. Clicking the box in the **Artifacts** section reveals the following panel:
 
-![release definition artifacts](media/cicd/release-definition-artifacts.png)
+![release pipeline artifacts](media/cicd/release-definition-artifacts.png)
 
-The **Source (Build definition)** value represents the build definition to which this release definition is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for deployment to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release definition tasks:
+The **Source (Build definition)** value represents the build definition to which this release pipeline is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for deployment to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release pipeline tasks:
 
-![release definition tasks](media/cicd/release-definition-tasks.png)
+![release pipeline tasks](media/cicd/release-definition-tasks.png)
 
-The release definition consists of two tasks: *Deploy Azure App Service to Slot* and *Manage Azure App Service - Slot Swap*. Clicking the first task reveals the following task configuration:
+The release pipeline consists of two tasks: *Deploy Azure App Service to Slot* and *Manage Azure App Service - Slot Swap*. Clicking the first task reveals the following task configuration:
 
-![release definition deploy task](media/cicd/release-definition-task1.png)
+![release pipeline deploy task](media/cicd/release-definition-task1.png)
 
 The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp\<unique_number\>* web app.
 
 Clicking the slot swap task reveals the following task configuration:
 
-![release definition slot swap task](media/cicd/release-definition-task2.png)
+![release pipeline slot swap task](media/cicd/release-definition-task2.png)
 
 The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
