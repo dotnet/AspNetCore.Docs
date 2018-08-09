@@ -51,7 +51,7 @@ Follow these steps to install a client-side library:
 
   ![Add Client-Side Library dialog](libman/_static/add-library-dialog.png)
 
-* Choose the library provider from the **Provider** drop down. CDNJS is the default provider.
+* Select the library provider from the **Provider** drop down. CDNJS is the default provider.
 * Type the library name to fetch in the **Library** text box. IntelliSense provides a list of libraries beginning with the provided text.
 * Select the library from the IntelliSense list. The library name is suffixed with the `@` symbol and the latest stable version known to the selected provider.
 * To include all of the library's files, choose the **Include all library files** radio button. To include a subset of the library's files, choose the **Choose specific files** radio button. The file selector tree becomes usable. Use the check boxes to the left of the file names to select files for download.
@@ -72,7 +72,7 @@ Follow these steps to install a client-side library:
 
 ### Edit the LibMan manifest
 
-All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Visual Studio offers editing support such as colorization, formatting, IntelliSense, and JSON schema validation.
+All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Right-click the project name in **Solution Explorer** and select **Manage Client-Side Libraries** to open *libman.json* for editing. Visual Studio offers editing support such as colorization, formatting, IntelliSense, and JSON schema validation.
 
 With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder. The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
 
