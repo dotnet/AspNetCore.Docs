@@ -126,18 +126,12 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   The command creates output similar to the following example:
 
   ```
-  npm : npm notice created a lockfile as package-lock.json. You should commit this file.
-  At line:1 char:1
-  + npm install @aspnet/signalr
-  + ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : NotSpecified: (npm notice crea...mmit this file.:String) [], RemoteException
-      + FullyQualifiedErrorId : NativeCommandError
-  WARN
-   SignalRChat@1.0.0 No description
-  WARN
-   SignalRChat@1.0.0 No repository field.
+  npm notice created a lockfile as package-lock.json. You should commit this file.
+  npm WARN signalrchat@1.0.0 No description
+  npm WARN signalrchat@1.0.0 No repository field.
+
   + @aspnet/signalr@1.0.2
-  added 1 package in 1.398s
+  added 1 package in 0.98s
   ```
 
 The `npm install` command downloaded the JavaScript client library to a subfolder under *node_modules*. Copy it from there to a folder under *wwwroot* that you can reference from the chat app web page.
