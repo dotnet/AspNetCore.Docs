@@ -54,7 +54,7 @@ Follow these steps to install a client-side library:
 * To include all of the library's files, choose the **Include all library files** radio button. To include a subset of the library's files, choose the **Choose specific files** radio button. The file selector tree becomes usable. Use the check boxes to the left of the files to select files for download.
 * Specify the project folder for storing the new files. As a recommendation, store each library in a separate folder. The default folder suggestion is the location from which the dialog is launched, plus the library name. For example, *wwwroot/lib/jquery/*.
 * Click the **Install** button. The *libman.json* file is modified to store the package configuration. The files are downloaded to the specified folder in the project.
-* Review the **Output** window's **Library Manager** view for details of the installation.
+* Review the **Output** window's **Library Manager** feed for details of the installation.
 
 ### Edit the LibMan manifest
 
@@ -79,15 +79,19 @@ The **Clean Client-Side Libraries** operation removes all the library files that
 
 ### Restore library files on build
 
-If you'd like the project to be configured so that it automatically triggers a LibMan restore operation whenever the project is built, you can choose to **Enable Restore Client-Side Libraries on Build**. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project. The package contains an MSBuild target that causes LibMan to run as part of the build operation for that project in future builds.
+LibMan can restore the defined library files upon build of the project. By default, the restore-on-build behavior is disabled. To enable it, right-click the *libman.json* file and select **Enable Restore Client-Side Libraries on Build** from the context menu. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project:
 
-When Restore on Build is enabled, the menu item offers to **Disable Restore Client-Side Libraries on Build**. If you choose this option, the LibMan NuGet package is removed from the project and the client-side libraries are no longer restored on each build.
+[!code-xml[](libman/samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
-Regardless of the Restore on Build setting, you can manually restore by activating the Restore Client-Side Libraries command at any time.
+The `Microsoft.Web.LibraryManager.Build` package contains an MSBuild target that runs LibMan during the project's build operation.
+
+When the restore-on-build behavior is enabled, the *libman.json* context menu displays a **Disable Restore Client-Side Libraries on Build** option. Selecting this option removes the `Microsoft.Web.LibraryManager.Build` package reference from the project file. Consequently, the client-side libraries are no longer restored on each build.
+
+Regardless of the restore-on-build setting, you can manually restore at any time. Select the **Restore Client-Side Libraries** option from the *libman.json* context menu.
 
 ### Uninstall library files
 
-To uninstall library files from within Visual Studio, edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan config.
+To uninstall library files from within Visual Studio, edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan manifest.
 
 ### Update library versions
 
