@@ -91,7 +91,7 @@ While the restore operation is running, the Task Status Center icon on the Visua
 
 ### Restore library files on build
 
-LibMan can restore the defined library files upon build of the project. By default, the restore-on-build behavior is disabled. To enable it, right-click the *libman.json* file and select **Enable Restore Client-Side Libraries on Build** from the context menu. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project:
+LibMan can restore the defined library files upon build of the project. By default, the restore-on-build behavior is disabled. To enable it, right-click the *libman.json* file in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project:
 
 [!code-xml[](libman/samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
@@ -103,7 +103,15 @@ Regardless of the restore-on-build setting, you can manually restore at any time
 
 ### Clean library files
 
-The **Clean Client-Side Libraries** operation removes all library files that were previously restored by LibMan in Visual Studio. To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
+LibMan can remove all library files that were previously restored in Visual Studio. Right-click the *libman.json* file in **Solution Explorer** and select **Clean Client-Side Libraries**. To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
+
+Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
+
+```console
+Clean libraries operation started...
+Clean libraries operation completed
+2 libraries were successfully deleted in 1.91 secs
+```
 
 ### Uninstall library files
 
