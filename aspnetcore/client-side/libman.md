@@ -56,7 +56,7 @@ Follow these steps to install a client-side library:
 * Select the library from the IntelliSense list. The library name is suffixed with the `@` symbol and the latest stable version known to the selected provider.
 * To include all of the library's files, choose the **Include all library files** radio button. To include a subset of the library's files, choose the **Choose specific files** radio button. The file selector tree becomes usable. Use the check boxes to the left of the file names to select files for download.
 * Specify the project folder for storing the new files in the **Target Location** text box. As a recommendation, store each library in a separate folder. The default folder suggestion is the location from which the dialog is launched, plus the library name. For example, if launching the dialog from the project root to install jQuery, *wwwroot/lib/jquery/* is suggested. If no *wwwroot* folder exists in the project, the folder suggestion is *lib/jquery/*.
-* Click the **Install** button. The *libman.json* file is modified to store the package configuration. The files are downloaded to the specified folder in the project.
+* Click the **Install** button. The *libman.json* file is modified to store the library acquisition configuration. The files are downloaded to the specified folder in the project.
 * Review the **Library Manager** feed of the **Output** window for installation details. For example:
 
   ```console
