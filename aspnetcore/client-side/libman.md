@@ -58,13 +58,11 @@ Follow these steps to install a client-side library:
 
 ### Edit the LibMan manifest
 
-All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. For example:
+All LibMan operations are based on the content of the LibMan manifest (*libman.json*) file at the project root. You can manually edit the file to define library files to download. Visual Studio offers editing support such as colorization, formatting, IntelliSense, and JSON schema validation.
+
+With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder. The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
 
 [!code-json[](libman/samples/LibManSample/libman.json)]
-
-In the preceding example, LibMan retrieves files per the configuration defined in the `libraries` property. A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder. The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
-
-You can manually edit the file to define library files to download. Visual Studio offers editing support such as colorization, formatting, IntelliSense, and JSON schema validation.
 
 > [!NOTE]
 > LibMan only supports one version of each library from each provider. The *libman.json* file fails schema validation if it contains two libraries with the same library name for a given provider.
