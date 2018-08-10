@@ -18,6 +18,8 @@ Visual Studio has built-in support for LibMan in ASP.NET Core projects, includin
 * Search dialog for finding libraries and adding the files to your project
 * Editing support for *libman.json*&mdash;the LibMan manifest file
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+
 ## Prerequisites
 
 * Visual Studio 2017 version 15.8 or later with the **ASP.NET and web development** workload
@@ -135,7 +137,7 @@ Clean libraries operation completed
 
 ## Uninstall library files
 
-To uninstall library files, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
+To uninstall library files, position the caret inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
 
 ![Uninstall library context menu option](_static/uninstall-menu-option.png)
 
@@ -143,7 +145,7 @@ Alternatively, edit the *libman.json* file and save. The restore operation runs 
 
 ## Update library version
 
-To check for an updated library version, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release is available, which is newer than the installed version, the pre-release is displayed too.
+To check for an updated library version, position the caret inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release is available, which is newer than the installed version, the pre-release is displayed too.
 
 ![Check for updates context menu option](_static/update-menu-option.png)
 
