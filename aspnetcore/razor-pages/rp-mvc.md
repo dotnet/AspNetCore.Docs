@@ -11,12 +11,14 @@ uid: razor-pages/rp-mvc
 
 By [Scott Sauber](https://twitter.com/scottsauber) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Pages is a feature of the ASP.NET Core MVC framework. Razor Pages follows the [MVVM](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET MVC development:
+Razor Pages is a feature of the ASP.NET Core framework. Razor Pages follows the [MVVM](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET MVC development:
 
 * Can continue app development featuring controllers and views.
 * Can be assured the ASP.NET Core framework will provide improvements to controller/view development.
 
 Razor Pages can be added to controller/view projects. The controller-view approach to MVC may be preferred by larger teams.
+
+This article compares Razor Pages to controller/views for creating server rendered HTML. ASP.NET Core MVC controllers are used to build Web APIs. For example, a front-end like React, Angular, Vue, etc. would use ASP.NET MVC controllers.
 
 If you haven't tried Razor Pages, consider using them. Many developers find Razor Pages development simpler and more productive than using controllers and views.
 
@@ -36,7 +38,7 @@ Razor Pages advantages over controller/view development:
   * The app can authorize an entire folder and require the user to be an Administrator to get to any subfolder of */Administrator*. The code to do this is more straightforward than using multiple Controllers for Administrator features.
 * **More secure by default.**  Razor Pages provides:
   * [AntiForgeryToken validation](xref:razor-pages/index#xsrfcsrf-and-razor-pages) by default.
-  * You opt-in to the properties that need to be model bound via `[BindProperty]`.  `[BindProperty]` prevents over-posting attacks.
+  * You opt-in to the properties that need to be model bound via `[BindProperty]`.  `[BindProperty]` prevents [mass assignment/over-posting](https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet) attacks.
   * The `PageModel` acts like a view model.
 
 ## Razor Pages compared to Web Forms
@@ -50,7 +52,11 @@ Razor Pages and Web Forms ASP.NET 4.x are page focused and each contains a *.cs*
 |[Testable](xref:test/index)| x | x |
 |Separation of concerns| x | x |
 |Areas| x | 2.1 |
-|[Partial views](xref:mvc/views/partial)| x | x |
+| Routing | [MVC](xref:mvc/controllers/routing) | [RP](xref:razor-pages/razor-pages-conventions) |
+| [Model binding/validation](xref:mvc/models/model-binding) | x | x |
 | Filters | [MVC](xref:mvc/controllers/filters) | [RP](razor-pages/filter) |
+| [Tag Helpers](xref:mvc/views/tag-helpers/intro) | x | x |
+| [Layout files](xref:mvc/views/layout) | x | x |
+|[Partial views](xref:mvc/views/partial)| x | x |
 |View Components | x | x|
 |[Built in DI](xref:fundamentals/dependency-injection) | x | x |
