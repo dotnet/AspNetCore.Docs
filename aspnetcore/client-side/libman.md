@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 08/09/2018
 uid: client-side/libman
 ---
-# Client-side library acquisition with Library Manager
+# Client-side library acquisition with LibMan
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Library Manager (LibMan) is a lightweight, client-side library acquisition tool. It downloads popular libraries and frameworks from the file system or from content delivery networks, such as [CDNJS](https://cdnjs.com/) and [unpkg](https://unpkg.com/#/). Only the necessary files are fetched and placed in the appropriate location within the ASP.NET Core project.
+Library Manager (LibMan) is a lightweight, client-side library acquisition tool. It downloads popular libraries and frameworks from the file system or from a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) (CDN). The supported CDNs include [CDNJS](https://cdnjs.com/) and [unpkg](https://unpkg.com/#/). Only the necessary files are fetched and placed in the appropriate location within the ASP.NET Core project.
 
 ## Prerequisites
 
@@ -76,7 +76,11 @@ All LibMan operations are based on the content of the LibMan manifest (*libman.j
 
 Visual Studio offers rich editing support such as colorization, formatting, IntelliSense, and JSON schema validation. The JSON schema is found at [http://json.schemastore.org/libman](http://json.schemastore.org/libman).
 
-With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder. The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
+With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. The object literals defined within `libraries` do the following:
+
+* A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
+* The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
+* An subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The *lodash.js* and *lodash.min.js* files are retrieved from the local file system at *C:\\tmp\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
 
 [!code-json[](libman/samples/LibManSample/libman.json)]
 
