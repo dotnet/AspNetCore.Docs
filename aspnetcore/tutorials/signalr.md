@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 08/08/2018
 uid: tutorials/signalr
 ---
+
 # Tutorial: Get started with SignalR on ASP.NET Core
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
@@ -37,6 +38,12 @@ At the end you'll have a working chat app:
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
 * [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+* [npm](https://www.npmjs.com/get-npm) (Package manager for Node.js, used for the SignalR JavaScript client library.)
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* [Visual Studio for Mac version 7.5.4 or later](https://www.visualstudio.com/downloads/)
+* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all) (included in the Visual Studio install)
 * [npm](https://www.npmjs.com/get-npm) (Package manager for Node.js, used for the SignalR JavaScript client library.)
 
 ---
@@ -69,6 +76,16 @@ At the end you'll have a working chat app:
 
    [!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* From the menu, select **File > New Solution**.
+
+* Select **.NET Core > App > ASP.NET Core Web App** (Don't select **ASP.NET Core Web App (MVC)**).
+
+* Select **Next**.
+
+* Name the project *SignalRChat*, and then select **Create**.
+
 ---
 
 ## Add the SignalR client library
@@ -90,6 +107,10 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   ```console
   cd SignalRChat
   ``` 
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* In the **Terminal**, navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
 
 ---
 
@@ -188,7 +209,19 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Run the app
 
+# [Visual Studio](#tab/visual-studio)
+
 * Press **CTRL+F5** to run the app without debugging.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Press **CTRL+F5** to run the app without debugging.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* From the menu, select **Run > Start Without Debugging**.
+
+---
 
 * Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
