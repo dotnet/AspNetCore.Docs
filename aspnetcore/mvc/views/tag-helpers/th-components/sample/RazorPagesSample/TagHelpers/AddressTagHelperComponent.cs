@@ -6,9 +6,11 @@ namespace RazorPagesSample.TagHelpers
 {
     public class AddressTagHelperComponent : ITagHelperComponent
     {
-        string _printableButton = "<button type='button' class='btn btn-info' onclick=\"window.open('https://www.google.com/maps/place/Microsoft+Way,+Redmond,+WA+98052,+USA/@47.6414942,-122.1327809,17z/')\">" +
-                                    "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
-                                  "</button>";
+        string _printableButton = 
+            "<button type='button' class='btn btn-info' onclick=\"window.open(" +
+            "'https://www.google.com/maps/place/Microsoft+Way,+Redmond,+WA+98052,+USA/@47.6414942,-122.1327809,17z/')\">" +
+             "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
+             "</button>";
 
         public int Order => _order;
 
