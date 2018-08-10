@@ -92,7 +92,7 @@ For more information, see the [IdentityOptions Class](/dotnet/api/microsoft.aspn
 
 ## Scaffold Register, Login, and LogOut
 
-Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#) instructions.
+Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions.
 
 # [Visual Studio](#tab/visual-studio)
 

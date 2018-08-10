@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses SignalR for ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/22/2018
+ms.date: 08/08/2018
 uid: tutorials/signalr
 ---
 # Tutorial: Get started with SignalR on ASP.NET Core
@@ -126,18 +126,12 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
   The command creates output similar to the following example:
 
   ```
-  npm : npm notice created a lockfile as package-lock.json. You should commit this file.
-  At line:1 char:1
-  + npm install @aspnet/signalr
-  + ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : NotSpecified: (npm notice crea...mmit this file.:String) [], RemoteException
-      + FullyQualifiedErrorId : NativeCommandError
-  WARN
-   SignalRChat@1.0.0 No description
-  WARN
-   SignalRChat@1.0.0 No repository field.
+  npm notice created a lockfile as package-lock.json. You should commit this file.
+  npm WARN signalrchat@1.0.0 No description
+  npm WARN signalrchat@1.0.0 No repository field.
+
   + @aspnet/signalr@1.0.2
-  added 1 package in 1.398s
+  added 1 package in 0.98s
   ```
 
 The `npm install` command downloaded the JavaScript client library to a subfolder under *node_modules*. Copy it from there to a folder under *wwwroot* that you can reference from the chat app web page.
@@ -208,12 +202,12 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 > If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *signalr.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
 > ![signalr.js not found error](signalr/_static/f12-console.png)
 
-## Additional resources
+## Next steps
 
-If you want clients to connect to a SignalR app from different domains, you have to enable Cross-Origin Resource Sharing (CORS). For more information, see to [Cross-origin resource sharing](xref:signalr/security?view=aspnetcore-2.1#cross-origin-resource-sharing).
+If you want clients to connect to a SignalR app from different domains, you have to enable Cross-Origin Resource Sharing (CORS). For more information, see [Cross-origin resource sharing](xref:signalr/security?view=aspnetcore-2.1#cross-origin-resource-sharing).
 
 To learn more about SignalR, hubs, and JavaScript clients, see these resources:
 
-* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction).
-* [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs).
+* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction)
+* [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs)
 * [ASP.NET Core SignalR JavaScript client](xref:signalr/javascript-client)
