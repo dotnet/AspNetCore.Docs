@@ -1,35 +1,15 @@
 ---
-title: Client-side library acquisition in ASP.NET Core with Library Manager (LibMan)
+title: Use LibMan with ASP.NET Core in Visual Studio
 author: scottaddie
-description: Learn how to install client-side library assets in an ASP.NET Core project using Library Manager (LibMan).
+description: Learn how to use LibMan in an ASP.NET Core project with Visual Studio.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/09/2018
-uid: client-side/libman
+ms.date: 08/10/2018
+uid: client-side/libman/libman-vs
 ---
-# Client-side library acquisition with LibMan
+# Use LibMan with ASP.NET Core in Visual Studio
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
-
-Library Manager (LibMan) is a lightweight, client-side library acquisition tool. It downloads popular libraries and frameworks from the file system or from a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) (CDN). The supported CDNs include [CDNJS](https://cdnjs.com/) and [unpkg](https://unpkg.com/#/). Only the necessary files are fetched and placed in the appropriate location within the ASP.NET Core project.
-
-## Prerequisites
-
-* Visual Studio 2017 version 15.8 or later with the **ASP.NET and web development** workload
-
-## LibMan use cases
-
-LibMan offers the following benefits:
-
-* Only the library files you need are downloaded.
-* Additional tooling, such as [Node.js](https://nodejs.org), [npm](https://www.npmjs.com), and [WebPack](https://webpack.js.org), is unnecessary to acquire a subset of files in a library.
-* Files can be placed in a specific location, without resorting to build tasks or manual file copying.
-
-For more information about LibMan's benefits, watch [this clip about the initial prototype](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).
-
-LibMan isn't a package management system. If you're happily using a package manager, such as npm or [yarn](https://yarnpkg.com), continue doing so. LibMan wasn't developed to replace those tools.
-
-## LibMan in Visual Studio
 
 Visual Studio has built-in support for LibMan in ASP.NET Core projects, including:
 
@@ -38,7 +18,13 @@ Visual Studio has built-in support for LibMan in ASP.NET Core projects, includin
 * Search dialog for finding libraries and adding the files to your project
 * Editing support for *libman.json*&mdash;the LibMan manifest file
 
-There are two ways to add files to your ASP.NET Core project:
+## Prerequisites
+
+* Visual Studio 2017 version 15.8 or later with the **ASP.NET and web development** workload
+
+## Add library files
+
+Library files can be added to an ASP.NET Core project in two different ways:
 
 1. [Use the Add Client-Side Library dialog](#use-the-add-client-side-library-dialog)
 1. [Edit the LibMan manifest](#edit-the-libman-manifest)
@@ -49,7 +35,7 @@ Follow these steps to install a client-side library:
 
 * In **Solution Explorer**, right-click the project folder in which the file(s) should be added. Choose **Add** > **Client-Side Library**. The **Add Client-Side Library** dialog appears:
 
-  ![Add Client-Side Library dialog](libman/_static/add-library-dialog.png)
+  ![Add Client-Side Library dialog](_static/add-library-dialog.png)
 
 * Select the library provider from the **Provider** drop down. CDNJS is the default provider.
 * Type the library name to fetch in the **Library** text box. IntelliSense provides a list of libraries beginning with the provided text.
@@ -82,12 +68,19 @@ With the following manifest file, LibMan retrieves files per the configuration d
 * The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
 * A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The *lodash.js* and *lodash.min.js* files are retrieved from the local file system at *C:\\tmp\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
 
-[!code-json[](libman/samples/LibManSample/libman.json)]
+[!code-json[](samples/LibManSample/libman.json)]
 
 > [!NOTE]
 > LibMan only supports one version of each library from each provider. The *libman.json* file fails schema validation if it contains two libraries with the same library name for a given provider.
 
-### Restore library files manually
+## Restore library files
+
+Library files can be restored in an ASP.NET Core project in two different ways:
+
+1. [Manual file restoration](#manual-file-restoration)
+1. [Build-time file restoration](#build-time-file-restoration)
+
+### Manual file restoration
 
 If your project has a valid *libman.json* file, the **Restore Client-Side Libraries** operation downloads the defined library files and places them in your project at the location specified for each library. To trigger a restore operation for all projects in the solution, select the **Restore Client-Side Libraries** option from the solution-level context menu.
 
@@ -104,11 +97,11 @@ While the restore operation is running, the Task Status Center icon on the Visua
   1 libraries restored in 2.32 seconds
   ```
 
-### Restore library files on build
+### Build-time file restoration
 
 LibMan can restore the defined library files upon build of the project. By default, the restore-on-build behavior is disabled. To enable it, right-click the *libman.json* file in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project:
 
-[!code-xml[](libman/samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
+[!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
 The `Microsoft.Web.LibraryManager.Build` package contains an MSBuild target that runs LibMan during the project's build operation. Review the build output in the **Build** feed of the **Output** window. For example:
 
@@ -128,7 +121,7 @@ When the restore-on-build behavior is enabled, the *libman.json* context menu di
 
 Regardless of the restore-on-build setting, you can manually restore at any time. Select the **Restore Client-Side Libraries** option from the *libman.json* context menu.
 
-### Clean library files
+## Clean library files
 
 LibMan can remove all library files that were previously restored in Visual Studio. Right-click the *libman.json* file in **Solution Explorer** and select **Clean Client-Side Libraries**. To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
 
@@ -140,19 +133,19 @@ Clean libraries operation completed
 2 libraries were successfully deleted in 1.91 secs
 ```
 
-### Uninstall library files
+## Uninstall library files
 
-To uninstall library files from within Visual Studio, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
+To uninstall library files, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
 
-![Uninstall library context menu option](libman/_static/uninstall-menu-option.png)
+![Uninstall library context menu option](_static/uninstall-menu-option.png)
 
 Alternatively, edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan manifest.
 
-### Update library version
+## Update library version
 
-To check for an updated version of a library, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release version is available that's newer than the currently installed version, that version is displayed as well.
+To check for an updated library version, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release version is available that's newer than the currently installed version, that version is displayed as well.
 
-![Check for updates context menu option](libman/_static/update-menu-option.png)
+![Check for updates context menu option](_static/update-menu-option.png)
 
 Downgrade to an older library version by manually editing the *libman.json* file. When the file is saved, the LibMan restore operation removes redundant files from the previous version and adds new and updated files from the new version.
 
