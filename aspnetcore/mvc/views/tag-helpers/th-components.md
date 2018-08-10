@@ -9,7 +9,7 @@ uid: mvc/views/tag-helpers/th-components
 
 # ASP.NET Core Tag Helper Components
 
-By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan)
+By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan) and scottaddie
 
 ### Overview
 
