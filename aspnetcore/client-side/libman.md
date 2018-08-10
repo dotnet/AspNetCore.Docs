@@ -138,7 +138,7 @@ Clean libraries operation completed
 
 ### Uninstall library files
 
-To uninstall library files from within Visual Studio, put the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
+To uninstall library files from within Visual Studio, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and select **Uninstall \<library_name>@\<library_version>**:
 
 ![Uninstall library context menu option](libman/_static/uninstall-menu-option.png)
 
@@ -146,7 +146,7 @@ Alternatively, edit the *libman.json* file and save. The restore operation runs 
 
 ### Update library version
 
-To check for an updated version of a library, put the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is recommended if not already installed:
+To check for an updated version of a library, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release version is available that's newer than the currently installed version, that version is displayed as well.
 
 ![Check for updates context menu option](libman/_static/update-menu-option.png)
 
