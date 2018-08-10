@@ -62,7 +62,7 @@ All LibMan operations are based on the content of the LibMan manifest (*libman.j
 
 Visual Studio offers rich editing support such as colorization, formatting, IntelliSense, and JSON schema validation. The JSON schema is found at [http://json.schemastore.org/libman](http://json.schemastore.org/libman).
 
-With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. The object literals defined within `libraries` do the following:
+With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. An explanation of the object literals defined within `libraries` follows:
 
 * A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
 * The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
@@ -82,7 +82,7 @@ Library files can be restored in an ASP.NET Core project in two different ways:
 
 ### Manual file restoration
 
-If your project has a valid *libman.json* file, the **Restore Client-Side Libraries** operation downloads the defined library files and places them in your project at the location specified for each library. To trigger a restore operation for all projects in the solution, select the **Restore Client-Side Libraries** option from the solution-level context menu.
+If the project has a valid *libman.json* file, the **Restore Client-Side Libraries** operation downloads the defined library files. The files are placed in the project at the location specified for each library. To trigger a restore operation for all projects in the solution, select the **Restore Client-Side Libraries** option from the solution-level context menu.
 
 While the restore operation is running, the Task Status Center icon on the Visual Studio status bar is animated. Clicking the icon opens a tooltip listing the known background tasks. Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
 
@@ -103,7 +103,7 @@ LibMan can restore the defined library files upon build of the project. By defau
 
 [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
-The `Microsoft.Web.LibraryManager.Build` package contains an MSBuild target that runs LibMan during the project's build operation. Review the build output in the **Build** feed of the **Output** window. For example:
+The `Microsoft.Web.LibraryManager.Build` package injects an MSBuild target that runs LibMan during the project's build operation. Review the build output in the **Build** feed of the **Output** window. For example:
 
 ```console
 1>------ Build started: Project: LibManSample, Configuration: Debug Any CPU ------
@@ -143,7 +143,7 @@ Alternatively, edit the *libman.json* file and save. The restore operation runs 
 
 ## Update library version
 
-To check for an updated library version, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release version is available that's newer than the currently installed version, that version is displayed as well.
+To check for an updated library version, position the cursor inside the corresponding `libraries` object literal. A light bulb icon appears in the left margin. Click the light bulb, and hover over **Check for updates**. LibMan checks for a library version newer than the version installed. A **No updates found** message is displayed if the latest version is already installed. The latest stable version is displayed if not already installed. If a pre-release is available, which is newer than the installed version, the pre-release is displayed too.
 
 ![Check for updates context menu option](_static/update-menu-option.png)
 
