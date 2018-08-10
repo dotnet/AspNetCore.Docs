@@ -8,7 +8,7 @@ namespace RazorPagesSample.TagHelpers
     {
         string _printableButton = 
             "<button type='button' class='btn btn-info' onclick=\"window.open(" +
-            "'https://www.google.com/maps/place/Microsoft+Way,+Redmond,+WA+98052,+USA/@47.6414942,-122.1327809,17z/')\">" +
+            "'https://binged.it/2AXRRYw')\">" +
              "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
              "</button>";
 
