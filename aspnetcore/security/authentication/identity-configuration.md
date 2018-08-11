@@ -32,11 +32,11 @@ The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions)
 
 Lockout is set in the [PasswordSignInAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) method:
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs&name=snippet?highlight=9)]
+[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet?highlight=9)]
 
 Lockout options are set in `StartUp.ConfigureServices`:
 
-[!code-csharp[](identity-configuration/sample/Startup.cs&name=snippet_lock)]
+[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
 The preceding code sets the [IdentityOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) [LockoutOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions?view=aspnetcore-2.0) with default values.
 
@@ -56,7 +56,7 @@ By default, Identity requires that passwords contain an uppercase character, low
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](identity-configuration/sample/Startup.cs&name=snippet_lock)]
+[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
