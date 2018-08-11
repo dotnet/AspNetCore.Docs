@@ -2,10 +2,12 @@
 title: Configure ASP.NET Core Identity
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
-ms.author: scaddie
-ms.date: 03/06/2018
+ms.author: riande
+ms.date: 08/14/2018
 uid: security/authentication/identity-configuration
 ---
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_
 
 # Configure ASP.NET Core Identity
 
@@ -28,18 +30,17 @@ The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions)
 
 ### Lockout
 
-Locks out the user for a period of time after a given number of failed access attempts (default: 5 minute lockout after 5 failed access attempts). A successful authentication resets the failed access attempts count and resets the clock.
+Lockout is set in the [PasswordSignInAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) method:
 
-The following example shows the default values:
+[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs&name=snippet?highlight=9)]
 
-[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,39-42,50-52)]
+Lockout options are set in `StartUp.ConfigureServices`:
 
-Confirm that [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) sets `lockoutOnFailure` to `true`:
+[!code-csharp[](identity-configuration/sample/Startup.cs&name=snippet_lock)]
 
-```csharp
-var result = await _signInManager.PasswordSignInAsync(
-                 Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-```
+The preceding code sets the [IdentityOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) [LockoutOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions?view=aspnetcore-2.0) with default values.
+
+A successful authentication resets the failed access attempts count and resets the clock.
 
 [IdentityOptions.Lockout](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) specifies the [LockoutOptions](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) with the properties shown in the table.
 
@@ -53,17 +54,21 @@ var result = await _signInManager.PasswordSignInAsync(
 
 By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long. [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) can be changed in `Startup.ConfigureServices`.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.1"
 
-ASP.NET Core 2.0 added the [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requireduniquechars) property. Otherwise, the options are the same as ASP.NET Core 1.x.
+[!code-csharp[](identity-configuration/sample/Startup.cs&name=snippet_lock)]
 
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
 
 [!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-65,84)]
 
----
+::: moniker-end
 
 [IdentityOptions.Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) specifies the [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) with the properties shown in the table.
 
