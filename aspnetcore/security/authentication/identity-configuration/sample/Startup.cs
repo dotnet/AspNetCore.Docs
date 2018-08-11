@@ -36,6 +36,7 @@ namespace RPauth
             #region snippet_lock
             services.Configure<IdentityOptions>(options =>
             {
+                // Default Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
@@ -45,13 +46,22 @@ namespace RPauth
             #region snippet_pw
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
+                // Default password settings.
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
+            });
+            #endregion
+
+            #region snippet_si
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default SignIn settings.
+                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
             });
             #endregion
 

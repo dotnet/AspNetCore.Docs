@@ -32,7 +32,9 @@ The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions)
 
 Lockout is set in the [PasswordSignInAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) method:
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet?highlight=9)]
+[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
+
+The preceding code is based on the `Login` Identity template. 
 
 Lockout options are set in `StartUp.ConfigureServices`:
 
@@ -52,11 +54,11 @@ A successful authentication resets the failed access attempts count and resets t
 
 ### Password
 
-By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long. [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) can be changed in `Startup.ConfigureServices`.
+By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long. [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) can be set in `Startup.ConfigureServices`.
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
+[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.0"
@@ -83,7 +85,17 @@ By default, Identity requires that passwords contain an uppercase character, low
 
 ### Sign-in
 
+The following code sets `SignIn` settings (to default values):
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,44-46,50-52)]
+::: moniker-end
 
 [IdentityOptions.SignIn](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) specifies the [SignInOptions](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) with the properties shown in the table.
 
