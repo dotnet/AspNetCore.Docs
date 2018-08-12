@@ -45,6 +45,8 @@ namespace WebApp1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            // If the app uses Session or TempData based on Session:
+            // app.UseSession();
 
             app.UseMvc();
         }
