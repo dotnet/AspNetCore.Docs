@@ -110,7 +110,8 @@ To trigger a restore operation for all projects in the solution, select the **Re
 
 When the restore operation runs:
 
-* The Task Status Center icon on the Visual Studio status bar is animated. Clicking the icon opens a tooltip listing the known background tasks. * Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
+* The Task Status Center icon on the Visual Studio status bar is animated. Clicking the icon opens a tooltip listing the known background tasks.
+* Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
 
   ```console
   Restore operation started...
@@ -171,7 +172,7 @@ To uninstall library files:
 * Position the caret inside the corresponding `libraries` object literal.
 * Click the light bulb icon that appears in the left margin, and select **Uninstall \<library_name>@\<library_version>**:
 
-![Uninstall library context menu option](_static/uninstall-menu-option.png)
+  ![Uninstall library context menu option](_static/uninstall-menu-option.png)
 
 Alternatively, you can manually edit the *libman.json* file and save. The restore operation runs on save and removes the library files that are no longer part of the LibMan manifest.
 
