@@ -48,6 +48,7 @@ Follow these steps to install a client-side library:
 * Specify the project folder, for storing the files, in the **Target Location** text box. As a recommendation, store each library in a separate folder.
 
   The suggested **Target Location** folder is based on the location from which the dialog launched:
+
   * If launched from the project root:
     * *wwwroot/lib* is used if *wwwroot* exists.
     * *lib* is used if *wwwroot* doesn't exist.
@@ -79,8 +80,8 @@ Follow these steps to install a client-side library:
 
 All LibMan operations in Visual Studio are based on the content of the project root's LibMan manifest (*libman.json*). To open *libman.json* for editing, the following options exist:
 
-    * Right-click the project in **Solution Explorer** and select **Manage Client-Side Libraries**.
-    * Select **Manage Client-Side Libraries** from the Visual Studio **Project** menu.
+* Right-click the project in **Solution Explorer** and select **Manage Client-Side Libraries**.
+* Select **Manage Client-Side Libraries** from the Visual Studio **Project** menu.
 
 A *libman.json* file is created in the project root, if it doesn't already exist.
 
