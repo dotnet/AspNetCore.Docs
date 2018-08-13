@@ -25,18 +25,7 @@ App configuration in ASP.NET Core is based on key-value pairs established by *co
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.0"
-
-* Azure Key Vault
-* Command-line arguments
-* Custom providers (installed or created)
-* Environment variables
-* In-memory .NET objects
-* Settings files
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-1.1"
+::: moniker range="= aspnetcore-2.0 || aspnetcore-1.1"
 
 * Azure Key Vault
 * Command-line arguments
@@ -1313,7 +1302,7 @@ public class Startup
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
 
-## Access configuration in a Razor Page or MVC view
+## Access configuration in a Razor Pages page or MVC view
 
 To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](/dotnet/api/microsoft.extensions.configuration) and inject [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) into the page or view.
 
