@@ -8,6 +8,10 @@ uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure
 
+![Cover Image](./media/cover-large.png)
+
+By [Cam Soper](https://twitter.com/camsoper) and [Scott Addie](https://twitter.com/scottaddie)
+
 Welcome to the Azure Development Lifecycle guide for .NET! This guide introduces the basic concepts of building a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll reap the benefits of a mature DevOps toolchain.
 
 ## Who this guide is for
@@ -44,10 +48,17 @@ Other learning paths for the ASP.NET Core developer learning Azure.
 
 ## Acknowledgments
 
-Thank you to everyone in the .NET community who contributed to this guide with helpful suggestions! We'd like to specifically thank the following community members who contributed to the final review of this material:
+Thank you to everyone in the .NET community who contributed to this guide with helpful suggestions! We'd like to especially thank the following community members who contributed feedback on this material:
 
 * [Sam Wronski](https://www.youtube.com/c/worldofzerodevelopment)
 * [Jeffrey Palermo](https://twitter.com/jeffreypalermo)
+
+Within Microsoft, the following people were instrumental for guidance, reviews, and encouragement:
+
+* [Bill Wagner](https://twitter.com/billwagner)
+* [Cesar de la Torre](https://twitter.com/cesardelatorre)
+* [Scott Hunter](https://twitter.com/coolcsh)
+* [Wade Pickett](https://twitter.com/wadeontheweb)
 
 ## Conclusion
 
