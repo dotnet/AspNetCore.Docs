@@ -180,7 +180,7 @@ The scaffold process created and changed the following files:
 ### Files created
 
 * *Pages/Students* Create, Delete, Details, Edit, Index.
-* *Data/ContosoUniversityContext.cs*
+* *Data/SchoolContext.cs*
 
 ### Files updates
 

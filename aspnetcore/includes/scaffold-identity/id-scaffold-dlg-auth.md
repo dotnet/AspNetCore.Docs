@@ -46,4 +46,9 @@ In the project folder, run the Identity scaffolder with the options you want. Fo
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
 
+Powershell uses semicolon as a command separator. When using powershell, escape the semi-colons in the file list or put the file list in double quotes. For example:
+
+```cli
+dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
+```
 -------------
