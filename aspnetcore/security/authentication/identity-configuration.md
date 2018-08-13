@@ -7,8 +7,6 @@ ms.date: 08/14/2018
 uid: security/authentication/identity-configuration
 ---
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_
-
 # Configure ASP.NET Core Identity
 
 ASP.NET Core Identity uses default configuration for settings such as password policy, lockout time, and cookie settings. These settings can be overridden in the app's `Startup` class.
@@ -30,7 +28,7 @@ The [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions)
 
 ### Lockout
 
-Lockout is set in the [PasswordSignInAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) method:
+Lockout is set in the [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) method:
 
 [!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
 
@@ -40,7 +38,7 @@ Lockout options are set in `StartUp.ConfigureServices`:
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
-The preceding code sets the [IdentityOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-2.0) [LockoutOptions](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions?view=aspnetcore-2.0) with default values.
+The preceding code sets the [IdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) [LockoutOptions](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) with default values.
 
 A successful authentication resets the failed access attempts count and resets the clock.
 
@@ -61,6 +59,7 @@ By default, Identity requires that passwords contain an uppercase character, low
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
 
 ::: moniker-end
+
 ::: moniker range="= aspnetcore-2.0"
 [!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
 
@@ -94,7 +93,8 @@ The following code sets `SignIn` settings (to default values):
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
-[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,44-46,50-52)]
+[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,44-46,50-52)] 
+
 ::: moniker-end
 
 [IdentityOptions.SignIn](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) specifies the [SignInOptions](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) with the properties shown in the table.
