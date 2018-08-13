@@ -5,7 +5,7 @@ description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/29/2018
+ms.date: 08/07/2018
 uid: signalr/dotnet-client
 ---
 
@@ -14,6 +14,9 @@ uid: signalr/dotnet-client
 By [Rachel Appel](http://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR .NET client can be used by Xamarin, WPF, Windows Forms, Console, and .NET Core apps. Like the [JavaScript client](xref:signalr/javascript-client), the .NET client enables you to receive and send and receive messages to a hub in real time.
+
+> [!NOTE]
+> Xamarin has special requirements for Visual Studio version. For more information, see [SignalR Client 2.1.1 in Xamarin](https://github.com/aspnet/Announcements/issues/305).
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 

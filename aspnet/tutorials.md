@@ -7,7 +7,6 @@ ms.assetid: fddf8e5e-c055-4f81-b691-78deef871112
 ms.author: aspnetcontent
 ms.date: 09/20/2017
 ms.technology: aspnet
-uid: aspnet/tutorials
 ---
 # ASP.NET tutorials
 

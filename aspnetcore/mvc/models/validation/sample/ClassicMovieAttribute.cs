@@ -10,9 +10,9 @@ namespace MVCMovie.Models
     {
         private int _year;
 
-        public ClassicMovieAttribute(int Year)
+        public ClassicMovieAttribute(int year)
         {
-            _year = Year;
+            _year = year;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
