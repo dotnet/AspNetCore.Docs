@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using RPauth.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace RPauth
 {
@@ -46,7 +47,7 @@ namespace RPauth
             #region snippet_pw
             services.Configure<IdentityOptions>(options =>
             {
-                // Default password settings.
+                // Default Password settings.
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -64,6 +65,38 @@ namespace RPauth
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
             #endregion
+
+            #region snippet_user
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default User settings.
+                options.User.AllowedUserNameCharacters =
+                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+
+            });
+            #endregion
+
+            #region snippet_cookie
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Identity/Account/Login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+            #endregion
+
+services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/About";
+    options.LoginPath = "/About";
+});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
