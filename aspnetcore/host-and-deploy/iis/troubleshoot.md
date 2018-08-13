@@ -91,6 +91,7 @@ To enable and view stdout logs:
 1. Navigate to the site's deployment folder on the hosting system.
 1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
 1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*. 
+1. Ensure your application pool's identity has write permissions to the *logs* folder.
 1. Save the updated *web.config* file.
 1. Make a request to the app.
 1. Navigate to the *logs* folder. Find and open the most recent stdout log.
