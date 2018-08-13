@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2018
+ms.date: 08/13/2018
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
