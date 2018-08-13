@@ -159,23 +159,25 @@ There are three options for hosting startup activation:
 
 ### Runtime store
 
-**Assembly placement**
-
 The hosting startup implementation is placed in the [runtime store](/dotnet/core/deploying/runtime-store). A compile-time reference to the assembly isn't required by the enhanced app.
 
-For per-user use, place the assembly in the user profile's runtime store at:
+After the hosting startup is built, the hosting startup's project file serves as the manifest file for the [dotnet store](/dotnet/core/tools/dotnet-store) command.
+
+```console
+dotnet store --manifest <PROJECT_FILE> --runtime <RUNTIME_IDENTIFIER>
+```
+
+This command places the hosting startup assembly and other dependencies that aren't part of the shared framework in the user profile's runtime store at:
 
 ```
 <DRIVE>\Users\<USER>\.dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
 
-For global use, place the assembly in the .NET Core installation's runtime store:
+If you desire to place the assembly and dependencies for global use, add the `-o|--output` switch to the `dotnet store` command with the following path:
 
 ```
 <DRIVE>\Program Files\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
-
-When deploying the assembly to the runtime store, the symbols file is optional. The symbols file isn't required for the enhancement to function.
 
 **Modify and place the hosting startup's dependencies file**
 
@@ -294,10 +296,15 @@ To run the sample:
 **Activation from a runtime store-deployed assembly**
 
 1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows OS starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-windows-powershell).
-1. Build the *StartupDiagnostics* project. When the project is built, a build target in the project file automatically:
-   * Moves the assembly and symbols files to the user profile's runtime store.
+1. Build the *StartupDiagnostics* project. After the project is built, a build target in the project file automatically:
    * Triggers the PowerShell script to modify the *StartupDiagnostics.deps.json* file.
    * Moves the *StartupDiagnostics.deps.json* file to the user profile's *additionalDeps* folder.
+1. Execute the `dotnet store` command at a command prompt in the hosting startup's directory to store the assembly and its dependencies in the user profile's runtime store:
+
+   ```console
+   dotnet store --manifest StartupDiagnostics.csproj --runtime win7-x64
+   ```
+   For Windows, the command uses the `win7-x64` runtime identifier (RID). When providing the hosting startup for a different runtime, substitute the correct RID.
 1. Set the environment variables:
    * Add the assembly name of *StartupDiagnostics* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
    * Set the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`.
