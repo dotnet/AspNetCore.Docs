@@ -449,6 +449,11 @@
         "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
         "redirect_url": "/aspnet/core/razor-pages/upload-files",
         "redirect_document_id": false
+    },
+        {
+        "source_path": "aspnet/mvc/overview/getting-started/introduction/sample/code-location.md",
+        "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/index",
+        "redirect_document_id": false
     }
   ] 
 }
