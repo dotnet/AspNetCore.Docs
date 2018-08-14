@@ -15,7 +15,7 @@ namespace StaticFiles
         #region snippet_ConfigureMethod
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var cachePeriod = env.IsDevelopment() ? 600 : 604800;
+            var cachePeriod = env.IsDevelopment() ? "600" : "604800";
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
