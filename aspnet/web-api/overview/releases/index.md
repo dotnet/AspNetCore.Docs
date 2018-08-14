@@ -3,7 +3,7 @@ uid: web-api/overview/releases/index
 title: "ASP.NET Web API Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in recent Web API releases."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/13/2014
 ms.assetid: bb68c415-ba45-4562-a964-d9a27b78f532
 msc.legacyurl: /web-api/overview/releases

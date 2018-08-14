@@ -3,7 +3,7 @@ uid: web-pages/videos/aspnet-razor-pages/working-with-data-part-1
 title: "Working with Data (Part 1) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Data tutorial (Part 1)"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/25/2011
 ms.assetid: ebeac83f-2bca-4225-899e-1687480476f6
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-data-part-1

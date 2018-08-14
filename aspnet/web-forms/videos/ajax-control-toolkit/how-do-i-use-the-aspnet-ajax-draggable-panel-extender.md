@@ -3,7 +3,7 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-draggabl
 title: "[How Do I:] Use the ASP.NET AJAX Draggable Panel Extender? | Microsoft Docs"
 author: JoeStagner
 description: "With the ASP.NET AJAX Draggable Panel Extender you can provide a content panel with a header area that allows the user to move the panel around the web page."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/31/2007
 ms.assetid: 6f93a786-93f3-4a48-8fd5-001016550619
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-draggable-panel-extender

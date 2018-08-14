@@ -3,7 +3,7 @@ uid: signalr/overview/testing-and-debugging/enabling-signalr-tracing
 title: "Enabling SignalR Tracing | Microsoft Docs"
 author: tfitzmac
 description: "This document describes how to enable and configure tracing for SignalR servers and clients. Tracing enables you to view diagnostic information about events..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/08/2014
 ms.assetid: 30060acb-be3e-4347-996f-3870f0c37829
 msc.legacyurl: /signalr/overview/testing-and-debugging/enabling-signalr-tracing

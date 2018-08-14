@@ -3,7 +3,7 @@ uid: web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-
 title: "Create a secure ASP.NET Web Forms app with user registration, email confirmation and password reset (C#) | Microsoft Docs"
 author: Erikre
 description: "This tutorial shows you how to build an ASP.NET Web Forms app with user registration, email confirmation and password reset using the ASP.NET Identity member..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/02/2014
 ms.assetid: 0a8d6044-5fab-4213-82d6-5618d5601358
 msc.legacyurl: /web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset

@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-datatables/cdnjquerydatatables194
 title: "jQuery DataTables 1.9.4 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: f117b38e-38b9-4f3c-911b-21c1621a7797
 msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables194

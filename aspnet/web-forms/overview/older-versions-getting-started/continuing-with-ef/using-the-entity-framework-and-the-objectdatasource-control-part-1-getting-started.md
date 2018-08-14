@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/using-
 title: "Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 1: Getting Started | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework tutorial series. If yo..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/26/2011
 ms.assetid: 244278c1-fec8-4255-8a8a-13bde491c4f5
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started

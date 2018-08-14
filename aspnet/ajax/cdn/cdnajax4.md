@@ -3,7 +3,7 @@ uid: ajax/cdn/cdnajax4
 title: "ASP.NET Web Forms and Ajax 4 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/28/2014
 ms.assetid: cced3924-251c-4c77-bef0-7992acbac106
 msc.legacyurl: /ajax/cdn/cdnajax4

@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up
 title: "NerdDinner Wrap Up | Microsoft Docs"
 author: microsoft
 description: "This is the conclusion of the NerdDinner tutorial, and provides you with information on how to learn more."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 5c6371c0-a944-4adf-a28e-5afbdd011ca8
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up

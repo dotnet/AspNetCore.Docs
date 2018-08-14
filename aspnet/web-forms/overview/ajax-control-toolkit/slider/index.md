@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/slider/index
 title: "Slider | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the Slider control to display a graphical slider that users can control using the mouse."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: fd7812d1-55d7-4e4a-96c8-1614b375db56
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider

@@ -3,7 +3,7 @@ uid: web-api/overview/advanced/dependency-injection
 title: "Dependency Injection in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to inject dependencies into your ASP.NET Web API controller. Software versions used in the tutorial Web API 2 Unity Application Block..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/20/2014
 ms.assetid: e3d3e7ba-87f0-4032-bdd3-31f3c1aa9d9c
 msc.legacyurl: /web-api/overview/advanced/dependency-injection

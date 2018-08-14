@@ -3,7 +3,7 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/usi
 title: "Part 7: Creating the Main Page | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/04/2012
 ms.assetid: eb32a17b-626c-4373-9a7d-3387992f3c04
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-7

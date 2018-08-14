@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/controllers-and-routing/understanding-action-
 title: "Understanding Action Filters (C#) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain action filters. An action filter is an attribute that you can apply to a controller action -- or an entire controller..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: a94e4e81-40c1-47b7-8613-126a1a6cc93d
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs

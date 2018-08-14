@@ -3,7 +3,7 @@ uid: web-forms/videos/net-4/seo/aspnet-4-quick-hit-dynamic-metadata
 title: Dynamic Metadata | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn about the Page.MetaKeywords and Page.MetaDescription properties, which allow you to set the page meta data dynamically at run ti..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/05/2009
 ms.assetid: 16b680a1-8b3e-4c06-953d-7dac8f7d7a72
 msc.legacyurl: /web-forms/videos/net-4/seo/aspnet-4-quick-hit-dynamic-metadata

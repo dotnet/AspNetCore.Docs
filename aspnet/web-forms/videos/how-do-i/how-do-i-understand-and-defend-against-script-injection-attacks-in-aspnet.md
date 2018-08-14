@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-understand-and-defend-against-script-inj
 title: "How Do I Understand and Defend Against Script Injection Attacks in ASP.NET | Microsoft Docs"
 author: JoeStagner
 description: "Cross Site Scripting (XSS) is perhaps the most troublesome security issue for web developers to tackle these days. In this video, Microsoft's Joe Stagner pro..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/13/2009
 ms.assetid: 84c1e12c-2cc3-4bfe-bcc4-35381779a669
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-understand-and-defend-against-script-injection-attacks-in-aspnet

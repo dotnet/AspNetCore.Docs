@@ -3,7 +3,7 @@ uid: web-forms/videos/migrating/intro-to-aspnet-20-aspnet-20-fundamentals
 title: "[Intro to ASP.NET 2.0:] ASP.NET 2.0 Fundamentals | Microsoft Docs"
 author: microsoft
 description: "Developers new to ASP.NET will want to attend this webcast designed to familiarize you with its essential features."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/25/2006
 ms.assetid: ff36f242-5f40-44d1-b65d-5ab2fb622742
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-20-aspnet-20-fundamentals

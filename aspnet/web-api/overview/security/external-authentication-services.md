@@ -3,7 +3,7 @@ uid: web-api/overview/security/external-authentication-services
 title: "External Authentication Services with ASP.NET Web API (C#) | Microsoft Docs"
 author: rmcmurray
 description: "Describes using External Authentication Services in ASP.NET Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/26/2013
 ms.assetid: 3bb8eb15-b518-44f5-a67d-a27e051aedc6
 msc.legacyurl: /web-api/overview/security/external-authentication-services

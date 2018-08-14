@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-u
 title: "ASP.NET MVC For the Rest of Us: Part 2 | Microsoft Docs"
 author: JoeStagner
 description: "In this Video Microsoft's Joe Stagner builds a 'Contact Us' feature for an ASP.NET MVC application by adding a View, Controller Logic and a Custom Model to t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/22/2010
 ms.assetid: d27fbb54-353f-4d79-b465-403ff8e0538b
 msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-2

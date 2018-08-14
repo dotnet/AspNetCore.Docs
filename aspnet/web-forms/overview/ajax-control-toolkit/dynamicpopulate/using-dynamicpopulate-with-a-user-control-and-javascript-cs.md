@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopula
 title: "Using DynamicPopulate with a User Control And JavaScript (C#) | Microsoft Docs"
 author: wenz
 description: "The DynamicPopulate control in the ASP.NET AJAX Control Toolkit calls a web service (or page method) and fills the resulting value into a target control on t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/02/2008
 ms.assetid: 38ac8250-8854-444c-b9ab-8998faa41c5a
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs

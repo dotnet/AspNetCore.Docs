@@ -3,7 +3,7 @@ uid: web-forms/videos/building-35-applications/css
 title: "CSS | Microsoft Docs"
 author: JoeStagner
 description: "Cascading Style Sheets are integral to modern web development and Visual Web Developer 2008 includes a collection of powerful CSS building facilities to help..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/30/2009
 ms.assetid: 50a55e3b-3f5c-429b-baf9-730221e9ef4c
 msc.legacyurl: /web-forms/videos/building-35-applications/css

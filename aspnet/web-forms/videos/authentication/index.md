@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/index
 title: "Authentication | Microsoft Docs"
 author: rick-anderson
 description: "How to implement and manage security (authentication) in an ASP.NET application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 4a365e58-9b18-4bd2-bfd5-6981e7f2e179
 msc.legacyurl: /web-forms/videos/authentication

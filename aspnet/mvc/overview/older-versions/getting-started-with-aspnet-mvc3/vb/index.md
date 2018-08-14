@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/index
 title: "Getting Started with ASP.NET MVC 3 (VB.NET) | Microsoft Docs"
 author: rick-anderson
 description: "The basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express using VB.NET."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/12/2012
 ms.assetid: c2f134f3-fc6b-4603-823f-d1eabe55bba2
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb

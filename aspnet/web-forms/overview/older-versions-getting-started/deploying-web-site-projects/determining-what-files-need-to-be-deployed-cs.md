@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Determining What Files Need to Be Deployed (C#) | Microsoft Docs"
 author: rick-anderson
 description: "What files need to be deployed from the development environment to the production environment depends in part on whether the ASP.NET application was built us..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/01/2009
 ms.assetid: f8d78a88-cc91-40d8-bce3-3d7954f6033b
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/determining-what-files-need-to-be-deployed-cs

@@ -3,7 +3,7 @@ uid: signalr/overview/testing-and-debugging/troubleshooting
 title: "SignalR Troubleshooting | Microsoft Docs"
 author: pfletcher
 description: "This article describes common issues with developing SignalR applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/10/2014
 ms.assetid: 4b559e6c-4fb0-4a04-9812-45cf08ae5779
 msc.legacyurl: /signalr/overview/testing-and-debugging/troubleshooting

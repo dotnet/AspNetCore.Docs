@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/customiz
 title: "Customizing the Data Modification Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to customize the interface of an editable GridView, by replacing the standard TextBox and CheckBox controls with alternati..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/17/2006
 ms.assetid: 4830d984-bd2c-4a08-bfe5-2385599f1f7d
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb

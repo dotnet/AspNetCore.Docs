@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Deploying Web Site Projects in Visual Studio 2008 and earlier | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET web applications are typically designed, created, and tested in a local development environment and need to be deployed to a production environment o..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/16/2012
 ms.assetid: 6f72bde8-f2f1-4e4a-94e5-494c3c153c14
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects

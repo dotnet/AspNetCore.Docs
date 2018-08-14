@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeat
 title: "Displaying Data with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show alternative ways to display data by using the DataList and Repeater controls."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 3005174a-ba3d-4937-8b3e-b913ee4172ac
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater

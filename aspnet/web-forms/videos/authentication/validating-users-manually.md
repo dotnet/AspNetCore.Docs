@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/validating-users-manually
 title: "Validating Users Manually | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner shows you how to create your own web form and process the authentication request manually. For additional information about this vi..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/22/2008
 ms.assetid: c11eec26-25a2-41fb-9330-ddc123c0423a
 msc.legacyurl: /web-forms/videos/authentication/validating-users-manually

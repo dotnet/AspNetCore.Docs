@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-
 title: "Creating an Entity Framework Data Model for an ASP.NET MVC Application (1 of 10) | Microsoft Docs"
 author: tdykstra
 description: "A newer version of this tutorial series is available, for Visual Studio 2013, Entity Framework 6, and MVC 5. The Contoso University sample web application de..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/30/2013
 ms.assetid: 4ba029b6-ee7c-4e45-a0e7-b703c37e5d9a
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application

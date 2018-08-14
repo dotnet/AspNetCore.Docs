@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datali
 title: "Handling BLL- and DAL-Level Exceptions (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial, we'll see how to tactfully handle exceptions raised during an editable DataList's updating workflow."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/30/2006
 ms.assetid: ca665073-b379-4239-9404-f597663ca65e
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-vb

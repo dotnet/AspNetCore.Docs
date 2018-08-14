@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reord
 title: "Drag and Drop via ReorderList (C#) | Microsoft Docs"
 author: wenz
 description: "The ReorderList control in the AJAX Control Toolkit provides a list that can be reordered by the user via drag and drop. The current order of the list shall..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/02/2008
 ms.assetid: 6350ee8e-11d6-4aff-b51c-942878014835
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reorderlist-cs

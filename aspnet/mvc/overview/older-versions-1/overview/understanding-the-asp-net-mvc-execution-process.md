@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execut
 title: "Understanding the ASP.NET MVC Execution Process | Microsoft Docs"
 author: microsoft
 description: "Learn how the ASP.NET MVC framework processes a browser request step-by-step."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: d1608db3-660d-4079-8c15-f452ff01f1db
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process

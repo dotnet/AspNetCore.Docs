@@ -3,7 +3,7 @@ uid: web-api/overview/error-handling/web-api-global-error-handling
 title: "Global Error Handling in ASP.NET Web API 2 | Microsoft Docs"
 author: davidmatson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/03/2014
 ms.assetid: bffd7863-f63b-4b23-a13c-372b5492e9fb
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling

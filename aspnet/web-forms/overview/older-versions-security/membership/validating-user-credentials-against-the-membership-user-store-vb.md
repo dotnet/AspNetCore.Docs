@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/membership/validating-user-crede
 title: "Validating User Credentials Against the Membership User Store (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine how to validate a user's credentials against the Membership user store using both programmatic means and the Login control...."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/18/2008
 ms.assetid: 17772912-b47b-4557-9ce9-80f22df642f7
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb

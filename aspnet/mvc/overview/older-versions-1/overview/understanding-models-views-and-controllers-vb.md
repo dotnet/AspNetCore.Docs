@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/overview/understanding-models-views-and-contr
 title: "Understanding Models, Views, and Controllers (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Confused about Models, Views, and Controllers? In this tutorial, Stephen Walther introduces you to the different parts of an ASP.NET MVC application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/19/2008
 ms.assetid: a106374a-5e74-4fd0-9ac0-1a32280e5d0d
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb

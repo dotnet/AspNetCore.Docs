@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/adding-users-to-your-membership-system
 title: "Adding Users to Your Membership System | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner shows you how to add new users to the membership repository."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/29/2010
 ms.assetid: fc0f145a-ba00-495e-b8aa-a6e8ad4e80f5
 msc.legacyurl: /web-forms/videos/authentication/adding-users-to-your-membership-system

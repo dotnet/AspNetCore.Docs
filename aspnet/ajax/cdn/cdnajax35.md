@@ -3,7 +3,7 @@ uid: ajax/cdn/cdnajax35
 title: "ASP.NET Ajax 3.5 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/28/2014
 ms.assetid: d5af74c6-3bdf-4d56-8dba-316e3dc0092f
 msc.legacyurl: /ajax/cdn/cdnajax35

@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/index
 title: "Older Versions - Ajax Control Toolkit | Microsoft Docs"
 author: rick-anderson
 description: "How to get started with the Ajax Control Toolkit, and how to use some of the most popular controls. DevExpress maintains the free and open sourced Ajax Contr..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 76242ce9-e611-41d2-95e8-dc5f406d4bfc
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit

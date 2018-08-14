@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
 title: "[How Do I:] Create Data-Driven Web Sites? | Microsoft Docs"
 author: microsoft
 description: "See how simple it is to create data-driven web sites using ASP.NET 2.0, Visual Web Developer 2005 Express Edition, and SQL Server 2005 Express Edition. Learn..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/16/2006
 ms.assetid: 793a01ac-3800-41b2-b542-2d88715cbe3b
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
