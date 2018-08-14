@@ -94,6 +94,14 @@ MVC contains several attributes that you can use to direct its default model bin
 
 Attributes are very helpful tools when you need to override the default behavior of model binding.
 
+## Customizing model binding and validation globally
+
+The model binding and validation system is driven by `ModelMetadata` that describes how a model is to be bound and how validation occurs on the type and it's properties. Aspects of this can be configured globally by adding details provider to `MvcOptions.ModelMetadataDetailsProviders`. MVC has a few built-in details provider that allows configuring behavior such as disabling model binding or validation for certain types. 
+
+* To disable model binding on all models of a certain type, configure your startup to add an `ExcludeBindingMetadataProvider`. For example, to disable model binding on all models of type `System.Version`, `options.ModelMetadataDetailsProviders.Add(new ExcludeBindingMetadataProvider(typeof(System.Version))`
+
+* To disable validation on properties of a certain type, configure your startup to add an `SuppressChildValidationMetadataProvider`. For example, to disable validation on properties of `System.Guid`,  `options.ModelMetadataDetailsProviders.Add(new SuppressChildValidationMetadataProvider(typeof(System.Guid))`
+
 ## Bind formatted data from the request body
 
 Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a `JsonInputFormatter` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.
