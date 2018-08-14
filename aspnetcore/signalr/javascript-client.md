@@ -95,7 +95,7 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 ## Related resources
 
-* [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
+* [JavaScript API reference](/javascript/api/)
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
