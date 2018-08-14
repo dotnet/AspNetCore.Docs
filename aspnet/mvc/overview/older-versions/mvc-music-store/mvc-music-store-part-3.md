@@ -208,7 +208,7 @@ Notice that we have full IntelliSense support as we enter this code, so that whe
 
 ![](mvc-music-store-part-3/_static/image18.png)
 
-Within our "foreach" loop, Visual Web Developer knows that each item is of type Genre, so we see IntelliSence for each the Genre type.
+Within our "foreach" loop, Visual Web Developer knows that each item is of type Genre, so we see IntelliSense for each the Genre type.
 
 ![](mvc-music-store-part-3/_static/image19.png)
 
