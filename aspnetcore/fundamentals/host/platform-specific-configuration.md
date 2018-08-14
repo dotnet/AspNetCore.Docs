@@ -219,7 +219,7 @@ If the file is placed in the .NET Core installation for global use, provide the 
 <DRIVE>\Program Files\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
 ```
 
-For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile and the environment variable is set to the following value:
+For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile and the `DOTNET_ADDITIONAL_DEPS` environment variable is set to the following value:
 
 ```
 %UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
