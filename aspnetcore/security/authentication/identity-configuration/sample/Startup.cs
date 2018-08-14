@@ -92,12 +92,6 @@ namespace RPauth
             });
             #endregion
 
-services.ConfigureApplicationCookie(options =>
-{
-    options.AccessDeniedPath = "/About";
-    options.LoginPath = "/About";
-});
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
