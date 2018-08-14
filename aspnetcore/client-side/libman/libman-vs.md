@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use LibMan in an ASP.NET Core project with Visual Studio.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/13/2018
+ms.date: 08/14/2018
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio
@@ -13,10 +13,10 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 
 Visual Studio has built-in support for LibMan in ASP.NET Core projects, including:
 
-* Support for configuring and running LibMan restore operations on build
-* Menu items for triggering LibMan restore and clean operations
-* Search dialog for finding libraries and adding the files to your project
-* Editing support for *libman.json*&mdash;the LibMan manifest file
+* Support for configuring and running LibMan restore operations on build.
+* Menu items for triggering LibMan restore and clean operations.
+* Search dialog for finding libraries and adding the files to your project.
+* Editing support for *libman.json*&mdash;the LibMan manifest file.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
 
@@ -35,7 +35,7 @@ Library files can be added to an ASP.NET Core project in two different ways:
 
 Follow these steps to install a client-side library:
 
-* In **Solution Explorer**, right-click the project folder in which the file(s) should be added. Choose **Add** > **Client-Side Library**. The **Add Client-Side Library** dialog appears:
+* In **Solution Explorer**, right-click the project folder in which the files should be added. Choose **Add** > **Client-Side Library**. The **Add Client-Side Library** dialog appears:
 
   ![Add Client-Side Library dialog](_static/add-library-dialog.png)
 
@@ -44,8 +44,8 @@ Follow these steps to install a client-side library:
 * Select the library from the IntelliSense list. Notice the library name is suffixed with the `@` symbol and the latest stable version known to the selected provider.
 * Decide which files to include:
   * Select the **Include all library files** radio button to include all of the library's files.
-  * Select the **Choose specific files** radio button to include a subset of the library's files. When the radio button is selected, the file selector tree becomes usable. Check the boxes to the left of the file names to download.
-* Specify the project folder, for storing the files, in the **Target Location** text box. As a recommendation, store each library in a separate folder.
+  * Select the **Choose specific files** radio button to include a subset of the library's files. When the radio button is selected, the file selector tree is enabled. Check the boxes to the left of the file names to download.
+* Specify the project folder for storing the files in the **Target Location** text box. As a recommendation, store each library in a separate folder.
 
   The suggested **Target Location** folder is based on the location from which the dialog launched:
 
@@ -100,7 +100,7 @@ With the following manifest file, LibMan retrieves files per the configuration d
 
 ## Restore library files
 
-Restoration of library files in Visual Studio requires a valid *libman.json* file in the project root. The files are placed in the project at the location specified for each library. Library files can be restored in an ASP.NET Core project in two different ways:
+Restoration of library files in Visual Studio requires a valid *libman.json* file in the project root. The files are placed in the project at the location specified for each library. Library files can be restored in an ASP.NET Core project in two ways:
 
 1. [Restore files manually](#restore-files-manually)
 1. [Restore files during build](#restore-files-during-build)
@@ -183,16 +183,16 @@ To check for an updated library version:
 
 * Open *libman.json*.
 * Position the caret inside the corresponding `libraries` object literal.
-* Click the light bulb icon that appears in the left margin, and hover over **Check for updates**.
+* Click the light bulb icon that appears in the left margin. Hover over **Check for updates**.
 
-LibMan checks for a library version newer than the version installed. The following things can occur:
+LibMan checks for a library version newer than the version installed. The following outcomes can occur:
 
 * A **No updates found** message is displayed if the latest version is already installed.
 * The latest stable version is displayed if not already installed.
 
   ![Check for updates context menu option](_static/update-menu-option.png)
 
-* If a pre-release is available, which is newer than the installed version, the pre-release is displayed too.
+* If a pre-release newer than the installed version is available, the pre-release is displayed.
 
 To downgrade to an older library version, manually edit the *libman.json* file. When the file is saved, the LibMan restore operation removes redundant files from the previous version and adds new and updated files from the new version.
 
